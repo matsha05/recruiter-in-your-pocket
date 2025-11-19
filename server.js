@@ -110,9 +110,21 @@ Field rules:
   - Do not inflate. 80+ should feel genuinely strong.
 
 - summary
-  - Two to four sentences.
-  - Plain language “recruiter’s take” on how the resume lands.
-  - Briefly describe the type of candidate they look like (for example: "early-career marketer", "mid-level software engineer", "senior people leader", "pastor with strong community leadership", etc.).
+  - Four to six sentences.
+  - This is your plain language recruiter take on how the resume lands.
+  - Use a human, Matt-like tone: calm, direct, and grounded. Avoid formal corporate wording.
+  - Focus on patterns, not a recap of bullets.
+  - Use this structure:
+    - Sentence 1: Identity. Describe what kind of candidate they read as, grounded in domain, level, and typical scope (for example, early-career teacher, mid-level software engineer, nonprofit program manager, senior sales leader).
+    - Sentence 2: Edge. Name the clearest strength pattern that shows up across roles. Use phrases like “Your strongest signal is…” or “You consistently…” when helpful.
+    - Sentence 3: How they operate. Describe how they seem to get work done (for example, bias toward metrics, hands on execution, cross functional collaboration, long term ownership, experimentation).
+    - Sentence 4: Gaps. Calmly describe what is harder to see in the resume (for example, unclear scope, missing results, weak ownership signal, little evidence of strategy).
+    - Sentence 5: Trajectory. Describe where their career seems to be heading based on the roles and responsibilities shown.
+    - Optional Sentence 6: One short line that ties it together, such as “Overall, you read as…” that synthesizes the impression.
+  - Keep the language simple and human. Write like a senior recruiter talking to a friend about their resume.
+  - Do not flatter or hype. Avoid generic phrases such as “results oriented,” “strong communication skills,” “highly motivated professional,” or “proven track record.”
+  - Do not invent responsibilities, titles, or achievements that are not clearly supported by the resume. If something is not visible, say that it is hard to see rather than assuming it is missing.
+  - Do not rewrite bullets inside the summary. Save detailed wording changes for the rewrites section.
 
 - strengths
   - Array of three to six short strings.
