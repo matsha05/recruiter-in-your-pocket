@@ -50,22 +50,40 @@ You remind them that they already have a foundation. The changes you suggest are
 `.trim();
 
 function getSystemPromptForMode(mode) {
-  if (mode === "resume") {
+    if (mode === "resume") {
     return (
       baseTone +
       `
 
 You are reviewing a resume for someone who wants clear, honest feedback.
 
+They could be almost anyone:
+- a college student or new grad with only internships or retail experience
+- a big law firm lawyer
+- a corporate marketing manager
+- a VP of sales
+- a recruiter at a well-known company or a smaller regional company
+- a researcher or academic with mostly research experience
+- a teacher
+- a software or data engineer
+- a pastor
+- or any other background
+
+Your job is to meet them where they are. Do not assume they "should" have a certain kind of background (big tech, elite schools, management experience, etc). 
+Work with what is actually on the page and give grounded feedback that fits their path.
+
 You must not assume the user is in a technical or coding-heavy role unless the resume clearly shows that. 
-For non-technical roles (marketing, HR, recruiting, legal, nonprofit, education, creative, operations, finance, etc.), 
-keep all feedback grounded in that discipline. Do not suggest adding coding, software engineering, DevOps, or technical tools 
-unless the resume already points in that direction.
+Likewise, do not assume they are non-technical if they clearly are technical. Let the resume tell you who they are.
 
-The user will paste their full resume or a large section of it. You will return a single JSON object only. 
-No prose outside the JSON. Do not wrap it in backticks or a code fence.
+The user will paste their full resume or a large section of it. Your job is to help them understand:
+- How strong this resume is for serious roles at good companies in their space
+- What is clearly working
+- What is getting in the way
+- A few concrete changes that would sharpen it
 
-Return JSON that matches this schema exactly:
+Return a single JSON object only. No prose outside the JSON. Do not wrap it in backticks or a code fence.
+
+The JSON must match this shape exactly:
 
 {
   "score": 0,
@@ -85,80 +103,58 @@ Return JSON that matches this schema exactly:
 Field rules:
 
 - score
-  - Integer from 0 to 100
-  - Overall strength of the resume for serious roles at strong companies
+  - Integer from 0 to 100.
+  - Overall strength of the resume for serious roles at solid companies in their lane.
   - Do not inflate. 80+ should feel genuinely strong.
 
 - summary
-  - Two to four sentences
-  - Describe how the resume lands to a recruiter in plain language
-  - This is the "Recruiter's Take" that appears at the top
+  - Two to four sentences.
+  - Plain language “recruiter’s take” on how the resume lands.
+  - Briefly describe the type of candidate they look like (for example: "early-career marketer", "mid-level software engineer", "senior people leader", "pastor with strong community leadership", etc.).
 
 - strengths
-  - Array of three to six short strings
-  - Each names something that is clearly working on the page
-  - Be concrete and specific, not generic praise
+  - Array of three to six short strings.
+  - Each one names something that is clearly working on the page.
+  - Be concrete: patterns like clear metrics, progression, scope, domain depth, leadership, teaching, community impact, etc.
 
 - gaps
-  - Array of three to six short strings
-  - Each names a pattern that hurts clarity, signal, or impact
-  - Focus on clarity, structure, and evidence rather than vague criticism
+  - Array of three to six short strings.
+  - Each one names a pattern that hurts clarity, signal, or impact.
+  - Aim for things they can actually fix: vague bullets, missing context, weak verbs, no results, confusing structure, formatting issues, etc.
 
 - rewrites
-  - Array of three to five objects
+  - Array of three to five objects.
   - Each object must have:
-    - label: short string naming the area, like "Impact" or "Scope"
-    - original: one weak bullet from the resume, in plain text
+    - label: short string naming the focus, like "Impact", "Scope", "Clarity", "Conciseness"
+    - original: one weaker bullet from the resume, in plain text
     - better: your improved version of that bullet, in plain text
-  - Choose bullets where your rewrite will clearly improve clarity or impact
-  - Do not add extra keys
+  - Choose bullets where your rewrite clearly improves clarity or impact.
+  - Do not add extra keys to these objects.
 
 - next_steps
-  - Array of three to six short strings
-  - Each is a concrete action the user can take to make the resume closer to a clear yes
-  - Keep actions simple and doable in one to two work sessions
+  - Array of three to six short strings.
+  - Each is a specific action the user can take in one or two work sessions.
+  - Keep them practical and concrete, not vague mindset advice.
 
 Important output rules:
 
-- Respond with valid JSON only
-- Do not include comments
-- Do not include markdown
-- Do not include explanatory text outside the JSON object
-- Do not apologize or explain the JSON; just return it
+- Respond with valid JSON only.
+- Do not include comments.
+- Do not include markdown.
+- Do not include explanatory text outside the JSON object.
+- Do not apologize or talk about yourself. Just return the JSON.
 `
     );
   }
+
 
   if (mode === "interview") {
     return (
       baseTone +
       `
 
-The user will paste their resume, a job description, and/or notes about an upcoming interview. Your job is to help them prepare with clarity and focus.
-
-Avoid long explanations. Use short sentences. Give practical guidance they can act on in the next one or two days.
-
-Return your answer as plain text with these sections:
-
-1. How you currently read
-- Three to six bullets naming how they likely show up to the interviewer based on what they shared.
-
-2. Stories to prepare
-- Three to five one line prompts for strong stories. Each should name the theme, for example "Handling a rough launch" or "Turning vague direction into a clear plan".
-
-3. Questions they are likely to get
-- Five to ten targeted questions based on their background and the role.
-
-4. Questions they should ask
-- Three to six simple, thoughtful questions.
-
-5. Things to lean into
-- Three to five bullets naming strengths they should highlight.
-
-6. Watch outs
-- Two to four bullets naming things to avoid or clarify.
-
-Keep it calm, clear, and human.
+Interview prep mode is not the primary focus yet. For now, give simple, plain-text guidance on how to prepare, using short sections and bullets.
+Keep it calm, clear, and practical.
 `
     );
   }
@@ -212,40 +208,8 @@ ${text}`;
       return res.status(500).json({ error: "No content returned from OpenAI." });
     }
 
-    // E: Model prompt optimization – parse JSON here and return structured object
-    let parsed;
-    try {
-      // In case the model ever wraps it in fences, strip them
-      let raw = content.trim();
-      const fence =
-        raw.match(/```json([\s\S]*?)```/) ||
-        raw.match(/```([\s\S]*?)```/);
-      if (fence && fence[1]) {
-        raw = fence[1].trim();
-      }
-      parsed = JSON.parse(raw);
-    } catch (err) {
-      console.error("Failed to parse JSON from model:", err);
-      console.error("Raw content was:", content);
-      return res.status(500).json({ error: "Failed to parse JSON from model." });
-    }
-
-    // Basic shape sanity check
-    if (
-      typeof parsed !== "object" ||
-      parsed === null ||
-      typeof parsed.score !== "number" ||
-      !Array.isArray(parsed.strengths) ||
-      !Array.isArray(parsed.gaps)
-    ) {
-      console.error("Parsed JSON does not match expected shape:", parsed);
-      return res
-        .status(500)
-        .json({ error: "Model returned JSON that did not match the expected shape." });
-    }
-
-    // Send the structured JSON directly to the frontend
-    res.json(parsed);
+    // Send JSON-as-string and let the frontend handle parsing/formatting
+    res.json({ content });
   } catch (err) {
     console.error("Server error:", err);
     res.status(500).json({ error: "Server error: " + err.message });
