@@ -47,3 +47,19 @@ Resume advice must work for:
 - Not just engineers or product people
 
 Bar is the same for everyone: excellent, practical resume feedback.
+
+## Next Major Improvements
+
+### Model Prompt Optimization (E)
+- Tighten system prompts to ensure consistent JSON structure.
+- Improve reliability of "rewrites" section formatting.
+- Reduce verbosity and enforce short sentences.
+- Ensure backend returns predictable shapes for strengths, gaps, rewrites, next_steps.
+- Calibrate scoring ranges so results are not inflated.
+- Reduce unnecessary qualifiers or hedging.
+
+### Model Alignment for All Roles (G)
+- Ensure resume feedback works equally well for non-technical roles.
+- Remove all unnecessary references to coding, engineering, or software skills unless explicitly present in the resume.
+- Prevent hallucinated technical advice for marketing, HR, legal, nonprofit, creative, education, operations, and similar roles.
+- Keep guidance grounded in the actual discipline represented by the resume.
