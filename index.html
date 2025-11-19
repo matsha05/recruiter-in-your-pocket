@@ -646,6 +646,13 @@
       display: none;
     }
 
+.rewrite-enhancement-note {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
     .copy-button {
       border-radius: 999px;
       border: 1px solid rgba(31, 41, 55, 0.95);
@@ -1148,29 +1155,35 @@
       html += `<div class="result-heading result-section">Stronger Phrasing You Can Use</div>`;
 
       for (const r of rewrites) {
-        if (!r) continue;
-        const label = r.label || "";
-        const original = r.original || "";
-        const better = r.better || "";
+  if (!r) continue;
+  const label = r.label || "";
+  const original = r.original || "";
+  const better = r.better || "";
+  const enhancementNote = r.enhancement_note || r.enhancementNote || "";
 
-        html += `<div class="rewrite-block">`;
+  html += `<div class="rewrite-block">`;
 
-        if (label) {
-          html += `<p class="result-paragraph"><strong>${escapeHtml(String(label))}</strong></p>`;
-        }
+  if (label) {
+    html += `<p class="result-paragraph"><strong>${escapeHtml(String(label))}</strong></p>`;
+  }
 
-        if (original) {
-          html += `<div class="rewrite-label">Original</div>`;
-          html += `<div class="rewrite-text">${escapeHtml(String(original))}</div>`;
-        }
+  if (original) {
+    html += `<div class="rewrite-label">Original</div>`;
+    html += `<div class="rewrite-text">${escapeHtml(String(original))}</div>`;
+  }
 
-        if (better) {
-          html += `<div class="rewrite-label">Better</div>`;
-          html += `<div class="rewrite-text">${escapeHtml(String(better))}</div>`;
-        }
+  if (better) {
+    html += `<div class="rewrite-label">Better</div>`;
+    html += `<div class="rewrite-text">${escapeHtml(String(better))}</div>`;
+  }
 
-        html += `</div>`;
-      }
+  if (enhancementNote) {
+    html += `<div class="rewrite-enhancement-note">${escapeHtml(String(enhancementNote))}</div>`;
+  }
+
+  html += `</div>`;
+}
+
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
       // Fallback: use suggested_bullets from backend as a simple list
       html += `<div class="result-heading result-section">Stronger Phrasing You Can Use</div>`;
