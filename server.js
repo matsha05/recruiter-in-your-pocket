@@ -94,11 +94,13 @@ The JSON must match this shape exactly:
     {
       "label": "",
       "original": "",
-      "better": ""
+      "better": "",
+      "enhancement_note": ""
     }
   ],
   "next_steps": []
 }
+
 
 Field rules:
 
@@ -122,27 +124,30 @@ Field rules:
   - Each one names a pattern that hurts clarity, signal, or impact.
   - Aim for things they can actually fix: vague bullets, missing context, weak verbs, no results, confusing structure, formatting issues, etc.
 
-  - rewrites
+- rewrites
   - Array of three to five objects.
   - Each object must have:
     - label: short string naming the focus (e.g., "Impact", "Scope", "Clarity", "Conciseness")
     - original: one weaker bullet from the resume, in plain text
     - better: your improved version of that bullet, in plain text
-
+    - enhancement_note: one optional sentence helping the user strengthen the bullet further
   Rewrite requirements:
-  - The “better” bullet must **never** contain more than one sentence. A rewritten bullet must be a single, tight, high-impact sentence.
-  - If the original bullet contains multiple ideas that cannot fit cleanly into one strong sentence, split it into **two rewritten bullets** using the same label. Do NOT leave a multi-sentence bullet.
-  - Always **preserve critical nouns** from the original (company names like Veryable, product names, tools, metrics, industries). Do NOT remove meaningful specificity.
-  - Improve clarity, action, and signal — do NOT remove important details just to make the bullet shorter.
-  - Improve the **impact logic**, not just the wording. Clarify scope, scale, or “why it mattered” when possible.
-  - When appropriate and safe, add context that strengthens the bullet:
-    - comparisons (“up from X%”)
-    - scale (“across 12 sites”)
-    - who/what was impacted (“serving 400 internal users”)
-    - scope (“covering M&D suppliers across 3 states”)
-  - Only add context if it is **implied**, or if the original provides hints — do NOT fabricate new numbers.
-  - Replace vague or fluffy phrases (“improving team performance”, “driving results”, “enhancing processes”) with **specific, concrete improvements** tied to evidence in the resume.
-  - Do not add extra keys to these objects.
+  - Only choose bullets where you can clearly improve clarity, impact, or structure. Skip bullets that are already strong.
+  - All rewritten bullets must follow a clear impact logic: Mechanism → Scope → Impact. Mechanism: what the user actually did. Scope: who or what it applied to (team, org, customers, departments, regions, systems, programs). Impact: why it mattered (measurable or observable outcome). Preserve these elements when present. If something is missing, strengthen clarity without inventing facts.
+  - A rewritten bullet must never contain more than one sentence. If the original mixes multiple ideas that cannot fit into one strong sentence, split it into two rewritten bullets under the same label.
+  - Never shorten a bullet at the cost of meaning. Clarity and signal outweigh brevity.
+  - Always preserve meaningful nouns from the original, including company names, product names, tools, industries, roles, and metrics. Do not remove specificity that contributes to signal.
+  - Strengthen the impact logic by improving understanding of scope, scale, mechanism, or outcome. Avoid flattening strong bullets into generic phrasing.
+  - Avoid vague or fluffy language such as “enhanced efficiency,” “drove results,” “improved performance,” or “improved satisfaction.” Replace these with concrete mechanisms grounded in the original text.
+  - enhancement_note must NEVER describe how or why you rewrote the bullet. Do not reference clarity, conciseness, grammar, structure, or editing decisions.
+  - enhancement_note must begin with “If you have it, include:” and then give exactly one optional metric or contextual detail that would strengthen that specific bullet.
+  - enhancement_note must be tailored to the bullet. Suggest optional additions such as before/after changes, number of people impacted, program or project size, geographic scope, team span, time saved, volume handled, improvement percentages, or baseline-to-final values. These suggestions must be broadly applicable to many backgrounds.
+  - enhancement_note must avoid industry-specific metrics unless the resume explicitly indicates that industry. It should work for users from any field (e.g., education, ministry, operations, legal, engineering, HR, nonprofit, sales).
+  - enhancement_note must never invent or guess new metrics. Only suggest adding metrics the user may already know.
+  - enhancement_note must be one sentence, calm in tone, and supportive rather than prescriptive.
+  - Do not add extra keys beyond label, original, better, and enhancement_note.
+- At the end of each enhancement_note, include a brief clause explaining why adding that detail helps (e.g., “so the reader can understand the scale of your work,” “which clarifies the magnitude of improvement,” or “to show the complexity or scope of your contribution”). Keep it concise and grounded.
+
 
 - next_steps
   - Array of three to six short strings.
