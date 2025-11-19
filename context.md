@@ -137,3 +137,166 @@ This tone should be reflected consistently across:
 - future modes (negotiation, outreach, interview prep)  
 
 The voice should help users feel understood and supported without hype, fluff, or generic phrasing.
+
+## Command Line Principle
+
+Any time the assistant suggests changes to:
+- the context doc  
+- the codebase  
+- the project structure  
+- or any new files  
+
+The assistant should also provide a ready-to-copy terminal command.  
+These commands should be simple, safe, and beginner friendly.
+
+Examples the assistant may provide:
+- \`echo "text" >> context.md\`
+- \`sed -i '' 's/old/new/' context.md\`
+- \`mkdir prompts\`
+- \`touch prompts/resume.md\`
+- \`git add . && git commit -m "Update context doc"\`
+- \`git push\`
+
+The goal is to let Matt move fast without needing to know Git or Unix deeply.
+The assistant should assume Matt prefers copy-pasteable commands for all structural changes.
+
+
+## JSON Schema (Resume Mode)
+
+The resume mode must always return valid JSON with this shape:
+
+{
+  "score": number,
+  "summary": string,
+  "strengths": string[],
+  "gaps": string[],
+  "rewrites": [
+    {
+      "label": string,
+      "original": string,
+      "better": string,
+      "enhancement_note": string
+    }
+  ],
+  "next_steps": string[]
+}
+
+Field rules:
+- score: integer from 0 to 100, calibrated to real-world standards for strong roles.
+- summary: 4–6 sentences following Identity → Edge → How they operate → Gaps → Trajectory → Optional synthesis.
+- strengths: 3–6 concrete patterns grounded in the actual resume.
+- gaps: 3–6 real, fixable clarity issues.
+- rewrites: 3–5 rewritten bullets following Mechanism → Scope → Impact logic.
+- enhancement_note: "If you have it, include:" + optional context + short value statement.
+- next_steps: 3–6 actions that the user can do in 1–2 work sessions.
+
+The model must always return JSON only, with no markdown formatting or fences.
+
+
+## Resume UI Hierarchy
+
+The output should render in the following order:
+
+1. Score pill
+2. Summary (Recruiter's Take)
+3. Strengths
+4. What Needs Work (gaps)
+5. Stronger Phrasing (rewrites)
+6. Enhancement Notes (one per rewrite)
+7. Next Steps
+
+UI spacing rules:
+- A thin separator line appears above every section except the Recruiter's Take.
+- Headings use consistent visual style.
+- Summary is broken into short, readable chunks.
+- Rewrites ideally use a before → after layout when possible.
+- The entire UI should feel calm, clean, intentional.
+
+
+## Error State and UX Messaging Principles
+
+Errors should always:
+- Protect the user’s confidence.
+- Avoid technical jargon.
+- Avoid blaming the user.
+- Provide clear next steps.
+- Use calm, short, human language.
+
+Examples:
+- “We hit a snag generating your feedback. Your resume is safe. Try again in a moment.”
+- “Something interrupted the request. Please refresh or try again.”
+
+Never show:
+- Raw JSON errors
+- Stack traces
+- Apologies from the model
+- Corporate or hyped language
+
+
+## Product Purpose (The Why)
+
+Job seekers feel anxious and unclear about how their story reads. Most advice online is generic, hyped, or unhelpful.
+
+Recruiter in Your Pocket exists to deliver:
+- Calm, honest clarity  
+- Direct, human feedback  
+- Actionable rewrites  
+- A grounded sense of direction  
+
+The goal is that users finish feeling more confident and less overwhelmed.
+
+
+## Roadmap
+
+### Near Term
+- Perfect resume mode UI  
+- Add error states  
+- Add backend validation  
+- Add structured logging  
+- Extract prompts to their own files  
+- Ship negotiation mode
+
+### Medium Term
+- Outreach rewriting  
+- Interview prep (guided experience)  
+- Analytics on common resume patterns  
+
+### Long Term
+- Premium version  
+- Agent-driven workflows  
+- Portfolio builder  
+- Tools for recruiters and hiring managers  
+
+
+## Mode UX Philosophy
+
+### Resume
+The hero feature. Sharp clarity. Actionable rewrites. Calm, grounded tone.
+
+### Negotiation
+Give specific scripts, steps, and guidance. Tone: steady, tactical, supportive.
+
+### Outreach
+Rewrite messages with specificity, empathy, and clarity.
+
+### Interview Prep
+A step-based, guided experience that feels like a real coach.
+
+
+## Interaction Philosophy
+
+Every interaction must help the user feel:
+- Understood  
+- Calmer  
+- Aware of their patterns  
+- Clear on what to do next  
+
+Guiding principles:
+- No hype or corporate tone  
+- Short sentences  
+- Grounded clarity  
+- Pattern-level insight  
+- Never overwhelm  
+- Respect time and attention  
+- The experience should create a “quiet mind”  
+
