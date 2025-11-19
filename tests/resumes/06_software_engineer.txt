@@ -1,0 +1,28 @@
+RAJ PATEL
+Software Engineer | Distributed Systems | Backend Development
+San Jose, CA
+
+EXPERIENCE
+
+Software Engineer
+MetroCloud | 2021–Present | San Jose, CA
+- Designed and implemented microservices handling 10M+ daily requests.
+- Reduced API latency by 45% through service optimization and caching.
+- Built internal tools that cut on-call load by ~30%.
+- Collaborated with product and infra teams on feature design and rollout.
+
+Software Engineer
+NextArc | 2018–2021 | San Jose, CA
+- Built APIs used by 50K+ users.
+- Increased test coverage from 42% to 82%.
+- Improved DB query performance with new indexes and schema tuning.
+- Participated in on-call rotation handling production incidents.
+
+Software Engineering Intern
+BrightSoft | 2017 | San Jose, CA
+- Assisted with QA automation and bug triage.
+
+SKILLS
+- Languages: Go, Python, Java, SQL
+- Tools: Kubernetes, Docker, gRPC, Redis, PostgreSQL
+- Practices: Distributed Systems, Microservices, TDD
