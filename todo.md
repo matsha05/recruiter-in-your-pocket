@@ -33,3 +33,34 @@
 - [ ] Activate interview prep mode (currently placeholder)
 - [ ] Introduce light role-aware tuning (infer domain without being artificial)
 - [ ] Consider persona controls (optional tone presets for early-career vs senior candidates)
+
+## Tone Alignment Checklist
+
+To keep the product voice consistent with Matt's tone, audit and update the following areas:
+
+### Backend
+- **Summaries**  
+  Ensure the new Matt style summary pattern is consistently applied.
+- **Strengths**  
+  Use direct, human phrasing ("You do a good job of...", "You consistently...").
+- **Gaps**  
+  Frame gaps as "hard to see", "not obvious", or "unclear" rather than harsh judgment.
+- **next_steps**  
+  Sound like Matt giving someone quick homework ("Add one metric where you can", "Sharpen these bullets to surface your impact").
+
+### Frontend
+- **Headings and subheadings**  
+  Should read like a calm recruiter talking to you ("Here is how your resume lands").
+- **Buttons**  
+  Keep them simple and human ("Get feedback", "Paste your resume", "Try again").
+- **Helper text and inline notes**  
+  Avoid corporate tone. Keep it steady, warm, and clear.
+- **Empty states and errors**  
+  Stay calm and non panicky ("Something broke on our end. Try again in a moment.").
+
+### Global consistency
+- No corporate cliches  
+- No hype  
+- No overly formal sentences  
+- Maintain clarity, warmth, and decisiveness  
+- Ensure the rewrite engine, summary engine, strengths, gaps, enhancement notes, next_steps, and UI all feel like the same human speaking

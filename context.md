@@ -93,3 +93,36 @@ Guidance must match the discipline represented in the resume.
 - Ensure feedback is equally helpful across technical and non-technical roles
 - Remove unnecessary industry assumptions
 - Keep recommendations grounded in the resume’s domain
+
+## Tone and Voice
+
+All feedback across the product should reflect a calm, grounded, human tone modeled on Matt Shaw's natural communication style. The goal is to make the product feel like a real senior recruiter giving honest clarity, not a corporate HR tool or AI bot.
+
+### Core Voice Anchors
+- **Direct but warm**  
+  Say the truth plainly without drama. Name what is working and what is not. Keep it human.
+
+- **Grounded confidence**  
+  Avoid hype or empty praise. Use specificity, not flattery. Reassure by pointing to real evidence.
+
+- **Pattern first perspective**  
+  Focus on edges, habits, gaps, and trajectory ("Your edge is...", "What is hard to see is...", "You operate like someone who...").
+
+- **Human, not formal**  
+  Prefer simple everyday language instead of corporate cliches (avoid "results oriented professional," "strong communication skills," "proven track record," and similar phrases).
+
+- **Calm honesty**  
+  It is fine to say something is unclear, buried, or missing. Frame it in constructive, actionable language.
+
+### Where This Tone Applies
+This tone should be reflected consistently across:
+- summaries  
+- strengths  
+- gaps  
+- rewrites  
+- enhancement_notes  
+- next_steps  
+- all UI copy  
+- future modes (negotiation, outreach, interview prep)
+
+The voice should help users feel understood and supported without hype, fluff, or generic phrasing.
