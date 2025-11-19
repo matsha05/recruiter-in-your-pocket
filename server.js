@@ -122,13 +122,26 @@ Field rules:
   - Each one names a pattern that hurts clarity, signal, or impact.
   - Aim for things they can actually fix: vague bullets, missing context, weak verbs, no results, confusing structure, formatting issues, etc.
 
-- rewrites
+  - rewrites
   - Array of three to five objects.
   - Each object must have:
-    - label: short string naming the focus, like "Impact", "Scope", "Clarity", "Conciseness"
+    - label: short string naming the focus (e.g., "Impact", "Scope", "Clarity", "Conciseness")
     - original: one weaker bullet from the resume, in plain text
     - better: your improved version of that bullet, in plain text
-  - Choose bullets where your rewrite clearly improves clarity or impact.
+
+  Rewrite requirements:
+  - The “better” bullet must **never** contain more than one sentence. A rewritten bullet must be a single, tight, high-impact sentence.
+  - If the original bullet contains multiple ideas that cannot fit cleanly into one strong sentence, split it into **two rewritten bullets** using the same label. Do NOT leave a multi-sentence bullet.
+  - Always **preserve critical nouns** from the original (company names like Veryable, product names, tools, metrics, industries). Do NOT remove meaningful specificity.
+  - Improve clarity, action, and signal — do NOT remove important details just to make the bullet shorter.
+  - Improve the **impact logic**, not just the wording. Clarify scope, scale, or “why it mattered” when possible.
+  - When appropriate and safe, add context that strengthens the bullet:
+    - comparisons (“up from X%”)
+    - scale (“across 12 sites”)
+    - who/what was impacted (“serving 400 internal users”)
+    - scope (“covering M&D suppliers across 3 states”)
+  - Only add context if it is **implied**, or if the original provides hints — do NOT fabricate new numbers.
+  - Replace vague or fluffy phrases (“improving team performance”, “driving results”, “enhancing processes”) with **specific, concrete improvements** tied to evidence in the resume.
   - Do not add extra keys to these objects.
 
 - next_steps
