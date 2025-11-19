@@ -1285,14 +1285,11 @@
         throw new Error(msg);
       }
 
-      // Try to interpret structured JSON first
+            // Try to interpret structured JSON first
       let structured = null;
 
-      if (data && typeof data === "object" && !Array.isArray(data)) {
-        structured = data;
-      }
-
-      if (!structured && typeof data?.content === "string") {
+      // Our backend returns { content: "<json string>" }
+      if (typeof data?.content === "string") {
         let raw = data.content.trim();
 
         const fence =
@@ -1306,8 +1303,12 @@
         try {
           structured = JSON.parse(raw);
         } catch (e) {
+          console.warn("Failed to parse JSON content, falling back to text.", e);
           structured = null;
         }
+      } else if (data && typeof data === "object" && !Array.isArray(data)) {
+        // Backend might already have parsed JSON
+        structured = data;
       }
 
       const looksStructured =
@@ -1332,6 +1333,7 @@
         resultsBodyEl.textContent = "Unexpected response.";
         resultsBodyEl.classList.remove("empty");
       }
+
 
       if (typeof resultsBodyEl.scrollTo === "function") {
         resultsBodyEl.scrollTo({ top: 0, behavior: "smooth" });
