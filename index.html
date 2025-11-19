@@ -913,464 +913,477 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "rip-main-input-v1";
+  const STORAGE_KEY = "rip-main-input-v1";
 
-    const inputEl = document.getElementById("main-input");
-    const inputLabelEl = document.getElementById("input-label");
-    const modeButtons = document.querySelectorAll(".mode-button");
-    const runButton = document.getElementById("run-button");
-    const statusEl = document.getElementById("status");
-    const resultsTitleEl = document.getElementById("results-title");
-    const resultsSubtitleEl = document.getElementById("results-subtitle");
-    const resultsBodyEl = document.getElementById("results-body");
-    const modePillEl = document.getElementById("mode-pill");
-    const scoreBadgeEl = document.getElementById("score-badge");
-    const copyButtonEl = document.getElementById("copy-button");
-    const savedIndicatorEl = document.getElementById("saved-indicator");
-    const modeIndicatorEl = document.getElementById("mode-indicator");
-    const loadingBarEl = document.getElementById("loading-bar");
-    const resumeHintEl = document.getElementById("resume-hint");
+  const inputEl = document.getElementById("main-input");
+  const inputLabelEl = document.getElementById("input-label");
+  const modeButtons = document.querySelectorAll(".mode-button");
+  const runButton = document.getElementById("run-button");
+  const statusEl = document.getElementById("status");
+  const resultsTitleEl = document.getElementById("results-title");
+  const resultsSubtitleEl = document.getElementById("results-subtitle");
+  const resultsBodyEl = document.getElementById("results-body");
+  const modePillEl = document.getElementById("mode-pill");
+  const scoreBadgeEl = document.getElementById("score-badge");
+  const copyButtonEl = document.getElementById("copy-button");
+  const savedIndicatorEl = document.getElementById("saved-indicator");
+  const modeIndicatorEl = document.getElementById("mode-indicator");
+  const loadingBarEl = document.getElementById("loading-bar");
+  const resumeHintEl = document.getElementById("resume-hint");
 
-    let currentMode = "resume";
-    let saveTimeout = null;
-    let originalButtonText = runButton.textContent;
+  let currentMode = "resume";
+  let saveTimeout = null;
+  let originalButtonText = runButton.textContent;
 
-    function autoResizeTextarea() {
-      const maxHeight = 340;
-      inputEl.style.height = "auto";
-      const next = Math.min(inputEl.scrollHeight, maxHeight);
-      inputEl.style.height = next + "px";
-    }
+  function autoResizeTextarea() {
+    const maxHeight = 340;
+    inputEl.style.height = "auto";
+    const next = Math.min(inputEl.scrollHeight, maxHeight);
+    inputEl.style.height = next + "px";
+  }
 
-    function showSavedIndicator() {
-      if (!savedIndicatorEl) return;
-      savedIndicatorEl.classList.add("visible");
-      if (saveTimeout) clearTimeout(saveTimeout);
-      saveTimeout = setTimeout(() => {
-        savedIndicatorEl.classList.remove("visible");
-      }, 1200);
-    }
+  function showSavedIndicator() {
+    if (!savedIndicatorEl) return;
+    savedIndicatorEl.classList.add("visible");
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      savedIndicatorEl.classList.remove("visible");
+    }, 1200);
+  }
 
-    function loadSavedInput() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          inputEl.value = saved;
-          autoResizeTextarea();
-          showSavedIndicator();
-        }
-      } catch (e) {
-        console.warn("Could not load saved input", e);
+  function loadSavedInput() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        inputEl.value = saved;
+        autoResizeTextarea();
+        showSavedIndicator();
       }
+    } catch (e) {
+      console.warn("Could not load saved input", e);
     }
+  }
 
-    function updateResumeHintVisibility() {
-      if (!resumeHintEl) return;
-      const hasText = inputEl.value.trim().length > 0;
-      const isFocused = document.activeElement === inputEl;
+  function updateResumeHintVisibility() {
+    if (!resumeHintEl) return;
+    const hasText = inputEl.value.trim().length > 0;
+    const isFocused = document.activeElement === inputEl;
 
-      if (hasText || isFocused) {
-        resumeHintEl.classList.add("hidden");
-      } else {
-        resumeHintEl.classList.remove("hidden");
-      }
+    if (hasText || isFocused) {
+      resumeHintEl.classList.add("hidden");
+    } else {
+      resumeHintEl.classList.remove("hidden");
     }
+  }
 
-    inputEl.addEventListener("input", () => {
-      autoResizeTextarea();
-      try {
-        localStorage.setItem(STORAGE_KEY, inputEl.value);
-      } catch (e) {
-        console.warn("Could not save input", e);
-      }
-      showSavedIndicator();
-      updateResumeHintVisibility();
-    });
-
-    inputEl.addEventListener("focus", updateResumeHintVisibility);
-    inputEl.addEventListener("blur", updateResumeHintVisibility);
-
-    function positionModeIndicator() {
-      const activeBtn = document.querySelector(".mode-button.active");
-      if (!activeBtn || !modeIndicatorEl) return;
-      const left = activeBtn.offsetLeft;
-      const width = activeBtn.offsetWidth;
-      modeIndicatorEl.style.width = width + "px";
-      modeIndicatorEl.style.transform = "translateX(" + left + "px)";
+  inputEl.addEventListener("input", () => {
+    autoResizeTextarea();
+    try {
+      localStorage.setItem(STORAGE_KEY, inputEl.value);
+    } catch (e) {
+      console.warn("Could not save input", e);
     }
+    showSavedIndicator();
+    updateResumeHintVisibility();
+  });
 
-    window.addEventListener("resize", positionModeIndicator);
+  inputEl.addEventListener("focus", updateResumeHintVisibility);
+  inputEl.addEventListener("blur", updateResumeHintVisibility);
 
-    function clearScoreBadge() {
-      scoreBadgeEl.textContent = "";
-      scoreBadgeEl.className = "score-badge";
-    }
+  function positionModeIndicator() {
+    const activeBtn = document.querySelector(".mode-button.active");
+    if (!activeBtn || !modeIndicatorEl) return;
+    const left = activeBtn.offsetLeft;
+    const width = activeBtn.offsetWidth;
+    modeIndicatorEl.style.width = width + "px";
+    modeIndicatorEl.style.transform = "translateX(" + left + "px)";
+  }
 
-    function applyScoreColor(score) {
+  window.addEventListener("resize", positionModeIndicator);
+
+  function clearScoreBadge() {
+    scoreBadgeEl.textContent = "";
+    scoreBadgeEl.className = "score-badge";
+  }
+
+  function applyScoreColor(score) {
+    clearScoreBadge();
+    if (Number.isNaN(score)) return;
+    let cls = "";
+    if (score < 50) cls = "score-low";
+    else if (score < 70) cls = "score-mid";
+    else if (score < 90) cls = "score-good";
+    else cls = "score-great";
+    scoreBadgeEl.textContent = score + "/100";
+    scoreBadgeEl.classList.add("score-visible", cls);
+  }
+
+  function extractAndApplyScore(text) {
+    const match = text.match(/(\d{1,3})\s*\/\s*100/);
+    if (!match) {
       clearScoreBadge();
-      if (Number.isNaN(score)) return;
-      let cls = "";
-      if (score < 50) cls = "score-low";
-      else if (score < 70) cls = "score-mid";
-      else if (score < 90) cls = "score-good";
-      else cls = "score-great";
-      scoreBadgeEl.textContent = score + "/100";
-      scoreBadgeEl.classList.add("score-visible", cls);
+      return;
+    }
+    const score = parseInt(match[1], 10);
+    if (Number.isNaN(score)) {
+      clearScoreBadge();
+      return;
+    }
+    applyScoreColor(score);
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function formatResults(text) {
+    const lines = text.split("\n");
+    let html = "";
+    let inList = false;
+
+    function closeList() {
+      if (inList) {
+        html += "</ul>";
+        inList = false;
+      }
     }
 
-    function extractAndApplyScore(text) {
-      const match = text.match(/(\d{1,3})\s*\/\s*100/);
-      if (!match) {
-        clearScoreBadge();
-        return;
+    for (const raw of lines) {
+      const line = raw.trim();
+      if (!line) {
+        closeList();
+        html += '<p class="result-paragraph spacer"></p>';
+        continue;
       }
-      const score = parseInt(match[1], 10);
-      if (Number.isNaN(score)) {
-        clearScoreBadge();
-        return;
+
+      const headingMatch = line.match(/^(\d+)\.\s+(.*)$/);
+      const bulletMatch = line.match(/^[-*•]+\s+(.*)$/);
+      const originalMatch = line.match(/^Original:\s*(.*)$/i);
+      const betterMatch = line.match(/^Better:\s*(.*)$/i);
+
+      if (headingMatch) {
+        closeList();
+        html += `<div class="result-heading">${escapeHtml(headingMatch[2])}</div>`;
+      } else if (originalMatch) {
+        closeList();
+        html += `<div class="rewrite-label">Original:</div>`;
+        if (originalMatch[1]) {
+          html += `<div class="rewrite-text">${escapeHtml(originalMatch[1])}</div>`;
+        }
+      } else if (betterMatch) {
+        closeList();
+        html += `<div class="rewrite-label">Better:</div>`;
+        if (betterMatch[1]) {
+          html += `<div class="rewrite-text">${escapeHtml(betterMatch[1])}</div>`;
+        }
+      } else if (bulletMatch) {
+        if (!inList) {
+          html += '<ul class="result-list">';
+          inList = true;
+        }
+        html += `<li>${escapeHtml(bulletMatch[1])}</li>`;
+      } else {
+        closeList();
+        html += `<p class="result-paragraph">${escapeHtml(line)}</p>`;
       }
+    }
+
+    closeList();
+    return html;
+  }
+
+  function renderStructuredResults(data) {
+    const {
+      summary,
+      strengths,
+      gaps,
+      rewrites,
+      next_steps: nextSteps,
+      score,
+      suggested_bullets: suggestedBullets
+    } = data || {};
+
+    let html = "";
+
+    // score pill
+    if (typeof score === "number") {
       applyScoreColor(score);
-    }
-
-    function escapeHtml(str) {
-      return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
-    }
-
-    function formatResults(text) {
-      const lines = text.split("\n");
-      let html = "";
-      let inList = false;
-
-      function closeList() {
-        if (inList) {
-          html += "</ul>";
-          inList = false;
-        }
-      }
-
-      for (const raw of lines) {
-        const line = raw.trim();
-        if (!line) {
-          closeList();
-          html += '<p class="result-paragraph spacer"></p>';
-          continue;
-        }
-
-        const headingMatch = line.match(/^(\d+)\.\s+(.*)$/);
-        const bulletMatch = line.match(/^[-*•]+\s+(.*)$/);
-        const originalMatch = line.match(/^Original:\s*(.*)$/i);
-        const betterMatch = line.match(/^Better:\s*(.*)$/i);
-
-        if (headingMatch) {
-          closeList();
-          html += `<div class="result-heading">${escapeHtml(headingMatch[2])}</div>`;
-        } else if (originalMatch) {
-          closeList();
-          html += `<div class="rewrite-label">Original:</div>`;
-          if (originalMatch[1]) {
-            html += `<div class="rewrite-text">${escapeHtml(originalMatch[1])}</div>`;
-          }
-        } else if (betterMatch) {
-          closeList();
-          html += `<div class="rewrite-label">Better:</div>`;
-          if (betterMatch[1]) {
-            html += `<div class="rewrite-text">${escapeHtml(betterMatch[1])}</div>`;
-          }
-        } else if (bulletMatch) {
-          if (!inList) {
-            html += '<ul class="result-list">';
-            inList = true;
-          }
-          html += `<li>${escapeHtml(bulletMatch[1])}</li>`;
-        } else {
-          closeList();
-          html += `<p class="result-paragraph">${escapeHtml(line)}</p>`;
-        }
-      }
-
-      closeList();
-      return html;
-    }
-
-    function renderStructuredResults(data) {
-      const {
-        summary,
-        strengths,
-        gaps,
-        rewrites,
-        next_steps: nextSteps,
-        score
-      } = data || {};
-
-      let html = "";
-
-      // score pill
-      if (typeof score === "number") {
-        applyScoreColor(score);
-      } else {
-        clearScoreBadge();
-      }
-
-      // Recruiter's Take
-      if (summary && String(summary).trim().length > 0) {
-        html += `<div class="result-heading result-section">Recruiter's Take</div>`;
-        html += `<p class="result-paragraph">${escapeHtml(String(summary).trim())}</p>`;
-      }
-
-      // What's Working
-      if (Array.isArray(strengths) && strengths.length > 0) {
-        html += `<div class="result-heading result-section">What's Working</div>`;
-        html += `<ul class="result-list">`;
-        for (const item of strengths) {
-          if (!item) continue;
-          html += `<li>${escapeHtml(String(item))}</li>`;
-        }
-        html += `</ul>`;
-      }
-
-      // What Needs Work
-      if (Array.isArray(gaps) && gaps.length > 0) {
-        html += `<div class="result-heading result-section">What Needs Work</div>`;
-        html += `<ul class="result-list">`;
-        for (const item of gaps) {
-          if (!item) continue;
-          html += `<li>${escapeHtml(String(item))}</li>`;
-        }
-        html += `</ul>`;
-      }
-
-      // Stronger Phrasing You Can Use
-if (Array.isArray(rewrites) && rewrites.length > 0) {
-  html += `<div class="result-heading result-section">Stronger Phrasing You Can Use</div>`;
-
-        for (const r of rewrites) {
-          if (!r) continue;
-          const label = r.label || "";
-          const original = r.original || "";
-          const better = r.better || "";
-
-          html += `<div class="rewrite-block">`;
-
-          if (label) {
-            html += `<p class="result-paragraph"><strong>${escapeHtml(String(label))}</strong></p>`;
-          }
-
-          if (original) {
-            html += `<div class="rewrite-label">Original</div>`;
-            html += `<div class="rewrite-text">${escapeHtml(String(original))}</div>`;
-          }
-
-          if (better) {
-            html += `<div class="rewrite-label">Better</div>`;
-            html += `<div class="rewrite-text">${escapeHtml(String(better))}</div>`;
-          }
-
-          html += `</div>`;
-        }
-      }
-
-      // Next Steps
-      if (Array.isArray(nextSteps) && nextSteps.length > 0) {
-        html += `<div class="result-heading next-steps-heading">Next Steps</div>`;
-        html += `<ul class="result-list">`;
-        for (const step of nextSteps) {
-          if (!step) continue;
-          html += `<li>${escapeHtml(String(step))}</li>`;
-        }
-        html += `</ul>`;
-      }
-
-      if (!html) {
-        html = "No feedback returned.";
-      }
-
-      resultsBodyEl.innerHTML = html;
-      resultsBodyEl.classList.remove("empty");
-    }
-
-    function setMode(mode) {
-      currentMode = mode;
-      modeButtons.forEach(btn => {
-        const active = btn.dataset.mode === mode;
-        btn.classList.toggle("active", active);
-      });
-
+    } else {
       clearScoreBadge();
-
-      if (mode === "resume") {
-        resultsTitleEl.textContent = "Resume feedback";
-        resultsSubtitleEl.textContent =
-          "A recruiter calibrated resume score with insight on what works, what needs improvement, and clearer phrasing you can use.";
-        modePillEl.textContent = "Mode • Resume feedback";
-        if (inputLabelEl) {
-          inputLabelEl.textContent = "Drop your full resume below.";
-        }
-        inputEl.placeholder =
-          "Paste your full resume, including work history, skills, and education.";
-      } else if (mode === "interview") {
-        resultsTitleEl.textContent = "Interview prep";
-        resultsSubtitleEl.textContent =
-          "How you read now, stories to prepare, and questions to ask.";
-        modePillEl.textContent = "Mode • Interview prep";
-        if (inputLabelEl) {
-          inputLabelEl.textContent =
-            "Paste the job description and any notes about the interview or the company.";
-        }
-        inputEl.placeholder =
-          "Paste the job description and your resume bullets for this role. You can also add any notes you have.";
-      }
-
-      positionModeIndicator();
     }
 
+    // Recruiter's Take
+    if (summary && String(summary).trim().length > 0) {
+      html += `<div class="result-heading result-section">Recruiter's Take</div>`;
+      html += `<p class="result-paragraph">${escapeHtml(String(summary).trim())}</p>`;
+    }
+
+    // What's Working
+    if (Array.isArray(strengths) && strengths.length > 0) {
+      html += `<div class="result-heading result-section">What's Working</div>`;
+      html += `<ul class="result-list">`;
+      for (const item of strengths) {
+        if (!item) continue;
+        html += `<li>${escapeHtml(String(item))}</li>`;
+      }
+      html += `</ul>`;
+    }
+
+    // What Needs Work
+    if (Array.isArray(gaps) && gaps.length > 0) {
+      html += `<div class="result-heading result-section">What Needs Work</div>`;
+      html += `<ul class="result-list">`;
+      for (const item of gaps) {
+        if (!item) continue;
+        html += `<li>${escapeHtml(String(item))}</li>`;
+      }
+      html += `</ul>`;
+    }
+
+    // Stronger Phrasing You Can Use
+    if (Array.isArray(rewrites) && rewrites.length > 0) {
+      html += `<div class="result-heading result-section">Stronger Phrasing You Can Use</div>`;
+
+      for (const r of rewrites) {
+        if (!r) continue;
+        const label = r.label || "";
+        const original = r.original || "";
+        const better = r.better || "";
+
+        html += `<div class="rewrite-block">`;
+
+        if (label) {
+          html += `<p class="result-paragraph"><strong>${escapeHtml(String(label))}</strong></p>`;
+        }
+
+        if (original) {
+          html += `<div class="rewrite-label">Original</div>`;
+          html += `<div class="rewrite-text">${escapeHtml(String(original))}</div>`;
+        }
+
+        if (better) {
+          html += `<div class="rewrite-label">Better</div>`;
+          html += `<div class="rewrite-text">${escapeHtml(String(better))}</div>`;
+        }
+
+        html += `</div>`;
+      }
+    } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
+      // Fallback: use suggested_bullets from backend as a simple list
+      html += `<div class="result-heading result-section">Stronger Phrasing You Can Use</div>`;
+      html += `<ul class="result-list">`;
+      for (const bullet of suggestedBullets) {
+        if (!bullet) continue;
+        html += `<li>${escapeHtml(String(bullet))}</li>`;
+      }
+      html += `</ul>`;
+    }
+
+    // Next Steps
+    if (Array.isArray(nextSteps) && nextSteps.length > 0) {
+      html += `<div class="result-heading next-steps-heading">Next Steps</div>`;
+      html += `<ul class="result-list">`;
+      for (const step of nextSteps) {
+        if (!step) continue;
+        html += `<li>${escapeHtml(String(step))}</li>`;
+      }
+      html += `</ul>`;
+    }
+
+    if (!html) {
+      html = "No feedback returned.";
+    }
+
+    resultsBodyEl.innerHTML = html;
+    resultsBodyEl.classList.remove("empty");
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
     modeButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (btn.classList.contains("disabled-mode")) {
-          statusEl.textContent = "Interview prep is coming soon.";
-          return;
-        }
-        setMode(btn.dataset.mode);
-      });
+      const active = btn.dataset.mode === mode;
+      btn.classList.toggle("active", active);
     });
 
-    async function runAnalysis() {
-      const text = inputEl.value.trim();
-      if (!text) {
-        statusEl.textContent = "Add your resume first.";
-        return;
+    clearScoreBadge();
+
+    if (mode === "resume") {
+      resultsTitleEl.textContent = "Resume feedback";
+      resultsSubtitleEl.textContent =
+        "A recruiter calibrated resume score with insight on what works, what needs improvement, and clearer phrasing you can use.";
+      modePillEl.textContent = "Mode • Resume feedback";
+      if (inputLabelEl) {
+        inputLabelEl.textContent = "Drop your full resume below.";
       }
-
-      runButton.disabled = true;
-      originalButtonText = runButton.textContent;
-      runButton.textContent = "Processing...";
-      loadingBarEl.classList.add("active");
-      resultsBodyEl.classList.remove("results-error");
-      resultsBodyEl.classList.remove("empty");
-      clearScoreBadge();
-
-      try {
-        const response = await fetch("/api/resume-feedback", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            mode: currentMode,
-            text
-          })
-        });
-
-        let data = null;
-        try {
-          data = await response.json();
-        } catch {
-          data = null;
-        }
-
-        if (!response.ok) {
-          const msg = data?.error || "Unexpected server response.";
-          throw new Error(msg);
-        }
-
-        // Try to interpret structured JSON first
-        let structured = null;
-
-        if (data && typeof data === "object" && !Array.isArray(data)) {
-          structured = data;
-        }
-
-        if (!structured && typeof data?.content === "string") {
-          let raw = data.content.trim();
-
-          const fence =
-            raw.match(/```json([\s\S]*?)```/) ||
-            raw.match(/```([\s\S]*?)```/);
-
-          if (fence && fence[1]) {
-            raw = fence[1].trim();
-          }
-
-          try {
-            structured = JSON.parse(raw);
-          } catch (e) {
-            structured = null;
-          }
-        }
-
-        const looksStructured =
-          structured &&
-          (typeof structured.score === "number" ||
-            structured.summary ||
-            Array.isArray(structured.strengths) ||
-            Array.isArray(structured.gaps) ||
-            Array.isArray(structured.rewrites) ||
-            Array.isArray(structured.next_steps));
-
-        if (looksStructured) {
-          renderStructuredResults(structured);
-        } else if (typeof data?.content === "string") {
-          const trimmed = data.content.trim();
-          const formatted = formatResults(trimmed);
-          resultsBodyEl.innerHTML = formatted || "No feedback returned.";
-          resultsBodyEl.classList.remove("empty");
-          extractAndApplyScore(trimmed);
-        } else {
-          resultsBodyEl.textContent = "Unexpected response.";
-          resultsBodyEl.classList.remove("empty");
-        }
-
-        if (typeof resultsBodyEl.scrollTo === "function") {
-          resultsBodyEl.scrollTo({ top: 0, behavior: "smooth" });
-        } else {
-          resultsBodyEl.scrollTop = 0;
-        }
-
-        statusEl.textContent = "Feedback ready. Adjust anything you like and run it again.";
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = "Something went wrong. Please try again.";
-        resultsBodyEl.textContent = "There was an error generating your feedback. Please try again.";
-        resultsBodyEl.classList.add("results-error");
-      } finally {
-        runButton.disabled = false;
-        runButton.textContent = originalButtonText;
-        loadingBarEl.classList.remove("active");
+      inputEl.placeholder =
+        "Paste your full resume, including work history, skills, and education.";
+    } else if (mode === "interview") {
+      resultsTitleEl.textContent = "Interview prep";
+      resultsSubtitleEl.textContent =
+        "How you read now, stories to prepare, and questions to ask.";
+      modePillEl.textContent = "Mode • Interview prep";
+      if (inputLabelEl) {
+        inputLabelEl.textContent =
+          "Paste the job description and any notes about the interview or the company.";
       }
+      inputEl.placeholder =
+        "Paste the job description and your resume bullets for this role. You can also add any notes you have.";
     }
 
-    runButton.addEventListener("click", runAnalysis);
+    positionModeIndicator();
+  }
 
-    copyButtonEl.addEventListener("click", async () => {
-      const text = resultsBodyEl.innerText.trim();
-      if (!text) {
-        statusEl.textContent = "Nothing to copy yet.";
+  modeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("disabled-mode")) {
+        statusEl.textContent = "Interview prep is coming soon.";
         return;
       }
+      setMode(btn.dataset.mode);
+    });
+  });
+
+  async function runAnalysis() {
+    const text = inputEl.value.trim();
+    if (!text) {
+      statusEl.textContent = "Add your resume first.";
+      return;
+    }
+
+    runButton.disabled = true;
+    originalButtonText = runButton.textContent;
+    runButton.textContent = "Processing...";
+    loadingBarEl.classList.add("active");
+    resultsBodyEl.classList.remove("results-error");
+    resultsBodyEl.classList.remove("empty");
+    clearScoreBadge();
+
+    try {
+      const response = await fetch("/api/resume-feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+          body: JSON.stringify({
+    mode: currentMode,
+    text
+  })
+      });
+
+      let data = null;
       try {
-        await navigator.clipboard.writeText(text);
-        statusEl.textContent = "Copied.";
+        data = await response.json();
       } catch {
-        statusEl.textContent = "Could not copy. Please select the text manually.";
+        data = null;
       }
-    });
 
-    inputEl.addEventListener("keydown", (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
-        e.preventDefault();
-        runAnalysis();
+      if (!response.ok) {
+        const msg = data?.error || "Unexpected server response.";
+        throw new Error(msg);
       }
-    });
 
-    (function init() {
-      loadSavedInput();
-      setMode("resume");
-      autoResizeTextarea();
-      positionModeIndicator();
-      updateResumeHintVisibility();
-    })();
-  </script>
+      // Try to interpret structured JSON first
+      let structured = null;
+
+      if (data && typeof data === "object" && !Array.isArray(data)) {
+        structured = data;
+      }
+
+      if (!structured && typeof data?.content === "string") {
+        let raw = data.content.trim();
+
+        const fence =
+          raw.match(/```json([\s\S]*?)```/) ||
+          raw.match(/```([\s\S]*?)```/);
+
+        if (fence && fence[1]) {
+          raw = fence[1].trim();
+        }
+
+        try {
+          structured = JSON.parse(raw);
+        } catch (e) {
+          structured = null;
+        }
+      }
+
+      const looksStructured =
+        structured &&
+        (typeof structured.score === "number" ||
+          structured.summary ||
+          Array.isArray(structured.strengths) ||
+          Array.isArray(structured.gaps) ||
+          Array.isArray(structured.rewrites) ||
+          Array.isArray(structured.next_steps) ||
+          Array.isArray(structured.suggested_bullets));
+
+      if (looksStructured) {
+        renderStructuredResults(structured);
+      } else if (typeof data?.content === "string") {
+        const trimmed = data.content.trim();
+        const formatted = formatResults(trimmed);
+        resultsBodyEl.innerHTML = formatted || "No feedback returned.";
+        resultsBodyEl.classList.remove("empty");
+        extractAndApplyScore(trimmed);
+      } else {
+        resultsBodyEl.textContent = "Unexpected response.";
+        resultsBodyEl.classList.remove("empty");
+      }
+
+      if (typeof resultsBodyEl.scrollTo === "function") {
+        resultsBodyEl.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        resultsBodyEl.scrollTop = 0;
+      }
+
+      statusEl.textContent = "Feedback ready. Adjust anything you like and run it again.";
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = "Something went wrong. Please try again.";
+      resultsBodyEl.textContent =
+        "There was an error generating your feedback. Please try again.";
+      resultsBodyEl.classList.add("results-error");
+    } finally {
+      runButton.disabled = false;
+      runButton.textContent = originalButtonText;
+      loadingBarEl.classList.remove("active");
+    }
+  }
+
+  runButton.addEventListener("click", runAnalysis);
+
+  copyButtonEl.addEventListener("click", async () => {
+    const text = resultsBodyEl.innerText.trim();
+    if (!text) {
+      statusEl.textContent = "Nothing to copy yet.";
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(text);
+      statusEl.textContent = "Copied.";
+    } catch {
+      statusEl.textContent = "Could not copy. Please select the text manually.";
+    }
+  });
+
+  inputEl.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
+      e.preventDefault();
+      runAnalysis();
+    }
+  });
+
+  (function init() {
+    loadSavedInput();
+    setMode("resume");
+    autoResizeTextarea();
+    positionModeIndicator();
+    updateResumeHintVisibility();
+  })();
+</script>
+
 </body>
 </html>
