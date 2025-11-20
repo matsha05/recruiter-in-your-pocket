@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+const { z } = require("zod");
+
 const app = express();
 const PORT = 3000;
 
@@ -34,6 +36,36 @@ if (!OPENAI_API_KEY) {
   console.error("Missing OPENAI_API_KEY in .env");
   process.exit(1);
 }
+
+const requestSchema = z.object({
+  text: z
+    .string({ required_error: "text is required" })
+    .transform((val) => val.trim())
+    .refine((val) => val.length > 0, {
+      message: "text must be a non-empty string"
+    }),
+  mode: z.enum(["resume", "interview"]).default("resume")
+});
+
+const rewriteSchema = z
+  .object({
+    label: z.string().min(1),
+    original: z.string().min(1),
+    better: z.string().min(1),
+    enhancement_note: z.string().min(1)
+  })
+  .passthrough();
+
+const resumeFeedbackSchema = z
+  .object({
+    score: z.number().int().min(0).max(100),
+    summary: z.string().min(1),
+    strengths: z.array(z.string().min(1)).min(1),
+    gaps: z.array(z.string().min(1)).min(1),
+    rewrites: z.array(rewriteSchema).min(1),
+    next_steps: z.array(z.string().min(1)).min(1)
+  })
+  .passthrough();
 
 const baseTone = `
 You are a calm, grounded recruiter with real experience at strong tech companies.
@@ -226,12 +258,16 @@ Keep it calm, clear, and practical.
 // API endpoint
 app.post("/api/resume-feedback", async (req, res) => {
   try {
-    const { text, mode } = req.body || {};
-    const currentMode = mode || "resume";
-
-    if (!text || typeof text !== "string" || text.trim().length === 0) {
-      return res.status(400).json({ error: "Missing text in request body." });
+    const parsedRequest = requestSchema.safeParse(req.body || {});
+    if (!parsedRequest.success) {
+      return res.status(400).json({
+        error: "Invalid request body.",
+        details: parsedRequest.error.flatten()
+      });
     }
+
+    const { text, mode } = parsedRequest.data;
+    const currentMode = mode || "resume";
 
     const systemPrompt = getSystemPromptForMode(currentMode);
     const userPrompt = `Here is the user's input. Use the system instructions to respond.
@@ -269,8 +305,37 @@ ${text}`;
       return res.status(500).json({ error: "No content returned from OpenAI." });
     }
 
-    // Send JSON-as-string and let the frontend handle parsing/formatting
-    res.json({ content });
+    let parsedModelResponse = null;
+
+    try {
+      let raw = content.trim();
+      const fence =
+        raw.match(/```json([\s\S]*?)```/) || raw.match(/```([\s\S]*?)```/);
+
+      if (fence && fence[1]) {
+        raw = fence[1].trim();
+      }
+
+      parsedModelResponse = JSON.parse(raw);
+    } catch (parseErr) {
+      console.warn("Failed to parse model response as JSON", parseErr);
+    }
+
+    if (currentMode === "resume") {
+      const validated = resumeFeedbackSchema.safeParse(parsedModelResponse);
+      if (!validated.success) {
+        console.error("Model response failed validation", validated.error);
+        return res.status(502).json({
+          error: "Model response did not match the expected schema.",
+          details: validated.error.flatten?.()
+        });
+      }
+
+      return res.json({ content, parsed: validated.data });
+    }
+
+    // For other modes, ensure we still return the model content
+    res.json({ content, parsed: parsedModelResponse });
   } catch (err) {
     console.error("Server error:", err);
     res.status(500).json({ error: "Server error: " + err.message });
