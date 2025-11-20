@@ -84,8 +84,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       gap: 12px;
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
 
     .brand {
@@ -95,25 +97,25 @@
     }
 
     .brand-mark {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 20%, #bfdbfe 0, #60a5fa 24%, #1d4ed8 60%);
-      box-shadow:
-        0 0 0 1px rgba(15, 23, 42, 1),
-        0 0 18px rgba(37, 99, 235, 0.6);
-      display: flex;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1px solid var(--border-subtle);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1;
+      color: #fff;
+      transition: transform 150ms ease-out, background 150ms ease-out;
+      transform-origin: center;
     }
 
-    .brand-mark::after {
-      content: "R";
-      font-size: 11px;
-      font-weight: 700;
-      color: #020617;
+    .brand-mark:hover {
+      transform: scale(1.02);
+      background: #4a8ff9;
     }
 
     .brand-text {
@@ -123,11 +125,10 @@
     }
 
     .brand-name {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #cbd5f5;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
     }
 
     .version-pill {
@@ -807,9 +808,9 @@
     <div class="page-inner">
       <header class="top-bar">
         <div class="brand">
-          <div class="brand-mark"></div>
+          <div class="brand-mark">R</div>
           <div class="brand-text">
-            <div class="brand-name">Recruiter in your pocket</div>
+            <div class="brand-name">Recruiter in Your Pocket</div>
           </div>
         </div>
         <div class="version-pill">

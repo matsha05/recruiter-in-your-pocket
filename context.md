@@ -183,6 +183,62 @@ The product voice is a senior recruiter who is also a trusted friend. Tone balan
 The user should feel:
 “This is a calm expert who cares about me and is helping me win.”
 
+## Design Studio Principles (Best-in-Class Standard)
+
+This product should be designed with the mindset, rigor, and taste level of a world-class design studio. Every decision — visual, structural, or typographic — should reflect elite craft.
+
+### 1. Reduction to the Essential
+- Remove anything that does not meaningfully improve clarity or usability.  
+- Every pixel, color, and word must earn its place.  
+- Default to removing rather than adding.
+
+### 2. Visual Silence
+- The interface should feel calm, quiet, and emotionally stable.  
+- No element should compete for attention unless it carries critical information.  
+- Avoid visual noise: heavy shadows, big borders, gradients, animations, and color clutter.
+
+### 3. Optical Precision
+- Elements should align by optical correctness, not mathematical grids.  
+- Prioritize what “feels right” to the human eye over strict numeric centering.  
+- Use micro-adjustments (0.5–1px shifts, slight letter-spacing changes) to achieve harmony.
+
+### 4. Hierarchy Without Shouting
+- The user should understand structure instinctively.  
+- Typography should guide the eye through weight, scale, and spacing rather than bright colors or decoration.  
+- The brand mark should be present but understated.
+
+### 5. Emotional Clarity
+- The product should make the user feel supported, capable, and calm.  
+- Avoid hype language or urgent cues.  
+- The voice is confident but warm, like a trusted expert and ally.
+
+### 6. Intentional Spacing Rhythm
+- Use XS, S, M, L, XL spacing tokens consistently.  
+- Avoid arbitrary numbers.  
+- Vertical rhythm must feel even, modern, and breathable.
+
+### 7. Cohesion Across All Surfaces
+- The mark, wordmark, headings, body text, buttons, cards, dividers, and empty states must feel like one coherent language.  
+- No element should feel imported from a different style or system.
+
+### 8. Subtle, Controlled Motion
+- Only use motion when it reduces cognitive load.  
+- Hover states should be extremely subtle — never bouncy or dramatic.  
+- Loading should use calm, thin indicators or a quiet shimmer.
+
+### 9. Elegance in Restraint
+- Favor simplicity over cleverness.  
+- Favor clarity over novelty.  
+- Favor timeless design over trendy aesthetics.
+
+### 10. “This Could Ship at Apple or Stripe”
+Before accepting any UI change:
+- Would this feel at home in a premium Apple settings view?  
+- Would this feel consistent with Stripe, Linear, or Superhuman’s design sensibilities?  
+- Does this communicate quality, trust, and modernity?
+
+If not, refine using reduction, alignment, hierarchy, and optical balance.
+
 ## Tech Overview
 - Frontend: static `index.html` with dark, modern UI  
 - Backend: Node + Express (`server.js`)  
