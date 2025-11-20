@@ -1278,7 +1278,11 @@
   async function runAnalysis() {
     const text = inputEl.value.trim();
     if (!text) {
-      statusEl.textContent = "Add your resume first.";
+      const msg = "Paste your resume text so I can actually review it.";
+      statusEl.textContent = msg;
+      resultsBodyEl.textContent = msg;
+      resultsBodyEl.classList.add("results-error");
+      resultsBodyEl.classList.remove("empty");
       return;
     }
 
@@ -1305,14 +1309,23 @@
       // New: read the unified payload from the backend
       const payload = await response.json().catch(() => null);
 
+      const fieldMessages =
+        payload?.details?.fieldErrors &&
+        Object.values(payload.details.fieldErrors)
+          .filter(Boolean)
+          .join(" ");
+
       // If HTTP is not ok or payload is missing, show a calm error
       if (!response.ok || !payload) {
-        const msg = mapErrorToUserMessage(
-          payload?.errorCode,
-          payload?.message || "Unexpected server response."
-        );
+        const msg =
+          fieldMessages ||
+          mapErrorToUserMessage(
+            payload?.errorCode,
+            payload?.message || "Unexpected server response."
+          );
         statusEl.textContent = msg;
         resultsBodyEl.textContent =
+          fieldMessages ||
           "There was an error generating your feedback. Please try again.";
         resultsBodyEl.classList.add("results-error");
         resultsBodyEl.classList.remove("empty");
@@ -1321,9 +1334,12 @@
 
       // Backend explicitly signaled an error (ok === false)
       if (payload.ok === false) {
-        const msg = mapErrorToUserMessage(payload.errorCode, payload.message);
+        const msg =
+          fieldMessages ||
+          mapErrorToUserMessage(payload.errorCode, payload.message);
         statusEl.textContent = msg;
         resultsBodyEl.textContent =
+          fieldMessages ||
           "There was an error generating your feedback. Please try again.";
         resultsBodyEl.classList.add("results-error");
         resultsBodyEl.classList.remove("empty");

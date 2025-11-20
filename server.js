@@ -283,7 +283,7 @@ Keep it calm, clear, and practical.
  * Request validation for /api/resume-feedback
  */
 const MAX_TEXT_LENGTH = 10000;
-const ALLOWED_MODES = ["resume", "interview"];
+const ALLOWED_MODES = ["resume"];
 
 function validateResumeFeedbackRequest(body) {
   const fieldErrors = {};
@@ -337,7 +337,7 @@ function validateResumeFeedbackRequest(body) {
     ok: true,
     value: {
       text: text.trim(),
-      mode: mode && ALLOWED_MODES.includes(mode) ? mode : "resume",
+      mode: "resume",
       jobContext,
       seniorityLevel
     }
@@ -399,6 +399,7 @@ async function callOpenAIChat(messages) {
           body: JSON.stringify({
             model: OPENAI_MODEL,
             temperature: 0.3,
+            response_format: { type: "json_object" },
             messages
           })
         },
