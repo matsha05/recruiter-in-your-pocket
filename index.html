@@ -770,6 +770,21 @@
       opacity: 0;
       transform: translateY(4px);
     }
+    .status-bar {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  min-height: 1.2em;
+}
+
+.status-bar.status-info {
+  color: #e5e7eb;
+}
+
+.status-bar.status-error {
+  color: #fca5a5;
+}
+
   </style>
 </head>
 
@@ -889,6 +904,7 @@
             </div>
 
             <div id="loading-bar"></div>
+            <div id="status-bar" class="status-bar"></div>
 
             <div
               id="results-body"
@@ -1274,79 +1290,61 @@
     resultsBodyEl.classList.remove("empty");
     clearScoreBadge();
 
-    try {
+        try {
       const response = await fetch("/api/resume-feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-          body: JSON.stringify({
-    mode: currentMode,
-    text
-  })
+        body: JSON.stringify({
+          mode: currentMode,
+          text
+        })
       });
 
-      let data = null;
-      try {
-        data = await response.json();
-      } catch {
-        data = null;
+      // New: read the unified payload from the backend
+      const payload = await response.json().catch(() => null);
+
+      // If HTTP is not ok or payload is missing, show a calm error
+      if (!response.ok || !payload) {
+        const msg = mapErrorToUserMessage(
+          payload?.errorCode,
+          payload?.message || "Unexpected server response."
+        );
+        statusEl.textContent = msg;
+        resultsBodyEl.textContent =
+          "There was an error generating your feedback. Please try again.";
+        resultsBodyEl.classList.add("results-error");
+        resultsBodyEl.classList.remove("empty");
+        return;
       }
 
-      if (!response.ok) {
-        const msg = data?.error || "Unexpected server response.";
-        throw new Error(msg);
+      // Backend explicitly signaled an error (ok === false)
+      if (payload.ok === false) {
+        const msg = mapErrorToUserMessage(payload.errorCode, payload.message);
+        statusEl.textContent = msg;
+        resultsBodyEl.textContent =
+          "There was an error generating your feedback. Please try again.";
+        resultsBodyEl.classList.add("results-error");
+        resultsBodyEl.classList.remove("empty");
+        return;
       }
 
-            // Try to interpret structured JSON first
+      // Happy path: payload.data is the validated object from the server
       let structured = null;
 
-      // Our backend returns { content: "<json string>" }
-      if (typeof data?.content === "string") {
-        let raw = data.content.trim();
-
-        const fence =
-          raw.match(/```json([\s\S]*?)```/) ||
-          raw.match(/```([\s\S]*?)```/);
-
-        if (fence && fence[1]) {
-          raw = fence[1].trim();
-        }
-
-        try {
-          structured = JSON.parse(raw);
-        } catch (e) {
-          console.warn("Failed to parse JSON content, falling back to text.", e);
-          structured = null;
-        }
-      } else if (data && typeof data === "object" && !Array.isArray(data)) {
-        // Backend might already have parsed JSON
-        structured = data;
-      }
-
-      const looksStructured =
-        structured &&
-        (typeof structured.score === "number" ||
-          structured.summary ||
-          Array.isArray(structured.strengths) ||
-          Array.isArray(structured.gaps) ||
-          Array.isArray(structured.rewrites) ||
-          Array.isArray(structured.next_steps) ||
-          Array.isArray(structured.suggested_bullets));
-
-      if (looksStructured) {
-        renderStructuredResults(structured);
-      } else if (typeof data?.content === "string") {
-        const trimmed = data.content.trim();
-        const formatted = formatResults(trimmed);
-        resultsBodyEl.innerHTML = formatted || "No feedback returned.";
-        resultsBodyEl.classList.remove("empty");
-        extractAndApplyScore(trimmed);
+      if (payload.data && typeof payload.data === "object") {
+        structured = payload.data;
+      } else if (typeof payload.content === "string") {
+        // Fallback if we only have the JSON string
+        structured = JSON.parse(payload.content);
       } else {
-        resultsBodyEl.textContent = "Unexpected response.";
-        resultsBodyEl.classList.remove("empty");
+        structured = payload;
       }
 
+      renderStructuredResults(structured);
+      resultsBodyEl.classList.remove("empty");
+      resultsBodyEl.classList.remove("results-error");
 
       if (typeof resultsBodyEl.scrollTo === "function") {
         resultsBodyEl.scrollTo({ top: 0, behavior: "smooth" });
@@ -1354,13 +1352,16 @@
         resultsBodyEl.scrollTop = 0;
       }
 
-      statusEl.textContent = "Feedback ready. Adjust anything you like and run it again.";
+      statusEl.textContent =
+        "Feedback ready. Adjust anything you like and run it again.";
     } catch (err) {
       console.error(err);
-      statusEl.textContent = "Something went wrong. Please try again.";
+      statusEl.textContent =
+        "Something unexpected glitched. Try again in a moment.";
       resultsBodyEl.textContent =
         "There was an error generating your feedback. Please try again.";
       resultsBodyEl.classList.add("results-error");
+      resultsBodyEl.classList.remove("empty");
     } finally {
       runButton.disabled = false;
       runButton.textContent = originalButtonText;
@@ -1390,6 +1391,38 @@
       runAnalysis();
     }
   });
+function mapErrorToUserMessage(errorCode, fallbackMessage) {
+  switch (errorCode) {
+    case "VALIDATION_ERROR":
+      return "I need a bit more from you before I can give real feedback. Check what you pasted and try again.";
+    case "OPENAI_TIMEOUT":
+      return "The model took too long to finish this pass. Try again in a moment.";
+    case "OPENAI_NETWORK_ERROR":
+      return "There was a small network hiccup. Try again and it should go through.";
+    case "OPENAI_HTTP_ERROR":
+      return "The model had trouble finishing your review. Try once more.";
+    case "OPENAI_RESPONSE_PARSE_ERROR":
+    case "OPENAI_RESPONSE_SHAPE_INVALID":
+    case "OPENAI_RESPONSE_NOT_JSON":
+      return "The model replied in a format I could not read cleanly. Run it again and it should come back sharper.";
+    default:
+      return (
+        fallbackMessage ||
+        "Something on my side glitched while reading your resume. Try once more."
+      );
+  }
+}
+
+function setStatus(message, variant = "info") {
+  const el = document.getElementById("status-bar");
+  if (!el) return;
+  el.textContent = message || "";
+  el.classList.remove("status-info", "status-error");
+  if (message) {
+    el.classList.add(variant === "error" ? "status-error" : "status-info");
+  }
+}
+
 
   (function init() {
     loadSavedInput();
