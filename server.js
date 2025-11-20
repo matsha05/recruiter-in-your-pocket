@@ -3,10 +3,12 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const crypto = require("crypto");
 const fs = require("fs");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const LOG_FILE = process.env.LOG_FILE;
 
 // OpenAI config
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -24,12 +26,108 @@ app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
+// Ready check
+app.get("/ready", (req, res) => {
+  try {
+    const hasKey = Boolean(OPENAI_API_KEY);
+    // ensure prompt can be read
+    loadPromptFile("resume_v1.txt");
+    if (!hasKey) {
+      return res.status(500).json({ ok: false, message: "Missing OPENAI_API_KEY" });
+    }
+    return res.json({ ok: true });
+  } catch (err) {
+    logLine({ level: "error", msg: "ready_failed", err: err.message }, true);
+    return res.status(500).json({ ok: false, message: "Not ready" });
+  }
+});
+
 // Log which folder this server file is actually running from
 console.log("Server starting in directory:", __dirname);
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.set("trust proxy", true);
+
+// Simple request ID + logging
+function logLine(obj, isError = false) {
+  const line = JSON.stringify(obj);
+  (isError ? console.error : console.log)(line);
+  if (LOG_FILE) {
+    fs.appendFile(LOG_FILE, line + "\n", (err) => {
+      if (err) {
+        console.error(JSON.stringify({ level: "error", msg: "log_write_failed", err: err.message }));
+      }
+    });
+  }
+}
+
+app.use((req, res, next) => {
+  const start = Date.now();
+  const reqId = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+  req.reqId = reqId;
+
+  res.on("finish", () => {
+    const durationMs = Date.now() - start;
+    logLine({
+      level: "info",
+      reqId,
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      durationMs
+    });
+  });
+
+  next();
+});
+
+// Optional bearer token guard
+const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN;
+if (API_AUTH_TOKEN) {
+  app.use("/api", (req, res, next) => {
+    const auth = req.headers.authorization || "";
+    const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
+    if (token !== API_AUTH_TOKEN) {
+      return res.status(401).json({
+        ok: false,
+        errorCode: "UNAUTHORIZED",
+        message: "Authentication required to use this endpoint."
+      });
+    }
+    next();
+  });
+}
+
+// Basic in-memory rate limiter
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 60;
+const rateBuckets = new Map();
+
+function rateLimit(req, res, next) {
+  const key = req.ip || req.connection?.remoteAddress || "unknown";
+  const now = Date.now();
+  const bucket = rateBuckets.get(key) || { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS };
+
+  if (now > bucket.resetAt) {
+    bucket.count = 0;
+    bucket.resetAt = now + RATE_LIMIT_WINDOW_MS;
+  }
+
+  bucket.count += 1;
+  rateBuckets.set(key, bucket);
+
+  if (bucket.count > RATE_LIMIT_MAX) {
+    return res.status(429).json({
+      ok: false,
+      errorCode: "RATE_LIMIT",
+      message: "Too many requests. Please wait a moment and try again."
+    });
+  }
+
+  next();
+}
 
 // Serve static files (like index.html) from this folder
 app.use(express.static(path.join(__dirname)));
@@ -394,7 +492,7 @@ function validateResumeModelPayload(obj) {
 /**
  * API endpoint
  */
-app.post("/api/resume-feedback", async (req, res) => {
+app.post("/api/resume-feedback", rateLimit, async (req, res) => {
   try {
     const validation = validateResumeFeedbackRequest(req.body);
 
@@ -435,7 +533,16 @@ ${text}`;
       raw: rawContent
     });
   } catch (err) {
-    console.error("Server error in /api/resume-feedback:", err);
+    logLine(
+      {
+        level: "error",
+        reqId: req.reqId,
+        errorCode: err.code || "INTERNAL_SERVER_ERROR",
+        message: err.message,
+        status: err.httpStatus || 500
+      },
+      true
+    );
 
     const status = err.httpStatus || 500;
     const code = err.code || "INTERNAL_SERVER_ERROR";
@@ -459,6 +566,14 @@ ${text}`;
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend listening on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Backend listening on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = {
+  app,
+  validateResumeFeedbackRequest,
+  validateResumeModelPayload
+};
