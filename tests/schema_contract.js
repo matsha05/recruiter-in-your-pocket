@@ -1,7 +1,8 @@
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
-const { validateResumeFeedbackRequest, validateResumeModelPayload } = require("../server");
+const app = require("../app");
+const { validateResumeFeedbackRequest, validateResumeModelPayload } = app;
 
 const resumesDir = path.join(__dirname, "resumes");
 

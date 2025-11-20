@@ -1,8 +1,9 @@
 const assert = require("assert");
+const app = require("../app");
 const {
   validateResumeFeedbackRequest,
   validateResumeModelPayload
-} = require("../server");
+} = app;
 
 function testValidationEmpty() {
   const res = validateResumeFeedbackRequest({ text: "", mode: "resume" });
