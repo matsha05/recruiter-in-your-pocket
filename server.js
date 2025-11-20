@@ -50,11 +50,10 @@ You remind them that they already have a foundation. The changes you suggest are
 `.trim();
 
 function getSystemPromptForMode(mode) {
-    if (mode === "resume") {
+  if (mode === "resume") {
     return (
       baseTone +
       `
-
 You are reviewing a resume for someone who wants clear, honest feedback.
 
 They could be almost anyone:
@@ -125,7 +124,6 @@ For the "summary" field, you MUST follow these tone and structure rules exactly.
   - "Overall, this points toward..."
   - "Overall, it is clear you have..."
 
-
 The JSON must match this shape exactly:
 
 {
@@ -144,14 +142,12 @@ The JSON must match this shape exactly:
   "next_steps": []
 }
 
-
 Field rules:
 
 - score
   - Integer from 0 to 100.
   - Overall strength of the resume for serious roles at solid companies in their lane.
   - Do not inflate. 80+ should feel genuinely strong.
-
 
 - strengths
   - Array of three to six short strings.
@@ -208,12 +204,10 @@ Important output rules:
     );
   }
 
-
   if (mode === "interview") {
     return (
       baseTone +
       `
-
 Interview prep mode is not the primary focus yet. For now, give simple, plain-text guidance on how to prepare, using short sections and bullets.
 Keep it calm, clear, and practical.
 `
@@ -223,15 +217,90 @@ Keep it calm, clear, and practical.
   return baseTone;
 }
 
+// simple request validator for /api/resume-feedback
+const MAX_TEXT_LENGTH = 10000;
+const ALLOWED_MODES = ["resume", "interview"];
+
+function validateResumeFeedbackRequest(body) {
+  const fieldErrors = {};
+
+  if (!body || typeof body !== "object") {
+    return {
+      ok: false,
+      message: "Your request did not come through in a usable format.",
+      fieldErrors: {
+        body: "Request body must be a JSON object."
+      }
+    };
+  }
+
+  const { text, mode, jobContext, seniorityLevel } = body;
+
+  // text validation
+  if (typeof text !== "string" || text.trim().length === 0) {
+    fieldErrors.text = "Paste your resume text so I can actually review it.";
+  } else if (text.length > MAX_TEXT_LENGTH) {
+    fieldErrors.text =
+      "Your resume text is very long. Try sending a smaller section or trimming extra content.";
+  }
+
+  // mode validation - you mostly use 'resume' today
+  if (mode !== undefined) {
+    if (typeof mode !== "string") {
+      fieldErrors.mode = "Mode must be a text value like \"resume\".";
+    } else if (!ALLOWED_MODES.includes(mode)) {
+      fieldErrors.mode = "Mode must be \"resume\" for now.";
+    }
+  }
+
+  // optional fields
+  if (jobContext !== undefined && typeof jobContext !== "string") {
+    fieldErrors.jobContext = "Job context should be plain text if you include it.";
+  }
+
+  if (seniorityLevel !== undefined && typeof seniorityLevel !== "string") {
+    fieldErrors.seniorityLevel =
+      "Seniority level should be plain text if you include it.";
+  }
+
+  if (Object.keys(fieldErrors).length > 0) {
+    return {
+      ok: false,
+      message:
+        "Something in your request needs a quick tweak before I can give you feedback.",
+      fieldErrors
+    };
+  }
+
+  return {
+    ok: true,
+    value: {
+      text: text.trim(),
+      // default to resume to match your current flow
+      mode: mode && ALLOWED_MODES.includes(mode) ? mode : "resume",
+      jobContext,
+      seniorityLevel
+    }
+  };
+}
+
 // API endpoint
 app.post("/api/resume-feedback", async (req, res) => {
   try {
-    const { text, mode } = req.body || {};
-    const currentMode = mode || "resume";
+    const validation = validateResumeFeedbackRequest(req.body);
 
-    if (!text || typeof text !== "string" || text.trim().length === 0) {
-      return res.status(400).json({ error: "Missing text in request body." });
+    if (!validation.ok) {
+      return res.status(400).json({
+        errorCode: "VALIDATION_ERROR",
+        message: validation.message,
+        details: {
+          fieldErrors: validation.fieldErrors
+        }
+      });
     }
+
+    const { text, mode } = validation.value;
+    const currentMode = mode;
 
     const systemPrompt = getSystemPromptForMode(currentMode);
     const userPrompt = `Here is the user's input. Use the system instructions to respond.
@@ -269,7 +338,7 @@ ${text}`;
       return res.status(500).json({ error: "No content returned from OpenAI." });
     }
 
-    // Send JSON-as-string and let the frontend handle parsing/formatting
+    // For now keep the same contract to the frontend: it receives JSON-as-string in `content`
     res.json({ content });
   } catch (err) {
     console.error("Server error:", err);
