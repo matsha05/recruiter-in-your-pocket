@@ -9,6 +9,7 @@ const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const LOG_FILE = process.env.LOG_FILE;
+const USE_MOCK_OPENAI = process.env.USE_MOCK_OPENAI === "1";
 
 // OpenAI config
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -17,7 +18,7 @@ const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 15000);
 const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 2);
 const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN;
 
-if (!OPENAI_API_KEY) {
+if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
   console.error("Missing OPENAI_API_KEY in .env");
   process.exit(1);
 }
@@ -82,7 +83,7 @@ function loadPromptFile(filename) {
 // Ready check
 app.get("/ready", (req, res) => {
   try {
-    const hasKey = Boolean(OPENAI_API_KEY);
+    const hasKey = Boolean(OPENAI_API_KEY) || USE_MOCK_OPENAI;
     loadPromptFile("resume_v1.txt");
     if (!hasKey) {
       return res.status(500).json({ ok: false, message: "Missing OPENAI_API_KEY" });
@@ -285,6 +286,20 @@ function fetchWithTimeout(url, options, timeoutMs) {
 }
 
 async function callOpenAIChat(messages) {
+  if (USE_MOCK_OPENAI) {
+    const mockPath = path.join(__dirname, "tests", "fixtures", "mock_response.json");
+    const mock = JSON.parse(fs.readFileSync(mockPath, "utf8"));
+    return {
+      choices: [
+        {
+          message: {
+            content: JSON.stringify(mock)
+          }
+        }
+      ]
+    };
+  }
+
   let lastError = null;
 
   for (let attempt = 0; attempt <= OPENAI_MAX_RETRIES; attempt++) {

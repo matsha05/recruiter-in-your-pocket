@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "node tests/validation.js && node tests/schema_contract.js"
+    "test": "node tests/validation.js && node tests/schema_contract.js && node scripts/mock_run.js"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,40 @@
+{
+  "score": 85,
+  "summary": "You read as an operator who owns outcomes. Your edge is clear accountability. You move with structure. What is harder to see is how big the scope was. Trajectory points up.",
+  "strengths": [
+    "You own outcomes and present them clearly.",
+    "You keep structure and clarity in how you work.",
+    "You show real accountability for results."
+  ],
+  "gaps": [
+    "What is harder to see is the scale of the teams or programs.",
+    "Some bullets could surface the before/after more directly.",
+    "A few impacts could name specific scope to show reach."
+  ],
+  "rewrites": [
+    {
+      "label": "Impact",
+      "original": "Led projects across teams.",
+      "better": "Led cross-team projects that delivered planned outcomes on schedule.",
+      "enhancement_note": "If you have it, include: number of teams or regions involved, so the reader can see scope."
+    },
+    {
+      "label": "Scope",
+      "original": "Improved process.",
+      "better": "Built a review process that cut rework by keeping decisions and owners clear.",
+      "enhancement_note": "If you have it, include: before/after rework rate or cycle time, which clarifies the magnitude of your impact."
+    },
+    {
+      "label": "Clarity",
+      "original": "Supported launches.",
+      "better": "Supported launches by running checklist, risk review, and comms so go-live stayed on track.",
+      "enhancement_note": "If you have it, include: number of launches per month or quarter, so the reader can understand scale."
+    }
+  ],
+  "next_steps": [
+    "Add a simple headline that orients the reader to your role and focus.",
+    "Surface scope (teams, regions, volume) in two bullets where it matters most.",
+    "State one before/after metric on a top bullet so impact is easy to see.",
+    "Keep bullets to one idea each and pull outcomes earlier."
+  ]
+}
