@@ -27,16 +27,161 @@ Interview Prep remains a placeholder in the UI for now. It is not implemented in
 - Confirming stability of the backend and JSON schema  
 - Ensuring cross-background accuracy for all roles and industries  
 
-## Design Ethos
-- Clean, intentional, minimalist  
-- Calm clarity inspired by Jony Ive  
-- Avoid cleverness, gimmicks, or noise  
-- Only add features that:
-  - Deliver real clarity  
-  - Save time  
-  - Increase confidence  
-  - Give actionable rewrites  
-  - Create a "holy shit that helped" moment  
+# Recruiter in Your Pocket — Design System v1
+
+A minimal, intentional design language rooted in calm clarity.
+
+## 1. Design Philosophy
+- The interface must feel calm, intentional, and trustworthy.  
+- No visual noise, no surprises, no playful UI elements.  
+- Every pixel has a purpose.  
+- The user should never feel rushed or overwhelmed.  
+- The page should feel like someone took time to craft it.  
+
+## 2. Typography
+
+### Font family
+- Use one sans serif family: system font stack or Inter.
+- Never mix fonts.
+
+### Headings
+- Weight: 600  
+- Tight letter spacing  
+- Compact, calm scale  
+- H1: 22–26px  
+- H2: 18–20px  
+- H3: 16–18px  
+
+### Body text
+- 15–16px  
+- Normal weight (400)  
+- Line-height: 1.55–1.65  
+
+### Forbidden
+- Italics for emphasis  
+- All caps  
+- Bright or high-chroma text colors  
+
+## 3. Color System
+
+### Backgrounds
+- Primary background: deep navy / near black (#020617)
+- Elevated surfaces: slightly lighter (#020818)
+
+### Borders
+- Ultra subtle: rgba(148,163,184,0.18)
+
+### Accent
+- Single blue: #3b82f6 or #2563eb  
+- Use only for: primary button, score pill, active mode indicator
+
+### Error
+- Soft red text  
+- Soft tinted background  
+- Never bright red on black  
+
+### Success  
+- No bright green  
+- Quiet confirmation only  
+
+## 4. Layout and Spacing Rules
+
+### Vertical rhythm
+Use spacing tokens:
+- XS: 4px  
+- S: 8px  
+- M: 16px  
+- L: 24px  
+- XL: 32px  
+
+Never exceed XL between related elements.
+
+### Cards
+- Padding: 24px on all sides  
+- Rounded corners: 12px  
+- Shadow: extremely subtle or none  
+
+### Sections
+- One divider above each section header  
+- Spacing:
+  - Divider → H2: 12px  
+  - H2 → content: 8px  
+
+### Lists
+- 16px above list  
+- 8px between bullets  
+- No nested lists  
+
+## 5. Loading States
+
+### Preferred
+- Thin indeterminate progress line  
+- Gentle shimmer inside the results card  
+
+### Forbidden
+- Full-sentence loading text  
+- Spinners  
+- Bounce animations  
+- “Sending your resume for review…” style copy  
+
+### Empty state
+Use:
+> Your feedback will appear here.
+
+Quiet, neutral, unobtrusive.
+
+## 6. Interactions
+
+### Buttons
+- Subtle focus ring  
+- Muted disabled state  
+- Minimal animations  
+
+### Copy interactions
+- Single quiet icon button  
+- Tooltip: “Copied”  
+
+### Keyboard
+- Enter submits  
+- Escape clears focus  
+
+## 7. Tone & Microcopy Rules (Updated)
+
+The product voice is a senior recruiter who is also a trusted friend. Tone balances authority with genuine care.
+
+### Core identity
+- Expert recruiter with deep practical experience  
+- Calm, grounded presence  
+- Direct insight without ego  
+- Genuinely wants the user to succeed  
+
+### Emotional posture
+- Rooting for the user  
+- Calm, steady, optimistic  
+- Honest but never harsh  
+- Encouraging but never cheesy  
+- Adult-to-adult communication  
+
+### Style guidelines
+- Short, meaningful sentences  
+- Direct guidance  
+- Subtle warmth when appropriate  
+- Zero hype, zero marketing tone  
+- No exclamation points  
+- No emojis  
+- Avoid “awesome,” “super,” “amazing,” “magic,” “insane,” etc.  
+
+### When giving feedback
+- Speak like a senior recruiter sitting beside the user  
+- Praise specifically, critique clearly  
+- Give concrete steps  
+- Avoid overwhelming the user  
+- Encourage them in a grounded way:
+  “You’re close. Here’s exactly how to make this stronger.”  
+
+### Overall feeling
+The user should feel:
+“This is a calm expert who cares about me and is helping me win.”
 
 ## Tech Overview
 - Frontend: static `index.html` with dark, modern UI  
@@ -104,39 +249,6 @@ Summaries should feel like something a hiring manager would want to hear in a 30
 - Ensure feedback is equally helpful across technical and non-technical resumes  
 - Remove unnecessary industry assumptions  
 - Keep recommendations grounded in the user’s domain  
-
-## Tone and Voice
-
-All feedback across the product should reflect a calm, grounded, human tone modeled on Matt Shaw's natural communication style. The goal is to make the product feel like a real senior recruiter giving honest clarity, not a corporate HR tool or AI bot.
-
-### Core Voice Anchors
-- **Direct but warm**  
-  Say the truth plainly without drama. Name what is working and what is not. Keep it human.
-
-- **Grounded confidence**  
-  Avoid hype or empty praise. Use specificity, not flattery. Reassure by pointing to real evidence.
-
-- **Pattern first**  
-  Talk in terms of edges, habits, gaps, and trajectory ("Your edge is...", "What is harder to see is...", "You operate like someone who...").
-
-- **Human, not formal**  
-  Prefer simple everyday language instead of corporate phrases like "results oriented professional", "proven track record", or "strategic initiatives".
-
-- **Calm honesty**  
-  It is fine to say something is unclear, buried, or missing. Frame it in constructive, actionable language.
-
-### Where This Tone Applies
-This tone should be reflected consistently across:
-- summaries  
-- strengths  
-- gaps  
-- rewrites  
-- enhancement_notes  
-- next_steps  
-- UI copy  
-- future modes (negotiation, outreach, interview prep)  
-
-The voice should help users feel understood and supported without hype, fluff, or generic phrasing.
 
 ## Command Line Principle
 
@@ -299,4 +411,3 @@ Guiding principles:
 - Never overwhelm  
 - Respect time and attention  
 - The experience should create a “quiet mind”  
-

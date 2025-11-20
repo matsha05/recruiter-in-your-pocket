@@ -622,7 +622,8 @@
     }
 
     .result-list li {
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      line-height: 1.55;
     }
 
     .rewrite-label {
@@ -647,10 +648,16 @@
     }
 
 .rewrite-enhancement-note {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 0.85rem;
-  opacity: 0.8;
-  font-style: italic;
+  opacity: 0.9;
+  font-style: normal;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: #dbeafe;
+  line-height: 1.5;
 }
 
     .copy-button {
@@ -771,7 +778,7 @@
       transform: translateY(4px);
     }
     .status-bar {
-  margin-top: 12px;
+  margin-top: 6px;
   font-size: 0.9rem;
   opacity: 0.9;
   min-height: 1.2em;
@@ -1280,12 +1287,15 @@
     if (!text) {
       const msg = "Paste your resume text so I can actually review it.";
       statusEl.textContent = msg;
+      setStatus(msg, "error");
       resultsBodyEl.textContent = msg;
       resultsBodyEl.classList.add("results-error");
       resultsBodyEl.classList.remove("empty");
       return;
     }
 
+    statusEl.textContent = "";
+    setStatus("");
     runButton.disabled = true;
     originalButtonText = runButton.textContent;
     runButton.textContent = "Processing...";
@@ -1324,6 +1334,7 @@
             payload?.message || "Unexpected server response."
           );
         statusEl.textContent = msg;
+        setStatus(msg, "error");
         resultsBodyEl.textContent =
           fieldMessages ||
           "There was an error generating your feedback. Please try again.";
@@ -1338,6 +1349,7 @@
           fieldMessages ||
           mapErrorToUserMessage(payload.errorCode, payload.message);
         statusEl.textContent = msg;
+        setStatus(msg, "error");
         resultsBodyEl.textContent =
           fieldMessages ||
           "There was an error generating your feedback. Please try again.";
@@ -1368,12 +1380,13 @@
         resultsBodyEl.scrollTop = 0;
       }
 
-      statusEl.textContent =
-        "Feedback ready. Adjust anything you like and run it again.";
+      statusEl.textContent = "";
+      setStatus("");
     } catch (err) {
       console.error(err);
       statusEl.textContent =
         "Something unexpected glitched. Try again in a moment.";
+      setStatus("Something unexpected glitched. Try again in a moment.", "error");
       resultsBodyEl.textContent =
         "There was an error generating your feedback. Please try again.";
       resultsBodyEl.classList.add("results-error");
