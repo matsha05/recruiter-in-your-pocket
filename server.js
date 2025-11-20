@@ -100,7 +100,7 @@ Keep it calm, clear, and practical.
 /**
  * Request validation for /api/resume-feedback
  */
-const MAX_TEXT_LENGTH = 10000;
+const MAX_TEXT_LENGTH = 20000;
 const ALLOWED_MODES = ["resume"];
 
 function validateResumeFeedbackRequest(body) {
