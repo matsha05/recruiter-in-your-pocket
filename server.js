@@ -7,6 +7,17 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
+// OpenAI config
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-mini";
+const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 15000);
+const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 2);
+
+if (!OPENAI_API_KEY) {
+  console.error("Missing OPENAI_API_KEY in .env");
+  process.exit(1);
+}
+
 // Health check
 app.get("/health", (req, res) => {
   res.json({ ok: true });
@@ -27,14 +38,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// OpenAI setup
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-if (!OPENAI_API_KEY) {
-  console.error("Missing OPENAI_API_KEY in .env");
-  process.exit(1);
-}
-
+/**
+ * Core tone and system prompts
+ */
 const baseTone = `
 You are a calm, grounded recruiter with real experience at strong tech companies.
 
@@ -50,7 +56,7 @@ You remind them that they already have a foundation. The changes you suggest are
 `.trim();
 
 function getSystemPromptForMode(mode) {
-  if (mode === "resume") {
+    if (mode === "resume") {
     return (
       baseTone +
       `
@@ -82,7 +88,21 @@ The user will paste their full resume or a large section of it. Your job is to h
 
 Return a single JSON object only. No prose outside the JSON. Do not wrap it in backticks or a code fence.
 
-### SUMMARY TONE OVERRIDE (STRICT)
+GLOBAL TONE RULES (APPLY TO ALL FIELDS)
+
+Always write with calm, grounded confidence.
+Sound like an expert recruiter who has reviewed thousands of resumes and knows what actually matters in hiring.
+
+Do not hedge. Avoid words like "maybe", "consider", "it might help", or "it could be beneficial".
+Speak plainly and directly, as someone who has seen this pattern many times.
+
+Your overall tone should feel like: "Trust me, I have you. I know how to read this. This will make your resume stronger."
+
+Be honest but never harsh. Be clear without being cold. 
+No corporate coaching language. No buzzwords. No filler. 
+Use short sentences, human language, and concrete observations.
+
+SUMMARY TONE OVERRIDE (STRICT)
 
 For the "summary" field, you MUST follow these tone and structure rules exactly.
 
@@ -111,7 +131,7 @@ For the "summary" field, you MUST follow these tone and structure rules exactly.
 9. For trajectory, stay grounded and observational.
 10. You MUST avoid hype, flattery, or formal tone. Speak like a recruiter talking to a friend.
 
-### SUMMARY STRUCTURE (STRICT)
+SUMMARY STRUCTURE (STRICT)
 - Sentence 1: Identity (MUST start with "You read as...")
 - Sentence 2: Edge (pattern-based, plain language)
 - Sentence 3: How they operate
@@ -142,56 +162,97 @@ The JSON must match this shape exactly:
   "next_steps": []
 }
 
-Field rules:
+FIELD RULES
 
 - score
   - Integer from 0 to 100.
-  - Overall strength of the resume for serious roles at solid companies in their lane.
+  - Overall strength of the resume for serious roles at solid companies in the user’s lane.
   - Do not inflate. 80+ should feel genuinely strong.
 
 - strengths
-  - Array of three to six short strings.
-  - Each one names something that is clearly working on the page.
-  - Be concrete: patterns like clear metrics, progression, scope, domain depth, leadership, teaching, community impact, etc.
+  - Use simple, concrete language. Avoid vague phrases or metaphors.
+  - Name strengths that show up clearly on the page and matter in real hiring.
+  - Speak with calm expert certainty.
+
+  Strengths should sound like:
+    - "You have done real, high-stakes work."
+    - "You have filled roles that are genuinely difficult to hire for."
+    - "Your numbers look real and specific."
+    - "You have handled cross-team and cross-country work without things breaking."
+    - "You have stepped into bigger responsibility over time."
+    - "You show clear ownership in how you describe the work."
+    - "You carry outcomes, not just tasks."
+    - "Your experience reflects what strong companies actually look for."
 
 - gaps
-  - Array of three to six short strings.
-  - Each one names a pattern that hurts clarity, signal, or impact.
-  - Aim for things they can actually fix: vague bullets, missing context, weak verbs, no results, confusing structure, formatting issues, etc.
+  - Name what is getting in the way of clarity or impact. Keep it honest but soft.
+  - Avoid cold or evaluative phrasing. No corporate coaching language.
+  - Speak in calm observations.
+
+  Gaps should sound like:
+    - "What is harder to see is your personal role in this result."
+    - "Some of your strongest work is hidden in long sentences."
+    - "A few bullets blend multiple ideas, which dulls the impact."
+    - "Some outcomes do not have enough context to understand the scale."
+    - "Important details are present, but they are not surfaced clearly."
+    - "The story is here, but parts of it are hiding."
 
 - rewrites
   - Array of three to five objects.
   - Each object must have:
-    - label: short string naming the focus (e.g., "Impact", "Scope", "Clarity", "Conciseness")
+    - label: short string naming the focus (for example "Impact", "Scope", "Clarity", "Conciseness")
     - original: one weaker bullet from the resume, in plain text
     - better: your improved version of that bullet, in plain text
     - enhancement_note: one optional sentence helping the user strengthen the bullet further
+
   Rewrite requirements:
   - Only choose bullets where you can clearly improve clarity, impact, or structure. Skip bullets that are already strong.
-  - All rewritten bullets must follow a clear impact logic: Mechanism → Scope → Impact. Mechanism: what the user actually did. Scope: who or what it applied to (team, org, customers, departments, regions, systems, programs). Impact: why it mattered (measurable or observable outcome). Preserve these elements when present. If something is missing, strengthen clarity without inventing facts.
+  - All rewritten bullets must follow a clear impact logic: Mechanism -> Scope -> Impact.
+    - Mechanism: what the user actually did.
+    - Scope: who or what it applied to (team, org, customers, departments, regions, systems, programs).
+    - Impact: why it mattered (measurable or observable outcome).
+  - Preserve these elements when present. If something is missing, strengthen clarity without inventing facts.
   - A rewritten bullet must never contain more than one sentence. If the original mixes multiple ideas that cannot fit into one strong sentence, split into two rewritten bullets under the same label.
   - Never shorten a bullet at the cost of meaning. Clarity and signal outweigh brevity.
-  - Do not repeat employer or company names inside the rewritten bullet if they already appear in the role header. Remove redundant mentions unless needed to resolve ambiguity.
+  - Do not repeat employer or company names inside the rewritten bullet if they already appear in the role header, unless needed for clarity.
   - Always preserve meaningful nouns from the original, including company names, product names, tools, industries, roles, and metrics. Do not remove specificity that contributes to signal.
   - Rewritten bullets must NEVER introduce new numbers, counts, volumes, magnitudes, or quantities that are not present in the original bullet or clearly stated elsewhere in the resume. When scope is missing, improve clarity using mechanism and responsibility language instead of estimating or fabricating numeric values.
   - Strengthen the impact logic by improving understanding of scope, scale, mechanism, or outcome. Avoid flattening strong bullets into generic phrasing.
-  - Avoid vague or fluffy language such as “enhanced efficiency,” “drove results,” “improved performance,” or “improved satisfaction.” Replace these with concrete mechanisms grounded in the original text.
-  - For technical resumes, include relevant tools, languages, databases, frameworks, or infrastructure components inside the rewritten bullet when the original resume or surrounding context clearly implies them (e.g., APIs implemented in Go or Python, database tuning in PostgreSQL, automation with Bash or Python). Do not invent tools; only surface what is present or clearly implied.
-  - For technical roles, when a bullet describes APIs, automation, query optimization, infrastructure, or tooling, explicitly surface stack elements (e.g., REST, GraphQL, PostgreSQL, Kubernetes, Jenkins, GitHub Actions) if these appear anywhere in the resume. This detail should appear inside the rewritten bullet to increase clarity for technical reviewers.
+  - Avoid vague or fluffy language such as "enhanced efficiency", "drove results", "improved performance", or "improved satisfaction". Replace these with concrete mechanisms grounded in the original text.
+  - For technical resumes, include relevant tools, languages, databases, frameworks, or infrastructure components inside the rewritten bullet when the original resume or surrounding context clearly implies them (for example APIs implemented in Go or Python, database tuning in PostgreSQL, automation with Bash or Python). Do not invent tools; only surface what is present or clearly implied.
+  - For technical roles, when a bullet describes APIs, automation, query optimization, infrastructure, or tooling, explicitly surface stack elements (for example REST, GraphQL, PostgreSQL, Kubernetes, Jenkins, GitHub Actions) if these appear anywhere in the resume. This detail should appear inside the rewritten bullet to increase clarity for technical reviewers.
+
   enhancement_note requirements:
   - enhancement_note must NEVER describe how or why you rewrote the bullet. Do not reference clarity, conciseness, grammar, structure, or editing decisions.
-  - enhancement_note must begin with “If you have it, include:” and then give exactly one optional metric or contextual detail that would strengthen that specific bullet.
-  - enhancement_note must be tailored to the bullet. Suggest optional additions such as before/after changes, number of people impacted, program or project size, geographic scope, team span, time saved, volume handled, improvement percentages, or baseline-to-final values. These suggestions must be broadly applicable to many backgrounds.
-  - enhancement_note must avoid industry-specific metrics unless the resume explicitly indicates that industry. It should work for users from any field (e.g., education, ministry, operations, legal, engineering, HR, nonprofit, sales).
+  - enhancement_note must begin with "If you have it, include:" and then give exactly one optional metric or contextual detail that would strengthen that specific bullet.
+  - enhancement_note must be tailored to the bullet.
+    Suggest optional additions such as before or after changes, number of people impacted, program or project size, geographic scope, team span, time saved, volume handled, improvement percentages, or baseline to final values.
+    These suggestions must be broadly applicable to many backgrounds.
+  - enhancement_note must avoid industry-specific metrics unless the resume explicitly indicates that industry. It should work for users from any field (education, ministry, operations, legal, engineering, HR, nonprofit, sales).
   - enhancement_note must never invent or guess new metrics. Only suggest adding metrics the user may already know.
-  - At the end of each enhancement_note, include a brief clause explaining why adding that detail helps (for example, “so the reader can understand the scale of your work,” or “which clarifies the magnitude of your impact”). Keep this explanation short and grounded.
+  - At the end of each enhancement_note, include a brief clause explaining why adding that detail helps (for example "so the reader can understand the scale of your work" or "which clarifies the magnitude of your impact"). Keep this explanation short and grounded.
   - enhancement_note must be one sentence, calm in tone, and supportive rather than prescriptive.
   - Do not add extra keys beyond label, original, better, and enhancement_note.
 
 - next_steps
-  - Array of three to six short strings.
-  - Each is a specific action the user can take in one or two work sessions.
-  - Keep them practical and concrete, not vague mindset advice.
+  - Give clear steps the user can complete in one or two focused sessions.
+  - Use plain verbs. Keep each step practical and concrete.
+
+  Next steps should sound like:
+    - "Add a simple one-line headline so people immediately know your role and focus."
+    - "Clean up your top bullets so each one states one idea clearly."
+    - "Split any bullet that covers multiple ideas into separate points."
+    - "Add one clear number to two of your bullets so the scale shows up fast."
+    - "Make it clear what you personally owned in the work."
+    - "Tighten the formatting so nothing distracts from the story."
+
+  Tone examples:
+  - "Add a simple one-line headline so people instantly know who you are."
+  - "Clean up your top bullets so each one says one thing clearly."
+  - "Split any bullet that tries to cover multiple ideas."
+  - "Add one number to two important bullets so the scale shows up fast."
+  - "Make it obvious what you personally owned in the work."
+  - "Tighten the formatting so nothing distracts from the story."
 
 Important output rules:
 
@@ -203,6 +264,7 @@ Important output rules:
 `
     );
   }
+
 
   if (mode === "interview") {
     return (
@@ -217,7 +279,9 @@ Keep it calm, clear, and practical.
   return baseTone;
 }
 
-// simple request validator for /api/resume-feedback
+/**
+ * Request validation for /api/resume-feedback
+ */
 const MAX_TEXT_LENGTH = 10000;
 const ALLOWED_MODES = ["resume", "interview"];
 
@@ -236,7 +300,6 @@ function validateResumeFeedbackRequest(body) {
 
   const { text, mode, jobContext, seniorityLevel } = body;
 
-  // text validation
   if (typeof text !== "string" || text.trim().length === 0) {
     fieldErrors.text = "Paste your resume text so I can actually review it.";
   } else if (text.length > MAX_TEXT_LENGTH) {
@@ -244,16 +307,14 @@ function validateResumeFeedbackRequest(body) {
       "Your resume text is very long. Try sending a smaller section or trimming extra content.";
   }
 
-  // mode validation - you mostly use 'resume' today
   if (mode !== undefined) {
     if (typeof mode !== "string") {
-      fieldErrors.mode = "Mode must be a text value like \"resume\".";
+      fieldErrors.mode = 'Mode must be a text value like "resume".';
     } else if (!ALLOWED_MODES.includes(mode)) {
-      fieldErrors.mode = "Mode must be \"resume\" for now.";
+      fieldErrors.mode = 'Mode must be "resume" for now.';
     }
   }
 
-  // optional fields
   if (jobContext !== undefined && typeof jobContext !== "string") {
     fieldErrors.jobContext = "Job context should be plain text if you include it.";
   }
@@ -276,7 +337,6 @@ function validateResumeFeedbackRequest(body) {
     ok: true,
     value: {
       text: text.trim(),
-      // default to resume to match your current flow
       mode: mode && ALLOWED_MODES.includes(mode) ? mode : "resume",
       jobContext,
       seniorityLevel
@@ -284,13 +344,236 @@ function validateResumeFeedbackRequest(body) {
   };
 }
 
-// API endpoint
+/**
+ * OpenAI helpers: timeout, retries, parsing, validation
+ */
+
+function createAppError(code, message, httpStatus, internal) {
+  const err = new Error(message);
+  err.code = code;
+  err.httpStatus = httpStatus;
+  if (internal) {
+    err.internal = internal;
+  }
+  return err;
+}
+
+function fetchWithTimeout(url, options, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(createAppError("OPENAI_TIMEOUT", "OpenAI request timed out.", 504));
+    }, timeoutMs);
+
+    fetch(url, options)
+      .then((res) => {
+        clearTimeout(timer);
+        resolve(res);
+      })
+      .catch((err) => {
+        clearTimeout(timer);
+        reject(
+          createAppError(
+            "OPENAI_NETWORK_ERROR",
+            "There was a network hiccup while getting your resume review.",
+            502,
+            err.message
+          )
+        );
+      });
+  });
+}
+
+async function callOpenAIChat(messages) {
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= OPENAI_MAX_RETRIES; attempt++) {
+    try {
+      const res = await fetchWithTimeout(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + OPENAI_API_KEY
+          },
+          body: JSON.stringify({
+            model: OPENAI_MODEL,
+            temperature: 0.3,
+            messages
+          })
+        },
+        OPENAI_TIMEOUT_MS
+      );
+
+      const textBody = await res.text();
+
+      if (!res.ok) {
+        const status = res.status;
+
+        const baseError = createAppError(
+          "OPENAI_HTTP_ERROR",
+          "The model had trouble finishing your resume review.",
+          status >= 500 || status === 429 ? 502 : status,
+          textBody
+        );
+
+        if ((status >= 500 || status === 429) && attempt < OPENAI_MAX_RETRIES) {
+          lastError = baseError;
+          continue;
+        }
+
+        throw baseError;
+      }
+
+      try {
+        return JSON.parse(textBody);
+      } catch (parseErr) {
+        throw createAppError(
+          "OPENAI_RESPONSE_NOT_JSON",
+          "The model responded in a format I could not read cleanly.",
+          502,
+          textBody
+        );
+      }
+    } catch (err) {
+      lastError = err;
+      const retryableCodes = [
+        "OPENAI_TIMEOUT",
+        "OPENAI_NETWORK_ERROR"
+      ];
+
+      if (retryableCodes.includes(err.code) && attempt < OPENAI_MAX_RETRIES) {
+        continue;
+      }
+
+      throw err;
+    }
+  }
+
+  throw lastError;
+}
+
+function extractJsonFromText(text) {
+  if (typeof text !== "string") {
+    throw createAppError(
+      "OPENAI_NO_CONTENT",
+      "The model did not send back any usable content.",
+      502
+    );
+  }
+
+  let trimmed = text.trim();
+
+  if (trimmed.startsWith("```")) {
+    const firstNewline = trimmed.indexOf("\n");
+    if (firstNewline !== -1) {
+      trimmed = trimmed.slice(firstNewline + 1);
+    }
+    const lastFence = trimmed.lastIndexOf("```");
+    if (lastFence !== -1) {
+      trimmed = trimmed.slice(0, lastFence);
+    }
+    trimmed = trimmed.trim();
+  }
+
+  try {
+    return JSON.parse(trimmed);
+  } catch {
+    const firstBrace = trimmed.indexOf("{");
+    const lastBrace = trimmed.lastIndexOf("}");
+    if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) {
+      throw createAppError(
+        "OPENAI_RESPONSE_PARSE_ERROR",
+        "I could not turn the model output into structured feedback.",
+        502
+      );
+    }
+
+    const candidate = trimmed.slice(firstBrace, lastBrace + 1);
+
+    try {
+      return JSON.parse(candidate);
+    } catch {
+      throw createAppError(
+        "OPENAI_RESPONSE_PARSE_ERROR",
+        "I could not turn the model output into structured feedback.",
+        502
+      );
+    }
+  }
+}
+
+function validateResumeModelPayload(obj) {
+  if (!obj || typeof obj !== "object") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response did not match the expected format.",
+      502
+    );
+  }
+
+  if (typeof obj.score !== "number") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing a numeric score.",
+      502
+    );
+  }
+
+  if (typeof obj.summary !== "string") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing a summary.",
+      502
+    );
+  }
+
+  const arrayFields = ["strengths", "gaps", "rewrites", "next_steps"];
+  for (const field of arrayFields) {
+    if (!Array.isArray(obj[field])) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response field "${field}" was not in the expected format.`,
+        502
+      );
+    }
+  }
+
+  if (Array.isArray(obj.rewrites)) {
+    for (const item of obj.rewrites) {
+      if (!item || typeof item !== "object") {
+        throw createAppError(
+          "OPENAI_RESPONSE_SHAPE_INVALID",
+          "One of the rewrite suggestions was not structured correctly.",
+          502
+        );
+      }
+      const keys = ["label", "original", "better", "enhancement_note"];
+      for (const key of keys) {
+        if (typeof item[key] !== "string") {
+          throw createAppError(
+            "OPENAI_RESPONSE_SHAPE_INVALID",
+            "One of the rewrite suggestions was missing a text field.",
+            502
+          );
+        }
+      }
+    }
+  }
+
+  return obj;
+}
+
+/**
+ * API endpoint
+ */
 app.post("/api/resume-feedback", async (req, res) => {
   try {
     const validation = validateResumeFeedbackRequest(req.body);
 
     if (!validation.ok) {
       return res.status(400).json({
+        ok: false,
         errorCode: "VALIDATION_ERROR",
         message: validation.message,
         details: {
@@ -308,41 +591,44 @@ app.post("/api/resume-feedback", async (req, res) => {
 USER INPUT:
 ${text}`;
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + OPENAI_API_KEY
-      },
-      body: JSON.stringify({
-        model: "gpt-4.1-mini",
-        temperature: 0.3,
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt }
-        ]
-      })
+    const data = await callOpenAIChat([
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userPrompt }
+    ]);
+
+    const rawContent = data?.choices?.[0]?.message?.content;
+
+    const parsed = validateResumeModelPayload(extractJsonFromText(rawContent));
+
+    return res.json({
+      ok: true,
+      data: parsed,
+      // keep this for backward compatibility with the current frontend
+      content: JSON.stringify(parsed),
+      raw: rawContent
     });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("OpenAI API error:", data);
-      return res
-        .status(response.status)
-        .json({ error: data.error?.message || "OpenAI API error" });
-    }
-
-    const content = data?.choices?.[0]?.message?.content;
-    if (!content) {
-      return res.status(500).json({ error: "No content returned from OpenAI." });
-    }
-
-    // For now keep the same contract to the frontend: it receives JSON-as-string in `content`
-    res.json({ content });
   } catch (err) {
-    console.error("Server error:", err);
-    res.status(500).json({ error: "Server error: " + err.message });
+    console.error("Server error in /api/resume-feedback:", err);
+
+    const status = err.httpStatus || 500;
+    const code = err.code || "INTERNAL_SERVER_ERROR";
+
+    const message =
+      code === "OPENAI_TIMEOUT"
+        ? "The model took too long to respond. Try again in a moment."
+        : code === "OPENAI_NETWORK_ERROR"
+        ? "There was a temporary network issue. Try again in a moment."
+        : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
+          code === "OPENAI_RESPONSE_SHAPE_INVALID" ||
+          code === "OPENAI_RESPONSE_NOT_JSON"
+        ? "The model response came back in a format I could not read cleanly. Please try again."
+        : "Something went wrong on my side while reviewing your resume. Try again in a minute.";
+
+    return res.status(status).json({
+      ok: false,
+      errorCode: code,
+      message
+    });
   }
 });
 
