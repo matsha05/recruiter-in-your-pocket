@@ -3,88 +3,104 @@
 ## DESIGN NORTH STAR
 Clear, calming design that makes meaningful insight unmistakable and uplifting.
 
-This north star governs all layout, hierarchy, spacing, typography, interaction, UI structure, and copy rhythm. Every design decision must increase clarity, calm, insight visibility, or emotional uplift. Anything that introduces noise or ambiguity must be removed.
+Every UI and UX decision must increase:
+- clarity,
+- calm,
+- insight visibility,
+- user confidence.
+
+Anything that introduces noise, uncertainty, or visual clutter must be removed.
 
 ---
 
 ## DESIGN PRINCIPLES
 
 ### 1. Clarity above everything
-Every screen must reveal what matters instantly. No clutter. No competing elements. No unnecessary decoration. The user should understand the primary action or insight within one second.
+Every screen should reveal what matters in one second.  
+No clutter. No competing blocks. No decorative noise.
 
 ### 2. Calm by design
-Use space, hierarchy, breathing room, and simple visual structure to reduce cognitive load. Interfaces should lower stress and feel unhurried.
+Use space, rhythm, hierarchy, and intentional gaps to lower cognitive load.  
+The interface should feel unhurried and breathable.
 
 ### 3. Insight made unmistakable
-The core insight, score, or recommendation must be visually prioritized. Users should never wonder what the main takeaway is. No element should compete with insight.
+Scores, summaries, and rewritten bullets must stand out instantly.  
+Nothing should compete with the main takeaway.
 
 ### 4. Remove everything unnecessary
-Eliminate any field, label, border, color, line, icon, or step that does not directly help the user understand or act. Defaults should be simple.
+Borders, labels, icons, colors, lines, or steps are removed unless they directly help understanding.
 
 ### 5. Direct, simple language
-Use short sentences, strong verbs, and precise phrasing. Avoid filler. Avoid complex syntax. Prioritize understanding above personality.
+Short sentences. Strong verbs. No filler. No corporate speak.
 
-### 6. Motion as guidance, not decoration
-Animations must serve clarity. No ornamental motion. Transitions should be subtle, smooth, and supportive.
+### 6. Motion as guidance
+Only use animation to guide the eye or clarify state changes.  
+Never use ornamental motion or distracting transitions.
 
 ### 7. Consistency builds trust
-Spacing, typography, border radius, shadows, and patterns must behave predictably. Users should instinctively know how the interface will respond.
+Spacing, typography, borders, shadows, and patterns must behave predictably across the entire app.
 
 ---
 
 ## EXPERIENCE PRINCIPLES
 
 ### 1. Deliver insight that feels delightful to receive
-Feedback should feel like a “holy wow…this really sees me” moment. Delight comes from usefulness, resonance, and clarity, not flashiness.
+The product should create a “holy wow…this really sees me” moment.  
+Delight comes from clarity, accuracy, and resonance.
 
 ### 2. Build confidence through clarity
-The user should leave every interaction thinking:
-“I understand what to do next, and I believe I can do it.”
+The user should leave thinking:  
+“I know what to do next, and I know I can do it.”
 
 ### 3. Surprise with value, not noise
-The “wow” moment is the insight quality: sharp revisions, deeper understanding, precise guidance. No gimmicks. No distracting visuals.
+The wow is the insight itself — not visual tricks or crowded screens.
 
 ### 4. Respect the user’s emotional state
-Career moves are stressful. Outputs must be honest but grounding, encouraging but not fluffy, human but not sentimental.
+Career decisions are stressful.  
+Language must be calm, supportive, and grounded.
 
 ### 5. Human, not corporate
-Tone should feel like a world-class recruiter giving clear, honest, actionable feedback. Warm, confident, and concise.
+Tone should feel like a world-class recruiter giving honest, useful guidance.  
+Warm, confident, concise.
 
 ### 6. Meet the user where they are
-Beginners get clarity and direction. Experts get nuance and depth. Everyone feels understood and supported.
+Beginners get clarity.  
+Experts get nuance.  
+Everyone feels understood.
 
 ### 7. End every session with uplift
-The final feeling should always be: “I’m better off than I was a minute ago.”
+The final emotional note should be positive:  
+“I’m better off than I was a minute ago.”
 
 ---
 
 ## HOW TO APPLY THESE PRINCIPLES
-- When adding UI components, ask: Does this increase clarity or calm? If not, remove it.  
-- When presenting insight, ask: Is the main takeaway unmistakable?  
-- When writing copy, ask: Can this be said more simply?  
-- When designing flow, ask: What is the user’s emotional state at this step?  
-- When exploring options, choose the one with the lowest cognitive load.  
-- When unsure, default to minimalism and clarity.
+- When adding UI: Does this increase clarity or calm?
+- When presenting insight: Is the takeaway unmistakable?
+- When writing copy: Can this be said more simply?
+- When designing flow: What is the user feeling at this step?
+- When choosing between designs: Pick the lowest cognitive load.
+- When unsure: remove complexity.
 
 ---
 
 ## MANDATORY CODING GUIDELINES FOR IMPLEMENTATION
-- UI structure must be minimal and grid-consistent.  
-- Headings and subheadings must reinforce hierarchy, not decoration.  
-- Line spacing must support readability, not density.  
-- Colors must be limited, intentional, and avoid visual noise.  
-- Buttons must have clear primary and secondary hierarchy.  
-- Insight containers must always be prioritized visually.  
-- All design changes must be reviewed against the Design North Star.
+- Use minimal, grid-consistent structure.  
+- Headings reinforce hierarchy, not decoration.  
+- Line spacing must support readability.  
+- Colors must be intentional and limited.  
+- Buttons must clearly show primary vs. secondary.  
+- Insight containers must always be visually prioritized.  
+- All design changes must be checked against the Design North Star.
 
 ---
 
 ## CHANGE MANAGEMENT
-When asked to update this document, Codex should:
+When updating this file, Codex must:
 1. Preserve structure.  
 2. Preserve intent.  
 3. Improve clarity.  
-4. Enhance alignment with the North Star.  
-5. Add new rules only if they increase clarity, calm, insight visibility, or user confidence.
+4. Reinforce the North Star.  
+5. Add rules only if they increase clarity, calm, insight visibility, or confidence.
 
 END OF DOCUMENT.
