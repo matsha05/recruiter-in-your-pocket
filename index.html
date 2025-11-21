@@ -1377,9 +1377,9 @@
       const msg = "Paste your resume text so I can actually review it.";
       statusEl.textContent = msg;
       setStatus(msg, "error");
-      resultsBodyEl.textContent = msg;
-      resultsBodyEl.classList.add("results-error");
-      resultsBodyEl.classList.remove("empty");
+      resultsBodyEl.textContent = "Your feedback will appear here.";
+      resultsBodyEl.classList.add("empty");
+      resultsBodyEl.classList.remove("results-error");
       return;
     }
 
