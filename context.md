@@ -3,7 +3,7 @@
 ## North Star
 Give people calm, honest clarity about their career quickly.  
 No fluff, no hype. Clear signal in a grounded tone.
-
+The voice and personality of this product should reflect a real, world-class recruiter who is exceptionally gifted at helping people understand their careers in clear, actionable, and novel ways. It should feel like working with someone who sees your story faster and more deeply than you do, calls out the things you’re not giving yourself enough credit for, pushes you toward clarity without pressure, and gives you practical next steps that genuinely help. The tone is calm but confident, sharp but human, never corporate or fluffy, and always anchored in real insight. Every feature should reinforce the feeling that the product "gets you," surfaces what matters, skips what doesn’t, and gives you the kind of personalized clarity that only the best career advisors in the world can provide.
 ## Modes (long term)
 1. Resume feedback  
 2. Offer negotiation  
