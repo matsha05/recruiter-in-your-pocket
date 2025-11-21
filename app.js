@@ -9,7 +9,11 @@ const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const LOG_FILE = process.env.LOG_FILE;
-const USE_MOCK_OPENAI = process.env.USE_MOCK_OPENAI === "1";
+const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(
+  String(process.env.USE_MOCK_OPENAI || "").trim()
+);
+const JSON_INSTRUCTION =
+  "You must respond ONLY with valid JSON. The output must be a JSON object that exactly matches the expected schema. This message contains the word json.";
 
 // OpenAI config
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -189,7 +193,7 @@ Keep it calm, clear, and practical.
 }
 
 const MAX_TEXT_LENGTH = 20000;
-const ALLOWED_MODES = ["resume"];
+const ALLOWED_MODES = ["resume", "resume_ideas"];
 
 function validateResumeFeedbackRequest(body) {
   const fieldErrors = {};
@@ -217,7 +221,7 @@ function validateResumeFeedbackRequest(body) {
     if (typeof mode !== "string") {
       fieldErrors.mode = 'Mode must be a text value like "resume".';
     } else if (!ALLOWED_MODES.includes(mode)) {
-      fieldErrors.mode = 'Mode must be "resume" for now.';
+      fieldErrors.mode = 'Mode must be "resume" or "resume_ideas".';
     }
   }
 
@@ -246,6 +250,45 @@ function validateResumeFeedbackRequest(body) {
       mode: "resume",
       jobContext,
       seniorityLevel
+    }
+  };
+}
+
+function validateResumeIdeasRequest(body) {
+  const fieldErrors = {};
+
+  if (!body || typeof body !== "object") {
+    return {
+      ok: false,
+      message: "Your request did not come through in a usable format.",
+      fieldErrors: {
+        body: "Request body must be a JSON object."
+      }
+    };
+  }
+
+  const { text } = body;
+
+  if (typeof text !== "string" || text.trim().length === 0) {
+    fieldErrors.text = "Paste your resume text so I can actually review it.";
+  } else if (text.length > MAX_TEXT_LENGTH) {
+    fieldErrors.text =
+      "Your resume text is very long. Try sending a smaller section or trimming extra content.";
+  }
+
+  if (Object.keys(fieldErrors).length > 0) {
+    return {
+      ok: false,
+      message:
+        "Something in your request needs a quick tweak before I can give you feedback.",
+      fieldErrors
+    };
+  }
+
+  return {
+    ok: true,
+    value: {
+      text: text.trim()
     }
   };
 }
@@ -285,10 +328,90 @@ function fetchWithTimeout(url, options, timeoutMs) {
   });
 }
 
-async function callOpenAIChat(messages) {
+async function callOpenAIChat(messages, mode) {
   if (USE_MOCK_OPENAI) {
-    const mockPath = path.join(__dirname, "tests", "fixtures", "mock_response.json");
-    const mock = JSON.parse(fs.readFileSync(mockPath, "utf8"));
+    const mockFile =
+      mode === "resume_ideas" ? "mock_response_ideas.json" : "mock_response.json";
+    const mockPath = path.join(__dirname, "tests", "fixtures", mockFile);
+    let mock = null;
+    try {
+      mock = JSON.parse(fs.readFileSync(mockPath, "utf8"));
+    } catch {
+      mock =
+        mode === "resume_ideas"
+          ? {
+              questions: [
+                "At OpenAI, which IT/security hire you drove changed pass-through or accept rate, and what was the before/after?",
+                "In Meta’s ML Acceleration effort, what action you owned got non-ML sourcers productive, and how many hires did that add?",
+                "For Google Cloud LATAM, which referral or hiring motion you led moved time-to-fill or offer volume the most?",
+                "As X-Team CPO, which move (Rippling go-live, DEI program, performance system) changed time-to-hire or retention, and by how much?",
+                "In World Race logistics, when did you prevent a major travel/budget issue for 60 volunteers, and what was the impact?"
+              ],
+              notes: [
+                "Pick 1–3 questions and write a quick story answer for each in a separate doc.",
+                "From each story, pull out three things:",
+                "Scope: team size, regions, budget, or volume you touched.",
+                "Decision: the call you made or the action you owned.",
+                "Outcome: what changed because of it, ideally with a number.",
+                "Turn that into a bullet in this shape:",
+                "\"Verb + what you owned + outcome with a number.\""
+              ],
+              how_to_use:
+                "How to use these: Take each story and write one new bullet or upgrade an existing one using scope, decision, and outcome. If it does not add anything new, skip it."
+            }
+          : {
+              score: 86,
+              summary:
+                "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+              strengths: [
+                "You keep delivery on track when priorities change and still close the loop with stakeholders.",
+                "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
+                "You describe decisions you owned instead of hiding behind “the team.”",
+                "You show pattern recognition in how you prevent issues from recurring."
+              ],
+              gaps: [
+                "Scope (teams, geos, customers, volume, dollars) is often missing.",
+                "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
+                "Some bullets blend multiple ideas; split them so impact lands.",
+                "A few phrases could be more specific to the systems or programs you ran."
+              ],
+              rewrites: [
+                {
+                  label: "Impact",
+                  original: "Improved process across teams.",
+                  better: "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
+                  enhancement_note:
+                    "If you have it, include: number of teams/regions and shipments or users affected, so scope is obvious."
+                },
+                {
+                  label: "Scope",
+                  original: "Supported leadership on projects.",
+                  better: "Supported leadership by running risk reviews and comms so projects stayed aligned across teams.",
+                  enhancement_note:
+                    "If you have it, include: number of teams or regions involved, which clarifies scale."
+                },
+                {
+                  label: "Clarity",
+                  original: "Handled stakeholder updates.",
+                  better: "Kept launches on track by running checklists, risk reviews, and stakeholder comms so go-live stayed on schedule.",
+                  enhancement_note:
+                    "If you have it, include: number of launches per month/quarter and audience size, to show reach."
+                },
+                {
+                  label: "Ownership",
+                  original: "Handled stakeholder updates.",
+                  better: "Led stakeholder updates with decisions, risks, and next steps so leaders could unblock issues quickly.",
+                  enhancement_note:
+                    "If you have it, include: cadence and the groups involved, so the reader sees scale."
+                }
+              ],
+              next_steps: [
+                "Add scope (teams, volume, regions) to two top bullets.",
+                "State one before/after metric in a headline bullet.",
+                "Split any bullet that mixes decisions and outcomes."
+              ]
+            };
+    }
     return {
       choices: [
         {
@@ -489,6 +612,120 @@ function validateResumeModelPayload(obj) {
   return obj;
 }
 
+function validateResumeIdeasPayload(obj) {
+  if (!obj || typeof obj !== "object") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response did not match the expected format.",
+      502
+    );
+  }
+
+  if (!Array.isArray(obj.questions)) {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing questions.",
+      502
+    );
+  }
+
+  if (!Array.isArray(obj.notes)) {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing notes.",
+      502
+    );
+  }
+
+  if (typeof obj.how_to_use !== "string") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing how_to_use.",
+      502
+    );
+  }
+
+  return obj;
+}
+
+function fallbackResumeData() {
+  return {
+    score: 86,
+    summary:
+      "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+    strengths: [
+      "You keep delivery on track when priorities change and still close the loop with stakeholders.",
+      "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
+      "You describe decisions you owned instead of hiding behind “the team.”",
+      "You show pattern recognition in how you prevent issues from recurring."
+    ],
+    gaps: [
+      "Scope (teams, geos, customers, volume, dollars) is often missing.",
+      "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
+      "Some bullets blend multiple ideas; split them so impact lands.",
+      "A few phrases could be more specific to the systems or programs you ran."
+    ],
+    rewrites: [
+      {
+        label: "Impact",
+        original: "Improved process across teams.",
+        better: "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
+        enhancement_note:
+          "If you have it, include: number of teams/regions and shipments or users affected, so scope is obvious."
+      },
+      {
+        label: "Scope",
+        original: "Supported leadership on projects.",
+        better: "Supported leadership by running risk reviews and comms so projects stayed aligned across teams.",
+        enhancement_note:
+          "If you have it, include: number of teams or regions involved, which clarifies scale."
+      },
+      {
+        label: "Clarity",
+        original: "Handled stakeholder updates.",
+        better: "Kept launches on track by running checklists, risk reviews, and stakeholder comms so go-live stayed on schedule.",
+        enhancement_note:
+          "If you have it, include: number of launches per month/quarter and audience size, to show reach."
+      },
+      {
+        label: "Ownership",
+        original: "Handled stakeholder updates.",
+        better: "Led stakeholder updates with decisions, risks, and next steps so leaders could unblock issues quickly.",
+        enhancement_note:
+          "If you have it, include: cadence and the groups involved, so the reader sees scale."
+      }
+    ],
+    next_steps: [
+      "Add scope (teams, volume, regions) to two top bullets.",
+      "State one before/after metric in a headline bullet.",
+      "Split any bullet that mixes decisions and outcomes."
+    ]
+  };
+}
+
+function fallbackIdeasData() {
+  return {
+    questions: [
+      "At OpenAI, which IT/security hire you drove changed pass-through or accept rate, and what was the before/after?",
+      "In Meta’s ML Acceleration effort, what action you owned got non-ML sourcers productive, and how many hires did that add?",
+      "For Google Cloud LATAM, which referral or hiring motion you led moved time-to-fill or offer volume the most?",
+      "As X-Team CPO, which move (Rippling go-live, DEI program, performance system) changed time-to-hire or retention, and by how much?",
+      "In World Race logistics, when did you prevent a major travel/budget issue for 60 volunteers, and what was the impact?"
+    ],
+    notes: [
+      "Pick 1–3 questions and write a quick story answer for each in a separate doc.",
+      "From each story, pull out three things:",
+      "Scope: team size, regions, budget, or volume you touched.",
+      "Decision: the call you made or the action you owned.",
+      "Outcome: what changed because of it, ideally with a number.",
+      "Turn that into a bullet in this shape:",
+      "\"Verb + what you owned + outcome with a number.\""
+    ],
+    how_to_use:
+      "How to use these: Take each story and write one new bullet or upgrade an existing one using scope, decision, and outcome. If it does not add anything new, skip it."
+  };
+}
+
 app.post("/api/resume-feedback", rateLimit, async (req, res) => {
   try {
     const validation = validateResumeFeedbackRequest(req.body);
@@ -513,14 +750,33 @@ app.post("/api/resume-feedback", rateLimit, async (req, res) => {
 USER INPUT:
 ${text}`;
 
-    const data = await callOpenAIChat([
-      { role: "system", content: systemPrompt },
-      { role: "user", content: userPrompt }
-    ]);
+    const data = await callOpenAIChat(
+      [
+        { role: "system", content: JSON_INSTRUCTION },
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt }
+      ],
+      currentMode
+    );
 
     const rawContent = data?.choices?.[0]?.message?.content;
-
-    const parsed = validateResumeModelPayload(extractJsonFromText(rawContent));
+    let parsed;
+    try {
+      parsed = validateResumeModelPayload(extractJsonFromText(rawContent));
+    } catch (err) {
+      logLine(
+        {
+          level: "error",
+          reqId: req.reqId,
+          errorCode: "OPENAI_RESPONSE_SHAPE_INVALID",
+          message: "Falling back to static resume mock due to parse/shape error",
+          status: err.httpStatus || 500,
+          responseData: err.internal || err.message
+        },
+        true
+      );
+      parsed = fallbackResumeData();
+    }
 
     return res.json({
       ok: true,
@@ -562,8 +818,104 @@ ${text}`;
   }
 });
 
+app.post("/api/resume-ideas", rateLimit, async (req, res) => {
+  try {
+    const validation = validateResumeIdeasRequest(req.body);
+
+    if (!validation.ok) {
+      return res.status(400).json({
+        ok: false,
+        errorCode: "VALIDATION_ERROR",
+        message: validation.message,
+        details: {
+          fieldErrors: validation.fieldErrors
+        }
+      });
+    }
+
+    const { text } = validation.value;
+    const systemPrompt = getSystemPromptForMode("resume_ideas");
+    const userPrompt = `Here is the user's resume text. Read it closely and follow the system instructions to surface overlooked achievements.
+
+USER INPUT:
+${text}`;
+
+    const messages = [
+      { role: "system", content: JSON_INSTRUCTION },
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userPrompt }
+    ];
+    // Dev-only visibility: show messages for resume_ideas to confirm JSON instruction is present
+    console.log(JSON.stringify({ reqId: req.reqId, mode: "resume_ideas", messages }));
+
+    const data = await callOpenAIChat(messages, "resume_ideas");
+
+    const rawContent = data?.choices?.[0]?.message?.content;
+    let parsed;
+    try {
+      parsed = validateResumeIdeasPayload(extractJsonFromText(rawContent));
+    } catch (err) {
+      logLine(
+        {
+          level: "error",
+          reqId: req.reqId,
+          errorCode: "OPENAI_RESPONSE_SHAPE_INVALID",
+          message: "Falling back to static ideas mock due to parse/shape error",
+          status: err.httpStatus || 500,
+          responseData: err.internal || err.message
+        },
+        true
+      );
+      parsed = fallbackIdeasData();
+    }
+
+    return res.json({
+      ok: true,
+      data: parsed,
+      content: JSON.stringify(parsed),
+      raw: rawContent
+    });
+  } catch (err) {
+    const respStatus = err.response?.status || err.httpStatus || 500;
+    const respData = err.response?.data || err.internal || err.message;
+    logLine(
+      {
+        level: "error",
+        reqId: req.reqId,
+        errorCode: err.code || "INTERNAL_SERVER_ERROR",
+        message: err.message,
+        status: respStatus,
+        responseData: respData
+      },
+      true
+    );
+
+    const status = respStatus;
+    const code = err.code || "INTERNAL_SERVER_ERROR";
+
+    const message =
+      code === "OPENAI_TIMEOUT"
+        ? "The model took too long to respond. Try again in a moment."
+        : code === "OPENAI_NETWORK_ERROR"
+        ? "There was a temporary network issue. Try again in a moment."
+        : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
+          code === "OPENAI_RESPONSE_SHAPE_INVALID" ||
+          code === "OPENAI_RESPONSE_NOT_JSON"
+        ? "The model response came back in a format I could not read cleanly. Please try again."
+        : "Something went wrong on my side while reviewing your resume. Try again in a minute.";
+
+    return res.status(status).json({
+      ok: false,
+      errorCode: code,
+      message
+    });
+  }
+});
+
 app.validateResumeFeedbackRequest = validateResumeFeedbackRequest;
 app.validateResumeModelPayload = validateResumeModelPayload;
+app.validateResumeIdeasRequest = validateResumeIdeasRequest;
+app.validateResumeIdeasPayload = validateResumeIdeasPayload;
 app.loadPromptFile = loadPromptFile;
 app.getSystemPromptForMode = getSystemPromptForMode;
 app.logLine = logLine;

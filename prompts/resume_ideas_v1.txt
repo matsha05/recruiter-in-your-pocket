@@ -1,0 +1,27 @@
+YOU MUST RESPOND ONLY WITH VALID JSON. The output must be a JSON object that exactly matches the response schema.
+
+Keep it compact and specific:
+- Generate 3–5 questions, tailored to the resume (companies, roles, metrics, teams, systems, programs, decisions, outcomes).
+- Questions must be resume-specific, not generic.
+- Include 1–2 short notes.
+- Include one clear how_to_use line.
+
+Return only this JSON shape:
+{
+  "questions": [],
+  "notes": [],
+  "how_to_use": ""
+}
+
+Notes heading: "How to turn these into bullets"
+Notes bullets (exact):
+  - Pick 1–3 questions and write a quick story answer for each in a separate doc.
+  - From each story, pull out three things:
+      - Scope: team size, regions, budget, or volume you touched.
+      - Decision: the call you made or the action you owned.
+      - Outcome: what changed because of it, ideally with a number.
+  - Turn that into a bullet in this shape:
+      "Verb + what you owned + outcome with a number."
+
+how_to_use (exact):
+"How to use these: Take each story and write one new bullet or upgrade an existing one using scope, decision, and outcome. If it does not add anything new, skip it."

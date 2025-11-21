@@ -798,9 +798,30 @@
   color: #e5e7eb;
 }
 
-.status-bar.status-error {
-  color: #fca5a5;
-}
+  .status-bar.status-error {
+    color: #fca5a5;
+  }
+
+    /* Achievement ideas */
+    .ideas-card {
+      margin-top: 16px;
+    }
+
+    .ideas-list {
+      margin: 4px 0 8px;
+      padding-left: 18px;
+    }
+
+    .ideas-list li {
+      margin-bottom: 6px;
+      line-height: 1.55;
+    }
+
+    .ideas-how {
+      margin-top: 8px;
+      color: rgba(203, 213, 225, 0.9);
+      font-size: 13px;
+    }
 
   </style>
 </head>
@@ -935,9 +956,30 @@
             <div class="empty-hint">
               Clear sections, specific guidance, and clearer phrasing you can use.
             </div>
+
+            <div class="run-row" style="margin-top:12px;">
+              <button id="ideas-button" class="run-button">Generate Ideas For My Resume</button>
+            </div>
           </div>
         </section>
       </main>
+
+      <section class="card card-output ideas-card" aria-label="Achievement ideas panel">
+        <div class="card-inner">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Achievement Ideas</h2>
+              <div id="ideas-subtitle" class="mode-label">Questions that surface overlooked wins.</div>
+            </div>
+          </div>
+
+          <div id="ideas-loading-bar" class="loading bar-placeholder" style="height:2px;width:100%;background:linear-gradient(90deg,#1d4ed8,#3b82f6,#1d4ed8);background-size:200% 100%;opacity:0;transform:scaleX(0.8);transform-origin:center;"></div>
+
+          <div id="ideas-body" class="empty">
+            Generate ideas after you run the resume review.
+          </div>
+        </div>
+      </section>
 
       <div class="creator-section">
         Created with care in Boulder, CO 🤍
@@ -959,6 +1001,7 @@
   const inputLabelEl = document.getElementById("input-label");
   const modeButtons = document.querySelectorAll(".mode-button");
   const runButton = document.getElementById("run-button");
+  const ideasButtonEl = document.getElementById("ideas-button");
   const statusEl = document.getElementById("status");
   const resultsTitleEl = document.getElementById("results-title");
   const resultsSubtitleEl = document.getElementById("results-subtitle");
@@ -970,6 +1013,8 @@
   const modeIndicatorEl = document.getElementById("mode-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
   const resumeHintEl = document.getElementById("resume-hint");
+  const ideasBodyEl = document.getElementById("ideas-body");
+  const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
 
   let currentMode = "resume";
   let saveTimeout = null;
@@ -1430,6 +1475,61 @@
       runAnalysis();
     }
   });
+
+  async function runIdeas() {
+    const text = inputEl.value.trim();
+    if (!text) {
+      statusEl.textContent = "Add your resume first.";
+      return;
+    }
+
+    ideasButtonEl.disabled = true;
+    setIdeasLoading(true);
+    if (ideasBodyEl) {
+      ideasBodyEl.classList.remove("results-error");
+    }
+
+    try {
+      const response = await fetch("/api/resume-ideas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text })
+      });
+
+      const payload = await response.json().catch(() => null);
+      if (!response.ok || !payload) {
+        ideasBodyEl.textContent =
+          payload?.message || "There was an error generating ideas. Please try again.";
+        ideasBodyEl.classList.add("results-error");
+        ideasBodyEl.classList.remove("empty");
+        return;
+      }
+
+      if (payload.ok === false) {
+        ideasBodyEl.textContent =
+          payload?.message || "There was an error generating ideas. Please try again.";
+        ideasBodyEl.classList.add("results-error");
+        ideasBodyEl.classList.remove("empty");
+        return;
+      }
+
+      const structured = payload.data || payload;
+      renderIdeas(structured);
+    } catch (err) {
+      console.error(err);
+      ideasBodyEl.textContent =
+        "Something unexpected glitched. Try again in a moment.";
+      ideasBodyEl.classList.add("results-error");
+      ideasBodyEl.classList.remove("empty");
+    } finally {
+      ideasButtonEl.disabled = false;
+      setIdeasLoading(false);
+    }
+  }
+
+  ideasButtonEl.addEventListener("click", runIdeas);
 function mapErrorToUserMessage(errorCode, fallbackMessage) {
   switch (errorCode) {
     case "VALIDATION_ERROR":
@@ -1452,15 +1552,63 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
   }
 }
 
-function setStatus(message, variant = "info") {
-  const el = document.getElementById("status-bar");
-  if (!el) return;
-  el.textContent = message || "";
-  el.classList.remove("status-info", "status-error");
-  if (message) {
-    el.classList.add(variant === "error" ? "status-error" : "status-info");
+  function setStatus(message, variant = "info") {
+    const el = document.getElementById("status-bar");
+    if (!el) return;
+    el.textContent = message || "";
+    el.classList.remove("status-info", "status-error");
+    if (message) {
+      el.classList.add(variant === "error" ? "status-error" : "status-info");
+    }
   }
-}
+
+  function setIdeasLoading(isLoading) {
+    if (!ideasLoadingBarEl) return;
+    if (isLoading) {
+      ideasLoadingBarEl.style.opacity = "1";
+      ideasLoadingBarEl.style.animation = "loadingSlide 1.2s linear infinite";
+      ideasLoadingBarEl.classList.add("active");
+    } else {
+      ideasLoadingBarEl.style.opacity = "0";
+      ideasLoadingBarEl.style.animation = "none";
+      ideasLoadingBarEl.classList.remove("active");
+    }
+  }
+
+  function renderIdeas(data) {
+    if (!ideasBodyEl) return;
+    const { questions, notes, how_to_use: howToUse } = data || {};
+    let html = "";
+
+    if (Array.isArray(questions) && questions.length > 0) {
+      html += `<div class="result-heading">Questions worth answering</div>`;
+      html += `<ul class="ideas-list">`;
+      for (const q of questions) {
+        html += `<li>${escapeHtml(String(q))}</li>`;
+      }
+      html += `</ul>`;
+    }
+
+    if (Array.isArray(notes) && notes.length > 0) {
+      html += `<div class="result-heading result-section">Notes</div>`;
+      html += `<ul class="ideas-list">`;
+      for (const n of notes) {
+        html += `<li>${escapeHtml(String(n))}</li>`;
+      }
+      html += `</ul>`;
+    }
+
+    if (howToUse) {
+      html += `<div class="ideas-how">How to use these: ${escapeHtml(String(howToUse))}</div>`;
+    }
+
+    if (!html) {
+      html = "No ideas returned. Try again.";
+    }
+
+    ideasBodyEl.innerHTML = html;
+    ideasBodyEl.classList.remove("empty");
+  }
 
 
   (function init() {

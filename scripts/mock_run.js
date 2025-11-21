@@ -33,8 +33,23 @@ async function run() {
     assert.ok(Array.isArray(data.next_steps));
   }
 
+  // Exercise resume ideas endpoint with first file
+  const sample = files[0];
+  const sampleText = fs.readFileSync(path.join(resumesDir, sample), "utf8");
+  const ideasRes = await fetch(`${baseUrl}/api/resume-ideas`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: sampleText })
+  });
+  assert.strictEqual(ideasRes.status, 200, `Expected 200 for resume-ideas ${sample}`);
+  const ideasPayload = await ideasRes.json();
+  assert.strictEqual(ideasPayload.ok, true);
+  assert.ok(Array.isArray(ideasPayload.data.questions));
+  assert.ok(Array.isArray(ideasPayload.data.notes));
+  assert.ok(typeof ideasPayload.data.how_to_use === "string");
+
   server.close();
-  console.log("Mock run completed across sample resumes.");
+  console.log("Mock run completed across sample resumes and resume ideas.");
 }
 
 run().catch((err) => {
