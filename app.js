@@ -179,6 +179,10 @@ function getSystemPromptForMode(mode) {
     return loadPromptFile("resume_v1.txt");
   }
 
+  if (mode === "resume_ideas") {
+    return loadPromptFile("resume_ideas_v1.txt");
+  }
+
   if (mode === "interview") {
     return (
       baseTone +
@@ -833,7 +837,7 @@ app.post("/api/resume-ideas", rateLimit, async (req, res) => {
 
     const { text } = validation.value;
     const systemPrompt = getSystemPromptForMode("resume_ideas");
-    const userPrompt = `Here is the user's resume text. Read it closely and follow the system instructions to surface overlooked achievements.
+    const userPrompt = `Here is the user's resume text. Read it closely, infer their primary role/discipline and level, and follow the system instructions to surface overlooked achievements that fit their background.
 
 USER INPUT:
 ${text}`;

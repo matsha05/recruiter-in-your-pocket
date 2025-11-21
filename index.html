@@ -804,9 +804,10 @@
 
     /* Achievement ideas (inline) */
     .ideas-inline {
-      margin-top: 14px;
+      margin-top: 12px;
       border-top: 1px solid rgba(30, 41, 59, 0.65);
       padding-top: 12px;
+      gap: 8px;
     }
 
     .ideas-inline.hidden {
@@ -832,12 +833,12 @@
       font-weight: 400;
       font-size: 12px;
       color: var(--text-soft);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       max-width: 360px;
     }
 
     .ghost-button {
-      background: transparent;
+      background: rgba(148, 163, 184, 0.08);
       color: #e2e8f0;
       border: 1px solid rgba(148, 163, 184, 0.35);
       padding: 8px 12px;
@@ -850,7 +851,7 @@
 
     .ghost-button:hover {
       border-color: rgba(148, 163, 184, 0.65);
-      background: rgba(148, 163, 184, 0.08);
+      background: rgba(148, 163, 184, 0.12);
     }
 
     .ghost-button:disabled {
@@ -868,6 +869,7 @@
       transform-origin: center;
       margin-top: 6px;
       border-radius: 999px;
+      height: 1.5px;
     }
 
     .ideas-status {
@@ -883,10 +885,10 @@
 
     .ideas-body {
       margin-top: 8px;
-      border: 1px solid rgba(30, 41, 59, 0.55);
+      border: 1px solid rgba(30, 41, 59, 0.4);
       border-radius: 8px;
       padding: 10px 12px;
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.58);
       font-size: 13px;
       line-height: 1.6;
       color: #cbd5e1;
@@ -1068,13 +1070,13 @@
               Clear sections, specific guidance, and clearer phrasing you can use.
             </div>
 
-            <div id="ideas-inline" class="ideas-inline hidden" aria-label="Missing achievements">
+            <div id="ideas-inline" class="ideas-inline hidden" aria-label="Missing wins">
               <div class="ideas-inline-header">
                 <div>
-                  <div class="ideas-kicker">Missing achievements</div>
-                  <div class="ideas-subtitle">Prompts to surface wins you haven’t written down yet.</div>
+                  <div class="ideas-kicker">Missing wins</div>
+                  <div class="ideas-subtitle">Questions to surface work you haven’t written down yet.</div>
                 </div>
-                <button id="ideas-button" class="ghost-button" type="button">Refresh ideas</button>
+                <button id="ideas-button" class="ghost-button" type="button">Refresh questions</button>
               </div>
 
               <div id="ideas-loading-bar" class="ideas-loading-bar"></div>
@@ -1612,11 +1614,9 @@
 
     if (ideasButtonEl) {
       ideasButtonEl.disabled = true;
-      ideasButtonEl.textContent = auto ? "Refreshing..." : "Finding ideas...";
+      ideasButtonEl.textContent = auto ? "Refreshing..." : "Pulling prompts...";
     }
-    setIdeasStatus(
-      auto ? "Surfacing missing achievements..." : "Looking for missing achievements..."
-    );
+    setIdeasStatus("Pulling questions...");
     setIdeasLoading(true);
     if (ideasBodyEl) {
       ideasBodyEl.classList.remove("results-error");
@@ -1646,7 +1646,8 @@
 
       const structured = payload.data || payload;
       renderIdeas(structured);
-      setIdeasStatus("Here are prompts to uncover more wins.");
+      setIdeasStatus("Questions ready.");
+      setTimeout(() => setIdeasStatus(""), 1600);
     } catch (err) {
       console.error(err);
       if (ideasBodyEl) {
@@ -1655,7 +1656,7 @@
         ideasBodyEl.classList.add("results-error");
         ideasBodyEl.classList.remove("empty");
       }
-      setIdeasStatus("Couldn’t load ideas. Try again.", "error");
+      setIdeasStatus("Couldn’t load questions. Try again.", "error");
     } finally {
       ideasInFlight = false;
       if (ideasButtonEl) {
@@ -1736,8 +1737,7 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
 
     if (Array.isArray(questions) && questions.length > 0) {
       const limited = questions.slice(0, 3);
-      html += `<div class="ideas-divider"></div>`;
-      html += `<div style="margin-bottom:8px;" class="result-heading">Questions worth answering</div>`;
+      html += `<div class="result-heading result-section">Questions worth answering</div>`;
       html += `<ul class="ideas-list">`;
       for (const q of limited) {
         html += `<li>${escapeHtml(String(q))}</li>`;
@@ -1745,36 +1745,24 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
       html += `</ul>`;
     }
 
+    if (howToUse) {
+      html += `<div class="result-heading result-section">How to use this</div>`;
+      html += `<p class="result-paragraph">${escapeHtml(String(howToUse))}</p>`;
+    }
+
     if (Array.isArray(notes) && notes.length > 0) {
-      html += `<div class="ideas-divider"></div>`;
-      html += `<div style="margin-bottom:8px;" class="result-heading">How to use this</div>`;
-      html += `<div class="ideas-how">Use these prompts to find stories your resume isn’t telling yet, not to rewrite what already works.</div>`;
-      html += `<div class="ideas-divider"></div>`;
-      html += `<div style="margin-bottom:8px;" class="result-heading">How to turn these into bullets</div>`;
+      html += `<div class="result-heading result-section">How to turn these into bullets</div>`;
       html += `<ul class="ideas-list">`;
-      if (notes[0]) {
-        html += `<li>${escapeHtml(String(notes[0]))}</li>`;
-      }
-      if (notes[1]) {
-        html += `<li>${escapeHtml(String(notes[1]))}<ul class="ideas-sublist">`;
-        for (let i = 2; i < Math.min(notes.length, 5); i++) {
-          html += `<li>${escapeHtml(String(notes[i]))}</li>`;
-        }
-        html += `</ul></li>`;
-      }
-      if (notes.length >= 6) {
-        html += `<li>${escapeHtml(String(notes[5]))}</li>`;
+      for (const note of notes) {
+        if (!note) continue;
+        html += `<li>${escapeHtml(String(note))}</li>`;
       }
       html += `</ul>`;
     }
 
-    html += `<div class="ideas-footnote">Use only what adds something new to your resume.</div>`;
+    html += `<div class="ideas-footnote">Use only what adds something new. Skip if it’s already on the page.</div>`;
 
-    if (!html) {
-      html = "";
-    }
-
-    ideasBodyEl.innerHTML = html;
+    ideasBodyEl.innerHTML = html || "";
     ideasBodyEl.classList.remove("empty");
   }
 
