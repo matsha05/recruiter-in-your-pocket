@@ -808,7 +808,7 @@
     }
 
     .ideas-title {
-      font-size: 14px;
+      font-size: 15px;
       margin-bottom: 6px;
     }
 
@@ -820,12 +820,12 @@
     }
 
     .ideas-list {
-      margin: 6px 0 10px;
+      margin: 8px 0 12px;
       padding-left: 18px;
     }
 
     .ideas-list li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       line-height: 1.6;
     }
 
@@ -833,6 +833,7 @@
       margin-top: 10px;
       color: rgba(203, 213, 225, 0.9);
       font-size: 13px;
+      line-height: 1.5;
     }
 
     .ideas-sublist {
@@ -845,7 +846,7 @@
 
     .ideas-divider {
       border-top: 1px solid rgba(30, 41, 59, 0.6);
-      margin: 14px 0;
+      margin: 16px 0;
       padding-top: 0;
     }
 
@@ -995,18 +996,16 @@
 
       <section class="card card-output ideas-card" aria-label="Achievement ideas panel">
         <div class="card-inner">
-          <div class="card-header" style="margin-bottom: 12px;">
+          <div class="card-header" style="margin-bottom: 14px;">
             <div>
               <h2 class="card-title ideas-title">Discover what your resume isn’t saying yet</h2>
-              <div id="ideas-subtitle" class="ideas-subtitle">
-                Surface high-impact work you haven’t written down yet.
-              </div>
+              <div id="ideas-subtitle" class="ideas-subtitle">Surface high-impact work you haven’t written down yet.</div>
             </div>
           </div>
 
           <div id="ideas-loading-bar" class="loading bar-placeholder" style="height:2px;width:100%;background:linear-gradient(90deg,#1d4ed8,#3b82f6,#1d4ed8);background-size:200% 100%;opacity:0;transform:scaleX(0.8);transform-origin:center;"></div>
 
-          <div class="run-row" style="margin-top:12px; margin-bottom: 12px;">
+          <div class="run-row" style="margin-top:14px; margin-bottom: 14px;">
             <button id="ideas-button" class="run-button">Discover what I can add</button>
           </div>
 
@@ -1628,18 +1627,28 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
 
     if (Array.isArray(notes) && notes.length > 0) {
       html += `<div class="ideas-divider"></div>`;
+      html += `<div style="margin-bottom:8px;" class="result-heading">How to use this</div>`;
+      html += `<div class="ideas-how">Use these prompts to find stories your resume isn’t telling yet, not to rewrite what already works.</div>`;
+      html += `<div class="ideas-divider"></div>`;
       html += `<div style="margin-bottom:8px;" class="result-heading">How to turn these into bullets</div>`;
       html += `<ul class="ideas-list">`;
-      for (const n of notes) {
-        html += `<li>${escapeHtml(String(n))}</li>`;
+      if (notes[0]) {
+        html += `<li>${escapeHtml(String(notes[0]))}</li>`;
+      }
+      if (notes[1]) {
+        html += `<li>${escapeHtml(String(notes[1]))}<ul class="ideas-sublist">`;
+        for (let i = 2; i < Math.min(notes.length, 5); i++) {
+          html += `<li>${escapeHtml(String(notes[i]))}</li>`;
+        }
+        html += `</ul></li>`;
+      }
+      if (notes.length >= 6) {
+        html += `<li>${escapeHtml(String(notes[5]))}</li>`;
       }
       html += `</ul>`;
     }
 
-    if (howToUse) {
-      html += `<div class="ideas-how">${escapeHtml(String(howToUse))}</div>`;
-      html += `<div class="ideas-footnote">Use only what adds something new to your resume.</div>`;
-    }
+    html += `<div class="ideas-footnote">Use only what adds something new to your resume.</div>`;
 
     if (!html) {
       html = "";
