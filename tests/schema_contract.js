@@ -18,6 +18,9 @@ function testSamplesValidate() {
 function testSchemaShape() {
   const payload = {
     score: 85.6,
+    score_label: "Strong",
+    score_comment_short: "Clear impact with a few gaps.",
+    score_comment_long: "Shows ownership and impact; tighten a few bullets to surface scope and decisions.",
     summary: "You read as...",
     strengths: ["a"],
     gaps: ["b"],

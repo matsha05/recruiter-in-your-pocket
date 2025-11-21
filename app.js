@@ -571,6 +571,27 @@ function validateResumeModelPayload(obj) {
   };
 
   obj.score = normalizeScore(obj.score);
+  if (typeof obj.score_label !== "string") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing score_label.",
+      502
+    );
+  }
+  if (typeof obj.score_comment_short !== "string") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing score_comment_short.",
+      502
+    );
+  }
+  if (typeof obj.score_comment_long !== "string") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response was missing score_comment_long.",
+      502
+    );
+  }
 
   if (typeof obj.summary !== "string") {
     throw createAppError(

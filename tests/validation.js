@@ -31,6 +31,9 @@ function testValidationSuccess() {
 function testScoreClamp() {
   const parsed = validateResumeModelPayload({
     score: 120,
+    score_label: "Top bar",
+    score_comment_short: "Short",
+    score_comment_long: "Longer note",
     summary: "",
     strengths: [],
     gaps: [],
@@ -41,6 +44,9 @@ function testScoreClamp() {
 
   const parsedLow = validateResumeModelPayload({
     score: -5,
+    score_label: "Needs work",
+    score_comment_short: "Short",
+    score_comment_long: "Longer note",
     summary: "",
     strengths: [],
     gaps: [],

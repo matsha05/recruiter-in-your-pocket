@@ -51,6 +51,22 @@ SCORING INSTRUCTIONS (STRICT)
 - Never return 100. Reserve 98–99 for almost impossibly strong resumes with virtually no low hanging fruit.
 - When uncertain between two bands, choose the lower score, not the higher one.
 
+SCORE COMMENTARY RULES (STRICT)
+- Always return: "score_label", "score_comment_short", and "score_comment_long" in addition to "score".
+- Use granular bands anchored on the rubric (edges at 50, 60, 70, 78, 85, 92, 97, 99):
+  - 0–49: Very limited signal; not review-ready.
+  - 50–59: Signal is thin; clarity and structure issues block understanding.
+  - 60–69: Needs clarity; story is there but buried.
+  - 70–77: Solid foundation; sharpen scope/impact to level up.
+  - 78–84: Strong story; a few gaps in clarity or context to tighten.
+  - 85–91: High bar; clear ownership and impact with minor misses.
+  - 92–96: Top-bar ready; standout story with small polish left.
+  - 97–99: Rare air; almost no low-hanging gaps, still avoid 100.
+- "score_label": a 1–3 word band label in a calm, confident tone.
+- "score_comment_short": one sentence (max ~16 words) that captures why this score landed where it did.
+- "score_comment_long": 2–3 short sentences in the same voice that name the key reasons for the score and the fastest path to raise it (if applicable). Ground it in the rubric and what is visible in the resume. No filler or generic phrasing.
+- Commentary must match the calm, grounded recruiter voice and the design principles. Avoid hype, hedging, or formal/corporate language. Avoid repeating the same line across bands; make it feel earned and specific to the score band.
+
 
 GLOBAL TONE RULES (APPLY TO ALL FIELDS)
 
@@ -127,6 +143,9 @@ The JSON must match this shape exactly:
 
 {
   "score": 0,
+  "score_label": "",
+  "score_comment_short": "",
+  "score_comment_long": "",
   "summary": "",
   "strengths": [],
   "gaps": [],

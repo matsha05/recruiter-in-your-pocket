@@ -27,6 +27,9 @@ async function run() {
     assert.strictEqual(payload.ok, true, `Expected ok=true for ${file}`);
     const data = payload.data;
     assert.ok(typeof data.score === "number");
+    assert.ok(typeof data.score_label === "string");
+    assert.ok(typeof data.score_comment_short === "string");
+    assert.ok(typeof data.score_comment_long === "string");
     assert.ok(Array.isArray(data.strengths));
     assert.ok(Array.isArray(data.gaps));
     assert.ok(Array.isArray(data.rewrites));

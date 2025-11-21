@@ -238,10 +238,10 @@
     /* Main tool area */
 
     .tool-layout {
-      margin-top: 4px;
+      margin-top: 10px;
       display: grid;
       grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.05fr);
-      gap: 20px;
+      gap: 22px;
     }
 
     @media (max-width: 860px) {
@@ -261,7 +261,7 @@
         );
       border-radius: 18px;
       border: 1px solid var(--border-subtle);
-      padding: 24px;
+      padding: 22px;
       box-shadow:
         0 12px 28px rgba(0, 0, 0, 0.55),
         0 0 0 1px rgba(15, 23, 42, 0.85);
@@ -335,15 +335,15 @@
       display: block;
       font-size: 13px;
       color: var(--text-soft);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     textarea {
       width: 100%;
-      min-height: 240px;
+      min-height: 252px;
       max-height: 340px;
       overflow-y: auto;
-      padding: 10px 12px 9px;
+      padding: 12px 14px 11px;
       font-size: 14px;
       color: #f9fafb;
       border-radius: 12px;
@@ -364,7 +364,7 @@
       justify-content: space-between;
       align-items: center;
       font-size: 11px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: var(--text-muted);
     }
 
@@ -381,7 +381,7 @@
     .mode-label {
       font-size: 13px;
       color: var(--text-soft);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .mode-buttons {
@@ -400,7 +400,7 @@
     }
 
     .mode-button {
-      padding: 5px 11px;
+      padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid rgba(31, 41, 55, 0.95);
       background: rgba(15, 23, 42, 0.98);
@@ -440,7 +440,7 @@
     .coming-soon-hint {
       font-size: 11px;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 2px;
       margin-bottom: 10px;
     }
 
@@ -448,7 +448,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 14px;
     }
 
     .run-button {
@@ -491,12 +491,51 @@
     .results-header-right {
       display: flex;
       align-items: center;
+      gap: 12px;
+    }
+
+    .score-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
+      padding: 0;
+      border-radius: 10px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    .score-wrapper.hidden {
+      display: none;
+    }
+
+    .score-cluster {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+.score-texts {
+      display: none;
+    }
+
+.score-label-text {
+      font-size: 12px;
+      color: #e5e7eb;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .score-short-text {
+      font-size: 11px;
+      color: rgba(148, 163, 184, 0.95);
+      line-height: 1.4;
     }
 
     #results-title {
       font-size: 15px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #f9fafb;
       font-weight: 600;
     }
@@ -504,17 +543,17 @@
     #results-subtitle {
       font-size: 12px;
       color: var(--text-soft);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .score-badge {
+.score-badge {
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 6px 14px;
+      padding: 7px 13px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       color: #f9fafb;
       letter-spacing: 0.03em;
       box-shadow:
@@ -542,6 +581,42 @@
       display: inline-flex;
       opacity: 1;
       transform: scale(1);
+    }
+
+    .score-tooltip {
+      position: absolute;
+      top: 120%;
+      right: 0;
+      width: 240px;
+      background: rgba(10, 16, 28, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 12px;
+      color: #e2e8f0;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(4px);
+      pointer-events: none;
+      transition: opacity 0.16s ease-out, transform 0.16s ease-out;
+      z-index: 5;
+    }
+
+.score-tip-line {
+      margin-bottom: 6px;
+      color: rgba(226, 232, 240, 0.95);
+    }
+
+    .score-tip-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .score-wrapper:hover .score-tooltip,
+    .score-wrapper:focus-within .score-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     .score-low {
@@ -592,6 +667,7 @@
       border-radius: 8px;
       border: 1px solid rgba(30, 41, 59, 0.5);
       padding: 6px 10px 6px;
+      padding: 10px 12px 10px;
       line-height: 1.65;
       max-height: 480px;
       overflow-y: auto;
@@ -614,22 +690,22 @@
       font-size: 14px;
       font-weight: 600;
       margin-top: 12px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       color: #f9fafb;
     }
 
     .result-paragraph {
-      margin: 2px 0 8px;
+      margin: 0 0 10px;
     }
 
     .result-list {
-      margin: 4px 0 8px;
+      margin: 2px 0 10px;
       padding-left: 18px;
     }
 
     .result-list li {
-      margin-bottom: 6px;
-      line-height: 1.55;
+      margin-bottom: 8px;
+      line-height: 1.6;
     }
 
     .rewrite-label {
@@ -802,16 +878,25 @@
     color: #fca5a5;
   }
 
-    /* Achievement ideas (inline) */
+    /* Achievement ideas (inline + modal) */
     .ideas-inline {
-      margin-top: 12px;
-      border-top: 1px solid rgba(30, 41, 59, 0.65);
-      padding-top: 12px;
-      gap: 8px;
+      margin-top: 10px;
+      border-top: 1px solid rgba(30, 41, 59, 0.48);
+      padding-top: 8px;
+      gap: 6px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
     }
 
     .ideas-inline.hidden {
       display: none;
+    }
+
+    .ideas-inline .ideas-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .ideas-inline-header {
@@ -819,6 +904,13 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 12px;
+      width: 100%;
+    }
+
+    .ideas-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
     }
 
     .ideas-kicker {
@@ -826,23 +918,100 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: rgba(148, 163, 184, 0.9);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .ideas-subtitle {
       font-weight: 400;
       font-size: 12px;
       color: var(--text-soft);
-      margin-bottom: 4px;
       max-width: 360px;
+    }
+
+    .ideas-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.18s ease, transform 0.2s ease;
+    }
+
+    .ideas-modal.visible {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ideas-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.65);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    .ideas-modal.visible .ideas-backdrop {
+      opacity: 1;
+    }
+
+    .ideas-sheet {
+      position: relative;
+      z-index: 1;
+      width: min(720px, 92vw);
+      max-height: 78vh;
+      background: linear-gradient(160deg, rgba(9, 13, 24, 0.97), rgba(6, 10, 18, 0.97));
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 16px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+      padding: 8px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .ideas-modal.visible .ideas-sheet {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ideas-sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .ideas-sheet-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: -0.01em;
+    }
+
+    .ideas-sheet-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .ideas-sheet-body {
+      overflow-y: auto;
+      padding: 2px;
     }
 
     .ghost-button {
       background: rgba(148, 163, 184, 0.08);
       color: #e2e8f0;
       border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 8px 12px;
-      border-radius: 8px;
+      padding: 7px 12px;
+      border-radius: 10px;
       font-size: 12px;
       cursor: pointer;
       transition: border-color 0.12s ease, background 0.12s ease;
@@ -885,10 +1054,10 @@
 
     .ideas-body {
       margin-top: 8px;
-      border: 1px solid rgba(30, 41, 59, 0.4);
-      border-radius: 8px;
-      padding: 10px 12px;
-      background: rgba(15, 23, 42, 0.58);
+      border: 1px solid rgba(30, 41, 59, 0.32);
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: rgba(12, 18, 32, 0.9);
       font-size: 13px;
       line-height: 1.6;
       color: #cbd5e1;
@@ -930,7 +1099,7 @@
       padding-top: 0;
     }
 
-    .ideas-footnote {
+.ideas-footnote {
       margin-top: 6px;
       font-size: 12px;
       color: var(--text-muted);
@@ -959,7 +1128,7 @@
         <h1 class="hero-title">Your career. Real recruiter insight.</h1>
 
         <p class="hero-subtitle">
-          Inside insight most people simply never get.
+          Clarity from someone who reads resumes for a living.
         </p>
 
         <div class="hero-grid">
@@ -984,12 +1153,12 @@
         <section class="card card-input" aria-label="Input panel">
           <div class="card-inner">
             <div class="card-header">
-              <h2 class="card-title">Your input</h2>
+              <h2 class="card-title">Your resume</h2>
               <div class="mode-pill" id="mode-pill">Mode • Resume feedback</div>
             </div>
 
             <label for="main-input" id="input-label">
-              Drop or paste your full resume below.
+              Paste your full resume below for a calibrated review.
             </label>
 
             <div class="input-wrapper">
@@ -1011,7 +1180,7 @@
               <div id="saved-indicator" class="saved-indicator">Saved</div>
             </div>
 
-            <div class="mode-label">What do you want to work on?</div>
+            <div class="mode-label">Choose a mode</div>
             <div class="mode-buttons" role="tablist" aria-label="Mode selection">
               <button class="mode-button active" data-mode="resume">Resume</button>
               <button
@@ -1026,7 +1195,7 @@
             </div>
 
             <div class="coming-soon-hint">
-              Resume is live now, with interview prep and more guided formats on the way.
+              Resume mode is live. Interview prep is coming.
             </div>
 
             <div class="run-row">
@@ -1041,13 +1210,21 @@
           <div class="card-inner">
             <div class="card-header">
               <div>
-                <h2 id="results-title" class="card-title">Resume feedback</h2>
+                <h2 id="results-title" class="card-title">Recruiter feedback</h2>
                 <div id="results-subtitle">
-                  A recruiter calibrated resume score with insight on what works, what needs improvement, and clearer phrasing you can use.
+                  Recruiter-calibrated score plus what’s working, what needs work, and phrasing you can use.
                 </div>
               </div>
               <div class="results-header-right">
-                <div id="score-badge" class="score-badge"></div>
+                <div id="score-wrapper" class="score-wrapper hidden">
+                  <div
+                    id="score-badge"
+                    class="score-badge"
+                    tabindex="0"
+                    aria-describedby="score-tooltip"
+                  ></div>
+                  <div id="score-tooltip" class="score-tooltip" role="tooltip"></div>
+                </div>
                 <button id="copy-button" class="copy-button" aria-label="Copy results">
                   ⧉
                 </button>
@@ -1072,17 +1249,37 @@
 
             <div id="ideas-inline" class="ideas-inline hidden" aria-label="Missing wins">
               <div class="ideas-inline-header">
-                <div>
+                <div class="ideas-text">
                   <div class="ideas-kicker">Missing wins</div>
                   <div class="ideas-subtitle">Questions to surface work you haven’t written down yet.</div>
                 </div>
-                <button id="ideas-button" class="ghost-button" type="button">Refresh questions</button>
+                <div class="ideas-actions">
+                  <button id="ideas-open" class="ghost-button" type="button">Open</button>
+                </div>
               </div>
+            </div>
 
-              <div id="ideas-loading-bar" class="ideas-loading-bar"></div>
-              <div id="ideas-status" class="ideas-status" aria-live="polite"></div>
-              <div id="ideas-body" class="ideas-body empty" aria-live="polite">
-                I’ll look for wins that haven’t made it into your resume yet.
+            <div id="ideas-modal" class="ideas-modal" aria-hidden="true">
+              <div id="ideas-backdrop" class="ideas-backdrop"></div>
+              <div class="ideas-sheet" role="dialog" aria-modal="true" aria-labelledby="ideas-modal-title">
+                <div class="ideas-sheet-header">
+                  <div>
+                    <div id="ideas-modal-title" class="ideas-sheet-title">Missing wins</div>
+                    <div class="ideas-sheet-subtitle">Questions to surface work you haven’t written down yet.</div>
+                  </div>
+                  <div class="ideas-actions">
+                    <button id="ideas-refresh" class="ghost-button" type="button">Refresh</button>
+                    <button id="ideas-close" class="ghost-button" type="button" aria-label="Close missing wins">Close</button>
+                  </div>
+                </div>
+                <div id="ideas-loading-bar" class="ideas-loading-bar"></div>
+                <div id="ideas-status" class="ideas-status" aria-live="polite"></div>
+                <div class="ideas-sheet-body">
+                  <div id="ideas-body" class="ideas-body empty" aria-live="polite">
+                    I’ll look for wins that haven’t made it into your resume yet.
+                  </div>
+                  <div class="ideas-footnote" style="margin-top:8px;">Keep it clear and grounded; show scope and impact.</div>
+                </div>
               </div>
             </div>
 
@@ -1115,14 +1312,22 @@
   const resultsSubtitleEl = document.getElementById("results-subtitle");
   const resultsBodyEl = document.getElementById("results-body");
   const modePillEl = document.getElementById("mode-pill");
+  const scoreWrapperEl = document.getElementById("score-wrapper");
   const scoreBadgeEl = document.getElementById("score-badge");
+  const scoreLabelEl = document.getElementById("score-label");
+  const scoreShortEl = document.getElementById("score-short");
+  const scoreTooltipEl = document.getElementById("score-tooltip");
   const copyButtonEl = document.getElementById("copy-button");
   const savedIndicatorEl = document.getElementById("saved-indicator");
   const modeIndicatorEl = document.getElementById("mode-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
   const resumeHintEl = document.getElementById("resume-hint");
   const ideasInlineEl = document.getElementById("ideas-inline");
-  const ideasButtonEl = document.getElementById("ideas-button");
+  const ideasOpenEl = document.getElementById("ideas-open");
+  const ideasModalEl = document.getElementById("ideas-modal");
+  const ideasBackdropEl = document.getElementById("ideas-backdrop");
+  const ideasRefreshEl = document.getElementById("ideas-refresh");
+  const ideasCloseEl = document.getElementById("ideas-close");
   const ideasBodyEl = document.getElementById("ideas-body");
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
   const ideasStatusEl = document.getElementById("ideas-status");
@@ -1182,6 +1387,11 @@
     }
     showSavedIndicator();
     updateResumeHintVisibility();
+    if (!inputEl.value.trim()) {
+      resetIdeasSection();
+      if (ideasInlineEl) ideasInlineEl.classList.add("hidden");
+      closeIdeasModal();
+    }
   });
 
   inputEl.addEventListener("focus", updateResumeHintVisibility);
@@ -1201,6 +1411,86 @@
   function clearScoreBadge() {
     scoreBadgeEl.textContent = "";
     scoreBadgeEl.className = "score-badge";
+    scoreBadgeEl.removeAttribute("aria-label");
+    if (scoreLabelEl) scoreLabelEl.textContent = "";
+    if (scoreShortEl) scoreShortEl.textContent = "";
+    if (scoreTooltipEl) scoreTooltipEl.textContent = "";
+    if (scoreWrapperEl) scoreWrapperEl.classList.add("hidden");
+  }
+
+  function getScoreMeta(score) {
+    const n = Number.isFinite(Number(score)) ? Math.round(Number(score)) : 0;
+    const clamped = Math.min(100, Math.max(0, n));
+    if (clamped >= 97) {
+      return {
+        score: clamped,
+        label: "Rare air",
+        short: "Almost nothing to tighten; keep it precise.",
+        long:
+          "Story reads top-bar with clear ownership, scope, and results. Keep it crisp; a light polish only."
+      };
+    }
+    if (clamped >= 92) {
+      return {
+        score: clamped,
+        label: "Top-bar ready",
+        short: "Clear, strong signal with tiny polish left.",
+        long:
+          "Ownership, scope, and outcomes show up fast. Do a light pass to surface any last numbers or decisions."
+      };
+    }
+    if (clamped >= 85) {
+      return {
+        score: clamped,
+        label: "High bar",
+        short: "Real ownership and impact with a few soft spots.",
+        long:
+          "Signal is strong; tighten any buried scope or decisions and make outcomes pop in the top bullets."
+      };
+    }
+    if (clamped >= 78) {
+      return {
+        score: clamped,
+        label: "Strong story",
+        short: "Impact shows; a couple clarity gaps remain.",
+        long:
+          "Scope and outcomes are present but uneven. Sharpen wording and split dense bullets so wins land faster."
+      };
+    }
+    if (clamped >= 70) {
+      return {
+        score: clamped,
+        label: "Solid foundation",
+        short: "Story is here; clarity and scope need surfacing.",
+        long:
+          "Use numbers and ownership language to make the work obvious. Pull key outcomes up front and trim filler."
+      };
+    }
+    if (clamped >= 60) {
+      return {
+        score: clamped,
+        label: "Needs clarity",
+        short: "Signal is buried under wording or missing context.",
+        long:
+          "Make roles, scope, and outcomes explicit. Remove vague phrasing and show what changed because of you."
+      };
+    }
+    if (clamped >= 50) {
+      return {
+        score: clamped,
+        label: "Thin signal",
+        short: "Ownership and outcomes are hard to see.",
+        long:
+          "Rebuild top bullets with clear role, scope, and before/after changes. Add context before applying."
+      };
+    }
+    return {
+      score: clamped,
+      label: "Not ready",
+      short: "Hard to see role, scope, or results.",
+      long:
+        "Add structure, roles, and outcomes so there is usable signal. Right now it is not review-ready."
+    };
   }
 
   function applyScoreColor(score) {
@@ -1212,7 +1502,25 @@
     else if (score < 90) cls = "score-good";
     else cls = "score-great";
     scoreBadgeEl.textContent = score + "/100";
+    scoreBadgeEl.setAttribute("aria-label", `Score ${score} out of 100`);
     scoreBadgeEl.classList.add("score-visible", cls);
+  }
+
+  function renderScoreMeta(score, modelMeta = {}) {
+    const meta = getScoreMeta(score);
+    applyScoreColor(meta.score);
+
+    const labelText = (modelMeta.score_label || "").trim() || meta.label;
+    const shortText = (modelMeta.score_comment_short || "").trim() || meta.short;
+    if (scoreTooltipEl) {
+      scoreTooltipEl.innerHTML = `
+        <div class="score-tip-line" style="font-weight:700;color:#f8fafc;">${escapeHtml(
+          labelText
+        )}</div>
+        <div class="score-tip-line">${escapeHtml(shortText)}</div>
+      `;
+    }
+    if (scoreWrapperEl) scoreWrapperEl.classList.remove("hidden");
   }
 
   function extractAndApplyScore(text) {
@@ -1300,27 +1608,34 @@
       rewrites,
       next_steps: nextSteps,
       score,
+      score_label: scoreLabelText,
+      score_comment_short: scoreCommentShort,
+      score_comment_long: scoreCommentLong,
       suggested_bullets: suggestedBullets
     } = data || {};
 
     let html = "";
 
-    // score pill
+    // score pill and commentary
     if (typeof score === "number") {
-      applyScoreColor(score);
+      renderScoreMeta(score, {
+        score_label: scoreLabelText,
+        score_comment_short: scoreCommentShort,
+        score_comment_long: scoreCommentLong
+      });
     } else {
       clearScoreBadge();
     }
 
     // Recruiter's Take
     if (summary && String(summary).trim().length > 0) {
-      html += `<div class="result-heading result-section">Recruiter's Take</div>`;
+      html += `<div class="result-heading result-section">Recruiter's take</div>`;
       html += `<p class="result-paragraph">${escapeHtml(String(summary).trim())}</p>`;
     }
 
     // What's Working
     if (Array.isArray(strengths) && strengths.length > 0) {
-      html += `<div class="result-heading result-section">What's Working</div>`;
+      html += `<div class="result-heading result-section">What’s working</div>`;
       html += `<ul class="result-list">`;
       for (const item of strengths) {
         if (!item) continue;
@@ -1331,7 +1646,7 @@
 
     // What Needs Work
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="result-heading result-section">What Needs Work</div>`;
+      html += `<div class="result-heading result-section">What needs work</div>`;
       html += `<ul class="result-list">`;
       for (const item of gaps) {
         if (!item) continue;
@@ -1342,7 +1657,7 @@
 
     // Stronger Phrasing You Can Use
     if (Array.isArray(rewrites) && rewrites.length > 0) {
-      html += `<div class="result-heading result-section">Stronger Phrasing You Can Use</div>`;
+      html += `<div class="result-heading result-section">Stronger phrasing you can use</div>`;
 
       for (const r of rewrites) {
   if (!r) continue;
@@ -1376,7 +1691,7 @@
 
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
       // Fallback: use suggested_bullets from backend as a simple list
-      html += `<div class="result-heading result-section">Stronger Phrasing You Can Use</div>`;
+      html += `<div class="result-heading result-section">Stronger phrasing you can use</div>`;
       html += `<ul class="result-list">`;
       for (const bullet of suggestedBullets) {
         if (!bullet) continue;
@@ -1414,12 +1729,12 @@
     clearScoreBadge();
 
     if (mode === "resume") {
-      resultsTitleEl.textContent = "Resume feedback";
+      resultsTitleEl.textContent = "Recruiter feedback";
       resultsSubtitleEl.textContent =
-        "A recruiter calibrated resume score with insight on what works, what needs improvement, and clearer phrasing you can use.";
+        "Recruiter-calibrated score plus what’s working, what needs work, and phrasing you can use.";
       modePillEl.textContent = "Mode • Resume feedback";
       if (inputLabelEl) {
-        inputLabelEl.textContent = "Drop your full resume below.";
+        inputLabelEl.textContent = "Paste your full resume below for a calibrated review.";
       }
       inputEl.placeholder =
         "Paste your full resume, including work history, skills, and education.";
@@ -1463,10 +1778,10 @@
 
     statusEl.textContent = "";
     setStatus("");
-    runButton.disabled = true;
-    originalButtonText = runButton.textContent;
-    runButton.textContent = "Processing...";
-    loadingBarEl.classList.add("active");
+      runButton.disabled = true;
+      originalButtonText = runButton.textContent;
+      runButton.textContent = "Processing...";
+      loadingBarEl.classList.add("active");
     resultsBodyEl.classList.remove("results-error");
     resultsBodyEl.classList.remove("empty");
     clearScoreBadge();
@@ -1610,13 +1925,13 @@
     if (ideasInFlight) return;
     ideasInFlight = true;
 
-    const originalIdeasButtonText = ideasButtonEl ? ideasButtonEl.textContent : "";
+    const originalIdeasButtonText = ideasRefreshEl ? ideasRefreshEl.textContent : "";
 
-    if (ideasButtonEl) {
-      ideasButtonEl.disabled = true;
-      ideasButtonEl.textContent = auto ? "Refreshing..." : "Pulling prompts...";
+    if (ideasRefreshEl) {
+      ideasRefreshEl.disabled = true;
+      ideasRefreshEl.textContent = auto ? "Refreshing..." : "Pulling questions...";
     }
-    setIdeasStatus("Pulling questions...");
+    setIdeasStatus("Pulling new questions...");
     setIdeasLoading(true);
     if (ideasBodyEl) {
       ideasBodyEl.classList.remove("results-error");
@@ -1659,16 +1974,50 @@
       setIdeasStatus("Couldn’t load questions. Try again.", "error");
     } finally {
       ideasInFlight = false;
-      if (ideasButtonEl) {
-        ideasButtonEl.disabled = false;
-        ideasButtonEl.textContent = originalIdeasButtonText || "Refresh ideas";
+      if (ideasRefreshEl) {
+        ideasRefreshEl.disabled = false;
+        ideasRefreshEl.textContent = originalIdeasButtonText || "Refresh";
       }
       setIdeasLoading(false);
     }
   }
 
-  if (ideasButtonEl) {
-    ideasButtonEl.addEventListener("click", () => runIdeas({ auto: false }));
+  if (ideasOpenEl) {
+    ideasOpenEl.addEventListener("click", () => {
+      openIdeasModal();
+      if (!ideasBodyEl || ideasBodyEl.classList.contains("empty")) {
+        runIdeas({ auto: false });
+      }
+    });
+  }
+
+  if (ideasRefreshEl) {
+    ideasRefreshEl.addEventListener("click", () => {
+      runIdeas({ auto: false });
+    });
+  }
+
+  if (ideasCloseEl) {
+    ideasCloseEl.addEventListener("click", closeIdeasModal);
+  }
+
+  if (ideasBackdropEl) {
+    ideasBackdropEl.addEventListener("click", closeIdeasModal);
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeIdeasModal();
+    }
+  });
+
+  // Backdrop click should not scroll page when modal hidden
+  if (ideasModalEl) {
+    ideasModalEl.addEventListener("click", (e) => {
+      if (e.target === ideasModalEl) {
+        closeIdeasModal();
+      }
+    });
   }
 function mapErrorToUserMessage(errorCode, fallbackMessage) {
   switch (errorCode) {
@@ -1709,12 +2058,28 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
       "I’ll look for wins that haven’t made it into your resume yet.";
     ideasBodyEl.classList.add("empty");
     ideasBodyEl.classList.remove("results-error");
+    if (ideasModalEl) {
+      ideasModalEl.classList.remove("visible");
+      ideasModalEl.setAttribute("aria-hidden", "true");
+    }
   }
 
   function setIdeasStatus(message, variant = "info") {
     if (!ideasStatusEl) return;
     ideasStatusEl.textContent = message || "";
     ideasStatusEl.classList.toggle("error", variant === "error" && !!message);
+  }
+
+  function openIdeasModal() {
+    if (!ideasModalEl) return;
+    ideasModalEl.classList.add("visible");
+    ideasModalEl.setAttribute("aria-hidden", "false");
+  }
+
+  function closeIdeasModal() {
+    if (!ideasModalEl) return;
+    ideasModalEl.classList.remove("visible");
+    ideasModalEl.setAttribute("aria-hidden", "true");
   }
 
   function setIdeasLoading(isLoading) {
@@ -1738,6 +2103,7 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     if (Array.isArray(questions) && questions.length > 0) {
       const limited = questions.slice(0, 3);
       html += `<div class="result-heading result-section">Questions worth answering</div>`;
+      html += `<div class="ideas-how">Use these to surface wins your resume isn’t showing yet.</div>`;
       html += `<ul class="ideas-list">`;
       for (const q of limited) {
         html += `<li>${escapeHtml(String(q))}</li>`;
@@ -1745,22 +2111,11 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
       html += `</ul>`;
     }
 
-    if (howToUse) {
-      html += `<div class="result-heading result-section">How to use this</div>`;
-      html += `<p class="result-paragraph">${escapeHtml(String(howToUse))}</p>`;
-    }
+    html += `<div class="result-heading result-section">How to use this</div>`;
+    html += `<p class="result-paragraph">Pick one question. Write 3–5 lines: the situation, the decision you made, what you owned, and the outcome.</p>`;
 
-    if (Array.isArray(notes) && notes.length > 0) {
-      html += `<div class="result-heading result-section">How to turn these into bullets</div>`;
-      html += `<ul class="ideas-list">`;
-      for (const note of notes) {
-        if (!note) continue;
-        html += `<li>${escapeHtml(String(note))}</li>`;
-      }
-      html += `</ul>`;
-    }
-
-    html += `<div class="ideas-footnote">Use only what adds something new. Skip if it’s already on the page.</div>`;
+    html += `<div class="result-heading result-section">Turn it into a bullet</div>`;
+    html += `<p class="result-paragraph">Use: verb + what you owned + outcome with a number. Skip it if it is already on your resume.</p>`;
 
     ideasBodyEl.innerHTML = html || "";
     ideasBodyEl.classList.remove("empty");
