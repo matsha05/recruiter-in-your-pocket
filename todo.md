@@ -12,14 +12,18 @@
 - [x] Replaced "Pro tip" with brand-aligned "If you have it, include:"  
 - [x] Added "why this helps" style guidance to enhancement notes  
 - [x] Added summary generation rules to match Matt’s tone and structure  
+- [x] Added `docs/design-principles.md` and pointed context to it  
+- [x] Slimmed context.md to keep design guidance in a separate source of truth  
 
 ## High Priority (active development)
 - [ ] Continue strengthening rewrite output so bullets feel "elite", not just cleaned-up wording  
 - [ ] Expand cross-background testing (teacher, pastor, lawyer, marketer, engineer, sales, nonprofit) with real resumes  
 - [ ] Calibrate scoring so it feels meaningful and honest for typical users  
 - [ ] Tighten summary behavior on edge-case resumes (very short, very long, non-standard backgrounds)  
-- [ ] Polish frontend UI for the output card (spacing, section dividers, visual rhythm)  
+- [ ] Polish resume feedback UI for spacing, section dividers, and visual rhythm  
 - [ ] Improve formatting and readability of strengths and gaps lists  
+- [ ] Achievement Ideas: in real mode, use the live OpenAI response first and only fall back when the JSON is invalid; keep fallback ideas generic  
+- [ ] Achievement Ideas UI: keep pre-run minimal, render 3 tailored questions max, and ensure hierarchy/typing align with design principles  
 
 ## Medium Priority
 - [ ] Improve scoring rubric documentation so it is easy to explain what "70 vs 85" means  
