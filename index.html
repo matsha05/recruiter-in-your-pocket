@@ -802,35 +802,113 @@
     color: #fca5a5;
   }
 
-    /* Achievement ideas */
-    .ideas-card {
-      margin-top: 16px;
+    /* Achievement ideas (inline) */
+    .ideas-inline {
+      margin-top: 14px;
+      border-top: 1px solid rgba(30, 41, 59, 0.65);
+      padding-top: 12px;
     }
 
-    .ideas-title {
-      font-size: 15px;
-      margin-bottom: 6px;
+    .ideas-inline.hidden {
+      display: none;
+    }
+
+    .ideas-inline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .ideas-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(148, 163, 184, 0.9);
+      margin-bottom: 4px;
     }
 
     .ideas-subtitle {
       font-weight: 400;
       font-size: 12px;
       color: var(--text-soft);
-      margin-bottom: 12px;
+      margin-bottom: 6px;
+      max-width: 360px;
+    }
+
+    .ghost-button {
+      background: transparent;
+      color: #e2e8f0;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 0.12s ease, background 0.12s ease;
+      align-self: flex-start;
+    }
+
+    .ghost-button:hover {
+      border-color: rgba(148, 163, 184, 0.65);
+      background: rgba(148, 163, 184, 0.08);
+    }
+
+    .ghost-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .ideas-loading-bar {
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6, #1d4ed8);
+      background-size: 200% 100%;
+      opacity: 0;
+      transform: scaleX(0.8);
+      transform-origin: center;
+      margin-top: 6px;
+      border-radius: 999px;
+    }
+
+    .ideas-status {
+      font-size: 12px;
+      color: rgba(148, 163, 184, 0.9);
+      margin-top: 6px;
+      min-height: 16px;
+    }
+
+    .ideas-status.error {
+      color: #fca5a5;
+    }
+
+    .ideas-body {
+      margin-top: 8px;
+      border: 1px solid rgba(30, 41, 59, 0.55);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    .ideas-body.empty {
+      color: rgba(148, 163, 184, 0.85);
+      border-style: dashed;
     }
 
     .ideas-list {
-      margin: 8px 0 12px;
+      margin: 6px 0 8px;
       padding-left: 18px;
     }
 
     .ideas-list li {
-      margin-bottom: 10px;
-      line-height: 1.6;
+      margin-bottom: 8px;
+      line-height: 1.55;
     }
 
     .ideas-how {
-      margin-top: 10px;
+      margin-top: 6px;
       color: rgba(203, 213, 225, 0.9);
       font-size: 13px;
       line-height: 1.5;
@@ -841,17 +919,17 @@
       padding-left: 16px;
       color: rgba(203, 213, 225, 0.9);
       font-size: 12px;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .ideas-divider {
       border-top: 1px solid rgba(30, 41, 59, 0.6);
-      margin: 16px 0;
+      margin: 12px 0 8px;
       padding-top: 0;
     }
 
     .ideas-footnote {
-      margin-top: 10px;
+      margin-top: 6px;
       font-size: 12px;
       color: var(--text-muted);
     }
@@ -990,30 +1068,25 @@
               Clear sections, specific guidance, and clearer phrasing you can use.
             </div>
 
+            <div id="ideas-inline" class="ideas-inline hidden" aria-label="Missing achievements">
+              <div class="ideas-inline-header">
+                <div>
+                  <div class="ideas-kicker">Missing achievements</div>
+                  <div class="ideas-subtitle">Prompts to surface wins you haven’t written down yet.</div>
+                </div>
+                <button id="ideas-button" class="ghost-button" type="button">Refresh ideas</button>
+              </div>
+
+              <div id="ideas-loading-bar" class="ideas-loading-bar"></div>
+              <div id="ideas-status" class="ideas-status" aria-live="polite"></div>
+              <div id="ideas-body" class="ideas-body empty" aria-live="polite">
+                I’ll look for wins that haven’t made it into your resume yet.
+              </div>
+            </div>
+
           </div>
         </section>
       </main>
-
-      <section class="card card-output ideas-card" aria-label="Achievement ideas panel">
-        <div class="card-inner">
-          <div class="card-header" style="margin-bottom: 14px;">
-            <div>
-              <h2 class="card-title ideas-title">Discover what your resume isn’t saying yet</h2>
-              <div id="ideas-subtitle" class="ideas-subtitle">Surface high-impact work you haven’t written down yet.</div>
-            </div>
-          </div>
-
-          <div id="ideas-loading-bar" class="loading bar-placeholder" style="height:2px;width:100%;background:linear-gradient(90deg,#1d4ed8,#3b82f6,#1d4ed8);background-size:200% 100%;opacity:0;transform:scaleX(0.8);transform-origin:center;"></div>
-
-          <div class="run-row" style="margin-top:14px; margin-bottom: 14px;">
-            <button id="ideas-button" class="run-button">Discover what I can add</button>
-          </div>
-
-          <div id="ideas-body" class="empty">
-            <!-- pre-run state: keep empty to stay minimal -->
-          </div>
-        </div>
-      </section>
 
       <div class="creator-section">
         Created with care in Boulder, CO 🤍
@@ -1035,7 +1108,6 @@
   const inputLabelEl = document.getElementById("input-label");
   const modeButtons = document.querySelectorAll(".mode-button");
   const runButton = document.getElementById("run-button");
-  const ideasButtonEl = document.getElementById("ideas-button");
   const statusEl = document.getElementById("status");
   const resultsTitleEl = document.getElementById("results-title");
   const resultsSubtitleEl = document.getElementById("results-subtitle");
@@ -1047,12 +1119,16 @@
   const modeIndicatorEl = document.getElementById("mode-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
   const resumeHintEl = document.getElementById("resume-hint");
+  const ideasInlineEl = document.getElementById("ideas-inline");
+  const ideasButtonEl = document.getElementById("ideas-button");
   const ideasBodyEl = document.getElementById("ideas-body");
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
+  const ideasStatusEl = document.getElementById("ideas-status");
 
   let currentMode = "resume";
   let saveTimeout = null;
   let originalButtonText = runButton.textContent;
+  let ideasInFlight = false;
 
   function autoResizeTextarea() {
     const maxHeight = 340;
@@ -1392,6 +1468,10 @@
     resultsBodyEl.classList.remove("results-error");
     resultsBodyEl.classList.remove("empty");
     clearScoreBadge();
+    if (ideasInlineEl) {
+      ideasInlineEl.classList.add("hidden");
+    }
+    resetIdeasSection();
 
         try {
       const response = await fetch("/api/resume-feedback", {
@@ -1463,6 +1543,11 @@
       resultsBodyEl.classList.remove("empty");
       resultsBodyEl.classList.remove("results-error");
 
+      if (ideasInlineEl) {
+        ideasInlineEl.classList.remove("hidden");
+      }
+      runIdeas({ auto: true, sourceText: text });
+
       if (typeof resultsBodyEl.scrollTo === "function") {
         resultsBodyEl.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -1510,14 +1595,28 @@
     }
   });
 
-  async function runIdeas() {
-    const text = inputEl.value.trim();
+  async function runIdeas(options = {}) {
+    const { auto = false, sourceText } = options;
+    const text = (sourceText || inputEl.value || "").trim();
     if (!text) {
-      statusEl.textContent = "Add your resume first.";
+      if (!auto) {
+        setIdeasStatus("Add your resume first.", "error");
+      }
       return;
     }
 
-    ideasButtonEl.disabled = true;
+    if (ideasInFlight) return;
+    ideasInFlight = true;
+
+    const originalIdeasButtonText = ideasButtonEl ? ideasButtonEl.textContent : "";
+
+    if (ideasButtonEl) {
+      ideasButtonEl.disabled = true;
+      ideasButtonEl.textContent = auto ? "Refreshing..." : "Finding ideas...";
+    }
+    setIdeasStatus(
+      auto ? "Surfacing missing achievements..." : "Looking for missing achievements..."
+    );
     setIdeasLoading(true);
     if (ideasBodyEl) {
       ideasBodyEl.classList.remove("results-error");
@@ -1533,37 +1632,43 @@
       });
 
       const payload = await response.json().catch(() => null);
-      if (!response.ok || !payload) {
-        ideasBodyEl.textContent =
+      if (!response.ok || !payload || payload.ok === false) {
+        const message =
           payload?.message || "There was an error generating ideas. Please try again.";
-        ideasBodyEl.classList.add("results-error");
-        ideasBodyEl.classList.remove("empty");
-        return;
-      }
-
-      if (payload.ok === false) {
-        ideasBodyEl.textContent =
-          payload?.message || "There was an error generating ideas. Please try again.";
-        ideasBodyEl.classList.add("results-error");
-        ideasBodyEl.classList.remove("empty");
+        if (ideasBodyEl) {
+          ideasBodyEl.textContent = message;
+          ideasBodyEl.classList.add("results-error");
+          ideasBodyEl.classList.remove("empty");
+        }
+        setIdeasStatus(message, "error");
         return;
       }
 
       const structured = payload.data || payload;
       renderIdeas(structured);
+      setIdeasStatus("Here are prompts to uncover more wins.");
     } catch (err) {
       console.error(err);
-      ideasBodyEl.textContent =
-        "Something unexpected glitched. Try again in a moment.";
-      ideasBodyEl.classList.add("results-error");
-      ideasBodyEl.classList.remove("empty");
+      if (ideasBodyEl) {
+        ideasBodyEl.textContent =
+          "Something unexpected glitched. Try again in a moment.";
+        ideasBodyEl.classList.add("results-error");
+        ideasBodyEl.classList.remove("empty");
+      }
+      setIdeasStatus("Couldn’t load ideas. Try again.", "error");
     } finally {
-      ideasButtonEl.disabled = false;
+      ideasInFlight = false;
+      if (ideasButtonEl) {
+        ideasButtonEl.disabled = false;
+        ideasButtonEl.textContent = originalIdeasButtonText || "Refresh ideas";
+      }
       setIdeasLoading(false);
     }
   }
 
-  ideasButtonEl.addEventListener("click", runIdeas);
+  if (ideasButtonEl) {
+    ideasButtonEl.addEventListener("click", () => runIdeas({ auto: false }));
+  }
 function mapErrorToUserMessage(errorCode, fallbackMessage) {
   switch (errorCode) {
     case "VALIDATION_ERROR":
@@ -1594,6 +1699,21 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     if (message) {
       el.classList.add(variant === "error" ? "status-error" : "status-info");
     }
+  }
+
+  function resetIdeasSection() {
+    setIdeasStatus("");
+    if (!ideasBodyEl) return;
+    ideasBodyEl.innerHTML =
+      "I’ll look for wins that haven’t made it into your resume yet.";
+    ideasBodyEl.classList.add("empty");
+    ideasBodyEl.classList.remove("results-error");
+  }
+
+  function setIdeasStatus(message, variant = "info") {
+    if (!ideasStatusEl) return;
+    ideasStatusEl.textContent = message || "";
+    ideasStatusEl.classList.toggle("error", variant === "error" && !!message);
   }
 
   function setIdeasLoading(isLoading) {
