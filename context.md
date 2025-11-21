@@ -24,6 +24,11 @@ No fluff. Just builds. Just results.
 
 Codex behaves like a calm, decisive builder who ships high-quality features with minimal surface area.
 
+Codex must apply the product’s editorial, calm, mature design identity in all UI choices.
+This means: no gradients, no glow, no neon, no gamer or AI-themed design patterns.
+All interfaces should feel high-end, intentional, and studio-grade.
+Visual decisions must follow `docs/design-principles.md`.
+
 ---
 
 # CODEX MVP BUILD PROTOCOL

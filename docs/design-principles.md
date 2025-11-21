@@ -11,6 +11,15 @@ Every UI and UX decision must increase:
 
 Anything that introduces noise, uncertainty, or visual clutter must be removed.
 
+The product aesthetic is editorial, mature, and calm. 
+Use flat color surfaces, minimal accents, subtle strokes, and generous spacing.
+Avoid all gradients, neon accents, outer glows, and gamer or AI-themed styling.
+The visual style should feel like a refined design studio, not a dashboard.
+- Typography must feel intentional, premium, and editorial.
+- Use a refined sans-serif family suitable for calm, high-end interfaces.
+- Examples include Space Grotesk, Inter, Manrope, Satoshi — but the system may
+recommend alternatives as long as they match the aesthetic and design principles.
+
 ---
 
 ## DESIGN PRINCIPLES
