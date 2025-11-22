@@ -156,12 +156,12 @@
 
     .hero-title {
       font-family: "Space Grotesk", "Manrope", system-ui, -apple-system, sans-serif;
-      font-size: 32px;
+      font-size: 36px;
       letter-spacing: -0.035em;
       color: #f6f7fb;
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .hero-subtitle {
@@ -215,6 +215,32 @@
       line-height: 1.55;
     }
 
+    .future-ribbon {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .future-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-soft);
+      font-size: 12px;
+      letter-spacing: 0.01em;
+    }
+
+    .future-chip.warm {
+      border-color: rgba(200, 162, 106, 0.35);
+      background: rgba(200, 162, 106, 0.12);
+      color: #f1e6d5;
+    }
+
     @media (max-width: 600px) {
       .hero-title {
         font-size: 26px;
@@ -259,6 +285,17 @@
 
     .card-output {
       background: linear-gradient(180deg, #101522 0%, #0e131e 100%);
+    }
+    .card-output::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 16px;
+      bottom: 16px;
+      width: 2px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(200, 162, 106, 0.35), rgba(200, 162, 106, 0.12));
+      pointer-events: none;
     }
 
     .card-inner {
@@ -484,9 +521,10 @@
       gap: 10px;
       padding: 0;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 10px;
+      background: transparent;
+      border: none;
+      padding: 8px 0;
+      box-shadow: none;
     }
 
     .score-wrapper.hidden {
@@ -1171,7 +1209,7 @@
         <h1 class="hero-title">Your career. Real recruiter insight.</h1>
 
         <p class="hero-subtitle">
-          Clarity from someone who reads resumes for a living.
+          Read like a recruiter.
         </p>
 
         <div class="hero-grid">
@@ -1187,8 +1225,12 @@
         </div>
 
         <p class="hero-cred">
-          Career guidance from former recruiters at Google, Facebook, and OpenAI.
+          Built by recruiters from Google, Facebook, and OpenAI.
         </p>
+        <div class="future-ribbon">
+          <div class="future-chip">Offer Studio • coming soon</div>
+          <div class="future-chip">Interview Studio • coming soon</div>
+        </div>
       </section>
 
       <main class="tool-layout">
@@ -1239,7 +1281,7 @@
             </div>
 
             <div class="coming-soon-hint">
-              Resume mode is live. Interview prep is coming.
+              Resume Studio is live. Interview Studio is on deck.
             </div>
 
             <div class="run-row">
