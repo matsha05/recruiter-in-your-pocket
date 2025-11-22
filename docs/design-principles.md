@@ -123,6 +123,13 @@ The layout and tone should feel like a crafted report, not a dashboard.
 - Insight containers must always be visually prioritized.  
 - All design changes must be checked against the Design North Star.
 
+### COLOR AND MOTION (DELIGHT WITHOUT NOISE)
+- One accent only; no gradients, pastels, or multi-accent palettes.  
+- Color is for signal, not decoration: score arrival micro-flash (<150ms), accent line intensifying on new insights, one metric/verb in a rewrite, and micro hovers/focus rings.  
+- Never use color for backgrounds, blobs, celebrations, or illustrations.  
+- Litmus: if removing the color breaks clarity, it was decorative noise—remove it.  
+- Motion stays minimal: light hover/click feedback; no loops, confetti, or playful animations.
+
 ---
 
 ## CHANGE MANAGEMENT
