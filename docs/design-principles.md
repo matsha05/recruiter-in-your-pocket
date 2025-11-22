@@ -1,27 +1,23 @@
 # Recruiter in Your Pocket — Design North Star and Principles
 
 ## DESIGN NORTH STAR
-Clear, calming design that makes meaningful insight unmistakable and uplifting.
+Confident simplicity. The user sees their score and headline take instantly, then the next actions. Nothing extra.
 
 Every UI and UX decision must increase:
 - clarity,
-- calm,
+- confident hierarchy,
 - insight visibility,
-- user confidence.
+- user momentum.
 
-Exploration mode: we can prototype small, contained experiments (a score block treatment, a single card motif, a subtle accent) as long as they stay calm, human, and reversible. No hype, no neon. If an experiment adds noise, remove it. Document experiments briefly so we can keep what earns its place.
+Exploration mode: prototype only small, reversible treatments (a score block variant, a single accent line placement). Remove anything that adds noise. Document keepers briefly.
 
-Anything that introduces noise, uncertainty, or visual clutter must be removed.
+Anything that introduces clutter, visual uncertainty, or extra chrome must be removed.
 
-The product aesthetic is editorial, mature, and calm. 
-Use flat color surfaces, minimal accents, subtle strokes, and generous spacing.
-Avoid all gradients, neon accents, outer glows, and gamer or AI-themed styling.
-The visual style should feel like a refined design studio, not a dashboard.
-- Typography must feel intentional, premium, and editorial.
-- Use a refined sans-serif family suitable for calm, high-end interfaces.
-- Examples include Space Grotesk, Inter, Manrope, Satoshi — but the system may
-recommend alternatives as long as they match the aesthetic and design principles.
-- Calm ≠ bland. A single warm accent and one subtle signature motif (a thin underline, a faint vertical bar, a soft texture) are allowed if they increase hierarchy and stay quiet.
+The product aesthetic is editorial and assertively minimal.
+- Flat white/black surfaces with a single accent. No gradients, glows, neon, or “AI/gamer” styling.
+- Typography: clean modern sans (Space Grotesk, Manrope, Inter, Satoshi). Two weights only (400/500 for body, 600/700 for headings).
+- Signature motif: a thin left accent line on stack sections and headings.
+- Spacing: moderate rhythm; breathe but do not sprawl.
 
 Design and identity source of truth:
 - docs/design-principles.md
@@ -33,76 +29,57 @@ Recruiter in Your Pocket is:
 
 > A personal recruiting studio for clarity, confidence, and craft.
 
-The UI should feel like a studio grade report created by an elite recruiter:
-calm, intentional, and confident.
-
-Calm in this product does not mean passive or bland.
-Calm means confident.
-The interface should feel like a world class recruiter who knows exactly what matters,
-has nothing to prove, and offers clarity without noise.
-This is expertise expressed as stillness.
-The vision document (`docs/vision.md`) defines the product’s identity, signature interaction pattern, and core studio experience. All design decisions must remain aligned with it.
+The UI should feel like an elite recruiter’s report: sharp, deliberate, and free of ornament. Confidence comes from decisive hierarchy, not softness. The vision document (`docs/vision.md`) defines the product’s identity and core studio experience. All design decisions must stay aligned.
 
 ---
 
 ## DESIGN PRINCIPLES
 
 ### 1. Clarity above everything
-Every screen should reveal what matters in one second.  
-No clutter. No competing blocks. No decorative noise.
+Every screen reveals the score/headline and next moves in one second. No competing blocks. No decorative noise.
 
-### 2. Calm by design
-Use space, rhythm, hierarchy, and intentional gaps to lower cognitive load.  
-The interface should feel unhurried and breathable.
+### 2. Confident hierarchy
+Lead with the score pill and one-line summary. Use the left accent line to anchor sections. One column. No margin notes.
 
 ### 3. Insight made unmistakable
-Scores, summaries, and rewritten bullets must stand out instantly.  
-Nothing should compete with the main takeaway.
+Scores, summaries, and stronger phrasing are visually prioritized. Nothing else competes.
 
 ### 4. Remove everything unnecessary
-Borders, labels, icons, colors, lines, or steps are removed unless they directly help understanding.
+No extra borders, icons, or labels. Space is the primary separator; use a single accent line when needed.
 
 ### 5. Direct, simple language
-Short sentences. Strong verbs. No filler. No corporate speak.
+Short sentences. Strong verbs. No corporate speak. Tone is a trusted recruiter, not a coach or hype voice.
 
-### 6. Motion as guidance
-Only use animation to guide the eye or clarify state changes.  
-Never use ornamental motion or distracting transitions.
+### 6. Motion kept minimal
+Only light hover states on controls. No entrance animations, spinners, or flourish.
 
 ### 7. Consistency builds trust
-Spacing, typography, borders, shadows, and patterns must behave predictably across the entire app.
+Spacing, typography, borders, and the accent line behave predictably across the app.
 
 ---
 
 ## EXPERIENCE PRINCIPLES
 
-### 1. Deliver insight that feels delightful to receive
-The product should create a “holy wow…this really sees me” moment.  
-Delight comes from clarity, accuracy, and resonance.
+### 1. Deliver insight that feels earned
+The “wow” is the accurate read and stronger wording, not visuals. Users feel seen because the content lands fast.
 
-### 2. Build confidence through clarity
-The user should leave thinking:  
-“I know what to do next, and I know I can do it.”
+### 2. Build confidence through decisive clarity
+The user should leave thinking: “I know how I read and exactly what to fix next.”
 
-### 3. Surprise with value, not noise
-The wow is the insight itself — not visual tricks or crowded screens.
+### 3. Surprise with value, not visuals
+No visual tricks. The value is the signal, rewrites, and next steps.
 
 ### 4. Respect the user’s emotional state
-Career decisions are stressful.  
-Language must be calm, supportive, and grounded.
+Career decisions are stressful. Language stays steady and human. No hype.
 
 ### 5. Human, not corporate
-Tone should feel like a world-class recruiter giving honest, useful guidance.  
-Warm, confident, concise.
+Tone is a trusted recruiter: honest, concise, warm enough to land, never fluffy.
 
 ### 6. Meet the user where they are
-Beginners get clarity.  
-Experts get nuance.  
-Everyone feels understood.
+Beginners get clarity. Experts get nuance. Everyone feels understood.
 
 ### 7. End every session with uplift
-The final emotional note should be positive:  
-“I’m better off than I was a minute ago.”
+End on a clear next move so users feel momentum.
 
 ---
 
@@ -111,13 +88,11 @@ The final emotional note should be positive:
 All modes in the product should follow a consistent studio pattern:
 
 1. **Insight Stack**  
-   A vertical stack of clear sections (score, summary, strengths, gaps, rewrites, missing wins, etc.).  
-   Each section is a calm card with one obvious takeaway.
+   A single column of clear sections (score, summary, strengths, gaps, rewrites, missing wins, next steps).  
+   Each section has one obvious takeaway.
 
-2. **Margin Notes**  
-   Short, human notes that sit beside or near key sections.  
-   They read like a recruiter’s annotations in the margin and provide
-   context, emphasis, or “this is what really matters” guidance.
+2. **Signature Accent**  
+   A thin left accent line anchors section headings or cards. No margin notes.
 
 This pattern must be reusable across future modes:
 - Resume Studio  
@@ -125,7 +100,7 @@ This pattern must be reusable across future modes:
 - Interview Studio  
 - and other career modes
 
-The layout, spacing, and tone should always feel like a studio report, not a generic dashboard.
+The layout and tone should feel like a crafted report, not a dashboard.
 
 ---
 
@@ -143,7 +118,7 @@ The layout, spacing, and tone should always feel like a studio report, not a gen
 - Use minimal, grid-consistent structure.  
 - Headings reinforce hierarchy, not decoration.  
 - Line spacing must support readability.  
-- Colors must be intentional and limited.  
+- Colors must be intentional and limited: white/black base, one accent.  
 - Buttons must clearly show primary vs. secondary.  
 - Insight containers must always be visually prioritized.  
 - All design changes must be checked against the Design North Star.

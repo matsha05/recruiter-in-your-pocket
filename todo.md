@@ -16,6 +16,7 @@
 - [x] Slimmed context.md to keep design guidance in a separate source of truth  
 
 ## High Priority (active development)
+- [ ] Monetization: decide the first paid wedge (e.g., unlimited runs + saved reports) and test pricing with a simple paywall.
 - [ ] Continue strengthening rewrite output so bullets feel "elite", not just cleaned-up wording  
 - [ ] Expand cross-background testing (teacher, pastor, lawyer, marketer, engineer, sales, nonprofit) with real resumes  
 - [ ] Calibrate scoring so it feels meaningful and honest for typical users  
