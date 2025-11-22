@@ -1,11 +1,23 @@
 # Recruiter in Your Pocket – Context
 
 ## PRODUCT NORTH STAR
-Give people calm, honest clarity about their career quickly.  
-No fluff. No hype. Clear signal. Grounded tone.  
+
+Give people calm, honest clarity about their career quickly.
+
+No fluff. No hype. Clear signal. Grounded tone.
+
 Every output should feel like it came from an elite recruiter who sees your story faster and more deeply than you do.
 
-Design source of truth: `docs/design-principles.md`.
+Identity:
+
+> A personal recruiting studio for clarity, confidence, and craft.
+
+Calm is confidence. The product should feel like seasoned recruiter judgment
+delivered through quiet clarity rather than hype, noise, or decoration.
+
+Design and identity source of truth:
+- docs/design-principles.md
+- docs/vision.md
 
 ---
 
@@ -28,6 +40,24 @@ Codex must apply the product’s editorial, calm, mature design identity in all 
 This means: no gradients, no glow, no neon, no gamer or AI-themed design patterns.
 All interfaces should feel high-end, intentional, and studio-grade.
 Visual decisions must follow `docs/design-principles.md`.
+
+## CORE STUDIO EXPERIENCE
+
+Every mode in the product should follow this basic flow:
+
+1. The user brings something in (for example a resume, an offer, or career context).  
+2. The studio runs a pass and produces an **Insight Stack**:
+   - score or band where relevant
+   - a short “You read as...” or equivalent top level read
+   - strengths and gaps
+   - specific, actionable rewrites or moves
+3. **Margin Notes** add human commentary:
+   short, recruiter style notes that highlight leverage points,
+   easy wins, and what matters most.
+4. The user leaves with clarity, confidence, and a small set of next steps.
+
+The app should always feel like a studio grade report with expert annotations,
+not a generic AI text blob.
 
 ---
 
@@ -74,19 +104,49 @@ Codex must check that output aligns with the app's architecture.
 ---
 
 # MODES (LONG TERM)
-1. Resume feedback  
-2. Offer negotiation  
-3. Outreach rewriting  
-4. Interview prep (future)
+
+Primary studio modes:
+
+1. **Resume Studio**  
+   Current wedge. Read a resume, score it, explain how the candidate reads,
+   strengthen bullets, and surface missing wins.
+
+2. **Offer Studio**  
+   Help users understand the quality of an offer, identify leverage points,
+   and plan realistic negotiation moves.
+
+3. **Interview Studio** (future)  
+   Turn the user’s experience into a small set of sharp, reusable stories
+   and insights that travel well across companies.
+
+Backlog and ideas (do not build yet, but keep in mind):
+
+- Outreach rewriting  
+- Trajectory Studio  
+- LinkedIn Profile Studio  
+- Resume Comparison Studio  
+- Value Narrative Studio  
+- Promotion Studio  
+- Strengths Studio  
+- Career Constraint Solver
 
 ---
 
 # CURRENT FOCUS
-Ship an excellent MVP around:
-- Resume feedback  
-- Negotiation mode (next)
 
-Interview Prep is UI-visible only; backend not implemented yet.
+Ship an excellent MVP for:
+
+- **Resume Studio** (resume feedback, rewrites, Missing Wins)
+- **Offer Studio (v1 planning only)**
+
+Interview Studio is UI visible only; backend not implemented yet.
+
+The MVP must prove:
+
+- score and “You read as...” feel accurate and useful  
+- the Insight Stack is clear and calm  
+- margin style guidance feels human and sharp  
+- users leave knowing what to change on their resume this week
 
 ---
 

@@ -20,6 +20,26 @@ The visual style should feel like a refined design studio, not a dashboard.
 - Examples include Space Grotesk, Inter, Manrope, Satoshi — but the system may
 recommend alternatives as long as they match the aesthetic and design principles.
 
+Design and identity source of truth:
+- docs/design-principles.md
+- docs/vision.md
+
+### BRAND IDENTITY
+
+Recruiter in Your Pocket is:
+
+> A personal recruiting studio for clarity, confidence, and craft.
+
+The UI should feel like a studio grade report created by an elite recruiter:
+calm, intentional, and confident.
+
+Calm in this product does not mean passive or bland.
+Calm means confident.
+The interface should feel like a world class recruiter who knows exactly what matters,
+has nothing to prove, and offers clarity without noise.
+This is expertise expressed as stillness.
+The vision document (`docs/vision.md`) defines the product’s identity, signature interaction pattern, and core studio experience. All design decisions must remain aligned with it.
+
 ---
 
 ## DESIGN PRINCIPLES
@@ -80,6 +100,29 @@ Everyone feels understood.
 ### 7. End every session with uplift
 The final emotional note should be positive:  
 “I’m better off than I was a minute ago.”
+
+---
+
+## SIGNATURE PATTERN
+
+All modes in the product should follow a consistent studio pattern:
+
+1. **Insight Stack**  
+   A vertical stack of clear sections (score, summary, strengths, gaps, rewrites, missing wins, etc.).  
+   Each section is a calm card with one obvious takeaway.
+
+2. **Margin Notes**  
+   Short, human notes that sit beside or near key sections.  
+   They read like a recruiter’s annotations in the margin and provide
+   context, emphasis, or “this is what really matters” guidance.
+
+This pattern must be reusable across future modes:
+- Resume Studio  
+- Offer Studio  
+- Interview Studio  
+- and other career modes
+
+The layout, spacing, and tone should always feel like a studio report, not a generic dashboard.
 
 ---
 
