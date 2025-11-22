@@ -15,6 +15,8 @@ Identity:
 Calm is confidence. The product should feel like seasoned recruiter judgment
 delivered through quiet clarity rather than hype, noise, or decoration.
 
+We are still discovering the studio’s personality. Exploration is allowed if it stays reversible, documented, calm, and human. Keep clarity, confidence, and craft intact; experiments should never add hype or neon. The core schema, backend tone, and “You read as…” voice remain fixed.
+
 Design and identity source of truth:
 - docs/design-principles.md
 - docs/vision.md

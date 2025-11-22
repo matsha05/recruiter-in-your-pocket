@@ -9,6 +9,8 @@ Every UI and UX decision must increase:
 - insight visibility,
 - user confidence.
 
+Exploration mode: we can prototype small, contained experiments (a score block treatment, a single card motif, a subtle accent) as long as they stay calm, human, and reversible. No hype, no neon. If an experiment adds noise, remove it. Document experiments briefly so we can keep what earns its place.
+
 Anything that introduces noise, uncertainty, or visual clutter must be removed.
 
 The product aesthetic is editorial, mature, and calm. 
@@ -19,6 +21,7 @@ The visual style should feel like a refined design studio, not a dashboard.
 - Use a refined sans-serif family suitable for calm, high-end interfaces.
 - Examples include Space Grotesk, Inter, Manrope, Satoshi — but the system may
 recommend alternatives as long as they match the aesthetic and design principles.
+- Calm ≠ bland. A single warm accent and one subtle signature motif (a thin underline, a faint vertical bar, a soft texture) are allowed if they increase hierarchy and stay quiet.
 
 Design and identity source of truth:
 - docs/design-principles.md
