@@ -19,6 +19,7 @@
       --text-main: #111214;
       --text-soft: #4c4f56;
       --text-muted: #6e7078;
+      --surface-tint: #f4f6fa;
       --success: #15803d;
       --error: #b91c1c;
     }
@@ -116,7 +117,7 @@
       padding: 6px 12px;
       border-radius: 10px;
       border: 1px solid var(--border-subtle);
-      background: #f8fafc;
+      background: var(--surface-tint);
       font-size: 12px;
       color: var(--text-muted);
       letter-spacing: 0.08em;
@@ -179,7 +180,7 @@
       padding: 6px 12px;
       border-radius: 12px;
       border: 1px solid var(--border-subtle);
-      background: #ffffff;
+      background: var(--surface-tint);
       color: var(--text-soft);
       letter-spacing: 0.04em;
     }
@@ -192,7 +193,7 @@
       align-items: center;
       justify-content: center;
       font-size: 11px;
-      background: #f8fafc;
+      background: var(--surface-tint);
       border: 1px solid var(--border-subtle);
       color: var(--text-soft);
       font-weight: 600;
@@ -220,7 +221,7 @@
       padding: 6px 10px;
       border-radius: 10px;
       border: 1px solid var(--border-subtle);
-      background: transparent;
+      background: var(--surface-tint);
       color: var(--text-muted);
       font-size: 11px;
       letter-spacing: 0.01em;
@@ -228,7 +229,7 @@
 
     .future-chip.warm {
       border-color: var(--border-subtle);
-      background: transparent;
+      background: var(--surface-tint);
       color: var(--text-muted);
     }
 
@@ -390,7 +391,7 @@
       padding: 6px 12px;
       border-radius: 12px;
       border: 1px solid var(--border-subtle);
-      background: #f8fafc;
+      background: var(--surface-tint);
       color: var(--text-soft);
       font-size: 12px;
       cursor: pointer;
@@ -484,7 +485,7 @@
       position: sticky;
       top: 0;
       z-index: 2;
-      background: #f8fafc;
+      background: var(--surface-tint);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
       padding: 16px 14px 14px;
@@ -570,8 +571,23 @@
       min-width: 94px;
       text-align: center;
       border: 1px solid var(--border-subtle);
-      background: #f4f6fa;
+      background: var(--surface-tint);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .score-pulse {
+      animation: scorePulse 0.16s ease-out;
+    }
+
+    @keyframes scorePulse {
+      from {
+        transform: scale(0.96);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+      }
+      to {
+        transform: scale(1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+      }
     }
 
     .score-visible {
@@ -781,17 +797,27 @@
       display: none;
     }
 
-.rewrite-enhancement-note {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  opacity: 0.95;
-  font-style: normal;
-  border-left: 3px solid var(--accent);
-  padding: 8px 10px;
-  color: var(--text-soft);
-  line-height: 1.5;
-  background: transparent;
-}
+    .rewrite-enhancement-note {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      opacity: 0.95;
+      font-style: normal;
+      border-left: 3px solid var(--accent);
+      padding: 8px 10px;
+      color: var(--text-soft);
+      line-height: 1.5;
+      background: transparent;
+    }
+
+    .results-body-better-flash .rewrite-column.right {
+      filter: contrast(1.05);
+      transition: filter 0.2s ease;
+    }
+
+    .results-body-better-flash .rewrite-column:not(.right) {
+      opacity: 0.82;
+      transition: opacity 0.2s ease;
+    }
 
     .copy-button {
       border-radius: 8px;
@@ -918,7 +944,7 @@
       font-size: 13px;
       line-height: 1.5;
       color: var(--text-soft);
-      background: #f8fafc;
+      background: var(--surface-tint);
       padding: 8px 10px 8px;
       border-radius: 10px;
       border: 1px solid var(--border-subtle);
@@ -1089,7 +1115,7 @@
     }
 
     .ghost-button {
-      background: #f8fafc;
+      background: var(--surface-tint);
       color: var(--text-main);
       border: 1px solid var(--border-subtle);
       padding: 7px 12px;
@@ -1102,7 +1128,7 @@
 
     .ghost-button:hover {
       border-color: var(--border-strong);
-      background: #eef2f7;
+      background: var(--surface-tint);
     }
 
     .ghost-button:disabled {
@@ -1594,6 +1620,12 @@
   function renderScoreMeta(score, modelMeta = {}) {
     const meta = getScoreMeta(score);
     applyScoreColor(meta.score);
+    if (scoreBadgeEl) {
+      scoreBadgeEl.classList.remove("score-pulse");
+      void scoreBadgeEl.offsetWidth;
+      scoreBadgeEl.classList.add("score-pulse");
+      setTimeout(() => scoreBadgeEl.classList.remove("score-pulse"), 200);
+    }
 
     const labelText = (modelMeta.score_label || "").trim() || meta.label;
     const shortText = (modelMeta.score_comment_short || "").trim() || meta.short;
@@ -1829,6 +1861,8 @@
     void resultsBodyEl.offsetWidth;
     resultsBodyEl.classList.add("refreshed");
     resultsBodyEl.classList.remove("empty");
+    resultsBodyEl.classList.add("results-body-better-flash");
+    setTimeout(() => resultsBodyEl.classList.remove("results-body-better-flash"), 220);
   }
 
   function setMode(mode) {

@@ -15,10 +15,22 @@ function testValidationEmpty() {
 }
 
 function testValidationTooLong() {
-  const longText = "a".repeat(20001);
+  const longText = "a".repeat(30001);
   const res = validateResumeFeedbackRequest({ text: longText, mode: "resume" });
   assert.strictEqual(res.ok, false);
   assert.ok(res.fieldErrors.text.includes("very long"));
+}
+
+function testValidationTrimmedLength() {
+  const tooLong = " " + "a".repeat(30001) + " ";
+  const res = validateResumeFeedbackRequest({ text: tooLong, mode: "resume" });
+  assert.strictEqual(res.ok, false);
+  assert.ok(res.fieldErrors.text.includes("very long"));
+
+  const okText = " " + "a".repeat(29990) + " ";
+  const ok = validateResumeFeedbackRequest({ text: okText, mode: "resume" });
+  assert.strictEqual(ok.ok, true);
+  assert.strictEqual(ok.value.text.length, 29990);
 }
 
 function testValidationSuccess() {
@@ -59,6 +71,7 @@ function testScoreClamp() {
 function run() {
   testValidationEmpty();
   testValidationTooLong();
+  testValidationTrimmedLength();
   testValidationSuccess();
   testScoreClamp();
   console.log("Validation tests passed.");
