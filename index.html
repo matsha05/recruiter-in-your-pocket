@@ -1924,6 +1924,8 @@
           .filter(Boolean)
           .join(" ");
 
+      const isValidationError = payload?.errorCode === "VALIDATION_ERROR";
+
       // If HTTP is not ok or payload is missing, show a calm error
       if (!response.ok || !payload) {
         const msg =
@@ -1934,12 +1936,20 @@
           );
         statusEl.textContent = msg;
         setStatus(msg, "error");
-        resultsBodyEl.textContent =
-          fieldMessages ||
-          "There was an error generating your feedback. Please try again.";
-        resultsBodyEl.classList.add("results-error");
-        resultsBodyEl.classList.remove("empty");
-        renderSummary("");
+
+        if (isValidationError) {
+          renderSummary(msg);
+          resultsBodyEl.textContent = "";
+          resultsBodyEl.classList.add("empty");
+          resultsBodyEl.classList.remove("results-error");
+        } else {
+          resultsBodyEl.textContent =
+            fieldMessages ||
+            "There was an error generating your feedback. Please try again.";
+          resultsBodyEl.classList.add("results-error");
+          resultsBodyEl.classList.remove("empty");
+          renderSummary("");
+        }
         return;
       }
 
@@ -1950,12 +1960,19 @@
           mapErrorToUserMessage(payload.errorCode, payload.message);
         statusEl.textContent = msg;
         setStatus(msg, "error");
-        resultsBodyEl.textContent =
-          fieldMessages ||
-          "There was an error generating your feedback. Please try again.";
-        resultsBodyEl.classList.add("results-error");
-        resultsBodyEl.classList.remove("empty");
-        renderSummary("");
+        if (isValidationError) {
+          renderSummary(msg);
+          resultsBodyEl.textContent = "";
+          resultsBodyEl.classList.add("empty");
+          resultsBodyEl.classList.remove("results-error");
+        } else {
+          resultsBodyEl.textContent =
+            fieldMessages ||
+            "There was an error generating your feedback. Please try again.";
+          resultsBodyEl.classList.add("results-error");
+          resultsBodyEl.classList.remove("empty");
+          renderSummary("");
+        }
         return;
       }
 

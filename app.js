@@ -196,7 +196,7 @@ Keep it calm, clear, and practical.
   return baseTone;
 }
 
-const MAX_TEXT_LENGTH = 20000;
+const MAX_TEXT_LENGTH = 30000;
 const ALLOWED_MODES = ["resume", "resume_ideas"];
 
 function validateResumeFeedbackRequest(body) {
@@ -213,10 +213,11 @@ function validateResumeFeedbackRequest(body) {
   }
 
   const { text, mode, jobContext, seniorityLevel } = body;
+  const trimmedText = typeof text === "string" ? text.trim() : "";
 
-  if (typeof text !== "string" || text.trim().length === 0) {
+  if (!trimmedText) {
     fieldErrors.text = "Paste your resume text so I can actually review it.";
-  } else if (text.length > MAX_TEXT_LENGTH) {
+  } else if (trimmedText.length > MAX_TEXT_LENGTH) {
     fieldErrors.text =
       "Your resume text is very long. Try sending a smaller section or trimming extra content.";
   }
@@ -250,7 +251,7 @@ function validateResumeFeedbackRequest(body) {
   return {
     ok: true,
     value: {
-      text: text.trim(),
+      text: trimmedText,
       mode: "resume",
       jobContext,
       seniorityLevel
@@ -272,10 +273,11 @@ function validateResumeIdeasRequest(body) {
   }
 
   const { text } = body;
+  const trimmedText = typeof text === "string" ? text.trim() : "";
 
-  if (typeof text !== "string" || text.trim().length === 0) {
+  if (!trimmedText) {
     fieldErrors.text = "Paste your resume text so I can actually review it.";
-  } else if (text.length > MAX_TEXT_LENGTH) {
+  } else if (trimmedText.length > MAX_TEXT_LENGTH) {
     fieldErrors.text =
       "Your resume text is very long. Try sending a smaller section or trimming extra content.";
   }
@@ -292,7 +294,7 @@ function validateResumeIdeasRequest(body) {
   return {
     ok: true,
     value: {
-      text: text.trim()
+      text: trimmedText
     }
   };
 }
