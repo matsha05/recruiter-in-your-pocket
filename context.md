@@ -136,7 +136,7 @@ Removed from core: Outreach/LinkedIn/cold messaging modes.
 
 Ship an excellent MVP for:
 
-- **Resume Studio** (resume feedback, rewrites, Missing Wins)
+- **Resume Review** (resume feedback, rewrites, Missing Wins)
 - **Offer Studio** (v1 planning only; keep disabled until ready)
 
 The MVP must prove:

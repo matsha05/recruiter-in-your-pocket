@@ -1317,7 +1317,7 @@
         <h1 class="hero-title">Your career. Real recruiter insight.</h1>
 
         <p class="hero-subtitle">
-          Resume Review is live. Offer review is next.
+          Resume Review is live today. Offer review is up next.
         </p>
 
         <div class="hero-grid">
@@ -1379,7 +1379,7 @@
                 aria-disabled="true"
                 tabindex="-1"
               >
-                Offer (next)
+                Offer (up next)
               </button>
               <div id="mode-indicator" class="mode-indicator"></div>
             </div>
@@ -1974,15 +1974,15 @@
       inputEl.placeholder =
         "Paste your full resume, including work history, skills, and education.";
     } else if (mode === "offer") {
-      resultsTitleEl.textContent = "Offer review (planning)";
+      resultsTitleEl.textContent = "Offer review (up next)";
       resultsSubtitleEl.textContent =
-        "Offer guidance will live here once this launches.";
+        "Negotiation guidance will appear here once it ships.";
       modePillEl.textContent = "Mode • Offer (disabled)";
       if (inputLabelEl) {
         inputLabelEl.textContent =
-          "Offer is in planning. Resume Review is live today.";
+          "Offer review is up next. Resume Review is live today.";
       }
-      inputEl.placeholder = "Offer is in planning. Resume Review is live today.";
+      inputEl.placeholder = "Offer review is up next. Resume Review is live today.";
     }
 
     positionModeIndicator();
@@ -1991,7 +1991,7 @@
   modeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("disabled-mode")) {
-        statusEl.textContent = "Offer is planned; Resume Review is live today.";
+        statusEl.textContent = "Offer review is up next. Resume Review is live today.";
         return;
       }
       setMode(btn.dataset.mode);
