@@ -23,8 +23,7 @@ const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 2);
 const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN;
 
 if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
-  console.error("Missing OPENAI_API_KEY in .env");
-  process.exit(1);
+  console.warn("Missing OPENAI_API_KEY in .env; live OpenAI calls will fail until set.");
 }
 
 // Health check
@@ -242,7 +241,7 @@ function validateResumeFeedbackRequest(body) {
     ok: true,
     value: {
       text: trimmedText,
-      mode: "resume",
+      mode: mode || "resume",
       jobContext,
       seniorityLevel
     }
@@ -417,6 +416,14 @@ async function callOpenAIChat(messages, mode) {
         }
       ]
     };
+  }
+
+  if (!OPENAI_API_KEY) {
+    throw createAppError(
+      "OPENAI_API_KEY_MISSING",
+      "The service is not configured with an OpenAI API key. Please try again later.",
+      500
+    );
   }
 
   let lastError = null;
@@ -884,8 +891,6 @@ ${text}`;
       { role: "system", content: systemPrompt },
       { role: "user", content: userPrompt }
     ];
-    // Dev-only visibility: show messages for resume_ideas to confirm JSON instruction is present
-    console.log(JSON.stringify({ reqId: req.reqId, mode: "resume_ideas", messages }));
 
     const data = await callOpenAIChat(messages, "resume_ideas");
 
