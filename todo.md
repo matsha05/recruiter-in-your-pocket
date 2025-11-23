@@ -34,9 +34,8 @@
 - [ ] Add subtle visual treatment for enhancement notes (background, left accent line)  
 
 ## Future Work (post-MVP)
-- [ ] Offer negotiation mode (with its own tone, scoring, and structure)  
-- [ ] Offer outreach rewriting mode  
-- [ ] Activate interview prep mode (currently placeholder)  
+- [ ] Ship Offer Studio v1 (negotiation tone, scoring, structure)  
+- [ ] Interview Story Studio (only if real demand is proven)  
 - [ ] Introduce light role-aware tuning (infer domain gently, do not force a persona)  
 - [ ] Consider optional persona controls (for example, early-career vs senior nuance)  
 

@@ -45,7 +45,7 @@ Visual decisions must follow `docs/design-principles.md`.
 
 ## CORE STUDIO EXPERIENCE
 
-Every mode in the product should follow this basic flow:
+Every studio in the product should follow this basic flow:
 
 1. The user brings something in (for example a resume, an offer, or career context).  
 2. The studio runs a pass and produces an **Insight Stack**:
@@ -105,32 +105,30 @@ Codex must check that output aligns with the app's architecture.
 
 ---
 
-# MODES (LONG TERM)
+# PRODUCT ARCHITECTURE
 
-Primary studio modes:
+Core studios:
 
-1. **Resume Studio**  
-   Current wedge. Read a resume, score it, explain how the candidate reads,
-   strengthen bullets, and surface missing wins.
+- **Resume Review** (live wedge)  
+  Read a resume, score it, explain how the candidate reads, strengthen bullets,
+  and surface missing wins.
 
-2. **Offer Studio**  
-   Help users understand the quality of an offer, identify leverage points,
-   and plan realistic negotiation moves.
+- **Offer Studio** (next pillar; planned/disabled until it ships)  
+  Help users understand the quality of an offer, identify leverage points,
+  and plan realistic negotiation moves.
 
-3. **Interview Studio** (future)  
-   Turn the user’s experience into a small set of sharp, reusable stories
-   and insights that travel well across companies.
+Future/backlog (only if data proves demand):
 
-Backlog and ideas (do not build yet, but keep in mind):
-
-- Outreach rewriting  
+- Interview Story Studio  
 - Trajectory Studio  
 - LinkedIn Profile Studio  
 - Resume Comparison Studio  
 - Value Narrative Studio  
 - Promotion Studio  
 - Strengths Studio  
-- Career Constraint Solver
+- Career Constraint Solver  
+
+Removed from core: Outreach/LinkedIn/cold messaging modes.
 
 ---
 
@@ -139,9 +137,7 @@ Backlog and ideas (do not build yet, but keep in mind):
 Ship an excellent MVP for:
 
 - **Resume Studio** (resume feedback, rewrites, Missing Wins)
-- **Offer Studio (v1 planning only)**
-
-Interview Studio is UI visible only; backend not implemented yet.
+- **Offer Studio** (v1 planning only; keep disabled until ready)
 
 The MVP must prove:
 

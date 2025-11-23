@@ -85,7 +85,7 @@ End on a clear next move so users feel momentum.
 
 ## SIGNATURE PATTERN
 
-All modes in the product should follow a consistent studio pattern:
+The two core studios follow a consistent pattern:
 
 1. **Insight Stack**  
    A single column of clear sections (score, summary, strengths, gaps, rewrites, missing wins, next steps).  
@@ -94,11 +94,13 @@ All modes in the product should follow a consistent studio pattern:
 2. **Signature Accent**  
    A thin left accent line anchors section headings or cards. No margin notes.
 
-This pattern must be reusable across future modes:
-- Resume Studio  
-- Offer Studio  
-- Interview Studio  
-- and other career modes
+Current architecture:
+- Resume Review (live wedge)  
+- Offer Studio (next pillar; planned/disabled in UI)  
+- Interview Story Studio (future/backlog only if demand is real)  
+- Outreach and other cold email rewrites are not core modes
+
+This pattern must stay reusable as Offer ships and any future mode is proven.
 
 The layout and tone should feel like a crafted report, not a dashboard.
 

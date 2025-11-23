@@ -183,16 +183,6 @@ function getSystemPromptForMode(mode) {
     return loadPromptFile("resume_ideas_v1.txt");
   }
 
-  if (mode === "interview") {
-    return (
-      baseTone +
-      `
-Interview prep mode is not the primary focus yet. For now, give simple, plain-text guidance on how to prepare, using short sections and bullets.
-Keep it calm, clear, and practical.
-`
-    );
-  }
-
   return baseTone;
 }
 

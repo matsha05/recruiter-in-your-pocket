@@ -15,7 +15,7 @@ The interface expresses expertise through clarity, not noise.
 ---
 
 ## CORE EXPERIENCE
-Every mode in the product must follow the same studio pattern:
+Every studio in the product must follow the same pattern:
 
 1. The user inputs something (resume, offer, or career context).  
 2. The studio performs a deep read and outputs an **Insight Stack**:
@@ -53,25 +53,22 @@ These two together form the product’s signature interaction pattern.
 
 ---
 
-## CORE MODES
+## CORE STUDIOS
 
-1. **Resume Studio**  
+1. **Resume Review** (live wedge)  
    Score, summary, strengths, gaps, stronger bullets, missing wins,
    and concrete next steps.
 
-2. **Offer Studio**  
+2. **Offer Studio** (next pillar; planned/disabled)  
    Offer competitiveness, comp structure clarity, leverage points,
    risk areas, and negotiation moves.
 
-3. **Interview Studio** (future)  
-   Anchor stories, narrative strengths, gaps in story coverage,
-   and interview-ready insights.
-
 ---
 
-## EXPANSION MODES (BACKLOG)
-These modes may be added later if they reinforce clarity, confidence, and craft:
+## BACKLOG AND FUTURE BETS
+Only build if data shows real demand and it reinforces clarity, confidence, and craft:
 
+- Interview Story Studio (future/backlog)  
 - Trajectory Studio  
 - LinkedIn Profile Studio  
 - Resume Comparison Studio  
