@@ -126,11 +126,21 @@ The layout and tone should feel like a crafted report, not a dashboard.
 - All design changes must be checked against the Design North Star.
 
 ### COLOR AND MOTION (DELIGHT WITHOUT NOISE)
-- One accent only; no gradients, pastels, or multi-accent palettes.  
+- One accent only; no multi-accent palettes.  
+- Soft gradients are allowed if they stay calm and low contrast.  
+- Subtle glow effects are allowed when used sparingly and only to support clarity or focus.  
+- Gentle shadows and depth are allowed when they feel premium and minimal.  
+- Atmospheric lighting and soft highlights are acceptable if they reinforce calm clarity.  
+- No neon colors.  
+- No harsh contrast glow or “gamer” effects.  
+- No loud or high-saturation gradients.  
+- No hyper-polished, glossy, or skeuomorphic effects.  
 - Color is for signal, not decoration: score arrival micro-flash (<150ms), accent line intensifying on new insights, one metric/verb in a rewrite, and micro hovers/focus rings.  
 - Never use color for backgrounds, blobs, celebrations, or illustrations.  
 - Litmus: if removing the color breaks clarity, it was decorative noise—remove it.  
 - Motion stays minimal: light hover/click feedback; no loops, confetti, or playful animations.
+
+Guiding intention: calm, minimal, studio grade, premium, non-hyped, with subtle depth permitted.
 
 ---
 
