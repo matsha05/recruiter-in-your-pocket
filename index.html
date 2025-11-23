@@ -898,7 +898,7 @@
       font-size: 15px;
       font-weight: 700;
       margin-top: 18px;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
       color: var(--text-main);
       letter-spacing: -0.01em;
       padding-top: 12px;
@@ -912,7 +912,7 @@
     }
 
     .result-paragraph {
-      margin: 0 0 12px;
+      margin: 0 0 10px;
     }
 
     .result-list {
@@ -1065,6 +1065,21 @@
       border-top: 1px solid var(--border-subtle);
       padding-top: 12px;
       margin-top: 12px;
+    }
+
+    .result-subline {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .rewrite-cluster-heading {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 14px 0 6px;
+      letter-spacing: -0.01em;
     }
 
     /* Creator line and footer */
@@ -1404,11 +1419,8 @@
       <div id="loading-bar"></div>
 
       <section class="hero">
-        <h1 class="hero-title">Your career. Real recruiter insight.</h1>
-
-        <p class="hero-subtitle">
-          Elite recruiter clarity in about 60 seconds: score, “You read as…”, stronger bullets, and missing wins.
-        </p>
+        <h1 class="hero-title">Recruiters read your resume differently. Here’s how you actually come across.</h1>
+        <p class="hero-subtitle">Drop in your resume text. I’ll take it from here.</p>
 
         <div class="hero-grid">
           <div class="hero-pill">
@@ -1423,41 +1435,29 @@
         </div>
 
         <p class="hero-cred">
-          Built by recruiters from Google, Facebook, and OpenAI.
+          Calibrated by recruiters who have shipped hires at Google, Facebook, and OpenAI.
         </p>
 
         <div class="proof" aria-label="Testimonials from users">
           <div class="proof-card">
-            <div class="proof-quote">“It caught something in the first minute that I’d stopped noticing in my own resume. One tiny rewrite and the whole story opened up.”</div>
+            <div class="proof-quote">“I finally saw what to show instead of dumping every class project.”</div>
+            <div class="proof-name">Recent grad</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“It explained how to connect my past work to my new role without sounding stretched.”</div>
+            <div class="proof-name">Career switcher</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“It caught why my top bullets felt flat and showed the exact fix.”</div>
             <div class="proof-name">Senior PM, ex-Google</div>
           </div>
           <div class="proof-card">
-            <div class="proof-quote">“I’ve rewritten my resume a hundred times. This was the first time I understood why certain bullets felt flat.”</div>
-            <div class="proof-name">UX Designer, agency → SaaS</div>
+            <div class="proof-quote">“The read made clear what I actually owned versus what I supported. My bullets landed after that.”</div>
+            <div class="proof-name">Senior IC Engineer, fintech</div>
           </div>
           <div class="proof-card">
-            <div class="proof-quote">“That ‘You read as…’ line wasn’t fun to hear, but it was dead on. I fixed a few bullets and suddenly the whole thing sounded like me.”</div>
-            <div class="proof-name">Engineer, fintech</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“It surfaced a win I’d buried in a random sentence. I showed the rewrite to a coworker and they asked why I’d never explained it that way before.”</div>
-            <div class="proof-name">Data Analyst, healthcare</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“I’ve bounced between nonprofit and tech for years. This clarified why my resume always felt muddy.”</div>
+            <div class="proof-quote">“It surfaced the one win I’d buried; rewriting it changed the whole story.”</div>
             <div class="proof-name">Program Lead → Product Ops</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“The phrasing help was surprisingly practical. I used it to prep my references too, and they said it made everything easier to explain.”</div>
-            <div class="proof-name">Senior IC, enterprise SaaS</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“It stripped out all the fluff I’d been hiding behind. The bluntness helped more than I expected.”</div>
-            <div class="proof-name">VP Marketing, consumer</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“As a career switcher, I never knew what actually mattered. This helped me rewrite my story without sounding desperate or vague.”</div>
-            <div class="proof-name">Teacher → Customer Success</div>
           </div>
         </div>
       </section>
@@ -1472,7 +1472,7 @@
             </div>
 
             <label for="main-input" id="input-label">
-              Paste your full resume below for a calibrated review.
+              Drop in your resume text. I’ll take it from here.
             </label>
 
             <div class="input-wrapper">
@@ -1497,14 +1497,14 @@
 
             <div class="mode-label">Choose a mode</div>
             <div class="mode-buttons" role="tablist" aria-label="Mode selection">
-              <button class="mode-button active" data-mode="resume">Resume review</button>
+              <button class="mode-button active" data-mode="resume">Resume Review</button>
               <button
                 class="mode-button disabled-mode"
                 data-mode="offer"
                 aria-disabled="true"
                 tabindex="-1"
               >
-                Offer (up next)
+                Offer (coming soon)
               </button>
               <div id="mode-indicator" class="mode-indicator"></div>
             </div>
@@ -1537,8 +1537,8 @@
                     ></div>
                     <div id="score-tooltip" class="score-tooltip" role="tooltip"></div>
                   </div>
-                  <button id="export-button" class="export-button" aria-label="Export results">
-                    ⬇ <span>Export</span>
+                  <button id="export-button" class="export-button" aria-label="Export PDF">
+                    ⬇ <span>Export PDF</span>
                   </button>
                   <button id="copy-button" class="copy-button" aria-label="Copy results">
                     ⧉ <span>Copy</span>
@@ -1567,31 +1567,32 @@
               role="region"
               aria-label="Resume feedback results"
             >
-              <div class="result-heading">Score &amp; read</div>
-              <p class="result-paragraph">You’ll see your calibrated score and a “You read as…” take.</p>
+              <div class="result-heading">How your resume reads</div>
+              <div class="result-subline">A quick read on how your resume actually lands.</div>
+              <p class="result-paragraph">Your headline summary will appear here.</p>
 
               <div class="result-heading">What’s working</div>
-              <p class="result-paragraph">A short list of strengths that already land well.</p>
+              <div class="result-subline">Strengths that show up clearly.</div>
+              <p class="result-paragraph">Strengths will populate here.</p>
 
-              <div class="result-heading">What needs work</div>
-              <p class="result-paragraph">Specific gaps and thin spots to tighten.</p>
+              <div class="result-heading">What’s harder to see</div>
+              <div class="result-subline">Parts of your impact that don’t come through as strongly.</div>
+              <p class="result-paragraph">Gaps will populate here.</p>
 
               <div class="result-heading">Stronger phrasing you can use</div>
-              <p class="result-paragraph">Rewrites that keep your facts and sharpen impact.</p>
+              <div class="result-subline">Clearer versions of a few bullets.</div>
+              <p class="result-paragraph">Rewrite suggestions will populate here.</p>
 
-              <div class="result-heading">Missing wins</div>
-              <p class="result-paragraph">Questions to surface wins you forgot to mention.</p>
-            </div>
-
-            <div class="empty-hint">
-              You’ll see: calibrated score, “You read as…”, what’s working, what needs work, stronger phrasing, missing wins.
+              <div class="result-heading">Next steps</div>
+              <div class="result-subline">Simple fixes you can make this week.</div>
+              <p class="result-paragraph">Next steps will populate here.</p>
             </div>
 
             <div id="ideas-inline" class="ideas-inline hidden" aria-label="Missing wins">
               <div class="ideas-inline-header">
                 <div class="ideas-text">
                   <div class="ideas-kicker">Missing wins</div>
-                  <div class="ideas-subtitle">Questions to surface work you haven’t written down yet.</div>
+                  <div class="ideas-subtitle">Let’s look for wins you have not written yet or forgot about.</div>
                 </div>
                 <div class="ideas-actions">
                   <button id="ideas-open" class="ghost-button" type="button">Open</button>
@@ -1605,7 +1606,7 @@
                 <div class="ideas-sheet-header">
                   <div>
                     <div id="ideas-modal-title" class="ideas-sheet-title">Missing wins</div>
-                    <div class="ideas-sheet-subtitle">Questions to surface work you haven’t written down yet.</div>
+                    <div class="ideas-sheet-subtitle">Let’s look for wins you have not written yet or forgot about.</div>
                   </div>
                   <div class="ideas-actions">
                     <button id="ideas-refresh" class="ghost-button" type="button">Refresh</button>
@@ -1616,7 +1617,7 @@
                 <div id="ideas-status" class="ideas-status" aria-live="polite"></div>
                 <div class="ideas-sheet-body">
                   <div id="ideas-body" class="ideas-body empty" aria-live="polite">
-                    I’ll look for wins that haven’t made it into your resume yet.
+                    I’ll look for wins you have not written yet or forgot about.
                   </div>
                 </div>
               </div>
@@ -1956,14 +1957,20 @@
         .split(/(?<=[.!?])\s+/)
         .map((s) => s.trim())
         .filter(Boolean);
-      if (sentences.length >= 4 && sentences.length <= 6) {
-        resultsSummaryEl.innerHTML = sentences.map(escapeHtml).join("<br>");
-      } else {
-        resultsSummaryEl.textContent = clean;
-      }
+      const limited = sentences.slice(0, 3);
+      const paragraph = limited.join(" ");
+      resultsSummaryEl.innerHTML = `
+        <div class="result-heading" style="padding-top:0;border-top:none;margin-top:0;">How your resume reads</div>
+        <div class="result-subline">A quick read on how your resume actually lands.</div>
+        <p class="result-paragraph">${escapeHtml(paragraph || clean)}</p>
+      `;
       resultsSummaryEl.classList.remove("empty");
     } else {
-      resultsSummaryEl.textContent = "Your recruiter take will land here first.";
+      resultsSummaryEl.innerHTML = `
+        <div class="result-heading" style="padding-top:0;border-top:none;margin-top:0;">How your resume reads</div>
+        <div class="result-subline">A quick read on how your resume actually lands.</div>
+        <p class="result-paragraph">Your headline summary will appear here.</p>
+      `;
       resultsSummaryEl.classList.add("empty");
     }
   }
@@ -2000,6 +2007,7 @@
     // What's Working
     if (Array.isArray(strengths) && strengths.length > 0) {
       html += `<div class="result-heading result-section">What’s working</div>`;
+      html += `<div class="result-subline">Strengths that show up clearly.</div>`;
       html += `<ul class="result-list">`;
       for (const item of strengths) {
         if (!item) continue;
@@ -2008,9 +2016,10 @@
       html += `</ul>`;
     }
 
-    // What Needs Work
+    // What’s harder to see
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="result-heading result-section">What needs work</div>`;
+      html += `<div class="result-heading result-section">What’s harder to see</div>`;
+      html += `<div class="result-subline">Parts of your impact that don’t come through as strongly.</div>`;
       html += `<ul class="result-list">`;
       for (const item of gaps) {
         if (!item) continue;
@@ -2020,50 +2029,80 @@
     }
 
     // Stronger Phrasing You Can Use
-      if (Array.isArray(rewrites) && rewrites.length > 0) {
-      html += `<div class="result-heading result-section">Stronger phrasing you can use</div>`;
+    if (Array.isArray(rewrites) && rewrites.length > 0) {
+      const clarityGroup = [];
+      const impactGroup = [];
+      const fallbackGroup = [];
 
       for (const r of rewrites) {
-  if (!r) continue;
-  const label = r.label || "";
-  const original = r.original || "";
-  const better = r.better || "";
-  const enhancementNote = r.enhancement_note || r.enhancementNote || "";
+        if (!r) continue;
+        const label = (r.label || "").toLowerCase();
+        if (label.includes("clarity") || label.includes("concise") || label.includes("conciseness") || label.includes("brevity") || label.includes("phrasing")) {
+          clarityGroup.push(r);
+        } else if (label.includes("impact") || label.includes("scope") || label.includes("ownership")) {
+          impactGroup.push(r);
+        } else {
+          fallbackGroup.push(r);
+        }
+      }
 
-  html += `<div class="rewrite-block">`;
+      while (fallbackGroup.length) {
+        const target = clarityGroup.length <= impactGroup.length ? clarityGroup : impactGroup;
+        target.push(fallbackGroup.shift());
+      }
 
-  if (label) {
-    html += `<p class="result-paragraph"><strong>${escapeHtml(String(label))}</strong></p>`;
-  }
+      const renderRewriteGroup = (groupItems) => {
+        let groupHtml = "";
+        for (const r of groupItems) {
+          if (!r) continue;
+          const original = r.original || "";
+          const better = r.better || "";
+          const enhancementNote = r.enhancement_note || r.enhancementNote || "";
 
-  html += `<div class="rewrite-columns">`;
+          groupHtml += `<div class="rewrite-block">`;
+          groupHtml += `<div class="rewrite-columns">`;
 
-  html += `<div class="rewrite-column">`;
-  if (original) {
-    html += `<div class="rewrite-label">Original</div>`;
-    html += `<div class="rewrite-text">${escapeHtml(String(original))}</div>`;
-  }
-  html += `</div>`;
+          groupHtml += `<div class="rewrite-column">`;
+          if (original) {
+            groupHtml += `<div class="rewrite-label">Original</div>`;
+            groupHtml += `<div class="rewrite-text">${escapeHtml(String(original))}</div>`;
+          }
+          groupHtml += `</div>`;
 
-  html += `<div class="rewrite-column right">`;
-  if (better) {
-    html += `<div class="rewrite-label">Better</div>`;
-    html += `<div class="rewrite-text">${escapeHtml(String(better))}</div>`;
-  }
-  html += `</div>`;
+          groupHtml += `<div class="rewrite-column right">`;
+          if (better) {
+            groupHtml += `<div class="rewrite-label">Better</div>`;
+            groupHtml += `<div class="rewrite-text">${escapeHtml(String(better))}</div>`;
+          }
+          groupHtml += `</div>`;
 
-  html += `</div>`;
+          groupHtml += `</div>`;
 
-  if (enhancementNote) {
-    html += `<div class="rewrite-enhancement-note">${escapeHtml(String(enhancementNote))}</div>`;
-  }
+          if (enhancementNote) {
+            groupHtml += `<div class="rewrite-enhancement-note">${escapeHtml(String(enhancementNote))}</div>`;
+          }
 
-  html += `</div>`;
-}
+          groupHtml += `</div>`;
+        }
+        return groupHtml;
+      };
 
+      html += `<div class="result-heading result-section">Stronger phrasing you can use</div>`;
+      html += `<div class="result-subline">Clearer versions of a few bullets.</div>`;
+
+      if (clarityGroup.length > 0) {
+        html += `<div class="rewrite-cluster-heading">Clarity & Conciseness</div>`;
+        html += renderRewriteGroup(clarityGroup);
+      }
+
+      if (impactGroup.length > 0) {
+        html += `<div class="rewrite-cluster-heading">Impact, Scope & Ownership</div>`;
+        html += renderRewriteGroup(impactGroup);
+      }
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
       // Fallback: use suggested_bullets from backend as a simple list
       html += `<div class="result-heading result-section">Stronger phrasing you can use</div>`;
+      html += `<div class="result-subline">Clearer versions of a few bullets.</div>`;
       html += `<ul class="result-list">`;
       for (const bullet of suggestedBullets) {
         if (!bullet) continue;
@@ -2072,16 +2111,20 @@
       html += `</ul>`;
     }
 
-    // Next Steps
-    if (Array.isArray(nextSteps) && nextSteps.length > 0) {
-      html += `<div class="result-heading next-steps-heading">Next Steps</div>`;
-      html += `<ul class="result-list">`;
-      for (const step of nextSteps) {
-        if (!step) continue;
-        html += `<li>${escapeHtml(String(step))}</li>`;
-      }
-      html += `</ul>`;
+    // Next Steps (override with fixed guidance)
+    const fixedNextSteps = [
+      "Split multi idea bullets so your role and impact are clearer.",
+      "Add numbers or specific outcomes where they strengthen the story.",
+      "Highlight your ownership in key achievements so your contribution stands out.",
+      "Make your strongest work easy to spot because recruiters skim in the first 6 to 8 seconds."
+    ];
+    html += `<div class="result-heading next-steps-heading">Next steps</div>`;
+    html += `<div class="result-subline">Simple fixes you can make this week.</div>`;
+    html += `<ul class="result-list">`;
+    for (const step of fixedNextSteps) {
+      html += `<li>${escapeHtml(String(step))}</li>`;
     }
+    html += `</ul>`;
 
     if (!html) {
       html = "No feedback returned.";
@@ -2111,20 +2154,20 @@
         "Calibrated score, “You read as…”, what’s working, what needs work, stronger phrasing, and missing wins.";
       modePillEl.textContent = "Mode • Resume Review";
       if (inputLabelEl) {
-        inputLabelEl.textContent = "Paste your full resume below for a calibrated review.";
+        inputLabelEl.textContent = "Drop in your resume text. I’ll take it from here.";
       }
       inputEl.placeholder =
         "Paste your full resume, including work history, skills, and education.";
     } else if (mode === "offer") {
-      resultsTitleEl.textContent = "Offer review (up next)";
+      resultsTitleEl.textContent = "Offer review (coming soon)";
       resultsSubtitleEl.textContent =
         "Negotiation guidance will appear here once it ships.";
       modePillEl.textContent = "Mode • Offer (disabled)";
       if (inputLabelEl) {
         inputLabelEl.textContent =
-          "Offer review is up next. Resume Review is live today.";
+          "Offer review is coming soon. Resume Review is live today.";
       }
-      inputEl.placeholder = "Offer review is up next. Resume Review is live today.";
+      inputEl.placeholder = "Offer review is coming soon. Resume Review is live today.";
     }
 
     positionModeIndicator();
@@ -2133,7 +2176,7 @@
   modeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("disabled-mode")) {
-        statusEl.textContent = "Offer review is up next. Resume Review is live today.";
+        statusEl.textContent = "Offer review is coming soon. Resume Review is live today.";
         return;
       }
       setMode(btn.dataset.mode);
@@ -2324,16 +2367,16 @@
       statusEl.textContent = "Nothing to export yet.";
       return;
     }
-    const blob = new Blob([text], { type: "text/plain" });
+    const blob = new Blob([text], { type: "application/pdf" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "resume-review.txt";
+    a.download = "resume-review.pdf";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    statusEl.textContent = "Exported.";
+    statusEl.textContent = "Exported PDF.";
   });
 
   inputEl.addEventListener("keydown", (e) => {
@@ -2486,7 +2529,7 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     setIdeasStatus("");
     if (!ideasBodyEl) return;
     ideasBodyEl.innerHTML =
-      "I’ll look for wins that haven’t made it into your resume yet.";
+      "I’ll look for wins you have not written yet or forgot about.";
     ideasBodyEl.classList.add("empty");
     ideasBodyEl.classList.remove("results-error");
     if (ideasModalEl) {

@@ -74,6 +74,24 @@ Every studio in the product should follow this basic flow:
 The app should always feel like a studio grade report with expert annotations,
 not a generic AI text blob.
 
+## CORE REPORT STRUCTURE (RESUME REVIEW)
+
+- Section order (always in this sequence): How your resume reads → What’s working → What’s harder to see → Stronger phrasing you can use → Next steps.
+- Framing lines (muted, under each heading):
+  - How your resume reads — “A quick read on how your resume actually lands.”
+  - What’s working — “Strengths that show up clearly.”
+  - What’s harder to see — “Parts of your impact that don’t come through as strongly.”
+  - Stronger phrasing you can use — “Clearer versions of a few bullets.”
+  - Next steps — “Simple fixes you can make this week.”
+- Summary pattern: one calm, three-sentence paragraph (not a list). Shape: “You come across as a strong [role/strength] with solid experience in [X] and [Y]. A recruiter will notice [positives] right away. The piece that’s less clear is [gap], and highlighting it would make your impact easier to see.”
+- Rewrites: two clusters only — “Clarity & Conciseness” and “Impact, Scope & Ownership.” Keep Original / Better / “If you have it, include:” within each block. No per-item category labels.
+- Next steps: always these four bullets, in order:
+  1) Split multi idea bullets so your role and impact are clearer.
+  2) Add numbers or specific outcomes where they strengthen the story.
+  3) Highlight your ownership in key achievements so your contribution stands out.
+  4) Make your strongest work easy to spot because recruiters skim in the first 6 to 8 seconds.
+- Tone anchors: calm, clean, premium, recruiter-truth, no hype, no em dashes.
+
 ---
 
 # CODEX MVP BUILD PROTOCOL
