@@ -482,16 +482,15 @@
     .mode-label {
       font-size: 13px;
       color: var(--text-soft);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .mode-buttons {
       position: relative;
       display: inline-flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 6px;
-      padding-bottom: 6px;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0 16px;
     }
 
     @media (max-width: 600px) {
@@ -501,35 +500,44 @@
     }
 
     .mode-button {
-      padding: 8px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border-subtle);
-      background: var(--surface-tint);
-      color: var(--text-soft);
-      font-size: 12px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: #ffffff;
+      color: rgba(0, 0, 0, 0.55);
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
-      transition:
-        background 0.18s ease-out,
-        border-color 0.18s ease-out,
-        color 0.18s ease-out,
-        transform 0.18s ease-out,
-        box-shadow 0.18s ease-out;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      box-shadow: none;
+      transition: none;
     }
 
     .mode-button.active {
-      background: linear-gradient(135deg, var(--accent), var(--accent-boost));
-      border-color: var(--accent-boost);
-      color: #ffffff;
-      transform: translateY(-1px);
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.2);
+      background: rgba(3, 37, 65, 0.04);
+      border-color: rgba(3, 37, 65, 0.35);
+      color: rgb(3, 37, 65);
+      font-weight: 600;
     }
 
     .mode-button.disabled-mode {
-      opacity: 0.6;
+      opacity: 0.7;
       cursor: default;
-      background: rgba(255, 255, 255, 0.4);
-      border-color: var(--border-subtle);
+      color: rgba(0, 0, 0, 0.55);
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: none;
+      pointer-events: none;
+    }
+
+    .mode-subtext {
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.38);
+      margin-top: 2px;
+      letter-spacing: 0.01em;
+    }
+
+    .mode-indicator {
+      display: none;
     }
 
     .mode-indicator {
@@ -1548,11 +1556,12 @@
                 data-mode="offer"
                 aria-disabled="true"
                 tabindex="-1"
-              >
-                Offer (coming soon)
-              </button>
-              <div id="mode-indicator" class="mode-indicator"></div>
-            </div>
+      >
+        <div>Offer</div>
+        <div class="mode-subtext">coming soon</div>
+      </button>
+      <div id="mode-indicator" class="mode-indicator"></div>
+    </div>
 
             <div class="run-row">
               <button id="run-button" class="run-button">Get feedback</button>
