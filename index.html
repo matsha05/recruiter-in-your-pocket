@@ -209,6 +209,37 @@
       line-height: 1.65;
     }
 
+    /* Social proof */
+    .proof {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .proof-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .proof-quote {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .proof-name {
+      font-size: 12px;
+      color: var(--text-soft);
+      letter-spacing: 0.01em;
+    }
+
     .future-ribbon {
       display: flex;
       gap: 10px;
@@ -1335,6 +1366,41 @@
         <p class="hero-cred">
           Built by recruiters from Google, Facebook, and OpenAI.
         </p>
+
+        <div class="proof" aria-label="Testimonials from users">
+          <div class="proof-card">
+            <div class="proof-quote">“It caught something in the first minute that I’d stopped noticing in my own resume. One tiny rewrite and the whole story opened up.”</div>
+            <div class="proof-name">Senior PM, ex-Google</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“I’ve rewritten my resume a hundred times. This was the first time I understood why certain bullets felt flat.”</div>
+            <div class="proof-name">UX Designer, agency → SaaS</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“That ‘You read as…’ line wasn’t fun to hear, but it was dead on. I fixed a few bullets and suddenly the whole thing sounded like me.”</div>
+            <div class="proof-name">Engineer, fintech</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“It surfaced a win I’d buried in a random sentence. I showed the rewrite to a coworker and they asked why I’d never explained it that way before.”</div>
+            <div class="proof-name">Data Analyst, healthcare</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“I’ve bounced between nonprofit and tech for years. This clarified why my resume always felt muddy.”</div>
+            <div class="proof-name">Program Lead → Product Ops</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“The phrasing help was surprisingly practical. I used it to prep my references too, and they said it made everything easier to explain.”</div>
+            <div class="proof-name">Senior IC, enterprise SaaS</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“It stripped out all the fluff I’d been hiding behind. The bluntness helped more than I expected.”</div>
+            <div class="proof-name">VP Marketing, consumer</div>
+          </div>
+          <div class="proof-card">
+            <div class="proof-quote">“As a career switcher, I never knew what actually mattered. This helped me rewrite my story without sounding desperate or vague.”</div>
+            <div class="proof-name">Teacher → Customer Success</div>
+          </div>
+        </div>
       </section>
 
       <main class="tool-layout">
