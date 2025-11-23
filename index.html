@@ -261,6 +261,34 @@
       letter-spacing: 0.01em;
     }
 
+    .proof-editorial {
+      margin-top: 28px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent-boost);
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .proof-editorial-heading {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .proof-editorial-quote {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .proof-editorial-quote:last-child {
+      margin-bottom: 0;
+    }
+
     .future-ribbon {
       display: flex;
       gap: 10px;
@@ -1435,30 +1463,15 @@
         </div>
 
         <p class="hero-cred">
-          Calibrated by recruiters who have shipped hires at Google, Facebook, and OpenAI.
+          Calibrated by recruiters who have shipped 500+ hires across Google, Facebook, OpenAI, and high growth startups.
         </p>
 
-        <div class="proof" aria-label="Testimonials from users">
-          <div class="proof-card">
-            <div class="proof-quote">“I finally saw what to show instead of dumping every class project.”</div>
-            <div class="proof-name">Recent grad</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“It explained how to connect my past work to my new role without sounding stretched.”</div>
-            <div class="proof-name">Career switcher</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“It caught why my top bullets felt flat and showed the exact fix.”</div>
-            <div class="proof-name">Senior PM, ex-Google</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“The read made clear what I actually owned versus what I supported. My bullets landed after that.”</div>
-            <div class="proof-name">Senior IC Engineer, fintech</div>
-          </div>
-          <div class="proof-card">
-            <div class="proof-quote">“It surfaced the one win I’d buried; rewriting it changed the whole story.”</div>
-            <div class="proof-name">Program Lead → Product Ops</div>
-          </div>
+        <div class="proof-editorial" aria-label="Testimonials from users">
+          <div class="proof-editorial-heading">What early users say</div>
+          <div class="proof-editorial-quote">“Honestly, I thought my resume was fine, but this showed me what actually mattered and what I could finally cut.”</div>
+          <div class="proof-editorial-quote">“It connected my past roles into a story I didn’t even realize I was trying to tell.”</div>
+          <div class="proof-editorial-quote">“I never understood why some bullets felt off until this explained it in a way that finally clicked.”</div>
+          <div class="proof-editorial-quote">“It finally made me stop rewriting my resume at midnight every week.”</div>
         </div>
       </section>
 
