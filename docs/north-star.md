@@ -26,7 +26,7 @@ These rules protect the core report experience. Keep them stable across versions
   1) Split multi idea bullets so your role and impact are clearer.
   2) Add numbers or specific outcomes where they strengthen the story.
   3) Highlight your ownership in key achievements so your contribution stands out.
-  4) Make your strongest work easy to spot because recruiters skim in the first 6 to 8 seconds.
+  4) Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds.
 
 ## Visual/tone guardrails
 - Calm, minimal, premium; reuse existing spacing/typography.
