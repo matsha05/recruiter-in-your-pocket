@@ -8,6 +8,19 @@ No fluff. No hype. Clear signal. Grounded tone.
 
 Every output should feel like it came from an elite recruiter who sees your story faster and more deeply than you do.
 
+Wedge and promise:
+- Elite recruiter clarity in ~60 seconds: score, “You read as…”, stronger bullets, and missing wins.
+
+Who we serve (current focus):
+- Mid/senior ICs switching roles (product, eng, design)  
+- Career switchers into tech-adjacent roles  
+- Recent grads entering their first role  
+
+Outcomes we optimize:
+- Score trust (does this feel like a real recruiter read?)  
+- Rewrite adoption (bullets actually used)  
+- Time-to-first-value (first insight lands fast)
+
 Identity:
 
 > A personal recruiting studio for clarity, confidence, and craft.

@@ -423,6 +423,7 @@ async function callOpenAIChat(messages, mode) {
 
   for (let attempt = 0; attempt <= OPENAI_MAX_RETRIES; attempt++) {
     try {
+      const t0 = Date.now();
       const res = await fetchWithTimeout(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -440,6 +441,8 @@ async function callOpenAIChat(messages, mode) {
         },
         OPENAI_TIMEOUT_MS
       );
+
+      const latencyMs = Date.now() - t0;
 
       const textBody = await res.text();
 
@@ -462,7 +465,16 @@ async function callOpenAIChat(messages, mode) {
       }
 
       try {
-        return JSON.parse(textBody);
+        const parsed = JSON.parse(textBody);
+        logLine({
+          level: "info",
+          msg: "openai_chat_success",
+          model: OPENAI_MODEL,
+          mode,
+          attempt,
+          latencyMs
+        });
+        return parsed;
       } catch (parseErr) {
         throw createAppError(
           "OPENAI_RESPONSE_NOT_JSON",
@@ -743,6 +755,7 @@ function fallbackIdeasData() {
 
 app.post("/api/resume-feedback", rateLimit, async (req, res) => {
   try {
+    const tStart = Date.now();
     const validation = validateResumeFeedbackRequest(req.body);
 
     if (!validation.ok) {
@@ -792,6 +805,17 @@ ${text}`;
       );
       parsed = fallbackResumeData();
     }
+
+    const latencyMs = Date.now() - tStart;
+
+    logLine({
+      level: "info",
+      msg: "resume_feedback_success",
+      reqId: req.reqId,
+      mode: currentMode,
+      latencyMs,
+      model: OPENAI_MODEL
+    });
 
     return res.json({
       ok: true,

@@ -14,6 +14,9 @@ The interface expresses expertise through clarity, not noise.
 
 ---
 
+## WEDGE AND OUTCOME
+Elite recruiter clarity in ~60 seconds: score, “You read as…”, stronger bullets, and missing wins. This is the wedge that beats generic AI rewriters.
+
 ## CORE EXPERIENCE
 Every studio in the product must follow the same pattern:
 
@@ -33,6 +36,17 @@ Every studio in the product must follow the same pattern:
 
 This must feel like a crafted studio report with expert markup,
 not a generic AI output.
+
+---
+
+## ICP AND OUTCOMES
+- Primary ICP: mid/senior ICs switching roles (product, eng, design), and career switchers moving into tech-adjacent roles.  
+- Secondary ICP: recent grads entering their first role.  
+
+Optimize for:
+- score trust (does this feel like a real recruiter read?),  
+- rewrite adoption (bullets actually used),  
+- time-to-first-value (first insight lands in ~60 seconds).
 
 ---
 
@@ -62,6 +76,11 @@ These two together form the product’s signature interaction pattern.
 2. **Offer Studio** (next pillar; planned/disabled)  
    Offer competitiveness, comp structure clarity, leverage points,
    risk areas, and negotiation moves.
+
+---
+
+## PROOF AND SIGNALS
+Tuned by ex-big-tech recruiters (thousands of screens; nearly 1,000 hires). If missing hard numbers, collect and report: activation rate (paste → run), completion rate, rewrite adoption, and score trust feedback.
 
 ---
 
