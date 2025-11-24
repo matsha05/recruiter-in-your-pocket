@@ -8,3 +8,4 @@ resume_file,summary_quality,score_quality,strengths_gaps_quality,rewrites_qualit
 07_legal_corporate_counsel.txt,good,good,good,mid,good,good
 08_entry_level_retail.txt,good,good,good,good,good,good
 09_nonprofit_program_manager.txt,good,good,good,good,good,good
+tests/resumes/law_inhouse_thin_signal_1.txt,good,good,good,good,good,"thin_signal target 70-75; Midlevel in house corporate counsel; clear SaaS and commercial work but responsibility heavy, light on quantified impact, JD and license buried; good anchor for low 70s thin signal band."
