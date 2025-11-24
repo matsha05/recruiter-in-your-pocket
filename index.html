@@ -477,12 +477,6 @@
       opacity: 1;
     }
 
-    .mode-label {
-      font-size: 13px;
-      color: var(--text-soft);
-      margin-bottom: 8px;
-    }
-
     .mode-buttons {
       position: relative;
       display: inline-flex;
@@ -1406,6 +1400,43 @@
       cursor: not-allowed;
     }
 
+    .data-handling-row {
+      margin-top: 4px;
+    }
+
+    .data-handling-link {
+      font-size: 11px;
+      padding: 4px 8px;
+    }
+
+    .data-handling-panel {
+      margin-top: 6px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      box-shadow: inset 0 1px 0 rgba(15, 23, 42, 0.02);
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .data-handling-title {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      font-size: 12px;
+    }
+
+    .data-handling-text {
+      margin: 0 0 4px;
+      line-height: 1.5;
+    }
+
+    .data-handling-text:last-child {
+      margin-bottom: 0;
+    }
+
     .ideas-loading-bar {
       height: 2px;
       width: 100%;
@@ -1550,24 +1581,32 @@
             </div>
 
             <div class="input-meta-row">
-              <div>Saved locally on this device.</div>
               <div id="saved-indicator" class="saved-indicator">Saved</div>
             </div>
 
-            <div class="mode-label">Choose a mode</div>
+            <div class="data-handling-row">
+              <button id="data-handling-link" type="button" class="ghost-button data-handling-link">
+                How your data is handled
+              </button>
+            </div>
+
+            <div id="data-handling-panel" class="data-handling-panel hidden" aria-live="polite">
+              <div class="data-handling-title">How your data is handled</div>
+              <p class="data-handling-text">
+                Your resume lives only in this browser until you click <strong>Get feedback</strong>.
+              </p>
+              <p class="data-handling-text">
+                When you run a review, we send your text securely to our backend so the model can read it and generate feedback.
+              </p>
+              <p class="data-handling-text">
+                We do not store your resume text or use it to train models.
+              </p>
+            </div>
+
             <div class="mode-buttons" role="tablist" aria-label="Mode selection">
               <button class="mode-button active" data-mode="resume">Resume Review</button>
-              <button
-                class="mode-button disabled-mode"
-                data-mode="offer"
-                aria-disabled="true"
-                tabindex="-1"
-              >
-                <div>Offer Review</div>
-                <div class="mode-subtext">coming soon</div>
-              </button>
-      <div id="mode-indicator" class="mode-indicator"></div>
-    </div>
+              <div id="mode-indicator" class="mode-indicator"></div>
+            </div>
 
             <div class="run-row">
               <button id="run-button" class="run-button">Get feedback</button>
@@ -1680,7 +1719,7 @@
       </div>
 
       <footer class="footer">
-        We never store your resume.
+        We never store your resume or use it to train models.
       </footer>
     </div>
   </div>
@@ -1707,6 +1746,9 @@
   const copyButtonEl = document.getElementById("copy-button");
   const exportButtonEl = document.getElementById("export-button");
   const resultsActionsBottomEl = document.getElementById("results-actions-bottom");
+  const dataHandlingLinkEl = document.getElementById("data-handling-link");
+  const dataHandlingPanelEl = document.getElementById("data-handling-panel");
+  const textareaEl = document.getElementById("main-input");
   const savedIndicatorEl = document.getElementById("saved-indicator");
   const modeIndicatorEl = document.getElementById("mode-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
@@ -2535,6 +2577,48 @@
       closeIdeasModal();
     }
   });
+
+  function hideDataPanel() {
+    if (dataHandlingPanelEl && !dataHandlingPanelEl.classList.contains("hidden")) {
+      dataHandlingPanelEl.classList.add("hidden");
+    }
+  }
+
+  if (dataHandlingLinkEl && dataHandlingPanelEl) {
+    dataHandlingLinkEl.addEventListener("click", (event) => {
+      event.preventDefault();
+      const isHidden = dataHandlingPanelEl.classList.contains("hidden");
+      if (isHidden) {
+        dataHandlingPanelEl.classList.remove("hidden");
+      } else {
+        dataHandlingPanelEl.classList.add("hidden");
+      }
+      event.stopPropagation();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!dataHandlingPanelEl) return;
+      if (dataHandlingPanelEl.classList.contains("hidden")) return;
+      const target = event.target;
+      if (
+        target instanceof Node &&
+        dataHandlingPanelEl &&
+        dataHandlingLinkEl &&
+        !dataHandlingPanelEl.contains(target) &&
+        !dataHandlingLinkEl.contains(target)
+      ) {
+        hideDataPanel();
+      }
+    });
+  }
+
+  if (textareaEl) {
+    textareaEl.addEventListener("focus", hideDataPanel);
+  }
+
+  if (runButton) {
+    runButton.addEventListener("click", hideDataPanel);
+  }
 
   // Backdrop click should not scroll page when modal hidden
   if (ideasModalEl) {
