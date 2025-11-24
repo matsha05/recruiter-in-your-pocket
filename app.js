@@ -18,8 +18,9 @@ const JSON_INSTRUCTION =
 // OpenAI config
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-mini";
-const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 15000);
+const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 20000);
 const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 2);
+const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);
 const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN;
 
 if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
@@ -298,6 +299,10 @@ function createAppError(code, message, httpStatus, internal) {
   return err;
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function fetchWithTimeout(url, options, timeoutMs) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
@@ -498,6 +503,9 @@ async function callOpenAIChat(messages, mode) {
       ];
 
       if (retryableCodes.includes(err.code) && attempt < OPENAI_MAX_RETRIES) {
+        if (OPENAI_RETRY_BACKOFF_MS > 0) {
+          await sleep(OPENAI_RETRY_BACKOFF_MS * (attempt + 1));
+        }
         continue;
       }
 
