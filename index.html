@@ -1400,6 +1400,24 @@
       cursor: not-allowed;
     }
 
+    .sample-button {
+      background: var(--surface-tint);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 0.12s ease, background 0.12s ease;
+      align-self: flex-start;
+      margin: 6px 0 4px;
+    }
+
+    .sample-button:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-tint);
+    }
+
     .data-handling-row {
       margin-top: 4px;
     }
@@ -1529,7 +1547,7 @@
 
       <section class="hero">
         <h1 class="hero-title">Recruiters read your resume differently. Here’s how you actually come across.</h1>
-        <p class="hero-subtitle">Drop in your resume text. I’ll take it from here.</p>
+        <p class="hero-subtitle">Paste your resume or try a sample. I’ll read it like a recruiter and tell you how it actually lands.</p>
 
         <div class="hero-grid">
           <div class="hero-pill">
@@ -1562,12 +1580,13 @@
           <div class="card-inner">
             <div class="card-header">
               <h2 class="card-title">Your resume</h2>
-              <div class="mode-pill" id="mode-pill">Mode • Resume Review</div>
             </div>
 
             <label for="main-input" id="input-label">
-              Drop in your resume text. I’ll take it from here.
+              Paste your full resume, or use the sample to see how it works.
             </label>
+
+            <button id="sample-resume-button" type="button" class="sample-button">Try a sample resume →</button>
 
             <div class="input-wrapper resume-input-container resume-input-shell">
               <textarea
@@ -1576,11 +1595,15 @@
               ></textarea>
 
               <div id="resume-hint" class="resume-hint-overlay">
-                <div class="resume-hint-title">Paste your full resume here</div>
+                <div class="resume-hint-title">Paste your full resume or try the sample</div>
+                <div class="resume-hint-body">
+                  I’ll read it like a recruiter and highlight what’s clear, what’s hidden, and where phrasing can be sharper.
+                </div>
               </div>
             </div>
 
             <div class="input-meta-row">
+              <div>Start with your resume or the sample. Your text stays in this browser until you click Get feedback.</div>
               <div id="saved-indicator" class="saved-indicator">Saved</div>
             </div>
 
@@ -1748,6 +1771,7 @@
   const modeIndicatorEl = document.getElementById("mode-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
   const resumeHintEl = document.getElementById("resume-hint");
+  const sampleResumeButtonEl = document.getElementById("sample-resume-button");
   const ideasInlineEl = document.getElementById("ideas-inline");
   const ideasOpenEl = document.getElementById("ideas-open");
   const ideasModalEl = document.getElementById("ideas-modal");
@@ -2236,9 +2260,11 @@
       resultsTitleEl.textContent = "Recruiter feedback";
       resultsSubtitleEl.textContent =
         "Calibrated score, quick read on how you come across, what’s working, and what to fix next.";
-      modePillEl.textContent = "Mode • Resume Review";
+      if (modePillEl) {
+        modePillEl.textContent = "Mode • Resume Review";
+      }
       if (inputLabelEl) {
-        inputLabelEl.textContent = "Drop in your resume text. I’ll take it from here.";
+        inputLabelEl.textContent = "Paste your full resume, or use the sample to see how it works.";
       }
       inputEl.placeholder =
         "Paste your full resume, including work history, skills, and education.";
@@ -2246,7 +2272,9 @@
       resultsTitleEl.textContent = "Offer review (coming soon)";
       resultsSubtitleEl.textContent =
         "Negotiation guidance will appear here once it ships.";
-      modePillEl.textContent = "Mode • Offer (disabled)";
+      if (modePillEl) {
+        modePillEl.textContent = "Mode • Offer (disabled)";
+      }
       if (inputLabelEl) {
         inputLabelEl.textContent =
           "Offer review is coming soon. Resume Review is live today.";
@@ -2579,6 +2607,30 @@
     }
   }
 
+  const SAMPLE_RESUME_TEXT = `Jane Doe
+Senior Product Manager
+
+Summary
+Senior product manager with 7+ years of experience shipping consumer and B2B features in fast moving environments. Known for turning vague problems into clear roadmaps and coordinated launches.
+
+Experience
+Stripe — Senior Product Manager (2021–Present)
+- Led cross functional team of engineers, designers, and data scientists to launch a new onboarding flow for small businesses.
+- Simplified KYC steps and reduced drop off, increasing completed sign ups by 18% across key markets.
+- Built a simple metrics framework so leadership could see impact weekly.
+
+Google — Product Manager (2017–2021)
+- Owned a set of growth experiments for a core collaboration product with tens of millions of users.
+- Partnered with UX research and engineering to test new sharing flows that improved active usage by 9%.
+- Drove roadmap, specs, and cross team communication for launches across three regions.
+
+Education
+BA, Economics
+University of Washington
+
+Skills
+Product discovery, experimentation, roadmapping, stakeholder communication, SQL, basic Python, Figma`;
+
   if (dataHandlingLinkEl && dataHandlingPanelEl) {
     dataHandlingLinkEl.addEventListener("click", (event) => {
       event.preventDefault();
@@ -2613,6 +2665,17 @@
 
   if (runButton) {
     runButton.addEventListener("click", hideDataPanel);
+  }
+
+  if (sampleResumeButtonEl) {
+    sampleResumeButtonEl.addEventListener("click", () => {
+      if (!inputEl) return;
+      inputEl.value = SAMPLE_RESUME_TEXT;
+      saveInput(inputEl.value);
+      autoResizeTextarea();
+      updateResumeHintVisibility();
+      showSavedIndicator();
+    });
   }
 
   // Backdrop click should not scroll page when modal hidden
