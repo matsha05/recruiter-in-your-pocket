@@ -29,6 +29,10 @@ function testSchemaShape() {
   };
   const parsed = validateResumeModelPayload(payload);
   assert.strictEqual(parsed.score, 86);
+  assert.strictEqual(parsed.content_score, 86);
+  assert.strictEqual(parsed.layout_score, null);
+  assert.strictEqual(parsed.layout_band, "unknown");
+  assert.strictEqual(parsed.layout_notes, "");
 }
 
 function run() {

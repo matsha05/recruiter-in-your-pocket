@@ -1,0 +1,95 @@
+# Aaron Hébert – Azure DevOps architect sample (high_bar 84–88, non-anchor)
+
+Aaron J. HéBert
+
+(425) 463-8163 aaron.hebert@agilecloud.ai 19622 23rd Dr SE Bothell, WA 98012
+
+1
+Objective
+Highly skilled Azure DevOps Architect with a proven track record of designing and implementing efficient DevOps strategies is
+seeking an opportunity to contribute to the success of an organization by leading Azure Well-Architected DevOps initiatives and
+driving continuous improvement.
+Azure DevOps Architect Experience
+Agile Cloud & AI – Bothell, WA (Fulltime, Remote)
+Principal Azure DevOps Architect – Managed DevOps 08/2023-Present
+As an established Microsoft AI Cloud Partner, I manage multiple Azure tenants, DevOps
+organizations, and their Microsoft 365 services. Reliability, Security, Cost optimization,
+Operational excellence, and Performance efficiency are my tenets in all aspects of our cloud
+solutions. Offering up-skilling and certification training for clients regarding certification courses
+such as AZ-900, AZ-204, AZ-400, and AZ-500.
+QBE North America – New York, NY (Fulltime, Remote)
+Senior Azure DevOps Engineer – Platform Engineering 07/2022-08/2023
+Implementing Azure DevOps pipelines and supporting software release cycles. Responsible for
+maintaining and improving CI/CD infrastructure, automating administrative tasks, and establishing
+DevOps practices and documentation across teams. Additionally, I was engaged with stakeholders
+to align disaster recovery processes and technical requirements.
+Rise8 – Tampa, FL (Contract, Remote)
+Staff Cloud Engineering Manager – Space Force Azure Gov Cloud 06/2021-07/2022
+In-depth involvement with leading and developing cloud adoption and migration strategies for the
+United States Space Force. Notable achievements include full cloud migrations, reducing monthly
+Azure consumption costs (reduced by $10K-$11K per month), architecting a multi-cloud DevOps
+environment, and delivering internal upskilling through Azure training courses. All while
+maintaining an Impact Level 4 environment compliance. Delivered up-skilling and certification
+
+training for Rise8 and the U.S Space Force regarding certification courses such as AZ-900, AZ-
+204, AZ-400, and AZ-500.
+
+Microsoft Corporation – Redmond, WA (Fulltime, Hybrid)
+Software Engineer – Azure Software Defined Networking 01/2014-06/2021
+I led the design and implementation of lift & shift orchestration services across Microsoft Azure,
+Azure Gov, Azure China, Azure Germany clouds by architected a declarative Infrastructure as
+Code model; This IaC model allows for the efficient orchestration of IaaS on a scale still yet seen
+in the industry today. Delivered up-skilling and certification training for Enterprise Agreement
+clients regarding certification courses such as AZ-900, AZ-204, AZ-400, and AZ-500. Certifications Skills
+Microsoft Certified Trainer
+Azure Fundamentals
+Azure AI Fundamentals
+Azure Developer Associate
+Azure Security Engineer
+Azure DevOps Engineer Expert
+
+Effective Communication, Patience, Empathy,
+Application Insights, Azure Event Hub, Azure SQL Server, Entity
+Framework (EF) Core, ASP.NET Core, Microsoft Entra ID, Microsoft
+Graph, Azure Key Vault, Azure Pipelines, Software Solution Architecture,
+Software Design Patterns, Test Driven Development, Azure Kusto, Azure
+Functions, Azure Service Bus, C#, Distributed Systems, Azure Service
+Fabric, Bash, Terraform, PowerShell, Microsoft Azure, Azure DevOps,
+Microsoft Cognitive Services
+
+Education
+Brazilian jiu-jitsu – Gracie Barra ICP (Instructor Certification Program)
+B.S. Cyber Security – Regis University
+B.A.S in Telecommunications Engineering – Rochester Institute of Technology
+A.S. Computer Information Systems – Remington College
+
+Aaron J. HéBert
+
+(425) 463-8163 aaron.hebert@agilecloud.ai 19622 23rd Dr SE Bothell, WA 98012
+
+2
+Volunteer Experience
+U.S. Army Special Operations – Joint Base Lewis-McChord, WA
+Information Warfare Intelligence Analyst – Psychological Operations 01/2021-Present
+Train and operate in Psychological Warfare, INFOSEC, OPSEC, Force Protection, Information
+Operations, Intelligence Collection, Counterintelligence, and Counterpropaganda.
+
+U.S. Army Military Police – Joint Base Lewis-McChord, WA
+All-Source Intelligence Analyst – Force Protection 11/2018-01/2021
+Analyze the significance and reliability of incoming information with current intelligence.
+
+Microsoft Software & Systems Academy – Joint Base Lewis-McChord, WA
+Cloud Application Development Mentor Lead 11/2016-2021
+Microsoft Software & Systems Academy (MSSA) provides the Veteran community with critical
+career skills required for today’s growing technology industry. Delivered up-skilling and
+certification training for MSSA students regarding certification courses such as AZ-900, AZ-204,
+AZ-400, and AZ-500.
+
+Gracie Barra Brazilian Jiu-Jitsu – Bothell, WA
+Certified Brazilian Jiu-Jitsu Instructor 11/2016-2021
+Empower others by instilling confidence through teamwork and martial arts.
+
+U.S. Army Signal Corps – Ft. Hood, TX
+Network Switching Systems Operator 12/2003-07/2008
+Install, operate, and maintain a small extension node (SEN) switch in a combat
+telecommunications network in support of the Multinational Corps - Iraq.

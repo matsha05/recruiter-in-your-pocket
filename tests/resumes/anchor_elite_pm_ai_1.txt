@@ -1,0 +1,65 @@
+Elite anchor – Senior Product Manager, AI Infrastructure (rare_air 92–96)
+RAVI SHAH
+Senior Product Manager – AI Infrastructure
+San Francisco, CA • ravi.shah@example.com • (555) 555-0192 • linkedin.com/in/ravishah • ravi.pm
+
+SUMMARY
+Senior PM for AI infrastructure with ten plus years experience building platforms that let ML teams ship faster and safer. Strong record of turning infra investments into measurable business impact through better developer velocity, reliability, and cost efficiency. Fluent with both technical detail and executive communications.
+
+EXPERIENCE
+
+Senior Product Manager – AI Platform
+Aurora Cloud – San Francisco, CA
+Feb 2020 – Present
+
+PM lead for Aurora’s internal AI platform used by 80 plus product teams and 600 plus engineers and data scientists.
+
+Defined and shipped a unified model training and deployment platform that reduced average time to first production model from 6 weeks to 9 days and increased experiment throughput by 2.7 times.
+
+Partnered with infra to design GPU allocation and autoscaling policies, cutting idle GPU time by 38 percent and saving approximately 9 million dollars annually while maintaining training SLAs.
+
+Led the roadmap for a feature store and online inference service, improving feature reuse by 4 times and cutting data engineering duplication for new models by 60 percent.
+
+Built a clear adoption and success framework with KPIs around onboarding time, experiment velocity, and incident rates, and reported progress monthly to the CTO and VP Engineering.
+
+Drove cross functional alignment with Security, Compliance, and Legal on data access, PII handling, and auditability, enabling sensitive workloads to move onto the shared platform.
+
+Product Manager – Data Infrastructure
+Aurora Cloud – San Francisco, CA
+Jun 2015 – Jan 2020
+
+Owned core data ingestion, storage, and query services used by analytics and ML teams across the company.
+
+Delivered a new event pipeline and governance model that reduced data related incidents by 40 percent and shortened time to trustworthy dashboards for new products from months to weeks.
+
+Partnered with finance and infra to introduce cost allocation for data and compute, enabling teams to see per product infra spend and reducing wasteful workloads by 25 percent.
+
+Led migration from a legacy on premises warehouse to a cloud data warehouse with minimal downtime and no major incidents.
+
+Product Manager – Analytics Tools
+BrightPath Analytics – New York, NY
+Aug 2012 – May 2015
+
+Built analytics and reporting tools for enterprise customers, increasing NPS by 12 points and upsell revenue by 18 percent.
+
+Collaborated with design and engineering to simplify complex workflows into task-focused surfaces that cut common report creation time from 45 minutes to under 10 minutes.
+
+EDUCATION
+
+MBA, Technology and Operations
+University of Chicago Booth School of Business
+
+B.S. Computer Science
+Georgia Institute of Technology
+
+SKILLS
+
+Product: roadmap definition, PRD writing, metrics, stakeholder alignment, storytelling
+
+Domains: ML platforms, data infra, experimentation platforms, observability
+
+Tools: JIRA, Figma, Looker, BigQuery, Snowflake
+
+Practices: OKRs, RFCs, A B testing, executive updates, cross functional leadership
+
+javascript

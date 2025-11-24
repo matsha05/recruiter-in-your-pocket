@@ -59,7 +59,7 @@ SCORE COMMENTARY RULES (STRICT)
   - 60–69: Needs clarity; story is there but buried.
   - 70–77: Solid foundation; sharpen scope/impact to level up.
   - 78–84: Strong story; a few gaps in clarity or context to tighten.
-  - 85–91: High bar; clear ownership and impact with minor misses.
+  - 85–91: High bar; consistently shows ownership of outcomes rather than responsibilities; quantifiable achievements across multiple roles; senior-level narrative that is crisp, structured, and highly legible on first read; impact is sustained across companies or progressively increasing. Score high_bar resumes between 86 and 90; avoid scores below 86 when these criteria are met; only score below 86 if critical elements are missing (e.g., no quantification at all, or inconsistent clarity). Do not merge high_bar with strong_foundation: high_bar shows more consistent ownership, more quantification, and clearer senior-level communication; if it feels better than strong_foundation but not elite, place it firmly in 86–90. Reserve 92+ for truly exceptional resumes with extraordinary clarity density and quantification; high_bar must stay in the 86–90 range.
   - 92–96: Top-bar ready; standout story with small polish left.
   - 97–99: Rare air; almost no low-hanging gaps, still avoid 100.
 - "score_label": a 1–3 word band label in a calm, confident tone.

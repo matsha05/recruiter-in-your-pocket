@@ -1,0 +1,71 @@
+Elite anchor – Staff Machine Learning Engineer (rare_air 92–96)
+ELENA PARK
+Staff Machine Learning Engineer
+Seattle, WA • elena.park@example.com • (555) 555-0181 • github.com/elenapark • linkedin.com/in/elenapark
+
+SUMMARY
+Staff-level ML engineer specializing in large scale recommendation and ranking systems. Ten plus years experience shipping models to hundreds of millions of users, with a track record of improving revenue, engagement, and infra efficiency. Strong at partnering with product, infra, and data science to turn ambiguous problems into measurable wins.
+
+EXPERIENCE
+
+Staff Machine Learning Engineer – Personalization
+Nimbus Streaming – Seattle, WA
+Jan 2020 – Present
+
+Tech lead for the home feed and recommendations stack for a 200M monthly active user streaming platform.
+
+Designed and deployed a new two stage ranking architecture (candidate generation plus learned re ranking) that increased weekly watch time by 11 percent and subscription conversion by 6 percent while holding infra cost flat.
+
+Led migration from legacy gradient boosted trees to a deep learning model (Wide and Deep with attention features), improving AUC by 4 points and reducing cold start error rates by 18 percent.
+
+Partnered with infra to introduce an embedding service and feature store, cutting model feature latency by 40 percent and training pipeline time by 35 percent.
+
+Mentored a team of 6 ML engineers and 3 data scientists, driving a culture of clear experiment design, readable dashboards, and defensible decision memos.
+
+Drove fairness and quality reviews for personalization models, tightening guardrails on extreme content and establishing a quarterly model audit process with Legal and Policy.
+
+Senior Machine Learning Engineer – Ads Quality
+Nimbus Streaming – Seattle, WA
+Aug 2015 – Dec 2019
+
+Owned click through rate and conversion prediction models for a 1B plus daily request ads platform.
+
+Introduced calibrated probability outputs and better down funnel metrics, enabling sales and finance to price inventory more accurately and unlocking an estimated 22 million dollars per year in net new revenue.
+
+Built a reusable offline evaluation harness that cut iteration time from weeks to days, increasing the number of experiments per quarter by 3 times.
+
+Partnered with infra to define SLAs and SLOs for serving models, reducing P95 latency by 25 percent and cutting timeouts by 40 percent.
+
+Mentored junior engineers on feature engineering, experiment design, and production rollouts.
+
+Machine Learning Engineer
+Nimbus Retail – San Francisco, CA
+Jul 2012 – Jul 2015
+
+Built and shipped demand forecasting models that reduced stock outs by 17 percent and excess inventory by 9 percent across three major product categories.
+
+Collaborated with supply chain and operations to integrate forecasts into purchasing workflows, reducing manual overrides by 30 percent.
+
+Maintained model performance and data pipelines in production, including monitoring, retraining, and incident response.
+
+EDUCATION
+
+M.S. Computer Science, Machine Learning focus
+University of Washington – Seattle, WA
+
+B.S. Electrical Engineering and Computer Science
+University of California, Berkeley
+
+SKILLS
+
+Languages: Python, SQL, Scala
+
+ML: PyTorch, TensorFlow, XGBoost, scikit-learn
+
+Systems: Kafka, Airflow, Kubernetes, Redis, gRPC
+
+Domains: ranking, recommendations, ads quality, experimentation, causal inference
+
+Practices: A B testing, offline evaluation, model monitoring, technical leadership, mentoring
+
+javascript

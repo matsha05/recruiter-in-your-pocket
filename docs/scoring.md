@@ -6,6 +6,34 @@ The goal is not perfection. The goal is an honest, recruiter-calibrated signal: 
 
 The score is a clarity signal, not a judgment. Bands are calibrated to how clearly a recruiter can understand your story on a first read.
 
+## Components of the score
+
+Today the score is driven by a content clarity component, and we are starting to annotate a separate layout / visual quality component for calibration.
+
+**Content clarity score (current live input)**
+- Measures how clearly your story lands on a first read.
+- Driven by structure, bullet quality, ownership, outcomes, and narrative coherence.
+
+**Layout / visual ease score (calibration only for now)**
+- Measures how easy the resume is to scan visually assuming the same content.
+- Driven by headings, spacing, section separation, and overall template sanity.
+
+## Planned weighting
+
+For the eventual combined score, we plan to use:
+- Content clarity: 80 percent of the final score
+- Layout / visual ease: 20 percent of the final score
+
+Right now only the content clarity score is used in the app. Layout is being annotated in the calibration sheet to guide future implementation.
+
+## API response fields for scoring
+
+- `score`: Current live score used in the UI today. For now this is equal to `content_score`.
+- `content_score`: Content clarity score calibrated by anchors. This remains the backbone of the system.
+- `layout_score`: Reserved for future use; will represent visual layout and scanability once PDF-based layout scoring is implemented. Currently null.
+- `layout_band`: Reserved string band for layout quality, currently `"unknown"`.
+- `layout_notes`: Reserved short text explaining layout observations, currently empty.
+
 ## Dimensions and weights
 
 The model considers five dimensions:
@@ -55,3 +83,31 @@ These anchors guide both the model and human reviewers.
 
 - **92–100 – Rare air**  
   Elite signal. Every bullet carries weight, focus, and measurable impact. No noise. No drift.
+
+## Layout bands (visual / template quality)
+
+- **60–69 – Layout problematic**  
+  Hard to scan, cramped or chaotic, misaligned sections, distracting formatting.
+
+- **70–79 – Layout needs work**  
+  Readable but dense, weak hierarchy, sections bleed into each other.
+
+- **80–89 – Layout neutral**  
+  Standard clean template, headings and spacing are fine, nothing fancy but not in the way.
+
+- **90–100 – Layout strong**  
+  Very clean modern hierarchy, excellent spacing and alignment, extremely easy to scan.
+
+## Visual layout soft scores (internal, 1–10)
+
+For calibration we record five visual soft scores on a 1–10 scale for each anchor resume:
+
+- `visual_scanability_score`: how easily a recruiter can see sections and key information on first glance.
+- `visual_whitespace_score`: whether spacing and density feel readable or cramped.
+- `visual_typography_score`: consistency and professionalism of fonts, sizes, and emphasis.
+- `visual_date_alignment_score`: how cleanly dates and roles line up and can be scanned.
+- `visual_modernity_score`: whether the template feels current, professional, and not gimmicky.
+
+These scores are currently used only for calibration of the future layout component. The live app still uses the content clarity score as the primary scoring input.
+
+Anchor note: the Jeremy Hampton in-house corporate counsel anchor is tagged as `layout_band=layout_neutral` (planned 80–89 range) with visual scores 6, 8, 8, 10, 8.

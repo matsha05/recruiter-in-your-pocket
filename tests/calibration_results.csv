@@ -1,11 +1,30 @@
-resume_file,summary_quality,score_quality,strengths_gaps_quality,rewrites_quality,enhancement_notes_quality,overall
-01_recruiter_mid_senior.txt,good,good,good,good,good,good
-02_sales_leader.txt,good,good,good,good,good,good
-03_teacher.txt,good,good,good,good,good,good
-04_pastor_ministry.txt,good,good,good,good,good,good
-05_marketing_manager.txt,good,good,good,good,good,good
-06_software_engineer.txt,good,good,good,good,good,good
-07_legal_corporate_counsel.txt,good,good,good,mid,good,good
-08_entry_level_retail.txt,good,good,good,good,good,good
-09_nonprofit_program_manager.txt,good,good,good,good,good,good
-tests/resumes/law_inhouse_thin_signal_1.txt,good,good,good,good,good,"thin_signal target 70-75; Midlevel in house corporate counsel; clear SaaS and commercial work but responsibility heavy, light on quantified impact, JD and license buried; good anchor for low 70s thin signal band."
+resume_file,summary_quality,score_quality,strengths_gaps_quality,rewrites_quality,enhancement_notes_quality,overall,layout_band,layout_min_score,layout_max_score,visual_scanability_score,visual_whitespace_score,visual_typography_score,visual_date_alignment_score,visual_modernity_score
+01_recruiter_mid_senior.txt,good,good,good,good,good,good,unknown,,,,,
+02_sales_leader.txt,good,good,good,good,good,good,unknown,,,,,
+03_teacher.txt,good,good,good,good,good,good,unknown,,,,,
+04_pastor_ministry.txt,good,good,good,good,good,good,unknown,,,,,
+05_marketing_manager.txt,good,good,good,good,good,good,unknown,,,,,
+06_software_engineer.txt,good,good,good,good,good,good,unknown,,,,,
+07_legal_corporate_counsel.txt,good,good,good,mid,good,good,unknown,,,,,
+08_entry_level_retail.txt,good,good,good,good,good,good,unknown,,,,,
+09_nonprofit_program_manager.txt,good,good,good,good,good,good,unknown,,,,,
+tests/resumes/law_inhouse_thin_signal_1.txt,good,good,good,good,good,"anchor; thin_signal content 70–75; midlevel in house corporate counsel; responsibility-heavy, JD and license buried; content anchor for thin_signal band.",layout_neutral,80,88,6,8,8,10,8
+tests/resumes/anchor_elite_ml_staff_1.txt,good,good,good,good,good,"rare_air content 92–96; staff ML engineer, elite ranking and recsys clarity; calibration anchor for top technical IC band.",layout_strong,90,98,9,9,9,9,9
+tests/resumes/anchor_elite_pm_ai_1.txt,good,good,good,good,good,"rare_air content 92–96; senior PM AI infra, elite roadmap and impact clarity; calibration anchor for top product band.",layout_strong,90,98,9,8,9,9,9
+tests/resumes/anchor_elite_vp_talent_1.txt,good,good,good,good,good,"rare_air content 92–96; VP Talent Acquisition, elite leadership and funnel clarity; calibration anchor for top people leader band.",layout_strong,90,98,9,9,9,9,9
+tests/resumes/recruiter_palantir_strong_foundation_1.txt,good,good,good,good,good,"anchor; strong_foundation content 82–86; Palantir recruiter/lead, strong metrics on sourcing, offers, and throughput; anchor for senior recruiter band.",layout_neutral,85,91,8,7,9,8,7
+tests/resumes/eng_mechatronics_thin_signal_1.txt,good,good,good,good,good,"anchor; thin_signal content 68–72; early-career mechatronics engineer, responsibilities listed but impact under-described.",layout_needs_work,72,80,6,6,6,7,6
+tests/resumes/pm_federal_strong_foundation_sample_1.txt,good,good,good,good,good,"non_anchor; strong_foundation content 80–84; federal PM/consultant resume, capability-heavy but solid structure.",layout_needs_work,75,83,7,6,7,7,7
+tests/resumes/devops_senior_high_bar_1.txt,good,good,good,good,good,"anchor; high_bar content 86–90; senior DevOps/cloud engineer with deep AWS/Azure/Kubernetes experience, strong impact bullets.",layout_neutral,80,88,7,6,7,8,7
+tests/resumes/devops_azure_architect_sample_1.txt,good,good,good,good,good,"non_anchor; high_bar content 84–88; Azure DevOps architect, very strong but visually busier template.",layout_needs_work,75,83,6,7,7,8,8
+tests/resumes/infra_backbone_planner_high_bar_1.txt,good,good,good,good,good,"anchor; high_bar content 88–92; senior infra/backbone planning leader, extremely strong content but long/dense layout; anchor for content-elite but visually dated.",layout_needs_work,70,78,5,6,6,6,5
+tests/resumes/talent_leader_high_bar_matt_shaw_current_1.txt,good,good,good,good,good,"anchor; high_bar content 86–90; talent acquisition leader with clear leadership and scaling outcomes; anchor for recruiting leadership band.",layout_neutral,82,88,8,7,8,8,8
+tests/resumes/devops_dark_template_strong_foundation_justin_brown_1.txt,good,good,good,good,good,"anchor; strong_foundation content 80–84; SRE/DevOps content solid but dark/stylized template is ATS-risky; anchor for \"good content, bad visual\" band.",layout_problematic,62,70,7,8,9,7,9
+tests/resumes/finance_controller_strong_foundation_suzanne_allman_1.txt,good,good,good,good,good,"anchor; strong_foundation content 82–86; controller/CPA with long stable history and clear leadership; anchor for finance/ops band.",layout_neutral,82,88,8,7,7,7,7
+tests/resumes/talent_leader_thin_signal_matt_shaw_old_1.txt,good,good,good,good,good,"non_anchor; thin_signal content 72–76; earlier version of talent resume, story present but less tight than current anchor.",layout_needs_work,75,83,7,6,6,7,6
+tests/resumes/general_thin_signal_mason_alpert_sample_1.txt,good,good,good,good,good,"non_anchor; thin_signal content 70–74; general professional resume with soft language and limited quantification.",layout_needs_work,75,82,7,8,8,7,8
+tests/resumes/tech_thin_signal_christopher_lessard_sample_1.txt,good,good,good,good,good,"non_anchor; thin_signal content 72–76; technical/IT sample, dense and more like a summary than a sharp resume.",layout_needs_work,72,80,6,6,6,6,6
+tests/resumes/devops_senior_high_bar_joshua_sanni_1.txt,good,good,good,good,good,"anchor; high_bar content 86–90; senior DevOps/cloud engineer with strong certs and impact; complements Umaru anchor.",layout_needs_work,74,82,7,6,7,7,7
+tests/resumes/people_ops_strong_foundation_lizi_shaw_sample_1.txt,good,good,good,good,good,"non_anchor; strong_foundation content 80–84; HR/people ops resume with solid structure and story.",layout_neutral,80,86,7,7,7,7,7
+tests/resumes/finance_not_ready_sam_helmuth_1.txt,good,good,good,good,good,"anchor; not_ready content 60–64; senior on paper but extremely sparse and underspecified; anchor for bottom band.",layout_needs_work,68,74,4,5,5,5,4
+tests/resumes/eng_thin_signal_chris_mckoy_sample_1.txt,good,good,good,good,good,"non_anchor; thin_signal content 74–78; technical resume with decent structure and modern layout but still mixed signal.",layout_neutral,80,86,7,7,7,7,7

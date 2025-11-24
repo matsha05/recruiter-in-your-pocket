@@ -1,0 +1,75 @@
+# Diana Serna – early-career mechatronics engineer anchor (thin_signal 68–72)
+
+DIANA PAOLA SERNA REYES
+
+UNITED STATES +524491066525
+
+DETAILS
+United States
++524491066525
+pao.1399@gmail.com
+LINKS
+LinkedIn
+SKILLS
+Ability to Multitask
+Effective Time Management
+Ability to Work Under Pressure
+Microsoft Office
+Leadership and Teamwork
+LANGUAGES
+English
+Spanish; Castilian
+German
+
+PROFILE
+Hardworking and bilingual Mechatronics Engineer. Bringing forth a motivated attitude
+and a variety of powerful skills, committed to utilizing them to further the mission of
+a comapany that meets my ethics and goals. Able to effectively self-manage during
+independent projects, as well as collaborate in a team setting.
+EMPLOYMENT HISTORY
+Design and Release Engineer at Stellantis, Mexico City
+June 2022
+Responsible for the Door Control Module, for serial life vehicle families and new
+development for NAFTA: HDCC, KL, WS, WL, DT, LB, LA/LX/LD, C6X, WD, RU.
+• Complete understading of vehicle's specifications to find root cause of the problem
+if one arises
+• CANalyzer, CAN log analysis
+• NX
+• Root cause analysis
+• Coordination between Stellantis teams, Vehicle Function owners, Network,
+Platforms, components (Mirrors, Lights, Switches) and Suppliers to solve any issue
+that arises
+• Develop and implementation of documentation for Diagnostic and proper Root
+Cause Analysis for the Door Control Module
+• Coordination between suppliers, Tier 1 and Stellantis plants when there's a
+software release
+• Evaluation of software at supplier's validation station to flag and root cause issues
+• SRR and CVVR evaluation with software, verifying the expected results against
+actual, testing features, EOL testing and diagnostics (DTCs) on bench
+Mechanization Intern at Sensata Technologies, Aguascalientes
+November 2020 — April 2022
+Design and implementation of mechatronic's systems.
+• 2D and 2D SolidWorks simulation
+• CNC machining
+• LabVIEW programming
+• Keyence Visual Tool Programming
+• Electrical assembly
+EDUCATION
+Mechatronics Engineering, Universidad Politecnica de Aguascalientes
+September 2017 — April 2022
+Gratuated with a 4.0 GPA, was part of Protonoides, the university's
+scientific dissemination group. I was able to gain experience in:
+• FANUC Robot Programming
+• PLC - Ladder Programming
+• MatLAB programming
+• C++ Programming
+REFERENCES
+Adolfo Lopez Garibay from Stellantis
+adolfo.lopez@stellantis.com · +525522702890
+
+Brian Schaar from Stellantis
+brian.schaar@stellantis.com · 3135904105
+COURSES
+Green Belt - Lean Six Sigma, International Lean Six Sigma
+January 2023 — March 2023
+Mechanical Design - CSWA, SolidWorks

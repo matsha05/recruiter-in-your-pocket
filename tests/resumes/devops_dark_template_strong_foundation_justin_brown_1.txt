@@ -1,0 +1,41 @@
+# Justin Brown – strong content but visually risky dark template anchor (strong_foundation 80–84)
+justin.brown73@gmail.com 919 - 218 - 7073 linkedin.com/in/justinmaubrown 
+
+JUSTIN 
+JUSTIN BROWN 
+SKILLS 
+MICROSOFT AZURE 
+PYTHON GO 
+
+BROWN 
+GOOGLE CLOUD PLATFORM TERRAFORM 
+
+DevOps Engineer EXPERIENCE 
+CIRCLE CI 
+KUBERNETES 
+GRAFANA
+
+
+EDUCATION UCATION 
+SITE RELIABILITY ENGINEER, Pendo.io | Dec 2021 - Present 
+• Enhance software for 8,700+ companies; utilized Circle CI runners and implemented fedRAMP pipelines for Circle CI. • Developed a python script automating the querying of Jira tickets for the production releases, resulting in a 30%  reduction in release time. 
+• Automate disaster recovery exercises to provide reliable products for 700 million consumers per month. • Implemented and configured Grafana to establish detailed monitoring dashboards and alerts for both staging and  production environments.  
+• Utilized Terraform (IaC) to manage and optimize cloud infrastructure, ensuring efficient deployments on GCP. • Leveraged Kubernetes expertise to troubleshoot staging and production deployments, ensuring seamless and resilient  application environments.  
+• 
+CLOUD SOLUTION ARCHITECT, Microsoft | SEPT 2020 - NOV 2021 
+• Facilitated over 50 workshops for technical assistance with Microsoft Azure; instructed users on Azure cloud  infrastructure, functionality, and implementation. 
+• Partnered with Account Managers to resolve daily customer inquiries, ensuring optimal technology use and  facilitated seamless transitions in customer business operations. 
+• Implemented Azure Networking solutions to orchestrate smooth migrations of customers from on-prem to the  cloud. 
+• Successfully migrated over 100 end-users from on-prem to cloud infrastructure. Utilized Azure pipelines to efficiently build, test, and deploy robust solutions. 
+• 
+SOFTWARE DEVELOPER INTERN, Cisco | SEPT 2019 - MAY 2020 
+• Developed a full-stack web application that displayed usage anomalies for system administrator's monitoring; utilized  JavaScript, HTML, and Python. 
+• Collaborated with system administrators to gather application requirements and test use cases. • Analyzed Python scripts for data collection from MongoDB to be displayed on a front-end graphing source. 
+CERTIFICATIONS 
+
+BACHELOR OF SCIENCE, Information Technology FICATIONS Azure Administrator Associate  
+
+North Carolina A&T State University 
+Microsoft Azure Fundamentals Azure Fundamentals 
+Pendo Essentials 
+

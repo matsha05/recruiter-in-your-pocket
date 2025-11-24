@@ -53,6 +53,10 @@ function testScoreClamp() {
     next_steps: []
   });
   assert.strictEqual(parsed.score, 100);
+  assert.strictEqual(parsed.content_score, 100);
+  assert.strictEqual(parsed.layout_score, null);
+  assert.strictEqual(parsed.layout_band, "unknown");
+  assert.strictEqual(parsed.layout_notes, "");
 
   const parsedLow = validateResumeModelPayload({
     score: -5,
@@ -66,6 +70,10 @@ function testScoreClamp() {
     next_steps: []
   });
   assert.strictEqual(parsedLow.score, 0);
+  assert.strictEqual(parsedLow.content_score, 0);
+  assert.strictEqual(parsedLow.layout_score, null);
+  assert.strictEqual(parsedLow.layout_band, "unknown");
+  assert.strictEqual(parsedLow.layout_notes, "");
 }
 
 function run() {

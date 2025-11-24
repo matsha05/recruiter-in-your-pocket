@@ -563,14 +563,44 @@ function extractJsonFromText(text) {
         502
       );
     }
+    }
   }
-}
 
-function validateResumeModelPayload(obj) {
-  if (!obj || typeof obj !== "object") {
-    throw createAppError(
-      "OPENAI_RESPONSE_SHAPE_INVALID",
-      "The model response did not match the expected format.",
+  function normalizeOptionalScore(score, fieldName) {
+    if (score === null || typeof score === "undefined") return null;
+    if (typeof score !== "number" || !Number.isFinite(score)) {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response had an invalid ${fieldName}.`,
+        502
+      );
+    }
+    const rounded = Math.round(score);
+    if (rounded < 0) return 0;
+    if (rounded > 100) return 100;
+    return rounded;
+  }
+
+  function ensureLayoutAndContentFields(obj) {
+    const normalizedLayoutScore = normalizeOptionalScore(obj.layout_score, "layout_score");
+    const normalizedContentScore = normalizeOptionalScore(
+      typeof obj.content_score === "number" ? obj.content_score : obj.score,
+      "content_score"
+    );
+
+    obj.layout_score = normalizedLayoutScore;
+    obj.layout_band = typeof obj.layout_band === "string" ? obj.layout_band : "unknown";
+    obj.layout_notes = typeof obj.layout_notes === "string" ? obj.layout_notes : "";
+    obj.content_score =
+      normalizedContentScore === null ? obj.score : normalizedContentScore;
+    return obj;
+  }
+
+  function validateResumeModelPayload(obj) {
+    if (!obj || typeof obj !== "object") {
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        "The model response did not match the expected format.",
       502
     );
   }
@@ -650,11 +680,11 @@ function validateResumeModelPayload(obj) {
           );
         }
       }
+      }
     }
-  }
 
-  return obj;
-}
+    return ensureLayoutAndContentFields(obj);
+  }
 
 function validateResumeIdeasPayload(obj) {
   if (!obj || typeof obj !== "object") {
@@ -818,7 +848,7 @@ ${text}`;
         },
         true
       );
-      parsed = fallbackResumeData();
+      parsed = ensureLayoutAndContentFields(fallbackResumeData());
     }
 
     const latencyMs = Date.now() - tStart;
@@ -832,10 +862,12 @@ ${text}`;
       model: OPENAI_MODEL
     });
 
+    const enriched = ensureLayoutAndContentFields(parsed);
+
     return res.json({
       ok: true,
-      data: parsed,
-      content: JSON.stringify(parsed),
+      data: enriched,
+      content: JSON.stringify(enriched),
       raw: rawContent
     });
   } catch (err) {

@@ -1,0 +1,102 @@
+# Umaru-Faarooq Arogundade – senior DevOps/cloud anchor (high_bar 86–90)
+
+Umaru-Faarooq Arogundade
+
+Location: Bothell, WA | Phone: (360) 556-2949 | Email: fa.arogundade@gmail.com
+
+PROFESSIONAL SUMMARY
+● Experienced DevOps Engineer who places an emphasis on planning, automation and security
+● Solid and self-trained background in Linux, Devops, networking, infrastructure, containers & virtualization, microservices & various
+cloud native technologies like kubernetes
+● Delivery focused & business minded engineering leader, who takes ownership of tasks and is flexible enough to overcome and
+impediments; ensuring successful planning and execution
+Strengths and Technologies
+● Cloud Infrastructure (AWS, Azure, GCP)
+● Security Best Practices
+● Automation (Terraform, Ansible, Cloudformation)
+● CI/CD Best Practices
+● Orchestration (Kubernetes, Docker)
+● Agile, SAFe, Scrum Coaching
+● Development & Scripting (Python, GoLang, Bash)
+● Git Ops Workflow Best Practices (Argo CD, Gitlab, Harness)
+● Monitoring: Prometheus, Grafana, ELK, CloudWatch, New Relic
+● Airflow: DAG development, Scheduling, Orchestration, Integration with AWS services
+● Technical Documentation
+EXPERIENCE
+UNIFY CONSULTING: CLIENTS (COSTCO, BLOCK, SERVICE NOW) Mar 2022 – Present
+Senior Cloud Consultant
+● Deployed Continuous monitoring application into Azure Dev & Prod Subscriptions by leveraging Terraform to provision Provided
+Tier 3 Systems administration support, including daily monitoring of system logs and writing python scripts; resolved +100
+complaints for the entire infrastructure environment Implement CI/CD for creating production pipelines and automating
+● Designed new Azure environment as pure immutable IAC (Infrastructure as code) using Make to build a deployment container
+and call Terraform/Terragrunt to build all required AWS resources (IAM, ECR, S3, Cloudwatch, Eventbridge, Fargate, VPC, etc)
+utilizing Checkov to ensure code changes did not expose new security risks
+● Executed an automated health check system for Kubernetes clusters than reduced mean time to repair from 15 days to 11
+hours
+● Actively participated in Hackathons to optimize existing systems and processes within organizations
+● Utilize Terraform, Gitlab CI and ArgoCD for continuous deployment thereby leveraging GitOps best practices
+● Leveraged experience with Python web frameworks such as Flask & FastAPI to troubleshoot and deploy web applications with
+backend logic and RESTful APIs
+● Collaborate with cross-functional teams to optimize application performance, troubleshoot issues, and identify areas for
+improvement
+PINNACLE TECHNOLOGIES: CLIENT (AMAZON) July 2019 – Mar 2022
+Senior Cloud Engineer
+● Implemented new kubernetes clusters and environments consisting of several integrated microservices to aggregate data from
+many different external sources in near real time
+● Mentored and supported remote engineers and other IT professionals to manage company systems across 40+ different
+platforms
+● Provide guidance for successful application deployments using various deployment strategies such as Rolling Deployment, Blue
+Green Deployment, etc
+● Leveraged AWS Step Functions to orchestrate lamba’s for performing health checks on application environments
+● Deployed a multi-region failover solution using Route 53, API Gateway, Lambda Functions, DynamoDB, ALBs and EC2’s
+● Configure and maintain end to end Machine Learning environment using Terraform IAC for deploying infrastructure,
+configuring networking, IAM and other required environment objects
+● Monitored resource usage and performance metrics of AWS Environment by creating dashboards using Prometheus and Grafana
+● Performed Cloud Vulnerabilities investigative analysis as part of Tiger Team supporting Block’s Threat Intelligence and Operations
+team’s efforts
+
+PINNACLE TECHNOLOGIES: CLIENT (BLUECROSS BLUE SHIELD) September 2016 – May 2019
+Cloud Operations Engineer
+● Configure and manage microservices deployments using Terraform, Docker, ECS & EKS
+● Lead enterprise architecture sessions to strategize and develop various automated software deployment solutions
+● Develop and promote standard operating procedures (SOP) and create processes and tooling for operating efficiency Manage
+efficient delivery of devops user stories in sprint by effectively leverage Jira, Confluence and slack for operations
+● Responsible for architecting highly available / scalable infrastructure systems on AWS for applications
+● Developed Installation scripts of popular services such as Apache, Nginx, MySql, Mariadb, Nextcloud, Wordpress, Fail2ban, ClamAV,
+Spamassassin etc. for all major Linux distribution to ensure client satisfaction
+● Performed code deployments a minimum of 2 times a month to Centos servers within a midnight deployment window to ensure
+minimal customer interruptions in service with the newest code release on associated infrastructure
+PINNACLE TECHNOLOGIES: CLIENT (JPMORGAN) November 2014 – August 2016
+AWS Engineer
+● Deployment of Virtual Private Clouds (VPC), Network ACLs, Security groups and route tables across Amazon Web Services
+environment
+● Improved quality of code deployments by establishing a new Git and Ansible workflow which defined standards of committing,
+branching and merging to allow for more granular control of code commits, versioning, enforced proper peer review, and provided a
+clearly defined method for reverting undesired changes in order to avoid possible outages
+● Aggregated the compliance data of over 20,000 nodes (half linux, half windows) which ran on VMware hosts across 3 separate
+environments & 2 separate datasets in order to address a multitude of various failures
+● Developed and deployed a suite of ansible playbooks to resolve the various compliance errors of affected nodes in production while
+simultaneously working with the chef infrastructure team & node owners to help get chef cookbooks updated and to prevent the
+repetition of similar issues
+● Employed AWS DMS for migrating on-prem database resources to the cloud for disaster recovery and on-going business and usual
+production workloads
+PINNACLE TECHNOLOGIES: CLIENT (KRAFT FOODS) October 2013 – November 2014
+Junior Devops Engineer
+● Collaborated daily with teammates, multiple other teams within Charter, and various vendors as needed to resolve tickets, perform
+code deployments, develop tools & documentation, and receive training on multiple facets of Spectrum guide and it’s infrastructure
+● Wrote documentation which my team needed to close tickets. This included documentation for new hires to set up their
+environment and guidelines for issuing triage. As a result, new hires could start working on tickets sooner, and current team
+members would close tickets at a faster rate. This directly translated into higher customer satisfaction as issues were resolved more
+effectively than before
+● Setup and Manage VPC & Security groups to ensure proper networking configurations
+● Configured and managed Elastic Load Balancing (ELB) for fault tolerance and to avoid single point of failure of applications,
+providing high availability
+● Configure Identity and Access Management Protocols using AWS best practices
+
+EDUCATION
+HOWARD UNIVERSITY Washington, D.C Graduation: May 2010
+● Bachelor of Science in Information Systems and Business Administration (GPA: 3.52/4.00)
+
+PROFESSIONAL CERTIFICATIONS
+● AWS Certified Developer Associate
+● Certified Kubernetes Administrator

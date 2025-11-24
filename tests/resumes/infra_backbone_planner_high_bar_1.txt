@@ -1,0 +1,160 @@
+# Derrick Bandelier – infra/backbone planning anchor (high_bar 88–92)
+
+Derrick Bandelier
+10013 Inshore Drive
+Austin, Texas 78730
+(512) 587-1345 (Mobile)
+derrick.bandelier@gmail.com
+
+P R O F I L E
+
+Motivated, versatile, and energetic professional with broad experience and proven accomplishments over
+the course of 2+ decades in industry. Analytical and decisive decision maker. Established, developed, and
+
+led multiple global teams to measurable success, planned and/or managed highly complex $100M+ cross-
+functional programs, and found success across the breadth of the technology business cycle. Major
+
+strengths lie in leadership, acquisition and delivery, strategic planning, and program management. Strong
+work ethic and commitment to professional integrity.
+
+P R O F E S S I O N A L E X P E R I E N C E
+
+Amazon Web Services (AWS)
+Senior Backbone Planner, Americas Jan 2023 - Present
+Austin, Texas
+Lead backbone planner for the Americas within the network acquisition team. As part of the first backbone
+planning team at AWS, this role is heavily engaged in development of North and Latin America strategic
+infrastructure plans to signal and support commercial negotiation and acquisition across the region.
+
+Activities include strategic topology planning, modeling, and documentation to deliver strategic continental-
+scale acquisition of appropriate dark fiber investment supporting collective AWS network demand for the
+
+next decade. Peer with fiber negotiators to support vendor engagement and ensure clear requirements for
+acquisition and delivery. Other Plans of Record include new regions, machine learning/AI markets, and
+key markets/corridors to lead stakeholder teams towards the desired long-term end state. Also involved in
+the development of the Plan of Record (POR), annual budget plans, and early-stage due diligence for
+potential new region/AI investments.
+Amazon Web Services (AWS)
+Global Backbone Planning
+
+Aug 2019 – Dec 2022
+Austin, Texas
+Served in a unique individual contributor role as first AWS backbone planner. Provided global backbone
+planning support for a variety of large-scale cross-functional programs and process development. This
+included working with engineering and s/w development teams to establish a ground-up SRLG modeling
+and evaluation program that provided AWS the first proactive failure bypass modeling and deployment
+workflow in company history. Heavily involved in driving various s/w development and tooling roadmaps.
+Amazon Web Services (AWS)
+Edge Expansion Planning (Middle East & Africa)
+
+Nov 2017 – Aug 2019
+Austin, Texas
+Led AWS new market expansion planning for the Middle East and Africa regions. This included early due
+diligence plans for over a dozen potential new countries, aligning backbone, colocation, IP strategy, and
+various service teams to drive data-based evaluation. Worked closely with various negotiation, legal,
+finance, and public policy teams to holistically evaluate the market opportunities including geopolitical risk
+and deliver recommendations on AWS launch strategy.
+Google Fiber
+Program Manager, Strategic Initiatives
+
+May 2016 – Oct 2017
+Austin, Texas
+Responsible for coordination of all 3rd party infrastructure planning, design, and acquisition across all
+existing and expansion markets. Key areas of focus were market plan development, cost reduction,
+maximizing revenue potential, and driving adoption of innovative technology to reduce network build costs.
+
+DERRICK A. BANDELIER
+
+Google
+Manager, Global Core Capacity Design
+
+Jan 2014 – May 2016
+Austin, Texas
+
+The global core design team is responsible for planning and design of the entirety of Google’s global inter-
+metro core capacity. This includes generation of all core plans, architecture and network engineering
+
+engagement for next-generation platforms, platform migrations, datacenter and core router capacity
+designs, and input and support for associated plans of record (PORs) for all global regions. During my
+oversight the team tripled in size, developed and refined numerous processes and workflows, generated
+over fifteen detailed datacenter designs, 700 tactical plans, and dozens of additional metro/regional core
+designs globally.
+Google
+Program Manager, Global Transport Deployment
+
+Nov 2010 – Jan 2014
+Austin, Texas
+Responsible for the strategic level program management of the European and North American optical
+transport deployment teams. Tasked with prioritizing, communicating, and coordinating dozens of
+overlapping projects and cross-functional roles across the full life cycle from architecture and planning to
+design, deployment, and operations hand off. Heavily involved in process evolution and improvement, as
+well as feedback support for associated tool development. Creator and facilitator of a series of recurring
+global cross-functional summits to improve communication and workflow across the business cycle from
+architecture to operations.
+Google
+Manager, Invoice & Vendor Management
+
+Oct 2009 – Oct 2010
+Mountain View, CA
+Manager of the IVM Group within Google’s Global Infrastructure Commercial Operations (GICO)
+organization. Responsible for PO creation, invoice audit, and payment approvals for approximately ~$1B+
+in annual Capex/Opex. Cumulatively, the team supported the business behind the entirety of Google’s
+global data center and network infrastructure (including YouTube) across dozens of entities via their
+respective currencies.
+Google
+Network Planning Program Manager, Global Infra
+
+Sept 2008 – Oct 2009
+Mountain View, CA
+Responsible for Network Planning, Americas, driving planning and acquisition of Google’s first
+comprehensive continental-scale fiber and optical network. Heavily involved in commercial dark fiber
+negotiations, establishing physical and optical layer topology requirements, and executing subsequent
+optical deployment plans. Work included various feasibility studies, network plans, and executive approval
+packages that were defined, achievable, and in-line with resource allocation, priority, budget, dynamic
+architecture, infrastructure availability, and other factors.
+Google
+Technical Project Manager, Network Acquisition
+
+May 2007 – Sept 2008
+Mountain View, CA
+Served on the Global Infrastructure team as primary North American vendor point of contact within the
+organization, coordinating the procurement and delivery of all paid peering/transit capacity, leased optical
+capacity, metro and long-haul dark fiber, and ISP infrastructure for the Americas.
+OnFiber Communications Manager, Contracts
+
+2005-2007
+Austin, TX
+Manager of the contracts team and lead negotiator for all metro and regional long-haul dark fiber and
+leased transport services. Tasked with the preparation and negotiation of all new strategic agreements
+and amendments, as well as sales, asset swap, and purchase negotiations. Worked closely with executive
+leadership and legal counsel on M&A diligence prior to the Qwest acquisition of OnFiber in 2006.
+OnFiber Communications Senior Network Planner/Engineer
+
+2003-2005
+Austin, TX
+Primary responsibilities include technical lead RFP response roles, providing sales support, training,
+system design, and directing optimization and overbuild projects in the network.
+
+DERRICK A. BANDELIER
+
+Cisco Systems Engineer
+
+2000 - 2002
+Tulsa, OK
+Pre-sales engineering, training, and technical support to a wide range of organizations. Heavily involved
+in customer support for network architecture, testing, sales, purchasing, and operations. CCNA certified.
+WorldCom, Inc. Network Planner, Fiber Optic Transmission
+
+1997-2000
+Tulsa, OK
+
+E D U C A T I O N
+Oklahoma State University, Stillwater Oklahoma
+Bachelor of Science, Civil Engineering May 1993
+Master of Science, Civil Engineering May 1994
+Stanford Certified Project Manager, Stanford University Center for Professional Development
+Odessa, Texas Junior College – Varsity Golf Team
+
+R E F E R E N C E S
+
+Available upon request

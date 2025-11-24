@@ -1,0 +1,177 @@
+# Joshua Sanni – senior DevOps/cloud anchor (high_bar 86–90)
+
+JOSHUA SANNI
+Snr. DevOps Engineer
+Remote, USA
+(443) 559-7315
+Dojsanni@gmail.com
+LinkedIn: @linkedin.com/in/jsanni
+American Citizen
+Highly and results-driven Cloud DevOps
+Engineer with over 10 years of experience
+supporting pipeline management for
+business applications deployed within AWS,
+Azure and GCP. Proficient in configuring and
+maintaining CI/CD pipeline and Proven track
+record in Build & Release Management,
+Consult & Contribute to system architecture
+in extensive work towards code compilation,
+packaging, building, debugging, automating,
+managing, tuning and deploying code across
+multiple environments.
+
+EDUCATION
+University of Lagos
+MBA Business Administration
+And Management Lagos , Nigeria
+B.sc COMPUTER ENGINEERING
+Lagos , Nigeria
+CERTIFICATIONS
+Red Hat Certified System Administrator (RHCSA)
+AWS Certified Cloud Practitioner (CCP)
+AWSCertified Solutions Architect Associate (SAA)
+AWS Certified SysOps Administrator (SOA)
+AWS Certified Solutions Architect Professional (SAP)
+AWS Certified DevOps Engineer Professional
+AWS Certified Security - Specialty (SCS)
+AWS Certified Kubernetes Administrator (CKA)
+Certified Kubernetes Application Developer(CKAD)
+Certified Kubernetes Security - (CKS)
+Project Management Professional (PMP)
+Microsoft Certified: Devops EngineerExpert
+Microsoft Certified: Azure Administrator
+Associate.
+AZ-304: Microsoft Azure Architect Design
+Microsoft Certified: Azure Solutions Architect
+Expert.
+AZ-303: Microsoft Azure Architect Technologies
+AZ-400: Designing and Implementing Microsoft
+DevOps Solution.
+LFS260: Kubernetes Security Essentials
+
+EXPERIENCE
+Devops/Cloud Engineer
+NIH
+OCT 2020 – Present | Rockville, MD
+▪ Breaking down monolithic applications hosted on-prem
+into microservice architecture hosted in containers or
+using server-less workloads.
+▪ Collaborate with product owners to design and deploy
+business and scientific products on a custom Docker platform
+as a service (Paas) in Amazon Web Services (AWS).
+▪ Collaborating with software developers in designing
+solutions to host and deploy custom business and scientific
+applications on our PaaS in AWS.
+▪ Developed smoke tests pipeline for applications.
+▪ Configured Sonarqube to run code quality for java and
+NodeJS applications.
+▪ Migrated Sonarqube which was running in ECS to
+kubernetes cluster to optimize cost.
+▪ Managed kubernetes charts using Helm and created
+reproducible builds of microservices on k8scluster.
+▪ Worked on managing k8s deployment and service files and
+releases of Helm packages.
+
+System Engineer
+TISTA
+JAN 2018 – SEP 2020 | Rockville, MD
+▪ Collaborate with Developers and Testers to ensure
+streamlined CI/CD Developing CI/CD roadmap and
+implementing to the project
+▪ AWS services administration using IAM, VPC, Route 53,
+EC2, S3, CodeBuild, CodeDeploy, Redshift, RDS,
+CloudWatch CloudFormation
+▪ Develop and automate standard operating procedures
+around common failure scenarios.
+▪ Monitor, analyze, and report performance statistics for
+cloud hosted environments.
+▪ Develop application features, measure performance,
+improve and act upon performance data. Consult and
+contribute to system architecture.
+▪ Complete deployment and maintenance of AWS VPC
+with site-to-site VPN Connection
+▪ Building Jenkins pipelines for packaging and building
+proprietary applications into Docker Images.
+▪ Strive for continuous improvement and build continuous
+integration, continuous development, and constant
+deployment pipeline (CI/CD Pipeline)
+▪ Monitoring the processes during the entire lifecycle for
+its adherence and updating or creating new processes
+for improvement and minimizing the wastage.
+
+SKILLS
+GitHub Enterprise Appliance, CloudBees
+Jenkins, SonarQube, Artifactory, Invicti •AWS
+Services: IAM, VPC, EC2, S3, CodeBuild,
+CodeDeploy, Redshift, RDS, CloudWatch, API
+Gateway, Lambda
+•Linux System Administration
+•Scripting: Bash, Python
+• CI/CD: Jenkins, Docker
+•Containerization: Kubernetes, Docker Swarm
+•Infrastructure as Code:CloudFormation
+•Version Control: Git
+•Monitoring and Analytics: Prometheus,
+Grafana
+•Networking: DNS, DHCP, TCP/IP
+•Programming Languages: Java, Python, Shell
+scripting
+•Other: Ansible, Puppet, Terraform, Jira,
+PowerShell, Apache Kafka, MySQL, Networking
+SCRIPTING
+Python, Go, Ant, Shell Scriptings, Powershell
+OPERATING SYSTEMS
+Windows, Linux, MacOS
+REFERENCES: Available upon request
+
+Linux Administrator / DevOps Engineer
+GENSYS Technology
+JULY 2014 – SEP 2018 | Baltimore, MD
+▪ Collaborate with Dell EMC to decide the appropriate
+specifications for the network Switches, Servers and SANs to
+deploy our product stack with and deliver to our client sites.
+▪ Monitoring performance metrics of swarm services using
+Prometheus and Grafana with customized Dashboard.
+▪ Configuration of Dell Network Switches and configuration
+of DNS, DHCP and TFTP services for bare metal servers to
+be deployed in client sites.
+▪ Designing and implementing infrastructure as code and CI/CD
+pipeline for deployments of large-scale web applications.
+▪ Built in-house containerized Docker and Maven repository
+with Nexus for housing Docker Image Maven artifacts and
+Container orchestration using Docker Swarm.
+▪ Implement Jenkins pipelines for API automation testing
+with SoapUI and Selenium.
+▪ Integrated Telemetry API into Elasticsearch Kafka clusters.
+▪ Created kafka topics to ensure data flow is consistent
+through telemetry API's.
+▪ Created 28 services to integrate Apache Kafka into existing
+microservice architecture to allow event-driven data flow.
+▪ AWS Services: Proficient in deploying infrastructure as
+code using AWS Compute (EC2), AWS Network (VPCs
+and Load Balancers), and AWS Serverless (API Gateway
+and Lambda) services. CI/CD Pipelines: Experienced in
+configuring and maintaining CI/CD pipelines using GitHub
+Enterprise Appliance, CloudBees Jenkins, SonarQube,
+Artifactory, and Invicti.
+IT TECHNICAL SUPPORT
+OCTOWORX
+JUN 2006 – JUN 2014 | Lagos, NG
+▪ Diagnose computer problems, monitor computer processing
+systems, install software and perform tests on computer
+equipment and programs, set up computer equipment,
+schedule maintenance and teach clients to use existing and
+new programs, manage repairs and computer parts ordering.
+▪ Troubleshoot and resolve IT Technical issues from
+Clients, within Service Level Agreement (SLA).
+▪ Support installation, maintenance, upgrades to local
+networks and communications Infrastructure, disseminate
+information on common problems to department staff,
+Tracks trending of issues and escalate, as appropriate.
+▪ Deliver training sessions to the Agency’s staff community,
+on new Applications on tips related to the use of software
+applications, computers Internet and intranet usage based
+on company policy.
+▪ Manage the installation and replacement process for
+computers, server workstations, Work group naming and
+network configuration from initial request to final installation.
