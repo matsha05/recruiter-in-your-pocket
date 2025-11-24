@@ -1400,20 +1400,21 @@
       cursor: not-allowed;
     }
 
-    .sample-button {
+    .sample-resume-button {
       background: var(--surface-tint);
       color: var(--text-main);
       border: 1px solid var(--border-subtle);
-      padding: 8px 12px;
+      padding: 6px 12px;
       border-radius: 10px;
-      font-size: 12px;
+      font-size: 13px;
       cursor: pointer;
       transition: border-color 0.12s ease, background 0.12s ease;
       align-self: flex-start;
-      margin: 6px 0 4px;
+      margin: 6px 0 10px;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
     }
 
-    .sample-button:hover {
+    .sample-resume-button:hover {
       border-color: var(--border-strong);
       background: var(--surface-tint);
     }
@@ -1586,7 +1587,7 @@
               Paste your full resume, or use the sample to see how it works.
             </label>
 
-            <button id="sample-resume-button" type="button" class="sample-button">Try a sample resume →</button>
+            <button id="sample-resume-button" type="button" class="sample-resume-button">Try a sample resume →</button>
 
             <div class="input-wrapper resume-input-container resume-input-shell">
               <textarea
