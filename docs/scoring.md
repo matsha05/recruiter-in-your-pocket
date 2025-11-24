@@ -4,6 +4,8 @@ The score is a 0 to 100 view of how well your resume tells a clear, focused, evi
 
 The goal is not perfection. The goal is an honest, recruiter-calibrated signal: "If I read this quickly in a real pipeline, how strong would it feel?"
 
+The score is a clarity signal, not a judgment. Bands are calibrated to how clearly a recruiter can understand your story on a first read.
+
 ## Dimensions and weights
 
 The model considers five dimensions:
@@ -39,41 +41,17 @@ Scores are not a strict formula, but the model is guided to stay within these we
 
 These anchors guide both the model and human reviewers.
 
-- **0–49 – Not ready yet**
-  - Hard to follow, very generic, or missing key sections.
-  - Impact is rarely visible.
-  - Would likely struggle to get a fair read in a real funnel.
+- **60–69 – Not ready**  
+  Story is unclear. Bullets feel busy or generic. Outcomes are missing or weak. Structure hides signal.
 
-- **50 – Barely working**
-  - The resume is understandable but messy or generic.
-  - Light or inconsistent impact.
-  - Needs significant revision before sending to top companies.
+- **70–77 – Thin signal**  
+  Base is solid but impact is muted. Ownership is soft. Outcomes exist but are inconsistent or too light.
 
-- **60–69 – Developing**
-  - A clear story is emerging.
-  - Some good bullets, but many are still vague or redundant.
-  - A good base that needs focused tightening.
+- **78–84 – Strong foundation**  
+  Clear ownership and value. Some bullets drift or overexplain. Signal is strong but not consistently sharp.
 
-- **70 – Solid foundation**
-  - Structure works, story is clear.
-  - Impact shows up in several places.
-  - With targeted edits, this could become a strong resume.
+- **85–91 – High bar**  
+  High signal. Scope, ownership, and outcomes land cleanly. Minor clarity edits would make this elite.
 
-- **75–84 – Strong**
-  - Consistent impact and relevance.
-  - Most sections are sharp and scannable.
-  - This resume would not be the reason for a rejection.
-
-- **85 – Very strong**
-  - Clear, focused, and outcome driven.
-  - Good balance of scope, mechanism, and impact.
-  - Competitive for many top roles and companies.
-
-- **92 – Exceptional**
-  - Rare level of clarity and impact.
-  - Nearly every bullet earns its place.
-  - Very little low-hanging fruit remains.
-
-- **93–100 – Rare**
-  - Reserved for resumes that feel unusually clear and compelling.
-  - The bar should be extremely high here.
+- **92–100 – Rare air**  
+  Elite signal. Every bullet carries weight, focus, and measurable impact. No noise. No drift.

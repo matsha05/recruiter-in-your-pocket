@@ -702,6 +702,14 @@
       line-height: 1.65;
     }
 
+    .score-explainer {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 4px;
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
     .score-badge {
       display: inline-flex;
       align-items: center;
@@ -750,12 +758,12 @@
       position: absolute;
       top: 120%;
       right: 0;
-      width: 260px;
+      width: 320px;
       background: #ffffff;
       border: 1px solid var(--border-strong);
       box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
       border-radius: 12px;
-      padding: 11px 12px;
+      padding: 12px;
       font-size: 12px;
       color: var(--text-main);
       line-height: 1.5;
@@ -776,7 +784,8 @@
     }
 
     .score-wrapper:hover .score-tooltip,
-    .score-wrapper:focus-within .score-tooltip {
+    .score-wrapper:focus-within .score-tooltip,
+    .score-tooltip.open {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
@@ -805,6 +814,102 @@
       background: #e3f6ee;
       border-color: #bdebd4;
       color: #153828;
+    }
+
+    .score-bands-trigger {
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--text-soft);
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      margin-top: 2px;
+      align-self: flex-start;
+    }
+
+    .score-bands-trigger:hover,
+    .score-bands-trigger:focus-visible {
+      color: var(--text-main);
+    }
+
+    .score-bands-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 320px;
+    }
+
+    .score-bands-panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .score-bands-intro {
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+
+    .score-bands-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .score-band-item {
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 10px;
+      background: #f9fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .score-band-item.active {
+      border-color: var(--accent);
+      background: #eef2ff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .score-band-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .score-band-range {
+      color: var(--text-main);
+    }
+
+    .score-band-label {
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    .score-band-chip {
+      margin-left: auto;
+      font-size: 11px;
+      background: #dfe7ff;
+      color: #1f2f63;
+      padding: 3px 6px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .score-band-description {
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.5;
     }
 
     #loading-bar {
@@ -1653,6 +1758,18 @@
               <div id="results-subtitle">
                 Calibrated score, quick read on how you come across, what’s working, and what to fix next.
               </div>
+              <div id="score-explainer" class="score-explainer">
+                This is a clarity score, not a judgment. Most strong resumes land between 70 and 85.
+              </div>
+              <button
+                id="score-bands-trigger"
+                class="score-bands-trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="score-tooltip"
+              >
+                What this means
+              </button>
               <div class="results-header-divider"></div>
               <div id="results-summary" class="results-summary empty">
                 Your recruiter take will land here first.
@@ -1758,6 +1875,7 @@
   const resultsSkeletonEl = document.getElementById("results-skeleton");
   const modePillEl = document.getElementById("mode-pill");
   const scoreWrapperEl = document.getElementById("score-wrapper");
+  const scoreBandsTriggerEl = document.getElementById("score-bands-trigger");
   const scoreBadgeEl = document.getElementById("score-badge");
   const scoreLabelEl = document.getElementById("score-label");
   const scoreShortEl = document.getElementById("score-short");
@@ -1787,6 +1905,9 @@
   let saveTimeout = null;
   let originalButtonText = runButton.textContent;
   let ideasInFlight = false;
+  let currentScoreMeta = null;
+  let scoreBandsPinned = false;
+  let scoreBandsHovering = false;
 
   function autoResizeTextarea() {
     const maxHeight = 340;
@@ -1865,9 +1986,69 @@
     scoreBadgeEl.removeAttribute("aria-label");
     if (scoreLabelEl) scoreLabelEl.textContent = "";
     if (scoreShortEl) scoreShortEl.textContent = "";
-    if (scoreTooltipEl) scoreTooltipEl.textContent = "";
+    if (scoreTooltipEl) {
+      scoreTooltipEl.textContent = "";
+      scoreTooltipEl.classList.remove("open");
+      scoreTooltipEl.setAttribute("aria-hidden", "true");
+    }
     if (scoreWrapperEl) scoreWrapperEl.classList.add("hidden");
     if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
+    currentScoreMeta = null;
+    scoreBandsPinned = false;
+    scoreBandsHovering = false;
+    if (scoreBandsTriggerEl) scoreBandsTriggerEl.setAttribute("aria-expanded", "false");
+  }
+
+  const SCORE_BANDS = [
+    {
+      id: "not_ready",
+      min: 60,
+      max: 69,
+      label: "Not ready",
+      description:
+        "Story is unclear. Bullets feel busy or generic, and outcomes are missing or weak. Structure hides the signal."
+    },
+    {
+      id: "thin_signal",
+      min: 70,
+      max: 77,
+      label: "Thin signal",
+      description:
+        "Base is solid but impact is muted. Ownership is soft. Outcomes exist but are inconsistent or too light."
+    },
+    {
+      id: "strong_foundation",
+      min: 78,
+      max: 84,
+      label: "Strong foundation",
+      description:
+        "Clear ownership and value. Some bullets drift or overexplain. Signal is strong but not consistently sharp yet."
+    },
+    {
+      id: "high_bar",
+      min: 85,
+      max: 91,
+      label: "High bar",
+      description:
+        "High signal. Scope, ownership, and outcomes land cleanly. Minor clarity edits would make this elite."
+    },
+    {
+      id: "rare_air",
+      min: 92,
+      max: 100,
+      label: "Rare air",
+      description:
+        "Elite signal. Every bullet carries weight, focus, and measurable impact. No noise. No drift."
+    }
+  ];
+
+  function getBandIdFromScore(score) {
+    const n = Number.isFinite(Number(score)) ? Math.round(Number(score)) : 0;
+    const clamped = Math.min(100, Math.max(0, n));
+    const match = SCORE_BANDS.find((band) => clamped >= band.min && clamped <= band.max);
+    if (match) return match.id;
+    if (clamped < SCORE_BANDS[0].min) return SCORE_BANDS[0].id;
+    return SCORE_BANDS[SCORE_BANDS.length - 1].id;
   }
 
   function getScoreMeta(score) {
@@ -1877,54 +2058,62 @@
       return {
         score: clamped,
         label: "Rare air",
-        short: "Almost nothing to tighten; keep it precise.",
+        short: "Exceptionally clear and compelling on first read. Very minor refinements only.",
         long:
-          "Story reads top-bar with clear ownership, scope, and results. Keep it crisp; a light polish only."
+          "Exceptionally clear and compelling on first read. Very minor refinements only.",
+        bandId: getBandIdFromScore(clamped)
       };
     }
     if (clamped >= 92) {
       return {
         score: clamped,
         label: "Top-bar ready",
-        short: "Clear, strong signal with tiny polish left.",
+        short: "Exceptionally clear and compelling on first read. Very minor refinements only.",
         long:
-          "Ownership, scope, and outcomes show up fast. Do a light pass to surface any last numbers or decisions."
+          "Exceptionally clear and compelling on first read. Very minor refinements only.",
+        bandId: getBandIdFromScore(clamped)
       };
     }
     if (clamped >= 85) {
       return {
         score: clamped,
         label: "High bar",
-        short: "Real ownership and impact with a few soft spots.",
+        short: "Strong clarity and signal. Only light tightening needed to make your story land even cleaner.",
         long:
-          "Signal is strong; tighten any buried scope or decisions and make outcomes pop in the top bullets."
+          "Strong clarity and signal. Only light tightening needed to make your story land even cleaner.",
+        bandId: getBandIdFromScore(clamped)
       };
     }
     if (clamped >= 78) {
       return {
         score: clamped,
         label: "Strong story",
-        short: "Impact shows; a couple clarity gaps remain.",
+        short: "Clear momentum and ownership with a few areas needing sharper framing or impact cues.",
         long:
-          "Scope and outcomes are present but uneven. Sharpen wording and split dense bullets so wins land faster."
+          "Clear momentum and ownership with a few areas needing sharper framing or impact cues.",
+        bandId: getBandIdFromScore(clamped)
       };
     }
     if (clamped >= 70) {
       return {
         score: clamped,
         label: "Solid foundation",
-        short: "Story is here; clarity and scope need surfacing.",
+        short:
+          "Solid elements are here, but the core story still feels muted. Tightening scope and impact will lift the clarity.",
         long:
-          "Use numbers and ownership language to make the work obvious. Pull key outcomes up front and trim filler."
+          "Solid elements are here, but the core story still feels muted. Tightening scope and impact will lift the clarity.",
+        bandId: getBandIdFromScore(clamped)
       };
     }
     if (clamped >= 60) {
       return {
         score: clamped,
         label: "Needs clarity",
-        short: "Signal is buried under wording or missing context.",
+        short:
+          "Your story is present but not landing clearly yet. A few structural tweaks can quickly strengthen the signal.",
         long:
-          "Make roles, scope, and outcomes explicit. Remove vague phrasing and show what changed because of you."
+          "Your story is present but not landing clearly yet. A few structural tweaks can quickly strengthen the signal.",
+        bandId: getBandIdFromScore(clamped)
       };
     }
     if (clamped >= 50) {
@@ -1933,7 +2122,8 @@
         label: "Thin signal",
         short: "Ownership and outcomes are hard to see.",
         long:
-          "Rebuild top bullets with clear role, scope, and before/after changes. Add context before applying."
+          "Rebuild top bullets with clear role, scope, and before/after changes. Add context before applying.",
+        bandId: getBandIdFromScore(clamped)
       };
     }
     return {
@@ -1941,7 +2131,8 @@
       label: "Not ready",
       short: "Hard to see role, scope, or results.",
       long:
-        "Add structure, roles, and outcomes so there is usable signal. Right now it is not review-ready."
+        "Add structure, roles, and outcomes so there is usable signal. Right now it is not review-ready.",
+      bandId: getBandIdFromScore(clamped)
     };
   }
 
@@ -1958,6 +2149,55 @@
     scoreBadgeEl.classList.add("score-visible", cls);
   }
 
+  function renderScoreBandsPanel(scoreMeta = {}) {
+    if (!scoreTooltipEl) return;
+    const bandId = scoreMeta.bandId || getBandIdFromScore(scoreMeta.score);
+    const bandsMarkup = SCORE_BANDS.map((band) => {
+      const isActive = band.id === bandId;
+      return `
+        <div class="score-band-item ${isActive ? "active" : ""}">
+          <div class="score-band-header">
+            <span class="score-band-range">${band.min} to ${band.max}</span>
+            <span class="score-band-label">· ${escapeHtml(band.label)}</span>
+            ${isActive ? '<span class="score-band-chip">Your band</span>' : ""}
+          </div>
+          <div class="score-band-description">${escapeHtml(band.description)}</div>
+        </div>
+      `;
+    }).join("");
+
+    scoreTooltipEl.innerHTML = `
+      <div class="score-bands-panel">
+        <div class="score-bands-panel-title">How to read this score</div>
+        <div class="score-bands-intro">This is a calibrated clarity score. Each band shows how clearly your story lands on first read.</div>
+        <div class="score-bands-list">${bandsMarkup}</div>
+      </div>
+    `;
+  }
+
+  function updateScoreBandsVisibility() {
+    if (!scoreTooltipEl) return;
+    const isOpen = (scoreBandsPinned || scoreBandsHovering) && !!currentScoreMeta;
+    scoreTooltipEl.classList.toggle("open", isOpen);
+    scoreTooltipEl.setAttribute("aria-hidden", isOpen ? "false" : "true");
+    if (scoreBandsTriggerEl) scoreBandsTriggerEl.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+
+  function toggleScoreBandsPinned() {
+    if (!currentScoreMeta) return;
+    scoreBandsPinned = !scoreBandsPinned;
+    if (scoreBandsPinned) {
+      renderScoreBandsPanel(currentScoreMeta);
+    }
+    updateScoreBandsVisibility();
+  }
+
+  function closeScoreBandsPanel() {
+    scoreBandsPinned = false;
+    scoreBandsHovering = false;
+    updateScoreBandsVisibility();
+  }
+
   function renderScoreMeta(score, modelMeta = {}) {
     const meta = getScoreMeta(score);
     applyScoreColor(meta.score);
@@ -1970,14 +2210,15 @@
 
     const labelText = (modelMeta.score_label || "").trim() || meta.label;
     const shortText = (modelMeta.score_comment_short || "").trim() || meta.short;
-    if (scoreTooltipEl) {
-      scoreTooltipEl.innerHTML = `
-        <div class="score-tip-line" style="font-weight:700;color:var(--text-main);">${escapeHtml(
-          labelText
-        )}</div>
-        <div class="score-tip-line">${escapeHtml(shortText)}</div>
-      `;
-    }
+    const longText = (modelMeta.score_comment_long || "").trim() || meta.long;
+    currentScoreMeta = {
+      ...meta,
+      label: labelText,
+      short: shortText,
+      long: longText
+    };
+    renderScoreBandsPanel(currentScoreMeta);
+    updateScoreBandsVisibility();
     if (scoreWrapperEl) scoreWrapperEl.classList.remove("hidden");
   }
 
@@ -2285,6 +2526,49 @@
 
     positionModeIndicator();
   }
+
+  if (scoreWrapperEl) {
+    scoreWrapperEl.addEventListener("mouseenter", () => {
+      if (!currentScoreMeta) return;
+      scoreBandsHovering = true;
+      renderScoreBandsPanel(currentScoreMeta);
+      updateScoreBandsVisibility();
+    });
+    scoreWrapperEl.addEventListener("mouseleave", () => {
+      scoreBandsHovering = false;
+      updateScoreBandsVisibility();
+    });
+  }
+
+  if (scoreBadgeEl) {
+    scoreBadgeEl.addEventListener("click", () => {
+      toggleScoreBandsPinned();
+    });
+  }
+
+  if (scoreBandsTriggerEl) {
+    scoreBandsTriggerEl.addEventListener("click", (event) => {
+      event.preventDefault();
+      toggleScoreBandsPinned();
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    if (
+      (scoreTooltipEl && scoreTooltipEl.contains(event.target)) ||
+      (scoreWrapperEl && scoreWrapperEl.contains(event.target)) ||
+      (scoreBandsTriggerEl && scoreBandsTriggerEl.contains(event.target))
+    ) {
+      return;
+    }
+    closeScoreBandsPanel();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeScoreBandsPanel();
+    }
+  });
 
   modeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
