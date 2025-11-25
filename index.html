@@ -710,6 +710,13 @@
       line-height: 1.55;
     }
 
+    .score-explainer-secondary {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.55;
+      margin-top: 4px;
+    }
+
     .score-badge {
       display: inline-flex;
       align-items: center;
@@ -825,7 +832,7 @@
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 2px;
-      margin-top: 2px;
+      margin-top: 6px;
       align-self: flex-start;
     }
 
@@ -1759,11 +1766,15 @@
                 Calibrated score, quick read on how you come across, what’s working, and what to fix next.
               </div>
               <div id="score-explainer" class="score-explainer">
-                This is a clarity score, not a judgment. Most strong resumes land between 70 and 85.
+                This is a clarity score, not a judgment. Most strong resumes land somewhere between 78 and 85.
+                <div class="score-explainer-secondary">
+                  Your score is powered by a calibrated clarity model tuned against thousands of real-world hiring conversations.
+                </div>
               </div>
               <button
                 id="score-bands-trigger"
                 class="score-bands-trigger"
+                style="display:none"
                 type="button"
                 aria-expanded="false"
                 aria-controls="score-tooltip"
@@ -1992,6 +2003,7 @@
       scoreTooltipEl.setAttribute("aria-hidden", "true");
     }
     if (scoreWrapperEl) scoreWrapperEl.classList.add("hidden");
+    if (scoreBandsTriggerEl) scoreBandsTriggerEl.style.display = "none";
     if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
     currentScoreMeta = null;
     scoreBandsPinned = false;
@@ -2005,40 +2017,35 @@
       min: 60,
       max: 69,
       label: "Not ready",
-      description:
-        "Story is unclear. Bullets feel busy or generic, and outcomes are missing or weak. Structure hides the signal."
+      description: "Story is hard to follow. Sections blur together and impact is mostly missing."
     },
     {
       id: "thin_signal",
       min: 70,
       max: 77,
       label: "Thin signal",
-      description:
-        "Base is solid but impact is muted. Ownership is soft. Outcomes exist but are inconsistent or too light."
+      description: "Some good pieces, but the signal is faint. Bullets are vague or light on impact."
     },
     {
       id: "strong_foundation",
       min: 78,
       max: 84,
       label: "Strong foundation",
-      description:
-        "Clear ownership and value. Some bullets drift or overexplain. Signal is strong but not consistently sharp yet."
+      description: "Core story is clear. Real wins are present, but not every bullet carries weight."
     },
     {
       id: "high_bar",
       min: 85,
       max: 91,
       label: "High bar",
-      description:
-        "High signal. Scope, ownership, and outcomes land cleanly. Minor clarity edits would make this elite."
+      description: "Ownership, scope, and results are consistently clear with very little noise."
     },
     {
       id: "rare_air",
       min: 92,
       max: 100,
       label: "Rare air",
-      description:
-        "Elite signal. Every bullet carries weight, focus, and measurable impact. No noise. No drift."
+      description: "Exceptionally clear and dense signal. Every line earns its place."
     }
   ];
 
@@ -2169,7 +2176,7 @@
     scoreTooltipEl.innerHTML = `
       <div class="score-bands-panel">
         <div class="score-bands-panel-title">How to read this score</div>
-        <div class="score-bands-intro">This is a calibrated clarity score. Each band shows how clearly your story lands on first read.</div>
+        <div class="score-bands-intro">This clarity score is powered by a calibrated model shaped by thousands of real interview cycles. Each band reflects how clearly your story lands on a first read.</div>
         <div class="score-bands-list">${bandsMarkup}</div>
       </div>
     `;
@@ -2219,6 +2226,7 @@
     };
     renderScoreBandsPanel(currentScoreMeta);
     updateScoreBandsVisibility();
+    if (scoreBandsTriggerEl) scoreBandsTriggerEl.style.display = "inline";
     if (scoreWrapperEl) scoreWrapperEl.classList.remove("hidden");
   }
 

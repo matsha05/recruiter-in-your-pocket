@@ -1,10 +1,10 @@
 # Resume scoring rubric
 
-The score is a 0 to 100 view of how well your resume tells a clear, focused, evidence-based story for the roles you want.
+The score measures how clearly your resume tells your story on a first read. It is calibrated from 60 to 100 and anchored on real resumes. It is not a grade on your worth, seniority, or potential. Most solid resumes land in the high 70s to mid 80s. Higher scores reflect clearer structure, stronger ownership language, and more specific outcomes, not just more experience.
 
 The goal is not perfection. The goal is an honest, recruiter-calibrated signal: "If I read this quickly in a real pipeline, how strong would it feel?"
 
-The score is a clarity signal, not a judgment. Bands are calibrated to how clearly a recruiter can understand your story on a first read.
+The score is a clarity signal, not a judgment. Bands are calibrated to how clearly a recruiter can understand your story on a first read. These bands are calibrated against a set of 20–30 real and synthetic resumes across multiple domains and seniority levels.
 
 ## Components of the score
 
@@ -69,20 +69,20 @@ Scores are not a strict formula, but the model is guided to stay within these we
 
 These anchors guide both the model and human reviewers.
 
-- **60–69 – Not ready**  
-  Story is unclear. Bullets feel busy or generic. Outcomes are missing or weak. Structure hides signal.
+**Not ready (around 60 to 69)**  
+The story is hard to follow. Sections blur together, bullets read like job descriptions, and impact is mostly missing. A recruiter would struggle to quickly see what you do and what you are good at. The next step is basic structure and clearer responsibilities, not polish.
 
-- **70–77 – Thin signal**  
-  Base is solid but impact is muted. Ownership is soft. Outcomes exist but are inconsistent or too light.
+**Thin signal (around 70 to 76)**  
+Some of the right pieces are here, but the signal is faint. You can mostly tell what you do, yet bullets are vague, impact is under described, or the narrative jumps around. With better framing, stronger verbs, and a few concrete results, this can move up quickly.
 
-- **78–84 – Strong foundation**  
-  Clear ownership and value. Some bullets drift or overexplain. Signal is strong but not consistently sharp.
+**Strong foundation (around 78 to 85)**  
+The core story is clear. Roles, responsibilities, and value show up in most sections. There are real wins, but not every bullet carries weight, and some impact is still implied rather than explicit. This is a solid resume that benefits from tightening language and adding specific outcomes.
 
-- **85–91 – High bar**  
-  High signal. Scope, ownership, and outcomes land cleanly. Minor clarity edits would make this elite.
+**High bar (around 86 to 90)**  
+Ownership, scope, and results are consistently clear. Most bullets show measurable or very specific impact. The narrative lands quickly for a senior recruiter or hiring manager. Remaining changes are small: trimming repetition, merging bullets, or sharpening a few phrases.
 
-- **92–100 – Rare air**  
-  Elite signal. Every bullet carries weight, focus, and measurable impact. No noise. No drift.
+**Rare air (around 92 to 96)**  
+Exceptionally clear, dense signal without noise. Every line earns its place. Outcomes are specific, scope is obvious, and the story reads like a highlight reel without hype. This is the level where a recruiter immediately understands who you are, what you do, and why you are in the top tier for your track.
 
 ## Layout bands (visual / template quality)
 
