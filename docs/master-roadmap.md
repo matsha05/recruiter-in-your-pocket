@@ -69,7 +69,7 @@ Goal: First user can pay and get immediate value from paying.
 
 Definition of done: A real user can paste a resume, run 1 or 2 times, hit a paywall, pay, and then keep using the product with clear benefits.
 
-### T1.2 Scoring calibration you can defend
+### T1.2 Scoring calibration you can defend (Done)
 
 Goal: A score that another recruiter would agree with.
 
