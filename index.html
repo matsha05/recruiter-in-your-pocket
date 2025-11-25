@@ -14,9 +14,9 @@
       --bg-card: #ffffff;
       --border-subtle: #d7dae3;
       --border-strong: #c6cbd6;
-      --accent: #0f172a;
-      --accent-boost: #0e3a5d;
-      --accent-strong: #0b1224;
+      --accent: #2563eb;
+      --accent-boost: #1d4ed8;
+      --accent-strong: #1e3a8a;
       --text-main: #0e1117;
       --text-soft: #3f4552;
       --text-muted: #667085;
@@ -576,27 +576,33 @@
       padding: 12px 14px;
       font-size: 16px;
       border-radius: 12px;
-      border: 1px solid #0b1a33;
+      border: 1px solid rgba(37, 99, 235, 0.7);
       cursor: pointer;
-      background: linear-gradient(180deg, #0f1f3d 0%, #0d1a32 100%);
+      background: var(--accent);
       color: #ffffff;
       font-weight: 700;
       letter-spacing: -0.01em;
-      box-shadow: 0 2px 5px rgba(10, 16, 28, 0.12);
-      transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.24);
+      transition: background 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease, transform 0.12s ease;
       position: relative;
       z-index: 1;
     }
 
     .run-button:hover:not(:disabled) {
-      background: linear-gradient(180deg, #0c1931 0%, #0a152a 100%);
-      box-shadow: 0 2px 5px rgba(10, 16, 28, 0.15);
+      background: var(--accent);
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
+      transform: translateY(-1px);
     }
 
     .run-button:disabled {
       opacity: 0.65;
       cursor: default;
       box-shadow: 0 1px 3px rgba(10, 16, 28, 0.12);
+    }
+
+    .run-button:active:not(:disabled) {
+      transform: scale(0.98);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
     }
 
     .status {
@@ -1732,8 +1738,8 @@
       <div id="loading-bar"></div>
 
       <section class="hero">
-        <h1 class="hero-title">Recruiters read your resume differently. Here’s how you actually come across.</h1>
-        <p class="hero-subtitle">Paste your resume or try a sample. I’ll read it like a recruiter and tell you how it actually lands.</p>
+        <h1 class="hero-title">Recruiter-grade resume feedback in under a minute.</h1>
+        <p class="hero-subtitle">Paste your resume to get a crafted, honest read on how your story lands, plus stronger bullets and clear next steps.</p>
 
         <div class="hero-grid">
           <div class="hero-pill">
@@ -1748,7 +1754,7 @@
         </div>
 
         <p class="hero-cred">
-          Calibrated by recruiters who have shipped 500+ hires across Google, Facebook, OpenAI, and high growth startups.
+          No signup. No fluff. Just a clear read on your story.
         </p>
 
         <div class="proof-editorial" aria-label="Testimonials from users">
