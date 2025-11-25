@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const crypto = require("crypto");
 const fs = require("fs");
+const Stripe = require("stripe");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,10 @@ const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 20000);
 const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 2);
 const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);
 const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN;
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+const stripe = STRIPE_SECRET_KEY ? Stripe(STRIPE_SECRET_KEY) : null;
 
 if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
   console.warn("Missing OPENAI_API_KEY in .env; live OpenAI calls will fail until set.");
@@ -172,6 +177,47 @@ app.use(express.static(path.join(__dirname)));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.post("/api/create-checkout-session", rateLimit, async (req, res) => {
+  if (!stripe || !STRIPE_PRICE_ID || !FRONTEND_URL) {
+    return res.status(500).json({
+      ok: false,
+      errorCode: "PAYMENT_CONFIG_MISSING",
+      message: "Payments are not configured yet. Please try again later."
+    });
+  }
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: [
+        {
+          price: STRIPE_PRICE_ID,
+          quantity: 1
+        }
+      ],
+      success_url: `${FRONTEND_URL}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${FRONTEND_URL}?checkout=cancelled`
+    });
+
+    return res.json({ ok: true, url: session.url });
+  } catch (err) {
+    logLine(
+      {
+        level: "error",
+        msg: "checkout_session_failed",
+        reqId: req.reqId,
+        error: err.message
+      },
+      true
+    );
+    return res.status(500).json({
+      ok: false,
+      errorCode: "PAYMENT_FAILED",
+      message: "Could not start checkout right now. Try again in a moment."
+    });
+  }
 });
 
 function getSystemPromptForMode(mode) {

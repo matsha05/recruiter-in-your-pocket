@@ -714,7 +714,7 @@
       font-size: 13px;
       color: var(--text-soft);
       line-height: 1.55;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .score-badge {
@@ -832,7 +832,7 @@
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 2px;
-      margin-top: 6px;
+      margin-top: 8px;
       align-self: flex-start;
     }
 
@@ -917,6 +917,79 @@
       font-size: 12px;
       color: var(--text-soft);
       line-height: 1.5;
+    }
+
+    /* Paywall */
+    .paywall-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.42);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .paywall-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.12);
+      width: min(520px, 92vw);
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .paywall-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.015em;
+    }
+
+    .paywall-subtitle {
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    .paywall-list {
+      margin: 4px 0 8px;
+      padding-left: 18px;
+      color: var(--text-main);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .paywall-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .paywall-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .paywall-secondary {
+      background: none;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      cursor: pointer;
     }
 
     #loading-bar {
@@ -1861,6 +1934,25 @@
         </section>
       </main>
 
+      <div id="paywall-backdrop" class="paywall-backdrop" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
+        <div class="paywall-card">
+          <div class="paywall-title" id="paywall-title">Keep using Resume Studio</div>
+          <div class="paywall-subtitle">
+            Upgrade to unlock unlimited runs on this device and keep your recruiter-grade read whenever you need it.
+          </div>
+          <ul class="paywall-list">
+            <li>Unlimited resume runs on this browser.</li>
+            <li>Access to your full score, summary, and insight stack whenever you need it.</li>
+            <li>Future saved reports as they ship.</li>
+          </ul>
+          <div class="paywall-actions">
+            <button id="paywall-upgrade" class="paywall-primary" type="button">Upgrade and keep going</button>
+            <button id="paywall-close" class="paywall-secondary" type="button">Not now</button>
+          </div>
+          <div id="paywall-status" class="paywall-subtitle" aria-live="polite"></div>
+        </div>
+      </div>
+
       <div class="creator-section">
         Made with care in Boulder, CO 🤍
       </div>
@@ -1911,6 +2003,10 @@
   const ideasBodyEl = document.getElementById("ideas-body");
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
   const ideasStatusEl = document.getElementById("ideas-status");
+  const paywallBackdropEl = document.getElementById("paywall-backdrop");
+  const paywallUpgradeEl = document.getElementById("paywall-upgrade");
+  const paywallCloseEl = document.getElementById("paywall-close");
+  const paywallStatusEl = document.getElementById("paywall-status");
 
   let currentMode = "resume";
   let saveTimeout = null;
@@ -1919,6 +2015,67 @@
   let currentScoreMeta = null;
   let scoreBandsPinned = false;
   let scoreBandsHovering = false;
+  let isSampleRun = false;
+
+  const FREE_RUN_LIMIT = 2;
+  const RUN_COUNT_KEY = "rip-free-runs-v1";
+  const PAID_KEY = "rip-paid-v1";
+
+  function getRunCount() {
+    const raw = localStorage.getItem(RUN_COUNT_KEY);
+    const n = Number(raw);
+    return Number.isFinite(n) && n >= 0 ? n : 0;
+  }
+
+  function incrementRunCount() {
+    const next = getRunCount() + 1;
+    localStorage.setItem(RUN_COUNT_KEY, String(next));
+    return next;
+  }
+
+  function isPaid() {
+    return localStorage.getItem(PAID_KEY) === "1";
+  }
+
+  function markPaid() {
+    localStorage.setItem(PAID_KEY, "1");
+  }
+
+  function showPaywall(msg = "") {
+    if (paywallBackdropEl) {
+      paywallBackdropEl.style.display = "flex";
+    }
+    if (paywallStatusEl) {
+      paywallStatusEl.textContent = msg || "";
+    }
+  }
+
+  function hidePaywall() {
+    if (paywallBackdropEl) {
+      paywallBackdropEl.style.display = "none";
+    }
+    if (paywallStatusEl) {
+      paywallStatusEl.textContent = "";
+    }
+  }
+
+  (function handleCheckoutParams() {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("checkout");
+    if (status === "success") {
+      markPaid();
+      const clean = window.location.pathname + window.location.hash;
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, clean);
+      }
+    }
+    if (status === "cancelled") {
+      const clean = window.location.pathname + window.location.hash;
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, clean);
+      }
+    }
+  })();
 
   function autoResizeTextarea() {
     const maxHeight = 340;
@@ -2578,6 +2735,40 @@
     }
   });
 
+  async function startCheckout() {
+    if (paywallStatusEl) paywallStatusEl.textContent = "Opening checkout...";
+    try {
+      const resp = await fetch("/api/create-checkout-session", { method: "POST" });
+      const data = await resp.json().catch(() => null);
+      if (!resp.ok || !data?.ok || !data?.url) {
+        const msg =
+          data?.message || "Could not start checkout right now. Try again in a moment.";
+        if (paywallStatusEl) paywallStatusEl.textContent = msg;
+        return;
+      }
+      window.location.href = data.url;
+    } catch (err) {
+      if (paywallStatusEl) {
+        paywallStatusEl.textContent =
+          "Could not start checkout right now. Try again in a moment.";
+      }
+    }
+  }
+
+  if (paywallUpgradeEl) {
+    paywallUpgradeEl.addEventListener("click", () => {
+      startCheckout();
+    });
+  }
+
+  if (paywallCloseEl) {
+    paywallCloseEl.addEventListener("click", () => {
+      hidePaywall();
+      statusEl.textContent = "";
+      setStatus("");
+    });
+  }
+
   modeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("disabled-mode")) {
@@ -2589,6 +2780,7 @@
   });
 
   async function runAnalysis() {
+    const sampleRun = isSampleRun;
     const text = inputEl.value.trim();
     if (!text) {
       const msg = "Paste your resume text so I can actually review it.";
@@ -2599,6 +2791,13 @@
       resultsBodyEl.classList.remove("results-error");
       renderSummary("");
       if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
+      return;
+    }
+
+    if (!sampleRun && !isPaid() && getRunCount() >= FREE_RUN_LIMIT) {
+      statusEl.textContent = "You’ve used your free runs. Upgrade to keep going.";
+      setStatus("You’ve used your free runs. Upgrade to keep going.", "error");
+      showPaywall();
       return;
     }
 
@@ -2712,6 +2911,9 @@
         resultsSkeletonEl.classList.add("hidden");
       }
       resultsBodyEl.classList.remove("muted");
+      if (!isPaid() && !sampleRun) {
+        incrementRunCount();
+      }
       if (resultsActionsBottomEl) {
         resultsActionsBottomEl.classList.remove("hidden");
       }
@@ -2747,6 +2949,7 @@
         resultsSkeletonEl.classList.add("hidden");
       }
       resultsBodyEl.classList.remove("muted");
+      isSampleRun = false;
     }
   }
 
@@ -2963,6 +3166,7 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
   if (sampleResumeButtonEl) {
     sampleResumeButtonEl.addEventListener("click", () => {
       if (!inputEl) return;
+      isSampleRun = true;
       inputEl.value = SAMPLE_RESUME_TEXT;
       saveInput(inputEl.value);
       autoResizeTextarea();
