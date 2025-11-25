@@ -15,11 +15,11 @@ The items below are ordered by impact on trust, revenue, and real world usefulne
 
 ---
 
-## Tier 0 – Trust, onboarding, and clarity
+## Tier 0 – Trust, onboarding, and clarity (Done)
 
 These are the blockers that keep strangers from pasting their resume. Fixing these comes before everything else.
 
-### T0.1 Data handling and trust surface
+### T0.1 Data handling and trust surface (Done)
 
 - Add a visible "How we handle your data" section or popover.
 - Explain what happens before and after "Get feedback":
@@ -30,7 +30,7 @@ These are the blockers that keep strangers from pasting their resume. Fixing the
 - Rewrite or remove anonymous testimonials that feel fake. Use real ones or keep it clean.
 - Hide Offer Studio in the UI until it is genuinely ready.
 
-### T0.2 First time experience and sample resume
+### T0.2 First time experience and sample resume (Done)
 
 - Add a "Try a sample resume" button that fills the textarea with an anonymized example.
 - Make it clear what the product does in one short line under the hero:
@@ -40,7 +40,7 @@ These are the blockers that keep strangers from pasting their resume. Fixing the
   - Click "Get feedback".
   - See score, summary, strengths, gaps, rewrites, and next steps.
 
-### T0.3 Score meaning and output framing
+### T0.3 Score meaning and output framing (Done)
 
 - Add a short explanation of what the score means.
 - Connect the score and tooltip to clear bands, not vibes.
