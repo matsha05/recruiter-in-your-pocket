@@ -52,7 +52,7 @@ These are the blockers that keep strangers from pasting their resume. Fixing the
 
 These items move the product from "interesting MVP" to "real product people pay for".
 
-### T1.1 Paid wedge (monetization)
+### T1.1 Paid wedge (monetization) (Done)
 
 Goal: First user can pay and get immediate value from paying.
 
