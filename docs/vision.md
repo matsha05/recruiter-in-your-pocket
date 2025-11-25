@@ -1,119 +1,114 @@
 # Recruiter in Your Pocket — Product Vision
 
 ## IDENTITY
+
 Recruiter in Your Pocket is:
 
 > A personal recruiting studio for clarity, confidence, and craft.
 
-This product should feel like an elite recruiter sitting beside the user,
-reading their career with calm authority, and handing them a studio-grade
-report on their professional story.
+This product should feel like an elite recruiter sitting beside the user, 
+reading their career with steady authority, and handing them a crafted, premium report.
 
-Calm is not neutrality. Calm is confidence.
-The interface expresses expertise through clarity, not noise.
+We are not building an AI toy.  
+We are building a studio-grade experience users trust with their story.
+
+The experience should feel:
+- crafted, not generic  
+- confident, not tentative  
+- joyfully clear, not sterile  
+
+Clarity is our foundation.  
+Confidence and small moments of delight sit on top of it.
 
 ---
-
-## WEDGE AND OUTCOME
-Elite recruiter clarity in ~60 seconds: score, “You read as…”, stronger bullets, and missing wins. This is the wedge that beats generic AI rewriters.
 
 ## CORE EXPERIENCE
-Every studio in the product must follow the same pattern:
 
-1. The user inputs something (resume, offer, or career context).  
-2. The studio performs a deep read and outputs an **Insight Stack**:
-   - score or band when relevant  
-   - “You read as...” interpretation  
-   - strengths and gaps  
-   - rewrites or decision levers  
-   - missing wins or next-step guidance  
-3. **Margin Notes** appear beside core insights. These annotations highlight:
-   - what matters most  
-   - leverage points  
-   - thin spots  
-   - quick wins  
-4. The user leaves with clarity, direction, and confidence.
+Every mode must follow the same studio pattern:
 
-This must feel like a crafted studio report with expert markup,
-not a generic AI output.
+### 1. Input
+The user brings something meaningful:
+- resume  
+- offer  
+- interview or career context  
 
----
+### 2. Insight Stack  
+The system produces a stack of:
+- score or band (when relevant)  
+- how their story lands  
+- strengths  
+- harder-to-see areas  
+- stronger phrasing or leverage points  
+- missing wins  
+- next steps  
 
-## ICP AND OUTCOMES
-- Primary ICP: mid/senior ICs switching roles (product, eng, design), and career switchers moving into tech-adjacent roles.  
-- Secondary ICP: recent grads entering their first role.  
+### 3. Next Steps  
+The user leaves with 3–5 clear actions they can take this week.
 
-Optimize for:
-- score trust (does this feel like a real recruiter read?),  
-- rewrite adoption (bullets actually used),  
-- time-to-first-value (first insight lands in ~60 seconds).
+The interface should feel like a crafted expert report, not a dashboard.
 
 ---
 
 ## SIGNATURE PATTERN
 
-### 1. INSIGHT STACK
-A vertical stack of calm, clean sections.
-Each section:
-- has one clear takeaway,
-- is visually prioritized,
-- is spaced with editorial rhythm.
+### Insight Stack  
+A single column with one clear takeaway per section.
 
-### 2. MARGIN NOTES
-Small, intentional annotations that sit beside key sections.
-They provide human judgment, emphasis, and clarity about what matters most.
-
-These two together form the product’s signature interaction pattern.
+### Crafted Accents  
+A thin accent line or subtle highlight used sparingly to guide the eye.
 
 ---
 
-## CORE STUDIOS
+## CORE MODES
 
-1. **Resume Review** (live wedge)  
-   Score, summary, strengths, gaps, stronger bullets, missing wins,
-   and concrete next steps.
+### Resume Studio  
+The hero mode:
+- score  
+- summary  
+- strengths  
+- gaps  
+- rewrites  
+- missing wins  
+- next steps  
 
-2. **Offer Studio** (next pillar; planned/disabled)  
-   Offer competitiveness, comp structure clarity, leverage points,
-   risk areas, and negotiation moves.
+### Offer Studio (planned)  
+Negotiation clarity and leverage.
 
----
+### Interview Story Studio (future)  
+Story patterns and narrative strength.
 
-## PROOF AND SIGNALS
-Tuned by ex-big-tech recruiters (thousands of screens; nearly 1,000 hires). If missing hard numbers, collect and report: activation rate (paste → run), completion rate, rewrite adoption, and score trust feedback.
-
----
-
-## BACKLOG AND FUTURE BETS
-Only build if data shows real demand and it reinforces clarity, confidence, and craft:
-
-- Interview Story Studio (future/backlog)  
-- Trajectory Studio  
-- LinkedIn Profile Studio  
-- Resume Comparison Studio  
-- Value Narrative Studio  
-- Strengths Studio  
-- Promotion Studio  
-- Career Constraint Solver
+Future ideas must reinforce clarity, confidence, and craft.
 
 ---
 
 ## PRODUCT EMOTION
-Every interaction should reduce anxiety and increase self-belief.
 
-Emotional arc:
-- I feel seen.  
-- I understand my story.  
-- I know what to do next.  
-- I feel capable.
+We reduce anxiety and build grounded confidence.
 
-End every session with uplift and clarity.
+Typical emotional arc:
+1. “I’m unsure how I read.”  
+2. “This sees me clearly.”  
+3. “I understand what’s strong vs thin.”  
+4. “I know exactly what to do next.”  
+5. “I feel better about my story.”
+
+Users should leave feeling:
+- seen  
+- understood  
+- more confident  
+- clear about next steps  
 
 ---
 
 ## DESIGN CONNECTION
-This file works together with:
-- `docs/design-principles.md`  
+
+This vision works together with:
+- `docs/design-principles.md`
 - `context.md`
 
-All three define the product identity and must stay aligned.
+Identity traits:
+- crafted  
+- confident  
+- joyfully clear  
+
+Anything that drifts away from these traits should be reconsidered or removed.

@@ -1,34 +1,119 @@
 # Recruiter in Your Pocket — Report North Star
 
-These rules protect the core report experience. Keep them stable across versions.
+These rules protect the core resume report experience.  
+They should remain stable as the product evolves.
 
-## Report flow
-- Always use this order: How your resume reads → What’s working → What’s harder to see → Stronger phrasing you can use → Next steps.
-- Each heading carries a muted framing line to set user expectations.
+---
 
-## Summary
-- One short, cohesive paragraph (no bullet lists).
-- Pattern to guide tone/structure:
-  - “You come across as a strong [role/strength] with solid experience in [X] and [Y].”
-  - “A recruiter will notice [positives] right away.”
-  - “The piece that’s less clear is [gap], and highlighting it would make your impact easier to see.”
-- Tone: calm, clean, premium, recruiter-truth, no hype, no em dashes.
+## REPORT FLOW
 
-## Rewrites
-- Presented in two clusters only:
-  - Clarity & Conciseness
-  - Impact, Scope & Ownership
-- Within each rewrite: Original / Better / “If you have it, include:”
-- Do not show per-item category labels beyond the two clusters.
+Always use this order:
 
-## Next steps
-- Always show these four bullets, in this order:
-  1) Split multi idea bullets so your role and impact are clearer.
-  2) Add numbers or specific outcomes where they strengthen the story.
-  3) Highlight your ownership in key achievements so your contribution stands out.
-  4) Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds.
+1. **How your resume reads**  
+2. **What’s working**  
+3. **What’s harder to see**  
+4. **Stronger phrasing you can use**  
+5. **Next steps**
 
-## Visual/tone guardrails
-- Calm, minimal, premium; reuse existing spacing/typography.
-- Framing lines are light, descriptive, and secondary to the main headings.
-- No new decorative styles; preserve the editorial, studio-grade feel.
+Each section has one clear takeaway and should be easy to skim.
+
+---
+
+## SUMMARY
+
+One short, cohesive paragraph (not a list).  
+Tone should feel like a confident recruiter speaking directly to the user.
+
+Pattern:
+1. “You come across as a strong [role/strength] with solid experience in [X] and [Y].”  
+2. “A recruiter will notice [positives] right away.”  
+3. “What’s less obvious is [gap], and making that clearer will help your impact land faster.”  
+
+Tone:
+- crafted  
+- confident  
+- grounded  
+- warm enough to land  
+- no hype, no corporate speak, no em dashes  
+
+---
+
+## STRENGTHS
+
+Strengths should:
+- name real signals (ownership, scope, outcomes, environment)  
+- avoid generic praise  
+- help users see what is already working  
+
+3–6 strengths is typical.
+
+---
+
+## HARDER-TO-SEE AREAS
+
+This section surfaces:
+- buried impact  
+- unclear outcomes  
+- vague or multi-idea bullets  
+- missing scope  
+
+The tone is honest without being harsh.  
+Frame issues as “harder to see,” not “weaknesses.”
+
+---
+
+## STRONGER PHRASING YOU CAN USE
+
+Two clusters only:
+1. **Clarity & conciseness**  
+2. **Impact, scope & ownership**
+
+Each rewrite block includes:
+- Original  
+- Better  
+- “If you have it, include:”  
+
+Rewrites must:
+- preserve nouns and truth  
+- avoid invention  
+- produce crisp, realistic upgrades
+
+---
+
+## NEXT STEPS
+
+Give the user momentum.  
+3–4 actions they can complete in one or two editing sessions.
+
+Examples:
+- Split multi-idea bullets  
+- Add outcomes or scope where missing  
+- Clarify ownership in major achievements  
+- Ensure the strongest work is front-loaded for quick skim  
+
+Users should finish thinking:
+> “I know exactly what to do next.”
+
+---
+
+## VISUAL & TONE PRINCIPLES
+
+The report experience should feel:
+- **crafted** (intentional, premium, thought-through)  
+- **confident** (clear hierarchy, decisive structure)  
+- **joyfully clear** (uplifting touches without noise)  
+- **grounded and human** (real recruiter energy)  
+
+Use accents, spacing, and subtle motion to guide the eye — not to decorate.
+
+Avoid:
+- neon  
+- gamer glow  
+- loud gradients  
+- hyperactive animation  
+
+Favor:
+- clean lines  
+- clear hierarchy  
+- subtle delight  
+- thoughtful rhythm  
