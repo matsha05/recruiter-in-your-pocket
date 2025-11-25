@@ -1,155 +1,255 @@
-# Recruiter in Your Pocket — Design North Star and Principles
+# Recruiter in Your Pocket — Design Principles  
+**Crafted. Confident. Joyfully clear.**
 
-## DESIGN NORTH STAR
-Confident simplicity. The user sees their score and headline take instantly, then the next actions. Nothing extra.
+The design identity of Recruiter in Your Pocket should feel crafted, confident, and joyfully clear.  
+Every interaction should give anxious job seekers momentum, clarity, and emotional lift — without noise, clutter, or hype.
 
-Every UI and UX decision must increase:
-- clarity,
-- confident hierarchy,
-- insight visibility,
-- user momentum.
-
-Exploration mode: prototype only small, reversible treatments (a score block variant, a single accent line placement). Remove anything that adds noise. Document keepers briefly.
-
-Anything that introduces clutter, visual uncertainty, or extra chrome must be removed.
-
-The product aesthetic is editorial and assertively minimal.
-- Flat white/black surfaces with a single accent. No gradients, glows, neon, or “AI/gamer” styling.
-- Typography: clean modern sans (Space Grotesk, Manrope, Inter, Satoshi). Two weights only (400/500 for body, 600/700 for headings).
-- Signature motif: a thin left accent line on stack sections and headings.
-- Spacing: moderate rhythm; breathe but do not sprawl.
-
-Design and identity source of truth:
-- docs/design-principles.md
-- docs/vision.md
-
-### BRAND IDENTITY
-
-Recruiter in Your Pocket is:
-
-> A personal recruiting studio for clarity, confidence, and craft.
-
-The UI should feel like an elite recruiter’s report: sharp, deliberate, and free of ornament. Confidence comes from decisive hierarchy, not softness. The vision document (`docs/vision.md`) defines the product’s identity and core studio experience. All design decisions must stay aligned.
+Our goal is not sterility or extreme minimalism.  
+Our goal is intentional design that feels alive, premium, and expertly crafted.
 
 ---
 
-## DESIGN PRINCIPLES
+## DESIGN NORTH STAR  
+**Crafted clarity that builds confidence.**
 
-### 1. Clarity above everything
-Every screen reveals the score/headline and next moves in one second. No competing blocks. No decorative noise.
+Every UI decision must increase:
+- clarity,  
+- intentional hierarchy,  
+- insight visibility,  
+- emotional lift and user momentum,  
+- trust and polish.
 
-### 2. Confident hierarchy
-Lead with the score pill and one-line summary. Use the left accent line to anchor sections. One column. No margin notes.
+Clarity first.  
+Confidence always.  
+Delight when earned.
 
-### 3. Insight made unmistakable
-Scores, summaries, and stronger phrasing are visually prioritized. Nothing else competes.
-
-### 4. Remove everything unnecessary
-No extra borders, icons, or labels. Space is the primary separator; use a single accent line when needed.
-
-### 5. Direct, simple language
-Short sentences. Strong verbs. No corporate speak. Tone is a trusted recruiter, not a coach or hype voice.
-
-### 6. Motion kept minimal
-Only light hover states on controls. No entrance animations, spinners, or flourish.
-
-### 7. Consistency builds trust
-Spacing, typography, borders, and the accent line behave predictably across the app.
+Design and brand identity source of truth:
+- docs/design-principles.md  
+- docs/vision.md  
+- context.md  
+- docs/master-roadmap.md  
 
 ---
 
-## EXPERIENCE PRINCIPLES
+# DESIGN PRINCIPLES
 
-### 1. Deliver insight that feels earned
-The “wow” is the accurate read and stronger wording, not visuals. Users feel seen because the content lands fast.
+## 1. Crafted  
+Every element feels intentional and premium:
+- purposeful typography  
+- strong hierarchy  
+- dependable spacing rhythm  
+- subtle depth or motion used sparingly  
+- nothing accidental or generic  
 
-### 2. Build confidence through decisive clarity
-The user should leave thinking: “I know how I read and exactly what to fix next.”
-
-### 3. Surprise with value, not visuals
-No visual tricks. The value is the signal, rewrites, and next steps.
-
-### 4. Respect the user’s emotional state
-Career decisions are stressful. Language stays steady and human. No hype.
-
-### 5. Human, not corporate
-Tone is a trusted recruiter: honest, concise, warm enough to land, never fluffy.
-
-### 6. Meet the user where they are
-Beginners get clarity. Experts get nuance. Everyone feels understood.
-
-### 7. End every session with uplift
-End on a clear next move so users feel momentum.
+Crafted ≠ busy.  
+Crafted = designed with care.
 
 ---
 
-## SIGNATURE PATTERN
+## 2. Confident  
+The product must speak with the tone of a world-class recruiter:
+- clear  
+- direct  
+- steady  
+- decisive  
 
-The two core studios follow a consistent pattern:
+Confidence is conveyed through:
+- strong headings  
+- focused structure  
+- uncluttered layouts  
+- meaningful accenting  
+- minimal cognitive load  
 
-1. **Insight Stack**  
-   A single column of clear sections (score, summary, strengths, gaps, rewrites, missing wins, next steps).  
-   Each section has one obvious takeaway.
-
-2. **Signature Accent**  
-   A thin left accent line anchors section headings or cards. No margin notes.
-
-Current architecture:
-- Resume Review (live wedge)  
-- Offer Studio (next pillar; planned/disabled in UI)  
-- Interview Story Studio (future/backlog only if demand is real)  
-- Outreach and other cold email rewrites are not core modes
-
-This pattern must stay reusable as Offer ships and any future mode is proven.
-
-The layout and tone should feel like a crafted report, not a dashboard.
+No apologetic language.  
+No corporate vagueness.  
+No ambiguity.
 
 ---
 
-## HOW TO APPLY THESE PRINCIPLES
-- When adding UI: Does this increase clarity or calm?
-- When presenting insight: Is the takeaway unmistakable?
-- When writing copy: Can this be said more simply?
-- When designing flow: What is the user feeling at this step?
-- When choosing between designs: Pick the lowest cognitive load.
-- When unsure: remove complexity.
+## 3. Joyful Clarity  
+Clarity does not mean dull.
+
+We intentionally include small moments of delight that make users feel:
+- seen  
+- energized  
+- capable  
+- emotionally lighter  
+
+Examples:
+- a tasteful accent color  
+- a gentle reveal animation  
+- meaningful whitespace  
+- microcopy that feels warm instead of flat  
+
+Joy is earned, not decorative.
 
 ---
 
-## MANDATORY CODING GUIDELINES FOR IMPLEMENTATION
-- Use minimal, grid-consistent structure.  
-- Headings reinforce hierarchy, not decoration.  
-- Line spacing must support readability.  
-- Colors must be intentional and limited: white/black base, one accent.  
-- Buttons must clearly show primary vs. secondary.  
-- Insight containers must always be visually prioritized.  
-- All design changes must be checked against the Design North Star.
+## 4. No Noise  
+Avoid anything that introduces chaos or cheapness:
+- neon  
+- glow effects  
+- gamer gradients  
+- crowded borders  
+- decorative icons without meaning  
+- loud animations  
 
-### COLOR AND MOTION (DELIGHT WITHOUT NOISE)
-- One accent only; no multi-accent palettes.  
-- Soft gradients are allowed if they stay calm and low contrast.  
-- Subtle glow effects are allowed when used sparingly and only to support clarity or focus.  
-- Gentle shadows and depth are allowed when they feel premium and minimal.  
-- Atmospheric lighting and soft highlights are acceptable if they reinforce calm clarity.  
-- No neon colors.  
-- No harsh contrast glow or “gamer” effects.  
-- No loud or high-saturation gradients.  
-- No hyper-polished, glossy, or skeuomorphic effects.  
-- Color is for signal, not decoration: score arrival micro-flash (<150ms), accent line intensifying on new insights, one metric/verb in a rewrite, and micro hovers/focus rings.  
-- Never use color for backgrounds, blobs, celebrations, or illustrations.  
-- Litmus: if removing the color breaks clarity, it was decorative noise—remove it.  
-- Motion stays minimal: light hover/click feedback; no loops, confetti, or playful animations.
-
-Guiding intention: calm, minimal, studio grade, premium, non-hyped, with subtle depth permitted.
+Premium ≠ flashy.  
+Premium = intentional, clean, expressive.
 
 ---
 
-## CHANGE MANAGEMENT
-When updating this file, Codex must:
-1. Preserve structure.  
-2. Preserve intent.  
-3. Improve clarity.  
-4. Reinforce the North Star.  
-5. Add rules only if they increase clarity, calm, insight visibility, or confidence.
+## 5. Human and Approachable  
+The UI must work for all backgrounds:  
+tech, retail, ministry, nonprofit, legal, education.
 
-END OF DOCUMENT.
+We prioritize:
+- readable type  
+- predictable spacing  
+- warmth over formality  
+- simple, honest language  
+
+Users should feel welcomed and understood.
+
+---
+
+## 6. Insight First  
+Users come for clarity about their resume.
+
+Make the insight stack unmistakable:
+- clear section headings  
+- clean spacing  
+- strong first-take summaries  
+- no elements competing with insight  
+- the main takeaway visible in one second  
+
+If something doesn’t help the user understand their story faster, remove it.
+
+---
+
+## 7. Premium Over Perfect  
+We favor:
+- clarity over polish paralysis  
+- crafted moments over sterile minimalism  
+- confidence over neutrality  
+- expressive restraint over flatness  
+
+The product should feel alive, not mechanical.
+
+---
+
+## 8. Consistency Builds Trust  
+Codex must maintain consistent:
+- spacing  
+- typography rules  
+- ordering of insights  
+- interaction patterns  
+- tone and microcopy  
+- accent usage  
+
+Predictability = ease.  
+Ease builds trust.
+
+---
+
+# EXPERIENCE PRINCIPLES
+
+## 1. Deliver Insight That Feels True  
+The emotional “wow” comes from:
+- honest reads  
+- sharper bullets  
+- clear strengths  
+- fixable gaps  
+
+Design supports insight rather than competing with it.
+
+---
+
+## 2. Build Confidence  
+Users should leave thinking:
+> “I understand how I read. I know exactly what to fix. And I feel better than when I started.”
+
+Design should reinforce emotional lift.
+
+---
+
+## 3. Delight Without Distraction  
+Use subtle, tasteful expressions:
+- soft depth  
+- light hover motion  
+- slight accent shift  
+- micro animations < 200ms  
+- one meaningful color accent  
+
+Delight must support understanding, not distract from it.
+
+---
+
+## 4. Respect the Emotional State  
+Job seeking is vulnerable.
+
+Copy stays:
+- warm  
+- honest  
+- direct  
+- supportive  
+
+Never corporate.  
+Never hyped.  
+Never fluffy.
+
+---
+
+## 5. End Every Session With Momentum  
+Users should feel their next move is obvious and achievable.
+
+---
+
+# SIGNATURE PATTERN
+
+## 1. Insight Stack  
+A single vertical stack of:
+- Score  
+- How your story lands  
+- Strengths  
+- Harder-to-see areas  
+- Stronger phrasing  
+- Enhancement notes  
+- Next steps  
+
+Each section has one obvious takeaway.
+
+## 2. Signature Accent  
+A refined accent (line or highlight) used sparingly and intentionally to guide the eye.  
+Not decorative.  
+Not overused.
+
+The layout and tone should feel like a crafted report from an expert — not a dashboard.
+
+---
+
+# COLOR, DEPTH & MOTION RULES
+
+- One primary accent color; intentional and premium  
+- Soft depth allowed  
+- Gentle gradients allowed if subtle and high-end  
+- Micro-animations allowed under 200ms for clarity or reinforcement  
+- No neon  
+- No heavy glow  
+- No confetti or playful celebrations  
+- Motion must be functional, not decorative  
+- Color reinforces meaning; never noise  
+
+Litmus test:  
+If removing it improves clarity, it was noise.
+
+---
+
+# HOW TO APPLY THESE PRINCIPLES
+- Does this increase clarity or confidence?  
+- Does this feel intentionally crafted?  
+- Does this spark a small moment of joy or momentum?  
+- Does it reduce cognitive load?  
+- Does it match the Insight Stack rules?  
+- Is this a premium design decision or decoration?  
+- When unsure: simplify, clarify, and express confidence.
