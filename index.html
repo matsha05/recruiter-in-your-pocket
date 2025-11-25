@@ -541,6 +541,25 @@
       display: none;
     }
 
+    body.focus-mode .tool-layout {
+      grid-template-columns: minmax(0, 1fr);
+      margin-top: 10px;
+    }
+
+    body.focus-mode .tool-layout::after {
+      display: none;
+    }
+
+    body.focus-mode .card-input {
+      display: none;
+    }
+
+    body.focus-mode .card-output {
+      grid-column: 1 / -1;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
     .card-input {
       margin-top: 0;
       border-radius: 20px;
@@ -630,6 +649,35 @@
       display: block;
       margin-top: 4px;
       margin-bottom: 6px;
+    }
+
+    .focus-controls {
+      display: flex;
+      justify-content: flex-end;
+      margin: 4px 0 10px;
+    }
+
+    .focus-button {
+      border: none;
+      background: transparent;
+      color: var(--accent-boost);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      padding: 4px 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: color 0.12s ease, text-decoration-color 0.12s ease;
+    }
+
+    .focus-button:hover {
+      color: var(--accent-strong);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
     }
 
     .results-top {
@@ -1163,6 +1211,10 @@
       border: 1px solid rgba(12, 17, 32, 0.08);
       border-radius: 12px;
       box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    .result-section + .result-heading {
+      margin-top: -8px;
     }
 
     .result-heading:first-of-type {
@@ -1919,6 +1971,10 @@
               </div>
               <div class="results-header-row">
                 <h2 id="results-title" class="card-title">Recruiter feedback</h2>
+                <div class="focus-controls">
+                  <button id="focus-enter" class="focus-button hidden" type="button">Focus on report</button>
+                  <button id="focus-exit" class="focus-button hidden" type="button">Back to editor</button>
+                </div>
               <div id="results-subtitle">
                 Calibrated score, quick read on how you come across, what’s working, and what to fix next.
               </div>
@@ -2087,6 +2143,17 @@
   const ideasBodyEl = document.getElementById("ideas-body");
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
   const ideasStatusEl = document.getElementById("ideas-status");
+  const focusEnterEl = document.getElementById("focus-enter");
+  const focusExitEl = document.getElementById("focus-exit");
+  let focusMode = false;
+  let hasReportContent = false;
+
+  function setFocusMode(enabled) {
+    focusMode = Boolean(enabled);
+    document.body.classList.toggle("focus-mode", focusMode);
+    if (focusEnterEl) focusEnterEl.classList.toggle("hidden", focusMode || !hasReportContent);
+    if (focusExitEl) focusExitEl.classList.toggle("hidden", !focusMode || !hasReportContent);
+  }
   const paywallBackdropEl = document.getElementById("paywall-backdrop");
   const paywallUpgradeEl = document.getElementById("paywall-upgrade");
   const paywallCloseEl = document.getElementById("paywall-close");
@@ -2584,8 +2651,10 @@
       score_label: scoreLabelText,
       score_comment_short: scoreCommentShort,
       score_comment_long: scoreCommentLong,
-      suggested_bullets: suggestedBullets
+      suggested_bullets: suggestedBullets,
+      missing_wins: missingWins
     } = data || {};
+    hasReportContent = true;
 
     let html = "";
 
@@ -2599,6 +2668,13 @@
     } else {
       clearScoreBadge();
     }
+
+    if (Array.isArray(missingWins) && missingWins.length > 0 && ideasInlineEl) {
+      ideasInlineEl.classList.remove("hidden");
+    }
+
+    if (focusEnterEl && !focusMode) focusEnterEl.classList.remove("hidden");
+    if (focusExitEl && focusMode) focusExitEl.classList.remove("hidden");
 
     renderSummary(summary);
 
@@ -2884,6 +2960,7 @@
       return;
     }
 
+    setFocusMode(false);
     statusEl.textContent = "";
     setStatus("");
       runButton.disabled = true;
@@ -3034,6 +3111,12 @@
   }
 
   runButton.addEventListener("click", runAnalysis);
+  if (focusEnterEl) {
+    focusEnterEl.addEventListener("click", () => setFocusMode(true));
+  }
+  if (focusExitEl) {
+    focusExitEl.addEventListener("click", () => setFocusMode(false));
+  }
 
   copyButtonEl.addEventListener("click", async () => {
     const summaryText = resultsSummaryEl ? resultsSummaryEl.innerText.trim() : "";
@@ -3357,10 +3440,12 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
 
     html += `<div class="ideas-section-card"><div class="ideas-section-title">Turn it into a bullet</div><p>Use: verb + what you owned + the outcome (ideally with a number). Skip it if it’s already covered in your resume.</p></div>`;
 
-    ideasBodyEl.innerHTML = html || "";
-    ideasBodyEl.classList.remove("empty");
-    if (ideasInlineEl) ideasInlineEl.classList.remove("hidden");
-  }
+      ideasBodyEl.innerHTML = html || "";
+      ideasBodyEl.classList.remove("empty");
+      if (ideasInlineEl) ideasInlineEl.classList.remove("hidden");
+      if (focusEnterEl) focusEnterEl.classList.remove("hidden");
+      if (focusExitEl) focusExitEl.classList.add("hidden");
+    }
 
 
     (function init() {
