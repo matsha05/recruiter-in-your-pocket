@@ -291,7 +291,6 @@
     .proof-editorial {
       margin-top: 42px;
       padding: 14px 16px;
-      border-left: 2px solid var(--accent-boost);
       background: transparent;
       border-radius: 0;
       box-shadow: none;
@@ -1425,36 +1424,35 @@
       line-height: 1.5;
     }
 
-    .accent-left {
+    .accent-card-primary {
       position: relative;
-      padding-left: var(--space-md);
+      overflow: hidden;
     }
 
-    .accent-left::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: var(--accent-width);
-      height: 100%;
-      background: var(--accent);
-      transform-origin: top;
-      transform: scaleY(0);
-      animation: accentWipe 0.14s ease-out forwards;
-    }
-
-    .summary-primary-accent {
-      position: relative;
-      padding-left: calc(var(--space-xl) - var(--accent-width-strong));
-    }
-
-    .summary-primary-accent::before {
+    .accent-card-primary::before {
       content: "";
       position: absolute;
       left: 0;
       top: 0;
       bottom: 0;
-      width: var(--accent-width-strong);
+      width: 4px;
+      background: var(--accent);
+      border-radius: var(--radius-card);
+    }
+
+    .accent-heading {
+      position: relative;
+      padding-left: var(--space-md);
+    }
+
+    .accent-heading::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 1.6em;
       background: var(--accent);
       border-radius: var(--radius-pill);
     }
@@ -1536,7 +1534,8 @@
       .report-accent-line,
       .report-section,
       .report-title::after,
-      .accent-left::before {
+      .accent-heading::before,
+      .accent-card-primary::before {
         animation: none !important;
         transition: none !important;
         transform: none !important;
@@ -2162,7 +2161,7 @@
           No signup. No fluff. Just a clear read on your story.
         </p>
 
-        <div class="proof-editorial accent-left" aria-label="Testimonials from users">
+        <div class="proof-editorial accent-card-primary" aria-label="Testimonials from users">
           <div class="proof-editorial-heading">What early users say</div>
           <div class="proof-editorial-quote">“Honestly, I thought my resume was fine, but this showed me what actually mattered and what I could finally cut.”</div>
           <div class="proof-editorial-quote">“It connected my past roles into a story I didn’t even realize I was trying to tell.”</div>
@@ -2258,7 +2257,7 @@
                   This number reflects how clearly your story reads in a quick scan. Below, you’ll see the strengths that already stand out, the details that get lost, and the simple edits that will make your impact easier to see.
                 </div>
               </div>
-              <div id="results-summary" class="results-summary summary-primary-accent empty">
+              <div id="results-summary" class="results-summary accent-card-primary empty">
                 Your recruiter’s take will appear here.
               </div>
               <div id="status-bar" class="status-bar"></div>
@@ -2280,16 +2279,16 @@
               role="region"
               aria-label="Resume feedback results"
             >
-              <div class="result-heading report-section accent-left">What’s working</div>
+              <div class="result-heading report-section accent-heading">What’s working</div>
               <div class="result-subline">Strengths that show up clearly.</div>
 
-              <div class="result-heading report-section accent-left">What’s harder to see</div>
+              <div class="result-heading report-section accent-heading">What’s harder to see</div>
               <div class="result-subline">Parts of your impact that don’t come through as strongly.</div>
 
-              <div class="result-heading report-section accent-left">Stronger phrasing you can use</div>
+              <div class="result-heading report-section accent-heading">Stronger phrasing you can use</div>
               <div class="result-subline">Clearer versions of a few bullets.</div>
 
-              <div class="result-heading report-section accent-left">Next steps</div>
+              <div class="result-heading report-section accent-heading">Next steps</div>
               <div class="result-subline">Simple fixes you can make this week.</div>
             </div>
 
@@ -2313,7 +2312,7 @@
             <div id="ideas-modal" class="ideas-modal" aria-hidden="true">
               <div id="ideas-backdrop" class="ideas-backdrop"></div>
               <div class="ideas-sheet" id="ideas-sheet" role="dialog" aria-modal="true" aria-labelledby="ideas-modal-title">
-                <div class="ideas-sheet-header accent-left">
+                <div class="ideas-sheet-header accent-card-primary">
                   <div>
                     <div id="ideas-modal-title" class="ideas-sheet-title">Missing wins</div>
                     <div class="ideas-sheet-subtitle">Let’s look for wins you have not written yet or forgot about.</div>
@@ -2878,7 +2877,7 @@
 
       if (headingMatch) {
         closeList();
-        html += `<div class="result-heading report-section accent-left">${escapeHtml(headingMatch[2])}</div>`;
+        html += `<div class="result-heading report-section accent-heading">${escapeHtml(headingMatch[2])}</div>`;
       } else if (originalMatch) {
         closeList();
         html += `<div class="rewrite-label">Original:</div>`;
@@ -3011,7 +3010,7 @@
 
     // What's Working
     if (Array.isArray(strengths) && strengths.length > 0) {
-      html += `<div class="result-heading result-section accent-left">What’s working</div>`;
+      html += `<div class="result-heading result-section accent-heading">What’s working</div>`;
       html += `<div class="result-subline">Strengths that show up clearly.</div>`;
       html += `<ul class="result-list">`;
       for (const item of strengths) {
@@ -3023,7 +3022,7 @@
 
     // What’s harder to see
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="result-heading result-section accent-left">What’s harder to see</div>`;
+      html += `<div class="result-heading result-section accent-heading">What’s harder to see</div>`;
       html += `<div class="result-subline">Parts of your impact that don’t come through as strongly.</div>`;
       html += `<ul class="result-list">`;
       for (const item of gaps) {
@@ -3084,7 +3083,7 @@
           groupHtml += `</div>`;
 
           if (enhancementNote) {
-            groupHtml += `<div class="rewrite-enhancement-note accent-left">${escapeHtml(String(enhancementNote))}</div>`;
+            groupHtml += `<div class="rewrite-enhancement-note accent-heading">${escapeHtml(String(enhancementNote))}</div>`;
           }
 
           groupHtml += `</div>`;
@@ -3092,7 +3091,7 @@
         return groupHtml;
       };
 
-      html += `<div class="result-heading result-section accent-left">Stronger phrasing you can use</div>`;
+      html += `<div class="result-heading result-section accent-heading">Stronger phrasing you can use</div>`;
       html += `<div class="result-subline">Clearer versions of a few bullets.</div>`;
 
       if (clarityGroup.length > 0) {
@@ -3106,7 +3105,7 @@
       }
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
       // Fallback: use suggested_bullets from backend as a simple list
-      html += `<div class="result-heading result-section accent-left">Stronger phrasing you can use</div>`;
+      html += `<div class="result-heading result-section accent-heading">Stronger phrasing you can use</div>`;
       html += `<div class="result-subline">Clearer versions of a few bullets.</div>`;
       html += `<ul class="result-list">`;
       for (const bullet of suggestedBullets) {
@@ -3123,7 +3122,7 @@
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-    html += `<div class="result-heading result-section accent-left next-steps-heading">Next steps</div>`;
+    html += `<div class="result-heading result-section accent-heading next-steps-heading">Next steps</div>`;
     html += `<div class="result-subline">Simple fixes you can make this week.</div>`;
     html += `<ul class="result-list">`;
     for (const step of fixedNextSteps) {
