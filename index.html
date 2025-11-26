@@ -730,19 +730,8 @@
     }
 
     .report-view {
-      transition: opacity 0.14s ease-out, transform 0.14s ease-out;
-      transform: translateY(0) scale(1);
       opacity: 1;
-    }
-
-    .report-view.report-view--reveal {
-      opacity: 0;
-      transform: translateY(3px);
-    }
-
-    .report-view.report-view--focus-start {
-      opacity: 0;
-      transform: translateY(0) scale(0.98);
+      transform: translateY(0) scale(1);
     }
 
     .results-actions {
@@ -767,11 +756,6 @@
       background: transparent;
       border: none;
       box-shadow: none;
-    }
-
-    .score-wrapper.refreshed,
-    .score-pill.refreshed {
-      animation: fadeUp 0.18s ease-out;
     }
 
     .score-wrapper.hidden {
@@ -812,24 +796,33 @@
       position: relative;
     }
 
-    #results-title.report-title::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      height: 2px;
-      width: 0;
-      background: var(--accent);
-      transition: width 0.08s ease-out;
-      transform-origin: left center;
+    .results-bridge {
+      margin: 8px 0 12px;
     }
 
-    .report-view.report-ready #results-title.report-title::after {
+    .report-accent-line {
+      height: 2px;
+      background: var(--accent);
+      border-radius: 999px;
+      margin: 8px 0 6px;
+      transform-origin: left;
       width: 100%;
     }
 
-    .results-bridge {
-      margin: 8px 0 12px;
+    .report-card.report-ready {
+      animation: reportCardIn 0.2s ease-out both;
+    }
+
+    .report-card.report-ready .score-pill {
+      animation: scorePillPop 0.18s ease-out 0.06s both;
+    }
+
+    .report-card.report-ready .report-accent-line {
+      animation: accentLineDraw 0.22s ease-out 0.14s forwards;
+    }
+
+    .report-card.report-ready .report-section {
+      animation: reportSectionIn 0.2s ease-out both;
     }
 
     .bridge-heading {
@@ -1259,6 +1252,52 @@
       color: var(--text-muted);
     }
 
+    @keyframes reportCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scorePillPop {
+      from {
+        transform: scale(0.92);
+        background-color: color-mix(in srgb, var(--score-pill-bg) 85%, white 15%);
+      }
+      70% {
+        transform: scale(1.02);
+        background-color: color-mix(in srgb, var(--score-pill-bg) 92%, white 8%);
+      }
+      100% {
+        transform: scale(1);
+        background-color: var(--score-pill-bg);
+      }
+    }
+
+    @keyframes accentLineDraw {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes reportSectionIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -1305,10 +1344,6 @@
       color: var(--text-muted);
       margin-bottom: 8px;
       line-height: 1.5;
-    }
-
-    .section-reveal {
-      animation: fadeUp 0.2s ease-out both;
     }
 
     .result-paragraph {
@@ -1383,8 +1418,15 @@
         opacity: 1;
       }
 
-      .section-reveal {
-        animation: none;
+      .report-view,
+      .report-card,
+      .score-pill,
+      .report-accent-line,
+      .report-section {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
       }
 
       .score-badge {
@@ -1393,12 +1435,6 @@
 
       .score-badge.score-badge--glow {
         background-color: var(--score-pill-bg);
-      }
-
-      .report-title::after,
-      .report-view.report-ready .report-title::after {
-        transition: none;
-        width: 100%;
       }
 
       .run-button.processing {
@@ -2076,13 +2112,13 @@
 
         <!-- Right column -->
         <section class="card card-output" aria-label="Results panel">
-          <div class="card-inner report-view" id="report-view">
+          <div class="card-inner report-view report-card" id="report-view">
           <div class="results-top">
               <div class="score-header-inside">
                 <div id="score-wrapper" class="score-wrapper hidden">
                   <div
                     id="score-badge"
-                    class="score-badge"
+                    class="score-badge score-pill"
                     tabindex="0"
                     aria-describedby="score-tooltip"
                   ></div>
@@ -2095,6 +2131,7 @@
                   <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
                 </div>
               </div>
+              <div class="report-accent-line"></div>
               <div class="results-bridge">
                 <div class="bridge-heading">What this means</div>
                 <div id="results-subtitle">
@@ -2123,16 +2160,16 @@
               role="region"
               aria-label="Resume feedback results"
             >
-              <div class="result-heading">What’s working</div>
+              <div class="result-heading report-section">What’s working</div>
               <div class="result-subline">Strengths that show up clearly.</div>
 
-              <div class="result-heading">What’s harder to see</div>
+              <div class="result-heading report-section">What’s harder to see</div>
               <div class="result-subline">Parts of your impact that don’t come through as strongly.</div>
 
-              <div class="result-heading">Stronger phrasing you can use</div>
+              <div class="result-heading report-section">Stronger phrasing you can use</div>
               <div class="result-subline">Clearer versions of a few bullets.</div>
 
-              <div class="result-heading">Next steps</div>
+              <div class="result-heading report-section">Next steps</div>
               <div class="result-subline">Simple fixes you can make this week.</div>
             </div>
 
@@ -2223,6 +2260,7 @@
   const resultsBodyEl = document.getElementById("results-body");
   const resultsSkeletonEl = document.getElementById("results-skeleton");
   const reportViewEl = document.getElementById("report-view");
+  const reportAccentLineEl = document.querySelector(".report-accent-line");
   const modePillEl = document.getElementById("mode-pill");
   const scoreWrapperEl = document.getElementById("score-wrapper");
   const scoreBandsTriggerEl = document.getElementById("score-bands-trigger");
@@ -2720,7 +2758,7 @@
 
       if (headingMatch) {
         closeList();
-        html += `<div class="result-heading">${escapeHtml(headingMatch[2])}</div>`;
+        html += `<div class="result-heading report-section">${escapeHtml(headingMatch[2])}</div>`;
       } else if (originalMatch) {
         closeList();
         html += `<div class="rewrite-label">Original:</div>`;
@@ -2760,14 +2798,14 @@
       const limited = sentences.slice(0, 3);
       const paragraph = limited.join(" ");
       resultsSummaryEl.innerHTML = `
-        <div class="result-heading" style="padding:12px 14px;border-top:none;margin-top:0;">How your resume reads</div>
+        <div class="result-heading report-section" style="padding:12px 14px;border-top:none;margin-top:0;">How your resume reads</div>
         <div class="result-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">${escapeHtml(paragraph || clean)}</p>
       `;
       resultsSummaryEl.classList.remove("empty");
     } else {
       resultsSummaryEl.innerHTML = `
-        <div class="result-heading" style="padding:12px 14px;border-top:none;margin-top:0;">How your resume reads</div>
+        <div class="result-heading report-section" style="padding:12px 14px;border-top:none;margin-top:0;">How your resume reads</div>
         <div class="result-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">Your summary will appear here.</p>
       `;
@@ -2788,27 +2826,25 @@
     if (!elements.length) return;
     if (prefersReducedMotion()) {
       elements.forEach((el) => {
-        el.classList.remove("section-reveal");
         el.style.removeProperty("animation-delay");
+        el.classList.add("report-section");
       });
       return;
     }
-    let delay = 0;
+    let delay = 260;
     elements.forEach((el) => {
-      el.classList.remove("section-reveal");
-      el.style.animationDelay = "";
-      void el.offsetWidth;
-      el.classList.add("section-reveal");
+      el.classList.add("report-section");
       el.style.animationDelay = `${delay}ms`;
-      delay += 50;
+      delay += 80;
     });
   }
 
   function triggerReportReveal() {
     if (!reportViewEl) return;
-    reportViewEl.classList.add("report-view--reveal");
+    applySectionReveal();
+    reportViewEl.classList.remove("report-ready");
     void reportViewEl.offsetWidth;
-    reportViewEl.classList.remove("report-view--reveal");
+    reportViewEl.classList.add("report-ready");
   }
 
   function triggerFocusEntrance() {
@@ -2816,13 +2852,6 @@
     reportViewEl.classList.add("report-view--focus-start");
     void reportViewEl.offsetWidth;
     reportViewEl.classList.remove("report-view--focus-start");
-  }
-
-  function triggerReportTitleSweep() {
-    if (!reportViewEl) return;
-    reportViewEl.classList.remove("report-ready");
-    void reportViewEl.offsetWidth;
-    reportViewEl.classList.add("report-ready");
   }
 
   function renderStructuredResults(data) {
@@ -2974,7 +3003,7 @@
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-    html += `<div class="result-heading next-steps-heading">Next steps</div>`;
+    html += `<div class="result-heading result-section next-steps-heading">Next steps</div>`;
     html += `<div class="result-subline">Simple fixes you can make this week.</div>`;
     html += `<ul class="result-list">`;
     for (const step of fixedNextSteps) {
@@ -2993,7 +3022,6 @@
     resultsBodyEl.classList.remove("empty");
     resultsBodyEl.classList.add("results-body-better-flash");
     setTimeout(() => resultsBodyEl.classList.remove("results-body-better-flash"), 220);
-    applySectionReveal();
   }
 
   function setMode(mode) {
@@ -3255,7 +3283,6 @@
 
       renderStructuredResults(structured);
       triggerReportReveal();
-      triggerReportTitleSweep();
       resultsBodyEl.classList.remove("empty");
       resultsBodyEl.classList.remove("results-error");
       if (resultsSkeletonEl) {
