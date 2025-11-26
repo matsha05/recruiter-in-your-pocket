@@ -7,7 +7,7 @@ This doc is the single source of truth for what it means to move from MVP to a r
 
 North star:
 
-- Give people calm, honest clarity about their career quickly.
+- Give people crafted, honest clarity about their career quickly.
 - Feel like an elite recruiter studio, not an AI toy.
 - Every session should create at least one "ok wow, that truly helped" moment.
 
@@ -152,7 +152,7 @@ The UI should feel like a studio grade report, not a landing page.
 ### T3.1 Align visuals to the design north star
 
 - Remove heavy gradients and glow where they compete with content.
-- Keep a single calm accent and the left accent line as the visual signature.
+- Keep a single premium accent and the left accent line as the visual signature.
 - Enforce a single column Insight Stack in the results:
   - Score.
   - Summary ("How your resume reads").
@@ -211,4 +211,4 @@ These are important, but only after resume review feels rock solid and monetized
 
 - Always ship in thin slices that improve a real user moment.
 - When in doubt, choose the change that increases trust, clarity, or honesty.
-- If a task does not help users feel calmer, clearer, or more confident, cut or delay it.
+- If a task does not help users feel clearer, more grounded, or more confident, cut or delay it.
