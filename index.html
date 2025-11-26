@@ -9,25 +9,25 @@
     @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap");
 
     :root {
-      --bg-page: #f3f5f9;
+      --bg-page: #f5f6f8;
       --bg-panel: #ffffff;
       --bg-card: #ffffff;
       --border-subtle: #d7dae3;
       --border-strong: #c6cbd6;
-      --accent: #2563eb;
-      --accent-boost: #1d4ed8;
-      --accent-strong: #1e3a8a;
-      --text-main: #0e1117;
+      --accent: #1f3fb6;
+      --accent-boost: #1b3ab6;
+      --accent-strong: #172f8a;
+      --text-main: #0d1018;
       --text-soft: #3f4552;
-      --text-muted: #667085;
-      --surface-tint: #f1f3f8;
+      --text-muted: #6b7280;
+      --surface-tint: #eef1f6;
       --success: #15803d;
       --error: #b91c1c;
       --font-display: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-body: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --fs-hero: 40px;
       --fs-h1: 28px;
-      --fs-h2: 22px;
+      --fs-h2: 20px;
       --fs-h3: 18px;
       --fs-body: 15px;
       --fs-small: 13px;
@@ -42,9 +42,10 @@
       --radius-card: 18px;
       --radius-input: 12px;
       --radius-pill: 999px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 18px 30px rgba(15, 23, 42, 0.06);
       --accent-width: 2px;
       --accent-width-strong: 6px;
+      --stack-gap: 16px;
     }
 
     * {
@@ -57,7 +58,7 @@
     /* Base type: Manrope 15px / 1.7 for body text */
     body {
       min-height: 100vh;
-      background: linear-gradient(180deg, #f6f8fb 0%, #eef1f7 60%, #e8ecf5 100%);
+      background: var(--bg-page);
       color: var(--text-main);
       display: flex;
       justify-content: center;
@@ -72,7 +73,7 @@
       border-radius: var(--radius-card);
       border: 1px solid rgba(12, 17, 32, 0.06);
       background: var(--bg-panel);
-      box-shadow: var(--shadow-soft), 0 0 0 1px rgba(15, 23, 42, 0.03);
+      box-shadow: var(--shadow-soft), 0 0 0 1px rgba(15, 23, 42, 0.02);
       padding: var(--space-2xl);
       position: relative;
     }
@@ -176,8 +177,8 @@
       max-width: 1100px;
       border-radius: var(--radius-card);
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(15, 23, 42, 0.1) 100%);
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+      background: #f9fafc;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
     }
 
     .hero::before {
@@ -381,37 +382,10 @@
     .tool-layout {
       position: relative;
       margin-top: var(--space-lg);
-      display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.05fr);
+      display: flex;
+      flex-direction: column;
       gap: var(--space-2xl);
-      align-items: start;
-    }
-
-    .tool-layout::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 10px;
-      bottom: 10px;
-      width: 1px;
-      background: linear-gradient(
-        180deg,
-        rgba(15, 23, 42, 0) 0%,
-        rgba(15, 23, 42, 0.08) 14%,
-        rgba(15, 23, 42, 0.08) 86%,
-        rgba(15, 23, 42, 0) 100%
-      );
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    @media (max-width: 860px) {
-      .tool-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .tool-layout::after {
-        display: none;
-      }
+      align-items: stretch;
     }
 
     .card {
@@ -433,19 +407,21 @@
       background: var(--bg-card);
       border-radius: 16px;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      padding: 14px 14px 18px;
+      overflow: hidden;
     }
 
     .card-output::before {
       content: "";
       position: absolute;
-      left: 16px;
-      top: 18px;
-      bottom: 18px;
-      width: 2px;
+      left: 14px;
+      top: 14px;
+      bottom: 14px;
+      width: 3px;
       border-radius: 8px;
       background: var(--accent);
-      opacity: 0.12;
+      opacity: 0.3;
       pointer-events: none;
     }
 
@@ -764,12 +740,12 @@
     }
 
     .results-top {
-      background: linear-gradient(180deg, #f7f8fc 0%, #f1f3f8 100%);
+      background: #f8f9fb;
       border: 1px solid var(--border-subtle);
       border-radius: 14px;
       padding: 22px 16px 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+      margin-bottom: 14px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
 
     .report-view {
@@ -1237,14 +1213,12 @@
 
     #results-body {
       border: 1px solid var(--border-subtle);
-      padding: 12px 14px 12px;
+      padding: 14px 18px;
       line-height: 1.65;
-      max-height: 480px;
-      overflow-y: auto;
       white-space: normal;
       font-weight: 400;
       margin-top: 8px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
       background: #ffffff;
       border-radius: 12px;
     }
@@ -1397,32 +1371,47 @@
     #results-body {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: var(--stack-gap);
     }
 
-    .result-heading {
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--stack-gap);
+      position: relative;
+    }
+
+    .stack::before {
+      content: "";
+      position: absolute;
+      left: -12px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, rgba(31, 63, 182, 0.12) 100%);
+      border-radius: var(--radius-pill);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .stack-section {
+      padding: 6px 0;
+    }
+
+    .stack-heading {
       font-family: var(--font-display);
       font-size: var(--fs-h2);
       font-weight: 700;
-      margin-top: var(--space-lg);
-      margin-bottom: var(--space-xs);
       color: var(--text-main);
       letter-spacing: -0.02em;
-      padding-top: var(--space-sm);
-      border-top: 1px solid rgba(148, 163, 184, 0.6);
-      line-height: 1.35;
+      margin-bottom: 4px;
+      line-height: 1.3;
     }
 
-    .result-heading:first-of-type {
-      border-top: none;
-      padding-top: 0;
-      margin-top: var(--space-sm);
-    }
-
-    .result-subline {
+    .stack-subline {
       font-size: var(--fs-small);
       color: var(--text-muted);
-      margin-bottom: var(--space-sm);
+      margin-bottom: 8px;
       line-height: 1.5;
     }
 
@@ -2285,21 +2274,26 @@
 
             <div
               id="results-body"
-              class="empty"
+              class="empty stack"
               role="region"
               aria-label="Resume feedback results"
             >
-              <div class="result-heading report-section accent-heading">What’s working</div>
-              <div class="result-subline">Strengths that show up clearly.</div>
-
-              <div class="result-heading report-section accent-heading">What’s harder to see</div>
-              <div class="result-subline">Parts of your impact that don’t come through as strongly.</div>
-
-              <div class="result-heading report-section accent-heading">Stronger phrasing you can use</div>
-              <div class="result-subline">Clearer versions of a few bullets.</div>
-
-              <div class="result-heading report-section accent-heading">Next steps</div>
-              <div class="result-subline">Simple fixes you can make this week.</div>
+              <div class="stack-section">
+                <div class="stack-heading">What’s working</div>
+                <div class="stack-subline">Strengths that show up clearly.</div>
+              </div>
+              <div class="stack-section">
+                <div class="stack-heading">What’s harder to see</div>
+                <div class="stack-subline">Parts of your impact that don’t come through as strongly.</div>
+              </div>
+              <div class="stack-section">
+                <div class="stack-heading">Stronger phrasing you can use</div>
+                <div class="stack-subline">Clearer versions of a few bullets.</div>
+              </div>
+              <div class="stack-section">
+                <div class="stack-heading">Next steps</div>
+                <div class="stack-subline">Simple fixes you can make this week.</div>
+              </div>
             </div>
 
             <div id="results-actions-bottom" class="results-actions results-actions-bottom hidden">
@@ -2423,6 +2417,7 @@
     : null;
   let focusMode = false;
   let hasReportContent = false;
+  let hasLoggedPaste = false;
 
   function setFocusMode(enabled) {
     focusMode = Boolean(enabled);
@@ -2453,6 +2448,11 @@
   const FREE_RUN_LIMIT = 100;
   const RUN_COUNT_KEY = "rip-free-runs-v1";
   const PAID_KEY = "rip-paid-v1";
+
+  // Minimal event logger for future telemetry wiring
+  function logEvent(name, data = {}) {
+    console.log("[event]", name, data); // TODO: connect to real telemetry endpoint
+  }
 
   function getRunCount() {
     const raw = localStorage.getItem(RUN_COUNT_KEY);
@@ -2568,6 +2568,13 @@
       resetIdeasSection();
       if (ideasInlineEl) ideasInlineEl.classList.add("hidden");
       closeIdeasModal();
+    }
+  });
+
+  inputEl.addEventListener("paste", () => {
+    if (!hasLoggedPaste) {
+      logEvent("resume_pasted");
+      hasLoggedPaste = true;
     }
   });
 
@@ -2927,15 +2934,15 @@
       const limited = sentences.slice(0, 3);
       const paragraph = limited.join(" ");
       resultsSummaryEl.innerHTML = `
-        <div class="result-heading report-section">How your resume reads</div>
-        <div class="result-subline">A quick read on how your resume actually lands.</div>
+        <div class="stack-heading">How your resume reads</div>
+        <div class="stack-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">${escapeHtml(paragraph || clean)}</p>
       `;
       resultsSummaryEl.classList.remove("empty");
     } else {
       resultsSummaryEl.innerHTML = `
-        <div class="result-heading report-section">How your resume reads</div>
-        <div class="result-subline">A quick read on how your resume actually lands.</div>
+        <div class="stack-heading">How your resume reads</div>
+        <div class="stack-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">Your summary will appear here.</p>
       `;
       resultsSummaryEl.classList.add("empty");
@@ -3020,26 +3027,22 @@
 
     // What's Working
     if (Array.isArray(strengths) && strengths.length > 0) {
-      html += `<div class="result-heading result-section accent-heading">What’s working</div>`;
-      html += `<div class="result-subline">Strengths that show up clearly.</div>`;
-      html += `<ul class="result-list">`;
+      html += `<div class="stack-section"><div class="stack-heading">What’s working</div><div class="stack-subline">Strengths that show up clearly.</div><ul class="result-list">`;
       for (const item of strengths) {
         if (!item) continue;
         html += `<li>${escapeHtml(String(item))}</li>`;
       }
-      html += `</ul>`;
+      html += `</ul></div>`;
     }
 
     // What’s harder to see
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="result-heading result-section accent-heading">What’s harder to see</div>`;
-      html += `<div class="result-subline">Parts of your impact that don’t come through as strongly.</div>`;
-      html += `<ul class="result-list">`;
+      html += `<div class="stack-section"><div class="stack-heading">What’s harder to see</div><div class="stack-subline">Parts of your impact that don’t come through as strongly.</div><ul class="result-list">`;
       for (const item of gaps) {
         if (!item) continue;
         html += `<li>${escapeHtml(String(item))}</li>`;
       }
-      html += `</ul>`;
+      html += `</ul></div>`;
     }
 
     // Stronger Phrasing You Can Use
@@ -3101,8 +3104,7 @@
         return groupHtml;
       };
 
-      html += `<div class="result-heading result-section accent-heading">Stronger phrasing you can use</div>`;
-      html += `<div class="result-subline">Clearer versions of a few bullets.</div>`;
+      html += `<div class="stack-section"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div>`;
 
       if (clarityGroup.length > 0) {
         html += `<div class="rewrite-cluster-heading">Clarity & Conciseness</div>`;
@@ -3113,16 +3115,16 @@
         html += `<div class="rewrite-cluster-heading">Impact, Scope & Ownership</div>`;
         html += renderRewriteGroup(impactGroup);
       }
+
+      html += `</div>`;
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
       // Fallback: use suggested_bullets from backend as a simple list
-      html += `<div class="result-heading result-section accent-heading">Stronger phrasing you can use</div>`;
-      html += `<div class="result-subline">Clearer versions of a few bullets.</div>`;
-      html += `<ul class="result-list">`;
+      html += `<div class="stack-section"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div><ul class="result-list">`;
       for (const bullet of suggestedBullets) {
         if (!bullet) continue;
         html += `<li>${escapeHtml(String(bullet))}</li>`;
       }
-      html += `</ul>`;
+      html += `</ul></div>`;
     }
 
     // Next Steps (override with fixed guidance)
@@ -3132,13 +3134,11 @@
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-    html += `<div class="result-heading result-section accent-heading next-steps-heading">Next steps</div>`;
-    html += `<div class="result-subline">Simple fixes you can make this week.</div>`;
-    html += `<ul class="result-list">`;
+    html += `<div class="stack-section"><div class="stack-heading">Next steps</div><div class="stack-subline">Simple fixes you can make this week.</div><ul class="result-list">`;
     for (const step of fixedNextSteps) {
       html += `<li>${escapeHtml(String(step))}</li>`;
     }
-    html += `</ul>`;
+    html += `</ul></div>`;
 
     if (!html) {
       html = "No feedback returned.";
@@ -3281,6 +3281,7 @@
   async function runAnalysis() {
     const sampleRun = isSampleRun;
     const text = inputEl.value.trim();
+    logEvent("run_clicked", { sample: sampleRun });
     if (!text) {
       const msg = "Paste your resume text so I can actually review it.";
       statusEl.textContent = msg;
@@ -3479,6 +3480,7 @@
       statusEl.textContent = "Nothing to copy yet.";
       return;
     }
+    logEvent("report_copy_clicked");
     try {
       await navigator.clipboard.writeText(text);
       statusEl.textContent = "Copied.";
@@ -3495,6 +3497,7 @@
       statusEl.textContent = "Nothing to export yet.";
       return;
     }
+    logEvent("report_pdf_export_clicked");
     const blob = new Blob([text], { type: "application/pdf" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
