@@ -1972,12 +1972,12 @@
               <div class="results-bridge">
                 <div class="bridge-heading">What this means</div>
                 <div id="results-subtitle">
-                  Your score and take show how clearly your story lands. Below you’ll see what’s clear, what’s buried, and stronger phrasing to use.
+                  This number reflects how clearly your story reads in a quick scan. Below, you’ll see the strengths that already stand out, the details that get lost, and the simple edits that will make your impact easier to see.
                 </div>
               </div>
               <div class="results-header-divider"></div>
               <div id="results-summary" class="results-summary empty">
-                Your recruiter take will land here first.
+                Your recruiter’s take will appear here.
               </div>
               <div id="status-bar" class="status-bar"></div>
             </div>
@@ -2059,7 +2059,7 @@
         <div class="paywall-card">
           <div class="paywall-title" id="paywall-title">Keep using Resume Studio</div>
           <div class="paywall-subtitle">
-            Upgrade to unlock unlimited runs on this device and keep your recruiter-grade read whenever you need it.
+            Get unlimited runs and full access to your personalized recruiter report.
           </div>
           <ul class="paywall-list">
             <li>Unlimited resume runs on this browser.</li>
@@ -3002,7 +3002,7 @@
         } else {
           resultsBodyEl.textContent =
             fieldMessages ||
-            "There was an error generating your feedback. Please try again.";
+            "Something went wrong. Try again in a moment.";
           resultsBodyEl.classList.add("results-error");
           resultsBodyEl.classList.remove("empty");
           renderSummary("");
@@ -3025,7 +3025,7 @@
         } else {
           resultsBodyEl.textContent =
             fieldMessages ||
-            "There was an error generating your feedback. Please try again.";
+            "Something went wrong. Try again in a moment.";
           resultsBodyEl.classList.add("results-error");
           resultsBodyEl.classList.remove("empty");
           renderSummary("");
@@ -3078,10 +3078,10 @@
     } catch (err) {
       console.error(err);
       statusEl.textContent =
-        "Something unexpected glitched. Try again in a moment.";
-      setStatus("Something unexpected glitched. Try again in a moment.", "error");
+        "Something went wrong. Try again in a moment.";
+      setStatus("Something went wrong. Try again in a moment.", "error");
       resultsBodyEl.textContent =
-        "There was an error generating your feedback. Please try again.";
+        "Something went wrong. Try again in a moment.";
       resultsBodyEl.classList.add("results-error");
       resultsBodyEl.classList.remove("empty");
       renderSummary("");
