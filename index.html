@@ -689,6 +689,17 @@
       box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
     }
 
+    .report-view {
+      transition: opacity 0.14s ease-out, transform 0.14s ease-out;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .report-view.report-view--reveal {
+      opacity: 0;
+      transform: translateY(3px);
+    }
+
     .results-actions {
       display: flex;
       justify-content: flex-end;
@@ -702,9 +713,17 @@
     }
 
     .results-header-divider {
-      height: 1px;
-      background: var(--border-subtle);
+      height: 2px;
+      background: var(--accent);
       margin: 12px 0 12px;
+      border-radius: 999px;
+      transform-origin: left center;
+      transform: scaleX(1);
+      transition: transform 0.16s ease-out;
+    }
+
+    .results-header-divider.accent-line-reset {
+      transform: scaleX(0);
     }
 
     .score-wrapper {
@@ -784,6 +803,9 @@
     }
 
     .score-badge {
+      --score-pill-bg: rgba(37, 99, 235, 0.08);
+      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 93%, white 7%);
+      --score-pill-border: rgba(37, 99, 235, 0.28);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -798,12 +820,21 @@
       opacity: 0;
       transition:
         transform 0.16s ease-out,
-        opacity 0.16s ease-out;
+        opacity 0.16s ease-out,
+        background-color 0.08s ease-out;
       min-width: 118px;
       text-align: center;
-      border: 1px solid rgba(37, 99, 235, 0.28);
-      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid var(--score-pill-border);
+      background-color: var(--score-pill-bg);
       box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .score-badge.score-badge--glow {
+      background-color: var(--score-pill-bg-boost);
+      transition:
+        transform 0.16s ease-out,
+        opacity 0.16s ease-out,
+        background-color 0.06s ease-out;
     }
 
     .score-pill--reveal {
@@ -867,26 +898,38 @@
     }
 
     .score-low {
-      background: #fbe4df;
-      border-color: #f5c7bd;
+      --score-pill-bg: #fbe4df;
+      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 93%, white 7%);
+      --score-pill-border: #f5c7bd;
+      background-color: var(--score-pill-bg);
+      border-color: var(--score-pill-border);
       color: #3c2317;
     }
 
     .score-mid {
-      background: #f7edd7;
-      border-color: #ecd7ac;
+      --score-pill-bg: #f7edd7;
+      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 93%, white 7%);
+      --score-pill-border: #ecd7ac;
+      background-color: var(--score-pill-bg);
+      border-color: var(--score-pill-border);
       color: #3f3011;
     }
 
     .score-good {
-      background: #e8edff;
-      border-color: #cbd7ff;
+      --score-pill-bg: #e8edff;
+      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 93%, white 7%);
+      --score-pill-border: #cbd7ff;
+      background-color: var(--score-pill-bg);
+      border-color: var(--score-pill-border);
       color: #1f2f63;
     }
 
     .score-great {
-      background: #e3f6ee;
-      border-color: #bdebd4;
+      --score-pill-bg: #e3f6ee;
+      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 93%, white 7%);
+      --score-pill-border: #bdebd4;
+      background-color: var(--score-pill-bg);
+      border-color: var(--score-pill-border);
       color: #153828;
     }
 
@@ -1279,6 +1322,29 @@
     .results-body-better-flash .rewrite-column:not(.right) {
       opacity: 0.82;
       transition: opacity 0.2s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .report-view,
+      .report-view.report-view--reveal {
+        transition: none;
+        transform: none;
+        opacity: 1;
+      }
+
+      .results-header-divider,
+      .results-header-divider.accent-line-reset {
+        transition: none;
+        transform: none;
+      }
+
+      .score-badge {
+        transition: none;
+      }
+
+      .score-badge.score-badge--glow {
+        background-color: var(--score-pill-bg);
+      }
     }
 
     .copy-button {
@@ -1950,7 +2016,7 @@
 
         <!-- Right column -->
         <section class="card card-output" aria-label="Results panel">
-          <div class="card-inner">
+          <div class="card-inner report-view" id="report-view">
           <div class="results-top">
               <div class="score-header-inside">
                 <div id="score-wrapper" class="score-wrapper hidden">
@@ -2097,6 +2163,8 @@
   const resultsSummaryEl = document.getElementById("results-summary");
   const resultsBodyEl = document.getElementById("results-body");
   const resultsSkeletonEl = document.getElementById("results-skeleton");
+  const reportViewEl = document.getElementById("report-view");
+  const resultsHeaderDividerEl = document.querySelector(".results-header-divider");
   const modePillEl = document.getElementById("mode-pill");
   const scoreWrapperEl = document.getElementById("score-wrapper");
   const scoreBandsTriggerEl = document.getElementById("score-bands-trigger");
@@ -2125,6 +2193,9 @@
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
   const ideasStatusEl = document.getElementById("ideas-status");
   const focusToggleEl = document.getElementById("focus-toggle");
+  const prefersReducedMotionQuery = window.matchMedia
+    ? window.matchMedia("(prefers-reduced-motion: reduce)")
+    : null;
   let focusMode = false;
   let hasReportContent = false;
 
@@ -2146,6 +2217,7 @@
   let originalButtonText = runButton.textContent;
   let ideasInFlight = false;
   let currentScoreMeta = null;
+  let lastScoreValue = null;
   let scoreBandsPinned = false;
   let scoreBandsHovering = false;
   let isSampleRun = false;
@@ -2190,6 +2262,10 @@
     if (paywallStatusEl) {
       paywallStatusEl.textContent = "";
     }
+  }
+
+  function prefersReducedMotion() {
+    return !!(prefersReducedMotionQuery && prefersReducedMotionQuery.matches);
   }
 
   (function handleCheckoutParams() {
@@ -2296,6 +2372,7 @@
     if (scoreBandsTriggerEl) scoreBandsTriggerEl.style.display = "none";
     if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
     currentScoreMeta = null;
+    lastScoreValue = null;
     scoreBandsPinned = false;
     scoreBandsHovering = false;
     if (scoreBandsTriggerEl) scoreBandsTriggerEl.setAttribute("aria-expanded", "false");
@@ -2480,6 +2557,16 @@
     if (scoreBandsTriggerEl) scoreBandsTriggerEl.setAttribute("aria-expanded", isOpen ? "true" : "false");
   }
 
+  function triggerScoreGlow() {
+    if (!scoreBadgeEl || prefersReducedMotion()) return;
+    scoreBadgeEl.classList.remove("score-badge--glow");
+    void scoreBadgeEl.offsetWidth;
+    scoreBadgeEl.classList.add("score-badge--glow");
+    setTimeout(() => {
+      scoreBadgeEl.classList.remove("score-badge--glow");
+    }, 60);
+  }
+
   function toggleScoreBandsPinned() {
     if (!currentScoreMeta) return;
     scoreBandsPinned = !scoreBandsPinned;
@@ -2497,12 +2584,17 @@
 
   function renderScoreMeta(score, modelMeta = {}) {
     const meta = getScoreMeta(score);
+    const prevScoreValue = lastScoreValue;
     applyScoreColor(meta.score);
     if (scoreBadgeEl) {
       scoreBadgeEl.classList.remove("score-pill--reveal");
       void scoreBadgeEl.offsetWidth;
       scoreBadgeEl.classList.add("score-pill--reveal");
     }
+    if (prevScoreValue !== meta.score) {
+      triggerScoreGlow();
+    }
+    lastScoreValue = meta.score;
 
     const labelText = (modelMeta.score_label || "").trim() || meta.label;
     const shortText = (modelMeta.score_comment_short || "").trim() || meta.short;
@@ -2620,6 +2712,20 @@
       `;
       resultsSummaryEl.classList.add("empty");
     }
+  }
+
+  function triggerReportReveal() {
+    if (!reportViewEl) return;
+    reportViewEl.classList.add("report-view--reveal");
+    void reportViewEl.offsetWidth;
+    reportViewEl.classList.remove("report-view--reveal");
+  }
+
+  function triggerAccentLineDraw() {
+    if (!resultsHeaderDividerEl) return;
+    resultsHeaderDividerEl.classList.add("accent-line-reset");
+    void resultsHeaderDividerEl.offsetWidth;
+    resultsHeaderDividerEl.classList.remove("accent-line-reset");
   }
 
   function renderStructuredResults(data) {
@@ -3046,6 +3152,8 @@
       }
 
       renderStructuredResults(structured);
+      triggerReportReveal();
+      triggerAccentLineDraw();
       resultsBodyEl.classList.remove("empty");
       resultsBodyEl.classList.remove("results-error");
       if (resultsSkeletonEl) {
