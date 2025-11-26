@@ -44,7 +44,7 @@
       --radius-pill: 999px;
       --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
       --accent-width: 2px;
-      --accent-width-strong: 4px;
+      --accent-width-strong: 6px;
     }
 
     * {
@@ -843,7 +843,7 @@
     }
 
     .report-accent-line {
-      height: 2px;
+      height: var(--accent-width);
       background: var(--accent);
       border-radius: 999px;
       margin: 8px 0 6px;
@@ -1443,10 +1443,20 @@
       animation: accentWipe 0.14s ease-out forwards;
     }
 
-    .card-accent-thick {
-      border-left: var(--accent-width-strong) solid var(--accent);
-      border-radius: var(--radius-card);
+    .summary-primary-accent {
+      position: relative;
       padding-left: calc(var(--space-xl) - var(--accent-width-strong));
+    }
+
+    .summary-primary-accent::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: var(--accent-width-strong);
+      background: var(--accent);
+      border-radius: var(--radius-pill);
     }
 
     .result-paragraph {
@@ -2248,7 +2258,7 @@
                   This number reflects how clearly your story reads in a quick scan. Below, you’ll see the strengths that already stand out, the details that get lost, and the simple edits that will make your impact easier to see.
                 </div>
               </div>
-              <div id="results-summary" class="results-summary card-accent-thick empty">
+              <div id="results-summary" class="results-summary summary-primary-accent empty">
                 Your recruiter’s take will appear here.
               </div>
               <div id="status-bar" class="status-bar"></div>
@@ -2303,9 +2313,9 @@
             <div id="ideas-modal" class="ideas-modal" aria-hidden="true">
               <div id="ideas-backdrop" class="ideas-backdrop"></div>
               <div class="ideas-sheet" id="ideas-sheet" role="dialog" aria-modal="true" aria-labelledby="ideas-modal-title">
-                <div class="ideas-sheet-header">
+                <div class="ideas-sheet-header accent-left">
                   <div>
-                    <div id="ideas-modal-title" class="ideas-sheet-title accent-left">Missing wins</div>
+                    <div id="ideas-modal-title" class="ideas-sheet-title">Missing wins</div>
                     <div class="ideas-sheet-subtitle">Let’s look for wins you have not written yet or forgot about.</div>
                   </div>
                   <div class="ideas-actions">
