@@ -2625,14 +2625,14 @@
       const limited = sentences.slice(0, 3);
       const paragraph = limited.join(" ");
       resultsSummaryEl.innerHTML = `
-        <div class="result-heading" style="padding-top:0;border-top:none;margin-top:0;">How your resume reads</div>
+        <div class="result-heading" style="padding:12px 14px;border-top:none;margin-top:0;">How your resume reads</div>
         <div class="result-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">${escapeHtml(paragraph || clean)}</p>
       `;
       resultsSummaryEl.classList.remove("empty");
     } else {
       resultsSummaryEl.innerHTML = `
-        <div class="result-heading" style="padding-top:0;border-top:none;margin-top:0;">How your resume reads</div>
+        <div class="result-heading" style="padding:12px 14px;border-top:none;margin-top:0;">How your resume reads</div>
         <div class="result-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">Your summary will appear here.</p>
       `;
@@ -2960,7 +2960,9 @@
       return;
     }
 
-    setFocusMode(false);
+    if (!focusMode) {
+      setFocusMode(false);
+    }
     statusEl.textContent = "";
     setStatus("");
       runButton.disabled = true;
@@ -3079,6 +3081,14 @@
       }
 
       runIdeas({ auto: true, sourceText: text });
+
+      if (!focusMode) {
+        setFocusMode(true);
+        const reportCard = document.querySelector(".card-output");
+        if (reportCard && typeof reportCard.scrollIntoView === "function") {
+          reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
 
       if (typeof resultsBodyEl.scrollTo === "function") {
         resultsBodyEl.scrollTo({ top: 0, behavior: "smooth" });
