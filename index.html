@@ -681,9 +681,6 @@
     }
 
     .results-top {
-      position: sticky;
-      top: 0;
-      z-index: 2;
       background: linear-gradient(180deg, #f7f8fc 0%, #f1f3f8 100%);
       border: 1px solid var(--border-subtle);
       border-radius: 14px;
@@ -759,27 +756,24 @@
       letter-spacing: -0.02em;
     }
 
+    .results-bridge {
+      margin: 2px 0 10px;
+    }
+
+    .bridge-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
     #results-subtitle {
-      font-size: 14px;
-      color: var(--text-soft);
-      margin-bottom: 8px;
-      max-width: 560px;
-      line-height: 1.65;
-    }
-
-    .score-explainer {
       font-size: 13px;
       color: var(--text-soft);
-      margin-top: 6px;
-      margin-bottom: 12px;
-      line-height: 1.55;
-    }
-
-    .score-explainer-secondary {
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 1.55;
-      margin-top: 6px;
+      line-height: 1.6;
+      max-width: 620px;
+      margin: 0;
     }
 
     .score-header-inside {
@@ -1972,28 +1966,15 @@
               <div class="results-header-row">
                 <h2 id="results-title" class="card-title">Recruiter feedback</h2>
                 <div class="focus-controls">
-                  <button id="focus-enter" class="focus-button hidden" type="button">Focus on report</button>
-                  <button id="focus-exit" class="focus-button hidden" type="button">Back to editor</button>
-                </div>
-              <div id="results-subtitle">
-                Calibrated score, quick read on how you come across, what’s working, and what to fix next.
-              </div>
-              <div id="score-explainer" class="score-explainer">
-                This is a clarity score, not a judgment. Most strong resumes land somewhere between 78 and 85.
-                <div class="score-explainer-secondary">
-                  Your score is powered by a calibrated clarity model tuned against thousands of real-world hiring conversations.
+                  <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
                 </div>
               </div>
-              <button
-                id="score-bands-trigger"
-                class="score-bands-trigger"
-                style="display:none"
-                type="button"
-                aria-expanded="false"
-                aria-controls="score-tooltip"
-              >
-                What this means
-              </button>
+              <div class="results-bridge">
+                <div class="bridge-heading">What this means</div>
+                <div id="results-subtitle">
+                  Your score and take show how clearly your story lands. Below you’ll see what’s clear, what’s buried, and stronger phrasing to use.
+                </div>
+              </div>
               <div class="results-header-divider"></div>
               <div id="results-summary" class="results-summary empty">
                 Your recruiter take will land here first.
@@ -2143,16 +2124,17 @@
   const ideasBodyEl = document.getElementById("ideas-body");
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
   const ideasStatusEl = document.getElementById("ideas-status");
-  const focusEnterEl = document.getElementById("focus-enter");
-  const focusExitEl = document.getElementById("focus-exit");
+  const focusToggleEl = document.getElementById("focus-toggle");
   let focusMode = false;
   let hasReportContent = false;
 
   function setFocusMode(enabled) {
     focusMode = Boolean(enabled);
     document.body.classList.toggle("focus-mode", focusMode);
-    if (focusEnterEl) focusEnterEl.classList.toggle("hidden", focusMode || !hasReportContent);
-    if (focusExitEl) focusExitEl.classList.toggle("hidden", !focusMode || !hasReportContent);
+    if (focusToggleEl) {
+      focusToggleEl.classList.toggle("hidden", !hasReportContent);
+      focusToggleEl.textContent = focusMode ? "Back to editor" : "Focus on report";
+    }
   }
   const paywallBackdropEl = document.getElementById("paywall-backdrop");
   const paywallUpgradeEl = document.getElementById("paywall-upgrade");
@@ -2673,9 +2655,6 @@
       ideasInlineEl.classList.remove("hidden");
     }
 
-    if (focusEnterEl && !focusMode) focusEnterEl.classList.remove("hidden");
-    if (focusExitEl && focusMode) focusExitEl.classList.remove("hidden");
-
     renderSummary(summary);
 
     // What's Working
@@ -2825,7 +2804,7 @@
     if (mode === "resume") {
       resultsTitleEl.textContent = "Recruiter feedback";
       resultsSubtitleEl.textContent =
-        "Calibrated score, quick read on how you come across, what’s working, and what to fix next.";
+        "Your score and take show how clearly your story lands. Below you’ll see what’s clear, what’s buried, and stronger phrasing to use.";
       if (modePillEl) {
         modePillEl.textContent = "Mode • Resume Review";
       }
@@ -2837,7 +2816,7 @@
     } else if (mode === "offer") {
       resultsTitleEl.textContent = "Offer review (coming soon)";
       resultsSubtitleEl.textContent =
-        "Negotiation guidance will appear here once it ships.";
+        "Offer guidance will appear here once it ships.";
       if (modePillEl) {
         modePillEl.textContent = "Mode • Offer (disabled)";
       }
@@ -3082,12 +3061,10 @@
 
       runIdeas({ auto: true, sourceText: text });
 
-      if (!focusMode) {
-        setFocusMode(true);
-        const reportCard = document.querySelector(".card-output");
-        if (reportCard && typeof reportCard.scrollIntoView === "function") {
-          reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+      setFocusMode(true);
+      const reportCard = document.querySelector(".card-output");
+      if (reportCard && typeof reportCard.scrollIntoView === "function") {
+        reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
       if (typeof resultsBodyEl.scrollTo === "function") {
@@ -3121,11 +3098,10 @@
   }
 
   runButton.addEventListener("click", runAnalysis);
-  if (focusEnterEl) {
-    focusEnterEl.addEventListener("click", () => setFocusMode(true));
-  }
-  if (focusExitEl) {
-    focusExitEl.addEventListener("click", () => setFocusMode(false));
+  if (focusToggleEl) {
+    focusToggleEl.addEventListener("click", () => {
+      setFocusMode(!focusMode);
+    });
   }
 
   copyButtonEl.addEventListener("click", async () => {
@@ -3450,11 +3426,10 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
 
     html += `<div class="ideas-section-card"><div class="ideas-section-title">Turn it into a bullet</div><p>Use: verb + what you owned + the outcome (ideally with a number). Skip it if it’s already covered in your resume.</p></div>`;
 
-      ideasBodyEl.innerHTML = html || "";
-      ideasBodyEl.classList.remove("empty");
-      if (ideasInlineEl) ideasInlineEl.classList.remove("hidden");
-      if (focusEnterEl) focusEnterEl.classList.remove("hidden");
-      if (focusExitEl) focusExitEl.classList.add("hidden");
+    ideasBodyEl.innerHTML = html || "";
+    ideasBodyEl.classList.remove("empty");
+    if (ideasInlineEl) ideasInlineEl.classList.remove("hidden");
+    if (focusToggleEl) focusToggleEl.classList.remove("hidden");
     }
 
 
