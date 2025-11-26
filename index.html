@@ -156,7 +156,7 @@
       max-width: 1100px;
       border-radius: 22px;
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.08));
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(15, 23, 42, 0.1) 100%);
       box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
     }
 
@@ -164,8 +164,8 @@
       content: "";
       position: absolute;
       inset: -8% -12%;
-      background: radial-gradient(circle at 20% 20%, rgba(14, 58, 93, 0.05), transparent 36%),
-                  radial-gradient(circle at 80% 10%, rgba(15, 23, 42, 0.05), transparent 32%);
+      background: radial-gradient(circle at 20% 20%, rgba(14, 58, 93, 0.08), transparent 30%),
+                  radial-gradient(circle at 80% 10%, rgba(15, 23, 42, 0.08), transparent 26%);
       pointer-events: none;
     }
 
@@ -323,11 +323,32 @@
     }
 
     @media (max-width: 600px) {
+      .hero {
+        padding: 18px 14px 14px;
+        margin-bottom: 18px;
+      }
       .hero-title {
         font-size: 26px;
       }
       .hero-subtitle {
         font-size: 14px;
+      }
+      .hero-grid {
+        gap: 8px 12px;
+      }
+      .tool-layout {
+        gap: 14px;
+      }
+      .card {
+        padding: 16px;
+      }
+      .results-top {
+        padding: 18px 14px 14px;
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+      }
+      .ideas-sheet {
+        width: min(720px, 94vw);
+        padding: 16px;
       }
     }
 
@@ -1286,6 +1307,10 @@
       line-height: 1.5;
     }
 
+    .section-reveal {
+      animation: fadeUp 0.2s ease-out both;
+    }
+
     .result-paragraph {
       margin: 0 0 10px;
     }
@@ -1356,6 +1381,10 @@
         transition: none;
         transform: none;
         opacity: 1;
+      }
+
+      .section-reveal {
+        animation: none;
       }
 
       .score-badge {
@@ -2746,6 +2775,35 @@
     }
   }
 
+  function applySectionReveal() {
+    const elements = [];
+    if (resultsSummaryEl) {
+      const summaryHeading = resultsSummaryEl.querySelector(".result-heading");
+      if (summaryHeading) elements.push(summaryHeading);
+    }
+    if (resultsBodyEl) {
+      const bodyHeadings = resultsBodyEl.querySelectorAll(".result-heading");
+      bodyHeadings.forEach((el) => elements.push(el));
+    }
+    if (!elements.length) return;
+    if (prefersReducedMotion()) {
+      elements.forEach((el) => {
+        el.classList.remove("section-reveal");
+        el.style.removeProperty("animation-delay");
+      });
+      return;
+    }
+    let delay = 0;
+    elements.forEach((el) => {
+      el.classList.remove("section-reveal");
+      el.style.animationDelay = "";
+      void el.offsetWidth;
+      el.classList.add("section-reveal");
+      el.style.animationDelay = `${delay}ms`;
+      delay += 50;
+    });
+  }
+
   function triggerReportReveal() {
     if (!reportViewEl) return;
     reportViewEl.classList.add("report-view--reveal");
@@ -2935,6 +2993,7 @@
     resultsBodyEl.classList.remove("empty");
     resultsBodyEl.classList.add("results-body-better-flash");
     setTimeout(() => resultsBodyEl.classList.remove("results-body-better-flash"), 220);
+    applySectionReveal();
   }
 
   function setMode(mode) {
