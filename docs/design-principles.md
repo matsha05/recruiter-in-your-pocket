@@ -23,6 +23,23 @@ Clarity first.
 Confidence always.  
 Delight when earned.
 
+### Typography system
+
+We use a simple, deliberate type system:
+
+- **Headers & brand:** Space Grotesk (500–700). Used for the wordmark and hero title.
+- **Body & UI:** Manrope (400–600). Used for all other text.
+
+Rough scale (desktop):
+
+- Display / hero title: 40px, tight line height (~1.05).
+- Section titles / card titles / report headings: 16px, bold, slight negative letter spacing.
+- Body / summaries: 15–17px, line height ~1.6–1.7.
+- Subline / helper text: ~13px.
+- Labels / pills: 11–12px with tighter tracking.
+
+Codex and future UI changes should keep new text within this system so the app feels consistent and intentional.
+
 Design and brand identity source of truth:
 - docs/design-principles.md  
 - docs/vision.md  
