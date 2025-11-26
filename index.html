@@ -671,7 +671,17 @@
       animation: runButtonPulse 1.7s ease-in-out infinite;
     }
 
+    .primary-button.processing {
+      animation: buttonPulse 2s ease-in-out infinite;
+    }
+
     @keyframes runButtonPulse {
+      0% { background: var(--accent); }
+      50% { background: color-mix(in srgb, var(--accent) 92%, white 8%); }
+      100% { background: var(--accent); }
+    }
+
+    @keyframes buttonPulse {
       0% { background: var(--accent); }
       50% { background: color-mix(in srgb, var(--accent) 92%, white 8%); }
       100% { background: var(--accent); }
@@ -823,6 +833,27 @@
 
     .report-card.report-ready .report-section {
       animation: reportSectionIn 0.2s ease-out both;
+    }
+
+    .report-title {
+      position: relative;
+      display: inline-block;
+    }
+
+    .report-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      height: 2px;
+      width: 100%;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .report-card.report-ready .report-title::after {
+      animation: titleUnderline 0.12s ease-out 0.26s forwards;
     }
 
     .bridge-heading {
@@ -1287,6 +1318,15 @@
       }
     }
 
+    @keyframes titleUnderline {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
     @keyframes reportSectionIn {
       from {
         opacity: 0;
@@ -1422,7 +1462,8 @@
       .report-card,
       .score-pill,
       .report-accent-line,
-      .report-section {
+      .report-section,
+      .report-title::after {
         animation: none !important;
         transition: none !important;
         transform: none !important;
@@ -2104,7 +2145,7 @@
             </div>
 
             <div class="run-row">
-              <button id="run-button" class="run-button">Get feedback</button>
+              <button id="run-button" class="run-button primary-button">Get feedback</button>
               <div id="status" class="status" aria-live="polite" role="status"></div>
             </div>
           </div>
@@ -2126,7 +2167,7 @@
                 </div>
               </div>
               <div class="results-header-row">
-                <h2 id="results-title" class="card-title report-title">Recruiter feedback</h2>
+                <h2 id="results-title" class="card-title"><span class="report-title">Recruiter feedback</span></h2>
                 <div class="focus-controls">
                   <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
                 </div>
