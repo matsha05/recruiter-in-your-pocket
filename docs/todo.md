@@ -1,25 +1,25 @@
 This is the working checklist for turning the app from a good MVP into a premium, studio-grade product. master-roadmap.md stays the high-level source of truth; todo.md is the execution view for builders.
 
-## Phase 1 – Signature Report (Insight Stack)
+## Phase 1 – Signature Report (Insight Stack) — Done
 Goal: A single-column, editorial, premium report page that feels intentional and readable end to end.
 
 Layout & structure
-- [ ] Make the Recruiter feedback area a single-column Insight Stack (no inner scroll boxes).
-- [ ] Enforce section order: Score + top read → How your resume reads → What’s working → What’s harder to see → Stronger phrasing → Missing Wins → Next steps.
-- [ ] Ensure this order and layout work on both desktop and mobile.
+- [x] Make the Recruiter feedback area a single-column Insight Stack (no inner scroll boxes).
+- [x] Enforce section order: Score + top read → How your resume reads → What’s working → What’s harder to see → Stronger phrasing → Missing Wins → Next steps.
+- [x] Ensure this order and layout work on both desktop and mobile.
 
 Visual signature
-- [ ] Add a thin left accent spine that anchors the report sections.
-- [ ] Tighten vertical spacing between sections so it reads like an editorial page.
-- [ ] Apply a consistent heading style for all stack headings.
+- [x] Add a thin left accent spine that anchors the report sections.
+- [x] Tighten vertical spacing between sections so it reads like an editorial page.
+- [x] Apply a consistent heading style for all stack headings.
 
 Micro-interactions
-- [ ] Add subtle hover/focus states to primary buttons (Get feedback, Export PDF, Copy, Missing Wins trigger).
-- [ ] Respect prefers-reduced-motion for any transitions.
+- [x] Add subtle hover/focus states to primary buttons (Get feedback, Export PDF, Copy, Missing Wins trigger).
+- [x] Respect prefers-reduced-motion for any transitions.
 
 UX checks
-- [ ] Verify that sample resume, paywall, Missing Wins, copy, and export still work exactly as before.
-- [ ] Manually test desktop and mobile for reading flow (no “card in a landing page” feeling).
+- [x] Verify that sample resume, paywall, Missing Wins, copy, and export still work exactly as before.
+- [x] Manually test desktop and mobile for reading flow (no “card in a landing page” feeling).
 
 ## Phase 2 – Export & Copy (Report Portability)
 Goal: Make the report travel well as PDF and structured text.
