@@ -2626,6 +2626,7 @@
   let focusMode = false;
   let hasReportContent = false;
   let hasLoggedPaste = false;
+  let lastReportData = null;
 
   function setFocusMode(enabled) {
     focusMode = Boolean(enabled);
@@ -3632,6 +3633,7 @@
       }
 
       renderStructuredResults(structured);
+      lastReportData = structured;
       triggerReportReveal();
       resultsBodyEl.classList.remove("empty");
       resultsBodyEl.classList.remove("results-error");
@@ -3709,17 +3711,40 @@
     }
   });
 
-  exportButtonEl.addEventListener("click", () => {
+  exportButtonEl.addEventListener("click", async () => {
     const summaryText = resultsSummaryEl ? resultsSummaryEl.innerText.trim() : "";
     const bodyText = resultsBodyEl ? resultsBodyEl.innerText.trim() : "";
     const text = [summaryText, bodyText].filter(Boolean).join("\n\n");
-    if (!text) {
+    if (!text || !lastReportData) {
       statusEl.textContent = "Nothing to export yet.";
       return;
     }
     logEvent("report_pdf_export_clicked");
-    window.print();
-    statusEl.textContent = "Opened print dialog for PDF export.";
+    try {
+      const resp = await fetch("/api/export-pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(lastReportData)
+      });
+      if (!resp.ok) {
+        statusEl.textContent = "Could not export right now. Try again.";
+        return;
+      }
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "resume-review.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      statusEl.textContent = "Exported PDF.";
+    } catch (err) {
+      statusEl.textContent = "Could not export right now. Try again.";
+    }
   });
 
   inputEl.addEventListener("keydown", (e) => {

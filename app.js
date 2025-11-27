@@ -6,6 +6,7 @@ const path = require("path");
 const crypto = require("crypto");
 const fs = require("fs");
 const Stripe = require("stripe");
+const PDFDocument = require("pdfkit");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -844,6 +845,114 @@ function fallbackIdeasData() {
   };
 }
 
+function renderPdfSpine(doc) {
+  const spineX = doc.page.margins.left - 10;
+  doc
+    .save()
+    .lineWidth(2)
+    .strokeColor("#1f3fb6")
+    .moveTo(spineX, 36)
+    .lineTo(spineX, doc.page.height - 36)
+    .stroke()
+    .restore();
+}
+
+function pipeReportToPdf(report, res) {
+  const doc = new PDFDocument({
+    margin: 50,
+    size: "A4"
+  });
+
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-Disposition", 'attachment; filename="resume-review.pdf"');
+  doc.pipe(res);
+
+  renderPdfSpine(doc);
+  doc.on("pageAdded", () => renderPdfSpine(doc));
+
+  const accent = "#1f3fb6";
+  const textMain = "#0d1018";
+  const textMuted = "#4b5563";
+
+  const heading = (label) => {
+    doc.fillColor(accent).fontSize(16).font("Helvetica-Bold").text(label, { underline: false });
+    doc.moveDown(0.2);
+  };
+
+  const subline = (text) => {
+    if (!text) return;
+    doc.fillColor(textMuted).fontSize(11).font("Helvetica").text(text);
+    doc.moveDown(0.3);
+  };
+
+  const bulletList = (items) => {
+    if (!Array.isArray(items)) return;
+    doc.fillColor(textMain).fontSize(12).font("Helvetica");
+    items.forEach((item) => {
+      if (!item) return;
+      doc.text(`• ${item}`, { indent: 4 });
+    });
+    doc.moveDown(0.6);
+  };
+
+  // Score and top read
+  if (typeof report.score === "number") {
+    doc
+      .fillColor(accent)
+      .fontSize(18)
+      .font("Helvetica-Bold")
+      .text(`Score: ${Math.round(report.score)}/100`);
+    doc.moveDown(0.2);
+    if (report.score_label) {
+      doc.fillColor(textMuted).fontSize(11).font("Helvetica").text(report.score_label);
+    }
+    doc.moveDown(0.4);
+  }
+
+  if (report.summary) {
+    heading("How your resume reads");
+    doc.fillColor(textMain).fontSize(12).font("Helvetica").text(report.summary, {
+      width: 500,
+      lineGap: 4
+    });
+    doc.moveDown(0.8);
+  }
+
+  heading("What’s working");
+  subline("Strengths that show up clearly.");
+  bulletList(report.strengths);
+
+  heading("What’s harder to see");
+  subline("Parts of your impact that don’t come through as strongly.");
+  bulletList(report.gaps);
+
+  heading("Stronger phrasing you can use");
+  subline("Original and better phrasing pairs.");
+  if (Array.isArray(report.rewrites)) {
+    report.rewrites.forEach((rewrite) => {
+      if (!rewrite) return;
+      doc.fillColor(textMain).fontSize(12).font("Helvetica-Bold").text(rewrite.label || "Rewrite");
+      doc.fillColor(textMain).fontSize(12).font("Helvetica").text(`Original: ${rewrite.original || ""}`);
+      doc.fillColor(textMain).fontSize(12).font("Helvetica").text(`Better: ${rewrite.better || ""}`);
+      if (rewrite.enhancement_note) {
+        doc.fillColor(textMuted).fontSize(11).font("Helvetica-Oblique").text(rewrite.enhancement_note);
+      }
+      doc.moveDown(0.6);
+    });
+  }
+
+  if (Array.isArray(report.missing_wins) && report.missing_wins.length) {
+    heading("Missing wins");
+    bulletList(report.missing_wins);
+  }
+
+  heading("Next steps");
+  subline("Simple fixes you can make this week.");
+  bulletList(report.next_steps);
+
+  doc.end();
+}
+
 app.post("/api/resume-feedback", rateLimit, async (req, res) => {
   try {
     const tStart = Date.now();
@@ -1038,6 +1147,34 @@ ${text}`;
       ok: false,
       errorCode: code,
       message
+    });
+  }
+});
+
+app.post("/api/export-pdf", rateLimit, (req, res) => {
+  try {
+    const payload = req.body || {};
+    if (!payload.summary || !Array.isArray(payload.rewrites) || !Array.isArray(payload.strengths) || !Array.isArray(payload.gaps) || !Array.isArray(payload.next_steps)) {
+      return res.status(400).json({
+        ok: false,
+        errorCode: "INVALID_PAYLOAD",
+        message: "Report data is incomplete. Try exporting again after a successful run."
+      });
+    }
+    pipeReportToPdf(payload, res);
+  } catch (err) {
+    logLine(
+      {
+        level: "error",
+        msg: "export_pdf_failed",
+        error: err.message
+      },
+      true
+    );
+    return res.status(500).json({
+      ok: false,
+      errorCode: "EXPORT_FAILED",
+      message: "Could not generate a PDF right now. Please try again."
     });
   }
 });
