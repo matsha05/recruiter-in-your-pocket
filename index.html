@@ -1381,7 +1381,12 @@
       position: relative;
     }
 
-    .stack::before {
+    .stack-accent-line {
+      position: relative;
+    }
+
+    .stack::before,
+    .stack-accent-line::before {
       content: "";
       position: absolute;
       left: -12px;
@@ -1557,6 +1562,14 @@
         animation: none;
         background-position: center;
       }
+
+      .run-button,
+      .copy-button,
+      .export-button,
+      .ideas-open-link {
+        transition: none !important;
+        transform: none !important;
+      }
     }
 
     .copy-button {
@@ -1572,7 +1585,7 @@
       justify-content: center;
       gap: 6px;
       text-decoration: none;
-      transition: color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      transition: color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
       box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
     }
 
@@ -1580,6 +1593,7 @@
       color: var(--text-main);
       border-color: var(--border-strong);
       box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+      transform: translateY(-1px);
     }
 
     .export-button {
@@ -1595,7 +1609,7 @@
       justify-content: center;
       gap: 6px;
       text-decoration: none;
-      transition: color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      transition: color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
       box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
     }
 
@@ -1603,6 +1617,7 @@
       color: var(--text-main);
       border-color: var(--border-strong);
       box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+      transform: translateY(-1px);
     }
 
     /* Rewrite blocks and section separators */
@@ -1840,12 +1855,14 @@
       cursor: pointer;
       text-decoration: none;
       align-self: flex-start;
+      transition: color 0.12s ease, transform 0.12s ease;
     }
 
     .ideas-open-link:hover {
       text-decoration: underline;
       text-decoration-thickness: 1px;
       text-underline-offset: 2px;
+      transform: translateY(-1px);
     }
 
     .ideas-modal {
@@ -2274,7 +2291,7 @@
 
             <div
               id="results-body"
-              class="empty stack"
+              class="empty stack stack-accent-line"
               role="region"
               aria-label="Resume feedback results"
             >
@@ -3134,7 +3151,7 @@
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-    html += `<div class="stack-section"><div class="stack-heading">Next steps</div><div class="stack-subline">Simple fixes you can make this week.</div><ul class="result-list">`;
+    html += `<div class="stack-section" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Simple fixes you can make this week.</div><ul class="result-list">`;
     for (const step of fixedNextSteps) {
       html += `<li>${escapeHtml(String(step))}</li>`;
     }
@@ -3145,6 +3162,18 @@
     }
 
     resultsBodyEl.innerHTML = html;
+
+    // Place Missing Wins inline teaser inside the stack before Next steps
+    if (ideasInlineEl) {
+      const nextStepsEl = resultsBodyEl.querySelector('[data-section="next-steps"]');
+      ideasInlineEl.classList.add("stack-section");
+      ideasInlineEl.classList.add("stack-accent-line");
+      if (nextStepsEl && nextStepsEl.parentNode === resultsBodyEl) {
+        resultsBodyEl.insertBefore(ideasInlineEl, nextStepsEl);
+      } else {
+        resultsBodyEl.appendChild(ideasInlineEl);
+      }
+    }
     resultsBodyEl.classList.remove("refreshed");
     void resultsBodyEl.offsetWidth;
     resultsBodyEl.classList.add("refreshed");
