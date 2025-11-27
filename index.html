@@ -2192,6 +2192,132 @@
       box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
     }
 
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        transition: none !important;
+        animation: none !important;
+      }
+
+      body {
+        background: #ffffff;
+        color: var(--text-main);
+        padding: var(--space-lg);
+        font-size: 13px;
+      }
+
+      .page {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      .top-bar,
+      .hero,
+      .card-input,
+      .run-row,
+      .results-actions-bottom,
+      .data-handling-row,
+      .sample-resume-button,
+      .version-pill,
+      .mode-buttons,
+      #loading-bar {
+        display: none !important;
+      }
+
+      button,
+      .copy-button,
+      .export-button,
+      .ideas-open-link,
+      .run-button {
+        pointer-events: none;
+      }
+
+      .card-output {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+
+      .results-top {
+        box-shadow: none;
+        border: none;
+        background: #ffffff;
+        padding: 0 0 var(--space-lg) 0;
+      }
+
+      #results-body {
+        border: none;
+        padding: 0;
+      }
+
+      .stack::before,
+      .stack-accent-line::before {
+        display: none;
+      }
+
+      .stack-accent-line {
+        border-left: 2px solid color-mix(in srgb, var(--accent) 85%, white 15%);
+        padding-left: var(--space-lg);
+      }
+
+      .stack-section {
+        margin: var(--space-lg) 0;
+        padding: 0 0 var(--space-md) 0;
+        box-shadow: none;
+        background: #ffffff;
+        border-radius: 4px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .stack-heading {
+        margin-bottom: var(--space-md);
+      }
+
+      .result-list li,
+      .rewrite-block,
+      .ideas-section-card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .results-summary {
+        border: none;
+        box-shadow: none;
+        background: #ffffff;
+        padding-left: 0;
+      }
+
+      .stack-section:hover,
+      .stack-section:focus-within,
+      .ideas-open-link:hover,
+      .ideas-open-link:focus-visible,
+      .run-button:hover,
+      .copy-button:hover,
+      .export-button:hover {
+        background: #ffffff;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .ideas-open-link {
+        color: var(--text-main);
+        text-decoration: none;
+        border: none;
+      }
+
+      body::after {
+        content: "Generated with Recruiter in Your Pocket — recruiterinyourpocket.com";
+        display: block;
+        margin-top: var(--space-xl);
+        font-size: 12px;
+        color: var(--text-muted);
+        text-align: center;
+      }
+    }
+
   </style>
 </head>
 
@@ -3580,16 +3706,8 @@
       return;
     }
     logEvent("report_pdf_export_clicked");
-    const blob = new Blob([text], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "resume-review.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    statusEl.textContent = "Exported PDF.";
+    window.print();
+    statusEl.textContent = "Opened print dialog for PDF export.";
   });
 
   inputEl.addEventListener("keydown", (e) => {
