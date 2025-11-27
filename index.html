@@ -3726,7 +3726,7 @@
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(lastReportData)
+        body: JSON.stringify({ report: lastReportData })
       });
       if (!resp.ok) {
         statusEl.textContent = "Could not export right now. Try again.";

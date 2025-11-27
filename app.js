@@ -6,7 +6,7 @@ const path = require("path");
 const crypto = require("crypto");
 const fs = require("fs");
 const Stripe = require("stripe");
-const PDFDocument = require("pdfkit");
+const puppeteer = require("puppeteer");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -845,114 +845,198 @@ function fallbackIdeasData() {
   };
 }
 
-function renderPdfSpine(doc) {
-  const spineX = doc.page.margins.left - 10;
-  doc
-    .save()
-    .lineWidth(2)
-    .strokeColor("#1f3fb6")
-    .moveTo(spineX, 36)
-    .lineTo(spineX, doc.page.height - 36)
-    .stroke()
-    .restore();
+function validateReportForPdf(report) {
+  if (!report || typeof report !== "object") return false;
+  const requiredArrays = ["strengths", "gaps", "rewrites", "next_steps"];
+  for (const key of requiredArrays) {
+    if (!Array.isArray(report[key])) return false;
+  }
+  if (typeof report.summary !== "string") return false;
+  return true;
 }
 
-function pipeReportToPdf(report, res) {
-  const doc = new PDFDocument({
-    margin: 50,
-    size: "A4"
-  });
+async function renderReportHtml(report) {
+  const escape = (str) =>
+    String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
 
-  res.setHeader("Content-Type", "application/pdf");
-  res.setHeader("Content-Disposition", 'attachment; filename="resume-review.pdf"');
-  doc.pipe(res);
+  const rewriteHtml = (rewrites = []) =>
+    rewrites
+      .map((r) => {
+        if (!r) return "";
+        return `
+        <div class="rewrite-row">
+          <div class="rewrite-col">
+            <div class="label">Original</div>
+            <div class="text">${escape(r.original)}</div>
+          </div>
+          <div class="rewrite-col">
+            <div class="label">Better</div>
+            <div class="text">${escape(r.better)}</div>
+          </div>
+          ${
+            r.enhancement_note
+              ? `<div class="enhancement">${escape(r.enhancement_note)}</div>`
+              : ""
+          }
+        </div>`;
+      })
+      .join("");
 
-  renderPdfSpine(doc);
-  doc.on("pageAdded", () => renderPdfSpine(doc));
+  const listHtml = (items = []) =>
+    items
+      .map((item) => `<li>${escape(item)}</li>`)
+      .join("");
 
-  const accent = "#1f3fb6";
-  const textMain = "#0d1018";
-  const textMuted = "#4b5563";
-
-  const heading = (label) => {
-    doc.fillColor(accent).fontSize(16).font("Helvetica-Bold").text(label, { underline: false });
-    doc.moveDown(0.2);
-  };
-
-  const subline = (text) => {
-    if (!text) return;
-    doc.fillColor(textMuted).fontSize(11).font("Helvetica").text(text);
-    doc.moveDown(0.3);
-  };
-
-  const bulletList = (items) => {
-    if (!Array.isArray(items)) return;
-    doc.fillColor(textMain).fontSize(12).font("Helvetica");
-    items.forEach((item) => {
-      if (!item) return;
-      doc.text(`• ${item}`, { indent: 4 });
-    });
-    doc.moveDown(0.6);
-  };
-
-  // Score and top read
-  if (typeof report.score === "number") {
-    doc
-      .fillColor(accent)
-      .fontSize(18)
-      .font("Helvetica-Bold")
-      .text(`Score: ${Math.round(report.score)}/100`);
-    doc.moveDown(0.2);
-    if (report.score_label) {
-      doc.fillColor(textMuted).fontSize(11).font("Helvetica").text(report.score_label);
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap");
+    :root {
+      --accent: #1f3fb6;
+      --text-main: #0d1018;
+      --text-muted: #4b5563;
+      --space-sm: 8px;
+      --space-md: 12px;
+      --space-lg: 16px;
+      --space-xl: 24px;
+      --space-xxl: 40px;
     }
-    doc.moveDown(0.4);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      color: var(--text-main);
+      padding: var(--space-xl);
+      background: #ffffff;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .stack-section {
+      border-left: 2px solid color-mix(in srgb, var(--accent) 85%, white 15%);
+      padding-left: var(--space-lg);
+      margin: var(--space-lg) 0;
+      page-break-inside: avoid;
+    }
+    h1, h2 {
+      font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
+      letter-spacing: 0.01em;
+      margin-bottom: var(--space-md);
+    }
+    h1 { font-size: 18px; }
+    h2 { font-size: 16px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); }
+    p { font-size: 13px; line-height: 1.6; margin-bottom: var(--space-md); }
+    ul { padding-left: 18px; margin-bottom: var(--space-lg); font-size: 13px; line-height: 1.6; }
+    li { margin-bottom: var(--space-sm); }
+    .score { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: var(--space-md); }
+    .label { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+    .text { font-size: 13px; color: var(--text-main); line-height: 1.55; }
+    .rewrite-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      border-left: 2px solid rgba(12, 17, 32, 0.06);
+      padding-left: var(--space-sm);
+      page-break-inside: avoid;
+    }
+    .rewrite-col { display: flex; flex-direction: column; gap: 6px; }
+    .enhancement {
+      grid-column: 1 / -1;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .footer {
+      margin-top: var(--space-xl);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="stack-section">
+    <div class="score">Score: ${Math.round(report.score || 0)}/100</div>
+    ${report.score_label ? `<p>${escape(report.score_label)}</p>` : ""}
+  </div>
+
+  <div class="stack-section">
+    <h2>How your resume reads</h2>
+    <p>${escape(report.summary)}</p>
+  </div>
+
+  <div class="stack-section">
+    <h2>What’s working</h2>
+    <p style="color: var(--text-muted); font-size: 12px;">Strengths that show up clearly.</p>
+    <ul>${listHtml(report.strengths)}</ul>
+  </div>
+
+  <div class="stack-section">
+    <h2>What’s harder to see</h2>
+    <p style="color: var(--text-muted); font-size: 12px;">Parts of your impact that don’t come through as strongly.</p>
+    <ul>${listHtml(report.gaps)}</ul>
+  </div>
+
+  <div class="stack-section">
+    <h2>Stronger phrasing you can use</h2>
+    <p style="color: var(--text-muted); font-size: 12px;">Original / Better pairs.</p>
+    ${rewriteHtml(report.rewrites)}
+  </div>
+
+  ${
+    Array.isArray(report.missing_wins) && report.missing_wins.length
+      ? `<div class="stack-section">
+          <h2>Missing wins</h2>
+          <ul>${listHtml(report.missing_wins)}</ul>
+        </div>`
+      : ""
   }
 
-  if (report.summary) {
-    heading("How your resume reads");
-    doc.fillColor(textMain).fontSize(12).font("Helvetica").text(report.summary, {
-      width: 500,
-      lineGap: 4
-    });
-    doc.moveDown(0.8);
-  }
+  <div class="stack-section">
+    <h2>Next steps</h2>
+    <p style="color: var(--text-muted); font-size: 12px;">Simple fixes you can make this week.</p>
+    <ul>${listHtml(report.next_steps)}</ul>
+  </div>
 
-  heading("What’s working");
-  subline("Strengths that show up clearly.");
-  bulletList(report.strengths);
-
-  heading("What’s harder to see");
-  subline("Parts of your impact that don’t come through as strongly.");
-  bulletList(report.gaps);
-
-  heading("Stronger phrasing you can use");
-  subline("Original and better phrasing pairs.");
-  if (Array.isArray(report.rewrites)) {
-    report.rewrites.forEach((rewrite) => {
-      if (!rewrite) return;
-      doc.fillColor(textMain).fontSize(12).font("Helvetica-Bold").text(rewrite.label || "Rewrite");
-      doc.fillColor(textMain).fontSize(12).font("Helvetica").text(`Original: ${rewrite.original || ""}`);
-      doc.fillColor(textMain).fontSize(12).font("Helvetica").text(`Better: ${rewrite.better || ""}`);
-      if (rewrite.enhancement_note) {
-        doc.fillColor(textMuted).fontSize(11).font("Helvetica-Oblique").text(rewrite.enhancement_note);
-      }
-      doc.moveDown(0.6);
-    });
-  }
-
-  if (Array.isArray(report.missing_wins) && report.missing_wins.length) {
-    heading("Missing wins");
-    bulletList(report.missing_wins);
-  }
-
-  heading("Next steps");
-  subline("Simple fixes you can make this week.");
-  bulletList(report.next_steps);
-
-  doc.end();
+  <div class="footer">Generated with Recruiter in Your Pocket — recruiterinyourpocket.com</div>
+</body>
+</html>
+`;
 }
 
+async function generatePdfBuffer(report) {
+  const html = await renderReportHtml(report);
+  let browser;
+  try {
+    browser = await puppeteer.launch({
+      headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    });
+    const page = await browser.newPage();
+    await page.setContent(html, { waitUntil: "networkidle0" });
+    const pdfBuffer = await page.pdf({
+      format: "A4",
+      printBackground: true,
+      displayHeaderFooter: false,
+      margin: {
+        top: "18mm",
+        right: "16mm",
+        bottom: "18mm",
+        left: "16mm"
+      }
+    });
+    return pdfBuffer;
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+}
 app.post("/api/resume-feedback", rateLimit, async (req, res) => {
   try {
     const tStart = Date.now();
@@ -1152,31 +1236,36 @@ ${text}`;
 });
 
 app.post("/api/export-pdf", rateLimit, (req, res) => {
-  try {
-    const payload = req.body || {};
-    if (!payload.summary || !Array.isArray(payload.rewrites) || !Array.isArray(payload.strengths) || !Array.isArray(payload.gaps) || !Array.isArray(payload.next_steps)) {
-      return res.status(400).json({
+  (async () => {
+    try {
+      const payload = req.body?.report || req.body || {};
+      if (!validateReportForPdf(payload)) {
+        return res.status(400).json({
+          ok: false,
+          errorCode: "INVALID_PAYLOAD",
+          message: "Report data is incomplete. Try exporting again after a successful run."
+        });
+      }
+      const pdfBuffer = await generatePdfBuffer(payload);
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader("Content-Disposition", 'attachment; filename="resume-review.pdf"');
+      return res.end(pdfBuffer);
+    } catch (err) {
+      logLine(
+        {
+          level: "error",
+          msg: "export_pdf_failed",
+          error: err.message
+        },
+        true
+      );
+      return res.status(500).json({
         ok: false,
-        errorCode: "INVALID_PAYLOAD",
-        message: "Report data is incomplete. Try exporting again after a successful run."
+        errorCode: "EXPORT_FAILED",
+        message: "Could not generate a PDF right now. Please try again."
       });
     }
-    pipeReportToPdf(payload, res);
-  } catch (err) {
-    logLine(
-      {
-        level: "error",
-        msg: "export_pdf_failed",
-        error: err.message
-      },
-      true
-    );
-    return res.status(500).json({
-      ok: false,
-      errorCode: "EXPORT_FAILED",
-      message: "Could not generate a PDF right now. Please try again."
-    });
-  }
+  })();
 });
 
 app.validateResumeFeedbackRequest = validateResumeFeedbackRequest;
