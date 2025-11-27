@@ -39,6 +39,7 @@
       --space-lg: 16px;
       --space-xl: 24px;
       --space-2xl: 32px;
+      --space-xxl: 40px;
       --radius-card: 18px;
       --radius-input: 12px;
       --radius-pill: 999px;
@@ -1395,16 +1396,17 @@
       width: 2px;
       background: linear-gradient(180deg, var(--accent) 0%, rgba(31, 63, 182, 0.12) 100%);
       border-radius: var(--radius-pill);
-      opacity: 0.7;
+      opacity: 0.65;
       pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .stack-section {
       position: relative;
       padding: var(--space-sm) var(--space-sm) var(--space-md) var(--space-lg);
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-lg);
       border-radius: 12px;
-      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .stack-heading {
@@ -1425,9 +1427,13 @@
     }
 
     .stack-section:hover {
-      background: rgba(31, 63, 182, 0.03);
+      background: rgba(31, 63, 182, 0.04);
       transform: translateY(-1px);
       box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .stack-section:hover.stack-accent-line::before {
+      opacity: 0.9;
     }
 
     .accent-card-primary {
@@ -1601,7 +1607,7 @@
       justify-content: center;
       gap: 6px;
       text-decoration: none;
-      transition: color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+      transition: color 0.36s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.36s cubic-bezier(0.16, 1, 0.3, 1), transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), background 0.36s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
     }
 
@@ -1610,6 +1616,7 @@
       border-color: var(--border-strong);
       box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
       transform: translateY(-1px);
+      background: rgba(31, 63, 182, 0.04);
     }
 
     .export-button {
@@ -1625,7 +1632,7 @@
       justify-content: center;
       gap: 6px;
       text-decoration: none;
-      transition: color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+      transition: color 0.36s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.36s cubic-bezier(0.16, 1, 0.3, 1), transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), background 0.36s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
     }
 
@@ -1634,6 +1641,7 @@
       border-color: var(--border-strong);
       box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
       transform: translateY(-1px);
+      background: rgba(31, 63, 182, 0.04);
     }
 
     /* Rewrite blocks and section separators */
@@ -1871,14 +1879,15 @@
       cursor: pointer;
       text-decoration: none;
       align-self: flex-start;
-      transition: color 0.12s ease, transform 0.12s ease;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), text-decoration-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .ideas-open-link:hover {
       text-decoration: underline;
       text-decoration-thickness: 1px;
       text-underline-offset: 2px;
-      transform: translateY(-1px);
+      transform: translateX(2px);
+      color: var(--accent-strong);
     }
 
     .ideas-modal {
@@ -2311,19 +2320,19 @@
               role="region"
               aria-label="Resume feedback results"
             >
-              <div class="stack-section">
+              <div class="stack-section stack-accent-line">
                 <div class="stack-heading">What’s working</div>
                 <div class="stack-subline">Strengths that show up clearly.</div>
               </div>
-              <div class="stack-section">
+              <div class="stack-section stack-accent-line">
                 <div class="stack-heading">What’s harder to see</div>
                 <div class="stack-subline">Parts of your impact that don’t come through as strongly.</div>
               </div>
-              <div class="stack-section">
+              <div class="stack-section stack-accent-line">
                 <div class="stack-heading">Stronger phrasing you can use</div>
                 <div class="stack-subline">Clearer versions of a few bullets.</div>
               </div>
-              <div class="stack-section">
+              <div class="stack-section stack-accent-line">
                 <div class="stack-heading">Next steps</div>
                 <div class="stack-subline">Simple fixes you can make this week.</div>
               </div>
@@ -3060,7 +3069,7 @@
 
     // What's Working
     if (Array.isArray(strengths) && strengths.length > 0) {
-      html += `<div class="stack-section"><div class="stack-heading">What’s working</div><div class="stack-subline">Strengths that show up clearly.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s working</div><div class="stack-subline">Strengths that show up clearly.</div><ul class="result-list">`;
       for (const item of strengths) {
         if (!item) continue;
         html += `<li>${escapeHtml(String(item))}</li>`;
@@ -3070,7 +3079,7 @@
 
     // What’s harder to see
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="stack-section"><div class="stack-heading">What’s harder to see</div><div class="stack-subline">Parts of your impact that don’t come through as strongly.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s harder to see</div><div class="stack-subline">Parts of your impact that don’t come through as strongly.</div><ul class="result-list">`;
       for (const item of gaps) {
         if (!item) continue;
         html += `<li>${escapeHtml(String(item))}</li>`;
@@ -3137,7 +3146,7 @@
         return groupHtml;
       };
 
-      html += `<div class="stack-section"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div>`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div>`;
 
       if (clarityGroup.length > 0) {
         html += `<div class="rewrite-cluster-heading">Clarity & Conciseness</div>`;
@@ -3152,7 +3161,7 @@
       html += `</div>`;
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
       // Fallback: use suggested_bullets from backend as a simple list
-      html += `<div class="stack-section"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div><ul class="result-list">`;
       for (const bullet of suggestedBullets) {
         if (!bullet) continue;
         html += `<li>${escapeHtml(String(bullet))}</li>`;
@@ -3167,7 +3176,7 @@
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-    html += `<div class="stack-section" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Simple fixes you can make this week.</div><ul class="result-list">`;
+    html += `<div class="stack-section stack-accent-line" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Simple fixes you can make this week.</div><ul class="result-list">`;
     for (const step of fixedNextSteps) {
       html += `<li>${escapeHtml(String(step))}</li>`;
     }
