@@ -2211,6 +2211,8 @@
         border: none;
         box-shadow: none;
         padding: 0;
+        max-width: 780px;
+        margin: 0 auto;
       }
 
       .top-bar,
@@ -2222,7 +2224,12 @@
       .sample-resume-button,
       .version-pill,
       .mode-buttons,
-      #loading-bar {
+      #loading-bar,
+      #focus-toggle,
+      textarea,
+      label[for="main-input"],
+      .input-wrapper,
+      .resume-hint-overlay {
         display: none !important;
       }
 
@@ -2235,9 +2242,12 @@
       }
 
       .card-output {
-        box-shadow: none;
-        border: none;
-        padding: 0;
+        box-shadow: 0 0 0 1px rgba(12, 17, 32, 0.08);
+        border: 1px solid rgba(12, 17, 32, 0.08);
+        padding: var(--space-md);
+        border-radius: 10px;
+        page-break-inside: avoid;
+        break-inside: avoid;
       }
 
       .results-top {
@@ -2278,7 +2288,9 @@
 
       .result-list li,
       .rewrite-block,
-      .ideas-section-card {
+      .rewrite-columns,
+      .ideas-section-card,
+      .card-output {
         page-break-inside: avoid;
         break-inside: avoid;
       }
