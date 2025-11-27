@@ -911,16 +911,26 @@ async function renderReportHtml(report) {
     body {
       font-family: "Manrope", system-ui, -apple-system, sans-serif;
       color: var(--text-main);
+      background: #f8f9fb;
       padding: var(--space-xl);
-      background: #ffffff;
+    }
+    .pdf-report {
       max-width: 760px;
       margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid rgba(12, 17, 32, 0.08);
+      border-radius: 12px;
+      padding: var(--space-xl);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      page-break-inside: avoid;
+      break-inside: avoid;
     }
     .stack-section {
       border-left: 2px solid color-mix(in srgb, var(--accent) 85%, white 15%);
       padding-left: var(--space-lg);
       margin: var(--space-lg) 0;
       page-break-inside: avoid;
+      break-inside: avoid;
     }
     h1, h2 {
       font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
@@ -960,50 +970,53 @@ async function renderReportHtml(report) {
   </style>
 </head>
 <body>
-  <div class="stack-section">
-    <div class="score">Score: ${Math.round(report.score || 0)}/100</div>
-    ${report.score_label ? `<p>${escape(report.score_label)}</p>` : ""}
+  <div class="pdf-report">
+    <div class="stack-section">
+      <div class="score">Score: ${Math.round(report.score || 0)}/100</div>
+      ${report.score_label ? `<p>${escape(report.score_label)}</p>` : ""}
+      ${report.score_comment_short ? `<p>${escape(report.score_comment_short)}</p>` : ""}
+    </div>
+
+    <div class="stack-section">
+      <h2>How your resume reads</h2>
+      <p>${escape(report.summary)}</p>
+    </div>
+
+    <div class="stack-section">
+      <h2>What’s working</h2>
+      <p style="color: var(--text-muted); font-size: 12px;">Strengths that show up clearly.</p>
+      <ul>${listHtml(report.strengths)}</ul>
+    </div>
+
+    <div class="stack-section">
+      <h2>What’s harder to see</h2>
+      <p style="color: var(--text-muted); font-size: 12px;">Parts of your impact that don’t come through as strongly.</p>
+      <ul>${listHtml(report.gaps)}</ul>
+    </div>
+
+    <div class="stack-section">
+      <h2>Stronger phrasing you can use</h2>
+      <p style="color: var(--text-muted); font-size: 12px;">Original / Better pairs.</p>
+      ${rewriteHtml(report.rewrites)}
+    </div>
+
+    ${
+      Array.isArray(report.missing_wins) && report.missing_wins.length
+        ? `<div class="stack-section">
+            <h2>Missing wins</h2>
+            <ul>${listHtml(report.missing_wins)}</ul>
+          </div>`
+        : ""
+    }
+
+    <div class="stack-section">
+      <h2>Next steps</h2>
+      <p style="color: var(--text-muted); font-size: 12px;">Simple fixes you can make this week.</p>
+      <ul>${listHtml(report.next_steps)}</ul>
+    </div>
+
+    <div class="footer">Generated with Recruiter in Your Pocket — recruiterinyourpocket.com</div>
   </div>
-
-  <div class="stack-section">
-    <h2>How your resume reads</h2>
-    <p>${escape(report.summary)}</p>
-  </div>
-
-  <div class="stack-section">
-    <h2>What’s working</h2>
-    <p style="color: var(--text-muted); font-size: 12px;">Strengths that show up clearly.</p>
-    <ul>${listHtml(report.strengths)}</ul>
-  </div>
-
-  <div class="stack-section">
-    <h2>What’s harder to see</h2>
-    <p style="color: var(--text-muted); font-size: 12px;">Parts of your impact that don’t come through as strongly.</p>
-    <ul>${listHtml(report.gaps)}</ul>
-  </div>
-
-  <div class="stack-section">
-    <h2>Stronger phrasing you can use</h2>
-    <p style="color: var(--text-muted); font-size: 12px;">Original / Better pairs.</p>
-    ${rewriteHtml(report.rewrites)}
-  </div>
-
-  ${
-    Array.isArray(report.missing_wins) && report.missing_wins.length
-      ? `<div class="stack-section">
-          <h2>Missing wins</h2>
-          <ul>${listHtml(report.missing_wins)}</ul>
-        </div>`
-      : ""
-  }
-
-  <div class="stack-section">
-    <h2>Next steps</h2>
-    <p style="color: var(--text-muted); font-size: 12px;">Simple fixes you can make this week.</p>
-    <ul>${listHtml(report.next_steps)}</ul>
-  </div>
-
-  <div class="footer">Generated with Recruiter in Your Pocket — recruiterinyourpocket.com</div>
 </body>
 </html>
 `;
