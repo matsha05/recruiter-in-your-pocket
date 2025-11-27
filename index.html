@@ -1400,7 +1400,11 @@
     }
 
     .stack-section {
-      padding: 6px 0;
+      position: relative;
+      padding: var(--space-sm) var(--space-sm) var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-md);
+      border-radius: 12px;
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
     }
 
     .stack-heading {
@@ -1418,6 +1422,12 @@
       color: var(--text-muted);
       margin-bottom: 8px;
       line-height: 1.5;
+    }
+
+    .stack-section:hover {
+      background: rgba(31, 63, 182, 0.03);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
     }
 
     .accent-card-primary {
@@ -1566,9 +1576,15 @@
       .run-button,
       .copy-button,
       .export-button,
-      .ideas-open-link {
+      .ideas-open-link,
+      .stack-section {
         transition: none !important;
         transform: none !important;
+      }
+
+      .stack-section:hover {
+        background: inherit;
+        box-shadow: none;
       }
     }
 
@@ -2273,7 +2289,7 @@
                   This number reflects how clearly your story reads in a quick scan. Below, you’ll see the strengths that already stand out, the details that get lost, and the simple edits that will make your impact easier to see.
                 </div>
               </div>
-              <div id="results-summary" class="results-summary accent-card-primary empty">
+              <div id="results-summary" class="results-summary accent-card-primary empty stack-section stack-accent-line">
                 Your recruiter’s take will appear here.
               </div>
               <div id="status-bar" class="status-bar"></div>
@@ -2322,10 +2338,10 @@
               </button>
             </div>
 
-            <div id="ideas-inline" class="ideas-inline hidden" aria-label="Missing wins">
+            <div id="ideas-inline" class="ideas-inline hidden stack-section stack-accent-line" aria-label="Missing wins">
               <div class="ideas-text">
-                <div class="ideas-kicker">Missing wins</div>
-                <div class="ideas-subtitle">Let’s look for wins you have not written yet or forgot about.</div>
+                <div class="ideas-kicker stack-heading">Missing wins</div>
+                <div class="ideas-subtitle stack-subline">Let’s look for wins you have not written yet or forgot about.</div>
               </div>
               <button id="ideas-open" class="ideas-open-link" type="button">Open missing wins →</button>
             </div>
