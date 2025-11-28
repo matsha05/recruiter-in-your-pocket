@@ -3721,12 +3721,22 @@
     }
     logEvent("report_pdf_export_clicked");
     try {
+      const generatedOnLocal = new Date().toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
       const resp = await fetch("/api/export-pdf", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ report: lastReportData })
+        body: JSON.stringify({
+          report: {
+            ...lastReportData,
+            generated_on: generatedOnLocal
+          }
+        })
       });
       if (!resp.ok) {
         statusEl.textContent = "Could not export right now. Try again.";

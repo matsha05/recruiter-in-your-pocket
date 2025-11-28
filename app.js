@@ -856,7 +856,10 @@ function validateReportForPdf(report) {
 }
 
 async function renderReportHtml(report) {
-  const generatedOn = new Date().toISOString().slice(0, 10);
+  const generatedOn =
+    typeof report.generated_on === "string" && report.generated_on.trim()
+      ? report.generated_on
+      : new Date().toISOString().slice(0, 10);
   const escape = (str) =>
     String(str || "")
       .replace(/&/g, "&amp;")
