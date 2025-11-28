@@ -23,10 +23,10 @@ UX checks
 
 ## Phase 2 – Export & Copy (Report Portability)
 Goal: Make the report travel well as PDF and structured text.
-- [ ] Add print CSS so browser print/PDF output mirrors on-screen report (section order, headings, spacing, accent spine).
-- [ ] Ensure the existing Export PDF action uses this styling.
-- [ ] Add a “Copy with headings” option that preserves section order and labels.
-- [ ] Add a small inline hint near export about sharing with mentors/recruiters.
+- [x] Add print CSS so browser print/PDF output mirrors on-screen report (section order, headings, spacing, accent spine).
+- [x] Ensure the existing Export PDF action uses this styling.
+- [x] Add a “Copy with headings” option that preserves section order and labels.
+- [x] Add a small inline hint near export about sharing with mentors/recruiters.
 
 ## Phase 3 – Tiny Design System
 Goal: Codify spacing, type, and accent decisions so Codex and Matt stay consistent.
