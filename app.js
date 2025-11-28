@@ -913,44 +913,51 @@ async function renderReportHtml(report) {
       font-family: "Manrope", system-ui, -apple-system, sans-serif;
       color: var(--text-main);
       background: #f5f6f8;
-      padding: var(--space-xl);
+      padding: var(--space-md);
     }
     .pdf-header {
       max-width: 760px;
-      margin: 0 auto var(--space-md);
+      margin: 0 auto var(--space-sm);
       padding: 0 var(--space-sm);
-      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
     }
+    .pdf-header-left { display: flex; flex-direction: column; gap: 2px; }
     .pdf-header-title {
       font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
       font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.01em;
       color: var(--text-main);
-      margin-bottom: 2px;
     }
     .pdf-header-subtitle {
       font-size: 12px;
       color: var(--text-muted);
       letter-spacing: 0.02em;
     }
+    .pdf-header-right {
+      text-align: right;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
     .pdf-report-card {
       max-width: 760px;
-      margin: 0 auto;
+      margin: var(--space-sm) auto 0;
       background: #ffffff;
       border: 1px solid rgba(12, 17, 32, 0.08);
       border-radius: 12px;
-      padding: var(--space-xl);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-      page-break-inside: avoid;
-      break-inside: avoid;
+      padding: var(--space-lg);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.05);
     }
     .stack-section {
       border-left: 3px solid color-mix(in srgb, var(--accent) 85%, white 15%);
-      padding-left: var(--space-lg);
-      margin: var(--space-lg) 0;
-      page-break-inside: avoid;
-      break-inside: avoid;
+      padding-left: var(--space-md);
+      margin: var(--space-md) 0;
+      page-break-inside: auto;
+      break-inside: auto;
     }
     h1, h2 {
       font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
@@ -961,16 +968,17 @@ async function renderReportHtml(report) {
     h2 { font-size: 16px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); }
     .subtext { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
     p { font-size: 13px; line-height: 1.6; margin-bottom: var(--space-md); }
-    ul { padding-left: 18px; margin-bottom: var(--space-lg); font-size: 13px; line-height: 1.6; }
+    ul { padding-left: 18px; margin-bottom: var(--space-md); font-size: 13px; line-height: 1.6; }
     li { margin-bottom: var(--space-sm); }
-    .score { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: var(--space-md); }
+    .score { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: var(--space-sm); }
+    .band { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
     .label { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
     .text { font-size: 13px; color: var(--text-main); line-height: 1.55; }
     .rewrite-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--space-md);
-      margin-bottom: var(--space-lg);
+      margin-bottom: var(--space-md);
       border-left: 2px solid rgba(12, 17, 32, 0.06);
       padding-left: var(--space-sm);
       page-break-inside: avoid;
@@ -994,14 +1002,17 @@ async function renderReportHtml(report) {
 </head>
 <body>
   <div class="pdf-header">
-    <div class="pdf-header-title">Recruiter in Your Pocket</div>
-    <div class="pdf-header-subtitle">Resume Report · Generated on ${generatedOn}</div>
+    <div class="pdf-header-left">
+      <div class="pdf-header-title">Recruiter in Your Pocket</div>
+      <div class="pdf-header-subtitle">Resume Report</div>
+    </div>
+    <div class="pdf-header-right">Generated on ${generatedOn}</div>
   </div>
 
   <div class="pdf-report-card">
     <div class="stack-section">
       <div class="score">Score: ${Math.round(report.score || 0)}/100</div>
-      ${report.score_label ? `<p>${escape(report.score_label)}</p>` : ""}
+      ${report.score_label ? `<div class="band">${escape(report.score_label)}</div>` : ""}
       ${report.score_comment_short ? `<p>${escape(report.score_comment_short)}</p>` : ""}
     </div>
 
