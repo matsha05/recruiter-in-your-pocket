@@ -157,6 +157,40 @@
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
     }
 
+    .trust-inline {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.03);
+    }
+
+    .trust-inline button {
+      border: none;
+      background: transparent;
+      color: var(--accent-boost);
+      cursor: pointer;
+      font-size: 12px;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .hero-data-card {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
     .status-dot {
       width: 8px;
       height: 8px;
@@ -176,8 +210,8 @@
 
     .hero {
       position: relative;
-      margin: 0 auto var(--space-2xl);
-      padding: var(--space-2xl);
+      margin: 0 auto var(--space-xl);
+      padding: var(--space-xl);
       max-width: 1100px;
       border-radius: var(--radius-card);
       overflow: hidden;
@@ -221,23 +255,25 @@
     .hero-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 14px;
-      margin-top: 12px;
+      gap: 8px;
+      margin-top: 14px;
       font-size: 12px;
       color: var(--text-muted);
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.03);
     }
 
     .hero-pill {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 7px 14px;
-      border-radius: 14px;
+      padding: 6px 12px;
+      border-radius: 12px;
       border: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       color: var(--text-soft);
       letter-spacing: 0.04em;
-      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
     }
 
     .hero-pill span:first-child {
@@ -282,14 +318,14 @@
     }
 
     .proof-quote {
-      font-size: 13px;
-      color: var(--text-main);
+      font-size: 12px;
+      color: var(--text-soft);
       line-height: 1.6;
     }
 
     .proof-name {
-      font-size: 12px;
-      color: var(--text-soft);
+      font-size: 11px;
+      color: var(--text-muted);
       letter-spacing: 0.01em;
     }
 
@@ -2351,6 +2387,15 @@
       <section class="hero">
         <h1 class="hero-title">Recruiter-grade resume feedback in under a minute.</h1>
         <p class="hero-subtitle">Paste your resume to get a crafted, honest read on how your story lands, plus stronger bullets and clear next steps.</p>
+        <div class="trust-inline">
+          <span>We don’t store your resume.</span>
+          <button id="data-handling-inline" type="button" aria-expanded="false" aria-controls="hero-data-card">How we handle data</button>
+        </div>
+        <div id="hero-data-card" class="hero-data-card hidden" role="region" aria-label="How we handle your data">
+          <p>Your resume lives only in this browser until you click Get feedback.</p>
+          <p>When you run a review, we send your text securely to our backend so the model can read it.</p>
+          <p>We do not store your resume text or use it to train models.</p>
+        </div>
 
         <div class="hero-grid">
           <div class="hero-pill">
@@ -2406,27 +2451,8 @@
             </div>
 
             <div class="input-meta-row">
-              <div>Start with your resume or the sample. Your text stays in this browser until you click Get feedback.</div>
+              <div>Your resume stays in your browser until you click Get feedback.</div>
               <div id="saved-indicator" class="saved-indicator">Saved</div>
-            </div>
-
-            <div class="data-handling-row">
-              <button id="data-handling-link" type="button" class="ghost-button data-handling-link">
-                How your data is handled
-              </button>
-            </div>
-
-            <div id="data-handling-panel" class="data-handling-panel hidden" aria-live="polite">
-              <div class="data-handling-title">How your data is handled</div>
-              <p class="data-handling-text">
-                Your resume lives only in this browser until you click <strong>Get feedback</strong>.
-              </p>
-              <p class="data-handling-text">
-                When you run a review, we send your text securely to our backend so the model can read it and generate feedback.
-              </p>
-              <p class="data-handling-text">
-                We do not store your resume text or use it to train models.
-              </p>
             </div>
 
             <div class="run-row">
@@ -2602,8 +2628,8 @@
   const copyFullButtonEl = document.getElementById("copy-full-button");
   const exportButtonEl = document.getElementById("export-button");
   const resultsActionsBottomEl = document.getElementById("results-actions-bottom");
-  const dataHandlingLinkEl = document.getElementById("data-handling-link");
-  const dataHandlingPanelEl = document.getElementById("data-handling-panel");
+  const dataHandlingInlineEl = document.getElementById("data-handling-inline");
+  const dataHandlingPanelEl = document.getElementById("hero-data-card");
   const textareaEl = document.getElementById("main-input");
   const savedIndicatorEl = document.getElementById("saved-indicator");
   const modeIndicatorEl = document.getElementById("mode-indicator");
@@ -3966,40 +3992,24 @@ University of Washington
 Skills
 Product discovery, experimentation, roadmapping, stakeholder communication, SQL, basic Python, Figma`;
 
-  if (dataHandlingLinkEl && dataHandlingPanelEl) {
-    dataHandlingLinkEl.addEventListener("click", (event) => {
+  if (dataHandlingInlineEl && dataHandlingPanelEl) {
+    dataHandlingInlineEl.addEventListener("click", (event) => {
       event.preventDefault();
       const isHidden = dataHandlingPanelEl.classList.contains("hidden");
       if (isHidden) {
         dataHandlingPanelEl.classList.remove("hidden");
+        if (typeof dataHandlingPanelEl.scrollIntoView === "function") {
+          dataHandlingPanelEl.scrollIntoView({
+            behavior: prefersReducedMotion() ? "auto" : "smooth",
+            block: "nearest"
+          });
+        }
+        dataHandlingInlineEl.setAttribute("aria-expanded", "true");
       } else {
         dataHandlingPanelEl.classList.add("hidden");
-      }
-      event.stopPropagation();
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!dataHandlingPanelEl) return;
-      if (dataHandlingPanelEl.classList.contains("hidden")) return;
-      const target = event.target;
-      if (
-        target instanceof Node &&
-        dataHandlingPanelEl &&
-        dataHandlingLinkEl &&
-        !dataHandlingPanelEl.contains(target) &&
-        !dataHandlingLinkEl.contains(target)
-      ) {
-        hideDataPanel();
+        dataHandlingInlineEl.setAttribute("aria-expanded", "false");
       }
     });
-  }
-
-  if (textareaEl) {
-    textareaEl.addEventListener("focus", hideDataPanel);
-  }
-
-  if (runButton) {
-    runButton.addEventListener("click", hideDataPanel);
   }
 
   if (sampleResumeButtonEl) {
