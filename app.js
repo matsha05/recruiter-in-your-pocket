@@ -856,6 +856,7 @@ function validateReportForPdf(report) {
 }
 
 async function renderReportHtml(report) {
+  const generatedOn = new Date().toISOString().slice(0, 10);
   const escape = (str) =>
     String(str || "")
       .replace(/&/g, "&amp;")
@@ -911,10 +912,29 @@ async function renderReportHtml(report) {
     body {
       font-family: "Manrope", system-ui, -apple-system, sans-serif;
       color: var(--text-main);
-      background: #f8f9fb;
+      background: #f5f6f8;
       padding: var(--space-xl);
     }
-    .pdf-report {
+    .pdf-header {
+      max-width: 760px;
+      margin: 0 auto var(--space-md);
+      padding: 0 var(--space-sm);
+      text-align: left;
+    }
+    .pdf-header-title {
+      font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+    .pdf-header-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+    .pdf-report-card {
       max-width: 760px;
       margin: 0 auto;
       background: #ffffff;
@@ -926,7 +946,7 @@ async function renderReportHtml(report) {
       break-inside: avoid;
     }
     .stack-section {
-      border-left: 2px solid color-mix(in srgb, var(--accent) 85%, white 15%);
+      border-left: 3px solid color-mix(in srgb, var(--accent) 85%, white 15%);
       padding-left: var(--space-lg);
       margin: var(--space-lg) 0;
       page-break-inside: avoid;
@@ -937,8 +957,9 @@ async function renderReportHtml(report) {
       letter-spacing: 0.01em;
       margin-bottom: var(--space-md);
     }
-    h1 { font-size: 18px; }
+    h1 { font-size: 20px; color: var(--accent); }
     h2 { font-size: 16px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); }
+    .subtext { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
     p { font-size: 13px; line-height: 1.6; margin-bottom: var(--space-md); }
     ul { padding-left: 18px; margin-bottom: var(--space-lg); font-size: 13px; line-height: 1.6; }
     li { margin-bottom: var(--space-sm); }
@@ -953,8 +974,10 @@ async function renderReportHtml(report) {
       border-left: 2px solid rgba(12, 17, 32, 0.06);
       padding-left: var(--space-sm);
       page-break-inside: avoid;
+      break-inside: avoid;
     }
     .rewrite-col { display: flex; flex-direction: column; gap: 6px; }
+    .rewrite-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.02em; }
     .enhancement {
       grid-column: 1 / -1;
       font-size: 12px;
@@ -970,7 +993,12 @@ async function renderReportHtml(report) {
   </style>
 </head>
 <body>
-  <div class="pdf-report">
+  <div class="pdf-header">
+    <div class="pdf-header-title">Recruiter in Your Pocket</div>
+    <div class="pdf-header-subtitle">Resume Report · Generated on ${generatedOn}</div>
+  </div>
+
+  <div class="pdf-report-card">
     <div class="stack-section">
       <div class="score">Score: ${Math.round(report.score || 0)}/100</div>
       ${report.score_label ? `<p>${escape(report.score_label)}</p>` : ""}
@@ -984,19 +1012,19 @@ async function renderReportHtml(report) {
 
     <div class="stack-section">
       <h2>What’s working</h2>
-      <p style="color: var(--text-muted); font-size: 12px;">Strengths that show up clearly.</p>
+      <div class="subtext">Strengths that show up clearly.</div>
       <ul>${listHtml(report.strengths)}</ul>
     </div>
 
     <div class="stack-section">
       <h2>What’s harder to see</h2>
-      <p style="color: var(--text-muted); font-size: 12px;">Parts of your impact that don’t come through as strongly.</p>
+      <div class="subtext">Parts of your impact that don’t come through as strongly.</div>
       <ul>${listHtml(report.gaps)}</ul>
     </div>
 
     <div class="stack-section">
       <h2>Stronger phrasing you can use</h2>
-      <p style="color: var(--text-muted); font-size: 12px;">Original / Better pairs.</p>
+      <div class="subtext">Original / Better pairs.</div>
       ${rewriteHtml(report.rewrites)}
     </div>
 
@@ -1011,7 +1039,7 @@ async function renderReportHtml(report) {
 
     <div class="stack-section">
       <h2>Next steps</h2>
-      <p style="color: var(--text-muted); font-size: 12px;">Simple fixes you can make this week.</p>
+      <div class="subtext">Simple fixes you can make this week.</div>
       <ul>${listHtml(report.next_steps)}</ul>
     </div>
 
