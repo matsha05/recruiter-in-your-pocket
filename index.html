@@ -2508,8 +2508,8 @@
               <button id="export-button" class="export-button" aria-label="Export PDF">
                 ⬇ <span>Export PDF</span>
               </button>
-              <button id="copy-button" class="copy-button" aria-label="Copy results">
-                ⧉ <span>Copy</span>
+              <button id="copy-full-button" class="copy-button" aria-label="Copy report with headings">
+                ⧉ <span>Copy report</span>
               </button>
             </div>
 
@@ -2599,7 +2599,7 @@
   const scoreLabelEl = document.getElementById("score-label");
   const scoreShortEl = document.getElementById("score-short");
   const scoreTooltipEl = document.getElementById("score-tooltip");
-  const copyButtonEl = document.getElementById("copy-button");
+  const copyFullButtonEl = document.getElementById("copy-full-button");
   const exportButtonEl = document.getElementById("export-button");
   const resultsActionsBottomEl = document.getElementById("results-actions-bottom");
   const dataHandlingLinkEl = document.getElementById("data-handling-link");
@@ -3694,22 +3694,91 @@
     });
   }
 
-  copyButtonEl.addEventListener("click", async () => {
-    const summaryText = resultsSummaryEl ? resultsSummaryEl.innerText.trim() : "";
-    const bodyText = resultsBodyEl.innerText.trim();
-    const text = [summaryText, bodyText].filter(Boolean).join("\n\n");
-    if (!text) {
-      statusEl.textContent = "Nothing to copy yet.";
-      return;
+  function buildFullReportText(data) {
+    if (!data || typeof data !== "object") return "";
+    const lines = [];
+    lines.push("Resume Review — Recruiter in Your Pocket");
+    if (typeof data.score === "number") {
+      const band = data.score_label ? ` — ${data.score_label}` : "";
+      lines.push(`Score: ${Math.round(data.score)}/100${band}`);
     }
-    logEvent("report_copy_clicked");
-    try {
-      await navigator.clipboard.writeText(text);
-      statusEl.textContent = "Copied.";
-    } catch {
-      statusEl.textContent = "Could not copy. Please select the text manually.";
+    lines.push("");
+
+    if (data.summary) {
+      lines.push("How your resume reads:");
+      lines.push("");
+      lines.push(data.summary);
+      lines.push("");
     }
-  });
+
+    if (Array.isArray(data.strengths) && data.strengths.length) {
+      lines.push("What’s working:");
+      lines.push("");
+      data.strengths.forEach((item) => lines.push(`- ${item}`));
+      lines.push("");
+    }
+
+    if (Array.isArray(data.gaps) && data.gaps.length) {
+      lines.push("What’s harder to see:");
+      lines.push("");
+      data.gaps.forEach((item) => lines.push(`- ${item}`));
+      lines.push("");
+    }
+
+    if (Array.isArray(data.rewrites) && data.rewrites.length) {
+      lines.push("Stronger phrasing you can use:");
+      lines.push("");
+      data.rewrites.forEach((r) => {
+        if (!r) return;
+        lines.push("Original:");
+        lines.push("");
+        if (r.original) lines.push(r.original);
+        lines.push("");
+        lines.push("Better:");
+        lines.push("");
+        if (r.better) lines.push(r.better);
+        if (r.enhancement_note) lines.push(`  ${r.enhancement_note}`);
+        lines.push("");
+      });
+    }
+
+    if (Array.isArray(data.missing_wins) && data.missing_wins.length) {
+      lines.push("Missing wins:");
+      lines.push("");
+      data.missing_wins.forEach((item) => lines.push(`- ${item}`));
+      lines.push("");
+    }
+
+    if (Array.isArray(data.next_steps) && data.next_steps.length) {
+      lines.push("Next steps:");
+      lines.push("");
+      data.next_steps.forEach((item) => lines.push(`- ${item}`));
+      lines.push("");
+    }
+
+    lines.push("Generated with Recruiter in Your Pocket — recruiterinyourpocket.com");
+    return lines.join("\n");
+  }
+
+  if (copyFullButtonEl) {
+    copyFullButtonEl.addEventListener("click", async () => {
+      if (!lastReportData) {
+        statusEl.textContent = "Nothing to copy yet.";
+        return;
+      }
+      const text = buildFullReportText(lastReportData);
+      if (!text.trim()) {
+        statusEl.textContent = "Nothing to copy yet.";
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(text);
+        statusEl.textContent = "Report copied.";
+      } catch (err) {
+        statusEl.textContent = "Couldn’t copy the report. Please try again.";
+      }
+    });
+  }
 
   exportButtonEl.addEventListener("click", async () => {
     const summaryText = resultsSummaryEl ? resultsSummaryEl.innerText.trim() : "";
