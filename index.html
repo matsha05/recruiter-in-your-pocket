@@ -3743,6 +3743,10 @@
         return;
       }
       const blob = await resp.blob();
+      if (!blob || blob.size === 0) {
+        statusEl.textContent = "Could not export right now. Try again.";
+        return;
+      }
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;

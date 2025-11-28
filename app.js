@@ -899,6 +899,7 @@ async function renderReportHtml(report) {
 <html>
 <head>
   <meta charset="utf-8" />
+  <title>Resume Review — Recruiter in Your Pocket</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap");
     :root {
@@ -958,22 +959,22 @@ async function renderReportHtml(report) {
     .stack-section {
       border-left: 3px solid color-mix(in srgb, var(--accent) 85%, white 15%);
       padding-left: var(--space-md);
-      margin: var(--space-md) 0;
+      margin: 10px 0;
       page-break-inside: auto;
       break-inside: auto;
     }
     h1, h2 {
       font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
       letter-spacing: 0.01em;
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-sm);
     }
-    h1 { font-size: 20px; color: var(--accent); }
-    h2 { font-size: 16px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); }
-    .subtext { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
-    p { font-size: 13px; line-height: 1.6; margin-bottom: var(--space-md); }
-    ul { padding-left: 18px; margin-bottom: var(--space-md); font-size: 13px; line-height: 1.6; }
-    li { margin-bottom: var(--space-sm); }
-    .score { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: var(--space-sm); }
+    h1 { font-size: 21px; color: var(--accent); font-weight: 800; }
+    h2 { font-size: 17px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); font-weight: 750; }
+    .subtext { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-xs); font-style: italic; }
+    p { font-size: 13px; line-height: 1.65; margin-bottom: var(--space-sm); }
+    ul { padding-left: 18px; margin-bottom: var(--space-sm); font-size: 13px; line-height: 1.6; }
+    li { margin-bottom: var(--space-xs); line-height: 1.55; }
+    .score { font-size: 21px; font-weight: 800; color: var(--accent); margin-bottom: var(--space-xs); }
     .band { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
     .label { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
     .text { font-size: 13px; color: var(--text-main); line-height: 1.55; }
@@ -997,8 +998,8 @@ async function renderReportHtml(report) {
     }
     .footer {
       margin-top: var(--space-xl);
-      font-size: 12px;
-      color: var(--text-muted);
+      font-size: 11px;
+      color: rgba(75, 85, 99, 0.7);
       text-align: center;
     }
   </style>
