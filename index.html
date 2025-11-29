@@ -14,18 +14,24 @@
       --bg-card: #ffffff;
       --border-subtle: #d7dae3;
       --border-strong: #c6cbd6;
-      --accent: #1c3a9d;
+      --accent: #1C4ED8;
+      --accent-dark: #173CA9;
+      --accent-wash: #EFF6FF;
       --accent-boost: #193590;
       --accent-strong: #132a75;
-      --text-main: #0d1018;
-      --text-soft: #3f4552;
-      --text-muted: #6b7280;
+      --text-main: var(--ink-900);
+      --text-soft: var(--slate-700);
+      --text-muted: var(--slate-500);
+      --ink-900: #0F172A;
+      --slate-700: #334155;
+      --slate-500: #64748B;
+      --wash: #F8FAFC;
       --surface-tint: #eef1f6;
       --success: #15803d;
       --error: #b91c1c;
       --font-display: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-body: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --fs-hero: 42px;
+      --fs-hero: 50px;
       --fs-h1: 28px;
       --fs-h2: 22px;
       --fs-h3: 18px;
@@ -184,7 +190,7 @@
       margin-top: 10px;
       padding: 10px 12px;
       border-radius: 12px;
-      background: rgba(15, 23, 42, 0.04);
+      background: var(--wash);
       border: 1px solid var(--border-subtle);
       color: var(--text-soft);
       font-size: 12px;
@@ -237,8 +243,8 @@
       font-family: var(--font-display);
       font-size: var(--fs-hero);
       letter-spacing: -0.02em;
-      color: var(--text-main);
-      font-weight: 800;
+      color: var(--ink-900);
+      font-weight: 700;
       line-height: var(--lh-tight);
       margin-bottom: var(--space-lg);
       max-width: 820px;
@@ -413,7 +419,7 @@
 
     @media (max-width: 600px) {
       :root {
-        --fs-hero: 36px;
+        --fs-hero: 43px;
         --fs-h1: 24px;
         --fs-h2: 20px;
       }
@@ -422,7 +428,7 @@
         margin-bottom: 18px;
       }
       .hero-title {
-        font-size: 28px;
+        font-size: 32px;
       }
       .hero-subtitle {
         font-size: 14px;
@@ -450,7 +456,7 @@
 
     .tool-layout {
       position: relative;
-      margin-top: var(--space-lg);
+      margin-top: var(--space-xl);
       display: flex;
       flex-direction: column;
       gap: var(--space-2xl);
@@ -703,59 +709,63 @@
       pointer-events: none;
     }
 
-    .run-button {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 16px;
-      border-radius: 12px;
-      border: 1px solid color-mix(in srgb, var(--accent) 70%, white 30%);
-      cursor: pointer;
+    .btn-primary {
       background: var(--accent);
       color: #ffffff;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 18%, transparent);
-      transition:
-        background var(--motion-duration-short) var(--motion-ease-premium),
-        box-shadow var(--motion-duration-short) var(--motion-ease-premium),
-        opacity var(--motion-duration-short) var(--motion-ease-premium),
-        transform var(--motion-duration-short) var(--motion-ease-premium);
-      position: relative;
-      z-index: 1;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 12px 22px;
+      border: none;
+      box-shadow: 0 4px 14px rgba(28, 78, 216, 0.25);
+      cursor: pointer;
+      transition: background 200ms ease, box-shadow 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .run-button:hover:not(:disabled):not(.processing) {
-      background: color-mix(in srgb, var(--accent) 88%, black 12%);
-      box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 22%, transparent);
-      transform: translateY(-1px);
+    .btn-primary:hover:not(:disabled) {
+      background: var(--accent-dark);
+      box-shadow: 0 6px 18px rgba(23, 60, 169, 0.27);
     }
 
-    .run-button:disabled {
+    .btn-primary:disabled {
       opacity: 0.65;
       cursor: default;
       box-shadow: 0 1px 3px rgba(10, 16, 28, 0.12);
     }
 
-    .run-button:active:not(:disabled):not(.processing) {
-      transform: scale(0.99);
-      box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 20%, transparent);
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid rgba(28, 78, 216, 0.45);
+      color: var(--accent);
+      border-radius: 10px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 10px rgba(28, 78, 216, 0.15);
+      cursor: pointer;
+      transition: background 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .run-button.processing {
-      animation: runButtonPulse 1.7s ease-in-out infinite;
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--accent-wash);
+      border-color: var(--accent);
     }
 
-    .primary-button.processing {
-      background-color: var(--accent);
-      color: #fff;
-      background-image: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.0) 0%,
-        rgba(255, 255, 255, 0.24) 50%,
-        rgba(255, 255, 255, 0.0) 100%
-      );
-      background-size: 200% 100%;
-      animation: shimmer 2.2s ease-in-out infinite;
+    .run-button {
+      width: 100%;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .copy-button,
+    .export-button {
+      font-size: 13px;
+      gap: 6px;
     }
 
     @keyframes runButtonPulse {
@@ -901,30 +911,34 @@
       width: 100%;
     }
 
-    .report-card.report-ready {
-      animation: none;
+    .report-wrapper {
+      display: none;
     }
 
-    .report-card.report-ready.report-first-run {
-      animation: reportRevealSoft 240ms var(--motion-ease-premium) both;
+    .report-container {
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(2px);
+    }
+
+    .report-container--visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+      transition:
+        opacity 340ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 340ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 340ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .report-card.report-ready.report-first-run {
-        animation: none;
+      .report-container,
+      .report-container--visible {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
       }
-    }
-
-    .report-card.report-ready .score-pill {
-      animation: scorePillPop 0.18s ease-out 0.06s both;
-    }
-
-    .report-card.report-ready .report-accent-line {
-      animation: accentLineDraw 0.22s ease-out 0.14s forwards;
-    }
-
-    .report-card.report-ready .report-section {
-      animation: reportSectionIn 0.2s ease-out both;
     }
 
     .report-title {
@@ -944,21 +958,17 @@
       transform-origin: left;
     }
 
-    .report-card.report-ready .report-title::after {
-      animation: titleUnderline 0.12s ease-out 0.26s forwards;
-    }
-
     .bridge-heading {
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
-      color: var(--text-main);
+      color: var(--ink-900);
       letter-spacing: -0.01em;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     #results-subtitle {
-      font-size: 13px;
-      color: var(--text-soft);
+      font-size: 16px;
+      color: var(--slate-700);
       line-height: 1.6;
       max-width: 620px;
       margin: 0;
@@ -1496,19 +1506,20 @@
 
     .stack-heading {
       font-family: var(--font-display);
-      font-size: var(--fs-h2);
-      font-weight: 800;
-      color: color-mix(in srgb, var(--text-main) 90%, var(--accent) 10%);
-      letter-spacing: 0.01em;
-      margin-bottom: var(--space-md);
-      line-height: 1.3;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink-900);
+      letter-spacing: -0.01em;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      line-height: 1.28;
     }
 
     .stack-subline {
-      font-size: var(--fs-small);
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      line-height: 1.5;
+      font-size: 16px;
+      color: var(--slate-700);
+      margin-bottom: 12px;
+      line-height: 1.6;
     }
 
     .stack-section:hover,
@@ -1574,7 +1585,7 @@
     }
 
     .result-list li {
-      margin-bottom: var(--space-sm);
+      margin-bottom: 10px;
       line-height: 1.6;
     }
 
@@ -1602,11 +1613,11 @@
 
     .rewrite-enhancement-note {
       margin-top: 8px;
-      font-size: 0.85rem;
+      font-size: 14px;
       opacity: 0.95;
-      font-style: normal;
+      font-style: italic;
       padding: 8px 10px;
-      color: var(--text-soft);
+      color: #475569;
       line-height: 1.5;
       background: transparent;
     }
@@ -1657,15 +1668,6 @@
         background-color: var(--score-pill-bg);
       }
 
-      .run-button.processing {
-        animation: none;
-      }
-
-      .primary-button.processing {
-        animation: none;
-        background-position: center;
-      }
-
       .run-button,
       .copy-button,
       .export-button,
@@ -1676,64 +1678,10 @@
       }
     }
 
-    .copy-button {
-      border-radius: 12px;
-      border: 1px solid color-mix(in srgb, var(--accent) 70%, white 30%);
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 13px;
-      padding: 10px 14px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-decoration: none;
-      transition:
-        color var(--motion-duration-medium) var(--motion-ease-premium),
-        box-shadow var(--motion-duration-medium) var(--motion-ease-premium),
-        border-color var(--motion-duration-medium) var(--motion-ease-premium),
-        transform var(--motion-duration-medium) var(--motion-ease-premium),
-        background var(--motion-duration-medium) var(--motion-ease-premium);
-      box-shadow: 0 10px 22px color-mix(in srgb, var(--accent) 18%, transparent);
-    }
-
-    .copy-button:hover {
-      color: #ffffff;
-      border-color: color-mix(in srgb, var(--accent) 82%, white 18%);
-      box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 22%, transparent);
-      transform: translateY(-1px);
-      background: color-mix(in srgb, var(--accent) 90%, black 10%);
-    }
-
+    .copy-button,
     .export-button {
-      border-radius: 12px;
-      border: 1px solid color-mix(in srgb, var(--accent) 70%, white 30%);
-      background: var(--accent);
-      color: #ffffff;
       font-size: 13px;
-      padding: 10px 14px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       gap: 6px;
-      text-decoration: none;
-      transition:
-        color var(--motion-duration-medium) var(--motion-ease-premium),
-        box-shadow var(--motion-duration-medium) var(--motion-ease-premium),
-        border-color var(--motion-duration-medium) var(--motion-ease-premium),
-        transform var(--motion-duration-medium) var(--motion-ease-premium),
-        background var(--motion-duration-medium) var(--motion-ease-premium);
-      box-shadow: 0 10px 22px color-mix(in srgb, var(--accent) 18%, transparent);
-    }
-
-    .export-button:hover {
-      color: #ffffff;
-      border-color: color-mix(in srgb, var(--accent) 82%, white 18%);
-      box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 22%, transparent);
-      transform: translateY(-1px);
-      background: color-mix(in srgb, var(--accent) 90%, black 10%);
     }
 
     /* Rewrite blocks and section separators */
@@ -1838,15 +1786,17 @@
     }
 
     .mode-button:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-secondary:focus-visible,
     .run-button:focus-visible,
     .sample-resume-button:focus-visible,
     .copy-button:focus-visible,
     .export-button:focus-visible,
     .ideas-open-link:focus-visible,
     .stack-section:focus-within {
-      outline: 2px solid color-mix(in srgb, var(--accent) 70%, white 30%);
+      outline: 2px solid #A5B4FC;
       outline-offset: 3px;
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 16%, transparent);
+      box-shadow: 0 0 0 2px rgba(28, 78, 216, 0.16);
     }
 
     /* Ghost overlay for textarea */
@@ -1864,8 +1814,7 @@
       border: 1px solid rgba(12, 17, 32, 0.08);
       background: rgba(15, 23, 42, 0.015);
       padding: 24px 18px;
-      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06);
-      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05), 0 14px 32px rgba(15, 23, 42, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
     }
 
     @media (max-width: 600px) {
@@ -2116,28 +2065,9 @@
     }
 
     .sample-resume-button {
-      background: var(--accent);
-      color: #ffffff;
-      border: 1px solid color-mix(in srgb, var(--accent) 72%, white 28%);
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 13px;
-      cursor: pointer;
-      transition:
-        background var(--motion-duration-medium) var(--motion-ease-premium),
-        border-color var(--motion-duration-medium) var(--motion-ease-premium),
-        transform var(--motion-duration-medium) var(--motion-ease-premium),
-        box-shadow var(--motion-duration-medium) var(--motion-ease-premium);
       align-self: flex-start;
       margin: 6px 0 10px;
-      box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 18%, transparent);
-    }
-
-    .sample-resume-button:hover {
-      border-color: color-mix(in srgb, var(--accent) 82%, white 18%);
-      background: color-mix(in srgb, var(--accent) 90%, black 10%);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px color-mix(in srgb, var(--accent) 22%, transparent);
+      font-size: 13px;
     }
 
     .data-handling-row {
@@ -2458,20 +2388,20 @@
           <button id="data-handling-inline" type="button" aria-expanded="false" aria-controls="hero-data-card">How we handle data</button>
         </div>
         <div id="hero-data-card" class="hero-data-card hidden" role="region" aria-label="How we handle your data">
-          <p>Your resume lives only in this browser until you click Get feedback.</p>
+          <p>Your resume lives only in this browser until you click Get a recruiter’s read.</p>
           <p>When you run a review, we send your text securely to our backend so the model can read it.</p>
           <p>We do not store your resume text or use it to train models.</p>
         </div>
 
         <div class="hero-grid">
           <div class="hero-pill">
-            <span>1</span><span>Drop your resume in</span>
+            <span>1</span><span>Paste your resume story</span>
           </div>
           <div class="hero-pill">
-            <span>2</span><span>Get actionable, clear feedback</span>
+            <span>2</span><span>Get a recruiter’s read</span>
           </div>
           <div class="hero-pill">
-            <span>3</span><span>Give yourself the inside edge</span>
+            <span>3</span><span>Turn insight into an edge</span>
           </div>
         </div>
 
@@ -2500,7 +2430,7 @@
               Paste your full resume, or use the sample to see how it works.
             </label>
 
-            <button id="sample-resume-button" type="button" class="sample-resume-button">Try a sample resume →</button>
+            <button id="sample-resume-button" type="button" class="sample-resume-button btn-primary">Try a sample resume →</button>
 
             <div class="input-wrapper resume-input-container resume-input-shell">
               <textarea
@@ -2517,20 +2447,21 @@
             </div>
 
             <div class="input-meta-row">
-              <div>Your resume stays in your browser until you click Get feedback.</div>
+              <div>Your resume stays in your browser until you click Get a recruiter’s read.</div>
               <div id="saved-indicator" class="saved-indicator">Saved</div>
             </div>
 
             <div class="run-row">
-              <button id="run-button" class="run-button primary-button">Get feedback</button>
+              <button id="run-button" class="run-button btn-primary">Get a recruiter’s read</button>
               <div id="status" class="status" aria-live="polite" role="status"></div>
             </div>
           </div>
         </section>
 
         <!-- Right column -->
-        <section class="card card-output" aria-label="Results panel">
-          <div class="card-inner report-view report-card" id="report-view">
+        <div class="report-wrapper">
+          <section class="card card-output" aria-label="Results panel">
+            <div class="card-inner report-view report-card report-container" id="report-view">
             <div class="results-top stack-section stack-accent-line">
               <div class="score-header-inside">
                 <div id="score-wrapper" class="score-wrapper hidden">
@@ -2553,7 +2484,7 @@
               <div class="results-bridge">
                 <div class="bridge-heading">What this means</div>
                 <div id="results-subtitle">
-                  This number reflects how clearly your story reads in a quick scan. Below, you’ll see the strengths that already stand out, the details that get lost, and the simple edits that will make your impact easier to see.
+                  Here’s what’s clear, what’s buried, and where your story can hit harder.
                 </div>
               </div>
               <div id="results-summary" class="results-summary accent-card-primary empty stack-section stack-accent-line">
@@ -2591,16 +2522,16 @@
                 <div class="stack-subline">Clearer versions of a few bullets.</div>
               </div>
               <div class="stack-section stack-accent-line">
-                <div class="stack-heading">Next steps</div>
-                <div class="stack-subline">Simple fixes you can make this week.</div>
+              <div class="stack-heading">Next steps</div>
+              <div class="stack-subline">Quick adjustments to sharpen your story.</div>
               </div>
             </div>
 
             <div id="results-actions-bottom" class="results-actions results-actions-bottom hidden">
-              <button id="export-button" class="export-button" aria-label="Export PDF">
+              <button id="export-button" class="export-button btn-primary" aria-label="Export PDF">
                 ⬇ <span>Export PDF</span>
               </button>
-              <button id="copy-full-button" class="copy-button" aria-label="Copy report with headings">
+              <button id="copy-full-button" class="copy-button btn-primary" aria-label="Copy report with headings">
                 ⧉ <span>Copy report</span>
               </button>
             </div>
@@ -2636,8 +2567,9 @@
               </div>
             </div>
 
-          </div>
-        </section>
+            </div>
+          </section>
+        </div>
       </main>
 
       <div id="paywall-backdrop" class="paywall-backdrop" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
@@ -2694,6 +2626,7 @@
   const copyFullButtonEl = document.getElementById("copy-full-button");
   const exportButtonEl = document.getElementById("export-button");
   const resultsActionsBottomEl = document.getElementById("results-actions-bottom");
+  const reportWrapperEl = document.querySelector(".report-wrapper");
   const dataHandlingInlineEl = document.getElementById("data-handling-inline");
   const dataHandlingPanelEl = document.getElementById("hero-data-card");
   const textareaEl = document.getElementById("main-input");
@@ -3280,14 +3213,8 @@
   function triggerReportReveal() {
     if (!reportViewEl) return;
     applySectionReveal();
-    reportViewEl.classList.remove("report-ready");
-    reportViewEl.classList.remove("report-first-run");
-    if (!hasPlayedReportReveal && !prefersReducedMotion()) {
-      reportViewEl.classList.add("report-first-run");
-    }
-    void reportViewEl.offsetWidth;
-    reportViewEl.classList.add("report-ready");
     if (!hasPlayedReportReveal) {
+      reportViewEl.classList.add("report-container--visible");
       hasPlayedReportReveal = true;
     }
   }
@@ -3443,7 +3370,7 @@
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-    html += `<div class="stack-section stack-accent-line" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Simple fixes you can make this week.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Quick adjustments to sharpen your story.</div><ul class="result-list">`;
     for (const step of fixedNextSteps) {
       html += `<li>${escapeHtml(String(step))}</li>`;
     }
@@ -3635,9 +3562,6 @@
       if (resultsSkeletonEl) {
         resultsSkeletonEl.classList.remove("hidden");
       }
-    if (reportViewEl) {
-      reportViewEl.classList.remove("report-ready");
-    }
     resultsBodyEl.classList.remove("results-error");
     resultsBodyEl.classList.remove("empty");
     resultsBodyEl.classList.add("muted");
@@ -3733,6 +3657,9 @@
       }
 
       renderStructuredResults(structured);
+      if (reportWrapperEl) {
+        reportWrapperEl.style.display = "block";
+      }
       lastReportData = structured;
       triggerReportReveal();
       resultsBodyEl.classList.remove("empty");
