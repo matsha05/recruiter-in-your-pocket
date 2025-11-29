@@ -173,6 +173,7 @@
       padding: 8px 10px;
       border-radius: 12px;
       background: rgba(15, 23, 42, 0.03);
+      position: relative;
     }
 
     .trust-inline button {
@@ -187,14 +188,20 @@
     }
 
     .hero-data-card {
-      margin-top: 10px;
-      padding: 0;
-      border-radius: 12px;
-      background: var(--wash);
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: min(280px, calc(100vw - 32px));
+      margin: 0;
+      padding: var(--space-md);
+      border-radius: 8px;
+      background: var(--bg-panel);
       border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
       color: var(--text-soft);
-      font-size: 12px;
-      line-height: 1.6;
+      font-size: 12.5px;
+      line-height: 1.5;
+      z-index: 5;
     }
 
     .status-dot {
@@ -203,6 +210,28 @@
       border-radius: 999px;
       background: var(--success);
       box-shadow: 0 0 0 5px rgba(21, 128, 61, 0.12);
+    }
+
+    .hero-data-card p {
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .hero-data-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-data-card::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      right: 18px;
+      width: 7px;
+      height: 7px;
+      background: var(--bg-panel);
+      border-left: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border-subtle);
+      transform: rotate(45deg);
+      box-shadow: none;
     }
 
     @media (max-width: 600px) {
@@ -3764,6 +3793,7 @@
   function hideDataPanel() {
     if (dataHandlingPanelEl && !dataHandlingPanelEl.classList.contains("hidden")) {
       dataHandlingPanelEl.classList.add("hidden");
+      if (dataHandlingInlineEl) dataHandlingInlineEl.setAttribute("aria-expanded", "false");
     }
   }
 
@@ -3797,19 +3827,24 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
       const isHidden = dataHandlingPanelEl.classList.contains("hidden");
       if (isHidden) {
         dataHandlingPanelEl.classList.remove("hidden");
-        if (typeof dataHandlingPanelEl.scrollIntoView === "function") {
-          dataHandlingPanelEl.scrollIntoView({
-            behavior: prefersReducedMotion() ? "auto" : "smooth",
-            block: "nearest"
-          });
-        }
         dataHandlingInlineEl.setAttribute("aria-expanded", "true");
       } else {
-        dataHandlingPanelEl.classList.add("hidden");
-        dataHandlingInlineEl.setAttribute("aria-expanded", "false");
+        hideDataPanel();
       }
     });
   }
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!dataHandlingPanelEl || !dataHandlingInlineEl) return;
+    if (
+      dataHandlingPanelEl.contains(target) ||
+      dataHandlingInlineEl.contains(target)
+    ) {
+      return;
+    }
+    hideDataPanel();
+  });
 
   if (sampleResumeButtonEl) {
     sampleResumeButtonEl.addEventListener("click", () => {
