@@ -515,19 +515,6 @@
       margin-bottom: var(--space-sm);
     }
 
-    .mode-pill {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      padding: 7px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(12, 17, 32, 0.12);
-      color: var(--text-soft);
-      background: rgba(255, 255, 255, 0.8);
-      white-space: nowrap;
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
-    }
-
     label {
       display: block;
       font-size: 13px;
@@ -578,61 +565,6 @@
       opacity: 1;
     }
 
-    .mode-buttons {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin: 14px 0 16px;
-    }
-
-    @media (max-width: 600px) {
-      .mode-buttons {
-        gap: 6px;
-      }
-    }
-
-    .mode-button {
-      padding: 8px 16px;
-      border-radius: 8px;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      background: #ffffff;
-      color: rgba(0, 0, 0, 0.55);
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      box-shadow: none;
-      transition: none;
-    }
-
-    .mode-button.active {
-      background: rgba(3, 37, 65, 0.04);
-      border-color: rgba(3, 37, 65, 0.35);
-      color: rgb(3, 37, 65);
-      font-weight: 600;
-    }
-
-    .mode-button.disabled-mode {
-      opacity: 0.7;
-      cursor: default;
-      color: rgba(0, 0, 0, 0.55);
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: none;
-      pointer-events: none;
-    }
-
-    .mode-subtext {
-      font-size: 11px;
-      color: rgba(0, 0, 0, 0.38);
-      margin-top: 2px;
-      letter-spacing: 0.01em;
-    }
-
-    .mode-indicator {
-      display: none;
-    }
-
     body.focus-mode .tool-layout {
       grid-template-columns: minmax(0, 1fr);
       margin-top: 10px;
@@ -658,16 +590,6 @@
       box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
       border: 1px solid rgba(12, 17, 32, 0.08);
       padding: 24px;
-    }
-
-    .mode-indicator {
-      position: absolute;
-      bottom: 0;
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(to right, var(--accent-boost), var(--accent-strong));
-      transition: width 0.18s ease-out, transform 0.18s ease-out;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
     }
 
     .coming-soon-hint {
@@ -1780,7 +1702,6 @@
         inset 0 0 0 1px rgba(15, 23, 42, 0.28);
     }
 
-    .mode-button:focus-visible,
     .btn-primary:focus-visible,
     .btn-secondary:focus-visible,
     .run-button:focus-visible,
@@ -2242,7 +2163,6 @@
       .data-handling-row,
       .sample-resume-button,
       .version-pill,
-      .mode-buttons,
       #loading-bar,
       #focus-toggle,
       textarea,
@@ -2598,7 +2518,6 @@
 
   const inputEl = document.getElementById("main-input");
   const inputLabelEl = document.getElementById("input-label");
-  const modeButtons = document.querySelectorAll(".mode-button");
   const runButton = document.getElementById("run-button");
   const statusEl = document.getElementById("status");
   const resultsTitleEl = document.getElementById("results-title");
@@ -2608,7 +2527,6 @@
   const resultsSkeletonEl = document.getElementById("results-skeleton");
   const reportViewEl = document.getElementById("report-view");
   const reportAccentLineEl = document.querySelector(".report-accent-line");
-  const modePillEl = document.getElementById("mode-pill");
   const scoreWrapperEl = document.getElementById("score-wrapper");
   const scoreBandsTriggerEl = document.getElementById("score-bands-trigger");
   const scoreBadgeEl = document.getElementById("score-badge");
@@ -2623,7 +2541,6 @@
   const dataHandlingPanelEl = document.getElementById("hero-data-card");
   const textareaEl = document.getElementById("main-input");
   const savedIndicatorEl = document.getElementById("saved-indicator");
-  const modeIndicatorEl = document.getElementById("mode-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
   const resumeHintEl = document.getElementById("resume-hint");
   const sampleResumeButtonEl = document.getElementById("sample-resume-button");
@@ -2662,7 +2579,7 @@
   const paywallCloseEl = document.getElementById("paywall-close");
   const paywallStatusEl = document.getElementById("paywall-status");
 
-  let currentMode = "resume";
+  const currentMode = "resume";
   let saveTimeout = null;
   let originalButtonText = runButton.textContent;
   let ideasInFlight = false;
@@ -2807,17 +2724,6 @@
 
   inputEl.addEventListener("focus", updateResumeHintVisibility);
   inputEl.addEventListener("blur", updateResumeHintVisibility);
-
-  function positionModeIndicator() {
-    const activeBtn = document.querySelector(".mode-button.active");
-    if (!activeBtn || !modeIndicatorEl) return;
-    const left = activeBtn.offsetLeft;
-    const width = activeBtn.offsetWidth;
-    modeIndicatorEl.style.width = width + "px";
-    modeIndicatorEl.style.transform = "translateX(" + left + "px)";
-  }
-
-  window.addEventListener("resize", positionModeIndicator);
 
   function clearScoreBadge() {
     scoreBadgeEl.textContent = "";
@@ -3323,44 +3229,6 @@
     setTimeout(() => resultsBodyEl.classList.remove("results-body-better-flash"), 220);
   }
 
-  function setMode(mode) {
-    currentMode = mode;
-    modeButtons.forEach(btn => {
-      const active = btn.dataset.mode === mode;
-      btn.classList.toggle("active", active);
-    });
-
-    clearScoreBadge();
-
-    if (mode === "resume") {
-      resultsTitleEl.textContent = "Recruiter feedback";
-      resultsSubtitleEl.textContent =
-        "Your score and take show how clearly your story lands. Below you’ll see what’s clear, what’s buried, and stronger phrasing to use.";
-      if (modePillEl) {
-        modePillEl.textContent = "Mode • Resume Review";
-      }
-      if (inputLabelEl) {
-        inputLabelEl.textContent = "Paste your full resume, or use the sample to see how it works.";
-      }
-      inputEl.placeholder =
-        "Paste your full resume, including work history, skills, and education.";
-    } else if (mode === "offer") {
-      resultsTitleEl.textContent = "Offer review (coming soon)";
-      resultsSubtitleEl.textContent =
-        "Offer guidance will appear here once it ships.";
-      if (modePillEl) {
-        modePillEl.textContent = "Mode • Offer (disabled)";
-      }
-      if (inputLabelEl) {
-        inputLabelEl.textContent =
-          "Offer review is coming soon. Resume Review is live today.";
-      }
-      inputEl.placeholder = "Offer review is coming soon. Resume Review is live today.";
-    }
-
-    positionModeIndicator();
-  }
-
   if (scoreWrapperEl) {
     scoreWrapperEl.addEventListener("mouseenter", () => {
       if (!currentScoreMeta) return;
@@ -3437,16 +3305,6 @@
       setStatus("");
     });
   }
-
-  modeButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      if (btn.classList.contains("disabled-mode")) {
-        statusEl.textContent = "Offer review is coming soon. Resume Review is live today.";
-        return;
-      }
-      setMode(btn.dataset.mode);
-    });
-  });
 
   async function runAnalysis() {
     const sampleRun = isSampleRun;
@@ -4071,9 +3929,7 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
 
     (function init() {
       loadSavedInput();
-      setMode("resume");
       autoResizeTextarea();
-      positionModeIndicator();
       updateResumeHintVisibility();
       renderSummary("");
     })();
