@@ -3073,81 +3073,11 @@
     if (scoreWrapperEl) scoreWrapperEl.classList.remove("hidden");
   }
 
-  function extractAndApplyScore(text) {
-    const match = text.match(/(\d{1,3})\s*\/\s*100/);
-    if (!match) {
-      clearScoreBadge();
-      return;
-    }
-    const score = parseInt(match[1], 10);
-    if (Number.isNaN(score)) {
-      clearScoreBadge();
-      return;
-    }
-    applyScoreColor(score);
-  }
-
   function escapeHtml(str) {
     return str
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
-  }
-
-  function formatResults(text) {
-    const lines = text.split("\n");
-    let html = "";
-    let inList = false;
-
-    function closeList() {
-      if (inList) {
-        html += "</ul>";
-        inList = false;
-      }
-    }
-
-    for (const raw of lines) {
-      const line = raw.trim();
-      if (!line) {
-        closeList();
-        html += '<p class="result-paragraph spacer"></p>';
-        continue;
-      }
-
-      const headingMatch = line.match(/^(\d+)\.\s+(.*)$/);
-      const bulletMatch = line.match(/^[-*•]+\s+(.*)$/);
-      const originalMatch = line.match(/^Original:\s*(.*)$/i);
-      const betterMatch = line.match(/^Better:\s*(.*)$/i);
-
-      if (headingMatch) {
-        closeList();
-        html += `<div class="result-heading report-section accent-heading">${escapeHtml(headingMatch[2])}</div>`;
-      } else if (originalMatch) {
-        closeList();
-        html += `<div class="rewrite-label">Original:</div>`;
-        if (originalMatch[1]) {
-          html += `<div class="rewrite-text">${escapeHtml(originalMatch[1])}</div>`;
-        }
-      } else if (betterMatch) {
-        closeList();
-        html += `<div class="rewrite-label">Better:</div>`;
-        if (betterMatch[1]) {
-          html += `<div class="rewrite-text">${escapeHtml(betterMatch[1])}</div>`;
-        }
-      } else if (bulletMatch) {
-        if (!inList) {
-          html += '<ul class="result-list">';
-          inList = true;
-        }
-        html += `<li>${escapeHtml(bulletMatch[1])}</li>`;
-      } else {
-        closeList();
-        html += `<p class="result-paragraph">${escapeHtml(line)}</p>`;
-      }
-    }
-
-    closeList();
-    return html;
   }
 
   function renderSummary(text) {
@@ -3641,11 +3571,17 @@
 
       if (payload.data && typeof payload.data === "object") {
         structured = payload.data;
-      } else if (typeof payload.content === "string") {
-        // Fallback if we only have the JSON string
-        structured = JSON.parse(payload.content);
-      } else {
-        structured = payload;
+      }
+
+      if (!structured) {
+        const msg = "Unexpected server response.";
+        statusEl.textContent = msg;
+        setStatus(msg, "error");
+        resultsBodyEl.textContent = msg;
+        resultsBodyEl.classList.add("results-error");
+        resultsBodyEl.classList.remove("empty");
+        renderSummary("");
+        return;
       }
 
       renderStructuredResults(structured);
