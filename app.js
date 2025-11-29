@@ -921,9 +921,10 @@ async function renderReportHtml(report) {
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap");
     :root {
-      --accent: #1f3fb6;
-      --text-main: #0d1018;
-      --text-muted: #4b5563;
+      --accent: #1C4ED8;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --wash: #F8FAFC;
       --space-sm: 8px;
       --space-md: 12px;
       --space-lg: 16px;
@@ -934,7 +935,7 @@ async function renderReportHtml(report) {
     body {
       font-family: "Manrope", system-ui, -apple-system, sans-serif;
       color: var(--text-main);
-      background: #f5f6f8;
+      background: var(--wash);
       padding: var(--space-md);
     }
     .pdf-header {
@@ -949,15 +950,15 @@ async function renderReportHtml(report) {
     .pdf-header-left { display: flex; flex-direction: column; gap: 2px; }
     .pdf-header-title {
       font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.01em;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
       color: var(--text-main);
     }
     .pdf-header-subtitle {
       font-size: 12px;
       color: var(--text-muted);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
     .pdf-header-right {
       text-align: right;
@@ -977,7 +978,7 @@ async function renderReportHtml(report) {
     .stack-section {
       border-left: 3px solid color-mix(in srgb, var(--accent) 85%, white 15%);
       padding-left: var(--space-md);
-      margin: 10px 0;
+      margin: 16px 0;
       page-break-inside: auto;
       break-inside: auto;
     }
@@ -986,13 +987,13 @@ async function renderReportHtml(report) {
       letter-spacing: 0.01em;
       margin-bottom: var(--space-sm);
     }
-    h1 { font-size: 21px; color: var(--accent); font-weight: 800; }
-    h2 { font-size: 17px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); font-weight: 750; }
+    h1 { font-size: 22px; color: var(--accent); font-weight: 800; letter-spacing: -0.01em; }
+    h2 { font-size: 19px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); font-weight: 750; letter-spacing: -0.01em; }
     .subtext { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-xs); font-style: italic; }
-    p { font-size: 13px; line-height: 1.65; margin-bottom: var(--space-sm); }
-    ul { padding-left: 18px; margin-bottom: var(--space-sm); font-size: 13px; line-height: 1.6; }
+    p { font-size: 13px; line-height: 1.65; margin-bottom: var(--space-sm); color: var(--text-main); }
+    ul { padding-left: 18px; margin-bottom: var(--space-sm); font-size: 13px; line-height: 1.6; color: var(--text-main); }
     li { margin-bottom: var(--space-xs); line-height: 1.55; }
-    .score { font-size: 21px; font-weight: 800; color: var(--accent); margin-bottom: var(--space-xs); }
+    .score { font-size: 22px; font-weight: 800; color: var(--accent); margin-bottom: var(--space-xs); }
     .band { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
     .label { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
     .text { font-size: 13px; color: var(--text-main); line-height: 1.55; }
