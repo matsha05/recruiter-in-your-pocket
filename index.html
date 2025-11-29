@@ -262,7 +262,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 14px;
+      margin-top: 20px;
+      margin-bottom: 6px;
       font-size: 12px;
       color: var(--text-muted);
       padding: 10px 12px;
@@ -296,41 +297,26 @@
       font-weight: 700;
     }
 
-    .hero-cred {
-      font-size: 13px;
-      color: var(--text-muted);
-      max-width: 640px;
+    .hero-promise {
       margin-top: 20px;
-      line-height: 1.65;
-    }
-
-    .hero-outcomes {
-      margin-top: var(--space-lg);
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+      font-size: 14px;
+      color: var(--slate-700);
+      line-height: 1.6;
       max-width: 720px;
     }
 
-    .hero-outcomes-title {
-      font-family: var(--font-display);
-      font-size: 15px;
+    .hero-promise strong {
+      color: var(--ink-900);
       font-weight: 700;
       letter-spacing: -0.01em;
-      color: color-mix(in srgb, var(--accent) 78%, var(--text-main) 22%);
-      margin-bottom: 8px;
     }
 
-    .hero-outcomes ul {
+    .hero-promise ul {
       list-style: disc;
       padding-left: 18px;
+      margin-top: 6px;
       display: grid;
       gap: 6px;
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 1.55;
     }
 
     /* Social proof */
@@ -1506,13 +1492,17 @@
 
     .stack-heading {
       font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 700;
+      font-size: 25px;
+      font-weight: 800;
       color: var(--ink-900);
       letter-spacing: -0.01em;
       margin-top: 32px;
       margin-bottom: 16px;
       line-height: 1.28;
+    }
+
+    [data-section="next-steps"] {
+      margin-top: calc(var(--space-xxl) + 20px);
     }
 
     .stack-subline {
@@ -1767,7 +1757,7 @@
       padding-top: 0;
       border-top: none;
       text-align: center;
-      color: rgba(102, 112, 133, 0.78);
+      color: var(--slate-500);
       font-size: 11px;
       line-height: 1.55;
     }
@@ -1814,7 +1804,7 @@
       border: 1px solid rgba(12, 17, 32, 0.08);
       background: rgba(15, 23, 42, 0.015);
       padding: 24px 18px;
-      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.10);
     }
 
     @media (max-width: 600px) {
@@ -1874,7 +1864,7 @@
 
     /* Achievement ideas (inline + modal) */
     .ideas-inline {
-      margin-top: 14px;
+      margin-top: 24px;
       margin-bottom: 14px;
       background: rgba(15, 23, 42, 0.02);
       border: 1px solid rgba(12, 17, 32, 0.08);
@@ -1904,7 +1894,7 @@
 
     .ideas-kicker {
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 800;
       color: #0b1224;
       letter-spacing: -0.01em;
       margin-bottom: 2px;
@@ -2375,8 +2365,8 @@
       <section class="hero">
         <h1 class="hero-title">Recruiter-grade resume feedback in under a minute.</h1>
         <p class="hero-subtitle">Paste your resume to get a crafted, honest read on how your story lands, plus stronger bullets and clear next steps.</p>
-        <div class="hero-outcomes" aria-label="What you’ll get in one minute">
-          <div class="hero-outcomes-title">What you’ll get in one minute</div>
+        <div class="hero-promise">
+          <strong>In one minute, you’ll get:</strong>
           <ul>
             <li>A clear read on how your resume lands</li>
             <li>What’s working and what’s getting missed</li>
@@ -2405,17 +2395,6 @@
           </div>
         </div>
 
-        <p class="hero-cred">
-          No signup. No fluff. Just a clear read on your story.
-        </p>
-
-        <div class="proof-editorial accent-card-primary" aria-label="Testimonials from users">
-          <div class="proof-editorial-heading">What early users say</div>
-          <div class="proof-editorial-quote">“Honestly, I thought my resume was fine, but this showed me what actually mattered and what I could finally cut.”</div>
-          <div class="proof-editorial-quote">“It connected my past roles into a story I didn’t even realize I was trying to tell.”</div>
-          <div class="proof-editorial-quote">“I never understood why some bullets felt off until this explained it in a way that finally clicked.”</div>
-          <div class="proof-editorial-quote">“It finally made me stop rewriting my resume at midnight every week.”</div>
-        </div>
       </section>
 
       <main class="tool-layout">
@@ -2457,6 +2436,14 @@
             </div>
           </div>
         </section>
+
+        <div class="proof-editorial accent-card-primary" aria-label="Testimonials from users">
+          <div class="proof-editorial-heading">What early users say</div>
+          <div class="proof-editorial-quote">“Honestly, I thought my resume was fine, but this showed me what actually mattered and what I could finally cut.”</div>
+          <div class="proof-editorial-quote">“It connected my past roles into a story I didn’t even realize I was trying to tell.”</div>
+          <div class="proof-editorial-quote">“I never understood why some bullets felt off until this explained it in a way that finally clicked.”</div>
+          <div class="proof-editorial-quote">“It finally made me stop rewriting my resume at midnight every week.”</div>
+        </div>
 
         <!-- Right column -->
         <div class="report-wrapper">
