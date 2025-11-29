@@ -38,9 +38,27 @@ app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
-// Simple request ID + logging
+// Simple request ID + logging with light sanitization (avoid logging user text/PII)
+function sanitizeLogObject(obj = {}) {
+  const blockedKeys = new Set(["text", "content", "raw", "rawContent", "body", "resume"]);
+  const cleaned = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (blockedKeys.has(key)) continue;
+    if (typeof value === "string" && value.length > 500) {
+      cleaned[key] = `${value.slice(0, 500)}…[truncated]`;
+    } else {
+      cleaned[key] = value;
+    }
+  }
+  return cleaned;
+}
+
 function logLine(obj, isError = false) {
-  const line = JSON.stringify(obj);
+  const safe = sanitizeLogObject(obj);
+  const line = JSON.stringify({
+    ts: new Date().toISOString(),
+    ...safe
+  });
   (isError ? console.error : console.log)(line);
   if (LOG_FILE) {
     fs.appendFile(LOG_FILE, line + "\n", (err) => {
