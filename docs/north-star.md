@@ -3,6 +3,8 @@
 These rules protect the core resume report experience.  
 They should remain stable as the product evolves.
 
+**North Star:** Give job seekers a crafted, recruiter-grade read of how their story lands, plus specific, doable moves to sharpen it — in under a minute.
+
 ---
 
 ## REPORT FLOW
@@ -16,6 +18,23 @@ Always use this order:
 5. **Next steps**
 
 Each section has one clear takeaway and should be easy to skim.
+
+---
+
+## SUCCESS CRITERIA
+- Seen: “This really gets my story.”
+- Clear: “I know what’s working and what’s not.”
+- Energized: “I actually want to update my resume now.”
+- Impressed: “This feels like a serious tool I’d pay for.”
+
+---
+
+## SURFACE CRITERIA
+The product surface (web + PDF + copy) feels:
+- premium  
+- coherent  
+- energetic but not noisy  
+- like something you’d share with a mentor  
 
 ---
 
