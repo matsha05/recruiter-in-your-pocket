@@ -1,8 +1,8 @@
 # Recruiter in Your Pocket — Design Principles  
 **Premium. Confident. Joyfully clear.**
 
-Our job is to give anxious job seekers crafted clarity about their story — fast.  
-The product should feel like a small, elite studio: human, decisive, and alive, not a corporate dashboard or sterile AI toy.
+Recruiter in Your Pocket is a tiny, high-end studio for your career story.  
+It should feel like a sharp recruiter and a thoughtful designer sat down together to read your resume and hand you a crafted report.
 
 Every interaction should:
 - reduce anxiety  
@@ -12,12 +12,12 @@ Every interaction should:
 
 Clarity first.  
 Confidence always.  
-Delight when earned.
+Delight when it actually helps.
 
 # DESIGN PRINCIPLES
 
 ## 1. Crafted  
-Every element feels intentional and premium:
+Every element feels intentional, premium, and alive without noise:
 - purposeful typography  
 - strong hierarchy  
 - dependable spacing rhythm  
@@ -45,12 +45,13 @@ Confidence is conveyed through:
 
 No apologetic language.  
 No corporate vagueness.  
-No ambiguity.
+No ambiguity.  
+Small, elite studio energy over generic SaaS politeness.
 
 ---
 
 ## 3. Joyful Clarity  
-Clarity does not mean dull; it should feel energizing.
+Clarity should energize, not flatten; it should feel like breathing room and momentum.
 
 We intentionally include small moments of delight that make users feel:
 - seen  
@@ -58,7 +59,7 @@ We intentionally include small moments of delight that make users feel:
 - capable  
 - emotionally lighter  
 
-Examples that keep clarity alive:
+Examples that keep clarity alive and premium:
 - a tasteful accent color  
 - a gentle reveal animation  
 - meaningful whitespace  
@@ -70,12 +71,12 @@ Joy is earned, not decorative.
 
 ## 4. No Noise  
 Avoid anything that introduces chaos or cheapness; the product should feel alive, not loud:
-- neon  
-- glow effects  
-- gamer gradients  
-- crowded borders  
-- decorative icons without meaning  
-- loud animations  
+- no neon  
+- no glow effects  
+- no gamer gradients or flashy gimmicks  
+- no crowded borders  
+- no decorative icons without meaning  
+- no loud animations  
 
 Premium ≠ flashy.  
 Premium = intentional, clean, expressive, and confidently restrained.
@@ -92,7 +93,8 @@ We prioritize:
 - warmth over formality  
 - simple, honest language  
 
-Users should feel welcomed and understood without being talked down to.
+Users should feel welcomed and understood without being talked down to.  
+Language should sound like a warm recruiter, not corporate copy.
 
 ---
 
@@ -105,6 +107,7 @@ Make the insight stack unmistakable:
 - strong first-take summaries  
 - no elements competing with insight  
 - the main takeaway visible in one second  
+- the Insight Stack, PDF, and Copy outputs get the most design attention  
 
 If something doesn’t help the user understand their story faster, remove it with confidence.
 
@@ -117,7 +120,7 @@ We favor:
 - confidence over neutrality  
 - expressive restraint over flatness and hollow perfectionism  
 
-The product should feel alive, not mechanical.
+The product should feel alive, not mechanical; expressive, not ornamental.
 
 ---
 
@@ -164,7 +167,8 @@ Use subtle, tasteful expressions:
 - micro animations < 200ms  
 - one meaningful color accent that reinforces the insight, not distracts  
 
-Delight must support understanding, not distract from it.
+Delight must support understanding, not distract from it.  
+Signature motion: the single report reveal; CTAs stay confident and tasteful, not loud.
 
 ---
 
