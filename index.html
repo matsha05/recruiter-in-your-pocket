@@ -188,7 +188,7 @@
 
     .hero-data-card {
       margin-top: 10px;
-      padding: 10px 12px;
+      padding: 0;
       border-radius: 12px;
       background: var(--wash);
       border: 1px solid var(--border-subtle);
@@ -351,8 +351,8 @@
     }
 
     .proof-editorial {
-      margin-top: 42px;
-      padding: 14px 16px;
+      margin-top: 20px;
+      padding: 0;
       background: transparent;
       border-radius: 0;
       box-shadow: none;
@@ -885,7 +885,7 @@
     }
 
     .results-bridge {
-      margin: 8px 0 12px;
+      margin: 14px 0 18px;
     }
 
     .report-accent-line {
@@ -1540,6 +1540,11 @@
       border-radius: var(--radius-card);
     }
 
+    /* Testimonials: keep clean without spine */
+    .proof-editorial.accent-card-primary::before {
+      display: none;
+    }
+
     .accent-heading {
       position: relative;
       padding-left: var(--space-md);
@@ -1864,7 +1869,7 @@
 
     /* Achievement ideas (inline + modal) */
     .ideas-inline {
-      margin-top: 24px;
+      margin-top: 32px;
       margin-bottom: 14px;
       background: rgba(15, 23, 42, 0.02);
       border: 1px solid rgba(12, 17, 32, 0.08);
