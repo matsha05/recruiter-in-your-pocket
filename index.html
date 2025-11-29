@@ -2523,6 +2523,9 @@
   </div>
 
   <script>
+  // NOTE: This frontend is intentionally single-file. If you add new pages or modes,
+  // consider splitting styles into a shared CSS file and moving JS into a small app.js
+  // to reduce risk and keep components reusable.
   const STORAGE_KEY = "rip-main-input-v1";
 
   const inputEl = document.getElementById("main-input");
