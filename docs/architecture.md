@@ -55,6 +55,16 @@ This file is the concise, always-current map of how the app works: components, e
   - Skeleton: static light lines while awaiting results.
   - Footer trust: “We never store your resume or use it to train models.”
 
+## UI & Design System
+- Single-page HTML/JS/CSS frontend using a small design system:
+  - Accent color: `#1C4ED8` with supporting boost/strong shades.
+  - Spine motif for the Insight Stack.
+  - Heading/body type scale with display font for headings and Manrope for body.
+  - Spacing tokens for rhythm and hierarchy.
+- PDF template reuses these design primitives (accent, spine, headings, spacing) to keep exports consistent with UI.
+- Buttons: `.btn-primary` (accent solid) and `.btn-secondary` (muted/outline) are the standard CTA classes, following the accent and neutral palette from design-principles.
+- Motion: one signature motion (report reveal) that must respect `prefers-reduced-motion`; it is part of the UI contract, not an optional flourish.
+
 ## Data handling
 - In-browser until submit: textarea content saved locally and hinted as such.
 - On submit: sent over HTTPS to backend, processed, not stored long term; no training use.
