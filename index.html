@@ -25,9 +25,9 @@
       --error: #b91c1c;
       --font-display: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-body: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --fs-hero: 40px;
+      --fs-hero: 42px;
       --fs-h1: 28px;
-      --fs-h2: 20px;
+      --fs-h2: 22px;
       --fs-h3: 18px;
       --fs-body: 15px;
       --fs-small: 13px;
@@ -238,7 +238,7 @@
       font-size: var(--fs-hero);
       letter-spacing: -0.02em;
       color: var(--text-main);
-      font-weight: 700;
+      font-weight: 800;
       line-height: var(--lh-tight);
       margin-bottom: var(--space-lg);
       max-width: 820px;
@@ -296,6 +296,35 @@
       max-width: 640px;
       margin-top: 20px;
       line-height: 1.65;
+    }
+
+    .hero-outcomes {
+      margin-top: var(--space-lg);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+      max-width: 720px;
+    }
+
+    .hero-outcomes-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .hero-outcomes ul {
+      list-style: disc;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.55;
     }
 
     /* Social proof */
@@ -384,7 +413,7 @@
 
     @media (max-width: 600px) {
       :root {
-        --fs-hero: 34px;
+        --fs-hero: 36px;
         --fs-h1: 24px;
         --fs-h2: 20px;
       }
@@ -393,7 +422,7 @@
         margin-bottom: 18px;
       }
       .hero-title {
-        font-size: 26px;
+        font-size: 28px;
       }
       .hero-subtitle {
         font-size: 14px;
@@ -873,7 +902,17 @@
     }
 
     .report-card.report-ready {
-      animation: reportCardIn 0.2s ease-out both;
+      animation: none;
+    }
+
+    .report-card.report-ready.report-first-run {
+      animation: reportRevealSoft 240ms var(--motion-ease-premium) both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .report-card.report-ready.report-first-run {
+        animation: none;
+      }
     }
 
     .report-card.report-ready .score-pill {
@@ -1335,10 +1374,10 @@
       color: var(--text-muted);
     }
 
-    @keyframes reportCardIn {
+    @keyframes reportRevealSoft {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(8px);
       }
       to {
         opacity: 1;
@@ -1446,7 +1485,7 @@
 
     .stack-section {
       position: relative;
-      padding: var(--space-sm) var(--space-sm) var(--space-md) var(--space-lg);
+      padding: var(--space-xl) var(--space-sm) var(--space-md) var(--space-lg);
       margin: var(--space-xxl) 0;
       border-radius: 12px;
       transition:
@@ -1458,7 +1497,7 @@
     .stack-heading {
       font-family: var(--font-display);
       font-size: var(--fs-h2);
-      font-weight: 700;
+      font-weight: 800;
       color: color-mix(in srgb, var(--text-main) 90%, var(--accent) 10%);
       letter-spacing: 0.01em;
       margin-bottom: var(--space-md);
@@ -2388,6 +2427,14 @@
       <section class="hero">
         <h1 class="hero-title">Recruiter-grade resume feedback in under a minute.</h1>
         <p class="hero-subtitle">Paste your resume to get a crafted, honest read on how your story lands, plus stronger bullets and clear next steps.</p>
+        <div class="hero-outcomes" aria-label="What you’ll get in one minute">
+          <div class="hero-outcomes-title">What you’ll get in one minute</div>
+          <ul>
+            <li>A clear read on how your resume lands</li>
+            <li>What’s working and what’s getting missed</li>
+            <li>Stronger bullet phrasing and simple next steps</li>
+          </ul>
+        </div>
         <div class="trust-inline">
           <span>We don’t store your resume.</span>
           <button id="data-handling-inline" type="button" aria-expanded="false" aria-controls="hero-data-card">How we handle data</button>
@@ -2654,6 +2701,7 @@
   let hasReportContent = false;
   let hasLoggedPaste = false;
   let lastReportData = null;
+  let hasPlayedReportReveal = false;
 
   function setFocusMode(enabled) {
     focusMode = Boolean(enabled);
@@ -3215,8 +3263,15 @@
     if (!reportViewEl) return;
     applySectionReveal();
     reportViewEl.classList.remove("report-ready");
+    reportViewEl.classList.remove("report-first-run");
+    if (!hasPlayedReportReveal && !prefersReducedMotion()) {
+      reportViewEl.classList.add("report-first-run");
+    }
     void reportViewEl.offsetWidth;
     reportViewEl.classList.add("report-ready");
+    if (!hasPlayedReportReveal) {
+      hasPlayedReportReveal = true;
+    }
   }
 
   function triggerFocusEntrance() {

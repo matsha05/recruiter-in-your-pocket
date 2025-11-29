@@ -1,52 +1,18 @@
 # Recruiter in Your Pocket — Design Principles  
-**Crafted. Confident. Joyfully clear.**
+**Premium. Confident. Joyfully clear.**
 
-The design identity of Recruiter in Your Pocket should feel crafted, confident, and joyfully clear.  
-Every interaction should give anxious job seekers momentum, clarity, and emotional lift — without noise, clutter, or hype.
+Our job is to give anxious job seekers crafted clarity about their story — fast.  
+The product should feel like a small, elite studio: human, decisive, and alive, not a corporate dashboard or sterile AI toy.
 
-Our goal is not sterility or extreme minimalism.  
-Our goal is intentional design that feels alive, premium, and expertly crafted.
-
----
-
-## DESIGN NORTH STAR  
-**Crafted clarity that builds confidence.**
-
-Every UI decision must increase:
-- clarity,  
-- intentional hierarchy,  
-- insight visibility,  
-- emotional lift and user momentum,  
-- trust and polish.
+Every interaction should:
+- reduce anxiety  
+- sharpen understanding  
+- build confidence  
+- create a small “oh shit, this really sees me” moment  
 
 Clarity first.  
 Confidence always.  
 Delight when earned.
-
-### Typography system
-
-We use a simple, deliberate type system:
-
-- **Headers & brand:** Space Grotesk (500–700). Used for the wordmark and hero title.
-- **Body & UI:** Manrope (400–600). Used for all other text.
-
-Rough scale (desktop):
-
-- Display / hero title: 40px, tight line height (~1.05).
-- Section titles / card titles / report headings: 16px, bold, slight negative letter spacing.
-- Body / summaries: 15–17px, line height ~1.6–1.7.
-- Subline / helper text: ~13px.
-- Labels / pills: 11–12px with tighter tracking.
-
-Codex and future UI changes should keep new text within this system so the app feels consistent and intentional.
-
-Design and brand identity source of truth:
-- docs/design-principles.md  
-- docs/vision.md  
-- context.md  
-- docs/master-roadmap.md  
-
----
 
 # DESIGN PRINCIPLES
 
@@ -84,7 +50,7 @@ No ambiguity.
 ---
 
 ## 3. Joyful Clarity  
-Clarity does not mean dull.
+Clarity does not mean dull; it should feel energizing.
 
 We intentionally include small moments of delight that make users feel:
 - seen  
@@ -92,7 +58,7 @@ We intentionally include small moments of delight that make users feel:
 - capable  
 - emotionally lighter  
 
-Examples:
+Examples that keep clarity alive:
 - a tasteful accent color  
 - a gentle reveal animation  
 - meaningful whitespace  
@@ -103,7 +69,7 @@ Joy is earned, not decorative.
 ---
 
 ## 4. No Noise  
-Avoid anything that introduces chaos or cheapness:
+Avoid anything that introduces chaos or cheapness; the product should feel alive, not loud:
 - neon  
 - glow effects  
 - gamer gradients  
@@ -112,7 +78,7 @@ Avoid anything that introduces chaos or cheapness:
 - loud animations  
 
 Premium ≠ flashy.  
-Premium = intentional, clean, expressive.
+Premium = intentional, clean, expressive, and confidently restrained.
 
 ---
 
@@ -126,7 +92,7 @@ We prioritize:
 - warmth over formality  
 - simple, honest language  
 
-Users should feel welcomed and understood.
+Users should feel welcomed and understood without being talked down to.
 
 ---
 
@@ -140,7 +106,7 @@ Make the insight stack unmistakable:
 - no elements competing with insight  
 - the main takeaway visible in one second  
 
-If something doesn’t help the user understand their story faster, remove it.
+If something doesn’t help the user understand their story faster, remove it with confidence.
 
 ---
 
@@ -149,7 +115,7 @@ We favor:
 - clarity over polish paralysis  
 - crafted moments over sterile minimalism  
 - confidence over neutrality  
-- expressive restraint over flatness  
+- expressive restraint over flatness and hollow perfectionism  
 
 The product should feel alive, not mechanical.
 
@@ -196,7 +162,7 @@ Use subtle, tasteful expressions:
 - light hover motion  
 - slight accent shift  
 - micro animations < 200ms  
-- one meaningful color accent  
+- one meaningful color accent that reinforces the insight, not distracts  
 
 Delight must support understanding, not distract from it.
 
