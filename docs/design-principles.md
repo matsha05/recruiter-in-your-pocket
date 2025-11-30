@@ -35,6 +35,7 @@ The product must speak with the tone of a world-class recruiter:
 - direct  
 - steady  
 - decisive  
+- uniquely insightful about hiring practices
 
 Confidence is conveyed through:
 - strong headings  
