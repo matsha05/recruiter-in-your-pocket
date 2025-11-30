@@ -3726,12 +3726,12 @@
         exportButtonEl.textContent = originalExportText;
         return;
       }
-      const url = URL.createObjectURL(new Blob([blob], { type: "application/pdf" }));
+      const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = "resume-review.pdf";
       a.rel = "noopener";
-      a.target = "_self";
+      a.style.display = "none";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
