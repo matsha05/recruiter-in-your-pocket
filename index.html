@@ -3731,11 +3731,10 @@
       a.href = url;
       a.download = "resume-review.pdf";
       a.rel = "noopener";
-      a.target = "_blank";
+      a.target = "_self";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      window.open(url, "_blank");
       setTimeout(() => URL.revokeObjectURL(url), 60000);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
