@@ -189,15 +189,15 @@
 
     .hero-data-card {
       position: absolute;
-      top: calc(100% + 5px);
+      top: calc(100% + 4px);
       right: 0;
       width: min(270px, calc(100vw - 32px));
       margin: 0;
-      padding: var(--space-md);
+      padding: 12px;
       border-radius: 8px;
       background: var(--bg-panel);
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
       color: var(--text-soft);
       font-size: 12.5px;
       line-height: 1.5;
@@ -225,8 +225,8 @@
       position: absolute;
       top: -4px;
       left: 50%;
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
       background: var(--bg-panel);
       border-left: 1px solid var(--border-subtle);
       border-top: 1px solid var(--border-subtle);
@@ -1984,6 +1984,37 @@
       gap: 16px;
     }
 
+    @media (max-width: 768px) {
+      .ideas-modal {
+        align-items: flex-end;
+      }
+      .ideas-sheet {
+        width: 100vw;
+        max-width: 100vw;
+        max-height: calc(100vh - 72px);
+        height: auto;
+        border-radius: 16px 16px 0 0;
+        padding: 20px;
+        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
+      }
+      .ideas-sheet-header {
+        position: sticky;
+        top: 0;
+        padding-bottom: 8px;
+        background: #ffffff;
+        z-index: 2;
+      }
+      .ideas-sheet-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 4px 2px 12px;
+        gap: 16px;
+      }
+      .ideas-actions {
+        flex-wrap: wrap;
+      }
+    }
+
     .ghost-button {
       background: var(--surface-tint);
       color: var(--text-main);
@@ -2603,6 +2634,7 @@
   let hasLoggedPaste = false;
   let lastReportData = null;
   let hasPlayedReportReveal = false;
+  let previousBodyOverflow = "";
 
   function setFocusMode(enabled) {
     focusMode = Boolean(enabled);
@@ -3635,11 +3667,16 @@
   }
 
   exportButtonEl.addEventListener("click", async () => {
+    const originalExportText = exportButtonEl.textContent;
+    exportButtonEl.disabled = true;
+    exportButtonEl.textContent = "Preparing PDF...";
     const summaryText = resultsSummaryEl ? resultsSummaryEl.innerText.trim() : "";
     const bodyText = resultsBodyEl ? resultsBodyEl.innerText.trim() : "";
     const text = [summaryText, bodyText].filter(Boolean).join("\n\n");
     if (!text || !lastReportData) {
       statusEl.textContent = "Nothing to export yet.";
+      exportButtonEl.disabled = false;
+      exportButtonEl.textContent = originalExportText;
       return;
     }
     logEvent("report_pdf_export_clicked");
@@ -3663,24 +3700,33 @@
       });
       if (!resp.ok) {
         statusEl.textContent = "Could not export right now. Try again.";
+        exportButtonEl.disabled = false;
+        exportButtonEl.textContent = originalExportText;
         return;
       }
       const blob = await resp.blob();
       if (!blob || blob.size === 0) {
         statusEl.textContent = "Could not export right now. Try again.";
+        exportButtonEl.disabled = false;
+        exportButtonEl.textContent = originalExportText;
         return;
       }
       const url = URL.createObjectURL(blob);
+      // Mobile-friendly: open in a new tab, with download hint
       const a = document.createElement("a");
       a.href = url;
+      a.target = "_blank";
       a.download = "resume-review.pdf";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
       statusEl.textContent = "Could not export right now. Try again.";
+    } finally {
+      exportButtonEl.disabled = false;
+      exportButtonEl.textContent = originalExportText;
     }
   });
 
@@ -3921,6 +3967,8 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     if (!ideasModalEl) return;
     ideasModalEl.classList.add("visible");
     ideasModalEl.setAttribute("aria-hidden", "false");
+    previousBodyOverflow = document.body.style.overflow || "";
+    document.body.style.overflow = "hidden";
     const ideasSheetEl = document.getElementById("ideas-sheet");
     if (ideasSheetEl && typeof ideasSheetEl.scrollIntoView === "function") {
       ideasSheetEl.scrollIntoView({
@@ -3934,6 +3982,7 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     if (!ideasModalEl) return;
     ideasModalEl.classList.remove("visible");
     ideasModalEl.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = previousBodyOverflow;
   }
 
   function setIdeasLoading(isLoading) {
