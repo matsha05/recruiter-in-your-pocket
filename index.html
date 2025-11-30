@@ -2494,19 +2494,19 @@
             >
               <div class="stack-section stack-accent-line">
                 <div class="stack-heading">What’s working</div>
-                <div class="stack-subline">Strengths that show up clearly.</div>
+                <div class="stack-subline">Strengths that are already clear on first read and help your story land as intended.</div>
               </div>
               <div class="stack-section stack-accent-line">
                 <div class="stack-heading">What’s harder to see</div>
-                <div class="stack-subline">Parts of your impact that don’t come through as strongly.</div>
+                <div class="stack-subline">Surfaces buried impact, unclear outcomes, and work that isn’t landing clearly yet.</div>
               </div>
               <div class="stack-section stack-accent-line">
                 <div class="stack-heading">Stronger phrasing you can use</div>
-                <div class="stack-subline">Clearer versions of a few bullets.</div>
+                <div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div>
               </div>
               <div class="stack-section stack-accent-line">
               <div class="stack-heading">Next steps</div>
-              <div class="stack-subline">Quick adjustments to sharpen your story.</div>
+              <div class="stack-subline">Clear, doable actions that build momentum and make your story easier to read.</div>
               </div>
             </div>
 
@@ -2522,7 +2522,7 @@
             <div id="ideas-inline" class="ideas-inline hidden stack-section stack-accent-line" aria-label="Missing wins">
               <div class="ideas-text">
                 <div class="ideas-kicker stack-heading">Missing wins</div>
-                <div class="ideas-subtitle stack-subline">Let’s look for wins you have not written yet or forgot about.</div>
+                <div class="ideas-subtitle stack-subline">Surfaces buried impact, unclear outcomes, and scope you likely have but didn’t express.</div>
               </div>
               <button id="ideas-open" class="ideas-open-link" type="button">Open missing wins →</button>
             </div>
@@ -2533,7 +2533,7 @@
                 <div class="ideas-sheet-header accent-card-primary">
                   <div>
                     <div id="ideas-modal-title" class="ideas-sheet-title">Missing wins</div>
-                    <div class="ideas-sheet-subtitle">Let’s look for wins you have not written yet or forgot about.</div>
+                    <div class="ideas-sheet-subtitle">Surfaces buried impact, unclear outcomes, and scope you likely have but didn’t express.</div>
                   </div>
                   <div class="ideas-actions">
                     <button id="ideas-refresh" class="ghost-button" type="button">Refresh</button>
@@ -3682,6 +3682,13 @@
       return;
     }
     logEvent("report_pdf_export_clicked");
+
+    // Open a placeholder window immediately to keep the user gesture alive
+    const downloadWindow = window.open("", "_blank");
+    if (downloadWindow) {
+      downloadWindow.document.write("<p style='font-family:sans-serif; font-size:14px; padding:16px;'>Preparing PDF...</p>");
+    }
+
     try {
       const generatedOnLocal = new Date().toLocaleDateString(undefined, {
         year: "numeric",
@@ -3704,6 +3711,7 @@
         statusEl.textContent = "Could not export right now. Try again.";
         exportButtonEl.disabled = false;
         exportButtonEl.textContent = originalExportText;
+        if (downloadWindow && !downloadWindow.closed) downloadWindow.close();
         return;
       }
       const blob = await resp.blob();
@@ -3711,24 +3719,34 @@
         statusEl.textContent = "Could not export right now. Try again.";
         exportButtonEl.disabled = false;
         exportButtonEl.textContent = originalExportText;
+        if (downloadWindow && !downloadWindow.closed) downloadWindow.close();
         return;
       }
-      const url = URL.createObjectURL(blob);
-      // Load the PDF directly (mobile-friendly). This will open in the current tab; users can share/save from there.
-      window.location.href = url;
-      // Fallback if navigation was blocked: trigger anchor click
-      const a = document.createElement("a");
-      a.href = url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.download = "resume-review.pdf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const dataUrl = reader.result;
+        if (downloadWindow && !downloadWindow.closed) {
+          downloadWindow.document.body.innerHTML = `
+            <style>body{margin:0;padding:0;font-family:sans-serif;}</style>
+            <iframe src="${dataUrl}" style="width:100vw;height:100vh;border:0;"></iframe>
+          `;
+          downloadWindow.focus();
+        } else {
+          const a = document.createElement("a");
+          a.href = dataUrl;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.download = "resume-review.pdf";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+      };
+      reader.readAsDataURL(blob);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
       statusEl.textContent = "Could not export right now. Try again.";
+      if (downloadWindow && !downloadWindow.closed) downloadWindow.close();
     } finally {
       exportButtonEl.disabled = false;
       exportButtonEl.textContent = originalExportText;
