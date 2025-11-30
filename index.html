@@ -3716,21 +3716,15 @@
         return;
       }
       const url = URL.createObjectURL(new Blob([blob], { type: "application/pdf" }));
-      // Primary: trigger a download directly
       const a = document.createElement("a");
       a.href = url;
       a.download = "resume-review.pdf";
       a.rel = "noopener";
-      a.target = "_self";
+      a.target = "_blank";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      // Fallback for browsers that ignore download (especially mobile Safari)
-      setTimeout(() => {
-        if (document.visibilityState === "visible") {
-          window.location.href = url;
-        }
-      }, 500);
+      window.open(url, "_blank");
       setTimeout(() => URL.revokeObjectURL(url), 60000);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
