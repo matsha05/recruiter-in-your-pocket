@@ -3682,8 +3682,6 @@
       return;
     }
     logEvent("report_pdf_export_clicked");
-    // Open a placeholder window immediately to preserve user gesture (mobile Safari)
-    const downloadWindow = window.open("about:blank", "_blank");
     try {
       const generatedOnLocal = new Date().toLocaleDateString(undefined, {
         year: "numeric",
@@ -3716,26 +3714,21 @@
         return;
       }
       const url = URL.createObjectURL(blob);
-      if (downloadWindow && !downloadWindow.closed) {
-        downloadWindow.location.href = url;
-        downloadWindow.focus();
-      } else {
-        const a = document.createElement("a");
-        a.href = url;
-        a.target = "_blank";
-        a.rel = "noopener";
-        a.download = "resume-review.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }
-      setTimeout(() => URL.revokeObjectURL(url), 10000);
+      // Load the PDF directly (mobile-friendly). This will open in the current tab; users can share/save from there.
+      window.location.href = url;
+      // Fallback if navigation was blocked: trigger anchor click
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.download = "resume-review.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
       statusEl.textContent = "Could not export right now. Try again.";
-      if (downloadWindow && !downloadWindow.closed) {
-        downloadWindow.close();
-      }
     } finally {
       exportButtonEl.disabled = false;
       exportButtonEl.textContent = originalExportText;
