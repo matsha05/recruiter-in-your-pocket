@@ -827,6 +827,13 @@
       line-height: 1.4;
     }
 
+    .report-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+      line-height: 1.4;
+    }
+
     .score-help {
       font-size: 12px;
       color: var(--text-muted);
@@ -2637,6 +2644,7 @@
   let lastReportData = null;
   let hasPlayedReportReveal = false;
   let previousBodyOverflow = "";
+  let currentReportIsSample = false;
 
   function setFocusMode(enabled) {
     focusMode = Boolean(enabled);
@@ -3072,6 +3080,7 @@
       const limited = sentences.slice(0, 3);
       const paragraph = limited.join(" ");
       resultsSummaryEl.innerHTML = `
+        ${currentReportIsSample ? '<div class="report-meta">Sample report, paste your resume to see your own read.</div>' : ""}
         <div class="stack-heading">How your resume reads</div>
         <div class="stack-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">${escapeHtml(paragraph || clean)}</p>
@@ -3079,6 +3088,7 @@
       resultsSummaryEl.classList.remove("empty");
     } else {
       resultsSummaryEl.innerHTML = `
+        ${currentReportIsSample ? '<div class="report-meta">Sample report, paste your resume to see your own read.</div>' : ""}
         <div class="stack-heading">How your resume reads</div>
         <div class="stack-subline">A quick read on how your resume actually lands.</div>
         <p class="result-paragraph">Your summary will appear here.</p>
@@ -3381,9 +3391,11 @@
     });
   }
 
-  async function runAnalysis() {
-    const sampleRun = isSampleRun;
-    const text = inputEl.value.trim();
+  async function runAnalysis(options = {}) {
+    const sampleRun = options.sample ?? isSampleRun;
+    currentReportIsSample = sampleRun;
+    isSampleRun = false;
+    const text = (options.textOverride ?? inputEl.value ?? "").trim();
     logEvent("run_clicked", { sample: sampleRun });
     if (!text) {
       const msg = "Paste your resume text so I can actually review it.";
@@ -3571,7 +3583,6 @@
         resultsSkeletonEl.classList.add("hidden");
       }
       resultsBodyEl.classList.remove("muted");
-      isSampleRun = false;
     }
   }
 
@@ -3738,7 +3749,7 @@
   inputEl.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
       e.preventDefault();
-      runAnalysis();
+      runAnalysis({ sample: false });
     }
   });
 
@@ -3906,6 +3917,7 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
       autoResizeTextarea();
       updateResumeHintVisibility();
       showSavedIndicator();
+      runAnalysis({ sample: true, textOverride: SAMPLE_RESUME_TEXT });
     });
   }
 
