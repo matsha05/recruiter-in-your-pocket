@@ -3683,9 +3683,6 @@
     }
     logEvent("report_pdf_export_clicked");
 
-    // Open a placeholder window immediately to keep the user gesture alive
-    const downloadWindow = window.open("", "_blank");
-
     try {
       const generatedOnLocal = new Date().toLocaleDateString(undefined, {
         year: "numeric",
@@ -3716,28 +3713,28 @@
         statusEl.textContent = "Could not export right now. Try again.";
         exportButtonEl.disabled = false;
         exportButtonEl.textContent = originalExportText;
-        if (downloadWindow && !downloadWindow.closed) downloadWindow.close();
         return;
       }
       const url = URL.createObjectURL(new Blob([blob], { type: "application/pdf" }));
-      if (downloadWindow && !downloadWindow.closed) {
-        downloadWindow.location.href = url;
-        downloadWindow.focus();
-      } else {
-        const a = document.createElement("a");
-        a.href = url;
-        a.target = "_blank";
-        a.rel = "noopener";
-        a.download = "resume-review.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }
+      // Primary: trigger a download directly
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "resume-review.pdf";
+      a.rel = "noopener";
+      a.target = "_self";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      // Fallback for browsers that ignore download (especially mobile Safari)
+      setTimeout(() => {
+        if (document.visibilityState === "visible") {
+          window.location.href = url;
+        }
+      }, 500);
       setTimeout(() => URL.revokeObjectURL(url), 60000);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
       statusEl.textContent = "Could not export right now. Try again.";
-      if (downloadWindow && !downloadWindow.closed) downloadWindow.close();
     } finally {
       exportButtonEl.disabled = false;
       exportButtonEl.textContent = originalExportText;
