@@ -3166,7 +3166,7 @@
 
     // What's Working
     if (Array.isArray(strengths) && strengths.length > 0) {
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s working</div><div class="stack-subline">Strengths that show up clearly.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s working</div><div class="stack-subline">Strengths that are already clear on first read and help your story land as intended.</div><ul class="result-list">`;
       for (const item of strengths) {
         if (!item) continue;
         html += `<li>${escapeHtml(String(item))}</li>`;
@@ -3176,7 +3176,7 @@
 
     // What’s harder to see
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s harder to see</div><div class="stack-subline">Parts of your impact that don’t come through as strongly.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s harder to see</div><div class="stack-subline">Surfaces buried impact, unclear outcomes, and work that isn’t landing clearly yet.</div><ul class="result-list">`;
       for (const item of gaps) {
         if (!item) continue;
         html += `<li>${escapeHtml(String(item))}</li>`;
@@ -3243,7 +3243,7 @@
         return groupHtml;
       };
 
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div>`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div>`;
 
       if (clarityGroup.length > 0) {
         html += `<div class="rewrite-cluster-heading">Clarity & Conciseness</div>`;
@@ -3258,7 +3258,7 @@
       html += `</div>`;
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
       // Fallback: use suggested_bullets from backend as a simple list
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Clearer versions of a few bullets.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div><ul class="result-list">`;
       for (const bullet of suggestedBullets) {
         if (!bullet) continue;
         html += `<li>${escapeHtml(String(bullet))}</li>`;
@@ -3273,7 +3273,7 @@
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-      html += `<div class="stack-section stack-accent-line" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Quick adjustments to sharpen your story.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Clear, doable actions that build momentum and make your story easier to read.</div><ul class="result-list">`;
     for (const step of fixedNextSteps) {
       html += `<li>${escapeHtml(String(step))}</li>`;
     }
@@ -3726,10 +3726,7 @@
       reader.onloadend = () => {
         const dataUrl = reader.result;
         if (downloadWindow && !downloadWindow.closed) {
-          downloadWindow.document.body.innerHTML = `
-            <style>body{margin:0;padding:0;font-family:sans-serif;}</style>
-            <iframe src="${dataUrl}" style="width:100vw;height:100vh;border:0;"></iframe>
-          `;
+          downloadWindow.location.href = dataUrl;
           downloadWindow.focus();
         } else {
           const a = document.createElement("a");
