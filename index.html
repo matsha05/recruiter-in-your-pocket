@@ -3683,7 +3683,7 @@
     }
     logEvent("report_pdf_export_clicked");
     // Open a placeholder window immediately to preserve user gesture (mobile Safari)
-    const downloadWindow = window.open("", "_blank");
+    const downloadWindow = window.open("about:blank", "_blank");
     try {
       const generatedOnLocal = new Date().toLocaleDateString(undefined, {
         year: "numeric",
@@ -3716,18 +3716,20 @@
         return;
       }
       const url = URL.createObjectURL(blob);
-      if (downloadWindow) {
-        downloadWindow.location = url;
+      if (downloadWindow && !downloadWindow.closed) {
+        downloadWindow.location.href = url;
+        downloadWindow.focus();
       } else {
         const a = document.createElement("a");
         a.href = url;
         a.target = "_blank";
+        a.rel = "noopener";
         a.download = "resume-review.pdf";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
       }
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
       statusEl.textContent = "Could not export right now. Try again.";
