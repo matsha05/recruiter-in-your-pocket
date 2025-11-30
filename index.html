@@ -1759,8 +1759,6 @@
       box-shadow: 0 0 0 2px rgba(28, 78, 216, 0.16);
     }
 
-    /* Ghost overlay for textarea */
-
     .input-wrapper {
       position: relative;
       max-height: 440px;
@@ -1783,39 +1781,6 @@
       }
     }
 
-    .resume-hint-overlay {
-      position: absolute;
-      inset: 14px 16px auto 16px;
-      pointer-events: none;
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--text-soft);
-      background: var(--surface-tint);
-      padding: 10px 12px 10px;
-      border-radius: 12px;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
-    }
-
-    .resume-hint-title {
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 4px;
-      letter-spacing: -0.01em;
-    }
-
-    .resume-hint-body {
-      font-size: 12px;
-      color: rgba(156, 163, 175, 0.92);
-    }
-
-    .resume-hint-overlay.hidden {
-      opacity: 0;
-      transform: translateY(4px);
-    }
     .status-bar {
       margin-top: 6px;
       font-size: 13px;
@@ -2244,8 +2209,7 @@
       #focus-toggle,
       textarea,
       label[for="main-input"],
-      .input-wrapper,
-      .resume-hint-overlay {
+      .input-wrapper {
         display: none !important;
       }
 
@@ -2356,10 +2320,16 @@
         <div class="brand">
           <div class="brand-wordmark">Recruiter in Your Pocket</div>
         </div>
-        <div class="version-pill">
+        <button
+          id="data-handling-pill"
+          class="version-pill"
+          type="button"
+          aria-expanded="false"
+          aria-controls="hero-data-card"
+        >
           <span class="status-dot"></span>
-          <span>Resume isn't stored</span>
-        </div>
+          <span>We don’t store your resume</span>
+        </button>
       </header>
 
       <div id="loading-bar"></div>
@@ -2376,14 +2346,10 @@
           </ul>
         </div>
         <div class="trust-inline">
-          <span>Your resume stays private.</span>
+          <span>We don’t store your resume.</span>
           <button id="data-handling-inline" type="button" aria-expanded="false" aria-controls="hero-data-card">How we handle data</button>
         </div>
-        <div id="hero-data-card" class="hero-data-card hidden" role="region" aria-label="How we handle your data">
-          <p>Your resume stays in your browser until you run a review.</p>
-          <p>When you run a review, we send only your text, sent securely, so the model can read it.</p>
-          <p>We never store your resume or use it for model training.</p>
-        </div>
+        <div id="hero-data-card" class="hero-data-card hidden" role="region" aria-label="How we handle your data"></div>
 
         <div class="hero-grid">
           <div class="hero-pill">
@@ -2418,17 +2384,10 @@
                 id="main-input"
                 placeholder="Paste your full resume, including work history, skills, and education."
               ></textarea>
-
-              <div id="resume-hint" class="resume-hint-overlay">
-                <div class="resume-hint-title">Paste your full resume or try the sample</div>
-                <div class="resume-hint-body">
-                  I’ll read it like a recruiter and highlight what’s clear, what’s hidden, and where phrasing can be sharper.
-                </div>
-              </div>
             </div>
 
             <div class="input-meta-row">
-              <div>Your resume stays in your browser until you click Get a recruiter’s read.</div>
+              <div>Your resume stays in your browser until you run a review.</div>
               <div id="saved-indicator" class="saved-indicator">Saved</div>
             </div>
 
@@ -2586,7 +2545,23 @@
       </div>
 
       <footer class="footer">
-        We never store your resume or use it for model training.
+        <div class="data-handling-row">
+          <button
+            id="footer-data-trigger"
+            class="data-handling-link"
+            type="button"
+            aria-expanded="false"
+            aria-controls="footer-data-card"
+          >
+            We don’t store your resume
+          </button>
+          <div
+            id="footer-data-card"
+            class="data-handling-panel hidden"
+            role="region"
+            aria-label="How we handle your data"
+          ></div>
+        </div>
       </footer>
     </div>
   </div>
@@ -2619,11 +2594,13 @@
   const resultsActionsBottomEl = document.getElementById("results-actions-bottom");
   const reportWrapperEl = document.querySelector(".report-wrapper");
   const dataHandlingInlineEl = document.getElementById("data-handling-inline");
+  const dataHandlingPillEl = document.getElementById("data-handling-pill");
   const dataHandlingPanelEl = document.getElementById("hero-data-card");
+  const footerDataHandlingTriggerEl = document.getElementById("footer-data-trigger");
+  const footerDataHandlingPanelEl = document.getElementById("footer-data-card");
   const textareaEl = document.getElementById("main-input");
   const savedIndicatorEl = document.getElementById("saved-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
-  const resumeHintEl = document.getElementById("resume-hint");
   const sampleResumeButtonEl = document.getElementById("sample-resume-button");
   const ideasInlineEl = document.getElementById("ideas-inline");
   const ideasOpenEl = document.getElementById("ideas-open");
@@ -2635,6 +2612,11 @@
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
   const ideasStatusEl = document.getElementById("ideas-status");
   const focusToggleEl = document.getElementById("focus-toggle");
+  const DATA_HANDLING_COPY = [
+    "Your resume stays in your browser until you run a review.",
+    "When you run a review, we send only your text to our servers over an encrypted connection.",
+    "We don’t retain your resume or use it for model training."
+  ];
   const prefersReducedMotionQuery = window.matchMedia
     ? window.matchMedia("(prefers-reduced-motion: reduce)")
     : null;
@@ -2741,6 +2723,65 @@
     }
   })();
 
+  function renderDataHandlingCopy(container) {
+    if (!container) return;
+    container.innerHTML = DATA_HANDLING_COPY.map((line) => `<p class="data-handling-text">${line}</p>`).join("");
+  }
+
+  function setupDataHandlingPopover(triggers, panel) {
+    const triggerList = (triggers || []).filter(Boolean);
+    if (!panel || triggerList.length === 0) return;
+
+    const setExpanded = (expanded) => {
+      triggerList.forEach((trigger) => trigger.setAttribute("aria-expanded", expanded ? "true" : "false"));
+    };
+
+    const hidePanel = () => {
+      if (panel.classList.contains("hidden")) return;
+      panel.classList.add("hidden");
+      setExpanded(false);
+    };
+
+    const showPanel = () => {
+      panel.classList.remove("hidden");
+      setExpanded(true);
+    };
+
+    const togglePanel = (event) => {
+      event.preventDefault();
+      if (panel.classList.contains("hidden")) {
+        showPanel();
+      } else {
+        hidePanel();
+      }
+    };
+
+    triggerList.forEach((trigger) => {
+      trigger.addEventListener("click", togglePanel);
+      trigger.addEventListener("mouseenter", showPanel);
+      trigger.addEventListener("mouseleave", () => {
+        setTimeout(() => {
+          if (!panel.matches(":hover")) hidePanel();
+        }, 40);
+      });
+      trigger.addEventListener("focus", showPanel);
+      trigger.addEventListener("blur", () => {
+        setTimeout(() => {
+          if (!panel.contains(document.activeElement)) hidePanel();
+        }, 40);
+      });
+    });
+
+    panel.addEventListener("mouseleave", hidePanel);
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (panel.contains(target)) return;
+      if (triggerList.some((trigger) => trigger.contains(target))) return;
+      hidePanel();
+    });
+  }
+
   function autoResizeTextarea() {
     const maxHeight = 340;
     inputEl.style.height = "auto";
@@ -2764,38 +2805,37 @@
         inputEl.value = saved;
         autoResizeTextarea();
         showSavedIndicator();
+        return;
       }
     } catch (e) {
       console.warn("Could not load saved input", e);
     }
-  }
-
-  function updateResumeHintVisibility() {
-    if (!resumeHintEl) return;
-    const hasText = inputEl.value.trim().length > 0;
-    const isFocused = document.activeElement === inputEl;
-
-    if (hasText || isFocused) {
-      resumeHintEl.classList.add("hidden");
-    } else {
-      resumeHintEl.classList.remove("hidden");
-    }
-  }
-
-  inputEl.addEventListener("input", () => {
+    inputEl.value = "";
     autoResizeTextarea();
+  }
+
+  inputEl.addEventListener("input", (event) => {
+    autoResizeTextarea();
+    const trimmed = inputEl.value.trim();
+
+    if (!trimmed) {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {
+        console.warn("Could not clear saved input", e);
+      }
+      resetIdeasSection();
+      if (ideasInlineEl) ideasInlineEl.classList.add("hidden");
+      closeIdeasModal();
+      return;
+    }
+
     try {
       localStorage.setItem(STORAGE_KEY, inputEl.value);
     } catch (e) {
       console.warn("Could not save input", e);
     }
     showSavedIndicator();
-    updateResumeHintVisibility();
-    if (!inputEl.value.trim()) {
-      resetIdeasSection();
-      if (ideasInlineEl) ideasInlineEl.classList.add("hidden");
-      closeIdeasModal();
-    }
   });
 
   inputEl.addEventListener("paste", () => {
@@ -2804,9 +2844,6 @@
       hasLoggedPaste = true;
     }
   });
-
-  inputEl.addEventListener("focus", updateResumeHintVisibility);
-  inputEl.addEventListener("blur", updateResumeHintVisibility);
 
   function clearScoreBadge() {
     scoreBadgeEl.textContent = "";
@@ -3851,13 +3888,6 @@
     }
   });
 
-  function hideDataPanel() {
-    if (dataHandlingPanelEl && !dataHandlingPanelEl.classList.contains("hidden")) {
-      dataHandlingPanelEl.classList.add("hidden");
-      if (dataHandlingInlineEl) dataHandlingInlineEl.setAttribute("aria-expanded", "false");
-    }
-  }
-
   const SAMPLE_RESUME_TEXT = `Jane Doe
 Senior Product Manager
 
@@ -3882,39 +3912,22 @@ University of Washington
 Skills
 Product discovery, experimentation, roadmapping, stakeholder communication, SQL, basic Python, Figma`;
 
-  if (dataHandlingInlineEl && dataHandlingPanelEl) {
-    dataHandlingInlineEl.addEventListener("click", (event) => {
-      event.preventDefault();
-      const isHidden = dataHandlingPanelEl.classList.contains("hidden");
-      if (isHidden) {
-        dataHandlingPanelEl.classList.remove("hidden");
-        dataHandlingInlineEl.setAttribute("aria-expanded", "true");
-      } else {
-        hideDataPanel();
-      }
-    });
-  }
-
-  document.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!dataHandlingPanelEl || !dataHandlingInlineEl) return;
-    if (
-      dataHandlingPanelEl.contains(target) ||
-      dataHandlingInlineEl.contains(target)
-    ) {
-      return;
-    }
-    hideDataPanel();
-  });
+  renderDataHandlingCopy(dataHandlingPanelEl);
+  renderDataHandlingCopy(footerDataHandlingPanelEl);
+  setupDataHandlingPopover([dataHandlingInlineEl, dataHandlingPillEl], dataHandlingPanelEl);
+  setupDataHandlingPopover([footerDataHandlingTriggerEl], footerDataHandlingPanelEl);
 
   if (sampleResumeButtonEl) {
     sampleResumeButtonEl.addEventListener("click", () => {
       if (!inputEl) return;
       isSampleRun = true;
       inputEl.value = SAMPLE_RESUME_TEXT;
-      saveInput(inputEl.value);
+      try {
+        localStorage.setItem(STORAGE_KEY, SAMPLE_RESUME_TEXT);
+      } catch (e) {
+        console.warn("Could not save sample input", e);
+      }
       autoResizeTextarea();
-      updateResumeHintVisibility();
       showSavedIndicator();
       runAnalysis({ sample: true, textOverride: SAMPLE_RESUME_TEXT });
     });
@@ -4042,7 +4055,6 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     (function init() {
       loadSavedInput();
       autoResizeTextarea();
-      updateResumeHintVisibility();
       renderSummary("");
     })();
 </script>
