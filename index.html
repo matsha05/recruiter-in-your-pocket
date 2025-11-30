@@ -3685,9 +3685,6 @@
 
     // Open a placeholder window immediately to keep the user gesture alive
     const downloadWindow = window.open("", "_blank");
-    if (downloadWindow) {
-      downloadWindow.document.write("<p style='font-family:sans-serif; font-size:14px; padding:16px;'>Preparing PDF...</p>");
-    }
 
     try {
       const generatedOnLocal = new Date().toLocaleDateString(undefined, {
@@ -3722,24 +3719,21 @@
         if (downloadWindow && !downloadWindow.closed) downloadWindow.close();
         return;
       }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const dataUrl = reader.result;
-        if (downloadWindow && !downloadWindow.closed) {
-          downloadWindow.location.href = dataUrl;
-          downloadWindow.focus();
-        } else {
-          const a = document.createElement("a");
-          a.href = dataUrl;
-          a.target = "_blank";
-          a.rel = "noopener";
-          a.download = "resume-review.pdf";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }
-      };
-      reader.readAsDataURL(blob);
+      const url = URL.createObjectURL(new Blob([blob], { type: "application/pdf" }));
+      if (downloadWindow && !downloadWindow.closed) {
+        downloadWindow.location.href = url;
+        downloadWindow.focus();
+      } else {
+        const a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.download = "resume-review.pdf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
       statusEl.textContent = "Exported PDF.";
     } catch (err) {
       statusEl.textContent = "Could not export right now. Try again.";
