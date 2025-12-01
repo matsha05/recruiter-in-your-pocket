@@ -28,14 +28,14 @@ Goal: Make the report travel well as PDF and structured text.
 - [x] Add a “Copy with headings” option that preserves section order and labels.
 - [x] Add a small inline hint near export about sharing with mentors/recruiters.
 
-## Phase 3 – Tiny Design System
+## Phase 3 – Tiny Design System — Done
 Goal: Codify spacing, type, and accent decisions so Codex and Matt stay consistent.
-- [ ] Define CSS variables for spacing (e.g., --space-xs/sm/md/lg/xl).
-- [ ] Define CSS variables for typography (e.g., --type-body, --type-heading, --type-label).
-- [ ] Define CSS variables for accent color and radius.
-- [ ] Introduce reusable classes: .stack-section, .stack-heading, .stack-accent-line.
-- [ ] Refactor existing report markup to use these classes where appropriate.
-- [ ] Confirm focus states and contrast meet accessibility guidance.
+- [x] Define CSS variables for spacing (e.g., --space-xs/sm/md/lg/xl).
+- [x] Define CSS variables for typography (e.g., --type-body, --type-heading, --type-label).
+- [x] Define CSS variables for accent color and radius.
+- [x] Introduce reusable classes: .stack-section, .stack-heading, .stack-accent-line.
+- [x] Refactor existing report markup to use these classes where appropriate.
+- [x] Confirm focus states and contrast meet accessibility guidance.
 
 ## Phase 4 – Hardening (First Slice)
 Goal: Make failures predictable and observable without changing product behavior.
