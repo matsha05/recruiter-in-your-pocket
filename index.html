@@ -411,6 +411,7 @@
       }
       .tool-layout {
         gap: 14px;
+        grid-template-columns: 1fr;
       }
       .card {
         padding: 16px;
@@ -430,10 +431,17 @@
     .tool-layout {
       position: relative;
       margin-top: var(--space-2xl);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-xxl);
-      align-items: stretch;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .tool-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-xxl);
+      }
     }
 
     .card {
@@ -899,7 +907,17 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
+      gap: 24px;
       margin: 8px 0 14px;
+    }
+
+    @media (max-width: 1024px) {
+      .score-header-inside {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
     }
 
     .score-dial-container {
@@ -1067,6 +1085,134 @@
 
     .score-great .score-dial-number {
       color: #047857;
+    }
+
+    .issue-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 280px;
+      opacity: 0;
+      transition: opacity var(--motion-duration-medium) var(--motion-ease-premium);
+    }
+
+    .issue-breakdown.visible {
+      opacity: 1;
+    }
+
+    .issue-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--wash);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all var(--motion-duration-short) var(--motion-ease-premium);
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .issue-bar:hover,
+    .issue-bar:focus-visible {
+      background: var(--accent-wash);
+      border-color: var(--accent);
+      transform: translateX(2px);
+      outline: none;
+    }
+
+    .issue-bar-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .issue-bar-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .issue-bar-count {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+    }
+
+    .issue-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--accent);
+      opacity: 0.08;
+      width: 0%;
+      transition: width 600ms var(--motion-ease-premium);
+      z-index: 1;
+    }
+
+    .issue-bar[data-count="0"] .issue-bar-fill {
+      width: 0%;
+    }
+
+    .issue-bar[data-count="1"] .issue-bar-fill {
+      width: 20%;
+    }
+
+    .issue-bar[data-count="2"] .issue-bar-fill {
+      width: 40%;
+    }
+
+    .issue-bar[data-count="3"] .issue-bar-fill {
+      width: 60%;
+    }
+
+    .issue-bar[data-count="4"] .issue-bar-fill,
+    .issue-bar[data-count="5"] .issue-bar-fill {
+      width: 80%;
+    }
+
+    .issue-bar[data-count="6"] .issue-bar-fill,
+    .issue-bar[data-count="7"] .issue-bar-fill,
+    .issue-bar[data-count="8"] .issue-bar-fill,
+    .issue-bar[data-count="9"] .issue-bar-fill,
+    .issue-bar[data-count="10"] .issue-bar-fill {
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .issue-breakdown {
+        max-width: 100%;
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .issue-breakdown {
+        margin-top: 14px;
+        gap: 8px;
+      }
+
+      .issue-bar {
+        padding: 8px 10px;
+      }
+
+      .issue-bar-label {
+        font-size: 12px;
+      }
+
+      .issue-bar-count {
+        font-size: 11px;
+      }
     }
 
     .score-bands-trigger {
@@ -2499,6 +2645,29 @@
                     <div id="score-dial-label" class="score-dial-label">Overall clarity score</div>
                   </div>
                   <div id="score-tooltip" class="score-tooltip" role="tooltip"></div>
+                  <div id="issue-breakdown" class="issue-breakdown hidden">
+                    <button class="issue-bar" data-section="impact-results" type="button" aria-label="Impact & Results">
+                      <div class="issue-bar-content">
+                        <span class="issue-bar-label">Impact & Results</span>
+                        <span class="issue-bar-count">0 notes</span>
+                      </div>
+                      <div class="issue-bar-fill"></div>
+                    </button>
+                    <button class="issue-bar" data-section="clarity-structure" type="button" aria-label="Clarity & Structure">
+                      <div class="issue-bar-content">
+                        <span class="issue-bar-label">Clarity & Structure</span>
+                        <span class="issue-bar-count">0 notes</span>
+                      </div>
+                      <div class="issue-bar-fill"></div>
+                    </button>
+                    <button class="issue-bar" data-section="focus-craft" type="button" aria-label="Focus & Craft">
+                      <div class="issue-bar-content">
+                        <span class="issue-bar-label">Focus & Craft</span>
+                        <span class="issue-bar-count">0 notes</span>
+                      </div>
+                      <div class="issue-bar-fill"></div>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="results-header-row">
@@ -2653,6 +2822,7 @@
   const scoreWrapperEl = document.getElementById("score-wrapper");
   const scoreBandsTriggerEl = document.getElementById("score-bands-trigger");
   const scoreDialContainerEl = document.getElementById("score-dial-container");
+  const issueBreakdownEl = document.getElementById("issue-breakdown");
   const scoreDialEl = document.getElementById("score-dial");
   const scoreDialProgressEl = document.getElementById("score-dial-progress");
   const scoreDialNumberEl = document.getElementById("score-dial-number");
@@ -2944,6 +3114,10 @@
     if (scoreWrapperEl) scoreWrapperEl.classList.add("hidden");
     if (scoreBandsTriggerEl) scoreBandsTriggerEl.style.display = "none";
     if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
+    if (issueBreakdownEl) {
+      issueBreakdownEl.classList.add("hidden");
+      issueBreakdownEl.classList.remove("visible");
+    }
     currentScoreMeta = null;
     lastScoreValue = null;
     scoreBandsPinned = false;
@@ -3319,6 +3493,123 @@
     reportViewEl.classList.remove("report-view--focus-start");
   }
 
+  function calculateIssueCounts(data) {
+    const { gaps = [], rewrites = [] } = data || {};
+    
+    let impactResultsCount = 0;
+    let clarityStructureCount = 0;
+    let focusCraftCount = 0;
+
+    // Group rewrites the same way renderStructuredResults does
+    const clarityGroup = [];
+    const impactGroup = [];
+    const focusCraftGroup = [];
+    
+    for (const r of rewrites) {
+      if (!r) continue;
+      const label = (r.label || "").toLowerCase();
+      if (label.includes("clarity") || label.includes("concise") || label.includes("conciseness") || label.includes("brevity") || label.includes("phrasing")) {
+        clarityGroup.push(r);
+      } else if (label.includes("impact") || label.includes("scope") || label.includes("ownership")) {
+        impactGroup.push(r);
+      } else if (label.includes("focus") || label.includes("relevance") || label.includes("craft") || label.includes("polish")) {
+        focusCraftGroup.push(r);
+      }
+    }
+
+    // Impact & Results: Count only rewrites in the Impact cluster (what's actually shown)
+    impactResultsCount = impactGroup.length;
+
+    // Clarity & Structure: Count only rewrites in the Clarity cluster (what's actually shown)
+    clarityStructureCount = clarityGroup.length;
+
+    // Focus & Craft: Count Focus/Craft rewrites, or fall back to gaps if none exist
+    focusCraftCount = focusCraftGroup.length;
+    if (focusCraftCount === 0 && Array.isArray(gaps) && gaps.length > 0) {
+      // Fallback: count gaps for Focus & Craft if no Focus/Craft rewrites exist
+      focusCraftCount = gaps.length;
+    }
+
+    return {
+      impactResults: impactResultsCount,
+      clarityStructure: clarityStructureCount,
+      focusCraft: focusCraftCount
+    };
+  }
+
+  function updateIssueBreakdown(counts) {
+    if (!issueBreakdownEl) return;
+
+    const impactBar = issueBreakdownEl.querySelector('[data-section="impact-results"]');
+    const clarityBar = issueBreakdownEl.querySelector('[data-section="clarity-structure"]');
+    const focusBar = issueBreakdownEl.querySelector('[data-section="focus-craft"]');
+
+    if (impactBar) {
+      const countEl = impactBar.querySelector('.issue-bar-count');
+      if (countEl) {
+        countEl.textContent = counts.impactResults === 1 ? '1 note' : `${counts.impactResults} notes`;
+      }
+      impactBar.setAttribute('data-count', String(counts.impactResults));
+    }
+
+    if (clarityBar) {
+      const countEl = clarityBar.querySelector('.issue-bar-count');
+      if (countEl) {
+        countEl.textContent = counts.clarityStructure === 1 ? '1 note' : `${counts.clarityStructure} notes`;
+      }
+      clarityBar.setAttribute('data-count', String(counts.clarityStructure));
+    }
+
+    if (focusBar) {
+      const countEl = focusBar.querySelector('.issue-bar-count');
+      if (countEl) {
+        countEl.textContent = counts.focusCraft === 1 ? '1 note' : `${counts.focusCraft} notes`;
+      }
+      focusBar.setAttribute('data-count', String(counts.focusCraft));
+    }
+
+    // Show the breakdown panel
+    issueBreakdownEl.classList.remove('hidden');
+    setTimeout(() => {
+      issueBreakdownEl.classList.add('visible');
+    }, 100);
+  }
+
+  function handleIssueBarClick(section) {
+    const resultsBodyEl = document.getElementById("results-body");
+    if (!resultsBodyEl) return;
+
+    let targetEl = null;
+
+    if (section === "impact-results") {
+      // Scroll to "Stronger phrasing" section, specifically the Impact cluster
+      const strongerPhrasingEl = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
+      const impactClusterEl = strongerPhrasingEl ? strongerPhrasingEl.querySelector('[data-cluster="impact"]') : null;
+      targetEl = impactClusterEl || strongerPhrasingEl || resultsBodyEl.querySelector('[data-section="harder-to-see"]');
+    } else if (section === "clarity-structure") {
+      // Scroll to "Stronger phrasing" section, specifically the Clarity cluster
+      const strongerPhrasingEl = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
+      const clarityClusterEl = strongerPhrasingEl ? strongerPhrasingEl.querySelector('[data-cluster="clarity"]') : null;
+      targetEl = clarityClusterEl || strongerPhrasingEl;
+    } else if (section === "focus-craft") {
+      // Scroll to "What's harder to see" section
+      targetEl = resultsBodyEl.querySelector('[data-section="harder-to-see"]');
+    }
+
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Add a subtle highlight effect
+      targetEl.style.transition = 'background-color 0.3s ease';
+      targetEl.style.backgroundColor = 'var(--accent-wash)';
+      setTimeout(() => {
+        targetEl.style.backgroundColor = '';
+        setTimeout(() => {
+          targetEl.style.transition = '';
+        }, 300);
+      }, 1500);
+    }
+  }
+
   function renderStructuredResults(data) {
     const {
       summary,
@@ -3348,6 +3639,10 @@
       clearScoreBadge();
     }
 
+    // Calculate and update issue breakdown counts
+    const counts = calculateIssueCounts({ gaps, rewrites });
+    updateIssueBreakdown(counts);
+
     if (Array.isArray(missingWins) && missingWins.length > 0 && ideasInlineEl) {
       ideasInlineEl.classList.remove("hidden");
     }
@@ -3364,9 +3659,9 @@
       html += `</ul></div>`;
     }
 
-    // What’s harder to see
+    // What's harder to see
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s harder to see</div><div class="stack-subline">Surfaces buried impact, unclear outcomes, and work that isn’t landing clearly yet.</div><ul class="result-list">`;
+      html += `<div class="stack-section stack-accent-line" data-section="harder-to-see"><div class="stack-heading">What's harder to see</div><div class="stack-subline">Surfaces buried impact, unclear outcomes, and work that isn't landing clearly yet.</div><ul class="result-list">`;
       for (const item of gaps) {
         if (!item) continue;
         html += `<li>${escapeHtml(String(item))}</li>`;
@@ -3433,15 +3728,15 @@
         return groupHtml;
       };
 
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div>`;
+      html += `<div class="stack-section stack-accent-line" data-section="stronger-phrasing"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div>`;
 
       if (clarityGroup.length > 0) {
-        html += `<div class="rewrite-cluster-heading">Clarity & Conciseness</div>`;
+        html += `<div class="rewrite-cluster-heading" data-cluster="clarity">Clarity & Conciseness</div>`;
         html += renderRewriteGroup(clarityGroup);
       }
 
       if (impactGroup.length > 0) {
-        html += `<div class="rewrite-cluster-heading">Impact, Scope & Ownership</div>`;
+        html += `<div class="rewrite-cluster-heading" data-cluster="impact">Impact, Scope & Ownership</div>`;
         html += renderRewriteGroup(impactGroup);
       }
 
@@ -3508,6 +3803,19 @@
   }
 
   if (scoreDialContainerEl) {
+    // Issue breakdown bar click handlers
+    if (issueBreakdownEl) {
+      const issueBars = issueBreakdownEl.querySelectorAll('.issue-bar');
+      issueBars.forEach(bar => {
+        bar.addEventListener('click', () => {
+          const section = bar.getAttribute('data-section');
+          if (section) {
+            handleIssueBarClick(section);
+          }
+        });
+      });
+    }
+
     scoreDialContainerEl.addEventListener("click", () => {
       toggleScoreBandsPinned();
     });
