@@ -22,10 +22,12 @@ This file defines the tokens and components for the Recruiter in Your Pocket UI 
   - Slate 500: `#64748B` (Muted Text)
 
 ## Typography
-- Heading XL (hero): display family, tight tracking, ~42px desktop / ~36px mobile, line-height ~1.1–1.15, weight 800.
-- Heading L (section headers): display family, ~22–28px, letter spacing slight negative, line-height ~1.25, weight 700–800.
-- Body: Manrope, ~15–17px, line-height ~1.6.
-- Small / Tip: ~12–13px, line-height ~1.5, used for helper text and meta.
+- **Display (Headings):** Plus Jakarta Sans
+  - Hero: Tight tracking (-0.02em), weight 800.
+  - Section Headers: Slight negative tracking, weight 700-800.
+- **Body:** Manrope
+  - Regular text: Weight 400/500, clean and approachable.
+  - UI Labels: Weight 600 for clarity.
 
 ## Spacing & Radii
 - Spacing tokens: 4, 8, 12, 16, 24, 32, 40 (px).
