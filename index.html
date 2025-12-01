@@ -116,8 +116,17 @@
         line-height: 1.55;
       }
       .proof-editorial {
-        margin-top: 32px;
-        padding: 10px 14px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        padding: 16px 18px;
+      }
+      .proof-editorial-heading {
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+      .proof-editorial-quote {
+        font-size: 12px;
+        margin-bottom: 10px;
       }
     }
 
@@ -347,27 +356,28 @@
     }
 
     .proof-editorial {
-      margin-top: 20px;
-      margin-bottom: 16px;
-      padding: 0;
-      background: transparent;
-      border-radius: 0;
-      box-shadow: none;
+      margin-top: 0;
+      margin-bottom: var(--space-2xl);
+      padding: 20px 24px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
 
     .proof-editorial-heading {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 10px;
+      color: var(--ink-900);
+      margin-bottom: 14px;
       letter-spacing: -0.01em;
     }
 
     .proof-editorial-quote {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.65;
+      margin-bottom: 12px;
     }
 
     .proof-editorial-quote:last-child {
@@ -2757,6 +2767,14 @@
 
       </section>
 
+      <div class="proof-editorial accent-card-primary" aria-label="Testimonials from users">
+        <div class="proof-editorial-heading">What early users say</div>
+        <div class="proof-editorial-quote">"Honestly, I thought my resume was fine, but this showed me what actually mattered and what I could finally cut."</div>
+        <div class="proof-editorial-quote">"I thought my bullets were good until this showed me my scope was invisible. I had no idea recruiters couldn't see it."</div>
+        <div class="proof-editorial-quote">"I kept tweaking the same three bullets. This told me why they felt weak and gave me the actual rewrite."</div>
+        <div class="proof-editorial-quote">"It finally made me stop rewriting my resume at midnight every week."</div>
+      </div>
+
       <div id="data-modal" class="data-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="data-modal-title">
         <div id="data-modal-card" class="data-modal-card" tabindex="-1">
           <div class="data-modal-header">
@@ -2806,14 +2824,6 @@
             </div>
           </div>
         </section>
-
-        <div class="proof-editorial accent-card-primary" aria-label="Testimonials from users">
-          <div class="proof-editorial-heading">What early users say</div>
-          <div class="proof-editorial-quote">“Honestly, I thought my resume was fine, but this showed me what actually mattered and what I could finally cut.”</div>
-          <div class="proof-editorial-quote">“It connected my past roles into a story I didn’t even realize I was trying to tell.”</div>
-          <div class="proof-editorial-quote">“I never understood why some bullets felt off until this explained it in a way that finally clicked.”</div>
-          <div class="proof-editorial-quote">“It finally made me stop rewriting my resume at midnight every week.”</div>
-        </div>
 
         <!-- Right column -->
         <div class="report-wrapper">
