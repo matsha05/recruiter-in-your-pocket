@@ -2,7 +2,7 @@
 **Premium. Confident. Joyfully clear.**
 
 Recruiter in Your Pocket is a tiny, high-end studio for your career story.  
-It should feel like a sharp recruiter and a thoughtful designer sat down together to read your resume and hand you a crafted report.
+It should feel like a recruiter who's hired 1000+ people at Google, Facebook, OpenAI, and startups sat down with a thoughtful designer to read your resume and hand you a crafted report—not generic AI advice, but real insight from someone who's made actual hiring decisions.
 
 Every interaction should:
 - reduce anxiety  
@@ -139,6 +139,48 @@ Ease builds trust.
 
 ---
 
+## 9. Recruiter-Grade Authority
+
+We speak from real experience: 1000+ hires across Google, Facebook, OpenAI, startups (Series A-C), and nonprofits. We've been CPOs, principal recruiters, and hiring managers who've seen what actually works.
+
+This means:
+- We know what companies actually look for, not what generic advice says
+- We've seen patterns across thousands of resumes—what lands, what doesn't
+- We speak like someone who's made real hiring decisions, not an AI trained on public data
+- Our feedback reflects how resumes are actually read in real pipelines
+
+The tone should feel like: "I've reviewed thousands of resumes at companies like yours. Here's what I actually look for."
+
+Not: "Here's what resume guides say you should do."
+
+This is the difference between recruiter-grade insight and generic AI slop.
+
+---
+
+## 10. Specificity Over Generics
+
+Every insight should feel tailored to this person's story, not generic advice that could apply to anyone.
+
+We favor:
+- Specific observations about their actual resume ("Your scope is muted" not "Add more metrics")
+- Context-aware suggestions that fit their background (tech vs. nonprofit vs. retail)
+- Real examples from their bullets, not hypothetical improvements
+- Pattern recognition that shows we actually read their story
+
+Generic AI slop sounds like:
+- "Use action verbs"
+- "Quantify your achievements"
+- "Tailor your resume to the job"
+
+Recruiter-grade specificity sounds like:
+- "Your strongest work is buried in the third bullet—move it up"
+- "This bullet blends three ideas; split it so your ownership is clear"
+- "Add the team size here so the scope is obvious"
+
+If feedback could apply to any resume, it's not specific enough. If it feels like we read their actual story, it's working.
+
+---
+
 # EXPERIENCE PRINCIPLES
 
 ## 1. Deliver Insight That Feels True  
@@ -189,7 +231,21 @@ Never fluffy.
 ---
 
 ## 5. End Every Session With Momentum  
-Users should feel their next move is obvious and achievable.
+
+Every interaction should feel like forward motion. Users should see their progress and feel capable of the next step.
+
+Momentum is created through:
+- Clear, sequential actions (not overwhelming lists)
+- Visible progress indicators (score dial, issue counts)
+- Specific next steps that feel achievable in 1-2 sessions
+- A sense of "I can do this" rather than "I have so much to fix"
+
+The rewrite tiles don't just show what's wrong—they show the path forward. Each "Better" bullet is a concrete example of improvement, not abstract advice.
+
+Users should finish thinking:
+> "I understand how I read. I know exactly what to fix. And I feel better than when I started."
+
+Momentum ≠ speed. Momentum = clarity + capability + forward motion.
 
 ---
 
