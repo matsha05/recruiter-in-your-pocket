@@ -850,6 +850,13 @@
       text-underline-offset: 2px;
     }
 
+    .focus-button:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
+      border-radius: var(--radius-xs);
+    }
+
     .results-top {
       background: var(--wash);
       border: 1px solid var(--border-subtle);
@@ -1229,7 +1236,9 @@
       background: var(--accent-wash);
       border-color: var(--accent);
       transform: translateX(2px);
-      outline: none;
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
     }
 
     .issue-bar-content {
@@ -1354,6 +1363,10 @@
     .score-bands-trigger:hover,
     .score-bands-trigger:focus-visible {
       color: var(--text-main);
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
+      border-radius: var(--radius-xs);
     }
 
     .score-bands-panel {
@@ -1497,6 +1510,12 @@
       cursor: pointer;
     }
 
+    .paywall-primary:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
+    }
+
     .paywall-secondary {
       background: none;
       border: 1px solid var(--border-subtle);
@@ -1505,6 +1524,12 @@
       padding: var(--space-sm) var(--space-md-lg);
       font-size: var(--fs-label);
       cursor: pointer;
+    }
+
+    .paywall-secondary:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
     }
 
     #loading-bar {
@@ -2349,11 +2374,13 @@
     }
 
     textarea:focus-visible {
-      outline: none;
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: 2px;
       border-color: rgba(15, 23, 42, 0.28);
       box-shadow:
         0 14px 30px rgba(15, 23, 42, 0.14),
-        inset 0 0 0 1px rgba(15, 23, 42, 0.28);
+        inset 0 0 0 1px rgba(15, 23, 42, 0.28),
+        var(--focus-shadow);
     }
 
     .btn-primary:focus-visible,
@@ -2364,9 +2391,9 @@
     .export-button:focus-visible,
     .ideas-open-link:focus-visible,
     .stack-section:focus-within {
-      outline: 2px solid #A5B4FC;
-      outline-offset: 3px;
-      box-shadow: 0 0 0 2px rgba(28, 78, 216, 0.16);
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
     }
 
     .input-wrapper {
@@ -2694,6 +2721,12 @@
       background: var(--surface-tint);
     }
 
+    .ghost-button:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
+    }
+
     .ghost-button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -2784,8 +2817,9 @@
     }
 
     .data-modal-close:focus-visible {
-      outline: 2px solid var(--accent-boost);
-      outline-offset: 2px;
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
     }
 
     .data-modal-body {
