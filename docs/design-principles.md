@@ -79,6 +79,11 @@ Avoid anything that introduces chaos or cheapness; the product should feel alive
 - no decorative icons without meaning  
 - no loud animations  
 
+**Distinction:**
+- **Noise:** Decorative elements that demand attention (neon borders, heavy patterns).
+- **Atmosphere:** Subtle lighting or depth that supports the feeling of quality (soft ambient glows, grain).
+- *We avoid noise; we embrace atmosphere.*
+
 Premium ≠ flashy.  
 Premium = intentional, clean, expressive, and confidently restrained.
 
