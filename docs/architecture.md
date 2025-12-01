@@ -1,6 +1,6 @@
 # Recruiter in Your Pocket – Architecture
 
-Last updated: 2025-11-23  
+Last updated: 2025-01-27  
 Owner: Matt
 
 This file is the concise, always-current map of how the app works: components, endpoints, data paths, and state flows. Update it whenever UI, API, or data handling changes.
@@ -24,11 +24,11 @@ This file is the concise, always-current map of how the app works: components, e
 - Input: `{ text, mode }` (mode defaults to `"resume"`, even though UI only shows resume).
 - Validation: length ≤ 30k; allowed modes `["resume","resume_ideas"]`; optional jobContext/seniorityLevel as strings.
 - Call: OpenAI Chat Completions with `response_format: json_object`; model from `OPENAI_MODEL` (default `gpt-4.1-mini`); retries/timeout controlled by env.
-- Response guard: parses content, enforces schema (score label/comments, summary, strengths, gaps, rewrites, next_steps), clamps score 0–100; falls back to static data on parse/shape errors.
+- Response guard: parses content, enforces schema (score label/comments, summary, strengths, gaps, rewrites, next_steps), clamps score 0–100; fails closed on parse/shape errors unless USE_MOCK_OPENAI is set.
 
 ### Missing wins (ideas): `POST /api/resume-ideas`
 - Input: `{ text }` validated for length.
-- Call: OpenAI with `response_format: json_object`; schema-enforced questions/notes/how_to_use; falls back to static ideas on parse/shape errors.
+- Call: OpenAI with `response_format: json_object`; schema-enforced questions/notes/how_to_use; fails closed on parse/shape errors unless USE_MOCK_OPENAI is set.
 
 ### OpenAI / mocks
 - Mock path when `USE_MOCK_OPENAI` is truthy; reads fixtures in `tests/fixtures`.
@@ -57,7 +57,7 @@ This file is the concise, always-current map of how the app works: components, e
 
 ## UI & Design System
 - Single-page HTML/JS/CSS frontend using a small design system:
-  - Accent color: `#1C4ED8` with supporting boost/strong shades.
+  - Accent color: `#3341A6` (Deep Indigo) with supporting boost/strong shades.
   - Spine motif for the Insight Stack.
   - Heading/body type scale with display font for headings and Manrope for body.
   - Spacing tokens for rhythm and hierarchy.
