@@ -902,69 +902,107 @@
       margin: 8px 0 14px;
     }
 
-    .score-badge {
-      --score-pill-bg: rgba(37, 99, 235, 0.08);
-      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 90%, white 10%);
-      --score-pill-border: rgba(37, 99, 235, 0.28);
-      display: inline-flex;
+    .score-dial-container {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 12px 26px;
-      border-radius: 999px;
-      font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -0.01em;
+      gap: 12px;
       position: relative;
-      overflow: hidden;
       opacity: 0;
-      transition:
-        transform 0.16s ease-out,
-        opacity 0.16s ease-out,
-        background-color 0.08s ease-out;
-      min-width: 118px;
+      transition: opacity var(--motion-duration-medium) var(--motion-ease-premium);
+    }
+
+    .score-dial-container.visible {
+      opacity: 1;
+    }
+
+    .score-dial {
+      position: relative;
+      width: 140px;
+      height: 140px;
+    }
+
+    .score-dial svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .score-dial-bg {
+      fill: none;
+      stroke: rgba(15, 23, 42, 0.08);
+      stroke-width: 8;
+    }
+
+    .score-dial-progress {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 339.292;
+      stroke-dashoffset: 339.292;
+      transition: stroke-dashoffset 800ms var(--motion-ease-premium);
+      transform-origin: center;
+    }
+
+    .score-dial-progress[style*="stroke-dashoffset"] {
+      transition: stroke-dashoffset 800ms var(--motion-ease-premium);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .score-dial-progress {
+        transition: none;
+      }
+    }
+
+    .score-dial-number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+
+    .score-dial-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
       text-align: center;
-      border: 1px solid var(--score-pill-border);
-      background-color: var(--score-pill-bg);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      letter-spacing: 0.01em;
     }
 
-    .score-badge.score-badge--glow {
-      background-color: var(--score-pill-bg-boost);
-      transition:
-        transform var(--motion-duration-short) var(--motion-ease-premium),
-        opacity var(--motion-duration-short) var(--motion-ease-premium),
-        background-color var(--motion-duration-short) var(--motion-ease-premium);
+    .score-dial--reveal {
+      animation: score-dial-reveal 0.3s var(--motion-ease-premium);
     }
 
-    .score-pill--reveal {
-      animation: score-reveal 0.15s ease-out;
-    }
-
-    @keyframes score-reveal {
+    @keyframes score-dial-reveal {
       from {
         opacity: 0;
-        transform: scale(0.96);
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+        transform: scale(0.9);
       }
       to {
         opacity: 1;
         transform: scale(1);
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
       }
     }
 
-    .score-visible {
-      opacity: 1;
-      transform: scale(1);
+    @media (prefers-reduced-motion: reduce) {
+      .score-dial--reveal {
+        animation: none;
+      }
     }
 
     .score-tooltip {
       position: absolute;
-      top: 120%;
-      right: 0;
+      top: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
       width: 320px;
+      max-width: calc(100vw - 32px);
       background: #ffffff;
       border: 1px solid var(--border-strong);
       box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
@@ -974,7 +1012,6 @@
       color: var(--text-main);
       line-height: 1.5;
       opacity: 0;
-      transform: translateY(4px);
       pointer-events: none;
       transition: opacity var(--motion-duration-short) var(--motion-ease-premium), transform var(--motion-duration-short) var(--motion-ease-premium);
       z-index: 5;
@@ -991,47 +1028,45 @@
 
     .score-wrapper:hover .score-tooltip,
     .score-wrapper:focus-within .score-tooltip,
+    .score-dial-container:hover ~ .score-tooltip,
+    .score-dial-container:focus-within ~ .score-tooltip,
     .score-tooltip.open {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
       pointer-events: auto;
       box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
     }
 
-    .score-low {
-      --score-pill-bg: #fbe4df;
-      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 90%, white 10%);
-      --score-pill-border: #f5c7bd;
-      background-color: var(--score-pill-bg);
-      border-color: var(--score-pill-border);
-      color: #3c2317;
+    .score-low .score-dial-progress {
+      stroke: #dc2626;
     }
 
-    .score-mid {
-      --score-pill-bg: #f7edd7;
-      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 90%, white 10%);
-      --score-pill-border: #ecd7ac;
-      background-color: var(--score-pill-bg);
-      border-color: var(--score-pill-border);
-      color: #3f3011;
+    .score-low .score-dial-number {
+      color: #991b1b;
     }
 
-    .score-good {
-      --score-pill-bg: #e8edff;
-      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 90%, white 10%);
-      --score-pill-border: #cbd7ff;
-      background-color: var(--score-pill-bg);
-      border-color: var(--score-pill-border);
-      color: #1f2f63;
+    .score-mid .score-dial-progress {
+      stroke: #d97706;
     }
 
-    .score-great {
-      --score-pill-bg: #e3f6ee;
-      --score-pill-bg-boost: color-mix(in srgb, var(--score-pill-bg) 90%, white 10%);
-      --score-pill-border: #bdebd4;
-      background-color: var(--score-pill-bg);
-      border-color: var(--score-pill-border);
-      color: #153828;
+    .score-mid .score-dial-number {
+      color: #92400e;
+    }
+
+    .score-good .score-dial-progress {
+      stroke: var(--accent);
+    }
+
+    .score-good .score-dial-number {
+      color: var(--accent);
+    }
+
+    .score-great .score-dial-progress {
+      stroke: #059669;
+    }
+
+    .score-great .score-dial-number {
+      color: #047857;
     }
 
     .score-bands-trigger {
@@ -1590,12 +1625,17 @@
         opacity: 1 !important;
       }
 
-      .score-badge {
-        transition: none;
+      .score-dial {
+        width: 120px;
+        height: 120px;
       }
 
-      .score-badge.score-badge--glow {
-        background-color: var(--score-pill-bg);
+      .score-dial-number {
+        font-size: 30px;
+      }
+
+      .score-dial-label {
+        font-size: 12px;
       }
 
       .run-button,
@@ -2438,11 +2478,26 @@
               <div class="score-header-inside">
                 <div id="score-wrapper" class="score-wrapper hidden">
                   <div
-                    id="score-badge"
-                    class="score-badge score-pill"
+                    id="score-dial-container"
+                    class="score-dial-container"
                     tabindex="0"
                     aria-describedby="score-tooltip"
-                  ></div>
+                  >
+                    <div id="score-dial" class="score-dial">
+                      <svg viewBox="0 0 120 120">
+                        <circle class="score-dial-bg" cx="60" cy="60" r="54" />
+                        <circle
+                          id="score-dial-progress"
+                          class="score-dial-progress"
+                          cx="60"
+                          cy="60"
+                          r="54"
+                        />
+                      </svg>
+                      <div id="score-dial-number" class="score-dial-number">0</div>
+                    </div>
+                    <div id="score-dial-label" class="score-dial-label">Overall clarity score</div>
+                  </div>
                   <div id="score-tooltip" class="score-tooltip" role="tooltip"></div>
                 </div>
               </div>
@@ -2597,9 +2652,11 @@
   const reportAccentLineEl = document.querySelector(".report-accent-line");
   const scoreWrapperEl = document.getElementById("score-wrapper");
   const scoreBandsTriggerEl = document.getElementById("score-bands-trigger");
-  const scoreBadgeEl = document.getElementById("score-badge");
-  const scoreLabelEl = document.getElementById("score-label");
-  const scoreShortEl = document.getElementById("score-short");
+  const scoreDialContainerEl = document.getElementById("score-dial-container");
+  const scoreDialEl = document.getElementById("score-dial");
+  const scoreDialProgressEl = document.getElementById("score-dial-progress");
+  const scoreDialNumberEl = document.getElementById("score-dial-number");
+  const scoreDialLabelEl = document.getElementById("score-dial-label");
   const scoreTooltipEl = document.getElementById("score-tooltip");
   const copyFullButtonEl = document.getElementById("copy-full-button");
   const exportButtonEl = document.getElementById("export-button");
@@ -2871,11 +2928,14 @@
   });
 
   function clearScoreBadge() {
-    scoreBadgeEl.textContent = "";
-    scoreBadgeEl.className = "score-badge";
-    scoreBadgeEl.removeAttribute("aria-label");
-    if (scoreLabelEl) scoreLabelEl.textContent = "";
-    if (scoreShortEl) scoreShortEl.textContent = "";
+    if (scoreDialNumberEl) scoreDialNumberEl.textContent = "0";
+    if (scoreDialContainerEl) {
+      scoreDialContainerEl.className = "score-dial-container";
+      scoreDialContainerEl.removeAttribute("aria-label");
+    }
+    if (scoreDialProgressEl) {
+      scoreDialProgressEl.style.strokeDashoffset = "339.292";
+    }
     if (scoreTooltipEl) {
       scoreTooltipEl.textContent = "";
       scoreTooltipEl.classList.remove("open");
@@ -3024,16 +3084,72 @@
   }
 
   function applyScoreColor(score) {
-    clearScoreBadge();
-    if (Number.isNaN(score)) return;
+    if (Number.isNaN(score) || !scoreDialContainerEl) return;
+    
+    // Clear previous color classes
+    scoreDialContainerEl.classList.remove("score-low", "score-mid", "score-good", "score-great");
+    
+    // Apply color class based on score
     let cls = "";
     if (score < 50) cls = "score-low";
     else if (score < 70) cls = "score-mid";
     else if (score < 90) cls = "score-good";
     else cls = "score-great";
-    scoreBadgeEl.textContent = score + "/100";
-    scoreBadgeEl.setAttribute("aria-label", `Score ${score} out of 100`);
-    scoreBadgeEl.classList.add("score-visible", cls);
+    
+    if (cls) {
+      scoreDialContainerEl.classList.add(cls);
+    }
+    
+    // Update dial progress
+    const circumference = 2 * Math.PI * 54; // radius is 54, approximately 339.292
+    const percentage = Math.max(0, Math.min(100, score)) / 100;
+    const offset = circumference * (1 - percentage);
+    
+    if (scoreDialProgressEl) {
+      // Ensure stroke-dasharray is set
+      if (!scoreDialProgressEl.style.strokeDasharray) {
+        scoreDialProgressEl.style.strokeDasharray = circumference;
+      }
+      // Reset to full circle first, then animate to target
+      scoreDialProgressEl.style.strokeDashoffset = circumference;
+      // Use requestAnimationFrame to ensure the reset is applied before animation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          scoreDialProgressEl.style.strokeDashoffset = offset;
+        });
+      });
+    }
+    
+    // Update number with animation
+    if (scoreDialNumberEl) {
+      const targetScore = Math.round(score);
+      const currentScore = parseInt(scoreDialNumberEl.textContent) || 0;
+      
+      // Animate number counting up
+      if (prefersReducedMotion()) {
+        scoreDialNumberEl.textContent = targetScore;
+      } else {
+        const duration = 800;
+        const startTime = Date.now();
+        const animateNumber = () => {
+          const elapsed = Date.now() - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          const current = Math.round(currentScore + (targetScore - currentScore) * eased);
+          scoreDialNumberEl.textContent = current;
+          
+          if (progress < 1) {
+            requestAnimationFrame(animateNumber);
+          } else {
+            scoreDialNumberEl.textContent = targetScore;
+          }
+        };
+        animateNumber();
+      }
+    }
+    
+    // Set aria label
+    scoreDialContainerEl.setAttribute("aria-label", `Score ${Math.round(score)} out of 100`);
   }
 
   function renderScoreBandsPanel(scoreMeta = {}) {
@@ -3071,13 +3187,10 @@
   }
 
   function triggerScoreGlow() {
-    if (!scoreBadgeEl || prefersReducedMotion()) return;
-    scoreBadgeEl.classList.remove("score-badge--glow");
-    void scoreBadgeEl.offsetWidth;
-    scoreBadgeEl.classList.add("score-badge--glow");
-    setTimeout(() => {
-      scoreBadgeEl.classList.remove("score-badge--glow");
-    }, 60);
+    if (!scoreDialContainerEl || prefersReducedMotion()) return;
+    scoreDialContainerEl.classList.remove("score-dial--reveal");
+    void scoreDialContainerEl.offsetWidth;
+    scoreDialContainerEl.classList.add("score-dial--reveal");
   }
 
   function toggleScoreBandsPinned() {
@@ -3098,12 +3211,17 @@
   function renderScoreMeta(score, modelMeta = {}) {
     const meta = getScoreMeta(score);
     const prevScoreValue = lastScoreValue;
-    applyScoreColor(meta.score);
-    if (scoreBadgeEl) {
-      scoreBadgeEl.classList.remove("score-pill--reveal");
-      void scoreBadgeEl.offsetWidth;
-      scoreBadgeEl.classList.add("score-pill--reveal");
+    
+    // Show the dial container
+    if (scoreDialContainerEl) {
+      scoreDialContainerEl.classList.add("visible");
+      scoreDialContainerEl.classList.remove("score-dial--reveal");
+      void scoreDialContainerEl.offsetWidth;
+      scoreDialContainerEl.classList.add("score-dial--reveal");
     }
+    
+    applyScoreColor(meta.score);
+    
     if (prevScoreValue !== meta.score) {
       triggerScoreGlow();
     }
@@ -3389,8 +3507,8 @@
     });
   }
 
-  if (scoreBadgeEl) {
-    scoreBadgeEl.addEventListener("click", () => {
+  if (scoreDialContainerEl) {
+    scoreDialContainerEl.addEventListener("click", () => {
       toggleScoreBandsPinned();
     });
   }
