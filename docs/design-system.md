@@ -4,13 +4,22 @@
 This file defines the tokens and components for the Recruiter in Your Pocket UI and PDF so Codex, Matt, and future collaborators can evolve the product consistently.
 
 ## Colors
-- Accent Blue 700: `#1C4ED8`
-- Accent Blue 800: `#173CA9`
-- Accent Blue 100: `#EFF6FF`
-- Ink 900: `#0F172A`
-- Slate 700: `#334155`
-- Slate 500: `#64748B`
-- Wash: `#F8FAFC`
+- **Backgrounds**
+  - Page: Warm Stone `#FDFDFC`
+  - Wash: Warm Wash `#FAF9F6`
+  - Surface Tint: `#F3F4F6`
+  - Panel/Card: `#ffffff`
+
+- **Accents (Deep Indigo)**
+  - Accent (Default): `#3341A6`
+  - Accent Dark: `#26328C`
+  - Accent Strong: `#1E2A78`
+  - Accent Wash: `#EEF0FA`
+
+- **Ink & Neutral**
+  - Ink 900: `#0F172A` (Primary Text)
+  - Slate 700: `#334155` (Soft Text)
+  - Slate 500: `#64748B` (Muted Text)
 
 ## Typography
 - Heading XL (hero): display family, tight tracking, ~42px desktop / ~36px mobile, line-height ~1.1–1.15, weight 800.

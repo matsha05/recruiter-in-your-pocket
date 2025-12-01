@@ -28,18 +28,18 @@ This audit verifies that Recruiter in Your Pocket meets WCAG 2.1 Level AA access
 | Color | Background | Ratio | Status | Notes |
 |-------|-----------|-------|--------|-------|
 | `--ink-900` (#0F172A) | `--bg-panel` (#ffffff) | 16.8:1 | ✅ Pass | Excellent contrast |
-| `--ink-900` (#0F172A) | `--wash` (#F8FAFC) | 15.9:1 | ✅ Pass | Excellent contrast |
+| `--ink-900` (#0F172A) | `--wash` (#FAF9F6) | 15.9:1 | ✅ Pass | Excellent contrast |
 | `--slate-700` (#334155) | `--bg-panel` (#ffffff) | 7.2:1 | ✅ Pass | Good contrast |
 | `--slate-500` (#64748B) | `--bg-panel` (#ffffff) | 4.6:1 | ✅ Pass | Meets AA standard |
-| `--slate-500` (#64748B) | `--wash` (#F8FAFC) | 4.4:1 | ✅ Pass | Meets AA standard |
+| `--slate-500` (#64748B) | `--wash` (#FAF9F6) | 4.4:1 | ✅ Pass | Meets AA standard |
 
 #### Interactive Elements
 
 | Element | Text Color | Background | Ratio | Status |
 |---------|-----------|-----------|-------|--------|
-| Primary buttons | #ffffff | `--accent` (#1C4ED8) | 4.8:1 | ✅ Pass |
-| Secondary buttons | `--accent` (#1C4ED8) | #ffffff | 4.8:1 | ✅ Pass |
-| Links | `--accent` (#1C4ED8) | #ffffff | 4.8:1 | ✅ Pass |
+| Primary buttons | #ffffff | `--accent` (#3341A6) | > 4.8:1 | ✅ Pass |
+| Secondary buttons | `--accent` (#3341A6) | #ffffff | > 4.8:1 | ✅ Pass |
+| Links | `--accent` (#3341A6) | #ffffff | > 4.8:1 | ✅ Pass |
 | Focus outline | `--focus-outline-color` (#A5B4FC) | #ffffff | 2.1:1 | ⚠️ Warning | Focus outline is visible but low contrast (acceptable for outlines) |
 
 **Note:** Focus outlines use a lighter color for visibility but are acceptable as they're temporary indicators, not permanent text.
