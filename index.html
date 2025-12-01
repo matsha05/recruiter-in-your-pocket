@@ -477,6 +477,10 @@
       align-items: start;
     }
 
+    .tool-layout.input-full-width {
+      grid-template-columns: 1fr;
+    }
+
     @media (max-width: 1024px) {
       .tool-layout {
         grid-template-columns: 1fr;
@@ -3254,6 +3258,7 @@
     renderSummary("");
     if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
     clearScoreBadge();
+    updateToolLayout();
   }
 
   function loadSavedInput() {
@@ -3306,6 +3311,19 @@
       hasLoggedPaste = true;
     }
   });
+
+  function updateToolLayout() {
+    const toolLayout = document.querySelector('.tool-layout');
+    const resultsBody = document.getElementById('results-body');
+    
+    if (toolLayout && resultsBody) {
+      if (resultsBody.classList.contains('empty')) {
+        toolLayout.classList.add('input-full-width');
+      } else {
+        toolLayout.classList.remove('input-full-width');
+      }
+    }
+  }
 
   function clearScoreBadge() {
     if (scoreDialNumberEl) scoreDialNumberEl.textContent = "0";
@@ -4004,6 +4022,7 @@
     resultsBodyEl.classList.remove("empty");
     resultsBodyEl.classList.add("results-body-better-flash");
     setTimeout(() => resultsBodyEl.classList.remove("results-body-better-flash"), 220);
+    updateToolLayout();
   }
 
   if (scoreWrapperEl) {
@@ -4205,6 +4224,7 @@
           resultsBodyEl.textContent = "";
           resultsBodyEl.classList.add("empty");
           resultsBodyEl.classList.remove("results-error");
+          updateToolLayout();
         } else {
           resultsBodyEl.textContent =
             fieldMessages ||
@@ -4212,6 +4232,7 @@
           resultsBodyEl.classList.add("results-error");
           resultsBodyEl.classList.remove("empty");
           renderSummary("");
+          updateToolLayout();
         }
         return;
       }
@@ -4231,6 +4252,7 @@
         resultsBodyEl.classList.add("results-error");
         resultsBodyEl.classList.remove("empty");
         renderSummary("");
+        updateToolLayout();
         return;
       }
 
@@ -4241,6 +4263,7 @@
       lastReportData = structured;
       triggerReportReveal();
       resultsBodyEl.classList.remove("empty");
+      updateToolLayout();
       resultsBodyEl.classList.remove("results-error");
       if (resultsSkeletonEl) {
         resultsSkeletonEl.classList.add("hidden");
@@ -4279,6 +4302,7 @@
       resultsBodyEl.classList.add("results-error");
       resultsBodyEl.classList.remove("empty");
       renderSummary("");
+      updateToolLayout();
     } finally {
       runButton.disabled = false;
       runButton.textContent = originalButtonText;
@@ -4290,6 +4314,9 @@
       resultsBodyEl.classList.remove("muted");
     }
   }
+
+  // Initialize layout on page load
+  updateToolLayout();
 
   runButton.addEventListener("click", runAnalysis);
   if (focusToggleEl) {
