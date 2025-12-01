@@ -3585,6 +3585,7 @@
   }
 
   function showPaywall(msg = "") {
+    logEvent("paywall_impression");
     if (paywallBackdropEl) {
       paywallBackdropEl.style.display = "flex";
     }
@@ -4907,8 +4908,9 @@
       try {
         await navigator.clipboard.writeText(text);
         statusEl.textContent = "Report copied.";
+        logEvent("copy_clicked");
       } catch (err) {
-        statusEl.textContent = "Couldn’t copy the report. Please try again.";
+        statusEl.textContent = "Couldn't copy the report. Please try again.";
       }
     });
   }
@@ -4926,7 +4928,7 @@
       exportButtonEl.textContent = originalExportText;
       return;
     }
-    logEvent("report_pdf_export_clicked");
+    logEvent("export_clicked");
 
     try {
       const generatedOnLocal = new Date().toLocaleDateString(undefined, {
@@ -5058,6 +5060,7 @@
 
   if (ideasOpenEl) {
     ideasOpenEl.addEventListener("click", () => {
+      logEvent("missing_wins_opened");
       openIdeasModal();
       if (!ideasBodyEl || ideasBodyEl.classList.contains("empty")) {
         runIdeas({ auto: false });
