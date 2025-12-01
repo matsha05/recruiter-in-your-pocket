@@ -241,7 +241,17 @@
       color: var(--text-soft);
       max-width: 640px;
       line-height: 1.5;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-credibility {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 640px;
+      line-height: 1.5;
       margin-bottom: var(--space-lg);
+      font-style: italic;
+      opacity: 0.9;
     }
 
     .hero-grid {
@@ -405,6 +415,10 @@
       }
       .hero-subtitle {
         font-size: 14px;
+      }
+      .hero-credibility {
+        font-size: 12px;
+        margin-bottom: 14px;
       }
       .hero-grid {
         gap: 8px 12px;
@@ -2693,14 +2707,15 @@
       <div id="loading-bar"></div>
 
       <section class="hero">
-        <h1 class="hero-title">Recruiter-grade resume feedback in under a minute.</h1>
+        <h1 class="hero-title">Strong, recruiter-grade resume feedback in under a minute.</h1>
         <p class="hero-subtitle">Paste your resume to get a crafted, honest read on how your story lands, plus stronger bullets and clear next steps.</p>
+        <p class="hero-credibility">Crafted by a recruiter with 1000+ hires across Google, Facebook, OpenAI, and startups.</p>
         <div class="hero-promise">
-          <strong>In one minute, you’ll get:</strong>
+          <strong>In one minute, you'll get:</strong>
           <ul>
-            <li>A clear read on how your resume lands</li>
-            <li>What’s working and what’s getting missed</li>
-            <li>Stronger bullet phrasing and simple next steps</li>
+            <li>Feedback tailored to your story, not generic advice</li>
+            <li>What's working in your resume and what's getting missed</li>
+            <li>Stronger bullet phrasing and clear next steps</li>
           </ul>
         </div>
         <div class="trust-inline hero-trust-line">
@@ -2710,13 +2725,13 @@
 
         <div class="hero-grid">
           <div class="hero-pill">
-            <span>1</span><span>Paste your resume story</span>
+            <span>1</span><span>Paste your resume</span>
           </div>
           <div class="hero-pill">
-            <span>2</span><span>Get a recruiter’s read</span>
+            <span>2</span><span>Get specific, recruiter-grade feedback</span>
           </div>
           <div class="hero-pill">
-            <span>3</span><span>Turn insight into an edge</span>
+            <span>3</span><span>See exactly what to fix and why</span>
           </div>
         </div>
 
@@ -2841,12 +2856,12 @@
                   <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
                 </div>
               </div>
-              <div class="score-help">Clarity score shows how quickly your story lands on a first read.</div>
+              <div class="score-help">Clarity score shows how quickly your story lands on a first read — calibrated from real hiring decisions.</div>
               <div class="report-accent-line"></div>
               <div class="results-bridge">
                 <div class="bridge-heading">What this means</div>
                 <div id="results-subtitle">
-                  Here’s what’s clear, what’s buried, and where your story can hit harder.
+                  Here's what's clear in your resume, what's buried, and specific ways to make your story hit harder.
                 </div>
               </div>
               <div id="results-summary" class="results-summary accent-card-primary empty stack-section stack-accent-line">
