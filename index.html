@@ -481,10 +481,29 @@
       grid-template-columns: 1fr;
     }
 
+    /* Ensure columns are balanced and feel like distinct workspaces */
+    .card-input {
+      min-height: 400px;
+    }
+
+    /* Make report wrapper feel like a distinct report panel */
+    .report-wrapper {
+      position: relative;
+    }
+
+    /* Ensure output column feels like a report panel, not just content */
+    .card-output {
+      /* Already has distinct styling with accent line and shadow */
+    }
+
     @media (max-width: 1024px) {
       .tool-layout {
         grid-template-columns: 1fr;
         gap: var(--space-xxl);
+      }
+      
+      .card-input {
+        min-height: auto;
       }
     }
 
@@ -509,16 +528,16 @@
       border-radius: 16px;
       border: 1px solid var(--border-subtle);
       box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-      padding: 14px 14px 18px;
+      padding: 20px 20px 24px;
       overflow: hidden;
     }
 
     .card-output::before {
       content: "";
       position: absolute;
-      left: 14px;
-      top: 14px;
-      bottom: 14px;
+      left: 20px;
+      top: 20px;
+      bottom: 20px;
       width: 3px;
       border-radius: 8px;
       background: var(--accent);
