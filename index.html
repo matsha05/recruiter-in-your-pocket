@@ -1215,6 +1215,22 @@
       }
     }
 
+    .issue-breakdown-microcopy {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    @media (max-width: 600px) {
+      .issue-breakdown-microcopy {
+        font-size: 11px;
+        margin-top: 10px;
+      }
+    }
+
     .score-bands-trigger {
       background: none;
       border: none;
@@ -2649,25 +2665,26 @@
                     <button class="issue-bar" data-section="impact-results" type="button" aria-label="Impact & Results">
                       <div class="issue-bar-content">
                         <span class="issue-bar-label">Impact & Results</span>
-                        <span class="issue-bar-count">0 notes</span>
+                        <span class="issue-bar-count">0 top suggestions</span>
                       </div>
                       <div class="issue-bar-fill"></div>
                     </button>
                     <button class="issue-bar" data-section="clarity-structure" type="button" aria-label="Clarity & Conciseness">
                       <div class="issue-bar-content">
                         <span class="issue-bar-label">Clarity & Conciseness</span>
-                        <span class="issue-bar-count">0 notes</span>
+                        <span class="issue-bar-count">0 top suggestions</span>
                       </div>
                       <div class="issue-bar-fill"></div>
                     </button>
                     <button class="issue-bar" data-section="focus-craft" type="button" aria-label="Focus & Craft">
                       <div class="issue-bar-content">
                         <span class="issue-bar-label">Focus & Craft</span>
-                        <span class="issue-bar-count">0 notes</span>
+                        <span class="issue-bar-count">0 top suggestions</span>
                       </div>
                       <div class="issue-bar-fill"></div>
                     </button>
                   </div>
+                  <div class="issue-breakdown-microcopy">Prioritized improvements in each area</div>
                 </div>
               </div>
               <div class="results-header-row">
@@ -3548,7 +3565,7 @@
     if (impactBar) {
       const countEl = impactBar.querySelector('.issue-bar-count');
       if (countEl) {
-        countEl.textContent = counts.impactResults === 1 ? '1 note' : `${counts.impactResults} notes`;
+        countEl.textContent = counts.impactResults === 1 ? '1 top suggestion' : `${counts.impactResults} top suggestions`;
       }
       impactBar.setAttribute('data-count', String(counts.impactResults));
     }
@@ -3556,7 +3573,7 @@
     if (clarityBar) {
       const countEl = clarityBar.querySelector('.issue-bar-count');
       if (countEl) {
-        countEl.textContent = counts.clarityStructure === 1 ? '1 note' : `${counts.clarityStructure} notes`;
+        countEl.textContent = counts.clarityStructure === 1 ? '1 top suggestion' : `${counts.clarityStructure} top suggestions`;
       }
       clarityBar.setAttribute('data-count', String(counts.clarityStructure));
     }
@@ -3566,7 +3583,7 @@
       if (counts.focusCraft > 0) {
         const countEl = focusBar.querySelector('.issue-bar-count');
         if (countEl) {
-          countEl.textContent = counts.focusCraft === 1 ? '1 note' : `${counts.focusCraft} notes`;
+          countEl.textContent = counts.focusCraft === 1 ? '1 top suggestion' : `${counts.focusCraft} top suggestions`;
         }
         focusBar.setAttribute('data-count', String(counts.focusCraft));
         focusBar.style.display = '';
