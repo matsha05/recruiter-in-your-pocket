@@ -1987,6 +1987,12 @@
       font-size: 13px;
     }
 
+    .clear-button {
+      align-self: flex-start;
+      margin: 6px 0 10px;
+      font-size: 13px;
+    }
+
     .data-modal {
       position: fixed;
       inset: 0;
@@ -2371,7 +2377,10 @@
               Paste your full resume, or use the sample to see how it works.
             </label>
 
-            <button id="sample-resume-button" type="button" class="sample-resume-button btn-primary">Try a sample resume →</button>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+              <button id="sample-resume-button" type="button" class="sample-resume-button btn-primary">Try a sample resume →</button>
+              <button id="clear-button" type="button" class="clear-button btn-secondary" style="display: none;">Clear</button>
+            </div>
 
             <div class="input-wrapper resume-input-container resume-input-shell">
               <textarea
@@ -2575,6 +2584,7 @@
   const savedIndicatorEl = document.getElementById("saved-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
   const sampleResumeButtonEl = document.getElementById("sample-resume-button");
+  const clearButtonEl = document.getElementById("clear-button");
   const ideasInlineEl = document.getElementById("ideas-inline");
   const ideasOpenEl = document.getElementById("ideas-open");
   const ideasModalEl = document.getElementById("ideas-modal");
@@ -2752,6 +2762,34 @@
     }, 1200);
   }
 
+  function updateClearButtonVisibility() {
+    if (clearButtonEl) {
+      const hasText = inputEl.value.trim().length > 0;
+      clearButtonEl.style.display = hasText ? "inline-flex" : "none";
+    }
+  }
+
+  function clearInput() {
+    inputEl.value = "";
+    autoResizeTextarea();
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      console.warn("Could not clear saved input", e);
+    }
+    resetIdeasSection();
+    if (ideasInlineEl) ideasInlineEl.classList.add("hidden");
+    closeIdeasModal();
+    updateClearButtonVisibility();
+    if (resultsBodyEl) {
+      resultsBodyEl.textContent = "Your feedback will appear here.";
+      resultsBodyEl.classList.add("empty");
+    }
+    renderSummary("");
+    if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
+    clearScoreBadge();
+  }
+
   function loadSavedInput() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -2759,6 +2797,7 @@
         inputEl.value = saved;
         autoResizeTextarea();
         showSavedIndicator();
+        updateClearButtonVisibility();
         return;
       }
     } catch (e) {
@@ -2766,6 +2805,7 @@
     }
     inputEl.value = "";
     autoResizeTextarea();
+    updateClearButtonVisibility();
   }
 
   inputEl.addEventListener("input", (event) => {
@@ -2781,6 +2821,7 @@
       resetIdeasSection();
       if (ideasInlineEl) ideasInlineEl.classList.add("hidden");
       closeIdeasModal();
+      updateClearButtonVisibility();
       return;
     }
 
@@ -2790,6 +2831,7 @@
       console.warn("Could not save input", e);
     }
     showSavedIndicator();
+    updateClearButtonVisibility();
   });
 
   inputEl.addEventListener("paste", () => {
@@ -3899,7 +3941,14 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
       }
       autoResizeTextarea();
       showSavedIndicator();
+      updateClearButtonVisibility();
       runAnalysis({ sample: true, textOverride: SAMPLE_RESUME_TEXT });
+    });
+  }
+
+  if (clearButtonEl) {
+    clearButtonEl.addEventListener("click", () => {
+      clearInput();
     });
   }
 
