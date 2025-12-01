@@ -878,14 +878,16 @@
 
     .score-wrapper {
       position: relative;
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: var(--space-sm-alt);
       padding: 0;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: transparent;
       border: none;
       box-shadow: none;
+      width: 100%;
     }
 
     .score-wrapper.hidden {
@@ -1019,18 +1021,10 @@
     .score-header-inside {
       width: 100%;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 24px;
-      margin: 8px 0 14px;
-    }
-
-    @media (max-width: 1024px) {
-      .score-header-inside {
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-      }
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm-alt);
+      margin: var(--space-tight) 0 var(--space-md-lg);
     }
 
     .score-dial-container {
@@ -1203,8 +1197,8 @@
     .issue-breakdown {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
+      gap: var(--space-sm);
+      margin-top: var(--space-tight);
       width: 100%;
       max-width: 280px;
       opacity: 0;
@@ -1329,8 +1323,8 @@
     }
 
     .issue-breakdown-microcopy {
-      margin-top: 12px;
-      font-size: 12px;
+      margin-top: var(--space-sm-alt);
+      font-size: var(--fs-xs);
       color: var(--text-muted);
       text-align: center;
       line-height: 1.4;
@@ -1579,25 +1573,23 @@
     }
 
     .results-skeleton {
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 24px 20px;
-      margin-top: 10px;
-      background: #ffffff;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 0;
       min-height: 400px;
       position: relative;
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
     }
 
     .skeleton-score-area {
       display: flex !important;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
-      padding-bottom: 8px;
+      gap: var(--space-sm-alt);
+      padding-bottom: var(--space-tight);
       width: 100%;
     }
 
@@ -1624,8 +1616,8 @@
 
     .skeleton-score-label {
       width: 120px;
-      height: 14px;
-      border-radius: 7px;
+      height: var(--fs-label);
+      border-radius: var(--radius-xs);
       background: #94a3b8 !important;
       flex-shrink: 0;
       display: block !important;
@@ -1634,15 +1626,15 @@
     .skeleton-issue-breakdown {
       display: flex !important;
       flex-direction: column;
-      gap: 10px;
+      gap: var(--space-sm);
       width: 100%;
-      margin-top: 8px;
+      margin-top: var(--space-tight);
       max-width: 100%;
     }
 
     .skeleton-issue-bar {
       height: 42px;
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       background: #94a3b8 !important;
       border: 1px solid #cbd5e1;
       width: 100%;
@@ -1650,17 +1642,58 @@
       display: block !important;
     }
 
-    .skeleton-summary,
+    .skeleton-results-top,
+    .skeleton-summary-section,
     .skeleton-section {
-      display: flex !important;
+      position: relative;
+      padding: var(--space-xl-alt) var(--space-lg) var(--space-lg) calc(var(--space-xl) + 6px);
+      margin: 0 0 var(--space-xl) 0;
+      border-radius: var(--radius-input);
+      background: transparent;
+      display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--space-tight);
       width: 100%;
+    }
+
+    .skeleton-results-top {
+      background: var(--wash);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl-alt) var(--space-lg) var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .skeleton-header-row {
+      margin-bottom: var(--space-sm-alt);
+    }
+
+    .skeleton-heading {
+      width: 200px;
+      height: 26px;
+      border-radius: var(--radius-xs);
+      background: #94a3b8 !important;
+      margin-bottom: var(--space-sm-alt);
+      animation: skeletonPulse 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+      display: block !important;
+    }
+
+    .skeleton-subline {
+      width: 85%;
+      height: 14px;
+      border-radius: var(--radius-xs);
+      background: #94a3b8 !important;
+      margin-bottom: var(--space-lg);
+      opacity: 0.7;
+      animation: skeletonPulse 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+      display: block !important;
     }
 
     .skeleton-line {
       height: 8px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: #94a3b8 !important;
       width: 100%;
       animation: skeletonPulse 1.5s ease-in-out infinite;
@@ -1696,15 +1729,50 @@
       z-index: 1;
     }
 
+    /* Skeleton accent line should be visible but subtle */
+    .results-skeleton.stack-accent-line .skeleton-results-top::before,
+    .results-skeleton.stack-accent-line .skeleton-summary-section::before,
+    .results-skeleton.stack-accent-line .skeleton-section::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: linear-gradient(180deg, #94a3b8 0%, color-mix(in srgb, #94a3b8 60%, transparent) 100%);
+      border-radius: var(--radius-pill);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: skeletonPulse 1.5s ease-in-out infinite;
+    }
+
+    .results-skeleton.stack-accent-line .skeleton-results-top::before {
+      display: none; /* results-top doesn't have accent line */
+    }
+
     .skeleton-line.wide { width: 92%; }
     .skeleton-line.mid { width: 74%; }
     .skeleton-line.short { width: 52%; }
 
-    .skeleton-divider {
-      height: 1px;
-      background: #e2e8f0;
-      margin: 8px 0;
-      width: 100%;
+    .skeleton-title {
+      width: 180px;
+      height: 24px;
+      margin-bottom: var(--space-sm-alt);
+    }
+
+    .skeleton-text-wide {
+      width: 85%;
+      height: 12px;
+      margin-bottom: var(--space-tight);
+    }
+
+    .skeleton-text-mid {
+      width: 70%;
+      height: 12px;
+    }
+
+    .skeleton-content-line {
+      margin-top: var(--space-tight);
     }
 
     .hidden {
@@ -3159,29 +3227,54 @@
               <div id="status-bar" class="status-bar"></div>
             </div>
 
-            <div id="results-skeleton" class="results-skeleton hidden" aria-hidden="true">
-              <div class="skeleton-score-area">
-                <div class="skeleton-score-dial"></div>
-                <div class="skeleton-score-label"></div>
-                <div class="skeleton-issue-breakdown">
-                  <div class="skeleton-issue-bar"></div>
-                  <div class="skeleton-issue-bar"></div>
-                  <div class="skeleton-issue-bar"></div>
+            <div id="results-skeleton" class="results-skeleton hidden stack stack-accent-line" aria-hidden="true">
+              <div class="skeleton-results-top stack-section stack-accent-line">
+                <div class="skeleton-score-area">
+                  <div class="skeleton-score-dial"></div>
+                  <div class="skeleton-score-label"></div>
+                  <div class="skeleton-issue-breakdown">
+                    <div class="skeleton-issue-bar"></div>
+                    <div class="skeleton-issue-bar"></div>
+                    <div class="skeleton-issue-bar"></div>
+                  </div>
                 </div>
+                <div class="skeleton-header-row">
+                  <div class="skeleton-line skeleton-title"></div>
+                </div>
+                <div class="skeleton-line skeleton-text-wide"></div>
+                <div class="skeleton-line skeleton-text-mid"></div>
               </div>
-              <div class="skeleton-divider"></div>
-              <div class="skeleton-summary">
-                <div class="skeleton-line wide"></div>
+              <div class="skeleton-summary-section stack-section stack-accent-line">
+                <div class="skeleton-heading"></div>
+                <div class="skeleton-subline"></div>
+                <div class="skeleton-line wide skeleton-content-line"></div>
                 <div class="skeleton-line mid"></div>
+                <div class="skeleton-line short"></div>
               </div>
-              <div class="skeleton-divider"></div>
-              <div class="skeleton-section">
-                <div class="skeleton-line wide"></div>
+              <div class="skeleton-section stack-section stack-accent-line">
+                <div class="skeleton-heading"></div>
+                <div class="skeleton-subline"></div>
+                <div class="skeleton-line wide skeleton-content-line"></div>
                 <div class="skeleton-line"></div>
                 <div class="skeleton-line short"></div>
               </div>
-              <div class="skeleton-section">
-                <div class="skeleton-line wide"></div>
+              <div class="skeleton-section stack-section stack-accent-line">
+                <div class="skeleton-heading"></div>
+                <div class="skeleton-subline"></div>
+                <div class="skeleton-line wide skeleton-content-line"></div>
+                <div class="skeleton-line mid"></div>
+              </div>
+              <div class="skeleton-section stack-section stack-accent-line">
+                <div class="skeleton-heading"></div>
+                <div class="skeleton-subline"></div>
+                <div class="skeleton-line wide skeleton-content-line"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+              </div>
+              <div class="skeleton-section stack-section stack-accent-line">
+                <div class="skeleton-heading"></div>
+                <div class="skeleton-subline"></div>
+                <div class="skeleton-line wide skeleton-content-line"></div>
                 <div class="skeleton-line mid"></div>
               </div>
             </div>
