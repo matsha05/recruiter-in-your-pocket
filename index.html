@@ -2653,9 +2653,9 @@
                       </div>
                       <div class="issue-bar-fill"></div>
                     </button>
-                    <button class="issue-bar" data-section="clarity-structure" type="button" aria-label="Clarity & Structure">
+                    <button class="issue-bar" data-section="clarity-structure" type="button" aria-label="Clarity & Conciseness">
                       <div class="issue-bar-content">
-                        <span class="issue-bar-label">Clarity & Structure</span>
+                        <span class="issue-bar-label">Clarity & Conciseness</span>
                         <span class="issue-bar-count">0 notes</span>
                       </div>
                       <div class="issue-bar-fill"></div>
@@ -3117,6 +3117,11 @@
     if (issueBreakdownEl) {
       issueBreakdownEl.classList.add("hidden");
       issueBreakdownEl.classList.remove("visible");
+      // Reset display for Focus & Craft bar
+      const focusBar = issueBreakdownEl.querySelector('[data-section="focus-craft"]');
+      if (focusBar) {
+        focusBar.style.display = '';
+      }
     }
     currentScoreMeta = null;
     lastScoreValue = null;
@@ -3520,15 +3525,11 @@
     // Impact & Results: Count only rewrites in the Impact cluster (what's actually shown)
     impactResultsCount = impactGroup.length;
 
-    // Clarity & Structure: Count only rewrites in the Clarity cluster (what's actually shown)
+    // Clarity & Conciseness: Count only rewrites in the Clarity cluster (what's actually shown)
     clarityStructureCount = clarityGroup.length;
 
-    // Focus & Craft: Count Focus/Craft rewrites, or fall back to gaps if none exist
+    // Focus & Craft: Count only Focus/Craft rewrites (no fallback - only show if rewrites exist)
     focusCraftCount = focusCraftGroup.length;
-    if (focusCraftCount === 0 && Array.isArray(gaps) && gaps.length > 0) {
-      // Fallback: count gaps for Focus & Craft if no Focus/Craft rewrites exist
-      focusCraftCount = gaps.length;
-    }
 
     return {
       impactResults: impactResultsCount,
@@ -3561,11 +3562,18 @@
     }
 
     if (focusBar) {
-      const countEl = focusBar.querySelector('.issue-bar-count');
-      if (countEl) {
-        countEl.textContent = counts.focusCraft === 1 ? '1 note' : `${counts.focusCraft} notes`;
+      // Only show Focus & Craft bar if there are actual rewrites
+      if (counts.focusCraft > 0) {
+        const countEl = focusBar.querySelector('.issue-bar-count');
+        if (countEl) {
+          countEl.textContent = counts.focusCraft === 1 ? '1 note' : `${counts.focusCraft} notes`;
+        }
+        focusBar.setAttribute('data-count', String(counts.focusCraft));
+        focusBar.style.display = '';
+      } else {
+        // Hide the bar if no Focus/Craft rewrites exist
+        focusBar.style.display = 'none';
       }
-      focusBar.setAttribute('data-count', String(counts.focusCraft));
     }
 
     // Show the breakdown panel
