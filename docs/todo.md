@@ -45,8 +45,12 @@ Goal: Make failures predictable and observable without changing product behavior
 - [ ] Log OpenAI latency and parse failures with reqId in the backend.
 - [ ] Confirm request body size caps are enforced for resume input.
 
+## Phase 5 – UX Instrumentation — Done
+Goal: Understand how real users move through the core flows.
+- [x] Track key moments: resume_pasted, run_clicked, copy_clicked, export_clicked
+- [x] Track optional moments: missing_wins_opened, paywall_impression
+- [x] Minimal JS implementation (no SDKs, console logging ready for telemetry endpoint)
+
 ## Parking Lot – Later Phases
-- Hero and trust polish.
-- Light UX instrumentation (paste, run, copy, export).
 - Session history / saved runs.
 - Offer Studio and future modes.
