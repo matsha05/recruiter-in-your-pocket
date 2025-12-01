@@ -1512,20 +1512,119 @@
     .results-skeleton {
       border: 1px solid var(--border-subtle);
       border-radius: 14px;
-      padding: 14px 16px;
+      padding: 24px 20px;
       margin-top: 10px;
       background: #ffffff;
-      box-shadow: inset 0 1px 0 rgba(15, 23, 42, 0.02);
-      display: grid;
-      gap: 6px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-height: 400px;
+      position: relative;
+    }
+
+    .skeleton-score-area {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 8px;
+      width: 100%;
+    }
+
+    .skeleton-score-dial {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #94a3b8 !important;
+      border: 2px solid #cbd5e1;
+      position: relative;
+      overflow: visible;
+      flex-shrink: 0;
+      display: block !important;
+    }
+
+    .skeleton-score-dial::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+    }
+
+    .skeleton-score-label {
+      width: 120px;
+      height: 14px;
+      border-radius: 7px;
+      background: #94a3b8 !important;
+      flex-shrink: 0;
+      display: block !important;
+    }
+
+    .skeleton-issue-breakdown {
+      display: flex !important;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      margin-top: 8px;
+      max-width: 100%;
+    }
+
+    .skeleton-issue-bar {
+      height: 42px;
+      border-radius: 8px;
+      background: #94a3b8 !important;
+      border: 1px solid #cbd5e1;
+      width: 100%;
+      flex-shrink: 0;
+      display: block !important;
+    }
+
+    .skeleton-summary,
+    .skeleton-section {
+      display: flex !important;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
     }
 
     .skeleton-line {
-      height: 6px;
+      height: 8px;
       border-radius: 999px;
-      background: #e7e9f0;
+      background: #94a3b8 !important;
       width: 100%;
-      animation: none;
+      animation: skeletonPulse 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+      display: block !important;
+    }
+
+    .skeleton-score-dial,
+    .skeleton-score-label,
+    .skeleton-issue-bar {
+      animation: skeletonPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes skeletonPulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.65;
+      }
+    }
+
+    /* Make skeleton visible when not hidden - override .hidden class */
+    .results-skeleton.hidden {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    
+    .results-skeleton:not(.hidden) {
+      display: flex !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      z-index: 1;
     }
 
     .skeleton-line.wide { width: 92%; }
@@ -1534,8 +1633,9 @@
 
     .skeleton-divider {
       height: 1px;
-      background: var(--border-subtle);
-      margin: 2px 0 4px;
+      background: #e2e8f0;
+      margin: 8px 0;
+      width: 100%;
     }
 
     .hidden {
@@ -2905,13 +3005,30 @@
             </div>
 
             <div id="results-skeleton" class="results-skeleton hidden" aria-hidden="true">
-              <div class="skeleton-line wide"></div>
-              <div class="skeleton-line"></div>
-              <div class="skeleton-line"></div>
+              <div class="skeleton-score-area">
+                <div class="skeleton-score-dial"></div>
+                <div class="skeleton-score-label"></div>
+                <div class="skeleton-issue-breakdown">
+                  <div class="skeleton-issue-bar"></div>
+                  <div class="skeleton-issue-bar"></div>
+                  <div class="skeleton-issue-bar"></div>
+                </div>
+              </div>
               <div class="skeleton-divider"></div>
-              <div class="skeleton-line wide"></div>
-              <div class="skeleton-line mid"></div>
-              <div class="skeleton-line short"></div>
+              <div class="skeleton-summary">
+                <div class="skeleton-line wide"></div>
+                <div class="skeleton-line mid"></div>
+              </div>
+              <div class="skeleton-divider"></div>
+              <div class="skeleton-section">
+                <div class="skeleton-line wide"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+              </div>
+              <div class="skeleton-section">
+                <div class="skeleton-line wide"></div>
+                <div class="skeleton-line mid"></div>
+              </div>
             </div>
 
             <div
@@ -4143,19 +4260,38 @@
     if (!focusMode) {
       setFocusMode(false);
     }
-    statusEl.textContent = "";
-    setStatus("");
+    statusEl.textContent = "Reading your resume like a recruiter…";
+    setStatus("Reading your resume like a recruiter…", "");
+      // Ensure the report container is visible while skeleton is showing
+      if (reportViewEl) {
+        reportViewEl.classList.add("report-container--visible");
+      }
       runButton.disabled = true;
       originalButtonText = runButton.textContent;
       runButton.textContent = "Processing...";
       runButton.classList.add("processing");
       loadingBarEl.classList.add("active");
+      // Show skeleton and hide results-body content during loading
       if (resultsSkeletonEl) {
         resultsSkeletonEl.classList.remove("hidden");
       }
-    resultsBodyEl.classList.remove("results-error");
-    resultsBodyEl.classList.remove("empty");
-    resultsBodyEl.classList.add("muted");
+      // Ensure results area is visible
+      if (reportWrapperEl) {
+        reportWrapperEl.style.display = "block";
+      }
+      // Hide results-body content and show skeleton
+      resultsBodyEl.classList.remove("results-error");
+      resultsBodyEl.classList.add("empty");
+      resultsBodyEl.classList.add("muted");
+      resultsBodyEl.style.display = "none"; // Hide results-body when skeleton is showing
+      
+      // Auto-scroll to results area to show skeleton
+      setTimeout(() => {
+        const reportCard = document.querySelector(".card-output");
+        if (reportCard && typeof reportCard.scrollIntoView === "function") {
+          reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
     clearScoreBadge();
     if (ideasInlineEl) {
       ideasInlineEl.classList.add("hidden");
@@ -4195,19 +4331,26 @@
           );
         statusEl.textContent = msg;
         setStatus(msg, "error");
-
+        // Hide skeleton on error
+        if (resultsSkeletonEl) {
+          resultsSkeletonEl.classList.add("hidden");
+        }
         if (isValidationError) {
           renderSummary(msg);
           resultsBodyEl.textContent = "";
+          resultsBodyEl.style.display = "";
           resultsBodyEl.classList.add("empty");
           resultsBodyEl.classList.remove("results-error");
+          updateToolLayout();
         } else {
           resultsBodyEl.textContent =
             fieldMessages ||
             "Something went wrong. Try again in a moment.";
+          resultsBodyEl.style.display = "";
           resultsBodyEl.classList.add("results-error");
           resultsBodyEl.classList.remove("empty");
           renderSummary("");
+          updateToolLayout();
         }
         return;
       }
@@ -4219,9 +4362,14 @@
           mapErrorToUserMessage(payload.errorCode, payload.message);
         statusEl.textContent = msg;
         setStatus(msg, "error");
+        // Hide skeleton on error
+        if (resultsSkeletonEl) {
+          resultsSkeletonEl.classList.add("hidden");
+        }
         if (isValidationError) {
           renderSummary(msg);
           resultsBodyEl.textContent = "";
+          resultsBodyEl.style.display = "";
           resultsBodyEl.classList.add("empty");
           resultsBodyEl.classList.remove("results-error");
           updateToolLayout();
@@ -4229,6 +4377,7 @@
           resultsBodyEl.textContent =
             fieldMessages ||
             "Something went wrong. Try again in a moment.";
+          resultsBodyEl.style.display = "";
           resultsBodyEl.classList.add("results-error");
           resultsBodyEl.classList.remove("empty");
           renderSummary("");
@@ -4248,7 +4397,12 @@
         const msg = "Unexpected server response.";
         statusEl.textContent = msg;
         setStatus(msg, "error");
+        // Hide skeleton on error
+        if (resultsSkeletonEl) {
+          resultsSkeletonEl.classList.add("hidden");
+        }
         resultsBodyEl.textContent = msg;
+        resultsBodyEl.style.display = "";
         resultsBodyEl.classList.add("results-error");
         resultsBodyEl.classList.remove("empty");
         renderSummary("");
@@ -4262,12 +4416,14 @@
       }
       lastReportData = structured;
       triggerReportReveal();
-      resultsBodyEl.classList.remove("empty");
-      updateToolLayout();
-      resultsBodyEl.classList.remove("results-error");
+      // Hide skeleton and show results-body
       if (resultsSkeletonEl) {
         resultsSkeletonEl.classList.add("hidden");
       }
+      resultsBodyEl.style.display = ""; // Show results-body
+      resultsBodyEl.classList.remove("empty");
+      updateToolLayout();
+      resultsBodyEl.classList.remove("results-error");
       resultsBodyEl.classList.remove("muted");
       if (!isPaid() && !sampleRun) {
         incrementRunCount();
@@ -4279,10 +4435,14 @@
       runIdeas({ auto: true, sourceText: text });
 
       setFocusMode(true);
-      const reportCard = document.querySelector(".card-output");
-      if (reportCard && typeof reportCard.scrollIntoView === "function") {
-        reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      
+      // Auto-scroll to results area for all runs (not just sample)
+      setTimeout(() => {
+        const reportCard = document.querySelector(".card-output");
+        if (reportCard && typeof reportCard.scrollIntoView === "function") {
+          reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
 
       if (typeof resultsBodyEl.scrollTo === "function") {
         resultsBodyEl.scrollTo({ top: 0, behavior: "smooth" });
@@ -4297,8 +4457,13 @@
       statusEl.textContent =
         "Something went wrong. Try again in a moment.";
       setStatus("Something went wrong. Try again in a moment.", "error");
+      // Hide skeleton on error
+      if (resultsSkeletonEl) {
+        resultsSkeletonEl.classList.add("hidden");
+      }
       resultsBodyEl.textContent =
         "Something went wrong. Try again in a moment.";
+      resultsBodyEl.style.display = "";
       resultsBodyEl.classList.add("results-error");
       resultsBodyEl.classList.remove("empty");
       renderSummary("");
@@ -4308,8 +4473,10 @@
       runButton.textContent = originalButtonText;
       runButton.classList.remove("processing");
       loadingBarEl.classList.remove("active");
-      if (resultsSkeletonEl) {
+      // Only hide skeleton if it's still showing (in case of errors)
+      if (resultsSkeletonEl && !resultsSkeletonEl.classList.contains("hidden")) {
         resultsSkeletonEl.classList.add("hidden");
+        resultsBodyEl.style.display = ""; // Ensure results-body is visible
       }
       resultsBodyEl.classList.remove("muted");
     }
@@ -4642,6 +4809,14 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
       showSavedIndicator();
       updateClearButtonVisibility();
       runAnalysis({ sample: true, textOverride: SAMPLE_RESUME_TEXT });
+      
+      // Auto-scroll to results area after a brief delay to show skeleton
+      setTimeout(() => {
+        const reportCard = document.querySelector(".card-output");
+        if (reportCard && typeof reportCard.scrollIntoView === "function") {
+          reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 300);
     });
   }
 
