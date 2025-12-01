@@ -37,13 +37,13 @@ Goal: Codify spacing, type, and accent decisions so Codex and Matt stay consiste
 - [x] Refactor existing report markup to use these classes where appropriate.
 - [x] Confirm focus states and contrast meet accessibility guidance.
 
-## Phase 4 – Hardening (First Slice)
+## Phase 4 – Hardening (First Slice) — Done
 Goal: Make failures predictable and observable without changing product behavior.
-- [ ] Review current JSON schema validation for resume feedback responses.
-- [ ] Ensure we fail closed on invalid JSON unless USE_MOCK_OPENAI is explicitly set.
-- [ ] Add structured error envelopes (code + message) for the frontend.
-- [ ] Log OpenAI latency and parse failures with reqId in the backend.
-- [ ] Confirm request body size caps are enforced for resume input.
+- [x] Review current JSON schema validation for resume feedback responses.
+- [x] Ensure we fail closed on invalid JSON unless USE_MOCK_OPENAI is explicitly set.
+- [x] Add structured error envelopes (code + message) for the frontend.
+- [x] Log OpenAI latency and parse failures with reqId in the backend.
+- [x] Confirm request body size caps are enforced for resume input.
 
 ## Phase 5 – UX Instrumentation — Done
 Goal: Understand how real users move through the core flows.

@@ -553,6 +553,20 @@ async function callOpenAIChat(messages, mode) {
         });
         return parsed;
       } catch (parseErr) {
+        // Log parse failure (reqId will be added by caller context if available)
+        logLine(
+          {
+            level: "error",
+            msg: "openai_response_parse_failed",
+            model: OPENAI_MODEL,
+            mode,
+            attempt,
+            latencyMs,
+            errorCode: "OPENAI_RESPONSE_NOT_JSON",
+            parseError: parseErr.message
+          },
+          true
+        );
         throw createAppError(
           "OPENAI_RESPONSE_NOT_JSON",
           "The model responded in a format I could not read cleanly.",
@@ -1155,14 +1169,31 @@ ${text}`;
         {
           level: "error",
           reqId: req.reqId,
-          errorCode: "OPENAI_RESPONSE_SHAPE_INVALID",
-          message: "Falling back to static resume mock due to parse/shape error",
-          status: err.httpStatus || 500,
-          responseData: err.internal || err.message
+          errorCode: err.code || "OPENAI_RESPONSE_SHAPE_INVALID",
+          message: "Parse/shape validation failed for resume feedback response",
+          status: err.httpStatus || 502,
+          responseData: err.internal || err.message,
+          parseFailure: true
         },
         true
       );
-      parsed = ensureLayoutAndContentFields(fallbackResumeData());
+      
+      // Only fall back to mock data if USE_MOCK_OPENAI is explicitly set
+      if (USE_MOCK_OPENAI) {
+        logLine(
+          {
+            level: "warn",
+            reqId: req.reqId,
+            msg: "falling_back_to_mock_data",
+            reason: "USE_MOCK_OPENAI is set"
+          },
+          false
+        );
+        parsed = ensureLayoutAndContentFields(fallbackResumeData());
+      } else {
+        // Fail closed: throw the error to be caught by outer catch block
+        throw err;
+      }
     }
 
     const latencyMs = Date.now() - tStart;
@@ -1257,14 +1288,31 @@ ${text}`;
         {
           level: "error",
           reqId: req.reqId,
-          errorCode: "OPENAI_RESPONSE_SHAPE_INVALID",
-          message: "Falling back to static ideas mock due to parse/shape error",
-          status: err.httpStatus || 500,
-          responseData: err.internal || err.message
+          errorCode: err.code || "OPENAI_RESPONSE_SHAPE_INVALID",
+          message: "Parse/shape validation failed for resume ideas response",
+          status: err.httpStatus || 502,
+          responseData: err.internal || err.message,
+          parseFailure: true
         },
         true
       );
-      parsed = fallbackIdeasData();
+      
+      // Only fall back to mock data if USE_MOCK_OPENAI is explicitly set
+      if (USE_MOCK_OPENAI) {
+        logLine(
+          {
+            level: "warn",
+            reqId: req.reqId,
+            msg: "falling_back_to_mock_data",
+            reason: "USE_MOCK_OPENAI is set"
+          },
+          false
+        );
+        parsed = fallbackIdeasData();
+      } else {
+        // Fail closed: throw the error to be caught by outer catch block
+        throw err;
+      }
     }
 
     return res.json({
@@ -1276,11 +1324,13 @@ ${text}`;
   } catch (err) {
     const respStatus = err.response?.status || err.httpStatus || 500;
     const respData = err.response?.data || err.internal || err.message;
+    const errorCode = err.code || "INTERNAL_SERVER_ERROR";
+    
     logLine(
       {
         level: "error",
         reqId: req.reqId,
-        errorCode: err.code || "INTERNAL_SERVER_ERROR",
+        errorCode,
         message: err.message,
         status: respStatus,
         responseData: respData
@@ -1288,23 +1338,20 @@ ${text}`;
       true
     );
 
-    const status = respStatus;
-    const code = err.code || "INTERNAL_SERVER_ERROR";
-
     const message =
-      code === "OPENAI_TIMEOUT"
+      errorCode === "OPENAI_TIMEOUT"
         ? "The model took too long to respond. Try again in a moment."
-        : code === "OPENAI_NETWORK_ERROR"
+        : errorCode === "OPENAI_NETWORK_ERROR"
         ? "There was a temporary network issue. Try again in a moment."
-        : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
-          code === "OPENAI_RESPONSE_SHAPE_INVALID" ||
-          code === "OPENAI_RESPONSE_NOT_JSON"
+        : errorCode === "OPENAI_RESPONSE_PARSE_ERROR" ||
+          errorCode === "OPENAI_RESPONSE_SHAPE_INVALID" ||
+          errorCode === "OPENAI_RESPONSE_NOT_JSON"
         ? "The model response came back in a format I could not read cleanly. Please try again."
-        : "Something went wrong on my side while reviewing your resume. Try again in a minute.";
+        : "Something went wrong on my side while generating ideas. Try again in a minute.";
 
-    return res.status(status).json({
+    return res.status(respStatus).json({
       ok: false,
-      errorCode: code,
+      errorCode,
       message
     });
   }
