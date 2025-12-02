@@ -2746,33 +2746,44 @@
     .ideas-modal {
       position: fixed;
       inset: 0;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
       padding: var(--space-md-alt) var(--space-sm-alt);
       z-index: 100;
       opacity: 0;
-      transform: translateY(var(--space-xxs));
-      transition: opacity var(--motion-duration-short) var(--motion-ease-premium), transform var(--motion-duration-short) var(--motion-ease-premium);
+      pointer-events: none;
+      transition: opacity 0.3s var(--motion-ease-premium);
     }
 
-    .ideas-modal.visible {
-      display: flex;
+    .ideas-modal:not(.hidden) {
       opacity: 1;
-      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .ideas-modal.hidden {
+      opacity: 0;
+      pointer-events: none;
+      display: flex; /* Keep flex for layout, rely on opacity */
+      visibility: hidden;
+    }
+
+    .ideas-modal:not(.hidden) {
+        visibility: visible;
+    }
+
+    .ideas-modal.visible { /* Legacy class support if JS uses it */
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
     }
 
     .ideas-backdrop {
       position: absolute;
       inset: 0;
-      background: rgba(15, 23, 42, 0.2);
-      backdrop-filter: blur(2px);
-      opacity: 0;
-      transition: opacity var(--motion-duration-short) var(--motion-ease-premium);
-    }
-
-    .ideas-modal.visible .ideas-backdrop {
-      opacity: 1;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      opacity: 1; /* Parent controls opacity */
     }
 
     .ideas-sheet {
@@ -2788,29 +2799,15 @@
       display: flex;
       flex-direction: column;
       gap: var(--space-sm-alt);
-      opacity: 0;
-      transform: translateY(var(--space-sm));
-      transition: opacity var(--motion-duration-short) var(--motion-ease-premium), transform var(--motion-duration-short) var(--motion-ease-premium);
+      transform: translateY(8px) scale(0.96);
+      transition: transform 0.4s var(--motion-ease-premium);
       border-top: 2px solid var(--accent);
       overflow: hidden;
     }
 
-    .ideas-sheet::before {
-      content: "";
-      position: absolute;
-      left: var(--space-xl-alt);
-      top: calc(var(--space-xl) - 2px);
-      bottom: var(--space-xl-alt);
-      width: 3px;
-      background: linear-gradient(180deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, transparent) 100%);
-      border-radius: var(--radius-pill);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
+    .ideas-modal:not(.hidden) .ideas-sheet,
     .ideas-modal.visible .ideas-sheet {
-      opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .ideas-sheet-header {
@@ -3012,23 +3009,40 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.28);
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
       z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s var(--motion-ease-premium);
+    }
+
+    .data-modal:not(.hidden) {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .data-modal.hidden {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
+      /* Override display:none from utility class if needed, or rely on opacity */
     }
 
     .data-modal-card {
       background: var(--bg-panel);
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 14px 48px rgba(15, 23, 42, 0.14);
+      box-shadow: var(--shadow-modal);
       border-radius: var(--radius-lg);
       max-width: 420px;
       width: min(420px, calc(100vw - var(--space-3xl)));
       padding: var(--space-md-lg) var(--space-md-lg) var(--space-md-alt);
       color: var(--text-main);
+      transform: translateY(8px) scale(0.96);
+      transition: transform 0.4s var(--motion-ease-premium);
+    }
+
+    .data-modal:not(.hidden) .data-modal-card {
+      transform: translateY(0) scale(1);
     }
 
     .data-modal-header {
@@ -3054,6 +3068,11 @@
       color: var(--text-soft);
       padding: var(--space-xxs);
       border-radius: var(--radius-sm);
+      transition: color 0.2s ease;
+    }
+
+    .data-modal-close:hover {
+      color: var(--text-main);
     }
 
     .data-modal-close:focus-visible {
@@ -5348,6 +5367,31 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
 
   document.addEventListener("keydown", trapDataModalFocus);
 
+  function openDataModal() {
+    if (!dataModalEl) return;
+    dataModalEl.classList.remove("hidden");
+    // Small timeout to allow display:flex to apply before opacity transition
+    requestAnimationFrame(() => {
+      // Force reflow
+      void dataModalEl.offsetWidth;
+      dataModalEl.classList.remove("hidden"); // Ensure class logic for transition works if using :not(.hidden)
+      // Add a visible class if needed, but relying on removing 'hidden' and CSS :not(.hidden) logic
+    });
+    
+    previousBodyOverflow = document.body.style.overflow || "";
+    document.body.style.overflow = "hidden";
+    
+    // Trap focus
+    const focusable = dataModalEl.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length) focusable[0].focus();
+  }
+
+  function closeDataModal() {
+    if (!dataModalEl) return;
+    dataModalEl.classList.add("hidden");
+    document.body.style.overflow = previousBodyOverflow;
+  }
+
   if (sampleResumeButtonEl) {
     sampleResumeButtonEl.addEventListener("click", () => {
       if (!inputEl) return;
@@ -5440,10 +5484,19 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
 
   function openIdeasModal() {
     if (!ideasModalEl) return;
+    ideasModalEl.classList.remove("hidden");
     ideasModalEl.classList.add("visible");
     ideasModalEl.setAttribute("aria-hidden", "false");
+    
     previousBodyOverflow = document.body.style.overflow || "";
     document.body.style.overflow = "hidden";
+    
+    // Force reflow to trigger transition
+    requestAnimationFrame(() => {
+       // ensure transition happens
+       void ideasModalEl.offsetWidth;
+    });
+
     const ideasSheetEl = document.getElementById("ideas-sheet");
     if (ideasSheetEl && typeof ideasSheetEl.scrollIntoView === "function") {
       ideasSheetEl.scrollIntoView({
@@ -5456,6 +5509,7 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
   function closeIdeasModal() {
     if (!ideasModalEl) return;
     ideasModalEl.classList.remove("visible");
+    ideasModalEl.classList.add("hidden");
     ideasModalEl.setAttribute("aria-hidden", "true");
     document.body.style.overflow = previousBodyOverflow;
   }
