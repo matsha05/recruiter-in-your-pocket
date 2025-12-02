@@ -947,7 +947,11 @@ async function renderReportHtml(report) {
   const generatedOn =
     typeof report.generated_on === "string" && report.generated_on.trim()
       ? report.generated_on
-      : new Date().toISOString().slice(0, 10);
+      : new Date().toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
   const escape = (str) =>
     String(str || "")
       .replace(/&/g, "&amp;")

@@ -42,45 +42,9 @@ The user will paste their full resume or a large section of it. Your job is to h
 
 Return a single JSON object only. No prose outside the JSON. Do not wrap it in backticks or a code fence.
 
-DATE FORMATTING CHECK (APPLY TO ALL RESUMES)
-
-NEVER flag dates that contain month abbreviations (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) or month names (January, February, etc.). These dates already have months.
-
-ONLY flag dates that use years only without any month information (e.g., "2019–2023", "2019 to 2023", "2018-2022").
-
-- Flag ONLY if job dates use years only (e.g., "2019–2023", "2019 to 2023", or "2019-2023") instead of months (e.g., "Jan 2019–Mar 2023", "Jan 2019 to Mar 2023", or "Jan 2019-Mar 2023").
-- ACCEPTABLE formats include any combination of:
-  - Month abbreviations or names: "Apr 2024", "January 2019"
-  - Separators: "-", "–", or "to" (all are equivalent)
-  - Current role indicators: "present", "now", or "current"
-  - Examples: "Jan 2019–Mar 2023", "Jan 2019 to Mar 2023", "Jan 2019-Mar 2023", "May 2023 to present", "Mar 2022 to now", "Apr 2024-current"
-- Current role indicators ("present", "now", "current") are acceptable and should NOT be flagged.
-- DO NOT flag dates that already include months, regardless of separator ("-", "–", or "to") or current role indicator used.
-- CRITICAL: If a date contains ANY month abbreviation (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) or month name (January, February, etc.), it already has months and should NOT be flagged. Examples that should NOT be flagged: "Apr 2024 to present", "May 2023 to Feb 2024", "Mar 2022 to May 2023", "Jan 2019–Dec 2023".
-- Flag ONLY if education is completely missing a graduation date. Acceptable formats include: year only (e.g., "2015", "BS Mathematics 2015"), month and year (e.g., "Dec 2010", "May 2023"), or full date. All of these are standard and acceptable - do NOT flag them. Only flag if there is no date information at all.
-- Include date formatting issues in "gaps" when present. Phrase it simply: "Dates show years only; adding months makes tenure and transitions clearer."
-- Only flag this if you can clearly see dates formatted as "YYYY–YYYY", "YYYY to YYYY", or "YYYY-YYYY" without ANY month abbreviations or month names.
-
 FEW-SHOT EXAMPLES (LEARN FROM THESE PATTERNS)
 
 These examples show what makes bullets weak vs strong. Use these patterns when evaluating resumes and identifying gaps.
-
-DATE FORMATTING EXAMPLE (CRITICAL - DO NOT FLAG THESE):
-
-CORRECT FORMAT (DO NOT FLAG):
-"Apr 2024 to present"
-"May 2023 to Feb 2024"
-"Mar 2022 to May 2023"
-"Jan 2019–Dec 2023"
-
-WHY THESE ARE CORRECT: These dates already include month abbreviations (Apr, May, Feb, Mar, Jan, Dec). They have months, so they should NOT be flagged.
-
-INCORRECT FORMAT (FLAG THESE):
-"2019–2023"
-"2019 to 2023"
-"2018-2022"
-
-WHY THESE ARE WRONG: These dates use only years without any month abbreviations or names. These should be flagged.
 
 ---
 
