@@ -288,6 +288,23 @@
       pointer-events: none;
     }
 
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: var(--space-xl);
+      background: linear-gradient(180deg, 
+        rgba(51, 65, 166, 0.15) 0%, 
+        rgba(51, 65, 166, 0.10) 50%,
+        transparent 100%);
+      border-radius: var(--radius-pill);
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
     .hero > * {
       position: relative;
       z-index: 1;
@@ -560,6 +577,23 @@
       grid-template-columns: 1fr 1fr;
       gap: var(--space-2xl);
       align-items: start;
+    }
+
+    .tool-layout::before {
+      content: "";
+      position: absolute;
+      top: calc(var(--space-xl) * -1);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: var(--space-xl);
+      background: linear-gradient(180deg, 
+        rgba(51, 65, 166, 0.12) 0%, 
+        rgba(51, 65, 166, 0.08) 50%,
+        transparent 100%);
+      border-radius: var(--radius-pill);
+      pointer-events: none;
+      opacity: 0.6;
     }
 
     .tool-layout.input-full-width {
@@ -865,6 +899,23 @@
       font-size: var(--fs-xs);
       color: var(--text-muted);
       min-height: var(--space-md-lg);
+      transition: opacity var(--motion-duration-short) var(--motion-ease-premium),
+                  transform var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .status:not(:empty) {
+      animation: statusFadeIn 0.4s var(--motion-ease-premium);
+    }
+
+    @keyframes statusFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(2px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Results */
@@ -1796,9 +1847,13 @@
       width: 200px;
       height: 26px;
       border-radius: var(--radius-xs);
-      background: var(--border-strong) !important;
+      background: linear-gradient(90deg, 
+        var(--border-strong) 0%, 
+        color-mix(in srgb, var(--border-strong) 70%, var(--accent-wash) 30%) 50%,
+        var(--border-strong) 100%);
+      background-size: 200% 100%;
       margin-bottom: var(--space-sm-alt);
-      animation: skeletonPulse 1.5s ease-in-out infinite;
+      animation: skeletonShimmer 3s ease-in-out infinite;
       flex-shrink: 0;
       display: block !important;
     }
@@ -1807,10 +1862,14 @@
       width: 85%;
       height: 14px;
       border-radius: var(--radius-xs);
-      background: var(--border-strong) !important;
+      background: linear-gradient(90deg, 
+        var(--border-strong) 0%, 
+        color-mix(in srgb, var(--border-strong) 70%, var(--accent-wash) 30%) 50%,
+        var(--border-strong) 100%);
+      background-size: 200% 100%;
       margin-bottom: var(--space-lg);
       opacity: 0.7;
-      animation: skeletonPulse 1.5s ease-in-out infinite;
+      animation: skeletonShimmer 3s ease-in-out infinite;
       flex-shrink: 0;
       display: block !important;
     }
@@ -1818,9 +1877,14 @@
     .skeleton-line {
       height: 8px;
       border-radius: var(--radius-pill);
-      background: var(--border-strong) !important;
+      background: linear-gradient(90deg, 
+        var(--border-strong) 0%, 
+        color-mix(in srgb, var(--border-strong) 70%, var(--accent-wash) 30%) 50%,
+        var(--border-strong) 100%);
+      background-size: 200% 100%;
       width: 100%;
-      animation: skeletonPulse 1.5s ease-in-out infinite;
+      animation: skeletonPulse 1.8s ease-in-out infinite,
+                 skeletonShimmer 2.5s ease-in-out infinite;
       flex-shrink: 0;
       display: block !important;
     }
@@ -1828,15 +1892,31 @@
     .skeleton-score-dial,
     .skeleton-score-label,
     .skeleton-issue-bar {
-      animation: skeletonPulse 1.5s ease-in-out infinite;
+      background: linear-gradient(90deg, 
+        var(--border-strong) 0%, 
+        color-mix(in srgb, var(--border-strong) 70%, var(--accent-wash) 30%) 50%,
+        var(--border-strong) 100%) !important;
+      background-size: 200% 100% !important;
+      animation: skeletonShimmer 3s ease-in-out infinite;
     }
 
     @keyframes skeletonPulse {
       0%, 100% {
         opacity: 1;
+        background-color: var(--border-strong);
       }
       50% {
-        opacity: 0.65;
+        opacity: 0.7;
+        background-color: color-mix(in srgb, var(--border-strong) 85%, var(--border-subtle) 15%);
+      }
+    }
+
+    @keyframes skeletonShimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
       }
     }
 
@@ -2246,6 +2326,19 @@
         transition: none !important;
         transform: none !important;
         opacity: 1 !important;
+      }
+      .skeleton-heading,
+      .skeleton-subline,
+      .skeleton-line,
+      .skeleton-score-dial,
+      .skeleton-score-label,
+      .skeleton-issue-bar {
+        animation: skeletonPulse 1.8s ease-in-out infinite !important;
+        background: var(--border-strong) !important;
+        background-size: 100% 100% !important;
+      }
+      .status {
+        animation: none !important;
       }
 
       .score-dial {
