@@ -710,8 +710,14 @@
       resize: none;
       margin: 0;
       line-height: var(--lh-loose);
-      box-shadow: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02) inset;
       transition: border-color var(--motion-duration-short) var(--motion-ease-premium), box-shadow var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    textarea:focus {
+      border-color: var(--accent-light);
+      box-shadow: 0 0 0 4px var(--accent-wash), 0 2px 4px rgba(0,0,0,0.02) inset;
+      outline: none;
     }
 
     textarea::placeholder {
@@ -762,9 +768,16 @@
     .card-input {
       margin-top: 0;
       border-radius: var(--radius-2xl);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      box-shadow: var(--shadow-card);
       border: 1px solid rgba(12, 17, 32, 0.08);
       padding: var(--space-xl-alt);
+      background: linear-gradient(165deg, #ffffff 0%, #fafbfd 100%);
+      transition: transform 0.4s var(--motion-ease-premium), box-shadow 0.4s var(--motion-ease-premium);
+    }
+
+    .card-input:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 55px rgba(15, 23, 42, 0.12);
     }
 
     .coming-soon-hint {
@@ -830,6 +843,13 @@
       background: var(--accent);
       transform: none;
       box-shadow: 0 1px 3px rgba(10, 16, 28, 0.12);
+    }
+
+    .btn-success-state {
+      background: var(--success-light) !important;
+      color: var(--success-dark) !important;
+      border-color: var(--success-light) !important;
+      transition: all 0.2s ease;
     }
 
     .btn-secondary {
@@ -901,6 +921,31 @@
       min-height: var(--space-md-lg);
       transition: opacity var(--motion-duration-short) var(--motion-ease-premium),
                   transform var(--motion-duration-short) var(--motion-ease-premium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .status.status-loading {
+      color: var(--text-main);
+    }
+
+    .status.status-loading::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      animation: statusPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes statusPulse {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 0.4; transform: scale(0.9); }
     }
 
     .status:not(:empty) {
@@ -4741,6 +4786,7 @@
       setFocusMode(false);
     }
     statusEl.textContent = "Reading your resume like a recruiter…";
+    statusEl.classList.add("status-loading");
     setStatus("Reading your resume like a recruiter…", "");
       // Ensure the report container is visible while skeleton is showing
       if (reportViewEl) {
@@ -4810,6 +4856,7 @@
             payload?.message || "Unexpected server response."
           );
         statusEl.textContent = msg;
+        statusEl.classList.remove("status-loading");
         setStatus(msg, "error");
         // Hide skeleton on error
         if (resultsSkeletonEl) {
@@ -4841,6 +4888,7 @@
           fieldMessages ||
           mapErrorToUserMessage(payload.errorCode, payload.message);
         statusEl.textContent = msg;
+        statusEl.classList.remove("status-loading");
         setStatus(msg, "error");
         // Hide skeleton on error
         if (resultsSkeletonEl) {
@@ -4876,6 +4924,7 @@
       if (!structured) {
         const msg = "Unexpected server response.";
         statusEl.textContent = msg;
+        statusEl.classList.remove("status-loading");
         setStatus(msg, "error");
         // Hide skeleton on error
         if (resultsSkeletonEl) {
@@ -4931,11 +4980,13 @@
       }
 
       statusEl.textContent = "";
+      statusEl.classList.remove("status-loading");
       setStatus("");
     } catch (err) {
       console.error(err);
       statusEl.textContent =
         "Something went wrong. Try again in a moment.";
+      statusEl.classList.remove("status-loading");
       setStatus("Something went wrong. Try again in a moment.", "error");
       // Hide skeleton on error
       if (resultsSkeletonEl) {
@@ -5052,6 +5103,17 @@
       try {
         await navigator.clipboard.writeText(text);
         statusEl.textContent = "Report copied.";
+        
+        // Visual feedback on button
+        const originalText = copyFullButtonEl.innerHTML;
+        copyFullButtonEl.textContent = "Copied!";
+        copyFullButtonEl.classList.add("btn-success-state");
+        
+        setTimeout(() => {
+          copyFullButtonEl.innerHTML = originalText;
+          copyFullButtonEl.classList.remove("btn-success-state");
+        }, 2000);
+
         logEvent("copy_clicked");
       } catch (err) {
         statusEl.textContent = "Couldn't copy the report. Please try again.";
@@ -5117,9 +5179,18 @@
       document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 60000);
       statusEl.textContent = "Exported PDF.";
+      
+      // Visual feedback
+      exportButtonEl.textContent = "Downloaded!";
+      exportButtonEl.classList.add("btn-success-state");
+      
+      setTimeout(() => {
+        exportButtonEl.disabled = false;
+        exportButtonEl.textContent = originalExportText;
+        exportButtonEl.classList.remove("btn-success-state");
+      }, 2000);
     } catch (err) {
       statusEl.textContent = "Could not export right now. Try again.";
-    } finally {
       exportButtonEl.disabled = false;
       exportButtonEl.textContent = originalExportText;
     }
