@@ -1,7 +1,7 @@
 {
   "name": "recruiter-in-your-pocket",
   "version": "1.0.0",
-  "description": "",
+  "description": "A high-end resume studio that reads your resume like a recruiter, providing crafted feedback on how you read, what's working, what's harder to see, stronger bullets, and simple next steps.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,8 +9,16 @@
     "test": "node tests/validation.js && node tests/schema_contract.js && node tests/schema_contract_ideas.js && node tests/smoke_endpoints.js && node scripts/mock_run.js",
     "calibrate": "node scripts/calibrate_score.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "resume",
+    "recruiter",
+    "career",
+    "feedback",
+    "resume-review",
+    "job-search",
+    "career-development"
+  ],
+  "author": "Matt",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
