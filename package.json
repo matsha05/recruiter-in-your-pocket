@@ -28,6 +28,10 @@
     "puppeteer": "^22.15.0",
     "stripe": "^14.25.0"
   },
+  "optionalDependencies": {
+    "@sparticuz/chromium": "^131.0.0",
+    "puppeteer-core": "^22.15.0"
+  },
   "engines": {
     "node": ">=18.18.0"
   },

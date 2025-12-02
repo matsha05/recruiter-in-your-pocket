@@ -6,7 +6,30 @@ const path = require("path");
 const crypto = require("crypto");
 const fs = require("fs");
 const Stripe = require("stripe");
-const puppeteer = require("puppeteer");
+
+// Support both puppeteer (local/dev) and puppeteer-core with @sparticuz/chromium (Vercel/serverless)
+let puppeteer;
+let chromium;
+
+// Prefer regular puppeteer for local development, puppeteer-core for serverless
+try {
+  puppeteer = require("puppeteer");
+} catch (e) {
+  // Fall back to puppeteer-core if puppeteer is not available
+  try {
+    puppeteer = require("puppeteer-core");
+  } catch (e2) {
+    throw new Error("Neither puppeteer nor puppeteer-core is installed. Install puppeteer for local dev or puppeteer-core + @sparticuz/chromium for serverless.");
+  }
+}
+
+// Try to load @sparticuz/chromium for Vercel/AWS Lambda (optional)
+try {
+  chromium = require("@sparticuz/chromium");
+} catch (e) {
+  // @sparticuz/chromium not installed, will use regular Chrome/Chromium
+  chromium = null;
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -933,24 +956,33 @@ async function renderReportHtml(report) {
   <meta charset="utf-8" />
   <title>Resume Review — Recruiter in Your Pocket</title>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap");
     :root {
-      --accent: #1C4ED8;
+      --accent: #3341A6;
+      --accent-dark: #26328C;
       --text-main: #0F172A;
+      --text-soft: #334155;
       --text-muted: #64748B;
-      --wash: #F8FAFC;
-      --space-sm: 8px;
-      --space-md: 12px;
-      --space-lg: 16px;
-      --space-xl: 24px;
-      --space-xxl: 40px;
+      --wash: #FAF9F6;
+      --border-subtle: #d7dae3;
+      --space-xs: 6px;
+      --space-sm: 10px;
+      --space-sm-alt: 12px;
+      --space-md: 15px;
+      --space-md-alt: 16px;
+      --space-lg: 20px;
+      --space-xl: 30px;
+      --space-xl-alt: 24px;
+      --space-2xl: 40px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-main);
       background: var(--wash);
       padding: var(--space-md);
+      font-size: 15px;
+      line-height: 1.5;
     }
     .pdf-header {
       max-width: 760px;
@@ -959,15 +991,17 @@ async function renderReportHtml(report) {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: var(--space-md);
+      gap: var(--space-md-alt);
     }
     .pdf-header-left { display: flex; flex-direction: column; gap: 2px; }
     .pdf-header-title {
-      font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
-      font-size: 19px;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      font-size: 18px;
       font-weight: 800;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.03em;
       color: var(--text-main);
+      text-transform: none;
+      line-height: 1.1;
     }
     .pdf-header-subtitle {
       font-size: 12px;
@@ -978,61 +1012,130 @@ async function renderReportHtml(report) {
       text-align: right;
       font-size: 12px;
       color: var(--text-muted);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
     .pdf-report-card {
       max-width: 760px;
       margin: var(--space-sm) auto 0;
       background: #ffffff;
       border: 1px solid rgba(12, 17, 32, 0.08);
-      border-radius: 12px;
-      padding: var(--space-lg);
-      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.05);
+      border-radius: 14px;
+      padding: var(--space-xl-alt);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
     .stack-section {
-      border-left: 3px solid color-mix(in srgb, var(--accent) 85%, white 15%);
-      padding-left: var(--space-md);
-      margin: 16px 0;
-      page-break-inside: auto;
-      break-inside: auto;
-    }
-    h1, h2 {
-      font-family: "Space Grotesk", "Manrope", system-ui, sans-serif;
-      letter-spacing: 0.01em;
-      margin-bottom: var(--space-sm);
-    }
-    h1 { font-size: 22px; color: var(--accent); font-weight: 800; letter-spacing: -0.01em; }
-    h2 { font-size: 19px; color: color-mix(in srgb, var(--accent) 90%, var(--text-main) 10%); font-weight: 750; letter-spacing: -0.01em; }
-    .subtext { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-xs); font-style: italic; }
-    p { font-size: 13px; line-height: 1.65; margin-bottom: var(--space-sm); color: var(--text-main); }
-    ul { padding-left: 18px; margin-bottom: var(--space-sm); font-size: 13px; line-height: 1.6; color: var(--text-main); }
-    li { margin-bottom: var(--space-xs); line-height: 1.55; }
-    .score { font-size: 22px; font-weight: 800; color: var(--accent); margin-bottom: var(--space-xs); }
-    .band { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
-    .label { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
-    .text { font-size: 13px; color: var(--text-main); line-height: 1.55; }
-    .rewrite-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-md);
-      margin-bottom: var(--space-md);
-      border-left: 2px solid rgba(12, 17, 32, 0.06);
-      padding-left: var(--space-sm);
+      position: relative;
+      padding-left: var(--space-xl-alt);
+      margin: var(--space-xl) 0;
       page-break-inside: avoid;
       break-inside: avoid;
     }
-    .rewrite-col { display: flex; flex-direction: column; gap: 6px; }
-    .rewrite-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.02em; }
-    .enhancement {
-      grid-column: 1 / -1;
+    .stack-section::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, transparent) 100%);
+      border-radius: 999px;
+      opacity: 0.7;
+    }
+    h1, h2 {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+      line-height: 1.25;
+    }
+    h1 { font-size: 26px; }
+    h2 { font-size: 21px; }
+    .subtext {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md-alt);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: var(--space-md);
+      color: var(--text-main);
+    }
+    ul {
+      padding-left: 20px;
+      margin-bottom: var(--space-md);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+    li {
+      margin-bottom: var(--space-xs);
+      line-height: 1.55;
+    }
+    .score {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      letter-spacing: -0.02em;
+    }
+    .band {
       font-size: 12px;
       color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+    }
+    .label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+    .text {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 1.55;
+    }
+    .rewrite-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md-alt);
+      margin-bottom: var(--space-md-alt);
+      border-left: 2px solid rgba(12, 17, 32, 0.06);
+      padding-left: var(--space-sm-alt);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .rewrite-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .rewrite-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+    .enhancement {
+      grid-column: 1 / -1;
+      font-size: 13px;
+      color: var(--text-muted);
       font-style: italic;
+      margin-top: var(--space-xs);
     }
     .footer {
       margin-top: var(--space-xl);
       font-size: 11px;
-      color: rgba(75, 85, 99, 0.7);
+      color: rgba(100, 116, 139, 0.7);
       text-align: center;
     }
   </style>
@@ -1059,14 +1162,14 @@ async function renderReportHtml(report) {
     </div>
 
     <div class="stack-section">
-      <h2>What’s working</h2>
+      <h2>What's working</h2>
       <div class="subtext">Strengths that show up clearly.</div>
       <ul>${listHtml(report.strengths)}</ul>
     </div>
 
     <div class="stack-section">
-      <h2>What’s harder to see</h2>
-      <div class="subtext">Parts of your impact that don’t come through as strongly.</div>
+      <h2>What's harder to see</h2>
+      <div class="subtext">Parts of your impact that don't come through as strongly.</div>
       <ul>${listHtml(report.gaps)}</ul>
     </div>
 
@@ -1102,27 +1205,118 @@ async function generatePdfBuffer(report) {
   const html = await renderReportHtml(report);
   let browser;
   try {
-    browser = await puppeteer.launch({
+    // Detect serverless/production environment
+    const isVercel = Boolean(process.env.VERCEL);
+    const isServerless = Boolean(
+      isVercel ||
+      process.env.AWS_LAMBDA_FUNCTION_NAME ||
+      process.env.FUNCTION_NAME ||
+      process.env.RAILWAY_ENVIRONMENT ||
+      process.env.RENDER
+    );
+
+    // Enhanced launch args for production/serverless environments
+    const launchArgs = [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage", // Overcome limited resource problems
+      "--disable-gpu", // Disable GPU hardware acceleration
+      "--disable-software-rasterizer",
+      "--disable-extensions",
+      "--disable-background-timer-throttling",
+      "--disable-backgrounding-occluded-windows",
+      "--disable-renderer-backgrounding"
+    ];
+
+    // Additional args for serverless environments
+    if (isServerless) {
+      launchArgs.push("--single-process"); // Sometimes needed for serverless
+    }
+
+    const browserOptions = {
       headless: "new",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
-    });
+      args: launchArgs,
+      timeout: 30000 // 30 second timeout for browser launch
+    };
+
+    // For Vercel, use @sparticuz/chromium if available
+    if (isVercel && chromium) {
+      // Set Chromium flags for Vercel
+      chromium.setGraphicsMode(false);
+      browserOptions.executablePath = await chromium.executablePath();
+      browserOptions.args = [...launchArgs, ...chromium.args];
+    } else if (process.env.CHROME_EXECUTABLE_PATH) {
+      // Use custom Chrome path if provided
+      browserOptions.executablePath = process.env.CHROME_EXECUTABLE_PATH;
+    }
+
+    browser = await puppeteer.launch(browserOptions);
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: "networkidle0" });
-    const pdfBuffer = await page.pdf({
-      format: "A4",
-      printBackground: true,
-      displayHeaderFooter: false,
-      margin: {
-        top: "18mm",
-        right: "16mm",
-        bottom: "18mm",
-        left: "16mm"
-      }
+
+    // Set a reasonable timeout for page operations
+    page.setDefaultTimeout(30000);
+    page.setDefaultNavigationTimeout(30000);
+
+    // Set viewport for consistent rendering
+    await page.setViewport({ width: 1200, height: 1600 });
+
+    // Load the HTML content with a timeout
+    await page.setContent(html, {
+      waitUntil: "networkidle0",
+      timeout: 30000
     });
+
+    // Generate PDF with timeout
+    const pdfBuffer = await Promise.race([
+      page.pdf({
+        format: "A4",
+        printBackground: true,
+        displayHeaderFooter: false,
+        margin: {
+          top: "18mm",
+          right: "16mm",
+          bottom: "18mm",
+          left: "16mm"
+        }
+      }),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("PDF generation timeout")), 30000)
+      )
+    ]);
+
     return pdfBuffer;
+  } catch (err) {
+    // Enhanced error logging for debugging
+    logLine(
+      {
+        level: "error",
+        msg: "pdf_generation_error",
+        error: err.message,
+        stack: err.stack,
+        isServerless: Boolean(
+          process.env.VERCEL ||
+          process.env.AWS_LAMBDA_FUNCTION_NAME ||
+          process.env.FUNCTION_NAME
+        ),
+        chromePath: process.env.CHROME_EXECUTABLE_PATH || "default"
+      },
+      true
+    );
+    throw err;
   } finally {
     if (browser) {
-      await browser.close();
+      try {
+        await browser.close();
+      } catch (closeErr) {
+        logLine(
+          {
+            level: "warn",
+            msg: "browser_close_error",
+            error: closeErr.message
+          },
+          false
+        );
+      }
     }
   }
 }
@@ -1369,6 +1563,22 @@ app.post("/api/export-pdf", rateLimit, (req, res) => {
         });
       }
       const pdfBuffer = await generatePdfBuffer(payload);
+      if (!pdfBuffer || pdfBuffer.length === 0) {
+        logLine(
+          {
+            level: "error",
+            msg: "export_pdf_failed",
+            error: "PDF buffer is empty",
+            reqId: req.reqId
+          },
+          true
+        );
+        return res.status(500).json({
+          ok: false,
+          errorCode: "EXPORT_FAILED",
+          message: "PDF generation returned empty data. Please try again."
+        });
+      }
       res.setHeader("Content-Type", "application/pdf");
       res.setHeader("Content-Disposition", 'attachment; filename="resume-review.pdf"');
       return res.end(pdfBuffer);
@@ -1377,14 +1587,33 @@ app.post("/api/export-pdf", rateLimit, (req, res) => {
         {
           level: "error",
           msg: "export_pdf_failed",
-          error: err.message
+          reqId: req.reqId,
+          error: err.message,
+          stack: err.stack,
+          errorCode: err.code || "EXPORT_FAILED"
         },
         true
       );
+
+      // Provide more specific error messages based on error type
+      let userMessage = "Could not generate a PDF right now. Please try again.";
+      let errorCode = "EXPORT_FAILED";
+
+      if (err.message.includes("timeout") || err.message.includes("Timeout")) {
+        userMessage = "PDF generation took too long. Please try again.";
+        errorCode = "EXPORT_TIMEOUT";
+      } else if (err.message.includes("launch") || err.message.includes("browser")) {
+        userMessage = "PDF service is temporarily unavailable. Please try again in a moment.";
+        errorCode = "EXPORT_SERVICE_UNAVAILABLE";
+      } else if (err.message.includes("ENOENT") || err.message.includes("executable")) {
+        userMessage = "PDF service is not properly configured. Please contact support.";
+        errorCode = "EXPORT_CONFIG_ERROR";
+      }
+
       return res.status(500).json({
         ok: false,
-        errorCode: "EXPORT_FAILED",
-        message: "Could not generate a PDF right now. Please try again."
+        errorCode,
+        message: userMessage
       });
     }
   })();
