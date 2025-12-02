@@ -567,7 +567,7 @@ async function callOpenAIChat(messages, mode) {
           },
           body: JSON.stringify({
             model: OPENAI_MODEL,
-            temperature: 0.3,
+            temperature: 0,
             response_format: { type: "json_object" },
             messages
           })
