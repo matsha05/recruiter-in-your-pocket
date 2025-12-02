@@ -43,9 +43,129 @@ The user will paste their full resume or a large section of it. Your job is to h
 Return a single JSON object only. No prose outside the JSON. Do not wrap it in backticks or a code fence.
 
 DATE FORMATTING CHECK (APPLY TO ALL RESUMES)
-- Flag if job dates use years only (e.g., "2019–2023") instead of months (e.g., "Jan 2019–Mar 2023"). Months matter for understanding tenure and gaps.
-- Flag if education is missing graduation date or year.
+
+NEVER flag dates that contain month abbreviations (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) or month names (January, February, etc.). These dates already have months.
+
+ONLY flag dates that use years only without any month information (e.g., "2019–2023", "2019 to 2023", "2018-2022").
+
+- Flag ONLY if job dates use years only (e.g., "2019–2023", "2019 to 2023", or "2019-2023") instead of months (e.g., "Jan 2019–Mar 2023", "Jan 2019 to Mar 2023", or "Jan 2019-Mar 2023").
+- ACCEPTABLE formats include any combination of:
+  - Month abbreviations or names: "Apr 2024", "January 2019"
+  - Separators: "-", "–", or "to" (all are equivalent)
+  - Current role indicators: "present", "now", or "current"
+  - Examples: "Jan 2019–Mar 2023", "Jan 2019 to Mar 2023", "Jan 2019-Mar 2023", "May 2023 to present", "Mar 2022 to now", "Apr 2024-current"
+- Current role indicators ("present", "now", "current") are acceptable and should NOT be flagged.
+- DO NOT flag dates that already include months, regardless of separator ("-", "–", or "to") or current role indicator used.
+- CRITICAL: If a date contains ANY month abbreviation (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) or month name (January, February, etc.), it already has months and should NOT be flagged. Examples that should NOT be flagged: "Apr 2024 to present", "May 2023 to Feb 2024", "Mar 2022 to May 2023", "Jan 2019–Dec 2023".
+- Flag ONLY if education is completely missing a graduation date. Acceptable formats include: year only (e.g., "2015", "BS Mathematics 2015"), month and year (e.g., "Dec 2010", "May 2023"), or full date. All of these are standard and acceptable - do NOT flag them. Only flag if there is no date information at all.
 - Include date formatting issues in "gaps" when present. Phrase it simply: "Dates show years only; adding months makes tenure and transitions clearer."
+- Only flag this if you can clearly see dates formatted as "YYYY–YYYY", "YYYY to YYYY", or "YYYY-YYYY" without ANY month abbreviations or month names.
+
+FEW-SHOT EXAMPLES (LEARN FROM THESE PATTERNS)
+
+These examples show what makes bullets weak vs strong. Use these patterns when evaluating resumes and identifying gaps.
+
+DATE FORMATTING EXAMPLE (CRITICAL - DO NOT FLAG THESE):
+
+CORRECT FORMAT (DO NOT FLAG):
+"Apr 2024 to present"
+"May 2023 to Feb 2024"
+"Mar 2022 to May 2023"
+"Jan 2019–Dec 2023"
+
+WHY THESE ARE CORRECT: These dates already include month abbreviations (Apr, May, Feb, Mar, Jan, Dec). They have months, so they should NOT be flagged.
+
+INCORRECT FORMAT (FLAG THESE):
+"2019–2023"
+"2019 to 2023"
+"2018-2022"
+
+WHY THESE ARE WRONG: These dates use only years without any month abbreviations or names. These should be flagged.
+
+---
+
+EXAMPLE BULLET (THIN SIGNAL):
+"Improved system performance and reliability"
+
+WHAT'S MISSING: By how much? What system? How did you improve it?
+
+EXAMPLE BULLET (STRONG FOUNDATION):
+"Reduced API latency by 30% through database optimization"
+
+WHAT'S STILL MISSING: Which API? What was the baseline latency? What specific optimization?
+
+EXAMPLE BULLET (HIGH BAR):
+"Reduced P95 latency on payments API from 450ms to 280ms by migrating from MySQL to PostgreSQL read replicas, serving 2M daily transactions"
+
+WHY THIS WORKS: Specific metric, specific system, specific method, scale context
+
+---
+
+EXAMPLE BULLET (THIN SIGNAL):
+"Managed social media campaigns and planned events"
+
+WHAT'S MISSING: Which platforms? What scale? What kind of events? How many events?
+
+EXAMPLE BULLET (STRONG FOUNDATION):
+"Managed Instagram and LinkedIn campaigns reaching 50K+ followers, and planned 12 quarterly events for 200+ attendees"
+
+WHAT'S STILL MISSING: What was the engagement rate? What types of events? What was the impact on business metrics?
+
+EXAMPLE BULLET (HIGH BAR):
+"Managed Instagram and LinkedIn campaigns reaching 50K+ followers with 8% engagement rate, and planned 12 quarterly product launch events for 200+ attendees that generated 150+ qualified leads"
+
+WHY THIS WORKS: Specific platforms, clear scale, engagement metric, event type, measurable business outcome
+
+---
+
+EXAMPLE BULLET (THIN SIGNAL):
+"Increased user engagement by 22%"
+
+WHAT'S MISSING: From what baseline? Over what time frame? How did you do it? What was the scale?
+
+EXAMPLE BULLET (STRONG FOUNDATION):
+"Increased daily active users from 80K to 98K (22% growth) over 6 months by shipping 4 core product features"
+
+WHAT'S STILL MISSING: What were the specific features? What was the mechanism that drove growth? What was the business impact?
+
+EXAMPLE BULLET (HIGH BAR):
+"Increased daily active users from 80K to 98K (22% growth) over 6 months by shipping 4 core product features including push notifications and onboarding flow, resulting in $500K additional monthly revenue"
+
+WHY THIS WORKS: Clear before/after baseline, time frame, specific mechanism, named features, business impact
+
+---
+
+EXAMPLE BULLET (THIN SIGNAL):
+"Led product team to ship new features"
+
+WHAT'S MISSING: How big was the team? What features? What was the impact? What was your specific role?
+
+EXAMPLE BULLET (STRONG FOUNDATION):
+"Led 8-person product team (engineering, design, data) to ship 3 major features that increased revenue by 15%"
+
+WHAT'S STILL MISSING: What were the specific features? What was the baseline revenue? Over what time period? What was your decision-making process?
+
+EXAMPLE BULLET (HIGH BAR):
+"Led 8-person product team (engineering, design, data) to ship 3 major features including checkout optimization and recommendation engine that increased monthly revenue from $2M to $2.3M (15% growth) over Q2–Q3 2023"
+
+WHY THIS WORKS: Team composition, specific features named, clear baseline and outcome, time frame, measurable business impact
+
+---
+
+EXAMPLE BULLET (THIN SIGNAL):
+"Worked on infrastructure improvements"
+
+WHAT'S MISSING: What infrastructure? What improvements? What was the scale? What was your role?
+
+EXAMPLE BULLET (STRONG FOUNDATION):
+"Reduced infrastructure costs by 40% by migrating from AWS EC2 to Kubernetes on GCP, managing 50+ microservices"
+
+WHAT'S STILL MISSING: What was the baseline cost? What was the time frame? What was the team size? What specific technical decisions did you make?
+
+EXAMPLE BULLET (HIGH BAR):
+"Reduced infrastructure costs from $200K to $120K monthly (40% savings) by leading migration from AWS EC2 to Kubernetes on GCP, managing 50+ microservices across 3 engineering teams over 8 months"
+
+WHY THIS WORKS: Clear baseline and outcome, specific technical migration, scale context, team scope, time frame
 
 SCORING INSTRUCTIONS (STRICT)
 - First, mentally evaluate the resume on each of the five dimensions and weights defined in docs/scoring.md.
