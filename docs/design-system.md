@@ -1,53 +1,308 @@
-# Recruiter in Your Pocket — Design System v1.1
+# Recruiter in Your Pocket — Design System v1.2
 
 ## Overview
 This file defines the tokens and components for the Recruiter in Your Pocket UI and PDF so Codex, Matt, and future collaborators can evolve the product consistently.
 
+**Last Updated:** 2025-01-27 (Phase 3 Refactoring Complete)
+
+## Design Tokens Reference
+
+All design tokens are defined as CSS variables in `:root`. This document serves as the reference for what tokens exist and when to use them.
+
+---
+
 ## Colors
-- **Backgrounds**
-  - Page: Warm Stone `#FDFDFC`
-  - Wash: Warm Wash `#FAF9F6`
-  - Surface Tint: `#F3F4F6`
-  - Panel/Card: `#ffffff`
 
-- **Accents (Deep Indigo)**
-  - Accent (Default): `#3341A6`
-  - Accent Dark: `#26328C`
-  - Accent Strong: `#1E2A78`
-  - Accent Wash: `#EEF0FA`
+### Backgrounds
+- `--bg-page: #FDFDFC` - Page background (Warm Stone)
+- `--bg-panel: #ffffff` - Panel background
+- `--bg-card: #ffffff` - Card background
+- `--wash: #FAF9F6` - Wash background (Warm Wash)
+- `--surface-tint: #F3F4F6` - Surface tint background
 
-- **Ink & Neutral**
-  - Ink 900: `#0F172A` (Primary Text)
-  - Slate 700: `#334155` (Soft Text)
-  - Slate 500: `#64748B` (Muted Text)
+### Borders
+- `--border-subtle: #d7dae3` - Subtle border color
+- `--border-strong: #c6cbd6` - Strong border color
+
+### Accents (Deep Indigo)
+- `--accent: #3341A6` - Default accent color
+- `--accent-dark: #26328C` - Dark accent variant
+- `--accent-strong: #1E2A78` - Strong accent variant
+- `--accent-wash: #EEF0FA` - Accent wash background
+- `--accent-boost: #3341A6` - Accent boost color
+
+### Text Colors
+- `--text-main: var(--ink-900)` - Primary text color
+- `--text-soft: var(--slate-700)` - Soft text color
+- `--text-muted: var(--slate-500)` - Muted text color
+- `--ink-900: #0F172A` - Primary text (dark)
+- `--slate-700: #334155` - Soft text
+- `--slate-500: #64748B` - Muted text
+
+### Status Colors
+- `--success: #15803d` - Success color
+- `--success-dark: #047857` - Dark success
+- `--success-light: #22c55e` - Light success
+- `--error: #b91c1c` - Error color
+- `--error-dark: #7f1d1d` - Dark error
+- `--error-light: #fca5a5` - Light error
+- `--error-bg: rgba(185, 28, 28, 0.08)` - Error background
+- `--warning: #d97706` - Warning color
+- `--warning-dark: #92400e` - Dark warning
+
+**Dark Mode:** All colors have dark mode overrides defined in `[data-theme="dark"]`.
+
+---
 
 ## Typography
-- **Display (Headings):** Plus Jakarta Sans
-  - Hero: Tight tracking (-0.02em), weight 800.
-  - Section Headers: Slight negative tracking, weight 700-800.
-- **Body:** Manrope
-  - Regular text: Weight 400/500, clean and approachable.
-  - UI Labels: Weight 600 for clarity.
 
-## Spacing & Radii
-- Spacing tokens: 4, 8, 12, 16, 24, 32, 40 (px).
-- Card radius: 12px (panels/cards use 12–18px; PDF mirrors 12px).
-- Button radius: 12px.
+### Font Families
+- `--font-display: "Plus Jakarta Sans", ...` - Display font (headings)
+- `--font-body: "Manrope", ...` - Body font
+
+### Font Sizes
+- `--fs-hero: 52px` - Hero title
+- `--fs-h1: 26px` - Heading 1 (section titles)
+- `--fs-h2: 21px` - Heading 2
+- `--fs-h3: 17px` - Heading 3
+- `--fs-body: 15px` - Body text
+- `--fs-label: 14px` - Labels
+- `--fs-small: 13px` - Small text
+- `--fs-xs: 12px` - Extra small
+- `--fs-tiny: 11px` - Tiny text
+- `--fs-base: 16px` - Base size
+- `--fs-lg: 18px` - Large
+- `--fs-xl: 20px` - Extra large
+- `--fs-2xl: 22px` - 2x large
+- `--fs-3xl: 32px` - 3x large
+- `--fs-dial: 36px` - Score dial size
+
+### Line Heights
+- `--lh-very-tight: 1.1` - Very tight line height
+- `--lh-tight: 1.15` - Tight line height
+- `--lh-snug: 1.2` - Snug line height
+- `--lh-cozy: 1.25` - Cozy line height
+- `--lh-medium: 1.4` - Medium line height
+- `--lh-normal: 1.5` - Normal line height
+- `--lh-custom: 1.55` - Custom line height
+- `--lh-relaxed: 1.6` - Relaxed line height
+- `--lh-loose: 1.65` - Loose line height
+- `--lh-extra-loose: 1.7` - Extra loose line height
+
+### Typography Guidelines
+- **Display (Headings):** Plus Jakarta Sans
+  - Hero: Tight tracking (-0.02em), weight 800
+  - Section Headers: Slight negative tracking, weight 700-800
+- **Body:** Manrope
+  - Regular text: Weight 400/500, clean and approachable
+  - UI Labels: Weight 600 for clarity
+
+---
+
+## Spacing
+
+Use spacing variables for all padding, margin, and gap values.
+
+### Spacing Scale
+- `--space-micro: 2px` - Micro spacing
+- `--space-xxs: 4px` - Extra extra small
+- `--space-xs: 6px` - Extra small
+- `--space-tight: 8px` - Tight spacing
+- `--space-tight-alt: 9px` - Tight alternative
+- `--space-sm: 10px` - Small
+- `--space-sm-alt: 12px` - Small alternative
+- `--space-md: 15px` - Medium
+- `--space-md-alt: 16px` - Medium alternative
+- `--space-md-lg: 18px` - Medium-large
+- `--space-lg: 20px` - Large
+- `--space-lg-alt: 22px` - Large alternative
+- `--space-xl: 30px` - Extra large
+- `--space-xl-alt: 24px` - Extra large alternative
+- `--space-2xl: 40px` - 2x large
+- `--space-3xl: 32px` - 3x large
+- `--space-xxl: 50px` - Extra extra large
+- `--stack-gap: 16px` - Stack section gap
+
+---
+
+## Border Radius
+
+Use radius variables for all border-radius values.
+
+### Radius Scale
+- `--radius-xs: 6px` - Extra small radius
+- `--radius-sm: 8px` - Small radius
+- `--radius-md: 10px` - Medium radius (buttons)
+- `--radius-input: 12px` - Input radius
+- `--radius-lg: 14px` - Large radius (cards)
+- `--radius-xl: 16px` - Extra large radius
+- `--radius-card: 18px` - Card radius
+- `--radius-2xl: 20px` - 2x large radius
+- `--radius-3xl: 22px` - 3x large radius
+- `--radius-pill: 999px` - Pill radius (fully rounded)
+
+### Radius Guidelines
+- Buttons: `--radius-md` (10px) or `--radius-input` (12px)
+- Cards: `--radius-card` (18px) or `--radius-lg` (14px)
+- Inputs: `--radius-input` (12px)
+- Pills: `--radius-pill` (999px)
+
+---
 
 ## Shadows
-- Card shadow: `0 8px 24px rgba(15,23,42,0.08)`.
-- Button primary shadow: rest `0 10px 22px color-mix(in srgb, var(--accent) 18%, transparent)`; hover `0 12px 26px color-mix(in srgb, var(--accent) 22%, transparent)`.
-- Textarea inset shadow: subtle inset border with light inner shadow; avoid heavy glow.
+
+Use shadow variables for consistent elevation and depth.
+
+### Shadow Variables
+- `--shadow-soft: 0 18px 30px rgba(15, 23, 42, 0.06)` - Soft shadow (general use)
+- `--shadow-card: 0 10px 24px rgba(15, 23, 42, 0.08)` - Card shadow
+- `--shadow-button: 0 4px 14px rgba(28, 78, 216, 0.25)` - Button shadow
+- `--shadow-button-hover: 0 6px 18px rgba(23, 60, 169, 0.27)` - Button hover shadow
+- `--shadow-modal: 0 18px 45px rgba(15, 23, 42, 0.12)` - Modal shadow
+- `--shadow-hero: 0 16px 32px rgba(15, 23, 42, 0.08)` - Hero shadow
+
+**Dark Mode:** All shadows have darker variants for dark mode.
+
+---
 
 ## Motion
-- Signature report reveal: opacity 0 → 1 and translateY(8px) → 0; ~240ms; easing cubic-bezier(0.16, 1, 0.3, 1); disabled under `prefers-reduced-motion`.
-- Guideline: no other major motions; small hover transitions only.
 
-## Components
-- `.btn-primary`: accent background, white text, 12px radius, premium shadow, hover darkens accent and lifts by 1–2px; focus-visible ring using accent mix.
-- `.btn-secondary`: muted/outline neutral, subtle shadow, hover strengthens border and slight lift; focus-visible ring consistent with primary.
-- Report spine/section wrapper: single-column stack with accent spine on the left; each section spaced like a chapter with Heading L + subline; used in UI and PDF.
-- CTA rail basics: clustered primary/secondary actions in hero and results; consistent spacing (8–12px gaps), aligns with button tokens.
+Use motion variables for transitions and animations.
+
+### Motion Variables
+- `--motion-duration-short: 200ms` - Short duration
+- `--motion-duration-medium: 300ms` - Medium duration
+- `--motion-ease-premium: cubic-bezier(0.16, 1, 0.3, 1)` - Premium easing
+
+### Motion Guidelines
+- Signature report reveal: opacity 0 → 1 and translateY(8px) → 0; ~240ms; easing `--motion-ease-premium`; disabled under `prefers-reduced-motion`
+- Guideline: no other major motions; small hover transitions only
+- Always respect `prefers-reduced-motion` media query
+
+---
+
+## Focus States
+
+All interactive elements use consistent focus states for accessibility.
+
+### Focus Variables
+- `--focus-outline-color: #A5B4FC` - Focus outline color (light blue)
+- `--focus-outline-width: 2px` - Focus outline width
+- `--focus-outline-offset: 3px` - Focus outline offset
+- `--focus-shadow: 0 0 0 2px rgba(28, 78, 216, 0.16)` - Focus shadow ring
+
+### Focus Pattern
+All interactive elements should use:
+```css
+:focus-visible {
+  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+  box-shadow: var(--focus-shadow);
+}
+```
+
+**Note:** Focus states are automatically adjusted for dark mode.
+
+---
+
+## Icon Sizes
+
+- `--icon-size-sm: 8px` - Small icon
+- `--icon-size-md: 16px` - Medium icon (default)
+
+---
+
+## Accent Width
+
+- `--accent-width: 2px` - Standard accent line width
+- `--accent-width-strong: 6px` - Strong accent line width
+
+## Reusable Classes
+
+Use these classes for consistent component patterns throughout the application.
+
+### Stack Section Pattern
+- `.stack-section` - Container for report sections with consistent spacing
+- `.stack-heading` - Section heading with consistent typography
+- `.stack-subline` - Section subtitle/description
+- `.stack-accent-line` - Left accent line for visual hierarchy
+
+**When to use:** All Insight Stack report sections should use this pattern for consistency.
+
+### Button Components
+- `.btn-primary` - Primary action button
+  - Accent background, white text
+  - Radius: `var(--radius-input)` (12px)
+  - Premium shadow with hover lift
+  - Focus-visible ring using accent mix
+- `.btn-secondary` - Secondary action button
+  - Outline style with subtle shadow
+  - Hover strengthens border and lifts slightly
+  - Focus-visible ring consistent with primary
+- `.ghost-button` - Subtle ghost button
+  - Minimal styling, subtle background
+  - Used for less prominent actions
+
+**When to use:**
+- Primary actions: `.btn-primary`
+- Secondary actions: `.btn-secondary`
+- Tertiary actions: `.ghost-button`
+
+## Usage Guidelines
+
+### General Principles
+1. **Always use design tokens** - Never hardcode spacing, colors, typography, or radius values
+2. **Use reusable classes** - Prefer existing classes over custom CSS when possible
+3. **Maintain consistency** - Follow established patterns for similar components
+4. **Accessibility first** - Always include proper focus states using the focus pattern
+
+### Common Patterns
+
+#### Adding Spacing
+```css
+/* ✅ Good - Use variables */
+padding: var(--space-lg) var(--space-md-alt);
+margin-bottom: var(--space-xl);
+gap: var(--space-sm);
+
+/* ❌ Bad - Hardcoded values */
+padding: 20px 16px;
+margin-bottom: 30px;
+gap: 10px;
+```
+
+#### Typography
+```css
+/* ✅ Good - Use typography variables */
+font-size: var(--fs-h1);
+line-height: var(--lh-snug);
+font-family: var(--font-display);
+
+/* ❌ Bad - Hardcoded values */
+font-size: 26px;
+line-height: 1.2;
+font-family: "Plus Jakarta Sans", sans-serif;
+```
+
+#### Focus States
+```css
+/* ✅ Good - Use focus variables */
+:focus-visible {
+  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+  box-shadow: var(--focus-shadow);
+}
+```
+
+#### Shadows
+```css
+/* ✅ Good - Use shadow variables */
+box-shadow: var(--shadow-card);
+box-shadow: var(--shadow-button);
+
+/* ❌ Bad - Hardcoded shadows */
+box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+```
 
 ## Layout & Interaction Patterns
 
