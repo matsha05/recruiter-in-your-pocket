@@ -21,17 +21,17 @@ const isServerless = Boolean(
   process.env.RENDER
 );
 
-// For serverless environments, prefer puppeteer-core with @sparticuz/chromium-min
+// For serverless environments, prefer puppeteer-core with @sparticuz/chromium
 if (isServerless) {
   try {
-    chromium = require("@sparticuz/chromium-min");
+    chromium = require("@sparticuz/chromium");
     puppeteer = require("puppeteer-core");
   } catch (e) {
     // Fall back to regular puppeteer if serverless packages aren't available
     try {
       puppeteer = require("puppeteer");
     } catch (e2) {
-      throw new Error("For serverless deployment, install @sparticuz/chromium-min and puppeteer-core. Error: " + e.message);
+      throw new Error("For serverless deployment, install @sparticuz/chromium and puppeteer-core. Error: " + e.message);
     }
   }
 } else {
@@ -43,13 +43,13 @@ if (isServerless) {
     try {
       puppeteer = require("puppeteer-core");
       try {
-        chromium = require("@sparticuz/chromium-min");
+        chromium = require("@sparticuz/chromium");
       } catch (e2) {
-        // @sparticuz/chromium-min not needed for local dev
+        // @sparticuz/chromium not needed for local dev
         chromium = null;
       }
     } catch (e2) {
-      throw new Error("Neither puppeteer nor puppeteer-core is installed. Install puppeteer for local dev or puppeteer-core + @sparticuz/chromium-min for serverless.");
+      throw new Error("Neither puppeteer nor puppeteer-core is installed. Install puppeteer for local dev or puppeteer-core + @sparticuz/chromium for serverless.");
     }
   }
 }
@@ -57,9 +57,9 @@ if (isServerless) {
 // If chromium wasn't loaded above, try to load it (for cases where it's available but not detected as serverless)
 if (!chromium) {
   try {
-    chromium = require("@sparticuz/chromium-min");
+    chromium = require("@sparticuz/chromium");
   } catch (e) {
-    // @sparticuz/chromium-min not installed, will use regular Chrome/Chromium
+    // @sparticuz/chromium not installed, will use regular Chrome/Chromium
     chromium = null;
   }
 }
@@ -1260,20 +1260,17 @@ async function generatePdfBuffer(report) {
 
     let browserOptions;
 
-    // For Vercel, use @sparticuz/chromium-min with remote executable
+    // For Vercel, use @sparticuz/chromium
     if (isVercel && chromium) {
       // Set Chromium flags for Vercel (if method exists)
       if (typeof chromium.setGraphicsMode === 'function') {
         chromium.setGraphicsMode(false);
       }
       
-      // Use remote Chromium executable for Vercel serverless
-      const remoteExecutablePath = "https://github.com/Sparticuz/chromium/releases/download/v131.0.0/chromium-v131.0.0-pack.tar";
-      
       browserOptions = {
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(remoteExecutablePath),
+        executablePath: await chromium.executablePath(),
         headless: chromium.headless,
         timeout: 30000 // 30 second timeout for browser launch
       };
