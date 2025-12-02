@@ -110,6 +110,143 @@
       --shadow-hero: 0 16px 32px rgba(15, 23, 42, 0.08);
     }
 
+    /* Dark mode color overrides */
+    [data-theme="dark"] {
+      --bg-page: #0F1115;
+      --bg-panel: #1A1C20;
+      --bg-card: #25272D;
+      --border-subtle: #2D3038;
+      --border-strong: #3A3D45;
+      --accent: #5B6FD8;
+      --accent-dark: #4A5BC4;
+      --accent-wash: rgba(91, 111, 216, 0.12);
+      --accent-boost: #6B7FE8;
+      --accent-strong: #4A5BC4;
+      --text-main: #F5F6F8;
+      --text-soft: #D1D5DB;
+      --text-muted: #9CA3AF;
+      --ink-900: #F5F6F8;
+      --slate-700: #D1D5DB;
+      --slate-500: #9CA3AF;
+      --wash: #1E2025;
+      --surface-tint: #25272D;
+      --success: #22c55e;
+      --success-dark: #16a34a;
+      --success-light: #4ade80;
+      --error: #ef4444;
+      --error-light: #fca5a5;
+      --error-dark: #dc2626;
+      --error-bg: rgba(239, 68, 68, 0.12);
+      --warning: #f59e0b;
+      --warning-dark: #d97706;
+      --shadow-soft: 0 18px 30px rgba(0, 0, 0, 0.3);
+      --focus-outline-color: #6B7FE8;
+      --focus-shadow: 0 0 0 2px rgba(107, 127, 232, 0.25);
+      --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.25);
+      --shadow-button: 0 4px 14px rgba(91, 111, 216, 0.35);
+      --shadow-button-hover: 0 6px 18px rgba(91, 111, 216, 0.4);
+      --shadow-modal: 0 18px 45px rgba(0, 0, 0, 0.4);
+      --shadow-hero: 0 16px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Dark mode specific overrides for gradients and rgba values */
+    [data-theme="dark"] .page {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow-soft), 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    [data-theme="dark"] .status-dot {
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.2);
+    }
+
+    [data-theme="dark"] .hero::before {
+      background: radial-gradient(circle at 20% 20%, rgba(91, 111, 216, 0.08), transparent 30%),
+                  radial-gradient(circle at 80% 10%, rgba(107, 127, 232, 0.06), transparent 26%);
+    }
+
+    [data-theme="dark"] .hero::after {
+      background: linear-gradient(180deg, 
+        rgba(91, 111, 216, 0.12) 0%, 
+        rgba(91, 111, 216, 0.08) 50%,
+        transparent 100%);
+    }
+
+    [data-theme="dark"] .card-input {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(165deg, #25272D 0%, #1E2025 100%);
+    }
+
+    [data-theme="dark"] .card-input:hover {
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="dark"] .run-row::before {
+      background: radial-gradient(circle at 50% 30%, rgba(91, 111, 216, 0.1), transparent 55%);
+    }
+
+    [data-theme="dark"] .btn-primary:disabled {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="dark"] .btn-primary:disabled:hover {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="dark"] .btn-secondary {
+      border: 1px solid rgba(91, 111, 216, 0.5);
+      box-shadow: 0 4px 10px rgba(91, 111, 216, 0.2);
+    }
+
+    [data-theme="dark"] .paywall-backdrop {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    [data-theme="dark"] .paywall-card {
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="dark"] .score-tooltip.open {
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="dark"] textarea {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+    }
+
+    [data-theme="dark"] .card-input:hover {
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="dark"] .card-output {
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="dark"] #loading-bar.active {
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="dark"] #results-body {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    [data-theme="dark"] .results-summary {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    [data-theme="dark"] .proof-editorial {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="dark"] .accent-card-primary {
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      [data-theme="dark"] .results-top {
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      }
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -259,10 +396,50 @@
       box-shadow: 0 0 0 5px rgba(21, 128, 61, 0.12);
     }
 
+    .theme-toggle {
+      border: none;
+      background: transparent;
+      color: var(--text-soft);
+      font-size: var(--fs-lg);
+      cursor: pointer;
+      padding: var(--space-xxs) var(--space-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      transition: color var(--motion-duration-short) var(--motion-ease-premium), background var(--motion-duration-short) var(--motion-ease-premium), transform var(--motion-duration-short) var(--motion-ease-premium);
+      line-height: 1;
+      min-width: 32px;
+      min-height: 32px;
+    }
+
+    .theme-toggle:hover {
+      color: var(--accent);
+      background: var(--accent-wash);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
+    }
+
+    .theme-toggle-icon {
+      display: inline-block;
+      transition: transform var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    [data-theme="dark"] .theme-toggle-icon {
+      transform: rotate(180deg);
+    }
+
     @media (max-width: 600px) {
       .top-bar {
         flex-direction: column;
         align-items: flex-start;
+      }
+      .theme-toggle {
+        margin-top: var(--space-xs);
       }
     }
 
@@ -3419,6 +3596,9 @@
         <div class="brand">
           <div class="brand-wordmark">Recruiter in Your Pocket</div>
         </div>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
       </header>
 
       <div id="loading-bar"></div>
@@ -3817,6 +3997,84 @@
       triggerFocusEntrance();
     }
   }
+
+  // Theme management
+  const themeToggleEl = document.getElementById("theme-toggle");
+  const themeToggleIconEl = themeToggleEl ? themeToggleEl.querySelector(".theme-toggle-icon") : null;
+
+  function getSystemPreference() {
+    if (window.matchMedia) {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    return "light";
+  }
+
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem("theme");
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setTheme(theme) {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.setAttribute("data-theme", "dark");
+      if (themeToggleIconEl) {
+        themeToggleIconEl.textContent = "☀️";
+      }
+      if (themeToggleEl) {
+        themeToggleEl.setAttribute("aria-label", "Toggle light mode");
+        themeToggleEl.setAttribute("title", "Toggle light mode");
+      }
+    } else {
+      root.removeAttribute("data-theme");
+      if (themeToggleIconEl) {
+        themeToggleIconEl.textContent = "🌙";
+      }
+      if (themeToggleEl) {
+        themeToggleEl.setAttribute("aria-label", "Toggle dark mode");
+        themeToggleEl.setAttribute("title", "Toggle dark mode");
+      }
+    }
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {
+      // Ignore localStorage errors
+    }
+  }
+
+  function initTheme() {
+    const stored = getStoredTheme();
+    const system = getSystemPreference();
+    const theme = stored || system;
+    setTheme(theme);
+  }
+
+  // Initialize theme on page load
+  initTheme();
+
+  // Listen for system preference changes
+  if (window.matchMedia) {
+    const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    colorSchemeQuery.addEventListener("change", (e) => {
+      const stored = getStoredTheme();
+      if (!stored) {
+        setTheme(e.matches ? "dark" : "light");
+      }
+    });
+  }
+
+  // Toggle theme on button click
+  if (themeToggleEl) {
+    themeToggleEl.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      setTheme(newTheme);
+    });
+  }
+
   const paywallBackdropEl = document.getElementById("paywall-backdrop");
   const paywallUpgradeEl = document.getElementById("paywall-upgrade");
   const paywallCloseEl = document.getElementById("paywall-close");
