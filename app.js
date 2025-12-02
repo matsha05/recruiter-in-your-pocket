@@ -11,24 +11,57 @@ const Stripe = require("stripe");
 let puppeteer;
 let chromium;
 
-// Prefer regular puppeteer for local development, puppeteer-core for serverless
-try {
-  puppeteer = require("puppeteer");
-} catch (e) {
-  // Fall back to puppeteer-core if puppeteer is not available
+// Check if we're on Vercel/serverless first
+const isVercel = Boolean(process.env.VERCEL);
+const isServerless = Boolean(
+  isVercel ||
+  process.env.AWS_LAMBDA_FUNCTION_NAME ||
+  process.env.FUNCTION_NAME ||
+  process.env.RAILWAY_ENVIRONMENT ||
+  process.env.RENDER
+);
+
+// For serverless environments, prefer puppeteer-core with @sparticuz/chromium
+if (isServerless) {
   try {
+    chromium = require("@sparticuz/chromium");
     puppeteer = require("puppeteer-core");
-  } catch (e2) {
-    throw new Error("Neither puppeteer nor puppeteer-core is installed. Install puppeteer for local dev or puppeteer-core + @sparticuz/chromium for serverless.");
+  } catch (e) {
+    // Fall back to regular puppeteer if serverless packages aren't available
+    try {
+      puppeteer = require("puppeteer");
+    } catch (e2) {
+      throw new Error("For serverless deployment, install @sparticuz/chromium and puppeteer-core. Error: " + e.message);
+    }
+  }
+} else {
+  // For local development, use regular puppeteer
+  try {
+    puppeteer = require("puppeteer");
+  } catch (e) {
+    // Fall back to puppeteer-core if puppeteer is not available
+    try {
+      puppeteer = require("puppeteer-core");
+      try {
+        chromium = require("@sparticuz/chromium");
+      } catch (e2) {
+        // @sparticuz/chromium not needed for local dev
+        chromium = null;
+      }
+    } catch (e2) {
+      throw new Error("Neither puppeteer nor puppeteer-core is installed. Install puppeteer for local dev or puppeteer-core + @sparticuz/chromium for serverless.");
+    }
   }
 }
 
-// Try to load @sparticuz/chromium for Vercel/AWS Lambda (optional)
-try {
-  chromium = require("@sparticuz/chromium");
-} catch (e) {
-  // @sparticuz/chromium not installed, will use regular Chrome/Chromium
-  chromium = null;
+// If chromium wasn't loaded above, try to load it (for cases where it's available but not detected as serverless)
+if (!chromium) {
+  try {
+    chromium = require("@sparticuz/chromium");
+  } catch (e) {
+    // @sparticuz/chromium not installed, will use regular Chrome/Chromium
+    chromium = null;
+  }
 }
 
 const app = express();
@@ -1205,15 +1238,7 @@ async function generatePdfBuffer(report) {
   const html = await renderReportHtml(report);
   let browser;
   try {
-    // Detect serverless/production environment
-    const isVercel = Boolean(process.env.VERCEL);
-    const isServerless = Boolean(
-      isVercel ||
-      process.env.AWS_LAMBDA_FUNCTION_NAME ||
-      process.env.FUNCTION_NAME ||
-      process.env.RAILWAY_ENVIRONMENT ||
-      process.env.RENDER
-    );
+    // Use the top-level isVercel and isServerless variables
 
     // Enhanced launch args for production/serverless environments
     const launchArgs = [
@@ -1233,21 +1258,31 @@ async function generatePdfBuffer(report) {
       launchArgs.push("--single-process"); // Sometimes needed for serverless
     }
 
-    const browserOptions = {
-      headless: "new",
-      args: launchArgs,
-      timeout: 30000 // 30 second timeout for browser launch
-    };
+    let browserOptions;
 
     // For Vercel, use @sparticuz/chromium if available
     if (isVercel && chromium) {
       // Set Chromium flags for Vercel
       chromium.setGraphicsMode(false);
-      browserOptions.executablePath = await chromium.executablePath();
-      browserOptions.args = [...launchArgs, ...chromium.args];
-    } else if (process.env.CHROME_EXECUTABLE_PATH) {
-      // Use custom Chrome path if provided
-      browserOptions.executablePath = process.env.CHROME_EXECUTABLE_PATH;
+      browserOptions = {
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+        timeout: 30000 // 30 second timeout for browser launch
+      };
+    } else {
+      // For local development or other platforms
+      browserOptions = {
+        headless: "new",
+        args: launchArgs,
+        timeout: 30000 // 30 second timeout for browser launch
+      };
+      
+      if (process.env.CHROME_EXECUTABLE_PATH) {
+        // Use custom Chrome path if provided
+        browserOptions.executablePath = process.env.CHROME_EXECUTABLE_PATH;
+      }
     }
 
     browser = await puppeteer.launch(browserOptions);
@@ -1257,8 +1292,10 @@ async function generatePdfBuffer(report) {
     page.setDefaultTimeout(30000);
     page.setDefaultNavigationTimeout(30000);
 
-    // Set viewport for consistent rendering
-    await page.setViewport({ width: 1200, height: 1600 });
+    // Set viewport for consistent rendering (only if not using chromium.defaultViewport)
+    if (!isVercel || !chromium) {
+      await page.setViewport({ width: 1200, height: 1600 });
+    }
 
     // Load the HTML content with a timeout
     await page.setContent(html, {

@@ -22,15 +22,13 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@sparticuz/chromium": "^131.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "puppeteer": "^22.15.0",
+    "puppeteer-core": "^22.15.0",
     "stripe": "^14.25.0"
-  },
-  "optionalDependencies": {
-    "@sparticuz/chromium": "^131.0.0",
-    "puppeteer-core": "^22.15.0"
   },
   "engines": {
     "node": ">=18.18.0"
