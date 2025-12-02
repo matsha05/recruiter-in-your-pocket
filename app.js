@@ -1267,10 +1267,25 @@ async function generatePdfBuffer(report) {
         chromium.setGraphicsMode(false);
       }
       
+      // Get Chromium executable path
+      const executablePath = await chromium.executablePath();
+      
+      // Enhanced args for Vercel to handle missing libraries
+      const chromiumArgs = [
+        ...chromium.args,
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-software-rasterizer',
+        '--disable-extensions',
+        '--single-process'
+      ];
+      
       browserOptions = {
-        args: chromium.args,
+        args: chromiumArgs,
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
+        executablePath: executablePath,
         headless: chromium.headless,
         timeout: 30000 // 30 second timeout for browser launch
       };
