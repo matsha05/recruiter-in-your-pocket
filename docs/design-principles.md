@@ -160,40 +160,31 @@ The product should feel alive, not mechanical; expressive, not ornamental.
 
 ---
 
-## 7.5. Design Risks Over Cookie Cutter
+## 7.5. Design Risks That Serve Insight
 
-We are willing to take design risks to create something genuinely delightful and memorable.
+We take design risks, but not randomly. We take risks that serve our dogma: **Insight + Premium Atmosphere.**
 
-**We reject:**
-- Cookie-cutter templates that look like every other SaaS product
-- Safe, generic design that prioritizes familiarity over delight
-- Design-by-committee that waters down bold choices
-- "Best practices" that lead to boring, indistinguishable products
-- Boring, newspaper-like flatness that fails to stand out
+**The Principle:**
+"Take risks" is dangerous if vague.
+- If "take risks" means "do whatever you want," you get chaos.
+- If "take risks" means "don't settle for the first generic solution," you get greatness.
 
-**We embrace:**
-- Intentional, gorgeous UX design that we obsess over
-- Bold choices that make the product feel unique and premium
-- Design risks that enhance clarity and delight
-- Visual decisions that feel crafted, not templated
-- Premium studio feel that impresses users across all backgrounds
+**Our Dogma:**
+1. **Insight First:** If it doesn't help me understand my career, cut it.
+2. **Premium Studio:** If it looks like a cheap template, kill it.
+3. **Atmosphere:** If it feels flat and boring, give it life.
 
-**The balance:**
-We take risks, but they must serve the user. A bold visual choice that confuses is a bad risk. A bold visual choice that delights and clarifies is exactly what we want.
+**We are dogmatic about quality, not rules.**
+- **Bad risk:** "Let's make the buttons diagonal because it's cool." (Doesn't serve insight).
+- **Good risk:** "Let's remove the hero title entirely and just have a massive cursor." (Risky, but might serve "studio" atmosphere).
+- **Good risk:** "Let's use extremely tight spacing to create density." (Risky, but serves information density).
 
-**Examples of good risks:**
-- Unusual but clear visual hierarchy
-- Bold color choices that enhance understanding
-- Unique interaction patterns that feel intuitive
-- Visual effects that add delight without confusion
+**The Litmus Test for Risk:**
+1. Does this bold choice make the insight clearer?
+2. Does it make the atmosphere feel more "studio" and less "SaaS"?
+3. If we played it safe here, would it look like a template?
 
-**Examples of bad risks:**
-- Novelty for novelty's sake
-- Confusing interactions that prioritize "cool" over clarity
-- Visual effects that make content harder to understand
-
-**The litmus test:**
-If it makes the product feel more intentional, gorgeous, and delightful—and it doesn't confuse—it's a risk worth taking. If it makes it feel like a template or cookie-cutter, we've played it too safe. For distribution and reach, we cannot be boring or templatized.
+**We reject cookie-cutter. We accept the risk of being opinionated.**
 
 ---
 
@@ -368,7 +359,7 @@ If removing it improves clarity, it was noise.
 **The hierarchy:**
 1. Does this maximize understanding and insight? (Table stakes)
 2. Is the experience delightful and premium? (Important but secondary)
-3. Are we taking design risks, or playing it safe with cookie-cutter? (Method)
+3. Are we taking design risks that serve insight and atmosphere? (Method)
 
 **Decision questions:**
 - Does this help users understand their story better? (If no, remove it)
@@ -387,4 +378,4 @@ If removing it improves clarity, it was noise.
 - Take the risk if it enhances delight and clarity
 - Avoid the safe, generic choice
 - Prioritize understanding first, then delight
-- Never be boring or templatized
+- Be dogmatic about quality, not "rules"
