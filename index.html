@@ -3448,7 +3448,7 @@
           </div>
           <div class="process-step">
             <div class="process-icon">2</div>
-            <div class="process-label">Get specific, recruiter-grade feedback</div>
+            <div class="process-label">See how your story lands</div>
           </div>
           <div class="process-step">
             <div class="process-icon">3</div>
@@ -3475,7 +3475,7 @@
           <div class="data-modal-body">
             <p>Your resume stays in your browser until you run a review.</p>
             <p>When you run a review, we send only your text to our servers over an encrypted connection.</p>
-            <p>We don’t retain your resume or use it for model training.</p>
+            <p>We don't keep your resume or use it to train anything.</p>
           </div>
         </div>
       </div>
@@ -4852,7 +4852,7 @@
     const text = (options.textOverride ?? inputEl.value ?? "").trim();
     logEvent("run_clicked", { sample: sampleRun });
     if (!text) {
-      const msg = "Paste your resume text so I can actually review it.";
+      const msg = "Paste your resume so I can review it.";
       statusEl.textContent = msg;
       setStatus(msg, "error");
       resultsBodyEl.textContent = "Your feedback will appear here.";
@@ -4864,8 +4864,8 @@
     }
 
     if (!sampleRun && !isPaid() && getRunCount() >= FREE_RUN_LIMIT) {
-      statusEl.textContent = "You’ve used your free runs. Upgrade to keep going.";
-      setStatus("You’ve used your free runs. Upgrade to keep going.", "error");
+      statusEl.textContent = "You've used your free reviews. Upgrade to keep going.";
+      setStatus("You've used your free reviews. Upgrade to keep going.", "error");
       showPaywall();
       return;
     }
@@ -5180,12 +5180,12 @@
   if (copyFullButtonEl) {
     copyFullButtonEl.addEventListener("click", async () => {
       if (!lastReportData) {
-        statusEl.textContent = "Nothing to copy yet.";
+        statusEl.textContent = "Nothing to copy yet. Run a review first.";
         return;
       }
       const text = buildFullReportText(lastReportData);
       if (!text.trim()) {
-        statusEl.textContent = "Nothing to copy yet.";
+        statusEl.textContent = "Nothing to copy yet. Run a review first.";
         return;
       }
       try {
@@ -5204,7 +5204,7 @@
 
         logEvent("copy_clicked");
       } catch (err) {
-        statusEl.textContent = "Couldn't copy the report. Please try again.";
+        statusEl.textContent = "Couldn't copy. Try again.";
       }
     });
   }
@@ -5217,7 +5217,7 @@
     const bodyText = resultsBodyEl ? resultsBodyEl.innerText.trim() : "";
     const text = [summaryText, bodyText].filter(Boolean).join("\n\n");
     if (!text || !lastReportData) {
-      statusEl.textContent = "Nothing to export yet.";
+      statusEl.textContent = "Nothing to export yet. Run a review first.";
       exportButtonEl.disabled = false;
       exportButtonEl.textContent = originalExportText;
       return;
@@ -5243,7 +5243,7 @@
         })
       });
       if (!resp.ok) {
-        statusEl.textContent = "Could not export right now. Try again.";
+        statusEl.textContent = "Export isn't ready. Try again.";
         exportButtonEl.disabled = false;
         exportButtonEl.textContent = originalExportText;
         if (downloadWindow && !downloadWindow.closed) downloadWindow.close();
@@ -5251,7 +5251,7 @@
       }
       const blob = await resp.blob();
       if (!blob || blob.size === 0) {
-        statusEl.textContent = "Could not export right now. Try again.";
+        statusEl.textContent = "Export isn't ready. Try again.";
         exportButtonEl.disabled = false;
         exportButtonEl.textContent = originalExportText;
         return;

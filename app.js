@@ -1227,7 +1227,7 @@ async function renderReportHtml(report) {
       <ul>${listHtml(report.next_steps)}</ul>
     </div>
 
-    <div class="footer">Generated with Recruiter in Your Pocket — recruiterinyourpocket.com</div>
+    <div class="footer">Created with Recruiter in Your Pocket — recruiterinyourpocket.com</div>
   </div>
 </body>
 </html>
@@ -1262,8 +1262,10 @@ async function generatePdfBuffer(report) {
 
     // For Vercel, use @sparticuz/chromium if available
     if (isVercel && chromium) {
-      // Set Chromium flags for Vercel
-      chromium.setGraphicsMode(false);
+      // Set Chromium flags for Vercel (if method exists)
+      if (typeof chromium.setGraphicsMode === 'function') {
+        chromium.setGraphicsMode(false);
+      }
       browserOptions = {
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
@@ -1463,14 +1465,14 @@ ${text}`;
 
     const message =
       code === "OPENAI_TIMEOUT"
-        ? "The model took too long to respond. Try again in a moment."
+        ? "This is taking longer than usual. Try again in a moment."
         : code === "OPENAI_NETWORK_ERROR"
-        ? "There was a temporary network issue. Try again in a moment."
+        ? "Connection hiccup. Try again in a moment."
         : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
           code === "OPENAI_RESPONSE_SHAPE_INVALID" ||
           code === "OPENAI_RESPONSE_NOT_JSON"
-        ? "The model response came back in a format I could not read cleanly. Please try again."
-        : "Something went wrong on my side while reviewing your resume. Try again in a minute.";
+        ? "I couldn't read the response cleanly. Try again."
+        : "I had trouble reading your resume just now. Try again in a moment.";
 
     return res.status(status).json({
       ok: false,
@@ -1571,14 +1573,14 @@ ${text}`;
 
     const message =
       errorCode === "OPENAI_TIMEOUT"
-        ? "The model took too long to respond. Try again in a moment."
+        ? "This is taking longer than usual. Try again in a moment."
         : errorCode === "OPENAI_NETWORK_ERROR"
-        ? "There was a temporary network issue. Try again in a moment."
+        ? "Connection hiccup. Try again in a moment."
         : errorCode === "OPENAI_RESPONSE_PARSE_ERROR" ||
           errorCode === "OPENAI_RESPONSE_SHAPE_INVALID" ||
           errorCode === "OPENAI_RESPONSE_NOT_JSON"
-        ? "The model response came back in a format I could not read cleanly. Please try again."
-        : "Something went wrong on my side while generating ideas. Try again in a minute.";
+        ? "I couldn't read the response cleanly. Try again."
+        : "I had trouble pulling those questions. Try again in a moment.";
 
     return res.status(respStatus).json({
       ok: false,
@@ -1613,7 +1615,7 @@ app.post("/api/export-pdf", rateLimit, (req, res) => {
         return res.status(500).json({
           ok: false,
           errorCode: "EXPORT_FAILED",
-          message: "PDF generation returned empty data. Please try again."
+          message: "PDF isn't ready right now. Give it another try."
         });
       }
       res.setHeader("Content-Type", "application/pdf");
@@ -1633,17 +1635,17 @@ app.post("/api/export-pdf", rateLimit, (req, res) => {
       );
 
       // Provide more specific error messages based on error type
-      let userMessage = "Could not generate a PDF right now. Please try again.";
+      let userMessage = "PDF isn't ready right now. Give it another try.";
       let errorCode = "EXPORT_FAILED";
 
       if (err.message.includes("timeout") || err.message.includes("Timeout")) {
-        userMessage = "PDF generation took too long. Please try again.";
+        userMessage = "PDF took too long to generate. Try again.";
         errorCode = "EXPORT_TIMEOUT";
       } else if (err.message.includes("launch") || err.message.includes("browser")) {
-        userMessage = "PDF service is temporarily unavailable. Please try again in a moment.";
+        userMessage = "PDF isn't available right now. Try again in a moment.";
         errorCode = "EXPORT_SERVICE_UNAVAILABLE";
       } else if (err.message.includes("ENOENT") || err.message.includes("executable")) {
-        userMessage = "PDF service is not properly configured. Please contact support.";
+        userMessage = "PDF isn't set up properly. Contact support if this keeps happening.";
         errorCode = "EXPORT_CONFIG_ERROR";
       }
 
