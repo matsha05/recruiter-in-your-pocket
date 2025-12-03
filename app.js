@@ -89,6 +89,21 @@ if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
   console.warn("Missing OPENAI_API_KEY in .env; live OpenAI calls will fail until set.");
 }
 
+// Detect production environment
+const isProduction = process.env.NODE_ENV === "production" || 
+                     Boolean(process.env.VERCEL) ||
+                     Boolean(process.env.RAILWAY_ENVIRONMENT) ||
+                     Boolean(process.env.RENDER) ||
+                     Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
+
+// Require API_AUTH_TOKEN in production
+if (isProduction && !API_AUTH_TOKEN) {
+  console.error("ERROR: API_AUTH_TOKEN is required in production but is not set.");
+  console.error("Set API_AUTH_TOKEN in your environment variables before starting the server.");
+  console.error("For local development, API_AUTH_TOKEN is optional.");
+  process.exit(1);
+}
+
 // Health check
 app.get("/health", (req, res) => {
   res.json({ ok: true });
@@ -165,13 +180,64 @@ function loadPromptFile(filename) {
 }
 
 // Ready check
-app.get("/ready", (req, res) => {
+app.get("/ready", async (req, res) => {
   try {
     const hasKey = Boolean(OPENAI_API_KEY) || USE_MOCK_OPENAI;
     loadPromptFile("resume_v1.txt");
     if (!hasKey) {
       return res.status(500).json({ ok: false, message: "Missing OPENAI_API_KEY" });
     }
+
+    // Check PDF generation capability
+    let pdfReady = false;
+    let pdfError = null;
+    try {
+      // Try to check if Chromium/Puppeteer is available
+      // Use a lightweight check: try to get executable path or launch with very short timeout
+      if (isVercel && chromium) {
+        // For Vercel, check if chromium executable is available
+        try {
+          const executablePath = await chromium.executablePath();
+          if (executablePath) {
+            pdfReady = true;
+          }
+        } catch (e) {
+          pdfError = `Chromium executable not available: ${e.message}`;
+        }
+      } else if (puppeteer) {
+        // For local/dev, try a very lightweight browser launch with short timeout
+        const testBrowser = await Promise.race([
+          puppeteer.launch({
+            headless: "new",
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+            timeout: 5000 // 5 second timeout for readiness check
+          }),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error("Browser launch timeout")), 5000)
+          )
+        ]);
+        await testBrowser.close();
+        pdfReady = true;
+      } else {
+        pdfError = "Puppeteer not available";
+      }
+    } catch (err) {
+      pdfError = err.message;
+      // Don't fail the ready check if PDF isn't available, but log it
+      logLine({ 
+        level: "warn", 
+        msg: "pdf_readiness_check_failed", 
+        error: err.message 
+      });
+    }
+
+    if (!pdfReady && pdfError) {
+      return res.status(500).json({ 
+        ok: false, 
+        message: `PDF generation not ready: ${pdfError}` 
+      });
+    }
+
     return res.json({ ok: true });
   } catch (err) {
     logLine({ level: "error", msg: "ready_failed", err: err.message }, true);
