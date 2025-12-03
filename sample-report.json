@@ -1,0 +1,55 @@
+{
+  "score": 86,
+  "score_label": "Strong",
+  "score_comment_short": "You read as someone who takes messy workstreams and makes them shippable.",
+  "score_comment_long": "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+  "summary": "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+  "strengths": [
+    "You keep delivery on track when priorities change and still close the loop with stakeholders.",
+    "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
+    "You describe decisions you owned instead of hiding behind \"the team.\"",
+    "You show pattern recognition in how you prevent issues from recurring."
+  ],
+  "gaps": [
+    "Scope (teams, geos, customers, volume, dollars) is often missing.",
+    "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
+    "Some bullets blend multiple ideas; split them so impact lands.",
+    "A few phrases could be more specific to the systems or programs you ran."
+  ],
+  "rewrites": [
+    {
+      "label": "Impact",
+      "original": "Improved process across teams.",
+      "better": "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
+      "enhancement_note": "If you have it, include: number of teams/regions and shipments or users affected, so scope is obvious."
+    },
+    {
+      "label": "Scope",
+      "original": "Supported leadership on projects.",
+      "better": "Supported leadership by running risk reviews and comms so projects stayed aligned across teams.",
+      "enhancement_note": "If you have it, include: number of teams or regions involved, which clarifies scale."
+    },
+    {
+      "label": "Clarity",
+      "original": "Handled stakeholder updates.",
+      "better": "Kept launches on track by running checklists, risk reviews, and stakeholder comms so go-live stayed on schedule.",
+      "enhancement_note": "If you have it, include: number of launches per month/quarter and audience size, to show reach."
+    },
+    {
+      "label": "Ownership",
+      "original": "Handled stakeholder updates.",
+      "better": "Led stakeholder updates with decisions, risks, and next steps so leaders could unblock issues quickly.",
+      "enhancement_note": "If you have it, include: cadence and the groups involved, so the reader sees scale."
+    }
+  ],
+  "next_steps": [
+    "Add scope (teams, volume, regions) to two top bullets.",
+    "State one before/after metric in a headline bullet.",
+    "Split any bullet that mixes decisions and outcomes."
+  ],
+  "layout_score": 86,
+  "layout_band": "strong",
+  "layout_notes": "",
+  "content_score": 86
+}
+

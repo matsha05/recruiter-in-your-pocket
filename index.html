@@ -1244,6 +1244,10 @@
     /* Results */
 
     .results-header-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
       display: block;
       margin-top: var(--space-xxs);
       margin-bottom: var(--space-sm);
@@ -3252,7 +3256,8 @@
       .run-button:active,
       .copy-button:hover,
       .export-button:hover,
-      .sample-resume-button:hover {
+      .sample-resume-button:hover,
+      .sample-report-button:hover {
         transform: none !important;
         box-shadow: 0 10px 22px color-mix(in srgb, var(--accent) 18%, transparent);
       }
@@ -3262,6 +3267,35 @@
       align-self: flex-start;
       margin: var(--space-xxs) 0 var(--space-sm);
       font-size: var(--fs-small);
+    }
+
+    .sample-report-button {
+      align-self: flex-start;
+      margin: var(--space-xxs) 0 var(--space-sm);
+      font-size: var(--fs-small);
+    }
+
+    .sample-helper-text {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      margin-top: calc(-1 * var(--space-xs));
+      margin-bottom: var(--space-sm);
+      line-height: var(--lh-normal);
+    }
+
+    .report-tag {
+      font-size: var(--fs-xs);
+      color: var(--accent);
+      font-weight: 600;
+      margin-left: var(--space-sm);
+      padding: var(--space-xxs) var(--space-sm);
+      background: var(--accent-wash);
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.01em;
+    }
+
+    .report-tag.hidden {
+      display: none;
     }
 
     .clear-button {
@@ -3711,8 +3745,10 @@
 
             <div class="button-group">
               <button id="sample-resume-button" type="button" class="sample-resume-button btn-primary">Try a sample resume →</button>
+              <button id="sample-report-button" type="button" class="sample-report-button btn-secondary">See Sample Report →</button>
               <button id="clear-button" type="button" class="clear-button btn-secondary hidden">Clear</button>
             </div>
+            <div class="sample-helper-text">See exactly what you'll get before pasting your resume</div>
 
             <div class="input-wrapper resume-input-container resume-input-shell">
               <textarea
@@ -3795,6 +3831,7 @@
               </div>
               <div class="results-header-row">
                 <h2 id="results-title" class="card-title"><span class="report-title">Recruiter feedback</span></h2>
+                <div id="report-tag" class="report-tag hidden">Sample report</div>
                 <div class="focus-controls">
                   <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
                 </div>
@@ -3974,6 +4011,77 @@
   const STORAGE_KEY = "rip-main-input-v1";
   const API_AUTH_TOKEN = window.API_AUTH_TOKEN || "c2f8e0d9a4b76c3d9f1a7b20d84c6e1a";
   const authHeaders = API_AUTH_TOKEN ? { Authorization: `Bearer ${API_AUTH_TOKEN}` } : {};
+  // Inline sample report as a guaranteed fallback so the sample preview always renders
+  window.SAMPLE_REPORT = window.SAMPLE_REPORT || {
+    score: 86,
+    score_label: "Strong",
+    score_comment_short:
+      "You read as someone who takes messy workstreams and makes them shippable.",
+    score_comment_long:
+      "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+    summary:
+      "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+    strengths: [
+      "You keep delivery on track when priorities change and still close the loop with stakeholders.",
+      "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
+      'You describe decisions you owned instead of hiding behind "the team."',
+      "You show pattern recognition in how you prevent issues from recurring."
+    ],
+    gaps: [
+      "Scope (teams, geos, customers, volume, dollars) is often missing.",
+      "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
+      "Some bullets blend multiple ideas; split them so impact lands.",
+      "A few phrases could be more specific to the systems or programs you ran."
+    ],
+    rewrites: [
+      {
+        label: "Impact",
+        original: "Improved process across teams.",
+        better:
+          "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
+        enhancement_note:
+          "If you have it, include: number of teams/regions and shipments or users affected, so scope is obvious."
+      },
+      {
+        label: "Scope",
+        original: "Supported leadership on projects.",
+        better:
+          "Supported leadership by running risk reviews and comms so projects stayed aligned across teams.",
+        enhancement_note:
+          "If you have it, include: number of teams or regions involved, which clarifies scale."
+      },
+      {
+        label: "Clarity",
+        original: "Handled stakeholder updates.",
+        better:
+          "Kept launches on track by running checklists, risk reviews, and stakeholder comms so go-live stayed on schedule.",
+        enhancement_note:
+          "If you have it, include: number of launches per month/quarter and audience size, to show reach."
+      },
+      {
+        label: "Ownership",
+        original: "Handled stakeholder updates.",
+        better:
+          "Led stakeholder updates with decisions, risks, and next steps so leaders could unblock issues quickly.",
+        enhancement_note:
+          "If you have it, include: cadence and the groups involved, so the reader sees scale."
+      }
+    ],
+    suggested_bullets: [],
+    missing_wins: [
+      "Highlight one launch where you personally unblocked delivery (owner, decision, outcome).",
+      "Add scope to a top bullet: teams/regions/users so scale is obvious.",
+      "Show one before/after metric to make the impact of your decisions clear."
+    ],
+    next_steps: [
+      "Add scope (teams, volume, regions) to two top bullets.",
+      "State one before/after metric in a headline bullet.",
+      "Split any bullet that mixes decisions and outcomes."
+    ],
+    layout_score: 86,
+    layout_band: "strong",
+    layout_notes: "Content is clear; add scope and outcomes faster so impact lands."
+  };
 
   const inputEl = document.getElementById("main-input");
   const inputLabelEl = document.getElementById("input-label");
@@ -4003,10 +4111,12 @@
   const dataModalEl = document.getElementById("data-modal");
   const dataModalCardEl = document.getElementById("data-modal-card");
   const dataModalCloseEl = document.getElementById("data-modal-close");
+  const reportTagEl = document.getElementById("report-tag");
   const textareaEl = document.getElementById("main-input");
   const savedIndicatorEl = document.getElementById("saved-indicator");
   const loadingBarEl = document.getElementById("loading-bar");
   const sampleResumeButtonEl = document.getElementById("sample-resume-button");
+  const sampleReportButtonEl = document.getElementById("sample-report-button");
   const clearButtonEl = document.getElementById("clear-button");
   const ideasInlineEl = document.getElementById("ideas-inline");
   const ideasOpenEl = document.getElementById("ideas-open");
@@ -4027,6 +4137,8 @@
   let hasReportContent = false;
   let hasLoggedPaste = false;
   let lastReportData = null;
+  let isSampleReportActive = false;
+  let cachedSampleReport = null;
   let hasPlayedReportReveal = false;
   let previousBodyOverflow = "";
   let currentReportIsSample = false;
@@ -4944,7 +5056,8 @@
     }
   }
 
-  function renderStructuredResults(data) {
+  function renderStructuredResults(data, options = {}) {
+    const { isSample = false } = options;
     const {
       summary,
       strengths,
@@ -4960,7 +5073,19 @@
     } = data || {};
     hasReportContent = true;
 
+    // Show/hide sample tag
+    if (isSample) {
+      showSampleTag();
+    } else {
+      hideSampleTag();
+    }
+
     let html = "";
+
+    // Add sample report note if this is a sample
+    if (isSample) {
+      html += `<div class="stack-section stack-accent-line"><div class="stack-subline" style="font-style: italic; color: var(--text-muted);">You are looking at a sample report generated from a fictional resume. Paste your own resume above to see your personalized feedback.</div></div>`;
+    }
 
     // score pill and commentary
     if (typeof score === "number") {
@@ -5405,7 +5530,8 @@
         return;
       }
 
-      renderStructuredResults(structured);
+      renderStructuredResults(structured, { isSample: false });
+      isSampleReportActive = false;
       if (reportWrapperEl) {
         reportWrapperEl.style.display = "block";
       }
@@ -5425,6 +5551,15 @@
       }
       if (resultsActionsBottomEl) {
         resultsActionsBottomEl.classList.remove("hidden");
+      }
+      // Re-enable export/copy buttons for real reports
+      if (exportButtonEl) {
+        exportButtonEl.disabled = false;
+        exportButtonEl.title = "";
+      }
+      if (copyFullButtonEl) {
+        copyFullButtonEl.disabled = false;
+        copyFullButtonEl.title = "";
       }
 
       runIdeas({ auto: true, sourceText: text });
@@ -5559,6 +5694,10 @@
     copyFullButtonEl.addEventListener("click", async () => {
       if (!lastReportData) {
         statusEl.textContent = "Nothing to copy yet. Run a review first.";
+        return;
+      }
+      if (isSampleReportActive) {
+        statusEl.textContent = "Copy is available after you run your own resume.";
         return;
       }
       const text = buildFullReportText(lastReportData);
@@ -5864,6 +6003,124 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
         }
       }, 300);
     });
+  }
+
+  // Sample report loading and rendering
+  async function loadSampleReport() {
+    if (cachedSampleReport) {
+      return cachedSampleReport;
+    }
+
+    // Check if window.SAMPLE_REPORT exists (from inline script)
+    if (typeof window !== "undefined" && window.SAMPLE_REPORT) {
+      cachedSampleReport = window.SAMPLE_REPORT;
+      return cachedSampleReport;
+    }
+
+    // Otherwise fetch from JSON file
+    try {
+      const response = await fetch("/sample-report.json");
+      if (!response.ok) {
+        return null;
+      }
+      const data = await response.json();
+      cachedSampleReport = data;
+      return cachedSampleReport;
+    } catch (err) {
+      console.warn("Could not load sample report", err);
+      return null;
+    }
+  }
+
+  function showSampleTag() {
+    if (reportTagEl) {
+      reportTagEl.classList.remove("hidden");
+    }
+  }
+
+  function hideSampleTag() {
+    if (reportTagEl) {
+      reportTagEl.classList.add("hidden");
+    }
+  }
+
+  async function handleSampleReportClick() {
+    if (!inputEl || !resultsBodyEl) return;
+
+    // Ensure the report container is visible
+    if (reportWrapperEl) {
+      reportWrapperEl.style.display = "block";
+    }
+    // Clear status and errors
+    if (statusEl) {
+      statusEl.textContent = "";
+      statusEl.classList.remove("status-loading", "status-error", "status-success");
+    }
+    clearValidationError();
+
+    // Set sample report active state
+    isSampleReportActive = true;
+    showSampleTag();
+
+    // Hide skeleton if visible
+    if (resultsSkeletonEl) {
+      resultsSkeletonEl.classList.add("hidden");
+    }
+
+    // Hide any error states
+    resultsBodyEl.classList.remove("results-error", "empty", "muted");
+    resultsBodyEl.style.display = "";
+
+    // Log event
+    logEvent("sample_report_viewed");
+
+    // Load and render sample report
+    const report = await loadSampleReport();
+    if (!report) {
+      const errorMsg = "Sample report is temporarily unavailable. Try running the sample resume instead.";
+      if (statusEl) {
+        statusEl.textContent = errorMsg;
+        setStatus(errorMsg, "error");
+      }
+      resultsBodyEl.textContent = errorMsg;
+      resultsBodyEl.classList.add("results-error");
+      resultsBodyEl.classList.remove("empty");
+      updateToolLayout();
+      return;
+    }
+
+    // Render the sample report
+    renderStructuredResults(report, { isSample: true });
+    lastReportData = report;
+
+    // Show export/copy buttons but disable them with helpful tooltips
+    if (resultsActionsBottomEl) {
+      resultsActionsBottomEl.classList.remove("hidden");
+    }
+    if (exportButtonEl) {
+      exportButtonEl.disabled = true;
+      exportButtonEl.title = "Export is available after you run your own resume";
+    }
+    if (copyFullButtonEl) {
+      copyFullButtonEl.disabled = true;
+      copyFullButtonEl.title = "Copy is available after you run your own resume";
+    }
+
+    // Trigger reveal animation
+    triggerReportReveal();
+    updateToolLayout();
+
+    // Auto-scroll to results
+    setTimeout(() => {
+      const reportCard = document.querySelector(".card-output");
+      if (reportCard && typeof reportCard.scrollIntoView === "function") {
+        reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+  }
+
+  if (sampleReportButtonEl) {
+    sampleReportButtonEl.addEventListener("click", handleSampleReportClick);
   }
 
   if (clearButtonEl) {
