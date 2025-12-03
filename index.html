@@ -3972,6 +3972,8 @@
   // consider splitting styles into a shared CSS file and moving JS into a small app.js
   // to reduce risk and keep components reusable.
   const STORAGE_KEY = "rip-main-input-v1";
+  const API_AUTH_TOKEN = window.API_AUTH_TOKEN || "c2f8e0d9a4b76c3d9f1a7b20d84c6e1a";
+  const authHeaders = API_AUTH_TOKEN ? { Authorization: `Bearer ${API_AUTH_TOKEN}` } : {};
 
   const inputEl = document.getElementById("main-input");
   const inputLabelEl = document.getElementById("input-label");
@@ -5180,7 +5182,10 @@
   async function startCheckout() {
     if (paywallStatusEl) paywallStatusEl.textContent = "Opening checkout...";
     try {
-      const resp = await fetch("/api/create-checkout-session", { method: "POST" });
+      const resp = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { ...authHeaders, "Content-Type": "application/json" }
+      });
       const data = await resp.json().catch(() => null);
       if (!resp.ok || !data?.ok || !data?.url) {
         const msg =
@@ -5288,6 +5293,7 @@
       const response = await fetch("/api/resume-feedback", {
         method: "POST",
         headers: {
+          ...authHeaders,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -5605,6 +5611,7 @@
       const resp = await fetch("/api/export-pdf", {
         method: "POST",
         headers: {
+          ...authHeaders,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -5692,6 +5699,7 @@
       const response = await fetch("/api/resume-ideas", {
         method: "POST",
         headers: {
+          ...authHeaders,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ text })
