@@ -1,56 +1,19 @@
 This is the working checklist for turning the app from a good MVP into a premium, studio-grade product. master-roadmap.md stays the high-level source of truth; todo.md is the execution view for builders.
 
-## Phase 1 – Signature Report (Insight Stack) — Done
-Goal: A single-column, editorial, premium report page that feels intentional and readable end to end.
+## Tier 5 – Hero & Trust Surface Polish
 
-Layout & structure
-- [x] Make the Recruiter feedback area a single-column Insight Stack (no inner scroll boxes).
-- [x] Enforce section order: Score + top read → How your resume reads → What’s working → What’s harder to see → Stronger phrasing → Missing Wins → Next steps.
-- [x] Ensure this order and layout work on both desktop and mobile.
+Goal: The hero should support the experience, not distract or feel like a template.
 
-Visual signature
-- [x] Add a thin left accent spine that anchors the report sections.
-- [x] Tighten vertical spacing between sections so it reads like an editorial page.
-- [x] Apply a consistent heading style for all stack headings.
+### T5.1 Hero cleanup
+- [ ] Tighten spacing and typography for a more crafted, intentional premium studio feel
+- [ ] Assess gradients - keep atmosphere gradients (0.08–0.12 opacity) that support premium feel, remove noise (effects that compete with content)
 
-Micro-interactions
-- [x] Add subtle hover/focus states to primary buttons (Get feedback, Export PDF, Copy, Missing Wins trigger).
-- [x] Respect prefers-reduced-motion for any transitions.
+### T5.2 Primary path dominance
+- [ ] Make the path "paste → run" absolutely obvious
 
-UX checks
-- [x] Verify that sample resume, paywall, Missing Wins, copy, and export still work exactly as before.
-- [x] Manually test desktop and mobile for reading flow (no “card in a landing page” feeling).
+### T5.3 Trust cues
+- [ ] Data-handling visible and credible (verify it's prominent enough)
+- [ ] Add optional "How scoring works" microline or tooltip
 
-## Phase 2 – Export & Copy (Report Portability)
-Goal: Make the report travel well as PDF and structured text.
-- [x] Add print CSS so browser print/PDF output mirrors on-screen report (section order, headings, spacing, accent spine).
-- [x] Ensure the existing Export PDF action uses this styling.
-- [x] Add a “Copy with headings” option that preserves section order and labels.
-- [x] Add a small inline hint near export about sharing with mentors/recruiters.
-
-## Phase 3 – Tiny Design System — Done
-Goal: Codify spacing, type, and accent decisions so Codex and Matt stay consistent.
-- [x] Define CSS variables for spacing (e.g., --space-xs/sm/md/lg/xl).
-- [x] Define CSS variables for typography (e.g., --type-body, --type-heading, --type-label).
-- [x] Define CSS variables for accent color and radius.
-- [x] Introduce reusable classes: .stack-section, .stack-heading, .stack-accent-line.
-- [x] Refactor existing report markup to use these classes where appropriate.
-- [x] Confirm focus states and contrast meet accessibility guidance.
-
-## Phase 4 – Hardening (First Slice) — Done
-Goal: Make failures predictable and observable without changing product behavior.
-- [x] Review current JSON schema validation for resume feedback responses.
-- [x] Ensure we fail closed on invalid JSON unless USE_MOCK_OPENAI is explicitly set.
-- [x] Add structured error envelopes (code + message) for the frontend.
-- [x] Log OpenAI latency and parse failures with reqId in the backend.
-- [x] Confirm request body size caps are enforced for resume input.
-
-## Phase 5 – UX Instrumentation — Done
-Goal: Understand how real users move through the core flows.
-- [x] Track key moments: resume_pasted, run_clicked, copy_clicked, export_clicked
-- [x] Track optional moments: missing_wins_opened, paywall_impression
-- [x] Minimal JS implementation (no SDKs, console logging ready for telemetry endpoint)
-
-## Parking Lot – Later Phases
-- Session history / saved runs.
-- Offer Studio and future modes.
+**Definition of Done:**  
+A first-time visitor understands what it does, why it's trustworthy, and how to start — without feeling marketed to.

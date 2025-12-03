@@ -7,7 +7,7 @@ Source of truth for how this product becomes premium, delightful, and studio-gra
 North star:
 
 - Give people crafted, honest clarity about their career quickly.  
-- Feel like an elite recruiter studio — a premium editorial instrument.  
+- Feel like an elite recruiter studio — a premium crafted instrument.  
 - Every session should produce one “holy shit, that actually helped” moment.  
 - Look and feel like something built by someone with taste.
 
@@ -35,7 +35,7 @@ Score tooltip, meaning, and tone aligned to rubric.
 
 ## Tier 1 – Signature Report (THIS IS NOW THE HEART OF EVERYTHING)
 
-Goal: Create a single, premium, editorial-grade report view that feels intentional, crafted, and non-boring — the moment people remember.
+Goal: Create a single, premium, crafted report view that feels intentional, crafted, and non-boring — the moment people remember.
 
 ### T1.1 Single-column Insight Stack
 
@@ -57,7 +57,7 @@ Desktop + mobile behave identically in structure.
 
 Left accent spine (thin line) across entire report.  
 Clear vertical spacing rhythm (design tokens).  
-Premium type scale: modern, editorial, confident — not generic SaaS.
+Premium type scale: modern, crafted, confident — not generic SaaS.
 
 ### T1.3 Micro-interactions (delight without noise)
 
@@ -68,9 +68,9 @@ No neon, no AI-glow, no dashboard patterns.
 
 ### T1.4 Not boring
 
-Keep it sharp and crafted — more Apple editorial than calm newspaper.  
+Keep it sharp and crafted — more Apple crafted than calm newspaper.  
 One accent color used with intention.  
-Use spacing, typography, and structure to delight, not decorative noise.
+Use spacing, typography, and structure to delight, not noise.
 
 Definition of Done:  
 A user pastes a resume, clicks “Get feedback,” and the resulting screen looks like a premium studio report — confident, distinctive, and impossible to confuse with a template.
@@ -167,7 +167,7 @@ Goal: The hero should support the experience, not distract or feel like a templa
 ### T5.1 Hero cleanup
 
 Tightened spacing + type.  
-No decorative gradients or busy elements.
+Keep atmosphere gradients (0.08–0.12 opacity) that support premium feel. Remove noise (effects that compete with content).
 
 ### T5.2 Primary path dominance
 

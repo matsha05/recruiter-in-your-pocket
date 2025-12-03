@@ -327,7 +327,7 @@ box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
 **Rationale:**
 - After generating feedback, users need to read and absorb the report
 - Input panel becomes visual noise once feedback is generated
-- Centering the report (max-width: 960px) creates an editorial reading experience
+- Centering the report (max-width: 960px) creates a crafted reading experience
 - "Back to editor" allows quick return to input for iteration
 
 **Implementation:**

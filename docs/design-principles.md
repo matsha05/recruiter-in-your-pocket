@@ -84,7 +84,7 @@ Joy and delight support insight; they don't replace it.
 
 ---
 
-## 4. No Noise  
+## 4. Visual Depth & Atmosphere  
 Avoid anything that makes the experience confusing or harder to understand. Visual delight is welcome when it enhances clarity and makes the product more enjoyable to use.
 
 **Distinction:**
