@@ -248,6 +248,27 @@ function rateLimit(req, res, next) {
   next();
 }
 
+// Periodic cleanup of expired rate limit buckets to prevent memory leaks
+const CLEANUP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
+setInterval(() => {
+  const now = Date.now();
+  let removed = 0;
+  for (const [key, bucket] of rateBuckets.entries()) {
+    if (now > bucket.resetAt) {
+      rateBuckets.delete(key);
+      removed++;
+    }
+  }
+  if (removed > 0) {
+    logLine({
+      level: "info",
+      msg: "rate_limit_cleanup",
+      removed,
+      remaining: rateBuckets.size
+    });
+  }
+}, CLEANUP_INTERVAL_MS);
+
 app.use(express.static(path.join(__dirname)));
 
 app.get("/", (req, res) => {

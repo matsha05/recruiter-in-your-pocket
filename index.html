@@ -988,6 +988,42 @@
       opacity: 1;
     }
 
+    .input-validation-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--fs-xs);
+      margin-bottom: var(--space-sm-alt);
+      min-height: 20px;
+    }
+
+    .char-count {
+      color: var(--text-muted);
+      font-size: var(--fs-xs);
+      transition: color var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .char-count.warning {
+      color: var(--warning, #f59e0b);
+    }
+
+    .char-count.error {
+      color: var(--error, #ef4444);
+      font-weight: 500;
+    }
+
+    .validation-error {
+      color: var(--error, #ef4444);
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      flex: 1;
+      text-align: right;
+    }
+
+    .validation-error.hidden {
+      display: none;
+    }
+
     body.focus-mode .tool-layout {
       grid-template-columns: minmax(0, 1fr);
       margin-top: var(--space-sm);
@@ -3682,12 +3718,17 @@
               <textarea
                 id="main-input"
                 placeholder="Paste your full resume, including work history, skills, and education."
+                maxlength="30000"
               ></textarea>
             </div>
 
             <div class="input-meta-row">
               <div>Your resume stays in your browser until you run a review.</div>
               <div id="saved-indicator" class="saved-indicator">Saved</div>
+            </div>
+            <div class="input-validation-row">
+              <div id="char-count" class="char-count"></div>
+              <div id="validation-error" class="validation-error hidden"></div>
             </div>
 
             <div class="run-row">
@@ -3975,6 +4016,8 @@
   const ideasLoadingBarEl = document.getElementById("ideas-loading-bar");
   const ideasStatusEl = document.getElementById("ideas-status");
   const focusToggleEl = document.getElementById("focus-toggle");
+  const charCountEl = document.getElementById("char-count");
+  const validationErrorEl = document.getElementById("validation-error");
   const prefersReducedMotionQuery = window.matchMedia
     ? window.matchMedia("(prefers-reduced-motion: reduce)")
     : null;
@@ -4231,6 +4274,8 @@
   function clearInput() {
     inputEl.value = "";
     autoResizeTextarea();
+    updateCharCount();
+    clearValidationError();
     try {
       localStorage.removeItem(STORAGE_KEY);
     } catch (e) {
@@ -4256,6 +4301,7 @@
       if (saved) {
         inputEl.value = saved;
         autoResizeTextarea();
+        updateCharCount();
         showSavedIndicator();
         updateClearButtonVisibility();
         return;
@@ -4265,11 +4311,72 @@
     }
     inputEl.value = "";
     autoResizeTextarea();
+    updateCharCount();
     updateClearButtonVisibility();
+  }
+
+  const MAX_TEXT_LENGTH = 30000;
+  const WARNING_THRESHOLD = 0.9; // 90% of limit
+
+  function updateCharCount() {
+    if (!charCountEl || !inputEl) return;
+    const length = inputEl.value.length;
+    const trimmedLength = inputEl.value.trim().length;
+    
+    if (length === 0) {
+      charCountEl.textContent = "";
+      charCountEl.classList.remove("warning", "error");
+      return;
+    }
+
+    const percentage = length / MAX_TEXT_LENGTH;
+    charCountEl.textContent = `${length.toLocaleString()} / ${MAX_TEXT_LENGTH.toLocaleString()} characters`;
+    
+    if (percentage >= 1.0) {
+      charCountEl.classList.add("error");
+      charCountEl.classList.remove("warning");
+    } else if (percentage >= WARNING_THRESHOLD) {
+      charCountEl.classList.add("warning");
+      charCountEl.classList.remove("error");
+    } else {
+      charCountEl.classList.remove("warning", "error");
+    }
+  }
+
+  function showValidationError(message) {
+    if (!validationErrorEl) return;
+    validationErrorEl.textContent = message;
+    validationErrorEl.classList.remove("hidden");
+  }
+
+  function clearValidationError() {
+    if (!validationErrorEl) return;
+    validationErrorEl.textContent = "";
+    validationErrorEl.classList.add("hidden");
+  }
+
+  function validateInput() {
+    const text = inputEl.value.trim();
+    clearValidationError();
+
+    if (!text) {
+      return { valid: false, error: "Paste your resume so I can review it." };
+    }
+
+    if (inputEl.value.length > MAX_TEXT_LENGTH) {
+      return {
+        valid: false,
+        error: `Your resume text is very long (${inputEl.value.length.toLocaleString()} characters). Try sending a smaller section or trimming extra content.`
+      };
+    }
+
+    return { valid: true };
   }
 
   inputEl.addEventListener("input", (event) => {
     autoResizeTextarea();
+    updateCharCount();
+    clearValidationError();
     const trimmed = inputEl.value.trim();
 
     if (!trimmed) {
@@ -5110,10 +5217,14 @@
     isSampleRun = false;
     const text = (options.textOverride ?? inputEl.value ?? "").trim();
     logEvent("run_clicked", { sample: sampleRun });
-    if (!text) {
-      const msg = "Paste your resume so I can review it.";
+    
+    // Client-side validation before API call
+    const validation = validateInput();
+    if (!validation.valid) {
+      const msg = validation.error;
       statusEl.textContent = msg;
       setStatus(msg, "error");
+      showValidationError(msg);
       resultsBodyEl.textContent = "Your feedback will appear here.";
       resultsBodyEl.classList.add("empty");
       resultsBodyEl.classList.remove("results-error");
@@ -5121,6 +5232,8 @@
       if (resultsActionsBottomEl) resultsActionsBottomEl.classList.add("hidden");
       return;
     }
+    
+    clearValidationError();
 
     if (!sampleRun && !isPaid() && getRunCount() >= FREE_RUN_LIMIT) {
       statusEl.textContent = "You've used your free reviews. Upgrade to keep going.";
