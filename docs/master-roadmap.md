@@ -1,6 +1,6 @@
 # Recruiter in Your Pocket – Master Roadmap
 
-Last updated: 2025-11-26  
+Last updated: 2024-12-02  
 Owner: Matt  
 Source of truth for how this product becomes premium, delightful, and studio-grade — not an AI toy.
 
@@ -33,7 +33,7 @@ Score tooltip, meaning, and tone aligned to rubric.
 
 ---
 
-## Tier 1 – Signature Report (THIS IS NOW THE HEART OF EVERYTHING)
+## Tier 1 – Signature Report (Done)
 
 Goal: Create a single, premium, crafted report view that feels intentional, crafted, and non-boring — the moment people remember.
 
@@ -77,7 +77,7 @@ A user pastes a resume, clicks “Get feedback,” and the resulting screen look
 
 ---
 
-## Tier 2 – Portability & Shareability (Make the report travel)
+## Tier 2 – Portability & Shareability (Done)
 
 Goal: Give users artifacts they want to share with mentors, interviewers, and colleagues.
 
@@ -100,9 +100,9 @@ Users can send the report, and the artifact sells the product for you.
 
 ---
 
-## Tier 3 – Tiny Design System (Just enough to enforce taste)
+## Tier 3 – Tiny Design System (Done)
 
-Goal: Protect the product’s visual identity from entropy and ensure Codex stays consistent.
+Goal: Protect the product's visual identity from entropy and ensure Codex stays consistent.
 
 ### T3.1 Design tokens
 
@@ -129,7 +129,7 @@ The UI stays consistent over time, and Codex can safely build new components wit
 
 ---
 
-## Tier 4 – Hardening & Observability (Invisible but essential)
+## Tier 4 – Hardening & Observability (Done)
 
 Goal: Behave like real software now that the product looks premium.
 
@@ -183,7 +183,7 @@ A first-time visitor understands what it does, why it’s trustworthy, and how t
 
 ---
 
-## Tier 6 – UX Instrumentation (Lightweight, after layout stabilizes)
+## Tier 6 – UX Instrumentation (Done)
 
 Goal: Understand how real users move through the core flows.
 
