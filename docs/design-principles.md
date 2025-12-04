@@ -14,6 +14,10 @@ Clarity first.
 Confidence always.  
 Delight when it actually helps.
 
+We calm the mind with clarity; the UI itself is confident and decisive, not soft or neutral.
+
+We prefer expressive restraint over polite neutrality; it’s okay if a few things feel bold as long as they serve clarity.
+
 # DESIGN PRINCIPLES
 
 ## 1. Crafted  
@@ -100,6 +104,7 @@ Avoid anything that makes the experience confusing or harder to understand. Visu
 - Subtle color washes that reinforce the accent color without overwhelming
 - Soft grain or texture that adds premium feel (if used sparingly)
 - Ambient lighting effects that feel like quality, not decoration
+- The main score, CTAs, and key phrases are allowed to be bold. Calm ≠ washed out; there should always be a clear visual path for the eye.
 
 **Noise (Remove):**
 - Gradients above 0.15 opacity that create visible "blobs" or patterns
@@ -107,6 +112,7 @@ Avoid anything that makes the experience confusing or harder to understand. Visu
 - Multiple competing gradients or effects in the same view
 - Animated gradients or effects that draw the eye away from content
 - Neon colors or high-saturation effects that feel "gamer" or cheap
+- **False calm:** everything the same weight, low-contrast headings, and CTAs that don’t stand out. If everything is calm, nothing is clear.
 
 **Decision Framework:**
 1. **Does it support the content?** If removing it makes the content harder to read or less engaging, it's atmosphere.
@@ -145,6 +151,8 @@ Make the insight stack unmistakable:
 - the main takeaway visible in one second  
 - the Insight Stack, PDF, and Copy outputs get the most design attention  
 
+The report should have one obvious hero on each view (score + verdict, then one clear next action). Calm layout, strong hierarchy.
+
 If something doesn’t help the user understand their story faster, remove it with confidence.
 
 ---
@@ -155,6 +163,8 @@ We favor:
 - crafted moments over sterile minimalism  
 - confidence over neutrality  
 - expressive restraint over flatness and hollow perfectionism  
+
+If a screen feels flat and boring, we over-corrected; fix it with one or two stronger focal points, not with random decoration.
 
 The product should feel alive, not mechanical; expressive, not ornamental.
 
@@ -314,10 +324,21 @@ Momentum ≠ speed. Momentum = clarity + capability + forward motion.
 
 ---
 
+## 6. Product Outcomes, Not Just Vibes  
+
+Every screen should move the user toward **concrete progress** (editing their resume, re-running, or sharing) and move the product toward **viability** (more runs, referrals, paid usage).
+
+It’s okay to be a little less “calm” when:
+- Clarifying what’s free vs. paid  
+- Highlighting the primary CTA  
+- Asking for the next commitment (for example, “Run this against your next version”)  
+
+---
+
 # SIGNATURE PATTERN
 
-## 1. Insight Stack  
-A single vertical stack of:
+## 1. Structured Story  
+Every report tells a structured story:
 - Score  
 - How your story lands  
 - Strengths  
@@ -326,7 +347,7 @@ A single vertical stack of:
 - Enhancement notes  
 - Next steps  
 
-Each section has one obvious takeaway.
+Layout (cards, vertical stack, etc.) can evolve; this content sequence and the “one clear takeaway per section” stays.
 
 ## 2. Signature Accent  
 A refined accent (line or highlight) used sparingly and intentionally to guide the eye.  
