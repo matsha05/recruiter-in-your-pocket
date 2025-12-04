@@ -649,6 +649,292 @@
       gap: var(--space-xxs);
     }
 
+    /* Two-column hero layout */
+    .hero-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-preview {
+      position: relative;
+    }
+
+    .hero-preview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-preview-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--accent);
+      border-radius: var(--radius-card) 0 0 var(--radius-card);
+    }
+
+    .hero-preview-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xxs);
+      padding: var(--space-xxs) var(--space-sm);
+      background: var(--accent-wash);
+      color: var(--accent);
+      font-size: var(--fs-tiny);
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      margin-bottom: var(--space-md);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .hero-preview-score {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-preview-dial {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg 309deg, var(--border-subtle) 309deg 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-preview-dial::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      background: var(--bg-card);
+    }
+
+    .hero-preview-dial-number {
+      position: relative;
+      font-family: var(--font-display);
+      font-size: var(--fs-xl);
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .hero-preview-score-text {
+      flex: 1;
+    }
+
+    .hero-preview-score-label {
+      font-size: var(--fs-tiny);
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--space-xxs);
+    }
+
+    .hero-preview-score-band {
+      font-family: var(--font-display);
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      color: var(--ink-900);
+    }
+
+    .hero-preview-verdict {
+      font-size: var(--fs-label);
+      color: var(--text-main);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-preview-section {
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-preview-section-title {
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .hero-preview-item {
+      font-size: var(--fs-small);
+      color: var(--text-soft);
+      line-height: var(--lh-relaxed);
+      padding-left: var(--space-md);
+      position: relative;
+      margin-bottom: var(--space-xxs);
+    }
+
+    .hero-preview-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero-preview-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(transparent, var(--bg-card));
+      pointer-events: none;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .hero-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      padding: var(--space-md) var(--space-xl);
+      background: var(--accent);
+      color: white;
+      font-size: var(--fs-base);
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-input);
+      cursor: pointer;
+      box-shadow: var(--shadow-button);
+      transition: background var(--motion-duration-short) var(--motion-ease-premium),
+                  transform var(--motion-duration-short) var(--motion-ease-premium),
+                  box-shadow var(--motion-duration-short) var(--motion-ease-premium);
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .hero-cta-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-button-hover);
+    }
+
+    .hero-cta-primary:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
+    }
+
+    .hero-cta-secondary {
+      font-size: var(--fs-small);
+      color: var(--accent-boost);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 500;
+      padding: var(--space-xxs) 0;
+      transition: color var(--motion-duration-short) var(--motion-ease-premium);
+      width: fit-content;
+    }
+
+    .hero-cta-secondary:hover {
+      color: var(--accent-strong);
+    }
+
+    .hero-cta-secondary:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      border-radius: var(--radius-xs);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      .hero-preview {
+        order: -1;
+      }
+
+      .hero-preview-card {
+        max-height: 280px;
+        overflow: hidden;
+      }
+    }
+
+    /* Value strip */
+    .value-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin: 0 auto var(--space-2xl);
+      max-width: 1100px;
+      padding: 0 var(--space-md);
+    }
+
+    .value-item {
+      text-align: center;
+      padding: var(--space-md);
+    }
+
+    .value-icon {
+      font-size: var(--fs-2xl);
+      margin-bottom: var(--space-sm);
+    }
+
+    .value-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-label);
+      font-weight: 700;
+      color: var(--ink-900);
+      margin-bottom: var(--space-xxs);
+      letter-spacing: -0.01em;
+    }
+
+    .value-desc {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      line-height: var(--lh-relaxed);
+    }
+
+    @media (max-width: 768px) {
+      .value-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .value-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Social proof */
     .proof {
       margin-top: var(--space-md-lg);
@@ -927,7 +1213,26 @@
       font-size: var(--fs-h1);
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: var(--space-sm);
+      margin-bottom: var(--space-xxs);
+    }
+
+    .card-subtitle {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-md);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     label {
@@ -1487,6 +1792,84 @@
 
     .report-card-content-inner {
       padding-top: var(--space-sm);
+    }
+
+    /* Static chapter layout (non-collapsible report sections) */
+    .report-chapter {
+      position: relative;
+      padding: var(--space-xl) var(--space-lg) var(--space-lg) var(--space-xl);
+      margin-bottom: var(--space-lg);
+      border-radius: var(--radius-input);
+      background: transparent;
+      transition: background var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .report-chapter::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: var(--space-sm);
+      bottom: var(--space-sm);
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 50%, transparent) 100%);
+      border-radius: var(--radius-pill);
+      opacity: 0.6;
+      transition: opacity var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .report-chapter:hover {
+      background: rgba(51, 65, 166, 0.03);
+    }
+
+    .report-chapter:hover::before {
+      opacity: 0.9;
+    }
+
+    .report-chapter:last-child {
+      margin-bottom: 0;
+    }
+
+    .report-chapter-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h2);
+      font-weight: 700;
+      color: var(--ink-900);
+      letter-spacing: -0.02em;
+      margin: 0 0 var(--space-xxs) 0;
+      line-height: var(--lh-cozy);
+    }
+
+    .report-chapter-subtitle {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      line-height: var(--lh-relaxed);
+      margin: 0 0 var(--space-md) 0;
+    }
+
+    .report-chapter-content {
+      font-size: var(--fs-label);
+      color: var(--text-main);
+      line-height: var(--lh-relaxed);
+    }
+
+    .report-chapter-content p {
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .report-chapter-content ul {
+      margin: 0 0 var(--space-sm) 0;
+      padding-left: var(--space-lg);
+    }
+
+    .report-chapter-content li {
+      margin-bottom: var(--space-xs);
+      line-height: var(--lh-relaxed);
+    }
+
+    .report-chapters {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
     .report-view {
@@ -3865,39 +4248,72 @@
       <div id="loading-bar"></div>
 
       <section class="hero">
-        <h1 class="hero-title">Strong, recruiter-grade resume feedback in under a minute.</h1>
-        <p class="hero-subtitle">Get a specific read on how your story lands, plus stronger bullets and clear next steps.</p>
-        <p class="hero-credibility">Crafted by a recruiter who's run 10,000+ interviews and made 1,000+ hires across Google, Meta, OpenAI, and startups across the world.</p>
-        <div class="hero-promise">
-          <strong>In one minute, you'll get:</strong>
-          <ul>
-            <li>Specific feedback tailored to your story, not generic AI advice</li>
-              <li>What’s working, what’s buried, and what’s getting missed</li>
-            <li>Stronger bullet phrasing and the exact next steps to take</li>
-          </ul>
-        </div>
-        <div class="trust-inline hero-trust-line">
-          <span>We don’t store your resume.</span>
-          <button id="data-handling-inline" type="button" aria-haspopup="dialog" aria-controls="data-modal">How we handle data</button>
-        </div>
+        <div class="hero-grid-layout">
+          <div class="hero-content">
+            <h1 class="hero-title">See how recruiters actually read your resume.</h1>
+            <p class="hero-subtitle">Get a recruiter's honest read, stronger bullets, and clear next steps—in under a minute.</p>
+            <p class="hero-credibility">Built by a recruiter who's run 10,000+ interviews and made 1,000+ hires at Google, Meta, OpenAI, and startups.</p>
+            
+            <div class="hero-cta-group">
+              <a href="#main-input" class="hero-cta-primary" id="hero-cta-scroll">Get a recruiter's read →</a>
+              <button type="button" class="hero-cta-secondary" id="hero-sample-report">See a sample report</button>
+            </div>
 
-        <div class="process-track">
-          <div class="process-line"></div>
-          <div class="process-step">
-            <div class="process-icon">1</div>
-            <div class="process-label">Paste your resume</div>
+            <div class="trust-inline hero-trust-line">
+              <span class="status-dot"></span>
+              <span>Your resume stays private.</span>
+              <button id="data-handling-inline" type="button" aria-haspopup="dialog" aria-controls="data-modal">How we handle data</button>
+            </div>
           </div>
-          <div class="process-step">
-            <div class="process-icon">2</div>
-            <div class="process-label">See how your story lands</div>
-          </div>
-          <div class="process-step">
-            <div class="process-icon">3</div>
-            <div class="process-label">See exactly what to fix and why</div>
+
+          <div class="hero-preview">
+            <div class="hero-preview-card">
+              <div class="hero-preview-badge">Sample Report</div>
+              <div class="hero-preview-score">
+                <div class="hero-preview-dial">
+                  <span class="hero-preview-dial-number">86</span>
+                </div>
+                <div class="hero-preview-score-text">
+                  <div class="hero-preview-score-label">Clarity Score</div>
+                  <div class="hero-preview-score-band">Strong foundation</div>
+                </div>
+              </div>
+              <div class="hero-preview-verdict">You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership.</div>
+              <div class="hero-preview-section">
+                <div class="hero-preview-section-title">Top fixes</div>
+                <div class="hero-preview-item">Add scope (teams, volume) to two top bullets</div>
+                <div class="hero-preview-item">State one before/after metric in a headline</div>
+                <div class="hero-preview-item">Split any bullet that mixes decisions and outcomes</div>
+              </div>
+              <div class="hero-preview-fade"></div>
+            </div>
           </div>
         </div>
-
       </section>
+
+      <!-- Value strip -->
+      <div class="value-strip" aria-label="What you get">
+        <div class="value-item">
+          <div class="value-icon">📊</div>
+          <div class="value-title">Clarity score</div>
+          <div class="value-desc">See how clearly your story lands on a first read</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🎯</div>
+          <div class="value-title">Honest read</div>
+          <div class="value-desc">What's working, what's buried, and what's getting missed</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✍️</div>
+          <div class="value-title">Stronger phrasing</div>
+          <div class="value-desc">Real rewrites you can copy, not generic advice</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🚀</div>
+          <div class="value-title">Clear next steps</div>
+          <div class="value-desc">Know exactly what to fix in your next editing session</div>
+        </div>
+      </div>
 
       <div class="proof-editorial accent-card-primary" aria-label="Testimonials from users">
         <div class="proof-editorial-heading">What early users say</div>
@@ -3927,10 +4343,11 @@
           <div class="card-inner">
             <div class="card-header">
               <h2 class="card-title">Your resume</h2>
+              <p class="card-subtitle">Paste your resume text below for a recruiter-grade review</p>
             </div>
 
-            <label for="main-input" id="input-label">
-              Paste your full resume text, or try the sample to see it in action.
+            <label for="main-input" id="input-label" class="sr-only">
+              Resume text input
             </label>
 
             <div class="button-group">
@@ -4022,7 +4439,7 @@
                 </div>
                 <div class="report-header-content">
                   <div class="results-header-row">
-                    <h2 id="results-title" class="card-title"><span class="report-title">Recruiter feedback</span></h2>
+                    <h2 id="results-title" class="card-title"><span class="report-title">Recruiter report</span></h2>
                     <div id="report-tag" class="report-tag hidden">Sample report</div>
                     <div class="focus-controls">
                       <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
@@ -4720,6 +5137,15 @@
     }
   }
 
+  // Stub function for legacy renderSummary calls
+  function renderSummary(message) {
+    // Summary is now rendered as part of the report chapters
+    // This stub prevents errors from legacy code paths
+    if (resultsSummaryEl && message) {
+      resultsSummaryEl.textContent = message;
+    }
+  }
+
   function clearScoreBadge() {
     if (scoreDialNumberEl) scoreDialNumberEl.textContent = "0";
     if (scoreDialContainerEl) {
@@ -5160,28 +5586,23 @@
     }
   }
 
-  function renderCard(sectionId, title, subtitle, preview, contentHtml, isExpanded = false) {
-    const cardId = `card-${sectionId}`;
+  // Static chapter renderer (replaces collapsible cards)
+  function renderChapter(sectionId, title, subtitle, contentHtml) {
     return `
-      <div id="${cardId}" class="report-card ${isExpanded ? 'expanded' : ''}" data-section="${sectionId}">
-        <div class="report-card-header">
-          <div class="report-card-title-group">
-            <h3 class="report-card-title">${escapeHtml(title)}</h3>
-            <p class="report-card-subtitle">${escapeHtml(subtitle)}</p>
-          </div>
-          <button class="report-card-toggle" type="button" aria-expanded="${isExpanded}" aria-controls="${cardId}-content">
-            <span>${isExpanded ? 'Collapse' : 'Expand'}</span>
-            <span class="report-card-toggle-icon">▼</span>
-          </button>
-        </div>
-        ${preview ? `<div class="report-card-preview">${escapeHtml(preview)}</div>` : ''}
-        <div id="${cardId}-content" class="report-card-content">
-          <div class="report-card-content-inner">
-            ${contentHtml}
-          </div>
+      <div class="report-chapter" data-section="${sectionId}">
+        <h3 class="report-chapter-title">${escapeHtml(title)}</h3>
+        <p class="report-chapter-subtitle">${escapeHtml(subtitle)}</p>
+        <div class="report-chapter-content">
+          ${contentHtml}
         </div>
       </div>
     `;
+  }
+
+  // Legacy card renderer (kept for backwards compatibility)
+  function renderCard(sectionId, title, subtitle, preview, contentHtml, isExpanded = false) {
+    // Now uses static chapter layout
+    return renderChapter(sectionId, title, subtitle, contentHtml);
   }
 
   function applySectionReveal() {
@@ -5315,49 +5736,25 @@
     const resultsBodyEl = document.getElementById("results-body");
     if (!resultsBodyEl) return;
 
-    let targetCard = null;
+    let targetChapter = null;
 
-    if (section === "impact-results") {
-      // Scroll to "Stronger phrasing" card and expand it
-      targetCard = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
-      if (targetCard) {
-        const impactClusterEl = targetCard.querySelector('[data-cluster="impact"]');
-        if (impactClusterEl) {
-          // Expand card if collapsed
-          if (!targetCard.classList.contains("expanded")) {
-            toggleCard(targetCard);
-          }
-        }
-      }
-    } else if (section === "clarity-structure") {
-      // Scroll to "Stronger phrasing" card and expand it
-      targetCard = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
-      if (targetCard) {
-        const clarityClusterEl = targetCard.querySelector('[data-cluster="clarity"]');
-        if (clarityClusterEl) {
-          // Expand card if collapsed
-          if (!targetCard.classList.contains("expanded")) {
-            toggleCard(targetCard);
-          }
-        }
-      }
+    if (section === "impact-results" || section === "clarity-structure") {
+      // Scroll to "Stronger phrasing" chapter
+      targetChapter = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
     } else if (section === "focus-craft") {
-      // Scroll to "What's harder to see" card and expand it
-      targetCard = resultsBodyEl.querySelector('[data-section="harder-to-see"]');
-      if (targetCard && !targetCard.classList.contains("expanded")) {
-        toggleCard(targetCard);
-      }
+      // Scroll to "What's harder to see" chapter
+      targetChapter = resultsBodyEl.querySelector('[data-section="harder-to-see"]');
     }
 
-    if (targetCard) {
-      targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (targetChapter) {
+      targetChapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
       // Add a subtle highlight effect
-      targetCard.style.transition = 'background-color 180ms ease';
-      targetCard.style.backgroundColor = 'var(--accent-wash)';
+      targetChapter.style.transition = 'background-color 180ms ease';
+      targetChapter.style.backgroundColor = 'var(--accent-wash)';
       setTimeout(() => {
-        targetCard.style.backgroundColor = '';
+        targetChapter.style.backgroundColor = '';
         setTimeout(() => {
-          targetCard.style.transition = '';
+          targetChapter.style.transition = '';
         }, 180);
       }, 1000);
     }
@@ -5534,23 +5931,15 @@
     html += renderCard("next-steps", "Next steps", "Clear, doable actions that build momentum and make your story easier to read.", preview, contentHtml);
 
     if (!html) {
-      html = '<div class="report-card"><p>No feedback returned.</p></div>';
+      html = '<div class="report-chapter"><p class="report-chapter-content">No feedback returned.</p></div>';
     }
 
-    resultsBodyEl.innerHTML = html;
+    // Wrap chapters in a container
+    resultsBodyEl.innerHTML = `<div class="report-chapters">${html}</div>`;
 
     if (ideasInlineEl) {
       ideasInlineEl.classList.remove("hidden");
     }
-
-    // Attach toggle handlers to all cards
-    const cards = resultsBodyEl.querySelectorAll('.report-card');
-    cards.forEach(card => {
-      const toggleBtn = card.querySelector('.report-card-toggle');
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => toggleCard(card));
-      }
-    });
 
     resultsBodyEl.classList.remove("refreshed");
     void resultsBodyEl.offsetWidth;
@@ -6466,6 +6855,25 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
 
   if (sampleReportButtonEl) {
     sampleReportButtonEl.addEventListener("click", handleSampleReportClick);
+  }
+
+  // Hero CTA buttons
+  const heroCtaScrollEl = document.getElementById("hero-cta-scroll");
+  const heroSampleReportEl = document.getElementById("hero-sample-report");
+
+  if (heroCtaScrollEl) {
+    heroCtaScrollEl.addEventListener("click", (e) => {
+      e.preventDefault();
+      const inputEl = document.getElementById("main-input");
+      if (inputEl) {
+        inputEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => inputEl.focus(), 400);
+      }
+    });
+  }
+
+  if (heroSampleReportEl) {
+    heroSampleReportEl.addEventListener("click", handleSampleReportClick);
   }
 
   if (clearButtonEl) {
