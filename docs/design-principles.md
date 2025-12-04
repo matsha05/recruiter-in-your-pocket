@@ -91,6 +91,7 @@ Design decisions must first maximize understanding and insight. Then, we make th
 
 Joy and delight support insight; they don't replace it.
 
+
 ---
 
 ## 4. Visual Depth & Atmosphere  
@@ -131,17 +132,22 @@ Premium = intentional, clean, expressive, and confidently restrained—but never
 ---
 
 ## 5. Human and Approachable  
-The UI must work for all backgrounds:  
-tech, retail, ministry, nonprofit, legal, education.
+You're a skilled human writer who natrually connects with readers through authentic content. You write like you genuinly care about helping.
 
-We prioritize:
-- readable type  
-- predictable spacing  
-- warmth over formality  
-- simple, honest language  
+Voice
+- Use a conversational tone with natural contractions (you’re, can’t, we’ll).
+Keep language simple and concrete — explain things the way you would to a friend over coffee.
+- Prefer plain English over jargon or AI buzzwords. If we must use a hiring term (scope, signal, ATS), give a quick, friendly explanation.
+- Vary sentence length: short, punchy lines for headings and key takeaways; slightly longer sentences where the user needs context.
 
-Users should feel welcomed and understood without being talked down to.  
-Language should sound like a warm recruiter, not corporate copy.
+Connection
+- Show that we understand what the reader’s going through — the stress of job search, unclear feedback, imposter feelings.
+- Lead with a line that connects emotionally, then follow with specific, actionable advice.
+- Use relatable metaphors sparingly to clarify ideas (“buried wins,” “muted scope”), but never at the expense of accuracy.
+
+Boundaries
+- Avoid “messy” or meandering copy. No long tangents. Every sentence should either build trust or make the next step clearer.
+- If a heading or summary would confuse someone outside tech, rewrite it until it works for a teacher, nurse, or retail manager.
 
 ---
 
@@ -162,7 +168,25 @@ If something doesn’t help the user understand their story faster, remove it wi
 
 ---
 
-## 7. Premium Over Perfect  
+## 7. Hero Hierarchy  
+Every screen, section, and panel must have one clear visual hero—the element the eye lands on first.
+
+A hero can be:
+- the score + verdict
+- the primary CTA
+- the top insight in a section
+- the first “Better” rewrite
+- the clearest next action
+
+Everything else should support that hero, not compete with it.
+
+Hero hierarchy prevents “false calm,” reduces cognitive load, and makes the experience feel premium, confident, and intentionally crafted.
+
+If a layout feels noisy or confusing, identify the hero and reduce everything else until it is unmistakable.
+
+---
+
+## 8. Premium Over Perfect  
 We favor:
 - clarity over polish paralysis  
 - crafted moments over sterile minimalism  
@@ -175,7 +199,7 @@ The product should feel alive, not mechanical; expressive, not ornamental.
 
 ---
 
-## 8. Design Risks That Serve Insight
+## 9. Design Risks That Serve Insight
 
 We take design risks, but not randomly. We take risks that serve our dogma: **Insight + Premium Atmosphere.**
 
@@ -203,7 +227,7 @@ We take design risks, but not randomly. We take risks that serve our dogma: **In
 
 ---
 
-## 9. Consistency Builds Trust
+## 10. Consistency Builds Trust
 Recruiter in Your Pocket must maintain consistent:
 - spacing  
 - typography rules  
@@ -217,7 +241,7 @@ Ease builds trust.
 
 ---
 
-## 10. Recruiter-Grade Authority
+## 11. Recruiter-Grade Authority
 
 We speak from real experience: 1000+ hires across Google, Facebook, OpenAI, startups (Series A-C), and nonprofits. We've been CPOs, principal recruiters, and hiring managers who've seen what actually works.
 
@@ -235,7 +259,23 @@ This is the difference between recruiter-grade insight and generic AI slop.
 
 ---
 
-## 10. Specificity Over Generics
+## 11.5. Visual Evidence of Expertise
+The interface should visually communicate that a real recruiter’s mind shaped the analysis.
+
+We reinforce expertise through:
+- decisive, editorial-style section headings
+- bold, short summary reads that mirror real recruiter judgment
+- before/after comparisons that reveal expert craft
+- structured notes that feel like margin comments from someone experienced
+- confident language that reflects how resumes are actually evaluated
+
+The UI should feel like a professional critique, not an algorithmic scan.
+
+If a screen feels generic or algorithmic, introduce editorial cues—clear summaries, confident phrasing, structural emphasis—to reassert recruiter-grade expertise.
+
+---
+
+## 12. Specificity Over Generics
 
 Every insight should feel tailored to this person's story, not generic advice that could apply to anyone.
 
@@ -256,6 +296,16 @@ Recruiter-grade specificity sounds like:
 - "Add the team size here so the scope is obvious"
 
 If feedback could apply to any resume, it's not specific enough. If it feels like we read their actual story, it's working.
+
+## 13. Instant Value Visibility
+Users should immediately understand what the product does and what they get, visually and conceptually, without scrolling or reading deeply. We reinforce this by:
+- Showing an example of the report (score + summary + bullets) above the fold  
+- Demonstrating value before asking for input  
+- Using visual storytelling to reduce anxiety and build credibility- interaction patterns  
+
+If users must imagine the outcome, conversion drops.
+If they see the outcome, conversion accelerates.
+
 
 ---
 
@@ -333,10 +383,14 @@ Momentum ≠ speed. Momentum = clarity + capability + forward motion.
 
 Every screen should move the user toward **concrete progress** (editing their resume, re-running, or sharing) and move the product toward **viability** (more runs, referrals, paid usage).
 
-It’s okay to be a little less “calm” when:
-- Clarifying what’s free vs. paid  
-- Highlighting the primary CTA  
-- Asking for the next commitment (for example, “Run this against your next version”)  
+Drive progress + paid usage. Design must intentionally support conversion. Premium does not mean passive. 
+
+This includes:
+- Clear CTA hierarchy
+- Pricing visibility when appropriate
+- Repeated “next step” affordances
+- Avoiding competing CTAs
+- Ensuring the path to paid value is obvious and emotionally safe
 
 ---
 
