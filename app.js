@@ -317,6 +317,14 @@ app.use(
         // Malformed origin; fall through to rejection
       }
 
+      // Helpful logging for CORS failures
+      logLine({
+        level: "warn",
+        msg: "cors_blocked",
+        origin,
+        allowedOrigins: Array.from(allowedOrigins)
+      });
+
       return callback(new Error("CORS_NOT_ALLOWED"), false);
     }
   })
