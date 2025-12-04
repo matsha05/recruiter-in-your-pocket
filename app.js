@@ -83,7 +83,27 @@ const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 30
 const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN;
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+// Support single or comma-separated origins in FRONTEND_URL
+const FRONTEND_URL_RAW = process.env.FRONTEND_URL || "http://localhost:3000";
+function parseOrigins(raw) {
+  return String(raw)
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      try {
+        const url = new URL(entry);
+        return `${url.protocol}//${url.host}`;
+      } catch (e) {
+        console.warn(`Invalid FRONTEND_URL entry ignored: ${entry}`);
+        return null;
+      }
+    })
+    .filter(Boolean);
+}
+const FRONTEND_URLS = parseOrigins(FRONTEND_URL_RAW);
+// Keep a primary URL for things like Stripe redirects; fall back to localhost if parsing failed
+const FRONTEND_URL = FRONTEND_URLS[0] || "http://localhost:3000";
 const stripe = STRIPE_SECRET_KEY ? Stripe(STRIPE_SECRET_KEY) : null;
 
 if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
@@ -98,13 +118,11 @@ const isProduction = process.env.NODE_ENV === "production" ||
                      Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
 
 const isDevLike = !isProduction;
-const allowedOrigins = new Set(
-  [
-    FRONTEND_URL,
-    isDevLike ? "http://localhost:3000" : null,
-    isDevLike ? "http://127.0.0.1:3000" : null
-  ].filter(Boolean)
-);
+const allowedOrigins = new Set([
+  ...FRONTEND_URLS,
+  isDevLike ? "http://localhost:3000" : null,
+  isDevLike ? "http://127.0.0.1:3000" : null
+].filter(Boolean));
 
 // Warn if Stripe is configured without API auth in non-production
 if (stripe && !API_AUTH_TOKEN && !isProduction) {

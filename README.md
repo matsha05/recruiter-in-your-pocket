@@ -47,7 +47,7 @@ Recruiter in Your Pocket is a tiny, high-end "resume studio" that reads your res
 - `LOG_FILE` - Optional path to log file for structured logging.
 - `STRIPE_SECRET_KEY` - Stripe secret key for payment processing.
 - `STRIPE_PRICE_ID` - Stripe price ID for checkout sessions.
-- `FRONTEND_URL` - Frontend URL for Stripe redirects (default: http://localhost:3000).
+- `FRONTEND_URL` - Frontend URL for Stripe redirects (default: http://localhost:3000). You can provide a comma-separated list to allow multiple origins (e.g., `https://app.example.com, https://www.example.com`).
 
 ### Security & CORS
 
