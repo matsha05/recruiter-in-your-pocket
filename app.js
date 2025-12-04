@@ -65,6 +65,7 @@ if (!chromium) {
 }
 
 const app = express();
+app.disable("x-powered-by");
 const PORT = process.env.PORT || 3000;
 const LOG_FILE = process.env.LOG_FILE;
 const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(
@@ -96,6 +97,23 @@ const isProduction = process.env.NODE_ENV === "production" ||
                      Boolean(process.env.RENDER) ||
                      Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
 
+const isDevLike = !isProduction;
+const allowedOrigins = new Set(
+  [
+    FRONTEND_URL,
+    isDevLike ? "http://localhost:3000" : null,
+    isDevLike ? "http://127.0.0.1:3000" : null
+  ].filter(Boolean)
+);
+
+// Warn if Stripe is configured without API auth in non-production
+if (stripe && !API_AUTH_TOKEN && !isProduction) {
+  console.warn(
+    "Stripe is configured but API_AUTH_TOKEN is not set. " +
+    "In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments."
+  );
+}
+
 // Require API_AUTH_TOKEN in production
 if (isProduction && !API_AUTH_TOKEN) {
   console.error("ERROR: API_AUTH_TOKEN is required in production but is not set.");
@@ -111,7 +129,24 @@ app.get("/health", (req, res) => {
 
 // Simple request ID + logging with light sanitization (avoid logging user text/PII)
 function sanitizeLogObject(obj = {}) {
-  const blockedKeys = new Set(["text", "content", "raw", "rawContent", "body", "resume"]);
+  const blockedKeys = new Set([
+    "text",
+    "content",
+    "raw",
+    "rawContent",
+    "body",
+    "resume",
+    "password",
+    "authorization",
+    "cookie",
+    "cookies",
+    "set-cookie",
+    "token",
+    "secret",
+    "key",
+    "client_secret",
+    "card"
+  ]);
   const cleaned = {};
   for (const [key, value] of Object.entries(obj)) {
     if (blockedKeys.has(key)) continue;
@@ -247,8 +282,40 @@ app.get("/ready", async (req, res) => {
 
 console.log("Server starting in directory:", __dirname);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow non-browser or same-origin requests (no Origin header)
+      if (!origin) return callback(null, true);
+
+      try {
+        const url = new URL(origin);
+        const normalizedOrigin = `${url.protocol}//${url.host}`;
+
+        if (allowedOrigins.has(normalizedOrigin)) {
+          return callback(null, true);
+        }
+      } catch {
+        // Malformed origin; fall through to rejection
+      }
+
+      return callback(new Error("CORS_NOT_ALLOWED"), false);
+    }
+  })
+);
+
 app.use(express.json());
+
+// Set simple security headers on all responses
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("Referrer-Policy", "same-origin");
+  res.setHeader("X-Frame-Options", "DENY");
+  // X-XSS-Protection is legacy; set to "0" to avoid legacy filter quirks
+  res.setHeader("X-XSS-Protection", "0");
+  next();
+});
+
 app.set("trust proxy", true);
 
 app.use((req, res, next) => {
@@ -287,32 +354,53 @@ if (API_AUTH_TOKEN) {
 }
 
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
-const RATE_LIMIT_MAX = 60;
 const rateBuckets = new Map();
 
-function rateLimit(req, res, next) {
-  const key = req.ip || req.connection?.remoteAddress || "unknown";
-  const now = Date.now();
-  const bucket = rateBuckets.get(key) || { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS };
-
-  if (now > bucket.resetAt) {
-    bucket.count = 0;
-    bucket.resetAt = now + RATE_LIMIT_WINDOW_MS;
-  }
-
-  bucket.count += 1;
-  rateBuckets.set(key, bucket);
-
-  if (bucket.count > RATE_LIMIT_MAX) {
-    return res.status(429).json({
-      ok: false,
-      errorCode: "RATE_LIMIT",
-      message: "Too many requests. Please wait a moment and try again."
-    });
-  }
-
-  next();
+function getRateLimitKey(req) {
+  const ip = req.ip || req.connection?.remoteAddress || "unknown";
+  const authHeader = req.headers.authorization || "";
+  const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+  const tokenSuffix = token ? `:${token.slice(0, 16)}` : "";
+  return ip + tokenSuffix;
 }
+
+function createRateLimiter(maxPerMinute) {
+  return function rateLimitMiddleware(req, res, next) {
+    const baseKey = getRateLimitKey(req);
+    const bucketKey = `${baseKey}:${maxPerMinute}`;
+    const now = Date.now();
+    const bucket =
+      rateBuckets.get(bucketKey) || {
+        count: 0,
+        resetAt: now + RATE_LIMIT_WINDOW_MS
+      };
+
+    if (now > bucket.resetAt) {
+      bucket.count = 0;
+      bucket.resetAt = now + RATE_LIMIT_WINDOW_MS;
+    }
+
+    bucket.count += 1;
+    rateBuckets.set(bucketKey, bucket);
+
+    if (bucket.count > maxPerMinute) {
+      return res.status(429).json({
+        ok: false,
+        errorCode: "RATE_LIMIT",
+        message: "Too many requests. Please wait a moment and try again."
+      });
+    }
+
+    next();
+  };
+}
+
+// Route-specific rate limiters (per IP/token)
+const rateLimitLight = createRateLimiter(60);     // for cheap endpoints if needed
+const rateLimitResume = createRateLimiter(20);    // /api/resume-feedback
+const rateLimitIdeas = createRateLimiter(20);     // /api/resume-ideas
+const rateLimitPdf = createRateLimiter(10);       // /api/export-pdf
+const rateLimitCheckout = createRateLimiter(10);  // /api/create-checkout-session
 
 // Periodic cleanup of expired rate limit buckets to prevent memory leaks
 const CLEANUP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
@@ -341,7 +429,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.post("/api/create-checkout-session", rateLimit, async (req, res) => {
+app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => {
   if (!stripe || !STRIPE_PRICE_ID || !FRONTEND_URL) {
     return res.status(500).json({
       ok: false,
@@ -428,13 +516,23 @@ function validateResumeFeedbackRequest(body) {
     }
   }
 
-  if (jobContext !== undefined && typeof jobContext !== "string") {
-    fieldErrors.jobContext = "Job context should be plain text if you include it.";
+  if (jobContext !== undefined) {
+    if (typeof jobContext !== "string") {
+      fieldErrors.jobContext = "Job context should be plain text if you include it.";
+    } else if (jobContext.length > 500) {
+      fieldErrors.jobContext =
+        "Job context is a bit long. Trim it to the key details (a few lines).";
+    }
   }
 
-  if (seniorityLevel !== undefined && typeof seniorityLevel !== "string") {
-    fieldErrors.seniorityLevel =
-      "Seniority level should be plain text if you include it.";
+  if (seniorityLevel !== undefined) {
+    if (typeof seniorityLevel !== "string") {
+      fieldErrors.seniorityLevel =
+        "Seniority level should be plain text if you include it.";
+    } else if (seniorityLevel.length > 200) {
+      fieldErrors.seniorityLevel =
+        'Seniority level should be short, like "Senior IC" or "Director".';
+    }
   }
 
   if (Object.keys(fieldErrors).length > 0) {
@@ -574,7 +672,7 @@ async function callOpenAIChat(messages, mode) {
               strengths: [
                 "You keep delivery on track when priorities change and still close the loop with stakeholders.",
                 "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
-                "You describe decisions you owned instead of hiding behind “the team.”",
+                'You describe decisions you owned instead of hiding behind "the team."',
                 "You show pattern recognition in how you prevent issues from recurring."
               ],
               gaps: [
@@ -665,6 +763,14 @@ async function callOpenAIChat(messages, mode) {
       const latencyMs = Date.now() - t0;
 
       const textBody = await res.text();
+
+      if (textBody.length > 100_000) {
+        throw createAppError(
+          "OPENAI_RESPONSE_TOO_LARGE",
+          "The model sent back a response that was too large to process.",
+          502
+        );
+      }
 
       if (!res.ok) {
         const status = res.status;
@@ -952,7 +1058,7 @@ function fallbackResumeData() {
     strengths: [
       "You keep delivery on track when priorities change and still close the loop with stakeholders.",
       "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
-      "You describe decisions you owned instead of hiding behind “the team.”",
+      'You describe decisions you owned instead of hiding behind "the team."',
       "You show pattern recognition in how you prevent issues from recurring."
     ],
     gaps: [
@@ -1022,11 +1128,39 @@ function fallbackIdeasData() {
 
 function validateReportForPdf(report) {
   if (!report || typeof report !== "object") return false;
+
   const requiredArrays = ["strengths", "gaps", "rewrites", "next_steps"];
   for (const key of requiredArrays) {
     if (!Array.isArray(report[key])) return false;
   }
+
   if (typeof report.summary !== "string") return false;
+
+  if (typeof report.score !== "number" || !Number.isFinite(report.score)) return false;
+  const roundedScore = Math.round(report.score);
+  if (roundedScore < 0 || roundedScore > 100) return false;
+
+  const checkStringArray = (arr) =>
+    arr.every((item) => typeof item === "string" && item.length <= 1000);
+
+  if (!checkStringArray(report.strengths)) return false;
+  if (!checkStringArray(report.gaps)) return false;
+  if (!checkStringArray(report.next_steps)) return false;
+
+  if (
+    !report.rewrites.every(
+      (r) =>
+        r &&
+        typeof r === "object" &&
+        typeof r.label === "string" &&
+        typeof r.original === "string" &&
+        typeof r.better === "string" &&
+        typeof r.enhancement_note === "string"
+    )
+  ) {
+    return false;
+  }
+
   return true;
 }
 
@@ -1041,9 +1175,9 @@ async function renderReportHtml(report) {
         });
   const escape = (str) =>
     String(str || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
+      .replace(/&/g, "&")
+      .replace(/</g, "<")
+      .replace(/>/g, ">");
 
   const rewriteHtml = (rewrites = []) =>
     rewrites
@@ -1466,7 +1600,7 @@ async function generatePdfBuffer(report) {
     }
   }
 }
-app.post("/api/resume-feedback", rateLimit, async (req, res) => {
+app.post("/api/resume-feedback", rateLimitResume, async (req, res) => {
   try {
     const tStart = Date.now();
     const validation = validateResumeFeedbackRequest(req.body);
@@ -1589,7 +1723,7 @@ ${text}`;
   }
 });
 
-app.post("/api/resume-ideas", rateLimit, async (req, res) => {
+app.post("/api/resume-ideas", rateLimitIdeas, async (req, res) => {
   try {
     const validation = validateResumeIdeasRequest(req.body);
 
@@ -1697,7 +1831,7 @@ ${text}`;
   }
 });
 
-app.post("/api/export-pdf", rateLimit, (req, res) => {
+app.post("/api/export-pdf", rateLimitPdf, (req, res) => {
   (async () => {
     try {
       const payload = req.body?.report || req.body || {};

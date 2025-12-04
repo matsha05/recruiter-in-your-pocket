@@ -48,3 +48,11 @@ Recruiter in Your Pocket is a tiny, high-end "resume studio" that reads your res
 - `STRIPE_SECRET_KEY` - Stripe secret key for payment processing.
 - `STRIPE_PRICE_ID` - Stripe price ID for checkout sessions.
 - `FRONTEND_URL` - Frontend URL for Stripe redirects (default: http://localhost:3000).
+
+### Security & CORS
+
+- The backend only accepts browser requests from `FRONTEND_URL` (and from `http://localhost:3000` / `http://127.0.0.1:3000` in non-production).
+- If you see CORS errors in the browser console, make sure the page origin matches `FRONTEND_URL` exactly (protocol, host, and port).
+- In production, all `/api/*` endpoints require a bearer token header:
+  - `Authorization: Bearer $API_AUTH_TOKEN`
+- `/health` remains unauthenticated for uptime checks; `/ready` is intended for infrastructure readiness checks and still validates prompts/OpenAI/mock configuration.
