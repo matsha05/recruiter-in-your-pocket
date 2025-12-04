@@ -23,6 +23,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@openai/codex": "^0.64.0",
     "@sparticuz/chromium": "^131.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",

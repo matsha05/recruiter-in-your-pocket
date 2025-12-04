@@ -1289,18 +1289,204 @@
       border-radius: var(--radius-xs);
     }
 
-    .results-top {
+    .report-header {
       background: var(--wash);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: var(--space-xl-alt) var(--space-lg) var(--space-lg);
       margin-bottom: var(--space-lg);
       box-shadow: var(--shadow-card);
-      transition: background 600ms var(--motion-ease-premium);
+      transition: background 180ms var(--motion-ease-premium);
     }
 
-    .report-container--visible .results-top {
+    .report-container--visible .report-header {
       background: linear-gradient(135deg, var(--wash) 0%, color-mix(in srgb, var(--accent-wash) 8%, var(--wash) 92%) 100%);
+    }
+
+    .report-header-top {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .report-header-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .report-verdict {
+      font-size: var(--fs-body);
+      color: var(--text-main);
+      line-height: var(--lh-relaxed);
+      font-weight: 500;
+      padding: var(--space-md) 0;
+    }
+
+    .top-fixes {
+      margin-top: var(--space-sm);
+    }
+
+    .top-fixes-label {
+      font-size: var(--fs-small);
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .top-fixes-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .top-fixes-list li {
+      font-size: var(--fs-label);
+      color: var(--text-main);
+      line-height: var(--lh-relaxed);
+      padding-left: var(--space-md);
+      position: relative;
+    }
+
+    .top-fixes-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .report-cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .report-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl) var(--space-lg);
+      box-shadow: var(--shadow-soft);
+      transition: 
+        box-shadow 150ms var(--motion-ease-premium),
+        transform 150ms var(--motion-ease-premium),
+        border-color 150ms var(--motion-ease-premium);
+      overflow: hidden;
+    }
+
+    .report-card:hover {
+      box-shadow: var(--shadow-card);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .report-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .report-card-title-group {
+      flex: 1;
+    }
+
+    .report-card-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h1);
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      margin: 0 0 var(--space-xxs) 0;
+      line-height: var(--lh-cozy);
+    }
+
+    .report-card-subtitle {
+      font-size: var(--fs-label);
+      color: var(--text-muted);
+      line-height: var(--lh-relaxed);
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .report-card-toggle {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: var(--fs-small);
+      font-weight: 600;
+      cursor: pointer;
+      padding: var(--space-xxs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      transition: 
+        background 150ms var(--motion-ease-premium),
+        color 150ms var(--motion-ease-premium);
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xxs);
+    }
+
+    .report-card-toggle:hover {
+      background: var(--accent-wash);
+    }
+
+    .report-card-toggle:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+      box-shadow: var(--focus-shadow);
+    }
+
+    .report-card-toggle-icon {
+      transition: transform 150ms var(--motion-ease-premium);
+      display: inline-block;
+    }
+
+    .report-card.expanded .report-card-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .report-card-preview {
+      font-size: var(--fs-label);
+      color: var(--text-main);
+      line-height: var(--lh-relaxed);
+      margin-top: var(--space-sm);
+      opacity: 0.85;
+      max-height: 200px;
+      overflow: hidden;
+      transition: opacity 150ms var(--motion-ease-premium), max-height 150ms var(--motion-ease-premium);
+    }
+
+    .report-card.expanded .report-card-preview {
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+
+    .report-card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 180ms var(--motion-ease-premium);
+      margin-top: 0;
+    }
+
+    .report-card.expanded .report-card-content {
+      max-height: 5000px;
+      margin-top: var(--space-md);
+    }
+
+    .report-card-content-inner {
+      padding-top: var(--space-sm);
     }
 
     .report-view {
@@ -1427,7 +1613,7 @@
         filter: none !important;
         transition: none !important;
       }
-      .results-top {
+      .report-header {
         transition: none !important;
       }
     }
@@ -2144,26 +2330,30 @@
       display: block !important;
     }
 
-    .skeleton-results-top,
-    .skeleton-summary-section,
-    .skeleton-section {
+    .skeleton-results-top {
       position: relative;
-      padding: var(--space-xl-alt) var(--space-lg) var(--space-lg) calc(var(--space-xl) + 6px);
-      margin: 0 0 var(--space-xl) 0;
-      border-radius: var(--radius-input);
-      background: transparent;
+      background: var(--wash);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl-alt) var(--space-lg) var(--space-lg);
+      margin-bottom: var(--space-lg);
       display: flex;
       flex-direction: column;
       gap: var(--space-tight);
       width: 100%;
     }
 
-    .skeleton-results-top {
-      background: var(--wash);
+    .skeleton-card {
+      position: relative;
+      background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl-alt) var(--space-lg) var(--space-lg);
-      margin-bottom: var(--space-lg);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl) var(--space-lg);
+      margin-bottom: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-tight);
+      width: 100%;
     }
 
     .skeleton-header-row {
@@ -3778,152 +3968,122 @@
         <div class="report-wrapper">
           <section class="card card-output" aria-label="Results panel">
             <div class="card-inner report-view report-card report-container" id="report-view">
-            <div class="results-top stack-section stack-accent-line">
-              <div class="score-header-inside">
-                <div id="score-wrapper" class="score-wrapper hidden">
-                  <div
-                    id="score-dial-container"
-                    class="score-dial-container"
-                    tabindex="0"
-                    aria-describedby="score-tooltip"
-                  >
-                    <div id="score-dial" class="score-dial">
-                      <svg viewBox="0 0 120 120">
-                        <circle class="score-dial-bg" cx="60" cy="60" r="54" />
-                        <circle
-                          id="score-dial-progress"
-                          class="score-dial-progress"
-                          cx="60"
-                          cy="60"
-                          r="54"
-                        />
-                      </svg>
-                      <div id="score-dial-number" class="score-dial-number">0</div>
+            <div class="report-header">
+              <div class="report-header-top">
+                <div class="score-header-inside">
+                  <div id="score-wrapper" class="score-wrapper hidden">
+                    <div
+                      id="score-dial-container"
+                      class="score-dial-container"
+                      tabindex="0"
+                      aria-describedby="score-tooltip"
+                    >
+                      <div id="score-dial" class="score-dial">
+                        <svg viewBox="0 0 120 120">
+                          <circle class="score-dial-bg" cx="60" cy="60" r="54" />
+                          <circle
+                            id="score-dial-progress"
+                            class="score-dial-progress"
+                            cx="60"
+                            cy="60"
+                            r="54"
+                          />
+                        </svg>
+                        <div id="score-dial-number" class="score-dial-number">0</div>
+                      </div>
+                      <div id="score-dial-label" class="score-dial-label">Overall clarity score</div>
                     </div>
-                    <div id="score-dial-label" class="score-dial-label">Overall clarity score</div>
+                    <div id="score-tooltip" class="score-tooltip" role="tooltip"></div>
+                    <div id="issue-breakdown" class="issue-breakdown hidden">
+                      <button class="issue-bar" data-section="impact-results" type="button" aria-label="Impact & Results">
+                        <div class="issue-bar-content">
+                          <span class="issue-bar-label">Impact & Results</span>
+                          <span class="issue-bar-count">0 top suggestions</span>
+                        </div>
+                        <div class="issue-bar-fill"></div>
+                      </button>
+                      <button class="issue-bar" data-section="clarity-structure" type="button" aria-label="Clarity & Conciseness">
+                        <div class="issue-bar-content">
+                          <span class="issue-bar-label">Clarity & Conciseness</span>
+                          <span class="issue-bar-count">0 top suggestions</span>
+                        </div>
+                        <div class="issue-bar-fill"></div>
+                      </button>
+                      <button class="issue-bar" data-section="focus-craft" type="button" aria-label="Focus & Craft">
+                        <div class="issue-bar-content">
+                          <span class="issue-bar-label">Focus & Craft</span>
+                          <span class="issue-bar-count">0 top suggestions</span>
+                        </div>
+                        <div class="issue-bar-fill"></div>
+                      </button>
+                    </div>
+                    <div class="issue-breakdown-microcopy">Prioritized improvements in each area</div>
                   </div>
-                  <div id="score-tooltip" class="score-tooltip" role="tooltip"></div>
-                  <div id="issue-breakdown" class="issue-breakdown hidden">
-                    <button class="issue-bar" data-section="impact-results" type="button" aria-label="Impact & Results">
-                      <div class="issue-bar-content">
-                        <span class="issue-bar-label">Impact & Results</span>
-                        <span class="issue-bar-count">0 top suggestions</span>
-                      </div>
-                      <div class="issue-bar-fill"></div>
-                    </button>
-                    <button class="issue-bar" data-section="clarity-structure" type="button" aria-label="Clarity & Conciseness">
-                      <div class="issue-bar-content">
-                        <span class="issue-bar-label">Clarity & Conciseness</span>
-                        <span class="issue-bar-count">0 top suggestions</span>
-                      </div>
-                      <div class="issue-bar-fill"></div>
-                    </button>
-                    <button class="issue-bar" data-section="focus-craft" type="button" aria-label="Focus & Craft">
-                      <div class="issue-bar-content">
-                        <span class="issue-bar-label">Focus & Craft</span>
-                        <span class="issue-bar-count">0 top suggestions</span>
-                      </div>
-                      <div class="issue-bar-fill"></div>
-                    </button>
+                </div>
+                <div class="report-header-content">
+                  <div class="results-header-row">
+                    <h2 id="results-title" class="card-title"><span class="report-title">Recruiter feedback</span></h2>
+                    <div id="report-tag" class="report-tag hidden">Sample report</div>
+                    <div class="focus-controls">
+                      <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
+                    </div>
                   </div>
-                  <div class="issue-breakdown-microcopy">Prioritized improvements in each area</div>
+                  <div id="report-verdict" class="report-verdict hidden"></div>
+                  <div id="top-fixes" class="top-fixes hidden">
+                    <div class="top-fixes-label">Top 3 fixes</div>
+                    <ul class="top-fixes-list"></ul>
+                  </div>
                 </div>
-              </div>
-              <div class="results-header-row">
-                <h2 id="results-title" class="card-title"><span class="report-title">Recruiter feedback</span></h2>
-                <div id="report-tag" class="report-tag hidden">Sample report</div>
-                <div class="focus-controls">
-                  <button id="focus-toggle" class="focus-button hidden" type="button">Focus on report</button>
-                </div>
-              </div>
-              <div class="score-help">Clarity score shows how quickly your story lands on a first read — calibrated from real hiring decisions.</div>
-              <div class="report-accent-line"></div>
-              <div class="results-bridge">
-                <div class="bridge-heading">What this means</div>
-                <div id="results-subtitle">
-                  Here’s what’s clear in your resume, what’s buried, and specific ways to make your story hit harder.
-                </div>
-              </div>
-              <div id="results-summary" class="results-summary accent-card-primary empty stack-section stack-accent-line">
-                Your recruiter’s take will appear here.
               </div>
               <div id="status-bar" class="status-bar"></div>
             </div>
 
-            <div id="results-skeleton" class="results-skeleton hidden stack stack-accent-line" aria-hidden="true">
-              <div class="skeleton-results-top stack-section stack-accent-line">
-              <div class="skeleton-score-area">
-                <div class="skeleton-score-dial"></div>
-                <div class="skeleton-score-label"></div>
-                <div class="skeleton-issue-breakdown">
-                  <div class="skeleton-issue-bar"></div>
-                  <div class="skeleton-issue-bar"></div>
-                  <div class="skeleton-issue-bar"></div>
+            <div id="results-skeleton" class="results-skeleton hidden" aria-hidden="true">
+              <div class="skeleton-results-top">
+                <div class="skeleton-score-area">
+                  <div class="skeleton-score-dial"></div>
+                  <div class="skeleton-score-label"></div>
+                  <div class="skeleton-issue-breakdown">
+                    <div class="skeleton-issue-bar"></div>
+                    <div class="skeleton-issue-bar"></div>
+                    <div class="skeleton-issue-bar"></div>
+                  </div>
                 </div>
-              </div>
                 <div class="skeleton-header-row">
                   <div class="skeleton-line skeleton-title"></div>
                 </div>
                 <div class="skeleton-line skeleton-text-wide"></div>
                 <div class="skeleton-line skeleton-text-mid"></div>
               </div>
-              <div class="skeleton-summary-section stack-section stack-accent-line">
+              <div class="skeleton-card">
                 <div class="skeleton-heading"></div>
                 <div class="skeleton-subline"></div>
                 <div class="skeleton-line wide skeleton-content-line"></div>
-                <div class="skeleton-line mid"></div>
-                <div class="skeleton-line short"></div>
               </div>
-              <div class="skeleton-section stack-section stack-accent-line">
+              <div class="skeleton-card">
                 <div class="skeleton-heading"></div>
                 <div class="skeleton-subline"></div>
                 <div class="skeleton-line wide skeleton-content-line"></div>
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line short"></div>
               </div>
-              <div class="skeleton-section stack-section stack-accent-line">
+              <div class="skeleton-card">
                 <div class="skeleton-heading"></div>
                 <div class="skeleton-subline"></div>
                 <div class="skeleton-line wide skeleton-content-line"></div>
-                <div class="skeleton-line mid"></div>
               </div>
-              <div class="skeleton-section stack-section stack-accent-line">
+              <div class="skeleton-card">
                 <div class="skeleton-heading"></div>
                 <div class="skeleton-subline"></div>
                 <div class="skeleton-line wide skeleton-content-line"></div>
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line short"></div>
-              </div>
-              <div class="skeleton-section stack-section stack-accent-line">
-                <div class="skeleton-heading"></div>
-                <div class="skeleton-subline"></div>
-                <div class="skeleton-line wide skeleton-content-line"></div>
-                <div class="skeleton-line mid"></div>
               </div>
             </div>
 
             <div
               id="results-body"
-              class="empty stack stack-accent-line"
+              class="empty report-cards"
               role="region"
               aria-label="Resume feedback results"
             >
-              <div class="stack-section stack-accent-line">
-                <div class="stack-heading">What’s working</div>
-                <div class="stack-subline">Strengths that are already clear on first read and help your story land as intended.</div>
-              </div>
-              <div class="stack-section stack-accent-line">
-                <div class="stack-heading">What’s harder to see</div>
-                <div class="stack-subline">Surfaces buried impact, unclear outcomes, and work that isn’t landing clearly yet.</div>
-              </div>
-              <div class="stack-section stack-accent-line">
-                <div class="stack-heading">Stronger phrasing you can use</div>
-                <div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div>
-              </div>
-              <div class="stack-section stack-accent-line">
-              <div class="stack-heading">Next steps</div>
-              <div class="stack-subline">Clear, doable actions that build momentum and make your story easier to read.</div>
-              </div>
+              <!-- Cards will be rendered here by JS -->
             </div>
 
             <div id="results-actions-bottom" class="results-actions results-actions-bottom hidden">
@@ -3943,13 +4103,27 @@
               </button>
             </div>
 
-            <div id="ideas-inline" class="ideas-inline hidden stack-section stack-accent-line" aria-label="Missing wins">
+            <div id="ideas-inline" class="ideas-inline hidden" aria-live="polite">
               <div class="ideas-text">
-                <div class="ideas-kicker stack-heading">Missing wins</div>
-                <div class="ideas-subtitle stack-subline">Surfaces buried impact, unclear outcomes, and scope you likely have but didn’t express.</div>
+                <div class="ideas-kicker">Missing wins</div>
+                <div class="ideas-subtitle">
+                  Quick prompts that surface the wins you likely have but haven’t written yet.
+                </div>
               </div>
-              <button id="ideas-open" class="ideas-open-link" type="button">Open missing wins →</button>
+              <div class="ideas-actions">
+                <button
+                  id="ideas-open"
+                  class="ideas-open-link"
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-controls="ideas-modal"
+                >
+                  Open the questions
+                </button>
+              </div>
             </div>
+
+            <!-- Missing wins card will be rendered in results-body by JS -->
 
             <div id="ideas-modal" class="ideas-modal hidden" aria-hidden="true">
               <div id="ideas-backdrop" class="ideas-backdrop"></div>
@@ -4396,8 +4570,10 @@
       console.warn("Could not clear saved input", e);
     }
     resetIdeasSection();
-    if (ideasInlineEl) ideasInlineEl.classList.add("hidden");
     closeIdeasModal();
+    if (ideasInlineEl) {
+      ideasInlineEl.classList.add("hidden");
+    }
     updateClearButtonVisibility();
     if (resultsBodyEl) {
       resultsBodyEl.textContent = "Your feedback will appear here.";
@@ -4866,32 +5042,137 @@
       .replace(/>/g, "&gt;");
   }
 
-  function renderSummary(text) {
-    if (!resultsSummaryEl) return;
-    const clean = (text || "").trim();
-    if (clean) {
-      const sentences = clean
-        .split(/(?<=[.!?])\s+/)
-        .map((s) => s.trim())
-        .filter(Boolean);
-      const limited = sentences.slice(0, 3);
-      const paragraph = limited.join(" ");
-      resultsSummaryEl.innerHTML = `
-        ${currentReportIsSample ? '<div class="report-meta">Sample report, paste your resume to see your own read.</div>' : ""}
-        <div class="stack-heading">How your resume reads</div>
-        <div class="stack-subline">A quick read on how your resume actually lands.</div>
-        <p class="result-paragraph">${escapeHtml(paragraph || clean)}</p>
-      `;
-      resultsSummaryEl.classList.remove("empty");
-    } else {
-      resultsSummaryEl.innerHTML = `
-        ${currentReportIsSample ? '<div class="report-meta">Sample report, paste your resume to see your own read.</div>' : ""}
-        <div class="stack-heading">How your resume reads</div>
-        <div class="stack-subline">A quick read on how your resume actually lands.</div>
-        <p class="result-paragraph">Your summary will appear here.</p>
-      `;
-      resultsSummaryEl.classList.add("empty");
+  function extractVerdict(summary) {
+    if (!summary || !summary.trim()) return "";
+    const sentences = summary
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    return sentences.slice(0, 2).join(" ");
+  }
+
+  function extractTopFixes(data) {
+    const { gaps = [], rewrites = [], next_steps: nextSteps = [] } = data || {};
+    const fixes = [];
+    
+    // Prioritize: gaps first, then rewrites, then next_steps
+    if (gaps.length > 0) {
+      fixes.push(...gaps.slice(0, 2));
     }
+    if (fixes.length < 3 && rewrites.length > 0) {
+      const remaining = 3 - fixes.length;
+      // Take first rewrite's better text as a fix
+      fixes.push(rewrites[0]?.better || rewrites[0]?.original || "");
+    }
+    if (fixes.length < 3 && nextSteps.length > 0) {
+      const remaining = 3 - fixes.length;
+      fixes.push(...nextSteps.slice(0, remaining));
+    }
+    
+    return fixes.slice(0, 3).filter(Boolean);
+  }
+
+  function renderHeaderVerdictAndFixes(data) {
+    const verdictEl = document.getElementById("report-verdict");
+    const topFixesEl = document.getElementById("top-fixes");
+    const topFixesListEl = topFixesEl ? topFixesEl.querySelector(".top-fixes-list") : null;
+    
+    const verdict = extractVerdict(data.summary);
+    const topFixes = extractTopFixes(data);
+    
+    if (verdictEl) {
+      if (verdict) {
+        verdictEl.textContent = verdict;
+        verdictEl.classList.remove("hidden");
+      } else {
+        verdictEl.classList.add("hidden");
+      }
+    }
+    
+    if (topFixesListEl) {
+      if (topFixes.length > 0) {
+        topFixesListEl.innerHTML = topFixes.map(fix => 
+          `<li>${escapeHtml(String(fix))}</li>`
+        ).join("");
+        if (topFixesEl) topFixesEl.classList.remove("hidden");
+      } else {
+        if (topFixesEl) topFixesEl.classList.add("hidden");
+      }
+    }
+  }
+
+  function createCardPreview(content, type) {
+    if (type === "summary") {
+      const text = String(content || "").trim();
+      if (!text) return "";
+      const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+      const preview = sentences.slice(0, 1).join(" ") || text;
+      // Truncate to ~120 chars if longer
+      return preview.length > 120 ? preview.substring(0, 120) + "…" : preview;
+    }
+    if (type === "list") {
+      const items = Array.isArray(content) ? content : [];
+      if (items.length > 0) {
+        const first = String(items[0] || "").trim();
+        // Truncate to ~100 chars if longer
+        return first.length > 100 ? first.substring(0, 100) + "…" : first;
+      }
+    }
+    if (type === "rewrites") {
+      const rewrites = Array.isArray(content) ? content : [];
+      if (rewrites.length > 0) {
+        const first = rewrites[0];
+        const preview = String(first?.better || first?.original || "").trim();
+        // Truncate to ~100 chars if longer
+        return preview.length > 100 ? preview.substring(0, 100) + "…" : preview;
+      }
+    }
+    return "";
+  }
+
+  function toggleCard(cardEl) {
+    if (!cardEl) return;
+    const isExpanded = cardEl.classList.contains("expanded");
+    const toggleBtn = cardEl.querySelector('.report-card-toggle');
+    const contentEl = cardEl.querySelector('.report-card-content');
+    
+    if (isExpanded) {
+      cardEl.classList.remove("expanded");
+      if (toggleBtn) {
+        toggleBtn.setAttribute("aria-expanded", "false");
+        toggleBtn.querySelector('span:first-child').textContent = "Expand";
+      }
+    } else {
+      cardEl.classList.add("expanded");
+      if (toggleBtn) {
+        toggleBtn.setAttribute("aria-expanded", "true");
+        toggleBtn.querySelector('span:first-child').textContent = "Collapse";
+      }
+    }
+  }
+
+  function renderCard(sectionId, title, subtitle, preview, contentHtml, isExpanded = false) {
+    const cardId = `card-${sectionId}`;
+    return `
+      <div id="${cardId}" class="report-card ${isExpanded ? 'expanded' : ''}" data-section="${sectionId}">
+        <div class="report-card-header">
+          <div class="report-card-title-group">
+            <h3 class="report-card-title">${escapeHtml(title)}</h3>
+            <p class="report-card-subtitle">${escapeHtml(subtitle)}</p>
+          </div>
+          <button class="report-card-toggle" type="button" aria-expanded="${isExpanded}" aria-controls="${cardId}-content">
+            <span>${isExpanded ? 'Collapse' : 'Expand'}</span>
+            <span class="report-card-toggle-icon">▼</span>
+          </button>
+        </div>
+        ${preview ? `<div class="report-card-preview">${escapeHtml(preview)}</div>` : ''}
+        <div id="${cardId}-content" class="report-card-content">
+          <div class="report-card-content-inner">
+            ${contentHtml}
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   function applySectionReveal() {
@@ -5025,34 +5306,51 @@
     const resultsBodyEl = document.getElementById("results-body");
     if (!resultsBodyEl) return;
 
-    let targetEl = null;
+    let targetCard = null;
 
     if (section === "impact-results") {
-      // Scroll to "Stronger phrasing" section, specifically the Impact cluster
-      const strongerPhrasingEl = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
-      const impactClusterEl = strongerPhrasingEl ? strongerPhrasingEl.querySelector('[data-cluster="impact"]') : null;
-      targetEl = impactClusterEl || strongerPhrasingEl || resultsBodyEl.querySelector('[data-section="harder-to-see"]');
+      // Scroll to "Stronger phrasing" card and expand it
+      targetCard = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
+      if (targetCard) {
+        const impactClusterEl = targetCard.querySelector('[data-cluster="impact"]');
+        if (impactClusterEl) {
+          // Expand card if collapsed
+          if (!targetCard.classList.contains("expanded")) {
+            toggleCard(targetCard);
+          }
+        }
+      }
     } else if (section === "clarity-structure") {
-      // Scroll to "Stronger phrasing" section, specifically the Clarity cluster
-      const strongerPhrasingEl = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
-      const clarityClusterEl = strongerPhrasingEl ? strongerPhrasingEl.querySelector('[data-cluster="clarity"]') : null;
-      targetEl = clarityClusterEl || strongerPhrasingEl;
+      // Scroll to "Stronger phrasing" card and expand it
+      targetCard = resultsBodyEl.querySelector('[data-section="stronger-phrasing"]');
+      if (targetCard) {
+        const clarityClusterEl = targetCard.querySelector('[data-cluster="clarity"]');
+        if (clarityClusterEl) {
+          // Expand card if collapsed
+          if (!targetCard.classList.contains("expanded")) {
+            toggleCard(targetCard);
+          }
+        }
+      }
     } else if (section === "focus-craft") {
-      // Scroll to "What's harder to see" section
-      targetEl = resultsBodyEl.querySelector('[data-section="harder-to-see"]');
+      // Scroll to "What's harder to see" card and expand it
+      targetCard = resultsBodyEl.querySelector('[data-section="harder-to-see"]');
+      if (targetCard && !targetCard.classList.contains("expanded")) {
+        toggleCard(targetCard);
+      }
     }
 
-    if (targetEl) {
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       // Add a subtle highlight effect
-      targetEl.style.transition = 'background-color 0.3s ease';
-      targetEl.style.backgroundColor = 'var(--accent-wash)';
+      targetCard.style.transition = 'background-color 180ms ease';
+      targetCard.style.backgroundColor = 'var(--accent-wash)';
       setTimeout(() => {
-        targetEl.style.backgroundColor = '';
+        targetCard.style.backgroundColor = '';
         setTimeout(() => {
-          targetEl.style.transition = '';
-        }, 300);
-      }, 1500);
+          targetCard.style.transition = '';
+        }, 180);
+      }, 1000);
     }
   }
 
@@ -5080,14 +5378,10 @@
       hideSampleTag();
     }
 
-    let html = "";
+    // Render header with verdict and top-3 fixes
+    renderHeaderVerdictAndFixes(data);
 
-    // Add sample report note if this is a sample
-    if (isSample) {
-      html += `<div class="stack-section stack-accent-line"><div class="stack-subline" style="font-style: italic; color: var(--text-muted);">You are looking at a sample report generated from a fictional resume. Paste your own resume above to see your personalized feedback.</div></div>`;
-    }
-
-    // score pill and commentary
+    // Score dial and commentary
     if (typeof score === "number") {
       renderScoreMeta(score, {
         score_label: scoreLabelText,
@@ -5102,33 +5396,40 @@
     const counts = calculateIssueCounts({ gaps, rewrites });
     updateIssueBreakdown(counts);
 
-    if (Array.isArray(missingWins) && missingWins.length > 0 && ideasInlineEl) {
-      ideasInlineEl.classList.remove("hidden");
+    let html = "";
+
+    // Card 1: How your story reads (summary)
+    if (summary && summary.trim()) {
+      const preview = createCardPreview(summary, "summary");
+      const contentHtml = `<p class="result-paragraph">${escapeHtml(summary)}</p>`;
+      html += renderCard("story-reads", "How your story reads", "A quick read on how your resume actually lands.", preview, contentHtml, true);
     }
 
-    renderSummary(summary);
-
-    // What's Working
+    // Card 2: What's working (strengths)
     if (Array.isArray(strengths) && strengths.length > 0) {
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">What’s working</div><div class="stack-subline">Strengths that are already clear on first read and help your story land as intended.</div><ul class="result-list">`;
+      const preview = createCardPreview(strengths, "list");
+      let contentHtml = `<ul class="result-list">`;
       for (const item of strengths) {
         if (!item) continue;
-        html += `<li>${escapeHtml(String(item))}</li>`;
+        contentHtml += `<li>${escapeHtml(String(item))}</li>`;
       }
-      html += `</ul></div>`;
+      contentHtml += `</ul>`;
+      html += renderCard("whats-working", "What is working", "Strengths that are already clear on first read and help your story land as intended.", preview, contentHtml);
     }
 
-    // What's harder to see
+    // Card 3: What's harder to see (gaps)
     if (Array.isArray(gaps) && gaps.length > 0) {
-      html += `<div class="stack-section stack-accent-line" data-section="harder-to-see"><div class="stack-heading">What’s harder to see</div><div class="stack-subline">Surfaces buried impact, unclear outcomes, and work that isn’t landing clearly yet.</div><ul class="result-list">`;
+      const preview = createCardPreview(gaps, "list");
+      let contentHtml = `<ul class="result-list">`;
       for (const item of gaps) {
         if (!item) continue;
-        html += `<li>${escapeHtml(String(item))}</li>`;
+        contentHtml += `<li>${escapeHtml(String(item))}</li>`;
       }
-      html += `</ul></div>`;
+      contentHtml += `</ul>`;
+      html += renderCard("harder-to-see", "What is harder to see", "Surfaces buried impact, unclear outcomes, and work that isn't landing clearly yet.", preview, contentHtml);
     }
 
-    // Stronger Phrasing You Can Use
+    // Card 4: Stronger phrasing you can use (rewrites)
     if (Array.isArray(rewrites) && rewrites.length > 0) {
       const clarityGroup = [];
       const impactGroup = [];
@@ -5180,65 +5481,82 @@
           groupHtml += `</div>`;
 
           groupHtml += `</div>`;
-
           groupHtml += `</div>`;
         }
         return groupHtml;
       };
 
-      html += `<div class="stack-section stack-accent-line" data-section="stronger-phrasing"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div>`;
-
+      const preview = createCardPreview(rewrites, "rewrites");
+      let contentHtml = "";
       if (clarityGroup.length > 0) {
-        html += `<div class="rewrite-cluster-heading" data-cluster="clarity">Clarity & Conciseness</div>`;
-        html += renderRewriteGroup(clarityGroup);
+        contentHtml += `<div class="rewrite-cluster-heading" data-cluster="clarity">Clarity & Conciseness</div>`;
+        contentHtml += renderRewriteGroup(clarityGroup);
       }
-
       if (impactGroup.length > 0) {
-        html += `<div class="rewrite-cluster-heading" data-cluster="impact">Impact, Scope & Ownership</div>`;
-        html += renderRewriteGroup(impactGroup);
+        contentHtml += `<div class="rewrite-cluster-heading" data-cluster="impact">Impact, Scope & Ownership</div>`;
+        contentHtml += renderRewriteGroup(impactGroup);
       }
 
-      html += `</div>`;
+      html += renderCard("stronger-phrasing", "Stronger phrasing you can use", "Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.", preview, contentHtml);
     } else if (Array.isArray(suggestedBullets) && suggestedBullets.length > 0) {
-      // Fallback: use suggested_bullets from backend as a simple list
-      html += `<div class="stack-section stack-accent-line"><div class="stack-heading">Stronger phrasing you can use</div><div class="stack-subline">Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.</div><ul class="result-list">`;
+      const preview = createCardPreview(suggestedBullets, "list");
+      let contentHtml = `<ul class="result-list">`;
       for (const bullet of suggestedBullets) {
         if (!bullet) continue;
-        html += `<li>${escapeHtml(String(bullet))}</li>`;
+        contentHtml += `<li>${escapeHtml(String(bullet))}</li>`;
       }
-      html += `</ul></div>`;
+      contentHtml += `</ul>`;
+      html += renderCard("stronger-phrasing", "Stronger phrasing you can use", "Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.", preview, contentHtml);
     }
 
-    // Next Steps (override with fixed guidance)
+    // Card 5: Missing wins
+    // Check for missing_wins in multiple ways (defensive check for data structure variations)
+    const missingWinsData = missingWins || (data && data.missing_wins) || [];
+    if (Array.isArray(missingWinsData) && missingWinsData.length > 0) {
+      const preview = createCardPreview(missingWinsData, "list");
+      let contentHtml = `<ul class="result-list">`;
+      for (const item of missingWinsData) {
+        if (!item) continue;
+        contentHtml += `<li>${escapeHtml(String(item))}</li>`;
+      }
+      contentHtml += `</ul>`;
+      html += renderCard("missing-wins", "Missing wins", "Surfaces buried impact, unclear outcomes, and scope you likely have but didn't express.", preview, contentHtml);
+    }
+
+    // Card 6: Next steps
     const fixedNextSteps = [
       "Split multi idea bullets so your role and impact are clearer.",
       "Add numbers or specific outcomes where they strengthen the story.",
       "Highlight your ownership in key achievements so your contribution stands out.",
       "Remember to make your strongest work easy to spot. Most recruiters will make a yes, no, or maybe decision within a few seconds."
     ];
-      html += `<div class="stack-section stack-accent-line" data-section="next-steps"><div class="stack-heading">Next steps</div><div class="stack-subline">Clear, doable actions that build momentum and make your story easier to read.</div><ul class="result-list">`;
+    const preview = createCardPreview(fixedNextSteps, "list");
+    let contentHtml = `<ul class="result-list">`;
     for (const step of fixedNextSteps) {
-      html += `<li>${escapeHtml(String(step))}</li>`;
+      contentHtml += `<li>${escapeHtml(String(step))}</li>`;
     }
-    html += `</ul></div>`;
+    contentHtml += `</ul>`;
+    html += renderCard("next-steps", "Next steps", "Clear, doable actions that build momentum and make your story easier to read.", preview, contentHtml);
 
     if (!html) {
-      html = "No feedback returned.";
+      html = '<div class="report-card"><p>No feedback returned.</p></div>';
     }
 
     resultsBodyEl.innerHTML = html;
 
-    // Place Missing Wins inline teaser inside the stack before Next steps
     if (ideasInlineEl) {
-      const nextStepsEl = resultsBodyEl.querySelector('[data-section="next-steps"]');
-      ideasInlineEl.classList.add("stack-section");
-      ideasInlineEl.classList.add("stack-accent-line");
-      if (nextStepsEl && nextStepsEl.parentNode === resultsBodyEl) {
-        resultsBodyEl.insertBefore(ideasInlineEl, nextStepsEl);
-      } else {
-        resultsBodyEl.appendChild(ideasInlineEl);
-      }
+      ideasInlineEl.classList.remove("hidden");
     }
+
+    // Attach toggle handlers to all cards
+    const cards = resultsBodyEl.querySelectorAll('.report-card');
+    cards.forEach(card => {
+      const toggleBtn = card.querySelector('.report-card-toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => toggleCard(card));
+      }
+    });
+
     resultsBodyEl.classList.remove("refreshed");
     void resultsBodyEl.offsetWidth;
     resultsBodyEl.classList.add("refreshed");
@@ -5409,9 +5727,6 @@
         }
       }, 100);
     clearScoreBadge();
-    if (ideasInlineEl) {
-      ideasInlineEl.classList.add("hidden");
-    }
     resetIdeasSection();
 
         try {
@@ -6253,7 +6568,6 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
 
     ideasBodyEl.innerHTML = html || "";
     ideasBodyEl.classList.remove("empty");
-    if (ideasInlineEl) ideasInlineEl.classList.remove("hidden");
     if (focusToggleEl) focusToggleEl.classList.remove("hidden");
     }
 
