@@ -4451,6 +4451,15 @@
     localStorage.setItem(PAID_KEY, "1");
   }
 
+  function showReportContainer() {
+    if (reportWrapperEl) {
+      reportWrapperEl.style.display = "block";
+    }
+    if (reportViewEl) {
+      reportViewEl.classList.add("report-container--visible");
+    }
+  }
+
   function showPaywall(msg = "") {
     logEvent("paywall_impression");
     if (paywallBackdropEl) {
@@ -5509,21 +5518,7 @@
       html += renderCard("stronger-phrasing", "Stronger phrasing you can use", "Crisp, realistic upgrades that make your accomplishments clearer without changing your voice.", preview, contentHtml);
     }
 
-    // Card 5: Missing wins
-    // Check for missing_wins in multiple ways (defensive check for data structure variations)
-    const missingWinsData = missingWins || (data && data.missing_wins) || [];
-    if (Array.isArray(missingWinsData) && missingWinsData.length > 0) {
-      const preview = createCardPreview(missingWinsData, "list");
-      let contentHtml = `<ul class="result-list">`;
-      for (const item of missingWinsData) {
-        if (!item) continue;
-        contentHtml += `<li>${escapeHtml(String(item))}</li>`;
-      }
-      contentHtml += `</ul>`;
-      html += renderCard("missing-wins", "Missing wins", "Surfaces buried impact, unclear outcomes, and scope you likely have but didn't express.", preview, contentHtml);
-    }
-
-    // Card 6: Next steps
+    // Card 5: Next steps
     const fixedNextSteps = [
       "Split multi idea bullets so your role and impact are clearer.",
       "Add numbers or specific outcomes where they strengthen the story.",
@@ -5664,6 +5659,32 @@
     currentReportIsSample = sampleRun;
     isSampleRun = false;
     const text = (options.textOverride ?? inputEl.value ?? "").trim();
+    const wasSampleView = isSampleReportActive;
+
+    // If the sample report was open, reset to the default input-focused view
+    if (wasSampleView) {
+      hideSampleTag();
+      isSampleReportActive = false;
+      currentReportIsSample = false;
+      lastReportData = null;
+      if (reportWrapperEl) {
+        reportWrapperEl.style.display = "none";
+      }
+      if (resultsBodyEl) {
+        resultsBodyEl.innerHTML = "";
+        resultsBodyEl.classList.add("empty");
+        resultsBodyEl.classList.remove("results-error", "muted");
+        resultsBodyEl.style.display = "";
+      }
+      if (resultsActionsBottomEl) {
+        resultsActionsBottomEl.classList.add("hidden");
+      }
+      if (resultsSkeletonEl) {
+        resultsSkeletonEl.classList.add("hidden");
+      }
+      updateToolLayout();
+    }
+
     logEvent("run_clicked", { sample: sampleRun });
     
     // Client-side validation before API call
@@ -5696,6 +5717,9 @@
     statusEl.textContent = "Reading your resume like a recruiter…";
     statusEl.classList.add("status-loading");
     setStatus("Reading your resume like a recruiter…", "");
+    const shouldShowSkeleton = !wasSampleView;
+
+    if (shouldShowSkeleton) {
       // Ensure the report container is visible while skeleton is showing
       if (reportViewEl) {
         reportViewEl.classList.add("report-container--visible");
@@ -5726,6 +5750,17 @@
           reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 100);
+    } else {
+      // Keep the input full-width until the new report is ready
+      runButton.disabled = true;
+      originalButtonText = runButton.textContent;
+      runButton.textContent = "Processing...";
+      runButton.classList.add("processing");
+      loadingBarEl.classList.add("active");
+      if (resultsSkeletonEl) {
+        resultsSkeletonEl.classList.add("hidden");
+      }
+    }
     clearScoreBadge();
     resetIdeasSection();
 
@@ -5768,6 +5803,7 @@
         if (resultsSkeletonEl) {
           resultsSkeletonEl.classList.add("hidden");
         }
+        showReportContainer();
         if (isValidationError) {
           renderSummary(msg);
           resultsBodyEl.textContent = "";
@@ -5800,6 +5836,7 @@
         if (resultsSkeletonEl) {
           resultsSkeletonEl.classList.add("hidden");
         }
+        showReportContainer();
         if (isValidationError) {
           renderSummary(msg);
           resultsBodyEl.textContent = "";
@@ -5836,6 +5873,7 @@
         if (resultsSkeletonEl) {
           resultsSkeletonEl.classList.add("hidden");
         }
+        showReportContainer();
         resultsBodyEl.textContent = msg;
         resultsBodyEl.style.display = "";
         resultsBodyEl.classList.add("results-error");
@@ -5845,17 +5883,15 @@
         return;
       }
 
+      showReportContainer();
       renderStructuredResults(structured, { isSample: false });
       isSampleReportActive = false;
-      if (reportWrapperEl) {
-        reportWrapperEl.style.display = "block";
+      if (resultsSkeletonEl) {
+        resultsSkeletonEl.classList.add("hidden");
       }
       lastReportData = structured;
       triggerReportReveal();
       // Hide skeleton and show results-body
-      if (resultsSkeletonEl) {
-        resultsSkeletonEl.classList.add("hidden");
-      }
       resultsBodyEl.style.display = ""; // Show results-body
       resultsBodyEl.classList.remove("empty");
       updateToolLayout();
@@ -5908,6 +5944,7 @@
       if (resultsSkeletonEl) {
         resultsSkeletonEl.classList.add("hidden");
       }
+      showReportContainer();
       resultsBodyEl.textContent =
         "Something went wrong. Try again in a moment.";
       resultsBodyEl.style.display = "";
@@ -5985,13 +6022,6 @@
         if (r.enhancement_note) lines.push(`  ${r.enhancement_note}`);
         lines.push("");
       });
-    }
-
-    if (Array.isArray(data.missing_wins) && data.missing_wins.length) {
-      lines.push("Missing wins:");
-      lines.push("");
-      data.missing_wins.forEach((item) => lines.push(`- ${item}`));
-      lines.push("");
     }
 
     if (Array.isArray(data.next_steps) && data.next_steps.length) {
