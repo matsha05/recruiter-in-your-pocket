@@ -1,5 +1,10 @@
-# Recruiter in Your Pocket — Design Principles  
+# Recruiter in Your Pocket — Design Principles
 **Premium. Confident. Joyfully clear.**
+
+## Overview
+This document defines the core design philosophy and principles for Recruiter in Your Pocket.
+
+**Last Updated:** 2025-01-27 (Phase 3 Refactoring Complete)
 
 Recruiter in Your Pocket is a tiny, high-end studio for your career story.  
 It should feel like a recruiter who's hired 1000+ people at Google, Facebook, OpenAI, and startups sat down with a thoughtful designer to read your resume and hand you a crafted report—not generic AI advice, but real insight from someone who's made actual hiring decisions.
@@ -170,7 +175,7 @@ The product should feel alive, not mechanical; expressive, not ornamental.
 
 ---
 
-## 7.5. Design Risks That Serve Insight
+## 8. Design Risks That Serve Insight
 
 We take design risks, but not randomly. We take risks that serve our dogma: **Insight + Premium Atmosphere.**
 
@@ -198,8 +203,8 @@ We take design risks, but not randomly. We take risks that serve our dogma: **In
 
 ---
 
-## 8. Consistency Builds Trust  
-Codex must maintain consistent:
+## 9. Consistency Builds Trust
+Recruiter in Your Pocket must maintain consistent:
 - spacing  
 - typography rules  
 - ordering of insights  
@@ -212,7 +217,7 @@ Ease builds trust.
 
 ---
 
-## 9. Recruiter-Grade Authority
+## 10. Recruiter-Grade Authority
 
 We speak from real experience: 1000+ hires across Google, Facebook, OpenAI, startups (Series A-C), and nonprofits. We've been CPOs, principal recruiters, and hiring managers who've seen what actually works.
 
@@ -311,11 +316,11 @@ Every interaction should feel like forward motion. Users should see their progre
 
 Momentum is created through:
 - Clear, sequential actions (not overwhelming lists)
-- Visible progress indicators (score dial, issue counts)
+- Visible progress indicators (score display, issue counts)
 - Specific next steps that feel achievable in 1-2 sessions
 - A sense of "I can do this" rather than "I have so much to fix"
 
-The rewrite tiles don't just show what's wrong—they show the path forward. Each "Better" bullet is a concrete example of improvement, not abstract advice.
+The rewrite suggestions don't just show what's wrong—they show the path forward. Each "Better" bullet is a concrete example of improvement, not abstract advice.
 
 Users should finish thinking:
 > "I understand how I read. I know exactly what to fix. And I feel better than when I started."

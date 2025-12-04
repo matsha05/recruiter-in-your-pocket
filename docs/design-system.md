@@ -1,7 +1,7 @@
 # Recruiter in Your Pocket — Design System v1.2
 
 ## Overview
-This file defines the tokens and components for the Recruiter in Your Pocket UI and PDF so Codex, Matt, and future collaborators can evolve the product consistently.
+This file defines the tokens and components for the Recruiter in Your Pocket UI and PDF so Matt, and future collaborators can evolve the product consistently.
 
 **Last Updated:** 2025-01-27 (Phase 3 Refactoring Complete)
 
