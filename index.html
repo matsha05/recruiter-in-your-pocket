@@ -677,7 +677,7 @@
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
-      transition: box-shadow 180ms ease-out, transform 180ms ease-out;
+      transition: box-shadow var(--motion-duration-short) var(--motion-ease-premium), transform var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     .hero-preview-card:hover {
@@ -870,7 +870,7 @@
       text-decoration: none;
       font-weight: 500;
       padding: var(--space-xxs) 0;
-      transition: color 180ms ease-out;
+      transition: color var(--motion-duration-short) var(--motion-ease-premium);
       width: fit-content;
       position: relative;
     }
@@ -885,7 +885,7 @@
       background: currentColor;
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 180ms ease-out;
+      transition: transform var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     .hero-cta-secondary:hover {
@@ -937,7 +937,7 @@
       width: 24px;
       height: 24px;
       stroke: currentColor;
-      stroke-width: 1.75;
+      stroke-width: 1.5;
       fill: none;
       display: inline-block;
       flex-shrink: 0;
@@ -1643,7 +1643,7 @@
       padding: var(--space-xl-alt) var(--space-lg) var(--space-lg);
       margin-bottom: var(--space-lg);
       box-shadow: var(--shadow-card);
-      transition: background 180ms var(--motion-ease-premium);
+      transition: background var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     .report-container--visible .report-header {
@@ -1720,9 +1720,9 @@
       padding: var(--space-xl) var(--space-lg);
       box-shadow: var(--shadow-soft);
       transition: 
-        box-shadow 150ms var(--motion-ease-premium),
-        transform 150ms var(--motion-ease-premium),
-        border-color 150ms var(--motion-ease-premium);
+        box-shadow var(--motion-duration-short) var(--motion-ease-premium),
+        transform var(--motion-duration-short) var(--motion-ease-premium),
+        border-color var(--motion-duration-short) var(--motion-ease-premium);
       overflow: hidden;
     }
 
@@ -1772,8 +1772,8 @@
       padding: var(--space-xxs) var(--space-sm);
       border-radius: var(--radius-sm);
       transition: 
-        background 150ms var(--motion-ease-premium),
-        color 150ms var(--motion-ease-premium);
+        background var(--motion-duration-short) var(--motion-ease-premium),
+        color var(--motion-duration-short) var(--motion-ease-premium);
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
@@ -1791,7 +1791,7 @@
     }
 
     .report-card-toggle-icon {
-      transition: transform 150ms var(--motion-ease-premium);
+      transition: transform var(--motion-duration-short) var(--motion-ease-premium);
       display: inline-block;
     }
 
@@ -1807,7 +1807,7 @@
       opacity: 0.85;
       max-height: 200px;
       overflow: hidden;
-      transition: opacity 150ms var(--motion-ease-premium), max-height 150ms var(--motion-ease-premium);
+      transition: opacity var(--motion-duration-short) var(--motion-ease-premium), max-height var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     .report-card.expanded .report-card-preview {
@@ -1823,7 +1823,7 @@
     .report-card-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 180ms var(--motion-ease-premium);
+      transition: max-height var(--motion-duration-short) var(--motion-ease-premium);
       margin-top: 0;
     }
 
@@ -1843,9 +1843,9 @@
       margin-bottom: var(--space-lg);
       border-radius: var(--radius-input);
       background: transparent;
-      transition: background 180ms ease-out, 
-                  box-shadow 180ms ease-out, 
-                  transform 180ms ease-out;
+      transition: background var(--motion-duration-short) var(--motion-ease-premium), 
+                  box-shadow var(--motion-duration-short) var(--motion-ease-premium), 
+                  transform var(--motion-duration-short) var(--motion-ease-premium);
       /* Entry animation - starts hidden */
       opacity: 0;
       transform: translateY(5px);
@@ -1854,10 +1854,10 @@
     .report-chapter.chapter-visible {
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 160ms ease-out, 
-                  transform 160ms ease-out,
-                  background 180ms ease-out, 
-                  box-shadow 180ms ease-out;
+      transition: opacity var(--motion-duration-short) var(--motion-ease-premium), 
+                  transform var(--motion-duration-short) var(--motion-ease-premium),
+                  background var(--motion-duration-short) var(--motion-ease-premium), 
+                  box-shadow var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     .report-chapter:hover {
@@ -1888,7 +1888,7 @@
       .report-chapter {
         opacity: 1;
         transform: none;
-        transition: background 180ms ease-out;
+        transition: background var(--motion-duration-short) var(--motion-ease-premium);
       }
       .report-chapter:hover {
         transform: none;
@@ -2346,7 +2346,7 @@
       background: var(--accent);
       opacity: 0.08;
       width: 0%;
-      transition: width 600ms var(--motion-ease-premium);
+      transition: width var(--motion-duration-medium) var(--motion-ease-premium);
       z-index: 1;
     }
 
@@ -2660,7 +2660,7 @@
     }
 
     #results-body.refreshed {
-      animation: fadeUp 0.18s ease-out;
+      animation: fadeUp var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     #results-body.empty {
@@ -5821,7 +5821,7 @@
     if (targetChapter) {
       targetChapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
       // Add a subtle highlight effect
-      targetChapter.style.transition = 'background-color 180ms ease';
+      targetChapter.style.transition = 'background-color var(--motion-duration-short) var(--motion-ease-premium)';
       targetChapter.style.backgroundColor = 'var(--accent-wash)';
       setTimeout(() => {
         targetChapter.style.backgroundColor = '';
