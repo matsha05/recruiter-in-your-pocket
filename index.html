@@ -685,6 +685,54 @@
       transform: translateY(-3px);
     }
 
+    /* Staggered entrance animation for hero preview */
+    .hero-preview-card {
+      opacity: 0;
+      animation: heroCardEntrance 0.6s var(--motion-ease-premium) 0.2s forwards;
+    }
+
+    @keyframes heroCardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-preview-badge {
+      opacity: 0;
+      animation: heroElementFade 0.4s ease-out 0.4s forwards;
+    }
+
+    .hero-preview-verdict {
+      opacity: 0;
+      animation: heroElementFade 0.4s ease-out 0.8s forwards;
+    }
+
+    .hero-preview-section {
+      opacity: 0;
+      animation: heroElementFade 0.4s ease-out 1.1s forwards;
+    }
+
+    @keyframes heroElementFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-preview-card,
+      .hero-preview-badge,
+      .hero-preview-verdict,
+      .hero-preview-section {
+        opacity: 1;
+        animation: none;
+        transform: none;
+      }
+    }
+
     .hero-preview-card::before {
       content: "";
       position: absolute;
@@ -728,6 +776,7 @@
       justify-content: center;
       position: relative;
       flex-shrink: 0;
+      /* JS handles the conic-gradient animation; see animateHeroDialNumber() */
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2742,6 +2791,452 @@
       outline: var(--focus-outline-width) solid var(--focus-outline-color);
       outline-offset: var(--focus-outline-offset);
       box-shadow: var(--focus-shadow);
+    }
+
+    /* Redesigned Paywall with Tier Cards */
+    .paywall-card--pricing {
+      width: min(560px, 94vw);
+      padding: var(--space-xl) var(--space-xl-alt) var(--space-lg);
+      gap: var(--space-lg);
+      position: relative;
+    }
+
+    .paywall-close-btn {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: var(--space-xxs);
+      border-radius: var(--radius-sm);
+      transition: color var(--motion-duration-short), background var(--motion-duration-short);
+    }
+
+    .paywall-close-btn:hover {
+      color: var(--text-main);
+      background: var(--surface-tint);
+    }
+
+    .paywall-header {
+      text-align: center;
+      margin-bottom: var(--space-sm);
+    }
+
+    .paywall-card--pricing .paywall-title {
+      font-size: var(--fs-xl);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .paywall-card--pricing .paywall-subtitle {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+    }
+
+    .paywall-tiers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .paywall-tier {
+      position: relative;
+      background: var(--wash);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      cursor: pointer;
+      transition: 
+        border-color var(--motion-duration-short) var(--motion-ease-premium),
+        box-shadow var(--motion-duration-short) var(--motion-ease-premium),
+        transform var(--motion-duration-short) var(--motion-ease-premium),
+        background var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .paywall-tier:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(51, 65, 166, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .paywall-tier:focus-visible {
+      outline: var(--focus-outline-width) solid var(--focus-outline-color);
+      outline-offset: var(--focus-outline-offset);
+    }
+
+    .paywall-tier--24h {
+      background: linear-gradient(135deg, var(--accent-wash) 0%, var(--wash) 100%);
+      border-color: var(--accent);
+    }
+
+    .paywall-tier--24h:hover {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-wash) 120%, var(--wash)) 0%, var(--wash) 100%);
+      box-shadow: 0 12px 32px rgba(51, 65, 166, 0.18);
+    }
+
+    .paywall-tier-badge {
+      position: absolute;
+      top: calc(var(--space-sm) * -1);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      padding: var(--space-xxs) var(--space-sm);
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .paywall-tier--30d .paywall-tier-badge {
+      background: var(--success);
+    }
+
+    .paywall-tier-price {
+      font-family: var(--font-display);
+      font-size: var(--fs-3xl);
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-xxs);
+    }
+
+    .paywall-tier--30d .paywall-tier-price {
+      color: var(--success-dark);
+    }
+
+    .paywall-tier-name {
+      font-family: var(--font-display);
+      font-size: var(--fs-body);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: var(--space-xs);
+      letter-spacing: -0.01em;
+    }
+
+    .paywall-tier-desc {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      line-height: var(--lh-relaxed);
+    }
+
+    .paywall-status {
+      text-align: center;
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      min-height: var(--space-lg);
+    }
+
+    .paywall-footer {
+      text-align: center;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .paywall-trust {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 520px) {
+      .paywall-tiers {
+        grid-template-columns: 1fr;
+      }
+      .paywall-card--pricing {
+        padding: var(--space-lg) var(--space-md-alt) var(--space-md-alt);
+      }
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      max-width: 1100px;
+      margin: var(--space-2xl) auto;
+      padding: var(--space-2xl) var(--space-lg);
+      background: var(--wash);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .pricing-chip {
+      display: inline-block;
+      background: var(--accent-wash);
+      color: var(--accent);
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      padding: var(--space-xxs) var(--space-sm-alt);
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+    }
+
+    .pricing-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h1);
+      font-weight: 700;
+      color: var(--ink-900);
+      letter-spacing: -0.02em;
+      line-height: var(--lh-cozy);
+      margin-bottom: var(--space-sm);
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-subline {
+      font-size: var(--fs-body);
+      color: var(--text-soft);
+      line-height: var(--lh-relaxed);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .pricing-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      transition: 
+        box-shadow var(--motion-duration-short) var(--motion-ease-premium),
+        transform var(--motion-duration-short) var(--motion-ease-premium),
+        border-color var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .pricing-card:hover {
+      box-shadow: var(--shadow-card);
+      transform: translateY(-3px);
+    }
+
+    .pricing-card--popular {
+      border-color: var(--accent);
+      border-width: 2px;
+      box-shadow: 0 12px 32px rgba(51, 65, 166, 0.12);
+    }
+
+    .pricing-card--popular:hover {
+      box-shadow: 0 18px 40px rgba(51, 65, 166, 0.18);
+    }
+
+    .pricing-card-popular-badge {
+      position: absolute;
+      top: calc(var(--space-sm-alt) * -1);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: var(--fs-tiny);
+      font-weight: 700;
+      padding: var(--space-xxs) var(--space-md);
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pricing-card-header {
+      margin-bottom: var(--space-md);
+    }
+
+    .pricing-card-badge {
+      display: inline-block;
+      font-size: var(--fs-tiny);
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .pricing-card-price {
+      margin-bottom: var(--space-xs);
+    }
+
+    .pricing-price-amount {
+      font-family: var(--font-display);
+      font-size: var(--fs-dial);
+      font-weight: 800;
+      color: var(--ink-900);
+      letter-spacing: -0.03em;
+    }
+
+    .pricing-card--popular .pricing-price-amount {
+      color: var(--accent);
+    }
+
+    .pricing-card-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      color: var(--ink-900);
+      letter-spacing: -0.01em;
+    }
+
+    .pricing-card-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-lg);
+      flex: 1;
+    }
+
+    .pricing-card-features li {
+      font-size: var(--fs-small);
+      color: var(--text-soft);
+      line-height: var(--lh-relaxed);
+      padding-left: var(--space-lg);
+      position: relative;
+      margin-bottom: var(--space-sm);
+    }
+
+    .pricing-card-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .pricing-card-cta {
+      display: block;
+      text-align: center;
+      padding: var(--space-sm-alt) var(--space-lg);
+      border-radius: var(--radius-input);
+      font-size: var(--fs-label);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 
+        background var(--motion-duration-short) var(--motion-ease-premium),
+        transform var(--motion-duration-short) var(--motion-ease-premium),
+        box-shadow var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .pricing-cta--free {
+      background: var(--surface-tint);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .pricing-cta--free:hover {
+      background: var(--border-subtle);
+      transform: translateY(-1px);
+    }
+
+    .pricing-cta--primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      box-shadow: var(--shadow-button);
+    }
+
+    .pricing-cta--primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-button-hover);
+    }
+
+    .pricing-cta--secondary {
+      background: var(--bg-card);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .pricing-cta--secondary:hover {
+      background: var(--accent-wash);
+      transform: translateY(-1px);
+    }
+
+    .pricing-trust-row {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    .pricing-trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .pricing-trust-icon {
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .pricing-card--popular {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .pricing-section {
+        padding: var(--space-xl) var(--space-md-alt);
+        margin: var(--space-xl) 0;
+        border-radius: var(--radius-lg);
+      }
+      .pricing-title {
+        font-size: var(--fs-h2);
+      }
+      .pricing-trust-row {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+    }
+
+    /* Dark mode for pricing */
+    [data-theme="dark"] .pricing-section {
+      background: var(--bg-card);
+    }
+
+    [data-theme="dark"] .pricing-card {
+      background: var(--bg-panel);
+    }
+
+    [data-theme="dark"] .pricing-card--popular {
+      box-shadow: 0 12px 32px rgba(91, 111, 216, 0.2);
+    }
+
+    [data-theme="dark"] .pricing-cta--free {
+      background: var(--surface-tint);
+      border-color: var(--border-strong);
+    }
+
+    [data-theme="dark"] .paywall-tier {
+      background: var(--bg-card);
+    }
+
+    [data-theme="dark"] .paywall-tier--24h {
+      background: linear-gradient(135deg, var(--accent-wash) 0%, var(--bg-card) 100%);
     }
 
     #loading-bar {
@@ -4793,22 +5288,126 @@
         </div>
       </section>
 
+      <!-- Pricing Section -->
+      <section class="pricing-section" id="pricing">
+        <div class="pricing-header">
+          <span class="pricing-chip">Simple pricing</span>
+          <h2 class="pricing-title">Stop renting resume tools you only use for 2 weeks.</h2>
+          <p class="pricing-subline">No subscriptions. Just passes that match how people really job hunt.</p>
+        </div>
+        
+        <div class="pricing-grid">
+          <!-- Free Tier -->
+          <div class="pricing-card pricing-card--free">
+            <div class="pricing-card-header">
+              <div class="pricing-card-badge">Always free</div>
+              <div class="pricing-card-price">
+                <span class="pricing-price-amount">$0</span>
+              </div>
+              <h3 class="pricing-card-title">Clarity Score</h3>
+            </div>
+            <ul class="pricing-card-features">
+              <li>Instant score and recruiter-style diagnosis</li>
+              <li>See how your resume actually reads to a hiring manager</li>
+              <li>No credit card required</li>
+            </ul>
+            <a href="#main-input" class="pricing-card-cta pricing-cta--free">Try it free</a>
+          </div>
+          
+          <!-- 24-Hour Pass -->
+          <div class="pricing-card pricing-card--popular">
+            <div class="pricing-card-popular-badge">Most popular</div>
+            <div class="pricing-card-header">
+              <div class="pricing-card-badge">One-time</div>
+              <div class="pricing-card-price">
+                <span class="pricing-price-amount">$9</span>
+              </div>
+              <h3 class="pricing-card-title">24-Hour Fix Pass</h3>
+            </div>
+            <ul class="pricing-card-features">
+              <li>Unlimited scans for 24 hours</li>
+              <li>Line-by-line feedback and rewritten bullets</li>
+              <li>Perfect when you have one big application due tonight</li>
+            </ul>
+            <button type="button" class="pricing-card-cta pricing-cta--primary" data-tier="24h">Get 24-Hour Pass</button>
+          </div>
+          
+          <!-- 30-Day Campaign -->
+          <div class="pricing-card pricing-card--campaign">
+            <div class="pricing-card-header">
+              <div class="pricing-card-badge">Best value</div>
+              <div class="pricing-card-price">
+                <span class="pricing-price-amount">$39</span>
+              </div>
+              <h3 class="pricing-card-title">30-Day Campaign Pass</h3>
+            </div>
+            <ul class="pricing-card-features">
+              <li>Unlimited scans for 30 days</li>
+              <li>Tailor your resume for every role you apply to</li>
+              <li>No recurring billing, ever</li>
+            </ul>
+            <button type="button" class="pricing-card-cta pricing-cta--secondary" data-tier="30d">Get Campaign Pass</button>
+          </div>
+        </div>
+        
+        <div class="pricing-trust-row">
+          <span class="pricing-trust-item">
+            <svg class="pricing-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 1L10.163 5.279L15 6.021L11.5 9.421L12.326 14.25L8 12L3.674 14.25L4.5 9.421L1 6.021L5.837 5.279L8 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Built by former FAANG recruiter
+          </span>
+          <span class="pricing-trust-item">
+            <svg class="pricing-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M5.5 8L7 9.5L10.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Your resume is not used to train models
+          </span>
+          <span class="pricing-trust-item">
+            <svg class="pricing-trust-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 5V3C13 2.44772 12.5523 2 12 2H4C3.44772 2 3 2.44772 3 3V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <rect x="2" y="5" width="12" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            No hidden subscriptions
+          </span>
+        </div>
+      </section>
+
       <div id="paywall-backdrop" class="paywall-backdrop" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
-        <div class="paywall-card">
-          <div class="paywall-title" id="paywall-title">Keep using Resume Studio</div>
-          <div class="paywall-subtitle">
-            Get unlimited runs and full access to your personalized recruiter report.
+        <div class="paywall-card paywall-card--pricing">
+          <button id="paywall-close" class="paywall-close-btn" type="button" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="paywall-header">
+            <div class="paywall-title" id="paywall-title">You've used your free reviews</div>
+            <div class="paywall-subtitle">Pick a pass that fits your timeline. No subscriptions.</div>
           </div>
-          <ul class="paywall-list">
-            <li>Unlimited resume runs on this browser.</li>
-            <li>Access to your full score, summary, and insight stack whenever you need it.</li>
-            <li>Future saved reports as they ship.</li>
-          </ul>
-          <div class="paywall-actions">
-            <button id="paywall-upgrade" class="paywall-primary" type="button">Upgrade and keep going</button>
-            <button id="paywall-close" class="paywall-secondary" type="button">Not now</button>
+          
+          <div class="paywall-tiers">
+            <button type="button" class="paywall-tier paywall-tier--24h" data-tier="24h">
+              <div class="paywall-tier-badge">Popular</div>
+              <div class="paywall-tier-price">$9</div>
+              <div class="paywall-tier-name">24-Hour Pass</div>
+              <div class="paywall-tier-desc">Unlimited scans for 24h. Perfect for one big application.</div>
+            </button>
+            
+            <button type="button" class="paywall-tier paywall-tier--30d" data-tier="30d">
+              <div class="paywall-tier-badge">Best value</div>
+              <div class="paywall-tier-price">$39</div>
+              <div class="paywall-tier-name">30-Day Pass</div>
+              <div class="paywall-tier-desc">Full job search coverage. Tailor for every role.</div>
+            </button>
           </div>
-          <div id="paywall-status" class="paywall-subtitle" aria-live="polite"></div>
+          
+          <div id="paywall-status" class="paywall-status" aria-live="polite"></div>
+          
+          <div class="paywall-footer">
+            <span class="paywall-trust">No recurring charges • Instant access • Cancel anytime</span>
+          </div>
         </div>
       </div>
 
@@ -5084,7 +5683,18 @@
   }
 
   function isPaid() {
-    return localStorage.getItem(PAID_KEY) === "1";
+    // First check if paid flag is set
+    if (localStorage.getItem(PAID_KEY) !== "1") return false;
+    // Then check if tier has expired
+    const tierInfo = getTierInfo();
+    if (!tierInfo) {
+      // Tier expired, clear paid status
+      try {
+        localStorage.removeItem(PAID_KEY);
+      } catch (e) {}
+      return false;
+    }
+    return true;
   }
 
   function markPaid() {
@@ -5123,17 +5733,61 @@
     return !!(prefersReducedMotionQuery && prefersReducedMotionQuery.matches);
   }
 
+  const TIER_KEY = "rip-tier-v1";
+  const TIER_EXPIRY_KEY = "rip-tier-expiry-v1";
+
+  function getTierInfo() {
+    try {
+      const tier = localStorage.getItem(TIER_KEY);
+      const expiry = localStorage.getItem(TIER_EXPIRY_KEY);
+      if (!tier || !expiry) return null;
+      const expiryDate = new Date(expiry);
+      if (expiryDate < new Date()) {
+        // Tier expired
+        localStorage.removeItem(TIER_KEY);
+        localStorage.removeItem(TIER_EXPIRY_KEY);
+        localStorage.removeItem(PAID_KEY);
+        return null;
+      }
+      return { tier, expiry: expiryDate };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setTierInfo(tier) {
+    try {
+      const now = new Date();
+      let expiry;
+      if (tier === "30d") {
+        expiry = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+      } else {
+        expiry = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours
+      }
+      localStorage.setItem(TIER_KEY, tier);
+      localStorage.setItem(TIER_EXPIRY_KEY, expiry.toISOString());
+    } catch (e) {
+      console.warn("Could not save tier info", e);
+    }
+  }
+
   (function handleCheckoutParams() {
     const params = new URLSearchParams(window.location.search);
     const status = params.get("checkout");
+    const tier = params.get("tier");
     if (status === "success") {
       markPaid();
+      if (tier) {
+        setTierInfo(tier);
+        logEvent("purchase_complete", { tier });
+      }
       const clean = window.location.pathname + window.location.hash;
       if (window.history && window.history.replaceState) {
         window.history.replaceState({}, document.title, clean);
       }
     }
     if (status === "cancelled") {
+      logEvent("checkout_cancelled");
       const clean = window.location.pathname + window.location.hash;
       if (window.history && window.history.replaceState) {
         window.history.replaceState({}, document.title, clean);
@@ -6246,12 +6900,14 @@
     }
   });
 
-  async function startCheckout() {
+  async function startCheckout(tier = "24h") {
     if (paywallStatusEl) paywallStatusEl.textContent = "Opening checkout...";
+    logEvent("checkout_started", { tier });
     try {
       const resp = await fetch("/api/create-checkout-session", {
         method: "POST",
-        headers: { ...authHeaders, "Content-Type": "application/json" }
+        headers: { ...authHeaders, "Content-Type": "application/json" },
+        body: JSON.stringify({ tier })
       });
       const data = await resp.json().catch(() => null);
       if (!resp.ok || !data?.ok || !data?.url) {
@@ -6269,11 +6925,21 @@
     }
   }
 
-  if (paywallUpgradeEl) {
-    paywallUpgradeEl.addEventListener("click", () => {
-      startCheckout();
+  // Paywall tier buttons
+  document.querySelectorAll(".paywall-tier").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tier = btn.getAttribute("data-tier");
+      startCheckout(tier);
     });
-  }
+  });
+
+  // Pricing section CTA buttons
+  document.querySelectorAll(".pricing-card-cta[data-tier]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tier = btn.getAttribute("data-tier");
+      startCheckout(tier);
+    });
+  });
 
   if (paywallCloseEl) {
     paywallCloseEl.addEventListener("click", () => {

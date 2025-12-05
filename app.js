@@ -82,6 +82,10 @@ const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 2);
 const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);
 const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN;
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+// Support tiered pricing: 24-hour pass and 30-day pass
+const STRIPE_PRICE_ID_24H = process.env.STRIPE_PRICE_ID_24H || process.env.STRIPE_PRICE_ID;
+const STRIPE_PRICE_ID_30D = process.env.STRIPE_PRICE_ID_30D;
+// Legacy fallback
 const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
 // Support single or comma-separated origins in FRONTEND_URL
 const FRONTEND_URL_RAW = process.env.FRONTEND_URL || "http://localhost:3000";
@@ -456,7 +460,36 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => {
-  if (!stripe || !STRIPE_PRICE_ID || !FRONTEND_URL) {
+  if (!stripe || !FRONTEND_URL) {
+    return res.status(500).json({
+      ok: false,
+      errorCode: "PAYMENT_CONFIG_MISSING",
+      message: "Payments are not configured yet. Please try again later."
+    });
+  }
+
+  // Determine which tier/price to use
+  const { tier } = req.body || {};
+  let priceId;
+  let tierLabel;
+
+  if (tier === "30d" && STRIPE_PRICE_ID_30D) {
+    priceId = STRIPE_PRICE_ID_30D;
+    tierLabel = "30-day";
+  } else if (tier === "24h" && STRIPE_PRICE_ID_24H) {
+    priceId = STRIPE_PRICE_ID_24H;
+    tierLabel = "24-hour";
+  } else if (STRIPE_PRICE_ID_24H) {
+    // Default to 24h if available
+    priceId = STRIPE_PRICE_ID_24H;
+    tierLabel = "24-hour";
+  } else if (STRIPE_PRICE_ID) {
+    // Legacy fallback
+    priceId = STRIPE_PRICE_ID;
+    tierLabel = "default";
+  }
+
+  if (!priceId) {
     return res.status(500).json({
       ok: false,
       errorCode: "PAYMENT_CONFIG_MISSING",
@@ -469,12 +502,20 @@ app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => 
       mode: "payment",
       line_items: [
         {
-          price: STRIPE_PRICE_ID,
+          price: priceId,
           quantity: 1
         }
       ],
-      success_url: `${FRONTEND_URL}?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${FRONTEND_URL}?checkout=success&tier=${tier || "24h"}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${FRONTEND_URL}?checkout=cancelled`
+    });
+
+    logLine({
+      level: "info",
+      msg: "checkout_session_created",
+      reqId: req.reqId,
+      tier: tierLabel,
+      priceId: priceId.slice(0, 10) + "..." // Log partial ID for debugging
     });
 
     return res.json({ ok: true, url: session.url });
@@ -484,6 +525,7 @@ app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => 
         level: "error",
         msg: "checkout_session_failed",
         reqId: req.reqId,
+        tier: tierLabel,
         error: err.message
       },
       true
