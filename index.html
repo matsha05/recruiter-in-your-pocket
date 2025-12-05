@@ -2925,11 +2925,61 @@
       line-height: var(--lh-relaxed);
     }
 
+    .paywall-tier.selected {
+      border-color: var(--accent);
+      box-shadow: 0 10px 28px rgba(51, 65, 166, 0.16);
+    }
+
     .paywall-status {
       text-align: center;
       font-size: var(--fs-small);
       color: var(--text-muted);
       min-height: var(--space-lg);
+    }
+
+    .paywall-auth {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      background: var(--wash);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+    }
+
+    .paywall-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xxs);
+    }
+
+    .paywall-input-group label {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+    }
+
+    .paywall-input-group input {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm);
+      font-size: var(--fs-base);
+      color: var(--text-main);
+      background: var(--bg-panel);
+      transition: border-color var(--motion-duration-short) var(--motion-ease-premium), box-shadow var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .paywall-input-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: var(--focus-shadow);
+    }
+
+    .paywall-actions-row {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      justify-content: flex-start;
     }
 
     .paywall-footer {
@@ -5402,7 +5452,23 @@
               <div class="paywall-tier-desc">Full job search coverage. Tailor for every role.</div>
             </button>
           </div>
-          
+          <div class="paywall-auth">
+            <div class="paywall-input-group">
+              <label for="paywall-email">Email to save your pass</label>
+              <input id="paywall-email" type="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <div class="paywall-actions-row">
+              <button id="paywall-send-code" class="paywall-secondary" type="button">Send sign-in code</button>
+            </div>
+            <div class="paywall-input-group">
+              <label for="paywall-code">Enter the 6-digit code</label>
+              <input id="paywall-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="123456" maxlength="6" />
+            </div>
+            <div class="paywall-actions-row">
+              <button id="paywall-verify" class="paywall-primary" type="button">Verify and continue</button>
+            </div>
+          </div>
+
           <div id="paywall-status" class="paywall-status" aria-live="polite"></div>
           
           <div class="paywall-footer">
@@ -5556,6 +5622,9 @@
   let previousBodyOverflow = "";
   let currentReportIsSample = false;
   let dataModalReturnEl = null;
+  let currentUser = null;
+  let activePass = null;
+  let selectedTier = "24h";
 
   function setFocusMode(enabled) {
     focusMode = Boolean(enabled);
@@ -5625,6 +5694,7 @@
 
   // Initialize theme on page load
   initTheme();
+  refreshSessionState();
 
   // Listen for system preference changes
   if (window.matchMedia) {
@@ -5650,6 +5720,11 @@
   const paywallUpgradeEl = document.getElementById("paywall-upgrade");
   const paywallCloseEl = document.getElementById("paywall-close");
   const paywallStatusEl = document.getElementById("paywall-status");
+  const paywallEmailInput = document.getElementById("paywall-email");
+  const paywallCodeInput = document.getElementById("paywall-code");
+  const paywallSendCodeBtn = document.getElementById("paywall-send-code");
+  const paywallVerifyBtn = document.getElementById("paywall-verify");
+  const paywallTierButtons = Array.from(document.querySelectorAll(".paywall-tier"));
 
   const currentMode = "resume";
   let saveTimeout = null;
@@ -5683,22 +5758,11 @@
   }
 
   function isPaid() {
-    // First check if paid flag is set
-    if (localStorage.getItem(PAID_KEY) !== "1") return false;
-    // Then check if tier has expired
-    const tierInfo = getTierInfo();
-    if (!tierInfo) {
-      // Tier expired, clear paid status
-      try {
-        localStorage.removeItem(PAID_KEY);
-      } catch (e) {}
-      return false;
-    }
-    return true;
+    return Boolean(activePass);
   }
 
   function markPaid() {
-    localStorage.setItem(PAID_KEY, "1");
+    // Deprecated: pass status is maintained server-side
   }
 
   function showReportContainer() {
@@ -5715,6 +5779,7 @@
     if (paywallBackdropEl) {
       paywallBackdropEl.style.display = "flex";
     }
+    selectTier(selectedTier || "24h");
     if (paywallStatusEl) {
       paywallStatusEl.textContent = msg || "";
     }
@@ -5776,11 +5841,7 @@
     const status = params.get("checkout");
     const tier = params.get("tier");
     if (status === "success") {
-      markPaid();
-      if (tier) {
-        setTierInfo(tier);
-        logEvent("purchase_complete", { tier });
-      }
+      refreshSessionState();
       const clean = window.location.pathname + window.location.hash;
       if (window.history && window.history.replaceState) {
         window.history.replaceState({}, document.title, clean);
@@ -5794,6 +5855,19 @@
       }
     }
   })();
+
+  async function refreshSessionState() {
+    try {
+      const resp = await fetch("/api/me", { headers: authHeaders });
+      const data = await resp.json().catch(() => null);
+      if (data?.ok) {
+        currentUser = data.user;
+        activePass = data.active_pass;
+      }
+    } catch (err) {
+      console.warn("Could not refresh session", err);
+    }
+  }
 
   function openDataModal() {
     if (!dataModalEl || !dataModalCardEl) return;
@@ -6900,7 +6974,16 @@
     }
   });
 
-  async function startCheckout(tier = "24h") {
+  function selectTier(tier = "24h") {
+    selectedTier = tier || "24h";
+    paywallTierButtons.forEach((btn) => {
+      const isActive = btn.getAttribute("data-tier") === selectedTier;
+      btn.classList.toggle("selected", isActive);
+    });
+    if (paywallStatusEl) paywallStatusEl.textContent = "";
+  }
+
+  async function startCheckout(tier = selectedTier) {
     if (paywallStatusEl) paywallStatusEl.textContent = "Opening checkout...";
     logEvent("checkout_started", { tier });
     try {
@@ -6910,6 +6993,10 @@
         body: JSON.stringify({ tier })
       });
       const data = await resp.json().catch(() => null);
+      if (resp.status === 401) {
+        if (paywallStatusEl) paywallStatusEl.textContent = "Enter your email and code to continue.";
+        return;
+      }
       if (!resp.ok || !data?.ok || !data?.url) {
         const msg =
           data?.message || "Could not start checkout right now. Try again in a moment.";
@@ -6929,7 +7016,7 @@
   document.querySelectorAll(".paywall-tier").forEach((btn) => {
     btn.addEventListener("click", () => {
       const tier = btn.getAttribute("data-tier");
-      startCheckout(tier);
+      selectTier(tier);
     });
   });
 
@@ -6937,9 +7024,70 @@
   document.querySelectorAll(".pricing-card-cta[data-tier]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const tier = btn.getAttribute("data-tier");
-      startCheckout(tier);
+      selectTier(tier);
+      showPaywall();
     });
   });
+
+  async function requestLoginCode() {
+    const email = (paywallEmailInput?.value || "").trim();
+    if (!email) {
+      paywallStatusEl.textContent = "Enter your email to continue.";
+      return;
+    }
+    paywallStatusEl.textContent = "Sending code...";
+    try {
+      const resp = await fetch("/api/login/request-code", {
+        method: "POST",
+        headers: { ...authHeaders, "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const data = await resp.json().catch(() => null);
+      if (!resp.ok || !data?.ok) {
+        paywallStatusEl.textContent = data?.message || "Could not send code right now.";
+        return;
+      }
+      paywallStatusEl.textContent = "Code sent. Check your email.";
+    } catch (err) {
+      paywallStatusEl.textContent = "Could not send code right now.";
+    }
+  }
+
+  async function verifyLoginCodeAndCheckout() {
+    const email = (paywallEmailInput?.value || "").trim();
+    const code = (paywallCodeInput?.value || "").trim();
+    if (!email || !code) {
+      paywallStatusEl.textContent = "Enter your email and code.";
+      return;
+    }
+    paywallStatusEl.textContent = "Verifying code...";
+    try {
+      const resp = await fetch("/api/login/verify", {
+        method: "POST",
+        headers: { ...authHeaders, "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code })
+      });
+      const data = await resp.json().catch(() => null);
+      if (!resp.ok || !data?.ok) {
+        paywallStatusEl.textContent = data?.message || "Invalid code. Try again.";
+        return;
+      }
+      currentUser = data.user;
+      activePass = data.active_pass;
+      paywallStatusEl.textContent = "Verified. Redirecting to checkout...";
+      await startCheckout(selectedTier);
+    } catch (err) {
+      paywallStatusEl.textContent = "Could not verify code right now.";
+    }
+  }
+
+  if (paywallSendCodeBtn) {
+    paywallSendCodeBtn.addEventListener("click", requestLoginCode);
+  }
+
+  if (paywallVerifyBtn) {
+    paywallVerifyBtn.addEventListener("click", verifyLoginCodeAndCheckout);
+  }
 
   if (paywallCloseEl) {
     paywallCloseEl.addEventListener("click", () => {
@@ -6998,13 +7146,6 @@
     }
     
     clearValidationError();
-
-    if (!sampleRun && !isPaid() && getRunCount() >= FREE_RUN_LIMIT) {
-      statusEl.textContent = "You've used your free reviews. Upgrade to keep going.";
-      setStatus("You've used your free reviews. Upgrade to keep going.", "error");
-      showPaywall();
-      return;
-    }
 
     if (!focusMode) {
       setFocusMode(false);
@@ -7159,6 +7300,16 @@
         structured = payload.data;
       }
 
+      if (payload.active_pass) {
+        activePass = payload.active_pass;
+      }
+      if (payload.user) {
+        currentUser = payload.user;
+      }
+
+      const accessLevel = payload.access || "full";
+      const isPreviewAccess = accessLevel !== "full";
+
       if (!structured) {
         const msg = "Unexpected server response.";
         statusEl.textContent = msg;
@@ -7189,23 +7340,23 @@
       // Hide skeleton and show results-body
       resultsBodyEl.style.display = ""; // Show results-body
       resultsBodyEl.classList.remove("empty");
+      resultsBodyEl.classList.toggle("muted", isPreviewAccess);
       updateToolLayout();
       resultsBodyEl.classList.remove("results-error");
-      resultsBodyEl.classList.remove("muted");
-      if (!isPaid() && !sampleRun) {
-        incrementRunCount();
+      if (!isPreviewAccess) {
+        resultsBodyEl.classList.remove("muted");
       }
       if (resultsActionsBottomEl) {
         resultsActionsBottomEl.classList.remove("hidden");
       }
-      // Re-enable export/copy buttons for real reports
+      // Re-enable or disable export/copy based on access
       if (exportButtonEl) {
-        exportButtonEl.disabled = false;
-        exportButtonEl.title = "";
+        exportButtonEl.disabled = isPreviewAccess;
+        exportButtonEl.title = isPreviewAccess ? "Unlock a pass to export the full report" : "";
       }
       if (copyFullButtonEl) {
-        copyFullButtonEl.disabled = false;
-        copyFullButtonEl.title = "";
+        copyFullButtonEl.disabled = isPreviewAccess;
+        copyFullButtonEl.title = isPreviewAccess ? "Unlock a pass to copy the full report" : "";
       }
 
       runIdeas({ auto: true, sourceText: text });

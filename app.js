@@ -6,6 +6,26 @@ const path = require("path");
 const crypto = require("crypto");
 const fs = require("fs");
 const Stripe = require("stripe");
+const {
+  upsertUserByEmail,
+  getUserByEmail,
+  getUserById,
+  createLoginCode,
+  validateAndUseLoginCode,
+  createSession,
+  getSessionByToken,
+  deleteSessionByToken,
+  createPass,
+  getLatestPass,
+  getActivePasses
+} = require("./db");
+const { sendLoginCode } = require("./mailer");
+const {
+  SESSION_COOKIE,
+  makeSessionCookie,
+  parseSessionCookie,
+  cookieOptions
+} = require("./auth");
 
 // Support both puppeteer (local/dev) and puppeteer-core with @sparticuz/chromium (Vercel/serverless)
 let puppeteer;
@@ -109,6 +129,15 @@ const FRONTEND_URLS = parseOrigins(FRONTEND_URL_RAW);
 // Keep a primary URL for things like Stripe redirects; fall back to localhost if parsing failed
 const FRONTEND_URL = FRONTEND_URLS[0] || "http://localhost:3000";
 const stripe = STRIPE_SECRET_KEY ? Stripe(STRIPE_SECRET_KEY) : null;
+const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
+const SESSION_SECRET = process.env.SESSION_SECRET;
+const LOGIN_CODE_TTL_MINUTES = 15;
+const SESSION_TTL_DAYS = 30;
+
+if (!SESSION_SECRET) {
+  console.error("ERROR: SESSION_SECRET is required. Set it in your environment.");
+  process.exit(1);
+}
 
 if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
   console.warn("Missing OPENAI_API_KEY in .env; live OpenAI calls will fail until set.");
@@ -195,6 +224,37 @@ function logLine(obj, isError = false) {
       }
     });
   }
+}
+
+function parseCookies(req) {
+  const header = req.headers.cookie;
+  if (!header) return {};
+  return header.split(";").reduce((acc, part) => {
+    const [k, v] = part.trim().split("=");
+    if (k && v) acc[k] = decodeURIComponent(v);
+    return acc;
+  }, {});
+}
+
+function requireSessionSecret() {
+  if (!SESSION_SECRET) {
+    throw new Error("SESSION_SECRET must be set");
+  }
+}
+
+function generateNumericCode(length = 6) {
+  const max = 10 ** length;
+  const code = Math.floor(Math.random() * max).toString().padStart(length, "0");
+  return code;
+}
+
+function isValidEmail(email) {
+  return typeof email === "string" && /\S+@\S+\.\S+/.test(email.trim());
+}
+
+function setSession(res, token) {
+  const cookieValue = makeSessionCookie(token);
+  res.cookie(SESSION_COOKIE, cookieValue, cookieOptions());
 }
 
 /**
@@ -302,6 +362,77 @@ app.get("/ready", async (req, res) => {
   }
 });
 
+// Route-specific rate limiters (per IP/token)
+const rateLimitLight = createRateLimiter(60);     // for cheap endpoints if needed
+const rateLimitResume = createRateLimiter(20);    // /api/resume-feedback
+const rateLimitIdeas = createRateLimiter(20);     // /api/resume-ideas
+const rateLimitPdf = createRateLimiter(10);       // /api/export-pdf
+const rateLimitCheckout = createRateLimiter(10);  // /api/create-checkout-session
+const rateLimitAuth = createRateLimiter(30);      // login / code endpoints
+
+app.post("/api/login/request-code", rateLimitAuth, async (req, res) => {
+  try {
+    const email = (req.body?.email || "").trim().toLowerCase();
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ ok: false, message: "Enter a valid email." });
+    }
+
+    const user = upsertUserByEmail(email);
+    const code = generateNumericCode(6);
+    const expiresAt = new Date(Date.now() + LOGIN_CODE_TTL_MINUTES * 60 * 1000).toISOString();
+    createLoginCode(user.id, code, expiresAt);
+    await sendLoginCode(email, code);
+    logLine({ level: "info", msg: "login_code_sent", email });
+    return res.json({ ok: true, expires_at: expiresAt });
+  } catch (err) {
+    logLine({ level: "error", msg: "login_request_code_failed", error: err.message }, true);
+    return res.status(500).json({ ok: false, message: "Could not send code right now." });
+  }
+});
+
+app.post("/api/login/verify", rateLimitAuth, async (req, res) => {
+  try {
+    const email = (req.body?.email || "").trim().toLowerCase();
+    const code = (req.body?.code || "").trim();
+    if (!isValidEmail(email) || !code) {
+      return res.status(400).json({ ok: false, message: "Email and code are required." });
+    }
+    const user = getUserByEmail(email);
+    if (!user) {
+      return res.status(400).json({ ok: false, message: "Invalid code or email." });
+    }
+    const validation = validateAndUseLoginCode(user.id, code);
+    if (!validation.ok) {
+      return res.status(400).json({ ok: false, message: "Invalid or expired code." });
+    }
+    const token = crypto.randomBytes(32).toString("hex");
+    const expiresAt = new Date(Date.now() + SESSION_TTL_DAYS * 24 * 60 * 60 * 1000).toISOString();
+    createSession(user.id, token, expiresAt);
+    setSession(res, token);
+    const activePass = getLatestPass(user.id);
+    return res.json({
+      ok: true,
+      user: { email: user.email },
+      active_pass: activePass
+    });
+  } catch (err) {
+    logLine({ level: "error", msg: "login_verify_failed", error: err.message }, true);
+    return res.status(500).json({ ok: false, message: "Could not verify code right now." });
+  }
+});
+
+app.get("/api/me", (req, res) => {
+  if (!req.authUser) {
+    return res.json({ ok: true, user: null, active_pass: null });
+  }
+  const activePass = req.activePass || null;
+  return res.json({
+    ok: true,
+    user: { email: req.authUser.email },
+    active_pass: activePass
+  });
+});
+
 console.log("Server starting in directory:", __dirname);
 
 app.use(
@@ -334,7 +465,28 @@ app.use(
   })
 );
 
+app.use("/api/stripe/webhook", express.raw({ type: "application/json" }));
 app.use(express.json());
+
+app.use((req, res, next) => {
+  const cookies = parseCookies(req);
+  const raw = cookies[SESSION_COOKIE];
+  if (raw) {
+    const token = parseSessionCookie(raw);
+    if (token) {
+      const session = getSessionByToken(token);
+      if (session) {
+        const user = getUserById(session.user_id);
+        if (user) {
+          req.authUser = user;
+          req.sessionToken = token;
+          req.activePass = getLatestPass(user.id);
+        }
+      }
+    }
+  }
+  next();
+});
 
 // Set simple security headers on all responses
 app.use((req, res, next) => {
@@ -425,13 +577,6 @@ function createRateLimiter(maxPerMinute) {
   };
 }
 
-// Route-specific rate limiters (per IP/token)
-const rateLimitLight = createRateLimiter(60);     // for cheap endpoints if needed
-const rateLimitResume = createRateLimiter(20);    // /api/resume-feedback
-const rateLimitIdeas = createRateLimiter(20);     // /api/resume-ideas
-const rateLimitPdf = createRateLimiter(10);       // /api/export-pdf
-const rateLimitCheckout = createRateLimiter(10);  // /api/create-checkout-session
-
 // Periodic cleanup of expired rate limit buckets to prevent memory leaks
 const CLEANUP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
 setInterval(() => {
@@ -465,6 +610,14 @@ app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => 
       ok: false,
       errorCode: "PAYMENT_CONFIG_MISSING",
       message: "Payments are not configured yet. Please try again later."
+    });
+  }
+
+  if (!req.authUser) {
+    return res.status(401).json({
+      ok: false,
+      errorCode: "UNAUTHENTICATED",
+      message: "Sign in to continue to checkout."
     });
   }
 
@@ -506,16 +659,23 @@ app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => 
           quantity: 1
         }
       ],
+      customer_email: req.authUser.email,
       success_url: `${FRONTEND_URL}?checkout=success&tier=${tier || "24h"}&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${FRONTEND_URL}?checkout=cancelled`
+      cancel_url: `${FRONTEND_URL}?checkout=cancelled`,
+      metadata: {
+        user_id: req.authUser.id,
+        tier: tier || "24h"
+      }
     });
 
     logLine({
       level: "info",
       msg: "checkout_session_created",
       reqId: req.reqId,
+      userId: req.authUser.id,
       tier: tierLabel,
-      priceId: priceId.slice(0, 10) + "..." // Log partial ID for debugging
+      priceId: priceId.slice(0, 10) + "...", // partial for logs
+      sessionId: session.id
     });
 
     return res.json({ ok: true, url: session.url });
@@ -525,6 +685,7 @@ app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => 
         level: "error",
         msg: "checkout_session_failed",
         reqId: req.reqId,
+        userId: req.authUser?.id,
         tier: tierLabel,
         error: err.message
       },
@@ -536,6 +697,60 @@ app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => 
       message: "Could not start checkout right now. Try again in a moment."
     });
   }
+});
+
+app.post("/api/stripe/webhook", async (req, res) => {
+  if (!stripe || !STRIPE_WEBHOOK_SECRET) {
+    return res.status(400).send("Webhook not configured");
+  }
+
+  const sig = req.headers["stripe-signature"];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, STRIPE_WEBHOOK_SECRET);
+  } catch (err) {
+    logLine({ level: "error", msg: "stripe_webhook_invalid", error: err.message }, true);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object;
+    const metadata = session.metadata || {};
+    const tier = metadata.tier || "24h";
+    const userId = metadata.user_id || null;
+    const email = session.customer_email;
+
+    try {
+      let user = userId ? getUserById(userId) : null;
+      if (!user && email) {
+        user = upsertUserByEmail(email.toLowerCase());
+      }
+      if (!user) {
+        throw new Error("No user to attach pass");
+      }
+
+      const nowTs = Date.now();
+      const expiresAt =
+        tier === "30d"
+          ? new Date(nowTs + 30 * 24 * 60 * 60 * 1000).toISOString()
+          : new Date(nowTs + 24 * 60 * 60 * 1000).toISOString();
+
+      createPass(user.id, tier, expiresAt, null, session.id);
+      logLine({
+        level: "info",
+        msg: "pass_created_from_webhook",
+        userId: user.id,
+        tier,
+        sessionId: session.id
+      });
+    } catch (err) {
+      logLine({ level: "error", msg: "pass_creation_failed", error: err.message }, true);
+      return res.status(500).send("Failed to create pass");
+    }
+  }
+
+  res.json({ received: true });
 });
 
 function getSystemPromptForMode(mode) {
@@ -1118,6 +1333,35 @@ function validateResumeIdeasPayload(obj) {
   return obj;
 }
 
+function determineAccess(req) {
+  if (req.authUser) {
+    const activePass = getLatestPass(req.authUser.id);
+    if (activePass) {
+      return { access: "full", activePass };
+    }
+  }
+  return { access: "preview", activePass: null };
+}
+
+function pruneReportForPreview(report) {
+  return {
+    score: report.score,
+    score_label: report.score_label,
+    score_comment_short: report.score_comment_short,
+    score_comment_long: report.score_comment_long,
+    summary: report.summary,
+    strengths: Array.isArray(report.strengths) ? report.strengths.slice(0, 2) : [],
+    gaps: Array.isArray(report.gaps) ? report.gaps.slice(0, 2) : [],
+    rewrites: [],
+    next_steps: [],
+    missing_wins: [],
+    suggested_bullets: [],
+    layout_score: report.layout_score,
+    layout_band: report.layout_band,
+    layout_notes: report.layout_notes
+  };
+}
+
 function fallbackResumeData() {
   return {
     score: 86,
@@ -1686,6 +1930,7 @@ app.post("/api/resume-feedback", rateLimitResume, async (req, res) => {
 
     const { text, mode } = validation.value;
     const currentMode = mode;
+    const accessInfo = determineAccess(req);
 
     const systemPrompt = getSystemPromptForMode(currentMode);
     const userPrompt = `Here is the user's input. Use the system instructions to respond.
@@ -1750,11 +1995,18 @@ ${text}`;
     });
 
     const enriched = ensureLayoutAndContentFields(parsed);
+    const payload =
+      accessInfo.access === "full"
+        ? enriched
+        : pruneReportForPreview(enriched);
 
     return res.json({
       ok: true,
-      data: enriched,
-      content: JSON.stringify(enriched),
+      access: accessInfo.access,
+      active_pass: accessInfo.activePass,
+      user: req.authUser ? { email: req.authUser.email } : null,
+      data: payload,
+      content: JSON.stringify(payload),
       raw: rawContent
     });
   } catch (err) {
