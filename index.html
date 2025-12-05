@@ -5224,6 +5224,15 @@
       ideasInlineEl.classList.add("hidden");
     }
     updateClearButtonVisibility();
+    // Hide report shell and related state
+    if (reportWrapperEl) reportWrapperEl.style.display = "none";
+    if (reportViewEl) reportViewEl.classList.remove("report-container--visible");
+    if (reportTagEl) reportTagEl.classList.add("hidden");
+    if (issueBreakdownEl) issueBreakdownEl.classList.add("hidden");
+    clearScoreBadge();
+    lastReportData = null;
+    currentReportIsSample = false;
+    isSampleReportActive = false;
     if (resultsBodyEl) {
       resultsBodyEl.textContent = "Your feedback will appear here.";
       resultsBodyEl.classList.add("empty");
