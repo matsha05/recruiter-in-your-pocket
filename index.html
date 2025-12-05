@@ -877,6 +877,12 @@
       margin-top: var(--space-md);
     }
 
+    .hero-cta-note {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      line-height: var(--lh-normal);
+    }
+
     .hero-cta-primary {
       display: inline-flex;
       align-items: center;
@@ -1484,6 +1490,13 @@
     .run-row > * {
       position: relative;
       z-index: 1;
+    }
+
+    .run-helper-text {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      line-height: var(--lh-normal);
+      margin-top: calc(-1 * var(--space-xxs));
     }
 
     .btn-primary {
@@ -2957,6 +2970,12 @@
       font-size: var(--fs-xs);
       color: var(--text-muted);
       letter-spacing: 0.01em;
+    }
+
+    .paywall-input-helper {
+      font-size: var(--fs-tiny);
+      color: var(--text-muted);
+      line-height: var(--lh-tight);
     }
 
     .paywall-input-group input {
@@ -4973,13 +4992,14 @@
         <div class="hero-grid-layout">
           <div class="hero-content">
             <h1 class="hero-title">See how recruiters actually read your resume.</h1>
-            <p class="hero-subtitle">Get a recruiter's honest read, stronger bullets, and clear next steps—in under a minute.</p>
-            <p class="hero-credibility">Built by a recruiter who's run 10,000+ interviews and made 1,000+ hires at Google, Meta, OpenAI, and startups.</p>
+            <p class="hero-subtitle">Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.</p>
+            <p class="hero-credibility">Built by a recruiter who’s run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups.</p>
             
             <div class="hero-cta-group">
               <a href="#main-input" class="hero-cta-primary" id="hero-cta-scroll">Get a recruiter's read →</a>
               <button type="button" class="hero-cta-secondary" id="hero-sample-report">See a sample report</button>
             </div>
+            <div class="hero-cta-note">Your first Clarity Score is free; no login or card required.</div>
 
             <div class="trust-inline hero-trust-line">
               <span class="status-dot"></span>
@@ -5117,6 +5137,7 @@
 
             <div class="run-row">
               <button id="run-button" class="run-button btn-primary">Get a recruiter’s read</button>
+              <div class="run-helper-text">Your first Clarity Score is free; no login or card required.</div>
               <div id="status" class="status" aria-live="polite" role="status"></div>
             </div>
           </div>
@@ -5342,7 +5363,7 @@
       <section class="pricing-section" id="pricing">
         <div class="pricing-header">
           <span class="pricing-chip">Simple pricing</span>
-          <h2 class="pricing-title">Stop renting resume tools you only use for 2 weeks.</h2>
+          <h2 class="pricing-title">Stop renting resume tools you only use for a week.</h2>
           <p class="pricing-subline">No subscriptions. Just passes that match how people really job hunt.</p>
           </div>
         
@@ -5368,16 +5389,16 @@
           <div class="pricing-card pricing-card--popular">
             <div class="pricing-card-popular-badge">Most popular</div>
             <div class="pricing-card-header">
-              <div class="pricing-card-badge">One-time</div>
+              <div class="pricing-card-badge">Most popular</div>
               <div class="pricing-card-price">
                 <span class="pricing-price-amount">$9</span>
               </div>
-              <h3 class="pricing-card-title">24-Hour Fix Pass</h3>
+              <h3 class="pricing-card-title">24-Hour Pass</h3>
             </div>
             <ul class="pricing-card-features">
-              <li>Unlimited scans for 24 hours</li>
+              <li>Unlimited scans for 24 hours. Great when you have a deadline tonight.</li>
               <li>Line-by-line feedback and rewritten bullets</li>
-              <li>Perfect when you have one big application due tonight</li>
+              <li>Use on any device with your email</li>
             </ul>
             <button type="button" class="pricing-card-cta pricing-cta--primary" data-tier="24h">Get 24-Hour Pass</button>
           </div>
@@ -5389,14 +5410,14 @@
               <div class="pricing-card-price">
                 <span class="pricing-price-amount">$39</span>
               </div>
-              <h3 class="pricing-card-title">30-Day Campaign Pass</h3>
+              <h3 class="pricing-card-title">30-Day Pass</h3>
             </div>
             <ul class="pricing-card-features">
-              <li>Unlimited scans for 30 days</li>
-              <li>Tailor your resume for every role you apply to</li>
+              <li>Full job search coverage. Use it whenever you update your resume during your search.</li>
               <li>No recurring billing, ever</li>
+              <li>Use on any device with your email</li>
             </ul>
-            <button type="button" class="pricing-card-cta pricing-cta--secondary" data-tier="30d">Get Campaign Pass</button>
+            <button type="button" class="pricing-card-cta pricing-cta--secondary" data-tier="30d">Get 30-Day Pass</button>
           </div>
         </div>
         
@@ -5406,13 +5427,13 @@
               <path d="M9.022 3.173a.75.75 0 0 1 .956 0l5.25 4.2a.75.75 0 0 1 .272.577v3.7a5.25 5.25 0 0 1-3.089 4.79l-2.837 1.264a.75.75 0 0 1-.614 0l-2.837-1.264A5.25 5.25 0 0 1 3.5 11.65v-3.7a.75.75 0 0 1 .272-.577l5.25-4.2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="m7.75 10.75 1.75 1.75 3.75-3.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Built by former FAANG recruiter
+            Built by a top recruiter from OpenAI, FAANG, and global startups.
           </span>
           <span class="pricing-trust-item">
             <svg class="pricing-trust-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.75 9V5.25a3.75 3.75 0 10-7.5 0V9m-.75 0h9a.75.75 0 01.75.75v7.5a.75.75 0 01-.75.75h-9a.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Your resume is not used to train models
+            Your resume never trains models
           </span>
           <span class="pricing-trust-item">
             <svg class="pricing-trust-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -5432,29 +5453,30 @@
             </svg>
           </button>
           <div class="paywall-header">
-            <div class="paywall-title" id="paywall-title">You've used your free reviews</div>
+            <div class="paywall-title" id="paywall-title">You’ve used your free reviews. Pick a pass to keep going.</div>
             <div class="paywall-subtitle">Pick a pass that fits your timeline. No subscriptions.</div>
           </div>
           
           <div class="paywall-tiers">
             <button type="button" class="paywall-tier paywall-tier--24h" data-tier="24h">
-              <div class="paywall-tier-badge">Popular</div>
+              <div class="paywall-tier-badge">Most popular</div>
               <div class="paywall-tier-price">$9</div>
               <div class="paywall-tier-name">24-Hour Pass</div>
-              <div class="paywall-tier-desc">Unlimited scans for 24h. Perfect for one big application.</div>
+              <div class="paywall-tier-desc">Unlimited scans for 24 hours. Great when you have a deadline tonight.</div>
             </button>
             
             <button type="button" class="paywall-tier paywall-tier--30d" data-tier="30d">
               <div class="paywall-tier-badge">Best value</div>
               <div class="paywall-tier-price">$39</div>
               <div class="paywall-tier-name">30-Day Pass</div>
-              <div class="paywall-tier-desc">Full job search coverage. Tailor for every role.</div>
+              <div class="paywall-tier-desc">Full job search coverage. Use it whenever you update your resume during your search.</div>
             </button>
           </div>
           <div class="paywall-auth">
             <div class="paywall-input-group">
               <label for="paywall-email">Email to save your pass</label>
               <input id="paywall-email" type="email" placeholder="you@example.com" autocomplete="email" />
+              <div class="paywall-input-helper">Use this email to access your pass from any device.</div>
             </div>
             <div class="paywall-actions-row">
               <button id="paywall-send-code" class="paywall-secondary" type="button">Send sign-in code</button>
@@ -5471,7 +5493,7 @@
           <div id="paywall-status" class="paywall-status" aria-live="polite"></div>
           
           <div class="paywall-footer">
-            <span class="paywall-trust">No recurring charges • Instant access • Cancel anytime</span>
+            <span class="paywall-trust">No recurring charges • Instant access</span>
           </div>
         </div>
       </div>
