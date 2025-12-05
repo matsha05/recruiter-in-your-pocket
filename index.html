@@ -6916,11 +6916,15 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
     triggerReportReveal();
     updateToolLayout();
 
-    // Auto-scroll to results
+    // Auto-scroll to results (respect reduced motion)
     setTimeout(() => {
       const reportCard = document.querySelector(".card-output");
       if (reportCard && typeof reportCard.scrollIntoView === "function") {
-        reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (prefersReducedMotion()) {
+          reportCard.scrollIntoView({ block: "start" });
+        } else {
+          reportCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }
     }, 100);
   }
@@ -6938,7 +6942,11 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
       e.preventDefault();
       const inputEl = document.getElementById("main-input");
       if (inputEl) {
-        inputEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (prefersReducedMotion()) {
+          inputEl.scrollIntoView({ block: "center" });
+        } else {
+          inputEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
         setTimeout(() => inputEl.focus(), 400);
       }
     });
