@@ -2159,12 +2159,7 @@
       stroke-linecap: round;
       stroke-dasharray: 339.292;
       stroke-dashoffset: 339.292;
-      transition: stroke-dashoffset 800ms var(--motion-ease-premium);
       transform-origin: center;
-    }
-
-    .score-dial-progress[style*="stroke-dashoffset"] {
-      transition: stroke-dashoffset 800ms var(--motion-ease-premium);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -5425,52 +5420,60 @@
       scoreDialContainerEl.classList.add(cls);
     }
     
-    // Update dial progress
+    // Update dial progress and number with synchronized animation
     const circumference = 2 * Math.PI * 54; // radius is 54, approximately 339.292
-    const percentage = Math.max(0, Math.min(100, score)) / 100;
-    const offset = circumference * (1 - percentage);
+    const targetScore = Math.round(score);
+    const targetPercentage = Math.max(0, Math.min(100, targetScore)) / 100;
+    const targetOffset = circumference * (1 - targetPercentage);
+    const currentScore = parseInt(scoreDialNumberEl?.textContent) || 0;
+    const currentPercentage = Math.max(0, Math.min(100, currentScore)) / 100;
+    const currentOffset = circumference * (1 - currentPercentage);
     
     if (scoreDialProgressEl) {
       // Ensure stroke-dasharray is set
       if (!scoreDialProgressEl.style.strokeDasharray) {
         scoreDialProgressEl.style.strokeDasharray = circumference;
       }
-      // Reset to full circle first, then animate to target
-      scoreDialProgressEl.style.strokeDashoffset = circumference;
-      // Use requestAnimationFrame to ensure the reset is applied before animation
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          scoreDialProgressEl.style.strokeDashoffset = offset;
-        });
-      });
+      // Set initial position based on current score
+      scoreDialProgressEl.style.strokeDashoffset = currentOffset;
     }
     
-    // Update number with animation
-    if (scoreDialNumberEl) {
-      const targetScore = Math.round(score);
-      const currentScore = parseInt(scoreDialNumberEl.textContent) || 0;
+    // Animate both dial progress and number together
+    if (prefersReducedMotion()) {
+      if (scoreDialNumberEl) scoreDialNumberEl.textContent = targetScore;
+      if (scoreDialProgressEl) scoreDialProgressEl.style.strokeDashoffset = targetOffset;
+    } else {
+      const duration = 800;
+      const startDelay = 300; // Match hero dial delay
+      const startTime = Date.now();
       
-      // Animate number counting up
-      if (prefersReducedMotion()) {
-        scoreDialNumberEl.textContent = targetScore;
-      } else {
-        const duration = 800;
-        const startTime = Date.now();
-        const animateNumber = () => {
-          const elapsed = Date.now() - startTime;
+      if (scoreDialNumberEl) scoreDialNumberEl.textContent = currentScore.toString();
+      
+      setTimeout(() => {
+        const animate = () => {
+          const elapsed = Date.now() - startTime - startDelay;
           const progress = Math.min(elapsed / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
           const current = Math.round(currentScore + (targetScore - currentScore) * eased);
-          scoreDialNumberEl.textContent = current;
+          const currentPercentage = Math.max(0, Math.min(100, current)) / 100;
+          const currentOffset = circumference * (1 - currentPercentage);
+          
+          if (scoreDialNumberEl) {
+            scoreDialNumberEl.textContent = current.toString();
+          }
+          if (scoreDialProgressEl) {
+            scoreDialProgressEl.style.strokeDashoffset = currentOffset;
+          }
           
           if (progress < 1) {
-            requestAnimationFrame(animateNumber);
+            requestAnimationFrame(animate);
           } else {
-            scoreDialNumberEl.textContent = targetScore;
+            if (scoreDialNumberEl) scoreDialNumberEl.textContent = targetScore.toString();
+            if (scoreDialProgressEl) scoreDialProgressEl.style.strokeDashoffset = targetOffset;
           }
         };
-        animateNumber();
-      }
+        animate();
+      }, startDelay);
     }
     
     // Set aria label
