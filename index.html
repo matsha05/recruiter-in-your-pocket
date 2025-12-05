@@ -16,6 +16,7 @@
       --border-strong: #c6cbd6;
       --accent: #3341A6;
       --accent-dark: #26328C;
+      --accent-soft: color-mix(in srgb, var(--accent) 24%, #ffffff);
       --accent-wash: #EEF0FA;
       --accent-boost: #3341A6;
       --accent-strong: #1E2A78;
@@ -119,6 +120,7 @@
       --border-strong: #3A3D45;
       --accent: #5B6FD8;
       --accent-dark: #4A5BC4;
+      --accent-soft: color-mix(in srgb, var(--accent) 36%, #1A1C20);
       --accent-wash: rgba(91, 111, 216, 0.12);
       --accent-boost: #6B7FE8;
       --accent-strong: #4A5BC4;
@@ -726,21 +728,10 @@
       justify-content: center;
       position: relative;
       flex-shrink: 0;
-      animation: heroDialSweep 800ms ease-out 300ms forwards;
-    }
-
-    @keyframes heroDialSweep {
-      from {
-        background: conic-gradient(var(--accent) 0deg 0deg, var(--border-subtle) 0deg 360deg);
-      }
-      to {
-        background: conic-gradient(var(--accent) 0deg 309deg, var(--border-subtle) 309deg 360deg);
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .hero-preview-dial {
-        animation: none;
         background: conic-gradient(var(--accent) 0deg 309deg, var(--border-subtle) 309deg 360deg);
       }
     }
@@ -943,8 +934,21 @@
     }
 
     .value-icon {
-      font-size: var(--fs-2xl);
-      margin-bottom: var(--space-sm);
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      fill: none;
+      display: inline-block;
+      flex-shrink: 0;
+      color: var(--accent-soft);
+      margin-bottom: var(--space-xs);
+      transition: transform var(--motion-duration-short) var(--motion-ease-premium), color var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .value-item:hover .value-icon {
+      transform: translateY(-1px);
+      color: var(--accent);
     }
 
     .value-title {
@@ -4370,22 +4374,22 @@
       <!-- Value strip -->
       <div class="value-strip" aria-label="What you get">
         <div class="value-item">
-          <div class="value-icon">📊</div>
+          <img src="/assets/icons/heroicons/outline/chart-bar-square.svg" alt="Clarity score icon" class="value-icon" />
           <div class="value-title">Clarity score</div>
           <div class="value-desc">See how clearly your story lands on a first read</div>
         </div>
         <div class="value-item">
-          <div class="value-icon">🎯</div>
+          <img src="/assets/icons/heroicons/outline/chat-bubble-left-right.svg" alt="Honest read icon" class="value-icon" />
           <div class="value-title">Honest read</div>
           <div class="value-desc">What's working, what's buried, and what's getting missed</div>
         </div>
         <div class="value-item">
-          <div class="value-icon">✍️</div>
+          <img src="/assets/icons/heroicons/outline/pencil-square.svg" alt="Stronger phrasing icon" class="value-icon" />
           <div class="value-title">Stronger phrasing</div>
           <div class="value-desc">Real rewrites you can copy, not generic advice</div>
         </div>
         <div class="value-item">
-          <div class="value-icon">🚀</div>
+          <img src="/assets/icons/heroicons/outline/clipboard-document-check.svg" alt="Clear next steps icon" class="value-icon" />
           <div class="value-title">Clear next steps</div>
           <div class="value-desc">Know exactly what to fix in your next editing session</div>
         </div>
@@ -7086,20 +7090,27 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     }
 
 
-    // Hero dial number animation (0 → 86)
+    // Hero dial number animation (0 → 86) with progressive circle fill
     function animateHeroDialNumber() {
       const dialNumber = document.querySelector('.hero-preview-dial-number');
-      if (!dialNumber || prefersReducedMotion()) {
-        if (dialNumber) dialNumber.textContent = '86';
+      const dialElement = document.querySelector('.hero-preview-dial');
+      if (!dialNumber || !dialElement) return;
+      
+      const targetValue = 86;
+      const targetAngle = 309; // 86/100 * 360 = 309.6deg, rounded to 309deg
+      
+      if (prefersReducedMotion()) {
+        dialNumber.textContent = targetValue.toString();
+        dialElement.style.background = `conic-gradient(var(--accent) 0deg ${targetAngle}deg, var(--border-subtle) ${targetAngle}deg 360deg)`;
         return;
       }
       
-      const targetValue = 86;
       const duration = 800;
       const startTime = Date.now();
-      const startDelay = 300; // Match CSS animation delay
+      const startDelay = 300;
       
       dialNumber.textContent = '0';
+      dialElement.style.background = 'conic-gradient(var(--accent) 0deg 0deg, var(--border-subtle) 0deg 360deg)';
       
       setTimeout(() => {
         const animate = () => {
@@ -7107,12 +7118,16 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
           const progress = Math.min(elapsed / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
           const current = Math.round(targetValue * eased);
-          dialNumber.textContent = current;
+          const currentAngle = Math.round((current / targetValue) * targetAngle);
+          
+          dialNumber.textContent = current.toString();
+          dialElement.style.background = `conic-gradient(var(--accent) 0deg ${currentAngle}deg, var(--border-subtle) ${currentAngle}deg 360deg)`;
           
           if (progress < 1) {
             requestAnimationFrame(animate);
           } else {
-            dialNumber.textContent = targetValue;
+            dialNumber.textContent = targetValue.toString();
+            dialElement.style.background = `conic-gradient(var(--accent) 0deg ${targetAngle}deg, var(--border-subtle) ${targetAngle}deg 360deg)`;
           }
         };
         animate();
