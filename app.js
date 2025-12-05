@@ -763,7 +763,7 @@ function getSystemPromptForMode(mode) {
   }
 
   if (mode === "resume_ideas") {
-    return loadPromptFile("resume_ideas_v1.txt");
+    return `${baseTone}\n\n${loadPromptFile("resume_ideas_v1.txt")}`;
   }
 
   return baseTone;
@@ -1040,7 +1040,7 @@ async function callOpenAIChat(messages, mode) {
           body: JSON.stringify({
             model: OPENAI_MODEL,
             // Low randomness for ideas to keep phrasing natural while varying content.
-            temperature: mode === "resume_ideas" ? 0.25 : 0,
+            temperature: mode === "resume_ideas" ? 0.12 : 0,
             response_format: { type: "json_object" },
             messages
           })

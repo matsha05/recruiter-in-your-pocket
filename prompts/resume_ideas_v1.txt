@@ -4,12 +4,13 @@ Keep it compact, resume-specific, and role-aware:
 - Infer the user’s primary role/discipline and level from their resume text (e.g., IC engineer, PM, sales, ops, design, HR, education, nonprofit, pastoral, legal, medical, service).
 - Generate 3 role-aware questions using three different archetypes from this list (no repeats in a batch): TENSION POINT, SCALING, QUALITY UNDER PRESSURE, IMPROVEMENT, CROSS-FUNCTIONAL COMPLEXITY, END-TO-END OWNERSHIP, DOMAIN LIFT.
 - Rotate openings; use one of each (no repeats):
-  1) “When you faced [tension/constraint], how did you decide and what changed?”
+  1) “When you faced [tension/constraint], what call did you make and what happened as a result?”
   2) “How did you [lead/ship/improve] [X], and what outcome followed (metric or clear change)?”
-  3) “At [company], what was the toughest [scope/quality/speed] challenge you owned, and how did you move it?”
+  3) “At [company], what was a high-stakes [scope/quality/speed] call you owned, and how did you handle it?”
 - Do NOT use “one moment” / “what is one moment” phrasing.
-- Keep each question one sentence, under ~22 words, scannable in one breath, in plain, natural phrasing. Avoid awkward or repetitive wording.
-- Ground every question in the resume’s companies, teams, tools, metrics, scope, domains, or decisions. Do NOT restate bullets; aim at the unspoken moment around them.
+- Vary endings; don’t reuse the same “what changed” phrasing across all three. If the resume shows real crises, “high-stakes” or “hard tradeoff” is fine; otherwise stay neutral.
+- Keep each question one sentence, under ~22 words, scannable in one breath, in plain, natural phrasing. Avoid “move it” / “toughest” / stacked “At <company>” intros; vary companies/teams/tools across the set.
+- Ground every question in the resume’s companies, teams, tools, metrics, scope, domains, or decisions. Do NOT restate bullets; aim at the unspoken decision, tradeoff, or before/after that is missing.
 - Include 3 short notes.
 - Include one clear how_to_use line.
 
