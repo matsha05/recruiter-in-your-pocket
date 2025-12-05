@@ -30,6 +30,7 @@ All design tokens are defined as CSS variables in `:root`. This document serves 
 - `--accent-strong: #1E2A78` - Strong accent variant
 - `--accent-wash: #EEF0FA` - Accent wash background
 - `--accent-boost: #3341A6` - Accent boost color
+- `--accent-soft: color-mix(...)` - Soft accent tint for subtle fills/gradients (light: mix with white; dark: mix with #1A1C20)
 
 ### Text Colors
 - `--text-main: var(--ink-900)` - Primary text color
@@ -121,6 +122,7 @@ Use spacing variables for all padding, margin, and gap values.
 - `--space-2xl: 40px` - 2x large
 - `--space-3xl: 32px` - 3x large
 - `--space-xxl: 50px` - Extra extra large
+- `--stack-gap: 16px` - Standard vertical gap for stacked sections (e.g., report sections)
 - `--stack-gap: 16px` - Stack section gap
 
 ---
