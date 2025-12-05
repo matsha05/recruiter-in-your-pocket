@@ -1898,11 +1898,11 @@
     .compare-strip {
       max-width: 1100px;
       margin: var(--space-2xl) auto;
-      padding: var(--space-xl) var(--space-lg);
-      background: linear-gradient(135deg, var(--bg-card) 0%, color-mix(in srgb, var(--accent-wash) 16%, var(--bg-card) 84%) 100%);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
+      padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .compare-title {
@@ -1911,14 +1911,14 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--text-main);
-      margin-bottom: var(--space-sm);
+      margin-bottom: var(--space-md-lg);
     }
 
     .compare-chip {
       display: inline-flex;
       align-items: center;
       gap: var(--space-xxs);
-      padding: var(--space-xxs) var(--space-sm);
+      padding: var(--space-xxs) var(--space-sm-alt);
       background: var(--accent-wash);
       color: var(--accent);
       border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
@@ -1926,7 +1926,7 @@
       font-size: var(--fs-xs);
       font-weight: 600;
       letter-spacing: 0.01em;
-      margin-bottom: var(--space-xs);
+      margin-bottom: var(--space-sm);
       width: fit-content;
     }
 
@@ -1934,7 +1934,7 @@
       font-size: var(--fs-small);
       color: var(--text-soft);
       line-height: var(--lh-relaxed);
-      margin-bottom: var(--space-lg);
+      margin-bottom: var(--space-xl-alt);
     }
 
     .compare-grid {
@@ -1944,7 +1944,7 @@
     }
 
     .compare-column {
-      background: var(--wash);
+      background: rgba(0, 0, 0, 0.015);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: var(--space-lg);
@@ -1999,7 +1999,7 @@
 
     @media (max-width: 600px) {
       .compare-strip {
-        padding: var(--space-lg);
+        padding: var(--space-xl) var(--space-md-alt) var(--space-xl);
       }
 
       .compare-title {
