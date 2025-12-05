@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "test": "node tests/validation.js && node tests/schema_contract.js && node tests/schema_contract_ideas.js && node tests/smoke_endpoints.js && node scripts/mock_run.js",
     "test:ready": "node tests/test_ready_and_auth.js",
-    "calibrate": "node scripts/calibrate_score.js"
+    "calibrate": "node scripts/calibrate_score.js",
+    "migrate": "node scripts/migrate.js"
   },
   "keywords": [
     "resume",
@@ -25,17 +26,17 @@
   "dependencies": {
     "@openai/codex": "^0.64.0",
     "@sparticuz/chromium": "^131.0.0",
-    "better-sqlite3": "^9.4.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "nodemailer": "^7.0.11",
+    "pg": "^8.11.5",
     "puppeteer": "^22.15.0",
     "puppeteer-core": "^22.15.0",
     "stripe": "^14.25.0"
   },
   "engines": {
-    "node": ">=18.18.0"
+    "node": "20.x"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"

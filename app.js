@@ -17,7 +17,8 @@ const {
   deleteSessionByToken,
   createPass,
   getLatestPass,
-  getActivePasses
+  getActivePasses,
+  healthCheck
 } = require("./db");
 const { sendLoginCode } = require("./mailer");
 const {
@@ -308,6 +309,16 @@ app.get("/ready", async (req, res) => {
       return res.status(500).json({ ok: false, message: "Missing OPENAI_API_KEY" });
     }
 
+    // Check database connectivity
+    let dbReady = false;
+    let dbError = null;
+    try {
+      await healthCheck();
+      dbReady = true;
+    } catch (err) {
+      dbError = err.message;
+    }
+
     // Check PDF generation capability
     let pdfReady = false;
     let pdfError = null;
@@ -358,6 +369,13 @@ app.get("/ready", async (req, res) => {
       });
     }
 
+    if (!dbReady) {
+      return res.status(500).json({
+        ok: false,
+        message: `Database not ready: ${dbError || "unknown error"}`
+      });
+    }
+
     return res.json({ ok: true });
   } catch (err) {
     logLine({ level: "error", msg: "ready_failed", err: err.message }, true);
@@ -380,10 +398,10 @@ app.post("/api/login/request-code", rateLimitAuth, async (req, res) => {
       return res.status(400).json({ ok: false, message: "Enter a valid email." });
     }
 
-    const user = upsertUserByEmail(email);
+    const user = await upsertUserByEmail(email);
     const code = generateNumericCode(6);
     const expiresAt = new Date(Date.now() + LOGIN_CODE_TTL_MINUTES * 60 * 1000).toISOString();
-    createLoginCode(user.id, code, expiresAt);
+    await createLoginCode(user.id, code, expiresAt);
     await sendLoginCode(email, code);
     logLine({ level: "info", msg: "login_code_sent", email });
     return res.json({ ok: true, expires_at: expiresAt });
@@ -400,19 +418,19 @@ app.post("/api/login/verify", rateLimitAuth, async (req, res) => {
     if (!isValidEmail(email) || !code) {
       return res.status(400).json({ ok: false, message: "Email and code are required." });
     }
-    const user = getUserByEmail(email);
+    const user = await getUserByEmail(email);
     if (!user) {
       return res.status(400).json({ ok: false, message: "Invalid code or email." });
     }
-    const validation = validateAndUseLoginCode(user.id, code);
+    const validation = await validateAndUseLoginCode(user.id, code);
     if (!validation.ok) {
       return res.status(400).json({ ok: false, message: "Invalid or expired code." });
     }
     const token = crypto.randomBytes(32).toString("hex");
     const expiresAt = new Date(Date.now() + SESSION_TTL_DAYS * 24 * 60 * 60 * 1000).toISOString();
-    createSession(user.id, token, expiresAt);
+    await createSession(user.id, token, expiresAt);
     setSession(res, token);
-    const activePass = getLatestPass(user.id);
+    const activePass = await getLatestPass(user.id);
     return res.json({
       ok: true,
       user: { email: user.email },
@@ -424,11 +442,12 @@ app.post("/api/login/verify", rateLimitAuth, async (req, res) => {
   }
 });
 
-app.get("/api/me", (req, res) => {
+app.get("/api/me", async (req, res) => {
   if (!req.authUser) {
     return res.json({ ok: true, user: null, active_pass: null });
   }
-  const activePass = req.activePass || null;
+  const activePass =
+    req.activePass || (req.authUser ? await getLatestPass(req.authUser.id) : null);
   return res.json({
     ok: true,
     user: { email: req.authUser.email },
@@ -471,25 +490,29 @@ app.use(
 app.use("/api/stripe/webhook", express.raw({ type: "application/json" }));
 app.use(express.json());
 
-app.use((req, res, next) => {
-  const cookies = parseCookies(req);
-  req.freeUsed = Boolean(cookies[FREE_COOKIE]);
-  const raw = cookies[SESSION_COOKIE];
-  if (raw) {
-    const token = parseSessionCookie(raw);
-    if (token) {
-      const session = getSessionByToken(token);
-      if (session) {
-        const user = getUserById(session.user_id);
-        if (user) {
-          req.authUser = user;
-          req.sessionToken = token;
-          req.activePass = getLatestPass(user.id);
+app.use(async (req, res, next) => {
+  try {
+    const cookies = parseCookies(req);
+    req.freeUsed = Boolean(cookies[FREE_COOKIE]);
+    const raw = cookies[SESSION_COOKIE];
+    if (raw) {
+      const token = parseSessionCookie(raw);
+      if (token) {
+        const session = await getSessionByToken(token);
+        if (session) {
+          const user = await getUserById(session.user_id);
+          if (user) {
+            req.authUser = user;
+            req.sessionToken = token;
+            req.activePass = await getLatestPass(user.id);
+          }
         }
       }
     }
+    next();
+  } catch (err) {
+    next(err);
   }
-  next();
 });
 
 // Set simple security headers on all responses
@@ -726,9 +749,9 @@ app.post("/api/stripe/webhook", async (req, res) => {
     const email = session.customer_email;
 
     try {
-      let user = userId ? getUserById(userId) : null;
+      let user = userId ? await getUserById(userId) : null;
       if (!user && email) {
-        user = upsertUserByEmail(email.toLowerCase());
+        user = await upsertUserByEmail(email.toLowerCase());
       }
       if (!user) {
         throw new Error("No user to attach pass");
@@ -740,7 +763,7 @@ app.post("/api/stripe/webhook", async (req, res) => {
           ? new Date(nowTs + 30 * 24 * 60 * 60 * 1000).toISOString()
           : new Date(nowTs + 24 * 60 * 60 * 1000).toISOString();
 
-      createPass(user.id, tier, expiresAt, null, session.id);
+      await createPass(user.id, tier, expiresAt, null, session.id);
       logLine({
         level: "info",
         msg: "pass_created_from_webhook",
@@ -1338,9 +1361,9 @@ function validateResumeIdeasPayload(obj) {
   return obj;
 }
 
-function determineAccess(req) {
+async function determineAccess(req) {
   // Access control: pass holders full; otherwise full (client gates first run).
-  const activePass = req.authUser ? getLatestPass(req.authUser.id) : null;
+  const activePass = req.authUser ? await getLatestPass(req.authUser.id) : null;
   if (BYPASS_PAYWALL) return { access: "full", activePass: activePass || null, bypassed: true };
   if (activePass) return { access: "full", activePass };
   if (!req.freeUsed) return { access: "full", activePass: null };
@@ -1915,7 +1938,7 @@ app.post("/api/resume-feedback", rateLimitResume, async (req, res) => {
 
     const { text, mode } = validation.value;
     const currentMode = mode;
-    const accessInfo = determineAccess(req);
+    const accessInfo = await determineAccess(req);
 
     const systemPrompt = getSystemPromptForMode(currentMode);
     const userPrompt = `Here is the user's input. Use the system instructions to respond.

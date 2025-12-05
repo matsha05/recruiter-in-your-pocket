@@ -21,6 +21,8 @@ Recruiter in Your Pocket is a tiny, high-end "resume studio" that reads your res
 
 ### Required for Production
 
+- `DATABASE_URL` - Postgres connection string (e.g., from Vercel Postgres/Neon). Required for all environments now that storage is hosted.
+- `SESSION_SECRET` - Secret used to sign session cookies.
 - `API_AUTH_TOKEN` - **Required in production**. A secret token used to authenticate API requests. The server will refuse to start in production if this is not set.
 
   **How to generate a secure token:**
@@ -48,6 +50,16 @@ Recruiter in Your Pocket is a tiny, high-end "resume studio" that reads your res
 - `STRIPE_SECRET_KEY` - Stripe secret key for payment processing.
 - `STRIPE_PRICE_ID` - Stripe price ID for checkout sessions.
 - `FRONTEND_URL` - Frontend URL for Stripe redirects (default: http://localhost:3000). You can provide a comma-separated list to allow multiple origins (e.g., `https://app.example.com, https://www.example.com`).
+
+## Deployment (Vercel)
+
+- Use Node.js 20: set `engines.node` in `package.json` (already `20.x`) and set Vercel → Settings → General → Node.js Version to 20 (or set env `NODE_VERSION=20`).
+- Database: provision Vercel Postgres (or Neon) and set `DATABASE_URL`. Default SSL is enabled; set `DATABASE_SSL=false` only for local dev.
+- One-time DB setup: `npm install` (Node 20), then run `DATABASE_URL=... npm run migrate` to create tables (`users`, `login_codes`, `passes`, `sessions`).
+- Required env vars in Vercel: `DATABASE_URL`, `SESSION_SECRET`, `API_AUTH_TOKEN`, `OPENAI_API_KEY` (plus Stripe keys if payments are on).
+- Health checks: `/health` (liveness) and `/ready` (verifies prompts, OpenAI key presence/mocks, PDF engine, and DB connectivity).
+- Logs: JSON to stdout; view in Vercel dashboard. Optionally set `LOG_FILE` for other hosts.
+- PDF export: uses `@sparticuz/chromium`/`puppeteer-core` on Vercel; respect function time limits (10s Hobby, 60s Pro).
 
 ### Security & CORS
 
