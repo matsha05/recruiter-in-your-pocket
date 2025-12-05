@@ -675,6 +675,12 @@
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
+      transition: box-shadow 180ms ease-out, transform 180ms ease-out;
+    }
+
+    .hero-preview-card:hover {
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+      transform: translateY(-3px);
     }
 
     .hero-preview-card::before {
@@ -714,12 +720,29 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background: conic-gradient(var(--accent) 0deg 309deg, var(--border-subtle) 309deg 360deg);
+      background: conic-gradient(var(--accent) 0deg 0deg, var(--border-subtle) 0deg 360deg);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       flex-shrink: 0;
+      animation: heroDialSweep 800ms ease-out 300ms forwards;
+    }
+
+    @keyframes heroDialSweep {
+      from {
+        background: conic-gradient(var(--accent) 0deg 0deg, var(--border-subtle) 0deg 360deg);
+      }
+      to {
+        background: conic-gradient(var(--accent) 0deg 309deg, var(--border-subtle) 309deg 360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-preview-dial {
+        animation: none;
+        background: conic-gradient(var(--accent) 0deg 309deg, var(--border-subtle) 309deg 360deg);
+      }
     }
 
     .hero-preview-dial::before {
@@ -836,7 +859,7 @@
     }
 
     .hero-cta-primary:hover {
-      background: var(--accent-dark);
+      background: color-mix(in srgb, var(--accent) 85%, white 15%);
       transform: translateY(-2px);
       box-shadow: var(--shadow-button-hover);
     }
@@ -853,16 +876,33 @@
       background: none;
       border: none;
       cursor: pointer;
-      text-decoration: underline;
-      text-underline-offset: 2px;
+      text-decoration: none;
       font-weight: 500;
       padding: var(--space-xxs) 0;
-      transition: color var(--motion-duration-short) var(--motion-ease-premium);
+      transition: color 180ms ease-out;
       width: fit-content;
+      position: relative;
+    }
+
+    .hero-cta-secondary::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease-out;
     }
 
     .hero-cta-secondary:hover {
       color: var(--accent-strong);
+    }
+
+    .hero-cta-secondary:hover::after {
+      transform: scaleX(1);
     }
 
     .hero-cta-secondary:focus-visible {
@@ -1801,7 +1841,31 @@
       margin-bottom: var(--space-lg);
       border-radius: var(--radius-input);
       background: transparent;
-      transition: background var(--motion-duration-short) var(--motion-ease-premium);
+      transition: background 180ms ease-out, 
+                  box-shadow 180ms ease-out, 
+                  transform 180ms ease-out;
+      /* Entry animation - starts hidden */
+      opacity: 0;
+      transform: translateY(5px);
+    }
+
+    .report-chapter.chapter-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 160ms ease-out, 
+                  transform 160ms ease-out,
+                  background 180ms ease-out, 
+                  box-shadow 180ms ease-out;
+    }
+
+    .report-chapter:hover {
+      background: rgba(51, 65, 166, 0.03);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .report-chapter.chapter-visible:hover {
+      transform: translateY(-2px);
     }
 
     .report-chapter::before {
@@ -1815,6 +1879,18 @@
       border-radius: var(--radius-pill);
       opacity: 0.6;
       transition: opacity var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    /* Reduced motion: show chapters immediately */
+    @media (prefers-reduced-motion: reduce) {
+      .report-chapter {
+        opacity: 1;
+        transform: none;
+        transition: background 180ms ease-out;
+      }
+      .report-chapter:hover {
+        transform: none;
+      }
     }
 
     .report-chapter:hover {
@@ -7010,10 +7086,99 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     }
 
 
+    // Hero dial number animation (0 → 86)
+    function animateHeroDialNumber() {
+      const dialNumber = document.querySelector('.hero-preview-dial-number');
+      if (!dialNumber || prefersReducedMotion()) {
+        if (dialNumber) dialNumber.textContent = '86';
+        return;
+      }
+      
+      const targetValue = 86;
+      const duration = 800;
+      const startTime = Date.now();
+      const startDelay = 300; // Match CSS animation delay
+      
+      dialNumber.textContent = '0';
+      
+      setTimeout(() => {
+        const animate = () => {
+          const elapsed = Date.now() - startTime - startDelay;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+          const current = Math.round(targetValue * eased);
+          dialNumber.textContent = current;
+          
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            dialNumber.textContent = targetValue;
+          }
+        };
+        animate();
+      }, startDelay);
+    }
+
+    // Chapter entry fade animation using IntersectionObserver
+    function initChapterObserver() {
+      if (prefersReducedMotion()) {
+        // Show all chapters immediately if user prefers reduced motion
+        document.querySelectorAll('.report-chapter').forEach(chapter => {
+          chapter.classList.add('chapter-visible');
+        });
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            // Stagger the animation slightly for multiple chapters
+            const delay = index * 60;
+            setTimeout(() => {
+              entry.target.classList.add('chapter-visible');
+            }, delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -20px 0px'
+      });
+
+      // Observe current chapters
+      document.querySelectorAll('.report-chapter').forEach(chapter => {
+        observer.observe(chapter);
+      });
+
+      // Re-observe when new chapters are added (MutationObserver)
+      const resultsBody = document.getElementById('results-body');
+      if (resultsBody) {
+        const mutationObserver = new MutationObserver((mutations) => {
+          mutations.forEach(mutation => {
+            mutation.addedNodes.forEach(node => {
+              if (node.nodeType === 1) {
+                const chapters = node.querySelectorAll ? 
+                  node.querySelectorAll('.report-chapter') : [];
+                chapters.forEach(chapter => {
+                  observer.observe(chapter);
+                });
+                if (node.classList && node.classList.contains('report-chapter')) {
+                  observer.observe(node);
+                }
+              }
+            });
+          });
+        });
+        mutationObserver.observe(resultsBody, { childList: true, subtree: true });
+      }
+    }
+
     (function init() {
       loadSavedInput();
       autoResizeTextarea();
       renderSummary("");
+      animateHeroDialNumber();
+      initChapterObserver();
     })();
 </script>
 
