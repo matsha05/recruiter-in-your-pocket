@@ -5564,30 +5564,30 @@
   const SAMPLE_IDEAS_VARIANTS = [
     {
       questions: [
-        "At Stripe, how did you decide which KYC simplifications to prioritize to reduce drop-off and increase sign-ups by 18%?",
-        "When coordinating launches across Google’s three regions, how did you manage cross-team communication and what changed?",
-        "What is one moment when you built a metrics framework at Stripe, and what impact did it have on leadership decisions?"
+        "At Stripe, how did you pick and ship the KYC changes that cut drop-off and lifted sign-ups?",
+        "When coordinating launches across Google’s three regions, how did you keep comms tight and unblock teams?",
+        "How did you build the metrics framework at Stripe so leaders could make faster decisions?"
       ]
     },
     {
       questions: [
-        "At Google, when a growth experiment slipped, what call did you make to realign teams across three regions, and what moved?",
-        "Which metrics or signals did you use at Stripe to choose the KYC fixes that actually moved conversion?",
-        "When you owned the launch checklist, what was one escalation you handled end-to-end, and what outcome did it unlock?"
+        "When a Google experiment slipped, what call did you make to realign teams and get it back on track?",
+        "Which signals did you use at Stripe to choose the KYC fixes that moved conversion most?",
+        "What was the toughest launch escalation you owned, and how did you resolve it?"
       ]
     },
     {
       questions: [
-        "When execs asked for weekly clarity, how did you build or adapt the metrics cadence so decisions sped up?",
-        "What is one instance where you prevented a launch risk at Google, and how many teams or users were affected?",
-        "At Stripe, how did you pick the highest-leverage scope to tackle first, and what before/after metric changed?"
+        "When execs wanted weekly clarity, how did you adapt the metrics cadence so decisions sped up?",
+        "How did you prevent a launch risk at Google, and what was the impact on teams or users?",
+        "At Stripe, how did you decide the highest-leverage scope to tackle first, and what changed after?"
       ]
     },
     {
       questions: [
-        "Think of a time you simplified a cross-functional decision: what did you own, who was involved, and what changed?",
-        "When you had limited data, how did you decide which experiment or launch to greenlight, and what result followed?",
-        "Where did you improve an onboarding or activation flow, and how did you measure the lift in conversion or retention?"
+        "How did you simplify a cross-functional decision you owned, and what changed for the teams involved?",
+        "When data was thin, how did you pick which launch to greenlight, and what result followed?",
+        "Where did you improve onboarding or activation, and how did you measure the lift?"
       ]
     }
   ].map((variant) => ({
@@ -6020,6 +6020,7 @@
     // Hide report shell and related state
     if (reportWrapperEl) reportWrapperEl.style.display = "none";
     if (reportViewEl) reportViewEl.classList.remove("report-container--visible");
+    hasPlayedReportReveal = false;
     if (reportTagEl) reportTagEl.classList.add("hidden");
     if (issueBreakdownEl) issueBreakdownEl.classList.add("hidden");
     clearScoreBadge();
@@ -7199,6 +7200,7 @@
       if (resultsSkeletonEl) {
         resultsSkeletonEl.classList.add("hidden");
       }
+      hasPlayedReportReveal = false;
       updateToolLayout();
     }
 
@@ -7229,6 +7231,17 @@
     setStatus("Reading your resume like a recruiter…", "");
     const shouldShowSkeleton = !wasSampleView;
 
+    // Clear previous render so old content doesn't persist under loading
+    if (resultsBodyEl) {
+      resultsBodyEl.innerHTML = "";
+      resultsBodyEl.classList.add("empty");
+      resultsBodyEl.classList.remove("results-error", "muted");
+      resultsBodyEl.style.display = "";
+    }
+    if (resultsSummaryEl) {
+      resultsSummaryEl.textContent = "";
+    }
+
     if (shouldShowSkeleton) {
       // Ensure the report container is visible while skeleton is showing
       if (reportViewEl) {
@@ -7239,6 +7252,14 @@
       runButton.textContent = "Processing...";
       runButton.classList.add("processing");
       loadingBarEl.classList.add("active");
+      // Clear previous render so old content doesn't show under the skeleton
+      if (resultsBodyEl) {
+        resultsBodyEl.innerHTML = "";
+        resultsBodyEl.classList.add("empty");
+        resultsBodyEl.classList.remove("results-error", "muted");
+        resultsBodyEl.style.display = "";
+      }
+      renderSummary("");
       // Show skeleton and hide results-body content during loading
       if (resultsSkeletonEl) {
         resultsSkeletonEl.classList.remove("hidden");
@@ -7723,8 +7744,8 @@
             .map((q) => `"${q}"`)
             .join(
               ", "
-            )}. Keep each question one sentence, under ~22 words, in plain, natural phrasing. Choose different archetypes, companies, tools, and outcomes; avoid awkward or repetitive wording.`
-        : `\n\nKeep each question one sentence, under ~22 words, in plain, natural phrasing. Choose varied archetypes, companies, tools, and outcomes; avoid awkward or repetitive wording.`;
+            )}. Keep each question one sentence, under ~22 words, in plain, natural phrasing. Avoid “one moment” phrasing. Rotate openings (decision under pressure, how you led/shipped, toughest challenge owned). Choose different archetypes, companies, tools, and outcomes; avoid awkward or repetitive wording.`
+        : `\n\nKeep each question one sentence, under ~22 words, in plain, natural phrasing. Avoid “one moment” phrasing. Rotate openings (decision under pressure, how you led/shipped, toughest challenge owned). Choose varied archetypes, companies, tools, and outcomes; avoid awkward or repetitive wording.`;
     const textWithHint = `${text}${refreshHint}${diversityHint}`.trim();
 
     if (ideasInFlight) return;
