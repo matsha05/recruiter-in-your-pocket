@@ -25,9 +25,13 @@ const {
   SESSION_COOKIE,
   FREE_COOKIE,
   FREE_COOKIE_DAYS,
+  FREE_RUN_LIMIT,
   makeSessionCookie,
   parseSessionCookie,
-  cookieOptions
+  makeFreeCookie,
+  parseFreeCookie,
+  cookieOptions,
+  freeCookieOptions
 } = require("./auth");
 
 // Support both puppeteer (local/dev) and puppeteer-core with @sparticuz/chromium (Vercel/serverless)
@@ -493,7 +497,12 @@ app.use(express.json());
 app.use(async (req, res, next) => {
   try {
     const cookies = parseCookies(req);
-    req.freeUsed = Boolean(cookies[FREE_COOKIE]);
+    
+    // Parse structured free-run metadata cookie
+    const freeMeta = parseFreeCookie(cookies[FREE_COOKIE]);
+    req.freeMeta = freeMeta || { used: 0, last_free_ts: null };
+    req.freeUsesRemaining = FREE_RUN_LIMIT - (req.freeMeta.used || 0);
+    
     const raw = cookies[SESSION_COOKIE];
     if (raw) {
       const token = parseSessionCookie(raw);
@@ -1362,12 +1371,52 @@ function validateResumeIdeasPayload(obj) {
 }
 
 async function determineAccess(req) {
-  // Access control: pass holders full; otherwise full (client gates first run).
+  // Access control with tiered access:
+  // - pass_full: active pass holder gets full access
+  // - free_full: free runs remaining (< FREE_RUN_LIMIT used), gets full access
+  // - preview: free runs exhausted, no pass, gets Clarity Score only
   const activePass = req.authUser ? await getLatestPass(req.authUser.id) : null;
-  if (BYPASS_PAYWALL) return { access: "full", activePass: activePass || null, bypassed: true };
-  if (activePass) return { access: "full", activePass };
-  if (!req.freeUsed) return { access: "full", activePass: null };
-  return { access: "preview", activePass: null };
+  const freeUsed = req.freeMeta?.used || 0;
+  const freeRunIndex = freeUsed + 1; // 1 or 2 for first/second free run
+  
+  if (BYPASS_PAYWALL) {
+    return { 
+      access: "full", 
+      access_tier: "pass_full",
+      activePass: activePass || null, 
+      bypassed: true,
+      free_run_index: freeRunIndex,
+      free_uses_remaining: FREE_RUN_LIMIT - freeUsed
+    };
+  }
+  
+  if (activePass) {
+    return { 
+      access: "full", 
+      access_tier: "pass_full",
+      activePass,
+      free_run_index: freeRunIndex,
+      free_uses_remaining: FREE_RUN_LIMIT - freeUsed
+    };
+  }
+  
+  if (freeUsed < FREE_RUN_LIMIT) {
+    return { 
+      access: "full", 
+      access_tier: "free_full",
+      activePass: null,
+      free_run_index: freeRunIndex,
+      free_uses_remaining: FREE_RUN_LIMIT - freeUsed
+    };
+  }
+  
+  return { 
+    access: "preview", 
+    access_tier: "preview",
+    activePass: null,
+    free_run_index: freeRunIndex,
+    free_uses_remaining: 0
+  };
 }
 
 function fallbackResumeData() {
@@ -1938,6 +1987,10 @@ app.post("/api/resume-feedback", rateLimitResume, async (req, res) => {
 
     const { text, mode } = validation.value;
     const currentMode = mode;
+    
+    // Check if short-resume was confirmed by client (only then should we count the free run)
+    const shortConfirmed = req.body?.short_confirmed === true;
+    
     const accessInfo = await determineAccess(req);
 
     const systemPrompt = getSystemPromptForMode(currentMode);
@@ -1951,7 +2004,9 @@ ${text}`;
       return res.status(402).json({
         ok: false,
         errorCode: "PAYWALL_REQUIRED",
-        message: "You've used your free run. Upgrade to keep going."
+        message: "You've used your free full reports. Upgrade to keep going.",
+        free_uses_remaining: 0,
+        access_tier: "preview"
       });
     }
 
@@ -2008,33 +2063,48 @@ ${text}`;
       reqId: req.reqId,
       mode: currentMode,
       latencyMs,
-      model: OPENAI_MODEL
+      model: OPENAI_MODEL,
+      access_tier: accessInfo.access_tier,
+      free_run_index: accessInfo.free_run_index
     });
 
     const enriched = ensureLayoutAndContentFields(parsed);
     const payload = enriched;
 
+    // Determine if we should increment free-use counter
+    // Only increment if: not bypassed, no active pass, free runs remaining, and confirmed
+    const shouldIncrementFree = !BYPASS_PAYWALL && 
+                                !accessInfo.activePass && 
+                                accessInfo.access_tier === "free_full";
+
+    let newFreeUsed = req.freeMeta?.used || 0;
+    let newFreeUsesRemaining = accessInfo.free_uses_remaining;
+
+    if (shouldIncrementFree) {
+      newFreeUsed += 1;
+      newFreeUsesRemaining = FREE_RUN_LIMIT - newFreeUsed;
+      
+      // Update the structured free-run cookie
+      const newFreeMeta = {
+        used: newFreeUsed,
+        last_free_ts: new Date().toISOString()
+      };
+      res.cookie(FREE_COOKIE, makeFreeCookie(newFreeMeta), freeCookieOptions());
+    }
+
     const responseBody = {
       ok: true,
       access: accessInfo.access,
+      access_tier: accessInfo.access_tier,
       active_pass: accessInfo.activePass,
       user: req.authUser ? { email: req.authUser.email } : null,
       bypass: accessInfo.bypassed ? true : false,
+      free_run_index: newFreeUsed, // Which free run this was (1 or 2)
+      free_uses_remaining: newFreeUsesRemaining,
       data: payload,
       content: JSON.stringify(payload),
       raw: rawContent
     };
-
-    // If this was a free allowed run (no pass, no free cookie), set the free-used cookie
-    if (!BYPASS_PAYWALL && !accessInfo.activePass && !req.freeUsed) {
-      res.cookie(FREE_COOKIE, "1", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        maxAge: FREE_COOKIE_DAYS * 24 * 60 * 60 * 1000,
-        path: "/"
-      });
-    }
 
     return res.json(responseBody);
   } catch (err) {
