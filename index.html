@@ -3731,11 +3731,19 @@
     }
 
     .ideas-kicker {
-      font-size: var(--fs-h1);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xxs);
+      padding: var(--space-xxs) var(--space-sm);
+      background: var(--accent-wash);
+      color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+      border-radius: var(--radius-pill);
+      font-size: var(--fs-xs);
       font-weight: 700;
-      color: var(--ink-900);
-      letter-spacing: -0.02em;
+      letter-spacing: 0.01em;
       margin-bottom: 0;
+      width: fit-content;
     }
 
     .ideas-subtitle {
