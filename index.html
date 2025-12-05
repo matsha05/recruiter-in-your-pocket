@@ -5561,6 +5561,46 @@
     layout_notes: "Content is clear; add scope and outcomes faster so impact lands."
   };
 
+  const SAMPLE_IDEAS_VARIANTS = [
+    {
+      questions: [
+        "At Stripe, how did you decide which KYC simplifications to prioritize to reduce drop-off and increase sign-ups by 18%?",
+        "When coordinating launches across Google’s three regions, how did you manage cross-team communication and what changed?",
+        "What is one moment when you built a metrics framework at Stripe, and what impact did it have on leadership decisions?"
+      ]
+    },
+    {
+      questions: [
+        "At Google, when a growth experiment slipped, what call did you make to realign teams across three regions, and what moved?",
+        "Which metrics or signals did you use at Stripe to choose the KYC fixes that actually moved conversion?",
+        "When you owned the launch checklist, what was one escalation you handled end-to-end, and what outcome did it unlock?"
+      ]
+    },
+    {
+      questions: [
+        "When execs asked for weekly clarity, how did you build or adapt the metrics cadence so decisions sped up?",
+        "What is one instance where you prevented a launch risk at Google, and how many teams or users were affected?",
+        "At Stripe, how did you pick the highest-leverage scope to tackle first, and what before/after metric changed?"
+      ]
+    },
+    {
+      questions: [
+        "Think of a time you simplified a cross-functional decision: what did you own, who was involved, and what changed?",
+        "When you had limited data, how did you decide which experiment or launch to greenlight, and what result followed?",
+        "Where did you improve an onboarding or activation flow, and how did you measure the lift in conversion or retention?"
+      ]
+    }
+  ].map((variant) => ({
+    questions: variant.questions,
+    notes: [
+      "Answer 1–3 questions in a separate doc so you don’t overwrite what already works.",
+      "From each answer, pull scope, the call you made, and the outcome (ideally with a number).",
+      "Turn each into one bullet: verb + what you owned + outcome with a number."
+    ],
+    how_to_use:
+      "Use these to surface wins your resume isn’t telling yet. If it would repeat what’s already on the page, skip it."
+  }));
+
   const inputEl = document.getElementById("main-input");
   const inputLabelEl = document.getElementById("input-label");
   const runButton = document.getElementById("run-button");
@@ -5729,6 +5769,9 @@
   let saveTimeout = null;
   let originalButtonText = runButton.textContent;
   let ideasInFlight = false;
+  let ideasRefreshCount = 0;
+  const ideasSeenOrder = [];
+  const ideasSeenSet = new Set();
   let currentScoreMeta = null;
   let lastScoreValue = null;
   let scoreBandsPinned = false;
@@ -5780,8 +5823,30 @@
     }
     selectTier(selectedTier || "24h");
     if (paywallStatusEl) {
-      paywallStatusEl.textContent = msg || "";
+      const reassurance = "Your current report stays here while you upgrade.";
+      paywallStatusEl.textContent = msg ? `${msg} ${reassurance}` : reassurance;
     }
+    // Auto-focus the primary upgrade path (selected tier), fallback to email input.
+    requestAnimationFrame(() => {
+      const hasEmail = (paywallEmailInput?.value || "").trim().length > 0;
+      const hasCode = (paywallCodeInput?.value || "").trim().length > 0;
+      const activeTier =
+        document.querySelector(".paywall-tier.selected") || paywallTierButtons?.[0];
+
+      if (hasEmail && hasCode && paywallVerifyBtn?.focus) {
+        paywallVerifyBtn.focus({ preventScroll: true });
+        return;
+      }
+
+      if (activeTier?.focus) {
+        activeTier.focus({ preventScroll: true });
+        return;
+      }
+
+      if (paywallEmailInput?.focus) {
+        paywallEmailInput.focus({ preventScroll: true });
+      }
+    });
   }
 
   function hidePaywall() {
@@ -6456,22 +6521,32 @@
   function extractTopFixes(data) {
     const { gaps = [], rewrites = [], next_steps: nextSteps = [] } = data || {};
     const fixes = [];
+    const seen = new Set();
+
+    const pushUnique = (value) => {
+      const text = String(value || "").trim();
+      if (!text) return;
+      const key = text.toLowerCase();
+      if (seen.has(key)) return;
+      seen.add(key);
+      fixes.push(text);
+    };
     
-    // Prioritize: gaps first, then rewrites, then next_steps
-    if (gaps.length > 0) {
-      fixes.push(...gaps.slice(0, 2));
+    // Prioritize actionable next steps, then the clearest gaps.
+    nextSteps.slice(0, 3).forEach(pushUnique);
+    if (fixes.length < 3) {
+      gaps.slice(0, 3 - fixes.length).forEach(pushUnique);
     }
-    if (fixes.length < 3 && rewrites.length > 0) {
-      const remaining = 3 - fixes.length;
-      // Take first rewrite's better text as a fix
-      fixes.push(rewrites[0]?.better || rewrites[0]?.original || "");
-    }
-    if (fixes.length < 3 && nextSteps.length > 0) {
-      const remaining = 3 - fixes.length;
-      fixes.push(...nextSteps.slice(0, remaining));
+    // Fall back to rewrite enhancement notes (not the example phrasing) to avoid
+    // original/better pairs showing up as fixes.
+    if (fixes.length < 3) {
+      for (const r of rewrites) {
+        pushUnique(r?.enhancement_note || r?.better || r?.original);
+        if (fixes.length >= 3) break;
+      }
     }
     
-    return fixes.slice(0, 3).filter(Boolean);
+    return fixes.slice(0, 3);
   }
 
   function renderHeaderVerdictAndFixes(data) {
@@ -7266,7 +7341,28 @@
           mapErrorToUserMessage(payload.errorCode, payload.message);
         statusEl.textContent = msg;
         statusEl.classList.remove("status-loading");
-        setStatus(msg, "error");
+        setStatus(msg, payload.errorCode === "PAYWALL_REQUIRED" ? "info" : "error");
+        if (payload.errorCode === "PAYWALL_REQUIRED") {
+          // Keep existing report visible; just prompt upgrade and surface paywall.
+          showReportContainer();
+          if (resultsBodyEl) {
+            resultsBodyEl.classList.remove("results-error");
+            resultsBodyEl.classList.remove("empty");
+          }
+          showPaywall();
+          // Focus the paywall for accessibility
+          if (paywallCloseEl) {
+            paywallCloseEl.focus({ preventScroll: false });
+          }
+          // Soft-scroll to paywall/pricing area
+          const pricingSection = document.querySelector(".pricing-section") || paywallBackdropEl;
+          if (pricingSection && typeof pricingSection.scrollIntoView === "function") {
+            pricingSection.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          // Do not clear last report; keep it visible.
+          // Also avoid overwriting body with error content.
+          return;
+        }
         // Hide skeleton on error
         if (resultsSkeletonEl) {
           resultsSkeletonEl.classList.add("hidden");
@@ -7306,9 +7402,6 @@
         currentUser = payload.user;
       }
 
-      const accessLevel = payload.access || "full";
-      const isPreviewAccess = accessLevel !== "full";
-
       if (!structured) {
         const msg = "Unexpected server response.";
         statusEl.textContent = msg;
@@ -7339,23 +7432,19 @@
       // Hide skeleton and show results-body
       resultsBodyEl.style.display = ""; // Show results-body
       resultsBodyEl.classList.remove("empty");
-      resultsBodyEl.classList.toggle("muted", isPreviewAccess);
       updateToolLayout();
       resultsBodyEl.classList.remove("results-error");
-      if (!isPreviewAccess) {
-      resultsBodyEl.classList.remove("muted");
-      }
       if (resultsActionsBottomEl) {
         resultsActionsBottomEl.classList.remove("hidden");
       }
-      // Re-enable or disable export/copy based on access
+      // Export/copy enabled
       if (exportButtonEl) {
-        exportButtonEl.disabled = isPreviewAccess;
-        exportButtonEl.title = isPreviewAccess ? "Unlock a pass to export the full report" : "";
+        exportButtonEl.disabled = false;
+        exportButtonEl.title = "";
       }
       if (copyFullButtonEl) {
-        copyFullButtonEl.disabled = isPreviewAccess;
-        copyFullButtonEl.title = isPreviewAccess ? "Unlock a pass to copy the full report" : "";
+        copyFullButtonEl.disabled = false;
+        copyFullButtonEl.title = "";
       }
 
       runIdeas({ auto: true, sourceText: text });
@@ -7600,14 +7689,34 @@
   });
 
   async function runIdeas(options = {}) {
-    const { auto = false, sourceText } = options;
-    const text = (sourceText || inputEl.value || "").trim();
+    const { auto = false, sourceText, retryCount = 0 } = options;
+    let text = (sourceText || inputEl.value || "").trim();
+    if (!text && isSampleReportActive && typeof SAMPLE_RESUME_TEXT === "string") {
+      text = SAMPLE_RESUME_TEXT.trim();
+    }
     if (!text) {
       if (!auto) {
         setIdeasStatus("Add your resume first.", "error");
       }
       return;
     }
+
+    // For the sample experience, cycle through hardwired variants and skip the API.
+    if (isSampleReportActive && SAMPLE_IDEAS_VARIANTS.length > 0) {
+      const variant = SAMPLE_IDEAS_VARIANTS[ideasRefreshCount % SAMPLE_IDEAS_VARIANTS.length];
+      ideasRefreshCount += 1;
+      renderIdeas(variant);
+      setIdeasStatus("Questions ready.");
+      setTimeout(() => setIdeasStatus(""), 1400);
+      ideasInFlight = false;
+      return;
+    }
+
+    const refreshHint =
+      ideasSeenOrder.length < 4
+        ? `\n\n[refresh-${ideasSeenOrder.length + 1}: vary the questions, avoid repeating earlier ideas, and choose different archetypes or companies/tools to explore.]`
+        : "";
+    const textWithHint = `${text}${refreshHint}`.trim();
 
     if (ideasInFlight) return;
     ideasInFlight = true;
@@ -7631,7 +7740,7 @@
           ...authHeaders,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ text: textWithHint })
       });
 
       const payload = await response.json().catch(() => null);
@@ -7648,6 +7757,29 @@
       }
 
       const structured = payload.data || payload;
+      const questions = Array.isArray(structured?.questions) ? structured.questions : [];
+      const signature = questions
+        .map((q) => String(q || "").trim().toLowerCase())
+        .filter(Boolean)
+        .join(" | ");
+
+      const seenBefore = signature && ideasSeenSet.has(signature);
+      if (!seenBefore && signature) {
+        ideasSeenSet.add(signature);
+        ideasSeenOrder.push(signature);
+        if (ideasSeenOrder.length > 4) {
+          const removed = ideasSeenOrder.shift();
+          if (removed) ideasSeenSet.delete(removed);
+        }
+      }
+
+      const needDiversity = seenBefore && ideasSeenOrder.length < 4;
+      if (needDiversity && retryCount < 2) {
+        ideasInFlight = false;
+        return runIdeas({ auto, sourceText, retryCount: retryCount + 1 });
+      }
+
+      ideasRefreshCount += 1;
       renderIdeas(structured);
       setIdeasStatus("Questions ready.");
       setTimeout(() => setIdeasStatus(""), 1600);
@@ -7883,22 +8015,30 @@ Product discovery, experimentation, roadmapping, stakeholder communication, SQL,
     renderStructuredResults(report, { isSample: true });
     lastReportData = report;
 
-    // Show export/copy buttons but disable them with helpful tooltips
+    // Reset ideas diversity for the sample flow
+    resetIdeasHistory();
+
+    // Show export/copy buttons so users can see the full experience
     if (resultsActionsBottomEl) {
       resultsActionsBottomEl.classList.remove("hidden");
     }
     if (exportButtonEl) {
-      exportButtonEl.disabled = true;
-      exportButtonEl.title = "Export is available after you run your own resume";
+      exportButtonEl.disabled = false;
+      exportButtonEl.title = "";
     }
     if (copyFullButtonEl) {
-      copyFullButtonEl.disabled = true;
-      copyFullButtonEl.title = "Copy is available after you run your own resume";
+      copyFullButtonEl.disabled = false;
+      copyFullButtonEl.title = "";
     }
 
     // Trigger reveal animation
     triggerReportReveal();
     updateToolLayout();
+
+    // Preload missing wins so the modal shows real questions for the sample
+    if (ideasBodyEl) {
+      runIdeas({ auto: true, sourceText: SAMPLE_RESUME_TEXT });
+    }
 
     // Auto-scroll to results (respect reduced motion)
     setTimeout(() => {
@@ -7986,8 +8126,15 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     }
   }
 
+  function resetIdeasHistory() {
+    ideasRefreshCount = 0;
+    ideasSeenOrder.length = 0;
+    ideasSeenSet.clear();
+  }
+
   function resetIdeasSection() {
     setIdeasStatus("");
+    resetIdeasHistory();
     if (!ideasBodyEl) return;
     ideasBodyEl.innerHTML =
       "I’ll look for wins you have not written yet or forgot about.";

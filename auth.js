@@ -1,6 +1,8 @@
 const crypto = require("crypto");
 const SESSION_COOKIE = "rip_session";
 const SESSION_TTL_DAYS = 30;
+const FREE_COOKIE = "rip_free_used";
+const FREE_COOKIE_DAYS = 365;
 
 function requireSessionSecret() {
   const secret = process.env.SESSION_SECRET;
@@ -45,6 +47,8 @@ function cookieOptions() {
 module.exports = {
   SESSION_COOKIE,
   SESSION_TTL_DAYS,
+  FREE_COOKIE,
+  FREE_COOKIE_DAYS,
   makeSessionCookie,
   parseSessionCookie,
   cookieOptions

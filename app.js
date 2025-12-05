@@ -22,6 +22,8 @@ const {
 const { sendLoginCode } = require("./mailer");
 const {
   SESSION_COOKIE,
+  FREE_COOKIE,
+  FREE_COOKIE_DAYS,
   makeSessionCookie,
   parseSessionCookie,
   cookieOptions
@@ -133,6 +135,7 @@ const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const LOGIN_CODE_TTL_MINUTES = 15;
 const SESSION_TTL_DAYS = 30;
+const BYPASS_PAYWALL = String(process.env.BYPASS_PAYWALL || "").toLowerCase() === "true";
 
 if (!SESSION_SECRET) {
   console.error("ERROR: SESSION_SECRET is required. Set it in your environment.");
@@ -470,6 +473,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   const cookies = parseCookies(req);
+  req.freeUsed = Boolean(cookies[FREE_COOKIE]);
   const raw = cookies[SESSION_COOKIE];
   if (raw) {
     const token = parseSessionCookie(raw);
@@ -1035,7 +1039,8 @@ async function callOpenAIChat(messages, mode) {
           },
           body: JSON.stringify({
             model: OPENAI_MODEL,
-            temperature: 0,
+            // Add mild randomness for ideas so refreshes surface fresh angles.
+            temperature: mode === "resume_ideas" ? 0.55 : 0,
             response_format: { type: "json_object" },
             messages
           })
@@ -1334,32 +1339,12 @@ function validateResumeIdeasPayload(obj) {
 }
 
 function determineAccess(req) {
-  if (req.authUser) {
-    const activePass = getLatestPass(req.authUser.id);
-    if (activePass) {
-      return { access: "full", activePass };
-    }
-  }
+  // Access control: pass holders full; otherwise full (client gates first run).
+  const activePass = req.authUser ? getLatestPass(req.authUser.id) : null;
+  if (BYPASS_PAYWALL) return { access: "full", activePass: activePass || null, bypassed: true };
+  if (activePass) return { access: "full", activePass };
+  if (!req.freeUsed) return { access: "full", activePass: null };
   return { access: "preview", activePass: null };
-}
-
-function pruneReportForPreview(report) {
-  return {
-    score: report.score,
-    score_label: report.score_label,
-    score_comment_short: report.score_comment_short,
-    score_comment_long: report.score_comment_long,
-    summary: report.summary,
-    strengths: Array.isArray(report.strengths) ? report.strengths.slice(0, 2) : [],
-    gaps: Array.isArray(report.gaps) ? report.gaps.slice(0, 2) : [],
-    rewrites: [],
-    next_steps: [],
-    missing_wins: [],
-    suggested_bullets: [],
-    layout_score: report.layout_score,
-    layout_band: report.layout_band,
-    layout_notes: report.layout_notes
-  };
 }
 
 function fallbackResumeData() {
@@ -1938,6 +1923,15 @@ app.post("/api/resume-feedback", rateLimitResume, async (req, res) => {
 USER INPUT:
 ${text}`;
 
+    // Block if out of free allowance and no pass
+    if (accessInfo.access === "preview") {
+      return res.status(402).json({
+        ok: false,
+        errorCode: "PAYWALL_REQUIRED",
+        message: "You've used your free run. Upgrade to keep going."
+      });
+    }
+
     const data = await callOpenAIChat(
       [
         { role: "system", content: JSON_INSTRUCTION },
@@ -1995,20 +1989,31 @@ ${text}`;
     });
 
     const enriched = ensureLayoutAndContentFields(parsed);
-    const payload =
-      accessInfo.access === "full"
-        ? enriched
-        : pruneReportForPreview(enriched);
+    const payload = enriched;
 
-    return res.json({
+    const responseBody = {
       ok: true,
       access: accessInfo.access,
       active_pass: accessInfo.activePass,
       user: req.authUser ? { email: req.authUser.email } : null,
+      bypass: accessInfo.bypassed ? true : false,
       data: payload,
       content: JSON.stringify(payload),
       raw: rawContent
-    });
+    };
+
+    // If this was a free allowed run (no pass, no free cookie), set the free-used cookie
+    if (!BYPASS_PAYWALL && !accessInfo.activePass && !req.freeUsed) {
+      res.cookie(FREE_COOKIE, "1", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: FREE_COOKIE_DAYS * 24 * 60 * 60 * 1000,
+        path: "/"
+      });
+    }
+
+    return res.json(responseBody);
   } catch (err) {
     logLine(
       {
