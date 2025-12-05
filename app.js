@@ -1039,8 +1039,8 @@ async function callOpenAIChat(messages, mode) {
           },
           body: JSON.stringify({
             model: OPENAI_MODEL,
-            // Add mild randomness for ideas so refreshes surface fresh angles.
-            temperature: mode === "resume_ideas" ? 0.55 : 0,
+            // Low randomness for ideas to keep phrasing natural while varying content.
+            temperature: mode === "resume_ideas" ? 0.25 : 0,
             response_format: { type: "json_object" },
             messages
           })

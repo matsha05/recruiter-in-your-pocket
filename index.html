@@ -5772,6 +5772,7 @@
   let ideasRefreshCount = 0;
   const ideasSeenOrder = [];
   const ideasSeenSet = new Set();
+  const ideasSeenQuestions = new Set();
   let currentScoreMeta = null;
   let lastScoreValue = null;
   let scoreBandsPinned = false;
@@ -6537,11 +6538,10 @@
     if (fixes.length < 3) {
       gaps.slice(0, 3 - fixes.length).forEach(pushUnique);
     }
-    // Fall back to rewrite enhancement notes (not the example phrasing) to avoid
-    // original/better pairs showing up as fixes.
+    // Fall back only to rewrite enhancement notes (avoid original/better text).
     if (fixes.length < 3) {
       for (const r of rewrites) {
-        pushUnique(r?.enhancement_note || r?.better || r?.original);
+        pushUnique(r?.enhancement_note);
         if (fixes.length >= 3) break;
       }
     }
@@ -7716,7 +7716,16 @@
       ideasSeenOrder.length < 4
         ? `\n\n[refresh-${ideasSeenOrder.length + 1}: vary the questions, avoid repeating earlier ideas, and choose different archetypes or companies/tools to explore.]`
         : "";
-    const textWithHint = `${text}${refreshHint}`.trim();
+    const seenQuestionsList = Array.from(ideasSeenQuestions).slice(-6);
+    const diversityHint =
+      seenQuestionsList.length > 0
+        ? `\n\nDo NOT repeat any of these questions or close paraphrases: ${seenQuestionsList
+            .map((q) => `"${q}"`)
+            .join(
+              ", "
+            )}. Keep each question one sentence, under ~22 words, in plain, natural phrasing. Choose different archetypes, companies, tools, and outcomes; avoid awkward or repetitive wording.`
+        : `\n\nKeep each question one sentence, under ~22 words, in plain, natural phrasing. Choose varied archetypes, companies, tools, and outcomes; avoid awkward or repetitive wording.`;
+    const textWithHint = `${text}${refreshHint}${diversityHint}`.trim();
 
     if (ideasInFlight) return;
     ideasInFlight = true;
@@ -7777,6 +7786,12 @@
       if (needDiversity && retryCount < 2) {
         ideasInFlight = false;
         return runIdeas({ auto, sourceText, retryCount: retryCount + 1 });
+      }
+
+      // Track individual questions to discourage repeats in future refreshes.
+      for (const q of questions) {
+        const cleaned = String(q || "").trim();
+        if (cleaned) ideasSeenQuestions.add(cleaned);
       }
 
       ideasRefreshCount += 1;
@@ -8130,6 +8145,7 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     ideasRefreshCount = 0;
     ideasSeenOrder.length = 0;
     ideasSeenSet.clear();
+    ideasSeenQuestions.clear();
   }
 
   function resetIdeasSection() {
@@ -8203,7 +8219,13 @@ function mapErrorToUserMessage(errorCode, fallbackMessage) {
     let html = "";
 
     if (Array.isArray(questions) && questions.length > 0) {
-      const limited = questions.slice(0, 3);
+      // Deduplicate and shuffle to avoid the first question sticking.
+      const uniq = Array.from(new Set(questions.map((q) => String(q || "").trim()))).filter(Boolean);
+      const shuffled = uniq
+        .map((item) => ({ item, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ item }) => item);
+      const limited = shuffled.slice(0, 3);
       html += `<div class="ideas-section-card"><div class="ideas-section-title">Questions worth answering</div><div class="ideas-section-subline">Use these to surface wins your resume isn’t showing yet.</div><ul class="ideas-list">`;
       for (const q of limited) {
         html += `<li>${escapeHtml(String(q))}</li>`;
