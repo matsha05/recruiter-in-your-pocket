@@ -1883,6 +1883,78 @@
       transition: opacity var(--motion-duration-short) var(--motion-ease-premium);
     }
 
+    /* Compare strip */
+    .compare-strip {
+      max-width: 1100px;
+      margin: var(--space-2xl) auto;
+      padding: var(--space-xl) var(--space-lg);
+      background: linear-gradient(135deg, var(--bg-card) 0%, color-mix(in srgb, var(--accent-wash) 16%, var(--bg-card) 84%) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+    }
+
+    .compare-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h1);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: var(--space-lg);
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .compare-column {
+      background: var(--wash);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-soft);
+      transition: box-shadow var(--motion-duration-short) var(--motion-ease-premium),
+                  transform var(--motion-duration-short) var(--motion-ease-premium),
+                  border-color var(--motion-duration-short) var(--motion-ease-premium);
+    }
+
+    .compare-column h3 {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+      color: var(--text-main);
+    }
+
+    .compare-column ul {
+      list-style: disc;
+      padding-left: var(--space-lg);
+      color: var(--text-soft);
+      line-height: var(--lh-relaxed);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .compare-column:hover {
+      border-color: var(--accent);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .compare-strip {
+        padding: var(--space-lg);
+      }
+
+      .compare-title {
+        font-size: var(--fs-h2);
+      }
+    }
+
     /* Reduced motion: show chapters immediately */
     @media (prefers-reduced-motion: reduce) {
       .report-chapter {
@@ -4633,6 +4705,29 @@
           </section>
         </div>
       </main>
+
+      <section class="compare-strip">
+        <h2 class="compare-title">How this compares to typical resume checkers</h2>
+        <div class="compare-grid">
+          <div class="compare-column">
+            <h3>Most resume checkers</h3>
+            <ul>
+              <li>Focus on ATS keywords and formatting scores.</li>
+              <li>Give generic AI advice you’ve seen before.</li>
+              <li>Often require an account before showing value.</li>
+            </ul>
+          </div>
+          <div class="compare-column">
+            <h3>Recruiter in Your Pocket</h3>
+            <ul>
+              <li>Shows how your story actually lands to a recruiter.</li>
+              <li>Surfaces what’s working and what’s easy to miss.</li>
+              <li>Gives before/after bullet upgrades in your own voice.</li>
+              <li>Provides clear next steps in plain language.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <div id="paywall-backdrop" class="paywall-backdrop" role="dialog" aria-modal="true" aria-labelledby="paywall-title">
         <div class="paywall-card">
