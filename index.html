@@ -941,14 +941,12 @@
       fill: none;
       display: inline-block;
       flex-shrink: 0;
-      color: var(--accent-soft);
       margin-bottom: var(--space-xs);
       transition: transform var(--motion-duration-short) var(--motion-ease-premium), color var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     .value-item:hover .value-icon {
       transform: translateY(-1px);
-      color: var(--accent);
     }
 
     .value-title {
@@ -4389,7 +4387,17 @@
           <div class="value-desc">Real rewrites you can copy, not generic advice</div>
         </div>
         <div class="value-item">
-          <img src="/assets/icons/heroicons/outline/clipboard-document-check.svg" alt="Clear next steps icon" class="value-icon" />
+          <svg class="value-icon" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.5"
+               aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12.75 11.25 15 15 9.75" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           <div class="value-title">Clear next steps</div>
           <div class="value-desc">Know exactly what to fix in your next editing session</div>
         </div>
