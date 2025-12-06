@@ -3179,6 +3179,7 @@
     .paywall-card--pricing {
       width: min(560px, 94vw);
       padding: var(--space-xl) var(--space-xl-alt) var(--space-lg);
+      padding-top: calc(var(--space-xl) + var(--space-sm));
       gap: var(--space-lg);
       position: relative;
     }
@@ -3220,6 +3221,7 @@
     .paywall-header {
       text-align: center;
       margin-bottom: var(--space-sm);
+      padding-inline: var(--space-lg);
     }
 
     .paywall-card--pricing .paywall-title {
@@ -3248,19 +3250,12 @@
       padding: var(--space-xl-alt) var(--space-md-alt) var(--space-md-lg);
       text-align: center;
       cursor: pointer;
-      overflow: hidden;
+      overflow: visible;
       transition: all var(--motion-duration-short) var(--motion-ease-premium);
     }
 
     .paywall-tier::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--border-subtle);
-      transition: all var(--motion-duration-short) var(--motion-ease-premium);
+      display: none;
     }
 
     .paywall-tier:hover {
