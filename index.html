@@ -6286,7 +6286,8 @@
   const SHORT_RESUME_SKIP_KEY = "rip-short-resume-skip-v1";
 
   // Short-resume detection thresholds (tunable)
-  const SHORT_RESUME_CHAR_THRESHOLD = 1200;
+  const SHORT_RESUME_CHAR_STRICT_THRESHOLD = 1200; // always warn
+  const SHORT_RESUME_CHAR_SOFT_THRESHOLD = 2000; // warn if also low bullets
   const SHORT_RESUME_BULLET_THRESHOLD = 8;
 
   // Mixpanel integration
@@ -6349,16 +6350,40 @@
 
   // Short-resume detection helpers
   function countBullets(text) {
-    const bulletPatterns = /^[\s]*[-•*▪▸►●○◦⦿⦾]/gm;
-    const matches = text.match(bulletPatterns);
-    return matches ? matches.length : 0;
+    const bulletRegex = /^[\s]*([-•*▪▸►●○◦⦿⦾·‣▪■□◆▶➤➜➣➥➧➨➢➲➺➻➼➽➾➔➛➝➞➟➠➡️]|[\d]{1,3}[.)])[\s]/gm;
+    const matches = text.match(bulletRegex) || [];
+
+    // Pseudo bullets: short indented lines that often come from stripped formatting
+    let pseudoMatches = [];
+    if (matches.length === 0) {
+      pseudoMatches = (text.match(/^[\t ]{2,}.+$/gm) || []).filter((line) => line.trim().length <= 140);
+    }
+
+    return matches.length + Math.floor(pseudoMatches.length / 2); // require at least a couple to count
   }
 
-  function isShortResume(text) {
+  function assessResumeLength(text) {
     const trimmed = (text || "").trim();
     const charCount = trimmed.length;
     const bulletCount = countBullets(trimmed);
-    return charCount < SHORT_RESUME_CHAR_THRESHOLD || bulletCount < SHORT_RESUME_BULLET_THRESHOLD;
+
+    const isStrictShort = charCount < SHORT_RESUME_CHAR_STRICT_THRESHOLD;
+    const isBorderline = charCount < SHORT_RESUME_CHAR_SOFT_THRESHOLD;
+    const bulletsLow = bulletCount < SHORT_RESUME_BULLET_THRESHOLD;
+
+    const shouldWarn = isStrictShort || (isBorderline && bulletsLow);
+    const shouldHint = !shouldWarn && bulletsLow && charCount >= SHORT_RESUME_CHAR_SOFT_THRESHOLD;
+
+    let reason = "ok";
+    if (isStrictShort) {
+      reason = "strict_char_threshold";
+    } else if (isBorderline && bulletsLow) {
+      reason = "borderline_low_bullets";
+    } else if (shouldHint) {
+      reason = "hint_low_bullets";
+    }
+
+    return { shouldWarn, shouldHint, charCount, bulletCount, reason };
   }
 
   function shouldSkipShortResumeDialog() {
@@ -7838,12 +7863,13 @@
   const shortResumeReviewAnywayBtn = document.getElementById("short-resume-review-anyway");
   const shortResumeSkipCheckbox = document.getElementById("short-resume-skip-checkbox");
 
-  function showShortResumeDialog() {
+  function showShortResumeDialog(meta) {
     if (shortResumeDialogEl) {
       shortResumeDialogEl.classList.add("open");
       trackEvent("short_resume_dialog_shown", {
-        text_length: inputEl.value.length,
-        bullet_count: countBullets(inputEl.value)
+        text_length: meta?.charCount ?? inputEl.value.length,
+        bullet_count: meta?.bulletCount ?? countBullets(inputEl.value),
+        reason: meta?.reason ?? "unknown"
       });
     }
   }
@@ -7905,13 +7931,24 @@
     isSampleRun = false;
     const text = (options.textOverride ?? inputEl.value ?? "").trim();
     const wasSampleView = isSampleReportActive;
+    const resumeAssessment = assessResumeLength(text);
 
     // Short-resume check (only for non-sample, non-confirmed runs)
-    if (!sampleRun && !shortConfirmed && isShortResume(text) && !shouldSkipShortResumeDialog()) {
+    if (!sampleRun && !shortConfirmed && resumeAssessment.shouldWarn && !shouldSkipShortResumeDialog()) {
       // Store the options and show dialog
-      pendingShortResumeOptions = { ...options, textOverride: text };
-      showShortResumeDialog();
+      pendingShortResumeOptions = { ...options, textOverride: text, resumeAssessment };
+      showShortResumeDialog(resumeAssessment);
       return;
+    }
+
+    // If it's long enough but bullets look stripped, show a soft hint instead of blocking
+    if (resumeAssessment.shouldHint) {
+      showRunToast("Looks like formatting stripped bullets. You can paste the full resume or run anyway.");
+      trackEvent("short_resume_hint_shown", {
+        text_length: resumeAssessment.charCount,
+        bullet_count: resumeAssessment.bulletCount,
+        reason: resumeAssessment.reason
+      });
     }
 
     // If the sample report was open, reset to the default input-focused view
