@@ -1528,18 +1528,22 @@
       document.getElementById('score-ring').style.background =
         `conic-gradient(var(--accent) 0deg ${degrees}deg, var(--border-subtle) ${degrees}deg 360deg)`;
 
-      // Subscores (if available) with color coding
+      // Subscores (if available) with 5-tier color coding
       if (report.subscores) {
         const setSubscoreWithColor = (id, value) => {
           const el = document.getElementById(id);
           el.textContent = value || '—';
-          // Color code based on score value
-          if (value >= 80) {
-            el.style.color = 'var(--success)';
+          // 5-tier color coding based on score value
+          if (value >= 90) {
+            el.style.color = 'var(--accent)'; // Brand accent - exceptional
+          } else if (value >= 80) {
+            el.style.color = 'var(--success)'; // Green - strong
+          } else if (value >= 70) {
+            el.style.color = '#14b8a6'; // Teal - solid foundation
           } else if (value >= 60) {
-            el.style.color = 'var(--warning)';
+            el.style.color = 'var(--warning)'; // Orange - needs work
           } else if (value && value < 60) {
-            el.style.color = 'var(--error)';
+            el.style.color = 'var(--error)'; // Red - critical
           } else {
             el.style.color = 'var(--accent)';
           }
