@@ -884,6 +884,53 @@
         text-align: center;
       }
     }
+
+    /* Upgrade Prompt */
+    .upgrade-prompt {
+      background: linear-gradient(135deg, var(--accent-wash) 0%, rgba(91, 111, 216, 0.08) 100%);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      margin-top: var(--space-xl);
+      text-align: center;
+    }
+
+    .upgrade-prompt-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: var(--space-xs);
+    }
+
+    .upgrade-prompt-text {
+      font-size: var(--fs-body);
+      color: var(--text-soft);
+      margin-bottom: var(--space-md);
+      line-height: var(--lh-relaxed);
+    }
+
+    .upgrade-prompt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-xl);
+      background: var(--accent);
+      color: white;
+      font-family: var(--font-display);
+      font-size: var(--fs-body);
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: var(--shadow-button);
+      transition: background var(--motion-duration-short), transform var(--motion-duration-short);
+    }
+
+    .upgrade-prompt-btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 
@@ -895,6 +942,7 @@
         <span class="workspace-brand-name">Recruiter in Your Pocket</span>
       </a>
       <div class="workspace-actions">
+        <button class="btn-ghost" id="sample-report-btn">📄 Sample Report</button>
         <button class="btn-ghost" id="theme-toggle">🌙</button>
         <button class="btn-ghost" onclick="window.location.href='/'">← Back to Home</button>
       </div>
@@ -1146,6 +1194,29 @@
       themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
     });
 
+    // Track free uses remaining
+    let freeUsesRemaining = null;
+
+    // Sample Report Button
+    const sampleReportBtn = document.getElementById('sample-report-btn');
+    sampleReportBtn.addEventListener('click', loadSampleReport);
+
+    async function loadSampleReport() {
+      try {
+        const response = await fetch('/sample-report.json');
+        const report = await response.json();
+        currentReport = report;
+        reportEmpty.style.display = 'none';
+        renderReport(report);
+        setActiveTab('overview');
+        // Pre-fill a sample resume text for context
+        resumeText.value = 'Sample PM Resume:\n\nSarah Chen\nProduct Manager | 6 years\n\nOwned end-to-end delivery of customer onboarding flow, reducing time-to-value by 40%.\nLed cross-functional team of 8 (eng, design, data) through quarterly roadmap cycles.\nDrove prioritization framework that aligned stakeholders on 95% of shipped features.';
+      } catch (err) {
+        console.error('Failed to load sample report', err);
+        alert('Could not load sample report. Please try again.');
+      }
+    }
+
     // File Upload
     dropzone.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -1275,13 +1346,34 @@
 
         const result = await response.json();
 
+        // Check for paywall error
+        if (result.errorCode === 'PAYWALL_REQUIRED') {
+          freeUsesRemaining = 0;
+          hideLoading();
+          showUpgradePrompt();
+          runBtn.disabled = false;
+          return;
+        }
+
         // The API returns { ok: true, data: { score, ... } } on success
         // or { ok: false, message: "..." } on error
         if (result.ok && result.data && result.data.score !== undefined) {
           currentReport = result.data;
+          freeUsesRemaining = result.free_uses_remaining;
+
+          // Update run hint with remaining free uses
+          if (freeUsesRemaining !== null && freeUsesRemaining > 0) {
+            runHint.textContent = `${freeUsesRemaining} free report${freeUsesRemaining === 1 ? '' : 's'} remaining`;
+          } else if (freeUsesRemaining === 0) {
+            runHint.textContent = 'Upgrade to keep analyzing';
+          }
+
           renderReport(result.data);
           hideLoading();
           setActiveTab('overview');
+
+          // Fetch Missing Wins ideas in the background
+          fetchMissingWins(text);
         } else {
           throw new Error(result.message || 'Failed to get feedback');
         }
@@ -1292,6 +1384,56 @@
 
       runBtn.disabled = false;
     });
+
+    // Fetch Missing Wins ideas
+    async function fetchMissingWins(resumeText) {
+      try {
+        const response = await fetch('/api/resume-feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: resumeText,
+            mode: 'resume_ideas'
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.ok && result.data && result.data.questions) {
+          const winsQuestions = document.getElementById('wins-questions');
+          winsQuestions.innerHTML = result.data.questions.map(q => `<li>${escapeHtml(q)}</li>`).join('');
+
+          // Also show notes if available
+          if (result.data.notes && result.data.notes.length > 0) {
+            const notesHtml = '<div class="report-card" style="margin-top: var(--space-lg);"><div class="report-card-title">How to use these</div><ul class="report-list">' +
+              result.data.notes.map(n => `<li>${escapeHtml(n)}</li>`).join('') +
+              '</ul></div>';
+            document.getElementById('missing-wins-content').innerHTML += notesHtml;
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch missing wins:', err);
+      }
+    }
+
+    // Show upgrade prompt
+    function showUpgradePrompt() {
+      reportEmpty.style.display = 'none';
+
+      const upgradeHtml = `
+        <div class="upgrade-prompt">
+          <div class="upgrade-prompt-title">You've used your free reports</div>
+          <div class="upgrade-prompt-text">
+            Get unlimited access to recruiter-grade feedback, bullet rewrites, and job alignment analysis.
+          </div>
+          <button class="upgrade-prompt-btn" onclick="window.location.href='/#pricing'">
+            View Pricing →
+          </button>
+        </div>
+      `;
+
+      document.querySelector('.report-content').innerHTML = upgradeHtml;
+    }
 
     function showLoading() {
       reportEmpty.style.display = 'none';

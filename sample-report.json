@@ -1,9 +1,15 @@
 {
   "score": 86,
-  "score_label": "Strong",
+  "score_label": "Strong Foundation",
   "score_comment_short": "You read as someone who takes messy workstreams and makes them shippable.",
   "score_comment_long": "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
   "summary": "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+  "subscores": {
+    "impact": 82,
+    "clarity": 88,
+    "story": 84,
+    "readability": 90
+  },
   "strengths": [
     "You keep delivery on track when priorities change and still close the loop with stakeholders.",
     "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
@@ -15,6 +21,38 @@
     "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
     "Some bullets blend multiple ideas; split them so impact lands.",
     "A few phrases could be more specific to the systems or programs you ran."
+  ],
+  "top_fixes": [
+    {
+      "fix": "Add scope numbers to your top 2 bullets (teams, users, revenue)",
+      "impact_level": "high",
+      "effort": "quick",
+      "section_ref": "Work Experience"
+    },
+    {
+      "fix": "State one before/after metric in your headline bullet",
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Work Experience"
+    },
+    {
+      "fix": "Split bullets that mix decisions and outcomes",
+      "impact_level": "medium",
+      "effort": "quick",
+      "section_ref": "Work Experience"
+    },
+    {
+      "fix": "Add a summary that positions your PM style upfront",
+      "impact_level": "medium",
+      "effort": "moderate",
+      "section_ref": "Summary"
+    },
+    {
+      "fix": "List 2-3 specific tools or frameworks you use",
+      "impact_level": "low",
+      "effort": "quick",
+      "section_ref": "Skills"
+    }
   ],
   "rewrites": [
     {
@@ -37,11 +75,60 @@
     },
     {
       "label": "Ownership",
-      "original": "Handled stakeholder updates.",
-      "better": "Led stakeholder updates with decisions, risks, and next steps so leaders could unblock issues quickly.",
+      "original": "Managed cross-functional initiatives.",
+      "better": "Led cross-functional initiatives with decisions, risks, and next steps so leaders could unblock issues quickly.",
       "enhancement_note": "If you have it, include: cadence and the groups involved, so the reader sees scale."
     }
   ],
+  "section_review": {
+    "Summary": {
+      "working": "Clear positioning as an execution-focused PM",
+      "missing": "Could mention the product space or domain you specialize in",
+      "fix": "Add one line about the types of products or problems you gravitate toward"
+    },
+    "Work Experience": {
+      "working": "Strong ownership language and decision framing",
+      "missing": "Scope and metrics are too often implied rather than stated",
+      "fix": "Pick your top 3 bullets and add a number to each one (team size, user count, revenue impact)"
+    },
+    "Skills": {
+      "working": "Organized and scannable",
+      "missing": "Generic list could apply to anyone",
+      "fix": "Add 1-2 specific frameworks or tools you've used deeply"
+    },
+    "Education": {
+      "working": "Clean formatting, no issues",
+      "missing": null,
+      "fix": null
+    }
+  },
+  "job_alignment": {
+    "strongly_aligned": [
+      "Cross-functional coordination",
+      "Stakeholder management",
+      "Launch execution and delivery"
+    ],
+    "underplayed": [
+      "Data-driven decision making",
+      "Technical depth and roadmap influence"
+    ],
+    "missing": [
+      "B2B SaaS experience"
+    ]
+  },
+  "ideas": {
+    "questions": [
+      "What was the hardest tradeoff you made on a launch, and how did you decide?",
+      "Which project had the most at stake, and what was your role when things got tense?",
+      "What's the biggest scope you've managed—teams, geos, or budget—that isn't on the page yet?"
+    ],
+    "notes": [
+      "Each question maps to a common gap: decision-making under pressure, scale, and ownership.",
+      "Answer in 1-2 sentences, then see if it belongs on your resume.",
+      "Even qualitative answers (morale improved, process stuck) can strengthen a bullet."
+    ],
+    "how_to_use": "Pick one question, write a rough answer, then turn it into a bullet using the Mechanism → Scope → Impact pattern."
+  },
   "next_steps": [
     "Add scope (teams, volume, regions) to two top bullets.",
     "State one before/after metric in a headline bullet.",
@@ -52,4 +139,3 @@
   "layout_notes": "",
   "content_score": 86
 }
-
