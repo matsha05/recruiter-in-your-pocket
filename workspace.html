@@ -987,6 +987,148 @@
       background: var(--accent-dark);
       transform: translateY(-1px);
     }
+
+    /* Resume Length Warning */
+    .resume-warning {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: flex-start;
+      background: rgba(217, 119, 6, 0.1);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      margin-top: var(--space-sm);
+    }
+
+    .resume-warning-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .resume-warning-title {
+      font-weight: 600;
+      color: var(--warning);
+      font-size: var(--fs-small);
+      margin-bottom: var(--space-xxs);
+    }
+
+    .resume-warning-text {
+      font-size: var(--fs-xs);
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    #char-count {
+      font-weight: 600;
+      color: var(--warning);
+    }
+
+    /* Short Resume Confirmation Modal */
+    .short-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .short-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      max-width: 420px;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      animation: slideUp 0.2s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .short-modal-icon {
+      font-size: 48px;
+      margin-bottom: var(--space-md);
+    }
+
+    .short-modal-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-xl);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: var(--space-md);
+    }
+
+    .short-modal-text {
+      font-size: var(--fs-body);
+      color: var(--text-soft);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-xl);
+    }
+
+    .short-modal-text strong {
+      color: var(--warning);
+    }
+
+    .short-modal-actions {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+    }
+
+    .short-modal-btn {
+      padding: var(--space-sm) var(--space-xl);
+      font-size: var(--fs-body);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--motion-duration-short);
+    }
+
+    .short-modal-btn--secondary {
+      background: var(--bg-main);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .short-modal-btn--secondary:hover {
+      background: var(--surface-tint);
+    }
+
+    .short-modal-btn--primary {
+      background: var(--warning);
+      color: white;
+      border: none;
+    }
+
+    .short-modal-btn--primary:hover {
+      filter: brightness(1.1);
+    }
   </style>
 </head>
 
@@ -1036,6 +1178,16 @@
 
           <div class="textarea-wrap">
             <textarea id="resume-text" placeholder="Paste your resume text here..."></textarea>
+          </div>
+
+          <!-- Resume Length Warning -->
+          <div class="resume-warning" id="resume-warning" style="display: none;">
+            <div class="resume-warning-icon">⚠️</div>
+            <div class="resume-warning-content">
+              <div class="resume-warning-title">Resume looks short</div>
+              <div class="resume-warning-text">We found <span id="char-count">0</span> characters. Most resumes have
+                1,500+ characters. You might get limited feedback.</div>
+            </div>
           </div>
         </div>
 
@@ -1228,6 +1380,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Short Resume Confirmation Modal -->
+    <div class="short-modal-backdrop" id="short-modal" style="display: none;">
+      <div class="short-modal">
+        <div class="short-modal-icon">⚠️</div>
+        <div class="short-modal-title">Your resume looks short</div>
+        <p class="short-modal-text">
+          We found <strong id="modal-char-count">0</strong> characters. Most resumes have 1,500+ to give meaningful
+          feedback.
+          You can still run the analysis, but results may be limited.
+        </p>
+        <div class="short-modal-actions">
+          <button class="short-modal-btn short-modal-btn--secondary" id="short-modal-cancel">← Go back</button>
+          <button class="short-modal-btn short-modal-btn--primary" id="short-modal-continue">Continue anyway</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1319,7 +1488,25 @@
       fileInfo.classList.remove('visible');
       resumeText.value = '';
       resumeText.disabled = false;
+      updateResumeWarning();
     });
+
+    // Resume length warning
+    const resumeWarning = document.getElementById('resume-warning');
+    const charCount = document.getElementById('char-count');
+    const MIN_RESUME_LENGTH = 500;
+
+    function updateResumeWarning() {
+      const len = resumeText.value.trim().length;
+      charCount.textContent = len.toLocaleString();
+      if (len > 0 && len < MIN_RESUME_LENGTH) {
+        resumeWarning.style.display = 'flex';
+      } else {
+        resumeWarning.style.display = 'none';
+      }
+    }
+
+    resumeText.addEventListener('input', updateResumeWarning);
 
     async function handleFile(file) {
       const validTypes = [
@@ -1386,21 +1573,30 @@
       sections.forEach(s => s.classList.toggle('active', s.id === `section-${tabName}`));
     }
 
+    // Short Resume Modal
+    const shortModal = document.getElementById('short-modal');
+    const modalCharCount = document.getElementById('modal-char-count');
+    const shortModalCancel = document.getElementById('short-modal-cancel');
+    const shortModalContinue = document.getElementById('short-modal-continue');
+
+    function showShortModal(charCount) {
+      modalCharCount.textContent = charCount.toLocaleString();
+      shortModal.style.display = 'flex';
+    }
+
+    function hideShortModal() {
+      shortModal.style.display = 'none';
+    }
+
+    shortModalCancel.addEventListener('click', hideShortModal);
+    shortModal.addEventListener('click', (e) => {
+      if (e.target === shortModal) hideShortModal();
+    });
+
     // Run Analysis
-    runBtn.addEventListener('click', async () => {
+    async function runAnalysis() {
       const text = resumeText.value.trim();
       const jobDesc = jobDescription.value.trim();
-
-      if (!text) {
-        alert('Please enter or upload your resume text.');
-        return;
-      }
-
-      if (text.length < 100) {
-        if (!confirm('Your resume text is quite short. The feedback might be limited. Continue anyway?')) {
-          return;
-        }
-      }
 
       showLoading();
       runBtn.disabled = true;
@@ -1454,6 +1650,30 @@
       }
 
       runBtn.disabled = false;
+    }
+
+    // Run Button click handler
+    runBtn.addEventListener('click', () => {
+      const text = resumeText.value.trim();
+
+      if (!text) {
+        alert('Please enter or upload your resume text.');
+        return;
+      }
+
+      // Show modal for short resumes
+      if (text.length < MIN_RESUME_LENGTH) {
+        showShortModal(text.length);
+        return;
+      }
+
+      runAnalysis();
+    });
+
+    // Continue from short resume modal
+    shortModalContinue.addEventListener('click', () => {
+      hideShortModal();
+      runAnalysis();
     });
 
     // Fetch Missing Wins ideas
