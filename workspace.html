@@ -749,6 +749,25 @@
       font-weight: 600;
       color: var(--text-muted);
       margin-bottom: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      opacity: 0.6;
+      transition: opacity 0.15s, background 0.15s;
+    }
+
+    .copy-btn:hover {
+      opacity: 1;
+      background: var(--surface-tint);
     }
 
     .rewrite-original {
@@ -1509,12 +1528,26 @@
       document.getElementById('score-ring').style.background =
         `conic-gradient(var(--accent) 0deg ${degrees}deg, var(--border-subtle) ${degrees}deg 360deg)`;
 
-      // Subscores (if available)
+      // Subscores (if available) with color coding
       if (report.subscores) {
-        document.getElementById('subscore-impact').textContent = report.subscores.impact || '—';
-        document.getElementById('subscore-clarity').textContent = report.subscores.clarity || '—';
-        document.getElementById('subscore-story').textContent = report.subscores.story || '—';
-        document.getElementById('subscore-readability').textContent = report.subscores.readability || '—';
+        const setSubscoreWithColor = (id, value) => {
+          const el = document.getElementById(id);
+          el.textContent = value || '—';
+          // Color code based on score value
+          if (value >= 80) {
+            el.style.color = 'var(--success)';
+          } else if (value >= 60) {
+            el.style.color = 'var(--warning)';
+          } else if (value && value < 60) {
+            el.style.color = 'var(--error)';
+          } else {
+            el.style.color = 'var(--accent)';
+          }
+        };
+        setSubscoreWithColor('subscore-impact', report.subscores.impact);
+        setSubscoreWithColor('subscore-clarity', report.subscores.clarity);
+        setSubscoreWithColor('subscore-story', report.subscores.story);
+        setSubscoreWithColor('subscore-readability', report.subscores.readability);
       }
 
       // Strengths
@@ -1548,9 +1581,9 @@
         `;
       }).join('');
 
-      // Rewrites
+      // Rewrites with copy buttons
       const rewritesList = document.getElementById('rewrites-list');
-      rewritesList.innerHTML = (report.rewrites || []).map(r => `
+      rewritesList.innerHTML = (report.rewrites || []).map((r, idx) => `
         <div class="rewrite-item">
           <div class="rewrite-label">${escapeHtml(r.label)}</div>
           <div class="rewrite-pair">
@@ -1559,13 +1592,36 @@
               <div class="rewrite-text">${escapeHtml(r.original)}</div>
             </div>
             <div class="rewrite-col rewrite-better">
-              <div class="rewrite-col-label">Better</div>
+              <div class="rewrite-col-label">
+                Better
+                <button class="copy-btn" data-copy="${escapeHtml(r.better).replace(/"/g, '&quot;')}" title="Copy to clipboard">📋</button>
+              </div>
               <div class="rewrite-text">${escapeHtml(r.better)}</div>
             </div>
           </div>
           ${r.enhancement_note ? `<div class="rewrite-note">${escapeHtml(r.enhancement_note)}</div>` : ''}
         </div>
       `).join('');
+
+      // Add copy button handlers
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const text = btn.getAttribute('data-copy');
+          try {
+            await navigator.clipboard.writeText(text);
+            btn.textContent = '✓';
+            btn.style.color = 'var(--success)';
+            setTimeout(() => {
+              btn.textContent = '📋';
+              btn.style.color = '';
+            }, 1500);
+          } catch (err) {
+            btn.textContent = '✗';
+            setTimeout(() => { btn.textContent = '📋'; }, 1500);
+          }
+        });
+      });
 
       // Job Alignment
       const hasJobDesc = jobDescription.value.trim().length > 0;
