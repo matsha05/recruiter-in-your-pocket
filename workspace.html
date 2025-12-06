@@ -611,6 +611,8 @@
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       text-align: center;
+      position: relative;
+      cursor: help;
     }
 
     .subscore-value {
@@ -625,6 +627,41 @@
       font-size: var(--fs-xs);
       color: var(--text-muted);
       font-weight: 500;
+      cursor: help;
+      position: relative;
+    }
+
+    /* Custom Tooltip */
+    .subscore[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a2e;
+      color: #ffffff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+      white-space: normal;
+      width: 200px;
+      text-align: center;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      pointer-events: none;
+    }
+
+    .subscore[data-tooltip]:hover::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #1a1a2e;
+      z-index: 1000;
     }
 
     /* Report Cards */
@@ -1055,21 +1092,21 @@
           </div>
 
           <div class="subscores" id="subscores">
-            <div class="subscore" title="Do your bullets show measurable outcomes and meaningful results?">
+            <div class="subscore" data-tooltip="Do your bullets show measurable outcomes and meaningful results?">
               <div class="subscore-value" id="subscore-impact">—</div>
               <div class="subscore-label">Impact ⓘ</div>
             </div>
             <div class="subscore"
-              title="Is your language direct and jargon-free? Can a recruiter quickly understand what you did?">
+              data-tooltip="Is your language direct and jargon-free? Can a recruiter quickly understand what you did?">
               <div class="subscore-value" id="subscore-clarity">—</div>
               <div class="subscore-label">Clarity ⓘ</div>
             </div>
             <div class="subscore"
-              title="Does your resume tell a coherent career narrative? Is your professional identity clear?">
+              data-tooltip="Does your resume tell a coherent career narrative? Is your professional identity clear?">
               <div class="subscore-value" id="subscore-story">—</div>
               <div class="subscore-label">Story ⓘ</div>
             </div>
-            <div class="subscore" title="Is the resume scannable? Can a recruiter get your value in 6 seconds?">
+            <div class="subscore" data-tooltip="Is the resume scannable? Can a recruiter get your value in 6 seconds?">
               <div class="subscore-value" id="subscore-readability">—</div>
               <div class="subscore-label">Readability ⓘ</div>
             </div>
