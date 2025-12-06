@@ -6,6 +6,9 @@ const path = require("path");
 const crypto = require("crypto");
 const fs = require("fs");
 const Stripe = require("stripe");
+const multer = require("multer");
+const pdfParse = require("pdf-parse");
+const mammoth = require("mammoth");
 const {
   upsertUserByEmail,
   getUserByEmail,
@@ -152,11 +155,11 @@ if (!OPENAI_API_KEY && !USE_MOCK_OPENAI) {
 }
 
 // Detect production environment
-const isProduction = process.env.NODE_ENV === "production" || 
-                     Boolean(process.env.VERCEL) ||
-                     Boolean(process.env.RAILWAY_ENVIRONMENT) ||
-                     Boolean(process.env.RENDER) ||
-                     Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
+const isProduction = process.env.NODE_ENV === "production" ||
+  Boolean(process.env.VERCEL) ||
+  Boolean(process.env.RAILWAY_ENVIRONMENT) ||
+  Boolean(process.env.RENDER) ||
+  Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
 
 const isDevLike = !isProduction;
 const allowedOrigins = new Set([
@@ -347,7 +350,7 @@ app.get("/ready", async (req, res) => {
             args: ["--no-sandbox", "--disable-setuid-sandbox"],
             timeout: 5000 // 5 second timeout for readiness check
           }),
-          new Promise((_, reject) => 
+          new Promise((_, reject) =>
             setTimeout(() => reject(new Error("Browser launch timeout")), 5000)
           )
         ]);
@@ -359,17 +362,17 @@ app.get("/ready", async (req, res) => {
     } catch (err) {
       pdfError = err.message;
       // Don't fail the ready check if PDF isn't available, but log it
-      logLine({ 
-        level: "warn", 
-        msg: "pdf_readiness_check_failed", 
-        error: err.message 
+      logLine({
+        level: "warn",
+        msg: "pdf_readiness_check_failed",
+        error: err.message
       });
     }
 
     if (!pdfReady && pdfError) {
-      return res.status(500).json({ 
-        ok: false, 
-        message: `PDF generation not ready: ${pdfError}` 
+      return res.status(500).json({
+        ok: false,
+        message: `PDF generation not ready: ${pdfError}`
       });
     }
 
@@ -497,12 +500,12 @@ app.use(express.json());
 app.use(async (req, res, next) => {
   try {
     const cookies = parseCookies(req);
-    
+
     // Parse structured free-run metadata cookie
     const freeMeta = parseFreeCookie(cookies[FREE_COOKIE]);
     req.freeMeta = freeMeta || { used: 0, last_free_ts: null };
     req.freeUsesRemaining = FREE_RUN_LIMIT - (req.freeMeta.used || 0);
-    
+
     const raw = cookies[SESSION_COOKIE];
     if (raw) {
       const token = parseSessionCookie(raw);
@@ -636,8 +639,110 @@ setInterval(() => {
 
 app.use(express.static(path.join(__dirname)));
 
+// File upload configuration for resume parsing
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only PDF and DOCX files are allowed'), false);
+    }
+  }
+});
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/workspace", (req, res) => {
+  res.sendFile(path.join(__dirname, "workspace.html"));
+});
+
+// Resume file parsing endpoint
+const rateLimitParse = createRateLimiter(30);
+app.post("/api/parse-resume", rateLimitParse, upload.single('file'), async (req, res) => {
+  const reqId = req.reqId || crypto.randomUUID();
+
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        ok: false,
+        errorCode: "NO_FILE",
+        message: "No file uploaded. Please select a PDF or DOCX file."
+      });
+    }
+
+    const { mimetype, buffer, originalname } = req.file;
+    let extractedText = '';
+
+    if (mimetype === 'application/pdf') {
+      try {
+        const pdfData = await pdfParse(buffer);
+        extractedText = pdfData.text || '';
+      } catch (pdfErr) {
+        logLine({ level: "error", msg: "pdf_parse_failed", reqId, error: pdfErr.message }, true);
+        return res.status(400).json({
+          ok: false,
+          errorCode: "PDF_PARSE_ERROR",
+          message: "Could not read the PDF. Try a different file or paste your resume text directly."
+        });
+      }
+    } else if (mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      try {
+        const docxResult = await mammoth.extractRawText({ buffer });
+        extractedText = docxResult.value || '';
+      } catch (docxErr) {
+        logLine({ level: "error", msg: "docx_parse_failed", reqId, error: docxErr.message }, true);
+        return res.status(400).json({
+          ok: false,
+          errorCode: "DOCX_PARSE_ERROR",
+          message: "Could not read the DOCX file. Try a different file or paste your resume text directly."
+        });
+      }
+    } else {
+      return res.status(400).json({
+        ok: false,
+        errorCode: "UNSUPPORTED_FILE_TYPE",
+        message: "Only PDF and DOCX files are supported."
+      });
+    }
+
+    // Clean up extracted text
+    extractedText = extractedText
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+
+    if (!extractedText || extractedText.length < 50) {
+      return res.status(400).json({
+        ok: false,
+        errorCode: "EXTRACTION_EMPTY",
+        message: "Could not extract enough text from the file. The file may be image-based or corrupted. Try pasting your resume text directly."
+      });
+    }
+
+    logLine({ level: "info", msg: "resume_parsed", reqId, fileType: mimetype, textLength: extractedText.length });
+
+    return res.json({
+      ok: true,
+      text: extractedText,
+      fileName: originalname
+    });
+  } catch (err) {
+    logLine({ level: "error", msg: "parse_resume_failed", reqId, error: err.message }, true);
+    return res.status(500).json({
+      ok: false,
+      errorCode: "PARSE_ERROR",
+      message: "Something went wrong while processing your file. Try pasting your resume text directly."
+    });
+  }
 });
 
 app.post("/api/create-checkout-session", rateLimitCheckout, async (req, res) => {
@@ -844,6 +949,17 @@ function validateResumeFeedbackRequest(body) {
     }
   }
 
+  // Job description for alignment analysis (longer form allowed)
+  const jobDescription = body.jobDescription;
+  if (jobDescription !== undefined) {
+    if (typeof jobDescription !== "string") {
+      fieldErrors.jobDescription = "Job description should be plain text.";
+    } else if (jobDescription.length > 8000) {
+      fieldErrors.jobDescription =
+        "Job description is too long. Include the key sections (about, requirements, responsibilities).";
+    }
+  }
+
   if (seniorityLevel !== undefined) {
     if (typeof seniorityLevel !== "string") {
       fieldErrors.seniorityLevel =
@@ -869,6 +985,7 @@ function validateResumeFeedbackRequest(body) {
       text: trimmedText,
       mode: mode || "resume",
       jobContext,
+      jobDescription: jobDescription?.trim() || null,
       seniorityLevel
     }
   };
@@ -965,77 +1082,77 @@ async function callOpenAIChat(messages, mode) {
       mock =
         mode === "resume_ideas"
           ? {
-              questions: [
-                "At OpenAI, which IT/security hire you drove changed pass-through or accept rate, and what was the before/after?",
-                "In Meta’s ML Acceleration effort, what action you owned got non-ML sourcers productive, and how many hires did that add?",
-                "For Google Cloud LATAM, which referral or hiring motion you led moved time-to-fill or offer volume the most?",
-                "As X-Team CPO, which move (Rippling go-live, DEI program, performance system) changed time-to-hire or retention, and by how much?",
-                "In World Race logistics, when did you prevent a major travel/budget issue for 60 volunteers, and what was the impact?"
-              ],
-              notes: [
-                "Pick 1–3 questions and write a quick story answer for each in a separate doc.",
-                "From each story, pull out three things:",
-                "Scope: team size, regions, budget, or volume you touched.",
-                "Decision: the call you made or the action you owned.",
-                "Outcome: what changed because of it, ideally with a number.",
-                "Turn that into a bullet in this shape:",
-                "\"Verb + what you owned + outcome with a number.\""
-              ],
-              how_to_use:
-                "How to use these: Take each story and write one new bullet or upgrade an existing one using scope, decision, and outcome. If it does not add anything new, skip it."
-            }
+            questions: [
+              "At OpenAI, which IT/security hire you drove changed pass-through or accept rate, and what was the before/after?",
+              "In Meta’s ML Acceleration effort, what action you owned got non-ML sourcers productive, and how many hires did that add?",
+              "For Google Cloud LATAM, which referral or hiring motion you led moved time-to-fill or offer volume the most?",
+              "As X-Team CPO, which move (Rippling go-live, DEI program, performance system) changed time-to-hire or retention, and by how much?",
+              "In World Race logistics, when did you prevent a major travel/budget issue for 60 volunteers, and what was the impact?"
+            ],
+            notes: [
+              "Pick 1–3 questions and write a quick story answer for each in a separate doc.",
+              "From each story, pull out three things:",
+              "Scope: team size, regions, budget, or volume you touched.",
+              "Decision: the call you made or the action you owned.",
+              "Outcome: what changed because of it, ideally with a number.",
+              "Turn that into a bullet in this shape:",
+              "\"Verb + what you owned + outcome with a number.\""
+            ],
+            how_to_use:
+              "How to use these: Take each story and write one new bullet or upgrade an existing one using scope, decision, and outcome. If it does not add anything new, skip it."
+          }
           : {
-              score: 86,
-              summary:
-                "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
-              strengths: [
-                "You keep delivery on track when priorities change and still close the loop with stakeholders.",
-                "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
-                'You describe decisions you owned instead of hiding behind "the team."',
-                "You show pattern recognition in how you prevent issues from recurring."
-              ],
-              gaps: [
-                "Scope (teams, geos, customers, volume, dollars) is often missing.",
-                "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
-                "Some bullets blend multiple ideas; split them so impact lands.",
-                "A few phrases could be more specific to the systems or programs you ran."
-              ],
-              rewrites: [
-                {
-                  label: "Impact",
-                  original: "Improved process across teams.",
-                  better: "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
-                  enhancement_note:
-                    "If you have it, include: number of teams/regions and shipments or users affected, so scope is obvious."
-                },
-                {
-                  label: "Scope",
-                  original: "Supported leadership on projects.",
-                  better: "Supported leadership by running risk reviews and comms so projects stayed aligned across teams.",
-                  enhancement_note:
-                    "If you have it, include: number of teams or regions involved, which clarifies scale."
-                },
-                {
-                  label: "Clarity",
-                  original: "Handled stakeholder updates.",
-                  better: "Kept launches on track by running checklists, risk reviews, and stakeholder comms so go-live stayed on schedule.",
-                  enhancement_note:
-                    "If you have it, include: number of launches per month/quarter and audience size, to show reach."
-                },
-                {
-                  label: "Ownership",
-                  original: "Handled stakeholder updates.",
-                  better: "Led stakeholder updates with decisions, risks, and next steps so leaders could unblock issues quickly.",
-                  enhancement_note:
-                    "If you have it, include: cadence and the groups involved, so the reader sees scale."
-                }
-              ],
-              next_steps: [
-                "Add scope (teams, volume, regions) to two top bullets.",
-                "State one before/after metric in a headline bullet.",
-                "Split any bullet that mixes decisions and outcomes."
-              ]
-            };
+            score: 86,
+            summary:
+              "You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you drove. Trajectory points up if you surface scale and measurable outcomes faster.",
+            strengths: [
+              "You keep delivery on track when priorities change and still close the loop with stakeholders.",
+              "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
+              'You describe decisions you owned instead of hiding behind "the team."',
+              "You show pattern recognition in how you prevent issues from recurring."
+            ],
+            gaps: [
+              "Scope (teams, geos, customers, volume, dollars) is often missing.",
+              "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
+              "Some bullets blend multiple ideas; split them so impact lands.",
+              "A few phrases could be more specific to the systems or programs you ran."
+            ],
+            rewrites: [
+              {
+                label: "Impact",
+                original: "Improved process across teams.",
+                better: "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
+                enhancement_note:
+                  "If you have it, include: number of teams/regions and shipments or users affected, so scope is obvious."
+              },
+              {
+                label: "Scope",
+                original: "Supported leadership on projects.",
+                better: "Supported leadership by running risk reviews and comms so projects stayed aligned across teams.",
+                enhancement_note:
+                  "If you have it, include: number of teams or regions involved, which clarifies scale."
+              },
+              {
+                label: "Clarity",
+                original: "Handled stakeholder updates.",
+                better: "Kept launches on track by running checklists, risk reviews, and stakeholder comms so go-live stayed on schedule.",
+                enhancement_note:
+                  "If you have it, include: number of launches per month/quarter and audience size, to show reach."
+              },
+              {
+                label: "Ownership",
+                original: "Handled stakeholder updates.",
+                better: "Led stakeholder updates with decisions, risks, and next steps so leaders could unblock issues quickly.",
+                enhancement_note:
+                  "If you have it, include: cadence and the groups involved, so the reader sees scale."
+              }
+            ],
+            next_steps: [
+              "Add scope (teams, volume, regions) to two top bullets.",
+              "State one before/after metric in a headline bullet.",
+              "Split any bullet that mixes decisions and outcomes."
+            ]
+          };
     }
     return {
       choices: [
@@ -1211,44 +1328,44 @@ function extractJsonFromText(text) {
         502
       );
     }
-    }
   }
+}
 
-  function normalizeOptionalScore(score, fieldName) {
-    if (score === null || typeof score === "undefined") return null;
-    if (typeof score !== "number" || !Number.isFinite(score)) {
-      throw createAppError(
-        "OPENAI_RESPONSE_SHAPE_INVALID",
-        `The model response had an invalid ${fieldName}.`,
-        502
-      );
-    }
-    const rounded = Math.round(score);
-    if (rounded < 0) return 0;
-    if (rounded > 100) return 100;
-    return rounded;
-  }
-
-  function ensureLayoutAndContentFields(obj) {
-    const normalizedLayoutScore = normalizeOptionalScore(obj.layout_score, "layout_score");
-    const normalizedContentScore = normalizeOptionalScore(
-      typeof obj.content_score === "number" ? obj.content_score : obj.score,
-      "content_score"
+function normalizeOptionalScore(score, fieldName) {
+  if (score === null || typeof score === "undefined") return null;
+  if (typeof score !== "number" || !Number.isFinite(score)) {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      `The model response had an invalid ${fieldName}.`,
+      502
     );
-
-    obj.layout_score = normalizedLayoutScore;
-    obj.layout_band = typeof obj.layout_band === "string" ? obj.layout_band : "unknown";
-    obj.layout_notes = typeof obj.layout_notes === "string" ? obj.layout_notes : "";
-    obj.content_score =
-      normalizedContentScore === null ? obj.score : normalizedContentScore;
-    return obj;
   }
+  const rounded = Math.round(score);
+  if (rounded < 0) return 0;
+  if (rounded > 100) return 100;
+  return rounded;
+}
 
-  function validateResumeModelPayload(obj) {
-    if (!obj || typeof obj !== "object") {
-      throw createAppError(
-        "OPENAI_RESPONSE_SHAPE_INVALID",
-        "The model response did not match the expected format.",
+function ensureLayoutAndContentFields(obj) {
+  const normalizedLayoutScore = normalizeOptionalScore(obj.layout_score, "layout_score");
+  const normalizedContentScore = normalizeOptionalScore(
+    typeof obj.content_score === "number" ? obj.content_score : obj.score,
+    "content_score"
+  );
+
+  obj.layout_score = normalizedLayoutScore;
+  obj.layout_band = typeof obj.layout_band === "string" ? obj.layout_band : "unknown";
+  obj.layout_notes = typeof obj.layout_notes === "string" ? obj.layout_notes : "";
+  obj.content_score =
+    normalizedContentScore === null ? obj.score : normalizedContentScore;
+  return obj;
+}
+
+function validateResumeModelPayload(obj) {
+  if (!obj || typeof obj !== "object") {
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      "The model response did not match the expected format.",
       502
     );
   }
@@ -1328,11 +1445,11 @@ function extractJsonFromText(text) {
           );
         }
       }
-      }
     }
-
-    return ensureLayoutAndContentFields(obj);
   }
+
+  return ensureLayoutAndContentFields(obj);
+}
 
 function validateResumeIdeasPayload(obj) {
   if (!obj || typeof obj !== "object") {
@@ -1378,40 +1495,40 @@ async function determineAccess(req) {
   const activePass = req.authUser ? await getLatestPass(req.authUser.id) : null;
   const freeUsed = req.freeMeta?.used || 0;
   const freeRunIndex = freeUsed + 1; // 1 or 2 for first/second free run
-  
+
   if (BYPASS_PAYWALL) {
-    return { 
-      access: "full", 
+    return {
+      access: "full",
       access_tier: "pass_full",
-      activePass: activePass || null, 
+      activePass: activePass || null,
       bypassed: true,
       free_run_index: freeRunIndex,
       free_uses_remaining: FREE_RUN_LIMIT - freeUsed
     };
   }
-  
+
   if (activePass) {
-    return { 
-      access: "full", 
+    return {
+      access: "full",
       access_tier: "pass_full",
       activePass,
       free_run_index: freeRunIndex,
       free_uses_remaining: FREE_RUN_LIMIT - freeUsed
     };
   }
-  
+
   if (freeUsed < FREE_RUN_LIMIT) {
-    return { 
-      access: "full", 
+    return {
+      access: "full",
       access_tier: "free_full",
       activePass: null,
       free_run_index: freeRunIndex,
       free_uses_remaining: FREE_RUN_LIMIT - freeUsed
     };
   }
-  
-  return { 
-    access: "preview", 
+
+  return {
+    access: "preview",
     access_tier: "preview",
     activePass: null,
     free_run_index: freeRunIndex,
@@ -1538,10 +1655,10 @@ async function renderReportHtml(report) {
     typeof report.generated_on === "string" && report.generated_on.trim()
       ? report.generated_on
       : new Date().toLocaleDateString(undefined, {
-          year: "numeric",
-          month: "short",
-          day: "numeric"
-        });
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
   const escape = (str) =>
     String(str || "")
       .replace(/&/g, "&")
@@ -1562,10 +1679,9 @@ async function renderReportHtml(report) {
             <div class="label">Better</div>
             <div class="text">${escape(r.better)}</div>
           </div>
-          ${
-            r.enhancement_note
-              ? `<div class="enhancement">${escape(r.enhancement_note)}</div>`
-              : ""
+          ${r.enhancement_note
+            ? `<div class="enhancement">${escape(r.enhancement_note)}</div>`
+            : ""
           }
         </div>`;
       })
@@ -1806,13 +1922,12 @@ async function renderReportHtml(report) {
       ${rewriteHtml(report.rewrites)}
     </div>
 
-    ${
-      Array.isArray(report.missing_wins) && report.missing_wins.length
-        ? `<div class="stack-section">
+    ${Array.isArray(report.missing_wins) && report.missing_wins.length
+      ? `<div class="stack-section">
             <h2>Missing wins</h2>
             <ul>${listHtml(report.missing_wins)}</ul>
           </div>`
-        : ""
+      : ""
     }
 
     <div class="stack-section">
@@ -1860,10 +1975,10 @@ async function generatePdfBuffer(report) {
       if (typeof chromium.setGraphicsMode === 'function') {
         chromium.setGraphicsMode(false);
       }
-      
+
       // Get Chromium executable path
       const executablePath = await chromium.executablePath();
-      
+
       // Enhanced args for Vercel to handle missing libraries
       const chromiumArgs = [
         ...chromium.args,
@@ -1875,7 +1990,7 @@ async function generatePdfBuffer(report) {
         '--disable-extensions',
         '--single-process'
       ];
-      
+
       browserOptions = {
         args: chromiumArgs,
         defaultViewport: chromium.defaultViewport,
@@ -1890,7 +2005,7 @@ async function generatePdfBuffer(report) {
         args: launchArgs,
         timeout: 30000 // 30 second timeout for browser launch
       };
-      
+
       if (process.env.CHROME_EXECUTABLE_PATH) {
         // Use custom Chrome path if provided
         browserOptions.executablePath = process.env.CHROME_EXECUTABLE_PATH;
@@ -1985,19 +2100,67 @@ app.post("/api/resume-feedback", rateLimitResume, async (req, res) => {
       });
     }
 
-    const { text, mode } = validation.value;
+    const { text, mode, jobDescription } = validation.value;
     const currentMode = mode;
-    
+    const hasJobDescription = jobDescription && jobDescription.length > 50;
+
     // Check if short-resume was confirmed by client (only then should we count the free run)
     const shortConfirmed = req.body?.short_confirmed === true;
-    
+
     const accessInfo = await determineAccess(req);
 
-    const systemPrompt = getSystemPromptForMode(currentMode);
-    const userPrompt = `Here is the user's input. Use the system instructions to respond.
+    // Build system prompt with optional job alignment instructions
+    let systemPrompt = getSystemPromptForMode(currentMode);
 
-USER INPUT:
+    if (hasJobDescription) {
+      systemPrompt += `
+
+JOB ALIGNMENT ANALYSIS (REQUIRED WHEN JOB DESCRIPTION IS PROVIDED)
+
+The user has provided a job description. You MUST include a "job_alignment" field in your response with this exact structure:
+
+"job_alignment": {
+  "strongly_aligned": ["theme 1", "theme 2", ...],
+  "underplayed": ["theme 1", "theme 2", ...],
+  "missing": ["theme 1", "theme 2", ...]
+}
+
+Guidelines for job alignment:
+- "strongly_aligned": 2-5 themes from the job description that the resume clearly demonstrates with evidence
+- "underplayed": 2-4 themes the resume touches on but doesn't emphasize enough for this role
+- "missing": 1-3 critical themes from the job description that are absent or very weak in the resume
+- Use human-readable theme names (not keywords or jargon)
+- Each theme should be 2-6 words describing the capability or experience
+- Focus on substantive themes, not generic requirements like "communication skills"
+
+Also add these fields:
+- "subscores": { "impact": 0-100, "clarity": 0-100, "story": 0-100, "readability": 0-100 }
+- "top_fixes": up to 5 objects, each with: { "fix": "...", "impact_level": "high|medium|low", "effort": "quick|moderate|involved", "section_ref": "optional section name" }
+`;
+    } else {
+      // Add subscores and top_fixes even without job description
+      systemPrompt += `
+
+ENHANCED RESPONSE FIELDS (REQUIRED)
+
+Add these additional fields to your response:
+- "subscores": { "impact": 0-100, "clarity": 0-100, "story": 0-100, "readability": 0-100 }
+- "top_fixes": up to 5 objects, each with: { "fix": "...", "impact_level": "high|medium|low", "effort": "quick|moderate|involved" }
+`;
+    }
+
+    // Build user prompt with optional job description
+    let userPrompt = `Here is the user's input. Use the system instructions to respond.
+
+USER RESUME:
 ${text}`;
+
+    if (hasJobDescription) {
+      userPrompt += `
+
+JOB DESCRIPTION (for alignment analysis):
+${jobDescription}`;
+    }
 
     // Block if out of free allowance and no pass
     if (accessInfo.access === "preview") {
@@ -2036,7 +2199,7 @@ ${text}`;
         },
         true
       );
-      
+
       // Only fall back to mock data if USE_MOCK_OPENAI is explicitly set
       if (USE_MOCK_OPENAI) {
         logLine(
@@ -2073,9 +2236,9 @@ ${text}`;
 
     // Determine if we should increment free-use counter
     // Only increment if: not bypassed, no active pass, free runs remaining, and confirmed
-    const shouldIncrementFree = !BYPASS_PAYWALL && 
-                                !accessInfo.activePass && 
-                                accessInfo.access_tier === "free_full";
+    const shouldIncrementFree = !BYPASS_PAYWALL &&
+      !accessInfo.activePass &&
+      accessInfo.access_tier === "free_full";
 
     let newFreeUsed = req.freeMeta?.used || 0;
     let newFreeUsesRemaining = accessInfo.free_uses_remaining;
@@ -2083,7 +2246,7 @@ ${text}`;
     if (shouldIncrementFree) {
       newFreeUsed += 1;
       newFreeUsesRemaining = FREE_RUN_LIMIT - newFreeUsed;
-      
+
       // Update the structured free-run cookie
       const newFreeMeta = {
         used: newFreeUsed,
@@ -2126,12 +2289,12 @@ ${text}`;
       code === "OPENAI_TIMEOUT"
         ? "This is taking longer than usual. Try again in a moment."
         : code === "OPENAI_NETWORK_ERROR"
-        ? "Connection hiccup. Try again in a moment."
-        : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
-          code === "OPENAI_RESPONSE_SHAPE_INVALID" ||
-          code === "OPENAI_RESPONSE_NOT_JSON"
-        ? "I couldn't read the response cleanly. Try again."
-        : "I had trouble reading your resume just now. Try again in a moment.";
+          ? "Connection hiccup. Try again in a moment."
+          : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
+            code === "OPENAI_RESPONSE_SHAPE_INVALID" ||
+            code === "OPENAI_RESPONSE_NOT_JSON"
+            ? "I couldn't read the response cleanly. Try again."
+            : "I had trouble reading your resume just now. Try again in a moment.";
 
     return res.status(status).json({
       ok: false,
@@ -2188,7 +2351,7 @@ ${text}`;
         },
         true
       );
-      
+
       // Only fall back to mock data if USE_MOCK_OPENAI is explicitly set
       if (USE_MOCK_OPENAI) {
         logLine(
@@ -2217,7 +2380,7 @@ ${text}`;
     const respStatus = err.response?.status || err.httpStatus || 500;
     const respData = err.response?.data || err.internal || err.message;
     const errorCode = err.code || "INTERNAL_SERVER_ERROR";
-    
+
     logLine(
       {
         level: "error",
@@ -2234,12 +2397,12 @@ ${text}`;
       errorCode === "OPENAI_TIMEOUT"
         ? "This is taking longer than usual. Try again in a moment."
         : errorCode === "OPENAI_NETWORK_ERROR"
-        ? "Connection hiccup. Try again in a moment."
-        : errorCode === "OPENAI_RESPONSE_PARSE_ERROR" ||
-          errorCode === "OPENAI_RESPONSE_SHAPE_INVALID" ||
-          errorCode === "OPENAI_RESPONSE_NOT_JSON"
-        ? "I couldn't read the response cleanly. Try again."
-        : "I had trouble pulling those questions. Try again in a moment.";
+          ? "Connection hiccup. Try again in a moment."
+          : errorCode === "OPENAI_RESPONSE_PARSE_ERROR" ||
+            errorCode === "OPENAI_RESPONSE_SHAPE_INVALID" ||
+            errorCode === "OPENAI_RESPONSE_NOT_JSON"
+            ? "I couldn't read the response cleanly. Try again."
+            : "I had trouble pulling those questions. Try again in a moment.";
 
     return res.status(respStatus).json({
       ok: false,
