@@ -14,13 +14,15 @@
     "You keep delivery on track when priorities change and still close the loop with stakeholders.",
     "You use structure (checklists, reviews, comms) so launches and projects avoid drift.",
     "You describe decisions you owned instead of hiding behind \"the team.\"",
-    "You show pattern recognition in how you prevent issues from recurring."
+    "You show pattern recognition in how you prevent issues from recurring.",
+    "Your progression across roles shows increasing scope and responsibility."
   ],
   "gaps": [
     "Scope (teams, geos, customers, volume, dollars) is often missing.",
     "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
     "Some bullets blend multiple ideas; split them so impact lands.",
-    "A few phrases could be more specific to the systems or programs you ran."
+    "A few phrases could be more specific to the systems or programs you ran.",
+    "No clear positioning statement in summary—recruiters can't bucket you quickly."
   ],
   "top_fixes": [
     {
@@ -36,20 +38,20 @@
       "section_ref": "Work Experience"
     },
     {
+      "fix": "Add a summary that positions your PM style upfront",
+      "impact_level": "high",
+      "effort": "moderate",
+      "section_ref": "Summary"
+    },
+    {
       "fix": "Split bullets that mix decisions and outcomes",
       "impact_level": "medium",
       "effort": "quick",
       "section_ref": "Work Experience"
     },
     {
-      "fix": "Add a summary that positions your PM style upfront",
+      "fix": "List 2-3 specific tools or frameworks you use (not just generic skills)",
       "impact_level": "medium",
-      "effort": "moderate",
-      "section_ref": "Summary"
-    },
-    {
-      "fix": "List 2-3 specific tools or frameworks you use",
-      "impact_level": "low",
       "effort": "quick",
       "section_ref": "Skills"
     }
@@ -59,80 +61,155 @@
       "label": "Impact",
       "original": "Improved process across teams.",
       "better": "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
-      "enhancement_note": "If you have it, include: number of teams/regions and shipments or users affected, so scope is obvious."
+      "enhancement_note": "If you have it: add number of teams/regions and shipments or users affected."
     },
     {
       "label": "Scope",
       "original": "Supported leadership on projects.",
-      "better": "Supported leadership by running risk reviews and comms so projects stayed aligned across teams.",
-      "enhancement_note": "If you have it, include: number of teams or regions involved, which clarifies scale."
+      "better": "Supported leadership by running risk reviews and comms for 8 concurrent projects across 3 regions.",
+      "enhancement_note": "If you have it: add project count, budget, or team size."
     },
     {
       "label": "Clarity",
       "original": "Handled stakeholder updates.",
-      "better": "Kept launches on track by running checklists, risk reviews, and stakeholder comms so go-live stayed on schedule.",
-      "enhancement_note": "If you have it, include: number of launches per month/quarter and audience size, to show reach."
+      "better": "Kept launches on track by running weekly checklists, risk reviews, and exec stakeholder comms—shipping 12 features on schedule.",
+      "enhancement_note": "If you have it: add cadence, audience size, or launch count."
     },
     {
       "label": "Ownership",
       "original": "Managed cross-functional initiatives.",
-      "better": "Led cross-functional initiatives with decisions, risks, and next steps so leaders could unblock issues quickly.",
-      "enhancement_note": "If you have it, include: cadence and the groups involved, so the reader sees scale."
+      "better": "Led cross-functional initiatives (eng, design, ops) with documented decisions, risks, and next steps—reducing escalations by 40%.",
+      "enhancement_note": "If you have it: name the functions involved and any measurable improvement."
+    },
+    {
+      "label": "Mechanism",
+      "original": "Built relationships with key partners.",
+      "better": "Built relationships with 5 key partners through weekly syncs and shared roadmap reviews, securing 2 strategic integrations.",
+      "enhancement_note": "If you have it: add partner count and what it unlocked."
+    },
+    {
+      "label": "Before/After",
+      "original": "Drove process improvements.",
+      "better": "Drove process improvements that cut sprint-to-release cycle from 6 weeks to 3 weeks while maintaining quality bar.",
+      "enhancement_note": "If you have it: show the before and after state with numbers."
     }
   ],
   "section_review": {
     "Summary": {
       "working": "Clear positioning as an execution-focused PM",
-      "missing": "Could mention the product space or domain you specialize in",
-      "fix": "Add one line about the types of products or problems you gravitate toward"
+      "missing": "No mention of product domain, company stage preference, or what makes you different from other PMs",
+      "fix": "Add a line like: 'I thrive in [domain] at [stage] companies, where I can [your edge].'",
+      "grade": "B",
+      "priority": "high"
     },
     "Work Experience": {
-      "working": "Strong ownership language and decision framing",
-      "missing": "Scope and metrics are too often implied rather than stated",
-      "fix": "Pick your top 3 bullets and add a number to each one (team size, user count, revenue impact)"
+      "working": "Strong ownership language and decision framing; good progression shown",
+      "missing": "Scope and metrics are implied rather than stated; some bullets try to do too much",
+      "fix": "Pick your top 3 bullets and add one number each (team size, user count, revenue impact, time saved)",
+      "grade": "B+",
+      "priority": "high"
     },
     "Skills": {
       "working": "Organized and scannable",
-      "missing": "Generic list could apply to anyone",
-      "fix": "Add 1-2 specific frameworks or tools you've used deeply"
+      "missing": "Generic list could apply to any PM; no differentiation",
+      "fix": "Replace 3 generic skills with specific tools or frameworks you've used deeply (e.g., 'Amplitude for product analytics' vs 'Analytics')",
+      "grade": "C+",
+      "priority": "medium"
     },
     "Education": {
-      "working": "Clean formatting, no issues",
-      "missing": null,
-      "fix": null
+      "working": "Clean formatting, appropriate detail level",
+      "missing": "Nothing critical—education section is solid",
+      "fix": null,
+      "grade": "A-",
+      "priority": "low"
+    },
+    "Projects": {
+      "working": null,
+      "missing": "No projects section—missing chance to show initiative beyond day job",
+      "fix": "Consider adding 1-2 side projects, open source contributions, or volunteer PM work if available",
+      "grade": "N/A",
+      "priority": "low"
     }
   },
   "job_alignment": {
     "strongly_aligned": [
       "Cross-functional coordination",
       "Stakeholder management",
-      "Launch execution and delivery"
+      "Launch execution and delivery",
+      "Process improvement"
     ],
     "underplayed": [
       "Data-driven decision making",
-      "Technical depth and roadmap influence"
+      "Technical depth and roadmap influence",
+      "Customer discovery and user research"
     ],
     "missing": [
-      "B2B SaaS experience"
-    ]
+      "B2B SaaS experience",
+      "Revenue or growth metrics ownership"
+    ],
+    "role_fit": {
+      "best_fit_roles": [
+        "Program Manager",
+        "Technical Program Manager",
+        "Product Operations Manager",
+        "Launch/GTM Product Manager"
+      ],
+      "stretch_roles": [
+        "Product Manager (core)",
+        "Chief of Staff"
+      ],
+      "seniority_read": "Senior IC / early Manager",
+      "industry_signals": [
+        "B2B",
+        "Enterprise",
+        "Platform/Infrastructure"
+      ],
+      "company_stage_fit": "Growth-stage to established companies (50-5000 employees)"
+    },
+    "positioning_suggestion": "You read strongest as an execution-focused PM who keeps complex, cross-functional work on track. If you want to position for core PM roles, surface more user insight and product strategy work. If TPM/Program Manager is your target, lean into the coordination and process wins—that's already your edge."
   },
   "ideas": {
     "questions": [
-      "What was the hardest tradeoff you made on a launch, and how did you decide?",
-      "Which project had the most at stake, and what was your role when things got tense?",
-      "What's the biggest scope you've managed—teams, geos, or budget—that isn't on the page yet?"
+      {
+        "question": "What was the hardest tradeoff you made on a launch, and how did you decide?",
+        "archetype": "TENSION POINT",
+        "why": "Shows judgment under pressure—recruiters want to see how you think, not just what you shipped."
+      },
+      {
+        "question": "Which project had the most at stake, and what was your role when things got tense?",
+        "archetype": "HIGH STAKES",
+        "why": "Surfaces ownership and composure—both are hard to fake and memorable."
+      },
+      {
+        "question": "What's the biggest scope you've managed (teams, geos, budget) that isn't on the page yet?",
+        "archetype": "SCALE",
+        "why": "Scope is often hidden; surfacing it can jump you to the next tier."
+      },
+      {
+        "question": "When did you change your mind based on data or customer feedback, and what happened?",
+        "archetype": "LEARNING",
+        "why": "Shows intellectual honesty and user-centricity—rare and valued."
+      },
+      {
+        "question": "What system, process, or tool did you build that's still running without you?",
+        "archetype": "DURABILITY",
+        "why": "Lasting impact signals senior thinking—you're not just shipping, you're building foundations."
+      }
     ],
     "notes": [
-      "Each question maps to a common gap: decision-making under pressure, scale, and ownership.",
-      "Answer in 1-2 sentences, then see if it belongs on your resume.",
-      "Even qualitative answers (morale improved, process stuck) can strengthen a bullet."
+      "Each question maps to a common gap: decision-making, scale, learning, or lasting impact.",
+      "Answer in 1-2 sentences first, then see if it belongs on your resume.",
+      "Even qualitative answers (morale improved, process stuck) can strengthen a bullet.",
+      "The best bullets come from moments you almost forgot—these questions help surface them."
     ],
-    "how_to_use": "Pick one question, write a rough answer, then turn it into a bullet using the Mechanism → Scope → Impact pattern."
+    "how_to_use": "Pick one question, write a rough answer, then turn it into a bullet using the Mechanism → Scope → Impact pattern. If you can add a number, do it."
   },
   "next_steps": [
     "Add scope (teams, volume, regions) to two top bullets.",
     "State one before/after metric in a headline bullet.",
-    "Split any bullet that mixes decisions and outcomes."
+    "Rewrite your summary to position your PM style and domain preference.",
+    "Split any bullet that mixes decisions and outcomes.",
+    "Consider adding a Projects section if you have side work to show."
   ],
   "layout_score": 86,
   "layout_band": "strong",

@@ -1055,21 +1055,23 @@
           </div>
 
           <div class="subscores" id="subscores">
-            <div class="subscore">
+            <div class="subscore" title="Do your bullets show measurable outcomes and meaningful results?">
               <div class="subscore-value" id="subscore-impact">—</div>
-              <div class="subscore-label">Impact</div>
+              <div class="subscore-label">Impact ⓘ</div>
             </div>
-            <div class="subscore">
+            <div class="subscore"
+              title="Is your language direct and jargon-free? Can a recruiter quickly understand what you did?">
               <div class="subscore-value" id="subscore-clarity">—</div>
-              <div class="subscore-label">Clarity</div>
+              <div class="subscore-label">Clarity ⓘ</div>
             </div>
-            <div class="subscore">
+            <div class="subscore"
+              title="Does your resume tell a coherent career narrative? Is your professional identity clear?">
               <div class="subscore-value" id="subscore-story">—</div>
-              <div class="subscore-label">Story</div>
+              <div class="subscore-label">Story ⓘ</div>
             </div>
-            <div class="subscore">
+            <div class="subscore" title="Is the resume scannable? Can a recruiter get your value in 6 seconds?">
               <div class="subscore-value" id="subscore-readability">—</div>
-              <div class="subscore-label">Readability</div>
+              <div class="subscore-label">Readability ⓘ</div>
             </div>
           </div>
 
@@ -1120,7 +1122,7 @@
         <!-- Job Alignment -->
         <div class="report-section" id="section-alignment">
           <div class="report-card" id="alignment-card">
-            <div class="report-card-title">Job Alignment</div>
+            <div class="report-card-title">Theme Alignment</div>
             <div class="alignment-grid" id="alignment-grid">
               <div class="alignment-col alignment-strong">
                 <div class="alignment-title">✓ Strongly Aligned</div>
@@ -1136,6 +1138,19 @@
               </div>
             </div>
           </div>
+
+          <!-- Role Fit Section -->
+          <div class="report-card" id="role-fit-card" style="display: none;">
+            <div class="report-card-title">Where You Read Strongest</div>
+            <div id="role-fit-content"></div>
+          </div>
+
+          <!-- Positioning Suggestion -->
+          <div class="report-card" id="positioning-card" style="display: none;">
+            <div class="report-card-title">Positioning Recommendation</div>
+            <p id="positioning-text" style="color: var(--text-soft); line-height: var(--lh-relaxed);"></p>
+          </div>
+
           <div class="report-card" id="alignment-empty" style="text-align: center; display: none;">
             <div style="color: var(--text-muted); padding: var(--space-xl);">
               <div style="font-size: var(--fs-lg); margin-bottom: var(--space-xs);">📋</div>
@@ -1534,27 +1549,98 @@
           (alignment.underplayed || []).map(a => `<li>${escapeHtml(a)}</li>`).join('');
         document.getElementById('alignment-missing').innerHTML =
           (alignment.missing || []).map(a => `<li>${escapeHtml(a)}</li>`).join('');
+
+        // Role Fit Section
+        if (alignment.role_fit) {
+          const rf = alignment.role_fit;
+          document.getElementById('role-fit-card').style.display = 'block';
+          document.getElementById('role-fit-content').innerHTML = `
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); margin-bottom: var(--space-lg);">
+              <div>
+                <div style="font-weight: 600; color: var(--success-dark); margin-bottom: var(--space-xs);">Best Fit Roles</div>
+                <ul class="report-list" style="margin: 0;">
+                  ${(rf.best_fit_roles || []).map(r => `<li>${escapeHtml(r)}</li>`).join('')}
+                </ul>
+              </div>
+              <div>
+                <div style="font-weight: 600; color: var(--warning); margin-bottom: var(--space-xs);">Stretch Roles</div>
+                <ul class="report-list" style="margin: 0;">
+                  ${(rf.stretch_roles || []).map(r => `<li>${escapeHtml(r)}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); font-size: var(--fs-small);">
+              <div>
+                <div style="color: var(--text-muted); margin-bottom: var(--space-xxs);">Seniority Read</div>
+                <div style="font-weight: 600; color: var(--text-main);">${escapeHtml(rf.seniority_read || 'N/A')}</div>
+              </div>
+              <div>
+                <div style="color: var(--text-muted); margin-bottom: var(--space-xxs);">Industry Signals</div>
+                <div style="font-weight: 600; color: var(--text-main);">${(rf.industry_signals || []).join(', ') || 'N/A'}</div>
+              </div>
+              <div>
+                <div style="color: var(--text-muted); margin-bottom: var(--space-xxs);">Company Stage Fit</div>
+                <div style="font-weight: 600; color: var(--text-main);">${escapeHtml(rf.company_stage_fit || 'N/A')}</div>
+              </div>
+            </div>
+          `;
+        } else {
+          document.getElementById('role-fit-card').style.display = 'none';
+        }
+
+        // Positioning Suggestion
+        if (alignment.positioning_suggestion) {
+          document.getElementById('positioning-card').style.display = 'block';
+          document.getElementById('positioning-text').textContent = alignment.positioning_suggestion;
+        } else {
+          document.getElementById('positioning-card').style.display = 'none';
+        }
       }
 
-      // Section Review
+      // Section Review (enhanced with grades)
       const sectionContent = document.getElementById('section-review-content');
       if (report.section_review) {
-        sectionContent.innerHTML = Object.entries(report.section_review).map(([name, data]) => `
-          <div class="report-card">
-            <div class="report-card-title">${escapeHtml(name)}</div>
-            ${data.working ? `<p style="color: var(--success); margin-bottom: var(--space-sm);">✓ ${escapeHtml(data.working)}</p>` : ''}
-            ${data.missing ? `<p style="color: var(--warning); margin-bottom: var(--space-sm);">⚠ ${escapeHtml(data.missing)}</p>` : ''}
-            ${data.fix ? `<p style="color: var(--text-soft);">→ ${escapeHtml(data.fix)}</p>` : ''}
-          </div>
-        `).join('');
+        sectionContent.innerHTML = Object.entries(report.section_review).map(([name, data]) => {
+          const gradeColor = {
+            'A': 'var(--success)', 'A-': 'var(--success)', 'A+': 'var(--success)',
+            'B': 'var(--accent)', 'B-': 'var(--accent)', 'B+': 'var(--accent)',
+            'C': 'var(--warning)', 'C-': 'var(--warning)', 'C+': 'var(--warning)',
+            'D': 'var(--error)', 'F': 'var(--error)', 'N/A': 'var(--text-muted)'
+          }[data.grade] || 'var(--text-muted)';
+
+          return `
+            <div class="report-card">
+              <div class="report-card-title" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>${escapeHtml(name)}</span>
+                ${data.grade ? `<span style="font-size: var(--fs-lg); font-weight: 800; color: ${gradeColor};">${data.grade}</span>` : ''}
+              </div>
+              ${data.working ? `<p style="color: var(--success); margin-bottom: var(--space-sm);">✓ ${escapeHtml(data.working)}</p>` : ''}
+              ${data.missing ? `<p style="color: var(--warning); margin-bottom: var(--space-sm);">⚠ ${escapeHtml(data.missing)}</p>` : ''}
+              ${data.fix ? `<p style="color: var(--text-soft); background: var(--surface-tint); padding: var(--space-sm); border-radius: var(--radius-sm); margin-top: var(--space-sm);">→ ${escapeHtml(data.fix)}</p>` : ''}
+              ${data.priority ? `<div style="margin-top: var(--space-sm); font-size: var(--fs-xs); color: var(--text-muted);">Priority: <strong>${data.priority}</strong></div>` : ''}
+            </div>
+          `;
+        }).join('');
       } else {
         sectionContent.innerHTML = '<div class="report-card"><p style="color: var(--text-muted);">Section-by-section review will appear in future analyses.</p></div>';
       }
 
-      // Missing Wins
+      // Missing Wins (enhanced with archetypes)
       const winsQuestions = document.getElementById('wins-questions');
       if (report.ideas && report.ideas.questions) {
-        winsQuestions.innerHTML = report.ideas.questions.map(q => `<li>${escapeHtml(q)}</li>`).join('');
+        const questions = report.ideas.questions;
+        // Handle both array of strings and array of objects
+        if (typeof questions[0] === 'object') {
+          winsQuestions.innerHTML = questions.map(q => `
+            <li style="margin-bottom: var(--space-md);">
+              <div style="font-weight: 500; color: var(--text-main);">${escapeHtml(q.question)}</div>
+              ${q.archetype ? `<div style="font-size: var(--fs-xs); color: var(--accent); font-weight: 600; margin-top: var(--space-xxs);">${escapeHtml(q.archetype)}</div>` : ''}
+              ${q.why ? `<div style="font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--space-xxs); font-style: italic;">${escapeHtml(q.why)}</div>` : ''}
+            </li>
+          `).join('');
+        } else {
+          winsQuestions.innerHTML = questions.map(q => `<li>${escapeHtml(q)}</li>`).join('');
+        }
       } else {
         winsQuestions.innerHTML = '<li>Run a full analysis to get personalized prompts for uncovering hidden wins.</li>';
       }
