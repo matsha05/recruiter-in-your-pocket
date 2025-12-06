@@ -2113,43 +2113,22 @@ app.post("/api/resume-feedback", rateLimitResume, async (req, res) => {
 
     const accessInfo = await determineAccess(req);
 
-    // Build system prompt with optional job alignment instructions
+    // Build system prompt - all required fields are now in the main prompt
     let systemPrompt = getSystemPromptForMode(currentMode);
 
+    // If a job description is provided, add enhanced guidance for job-specific alignment
     if (hasJobDescription) {
       systemPrompt += `
 
-JOB ALIGNMENT ANALYSIS (REQUIRED WHEN JOB DESCRIPTION IS PROVIDED)
+JOB-SPECIFIC ALIGNMENT (ADDITIONAL CONTEXT)
 
-The user has provided a job description. You MUST include a "job_alignment" field in your response with this exact structure:
+The user has provided a specific job description. In your job_alignment response, pay special attention to:
+- How well the resume aligns with THIS specific job's requirements
+- Themes in the job description that the resume demonstrates (strongly_aligned)
+- Themes in the job description that are present but underemphasized (underplayed)
+- Critical requirements from the job description that are missing (missing)
 
-"job_alignment": {
-  "strongly_aligned": ["theme 1", "theme 2", ...],
-  "underplayed": ["theme 1", "theme 2", ...],
-  "missing": ["theme 1", "theme 2", ...]
-}
-
-Guidelines for job alignment:
-- "strongly_aligned": 2-5 themes from the job description that the resume clearly demonstrates with evidence
-- "underplayed": 2-4 themes the resume touches on but doesn't emphasize enough for this role
-- "missing": 1-3 critical themes from the job description that are absent or very weak in the resume
-- Use human-readable theme names (not keywords or jargon)
-- Each theme should be 2-6 words describing the capability or experience
-- Focus on substantive themes, not generic requirements like "communication skills"
-
-Also add these fields:
-- "subscores": { "impact": 0-100, "clarity": 0-100, "story": 0-100, "readability": 0-100 }
-- "top_fixes": up to 5 objects, each with: { "fix": "...", "impact_level": "high|medium|low", "effort": "quick|moderate|involved", "section_ref": "optional section name" }
-`;
-    } else {
-      // Add subscores and top_fixes even without job description
-      systemPrompt += `
-
-ENHANCED RESPONSE FIELDS (REQUIRED)
-
-Add these additional fields to your response:
-- "subscores": { "impact": 0-100, "clarity": 0-100, "story": 0-100, "readability": 0-100 }
-- "top_fixes": up to 5 objects, each with: { "fix": "...", "impact_level": "high|medium|low", "effort": "quick|moderate|involved" }
+The user wants to know: "Am I a fit for THIS role, and what should I emphasize or add?"
 `;
     }
 
@@ -2189,7 +2168,12 @@ ${jobDescription}`;
     const rawContent = data?.choices?.[0]?.message?.content;
     let parsed;
     try {
-      parsed = validateResumeModelPayload(extractJsonFromText(rawContent));
+      // Use appropriate validator based on mode
+      if (currentMode === "resume_ideas") {
+        parsed = validateResumeIdeasPayload(extractJsonFromText(rawContent));
+      } else {
+        parsed = validateResumeModelPayload(extractJsonFromText(rawContent));
+      }
     } catch (err) {
       logLine(
         {
@@ -2235,8 +2219,8 @@ ${jobDescription}`;
       free_run_index: accessInfo.free_run_index
     });
 
-    const enriched = ensureLayoutAndContentFields(parsed);
-    const payload = enriched;
+    // Only apply layout/content enrichment for resume mode
+    const payload = currentMode === "resume_ideas" ? parsed : ensureLayoutAndContentFields(parsed);
 
     // Determine if we should increment free-use counter
     // Only increment if: not bypassed, no active pass, free runs remaining, and confirmed

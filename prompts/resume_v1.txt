@@ -246,7 +246,65 @@ The JSON must match this shape exactly:
       "enhancement_note": ""
     }
   ],
-  "next_steps": []
+  "next_steps": [],
+  "subscores": {
+    "impact": 0,
+    "clarity": 0,
+    "story": 0,
+    "readability": 0
+  },
+  "section_review": {
+    "Summary": {
+      "grade": "",
+      "priority": "",
+      "working": "",
+      "missing": "",
+      "fix": ""
+    },
+    "Work Experience": {
+      "grade": "",
+      "priority": "",
+      "working": "",
+      "missing": "",
+      "fix": ""
+    },
+    "Skills": {
+      "grade": "",
+      "priority": "",
+      "working": "",
+      "missing": "",
+      "fix": ""
+    },
+    "Education": {
+      "grade": "",
+      "priority": "",
+      "working": "",
+      "missing": "",
+      "fix": ""
+    }
+  },
+  "job_alignment": {
+    "strongly_aligned": [],
+    "underplayed": [],
+    "missing": [],
+    "role_fit": {
+      "best_fit_roles": [],
+      "stretch_roles": [],
+      "seniority_read": "",
+      "industry_signals": [],
+      "company_stage_fit": ""
+    },
+    "positioning_suggestion": ""
+  },
+  "ideas": {
+    "questions": [
+      {
+        "question": "",
+        "archetype": "",
+        "why": ""
+      }
+    ]
+  }
 }
 
 FIELD RULES
@@ -340,6 +398,49 @@ FIELD RULES
   - "Add one number to two important bullets so the scale shows up fast."
   - "Make it obvious what you personally owned in the work."
   - "Tighten the formatting so nothing distracts from the story."
+
+- subscores
+  - Four integers from 0 to 100 measuring different aspects of the resume:
+    - impact: How well do bullets show measurable outcomes and meaningful results?
+    - clarity: Is language direct and jargon-free? Can a recruiter quickly understand what the person did?
+    - story: Does the resume tell a coherent career narrative? Is the professional identity clear?
+    - readability: Is the resume scannable? Can a recruiter get value in 6 seconds?
+  - Use the same scoring rigor as the main score. Do not inflate.
+
+- section_review
+  - Review each major section of the resume: Summary, Work Experience, Skills, Education.
+  - Only include sections that appear in the resume. Skip sections that don't exist.
+  - For each section, provide:
+    - grade: A letter grade (A, A-, B+, B, B-, C+, C, C-, D, or F) based on how well that section serves its purpose
+    - priority: "High", "Medium", or "Low" indicating how urgently this section needs improvement
+    - working: One specific observation about what is working in that section. Reference actual content from the resume.
+    - missing: One specific gap or unclear element. Name what's missing (e.g., "no baseline metrics", "unclear scope", "missing timeframes").
+    - fix: One concrete, actionable step to improve that section. Be prescriptive (e.g., "Add 2-3 quantified outcomes to your most recent role" not "Add more specifics").
+  - Keep observations grounded in what is on the page. Same calm, direct tone.
+  - Make each piece of feedback genuinely useful—avoid generic advice like "add more details".
+
+- job_alignment (ALWAYS REQUIRED - even without a job description)
+  - Based on the resume content alone, infer what this person is known for and where they fit.
+  - strongly_aligned: 3-5 themes where this person is clearly strong (e.g., "Cross-functional coordination", "Stakeholder management", "Launch execution")
+  - underplayed: 2-4 themes that are present but not emphasized enough (e.g., "Data-driven decision making", "Technical depth")
+  - missing: 1-3 themes that are absent but common in their likely target roles
+  - role_fit:
+    - best_fit_roles: 3-5 roles this person is naturally positioned for based on their experience (e.g., "Program Manager", "Technical Program Manager")
+    - stretch_roles: 1-3 roles they could grow into but would need to emphasize different skills
+    - seniority_read: How senior this person reads (e.g., "Senior IC", "Early Manager", "Mid-level IC")
+    - industry_signals: 2-4 industry/domain signals visible in the resume (e.g., "B2B", "Enterprise", "FinTech")
+    - company_stage_fit: What company stage fits best (e.g., "Growth-stage to established companies (50-5000 employees)")
+  - positioning_suggestion: 2-3 sentences of advice on how to position themselves. Be specific to their background and career trajectory. Name the trade-offs between different paths.
+
+- ideas (Missing Wins questions)
+  - Generate 5 role-aware questions to help the user uncover hidden achievements.
+  - Each question must have:
+    - question: A concise prompt under ~22 words targeting unspoken decisions, tradeoffs, or before/after gaps
+    - archetype: One of: TENSION POINT, SCALING, QUALITY UNDER PRESSURE, IMPROVEMENT, CROSS-FUNCTIONAL COMPLEXITY, END-TO-END OWNERSHIP, DOMAIN LIFT, HIGH STAKES
+    - why: One sentence explaining why this matters to recruiters/hiring managers
+  - Ground every question in the resume's companies, teams, tools, metrics, or scope.
+  - Use 5 different archetypes (no repeats).
+  - Aim at what's missing or unspoken, not what's already on the page.
 
 Important output rules:
 

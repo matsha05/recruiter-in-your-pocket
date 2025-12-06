@@ -1698,13 +1698,13 @@
     });
 
     // Fetch Missing Wins ideas
-    async function fetchMissingWins(resumeText) {
+    async function fetchMissingWins(resumeTextContent) {
       try {
         const response = await fetch('/api/resume-feedback', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            text: resumeText,
+            text: resumeTextContent,
             mode: 'resume_ideas'
           })
         });
@@ -1712,8 +1712,32 @@
         const result = await response.json();
 
         if (result.ok && result.data && result.data.questions) {
+          // Store in currentReport for consistency
+          if (currentReport) {
+            currentReport.ideas = {
+              questions: result.data.questions,
+              notes: result.data.notes,
+              how_to_use: result.data.how_to_use
+            };
+          }
+
+          // Render Missing Wins - handle both object and string formats
           const winsQuestions = document.getElementById('wins-questions');
-          winsQuestions.innerHTML = result.data.questions.map(q => `<li>${escapeHtml(q)}</li>`).join('');
+          const questions = result.data.questions;
+
+          if (questions.length > 0 && typeof questions[0] === 'object') {
+            // Rich format with archetype and why
+            winsQuestions.innerHTML = questions.map(q => `
+              <li style="margin-bottom: var(--space-md);">
+                <div style="font-weight: 500; color: var(--text-main);">${escapeHtml(q.question)}</div>
+                ${q.archetype ? `<div style="font-size: var(--fs-xs); color: var(--accent); font-weight: 600; margin-top: var(--space-xxs);">${escapeHtml(q.archetype)}</div>` : ''}
+                ${q.why ? `<div style="font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--space-xxs); font-style: italic;">${escapeHtml(q.why)}</div>` : ''}
+              </li>
+            `).join('');
+          } else {
+            // Simple string format fallback
+            winsQuestions.innerHTML = questions.map(q => `<li>${escapeHtml(q)}</li>`).join('');
+          }
 
           // Also show notes if available
           if (result.data.notes && result.data.notes.length > 0) {
