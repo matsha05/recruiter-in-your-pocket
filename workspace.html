@@ -1201,6 +1201,12 @@
             <textarea id="job-description" class="textarea-small"
               placeholder="Paste the job description to see how well your resume aligns..."></textarea>
           </div>
+
+          <!-- Job Description Length Warning -->
+          <div class="jd-warning" id="jd-warning" style="display: none;">
+            <span style="color: var(--text-muted); font-size: var(--fs-xs);">💡 Job descriptions typically have 300+
+              characters for useful alignment analysis.</span>
+          </div>
         </div>
       </div>
 
@@ -1507,6 +1513,21 @@
     }
 
     resumeText.addEventListener('input', updateResumeWarning);
+
+    // Job Description length warning
+    const jdWarning = document.getElementById('jd-warning');
+    const MIN_JD_LENGTH = 100;
+
+    function updateJdWarning() {
+      const len = jobDescription.value.trim().length;
+      if (len > 0 && len < MIN_JD_LENGTH) {
+        jdWarning.style.display = 'block';
+      } else {
+        jdWarning.style.display = 'none';
+      }
+    }
+
+    jobDescription.addEventListener('input', updateJdWarning);
 
     async function handleFile(file) {
       const validTypes = [
