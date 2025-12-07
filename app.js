@@ -562,14 +562,15 @@ app.use((req, res, next) => {
 if (API_AUTH_TOKEN) {
   // Endpoints that are accessed from the frontend browser (not server-to-server)
   // These use session auth or are public/rate-limited instead of API_AUTH_TOKEN
+  // Note: paths are relative to /api since we use app.use("/api", ...)
   const publicApiPaths = [
-    "/api/login/request-code",
-    "/api/login/verify",
-    "/api/logout",
-    "/api/me",
-    "/api/parse-resume",
-    "/api/create-checkout-session",
-    "/api/stripe/webhook"
+    "/login/request-code",
+    "/login/verify",
+    "/logout",
+    "/me",
+    "/parse-resume",
+    "/create-checkout-session",
+    "/stripe/webhook"
   ];
 
   app.use("/api", (req, res, next) => {
