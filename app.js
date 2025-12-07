@@ -44,6 +44,7 @@ const {
   OPENAI_MODEL: OPENAI_MODEL_FROM_SERVICE
 } = require("./services/openai");
 const { createResumeRouter } = require("./routes/resume");
+const { createAuthRouter } = require("./routes/auth");
 const { createPdfGenerator, createPdfRouter, validateReportForPdf } = require("./services/pdf");
 
 // Support both puppeteer (local/dev) and puppeteer-core with @sparticuz/chromium (Vercel/serverless)
@@ -406,70 +407,6 @@ const rateLimitIdeas = createRateLimiter(20);     // /api/resume-ideas
 const rateLimitPdf = createRateLimiter(10);       // /api/export-pdf
 const rateLimitCheckout = createRateLimiter(10);  // /api/create-checkout-session
 const rateLimitAuth = createRateLimiter(30);      // login / code endpoints
-
-app.post("/api/login/request-code", rateLimitAuth, async (req, res) => {
-  try {
-    const email = (req.body?.email || "").trim().toLowerCase();
-    if (!isValidEmail(email)) {
-      return res.status(400).json({ ok: false, message: "Enter a valid email." });
-    }
-
-    const user = await upsertUserByEmail(email);
-    const code = generateNumericCode(6);
-    const expiresAt = new Date(Date.now() + LOGIN_CODE_TTL_MINUTES * 60 * 1000).toISOString();
-    await createLoginCode(user.id, code, expiresAt);
-    await sendLoginCode(email, code);
-    logLine({ level: "info", msg: "login_code_sent", email });
-    return res.json({ ok: true, expires_at: expiresAt });
-  } catch (err) {
-    logLine({ level: "error", msg: "login_request_code_failed", error: err.message }, true);
-    return res.status(500).json({ ok: false, message: "Could not send code right now." });
-  }
-});
-
-app.post("/api/login/verify", rateLimitAuth, async (req, res) => {
-  try {
-    const email = (req.body?.email || "").trim().toLowerCase();
-    const code = (req.body?.code || "").trim();
-    if (!isValidEmail(email) || !code) {
-      return res.status(400).json({ ok: false, message: "Email and code are required." });
-    }
-    const user = await getUserByEmail(email);
-    if (!user) {
-      return res.status(400).json({ ok: false, message: "Invalid code or email." });
-    }
-    const validation = await validateAndUseLoginCode(user.id, code);
-    if (!validation.ok) {
-      return res.status(400).json({ ok: false, message: "Invalid or expired code." });
-    }
-    const token = crypto.randomBytes(32).toString("hex");
-    const expiresAt = new Date(Date.now() + SESSION_TTL_DAYS * 24 * 60 * 60 * 1000).toISOString();
-    await createSession(user.id, token, expiresAt);
-    setSession(res, token);
-    const activePass = await getLatestPass(user.id);
-    return res.json({
-      ok: true,
-      user: { email: user.email },
-      active_pass: activePass
-    });
-  } catch (err) {
-    logLine({ level: "error", msg: "login_verify_failed", error: err.message }, true);
-    return res.status(500).json({ ok: false, message: "Could not verify code right now." });
-  }
-});
-
-app.get("/api/me", async (req, res) => {
-  if (!req.authUser) {
-    return res.json({ ok: true, user: null, active_pass: null });
-  }
-  const activePass =
-    req.activePass || (req.authUser ? await getLatestPass(req.authUser.id) : null);
-  return res.json({
-    ok: true,
-    user: { email: req.authUser.email },
-    active_pass: activePass
-  });
-});
 
 console.log("Server starting in directory:", __dirname);
 
@@ -1381,6 +1318,26 @@ const resumeRouter = createResumeRouter({
   OPENAI_MODEL
 });
 app.use("/api", resumeRouter);
+
+// Mount auth routes from routes/auth.js
+const authRouter = createAuthRouter({
+  rateLimitAuth,
+  isValidEmail,
+  generateNumericCode,
+  setSession,
+  LOGIN_CODE_TTL_MINUTES,
+  SESSION_TTL_DAYS,
+  upsertUserByEmail,
+  getUserByEmail,
+  getUserById,
+  createLoginCode,
+  validateAndUseLoginCode,
+  createSession,
+  getLatestPass,
+  sendLoginCode,
+  logLine
+});
+app.use("/api", authRouter);
 
 // Mount PDF export routes from services/pdf.js
 const generatePdfBuffer = createPdfGenerator({
