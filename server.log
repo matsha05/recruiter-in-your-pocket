@@ -77,3 +77,8 @@ Backend listening on http://localhost:3000
 {"ts":"2025-12-07T17:34:08.447Z","level":"info","reqId":"0e27bd90-576a-4c9b-b280-3c53d6b70713","method":"GET","path":"/workspace","status":200,"durationMs":3}
 {"ts":"2025-12-07T17:34:08.490Z","level":"info","reqId":"faf5f206-7ade-4695-be59-b9117592df49","method":"GET","path":"/api/me","status":304,"durationMs":1}
 {"ts":"2025-12-07T17:34:09.379Z","level":"info","reqId":"68fb7028-4aca-4718-bb44-06899d760ac3","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:37:42.031Z","level":"info","reqId":"111f4aac-d151-4275-abba-c037f5ec894c","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:37:44.337Z","level":"info","reqId":"375d4f69-b028-4d51-adcf-a0156346f092","method":"GET","path":"/","status":304,"durationMs":0}
+{"ts":"2025-12-07T17:37:44.354Z","level":"info","reqId":"3377b4ea-ca5d-439b-909d-760555ed4e73","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:37:44.355Z","level":"info","reqId":"57a7b156-5b6b-4af7-97df-6aa5d4677902","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:37:44.380Z","level":"info","reqId":"4e64ad0b-21a8-41d7-bb22-e1ce9c106d0d","method":"GET","path":"/api/me","status":304,"durationMs":0}

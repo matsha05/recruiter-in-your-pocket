@@ -101,6 +101,23 @@ Worth building when core is proven:
 
 ---
 
+## Parked Features
+
+Features considered but intentionally deferred. May revisit based on user signal.
+
+### Report History Enhancements (Post-Launch)
+- **Pagination/infinite scroll**: Currently shows last 20 reports (sufficient for ~6 months of weekly job searching)
+- **Search & filter**: Filter by score range or date
+- **Score comparison indicator**: "↑ 4 points from last analysis" badge when viewing reports
+- **Delete reports**: Individual report deletion
+- **Trend visualization**: Line chart or sparkline showing score evolution
+- **Batch export**: Download all reports as PDFs in one go
+- **Report comparison**: Side-by-side view of two resume versions
+
+**Rationale**: Core history feature is complete and launch-ready. These are nice-to-haves that should be prioritized based on actual user behavior and requests.
+
+---
+
 ## Execution Philosophy
 
 - Ship in thin slices that improve the core experience
