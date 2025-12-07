@@ -7,7 +7,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const Stripe = require("stripe");
 const multer = require("multer");
-const { PDFParse } = require("pdf-parse");
+const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
 const {
   upsertUserByEmail,
@@ -691,11 +691,8 @@ app.post("/api/parse-resume", rateLimitParse, upload.single('file'), async (req,
 
     if (mimetype === 'application/pdf') {
       try {
-        // pdf-parse v2 requires Uint8Array and uses load()/getText() pattern
-        const uint8Array = new Uint8Array(buffer);
-        const parser = new PDFParse(uint8Array);
-        await parser.load();
-        const pdfData = await parser.getText();
+        // pdf-parse v1 API: simple function that returns { text, numpages, info }
+        const pdfData = await pdfParse(buffer);
         extractedText = pdfData.text || '';
       } catch (pdfErr) {
         logLine({ level: "error", msg: "pdf_parse_failed", reqId, error: pdfErr.message }, true);
