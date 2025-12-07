@@ -48,7 +48,9 @@ function createResumeRouter(deps) {
         logLine,
         // Config
         USE_MOCK_OPENAI,
-        OPENAI_MODEL
+        OPENAI_MODEL,
+        // Report storage
+        saveReport
     } = deps;
 
     const router = express.Router();
@@ -207,6 +209,38 @@ ${jobDescription}`;
                 res.cookie(FREE_COOKIE, makeFreeCookie(newFreeMeta), freeCookieOptions());
             }
 
+            // Save report if user is logged in
+            let savedReportId = null;
+            if (req.authUser && currentMode === "resume") {
+                try {
+                    const savedReport = await saveReport(
+                        req.authUser.id,
+                        text,
+                        payload.score,
+                        payload.score_label,
+                        payload
+                    );
+                    savedReportId = savedReport.id;
+                    logLine({
+                        level: "info",
+                        msg: "report_saved",
+                        reqId: req.reqId,
+                        userId: req.authUser.id,
+                        reportId: savedReportId,
+                        score: payload.score
+                    });
+                } catch (saveErr) {
+                    // Don't fail the request if save fails, just log it
+                    logLine({
+                        level: "error",
+                        msg: "report_save_failed",
+                        reqId: req.reqId,
+                        userId: req.authUser.id,
+                        error: saveErr.message
+                    }, true);
+                }
+            }
+
             const responseBody = {
                 ok: true,
                 access: accessInfo.access,
@@ -216,6 +250,7 @@ ${jobDescription}`;
                 bypass: accessInfo.bypassed ? true : false,
                 free_run_index: newFreeUsed,
                 free_uses_remaining: newFreeUsesRemaining,
+                report_id: savedReportId,
                 data: payload,
                 content: JSON.stringify(payload),
                 raw: rawContent

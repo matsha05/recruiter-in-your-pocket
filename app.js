@@ -21,7 +21,10 @@ const {
   createPass,
   getLatestPass,
   getActivePasses,
-  healthCheck
+  healthCheck,
+  saveReport,
+  getReportsForUser,
+  getReportById
 } = require("./db");
 const { sendLoginCode } = require("./mailer");
 const {
@@ -46,6 +49,7 @@ const {
 const { createResumeRouter } = require("./routes/resume");
 const { createAuthRouter } = require("./routes/auth");
 const { createPaymentRouter } = require("./routes/payment");
+const { createHistoryRouter } = require("./routes/history");
 const { createPdfGenerator, createPdfRouter, validateReportForPdf } = require("./services/pdf");
 
 // Support both puppeteer (local/dev) and puppeteer-core with @sparticuz/chromium (Vercel/serverless)
@@ -518,6 +522,7 @@ if (API_AUTH_TOKEN) {
     "/parse-resume",
     "/resume-feedback",
     "/resume-ideas",
+    "/reports",
     "/export-pdf",
     "/create-checkout-session",
     "/stripe/webhook"
@@ -1167,7 +1172,8 @@ const resumeRouter = createResumeRouter({
   fallbackIdeasData,
   logLine,
   USE_MOCK_OPENAI,
-  OPENAI_MODEL
+  OPENAI_MODEL,
+  saveReport
 });
 app.use("/api", resumeRouter);
 
@@ -1190,6 +1196,14 @@ const authRouter = createAuthRouter({
   logLine
 });
 app.use("/api", authRouter);
+
+// Mount history routes from routes/history.js
+const historyRouter = createHistoryRouter({
+  getReportsForUser,
+  getReportById,
+  logLine
+});
+app.use("/api", historyRouter);
 
 // Mount payment routes from routes/payment.js
 const paymentRouter = createPaymentRouter({

@@ -1,0 +1,79 @@
+
+> recruiter-in-your-pocket@1.0.0 dev
+> nodemon server.js
+
+[33m[nodemon] 3.1.11[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (7) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+{"ts":"2025-12-07T17:19:30.424Z","level":"info","reqId":"9d484592-2f03-4269-9c45-2e15ec7a86fa","method":"GET","path":"/","status":200,"durationMs":10}
+{"ts":"2025-12-07T17:19:30.428Z","level":"info","reqId":"9957fcb3-d4cd-4588-8f79-127a40df47f7","method":"GET","path":"/styles/main.css","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:19:30.429Z","level":"info","reqId":"ec70d585-9eb4-4ec0-b4a4-99b5f4d3d422","method":"GET","path":"/scripts/main.js","status":304,"durationMs":0}
+{"ts":"2025-12-07T17:19:30.534Z","level":"info","reqId":"0e53a255-a24d-4ce0-b6d4-47c8fef2c01e","method":"GET","path":"/api/me","status":304,"durationMs":3}
+{"ts":"2025-12-07T17:19:36.622Z","level":"info","reqId":"548c06e4-9291-40c0-ac3e-fe21392b12fc","method":"GET","path":"/workspace","status":200,"durationMs":1}
+{"ts":"2025-12-07T17:19:36.771Z","level":"info","reqId":"373fffe5-d19d-4952-954b-c4410124d38d","method":"GET","path":"/?testHistory=true","status":200,"durationMs":1}
+{"ts":"2025-12-07T17:19:36.783Z","level":"info","reqId":"49870fd4-f88a-47d4-bde7-8c04b9268fba","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:19:36.785Z","level":"info","reqId":"836b0a69-8f94-4c3b-99c6-0c6bedd667c3","method":"GET","path":"/scripts/main.js","status":304,"durationMs":0}
+{"ts":"2025-12-07T17:19:36.805Z","level":"info","reqId":"0bb3ecd6-18a4-4ba5-a550-8638a9e6129c","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:19:42.436Z","level":"info","reqId":"5bb0dc7a-ba05-450c-bf55-25706b396523","method":"GET","path":"/workspace?testHistory=true","status":200,"durationMs":1}
+{"ts":"2025-12-07T17:19:48.488Z","level":"info","reqId":"f78ae453-379f-4718-b266-30cc344de0bf","method":"GET","path":"/workspace?sample=true","status":200,"durationMs":4}
+{"ts":"2025-12-07T17:19:48.527Z","level":"info","reqId":"91ffa067-6b58-4f34-9bbb-ea0752ffc9de","method":"GET","path":"/api/me","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:19:48.528Z","level":"info","reqId":"2035ae0d-b40f-4831-8d9e-d26302f4b4cb","method":"GET","path":"/sample-report.json","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:19:57.675Z","level":"info","reqId":"fb7d0791-a688-4ff0-8b4c-c9a4d74fe090","method":"GET","path":"/workspace?testHistory=true","status":200,"durationMs":3}
+{"ts":"2025-12-07T17:20:01.892Z","level":"info","reqId":"d934928e-0e33-4512-a369-67ff5002c79d","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:20:44.042Z","level":"info","reqId":"ed4cef7c-8c96-4f67-aae1-b2be142ff9ca","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:21:21.728Z","level":"info","reqId":"e17fb841-0249-4fcb-a018-8f249b2f76bd","method":"GET","path":"/api/reports","status":401,"durationMs":3}
+{"ts":"2025-12-07T17:21:32.073Z","level":"info","reqId":"84089851-b214-4ad1-a01d-b11cd87e3b63","method":"GET","path":"/api/reports","status":401,"durationMs":0}
+{"ts":"2025-12-07T17:21:35.689Z","level":"info","reqId":"810a063a-faaf-4336-b9f2-7a27d7a46942","method":"GET","path":"/","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:21:35.708Z","level":"info","reqId":"a7d2ff7c-720c-4587-8e5c-e095327bd0f0","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:21:35.708Z","level":"info","reqId":"f9f1cdcf-c48d-4dbc-9510-ecee60f61908","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:21:35.751Z","level":"info","reqId":"9a9b0c28-fb13-4686-9da8-8848ca43a5a0","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:21:46.129Z","level":"info","reqId":"5b5cd550-b9d8-415c-b34a-6cc3ffe6f659","method":"GET","path":"/privacy","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:21:48.813Z","level":"info","reqId":"0f40c571-4136-4971-be64-deb441941935","method":"GET","path":"/","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:21:48.832Z","level":"info","reqId":"e7fee734-2461-4405-a697-4953fa09b594","method":"GET","path":"/styles/main.css","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:21:48.833Z","level":"info","reqId":"6cd738d9-d378-433f-91f3-a65f39d32ee1","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:21:48.855Z","level":"info","reqId":"ac7dec6c-c6b4-4ad2-9b5b-f752da654c3a","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:22:02.696Z","level":"info","reqId":"e34e7049-ead4-48da-ba83-2d72f6918a60","method":"GET","path":"/workspace?testHistory=true","status":200,"durationMs":3}
+{"ts":"2025-12-07T17:22:49.391Z","level":"info","reqId":"3929412e-26ee-4bc5-a7ad-b09cc1bbe43e","method":"GET","path":"/workspace","status":200,"durationMs":4}
+{"ts":"2025-12-07T17:22:49.432Z","level":"info","reqId":"5147e011-8522-4c7f-b534-990a26e43ce4","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:23:55.598Z","level":"info","reqId":"563fa143-9756-4aca-8bac-79d1059a374f","method":"GET","path":"/workspace","status":200,"durationMs":5}
+{"ts":"2025-12-07T17:23:55.642Z","level":"info","reqId":"78ca041e-9808-4772-b181-2edaf4a5104f","method":"GET","path":"/api/me","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:24:01.055Z","level":"info","reqId":"1d94045f-8b8f-47aa-9352-461cd20bd636","method":"GET","path":"/workspace?testHistory=true","status":200,"durationMs":4}
+{"ts":"2025-12-07T17:25:21.963Z","level":"info","reqId":"7242cb78-045f-48c4-ae3f-f7e257d1e3d6","method":"GET","path":"/workspace","status":200,"durationMs":2}
+{"ts":"2025-12-07T17:25:22.008Z","level":"info","reqId":"4a3eb3d3-06ce-405e-b24d-dd3707d4aef1","method":"GET","path":"/api/me","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:25:23.190Z","level":"info","reqId":"52e85ee9-78b1-4f0d-bf8c-d26c7ec99d5c","method":"GET","path":"/api/reports","status":401,"durationMs":1}
+{"ts":"2025-12-07T17:25:25.640Z","level":"info","reqId":"80206c2c-9b1f-4543-8aa4-a7deb9ab13b7","method":"GET","path":"/workspace","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:25:25.676Z","level":"info","reqId":"151f1bfd-7b6b-4fd7-a90f-0b470f2e747f","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:25:26.860Z","level":"info","reqId":"732a0917-5096-48b9-92e9-af252f6889cb","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:25:29.809Z","level":"info","reqId":"3d2bdf79-f6e3-4871-851e-dd2c3e17a11e","method":"GET","path":"/sample-report.json","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:25:35.497Z","level":"info","reqId":"1914ff4d-95d4-48f0-835a-0a16d70af295","method":"GET","path":"/api/reports","status":401,"durationMs":1}
+{"ts":"2025-12-07T17:25:37.354Z","level":"info","reqId":"80e4e8c6-4ef4-40da-bf58-1b387590fced","method":"GET","path":"/","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:25:37.370Z","level":"info","reqId":"554793d3-bc4d-4993-bc6b-5b5149e72861","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:25:37.372Z","level":"info","reqId":"55c6bd01-bf1d-46d2-bd08-cd7778a04d1d","method":"GET","path":"/scripts/main.js","status":304,"durationMs":0}
+{"ts":"2025-12-07T17:25:37.400Z","level":"info","reqId":"062d5aaf-c1ed-42cd-9e33-6f8927cc3cc3","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:25:56.436Z","level":"info","reqId":"6f75a336-dee7-4057-97ce-8c1c8ce76243","method":"GET","path":"/workspace","status":200,"durationMs":4}
+{"ts":"2025-12-07T17:25:56.478Z","level":"info","reqId":"11301d86-ee36-47fb-9db2-713d3b741071","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:25:57.560Z","level":"info","reqId":"abd4010b-33c8-4c1e-9586-996f28a38b06","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:26:54.602Z","level":"info","reqId":"d73d09a2-71b9-42b7-a6d0-20e467704264","method":"GET","path":"/workspace","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:26:54.647Z","level":"info","reqId":"07cc893f-79aa-4ac9-b60b-d8529633f7b3","method":"GET","path":"/api/me","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:26:55.581Z","level":"info","reqId":"3a3dadea-f0f3-43f6-abc1-74d33a26685e","method":"GET","path":"/api/reports","status":401,"durationMs":1}
+{"ts":"2025-12-07T17:27:25.599Z","level":"info","reqId":"576a3142-f6da-453e-9ce6-b3714ee71148","method":"GET","path":"/workspace","status":200,"durationMs":4}
+{"ts":"2025-12-07T17:27:25.639Z","level":"info","reqId":"44b807a2-1991-4a68-b317-8076fa033e68","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:27:26.878Z","level":"info","reqId":"9bc90ff7-5737-48ca-9946-40567531a34d","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:27:28.257Z","level":"info","reqId":"6eb7372c-e6d1-4976-b368-6123a788d8bf","method":"GET","path":"/api/reports","status":401,"durationMs":1}
+{"ts":"2025-12-07T17:27:39.650Z","level":"info","reqId":"8b2f8281-88f4-4cef-b51f-983271262718","method":"GET","path":"/workspace","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:27:39.687Z","level":"info","reqId":"c131f921-d10d-4260-8fcb-45ebcc4cfbd7","method":"GET","path":"/api/me","status":304,"durationMs":0}
+{"ts":"2025-12-07T17:28:11.395Z","level":"info","reqId":"f60c6fa0-99ff-4f2a-8d3b-a61c7123b9c7","method":"GET","path":"/workspace","status":200,"durationMs":2}
+{"ts":"2025-12-07T17:28:11.438Z","level":"info","reqId":"b32ef013-1d44-4f42-9118-403ea54fd3af","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:28:12.511Z","level":"info","reqId":"69c3049d-0b73-4892-948c-ad6ef743a45a","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:31:30.881Z","level":"info","reqId":"bd168ba4-769d-4c37-acb5-d3d63cfd706c","method":"GET","path":"/workspace","status":304,"durationMs":2}
+{"ts":"2025-12-07T17:31:30.987Z","level":"info","reqId":"2746c2e0-3eec-4565-af41-94ebb5989078","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:31:32.146Z","level":"info","reqId":"4373b858-83bc-4227-aa64-92ff4415392d","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T17:31:42.779Z","level":"info","reqId":"2dce56b2-d100-4f10-8f9a-c6c50539a4a4","method":"GET","path":"/api/reports","status":401,"durationMs":1}
+{"ts":"2025-12-07T17:34:08.447Z","level":"info","reqId":"0e27bd90-576a-4c9b-b280-3c53d6b70713","method":"GET","path":"/workspace","status":200,"durationMs":3}
+{"ts":"2025-12-07T17:34:08.490Z","level":"info","reqId":"faf5f206-7ade-4695-be59-b9117592df49","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T17:34:09.379Z","level":"info","reqId":"68fb7028-4aca-4718-bb44-06899d760ac3","method":"GET","path":"/api/reports","status":401,"durationMs":2}

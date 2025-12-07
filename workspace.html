@@ -1101,6 +1101,22 @@
       justify-content: center;
     }
 
+    .auth-input {
+      width: 100%;
+      padding: var(--space-md);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-input);
+      font-size: var(--fs-base);
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-body);
+    }
+
+    .auth-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-wash);
+    }
+
     .short-modal-btn {
       padding: var(--space-sm) var(--space-xl);
       font-size: var(--fs-body);
@@ -1129,10 +1145,237 @@
     .short-modal-btn--primary:hover {
       filter: brightness(1.1);
     }
+
+    /* History Sidebar */
+    .history-sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 320px;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-subtle);
+      transform: translateX(-100%);
+      transition: transform var(--motion-duration-medium) var(--motion-ease-premium);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .history-sidebar.open {
+      transform: translateX(0);
+    }
+
+    .history-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-lg) var(--space-xl);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .history-sidebar-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .history-sidebar-close {
+      background: none;
+      border: none;
+      font-size: var(--fs-xl);
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: var(--space-xs);
+      border-radius: var(--radius-sm);
+      transition: color var(--motion-duration-short);
+    }
+
+    .history-sidebar-close:hover {
+      color: var(--text-main);
+    }
+
+    .history-sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-lg);
+    }
+
+    .history-empty {
+      text-align: center;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .history-empty-icon {
+      font-size: 48px;
+      margin-bottom: var(--space-md);
+      opacity: 0.5;
+    }
+
+    .history-empty-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-body);
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: var(--space-xs);
+    }
+
+    .history-empty-text {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      line-height: var(--lh-relaxed);
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .history-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      cursor: pointer;
+      transition: border-color var(--motion-duration-short), box-shadow var(--motion-duration-short);
+    }
+
+    .history-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(51, 65, 166, 0.1);
+    }
+
+    .history-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-xs);
+    }
+
+    .history-card-score {
+      font-family: var(--font-display);
+      font-size: var(--fs-xl);
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .history-card-date {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .history-card-preview {
+      font-size: var(--fs-small);
+      color: var(--text-soft);
+      line-height: var(--lh-medium);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .history-card-label {
+      display: inline-block;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      background: var(--surface-tint);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      margin-top: var(--space-sm);
+    }
+
+    .history-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--motion-duration-medium), visibility var(--motion-duration-medium);
+      z-index: 99;
+    }
+
+    .history-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* History Guest View */
+    .history-guest {
+      text-align: center;
+      padding: var(--space-3xl) var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .history-guest-icon {
+      font-size: 48px;
+      margin-bottom: var(--space-lg);
+      filter: grayscale(0.2);
+    }
+
+    .history-guest-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-xl);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: var(--space-md);
+    }
+
+    .history-guest-text {
+      font-size: var(--fs-small);
+      color: var(--text-muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-xl);
+      max-width: 100%;
+    }
+
+    /* History Toggle Button removed for cleaner UI - relying on Header button */
   </style>
 </head>
 
 <body>
+  <!-- History Overlay -->
+  <div class="history-overlay" id="history-overlay"></div>
+
+  <!-- History Sidebar -->
+  <aside class="history-sidebar" id="history-sidebar">
+    <div class="history-sidebar-header">
+      <span class="history-sidebar-title">Your Reports</span>
+      <button class="history-sidebar-close" id="history-close" aria-label="Close history">×</button>
+    </div>
+    <div class="history-sidebar-content" id="history-content">
+      <!-- Guest View (shown when not logged in) -->
+      <div class="history-guest" id="history-guest" style="display: none;">
+        <div class="history-guest-icon">📊</div>
+        <div class="history-guest-title">Track your progress</div>
+        <div class="history-guest-text">
+          Log in to save every analysis, track your score improvements, and compare different versions of your resume.
+        </div>
+        <button class="btn-primary"
+          onclick="document.getElementById('auth-modal').style.display = 'flex'; closeHistorySidebar();"
+          style="width: 100%; margin-top: var(--space-lg);">
+          Log In to Save History
+        </button>
+      </div>
+
+      <!-- User View (shown when logged in) -->
+      <div class="history-empty" id="history-empty" style="display: none;">
+        <div class="history-empty-icon">📋</div>
+        <div class="history-empty-title">No reports yet</div>
+        <div class="history-empty-text">Run an analysis to see your history here.</div>
+      </div>
+      <div class="history-list" id="history-list" style="display: none;"></div>
+    </div>
+  </aside>
+
+  <!-- History Toggle Button removed -->
+
   <div class="workspace">
     <!-- Header -->
     <header class="workspace-header">
@@ -1140,6 +1383,7 @@
         <span class="workspace-brand-name">Recruiter in Your Pocket</span>
       </a>
       <div class="workspace-actions">
+        <button class="btn-ghost" id="history-btn">📋 My Reports</button>
         <button class="btn-ghost" id="sample-report-btn">📄 Sample Report</button>
         <button class="btn-ghost" id="theme-toggle">🌙</button>
         <button class="btn-ghost" onclick="window.location.href='/'">← Back to Home</button>
@@ -1403,6 +1647,31 @@
         </div>
       </div>
     </div>
+
+    <!-- Auth Modal -->
+    <div class="short-modal-backdrop" id="auth-modal" style="display: none;">
+      <div class="short-modal">
+        <div class="short-modal-icon">👋</div>
+        <div class="short-modal-title" id="auth-title">Log in to save history</div>
+        <p class="short-modal-text" id="auth-desc">Enter your email to get a magic login code.</p>
+
+        <div id="auth-step-email">
+          <input type="email" id="auth-email" placeholder="you@example.com" class="auth-input">
+          <button class="short-modal-btn short-modal-btn--primary" id="auth-send-code"
+            style="width: 100%; margin-top: 10px; background: var(--accent);">Send Code</button>
+        </div>
+
+        <div id="auth-step-code" style="display: none;">
+          <input type="text" id="auth-code" placeholder="123456" class="auth-input" maxlength="6">
+          <button class="short-modal-btn short-modal-btn--primary" id="auth-verify-code"
+            style="width: 100%; margin-top: 10px; background: var(--accent);">Verify Code</button>
+        </div>
+
+        <div id="auth-status" style="margin-top: 10px; font-size: 13px; color: var(--error);"></div>
+
+        <button class="btn-ghost" id="auth-cancel" style="margin-top: 15px; width: 100%;">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1442,6 +1711,242 @@
 
     // Track free uses remaining
     let freeUsesRemaining = null;
+
+    // --- History Sidebar ---
+    // --- History Sidebar ---
+    const historySidebar = document.getElementById('history-sidebar');
+    const historyOverlay = document.getElementById('history-overlay');
+    const historyClose = document.getElementById('history-close');
+    const historyBtn = document.getElementById('history-btn');
+    const historyList = document.getElementById('history-list');
+    const historyEmpty = document.getElementById('history-empty');
+    const historyGuest = document.getElementById('history-guest');
+    let isLoggedIn = false;
+    let reportHistory = [];
+
+    function openHistorySidebar() {
+      historySidebar.classList.add('open');
+      historyOverlay.classList.add('open');
+      loadReportHistory();
+    }
+
+    function closeHistorySidebar() {
+      historySidebar.classList.remove('open');
+      historyOverlay.classList.remove('open');
+    }
+
+    historyClose.addEventListener('click', closeHistorySidebar);
+    historyOverlay.addEventListener('click', closeHistorySidebar);
+    historyBtn.addEventListener('click', openHistorySidebar);
+
+    async function loadReportHistory() {
+      try {
+        const response = await fetch('/api/reports', { credentials: 'include' });
+        if (!response.ok) {
+          if (response.status === 401) {
+            // Show guest view if not logged in
+            historyGuest.style.display = 'flex';
+            historyEmpty.style.display = 'none';
+            historyList.style.display = 'none';
+          } else {
+            // Genuine error
+            historyEmpty.style.display = 'block';
+            historyList.style.display = 'none';
+            historyGuest.style.display = 'none';
+          }
+          return;
+        }
+
+        const data = await response.json();
+        if (data.ok && data.reports && data.reports.length > 0) {
+          reportHistory = data.reports;
+          renderHistoryList(data.reports);
+          historyEmpty.style.display = 'none';
+          historyGuest.style.display = 'none';
+          historyList.style.display = 'flex';
+        } else {
+          // Logged in but no reports
+          historyEmpty.style.display = 'block';
+          historyGuest.style.display = 'none';
+          historyList.style.display = 'none';
+          // Reset text in case it was changed by error handler previously
+          historyEmpty.querySelector('.history-empty-title').textContent = 'No reports yet';
+          historyEmpty.querySelector('.history-empty-text').textContent = 'Run an analysis to see your history here.';
+        }
+      } catch (err) {
+        console.error('Failed to load history:', err);
+        historyEmpty.style.display = 'block';
+        historyList.style.display = 'none';
+        historyGuest.style.display = 'none';
+      }
+    }
+
+    function renderHistoryList(reports) {
+      historyList.innerHTML = '';
+      reports.forEach(report => {
+        const date = new Date(report.created_at);
+        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+        const card = document.createElement('div');
+        card.className = 'history-card';
+        card.innerHTML = `
+          <div class="history-card-header">
+            <span class="history-card-score">${report.score}</span>
+            <span class="history-card-date">${dateStr}</span>
+          </div>
+          <div class="history-card-preview">${escapeHtml(report.resume_preview || '')}</div>
+          ${report.score_label ? `<span class="history-card-label">${escapeHtml(report.score_label)}</span>` : ''}
+        `;
+        card.addEventListener('click', () => loadHistoricalReport(report.id));
+        historyList.appendChild(card);
+      });
+    }
+
+    async function loadHistoricalReport(reportId) {
+      closeHistorySidebar();
+      reportLoading.classList.add('visible');
+      reportEmpty.style.display = 'none';
+
+      try {
+        const response = await fetch(`/api/reports/${reportId}`, { credentials: 'include' });
+        if (!response.ok) throw new Error('Failed to load report');
+        const data = await response.json();
+        if (data.ok && data.report && data.report.report_json) {
+          currentReport = data.report.report_json;
+          renderReport(data.report.report_json);
+          setActiveTab('overview');
+        }
+      } catch (err) {
+        console.error('Failed to load report:', err);
+        alert('Could not load this report. Please try again.');
+      } finally {
+        reportLoading.classList.remove('visible');
+      }
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // --- Auth Logic ---
+    const authModal = document.getElementById('auth-modal');
+    const authStepEmail = document.getElementById('auth-step-email');
+    const authStepCode = document.getElementById('auth-step-code');
+    const authStatus = document.getElementById('auth-status');
+    const authEmailInput = document.getElementById('auth-email');
+    const authCodeInput = document.getElementById('auth-code');
+    const authCancel = document.getElementById('auth-cancel');
+    const authSendCodeBtn = document.getElementById('auth-send-code');
+    const authVerifyCodeBtn = document.getElementById('auth-verify-code');
+
+    function resetAuthModal() {
+      authStepEmail.style.display = 'block';
+      authStepCode.style.display = 'none';
+      authStatus.textContent = '';
+      authEmailInput.value = '';
+      authCodeInput.value = '';
+      authStatus.style.color = 'var(--text-muted)';
+    }
+
+    authCancel.addEventListener('click', () => {
+      authModal.style.display = 'none';
+      resetAuthModal();
+    });
+
+    authSendCodeBtn.addEventListener('click', async () => {
+      const email = authEmailInput.value.trim();
+      if (!email) {
+        authStatus.textContent = 'Please enter an email address.';
+        authStatus.style.color = 'var(--error)';
+        return;
+      }
+      authStatus.textContent = 'Sending code...';
+      authStatus.style.color = 'var(--text-muted)';
+
+      try {
+        const res = await fetch('/api/login/request-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          authStepEmail.style.display = 'none';
+          authStepCode.style.display = 'block';
+          authStatus.textContent = 'Code sent! Check your inbox.';
+          authStatus.style.color = 'var(--accent)';
+        } else {
+          authStatus.textContent = data.message || 'Failed to send code.';
+          authStatus.style.color = 'var(--error)';
+        }
+      } catch (e) {
+        authStatus.textContent = 'Network error. Try again.';
+        authStatus.style.color = 'var(--error)';
+      }
+    });
+
+    authVerifyCodeBtn.addEventListener('click', async () => {
+      const email = authEmailInput.value.trim();
+      const code = authCodeInput.value.trim();
+      if (!code) {
+        authStatus.textContent = 'Please enter the code.';
+        authStatus.style.color = 'var(--error)';
+        return;
+      }
+      authStatus.textContent = 'Verifying...';
+      authStatus.style.color = 'var(--text-muted)';
+
+      try {
+        const res = await fetch('/api/login/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, code })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          authModal.style.display = 'none';
+          checkLoginStatus(); // Refreshes login state
+          loadReportHistory(); // Reloads reports
+          resetAuthModal();
+        } else {
+          authStatus.textContent = data.message || 'Invalid code.';
+          authStatus.style.color = 'var(--error)';
+        }
+      } catch (e) {
+        authStatus.textContent = 'Error verifying code.';
+        authStatus.style.color = 'var(--error)';
+      }
+    });
+
+    // Check login status on load
+    async function checkLoginStatus() {
+      // Test mode: add ?testHistory=true to URL to see history UI without logging in
+      const urlParams = new URLSearchParams(window.location.search);
+      const testMode = urlParams.get('testHistory') === 'true';
+
+      if (testMode) {
+        console.log('History test mode enabled');
+        historyBtn.style.display = 'inline-flex';
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/me', { credentials: 'include' });
+        if (response.ok) {
+          const data = await response.json();
+          if (data.ok && data.user) {
+            isLoggedIn = true;
+            historyBtn.style.display = 'inline-flex';
+          }
+        }
+      } catch (err) {
+        // Not logged in, that's fine
+      }
+    }
+    checkLoginStatus();
 
     // Sample Report Button
     const sampleReportBtn = document.getElementById('sample-report-btn');

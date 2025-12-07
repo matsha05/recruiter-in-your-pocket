@@ -74,6 +74,19 @@ async function ensureSchema() {
     );
     CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
     CREATE INDEX IF NOT EXISTS idx_sessions_expires ON sessions(expires_at);
+
+    CREATE TABLE IF NOT EXISTS reports (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      resume_hash TEXT NOT NULL,
+      score INTEGER NOT NULL,
+      score_label TEXT,
+      report_json JSONB NOT NULL,
+      resume_preview TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    CREATE INDEX IF NOT EXISTS idx_reports_user ON reports(user_id);
+    CREATE INDEX IF NOT EXISTS idx_reports_created ON reports(created_at DESC);
   `);
 }
 
@@ -300,6 +313,101 @@ async function runMigrations() {
   await ensureSchema();
 }
 
+// --- Report functions ---
+
+function hashResumeText(text) {
+  return crypto.createHash("sha256").update(text).digest("hex");
+}
+
+function mapReport(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    user_id: row.user_id,
+    resume_hash: row.resume_hash,
+    score: row.score,
+    score_label: row.score_label,
+    report_json: row.report_json,
+    resume_preview: row.resume_preview,
+    created_at: toIso(row.created_at)
+  };
+}
+
+async function saveReport(userId, resumeText, score, scoreLabel, reportJson) {
+  await initPromise;
+  const resumeHash = hashResumeText(resumeText);
+  // Create preview from first ~200 chars of resume, trimmed to word boundary
+  let preview = resumeText.slice(0, 200).trim();
+  const lastSpace = preview.lastIndexOf(" ");
+  if (lastSpace > 150) preview = preview.slice(0, lastSpace) + "...";
+  else if (resumeText.length > 200) preview += "...";
+
+  const report = {
+    id: uuid(),
+    user_id: userId,
+    resume_hash: resumeHash,
+    score,
+    score_label: scoreLabel || null,
+    report_json: reportJson,
+    resume_preview: preview,
+    created_at: now()
+  };
+
+  await pool.query(
+    `
+      INSERT INTO reports (id, user_id, resume_hash, score, score_label, report_json, resume_preview, created_at)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    `,
+    [
+      report.id,
+      report.user_id,
+      report.resume_hash,
+      report.score,
+      report.score_label,
+      JSON.stringify(report.report_json),
+      report.resume_preview,
+      report.created_at
+    ]
+  );
+
+  return report;
+}
+
+async function getReportsForUser(userId, limit = 20) {
+  await initPromise;
+  const { rows } = await pool.query(
+    `
+      SELECT id, user_id, resume_hash, score, score_label, resume_preview, created_at
+      FROM reports
+      WHERE user_id = $1
+      ORDER BY created_at DESC
+      LIMIT $2
+    `,
+    [userId, limit]
+  );
+  // Return list without full report_json for performance
+  return rows.map(row => ({
+    id: row.id,
+    score: row.score,
+    score_label: row.score_label,
+    resume_preview: row.resume_preview,
+    created_at: toIso(row.created_at)
+  }));
+}
+
+async function getReportById(reportId, userId) {
+  await initPromise;
+  const { rows } = await pool.query(
+    `
+      SELECT id, user_id, resume_hash, score, score_label, report_json, resume_preview, created_at
+      FROM reports
+      WHERE id = $1 AND user_id = $2
+    `,
+    [reportId, userId]
+  );
+  return mapReport(rows[0]);
+}
+
 module.exports = {
   pool,
   healthCheck,
@@ -315,6 +423,9 @@ module.exports = {
   createPass,
   getActivePasses,
   getLatestPass,
+  saveReport,
+  getReportsForUser,
+  getReportById,
   now,
   uuid
 };
