@@ -270,9 +270,18 @@ The MVP must prove:
 ---
 
 # TECH OVERVIEW
-Frontend: single `index.html` file  
-Backend: Node + Express (`server.js`)  
-At minimum exposes POST `/api/resume-feedback`  
+Frontend:
+- `index.html` — Marketing landing page (hero, pricing, preview)
+- `workspace.html` — Resume analysis workspace (split-view, tabbed report)
+- `terms.html` — Terms of Service
+- `privacy.html` — Privacy Policy
+
+Backend: Node + Express (`app.js`)
+- POST `/api/resume-feedback` — Main resume analysis
+- POST `/api/resume-ideas` — Missing Wins questions
+- POST `/api/parse-resume` — PDF/DOCX text extraction
+- GET `/workspace`, `/terms`, `/privacy` — Page routes
+
 OpenAI API runs only on backend.
 
 ---
@@ -354,6 +363,9 @@ Model must always return:
 
 {
   "score": number,
+  "score_label": string,
+  "score_comment_short": string,
+  "score_comment_long": string,
   "summary": string,
   "strengths": string[],
   "gaps": string[],
@@ -365,17 +377,57 @@ Model must always return:
       "enhancement_note": string
     }
   ],
-  "next_steps": string[]
+  "next_steps": string[],
+  "subscores": {
+    "impact": number,
+    "clarity": number,
+    "story": number,
+    "readability": number
+  },
+  "section_review": {
+    "[Section Name]": {
+      "grade": string,
+      "priority": string,
+      "working": string,
+      "missing": string,
+      "fix": string
+    }
+  },
+  "job_alignment": {
+    "strongly_aligned": string[],
+    "underplayed": string[],
+    "missing": string[],
+    "role_fit": {
+      "best_fit_roles": string[],
+      "stretch_roles": string[],
+      "seniority_read": string,
+      "industry_signals": string[],
+      "company_stage_fit": string
+    },
+    "positioning_suggestion": string
+  },
+  "ideas": {
+    "questions": [
+      {
+        "question": string,
+        "archetype": string,
+        "why": string
+      }
+    ]
+  }
 }
 
 Rules:
-- score: 0–100  
-- summary: 4–6 sentences  
-- strengths: 3–6  
-- gaps: 3–6  
-- rewrites: 3–5  
-- enhancement_note: optional detail + why it matters  
-- next_steps: 3–6 actions you can do in 1–2 sessions  
+- score: 0–100
+- subscores: 0–100 each (impact, clarity, story, readability)
+- summary: 4–6 sentences
+- strengths: 3–6
+- gaps: 3–6
+- rewrites: 3–5
+- section_review: grades + specific feedback per resume section
+- job_alignment: always included (role fit, themes, positioning)
+- ideas: 5 archetyped questions with why explanations
+- next_steps: 3–6 actions you can do in 1–2 sessions
 
 Model must output JSON only. No markdown, no fences.
 

@@ -3,7 +3,7 @@
 ## Overview
 This file defines the tokens and components for the Recruiter in Your Pocket UI and PDF so Matt, and future collaborators can evolve the product consistently.
 
-**Last Updated:** 2025-01-27 (Phase 3 Refactoring Complete)
+**Last Updated:** 2025-12-06 (Phase 6 Complete - Landing Page Refactored)
 
 ## Design Tokens Reference
 
@@ -76,7 +76,7 @@ All design tokens are defined as CSS variables in `:root`. This document serves 
 - `--fs-xl: 20px` - Extra large
 - `--fs-2xl: 22px` - 2x large
 - `--fs-3xl: 32px` - 3x large
-- `--fs-dial: 36px` - Score dial size
+- `--fs-dial: 48px` - Score dial size
 
 ### Line Heights
 - `--lh-very-tight: 1.1` - Very tight line height
@@ -322,6 +322,14 @@ box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
 - Input column: `.card-input` with min-height for visual balance
 - Output column: `.report-wrapper` contains the full Insight Stack
 - Responsive: Single column below 1024px
+
+**Note:** The landing page (`index.html`) tool-layout is hidden. Resume input now happens in the dedicated `/workspace`.
+
+### Application Routes
+- `/` - Marketing landing page (hero, preview, pricing)
+- `/workspace` - Dedicated resume analysis workspace
+- `/terms` - Terms of Service
+- `/privacy` - Privacy Policy
 
 ### Focus Mode
 **Pattern:** Toggle that hides input panel and centers the report for distraction-free reading.

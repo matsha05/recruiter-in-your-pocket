@@ -18,11 +18,12 @@ Confidence and small moments of delight sit on top of it.
 
 ## CORE EXPERIENCE
 
-The rhythm is simple: paste → get a crafted read → stronger bullets → next steps.
+The rhythm is simple: upload/paste in workspace → get a crafted read → stronger bullets → next steps.
 
 ### 1. Input
-The user brings something meaningful:
-- resume (today)  
+The user brings something meaningful via the dedicated workspace:
+- resume (upload PDF/DOCX or paste text)
+- optional job description for alignment analysis
 - offer, outreach, interview context (future)  
 
 ### 2. Insight Stack  
