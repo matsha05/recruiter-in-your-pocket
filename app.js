@@ -569,6 +569,9 @@ if (API_AUTH_TOKEN) {
     "/logout",
     "/me",
     "/parse-resume",
+    "/resume-feedback",
+    "/resume-ideas",
+    "/export-pdf",
     "/create-checkout-session",
     "/stripe/webhook"
   ];

@@ -42,3 +42,4 @@ function run() {
 }
 
 run();
+process.exit(0);

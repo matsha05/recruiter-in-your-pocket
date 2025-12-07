@@ -8,7 +8,7 @@ const app = require("../app");
 
 function makeSocket() {
   const socket = new Duplex({
-    read() {},
+    read() { },
     write(chunk, encoding, callback) {
       callback();
     }
@@ -61,6 +61,7 @@ async function run() {
   assert.strictEqual(JSON.parse(ready.body).ok, true);
 
   console.log("Smoke endpoints passed.");
+  process.exit(0);
 }
 
 run().catch((err) => {
