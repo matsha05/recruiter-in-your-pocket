@@ -262,6 +262,11 @@
       }
     }
 
+    /* Hide the legacy tool-layout - resume input is now handled in workspace */
+    .tool-layout {
+      display: none !important;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -894,13 +899,78 @@
     }
 
     .hero-preview-fade {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
-      background: linear-gradient(transparent, var(--bg-card));
-      pointer-events: none;
+      display: none;
+      /* Removed fade to make CTA fully visible */
+    }
+
+    .hero-preview-subscores {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-tint);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-preview-subscore {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .hero-preview-subscore-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-preview-subscore-value {
+      font-family: var(--font-display);
+      font-size: var(--fs-lg);
+      font-weight: 800;
+    }
+
+    .hero-preview-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: var(--space-xs);
+    }
+
+    .hero-preview-tag {
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-wash);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .hero-preview-cta {
+      display: block;
+      text-align: center;
+      padding: var(--space-sm-alt) var(--space-lg);
+      background: var(--accent);
+      color: white;
+      font-size: var(--fs-body);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      margin-top: var(--space-lg);
+      box-shadow: var(--shadow-button);
+      transition: background var(--motion-duration-short), transform var(--motion-duration-short), box-shadow var(--motion-duration-short);
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-preview-cta:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-button-hover);
     }
 
     .hero-cta-group {
@@ -5589,11 +5659,10 @@
               Google, Meta, OpenAI, and high-growth startups.</p>
 
             <div class="hero-cta-group">
-              <a href="/workspace" class="hero-cta-primary">Try the new workspace →</a>
-              <a href="#main-input" class="hero-cta-secondary" id="hero-cta-scroll">Or paste resume below</a>
-              <button type="button" class="hero-cta-secondary" id="hero-sample-report">See a sample report</button>
+              <a href="/workspace" class="hero-cta-primary">Start Your Free Report →</a>
             </div>
-            <div class="hero-cta-note">Upload PDF/DOCX or paste text. First full report is free.</div>
+            <div class="hero-cta-note">Upload PDF/DOCX or paste text · First full report is free · No signup required
+            </div>
 
             <div class="trust-inline hero-trust-line">
               <span class="status-dot"></span>
@@ -5605,7 +5674,7 @@
 
           <div class="hero-preview">
             <div class="hero-preview-card">
-              <div class="hero-preview-badge">Sample Report</div>
+              <div class="hero-preview-badge">Sample Report Preview</div>
               <div class="hero-preview-score">
                 <div class="hero-preview-dial">
                   <span class="hero-preview-dial-number">86</span>
@@ -5615,15 +5684,48 @@
                   <div class="hero-preview-score-band">Strong foundation</div>
                 </div>
               </div>
-              <div class="hero-preview-verdict">You read as someone who takes messy workstreams and makes them
-                shippable. Your edge is steady ownership.</div>
+
+              <!-- Subscores Preview -->
+              <div class="hero-preview-subscores">
+                <div class="hero-preview-subscore">
+                  <span class="hero-preview-subscore-label">Impact</span>
+                  <span class="hero-preview-subscore-value" style="color: #15803d;">88</span>
+                </div>
+                <div class="hero-preview-subscore">
+                  <span class="hero-preview-subscore-label">Clarity</span>
+                  <span class="hero-preview-subscore-value" style="color: #15803d;">82</span>
+                </div>
+                <div class="hero-preview-subscore">
+                  <span class="hero-preview-subscore-label">Story</span>
+                  <span class="hero-preview-subscore-value" style="color: #d97706;">79</span>
+                </div>
+                <div class="hero-preview-subscore">
+                  <span class="hero-preview-subscore-label">Readability</span>
+                  <span class="hero-preview-subscore-value" style="color: #15803d;">91</span>
+                </div>
+              </div>
+
+              <div class="hero-preview-verdict">"You read as someone who takes messy workstreams and makes them
+                shippable. Your edge is steady ownership."</div>
+
+              <div class="hero-preview-section">
+                <div class="hero-preview-section-title">Best fit roles</div>
+                <div class="hero-preview-tags">
+                  <span class="hero-preview-tag">Program Manager</span>
+                  <span class="hero-preview-tag">Technical PM</span>
+                  <span class="hero-preview-tag">Product Ops</span>
+                </div>
+              </div>
+
               <div class="hero-preview-section">
                 <div class="hero-preview-section-title">Top fixes</div>
-                <div class="hero-preview-item">Add scope (teams, volume) to two top bullets</div>
-                <div class="hero-preview-item">State one before/after metric in a headline</div>
-                <div class="hero-preview-item">Split any bullet that mixes decisions and outcomes</div>
+                <div class="hero-preview-item">✓ Add scope (teams, volume) to two top bullets</div>
+                <div class="hero-preview-item">✓ State one before/after metric in a headline</div>
+                <div class="hero-preview-item">✓ Split any bullet that mixes decisions and outcomes</div>
               </div>
+
               <div class="hero-preview-fade"></div>
+              <a href="/workspace?sample=true" class="hero-preview-cta">See full sample report →</a>
             </div>
           </div>
         </div>
@@ -5978,7 +6080,7 @@
               <li>No account or credit card required</li>
               <li>Upgrade anytime for unlimited access</li>
             </ul>
-            <a href="#main-input" class="pricing-card-cta pricing-cta--free">Try it free</a>
+            <a href="/workspace" class="pricing-card-cta pricing-cta--free">Start for free →</a>
           </div>
 
           <!-- 24-Hour Fix Pass -->
