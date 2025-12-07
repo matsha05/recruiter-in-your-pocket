@@ -130,77 +130,112 @@
 
         <main>
             <div class="highlight-box">
-                <p>TL;DR: We only collect what we need to make the product work. Your resume data is processed for
-                    feedback but not stored long-term. We don't sell your info.</p>
+                <p>TL;DR: We only collect what we need to make the product work. Resume data is processed for feedback
+                    and deleted after processing. We don't sell your info.</p>
             </div>
 
-            <h2>What We Collect</h2>
+            <h2>1. What We Collect</h2>
             <p>When you use Recruiter in Your Pocket, we may collect:</p>
             <ul>
-                <li><strong>Resume text:</strong> The content you paste or upload. This is processed by our AI to
-                    generate feedback and is not permanently stored unless you create an account.</li>
+                <li><strong>Resume text:</strong> The content you paste or upload. This is sent to our AI provider for
+                    processing and is not stored on our servers after your feedback is generated.</li>
                 <li><strong>Job descriptions:</strong> If you provide one for alignment analysis, it's processed along
-                    with your resume.</li>
+                    with your resume and handled the same way.</li>
                 <li><strong>Email address:</strong> If you sign in, we collect your email to manage your account and
                     purchased passes.</li>
-                <li><strong>Usage data:</strong> Basic analytics like page views and feature usage to improve the
-                    product (no resume content is included).</li>
-                <li><strong>Payment info:</strong> Handled securely by Stripe. We don't store your credit card details.
+                <li><strong>Technical data:</strong> IP address, browser type, device information, and timestamps. This
+                    is collected automatically for security, debugging, and service improvement.</li>
+                <li><strong>Usage analytics:</strong> Page views, feature usage, and interaction events (via Mixpanel).
+                    This does not include your resume content.</li>
+                <li><strong>Payment info:</strong> Handled securely by Stripe. We do not store your credit card details.
                 </li>
             </ul>
 
-            <h2>How We Use Your Data</h2>
+            <h2>2. Data Retention</h2>
+            <p>How long we keep your data depends on how you use the Service:</p>
+            <ul>
+                <li><strong>Without an account:</strong> Resume text is processed in memory and not stored after your
+                    feedback is generated. We do not retain your resume content.</li>
+                <li><strong>With an account:</strong> Your email and account data are stored until you request deletion.
+                    Purchase history is retained for legal and tax purposes.</li>
+                <li><strong>Logs and analytics:</strong> Technical logs (IP, timestamps, errors) are retained for up to
+                    90 days for debugging and security. Analytics data is retained per Mixpanel's policies.</li>
+            </ul>
+
+            <h2>3. How We Use Your Data</h2>
             <ul>
                 <li>To generate AI-powered resume feedback</li>
                 <li>To manage your account and purchased passes</li>
                 <li>To send transactional emails (login codes, receipts)</li>
-                <li>To improve the product (aggregated, anonymized usage data only)</li>
+                <li>To improve the product using aggregated, anonymized usage data</li>
+                <li>To maintain security and prevent abuse</li>
             </ul>
 
-            <h2>What We Don't Do</h2>
+            <h2>4. What We Don't Do</h2>
             <ul>
                 <li>We don't sell your personal information</li>
-                <li>We don't use your resume content to train AI models</li>
+                <li>We don't use your resume content to train our own AI models</li>
                 <li>We don't share your data with third parties for marketing</li>
-                <li>We don't store resume text longer than necessary for processing</li>
             </ul>
+            <p><strong>Note on AI processing:</strong> Resume text is sent to OpenAI's API for analysis. OpenAI may
+                process your data as described in their <a href="https://openai.com/policies/privacy-policy"
+                    target="_blank">privacy policy</a>. We have opted out of having data used for model training where
+                possible.</p>
 
-            <h2>Cookies</h2>
+            <h2>5. Cookies and Tracking</h2>
             <p>We use cookies to:</p>
             <ul>
-                <li>Keep you logged in</li>
-                <li>Track your free report usage</li>
+                <li>Keep you logged in (session cookies)</li>
+                <li>Track your free report usage (persistent cookie)</li>
                 <li>Remember your preferences (like dark mode)</li>
             </ul>
-            <p>We may use analytics cookies (Mixpanel) to understand usage patterns. These do not contain your resume
-                content.</p>
+            <p>We use Mixpanel for analytics, which may collect IP address, device type, and usage events. This data
+                does not include your resume content.</p>
+            <p>You can control cookies through your browser settings. Disabling cookies may affect some features of the
+                Service.</p>
 
-            <h2>Third-Party Services</h2>
-            <p>We use the following services:</p>
+            <h2>6. Third-Party Services</h2>
+            <p>We use the following services to operate:</p>
             <ul>
-                <li><strong>OpenAI:</strong> Powers our AI feedback. Resume text is sent to OpenAI's API for processing.
+                <li><strong>OpenAI:</strong> Powers our AI feedback. Resume text is sent to their API for processing.
                     See their <a href="https://openai.com/policies/privacy-policy" target="_blank">privacy policy</a>.
                 </li>
                 <li><strong>Stripe:</strong> Handles payments securely. See their <a href="https://stripe.com/privacy"
                         target="_blank">privacy policy</a>.</li>
                 <li><strong>Vercel:</strong> Hosts our application. See their <a
                         href="https://vercel.com/legal/privacy-policy" target="_blank">privacy policy</a>.</li>
+                <li><strong>Mixpanel:</strong> Provides usage analytics. See their <a
+                        href="https://mixpanel.com/legal/privacy-policy" target="_blank">privacy policy</a>.</li>
             </ul>
 
-            <h2>Data Security</h2>
+            <h2>7. Data Security</h2>
             <p>We use industry-standard security measures including HTTPS encryption, secure authentication, and rate
-                limiting to protect your data.</p>
+                limiting to protect your data. However, no system is 100% secure, and we cannot guarantee absolute
+                security.</p>
 
-            <h2>Your Rights</h2>
-            <p>You can:</p>
+            <h2>8. Your Rights</h2>
+            <p>You have the right to:</p>
             <ul>
                 <li>Request a copy of the data we have about you</li>
+                <li>Request correction of inaccurate data</li>
                 <li>Request deletion of your account and associated data</li>
                 <li>Opt out of marketing communications</li>
             </ul>
+            <p>If you are in the EU or UK, you may also have additional rights under GDPR, including the right to lodge
+                a complaint with a data protection authority.</p>
+            <p>To exercise any of these rights, contact us via our website.</p>
 
-            <h2>Contact</h2>
-            <p>If you have questions about this Privacy Policy, please reach out via our website.</p>
+            <h2>9. Children</h2>
+            <p>The Service is not intended for children under 16, and we do not knowingly collect personal data from
+                children. If you believe we have collected data from a child, please contact us immediately.</p>
+
+            <h2>10. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by posting
+                the new policy on this page with an updated date.</p>
+
+            <h2>11. Contact</h2>
+            <p>If you have questions about this Privacy Policy or want to exercise your data rights, please reach out
+                via our website.</p>
         </main>
 
         <footer>
