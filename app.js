@@ -664,6 +664,14 @@ app.get("/workspace", (req, res) => {
   res.sendFile(path.join(__dirname, "workspace.html"));
 });
 
+app.get("/terms", (req, res) => {
+  res.sendFile(path.join(__dirname, "terms.html"));
+});
+
+app.get("/privacy", (req, res) => {
+  res.sendFile(path.join(__dirname, "privacy.html"));
+});
+
 // Resume file parsing endpoint
 const rateLimitParse = createRateLimiter(30);
 app.post("/api/parse-resume", rateLimitParse, upload.single('file'), async (req, res) => {
