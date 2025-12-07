@@ -345,18 +345,23 @@ Signature motion: the single report reveal; CTAs stay confident and tasteful, no
 
 ---
 
-## 4. Respect the Emotional State  
-Job seeking is vulnerable.
+## 4. Induce Productive Emotion
+We don't just want users to feel "safe" (neutral). We want them to feel *seen* (active).
 
-Copy stays:
-- warm  
-- honest  
-- direct  
-- supportive  
+**Target Emotions:**
+- **Relief:** "Finally, someone tells me the truth."
+- **Resolve:** "I know exactly what to fix."
+- **Awe:** "This sees things I missed."
+- **Excitement:** "I actually want to apply now."
+- **Joy:** "My career looks amazing like this."
+- **Trust:** "This person knows more than I do and I’m willing to act on this guidance."
 
-Never corporate.  
-Never hyped.  
-Never fluffy.
+**Avoid Destructive Emotions:**
+- **Shame:** "I am bad at this."
+- **Panic:** "It's hopeless."
+- **Confusion:** "I don't know what to do next."
+
+Safety creates calm. Insight creates movement. We prioritize movement.
 
 ---
 
@@ -390,7 +395,7 @@ This includes:
 - Pricing visibility when appropriate
 - Repeated “next step” affordances
 - Avoiding competing CTAs
-- Ensuring the path to paid value is obvious and emotionally safe
+- Ensuring the path to paid value is obvious and emotion-inducing
 
 ---
 
