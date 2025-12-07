@@ -1456,7 +1456,38 @@
         renderReport(report);
         setActiveTab('overview');
         // Pre-fill a sample resume text for context
-        resumeText.value = 'Sample PM Resume:\n\nSarah Chen\nProduct Manager | 6 years\n\nOwned end-to-end delivery of customer onboarding flow, reducing time-to-value by 40%.\nLed cross-functional team of 8 (eng, design, data) through quarterly roadmap cycles.\nDrove prioritization framework that aligned stakeholders on 95% of shipped features.';
+        resumeText.value = `SARAH CHEN
+Product Manager | San Francisco, CA | sarah.chen@email.com | linkedin.com/in/sarahchen
+
+SUMMARY
+Product manager with 6 years of experience shipping B2B SaaS products. Specialize in turning ambiguous customer problems into shipped features that move business metrics. Known for cross-functional leadership and data-informed prioritization.
+
+EXPERIENCE
+
+Senior Product Manager — Acme Software (2021–Present)
+• Owned end-to-end delivery of customer onboarding flow, reducing time-to-value by 40% and improving 30-day retention from 68% to 81%
+• Led cross-functional team of 8 (engineering, design, data) through quarterly roadmap cycles, shipping 12 features over 18 months
+• Drove prioritization framework that aligned stakeholders on 95% of shipped features, reducing roadmap conflicts by 60%
+• Launched self-serve analytics dashboard used by 2,400+ customers weekly, decreasing support tickets by 35%
+
+Product Manager — TechStart Inc. (2018–2021)
+• Managed integration platform connecting 15+ third-party tools, growing API usage 3x year-over-year
+• Conducted 100+ customer interviews to identify pain points, directly informing 3 major feature releases
+• Partnered with sales to close 8 enterprise deals worth $2.1M ARR through custom feature scoping
+• Reduced bug backlog by 45% through improved triage process and engineering collaboration
+
+Associate Product Manager — StartupXYZ (2017–2018)
+• Supported launch of mobile app reaching 50K downloads in first quarter
+• Created competitive analysis framework adopted across product org
+• Wrote PRDs and user stories for 2 feature releases
+
+EDUCATION
+MBA, Product Management Focus — Stanford Graduate School of Business (2017)
+BS, Computer Science — UC Berkeley (2015)
+
+SKILLS
+Product: Roadmapping, A/B Testing, User Research, SQL, Amplitude, Mixpanel, Figma
+Technical: Python basics, API integrations, Agile/Scrum`;
       } catch (err) {
         console.error('Failed to load sample report', err);
         alert('Could not load sample report. Please try again.');
