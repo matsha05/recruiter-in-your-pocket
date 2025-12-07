@@ -82,3 +82,7 @@ Backend listening on http://localhost:3000
 {"ts":"2025-12-07T17:37:44.354Z","level":"info","reqId":"3377b4ea-ca5d-439b-909d-760555ed4e73","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
 {"ts":"2025-12-07T17:37:44.355Z","level":"info","reqId":"57a7b156-5b6b-4af7-97df-6aa5d4677902","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
 {"ts":"2025-12-07T17:37:44.380Z","level":"info","reqId":"4e64ad0b-21a8-41d7-bb22-e1ce9c106d0d","method":"GET","path":"/api/me","status":304,"durationMs":0}
+{"ts":"2025-12-07T19:53:41.977Z","level":"info","reqId":"02c3882f-e5e8-41cc-8d37-4e10a3e2723e","method":"GET","path":"/","status":200,"durationMs":2}
+{"ts":"2025-12-07T19:53:42.042Z","level":"info","reqId":"574a8101-930c-4043-81ab-9bb31587c7c7","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T19:53:42.043Z","level":"info","reqId":"b3fa2739-dd85-48e6-8045-12420d36a57a","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
+{"ts":"2025-12-07T19:53:42.071Z","level":"info","reqId":"ec497701-68e6-42ef-9bd4-fc175ae5e6b2","method":"GET","path":"/api/me","status":304,"durationMs":2}
