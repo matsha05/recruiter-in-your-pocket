@@ -1796,10 +1796,17 @@ document.querySelectorAll(".paywall-tier").forEach((btn) => {
 
 // Pricing section CTA buttons
 document.querySelectorAll(".pricing-card-cta[data-tier]").forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", async () => {
     const tier = btn.getAttribute("data-tier");
     selectTier(tier);
-    showPaywall();
+
+    // If user is already logged in, go directly to Stripe checkout
+    if (currentUser) {
+      await startCheckout(tier);
+    } else {
+      // Not logged in - show paywall for authentication first
+      showPaywall();
+    }
   });
 });
 

@@ -86,3 +86,127 @@ Backend listening on http://localhost:3000
 {"ts":"2025-12-07T19:53:42.042Z","level":"info","reqId":"574a8101-930c-4043-81ab-9bb31587c7c7","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
 {"ts":"2025-12-07T19:53:42.043Z","level":"info","reqId":"b3fa2739-dd85-48e6-8045-12420d36a57a","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
 {"ts":"2025-12-07T19:53:42.071Z","level":"info","reqId":"ec497701-68e6-42ef-9bd4-fc175ae5e6b2","method":"GET","path":"/api/me","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:45:55.570Z","level":"info","reqId":"57d5e6ab-ed42-41e0-978e-401080cf4148","method":"GET","path":"/workspace","status":200,"durationMs":10}
+{"ts":"2025-12-07T20:45:55.589Z","level":"info","reqId":"442e6bc3-202d-4d9d-b76e-4464f5b810e3","method":"GET","path":"/api/me","status":304,"durationMs":1}
+{"ts":"2025-12-07T20:45:55.660Z","level":"info","reqId":"a89e827f-8b09-47b2-a2a8-6325d6bda949","method":"GET","path":"/favicon.ico","status":404,"durationMs":41}
+{"ts":"2025-12-07T20:46:22.583Z","level":"info","reqId":"0b7d2aa1-78de-46bb-ae93-8e71245213ee","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+{"ts":"2025-12-07T20:47:25.346Z","level":"info","reqId":"94ce06bf-2ec1-40fd-80f4-9895c52dd7b4","method":"GET","path":"/","status":200,"durationMs":3}
+{"ts":"2025-12-07T20:47:25.409Z","level":"info","reqId":"d2ae40e0-2f9e-4518-86fc-c4381969c472","method":"GET","path":"/styles/main.css","status":304,"durationMs":1}
+{"ts":"2025-12-07T20:47:25.413Z","level":"info","reqId":"b74f13bf-b642-4775-930c-5d4be41d05c1","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
+{"ts":"2025-12-07T20:47:25.545Z","level":"info","reqId":"82728f78-532a-4255-88dd-e5c991d0a8d5","method":"GET","path":"/api/me","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:47:28.226Z","level":"info","reqId":"0747212d-a8c1-4baf-8356-8df8d030562a","method":"GET","path":"/workspace?sample=true","status":200,"durationMs":4}
+{"ts":"2025-12-07T20:47:28.500Z","level":"info","reqId":"ffc298e1-3dca-4f0a-a209-e463cb48d2b7","method":"GET","path":"/sample-report.json","status":304,"durationMs":1}
+{"ts":"2025-12-07T20:47:28.500Z","level":"info","reqId":"07bbab64-03e6-454a-b35d-ac8d9b4b91ac","method":"GET","path":"/api/me","status":304,"durationMs":2}
+[email][dev] To: matsumatsha@gmail.com
+Subject: Your Recruiter in Your Pocket code
+
+Your code: 235372
+
+Enter this code to continue your upgrade or sign in from another device.
+The code expires in 15 minutes.
+
+If you did not request this, you can ignore this email.
+{"ts":"2025-12-07T20:47:31.608Z","level":"info","msg":"login_code_sent","email":"matsumatsha@gmail.com"}
+{"ts":"2025-12-07T20:47:31.609Z","level":"info","reqId":"df56b6bd-a5a7-450d-8185-f9df4de8be9a","method":"POST","path":"/api/login/request-code","status":200,"durationMs":2345}
+{"ts":"2025-12-07T20:47:36.428Z","level":"info","reqId":"cfd84b4d-49e6-4262-81ca-6afc3d17e3ac","method":"GET","path":"/api/reports","status":401,"durationMs":1}
+[email][dev] To: mattrshaw2011@gmail.com
+Subject: Your Recruiter in Your Pocket code
+
+Your code: 981101
+
+Enter this code to continue your upgrade or sign in from another device.
+The code expires in 15 minutes.
+
+If you did not request this, you can ignore this email.
+{"ts":"2025-12-07T20:47:41.123Z","level":"info","msg":"login_code_sent","email":"mattrshaw2011@gmail.com"}
+{"ts":"2025-12-07T20:47:41.124Z","level":"info","reqId":"57f67920-5da1-4731-b9ee-b6ded44f45ba","method":"POST","path":"/api/login/request-code","status":200,"durationMs":828}
+{"ts":"2025-12-07T20:48:27.255Z","level":"info","reqId":"ef5eb7ce-9218-48e9-a048-d0a499b1cd23","method":"POST","path":"/api/login/verify","status":400,"durationMs":1936}
+{"ts":"2025-12-07T20:49:21.167Z","level":"info","msg":"rate_limit_cleanup","removed":1,"remaining":0}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+{"ts":"2025-12-07T20:51:58.907Z","level":"info","reqId":"d2d31e1a-d8dc-4cb9-8cd8-9c6a4471eab3","method":"GET","path":"/","status":304,"durationMs":13}
+{"ts":"2025-12-07T20:51:58.939Z","level":"info","reqId":"27cdee45-8562-4b47-a0fc-8bdfdde24092","method":"GET","path":"/styles/main.css","status":304,"durationMs":1}
+{"ts":"2025-12-07T20:51:58.940Z","level":"info","reqId":"f5bb1606-c6d8-471e-bcd4-ba27e359d49c","method":"GET","path":"/scripts/main.js","status":304,"durationMs":0}
+{"ts":"2025-12-07T20:51:59.056Z","level":"info","reqId":"ec70f9c1-2318-4754-95b8-ce5f246dddac","method":"GET","path":"/api/me","status":304,"durationMs":8}
+{"ts":"2025-12-07T20:52:26.206Z","level":"info","reqId":"969d6552-ad85-4f18-ad9a-1a0991591b56","method":"GET","path":"/workspace?sample=true","status":304,"durationMs":3}
+{"ts":"2025-12-07T20:52:26.248Z","level":"info","reqId":"556ce711-2156-46c5-b147-3573b55e4a3f","method":"GET","path":"/api/me","status":304,"durationMs":3}
+{"ts":"2025-12-07T20:52:26.248Z","level":"info","reqId":"de95951b-1235-4525-b3e4-e58fb6727969","method":"GET","path":"/sample-report.json","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:52:28.207Z","level":"info","reqId":"ccf6cf6f-3565-49c7-8969-01b9c48f081b","method":"GET","path":"/api/reports","status":401,"durationMs":2}
+[mailer] Checking SMTP config: {
+  hasHost: true,
+  hasPort: true,
+  hasUser: true,
+  hasPass: true,
+  host: 'smtp.resend.com',
+  port: '587'
+}
+[mailer] Creating SMTP transport...
+[mailer] SMTP transport created successfully
+{"ts":"2025-12-07T20:52:38.852Z","level":"info","msg":"login_code_sent","email":"mattrshaw2011@gmail.com"}
+{"ts":"2025-12-07T20:52:38.854Z","level":"info","reqId":"4c6d890c-2698-4736-bde0-bfb11cb2100e","method":"POST","path":"/api/login/request-code","status":200,"durationMs":6099}
+{"ts":"2025-12-07T20:53:57.653Z","level":"info","reqId":"49111a7d-46ef-4b07-ac55-60c8c528cc96","method":"POST","path":"/api/login/verify","status":200,"durationMs":2648}
+{"ts":"2025-12-07T20:53:58.620Z","level":"info","msg":"reports_list_fetched","reqId":"194baaa5-90d4-4b8f-8af8-2e06e9f11869","userId":"93899d57-567e-4470-94b0-226c26901bc7","count":0}
+{"ts":"2025-12-07T20:53:58.621Z","level":"info","reqId":"194baaa5-90d4-4b8f-8af8-2e06e9f11869","method":"GET","path":"/api/reports","status":200,"durationMs":72}
+{"ts":"2025-12-07T20:54:00.183Z","level":"info","reqId":"92532e68-3b28-42ea-912b-19b3644ca84a","method":"GET","path":"/api/me","status":200,"durationMs":62}
+{"ts":"2025-12-07T20:54:02.805Z","level":"info","msg":"reports_list_fetched","reqId":"75dc0346-fb8c-4db6-9173-3f9fee2fadc9","userId":"93899d57-567e-4470-94b0-226c26901bc7","count":0}
+{"ts":"2025-12-07T20:54:02.807Z","level":"info","reqId":"75dc0346-fb8c-4db6-9173-3f9fee2fadc9","method":"GET","path":"/api/reports","status":304,"durationMs":65}
+{"ts":"2025-12-07T20:55:21.987Z","level":"info","reqId":"39beea98-1d62-4ba7-ab8d-b18c31aa7c34","method":"GET","path":"/","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:55:22.570Z","level":"info","reqId":"7aae088b-fc71-443f-8465-bf401b7d70a6","method":"GET","path":"/styles/main.css","status":304,"durationMs":1}
+{"ts":"2025-12-07T20:55:24.093Z","level":"info","reqId":"5ab4e203-a473-4202-bb26-9ffe96cc0a06","method":"GET","path":"/scripts/main.js","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:55:25.077Z","level":"info","reqId":"289a6f43-416d-4e2f-9e4a-6c5c50ba83d4","method":"GET","path":"/api/me","status":304,"durationMs":397}
+{"ts":"2025-12-07T20:55:52.018Z","level":"info","msg":"rate_limit_cleanup","removed":1,"remaining":0}
+{"ts":"2025-12-07T20:59:16.304Z","level":"info","reqId":"76d27e6c-38db-4344-8b59-aa6a4c3a9780","method":"GET","path":"/workspace?sample=true","status":304,"durationMs":3}
+{"ts":"2025-12-07T20:59:16.896Z","level":"info","reqId":"7c767669-0f0e-40f9-86c2-277adc310f11","method":"GET","path":"/sample-report.json","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:59:18.461Z","level":"info","reqId":"96b0acf8-bdf0-4674-a5dc-ed5395fa0509","method":"GET","path":"/api/me","status":304,"durationMs":62}
+{"ts":"2025-12-07T20:59:18.526Z","level":"info","msg":"reports_list_fetched","reqId":"b49d2d4a-65a6-4c00-84df-5446f0134086","userId":"93899d57-567e-4470-94b0-226c26901bc7","count":0}
+{"ts":"2025-12-07T20:59:18.527Z","level":"info","reqId":"b49d2d4a-65a6-4c00-84df-5446f0134086","method":"GET","path":"/api/reports","status":304,"durationMs":65}
+{"ts":"2025-12-07T20:59:21.678Z","level":"info","reqId":"ccad786a-efff-4cd6-adb2-6f6816419a68","method":"GET","path":"/","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:59:22.591Z","level":"info","reqId":"266219e0-c3bf-4506-b5a5-176d362bca5e","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
+{"ts":"2025-12-07T20:59:22.592Z","level":"info","reqId":"2e62234c-26a0-4465-918b-e7e1fd1a78af","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T20:59:23.188Z","level":"info","reqId":"b8859766-3399-4dfa-9d7e-2c34ac9fb6c9","method":"GET","path":"/api/me","status":304,"durationMs":71}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+{"ts":"2025-12-07T21:00:52.848Z","level":"info","reqId":"56d586b5-fdc0-4145-9209-20a354f650d3","method":"GET","path":"/","status":304,"durationMs":2}
+{"ts":"2025-12-07T21:00:53.378Z","level":"info","reqId":"62e457fd-84c4-4c99-b02f-65ddd7474cf9","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T21:00:54.225Z","level":"info","reqId":"941909bb-5d63-4421-8896-43d2fd4bb85f","method":"GET","path":"/scripts/main.js","status":200,"durationMs":6}
+{"ts":"2025-12-07T21:00:54.883Z","level":"info","reqId":"14454493-e74d-4934-b71d-8cd1cf95c45a","method":"GET","path":"/api/me","status":304,"durationMs":456}
+{"ts":"2025-12-07T21:00:57.565Z","level":"info","reqId":"45dfa20d-ace1-49e3-97fa-e898b35ff2c3","method":"GET","path":"/workspace?sample=true","status":304,"durationMs":2}
+{"ts":"2025-12-07T21:00:58.552Z","level":"info","reqId":"4e41485d-6c22-4071-becd-3b440f671be7","method":"GET","path":"/sample-report.json","status":304,"durationMs":3}
+{"ts":"2025-12-07T21:00:58.612Z","level":"info","reqId":"3c788828-7c5c-49b3-9a27-9d3f018335a3","method":"GET","path":"/api/me","status":304,"durationMs":63}
+{"ts":"2025-12-07T21:00:59.661Z","level":"info","msg":"reports_list_fetched","reqId":"8f3931dd-2087-4899-a3a6-105c01b2cc74","userId":"93899d57-567e-4470-94b0-226c26901bc7","count":0}
+{"ts":"2025-12-07T21:00:59.662Z","level":"info","reqId":"8f3931dd-2087-4899-a3a6-105c01b2cc74","method":"GET","path":"/api/reports","status":304,"durationMs":66}
+{"ts":"2025-12-07T21:01:04.379Z","level":"info","reqId":"947eb0ae-8a8f-4ef8-97b9-d8664d1fd5a2","method":"GET","path":"/","status":304,"durationMs":2}
+{"ts":"2025-12-07T21:01:04.907Z","level":"info","reqId":"7ad61c22-5191-4330-ae28-a84d777d0489","method":"GET","path":"/scripts/main.js","status":304,"durationMs":1}
+{"ts":"2025-12-07T21:01:04.908Z","level":"info","reqId":"0bb4bcde-0af7-4469-ab2c-7562b65bde07","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T21:01:05.952Z","level":"info","reqId":"cb2c773b-b696-498b-bc0a-63e8d63c412a","method":"GET","path":"/api/me","status":304,"durationMs":65}
+{"ts":"2025-12-07T21:01:12.707Z","level":"info","msg":"checkout_session_created","reqId":"294c39c7-7291-48c9-859d-28426c4edad3","userId":"93899d57-567e-4470-94b0-226c26901bc7","tier":"24-hour","priceId":"price_1Sbo...","sessionId":"cs_test_a10ltvVS569x6uBnlbzdPs5Omp5BH6SnAbehdmpNNaQ5hj4OvWxLg0XYLS"}
+{"ts":"2025-12-07T21:01:12.708Z","level":"info","reqId":"294c39c7-7291-48c9-859d-28426c4edad3","method":"POST","path":"/api/create-checkout-session","status":200,"durationMs":1929}
+{"ts":"2025-12-07T21:01:14.278Z","level":"info","msg":"checkout_session_created","reqId":"f1acfe66-50e4-4908-ba3d-529df191673c","userId":"93899d57-567e-4470-94b0-226c26901bc7","tier":"24-hour","priceId":"price_1Sbo...","sessionId":"cs_test_a1xFPaxCs1fUNLjdtPu8wromlhmd2oIrIBn2NADYZklDkM9xBNLcjqKUct"}
+{"ts":"2025-12-07T21:01:14.279Z","level":"info","reqId":"f1acfe66-50e4-4908-ba3d-529df191673c","method":"POST","path":"/api/create-checkout-session","status":200,"durationMs":466}
+{"ts":"2025-12-07T21:02:13.064Z","level":"info","reqId":"6bb4f34b-7089-4d89-8b3e-f686d5d5f920","method":"GET","path":"/?checkout=success&tier=24h&session_id=cs_test_a10ltvVS569x6uBnlbzdPs5Omp5BH6SnAbehdmpNNaQ5hj4OvWxLg0XYLS","status":200,"durationMs":6}
+{"ts":"2025-12-07T21:02:13.648Z","level":"info","reqId":"e1a6207b-ffd3-4d1a-84f1-a970dbd0a21d","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-07T21:02:15.160Z","level":"info","reqId":"a1b3df44-baab-4eb4-826a-ac8b61149261","method":"GET","path":"/scripts/main.js","status":304,"durationMs":3}
+{"ts":"2025-12-07T21:02:16.146Z","level":"info","reqId":"bab9e354-511b-4b46-a610-42f5e3e20622","method":"GET","path":"/api/me","status":304,"durationMs":401}
+{"ts":"2025-12-07T21:02:16.795Z","level":"info","reqId":"baefb963-4fc6-4a32-b528-1bca9361f28d","method":"GET","path":"/api/me","status":304,"durationMs":64}
+{"ts":"2025-12-07T21:02:19.100Z","level":"info","msg":"checkout_session_created","reqId":"87325290-9cac-4518-aaa8-c2c0b096ac8b","userId":"93899d57-567e-4470-94b0-226c26901bc7","tier":"24-hour","priceId":"price_1Sbo...","sessionId":"cs_test_a1g0X6CoHugSh3l1sFVBnCXW0UzOzYOGzciFC29R2a3hng2on4QIaAUGNO"}
+{"ts":"2025-12-07T21:02:19.102Z","level":"info","reqId":"87325290-9cac-4518-aaa8-c2c0b096ac8b","method":"POST","path":"/api/create-checkout-session","status":200,"durationMs":467}
+{"ts":"2025-12-07T21:03:20.526Z","level":"info","msg":"checkout_session_created","reqId":"38f98cda-f133-463b-b3b4-18225679165b","userId":"93899d57-567e-4470-94b0-226c26901bc7","tier":"24-hour","priceId":"price_1Sbo...","sessionId":"cs_test_a1PseYxsg3TnDxeEr7WRG0sBvziiylcWPRZOzWRUh8MRaJSpaw9iO9EQjF"}
+{"ts":"2025-12-07T21:03:20.529Z","level":"info","reqId":"38f98cda-f133-463b-b3b4-18225679165b","method":"POST","path":"/api/create-checkout-session","status":200,"durationMs":498}
+{"ts":"2025-12-07T21:04:32.858Z","level":"info","reqId":"ef6cacc0-f12e-43f2-b027-76ce3ea61ad5","method":"GET","path":"/","status":304,"durationMs":1}
+{"ts":"2025-12-07T21:04:33.059Z","level":"info","reqId":"081603f1-68e5-4e43-ab4e-219e4d3e4139","method":"GET","path":"/styles/main.css","status":304,"durationMs":1}
+{"ts":"2025-12-07T21:04:33.510Z","level":"info","reqId":"2fcf910c-0bb5-49ca-9320-289ccabf90c0","method":"GET","path":"/scripts/main.js","status":304,"durationMs":0}
+{"ts":"2025-12-07T21:04:33.839Z","level":"info","reqId":"53c5fa39-6a3f-4336-bc8d-a0d653709e24","method":"GET","path":"/api/me","status":304,"durationMs":136}
+{"ts":"2025-12-07T21:04:36.758Z","level":"info","reqId":"c182d26f-c43a-4623-ba52-051d9a4f9c92","method":"GET","path":"/workspace?sample=true","status":304,"durationMs":3}
+{"ts":"2025-12-07T21:04:37.056Z","level":"info","reqId":"6d1341d1-544b-4204-9ec6-4c5300ffa04a","method":"GET","path":"/sample-report.json","status":304,"durationMs":1}
+{"ts":"2025-12-07T21:04:37.119Z","level":"info","reqId":"1619e6b6-c39a-4de4-a46e-694eb5799a2f","method":"GET","path":"/api/me","status":304,"durationMs":65}
+{"ts":"2025-12-07T21:04:38.228Z","level":"info","msg":"reports_list_fetched","reqId":"56e104e8-1324-4796-b349-8e0fd9f9a325","userId":"93899d57-567e-4470-94b0-226c26901bc7","count":0}
+{"ts":"2025-12-07T21:04:38.230Z","level":"info","reqId":"56e104e8-1324-4796-b349-8e0fd9f9a325","method":"GET","path":"/api/reports","status":304,"durationMs":67}
+{"ts":"2025-12-07T21:05:50.738Z","level":"info","msg":"rate_limit_cleanup","removed":1,"remaining":0}

@@ -116,6 +116,18 @@ Features considered but intentionally deferred. May revisit based on user signal
 
 **Rationale**: Core history feature is complete and launch-ready. These are nice-to-haves that should be prioritized based on actual user behavior and requests.
 
+### Personalization (Post-Launch)
+- **Personalized greeting**: "Welcome back, Matt!" when logged in
+- Extract first name from email or ask during first login
+- Aligns with design principle: induce trust and "seen" feeling
+
+### Pass Expiration Reminders (Post-Launch)
+- **12 hours left:** Email reminder of remaining time
+- **3 hours left:** Urgency reminder
+- **1 hour left:** Final warning
+- **Expired:** "Your pass has expired" with CTA to renew
+- Requires: Backend cron job or Resend scheduled emails
+
 ---
 
 ## Execution Philosophy

@@ -12,14 +12,27 @@ let transporter = null;
 
 function ensureTransport() {
   if (transporter) return transporter;
+
+  console.log('[mailer] Checking SMTP config:', {
+    hasHost: !!SMTP_HOST,
+    hasPort: !!SMTP_PORT,
+    hasUser: !!SMTP_USER,
+    hasPass: !!SMTP_PASS,
+    host: SMTP_HOST,
+    port: SMTP_PORT
+  });
+
   if (SMTP_HOST && SMTP_PORT) {
+    console.log('[mailer] Creating SMTP transport...');
     transporter = nodemailer.createTransport({
       host: SMTP_HOST,
       port: Number(SMTP_PORT),
       secure: Number(SMTP_PORT) === 465,
       auth: SMTP_USER && SMTP_PASS ? { user: SMTP_USER, pass: SMTP_PASS } : undefined
     });
+    console.log('[mailer] SMTP transport created successfully');
   } else {
+    console.log('[mailer] No SMTP config, using dev mode (console logging)');
     transporter = null;
   }
   return transporter;
