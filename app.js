@@ -560,7 +560,24 @@ app.use((req, res, next) => {
 });
 
 if (API_AUTH_TOKEN) {
+  // Endpoints that are accessed from the frontend browser (not server-to-server)
+  // These use session auth or are public/rate-limited instead of API_AUTH_TOKEN
+  const publicApiPaths = [
+    "/api/login/request-code",
+    "/api/login/verify",
+    "/api/logout",
+    "/api/me",
+    "/api/parse-resume",
+    "/api/create-checkout-session",
+    "/api/stripe/webhook"
+  ];
+
   app.use("/api", (req, res, next) => {
+    // Skip auth for public frontend endpoints
+    if (publicApiPaths.some(p => req.path === p || req.path.startsWith(p))) {
+      return next();
+    }
+
     const auth = req.headers.authorization || "";
     const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
     if (token !== API_AUTH_TOKEN) {
