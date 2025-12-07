@@ -66,7 +66,7 @@
       --fs-xl: 20px;
       --fs-2xl: 22px;
       --fs-3xl: 32px;
-      --fs-dial: 36px;
+      --fs-dial: 48px;
       --lh-very-tight: 1.1;
       --lh-tight: 1.15;
       --lh-snug: 1.2;
@@ -805,8 +805,8 @@
     }
 
     .hero-preview-dial {
-      width: 64px;
-      height: 64px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: conic-gradient(var(--accent) 0deg 0deg, var(--border-subtle) 0deg 360deg);
       display: flex;
@@ -814,6 +814,7 @@
       justify-content: center;
       position: relative;
       flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(51, 65, 166, 0.15);
       /* JS handles the conic-gradient animation; see animateHeroDialNumber() */
     }
 
@@ -826,7 +827,7 @@
     .hero-preview-dial::before {
       content: "";
       position: absolute;
-      inset: 6px;
+      inset: 7px;
       border-radius: 50%;
       background: var(--bg-card);
     }
@@ -834,9 +835,10 @@
     .hero-preview-dial-number {
       position: relative;
       font-family: var(--font-display);
-      font-size: var(--fs-xl);
+      font-size: var(--fs-h1);
       font-weight: 800;
       color: var(--accent);
+      line-height: 1;
     }
 
     .hero-preview-score-text {
@@ -3661,10 +3663,11 @@
       position: relative;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
+      border-radius: var(--radius-card);
       padding: var(--space-xl) var(--space-lg);
       display: flex;
       flex-direction: column;
+      box-shadow: var(--shadow-soft);
       transition:
         box-shadow var(--motion-duration-short) var(--motion-ease-premium),
         transform var(--motion-duration-short) var(--motion-ease-premium),
@@ -3673,17 +3676,18 @@
 
     .pricing-card:hover {
       box-shadow: var(--shadow-card);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
     }
 
     .pricing-card--popular {
       border-color: var(--accent);
       border-width: 2px;
-      box-shadow: 0 12px 32px rgba(51, 65, 166, 0.12);
+      box-shadow: 0 12px 32px rgba(51, 65, 166, 0.15), 0 0 0 4px rgba(51, 65, 166, 0.06);
     }
 
     .pricing-card--popular:hover {
-      box-shadow: 0 18px 40px rgba(51, 65, 166, 0.18);
+      box-shadow: 0 18px 40px rgba(51, 65, 166, 0.22), 0 0 0 6px rgba(51, 65, 166, 0.08);
+      transform: translateY(-5px);
     }
 
     .pricing-card-popular-badge {
@@ -3691,15 +3695,16 @@
       top: calc(var(--space-sm-alt) * -1);
       left: 50%;
       transform: translateX(-50%);
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
       color: white;
       font-size: var(--fs-tiny);
       font-weight: 700;
-      padding: var(--space-xxs) var(--space-md);
+      padding: var(--space-xxs) var(--space-lg);
       border-radius: var(--radius-pill);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(51, 65, 166, 0.3);
     }
 
     .pricing-card-header {
