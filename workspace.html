@@ -802,24 +802,97 @@
 
     .first-10-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--space-sm);
-      margin-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      position: relative;
     }
 
     .first-10-icon {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .first-10-titles {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xxs);
     }
 
     .first-10-title {
       font-family: var(--font-display);
-      font-size: var(--fs-xs);
+      font-size: var(--fs-body);
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       color: var(--accent);
+    }
+
+    .first-10-subtitle {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      font-weight: 450;
+      line-height: var(--lh-relaxed);
+    }
+
+    .research-tooltip-trigger {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: var(--fs-xs);
+      padding: 0 var(--space-xxs);
+      opacity: 0.7;
+      transition: opacity var(--motion-duration-short), color var(--motion-duration-short);
+    }
+
+    .research-tooltip-trigger:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    .research-tooltip-panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + var(--space-xs));
+      left: 0;
+      right: 0;
+      max-width: 400px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-modal);
+      padding: var(--space-md);
+      z-index: 100;
+      animation: tooltipFadeIn 0.2s ease-out;
+    }
+
+    .research-tooltip-panel.visible {
+      display: block;
+    }
+
+    .research-tooltip-panel p {
+      font-size: var(--fs-small);
+      line-height: var(--lh-relaxed);
+      color: var(--text-main);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .research-link {
+      display: inline-block;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--motion-duration-short);
+    }
+
+    .research-link:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
     }
 
     .first-10-content {
@@ -2093,7 +2166,7 @@
               <div class="score-dial-label">Score</div>
             </div>
             <div class="score-content">
-              <!-- First 10 Seconds - The Recruiter Read (4-6 sentences) -->
+              <!-- Recruiter First Impression - The Recruiter Read -->
               <div class="first-10-seconds" id="first-10-seconds" style="display: none;">
                 <div class="first-10-header">
                   <!-- Solar: Eye Broken -->
@@ -2104,7 +2177,22 @@
                       stroke="currentColor" stroke-width="1.5" />
                     <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="1.5" />
                   </svg>
-                  <span class="first-10-title">First 10 Seconds</span>
+                  <div class="first-10-titles">
+                    <span class="first-10-title">Recruiter First Impression</span>
+                    <span class="first-10-subtitle">
+                      Did you know? Recruiters often decide whether to move you forward or pass in about 6 seconds
+                      according to eye-tracking research.
+                      <button class="research-tooltip-trigger" aria-label="View research details">ⓘ</button>
+                    </span>
+                  </div>
+                  <!-- Research Tooltip Panel -->
+                  <div class="research-tooltip-panel" id="research-tooltip-panel">
+                    <p>Recruiters skim a resume in about 6 seconds before deciding whether to advance it. Eye-tracking
+                      research shows they focus on your title, company, dates, and the first signs of measurable impact.
+                    </p>
+                    <a href="https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf" target="_blank"
+                      rel="noopener noreferrer" class="research-link">View the research →</a>
+                  </div>
                 </div>
                 <div class="first-10-content" id="first-10-content">
                   <!-- 4-6 sentence recruiter read goes here -->
@@ -3111,6 +3199,25 @@ Technical: Python basics, API integrations, Agile/Scrum`;
           scoringTooltipPanel.classList.remove('visible');
           scoringTooltipTrigger.setAttribute('aria-expanded', 'false');
           scoringTooltipPanel.setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
+
+    // Research Tooltip Toggle (First Impression section)
+    const researchTooltipTrigger = document.querySelector('.research-tooltip-trigger');
+    const researchTooltipPanel = document.getElementById('research-tooltip-panel');
+
+    if (researchTooltipTrigger && researchTooltipPanel) {
+      researchTooltipTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isVisible = researchTooltipPanel.classList.contains('visible');
+        researchTooltipPanel.classList.toggle('visible', !isVisible);
+      });
+
+      // Close on click outside
+      document.addEventListener('click', (e) => {
+        if (!researchTooltipPanel.contains(e.target) && e.target !== researchTooltipTrigger) {
+          researchTooltipPanel.classList.remove('visible');
         }
       });
     }
