@@ -1577,6 +1577,17 @@
 </head>
 
 <body>
+  <!-- Instant report mode detection - prevents flash of split layout -->
+  <script>
+    (function () {
+      if (/\/workspace\/report\//.test(window.location.pathname)) {
+        document.addEventListener('DOMContentLoaded', function () {
+          var ws = document.querySelector('.workspace');
+          if (ws) ws.dataset.mode = 'report';
+        });
+      }
+    })();
+  </script>
   <!-- History Overlay -->
   <div class="history-overlay" id="history-overlay"></div>
 
@@ -2045,10 +2056,15 @@
     // Check URL on load to determine initial mode
     function checkInitialRoute() {
       const path = window.location.pathname;
-      const reportMatch = path.match(/\/workspace\/report\/(\d+)/);
+      // Match both numeric IDs and 'sample'
+      const reportMatch = path.match(/\/workspace\/report\/(\d+|sample)/);
       if (reportMatch) {
-        const reportId = parseInt(reportMatch[1], 10);
-        loadReportById(reportId);
+        const reportId = reportMatch[1];
+        if (reportId === 'sample') {
+          loadSampleReport();
+        } else {
+          loadReportById(parseInt(reportId, 10));
+        }
       } else {
         setWorkspaceMode('input');
       }
@@ -2573,11 +2589,13 @@
     sampleReportBtn.addEventListener('click', loadSampleReport);
 
     async function loadSampleReport() {
+      showLoading(); // Show spinner immediately
       try {
         const response = await fetch('/sample-report.json');
         const report = await response.json();
         currentReport = report;
         reportEmpty.style.display = 'none';
+        hideLoading();
         renderReport(report);
         setActiveTab('overview');
         // Pre-fill a sample resume text for context
@@ -2616,6 +2634,7 @@ Technical: Python basics, API integrations, Agile/Scrum`;
         // Switch to report mode (sample reports use 'sample' as ID)
         setWorkspaceMode('report', 'sample');
       } catch (err) {
+        hideLoading();
         console.error('Failed to load sample report', err);
         alert('Could not load sample report. Please try again.');
       }
