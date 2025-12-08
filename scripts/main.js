@@ -509,12 +509,18 @@ function setTierInfo(tier) {
   }
 }
 
-(function handleCheckoutParams() {
+(async function handleCheckoutParams() {
   const params = new URLSearchParams(window.location.search);
   const status = params.get("checkout");
   const tier = params.get("tier");
   if (status === "success") {
-    refreshSessionState();
+    // Refresh auth state after successful checkout
+    await refreshSessionState();
+    // Update the auth UI (will show personalized greeting if user has first_name)
+    if (typeof updateAuthUI === "function") {
+      updateAuthUI();
+    }
+    logEvent("checkout_completed", { tier: tier || "24h" });
     const clean = window.location.pathname + window.location.hash;
     if (window.history && window.history.replaceState) {
       window.history.replaceState({}, document.title, clean);
@@ -3235,6 +3241,464 @@ function initChapterObserver() {
     mutationObserver.observe(resultsBody, { childList: true, subtree: true });
   }
 }
+
+// ============================================================
+// Header Auth System
+// ============================================================
+
+const GREETING_VARIANTS = [
+  "How can I help, {name}?",
+  "Hey, {name}. Ready to dive in?",
+  "What are you working on, {name}?"
+];
+
+// Toast notification system
+const toastContainer = document.getElementById("toast-container");
+
+function showToast(message, type = "success", duration = 4000) {
+  if (!toastContainer) return;
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+
+  const icon = type === "success" ? "🎉" : type === "error" ? "❌" : "ℹ️";
+  toast.innerHTML = `
+    <span class="toast-icon">${icon}</span>
+    <span class="toast-message">${message}</span>
+  `;
+
+  toastContainer.appendChild(toast);
+
+  // Auto-dismiss
+  setTimeout(() => {
+    toast.classList.add("hiding");
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+}
+
+// Update pricing section based on active pass
+function updatePricingSection() {
+  const pricingButtons = document.querySelectorAll(".pricing-card-cta[data-tier]");
+
+  if (!activePass) {
+    // Remove active state from all buttons
+    pricingButtons.forEach(btn => {
+      btn.classList.remove("pass-active");
+      const tier = btn.getAttribute("data-tier");
+      if (tier === "24h") {
+        btn.textContent = "Get 24-Hour Fix Pass";
+      } else if (tier === "30d") {
+        btn.textContent = "Get 30-Day Campaign Pass";
+      }
+    });
+    return;
+  }
+
+  // Show "Active" state on pricing buttons
+  const passType = activePass.type || "24h";
+  const expiresAt = new Date(activePass.expires_at);
+  const now = new Date();
+  const diffMs = expiresAt - now;
+
+  if (diffMs <= 0) return;
+
+  const hours = Math.floor(diffMs / (1000 * 60 * 60));
+  const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+  const timeText = hours > 0 ? `${hours}h ${minutes}m left` : `${minutes}m left`;
+
+  pricingButtons.forEach(btn => {
+    const tier = btn.getAttribute("data-tier");
+    if (tier === passType) {
+      btn.classList.add("pass-active");
+      btn.textContent = `Active — ${timeText}`;
+    } else {
+      btn.classList.remove("pass-active");
+    }
+  });
+}
+
+// Auth DOM elements
+const authSkeleton = document.getElementById("auth-skeleton");
+const signInBtn = document.getElementById("sign-in-btn");
+const passBadge = document.getElementById("pass-badge");
+const passBadgeTime = document.getElementById("pass-badge-time");
+const userDropdown = document.getElementById("user-dropdown");
+const userDropdownBtn = document.getElementById("user-dropdown-btn");
+const userDropdownMenu = document.getElementById("user-dropdown-menu");
+const userAvatar = document.getElementById("user-avatar");
+const userEmailDisplay = document.getElementById("user-email-display");
+const dropdownEmail = document.getElementById("dropdown-email");
+const dropdownPassInfo = document.getElementById("dropdown-pass-info");
+const signOutBtn = document.getElementById("sign-out-btn");
+
+// Auth modal elements
+const authModalBackdrop = document.getElementById("auth-modal-backdrop");
+const authModalClose = document.getElementById("auth-modal-close");
+const authEmailStep = document.getElementById("auth-email-step");
+const authCodeStep = document.getElementById("auth-code-step");
+const authNameStep = document.getElementById("auth-name-step");
+const authEmailInput = document.getElementById("auth-email-input");
+const authCodeInput = document.getElementById("auth-code-input");
+const authNameInput = document.getElementById("auth-name-input");
+const authSendCodeBtn = document.getElementById("auth-send-code-btn");
+const authVerifyBtn = document.getElementById("auth-verify-btn");
+const authBackBtn = document.getElementById("auth-back-btn");
+const authSaveNameBtn = document.getElementById("auth-save-name-btn");
+const authSkipNameBtn = document.getElementById("auth-skip-name-btn");
+const authModalStatus = document.getElementById("auth-modal-status");
+
+// Hero greeting element
+const heroTitle = document.querySelector(".hero-title");
+const DEFAULT_HERO_TEXT = "See how recruiters actually read your resume.";
+
+let authEmail = "";
+
+function updateAuthUI() {
+  // Hide skeleton
+  if (authSkeleton) authSkeleton.style.display = "none";
+
+  if (currentUser) {
+    // Logged in state
+    if (signInBtn) signInBtn.style.display = "none";
+    if (userDropdown) userDropdown.style.display = "block";
+
+    // Set avatar (first letter of name or email)
+    const displayName = currentUser.first_name || currentUser.email;
+    const initial = displayName ? displayName.charAt(0).toUpperCase() : "U";
+    if (userAvatar) userAvatar.textContent = initial;
+
+    // Set email display
+    const emailDisplay = currentUser.email.length > 15
+      ? currentUser.email.substring(0, 12) + "..."
+      : currentUser.email;
+    if (userEmailDisplay) userEmailDisplay.textContent = emailDisplay;
+    if (dropdownEmail) dropdownEmail.textContent = currentUser.email;
+
+    // Update hero greeting if user has first_name
+    updateHeroGreeting();
+
+    // Update pass badge
+    updatePassBadge();
+  } else {
+    // Guest state
+    if (signInBtn) signInBtn.style.display = "block";
+    if (userDropdown) userDropdown.style.display = "none";
+    if (passBadge) passBadge.style.display = "none";
+
+    // Reset hero to default
+    if (heroTitle) heroTitle.textContent = DEFAULT_HERO_TEXT;
+  }
+
+  // Always update pricing section
+  updatePricingSection();
+}
+
+function updateHeroGreeting() {
+  if (!heroTitle || !currentUser) return;
+
+  const firstName = currentUser.first_name;
+  if (firstName) {
+    // Pick a random greeting variant
+    const variant = GREETING_VARIANTS[Math.floor(Math.random() * GREETING_VARIANTS.length)];
+    heroTitle.textContent = variant.replace("{name}", firstName);
+  } else {
+    heroTitle.textContent = DEFAULT_HERO_TEXT;
+  }
+}
+
+function updatePassBadge() {
+  if (!activePass || !passBadge) {
+    if (passBadge) passBadge.style.display = "none";
+    if (dropdownPassInfo) dropdownPassInfo.style.display = "none";
+    return;
+  }
+
+  const expiresAt = new Date(activePass.expires_at);
+  const now = new Date();
+  const diffMs = expiresAt - now;
+
+  if (diffMs <= 0) {
+    if (passBadge) passBadge.style.display = "none";
+    if (dropdownPassInfo) dropdownPassInfo.style.display = "none";
+    return;
+  }
+
+  const hours = Math.floor(diffMs / (1000 * 60 * 60));
+  const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+  const timeText = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+
+  if (passBadgeTime) passBadgeTime.textContent = timeText;
+  if (passBadge) passBadge.style.display = "inline-flex";
+
+  // Update dropdown pass info
+  if (dropdownPassInfo) {
+    const passType = activePass.type === "24h" ? "24-Hour Pass" : "30-Day Pass";
+    dropdownPassInfo.textContent = `${passType} — ${timeText} left`;
+    dropdownPassInfo.style.display = "block";
+  }
+}
+
+// User dropdown toggle
+if (userDropdownBtn) {
+  userDropdownBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    userDropdown.classList.toggle("open");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (userDropdown && !userDropdown.contains(e.target)) {
+      userDropdown.classList.remove("open");
+    }
+  });
+}
+
+// Sign out handler
+if (signOutBtn) {
+  signOutBtn.addEventListener("click", async () => {
+    try {
+      await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include"
+      });
+      currentUser = null;
+      activePass = null;
+      updateAuthUI();
+      userDropdown.classList.remove("open");
+      trackEvent("logged_out");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  });
+}
+
+// Sign in button opens modal
+if (signInBtn) {
+  signInBtn.addEventListener("click", () => openAuthModal());
+}
+
+function openAuthModal() {
+  if (!authModalBackdrop) return;
+  authModalBackdrop.classList.add("open");
+  // Reset to email step
+  showAuthStep("email");
+  if (authEmailInput) authEmailInput.focus();
+}
+
+function closeAuthModal() {
+  if (!authModalBackdrop) return;
+  authModalBackdrop.classList.remove("open");
+  // Reset inputs
+  if (authEmailInput) authEmailInput.value = "";
+  if (authCodeInput) authCodeInput.value = "";
+  if (authNameInput) authNameInput.value = "";
+  if (authModalStatus) authModalStatus.textContent = "";
+  authEmail = "";
+}
+
+function showAuthStep(step) {
+  if (authEmailStep) authEmailStep.style.display = step === "email" ? "block" : "none";
+  if (authCodeStep) authCodeStep.style.display = step === "code" ? "block" : "none";
+  if (authNameStep) authNameStep.style.display = step === "name" ? "block" : "none";
+  if (authModalStatus) authModalStatus.textContent = "";
+}
+
+// Close modal handlers
+if (authModalClose) {
+  authModalClose.addEventListener("click", closeAuthModal);
+}
+if (authModalBackdrop) {
+  authModalBackdrop.addEventListener("click", (e) => {
+    if (e.target === authModalBackdrop) closeAuthModal();
+  });
+}
+
+// Send code handler
+if (authSendCodeBtn) {
+  authSendCodeBtn.addEventListener("click", async () => {
+    const email = (authEmailInput?.value || "").trim();
+    if (!email) {
+      if (authModalStatus) authModalStatus.textContent = "Enter your email.";
+      return;
+    }
+
+    authEmail = email;
+    authSendCodeBtn.disabled = true;
+    if (authModalStatus) authModalStatus.textContent = "Sending code...";
+
+    try {
+      const resp = await fetch("/api/login/request-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email })
+      });
+      const data = await resp.json();
+
+      if (!resp.ok || !data.ok) {
+        if (authModalStatus) authModalStatus.textContent = data.message || "Could not send code.";
+        authSendCodeBtn.disabled = false;
+        return;
+      }
+
+      showAuthStep("code");
+      if (authCodeInput) authCodeInput.focus();
+    } catch (err) {
+      if (authModalStatus) authModalStatus.textContent = "Could not send code.";
+    }
+    authSendCodeBtn.disabled = false;
+  });
+}
+
+// Back button handler
+if (authBackBtn) {
+  authBackBtn.addEventListener("click", () => {
+    showAuthStep("email");
+  });
+}
+
+// Verify code handler
+if (authVerifyBtn) {
+  authVerifyBtn.addEventListener("click", async () => {
+    const code = (authCodeInput?.value || "").trim();
+    if (!code || !authEmail) {
+      if (authModalStatus) authModalStatus.textContent = "Enter the code from your email.";
+      return;
+    }
+
+    authVerifyBtn.disabled = true;
+    if (authModalStatus) authModalStatus.textContent = "Verifying...";
+
+    try {
+      const resp = await fetch("/api/login/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email: authEmail, code })
+      });
+      const data = await resp.json();
+
+      if (!resp.ok || !data.ok) {
+        if (authModalStatus) {
+          authModalStatus.textContent = data.message || "Invalid code.";
+          authModalStatus.classList.add("error");
+        }
+        authVerifyBtn.disabled = false;
+        return;
+      }
+
+      // Success!
+      currentUser = data.user;
+      activePass = data.active_pass || null;
+
+      // Check if we need to collect first name
+      if (!currentUser.first_name) {
+        showAuthStep("name");
+        if (authNameInput) {
+          // Pre-fill with email prefix as suggestion
+          const emailPrefix = authEmail.split("@")[0];
+          const capitalized = emailPrefix.charAt(0).toUpperCase() + emailPrefix.slice(1).replace(/[^a-zA-Z]/g, "");
+          authNameInput.placeholder = capitalized || "Matt";
+          authNameInput.focus();
+        }
+      } else {
+        // Already has name, just close
+        closeAuthModal();
+        updateAuthUI();
+        trackEvent("logged_in", { has_name: true });
+        const name = currentUser.first_name || "";
+        showToast(name ? `Welcome back, ${name}!` : "Welcome back!");
+      }
+    } catch (err) {
+      if (authModalStatus) authModalStatus.textContent = "Could not verify code.";
+    }
+    authVerifyBtn.disabled = false;
+  });
+}
+
+// Save name handler
+if (authSaveNameBtn) {
+  authSaveNameBtn.addEventListener("click", async () => {
+    const firstName = (authNameInput?.value || "").trim();
+    if (!firstName) {
+      if (authModalStatus) authModalStatus.textContent = "Please enter your name.";
+      return;
+    }
+
+    authSaveNameBtn.disabled = true;
+    if (authModalStatus) authModalStatus.textContent = "Saving...";
+
+    try {
+      const resp = await fetch("/api/update-first-name", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ first_name: firstName })
+      });
+      const data = await resp.json();
+
+      if (!resp.ok || !data.ok) {
+        if (authModalStatus) authModalStatus.textContent = data.message || "Could not save name.";
+        authSaveNameBtn.disabled = false;
+        return;
+      }
+
+      currentUser = data.user;
+      closeAuthModal();
+      updateAuthUI();
+      trackEvent("logged_in", { has_name: true, name_collected: true });
+      showToast(`Welcome, ${currentUser.first_name}!`);
+    } catch (err) {
+      if (authModalStatus) authModalStatus.textContent = "Could not save name.";
+    }
+    authSaveNameBtn.disabled = false;
+  });
+}
+
+// Skip name handler
+if (authSkipNameBtn) {
+  authSkipNameBtn.addEventListener("click", () => {
+    closeAuthModal();
+    updateAuthUI();
+    trackEvent("logged_in", { has_name: false, name_skipped: true });
+    showToast("You're signed in!");
+  });
+}
+
+// Initialize auth UI on page load
+async function initAuthUI() {
+  // Show skeleton while loading
+  if (authSkeleton) authSkeleton.style.display = "block";
+  if (signInBtn) signInBtn.style.display = "none";
+  if (userDropdown) userDropdown.style.display = "none";
+
+  // Check if returning from checkout
+  const params = new URLSearchParams(window.location.search);
+  const isPostCheckout = params.get("checkout") === "success";
+
+  if (isPostCheckout) {
+    // Wait a bit longer for webhook to process and session to update
+    await new Promise(r => setTimeout(r, 500));
+    await refreshSessionState();
+    trackEvent("checkout_completed", { tier: params.get("tier") || "24h" });
+
+    // Show success toast
+    const tierLabel = params.get("tier") === "30d" ? "30-Day" : "24-Hour";
+    const name = currentUser?.first_name;
+    showToast(name
+      ? `${name}, your ${tierLabel} Pass is active!`
+      : `Your ${tierLabel} Pass is active!`
+    );
+  } else {
+    // Normal page load - wait for session check
+    await new Promise(r => setTimeout(r, 100));
+  }
+
+  updateAuthUI();
+}
+
+// Run auth UI initialization
+initAuthUI();
 
 (function init() {
   loadSavedInput();

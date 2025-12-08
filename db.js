@@ -38,8 +38,17 @@ async function ensureSchema() {
     CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY,
       email TEXT NOT NULL UNIQUE,
+      first_name TEXT,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
+
+    -- Add first_name column if it doesn't exist (for existing DBs)
+    DO $$ 
+    BEGIN 
+      IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='first_name') THEN
+        ALTER TABLE users ADD COLUMN first_name TEXT;
+      END IF;
+    END $$;
 
     CREATE TABLE IF NOT EXISTS login_codes (
       id TEXT PRIMARY KEY,
@@ -103,6 +112,7 @@ function mapUser(row) {
   return {
     id: row.id,
     email: row.email,
+    first_name: row.first_name || null,
     created_at: toIso(row.created_at)
   };
 }
@@ -114,7 +124,7 @@ async function upsertUserByEmail(email) {
       INSERT INTO users (id, email, created_at)
       VALUES ($1, $2, $3)
       ON CONFLICT (email) DO UPDATE SET email = EXCLUDED.email
-      RETURNING id, email, created_at
+      RETURNING id, email, first_name, created_at
     `,
     [uuid(), email, now()]
   );
@@ -124,7 +134,7 @@ async function upsertUserByEmail(email) {
 async function getUserByEmail(email) {
   await initPromise;
   const { rows } = await pool.query(
-    `SELECT id, email, created_at FROM users WHERE email = $1`,
+    `SELECT id, email, first_name, created_at FROM users WHERE email = $1`,
     [email]
   );
   return mapUser(rows[0]);
@@ -133,7 +143,7 @@ async function getUserByEmail(email) {
 async function getUserById(id) {
   await initPromise;
   const { rows } = await pool.query(
-    `SELECT id, email, created_at FROM users WHERE id = $1`,
+    `SELECT id, email, first_name, created_at FROM users WHERE id = $1`,
     [id]
   );
   return mapUser(rows[0]);
@@ -408,6 +418,15 @@ async function getReportById(reportId, userId) {
   return mapReport(rows[0]);
 }
 
+async function updateUserFirstName(userId, firstName) {
+  await initPromise;
+  const { rows } = await pool.query(
+    `UPDATE users SET first_name = $1 WHERE id = $2 RETURNING id, email, first_name, created_at`,
+    [firstName, userId]
+  );
+  return mapUser(rows[0]);
+}
+
 module.exports = {
   pool,
   healthCheck,
@@ -426,6 +445,7 @@ module.exports = {
   saveReport,
   getReportsForUser,
   getReportById,
+  updateUserFirstName,
   now,
   uuid
 };

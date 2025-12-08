@@ -22,16 +22,48 @@
 </head>
 
 <body>
+  <!-- Toast notifications -->
+  <div id="toast-container" class="toast-container"></div>
+
   <div class="page">
     <div class="page-inner">
       <header class="top-bar">
         <div class="brand">
           <div class="brand-wordmark">Recruiter in Your Pocket</div>
         </div>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode"
-          title="Toggle dark mode">
-          <span class="theme-toggle-icon">🌙</span>
-        </button>
+        <div class="header-actions">
+          <!-- Auth loading skeleton -->
+          <div id="auth-skeleton" class="auth-skeleton"></div>
+
+          <!-- Guest state: Sign In button -->
+          <button id="sign-in-btn" class="header-btn sign-in-btn" style="display: none;">Sign In</button>
+
+          <!-- Pass badge (shown when user has active pass) -->
+          <div id="pass-badge" class="pass-badge" style="display: none;">
+            <span class="pass-badge-icon">🎟️</span>
+            <span id="pass-badge-time" class="pass-badge-time"></span>
+          </div>
+
+          <!-- User dropdown (shown when logged in) -->
+          <div id="user-dropdown" class="user-dropdown" style="display: none;">
+            <button id="user-dropdown-btn" class="user-dropdown-btn" type="button">
+              <span id="user-avatar" class="user-avatar"></span>
+              <span id="user-email-display" class="user-email-display"></span>
+              <span class="dropdown-arrow">▾</span>
+            </button>
+            <div id="user-dropdown-menu" class="user-dropdown-menu">
+              <div id="dropdown-email" class="dropdown-item dropdown-email"></div>
+              <div id="dropdown-pass-info" class="dropdown-item dropdown-pass-info" style="display: none;"></div>
+              <div class="dropdown-divider"></div>
+              <button id="sign-out-btn" class="dropdown-item sign-out-btn" type="button">Sign Out</button>
+            </div>
+          </div>
+
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode"
+            title="Toggle dark mode">
+            <span class="theme-toggle-icon">🌙</span>
+          </button>
+        </div>
       </header>
 
       <div id="loading-bar"></div>
@@ -545,6 +577,59 @@
           editing. We don't spam. Just access.
         </p>
       </section>
+
+      <!-- Sign-in Modal -->
+      <div id="auth-modal-backdrop" class="auth-modal-backdrop" role="dialog" aria-modal="true">
+        <div class="auth-modal" style="position: relative;">
+          <button id="auth-modal-close" class="auth-modal-close" type="button" aria-label="Close">&times;</button>
+
+          <!-- Email step -->
+          <div id="auth-email-step">
+            <h2 class="auth-modal-title">Sign In</h2>
+            <p class="auth-modal-subtitle">Enter your email to access your reports and passes.</p>
+
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="auth-email-input">Email</label>
+              <input type="email" id="auth-email-input" class="auth-input" placeholder="you@example.com">
+            </div>
+
+            <button id="auth-send-code-btn" class="auth-btn" type="button">Send Code</button>
+          </div>
+
+          <!-- Code step -->
+          <div id="auth-code-step" style="display: none;">
+            <h2 class="auth-modal-title">Check Your Email</h2>
+            <p class="auth-modal-subtitle">Enter the 6-digit code we sent you.</p>
+
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="auth-code-input">Code</label>
+              <input type="text" id="auth-code-input" class="auth-input" placeholder="123456" maxlength="6">
+            </div>
+
+            <button id="auth-verify-btn" class="auth-btn" type="button">Verify</button>
+            <button id="auth-back-btn" class="auth-btn" type="button"
+              style="background: transparent; color: var(--text-soft); margin-top: var(--space-xs);">← Back</button>
+          </div>
+
+          <!-- First name step -->
+          <div id="auth-name-step" style="display: none;">
+            <h2 class="auth-modal-title">Welcome!</h2>
+            <p class="auth-modal-subtitle">What should we call you?</p>
+
+            <div class="auth-input-group">
+              <label class="auth-input-label" for="auth-name-input">First name</label>
+              <input type="text" id="auth-name-input" class="auth-input" placeholder="Matt">
+            </div>
+
+            <button id="auth-save-name-btn" class="auth-btn" type="button">Continue →</button>
+            <button id="auth-skip-name-btn" class="auth-btn" type="button"
+              style="background: transparent; color: var(--text-muted); margin-top: var(--space-xs);">Skip for
+              now</button>
+          </div>
+
+          <div id="auth-modal-status" class="auth-status"></div>
+        </div>
+      </div>
 
       <div id="paywall-backdrop" class="paywall-backdrop" role="dialog" aria-modal="true"
         aria-labelledby="paywall-title">

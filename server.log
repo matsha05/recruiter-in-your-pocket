@@ -210,3 +210,111 @@ Backend listening on http://localhost:3000
 {"ts":"2025-12-07T21:04:38.228Z","level":"info","msg":"reports_list_fetched","reqId":"56e104e8-1324-4796-b349-8e0fd9f9a325","userId":"93899d57-567e-4470-94b0-226c26901bc7","count":0}
 {"ts":"2025-12-07T21:04:38.230Z","level":"info","reqId":"56e104e8-1324-4796-b349-8e0fd9f9a325","method":"GET","path":"/api/reports","status":304,"durationMs":67}
 {"ts":"2025-12-07T21:05:50.738Z","level":"info","msg":"rate_limit_cleanup","removed":1,"remaining":0}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (15) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Stripe is configured but API_AUTH_TOKEN is not set. In non-production this is allowed, but avoid exposing payment endpoints without auth in shared environments.
+Server starting in directory: /Users/matsha05/Desktop/dev/recruiter-in-your-pocket
+Backend listening on http://localhost:3000
+{"ts":"2025-12-08T01:31:44.071Z","level":"info","reqId":"04f6b722-e0b5-4256-875c-2a5ce75aec5e","method":"GET","path":"/","status":200,"durationMs":19}
+{"ts":"2025-12-08T01:31:45.001Z","level":"info","reqId":"901c066a-a987-4a30-97db-81a952c90127","method":"GET","path":"/styles/main.css","status":200,"durationMs":7}
+{"ts":"2025-12-08T01:31:46.113Z","level":"info","reqId":"62a15458-a8e3-46c2-a372-3f42fba284b2","method":"GET","path":"/scripts/main.js","status":200,"durationMs":5}
+{"ts":"2025-12-08T01:31:47.097Z","level":"info","reqId":"bb45f9e0-bf1f-4004-bc3c-5c672126beb7","method":"GET","path":"/api/me","status":304,"durationMs":71}
+{"ts":"2025-12-08T01:31:58.048Z","level":"info","msg":"checkout_session_created","reqId":"8d78fc25-024b-4bd8-90b9-0677d71a0bc2","userId":"93899d57-567e-4470-94b0-226c26901bc7","tier":"24-hour","priceId":"price_1Sbo...","sessionId":"cs_test_a1nQQAwqVRRs9BAZHrDJ9PGVNa2UCGIb2gAhnXlwuLai9bfC5bwLiY4hK4"}
+{"ts":"2025-12-08T01:31:58.049Z","level":"info","reqId":"8d78fc25-024b-4bd8-90b9-0677d71a0bc2","method":"POST","path":"/api/create-checkout-session","status":200,"durationMs":1065}
+{"ts":"2025-12-08T01:31:59.088Z","level":"info","msg":"checkout_session_created","reqId":"5ac12845-44a6-4083-a724-eb65a05b61c1","userId":"93899d57-567e-4470-94b0-226c26901bc7","tier":"24-hour","priceId":"price_1Sbo...","sessionId":"cs_test_a1y7ViPbcRUA6agck9qyy3D6pYFxC2pjyMXYHPSXHkaiSNkBC4uLhZYxfV"}
+{"ts":"2025-12-08T01:31:59.088Z","level":"info","reqId":"5ac12845-44a6-4083-a724-eb65a05b61c1","method":"POST","path":"/api/create-checkout-session","status":200,"durationMs":1049}
+{"ts":"2025-12-08T01:32:08.063Z","level":"info","reqId":"510d09ec-2678-4f13-aa80-3ab186c90030","method":"GET","path":"/","status":304,"durationMs":2}
+{"ts":"2025-12-08T01:32:08.586Z","level":"info","reqId":"d84de6ca-1761-4183-b1c3-2f9c8b08836f","method":"GET","path":"/styles/main.css","status":304,"durationMs":2}
+{"ts":"2025-12-08T01:32:10.233Z","level":"info","reqId":"458bd128-6927-499e-af80-09a8756bc29e","method":"GET","path":"/scripts/main.js","status":304,"durationMs":2}
+{"ts":"2025-12-08T01:32:11.212Z","level":"info","reqId":"cb617326-61fc-4117-94f1-e8230c5e5566","method":"GET","path":"/api/me","status":304,"durationMs":64}

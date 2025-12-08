@@ -24,7 +24,8 @@ const {
   healthCheck,
   saveReport,
   getReportsForUser,
-  getReportById
+  getReportById,
+  updateUserFirstName
 } = require("./db");
 const { sendLoginCode } = require("./mailer");
 const {
@@ -281,6 +282,15 @@ function isValidEmail(email) {
 function setSession(res, token) {
   const cookieValue = makeSessionCookie(token);
   res.cookie(SESSION_COOKIE, cookieValue, cookieOptions());
+}
+
+function clearSession(res) {
+  res.clearCookie(SESSION_COOKIE, {
+    httpOnly: true,
+    secure: !isDevLike,
+    sameSite: "lax",
+    path: "/"
+  });
 }
 
 /**
@@ -1183,6 +1193,7 @@ const authRouter = createAuthRouter({
   isValidEmail,
   generateNumericCode,
   setSession,
+  clearSession,
   LOGIN_CODE_TTL_MINUTES,
   SESSION_TTL_DAYS,
   upsertUserByEmail,
@@ -1191,7 +1202,9 @@ const authRouter = createAuthRouter({
   createLoginCode,
   validateAndUseLoginCode,
   createSession,
+  deleteSessionByToken,
   getLatestPass,
+  updateUserFirstName,
   sendLoginCode,
   logLine
 });

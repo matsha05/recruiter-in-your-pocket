@@ -26,6 +26,7 @@ function createAuthRouter(deps) {
         generateNumericCode,
         // Session helpers
         setSession,
+        clearSession,
         // Config
         LOGIN_CODE_TTL_MINUTES,
         SESSION_TTL_DAYS,
@@ -36,7 +37,9 @@ function createAuthRouter(deps) {
         createLoginCode,
         validateAndUseLoginCode,
         createSession,
+        deleteSessionByToken,
         getLatestPass,
+        updateUserFirstName,
         // Mailer
         sendLoginCode,
         // Logging
@@ -116,9 +119,57 @@ function createAuthRouter(deps) {
             req.activePass || (req.authUser ? await getLatestPass(req.authUser.id) : null);
         return res.json({
             ok: true,
-            user: { email: req.authUser.email },
+            user: {
+                email: req.authUser.email,
+                first_name: req.authUser.first_name || null
+            },
             active_pass: activePass
         });
+    });
+
+    /**
+     * POST /logout
+     * Clear the user's session
+     */
+    router.post("/logout", async (req, res) => {
+        try {
+            const token = req.signedCookies?.session;
+            if (token) {
+                await deleteSessionByToken(token);
+            }
+            clearSession(res);
+            return res.json({ ok: true });
+        } catch (err) {
+            logLine({ level: "error", msg: "logout_failed", error: err.message }, true);
+            return res.status(500).json({ ok: false, message: "Could not log out." });
+        }
+    });
+
+    /**
+     * POST /update-first-name
+     * Update the user's first name for personalization
+     */
+    router.post("/update-first-name", async (req, res) => {
+        if (!req.authUser) {
+            return res.status(401).json({ ok: false, message: "Not authenticated" });
+        }
+        try {
+            const firstName = (req.body?.first_name || "").trim();
+            if (!firstName) {
+                return res.status(400).json({ ok: false, message: "First name is required" });
+            }
+            const user = await updateUserFirstName(req.authUser.id, firstName);
+            return res.json({
+                ok: true,
+                user: {
+                    email: user.email,
+                    first_name: user.first_name
+                }
+            });
+        } catch (err) {
+            logLine({ level: "error", msg: "update_first_name_failed", error: err.message }, true);
+            return res.status(500).json({ ok: false, message: "Could not update name." });
+        }
     });
 
     return router;
