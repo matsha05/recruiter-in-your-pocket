@@ -1941,7 +1941,36 @@
     });
 
     // Track free uses remaining
-    let freeUsesRemaining = null;
+    const FREE_RUN_LIMIT = 2;
+    let freeUsesRemaining = FREE_RUN_LIMIT;
+
+    // Fetch and update free status on page load
+    async function fetchFreeStatus() {
+      try {
+        const resp = await fetch('/api/free-status', { credentials: 'include' });
+        const data = await resp.json();
+        if (data.ok && typeof data.free_uses_remaining === 'number') {
+          freeUsesRemaining = data.free_uses_remaining;
+          updateRunHint(freeUsesRemaining);
+        }
+      } catch (err) {
+        console.warn('Could not fetch free status', err);
+      }
+    }
+
+    function updateRunHint(remaining) {
+      if (!runHint) return;
+      if (remaining >= 2) {
+        runHint.textContent = 'Your first 2 reports are free. No login required.';
+      } else if (remaining === 1) {
+        runHint.textContent = '1 free report remaining';
+      } else {
+        runHint.textContent = 'Upgrade to keep analyzing';
+      }
+    }
+
+    // Fetch status on load
+    fetchFreeStatus();
 
     // --- History Sidebar ---
     // --- History Sidebar ---

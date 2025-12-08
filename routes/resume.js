@@ -41,6 +41,7 @@ function createResumeRouter(deps) {
         BYPASS_PAYWALL,
         makeFreeCookie,
         freeCookieOptions,
+        getCurrentMonthKey,
         // Fallback data
         fallbackResumeData,
         fallbackIdeasData,
@@ -201,10 +202,11 @@ ${jobDescription}`;
                 newFreeUsed += 1;
                 newFreeUsesRemaining = FREE_RUN_LIMIT - newFreeUsed;
 
-                // Update the structured free-run cookie
+                // Update the structured free-run cookie with current month
                 const newFreeMeta = {
                     used: newFreeUsed,
-                    last_free_ts: new Date().toISOString()
+                    last_free_ts: new Date().toISOString(),
+                    reset_month: getCurrentMonthKey()
                 };
                 res.cookie(FREE_COOKIE, makeFreeCookie(newFreeMeta), freeCookieOptions());
             }

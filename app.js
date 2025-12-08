@@ -38,7 +38,8 @@ const {
   makeFreeCookie,
   parseFreeCookie,
   cookieOptions,
-  freeCookieOptions
+  freeCookieOptions,
+  getCurrentMonthKey
 } = require("./auth");
 const {
   callOpenAIChat,
@@ -535,7 +536,8 @@ if (API_AUTH_TOKEN) {
     "/reports",
     "/export-pdf",
     "/create-checkout-session",
-    "/stripe/webhook"
+    "/stripe/webhook",
+    "/free-status"
   ];
 
   app.use("/api", (req, res, next) => {
@@ -653,6 +655,29 @@ app.get("/terms", (req, res) => {
 
 app.get("/privacy", (req, res) => {
   res.sendFile(path.join(__dirname, "privacy.html"));
+});
+
+// Free status endpoint - returns current free uses remaining
+// Also handles monthly reset by writing updated cookie when needed
+app.get("/api/free-status", (req, res) => {
+  const freeMeta = req.freeMeta || { used: 0, reset_month: getCurrentMonthKey() };
+  const freeUsesRemaining = FREE_RUN_LIMIT - (freeMeta.used || 0);
+
+  // If month reset occurred, update the cookie to persist the reset
+  if (freeMeta.needs_reset) {
+    const newMeta = {
+      used: 0,
+      last_free_ts: null,
+      reset_month: getCurrentMonthKey()
+    };
+    res.cookie(FREE_COOKIE, makeFreeCookie(newMeta), freeCookieOptions());
+  }
+
+  return res.json({
+    ok: true,
+    free_uses_remaining: freeUsesRemaining,
+    reset_month: freeMeta.reset_month || getCurrentMonthKey()
+  });
 });
 
 // Resume file parsing endpoint
@@ -1178,6 +1203,7 @@ const resumeRouter = createResumeRouter({
   BYPASS_PAYWALL,
   makeFreeCookie,
   freeCookieOptions,
+  getCurrentMonthKey,
   fallbackResumeData,
   fallbackIdeasData,
   logLine,

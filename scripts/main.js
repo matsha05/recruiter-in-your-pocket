@@ -341,7 +341,70 @@ function updateFreeRunState(serverResponse) {
   }
   if (typeof serverResponse.free_uses_remaining === "number") {
     clientFreeUsesRemaining = serverResponse.free_uses_remaining;
+    updateFreeStatusUI(clientFreeUsesRemaining);
   }
+}
+
+/**
+ * Fetch current free uses status from server and update UI
+ * Called on page load to show accurate messaging
+ */
+async function fetchFreeStatus() {
+  try {
+    const resp = await fetch("/api/free-status", {
+      credentials: "include"
+    });
+    const data = await resp.json();
+    if (data.ok && typeof data.free_uses_remaining === "number") {
+      clientFreeUsesRemaining = data.free_uses_remaining;
+      updateFreeStatusUI(data.free_uses_remaining);
+    }
+  } catch (err) {
+    // Fail silently - default to showing full allowance
+    console.warn("Could not fetch free status", err);
+  }
+}
+
+/**
+ * Update all free-use messaging elements based on remaining uses
+ * @param {number} remaining - Free uses remaining (0, 1, or 2)
+ */
+function updateFreeStatusUI(remaining) {
+  // Dynamic messaging based on state
+  let heroCtaNote, helperNote, runHelperText, authModalHint;
+
+  if (remaining >= 2) {
+    // Fresh user - full allowance
+    heroCtaNote = "Upload PDF/DOCX or paste text · First 2 full reports free · No signup required";
+    helperNote = "Your first 2 reports are free. No login or card.";
+    runHelperText = "2 free reports — no card required.";
+    authModalHint = "New here? Your first 2 reports are free — no card required.";
+  } else if (remaining === 1) {
+    // Used 1, 1 left
+    heroCtaNote = "Upload PDF/DOCX or paste text · 1 free report left · No signup required";
+    helperNote = "1 free report left. No login or card.";
+    runHelperText = "1 free report left — no card required.";
+    authModalHint = "1 free report left — no card required.";
+  } else {
+    // Exhausted
+    heroCtaNote = "Upload PDF/DOCX or paste text · Get a pass for unlimited access";
+    helperNote = "Get a pass for unlimited recruiter-grade feedback.";
+    runHelperText = "Get a pass for unlimited reports.";
+    authModalHint = "Sign in to sync your pass and unlock unlimited reports.";
+  }
+
+  // Update elements if they exist
+  const heroCtaNoteEl = document.querySelector(".hero-cta-note");
+  if (heroCtaNoteEl) heroCtaNoteEl.textContent = heroCtaNote;
+
+  const cardHelperNoteEl = document.querySelector(".card-helper-note");
+  if (cardHelperNoteEl) cardHelperNoteEl.textContent = helperNote;
+
+  const runHelperTextEl = document.querySelector(".run-helper-text");
+  if (runHelperTextEl) runHelperTextEl.textContent = runHelperText;
+
+  const authModalHintEl = document.querySelector(".auth-modal-hint");
+  if (authModalHintEl) authModalHintEl.textContent = authModalHint;
 }
 
 function getRunCount() {
@@ -357,6 +420,7 @@ function incrementRunCount() {
 function isPaid() {
   return Boolean(activePass);
 }
+
 
 function markPaid() {
   // Deprecated: pass status is maintained server-side
@@ -3734,4 +3798,6 @@ initAuthUI();
   renderSummary("");
   animateHeroDialNumber();
   initChapterObserver();
+  // Fetch free status to update messaging based on actual remaining uses
+  fetchFreeStatus();
 })();
