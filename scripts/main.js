@@ -543,6 +543,7 @@ async function refreshSessionState() {
 
     const resp = await fetch("/api/me", {
       headers: authHeaders,
+      credentials: 'include', // Required for session cookies
       signal: controller.signal
     });
     clearTimeout(timeout);
@@ -3339,6 +3340,7 @@ const userAvatar = document.getElementById("user-avatar");
 const userEmailDisplay = document.getElementById("user-email-display");
 const dropdownEmail = document.getElementById("dropdown-email");
 const dropdownPassInfo = document.getElementById("dropdown-pass-info");
+const dropdownUpgrade = document.getElementById("dropdown-upgrade");
 const signOutBtn = document.getElementById("sign-out-btn");
 
 // Auth modal elements
@@ -3418,6 +3420,8 @@ function updatePassBadge() {
   if (!activePass || !passBadge) {
     if (passBadge) passBadge.style.display = "none";
     if (dropdownPassInfo) dropdownPassInfo.style.display = "none";
+    // Show upgrade link for logged-in users without pass
+    if (dropdownUpgrade && currentUser) dropdownUpgrade.style.display = "flex";
     return;
   }
 
@@ -3428,8 +3432,13 @@ function updatePassBadge() {
   if (diffMs <= 0) {
     if (passBadge) passBadge.style.display = "none";
     if (dropdownPassInfo) dropdownPassInfo.style.display = "none";
+    // Show upgrade link for expired passes
+    if (dropdownUpgrade && currentUser) dropdownUpgrade.style.display = "flex";
     return;
   }
+
+  // Has active pass - hide upgrade link
+  if (dropdownUpgrade) dropdownUpgrade.style.display = "none";
 
   const hours = Math.floor(diffMs / (1000 * 60 * 60));
   const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
@@ -3441,7 +3450,7 @@ function updatePassBadge() {
   // Update dropdown pass info
   if (dropdownPassInfo) {
     const passType = activePass.type === "24h" ? "24-Hour Pass" : "30-Day Pass";
-    dropdownPassInfo.textContent = `${passType} — ${timeText} left`;
+    dropdownPassInfo.textContent = `🎟️ ${passType} — ${timeText} left`;
     dropdownPassInfo.style.display = "block";
   }
 }

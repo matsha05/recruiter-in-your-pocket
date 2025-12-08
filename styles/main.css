@@ -664,6 +664,42 @@ body {
   margin: var(--space-xs) 0;
 }
 
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.dropdown-link:hover {
+  background: var(--wash);
+}
+
+.dropdown-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.dropdown-link:hover .dropdown-icon {
+  color: var(--accent);
+}
+
+.dropdown-upgrade {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.dropdown-upgrade .dropdown-icon {
+  color: var(--accent);
+}
+
 .sign-out-btn {
   width: 100%;
   text-align: left;

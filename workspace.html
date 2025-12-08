@@ -1941,6 +1941,7 @@
 
         const resp = await fetch('/api/me', {
           headers: authHeaders,
+          credentials: 'include', // Required for session cookies
           signal: controller.signal
         });
         clearTimeout(timeout);
