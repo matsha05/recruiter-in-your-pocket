@@ -968,6 +968,21 @@
         max-height: 50vh;
       }
 
+      /* Mobile report mode - hide input panel completely */
+      .workspace[data-mode="report"] {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+
+      .workspace[data-mode="report"] .input-panel {
+        display: none;
+      }
+
+      .workspace[data-mode="report"] .report-panel {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
       .subscores {
         grid-template-columns: repeat(2, 1fr);
       }
