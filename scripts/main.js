@@ -3396,8 +3396,11 @@ function updateAuthUI() {
     if (userDropdown) userDropdown.style.display = "none";
     if (passBadge) passBadge.style.display = "none";
 
-    // Reset hero to default
-    if (heroTitle) heroTitle.textContent = DEFAULT_HERO_TEXT;
+    // Reset hero to default and reveal
+    if (heroTitle) {
+      heroTitle.textContent = DEFAULT_HERO_TEXT;
+      heroTitle.classList.add("loaded");
+    }
   }
 
   // Always update pricing section
@@ -3415,6 +3418,8 @@ function updateHeroGreeting() {
   } else {
     heroTitle.textContent = DEFAULT_HERO_TEXT;
   }
+  // Reveal hero after setting correct text
+  heroTitle.classList.add("loaded");
 }
 
 function updatePassBadge() {
