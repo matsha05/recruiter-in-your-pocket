@@ -941,6 +941,9 @@ body {
 }
 
 .hero-credibility {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   font-size: var(--fs-small);
   color: var(--text-muted);
   max-width: 640px;
@@ -948,6 +951,15 @@ body {
   margin-bottom: var(--space-lg);
   font-style: italic;
   opacity: 0.9;
+}
+
+.founder-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--border-subtle);
 }
 
 .process-track {
@@ -1498,6 +1510,18 @@ body {
 .value-item {
   text-align: center;
   padding: var(--space-md);
+  position: relative;
+}
+
+.value-number {
+  display: inline;
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+  margin-right: var(--space-xxs);
 }
 
 .value-icon {
