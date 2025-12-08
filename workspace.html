@@ -1510,7 +1510,6 @@
         <span class="workspace-brand-name">Recruiter in Your Pocket</span>
       </a>
       <div class="workspace-actions">
-        <button class="btn-ghost" id="history-btn">📋 My Reports</button>
         <button class="btn-ghost" id="sample-report-btn">📄 Sample Report</button>
 
         <!-- Auth UI -->
@@ -1530,7 +1529,42 @@
           </button>
           <div id="user-dropdown-menu" class="user-dropdown-menu">
             <div id="dropdown-email" class="dropdown-item dropdown-email"></div>
+
+            <!-- Pass info (shown if active pass) or Upgrade prompt -->
             <div id="dropdown-pass-info" class="dropdown-item dropdown-pass-info" style="display: none;"></div>
+            <a id="dropdown-upgrade" href="/#pricing" class="dropdown-item dropdown-upgrade" style="display: none;">
+              <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Upgrade Pass
+            </a>
+
+            <div class="dropdown-divider"></div>
+
+            <!-- My Reports - opens sidebar on workspace -->
+            <button id="dropdown-my-reports" class="dropdown-item dropdown-link" type="button">
+              <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M3 7C3 4.239 4.239 3 7 3H17C19.761 3 21 4.239 21 7V17C21 19.761 19.761 21 17 21H7C4.239 21 3 19.761 3 17V7Z"
+                  stroke="currentColor" stroke-width="1.5" />
+                <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+              My Reports
+            </button>
+
+            <!-- New Report - clears and starts fresh -->
+            <button id="dropdown-new-report" class="dropdown-item dropdown-link" type="button">
+              <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path
+                  d="M2 12C2 7.286 2 4.929 3.464 3.464C4.93 2 7.286 2 12 2C16.714 2 19.071 2 20.535 3.464C22 4.93 22 7.286 22 12C22 16.714 22 19.071 20.535 20.535C19.072 22 16.714 22 12 22C7.286 22 4.929 22 3.464 20.535C2 19.072 2 16.714 2 12Z"
+                  stroke="currentColor" stroke-width="1.5" />
+              </svg>
+              New Report
+            </button>
+
             <div class="dropdown-divider"></div>
             <button id="sign-out-btn" class="dropdown-item sign-out-btn" type="button">Sign Out</button>
           </div>
@@ -1889,10 +1923,12 @@
     const userEmailDisplay = document.getElementById('user-email-display');
     const dropdownEmail = document.getElementById('dropdown-email');
     const dropdownPassInfo = document.getElementById('dropdown-pass-info');
+    const dropdownUpgrade = document.getElementById('dropdown-upgrade');
+    const dropdownMyReports = document.getElementById('dropdown-my-reports');
+    const dropdownNewReport = document.getElementById('dropdown-new-report');
     const signOutBtn = document.getElementById('sign-out-btn');
 
-    // Auth headers
-    const authHeaders = { 'Authorization': `Bearer ${localStorage.getItem('rip_auth_token') || ''}` };
+    // Session auth is handled by HTTP-only cookies, no client-side token needed
 
     // Update auth UI based on current state
     function updateAuthUI() {
@@ -1912,18 +1948,38 @@
         if (userEmailDisplay) userEmailDisplay.textContent = buttonLabel;
         if (dropdownEmail) dropdownEmail.textContent = currentUser.email;
 
-        // Update pass badge
-        if (activePass && passBadge) {
+        // Update pass badge and dropdown pass info
+        if (activePass) {
           const expiry = new Date(activePass.expires_at);
           const now = new Date();
-          const hoursLeft = Math.ceil((expiry - now) / (1000 * 60 * 60));
-          const timeText = hoursLeft > 24
-            ? `${Math.ceil(hoursLeft / 24)}d left`
-            : `${hoursLeft}h left`;
-          if (passBadgeTime) passBadgeTime.textContent = timeText;
-          passBadge.style.display = 'flex';
-        } else if (passBadge) {
-          passBadge.style.display = 'none';
+          const diffMs = expiry - now;
+
+          if (diffMs > 0) {
+            const hours = Math.floor(diffMs / (1000 * 60 * 60));
+            const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+            const timeText = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+
+            if (passBadgeTime) passBadgeTime.textContent = timeText;
+            if (passBadge) passBadge.style.display = 'flex';
+
+            // Update dropdown pass info
+            if (dropdownPassInfo) {
+              const passType = activePass.type === '24h' ? '24-Hour Pass' : '30-Day Pass';
+              dropdownPassInfo.textContent = `🎟️ ${passType} — ${timeText} left`;
+              dropdownPassInfo.style.display = 'block';
+            }
+            if (dropdownUpgrade) dropdownUpgrade.style.display = 'none';
+          } else {
+            // Pass expired
+            if (passBadge) passBadge.style.display = 'none';
+            if (dropdownPassInfo) dropdownPassInfo.style.display = 'none';
+            if (dropdownUpgrade) dropdownUpgrade.style.display = 'flex';
+          }
+        } else {
+          // No pass - show upgrade link
+          if (passBadge) passBadge.style.display = 'none';
+          if (dropdownPassInfo) dropdownPassInfo.style.display = 'none';
+          if (dropdownUpgrade) dropdownUpgrade.style.display = 'flex';
         }
       } else {
         isLoggedIn = false;
@@ -1940,7 +1996,6 @@
         const timeout = setTimeout(() => controller.abort(), 3000);
 
         const resp = await fetch('/api/me', {
-          headers: authHeaders,
           credentials: 'include', // Required for session cookies
           signal: controller.signal
         });
@@ -1991,12 +2046,11 @@
         try {
           await fetch('/api/auth/logout', {
             method: 'POST',
-            headers: authHeaders
+            credentials: 'include'
           });
         } catch (err) {
           console.warn('Logout error:', err);
         }
-        localStorage.removeItem('rip_auth_token');
         currentUser = null;
         activePass = null;
         updateAuthUI();
@@ -2026,7 +2080,32 @@
 
     historyClose.addEventListener('click', closeHistorySidebar);
     historyOverlay.addEventListener('click', closeHistorySidebar);
-    historyBtn.addEventListener('click', openHistorySidebar);
+
+    // My Reports dropdown button opens sidebar
+    if (dropdownMyReports) {
+      dropdownMyReports.addEventListener('click', () => {
+        userDropdown.classList.remove('open'); // Close dropdown first
+        openHistorySidebar();
+      });
+    }
+
+    // New Report clears the workspace
+    if (dropdownNewReport) {
+      dropdownNewReport.addEventListener('click', () => {
+        userDropdown.classList.remove('open'); // Close dropdown first
+        // Clear all inputs
+        if (resumeText) resumeText.value = '';
+        if (jobDescription) jobDescription.value = '';
+        if (fileInput) fileInput.value = '';
+        if (fileInfo) fileInfo.classList.remove('visible');
+        if (fileName) fileName.textContent = '';
+        currentFile = null;
+        currentReport = null;
+        // Reset report panel to empty state
+        if (reportEmpty) reportEmpty.style.display = 'flex';
+        document.querySelectorAll('.report-section').forEach(s => s.classList.remove('active'));
+      });
+    }
 
     async function loadReportHistory() {
       try {

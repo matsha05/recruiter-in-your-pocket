@@ -248,7 +248,7 @@ function initTheme() {
 
 // Initialize theme on page load
 initTheme();
-refreshSessionState();
+// Session state is initialized in initAuthUI() at the end of this file
 
 // Listen for system preference changes
 if (window.matchMedia) {
@@ -1863,6 +1863,7 @@ async function verifyLoginCodeAndCheckout() {
     const resp = await fetch("/api/login/verify", {
       method: "POST",
       headers: { ...authHeaders, "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ email, code })
     });
     const data = await resp.json().catch(() => null);
@@ -3708,8 +3709,8 @@ async function initAuthUI() {
         : `Your ${tierLabel} Pass is active!`
       );
     } else {
-      // Normal page load - wait for session check
-      await new Promise(r => setTimeout(r, 100));
+      // Normal page load - fetch session state
+      await refreshSessionState();
     }
   } catch (err) {
     console.warn("Auth initialization error:", err);
