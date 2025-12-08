@@ -37,6 +37,12 @@
       --error: #b91c1c;
       --error-light: #fca5a5;
       --warning: #d97706;
+      /* Semantic Score Colors (5-tier system) */
+      --score-exceptional: #8b5cf6;
+      --score-strong: #3b82f6;
+      --score-good: var(--success);
+      --score-needs-work: var(--warning);
+      --score-risk: var(--error);
       --font-display: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-body: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --fs-hero: 44px;
@@ -683,19 +689,19 @@
     }
 
     .score-strong .score-dial-progress {
-      stroke: #3b82f6;
+      stroke: var(--score-strong);
     }
 
     .score-strong .score-dial-number {
-      color: #3b82f6;
+      color: var(--score-strong);
     }
 
     .score-exceptional .score-dial-progress {
-      stroke: #8b5cf6;
+      stroke: var(--score-exceptional);
     }
 
     .score-exceptional .score-dial-number {
-      color: #8b5cf6;
+      color: var(--score-exceptional);
     }
 
     .score-content {
@@ -848,11 +854,11 @@
     }
 
     .benchmark-dot.strong {
-      background: #3b82f6;
+      background: var(--score-strong);
     }
 
     .benchmark-dot.exceptional {
-      background: #8b5cf6;
+      background: var(--score-exceptional);
     }
 
     .benchmark-dot.needs-work {
@@ -3315,7 +3321,28 @@ Technical: Python basics, API integrations, Agile/Scrum`;
 
       // Overview - Score
       const score = report.score || 0;
-      document.getElementById('score-number').textContent = score;
+      const scoreNumberEl = document.getElementById('score-number');
+
+      // Animate number count-up synced with bar (800ms)
+      const animateCountUp = (target, duration) => {
+        const start = 0;
+        const startTime = performance.now();
+
+        const updateNumber = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Use easeOutQuart for smooth deceleration matching CSS ease
+          const easeProgress = 1 - Math.pow(1 - progress, 4);
+          const currentValue = Math.round(start + (target - start) * easeProgress);
+          scoreNumberEl.textContent = currentValue;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          }
+        };
+
+        requestAnimationFrame(updateNumber);
+      };
 
       // Show score benchmarks
       document.getElementById('score-benchmark').style.display = 'flex';
@@ -3328,6 +3355,7 @@ Technical: Python basics, API integrations, Agile/Scrum`;
       // Trigger animation after a brief delay
       setTimeout(() => {
         dialProgress.style.strokeDashoffset = offset;
+        animateCountUp(score, 800); // Match the CSS transition duration
       }, 100);
 
       // Apply score-based color class
@@ -3343,11 +3371,11 @@ Technical: Python basics, API integrations, Agile/Scrum`;
       // 5-tier semantic color system: Exceptional (purple), Strong (blue), Good (green), Needs Work (yellow), Risk (red)
       if (report.subscores) {
         const getSubscoreBand = (value) => {
-          if (value >= 90) return { label: 'Exceptional', color: '#8b5cf6' }; // Purple
-          if (value >= 85) return { label: 'Strong', color: '#3b82f6' }; // Blue
-          if (value >= 80) return { label: 'Good', color: 'var(--success)' }; // Green
-          if (value >= 70) return { label: 'Needs Work', color: 'var(--warning)' }; // Yellow
-          return { label: 'Risk', color: 'var(--error)' }; // Red
+          if (value >= 90) return { label: 'Exceptional', color: 'var(--score-exceptional)' };
+          if (value >= 85) return { label: 'Strong', color: 'var(--score-strong)' };
+          if (value >= 80) return { label: 'Good', color: 'var(--score-good)' };
+          if (value >= 70) return { label: 'Needs Work', color: 'var(--score-needs-work)' };
+          return { label: 'Risk', color: 'var(--score-risk)' };
         };
 
         const setSubscoreWithBand = (id, value) => {

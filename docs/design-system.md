@@ -51,6 +51,31 @@ All design tokens are defined as CSS variables in `:root`. This document serves 
 - `--warning: #d97706` - Warning color
 - `--warning-dark: #92400e` - Dark warning
 
+### Semantic Score Colors (5-Tier System)
+
+These colors communicate score meaning at a glance. They are distinct from the brand accent and status colors because they serve a specific purpose: instantly conveying where a resume falls on the quality spectrum.
+
+**Rationale:** A recruiter's 10-second scan requires immediate visual feedback. The 5-tier system maps to how recruiters actually bucket candidates:
+- **Exceptional** candidates stand out immediately (top of pile)
+- **Strong** candidates move forward confidently
+- **Good** candidates are viable but need polish
+- **Needs Work** candidates require significant revision
+- **Risk** candidates would struggle to get callbacks
+
+| Band | Score | Color | Hex | Usage |
+|------|-------|-------|-----|-------|
+| Exceptional | 90+ | Purple | `#8b5cf6` | Elite resumes that stand out in a recruiter skim |
+| Strong | 85-89 | Blue | `#3b82f6` | Clear, confident, competitive for most roles |
+| Good | 80-84 | Green | `var(--success)` | Solid baseline, may need sharpening |
+| Needs Work | 70-79 | Yellow | `var(--warning)` | Story unclear, impact inconsistent |
+| Risk | <70 | Red | `var(--error)` | Recruiters will struggle to place level/strengths |
+
+**Why Purple and Blue (not accent)?**
+- The brand accent (`#3341A6` Deep Indigo) is reserved for UI elements, CTAs, and brand moments
+- Score colors are *semantic*—they communicate meaning, not brand
+- Purple (`#8b5cf6`) signals achievement/premium without implying "success" (which is green in existing palette)
+- Blue (`#3b82f6`) sits between purple (exceptional) and green (good), providing clear visual hierarchy
+
 **Dark Mode:** All colors have dark mode overrides defined in `[data-theme="dark"]`.
 
 ---
