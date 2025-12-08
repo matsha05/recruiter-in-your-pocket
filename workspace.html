@@ -2132,10 +2132,13 @@
       });
     }
 
-    // Sign in button - redirect to home with sign-in intent
+    // Sign in button - open auth modal in-place (keep user in workspace context)
     if (signInBtn) {
       signInBtn.addEventListener('click', () => {
-        window.location.href = '/?signin=1';
+        const authModal = document.getElementById('auth-modal');
+        if (authModal) {
+          authModal.style.display = 'flex';
+        }
       });
     }
 
