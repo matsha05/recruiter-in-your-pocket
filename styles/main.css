@@ -6042,3 +6042,172 @@ textarea:focus-visible {
     text-align: center;
   }
 }
+
+/* ATS Education Section */
+.ats-education {
+  max-width: 900px;
+  margin: 0 auto var(--space-2xl);
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+}
+
+.ats-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-tint);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.ats-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.01em;
+}
+
+.ats-subtitle {
+  font-size: var(--fs-body);
+  color: var(--text-soft);
+  max-width: 500px;
+  margin: 0 auto var(--space-xl);
+  line-height: var(--lh-relaxed);
+}
+
+.ats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  text-align: left;
+}
+
+.ats-myth,
+.ats-truth {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.ats-myth {
+  background: rgba(185, 28, 28, 0.04);
+  border-color: rgba(185, 28, 28, 0.12);
+}
+
+.ats-truth {
+  background: rgba(21, 128, 61, 0.04);
+  border-color: rgba(21, 128, 61, 0.12);
+}
+
+.ats-myth-label {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--error);
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.ats-truth-label {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--success);
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.ats-myth-text,
+.ats-truth-text {
+  font-size: var(--fs-body);
+  color: var(--text-main);
+  line-height: var(--lh-relaxed);
+}
+
+.ats-takeaway {
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  background: var(--surface-tint);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  display: inline-block;
+  line-height: var(--lh-relaxed);
+  border: 1px solid var(--border-subtle);
+  max-width: 700px;
+}
+
+.ats-takeaway em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Explainer Grid */
+.ats-explainer {
+  margin-bottom: var(--space-xl);
+  text-align: left;
+}
+
+.ats-explainer-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.ats-explainer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.ats-explainer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.ats-explainer-number {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ats-explainer-content {
+  font-size: var(--fs-small);
+  color: var(--text-main);
+  line-height: var(--lh-relaxed);
+}
+
+.ats-explainer-content strong {
+  color: var(--ink-900);
+}
+
+@media (max-width: 768px) {
+  .ats-grid {
+    grid-template-columns: 1fr;
+  }
+}

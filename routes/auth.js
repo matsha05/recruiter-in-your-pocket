@@ -98,7 +98,10 @@ function createAuthRouter(deps) {
             const activePass = await getLatestPass(user.id);
             return res.json({
                 ok: true,
-                user: { email: user.email },
+                user: {
+                    email: user.email,
+                    first_name: user.first_name || null
+                },
                 active_pass: activePass
             });
         } catch (err) {
