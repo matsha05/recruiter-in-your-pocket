@@ -232,7 +232,6 @@
     .workspace[data-mode="report"] .report-panel {
       grid-row: 2;
       grid-column: 1;
-      align-self: start;
     }
 
     /* New Report button - appears in report mode */
@@ -602,28 +601,47 @@
       flex-shrink: 0;
     }
 
-    .score-dial-ring {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: conic-gradient(var(--accent) 0deg 0deg, var(--border-subtle) 0deg 360deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .score-dial-inner {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: var(--bg-card);
+    /* SVG Score Dial - matches homepage */
+    .score-dial-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      gap: var(--space-sm);
     }
 
-    .score-number {
+    .score-dial {
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+
+    .score-dial svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .score-dial-bg {
+      fill: none;
+      stroke: var(--border-subtle);
+      stroke-width: 8;
+    }
+
+    .score-dial-progress {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 339.292;
+      stroke-dashoffset: 339.292;
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .score-dial-number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-family: var(--font-display);
       font-size: var(--fs-dial);
       font-weight: 800;
@@ -631,24 +649,58 @@
       line-height: 1;
     }
 
-    .score-label {
+    .score-dial-label {
       font-size: var(--fs-xs);
-      font-weight: 600;
       color: var(--text-muted);
+      font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
-    .score-content {
-      flex: 1;
+    /* Score-based colors (matches homepage) */
+    .score-risk .score-dial-progress {
+      stroke: var(--error);
     }
 
-    .score-band {
-      font-family: var(--font-display);
-      font-size: var(--fs-h2);
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: var(--space-xs);
+    .score-risk .score-dial-number {
+      color: var(--error);
+    }
+
+    .score-needs-work .score-dial-progress {
+      stroke: var(--warning);
+    }
+
+    .score-needs-work .score-dial-number {
+      color: var(--warning);
+    }
+
+    .score-good .score-dial-progress {
+      stroke: var(--success);
+    }
+
+    .score-good .score-dial-number {
+      color: var(--success);
+    }
+
+    .score-strong .score-dial-progress {
+      stroke: #3b82f6;
+    }
+
+    .score-strong .score-dial-number {
+      color: #3b82f6;
+    }
+
+    .score-exceptional .score-dial-progress {
+      stroke: #8b5cf6;
+    }
+
+    .score-exceptional .score-dial-number {
+      color: #8b5cf6;
+    }
+
+    .score-content {
+      flex: 1;
+      position: relative;
     }
 
     .score-comment {
@@ -722,6 +774,209 @@
       border: 6px solid transparent;
       border-top-color: #1a1a2e;
       z-index: 1000;
+    }
+
+    /* First 10 Seconds - The Recruiter Read */
+    .first-10-seconds {
+      margin-bottom: var(--space-md);
+      animation: firstImpressionFadeIn 0.4s ease-out;
+    }
+
+    @keyframes firstImpressionFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .first-10-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .first-10-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
+    .first-10-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .first-10-content {
+      font-size: var(--fs-body);
+      line-height: var(--lh-relaxed);
+      color: var(--text-main);
+    }
+
+    /* Score Benchmark */
+    .score-benchmark {
+      display: flex;
+      gap: var(--space-lg);
+      margin-top: var(--space-sm);
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .score-benchmark span {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xxs);
+    }
+
+    .benchmark-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .benchmark-dot.good {
+      background: var(--success);
+    }
+
+    .benchmark-dot.strong {
+      background: #3b82f6;
+    }
+
+    .benchmark-dot.exceptional {
+      background: #8b5cf6;
+    }
+
+    .benchmark-dot.needs-work {
+      background: var(--warning);
+    }
+
+    .benchmark-dot.risk {
+      background: var(--error);
+    }
+
+    .scoring-tooltip-trigger {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: var(--fs-xs);
+      padding: 0 var(--space-xxs);
+      opacity: 0.7;
+      transition: opacity var(--motion-duration-short);
+    }
+
+    .scoring-tooltip-trigger:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    /* Scoring Methodology Tooltip Panel */
+    .scoring-tooltip-panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + var(--space-sm));
+      right: 0;
+      width: 320px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-modal);
+      padding: var(--space-md);
+      z-index: 100;
+      animation: tooltipFadeIn 0.2s ease-out;
+    }
+
+    .scoring-tooltip-panel.visible {
+      display: block;
+    }
+
+    @keyframes tooltipFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scoring-tooltip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-sm);
+    }
+
+    .scoring-tooltip-header strong {
+      font-family: var(--font-display);
+      font-size: var(--fs-small);
+      color: var(--text-main);
+    }
+
+    .scoring-tooltip-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 14px;
+      padding: var(--space-xxs);
+      border-radius: var(--radius-sm);
+      transition: background var(--motion-duration-short);
+    }
+
+    .scoring-tooltip-close:hover {
+      background: var(--surface-tint);
+      color: var(--text-main);
+    }
+
+    .scoring-tooltip-panel p {
+      font-size: var(--fs-xs);
+      color: var(--text-soft);
+      line-height: var(--lh-relaxed);
+      margin: 0 0 var(--space-sm) 0;
+    }
+
+    .scoring-tooltip-panel ul {
+      margin: 0 0 var(--space-sm) 0;
+      padding-left: var(--space-md);
+      font-size: var(--fs-xs);
+      color: var(--text-soft);
+      line-height: var(--lh-relaxed);
+    }
+
+    .scoring-tooltip-panel li {
+      margin-bottom: var(--space-xxs);
+    }
+
+    .scoring-tooltip-panel li strong {
+      color: var(--text-main);
+    }
+
+    .scoring-tooltip-note {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 0 !important;
+    }
+
+    /* Subscore Band Labels */
+    .subscore-band {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-top: var(--space-xxs);
     }
 
     /* Report Cards */
@@ -1821,17 +2076,65 @@
         <!-- Overview Section -->
         <div class="report-section" id="section-overview">
           <div class="score-header">
-            <div class="score-dial">
-              <div class="score-dial-ring" id="score-ring">
-                <div class="score-dial-inner">
-                  <div class="score-number" id="score-number">—</div>
-                  <div class="score-label">Clarity</div>
-                </div>
+            <div class="score-dial-container" id="score-dial-container">
+              <div class="score-dial" id="score-dial">
+                <svg viewBox="0 0 120 120">
+                  <circle class="score-dial-bg" cx="60" cy="60" r="54" />
+                  <circle id="score-dial-progress" class="score-dial-progress" cx="60" cy="60" r="54" />
+                </svg>
+                <div class="score-dial-number" id="score-number">—</div>
               </div>
+              <div class="score-dial-label">Score</div>
             </div>
             <div class="score-content">
-              <div class="score-band" id="score-band">—</div>
-              <div class="score-comment" id="score-comment">Your score and assessment will appear here.</div>
+              <!-- First 10 Seconds - The Recruiter Read (4-6 sentences) -->
+              <div class="first-10-seconds" id="first-10-seconds" style="display: none;">
+                <div class="first-10-header">
+                  <!-- Solar: Eye Broken -->
+                  <svg class="first-10-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path
+                      d="M12 5C16.478 5 20.268 7.405 22 11C20.268 14.595 16.478 17 12 17C7.522 17 3.732 14.595 2 11C3.732 7.405 7.522 5 12 5Z"
+                      stroke="currentColor" stroke-width="1.5" />
+                    <circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="1.5" />
+                  </svg>
+                  <span class="first-10-title">First 10 Seconds</span>
+                </div>
+                <div class="first-10-content" id="first-10-content">
+                  <!-- 4-6 sentence recruiter read goes here -->
+                </div>
+              </div>
+
+              <!-- Score Benchmark with tooltip -->
+              <div class="score-benchmark" id="score-benchmark" style="display: none;">
+                <span><span class="benchmark-dot exceptional"></span> 90+ Exceptional</span>
+                <span><span class="benchmark-dot strong"></span> 85+ Strong</span>
+                <span><span class="benchmark-dot good"></span> 80+ Good</span>
+                <span><span class="benchmark-dot needs-work"></span> 70+ Needs Work</span>
+                <span><span class="benchmark-dot risk"></span> &lt;70 Risk</span>
+                <button type="button" class="scoring-tooltip-trigger" id="scoring-tooltip-trigger"
+                  aria-label="How we score" aria-expanded="false">
+                  ⓘ
+                </button>
+              </div>
+              <!-- Scoring Methodology Tooltip -->
+              <div class="scoring-tooltip-panel" id="scoring-tooltip-panel" aria-hidden="true">
+                <div class="scoring-tooltip-header">
+                  <strong>How we score</strong>
+                  <button type="button" class="scoring-tooltip-close" id="scoring-tooltip-close"
+                    aria-label="Close">✕</button>
+                </div>
+                <p>We evaluate your resume on how clearly your story lands to a recruiter in a first read. The score
+                  reflects:</p>
+                <ul>
+                  <li><strong>Impact & Outcomes</strong> — Are results visible and specific?</li>
+                  <li><strong>Clarity & Structure</strong> — Is it easy to scan and understand?</li>
+                  <li><strong>Story & Narrative</strong> — Does your career arc make sense?</li>
+                  <li><strong>Readability</strong> — Can a recruiter get your value in seconds?</li>
+                </ul>
+                <p class="scoring-tooltip-note">This is calibrated against real resumes reviewed by experienced
+                  recruiters. 80+ is genuinely strong for most roles.</p>
+              </div>
             </div>
           </div>
 
@@ -1873,7 +2176,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
-              What's Harder to See
+              What's Missing
             </div>
             <ul class="report-list" id="gaps-list"></ul>
           </div>
@@ -2774,6 +3077,38 @@ Technical: Python basics, API integrations, Agile/Scrum`;
       sections.forEach(s => s.classList.toggle('active', s.id === `section-${tabName}`));
     }
 
+    // Scoring Tooltip Toggle
+    const scoringTooltipTrigger = document.getElementById('scoring-tooltip-trigger');
+    const scoringTooltipPanel = document.getElementById('scoring-tooltip-panel');
+    const scoringTooltipClose = document.getElementById('scoring-tooltip-close');
+
+    if (scoringTooltipTrigger && scoringTooltipPanel) {
+      scoringTooltipTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isVisible = scoringTooltipPanel.classList.contains('visible');
+        scoringTooltipPanel.classList.toggle('visible', !isVisible);
+        scoringTooltipTrigger.setAttribute('aria-expanded', !isVisible);
+        scoringTooltipPanel.setAttribute('aria-hidden', isVisible);
+      });
+
+      if (scoringTooltipClose) {
+        scoringTooltipClose.addEventListener('click', () => {
+          scoringTooltipPanel.classList.remove('visible');
+          scoringTooltipTrigger.setAttribute('aria-expanded', 'false');
+          scoringTooltipPanel.setAttribute('aria-hidden', 'true');
+        });
+      }
+
+      // Close on click outside
+      document.addEventListener('click', (e) => {
+        if (!scoringTooltipPanel.contains(e.target) && e.target !== scoringTooltipTrigger) {
+          scoringTooltipPanel.classList.remove('visible');
+          scoringTooltipTrigger.setAttribute('aria-expanded', 'false');
+          scoringTooltipPanel.setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
+
     // Short Resume Modal
     const shortModal = document.getElementById('short-modal');
     const modalCharCount = document.getElementById('modal-char-count');
@@ -2966,41 +3301,70 @@ Technical: Python basics, API integrations, Agile/Scrum`;
     }
 
     function renderReport(report) {
-      // Overview
+      // First 10 Seconds - The Recruiter Read (uses summary for 4-6 sentences)
+      const first10El = document.getElementById('first-10-seconds');
+      const first10Content = document.getElementById('first-10-content');
+      const summary = report.summary || report.score_comment_long || '';
+
+      if (summary) {
+        first10Content.textContent = summary;
+        first10El.style.display = 'block';
+      } else {
+        first10El.style.display = 'none';
+      }
+
+      // Overview - Score
       const score = report.score || 0;
       document.getElementById('score-number').textContent = score;
-      document.getElementById('score-band').textContent = report.score_label || getScoreBand(score);
-      document.getElementById('score-comment').textContent = report.score_comment_long || report.summary || '';
 
-      // Animate score ring
-      const degrees = (score / 100) * 360;
-      document.getElementById('score-ring').style.background =
-        `conic-gradient(var(--accent) 0deg ${degrees}deg, var(--border-subtle) ${degrees}deg 360deg)`;
+      // Show score benchmarks
+      document.getElementById('score-benchmark').style.display = 'flex';
 
-      // Subscores (if available) with 5-tier color coding
+      // Animate score dial (SVG stroke-dashoffset)
+      const dialProgress = document.getElementById('score-dial-progress');
+      const circumference = 339.292; // 2 * π * 54
+      const offset = circumference - (score / 100) * circumference;
+
+      // Trigger animation after a brief delay
+      setTimeout(() => {
+        dialProgress.style.strokeDashoffset = offset;
+      }, 100);
+
+      // Apply score-based color class
+      const dialContainer = document.getElementById('score-dial-container');
+      dialContainer.className = 'score-dial-container';
+      if (score >= 90) dialContainer.classList.add('score-exceptional');
+      else if (score >= 85) dialContainer.classList.add('score-strong');
+      else if (score >= 80) dialContainer.classList.add('score-good');
+      else if (score >= 70) dialContainer.classList.add('score-needs-work');
+      else dialContainer.classList.add('score-risk');
+
+      // Subscores (if available) with color coding and band labels
+      // 5-tier semantic color system: Exceptional (purple), Strong (blue), Good (green), Needs Work (yellow), Risk (red)
       if (report.subscores) {
-        const setSubscoreWithColor = (id, value) => {
-          const el = document.getElementById(id);
-          el.textContent = value || '—';
-          // 5-tier color coding based on score value
-          if (value >= 90) {
-            el.style.color = 'var(--accent)'; // Brand accent - exceptional
-          } else if (value >= 80) {
-            el.style.color = 'var(--success)'; // Green - strong
-          } else if (value >= 70) {
-            el.style.color = '#14b8a6'; // Teal - solid foundation
-          } else if (value >= 60) {
-            el.style.color = 'var(--warning)'; // Orange - needs work
-          } else if (value && value < 60) {
-            el.style.color = 'var(--error)'; // Red - critical
-          } else {
-            el.style.color = 'var(--accent)';
-          }
+        const getSubscoreBand = (value) => {
+          if (value >= 90) return { label: 'Exceptional', color: '#8b5cf6' }; // Purple
+          if (value >= 85) return { label: 'Strong', color: '#3b82f6' }; // Blue
+          if (value >= 80) return { label: 'Good', color: 'var(--success)' }; // Green
+          if (value >= 70) return { label: 'Needs Work', color: 'var(--warning)' }; // Yellow
+          return { label: 'Risk', color: 'var(--error)' }; // Red
         };
-        setSubscoreWithColor('subscore-impact', report.subscores.impact);
-        setSubscoreWithColor('subscore-clarity', report.subscores.clarity);
-        setSubscoreWithColor('subscore-story', report.subscores.story);
-        setSubscoreWithColor('subscore-readability', report.subscores.readability);
+
+        const setSubscoreWithBand = (id, value) => {
+          const el = document.getElementById(id);
+          if (!value) {
+            el.innerHTML = '—';
+            return;
+          }
+          const band = getSubscoreBand(value);
+          el.innerHTML = `${value}<span class="subscore-band" style="color: ${band.color}">${band.label}</span>`;
+          el.style.color = band.color;
+        };
+
+        setSubscoreWithBand('subscore-impact', report.subscores.impact);
+        setSubscoreWithBand('subscore-clarity', report.subscores.clarity);
+        setSubscoreWithBand('subscore-story', report.subscores.story);
+        setSubscoreWithBand('subscore-readability', report.subscores.readability);
       }
 
       // Strengths

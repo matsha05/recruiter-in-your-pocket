@@ -228,6 +228,7 @@ SCORING RUBRIC (APPLY STRICTLY)
 - Below 50: Little usable signal or major gaps in clarity/structure. Needs substantial work before review-ready.
 - Always return an integer between 0 and 100. Do not inflate.
 
+
 The JSON must match this shape exactly:
 
 {
