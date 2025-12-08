@@ -206,6 +206,61 @@
       overflow: hidden;
       border-right: 1px solid var(--border-subtle);
       background: var(--bg-panel);
+      transition: width 0.35s var(--motion-ease-premium),
+        min-width 0.35s var(--motion-ease-premium),
+        padding 0.35s var(--motion-ease-premium),
+        opacity 0.25s ease,
+        border-width 0.35s var(--motion-ease-premium);
+    }
+
+    /* Report Mode - Input panel collapses, report expands */
+    .workspace[data-mode="report"] {
+      grid-template-columns: 0fr 1fr;
+    }
+
+    .workspace[data-mode="report"] .input-panel {
+      min-width: 0;
+      width: 0;
+      padding: 0;
+      opacity: 0;
+      border-right-width: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .workspace[data-mode="report"] .report-panel {
+      grid-column: 1 / -1;
+    }
+
+    /* New Report button - appears in report mode */
+    .new-report-btn {
+      display: none;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--accent);
+      color: white;
+      font-size: var(--fs-small);
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: var(--shadow-button);
+      transition: background var(--motion-duration-short), transform var(--motion-duration-short);
+    }
+
+    .new-report-btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .workspace[data-mode="report"] .new-report-btn {
+      display: inline-flex;
+    }
+
+    /* Hide sample report button in report mode */
+    .workspace[data-mode="report"] #sample-report-btn {
+      display: none;
     }
 
     .input-panel-content {
@@ -522,6 +577,8 @@
 
     .report-section.active {
       display: block;
+      padding-top: var(--space-md);
+      /* Consistent top padding across all tabs */
     }
 
     .score-header {
@@ -1549,6 +1606,12 @@
       </a>
       <div class="workspace-actions">
         <button class="btn-ghost" id="sample-report-btn">📄 Sample Report</button>
+        <button class="new-report-btn" id="new-report-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          New Report
+        </button>
 
         <!-- Auth UI -->
         <div id="auth-skeleton" class="auth-skeleton"></div>
@@ -1910,6 +1973,101 @@
     let currentFile = null;
     let currentReport = null;
     let activeTab = 'overview';
+    let workspaceMode = 'input'; // 'input' or 'report'
+    let currentReportId = null;
+
+    // Workspace Mode Management
+    const workspaceEl = document.querySelector('.workspace');
+    const newReportBtn = document.getElementById('new-report-btn');
+
+    function setWorkspaceMode(mode, reportId = null) {
+      workspaceMode = mode;
+      currentReportId = reportId;
+      if (workspaceEl) {
+        workspaceEl.setAttribute('data-mode', mode);
+      }
+
+      // Update URL without full page reload
+      if (mode === 'report' && reportId) {
+        const newUrl = `/workspace/report/${reportId}`;
+        if (window.location.pathname !== newUrl) {
+          history.pushState({ mode, reportId }, '', newUrl);
+        }
+      } else if (mode === 'input') {
+        const newUrl = '/workspace';
+        if (window.location.pathname !== newUrl) {
+          history.pushState({ mode }, '', newUrl);
+        }
+      }
+    }
+
+    function handleNewReport() {
+      // Clear inputs
+      if (resumeText) resumeText.value = '';
+      if (jobDescription) jobDescription.value = '';
+      if (fileInfo) fileInfo.style.display = 'none';
+      currentFile = null;
+      currentReport = null;
+
+      // Reset report display
+      if (reportEmpty) reportEmpty.style.display = 'flex';
+      document.getElementById('score-number').textContent = '—';
+      document.getElementById('score-band').textContent = '—';
+
+      // Switch to input mode
+      setWorkspaceMode('input');
+    }
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', (event) => {
+      if (event.state?.mode === 'report' && event.state?.reportId) {
+        loadReportById(event.state.reportId);
+      } else {
+        setWorkspaceMode('input');
+      }
+    });
+
+    // Check URL on load to determine initial mode
+    function checkInitialRoute() {
+      const path = window.location.pathname;
+      const reportMatch = path.match(/\/workspace\/report\/(\d+)/);
+      if (reportMatch) {
+        const reportId = parseInt(reportMatch[1], 10);
+        loadReportById(reportId);
+      } else {
+        setWorkspaceMode('input');
+      }
+    }
+
+    async function loadReportById(reportId) {
+      try {
+        const response = await fetch(`/api/reports/${reportId}`, { credentials: 'include' });
+        if (!response.ok) {
+          console.warn('Report not found, switching to input mode');
+          setWorkspaceMode('input');
+          return;
+        }
+        const data = await response.json();
+        if (data.ok && data.report) {
+          currentReport = data.report;
+          currentReportId = reportId;
+          reportEmpty.style.display = 'none';
+          renderReport(data.report);
+          setActiveTab('overview');
+          setWorkspaceMode('report', reportId);
+        } else {
+          setWorkspaceMode('input');
+        }
+      } catch (err) {
+        console.error('Failed to load report:', err);
+        setWorkspaceMode('input');
+      }
+    }
+
+    // New Report button handler
+    if (newReportBtn) {
+      newReportBtn.addEventListener('click', handleNewReport);
+    }
 
     // DOM Elements
     const dropzone = document.getElementById('dropzone');
@@ -2393,6 +2551,7 @@
       }
     }
     checkLoginStatus();
+    checkInitialRoute(); // Check URL for report mode
 
     // Sample Report Button
     const sampleReportBtn = document.getElementById('sample-report-btn');
@@ -2439,6 +2598,8 @@ BS, Computer Science — UC Berkeley (2015)
 SKILLS
 Product: Roadmapping, A/B Testing, User Research, SQL, Amplitude, Mixpanel, Figma
 Technical: Python basics, API integrations, Agile/Scrum`;
+        // Switch to report mode (sample reports use 'sample' as ID)
+        setWorkspaceMode('report', 'sample');
       } catch (err) {
         console.error('Failed to load sample report', err);
         alert('Could not load sample report. Please try again.');
@@ -2641,6 +2802,10 @@ Technical: Python basics, API integrations, Agile/Scrum`;
           renderReport(result.data);
           hideLoading();
           setActiveTab('overview');
+
+          // Switch to report mode (uses 'live' ID for unsaved reports)
+          const reportId = result.report_id || 'live';
+          setWorkspaceMode('report', reportId);
 
           // Fetch Missing Wins ideas in the background
           fetchMissingWins(text);

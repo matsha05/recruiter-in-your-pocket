@@ -649,6 +649,11 @@ app.get("/workspace", (req, res) => {
   res.sendFile(path.join(__dirname, "workspace.html"));
 });
 
+// Deep-link to specific report (client-side route handling)
+app.get("/workspace/report/:id", (req, res) => {
+  res.sendFile(path.join(__dirname, "workspace.html"));
+});
+
 app.get("/terms", (req, res) => {
   res.sendFile(path.join(__dirname, "terms.html"));
 });
