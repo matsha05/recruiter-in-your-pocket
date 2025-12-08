@@ -103,6 +103,46 @@
   --shadow-hero: 0 16px 32px rgba(15, 23, 42, 0.08);
 }
 
+/* ===========================================
+   VISUAL POLISH (Batch 2)
+   =========================================== */
+
+/* Custom selection color - brand accent */
+::selection {
+  background: var(--accent-wash);
+  color: var(--text-main);
+}
+
+::-moz-selection {
+  background: var(--accent-wash);
+  color: var(--text-main);
+}
+
+/* Custom scrollbar - thin and brand-tinted */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-tint);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Dark mode color overrides */
 [data-theme="dark"] {
   --bg-page: #0F1115;
@@ -2433,6 +2473,11 @@ body.focus-mode .card-output {
   background: var(--accent);
   transform: none;
   box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(28, 78, 216, 0.2);
 }
 
 .btn-success-state {

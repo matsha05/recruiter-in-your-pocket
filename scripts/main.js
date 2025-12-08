@@ -537,13 +537,23 @@ function setTierInfo(tier) {
 
 async function refreshSessionState() {
   try {
-    const resp = await fetch("/api/me", { headers: authHeaders });
+    // Add 3-second timeout to prevent UI hang on slow networks
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+
+    const resp = await fetch("/api/me", {
+      headers: authHeaders,
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+
     const data = await resp.json().catch(() => null);
     if (data?.ok) {
       currentUser = data.user;
       activePass = data.active_pass;
     }
   } catch (err) {
+    // Silently fail - user stays in guest state
     console.warn("Could not refresh session", err);
   }
 }
@@ -3672,29 +3682,34 @@ async function initAuthUI() {
   if (signInBtn) signInBtn.style.display = "none";
   if (userDropdown) userDropdown.style.display = "none";
 
-  // Check if returning from checkout
-  const params = new URLSearchParams(window.location.search);
-  const isPostCheckout = params.get("checkout") === "success";
+  try {
+    // Check if returning from checkout
+    const params = new URLSearchParams(window.location.search);
+    const isPostCheckout = params.get("checkout") === "success";
 
-  if (isPostCheckout) {
-    // Wait a bit longer for webhook to process and session to update
-    await new Promise(r => setTimeout(r, 500));
-    await refreshSessionState();
-    trackEvent("checkout_completed", { tier: params.get("tier") || "24h" });
+    if (isPostCheckout) {
+      // Wait a bit longer for webhook to process and session to update
+      await new Promise(r => setTimeout(r, 500));
+      await refreshSessionState();
+      trackEvent("checkout_completed", { tier: params.get("tier") || "24h" });
 
-    // Show success toast
-    const tierLabel = params.get("tier") === "30d" ? "30-Day" : "24-Hour";
-    const name = currentUser?.first_name;
-    showToast(name
-      ? `${name}, your ${tierLabel} Pass is active!`
-      : `Your ${tierLabel} Pass is active!`
-    );
-  } else {
-    // Normal page load - wait for session check
-    await new Promise(r => setTimeout(r, 100));
+      // Show success toast
+      const tierLabel = params.get("tier") === "30d" ? "30-Day" : "24-Hour";
+      const name = currentUser?.first_name;
+      showToast(name
+        ? `${name}, your ${tierLabel} Pass is active!`
+        : `Your ${tierLabel} Pass is active!`
+      );
+    } else {
+      // Normal page load - wait for session check
+      await new Promise(r => setTimeout(r, 100));
+    }
+  } catch (err) {
+    console.warn("Auth initialization error:", err);
+  } finally {
+    // ALWAYS update UI - guarantees skeleton hides and proper state shows
+    updateAuthUI();
   }
-
-  updateAuthUI();
 }
 
 // Run auth UI initialization
