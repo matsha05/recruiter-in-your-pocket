@@ -1336,6 +1336,133 @@
     }
 
     /* History Toggle Button removed for cleaner UI - relying on Header button */
+
+    /* Auth UI Styles */
+    .auth-skeleton {
+      width: 80px;
+      height: 32px;
+      background: linear-gradient(90deg, var(--surface-tint) 25%, var(--bg-panel) 50%, var(--surface-tint) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: var(--radius-sm);
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .sign-in-btn {
+      font-weight: 600;
+      color: var(--accent) !important;
+    }
+
+    .pass-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xxs);
+      padding: var(--space-xxs) var(--space-sm);
+      background: var(--accent-wash);
+      border-radius: var(--radius-pill);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .user-dropdown {
+      position: relative;
+    }
+
+    .user-dropdown-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--surface-tint);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-size: var(--fs-small);
+      color: var(--text-main);
+    }
+
+    .user-avatar {
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+    }
+
+    .user-email-display {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .user-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      min-width: 200px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-modal);
+      z-index: 100;
+    }
+
+    .user-dropdown.open .user-dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      background: none;
+      border: none;
+      font-size: var(--fs-small);
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+      background: var(--surface-tint);
+    }
+
+    .dropdown-email {
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      margin: var(--space-xs) 0;
+    }
+
+    .sign-out-btn {
+      color: var(--error) !important;
+    }
+
+    .dropdown-arrow {
+      font-size: 10px;
+      opacity: 0.6;
+    }
   </style>
 </head>
 
@@ -1385,8 +1512,32 @@
       <div class="workspace-actions">
         <button class="btn-ghost" id="history-btn">📋 My Reports</button>
         <button class="btn-ghost" id="sample-report-btn">📄 Sample Report</button>
+
+        <!-- Auth UI -->
+        <div id="auth-skeleton" class="auth-skeleton"></div>
+        <button id="sign-in-btn" class="btn-ghost sign-in-btn" style="display: none;">Sign In</button>
+
+        <div id="pass-badge" class="pass-badge" style="display: none;">
+          <span class="pass-badge-icon">🎟️</span>
+          <span id="pass-badge-time" class="pass-badge-time"></span>
+        </div>
+
+        <div id="user-dropdown" class="user-dropdown" style="display: none;">
+          <button id="user-dropdown-btn" class="user-dropdown-btn" type="button">
+            <span id="user-avatar" class="user-avatar"></span>
+            <span id="user-email-display" class="user-email-display"></span>
+            <span class="dropdown-arrow">▾</span>
+          </button>
+          <div id="user-dropdown-menu" class="user-dropdown-menu">
+            <div id="dropdown-email" class="dropdown-item dropdown-email"></div>
+            <div id="dropdown-pass-info" class="dropdown-item dropdown-pass-info" style="display: none;"></div>
+            <div class="dropdown-divider"></div>
+            <button id="sign-out-btn" class="dropdown-item sign-out-btn" type="button">Sign Out</button>
+          </div>
+        </div>
+
         <button class="btn-ghost" id="theme-toggle">🌙</button>
-        <button class="btn-ghost" onclick="window.location.href='/'">← Back to Home</button>
+        <button class="btn-ghost" onclick="window.location.href='/'">← Home</button>
       </div>
     </header>
 
@@ -1723,6 +1874,143 @@
     const historyGuest = document.getElementById('history-guest');
     let isLoggedIn = false;
     let reportHistory = [];
+    let currentUser = null;
+    let activePass = null;
+
+    // Auth DOM Elements
+    const authSkeleton = document.getElementById('auth-skeleton');
+    const signInBtn = document.getElementById('sign-in-btn');
+    const passBadge = document.getElementById('pass-badge');
+    const passBadgeTime = document.getElementById('pass-badge-time');
+    const userDropdown = document.getElementById('user-dropdown');
+    const userDropdownBtn = document.getElementById('user-dropdown-btn');
+    const userDropdownMenu = document.getElementById('user-dropdown-menu');
+    const userAvatar = document.getElementById('user-avatar');
+    const userEmailDisplay = document.getElementById('user-email-display');
+    const dropdownEmail = document.getElementById('dropdown-email');
+    const dropdownPassInfo = document.getElementById('dropdown-pass-info');
+    const signOutBtn = document.getElementById('sign-out-btn');
+
+    // Auth headers
+    const authHeaders = { 'Authorization': `Bearer ${localStorage.getItem('rip_auth_token') || ''}` };
+
+    // Update auth UI based on current state
+    function updateAuthUI() {
+      if (authSkeleton) authSkeleton.style.display = 'none';
+
+      if (currentUser) {
+        isLoggedIn = true;
+        if (signInBtn) signInBtn.style.display = 'none';
+        if (userDropdown) userDropdown.style.display = 'block';
+
+        const displayName = currentUser.first_name || currentUser.email;
+        const initial = displayName ? displayName.charAt(0).toUpperCase() : 'U';
+        if (userAvatar) userAvatar.textContent = initial;
+
+        // Set button text: first name or "Account"
+        const buttonLabel = currentUser.first_name || 'Account';
+        if (userEmailDisplay) userEmailDisplay.textContent = buttonLabel;
+        if (dropdownEmail) dropdownEmail.textContent = currentUser.email;
+
+        // Update pass badge
+        if (activePass && passBadge) {
+          const expiry = new Date(activePass.expires_at);
+          const now = new Date();
+          const hoursLeft = Math.ceil((expiry - now) / (1000 * 60 * 60));
+          const timeText = hoursLeft > 24
+            ? `${Math.ceil(hoursLeft / 24)}d left`
+            : `${hoursLeft}h left`;
+          if (passBadgeTime) passBadgeTime.textContent = timeText;
+          passBadge.style.display = 'flex';
+        } else if (passBadge) {
+          passBadge.style.display = 'none';
+        }
+      } else {
+        isLoggedIn = false;
+        if (signInBtn) signInBtn.style.display = 'block';
+        if (userDropdown) userDropdown.style.display = 'none';
+        if (passBadge) passBadge.style.display = 'none';
+      }
+    }
+
+    // Refresh session state from server
+    async function refreshSessionState() {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 3000);
+
+        const resp = await fetch('/api/me', {
+          headers: authHeaders,
+          signal: controller.signal
+        });
+        clearTimeout(timeout);
+
+        const data = await resp.json().catch(() => null);
+        if (data?.ok) {
+          currentUser = data.user;
+          activePass = data.active_pass;
+        }
+      } catch (err) {
+        console.warn('Could not refresh session', err);
+      }
+    }
+
+    // Initialize auth UI
+    async function initAuthUI() {
+      if (authSkeleton) authSkeleton.style.display = 'block';
+      if (signInBtn) signInBtn.style.display = 'none';
+      if (userDropdown) userDropdown.style.display = 'none';
+
+      try {
+        await refreshSessionState();
+      } catch (err) {
+        console.warn('Auth init error:', err);
+      } finally {
+        updateAuthUI();
+      }
+    }
+
+    // User dropdown toggle
+    if (userDropdownBtn) {
+      userDropdownBtn.addEventListener('click', () => {
+        userDropdown.classList.toggle('open');
+      });
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (userDropdown && !userDropdown.contains(e.target)) {
+        userDropdown.classList.remove('open');
+      }
+    });
+
+    // Sign out handler
+    if (signOutBtn) {
+      signOutBtn.addEventListener('click', async () => {
+        try {
+          await fetch('/api/auth/logout', {
+            method: 'POST',
+            headers: authHeaders
+          });
+        } catch (err) {
+          console.warn('Logout error:', err);
+        }
+        localStorage.removeItem('rip_auth_token');
+        currentUser = null;
+        activePass = null;
+        updateAuthUI();
+      });
+    }
+
+    // Sign in button - redirect to home with sign-in intent
+    if (signInBtn) {
+      signInBtn.addEventListener('click', () => {
+        window.location.href = '/?signin=1';
+      });
+    }
+
+    // Initialize auth on page load
+    initAuthUI();
 
     function openHistorySidebar() {
       historySidebar.classList.add('open');

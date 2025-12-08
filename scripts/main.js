@@ -3377,11 +3377,9 @@ function updateAuthUI() {
     const initial = displayName ? displayName.charAt(0).toUpperCase() : "U";
     if (userAvatar) userAvatar.textContent = initial;
 
-    // Set email display
-    const emailDisplay = currentUser.email.length > 15
-      ? currentUser.email.substring(0, 12) + "..."
-      : currentUser.email;
-    if (userEmailDisplay) userEmailDisplay.textContent = emailDisplay;
+    // Set button text: first name or "Account"
+    const buttonLabel = currentUser.first_name || "Account";
+    if (userEmailDisplay) userEmailDisplay.textContent = buttonLabel;
     if (dropdownEmail) dropdownEmail.textContent = currentUser.email;
 
     // Update hero greeting if user has first_name
