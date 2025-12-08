@@ -1,70 +1,47 @@
 # Recruiter in Your Pocket
 
-Recruiter in Your Pocket is a tiny, high-end "resume studio" that reads your resume like a recruiter, then hands you a crafted report: how you read, what's working, what's harder to see, stronger bullets, and simple next steps. It includes a beautiful PDF export and plain-text report copy designed for sharing.
+**Get resume feedback from someone who's actually hired 1000+ people.**
 
-## Features
-- Insight Stack: how you read, what's working, what's harder to see, stronger phrasing, next steps.
-- PDF export: designed, share-ready report that mirrors the UI.
-- Copy report: plain-text version for quick sharing.
-- Trust: no resume storage; text stays in your browser until you request feedback.
+Most resume advice is generic. "Use action verbs." "Quantify your achievements." You've heard it.
 
-## Tech stack
-- Node/Express backend.
-- Static HTML/JS frontend (no build step).
-- Puppeteer for PDF generation.
+Recruiter in Your Pocket is different. It reads your resume like a real recruiter—someone who's made hiring decisions at Google, Facebook, OpenAI, and startups—and tells you exactly how you land: what's working, what's buried, and how to phrase things so hiring managers actually notice.
 
-## Design
-- Design principles: `docs/design-principles.md`
-- Design system: `docs/design-system.md`
+## What You Get
 
-## Environment Variables
+- **Your Score** — A clear read on how your resume lands, with a one-line verdict
+- **What's Working** — The strengths that are already coming through
+- **What's Harder to See** — The gaps that might be hurting you (with fixes)
+- **Stronger Phrasing** — Before/after rewrites for your weakest bullets
+- **Next Steps** — Exactly what to fix first
 
-### Required for Production
+Everything exports to a **beautiful PDF** you can share with mentors, friends, or just keep for yourself.
 
-- `DATABASE_URL` - Postgres connection string (e.g., from Vercel Postgres/Neon). Required for all environments now that storage is hosted.
-- `SESSION_SECRET` - Secret used to sign session cookies.
-- `API_AUTH_TOKEN` - **Required in production**. A secret token used to authenticate API requests. The server will refuse to start in production if this is not set.
+## Try It
 
-  **How to generate a secure token:**
-  ```bash
-  # Using Node.js
-  node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-  
-  # Or using OpenSSL
-  openssl rand -hex 32
-  ```
+Your first analysis is free. No account required.
 
-  **Local development:** `API_AUTH_TOKEN` is optional. You can omit it for local testing.
+Need more? A **Day Pass** ($5) unlocks unlimited runs for 24 hours.
 
-  **Production:** Must be set in your environment variables. All `/api/*` endpoints will require a `Authorization: Bearer <token>` header in production.
+## Why It's Different
 
-### Required for OpenAI
+We don't give generic advice that could apply to anyone. We read *your* story and tell you specifically what's buried, what's muted, and what could hit harder.
 
-- `OPENAI_API_KEY` - Your OpenAI API key for generating resume feedback.
+The goal isn't just to "fix your resume." It's to make you feel:
+- **Relief** — "Finally, someone tells me the truth."
+- **Resolve** — "I know exactly what to fix."
+- **Excitement** — "I actually want to apply now."
 
-### Optional
+## Privacy
 
-- `USE_MOCK_OPENAI` - Set to `1` or `true` to use mock responses instead of calling OpenAI (useful for testing).
-- `PORT` - Server port (default: 3000).
-- `LOG_FILE` - Optional path to log file for structured logging.
-- `STRIPE_SECRET_KEY` - Stripe secret key for payment processing.
-- `STRIPE_PRICE_ID` - Stripe price ID for checkout sessions.
-- `FRONTEND_URL` - Frontend URL for Stripe redirects (default: http://localhost:3000). You can provide a comma-separated list to allow multiple origins (e.g., `https://app.example.com, https://www.example.com`).
+Your resume text stays in your browser until you request feedback. We don't store resumes. Period.
 
-## Deployment (Vercel)
+## Tech Stack
 
-- Use Node.js 20: set `engines.node` in `package.json` (already `20.x`) and set Vercel → Settings → General → Node.js Version to 20 (or set env `NODE_VERSION=20`).
-- Database: provision Vercel Postgres (or Neon) and set `DATABASE_URL`. Default SSL is enabled; set `DATABASE_SSL=false` only for local dev.
-- One-time DB setup: `npm install` (Node 20), then run `DATABASE_URL=... npm run migrate` to create tables (`users`, `login_codes`, `passes`, `sessions`).
-- Required env vars in Vercel: `DATABASE_URL`, `SESSION_SECRET`, `API_AUTH_TOKEN`, `OPENAI_API_KEY` (plus Stripe keys if payments are on).
-- Health checks: `/health` (liveness) and `/ready` (verifies prompts, OpenAI key presence/mocks, PDF engine, and DB connectivity).
-- Logs: JSON to stdout; view in Vercel dashboard. Optionally set `LOG_FILE` for other hosts.
-- PDF export: uses `@sparticuz/chromium`/`puppeteer-core` on Vercel; respect function time limits (10s Hobby, 60s Pro).
+- **Backend:** Node.js + Express
+- **Frontend:** Static HTML/JS (no build step)
+- **PDF Generation:** Puppeteer
+- **AI:** OpenAI GPT-4
 
-### Security & CORS
+---
 
-- The backend only accepts browser requests from `FRONTEND_URL` (and from `http://localhost:3000` / `http://127.0.0.1:3000` in non-production).
-- If you see CORS errors in the browser console, make sure the page origin matches `FRONTEND_URL` exactly (protocol, host, and port).
-- In production, all `/api/*` endpoints require a bearer token header:
-  - `Authorization: Bearer $API_AUTH_TOKEN`
-- `/health` remains unauthenticated for uptime checks; `/ready` is intended for infrastructure readiness checks and still validates prompts/OpenAI/mock configuration.
+Built with care by people who've been on both sides of the hiring table.
