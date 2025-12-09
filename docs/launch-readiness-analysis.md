@@ -1,8 +1,22 @@
-# Launch Readiness Analysis: 15 Critical Gaps Before MRR
+# Launch Readiness Analysis: 18 Critical Gaps Before MRR
 
 **Recruiter in Your Pocket — December 2025**
 
-I've analyzed your entire repo including design principles, competitive intelligence, research foundations, backend architecture, frontend implementation, prompts, and analytics. Here are the 15 most impactful gaps that could block your path to converting free users to paid and building sustainable MRR.
+This document combines deep codebase analysis with external UX review feedback. It identifies gaps that could block conversion from free users to paid and sustainable MRR.
+
+---
+
+## ✅ What External Review Validated (Keep Doing This)
+
+Before diving into gaps — an external product review confirmed these are **working well**:
+
+1. **Homepage positioning**: "See how recruiters actually read your resume" + founder credentials = tight, credible, low-friction
+2. **Sample report structure**: Main score + subscores + "What's Working"/"What's Missing" feels like a real diagnostic, not vanity
+3. **ATS myth-busting**: Calling out myths vs reality positions you as the honest adult in the room
+4. **Privacy transparency**: "Your resume stays in your browser" + detailed policy hits both skimmers and deep trust-checkers
+5. **Research backbone**: The Hiring Research page has the right structure for skeptical PMs and operators
+
+These are strengths to protect, not change.
 
 ---
 
@@ -288,54 +302,48 @@ Consider a public report permalink (anonymized by default, with user opt-in):
 
 ---
 
-## 11. Mobile CTA Is Weak on Landing Page
+## 11. CTA Visual Hierarchy Needs Sharpening
 
 ### The Gap
-On mobile (600px breakpoint), the primary CTA behavior and visibility needs review. Your workspace is mobile-responsive, but the **landing page hero doesn't urgently push toward action** on mobile.
+External review noted: *"'See How Recruiters Read You' and 'Start for free' buttons visually blend into their surroundings more than they should for primary actions."*
 
-The hero CTA is below the fold on most phones. Users have to scroll past the sample report preview to find it.
+Additionally, on mobile (600px breakpoint), the hero CTA is below the fold. Users have to scroll past the sample report preview to find it.
 
 ### Why This Matters
+- **Skimming users miss the main path**: Primary CTAs should be the most saturated, largest elements
 - **Mobile is likely 50%+ of traffic**: Job seekers browse on phones during commutes, in coffee shops
 - **First impression momentum**: If they can't immediately act, they bounce
-- **Competition is mobile-first**: Teal, Rezi, Resume Worded all have mobile-optimized landing experiences
 
 ### The Fix
-Add a sticky mobile CTA bar at the bottom:
-```html
-<div class="mobile-sticky-cta">
-  <button>Try it Free →</button>
-</div>
-```
-Only visible on mobile, appears after scrolling past hero.
+1. **Sharpen primary CTA styling**: Larger size, more saturated accent color, consistent shadow/hover treatment
+2. **Add visual anchor in hero**: Slightly larger sample card with subtle glow or depth so there's one focal point
+3. **Sticky mobile CTA bar**: Only visible on mobile, appears after scrolling past hero
 
-**Effort**: 2 hours. **Impact**: Medium for mobile conversion.
+**Effort**: 1-2 hours. **Impact**: High for conversion.
 
 ---
 
-## 12. No "Thank You" or Delight Moment After Core Action
+## 12. No Emotional Reassurance at Key Friction Points
 
 ### The Gap
-When a user completes their first analysis, what happens? They see results. That's it.
+External review noted: *"You are very good at explaining mechanics and policy, but there are a few spots where a single line of emotional reassurance would do a lot of work."*
 
-There's no:
-- "Nice! You just took a step most people never do." message
-- Celebration animation (confetti, sparkle, nothing)
-- Progress acknowledgment ("1 of 2 free reports used")
+Specific opportunities:
+- **Resume textarea**: No reassurance that imperfect resumes are fine
+- **After first analysis**: No celebration or "you did it" moment
+- **Upgrade dialog**: No empathy for the vulnerability of the purchase moment
 
-### Why This Matters (from your design principles)
-> "Build Confidence: Every screen should leave you feeling more capable, not more worried."
-> "Induce Productive Emotion: The product should feel engaging, energizing, and premium."
+### Why This Matters
+- Users pasting their resume into an AI box are **emotionally vulnerable**
+- A single line of reassurance can reduce drop-off more than feature explanations
+- From your design principles: *"Build Confidence: Every screen should leave you feeling more capable, not more worried."*
 
-You're missing the dopamine hit that makes users come back.
+### The Fix (Specific Copy Suggestions from Review)
+1. **Under resume textarea**: *"You don't have to have it perfect. We'll help you find what's missing."*
+2. **After analysis completes**: Toast: *"Your report is ready 🎯"* + visual flourish on score dial
+3. **In upgrade dialog**: *"If this pass doesn't help you make at least one clear improvement, it wasn't worth it."*
 
-### The Fix
-Add a subtle celebration after the report loads:
-- A gentle toast: "Your report is ready 🎯"
-- Visual flourish on the score dial completion
-- Clear "next steps" ladder: "Ready to improve? Here's where to focus."
-
-**Effort**: 2 hours. **Impact**: Medium for retention.
+**Effort**: 30 minutes for copy, 1 hour for visual polish. **Impact**: High for trust and conversion.
 
 ---
 
@@ -414,21 +422,83 @@ Looking at `routes/payment.js`, the webhook creates a pass, but there's no:
 
 ---
 
+## 16. Pricing Section Needs Visual Hierarchy
+
+### The Gap
+External review noted: *"The three pricing cards feel similar in weight so the eye does not immediately land on the $9 'Most popular' plan."*
+
+The copy and structure are solid, but the visual design doesn't guide the user toward the recommended option.
+
+### Why This Matters
+- **Decision fatigue**: Equal-weight options slow down choice
+- **Revenue optimization**: You want most users on the $9 plan, not the $29 plan or bouncing
+- **Premium perception**: Stripe, Linear, Webflow all emphasize the middle tier visually
+
+### The Fix
+1. Make the $9 card 10-15% larger than others
+2. Add visible outline or background tint
+3. Add a real badge pill for "Most popular" (not just text)
+4. Tighten vertical spacing and align bullet lists consistently
+
+**Effort**: 30 minutes. **Impact**: Medium for conversion.
+
+---
+
+## 17. Workspace Needs First-Time User Guidance
+
+### The Gap
+External review noted: *"The left side (upload, paste, job description) and the right side (empty report tabs, 'Ready when you are') are all visible at once, which can feel like a lot of affordances for a user who has not yet pasted anything."*
+
+### Why This Matters
+- **Cognitive overload**: Too many options visible before the first action
+- **Unclear top path**: Users don't know what to do first
+- **Empty states feel cold**: Seeing report tabs before having a report is confusing
+
+### The Fix
+1. **Hide or mute report tabs** until after the first run
+2. Add light visual "Step 1: Paste or upload → Step 2: Run your first read" treatment
+3. Optionally gray/blur the empty report area until analysis runs
+
+**Effort**: 1-2 hours. **Impact**: Medium for activation.
+
+---
+
+## 18. Auth Modal Needs Visual Polish
+
+### The Gap
+External review noted: *"The magic code steps ('Send Code', 'Enter the 6 digit code', 'Welcome! What should we call you?') are logically sound, but visually they read as a stack of inputs and buttons without a strong sense of progression."*
+
+### Why This Matters
+- **Functional but not delightful**: Works, but doesn't feel premium
+- **Upgrade dialog disconnect**: The paywall modal could borrow pricing card styling for continuity
+
+### The Fix
+1. Add consistent modal frame with title at top ("Step 1: Email", "Step 2: Code", "Step 3: Name")
+2. More breathing room around each input
+3. Have upgrade dialog borrow pricing card styling from main pricing section
+
+**Effort**: 1-2 hours. **Impact**: Low for launch, medium for premium feel.
+
+---
+
 ## Summary: Priority Order
 
 ### 🔴 Do Before Launch (Week 0)
 
 | Gap | Effort | Impact |
 |-----|--------|--------|
-| **1. SEO/Meta tags** | 2 hours | High for discovery |
+| **1. SEO/Meta tags** ✅ | 2 hours | High for discovery |
 | **2. Email capture** | 4 hours | Critical for retention |
 | **5. Analytics events** | 4 hours | Critical for iteration |
 | **6. Favicon** | 30 min | Minor but obvious |
 | **7. Error states** | 2-3 hours | Medium for trust |
 | **9. UTM tracking** | 1-2 hours | Critical for marketing |
+| **11. CTA sharpening** | 1-2 hours | High for conversion |
+| **12. Emotional reassurance copy** | 30 min | High for trust |
 | **15. Support email** | 1 hour | Medium for trust |
+| **16. Pricing tier emphasis** | 30 min | Medium for conversion |
 
-**Total: ~15 hours of focused work**
+**Total: ~18 hours of focused work**
 
 ### 🟠 Do in First 2 Weeks Post-Launch
 
@@ -436,9 +506,9 @@ Looking at `routes/payment.js`, the webhook creates a pass, but there's no:
 |-----|--------|--------|
 | **3. Real testimonials** | 1-2 weeks | Huge for conversion |
 | **8. Referral system** | 4-6 hours | High for growth |
-| **11. Mobile sticky CTA** | 2 hours | Medium for mobile conversion |
-| **12. Delight moments** | 2 hours | Medium for retention |
 | **13. Accessibility basics** | 4-6 hours | Medium for compliance |
+| **17. Workspace first-time guidance** | 1-2 hours | Medium for activation |
+| **18. Auth modal polish** | 1-2 hours | Medium for premium feel |
 
 ### 🟡 Plan for Phase 2
 
