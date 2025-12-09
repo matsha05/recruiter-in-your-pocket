@@ -5,244 +5,175 @@
     <meta charset="UTF-8" />
     <title>Privacy Policy | Recruiter in Your Pocket</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap");
+    <meta name="description"
+        content="Privacy Policy for Recruiter in Your Pocket - how we handle your resume data and protect your privacy." />
+    <link rel="stylesheet" href="/styles/research.css">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <!-- Mixpanel Analytics -->
+    <script>
+        window.MIXPANEL_TOKEN = "88baf80ae55e4a7d6788cbc26811f9b9";
+        if (window.MIXPANEL_TOKEN) {
+            (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && (a = a[b[0]], d = b[1]); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))) } } var a = b; "undefined" !== typeof c ? a = b[c] = [] : c = "mixpanel"; a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d }; a.people.toString = function () { return a.toString(1) + ".people (stub)" }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" "); for (h = 0; h < i.length; h++)g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]) } } for (var d = {}, e = ["get_group"].concat(Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++)b(j[c]); return d }; b._i.push([e, f, c]) }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g) } })(document, window.mixpanel || []);
+            mixpanel.init(window.MIXPANEL_TOKEN, { track_pageview: true, persistence: 'localStorage' });
         }
-
-        :root {
-            --bg-page: #FDFDFC;
-            --bg-card: #ffffff;
-            --border-subtle: #d7dae3;
-            --accent: #3341A6;
-            --text-main: #0F172A;
-            --text-soft: #334155;
-            --text-muted: #64748B;
-            --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
-            --font-body: "Manrope", system-ui, sans-serif;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-page);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-
-        header {
-            margin-bottom: 40px;
-        }
-
-        .back-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            font-family: var(--font-display);
-            font-size: 32px;
-            font-weight: 800;
-            margin-top: 24px;
-            margin-bottom: 8px;
-        }
-
-        .last-updated {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        h2 {
-            font-family: var(--font-display);
-            font-size: 20px;
-            font-weight: 700;
-            margin-top: 40px;
-            margin-bottom: 16px;
-            color: var(--text-main);
-        }
-
-        p {
-            margin-bottom: 16px;
-            color: var(--text-soft);
-        }
-
-        ul {
-            margin-bottom: 16px;
-            padding-left: 24px;
-            color: var(--text-soft);
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        a {
-            color: var(--accent);
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(51, 65, 166, 0.08), rgba(51, 65, 166, 0.04));
-            border-left: 3px solid var(--accent);
-            padding: 20px;
-            margin: 24px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .highlight-box p {
-            margin-bottom: 0;
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        footer {
-            margin-top: 60px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-subtle);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-    </style>
+    </script>
 </head>
 
 <body>
-    <div class="container">
-        <header>
+    <div class="research-container">
+        <header class="research-header">
             <a href="/" class="back-link">← Back to Home</a>
-            <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated: December 2024</p>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode"
+                title="Toggle dark mode">
+                <span class="theme-toggle-icon">🌙</span>
+            </button>
         </header>
 
-        <main>
-            <div class="highlight-box">
-                <p>TL;DR: We only collect what we need to make the product work. Resume data is processed for feedback
-                    and deleted after processing. We don't sell your info.</p>
-            </div>
+        <section class="page-hero">
+            <h1 class="research-title">Privacy Policy</h1>
+            <p class="research-subtitle">Last updated: December 2024</p>
+        </section>
 
-            <h2>1. What We Collect</h2>
-            <p>When you use Recruiter in Your Pocket, we may collect:</p>
-            <ul>
-                <li><strong>Resume text:</strong> The content you paste or upload. This is sent to our AI provider for
-                    processing and is not stored on our servers after your feedback is generated.</li>
-                <li><strong>Job descriptions:</strong> If you provide one for alignment analysis, it's processed along
-                    with your resume and handled the same way.</li>
-                <li><strong>Email address:</strong> If you sign in, we collect your email to manage your account and
-                    purchased passes.</li>
-                <li><strong>Technical data:</strong> IP address, browser type, device information, and timestamps. This
-                    is collected automatically for security, debugging, and service improvement.</li>
-                <li><strong>Usage analytics:</strong> Page views, feature usage, and interaction events (via Mixpanel).
-                    This does not include your resume content.</li>
-                <li><strong>Payment info:</strong> Handled securely by Stripe. We do not store your credit card details.
-                </li>
-            </ul>
+        <div class="highlight-box">
+            <p>TL;DR: We only collect what we need to make the product work. Resume data is processed for feedback
+                and deleted after processing. We don't sell your info.</p>
+        </div>
 
-            <h2>2. Data Retention</h2>
-            <p>How long we keep your data depends on how you use the Service:</p>
-            <ul>
-                <li><strong>Without an account:</strong> Resume text is processed in memory and not stored after your
-                    feedback is generated. We do not retain your resume content.</li>
-                <li><strong>With an account:</strong> Your email and account data are stored until you request deletion.
-                    Purchase history is retained for legal and tax purposes.</li>
-                <li><strong>Logs and analytics:</strong> Technical logs (IP, timestamps, errors) are retained for up to
-                    90 days for debugging and security. Analytics data is retained per Mixpanel's policies.</li>
-            </ul>
+        <h2>1. What We Collect</h2>
+        <p>When you use Recruiter in Your Pocket, we may collect:</p>
+        <ul>
+            <li><strong>Resume text:</strong> The content you paste or upload. This is sent to our AI provider for
+                processing and is not stored on our servers after your feedback is generated.</li>
+            <li><strong>Job descriptions:</strong> If you provide one for alignment analysis, it's processed along
+                with your resume and handled the same way.</li>
+            <li><strong>Email address:</strong> If you sign in, we collect your email to manage your account and
+                purchased passes.</li>
+            <li><strong>Technical data:</strong> IP address, browser type, device information, and timestamps. This
+                is collected automatically for security, debugging, and service improvement.</li>
+            <li><strong>Usage analytics:</strong> Page views, feature usage, and interaction events (via Mixpanel).
+                This does not include your resume content.</li>
+            <li><strong>Payment info:</strong> Handled securely by Stripe. We do not store your credit card details.
+            </li>
+        </ul>
 
-            <h2>3. How We Use Your Data</h2>
-            <ul>
-                <li>To generate AI-powered resume feedback</li>
-                <li>To manage your account and purchased passes</li>
-                <li>To send transactional emails (login codes, receipts)</li>
-                <li>To improve the product using aggregated, anonymized usage data</li>
-                <li>To maintain security and prevent abuse</li>
-            </ul>
+        <h2>2. Data Retention</h2>
+        <p>How long we keep your data depends on how you use the Service:</p>
+        <ul>
+            <li><strong>Without an account:</strong> Resume text is processed in memory and not stored after your
+                feedback is generated. We do not retain your resume content.</li>
+            <li><strong>With an account:</strong> Your email and account data are stored until you request deletion.
+                Purchase history is retained for legal and tax purposes.</li>
+            <li><strong>Logs and analytics:</strong> Technical logs (IP, timestamps, errors) are retained for up to
+                90 days for debugging and security. Analytics data is retained per Mixpanel's policies.</li>
+        </ul>
 
-            <h2>4. What We Don't Do</h2>
-            <ul>
-                <li>We don't sell your personal information</li>
-                <li>We don't use your resume content to train our own AI models</li>
-                <li>We don't share your data with third parties for marketing</li>
-            </ul>
-            <p><strong>Note on AI processing:</strong> Resume text is sent to OpenAI's API for analysis. OpenAI may
-                process your data as described in their <a href="https://openai.com/policies/privacy-policy"
-                    target="_blank">privacy policy</a>. We have opted out of having data used for model training where
-                possible.</p>
+        <h2>3. How We Use Your Data</h2>
+        <ul>
+            <li>To generate AI-powered resume feedback</li>
+            <li>To manage your account and purchased passes</li>
+            <li>To send transactional emails (login codes, receipts)</li>
+            <li>To improve the product using aggregated, anonymized usage data</li>
+            <li>To maintain security and prevent abuse</li>
+        </ul>
 
-            <h2>5. Cookies and Tracking</h2>
-            <p>We use cookies to:</p>
-            <ul>
-                <li>Keep you logged in (session cookies)</li>
-                <li>Track your free report usage (persistent cookie)</li>
-                <li>Remember your preferences (like dark mode)</li>
-            </ul>
-            <p>We use Mixpanel for analytics, which may collect IP address, device type, and usage events. This data
-                does not include your resume content.</p>
-            <p>You can control cookies through your browser settings. Disabling cookies may affect some features of the
-                Service.</p>
+        <h2>4. What We Don't Do</h2>
+        <ul>
+            <li>We don't sell your personal information</li>
+            <li>We don't use your resume content to train our own AI models</li>
+            <li>We don't share your data with third parties for marketing</li>
+        </ul>
+        <p><strong>Note on AI processing:</strong> Resume text is sent to OpenAI's API for analysis. OpenAI may
+            process your data as described in their <a href="https://openai.com/policies/privacy-policy"
+                target="_blank">privacy policy</a>. We have opted out of having data used for model training where
+            possible.</p>
 
-            <h2>6. Third-Party Services</h2>
-            <p>We use the following services to operate:</p>
-            <ul>
-                <li><strong>OpenAI:</strong> Powers our AI feedback. Resume text is sent to their API for processing.
-                    See their <a href="https://openai.com/policies/privacy-policy" target="_blank">privacy policy</a>.
-                </li>
-                <li><strong>Stripe:</strong> Handles payments securely. See their <a href="https://stripe.com/privacy"
-                        target="_blank">privacy policy</a>.</li>
-                <li><strong>Vercel:</strong> Hosts our application. See their <a
-                        href="https://vercel.com/legal/privacy-policy" target="_blank">privacy policy</a>.</li>
-                <li><strong>Mixpanel:</strong> Provides usage analytics. See their <a
-                        href="https://mixpanel.com/legal/privacy-policy" target="_blank">privacy policy</a>.</li>
-            </ul>
+        <h2>5. Cookies and Tracking</h2>
+        <p>We use cookies to:</p>
+        <ul>
+            <li>Keep you logged in (session cookies)</li>
+            <li>Track your free report usage (persistent cookie)</li>
+            <li>Remember your preferences (like dark mode)</li>
+        </ul>
+        <p>We use Mixpanel for analytics, which may collect IP address, device type, and usage events. This data
+            does not include your resume content.</p>
+        <p>You can control cookies through your browser settings. Disabling cookies may affect some features of the
+            Service.</p>
 
-            <h2>7. Data Security</h2>
-            <p>We use industry-standard security measures including HTTPS encryption, secure authentication, and rate
-                limiting to protect your data. However, no system is 100% secure, and we cannot guarantee absolute
-                security.</p>
+        <h2>6. Third-Party Services</h2>
+        <p>We use the following services to operate:</p>
+        <ul>
+            <li><strong>OpenAI:</strong> Powers our AI feedback. Resume text is sent to their API for processing.
+                See their <a href="https://openai.com/policies/privacy-policy" target="_blank">privacy policy</a>.
+            </li>
+            <li><strong>Stripe:</strong> Handles payments securely. See their <a href="https://stripe.com/privacy"
+                    target="_blank">privacy policy</a>.</li>
+            <li><strong>Vercel:</strong> Hosts our application. See their <a
+                    href="https://vercel.com/legal/privacy-policy" target="_blank">privacy policy</a>.</li>
+            <li><strong>Mixpanel:</strong> Provides usage analytics. See their <a
+                    href="https://mixpanel.com/legal/privacy-policy" target="_blank">privacy policy</a>.</li>
+        </ul>
 
-            <h2>8. Your Rights</h2>
-            <p>You have the right to:</p>
-            <ul>
-                <li>Request a copy of the data we have about you</li>
-                <li>Request correction of inaccurate data</li>
-                <li>Request deletion of your account and associated data</li>
-                <li>Opt out of marketing communications</li>
-            </ul>
-            <p>If you are in the EU or UK, you may also have additional rights under GDPR, including the right to lodge
-                a complaint with a data protection authority.</p>
-            <p>To exercise any of these rights, contact us via our website.</p>
+        <h2>7. Data Security</h2>
+        <p>We use industry-standard security measures including HTTPS encryption, secure authentication, and rate
+            limiting to protect your data. However, no system is 100% secure, and we cannot guarantee absolute
+            security.</p>
 
-            <h2>9. Children</h2>
-            <p>The Service is not intended for children under 16, and we do not knowingly collect personal data from
-                children. If you believe we have collected data from a child, please contact us immediately.</p>
+        <h2>8. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Request a copy of the data we have about you</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your account and associated data</li>
+            <li>Opt out of marketing communications</li>
+        </ul>
+        <p>If you are in the EU or UK, you may also have additional rights under GDPR, including the right to lodge
+            a complaint with a data protection authority.</p>
+        <p>To exercise any of these rights, contact us via our website.</p>
 
-            <h2>10. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by posting
-                the new policy on this page with an updated date.</p>
+        <h2>9. Children</h2>
+        <p>The Service is not intended for children under 16, and we do not knowingly collect personal data from
+            children. If you believe we have collected data from a child, please contact us immediately.</p>
 
-            <h2>11. Contact</h2>
-            <p>If you have questions about this Privacy Policy or want to exercise your data rights, please reach out
-                via our website.</p>
-        </main>
+        <h2>10. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by posting
+            the new policy on this page with an updated date.</p>
 
-        <footer>
+        <h2>11. Contact</h2>
+        <p>If you have questions about this Privacy Policy or want to exercise your data rights, please reach out
+            via our website.</p>
+
+        <footer class="research-footer">
             <p>Made with care in Boulder, CO 🤍</p>
             <p><a href="/">Home</a> · <a href="/terms">Terms of Service</a></p>
         </footer>
     </div>
+
+    <script>
+        // Theme toggle
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-toggle-icon');
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            icon.textContent = '☀️';
+        }
+
+        toggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.textContent = '☀️';
+            }
+        });
+    </script>
 </body>
 
 </html>
