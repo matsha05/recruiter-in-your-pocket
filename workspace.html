@@ -49,6 +49,19 @@
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap");
 
+    /* Screen-reader only utility class */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     :root {
       --bg-page: #FDFDFC;
       --bg-panel: #ffffff;
@@ -1999,7 +2012,10 @@
 
   <!-- History Toggle Button removed -->
 
-  <div class="workspace">
+  <main class="workspace">
+    <!-- Visually hidden h1 for SEO - screen reader accessible -->
+    <h1 class="sr-only">Resume Workspace — Analyze Your Resume</h1>
+
     <!-- Header -->
     <header class="workspace-header">
       <a href="/" class="workspace-brand">
@@ -2430,7 +2446,7 @@
         <button class="btn-ghost" id="auth-cancel" style="margin-top: 15px; width: 100%;">Cancel</button>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
     // State
