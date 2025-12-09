@@ -963,8 +963,8 @@ body {
 
 .hero {
   position: relative;
-  margin: 0 auto var(--space-xl);
-  padding: var(--space-xl) var(--space-2xl);
+  margin: 0 auto 48px;
+  padding: 48px var(--space-2xl);
   max-width: 1100px;
   border-radius: var(--radius-card);
   background: var(--wash);
@@ -1590,7 +1590,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-md);
-  margin: 0 auto var(--space-2xl);
+  margin: 16px auto 48px;
   max-width: 1100px;
   padding: 0 var(--space-md);
 }
@@ -1689,8 +1689,8 @@ body {
 
 .proof-editorial {
   margin-top: 0;
-  margin-bottom: var(--space-2xl);
-  padding: var(--space-lg) var(--space-xl-alt);
+  margin-bottom: 48px;
+  padding: 32px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-input);
@@ -2978,8 +2978,8 @@ body.focus-mode .card-output {
 /* Compare strip */
 .compare-strip {
   max-width: 1100px;
-  margin: var(--space-2xl) auto;
-  padding: var(--space-3xl) var(--space-lg) var(--space-2xl);
+  margin: 48px auto;
+  padding: 48px var(--space-lg) 40px;
   background: none;
   border: none;
   border-radius: 0;
@@ -4128,8 +4128,8 @@ body.focus-mode .card-output {
 /* Pricing Section */
 .pricing-section {
   max-width: 1100px;
-  margin: var(--space-2xl) auto;
-  padding: var(--space-2xl) var(--space-lg);
+  margin: 48px auto;
+  padding: 48px var(--space-lg);
   background: var(--wash);
   border-radius: var(--radius-card);
   border: 1px solid var(--border-subtle);
@@ -6163,8 +6163,8 @@ textarea:focus-visible {
 /* ATS Education Section */
 .ats-education {
   max-width: 900px;
-  margin: 0 auto var(--space-2xl);
-  padding: var(--space-xl) var(--space-md);
+  margin: 0 auto 48px;
+  padding: 48px var(--space-md);
   text-align: center;
 }
 
