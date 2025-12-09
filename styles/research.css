@@ -483,24 +483,24 @@ a {
     font-size: 14px;
 }
 
-/* CTA Link */
+/* CTA Link - Clean and confident, not glowing */
 .cta-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     margin-top: 16px;
-    padding: 12px 20px;
+    padding: 12px 24px;
     background: var(--accent);
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     border-radius: var(--radius-sm);
-    transition: opacity 0.15s ease, transform 0.15s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .cta-link:hover {
-    opacity: 0.9;
+    background: color-mix(in srgb, var(--accent) 85%, black 15%);
     transform: translateY(-1px);
     color: white;
 }

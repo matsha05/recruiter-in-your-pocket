@@ -306,6 +306,115 @@ Users should immediately understand what the product does and what they get, vis
 If users must imagine the outcome, conversion drops.
 If they see the outcome, conversion accelerates.
 
+---
+
+## 14. CTA Principles: The Moment of Commitment
+
+CTAs are the most important UI element for conversion. They deserve obsessive attention. A CTA is not just a button—it's an invitation, a promise, and a moment of vulnerability for the user.
+
+### Visual Treatment
+
+**Primary CTAs must dominate the visual hierarchy.**
+- Use multi-layer glow effects that create depth (inner shine + outer glow)
+- Gradient backgrounds that subtly shift toward brightness
+- Size should be generous—err on the side of too big
+- Contrast against everything around them; the eye should land there first
+
+**The Glow Effect:**
+A premium CTA has three layers:
+1. **Inner shine** — subtle white gradient at top (15% opacity)
+2. **Ring glow** — accent-colored shadow at close radius (0-32px)
+3. **Ambient glow** — wider, softer spread (32-64px)
+
+This creates a "light source" effect that feels alive, not flat.
+
+**Hover states should feel responsive and alive:**
+- Scale up slightly (1.02–1.03)
+- Lift off the page (translateY -3 to -4px)
+- Glow intensifies, not just color change
+- Transition should feel smooth and premium (200-300ms, cubic-bezier)
+
+### Copy Principles
+
+**Be direct. Be specific. Be human.**
+
+| ❌ Generic | ✅ Our Way |
+|-----------|-----------|
+| Get Started | See How Recruiters Read You → |
+| Sign Up | Try it Free → |
+| Learn More | Get Your Free Analysis |
+| Submit | Run My Resume Read |
+
+**Use first-person when it creates ownership:**
+- "Start my free trial" > "Start free trial"
+- "Get my report" > "Get report"
+
+**Remove friction with reassurance:**
+- "2 free reports, no signup required"
+- "Cancel anytime"
+- "Takes under a minute"
+
+**Add urgency only when honest:**
+- "First 2 full reports free" ✅ (true limitation)
+- "Limited time offer!!" ❌ (cheap and false)
+
+### Psychological Principles
+
+**Every CTA answers three unconscious questions:**
+1. **What do I get?** (benefit, not action)
+2. **What does it cost me?** (time, money, risk)
+3. **Why now?** (urgency or scarcity)
+
+**Reduce perceived risk:**
+- "No credit card required"
+- "Your resume stays in your browser"
+- "2 free reports before you decide"
+
+**Use social proof when genuine:**
+- "Join 10,000+ job seekers" (when we have the numbers)
+- "Built by a recruiter who's hired 1000+" (our actual credibility)
+
+### CTA Hierarchy Across the Product
+
+| Context | Visual Treatment | Copy Style |
+|---------|------------------|------------|
+| **Hero CTA** | Gradient + glow + inner shine — the ONE standout element | Action + benefit ("See How Recruiters Read You →") |
+| **Pricing Featured** | Solid accent, larger than others, subtle shadow — NO glow | Value + action ("Get 24h Access") |
+| **Pricing Other Tiers** | Outline or muted fill — clearly secondary | "Start free", "$29/month" |
+| **Workspace/Action** | Solid accent, standard button shadow | Direct action ("Run Analysis") |
+| **Modal/Paywall** | Solid accent, matches surrounding context | Reassurance + action |
+| **Docs/Research** | Simple accent text links or clean buttons — NO glow | Educational ("Read the study →") |
+| **Secondary/Ghost** | Transparent with border, subtle hover | "Skip", "Cancel", "Learn more" |
+
+### The Litmus Test
+
+Before shipping any CTA, ask:
+1. **Is this a PRIMARY CONVERSION moment?** (Hero, pricing buy, paywall upgrade) — if yes, consider glow.
+2. **Is this educational or navigational?** — if yes, use clean buttons or text links.
+3. **Do I know exactly what happens when I click?** If not, rewrite the copy.
+4. **Would I click this?** If hesitant, address the objection in the copy.
+
+**We reject:** glow on everything, neon effects everywhere, cookie-cutter landing page templates, buttons that oversell.
+
+**We embrace:** restraint, clean solid buttons, glow as a RARE focal point, copy that promises specific value.
+
+### What NOT to Do (Hierarchy Enforcement)
+
+**The core lesson from Thumio:** They use glow on ONLY hero + buy buttons. Help center has zero glowing elements.
+
+**❌ Glow is NOT for:**
+- Docs, help, research pages
+- Secondary buttons (sign in, cancel, skip)
+- Navigation or utility buttons
+- Multiple buttons on the same screen
+- Workspace functional buttons
+
+**✅ Glow is ONLY for:**
+- Hero CTA (one per site, not per page)
+- Buy/upgrade buttons on pricing page
+- Recovery actions (404, error states)
+
+**The rule:** If you're adding glow to more than ONE element on a page, you've broken hierarchy. Glow is a scalpel, not a paint bucket.
 
 ---
 

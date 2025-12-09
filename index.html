@@ -884,7 +884,40 @@
     </div>
   </div>
 
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="/workspace" class="mobile-sticky-cta-btn">Try it Free →</a>
+  </div>
+
   <script src="/scripts/main.js"></script>
+
+  <!-- Mobile Sticky CTA scroll detection -->
+  <script>
+    (function () {
+      const stickyCta = document.getElementById('mobile-sticky-cta');
+      const hero = document.querySelector('.hero');
+      if (!stickyCta || !hero) return;
+
+      let ticking = false;
+
+      function checkScroll() {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom < 100) {
+          stickyCta.classList.add('visible');
+        } else {
+          stickyCta.classList.remove('visible');
+        }
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(checkScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
 </body>
 
 </html>

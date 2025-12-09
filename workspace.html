@@ -482,8 +482,8 @@
       border: none;
       border-radius: var(--radius-input);
       cursor: pointer;
-      box-shadow: var(--shadow-button);
-      transition: background var(--motion-duration-short), transform var(--motion-duration-short), box-shadow var(--motion-duration-short);
+      box-shadow: 0 2px 8px rgba(51, 65, 166, 0.15);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -493,6 +493,7 @@
     .btn-primary:hover:not(:disabled) {
       background: var(--accent-dark);
       transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(51, 65, 166, 0.2);
     }
 
     .btn-primary:disabled {
