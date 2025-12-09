@@ -1,9 +1,9 @@
-# Recruiter in Your Pocket — Design System v1.2
+# Recruiter in Your Pocket — Design System v2.0
 
 ## Overview
 This file defines the tokens and components for the Recruiter in Your Pocket UI and PDF so Matt, and future collaborators can evolve the product consistently.
 
-**Last Updated:** 2025-12-06 (Phase 6 Complete - Landing Page Refactored)
+**Last Updated:** 2025-12-09 (Unified Design System Refactor)
 
 ## Design Tokens Reference
 
@@ -13,43 +13,52 @@ All design tokens are defined as CSS variables in `:root`. This document serves 
 
 ## Colors
 
-### Backgrounds
-- `--bg-page: #FDFDFC` - Page background (Warm Stone)
-- `--bg-panel: #ffffff` - Panel background
-- `--bg-card: #ffffff` - Card background
-- `--wash: #FAF9F6` - Wash background (Warm Wash)
-- `--surface-tint: #F3F4F6` - Surface tint background
+### Brand Palette (Indigo)
+The primary brand colors anchor the UI:
 
-### Borders
-- `--border-subtle: #d7dae3` - Subtle border color
-- `--border-strong: #c6cbd6` - Strong border color
+| Token | Light | Dark | Usage |
+|-------|-------|------|-------|
+| `--color-indigo-50` | `#EEF2FF` | — | Wash/alt backgrounds |
+| `--color-indigo-100` | `#E0E7FF` | — | Subtle fills |
+| `--color-indigo-500` | `#4F46E5` | `#6366F1` | Primary brand |
+| `--color-indigo-600` | `#4338CA` | `#818CF8` | Brand strong/hover |
 
-### Accents (Deep Indigo)
-- `--accent: #3341A6` - Default accent color
-- `--accent-dark: #26328C` - Dark accent variant
-- `--accent-strong: #1E2A78` - Strong accent variant
-- `--accent-wash: #EEF0FA` - Accent wash background
-- `--accent-boost: #3341A6` - Accent boost color
-- `--accent-soft: color-mix(...)` - Soft accent tint for subtle fills/gradients (light: mix with white; dark: mix with #1A1C20)
+### Semantic Tokens
+Use these tokens for all color decisions—they automatically adapt between light and dark modes:
 
-### Text Colors
-- `--text-main: var(--ink-900)` - Primary text color
-- `--text-soft: var(--slate-700)` - Soft text color
-- `--text-muted: var(--slate-500)` - Muted text color
-- `--ink-900: #0F172A` - Primary text (dark)
-- `--slate-700: #334155` - Soft text
-- `--slate-500: #64748B` - Muted text
+| Token | Light | Dark | Usage |
+|-------|-------|------|-------|
+| `--brand` | `#4F46E5` | `#6366F1` | Primary CTA, active states |
+| `--brand-strong` | `#4338CA` | `#818CF8` | Hover states, emphasis |
+| `--text-primary` | `#111827` | `#E5E7EB` | Body text, headings |
+| `--text-secondary` | `#4B5563` | `#9CA3AF` | Supporting text |
+| `--text-link` | `#4338CA` | `#A5B4FC` | Links |
+| `--bg-body` | `#F9FAFB` | `#020617` | Page background |
+| `--bg-card` | `#FFFFFF` | `#020617` | Card surfaces |
+| `--bg-card-alt` | `#EEF2FF` | `rgba(79,70,229,0.16)` | Highlighted cards, pills |
+| `--bg-section-muted` | `#F5F3EF` | `#020617` | Warm section backgrounds |
+| `--border-subtle` | `#E5E7EB` | `#1F2937` | Dividers, input borders |
+| `--border-strong` | `#D1D5DB` | `#111827` | Emphasized borders |
 
 ### Status Colors
-- `--success: #15803d` - Success color
-- `--success-dark: #047857` - Dark success
-- `--success-light: #22c55e` - Light success
-- `--error: #b91c1c` - Error color
-- `--error-dark: #7f1d1d` - Dark error
-- `--error-light: #fca5a5` - Light error
-- `--error-bg: rgba(185, 28, 28, 0.08)` - Error background
-- `--warning: #d97706` - Warning color
-- `--warning-dark: #92400e` - Dark warning
+Status tokens are calibrated for contrast in each mode:
+
+| Token | Light | Dark | Usage |
+|-------|-------|------|-------|
+| `--status-success` | `#2F7F5F` | `#4ADE80` | Positive states, scores 80+ |
+| `--status-warning` | `#D97706` | `#FBBF24` | Caution, scores 70-79 |
+| `--status-danger` | `#B91C1C` | `#F87171` | Errors, scores <70 |
+| `--accent-warm` | `#F5B25C` | `#FBBF77` | Highlights, attention cards |
+
+### Legacy Token Aliases
+For backwards compatibility, old token names map to semantic tokens:
+- `--accent` → `--brand`
+- `--text-main` → `--text-primary`
+- `--text-soft` → `--text-secondary`
+- `--bg-page` → `--bg-body`
+- `--success` → `--status-success`
+- `--warning` → `--status-warning`
+- `--error` → `--status-danger`
 
 ### Semantic Score Colors (5-Tier System)
 
@@ -66,15 +75,9 @@ These colors communicate score meaning at a glance. They are distinct from the b
 |------|-------|-------|-----|-------|
 | Exceptional | 90+ | Purple | `#8b5cf6` | Elite resumes that stand out in a recruiter skim |
 | Strong | 85-89 | Blue | `#3b82f6` | Clear, confident, competitive for most roles |
-| Good | 80-84 | Green | `var(--success)` | Solid baseline, may need sharpening |
-| Needs Work | 70-79 | Yellow | `var(--warning)` | Story unclear, impact inconsistent |
-| Risk | <70 | Red | `var(--error)` | Recruiters will struggle to place level/strengths |
-
-**Why Purple and Blue (not accent)?**
-- The brand accent (`#3341A6` Deep Indigo) is reserved for UI elements, CTAs, and brand moments
-- Score colors are *semantic*—they communicate meaning, not brand
-- Purple (`#8b5cf6`) signals achievement/premium without implying "success" (which is green in existing palette)
-- Blue (`#3b82f6`) sits between purple (exceptional) and green (good), providing clear visual hierarchy
+| Good | 80-84 | Green | `var(--status-success)` | Solid baseline, may need sharpening |
+| Needs Work | 70-79 | Yellow | `var(--status-warning)` | Story unclear, impact inconsistent |
+| Risk | <70 | Red | `var(--status-danger)` | Recruiters will struggle to place level/strengths |
 
 **Dark Mode:** All colors have dark mode overrides defined in `[data-theme="dark"]`.
 
@@ -200,10 +203,12 @@ Use motion variables for transitions and animations.
 - `--motion-duration-short: 200ms` - Short duration
 - `--motion-duration-medium: 300ms` - Medium duration
 - `--motion-ease-premium: cubic-bezier(0.16, 1, 0.3, 1)` - Premium easing
+- `--ease-smooth: cubic-bezier(0.21, 0.74, 0.23, 0.99)` - Smooth easing for buttons and interactions
 
 ### Motion Guidelines
-- Signature report reveal: opacity 0 → 1 and translateY(8px) → 0; ~240ms; easing `--motion-ease-premium`; disabled under `prefers-reduced-motion`
-- Guideline: no other major motions; small hover transitions only
+- Score reveal: uses `@keyframes score-in` (opacity + translateY + scale)
+- Button hover: 160ms transitions with `--ease-smooth`
+- Tab/row hover: 140ms transitions
 - Always respect `prefers-reduced-motion` media query
 
 ---
@@ -213,10 +218,10 @@ Use motion variables for transitions and animations.
 All interactive elements use consistent focus states for accessibility.
 
 ### Focus Variables
-- `--focus-outline-color: #A5B4FC` - Focus outline color (light blue)
-- `--focus-outline-width: 2px` - Focus outline width
-- `--focus-outline-offset: 3px` - Focus outline offset
-- `--focus-shadow: 0 0 0 2px rgba(28, 78, 216, 0.16)` - Focus shadow ring
+- `--focus-outline-color: #A5B4FC` (dark: `#818CF8`)
+- `--focus-outline-width: 2px`
+- `--focus-outline-offset: 3px`
+- `--focus-shadow: 0 0 0 2px rgba(79, 70, 229, 0.16)` (dark: `rgba(129, 140, 248, 0.3)`)
 
 ### Focus Pattern
 All interactive elements should use:
@@ -244,36 +249,66 @@ All interactive elements should use:
 - `--accent-width: 2px` - Standard accent line width
 - `--accent-width-strong: 6px` - Strong accent line width
 
-## Reusable Classes
+---
 
-Use these classes for consistent component patterns throughout the application.
+## Component Classes
 
-### Stack Section Pattern
-- `.stack-section` - Container for report sections with consistent spacing
-- `.stack-heading` - Section heading with consistent typography
-- `.stack-subline` - Section subtitle/description
-- `.stack-accent-line` - Left accent line for visual hierarchy
+### Buttons
 
-**When to use:** All Insight Stack report sections should use this pattern for consistency.
+| Class | Usage | Styling |
+|-------|-------|---------|
+| `.btn-primary` | Main CTAs, run buttons | Brand background, white text, pill radius, glow shadow on hover |
+| `.btn-secondary` | Secondary actions | Card background, border, pill radius, subtle hover |
+| `.btn-ghost` | Tertiary actions | Transparent, subtle hover fill |
 
-### Button Components
-- `.btn-primary` - Primary action button
-  - Accent background, white text
-  - Radius: `var(--radius-input)` (12px)
-  - Premium shadow with hover lift
-  - Focus-visible ring using accent mix
-- `.btn-secondary` - Secondary action button
-  - Outline style with subtle shadow
-  - Hover strengthens border and lifts slightly
-  - Focus-visible ring consistent with primary
-- `.ghost-button` - Subtle ghost button
-  - Minimal styling, subtle background
-  - Used for less prominent actions
+**Button states:**
+- `:hover` — `translateY(-1px)`, intensified shadow
+- `:active` — `translateY(0)`, reduced shadow  
+- `:focus-visible` — outline ring with shadow
 
-**When to use:**
-- Primary actions: `.btn-primary`
-- Secondary actions: `.btn-secondary`
-- Tertiary actions: `.ghost-button`
+### Report Components
+
+| Class | Usage |
+|-------|-------|
+| `.report-score-card` | Overall score container with card styling |
+| `.score-main` | Large score number with animation |
+| `.score-pill` | Subscore badges (Impact, Clarity, etc.) |
+| `.score-range--excellent` | 90+ score labels |
+| `.score-range--good` | 80-89 score labels |
+| `.score-range--needs-work` | 70-79 score labels |
+| `.score-range--risk` | <70 score labels |
+| `.card-positive` | "What is working" items (green left border) |
+| `.card-attention` | "What is missing" items (warm left border) |
+| `.fix-row` | Top fixes list items with hover |
+
+### Badges
+
+| Class | Usage |
+|-------|-------|
+| `.badge-impact-high` | High impact indicator (green) |
+| `.badge-impact-medium` | Medium impact indicator (warm) |
+| `.badge-effort` | Effort level indicator (neutral) |
+| `.badge-flag` | Pricing flags ("Most popular", "Best value") |
+
+### Navigation Tabs
+
+| Class | Usage |
+|-------|-------|
+| `.tablist` | Tab container |
+| `.tab` | Individual tab button |
+| `.tab--active` | Active tab with underline indicator |
+
+### Alerts
+
+| Class | Usage |
+|-------|-------|
+| `.alert-soft` | Gentle warning (warm border/background) |
+
+### Layout
+
+| Class | Usage |
+|-------|-------|
+| `.section-muted` | Apply `--bg-section-muted` background |
 
 ## Usage Guidelines
 

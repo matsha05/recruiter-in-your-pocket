@@ -4,7 +4,7 @@
 ## Overview
 This document defines the core design philosophy and principles for Recruiter in Your Pocket.
 
-**Last Updated:** 2025-01-27 (Phase 3 Refactoring Complete)
+**Last Updated:** 2025-12-09 (Unified Design System Refactor)
 
 Recruiter in Your Pocket is a tiny, high-end studio for your career story.  
 It should feel like a recruiter who's hired 1000+ people at Google, Facebook, OpenAI, and startups sat down with a thoughtful designer to read your resume and hand you a crafted report—not generic AI advice, but real insight from someone who's made actual hiring decisions.
@@ -22,6 +22,27 @@ Delight when it actually helps.
 We calm the mind with clarity; the UI itself is confident and decisive, not soft or neutral.
 
 We prefer expressive restraint over polite neutrality; it’s okay if a few things feel bold as long as they serve clarity.
+
+---
+
+## Unified Theme Philosophy
+
+The design system prioritizes cohesion between light and dark modes so the product feels consistent regardless of theme.
+
+**Core Principles:**
+
+1. **Few hues, used consistently** — The indigo brand palette (#4F46E5 / #6366F1) anchors the UI. Warm accent (#F5B25C) provides contrast for highlights and calls to action.
+
+2. **Brand feels calm, expert, non-frantic** — No neon, no screaming colors. Shadows are subtle in light mode, deeper in dark. Motion is smooth and restrained.
+
+3. **Light and dark feel like the same product** — Components use CSS variables that adapt between themes. The same `.btn-primary`, `.report-score-card`, and `.tab` work in both contexts without class swapping.
+
+4. **Scores and states are clear without screaming** — Status colors (success, warning, danger) are calibrated for each mode's contrast needs. Dark mode uses brighter variants for visibility without harshness.
+
+**Theme Implementation:**
+- Theme toggle sets `data-theme="dark"` on `<html>` and persists to `localStorage`
+- System preference (`prefers-color-scheme`) is respected for first-time visitors
+- CSS variables cascade automatically—no JavaScript class swapping required for colors
 
 # DESIGN PRINCIPLES
 
