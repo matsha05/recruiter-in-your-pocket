@@ -662,6 +662,23 @@ app.get("/privacy", (req, res) => {
   res.sendFile(path.join(__dirname, "privacy.html"));
 });
 
+// Research microsite routes
+app.get("/research", (req, res) => {
+  res.sendFile(path.join(__dirname, "research.html"));
+});
+
+app.get("/research/how-recruiters-read-resumes", (req, res) => {
+  res.sendFile(path.join(__dirname, "research/how-recruiters-read-resumes.html"));
+});
+
+app.get("/research/how-people-scan-resumes", (req, res) => {
+  res.sendFile(path.join(__dirname, "research/how-people-scan-resumes.html"));
+});
+
+app.get("/research/ats-myths-and-reality", (req, res) => {
+  res.sendFile(path.join(__dirname, "research/ats-myths-and-reality.html"));
+});
+
 // Free status endpoint - returns current free uses remaining
 // Also handles monthly reset by writing updated cookie when needed
 app.get("/api/free-status", (req, res) => {

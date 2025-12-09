@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hiring Research | Recruiter in Your Pocket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Recruiter In Your Pocket is built on how recruiters actually read resumes, not on myths about bots and secret scores. Here is the research that informs our product." />
+    <link rel="stylesheet" href="/styles/research.css">
+</head>
+
+<body>
+    <div class="research-container">
+        <header class="research-header">
+            <a href="/" class="back-link">← Back to Home</a>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode"
+                title="Toggle dark mode">
+                <span class="theme-toggle-icon">🌙</span>
+            </button>
+        </header>
+
+        <section class="research-hero">
+            <span class="research-chip">The foundation</span>
+            <h1 class="research-title">Backed by Hiring Research</h1>
+            <p class="research-subtitle">
+                Most resume tools lean on myths about bots and secret filters. Recruiter in Your Pocket is built on how
+                recruiters actually read resumes and decide who moves forward.
+            </p>
+        </section>
+
+        <p>
+            We use hiring and usability research to shape how our product works, how we score your resume, and which
+            changes
+            we recommend first.
+        </p>
+
+        <h2 class="research-section-title">Three studies that shape our approach</h2>
+
+        <div class="research-card-grid">
+            <a href="/research/how-recruiters-read-resumes" class="research-card">
+                <div class="research-card-source">01 · Eye-tracking research</div>
+                <div class="research-card-title">How recruiters skim resumes in 6 seconds</div>
+                <p class="research-card-excerpt">
+                    Eye tracking research shows that recruiters spend only a few seconds on their initial fit or no fit
+                    decision.
+                    They focus on titles, companies, dates, and the first signals of scope.
+                </p>
+                <div class="research-card-takeaway">
+                    We use this to design <strong>Recruiter First Impression</strong> and decide what our main score
+                    should measure.
+                </div>
+                <span class="research-card-arrow">Read the deep dive →</span>
+            </a>
+
+            <a href="/research/how-people-scan-resumes" class="research-card">
+                <div class="research-card-source">02 · Usability research</div>
+                <div class="research-card-title">How people scan text and bullet points</div>
+                <p class="research-card-excerpt">
+                    Usability research on reading patterns shows that people scan pages rather than reading every word.
+                    They pay
+                    special attention to headings, bullets, numbers, and names.
+                </p>
+                <div class="research-card-takeaway">
+                    We use this to design <strong>Bullet Upgrades</strong> and encourage one idea per bullet.
+                </div>
+                <span class="research-card-arrow">Read the deep dive →</span>
+            </a>
+
+            <a href="/research/ats-myths-and-reality" class="research-card">
+                <div class="research-card-source">03 · Industry analysis</div>
+                <div class="research-card-title">ATS myths versus reality</div>
+                <p class="research-card-excerpt">
+                    The claim that "75% of resumes are never read" comes from marketing, not credible hiring data.
+                    Modern ATS
+                    tools mostly parse and organize resumes, not silently delete them.
+                </p>
+                <div class="research-card-takeaway">
+                    We use this to avoid fear-based messaging and focus on <strong>human clarity</strong> instead.
+                </div>
+                <span class="research-card-arrow">Read the deep dive →</span>
+            </a>
+        </div>
+
+        <h2 class="research-section-title">How this shapes Recruiter in Your Pocket</h2>
+
+        <ul class="research-bullets">
+            <li><strong>Recruiter First Impression</strong> models the first few seconds where a recruiter decides
+                whether to
+                move you forward or move on.</li>
+            <li>Our <strong>main score</strong> focuses on clarity, scope, and story, not keyword stuffing.</li>
+            <li><strong>Bullet Upgrades</strong> are designed to match how eyes actually scan impact, numbers, and
+                verbs.</li>
+            <li>Our <strong>ATS education</strong> is honest and simple. We keep your resume parser friendly and
+                recruiter
+                clear instead of selling tricks.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <p>We will continue to add to this research section as we incorporate more evidence into how we design and
+                improve Recruiter in Your Pocket.</p>
+        </div>
+
+        <footer class="research-footer">
+            <p>Made with care in Boulder, CO 🤍</p>
+            <p>
+                <a href="/">Home</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle (minimal version for standalone pages)
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('.theme-toggle-icon');
+
+        // Check for saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            icon.textContent = '☀️';
+        }
+
+        toggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+
+</html>

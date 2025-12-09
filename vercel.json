@@ -24,6 +24,10 @@
         {
             "src": "scripts/**",
             "use": "@vercel/static"
+        },
+        {
+            "src": "research/**",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
@@ -56,7 +60,11 @@
             "dest": "/$1.html"
         },
         {
-            "src": "/(workspace|terms|privacy)",
+            "src": "/(workspace|terms|privacy|research)",
+            "dest": "/server.js"
+        },
+        {
+            "src": "/research/(.*)",
             "dest": "/server.js"
         },
         {
