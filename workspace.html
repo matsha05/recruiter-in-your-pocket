@@ -208,6 +208,22 @@
       overflow: hidden;
     }
 
+    /* Input Mode - show both panels (default state) */
+    .workspace[data-mode="input"],
+    .workspace:not([data-mode="report"]) {
+      grid-template-columns: 1fr 1fr !important;
+    }
+
+    .workspace[data-mode="input"] .input-panel,
+    .workspace:not([data-mode="report"]) .input-panel {
+      display: flex !important;
+    }
+
+    .workspace[data-mode="input"] .report-panel,
+    .workspace:not([data-mode="report"]) .report-panel {
+      display: flex !important;
+    }
+
     .workspace-header {
       grid-column: 1 / -1;
       display: flex;
