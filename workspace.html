@@ -2569,10 +2569,16 @@
     const newReportBtn = document.getElementById('new-report-btn');
 
     function setWorkspaceMode(mode, reportId = null) {
+      console.log('[DEBUG] setWorkspaceMode called with:', mode, reportId);
+      console.log('[DEBUG] workspaceEl:', workspaceEl);
       workspaceMode = mode;
       currentReportId = reportId;
       if (workspaceEl) {
+        console.log('[DEBUG] Setting data-mode to:', mode);
         workspaceEl.setAttribute('data-mode', mode);
+        console.log('[DEBUG] data-mode is now:', workspaceEl.getAttribute('data-mode'));
+      } else {
+        console.error('[DEBUG] workspaceEl is null!');
       }
 
       // Update URL without full page reload
@@ -2599,8 +2605,10 @@
 
       // Reset report display
       if (reportEmpty) reportEmpty.style.display = 'flex';
-      document.getElementById('score-number').textContent = '—';
-      document.getElementById('score-band').textContent = '—';
+      const scoreNumber = document.getElementById('score-number');
+      const scoreBand = document.getElementById('score-band');
+      if (scoreNumber) scoreNumber.textContent = '—';
+      if (scoreBand) scoreBand.textContent = '—';
 
       // Switch to input mode
       setWorkspaceMode('input');
@@ -2658,8 +2666,15 @@
     }
 
     // New Report button handler
+    console.log('[DEBUG] newReportBtn:', newReportBtn);
     if (newReportBtn) {
-      newReportBtn.addEventListener('click', handleNewReport);
+      newReportBtn.addEventListener('click', function (e) {
+        console.log('[DEBUG] New Report button clicked!', e);
+        handleNewReport();
+      });
+      console.log('[DEBUG] Event listener attached to newReportBtn');
+    } else {
+      console.error('[DEBUG] newReportBtn is null - cannot attach handler!');
     }
 
     // DOM Elements
