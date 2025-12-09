@@ -1963,6 +1963,84 @@
       font-weight: 600;
       font-size: var(--fs-xs);
     }
+
+    /* Email Capture Modal */
+    .email-capture-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: var(--space-lg);
+    }
+
+    .email-capture-modal.hidden {
+      display: none;
+    }
+
+    .email-capture-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .email-capture-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-xl);
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: var(--space-xs);
+    }
+
+    .email-capture-text {
+      font-size: var(--fs-body);
+      color: var(--text-soft);
+      margin-bottom: var(--space-lg);
+      line-height: var(--lh-relaxed);
+    }
+
+    .email-capture-input {
+      width: 100%;
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--fs-body);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-input);
+      background: var(--bg-input);
+      color: var(--text-main);
+      margin-bottom: var(--space-md);
+    }
+
+    .email-capture-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-wash);
+    }
+
+    .email-capture-submit {
+      width: 100%;
+      margin-bottom: var(--space-sm);
+    }
+
+    .email-capture-skip {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: var(--fs-small);
+      cursor: pointer;
+      padding: var(--space-xs);
+    }
+
+    .email-capture-skip:hover {
+      color: var(--text-soft);
+    }
   </style>
 </head>
 
@@ -1980,6 +2058,18 @@
   </script>
   <!-- History Overlay -->
   <div class="history-overlay" id="history-overlay"></div>
+
+  <!-- Email Capture Modal -->
+  <div id="email-capture-modal" class="email-capture-modal hidden">
+    <div class="email-capture-card">
+      <div class="email-capture-title">Save your report for later?</div>
+      <p class="email-capture-text">Enter your email to keep this report and compare next time you update your resume.
+      </p>
+      <input type="email" id="email-capture-input" class="email-capture-input" placeholder="you@example.com" />
+      <button id="email-capture-submit" class="btn-primary email-capture-submit">Save my progress</button>
+      <button id="email-capture-skip" class="email-capture-skip">Skip for now →</button>
+    </div>
+  </div>
 
   <!-- History Sidebar -->
   <aside class="history-sidebar" id="history-sidebar">
@@ -3356,6 +3446,11 @@ Technical: Python basics, API integrations, Agile/Scrum`;
 
           // Fetch Missing Wins ideas in the background
           fetchMissingWins(text);
+
+          // Show email capture for non-logged-in users on first analysis
+          if (!window.authUser && freeUsesRemaining === 1 && !localStorage.getItem('email_capture_skipped')) {
+            setTimeout(() => showEmailCaptureModal(), 1500);
+          }
         } else {
           throw new Error(result.message || 'Failed to get feedback');
         }
@@ -3464,6 +3559,72 @@ Technical: Python basics, API integrations, Agile/Scrum`;
 
       document.querySelector('.report-content').innerHTML = upgradeHtml;
     }
+
+    // Email Capture Modal
+    const emailCaptureModal = document.getElementById('email-capture-modal');
+    const emailCaptureInput = document.getElementById('email-capture-input');
+    const emailCaptureSubmit = document.getElementById('email-capture-submit');
+    const emailCaptureSkip = document.getElementById('email-capture-skip');
+
+    function showEmailCaptureModal() {
+      emailCaptureModal.classList.remove('hidden');
+      emailCaptureInput.focus();
+    }
+
+    function hideEmailCaptureModal() {
+      emailCaptureModal.classList.add('hidden');
+      emailCaptureInput.value = '';
+    }
+
+    emailCaptureSkip.addEventListener('click', () => {
+      localStorage.setItem('email_capture_skipped', 'true');
+      hideEmailCaptureModal();
+    });
+
+    emailCaptureSubmit.addEventListener('click', async () => {
+      const email = emailCaptureInput.value.trim().toLowerCase();
+      if (!email || !email.includes('@')) {
+        emailCaptureInput.focus();
+        return;
+      }
+
+      emailCaptureSubmit.disabled = true;
+      emailCaptureSubmit.textContent = 'Sending...';
+
+      try {
+        const response = await fetch('/login/request-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const result = await response.json();
+        if (result.ok) {
+          hideEmailCaptureModal();
+          // Show login modal for code verification
+          if (typeof showLoginModal === 'function') {
+            showLoginModal(email);
+          } else {
+            alert('Check your email for a login code!');
+          }
+        } else {
+          alert(result.message || 'Could not send code. Try again.');
+        }
+      } catch (err) {
+        alert('Something went wrong. Please try again.');
+      }
+
+      emailCaptureSubmit.disabled = false;
+      emailCaptureSubmit.textContent = 'Save my progress';
+    });
+
+    // Close modal on overlay click
+    emailCaptureModal.addEventListener('click', (e) => {
+      if (e.target === emailCaptureModal) {
+        localStorage.setItem('email_capture_skipped', 'true');
+        hideEmailCaptureModal();
+      }
+    });
 
     function showLoading() {
       reportEmpty.style.display = 'none';
