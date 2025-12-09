@@ -167,88 +167,73 @@
       <div id="loading-bar"></div>
 
       <section class="hero">
-        <div class="hero-grid-layout">
-          <div class="hero-content">
-            <h1 class="hero-title">See how recruiters actually read your resume.</h1>
-            <p class="hero-subtitle">Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.</p>
-            <p class="hero-credibility">
-              <img src="/assets/founder-avatar.jpg" alt="Matt" class="founder-avatar" />
-              <span>Built by Matt — a recruiter who's run 10,000+ interviews and hired 1,000+ across
-                Google, Meta, OpenAI, and high-growth startups.</span>
-            </p>
+        <div class="hero-inner">
+          <h1 class="hero-title">See how recruiters actually read your resume.</h1>
+          <p class="hero-subtitle">Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.</p>
+          <p class="hero-credibility">
+            <img src="/assets/founder-avatar.jpg" alt="Matt" class="founder-avatar" />
+            <span>Built by Matt — a recruiter who's run 10,000+ interviews and hired 1,000+ across
+              Google, Meta, OpenAI, and high-growth startups.</span>
+          </p>
 
-            <div class="hero-cta-group">
-              <a href="/workspace" class="hero-cta-primary">See How Recruiters Read You →</a>
-            </div>
-            <div class="hero-cta-note">Upload PDF/DOCX or paste text · First 2 full reports free · No signup required
-            </div>
+          <div class="hero-cta-group">
+            <a href="/workspace" class="btn-primary hero-cta-primary">See How Recruiters Read You →</a>
+            <button id="data-handling-inline" type="button" class="btn-ghost hero-cta-secondary" aria-haspopup="dialog"
+              aria-controls="data-modal">Your resume is yours →</button>
+          </div>
+          <div class="hero-cta-note">Upload PDF/DOCX or paste text · First 2 full reports free · No signup required
+          </div>
+        </div>
+      </section>
 
-            <div class="trust-inline hero-trust-line">
-              <span class="status-dot"></span>
-              <span>Your resume stays private.</span>
-              <button id="data-handling-inline" type="button" aria-haspopup="dialog" aria-controls="data-modal">Your
-                resume is yours →</button>
+      <!-- Sample Report Preview -->
+      <section class="sample-report">
+        <div class="sample-report-card">
+          <div class="sample-report-badge">Sample Report Preview</div>
+          <div class="sample-report-score">
+            <div class="sample-report-dial">
+              <span class="sample-report-dial-number">86</span>
+            </div>
+            <div class="sample-report-score-text">
+              <div class="sample-report-score-label">Clarity Score</div>
+              <div class="sample-report-score-band">Strong foundation</div>
             </div>
           </div>
 
-          <div class="hero-preview">
-            <div class="hero-preview-card">
-              <div class="hero-preview-badge">Sample Report Preview</div>
-              <div class="hero-preview-score">
-                <div class="hero-preview-dial">
-                  <span class="hero-preview-dial-number">86</span>
-                </div>
-                <div class="hero-preview-score-text">
-                  <div class="hero-preview-score-label">Clarity Score</div>
-                  <div class="hero-preview-score-band">Strong foundation</div>
-                </div>
-              </div>
+          <!-- Subscores -->
+          <div class="sample-report-subscores">
+            <div class="score-pill"><span class="score-pill-label">Impact</span><span
+                class="score-pill-value score-good">82</span></div>
+            <div class="score-pill"><span class="score-pill-label">Clarity</span><span
+                class="score-pill-value score-good">88</span></div>
+            <div class="score-pill"><span class="score-pill-label">Story</span><span
+                class="score-pill-value score-good">84</span></div>
+            <div class="score-pill"><span class="score-pill-label">Readability</span><span
+                class="score-pill-value score-excellent">90</span></div>
+          </div>
 
-              <!-- Subscores Preview -->
-              <div class="hero-preview-subscores">
-                <div class="hero-preview-subscore">
-                  <span class="hero-preview-subscore-label">Impact</span>
-                  <span class="hero-preview-subscore-value" style="color: var(--success);">82</span>
-                </div>
-                <div class="hero-preview-subscore">
-                  <span class="hero-preview-subscore-label">Clarity</span>
-                  <span class="hero-preview-subscore-value" style="color: var(--success);">88</span>
-                </div>
-                <div class="hero-preview-subscore">
-                  <span class="hero-preview-subscore-label">Story</span>
-                  <span class="hero-preview-subscore-value" style="color: var(--success);">84</span>
-                </div>
-                <div class="hero-preview-subscore">
-                  <span class="hero-preview-subscore-label">Readability</span>
-                  <span class="hero-preview-subscore-value" style="color: var(--success);">90</span>
-                </div>
-              </div>
+          <div class="sample-report-verdict">"You read as someone who takes messy workstreams and makes them
+            shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear
+            calls. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you
+            drove."</div>
 
-              <div class="hero-preview-verdict">"You read as someone who takes messy workstreams and makes them
-                shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear
-                calls. What is harder to see is the exact scope—teams, volume, dollars—and the before/after change you
-                drove."</div>
-
-              <div class="hero-preview-section">
-                <div class="hero-preview-section-title">Best fit roles</div>
-                <div class="hero-preview-tags">
-                  <span class="hero-preview-tag">Program Manager</span>
-                  <span class="hero-preview-tag">Technical PM</span>
-                  <span class="hero-preview-tag">Product Ops</span>
-                </div>
-              </div>
-
-              <div class="hero-preview-section">
-                <div class="hero-preview-section-title">Top fixes</div>
-                <div class="hero-preview-item">Add scope numbers to your top 2 bullets (teams, users, revenue)</div>
-                <div class="hero-preview-item">State one before/after metric in your headline bullet</div>
-                <div class="hero-preview-item">Add a summary that positions your PM style upfront</div>
-              </div>
-
-              <div class="hero-preview-fade"></div>
-              <a href="/workspace/report/sample" class="hero-preview-cta">See full sample report →</a>
+          <div class="sample-report-section">
+            <div class="sample-report-section-title">Best fit roles</div>
+            <div class="sample-report-tags">
+              <span class="sample-report-tag">Program Manager</span>
+              <span class="sample-report-tag">Technical PM</span>
+              <span class="sample-report-tag">Product Ops</span>
             </div>
           </div>
+
+          <div class="sample-report-section">
+            <div class="sample-report-section-title">Top fixes</div>
+            <div class="sample-report-fix">Add scope numbers to your top 2 bullets (teams, users, revenue)</div>
+            <div class="sample-report-fix">State one before/after metric in your headline bullet</div>
+            <div class="sample-report-fix">Add a summary that positions your PM style upfront</div>
+          </div>
+
+          <a href="/workspace/report/sample" class="sample-report-cta">See full sample report →</a>
         </div>
       </section>
 
@@ -301,35 +286,40 @@
         </div>
       </div>
 
-      <div class="proof-editorial accent-card-primary" aria-label="Testimonials from users">
-        <div class="proof-editorial-heading">What users are saying</div>
+      <!-- Testimonials Section -->
+      <section class="testimonials">
+        <div class="testimonials-inner">
+          <h2 class="testimonials-heading">What users are saying</h2>
 
-        <div class="proof-editorial-quote">
-          <span class="testimonial-text">"I've rewritten my resume probably 20 times. This was the first time something
-            actually told me WHY my bullets weren't landing. Fixed three of them and heard back from two places the same
-            week."</span>
-          <span class="testimonial-author">— Marcus T., software engineer in Austin</span>
-        </div>
+          <div class="testimonial-quote">
+            <span class="testimonial-text">"I've rewritten my resume probably 20 times. This was the first time
+              something
+              actually told me WHY my bullets weren't landing. Fixed three of them and heard back from two places the
+              same
+              week."</span>
+            <span class="testimonial-author">— Marcus T., software engineer in Austin</span>
+          </div>
 
-        <div class="proof-editorial-quote">
-          <span class="testimonial-text">"I was doing the thing where you stare at your resume at 11pm, change a word,
-            change it back. This gave me a clear list and I just... did it. Got an offer three weeks later."</span>
-          <span class="testimonial-author">— Priya S., PM in NYC</span>
-        </div>
+          <div class="testimonial-quote">
+            <span class="testimonial-text">"I was doing the thing where you stare at your resume at 11pm, change a word,
+              change it back. This gave me a clear list and I just... did it. Got an offer three weeks later."</span>
+            <span class="testimonial-author">— Priya S., PM in NYC</span>
+          </div>
 
-        <div class="proof-editorial-quote">
-          <span class="testimonial-text">"I hire engineers. I was skeptical, but honestly? This nailed my blind spots.
-            My resume looked good to me because I wrote it. Someone else's eyes caught what I couldn't."</span>
-          <span class="testimonial-author">— David K., eng manager in Seattle</span>
-        </div>
+          <div class="testimonial-quote">
+            <span class="testimonial-text">"I hire engineers. I was skeptical, but honestly? This nailed my blind spots.
+              My resume looked good to me because I wrote it. Someone else's eyes caught what I couldn't."</span>
+            <span class="testimonial-author">— David K., eng manager in Seattle</span>
+          </div>
 
-        <div class="proof-editorial-quote">
-          <span class="testimonial-text">"I taught high school for 8 years and had no idea how to make that sound
-            relevant for tech. This helped me see what was actually valuable and how to phrase it so recruiters would
-            get it."</span>
-          <span class="testimonial-author">— Rachel M., former teacher, now in customer success</span>
+          <div class="testimonial-quote">
+            <span class="testimonial-text">"I taught high school for 8 years and had no idea how to make that sound
+              relevant for tech. This helped me see what was actually valuable and how to phrase it so recruiters would
+              get it."</span>
+            <span class="testimonial-author">— Rachel M., former teacher, now in customer success</span>
+          </div>
         </div>
-      </div>
+      </section>
 
       <div id="data-modal" class="data-modal hidden" role="dialog" aria-modal="true" aria-hidden="true"
         aria-labelledby="data-modal-title">
