@@ -2569,16 +2569,10 @@
     const newReportBtn = document.getElementById('new-report-btn');
 
     function setWorkspaceMode(mode, reportId = null) {
-      console.log('[DEBUG] setWorkspaceMode called with:', mode, reportId);
-      console.log('[DEBUG] workspaceEl:', workspaceEl);
       workspaceMode = mode;
       currentReportId = reportId;
       if (workspaceEl) {
-        console.log('[DEBUG] Setting data-mode to:', mode);
         workspaceEl.setAttribute('data-mode', mode);
-        console.log('[DEBUG] data-mode is now:', workspaceEl.getAttribute('data-mode'));
-      } else {
-        console.error('[DEBUG] workspaceEl is null!');
       }
 
       // Update URL without full page reload
@@ -2666,15 +2660,8 @@
     }
 
     // New Report button handler
-    console.log('[DEBUG] newReportBtn:', newReportBtn);
     if (newReportBtn) {
-      newReportBtn.addEventListener('click', function (e) {
-        console.log('[DEBUG] New Report button clicked!', e);
-        handleNewReport();
-      });
-      console.log('[DEBUG] Event listener attached to newReportBtn');
-    } else {
-      console.error('[DEBUG] newReportBtn is null - cannot attach handler!');
+      newReportBtn.addEventListener('click', handleNewReport);
     }
 
     // DOM Elements
