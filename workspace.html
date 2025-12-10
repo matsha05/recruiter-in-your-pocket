@@ -3385,6 +3385,14 @@ Technical: Python basics, API integrations, Agile/Scrum`;
 
         if (result.ok) {
           resumeText.value = result.text;
+          // Track resume upload
+          if (window.trackEvent) {
+            trackEvent('resume_uploaded', {
+              source: 'workspace_file',
+              text_length: result.text?.length || 0,
+              file_type: file.type
+            });
+          }
         } else {
           resumeText.value = '';
           alert('Could not extract text from file: ' + (result.message || 'Unknown error'));
@@ -3534,6 +3542,15 @@ Technical: Python basics, API integrations, Agile/Scrum`;
           renderReport(result.data);
           hideLoading();
           setActiveTab('overview');
+
+          // Track report viewed
+          if (window.trackEvent) {
+            trackEvent('report_viewed', {
+              source: 'workspace_analysis',
+              score: result.data?.score,
+              is_free: !window.authUser || !activePass
+            });
+          }
 
           // Switch to report mode (uses 'live' ID for unsaved reports)
           const reportId = result.report_id || 'live';

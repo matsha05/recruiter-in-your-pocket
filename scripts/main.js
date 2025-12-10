@@ -834,7 +834,15 @@ inputEl.addEventListener("input", (event) => {
 
 inputEl.addEventListener("paste", () => {
   if (!hasLoggedPaste) {
-    logEvent("resume_pasted");
+    // Delay to capture actual pasted content
+    setTimeout(() => {
+      const text = inputEl.value.trim();
+      logEvent("resume_pasted", {
+        text_length: text.length,
+        bullet_count: countBullets(text),
+        source: "homepage_paste"
+      });
+    }, 100);
     hasLoggedPaste = true;
   }
 });
