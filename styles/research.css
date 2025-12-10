@@ -1,50 +1,15 @@
-/* Research Pages Shared Styles
-   Consistent with Terms/Privacy aesthetic but with enhanced visual elements
-   for the research content pages.
-*/
+/**
+ * research.css - Research Pages Styles
+ * 
+ * Uses unified tokens from tokens.css for consistent branding.
+ */
 
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap");
+@import url("./tokens.css");
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-:root {
-    --bg-page: #FDFDFC;
-    --bg-card: #ffffff;
-    --bg-card-alt: #f8f9fc;
-    --border-subtle: #d7dae3;
-    --border-strong: #c6cbd6;
-    --accent: #3341A6;
-    --accent-soft: rgba(51, 65, 166, 0.08);
-    --accent-wash: rgba(51, 65, 166, 0.04);
-    --text-main: #0F172A;
-    --text-soft: #334155;
-    --text-muted: #64748B;
-    --success: #22C55E;
-    --warning: #EAB308;
-    --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
-    --font-body: "Manrope", system-ui, sans-serif;
-    --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-}
-
-/* Dark mode */
-[data-theme="dark"] {
-    --bg-page: #0F1115;
-    --bg-card: #1A1C20;
-    --bg-card-alt: #25272D;
-    --border-subtle: #2D3038;
-    --border-strong: #3A3D45;
-    --accent: #5B6FD8;
-    --accent-soft: rgba(91, 111, 216, 0.15);
-    --accent-wash: rgba(91, 111, 216, 0.08);
-    --text-main: #F1F5F9;
-    --text-soft: #94A3B8;
-    --text-muted: #64748B;
 }
 
 body {
