@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev:backend": "PORT=3001 nodemon server.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev --prefix web\"",
     "test": "node tests/validation.js && node tests/schema_contract.js && node tests/schema_contract_ideas.js && node tests/smoke_endpoints.js && node scripts/mock_run.js",
     "test:ready": "node tests/test_ready_and_auth.js",
     "calibrate": "node scripts/calibrate_score.js",
@@ -44,6 +45,7 @@
     "node": "20.x"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "nodemon": "^3.1.11"
   }
 }

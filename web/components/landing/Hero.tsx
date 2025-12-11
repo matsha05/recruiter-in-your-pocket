@@ -114,7 +114,7 @@ export default function Hero() {
                         <div className={`card-lg max-w-md w-full ${loaded ? "animate-score-in" : "opacity-0"}`}>
                             {/* Label - reduced emphasis */}
                             <div className="text-center mb-2">
-                                <span className="text-[var(--fs-small)] text-secondary font-medium uppercase tracking-wide">
+                                <span className="text-[var(--fs-small)] text-brand font-medium uppercase tracking-wide">
                                     Sample Report Preview
                                 </span>
                             </div>
@@ -151,7 +151,7 @@ export default function Hero() {
                             </div>
 
                             {/* Verdict quote */}
-                            <blockquote className="text-secondary italic border-l-4 border-brand pl-4 mb-4 bg-[var(--bg-card-alt)] py-3 pr-3 rounded-r-lg text-sm leading-relaxed">
+                            <blockquote className="text-brand-strong italic border-l-4 border-brand pl-4 mb-4 bg-[var(--bg-card-alt)] py-3 pr-3 rounded-r-lg text-sm leading-relaxed">
                                 &quot;You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership.&quot;
                             </blockquote>
 
@@ -171,15 +171,15 @@ export default function Hero() {
                                 <ul className="space-y-1.5 text-sm text-secondary">
                                     <li className="flex items-start gap-2">
                                         <span className="text-warning flex-shrink-0">→</span>
-                                        Add scope numbers to your top 2 bullets
+                                        <span>Add scope numbers to your top 2 bullets</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="text-warning flex-shrink-0">→</span>
-                                        State one before/after metric in your headline
+                                        <span>State one before/after metric in your headline</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="text-warning flex-shrink-0">→</span>
-                                        Add a summary that positions your PM style
+                                        <span>Add a summary that positions your PM style</span>
                                     </li>
                                 </ul>
                             </div>
