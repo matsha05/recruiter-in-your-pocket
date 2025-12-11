@@ -35,6 +35,31 @@ export default function WorkspaceClient() {
         }
     }, [searchParams, report]);
 
+    // Handle successful payment redirect
+    useEffect(() => {
+        const paymentStatus = searchParams.get("payment");
+        const tier = searchParams.get("tier");
+
+        if (paymentStatus === "success") {
+            // Show success message
+            const tierLabel = tier === "30d" ? "30-Day Campaign Pass" : "24-Hour Fix Pass";
+            alert(`🎉 Payment successful! Your ${tierLabel} is now active.\n\nYou now have unlimited resume reviews. Log in to access your pass!`);
+
+            // Clean URL params
+            window.history.replaceState({}, "", "/workspace");
+
+            // If not logged in, prompt to sign in
+            if (!user) {
+                setTimeout(() => {
+                    setIsAuthOpen(true);
+                }, 500);
+            } else {
+                // Refresh user to get updated pass status
+                refreshUser?.();
+            }
+        }
+    }, [searchParams, user, refreshUser]);
+
     const handleFileSelect = useCallback(async (file: File) => {
         console.log("[WorkspaceClient] handleFileSelect called with:", file.name, file.type);
         try {
@@ -162,7 +187,7 @@ export default function WorkspaceClient() {
 
     return (
         <>
-            <main className="min-h-screen flex flex-col bg-gray-50">
+            <main className="min-h-screen flex flex-col bg-body">
                 <h1 className="sr-only">Resume Workspace — Analyze Your Resume</h1>
 
                 <WorkspaceHeader
@@ -209,10 +234,25 @@ export default function WorkspaceClient() {
                     setIsHistoryOpen(false);
                     setIsAuthOpen(true);
                 }}
-                onLoadReport={(reportId) => {
+                onLoadReport={async (reportId) => {
                     console.log("Load report:", reportId);
                     setIsHistoryOpen(false);
-                    // TODO: Fetch and display report
+                    setIsLoading(true);
+                    try {
+                        const res = await fetch(`/api/reports/${reportId}`);
+                        const data = await res.json();
+                        if (data.ok && data.report) {
+                            setReport(data.report);
+                        } else {
+                            console.error("Failed to load report:", data.message);
+                            alert("Failed to load report: " + (data.message || "Unknown error"));
+                        }
+                    } catch (err) {
+                        console.error("Report load error:", err);
+                        alert("Failed to load report");
+                    } finally {
+                        setIsLoading(false);
+                    }
                 }}
             />
 

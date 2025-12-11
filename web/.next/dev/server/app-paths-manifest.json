@@ -1,12 +1,7 @@
 {
   "/(protected)/workspace/page": "app/(protected)/workspace/page.js",
-  "/api/auth/send-code/route": "app/api/auth/send-code/route.js",
-  "/api/auth/sign-out/route": "app/api/auth/sign-out/route.js",
-  "/api/auth/verify-code/route": "app/api/auth/verify-code/route.js",
+  "/api/checkout/route": "app/api/checkout/route.js",
   "/api/free-status/route": "app/api/free-status/route.js",
-  "/api/parse-resume/route": "app/api/parse-resume/route.js",
-  "/api/resume-feedback/route": "app/api/resume-feedback/route.js",
-  "/page": "app/page.js",
-  "/research/how-people-scan/page": "app/research/how-people-scan/page.js",
-  "/research/page": "app/research/page.js"
+  "/api/stripe/webhook/route": "app/api/stripe/webhook/route.js",
+  "/page": "app/page.js"
 }

@@ -344,6 +344,11 @@
     background-color: var(--bg-section-muted);
   }
 
+  .dark .section-muted,
+  [data-theme="dark"] .section-muted {
+    background-color: #1A1D21 !important;
+  }
+
   .section-inner {
     @apply max-w-6xl mx-auto px-5;
   }
@@ -586,6 +591,32 @@
     background: var(--bg-hover);
   }
 
+  /* Dark mode explicit overrides for surface backgrounds */
+  .dark .bg-surface,
+  [data-theme="dark"] .bg-surface {
+    background: #1F2227 !important;
+  }
+
+  .dark .bg-muted,
+  [data-theme="dark"] .bg-muted {
+    background: #1A1D21 !important;
+  }
+
+  .dark .bg-body,
+  [data-theme="dark"] .bg-body {
+    background: #0E1013 !important;
+  }
+
+  /* Dark mode card overrides */
+  .dark .card,
+  .dark .card-sm,
+  .dark .card-lg,
+  [data-theme="dark"] .card,
+  [data-theme="dark"] .card-sm,
+  [data-theme="dark"] .card-lg {
+    background: #1F2227 !important;
+  }
+
   /* Text colors */
   .text-primary {
     color: var(--text-primary);
@@ -637,12 +668,37 @@
     color: var(--status-danger);
   }
 
+  .bg-success {
+    background: var(--status-success);
+  }
+
+  .bg-gold {
+    background: #F5B25C;
+  }
+
   .bg-success-soft {
     background: var(--color-moss-50);
   }
 
   .bg-warning-soft {
     background: var(--color-amber-50);
+  }
+
+  .bg-danger-soft {
+    background: rgba(244, 63, 94, 0.1);
+  }
+
+  /* Dark mode overrides for soft backgrounds */
+  .dark .bg-success-soft {
+    background: rgba(52, 211, 153, 0.15);
+  }
+
+  .dark .bg-warning-soft {
+    background: rgba(251, 191, 36, 0.15);
+  }
+
+  .dark .bg-danger-soft {
+    background: rgba(251, 113, 133, 0.15);
   }
 
   /* Pill/Badge variants */

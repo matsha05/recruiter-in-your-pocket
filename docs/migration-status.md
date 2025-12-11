@@ -39,17 +39,21 @@
 
 ### Core Functionality
 - [x] **Resume Analysis Flow** - Wired workspace → /api/resume-feedback → Express (verified working)
-- [ ] **ReportPanel** - Display analysis results (works, may need polish)
-- [ ] **History Sidebar** - Fetch and display past reports
+- [x] **ReportPanel** - Display analysis results (works with all tabs)
+- [x] **History Sidebar** - Fetches past reports, loads individual reports (wired)
 
 ### Backend Routes to Migrate/Wire
 - [x] `/api/resume-feedback` - Main analysis endpoint (proxies to Express)
-- [ ] `/api/history/*` - Report history endpoints
+- [x] `/api/history/*` - Report history endpoints (proxies to Express)
 
 ### Deployment
-- [ ] Add Stripe env vars to production (`STRIPE_PRICE_ID_24H`, `STRIPE_PRICE_ID_30D`)
-- [ ] Point Stripe webhook to production URL
-- [ ] Deploy Next.js app (replace static file serving)
+- [x] Add Stripe env vars to production (`STRIPE_PRICE_ID_24H`, `STRIPE_PRICE_ID_30D`)
+- [x] Add `STRIPE_WEBHOOK_SECRET` to production
+- [x] Add `SUPABASE_SERVICE_ROLE_KEY` to production (needed by webhook)
+- [x] **Stripe webhook migrated to Next.js** (`/api/stripe/webhook`)
+- [x] Point Stripe Dashboard webhook to production Next.js URL
+- [ ] Deploy Next.js app
+- [ ] Test E2E (checkout → webhook → pass created)
 - [ ] Test full end-to-end flow in staging
 
 ---

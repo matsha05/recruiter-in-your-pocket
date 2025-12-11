@@ -3368,6 +3368,35 @@ function WorkspaceClient() {
         searchParams,
         report
     ]);
+    // Handle successful payment redirect
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "WorkspaceClient.useEffect": ()=>{
+            const paymentStatus = searchParams.get("payment");
+            const tier = searchParams.get("tier");
+            if (paymentStatus === "success") {
+                // Show success message
+                const tierLabel = tier === "30d" ? "30-Day Campaign Pass" : "24-Hour Fix Pass";
+                alert(`🎉 Payment successful! Your ${tierLabel} is now active.\n\nYou now have unlimited resume reviews. Log in to access your pass!`);
+                // Clean URL params
+                window.history.replaceState({}, "", "/workspace");
+                // If not logged in, prompt to sign in
+                if (!user) {
+                    setTimeout({
+                        "WorkspaceClient.useEffect": ()=>{
+                            setIsAuthOpen(true);
+                        }
+                    }["WorkspaceClient.useEffect"], 500);
+                } else {
+                    // Refresh user to get updated pass status
+                    refreshUser?.();
+                }
+            }
+        }
+    }["WorkspaceClient.useEffect"], [
+        searchParams,
+        user,
+        refreshUser
+    ]);
     const handleFileSelect = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "WorkspaceClient.useCallback[handleFileSelect]": async (file)=>{
             console.log("[WorkspaceClient] handleFileSelect called with:", file.name, file.type);
@@ -3508,14 +3537,14 @@ function WorkspaceClient() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                className: "min-h-screen flex flex-col bg-gray-50",
+                className: "min-h-screen flex flex-col bg-body",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "sr-only",
                         children: "Resume Workspace — Analyze Your Resume"
                     }, void 0, false, {
                         fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                        lineNumber: 166,
+                        lineNumber: 191,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$workspace$2f$WorkspaceHeader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3530,7 +3559,7 @@ function WorkspaceClient() {
                         onHistory: ()=>setIsHistoryOpen(true)
                     }, void 0, false, {
                         fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                        lineNumber: 168,
+                        lineNumber: 193,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3549,12 +3578,12 @@ function WorkspaceClient() {
                                     freeUsesRemaining: freeUsesRemaining
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                                    lineNumber: 180,
+                                    lineNumber: 205,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                                lineNumber: 179,
+                                lineNumber: 204,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$workspace$2f$ReportPanel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3565,19 +3594,19 @@ function WorkspaceClient() {
                                 isExporting: isExporting
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                                lineNumber: 192,
+                                lineNumber: 217,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                        lineNumber: 177,
+                        lineNumber: 202,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                lineNumber: 165,
+                lineNumber: 190,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$workspace$2f$HistorySidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3590,14 +3619,29 @@ function WorkspaceClient() {
                     setIsHistoryOpen(false);
                     setIsAuthOpen(true);
                 },
-                onLoadReport: (reportId)=>{
+                onLoadReport: async (reportId)=>{
                     console.log("Load report:", reportId);
                     setIsHistoryOpen(false);
-                // TODO: Fetch and display report
+                    setIsLoading(true);
+                    try {
+                        const res = await fetch(`/api/reports/${reportId}`);
+                        const data = await res.json();
+                        if (data.ok && data.report) {
+                            setReport(data.report);
+                        } else {
+                            console.error("Failed to load report:", data.message);
+                            alert("Failed to load report: " + (data.message || "Unknown error"));
+                        }
+                    } catch (err) {
+                        console.error("Report load error:", err);
+                        alert("Failed to load report");
+                    } finally{
+                        setIsLoading(false);
+                    }
                 }
             }, void 0, false, {
                 fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                lineNumber: 204,
+                lineNumber: 229,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$workspace$2f$PaywallModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3610,7 +3654,7 @@ function WorkspaceClient() {
                 }
             }, void 0, false, {
                 fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                lineNumber: 220,
+                lineNumber: 260,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$shared$2f$AuthModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3622,13 +3666,13 @@ function WorkspaceClient() {
                 }
             }, void 0, false, {
                 fileName: "[project]/web/components/workspace/WorkspaceClient.tsx",
-                lineNumber: 231,
+                lineNumber: 271,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true);
 }
-_s(WorkspaceClient, "XQqgHn8VN+oBmWkFIQB98msUvCk=", false, function() {
+_s(WorkspaceClient, "bQ/9j2ujrSXQ0xCw0K+su+7iSNE=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"],
         __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$providers$2f$AuthProvider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
