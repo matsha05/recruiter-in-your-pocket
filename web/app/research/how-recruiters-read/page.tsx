@@ -1,0 +1,151 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import ThemeToggle from "../../../components/shared/ThemeToggle";
+import "../../../styles/research.css";
+
+export const metadata: Metadata = {
+    title: "How Recruiters Actually Read Resumes | Hiring Research",
+    description: "Eye tracking research reveals recruiters spend about 6 seconds on their initial decision. Here's what they look at first."
+};
+
+export default function HowRecruitersReadPage() {
+    return (
+        <div className="research-container">
+            <header className="research-header">
+                <Link href="/research" className="back-link">← Back to Hiring Research</Link>
+                <ThemeToggle />
+            </header>
+
+            <section className="page-hero">
+                <span className="research-chip">Eye-tracking research</span>
+                <h1 className="research-title">How Recruiters Actually Read Resumes</h1>
+            </section>
+
+            <p>
+                Most advice about resumes is based on guesswork or recycled tips. This page is based on eye tracking
+                research that watched recruiters as they reviewed resumes in real time.
+            </p>
+
+            <p>
+                The study we lean on here is often called the <strong>TheLadders eye tracking study</strong>. It recorded
+                where recruiters looked on a resume and how long their eyes stayed there.
+            </p>
+
+            <h2>The 6 second skim</h2>
+
+            <p>
+                The study found that recruiters spend about <strong>6 seconds</strong> on their initial fit or no fit
+                decision for each resume before deciding whether to keep reading or move on. Later replications and summaries
+                put this skim window at roughly 6 to 8 seconds.
+            </p>
+
+            <p>
+                In that time they are not reading every bullet point. They are scanning for fast answers to a few questions:
+            </p>
+
+            <ul>
+                <li>Who is this person now</li>
+                <li>Where do they work</li>
+                <li>What is their title</li>
+                <li>How long have they been doing it</li>
+                <li>Where were they before</li>
+            </ul>
+
+            <div className="highlight-box">
+                <p>If those answers are easy to see, your resume earns more attention. If they are hard to see, it is likely
+                    skipped.</p>
+            </div>
+
+            <h2>The key data points recruiters look at first</h2>
+
+            <p>Eye tracking heatmaps in the study showed recruiters consistently homing in on:</p>
+
+            <ul>
+                <li>Your name</li>
+                <li>Your current title</li>
+                <li>Your current company</li>
+                <li>Your current dates</li>
+                <li>Your previous title</li>
+                <li>Your previous company</li>
+                <li>Your previous dates</li>
+            </ul>
+
+            <p>
+                Everything else was scanned much more lightly. Detail and paragraph copy had little influence on the initial
+                decision compared to these basics.
+            </p>
+
+            <div className="highlight-box">
+                <p>This means the top of your resume carries more weight than the rest of the page combined.</p>
+            </div>
+
+            <h2>Why dense text hurts you</h2>
+
+            <p>The same study found that resumes with:</p>
+
+            <ul>
+                <li>Clear section headings</li>
+                <li>Consistent formatting</li>
+                <li>Clean bullet structure</li>
+            </ul>
+
+            <p>
+                were rated &quot;easier to read&quot; and got more focused attention. Resumes that looked cluttered or inconsistent
+                pushed recruiters into faster skimming and faster rejection.
+            </p>
+
+            <h2>How this shapes Recruiter in Your Pocket</h2>
+
+            <p>We use this research directly in how we design and score your resume:</p>
+
+            <ul>
+                <li><strong>Recruiter First Impression</strong> sits at the top of your report because that is how important
+                    the first few seconds are.</li>
+                <li>Our <strong>main score</strong> focuses on how clearly your recent roles, titles, and scope come across
+                    in a quick skim.</li>
+                <li><strong>Top fixes</strong> often prioritize clarifying your most recent role, scope, and outcomes before
+                    anything else.</li>
+                <li><strong>Bullet upgrades</strong> push you toward one idea per bullet, numbers near the front, and clear
+                    verbs so recruiters do not have to dig.</li>
+            </ul>
+
+            <div className="highlight-box">
+                <p>We are not guessing when we tell you what to change. We are aligning your resume with what eye tracking
+                    shows recruiters actually do.</p>
+            </div>
+
+            <h2>Want to see the original study</h2>
+
+            <div className="source-callout"
+                style={{ background: "var(--accent-soft)", borderRadius: "var(--radius-md)", padding: "20px 24px", margin: "24px 0" }}>
+                <div
+                    style={{ fontSize: "13px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--accent)", marginBottom: "8px" }}>
+                    Research Source</div>
+                <div style={{ fontSize: "18px", fontWeight: 700, color: "var(--text-main)", marginBottom: "4px" }}>TheLadders
+                    Eye-Tracking Study</div>
+                <div style={{ fontSize: "14px", color: "var(--text-soft)" }}>Published by TheLadders in partnership with
+                    eye-tracking researchers</div>
+            </div>
+
+            <p>If you like reading source material, you can view the original report here:</p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start" }}>
+                <a href="https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf" className="cta-link"
+                    target="_blank" rel="noopener noreferrer">
+                    View the Original Study (PDF) →
+                </a>
+
+                <Link href="/workspace" className="cta-link">
+                    See how your resume reads → Get your free analysis
+                </Link>
+            </div>
+
+            <footer className="research-footer">
+                <p>Made with care in Boulder, CO 🤍</p>
+                <p>
+                    <Link href="/">Home</Link> · <Link href="/research">Hiring Research</Link> · <Link href="/terms">Terms</Link> · <Link href="/privacy">Privacy</Link>
+                </p>
+            </footer>
+        </div>
+    );
+}

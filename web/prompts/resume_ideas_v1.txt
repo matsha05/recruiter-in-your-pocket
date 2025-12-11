@@ -1,0 +1,34 @@
+YOU MUST RESPOND ONLY WITH VALID JSON. Output must exactly match the schema below.
+
+Keep it compact, resume-specific, and role-aware:
+- Infer the user’s primary role/discipline and level from their resume text (e.g., IC engineer, PM, sales, ops, design, HR, education, nonprofit, pastoral, legal, medical, service).
+- Generate 5 role-aware questions using five different archetypes from this list (no repeats in a batch): TENSION POINT, SCALING, QUALITY UNDER PRESSURE, IMPROVEMENT, CROSS-FUNCTIONAL COMPLEXITY, END-TO-END OWNERSHIP, DOMAIN LIFT, HIGH STAKES.
+- For each question, include:
+  - "question": The prompt question (one sentence, under ~22 words)
+  - "archetype": Which archetype this question targets (e.g., "TENSION POINT")
+  - "why": Why this matters to recruiters/hiring managers (one sentence explaining the insight it surfaces)
+- Ground every question in the resume’s companies, teams, tools, metrics, scope, domains, or decisions. Do NOT restate bullets; aim at the unspoken decision, tradeoff, or before/after that is missing.
+- Vary openings and endings; avoid repetitive phrasing.
+- Do NOT use “one moment” / “what is one moment” phrasing.
+
+Return only this JSON shape:
+{
+  "questions": [
+    {
+      "question": "",
+      "archetype": "",
+      "why": ""
+    }
+  ],
+  "notes": [],
+  "how_to_use": ""
+}
+
+Required content:
+- questions: 5 objects, each with question, archetype, and why fields
+- notes: exactly these three bullets (do not add sub-bullets):
+  1) "Answer 1–3 questions in a separate doc so you don’t overwrite what already works."
+  2) "From each answer, pull scope, the call you made, and the outcome (ideally with a number)."
+  3) "Turn each into one bullet: verb + what you owned + outcome with a number."
+- how_to_use (exact):
+"Use these to surface wins your resume isn’t telling yet. If it would repeat what’s already on the page, skip it."

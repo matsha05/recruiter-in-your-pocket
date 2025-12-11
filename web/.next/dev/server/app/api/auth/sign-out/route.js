@@ -1,0 +1,10 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/auth/sign-out/route.js")
+R.c("server/chunks/2374f_next_017a77ac._.js")
+R.c("server/chunks/2374f_@supabase_realtime-js_dist_module_c3e62ecb._.js")
+R.c("server/chunks/2374f_@supabase_storage-js_dist_module_d1342c1d._.js")
+R.c("server/chunks/2374f_@supabase_auth-js_dist_module_75ab2cbb._.js")
+R.c("server/chunks/2374f_7d3a8308._.js")
+R.c("server/chunks/[root-of-the-server]__33bcec27._.js")
+R.c("server/chunks/web__next-internal_server_app_api_auth_sign-out_route_actions_8d44c1a0.js")
+R.m("[project]/web/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/web/app/api/auth/sign-out/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/web/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/web/app/api/auth/sign-out/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

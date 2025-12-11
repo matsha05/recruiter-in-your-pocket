@@ -39,6 +39,7 @@ function createAuthRouter(deps) {
         createSession,
         deleteSessionByToken,
         getLatestPass,
+        getAllPasses,
         updateUserFirstName,
         // Mailer
         sendLoginCode,
@@ -172,6 +173,23 @@ function createAuthRouter(deps) {
         } catch (err) {
             logLine({ level: "error", msg: "update_first_name_failed", error: err.message }, true);
             return res.status(500).json({ ok: false, message: "Could not update name." });
+        }
+    });
+
+    /**
+     * GET /passes
+     * Return all passes (order history) for the authenticated user
+     */
+    router.get("/passes", async (req, res) => {
+        if (!req.authUser) {
+            return res.status(401).json({ ok: false, message: "Not authenticated" });
+        }
+        try {
+            const passes = await getAllPasses(req.authUser.id);
+            return res.json({ ok: true, passes });
+        } catch (err) {
+            logLine({ level: "error", msg: "get_passes_failed", error: err.message }, true);
+            return res.status(500).json({ ok: false, message: "Could not fetch passes." });
         }
     });
 

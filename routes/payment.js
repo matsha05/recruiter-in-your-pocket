@@ -161,6 +161,10 @@ function createPaymentRouter(deps) {
             const userId = metadata.user_id || null;
             const email = session.customer_email;
 
+            // Extract billing name from Stripe customer_details
+            const customerDetails = session.customer_details || {};
+            const billingName = customerDetails.name || null;
+
             try {
                 let user = userId ? await getUserById(userId) : null;
                 if (!user && email) {
@@ -168,6 +172,19 @@ function createPaymentRouter(deps) {
                 }
                 if (!user) {
                     throw new Error("No user to attach pass");
+                }
+
+                // Only update name if user doesn't already have one
+                if (billingName && !user.first_name) {
+                    // Extract first name from full billing name
+                    const firstName = billingName.split(" ")[0];
+                    await updateUserFirstName(user.id, firstName);
+                    logLine({
+                        level: "info",
+                        msg: "user_name_set_from_billing",
+                        userId: user.id,
+                        firstName
+                    });
                 }
 
                 const nowTs = Date.now();

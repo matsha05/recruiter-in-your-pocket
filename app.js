@@ -21,6 +21,7 @@ const {
   createPass,
   getLatestPass,
   getActivePasses,
+  getAllPasses,
   healthCheck,
   saveReport,
   getReportsForUser,
@@ -468,21 +469,63 @@ app.use(async (req, res, next) => {
     req.freeMeta = freeMeta || { used: 0, last_free_ts: null };
     req.freeUsesRemaining = FREE_RUN_LIMIT - (req.freeMeta.used || 0);
 
-    const raw = cookies[SESSION_COOKIE];
-    if (raw) {
-      const token = parseSessionCookie(raw);
-      if (token) {
-        const session = await getSessionByToken(token);
-        if (session) {
-          const user = await getUserById(session.user_id);
-          if (user) {
-            req.authUser = user;
-            req.sessionToken = token;
-            req.activePass = await getLatestPass(user.id);
+    // Check for Supabase JWT in Authorization header or cookies
+    const authHeader = req.headers.authorization || "";
+    let accessToken = null;
+
+    if (authHeader.startsWith("Bearer ")) {
+      accessToken = authHeader.slice(7);
+    } else {
+      // Check for Supabase auth cookies (sb-<project>-auth-token)
+      const supabaseCookie = Object.keys(cookies).find(k => k.includes("-auth-token"));
+      if (supabaseCookie) {
+        try {
+          const parsed = JSON.parse(cookies[supabaseCookie]);
+          accessToken = parsed?.access_token || parsed?.[0]?.access_token;
+        } catch {
+          // Not JSON, try as raw token
+          accessToken = cookies[supabaseCookie];
+        }
+      }
+    }
+
+    if (accessToken) {
+      // Verify JWT with Supabase
+      const { supabase } = require("./db");
+      const { data: { user: supabaseUser }, error } = await supabase.auth.getUser(accessToken);
+
+      if (!error && supabaseUser) {
+        // Get or create profile
+        let user = await getUserById(supabaseUser.id);
+        if (!user) {
+          user = await upsertUserByEmail(supabaseUser.email);
+        }
+        if (user) {
+          req.authUser = user;
+          req.activePass = await getLatestPass(user.id);
+        }
+      }
+    }
+
+    // Legacy: also check old session cookie during migration
+    if (!req.authUser) {
+      const raw = cookies[SESSION_COOKIE];
+      if (raw) {
+        const token = parseSessionCookie(raw);
+        if (token) {
+          const session = await getSessionByToken(token);
+          if (session) {
+            const user = await getUserById(session.user_id);
+            if (user) {
+              req.authUser = user;
+              req.sessionToken = token;
+              req.activePass = await getLatestPass(user.id);
+            }
           }
         }
       }
     }
+
     next();
   } catch (err) {
     next(err);
@@ -1252,6 +1295,7 @@ const authRouter = createAuthRouter({
   createSession,
   deleteSessionByToken,
   getLatestPass,
+  getAllPasses,
   updateUserFirstName,
   sendLoginCode,
   logLine

@@ -1,0 +1,260 @@
+"use client";
+
+import { useState } from "react";
+import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
+
+interface AuthModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onSuccess?: () => void;
+}
+
+export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
+    const [email, setEmail] = useState("");
+    const [code, setCode] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [step, setStep] = useState<"email" | "code" | "name">("email");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [isNewUser, setIsNewUser] = useState(false);
+
+    if (!isOpen) return null;
+
+    const handleSendCode = async () => {
+        if (!email.trim()) {
+            setError("Please enter your email");
+            return;
+        }
+
+        setLoading(true);
+        setError(null);
+
+        try {
+            const res = await fetch("/api/auth/send-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email.trim() })
+            });
+            const data = await res.json();
+
+            if (data.ok) {
+                setStep("code");
+            } else {
+                setError(data.message || "Failed to send code");
+            }
+        } catch (err) {
+            setError("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleVerifyCode = async () => {
+        if (!code.trim()) {
+            setError("Please enter the code");
+            return;
+        }
+
+        setLoading(true);
+        setError(null);
+
+        try {
+            const res = await fetch("/api/auth/verify-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email.trim(), code: code.trim() })
+            });
+            const data = await res.json();
+
+            if (data.ok) {
+                // Check if user already has a first name set
+                if (data.user?.firstName) {
+                    // Existing user with name - done!
+                    onSuccess?.();
+                    onClose();
+                } else {
+                    // New user or no name yet - ask for name
+                    setIsNewUser(true);
+                    setStep("name");
+                }
+            } else {
+                setError(data.message || "Invalid code");
+            }
+        } catch (err) {
+            setError("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSaveName = async () => {
+        if (!firstName.trim()) {
+            setError("Please enter your first name");
+            return;
+        }
+
+        setLoading(true);
+        setError(null);
+
+        try {
+            const supabase = createSupabaseBrowserClient();
+            const { error: updateError } = await supabase.auth.updateUser({
+                data: { first_name: firstName.trim() }
+            });
+
+            if (updateError) {
+                setError(updateError.message);
+                return;
+            }
+
+            onSuccess?.();
+            onClose();
+        } catch (err) {
+            setError("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleClose = () => {
+        setEmail("");
+        setCode("");
+        setFirstName("");
+        setStep("email");
+        setError(null);
+        setIsNewUser(false);
+        onClose();
+    };
+
+    return (
+        <div
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
+            onClick={(e) => e.target === e.currentTarget && handleClose()}
+        >
+            <div className="bg-white rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative">
+                <button
+                    onClick={handleClose}
+                    aria-label="Close"
+                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-900 transition-colors p-2"
+                >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                </button>
+
+                <div className="text-center mb-6">
+                    <h2 className="font-display text-xl font-bold text-gray-900 mb-2">
+                        {step === "email" && "Sign in or create account"}
+                        {step === "code" && "Check your email"}
+                        {step === "name" && "One last thing"}
+                    </h2>
+                    <p className="text-gray-500 text-sm">
+                        {step === "email" && "We'll send you a login code. No password needed."}
+                        {step === "code" && `We sent an 8-digit code to ${email}`}
+                        {step === "name" && "What should we call you?"}
+                    </p>
+                </div>
+
+                {step === "email" && (
+                    <div className="space-y-4">
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="you@example.com"
+                            className="input"
+                            autoFocus
+                            onKeyDown={(e) => e.key === "Enter" && handleSendCode()}
+                        />
+
+                        {error && (
+                            <div className="text-red-600 text-sm text-center">{error}</div>
+                        )}
+
+                        <button
+                            onClick={handleSendCode}
+                            disabled={loading}
+                            className="btn-primary w-full"
+                        >
+                            {loading ? "Sending..." : "Send Code"}
+                        </button>
+                    </div>
+                )}
+
+                {step === "code" && (
+                    <div className="space-y-4">
+                        <input
+                            type="text"
+                            value={code}
+                            onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 8))}
+                            placeholder="00000000"
+                            className="input text-center text-2xl tracking-widest font-mono"
+                            autoFocus
+                            onKeyDown={(e) => e.key === "Enter" && handleVerifyCode()}
+                        />
+
+                        {error && (
+                            <div className="text-red-600 text-sm text-center">{error}</div>
+                        )}
+
+                        <button
+                            onClick={handleVerifyCode}
+                            disabled={loading || code.length !== 8}
+                            className="btn-primary w-full"
+                        >
+                            {loading ? "Verifying..." : "Verify Code"}
+                        </button>
+
+                        <button
+                            onClick={() => { setStep("email"); setCode(""); setError(null); }}
+                            className="btn-ghost w-full text-sm"
+                        >
+                            Use a different email
+                        </button>
+                    </div>
+                )}
+
+                {step === "name" && (
+                    <div className="space-y-4">
+                        <input
+                            type="text"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            placeholder="Your first name"
+                            className="input"
+                            autoFocus
+                            onKeyDown={(e) => e.key === "Enter" && handleSaveName()}
+                        />
+
+                        {error && (
+                            <div className="text-red-600 text-sm text-center">{error}</div>
+                        )}
+
+                        <button
+                            onClick={handleSaveName}
+                            disabled={loading || !firstName.trim()}
+                            className="btn-primary w-full"
+                        >
+                            {loading ? "Saving..." : "Continue"}
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                // Skip name - just close
+                                onSuccess?.();
+                                onClose();
+                            }}
+                            className="btn-ghost w-full text-sm"
+                        >
+                            Skip for now
+                        </button>
+                    </div>
+                )}
+
+                <p className="text-center text-xs text-gray-500 mt-4">
+                    By continuing, you agree to our Terms and Privacy Policy.
+                </p>
+            </div>
+        </div>
+    );
+}
