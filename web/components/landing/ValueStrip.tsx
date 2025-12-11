@@ -25,16 +25,16 @@ export default function ValueStrip() {
     return (
         <section className="section bg-surface" aria-label="What you get">
             <div className="section-inner">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-10 max-w-3xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
                     {items.map((item, i) => (
-                        <div key={i} className="flex flex-col gap-1">
-                            <span className="font-display text-2xl font-bold text-gold">
+                        <div key={i} className="bg-surface border border-subtle rounded-lg p-5 flex flex-col">
+                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-brand-soft text-brand font-display font-bold text-sm mb-3">
                                 {item.num}
                             </span>
-                            <h3 className="font-display text-lg font-bold text-primary">
+                            <h3 className="font-display text-base font-bold text-primary mb-1">
                                 {item.title}
                             </h3>
-                            <p className="text-sm text-muted leading-relaxed">
+                            <p className="text-sm text-secondary leading-relaxed">
                                 {item.desc}
                             </p>
                         </div>

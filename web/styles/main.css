@@ -40,6 +40,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hero headline - THE dominant line on the site */
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
 /* Dark mode specific overrides for gradients and rgba values */
 [data-theme="dark"] .page {
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -441,10 +450,94 @@ html {
   background: rgba(251, 191, 119, 0.16);
 }
 
-/* --- MUTED SECTION BACKGROUND --- */
+/* --- SECTION LAYOUT PRIMITIVES --- */
+
+.section {
+  padding: var(--sp-2xl) var(--sp-m);
+  /* 48px vertical, 16px horizontal */
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: var(--sp-3xl) var(--sp-l);
+    /* 64px vertical, 24px horizontal */
+  }
+}
+
+.section-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
 
 .section-muted {
   background: var(--bg-section-muted);
+}
+
+/* --- SUBSCORE SEMANTIC COLORS --- */
+
+.subscore-impact {
+  --subscore-color: var(--status-success);
+}
+
+.subscore-clarity {
+  --subscore-color: var(--score-strong);
+}
+
+.subscore-story {
+  --subscore-color: var(--score-exceptional);
+}
+
+.subscore-readability {
+  --subscore-color: var(--brand);
+}
+
+.subscore-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: color-mix(in srgb, var(--subscore-color) 12%, var(--bg-card));
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+.subscore-pill-label {
+  color: var(--text-secondary);
+}
+
+.subscore-pill-value {
+  font-weight: 700;
+  color: var(--subscore-color);
+}
+
+/* --- SCORE ANIMATION --- */
+
+.animate-score-in {
+  animation: score-in 400ms var(--motion-ease-premium) 100ms both;
+}
+
+/* --- CARD LARGE VARIANT --- */
+
+.card-lg {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-subtle);
+  padding: var(--sp-l);
+  /* 24px - smaller than section padding */
+}
+
+.card-sm {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: var(--sp-m);
+}
+
+/* Soft brand background */
+.bg-brand-soft {
+  background: var(--bg-card-alt);
 }
 
 /* ===========================================

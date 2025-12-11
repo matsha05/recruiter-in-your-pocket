@@ -19,17 +19,17 @@ export default function Testimonials() {
     ];
 
     return (
-        <section className="section bg-surface">
+        <section className="section section-muted">
             <div className="section-inner">
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-primary mb-8">
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-primary mb-8 text-center">
                     What users are saying
                 </h2>
-                <div className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
                     {testimonials.map((t, i) => (
-                        <blockquote key={i} className="p-5 bg-muted rounded-xl border-l-4 border-brand">
-                            <p className="text-secondary italic mb-3">&quot;{t.text}&quot;</p>
-                            <cite className="text-sm text-muted not-italic">— {t.author}</cite>
-                        </blockquote>
+                        <div key={i} className="card-sm bg-surface border border-subtle rounded-xl p-5">
+                            <p className="text-secondary italic mb-4">&quot;{t.text}&quot;</p>
+                            <cite className="text-sm text-muted not-italic font-medium">— {t.author}</cite>
+                        </div>
                     ))}
                 </div>
             </div>

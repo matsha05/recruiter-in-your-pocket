@@ -51,19 +51,22 @@
     --color-amber-400: #FBBF24;
     --color-amber-500: #F59E0B;
 
-    /* ===== NEUTRALS (Unified warm tint) ===== */
+    /* ===== NEUTRALS (Cool gray, crisp modern) ===== */
     --color-ink: #1C1917;
-    /* Warm black (stone-900) */
-    --color-ink-soft: #57534E;
-    /* Warm gray (stone-600) */
-    --color-border-sub: #E7E5E4;
-    /* Warm border (stone-200) */
+    /* Rich charcoal */
+    --color-ink-soft: #4B5563;
+    /* Cool gray 600 */
+    --color-border-sub: #D9DBE0;
+    /* Cool gray border */
     --color-surface: #FFFFFF;
-    --color-paper-warm: #F5F3EF;
+    --color-paper-cool: #F7F8FA;
+    /* Cool gray background */
+    --color-muted: #EFF0F3;
+    /* Cool gray muted */
 
     /* ===== BACKGROUNDS ===== */
-    --bg-body: #F9FAFB;
-    --bg-section-muted: var(--color-paper-warm);
+    --bg-body: #F7F8FA;
+    --bg-section-muted: var(--color-muted);
     --bg-card: var(--color-surface);
     --bg-card-alt: var(--color-indigo-50);
     --bg-hover: rgba(99, 102, 241, 0.06);
@@ -71,10 +74,11 @@
     /* ===== SEMANTIC ACCENTS ===== */
     --color-positive: var(--color-moss-600);
     --color-caution: var(--color-amber-400);
+    --color-danger: #F43F5E;
+    /* Rose 500 */
     --color-accent-warm: #F5B25C;
     --color-accent-success: var(--color-moss-600);
     --color-accent-warning: #D97706;
-    --color-accent-danger: #B91C1C;
 
     /* ===== TEXT SEMANTIC ===== */
     --text-primary: var(--color-ink);
@@ -95,8 +99,8 @@
 
     /* ===== STATUS SEMANTIC ===== */
     --status-success: var(--color-moss-600);
-    --status-warning: var(--color-amber-500);
-    --status-danger: var(--color-accent-danger);
+    --status-warning: var(--color-amber-400);
+    --status-danger: var(--color-danger);
 
     /* ===== ACCENT SEMANTIC ===== */
     --accent-warm: var(--color-accent-warm);
@@ -122,25 +126,33 @@
   [data-theme="dark"] {
     color-scheme: dark;
 
-    /* Neutrals - dark */
+    /* Neutrals - dark (charcoal palette) */
     --color-ink: #E5E7EB;
     --color-ink-soft: #9CA3AF;
-    --color-border-sub: #1F2937;
-    --color-surface: #020617;
-    --color-paper-warm: #020617;
+    --color-border-sub: #2D3139;
+    --color-surface: #1F2227;
+    /* Card surface */
+    --color-paper-cool: #1A1D21;
+    /* Secondary surface */
+    --color-muted: #1A1D21;
 
     /* Moss/Amber in dark */
     --color-moss-400: #4ADE80;
     --color-moss-600: #34D399;
     --color-amber-400: #FBBF24;
     --color-amber-500: #F59E0B;
+    --color-danger: #FB7185;
+    /* Rose 400 for dark mode */
 
-    /* Backgrounds - dark (unified surface) */
-    --bg-body: #020617;
-    --bg-section-muted: #020617;
+    /* Backgrounds - dark (charcoal hierarchy) */
+    --bg-body: #0E1013;
+    /* Primary background - rich charcoal */
+    --bg-section-muted: #1A1D21;
+    /* Secondary surface */
     --bg-card: var(--color-surface);
+    /* #1F2227 */
     --bg-card-alt: rgba(79, 70, 229, 0.16);
-    --bg-hover: rgba(99, 102, 241, 0.1);
+    --bg-hover: rgba(99, 102, 241, 0.12);
 
     /* Text */
     --text-primary: var(--color-ink);
@@ -166,7 +178,7 @@
     /* Status - tuned for dark */
     --status-success: var(--color-moss-400);
     --status-warning: var(--color-amber-400);
-    --status-danger: #F87171;
+    --status-danger: var(--color-danger);
 
     /* Accent warm */
     --accent-warm: #FBBF77;

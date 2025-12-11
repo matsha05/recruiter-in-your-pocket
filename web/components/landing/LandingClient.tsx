@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useAuth } from "../providers/AuthProvider";
 import Header from "../landing/Header";
 import Hero from "../landing/Hero";
-import SampleReport from "../landing/SampleReport";
 import ValueStrip from "../landing/ValueStrip";
 import Testimonials from "../landing/Testimonials";
 import CompareStrip from "../landing/CompareStrip";
@@ -31,21 +30,20 @@ export default function LandingClient() {
     };
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-body">
             <Header
                 user={user ? { email: user.email || undefined, firstName: user.firstName || undefined } : null}
                 onSignIn={() => setIsAuthOpen(true)}
                 onSignOut={signOut}
             />
             <Hero />
-            <SampleReport />
             <ValueStrip />
             <Testimonials />
 
-            <div className="border-t border-gray-200" aria-hidden="true" />
-
+            {/* Muted content band: Compare + ATS Education */}
             <CompareStrip />
             <ATSEducation />
+
             <Pricing onSelectTier={handleSelectTier} />
             <Footer />
 

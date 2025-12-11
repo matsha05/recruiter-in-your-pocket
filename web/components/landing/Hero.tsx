@@ -24,55 +24,173 @@ export default function Hero() {
         : "Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.";
 
     return (
-        <section className="section bg-gradient-to-b from-[var(--bg-surface)] to-[var(--bg-muted)] pt-12 md:pt-20">
-            <div className="section-inner text-center">
-                <h1 className={`font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight mb-6 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-                    {headline}
-                </h1>
+        <section className="section bg-gradient-to-b from-[var(--bg-body)] to-[var(--bg-section-muted)]">
+            <div className="section-inner">
+                {/* Two-column grid: text column slightly wider on lg */}
+                <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] items-center">
 
-                <p className="text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8">
-                    {subheadline}
-                </p>
+                    {/* Left column - Hero copy and CTA */}
+                    <div className="max-w-xl">
+                        {/* Optional label line */}
+                        {!user && (
+                            <p className="mb-3 text-xs font-semibold tracking-[0.16em] uppercase text-brand">
+                                Recruiter-grade insight
+                            </p>
+                        )}
 
-                {/* Founder intro - only show for non-logged-in users */}
-                {!user && (
-                    <div className="flex items-center justify-center gap-3 mb-8">
-                        <Image
-                            src="/assets/founder-avatar.jpg"
-                            alt="Matt"
-                            width={48}
-                            height={48}
-                            className="rounded-full border-2 border-white shadow-md object-cover"
-                            quality={100}
-                            priority
-                        />
-                        <p className="text-sm text-secondary text-left max-w-md">
-                            Built by Matt — a recruiter who&apos;s run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups.
-                        </p>
-                    </div>
-                )}
-
-                {/* CTA Stack */}
-                <div className="flex flex-col items-center gap-3 mb-6">
-                    <Link href="/workspace" className="btn-primary text-lg px-8 py-4">
-                        {user ? "Go to Workspace →" : "See How Recruiters Read You →"}
-                    </Link>
-                    {!user && (
-                        <button
-                            type="button"
-                            className="text-brand hover:text-brand-strong text-sm font-medium transition-colors"
-                            onClick={() => setShowPrivacy(true)}
+                        {/* Hero H1 - THE dominant line on the site */}
+                        <h1
+                            className={`
+                                text-primary
+                                max-w-[18ch]
+                                mb-4
+                                transition-all duration-700
+                                ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+                            `}
+                            style={{
+                                fontFamily: 'var(--font-display)',
+                                fontSize: 'clamp(3rem, 7vw, 4.75rem)',
+                                lineHeight: '1.15',
+                                letterSpacing: '-0.02em',
+                                fontWeight: 800
+                            }}
                         >
-                            Your resume is yours →
-                        </button>
-                    )}
-                </div>
+                            {headline}
+                        </h1>
 
-                {!user && (
-                    <p className="text-sm text-muted">
-                        Upload PDF/DOCX or paste text · First 2 full reports free · No signup required
-                    </p>
-                )}
+                        {/* Subcopy */}
+                        <p className="text-secondary text-[var(--fs-body)] leading-[var(--lh-normal)] max-w-lg mb-6">
+                            {subheadline}
+                        </p>
+
+                        {/* Built by Matt row - only for non-logged-in users */}
+                        {!user && (
+                            <div className="flex items-center gap-3 mb-6">
+                                <Image
+                                    src="/assets/founder-avatar.jpg"
+                                    alt="Matt"
+                                    width={48}
+                                    height={48}
+                                    className="rounded-full border-2 border-white shadow-md object-cover flex-shrink-0"
+                                    quality={100}
+                                    priority
+                                />
+                                <p className="text-[var(--fs-small)] text-secondary leading-relaxed">
+                                    Built by Matt — a recruiter who&apos;s run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups.
+                                </p>
+                            </div>
+                        )}
+
+                        {/* CTA row */}
+                        <div className="flex flex-wrap items-center gap-3 mb-4">
+                            <Link
+                                href="/workspace"
+                                className="btn-primary transition-transform transition-shadow duration-150"
+                                style={{ transitionTimingFunction: 'var(--ease-smooth)' }}
+                            >
+                                {user ? "Continue in Workspace →" : "See How Recruiters Read You →"}
+                            </Link>
+                            {!user && (
+                                <button
+                                    type="button"
+                                    className="btn-ghost text-brand hover:text-brand-strong text-[var(--fs-small)] font-medium"
+                                    onClick={() => setShowPrivacy(true)}
+                                >
+                                    Your resume is yours →
+                                </button>
+                            )}
+                        </div>
+
+                        {/* Helper line */}
+                        {!user && (
+                            <p className="text-[var(--fs-small)] text-muted">
+                                Upload PDF/DOCX or paste text · First 2 full reports free · No signup required
+                            </p>
+                        )}
+                    </div>
+
+                    {/* Right column - Sample Report Preview Card */}
+                    <div className="flex justify-center lg:justify-end">
+                        <div className={`card-lg max-w-md w-full ${loaded ? "animate-score-in" : "opacity-0"}`}>
+                            {/* Label - reduced emphasis */}
+                            <div className="text-center mb-2">
+                                <span className="text-[var(--fs-small)] text-secondary font-medium uppercase tracking-wide">
+                                    Sample Report Preview
+                                </span>
+                            </div>
+
+                            {/* Score cluster */}
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full shadow-button flex-shrink-0">
+                                    <span className="text-xl font-extrabold text-white">86</span>
+                                </div>
+                                <div>
+                                    <div className="text-xs text-secondary uppercase tracking-wide">Clarity Score</div>
+                                    <div className="font-display font-bold text-brand text-sm">Strong foundation</div>
+                                </div>
+                            </div>
+
+                            {/* Subscores row */}
+                            <div className="flex flex-wrap gap-2 mb-5">
+                                <div className="subscore-impact subscore-pill">
+                                    <span className="subscore-pill-label">Impact</span>
+                                    <span className="subscore-pill-value">82</span>
+                                </div>
+                                <div className="subscore-clarity subscore-pill">
+                                    <span className="subscore-pill-label">Clarity</span>
+                                    <span className="subscore-pill-value">88</span>
+                                </div>
+                                <div className="subscore-story subscore-pill">
+                                    <span className="subscore-pill-label">Story</span>
+                                    <span className="subscore-pill-value">84</span>
+                                </div>
+                                <div className="subscore-readability subscore-pill">
+                                    <span className="subscore-pill-label">Readability</span>
+                                    <span className="subscore-pill-value">90</span>
+                                </div>
+                            </div>
+
+                            {/* Verdict quote */}
+                            <blockquote className="text-secondary italic border-l-4 border-brand pl-4 mb-4 bg-[var(--bg-card-alt)] py-3 pr-3 rounded-r-lg text-sm leading-relaxed">
+                                &quot;You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership.&quot;
+                            </blockquote>
+
+                            {/* Best fit roles */}
+                            <div className="mb-4">
+                                <h4 className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">Best fit roles</h4>
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="badge-brand px-2.5 py-1 text-xs rounded-full">Program Manager</span>
+                                    <span className="badge-brand px-2.5 py-1 text-xs rounded-full">Technical PM</span>
+                                    <span className="badge-brand px-2.5 py-1 text-xs rounded-full">Product Ops</span>
+                                </div>
+                            </div>
+
+                            {/* Top fixes */}
+                            <div className="mb-5">
+                                <h4 className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">Top fixes</h4>
+                                <ul className="space-y-1.5 text-sm text-secondary">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-warning flex-shrink-0">→</span>
+                                        Add scope numbers to your top 2 bullets
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-warning flex-shrink-0">→</span>
+                                        State one before/after metric in your headline
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-warning flex-shrink-0">→</span>
+                                        Add a summary that positions your PM style
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* CTA */}
+                            <Link href="/workspace?sample=true" className="btn-primary w-full text-center block text-sm py-3">
+                                See full sample report →
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Privacy Modal */}

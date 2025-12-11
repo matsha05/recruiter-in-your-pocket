@@ -44,12 +44,20 @@ module.exports = {
           DEFAULT: '#4F46E5'
         },
         ink: {
-          DEFAULT: '#111827',
+          DEFAULT: '#1C1917',
           soft: '#4B5563'
         },
         surface: '#FFFFFF',
         paper: {
-          warm: '#F5F3EF'
+          cool: '#F7F8FA'
+        },
+        // Cool gray neutrals
+        neutral: {
+          50: '#F7F8FA',
+          100: '#EFF0F3',
+          200: '#D9DBE0',
+          600: '#4B5563',
+          900: '#1C1917'
         },
         gold: {
           DEFAULT: '#F5B25C',
@@ -80,11 +88,17 @@ module.exports = {
           500: '#F59E0B',
           DEFAULT: '#FBBF24'
         },
+        // Rose - for error states
+        rose: {
+          400: '#FB7185',
+          500: '#F43F5E',
+          DEFAULT: '#F43F5E'
+        },
         accent: {
           warm: '#F5B25C',
           success: '#059669',
           warning: '#D97706',
-          danger: '#B91C1C'
+          danger: '#F43F5E'
         }
       },
 

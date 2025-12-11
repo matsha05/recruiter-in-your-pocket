@@ -373,95 +373,470 @@ function Hero() {
     const headline = user?.firstName ? `Hey ${user.firstName}, ready for your next review?` : "See how recruiters actually read your resume.";
     const subheadline = user?.firstName ? "Let's see what recruiters notice first." : "Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-gradient-to-b from-[var(--bg-card)] via-[var(--bg-body)] to-[var(--bg-body)] pt-12 md:pt-20",
+        className: "section bg-gradient-to-b from-[var(--bg-body)] to-[var(--bg-section-muted)]",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "section-inner text-center",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: `font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight tracking-tight mb-6 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`,
-                        children: headline
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Hero.tsx",
-                        lineNumber: 29,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8",
-                        children: subheadline
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Hero.tsx",
-                        lineNumber: 33,
-                        columnNumber: 17
-                    }, this),
-                    !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center justify-center gap-3 mb-8",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                src: "/assets/founder-avatar.jpg",
-                                alt: "Matt",
-                                width: 48,
-                                height: 48,
-                                className: "rounded-full border-2 border-white shadow-md object-cover",
-                                quality: 100,
-                                priority: true
-                            }, void 0, false, {
+                className: "section-inner",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] items-center",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "max-w-xl",
+                            children: [
+                                !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "mb-3 text-xs font-semibold tracking-[0.16em] uppercase text-brand",
+                                    children: "Recruiter-grade insight"
+                                }, void 0, false, {
+                                    fileName: "[project]/web/components/landing/Hero.tsx",
+                                    lineNumber: 36,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                    className: `
+                                text-primary
+                                max-w-[18ch]
+                                mb-4
+                                transition-all duration-700
+                                ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+                            `,
+                                    style: {
+                                        fontFamily: 'var(--font-display)',
+                                        fontSize: 'clamp(3rem, 7vw, 4.75rem)',
+                                        lineHeight: '1.15',
+                                        letterSpacing: '-0.02em',
+                                        fontWeight: 800
+                                    },
+                                    children: headline
+                                }, void 0, false, {
+                                    fileName: "[project]/web/components/landing/Hero.tsx",
+                                    lineNumber: 42,
+                                    columnNumber: 25
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-secondary text-[var(--fs-body)] leading-[var(--lh-normal)] max-w-lg mb-6",
+                                    children: subheadline
+                                }, void 0, false, {
+                                    fileName: "[project]/web/components/landing/Hero.tsx",
+                                    lineNumber: 62,
+                                    columnNumber: 25
+                                }, this),
+                                !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center gap-3 mb-6",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            src: "/assets/founder-avatar.jpg",
+                                            alt: "Matt",
+                                            width: 48,
+                                            height: 48,
+                                            className: "rounded-full border-2 border-white shadow-md object-cover flex-shrink-0",
+                                            quality: 100,
+                                            priority: true
+                                        }, void 0, false, {
+                                            fileName: "[project]/web/components/landing/Hero.tsx",
+                                            lineNumber: 69,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[var(--fs-small)] text-secondary leading-relaxed",
+                                            children: "Built by Matt — a recruiter who's run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups."
+                                        }, void 0, false, {
+                                            fileName: "[project]/web/components/landing/Hero.tsx",
+                                            lineNumber: 78,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/web/components/landing/Hero.tsx",
+                                    lineNumber: 68,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex flex-wrap items-center gap-3 mb-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            href: "/workspace",
+                                            className: "btn-primary transition-transform transition-shadow duration-150",
+                                            style: {
+                                                transitionTimingFunction: 'var(--ease-smooth)'
+                                            },
+                                            children: user ? "Continue in Workspace →" : "See How Recruiters Read You →"
+                                        }, void 0, false, {
+                                            fileName: "[project]/web/components/landing/Hero.tsx",
+                                            lineNumber: 86,
+                                            columnNumber: 29
+                                        }, this),
+                                        !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            className: "btn-ghost text-brand hover:text-brand-strong text-[var(--fs-small)] font-medium",
+                                            onClick: ()=>setShowPrivacy(true),
+                                            children: "Your resume is yours →"
+                                        }, void 0, false, {
+                                            fileName: "[project]/web/components/landing/Hero.tsx",
+                                            lineNumber: 94,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/web/components/landing/Hero.tsx",
+                                    lineNumber: 85,
+                                    columnNumber: 25
+                                }, this),
+                                !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-[var(--fs-small)] text-muted",
+                                    children: "Upload PDF/DOCX or paste text · First 2 full reports free · No signup required"
+                                }, void 0, false, {
+                                    fileName: "[project]/web/components/landing/Hero.tsx",
+                                    lineNumber: 106,
+                                    columnNumber: 29
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/web/components/landing/Hero.tsx",
+                            lineNumber: 33,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex justify-center lg:justify-end",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: `card-lg max-w-md w-full ${loaded ? "animate-score-in" : "opacity-0"}`,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center mb-2",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[var(--fs-small)] text-secondary font-medium uppercase tracking-wide",
+                                            children: "Sample Report Preview"
+                                        }, void 0, false, {
+                                            fileName: "[project]/web/components/landing/Hero.tsx",
+                                            lineNumber: 117,
+                                            columnNumber: 33
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                        lineNumber: 116,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-4 mb-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-14 h-14 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full shadow-button flex-shrink-0",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-xl font-extrabold text-white",
+                                                    children: "86"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/web/components/landing/Hero.tsx",
+                                                    lineNumber: 125,
+                                                    columnNumber: 37
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 124,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "text-xs text-secondary uppercase tracking-wide",
+                                                        children: "Clarity Score"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 128,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "font-display font-bold text-brand text-sm",
+                                                        children: "Strong foundation"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 129,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 127,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                        lineNumber: 123,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-wrap gap-2 mb-5",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "subscore-impact subscore-pill",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-label",
+                                                        children: "Impact"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 136,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-value",
+                                                        children: "82"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 137,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 135,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "subscore-clarity subscore-pill",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-label",
+                                                        children: "Clarity"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 140,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-value",
+                                                        children: "88"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 141,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 139,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "subscore-story subscore-pill",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-label",
+                                                        children: "Story"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 144,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-value",
+                                                        children: "84"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 145,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 143,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "subscore-readability subscore-pill",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-label",
+                                                        children: "Readability"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 148,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "subscore-pill-value",
+                                                        children: "90"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 149,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 147,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                        lineNumber: 134,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("blockquote", {
+                                        className: "text-secondary italic border-l-4 border-brand pl-4 mb-4 bg-[var(--bg-card-alt)] py-3 pr-3 rounded-r-lg text-sm leading-relaxed",
+                                        children: '"You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership."'
+                                    }, void 0, false, {
+                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                        lineNumber: 154,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mb-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                className: "text-xs font-semibold text-muted uppercase tracking-wide mb-2",
+                                                children: "Best fit roles"
+                                            }, void 0, false, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 160,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex flex-wrap gap-2",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "badge-brand px-2.5 py-1 text-xs rounded-full",
+                                                        children: "Program Manager"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 162,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "badge-brand px-2.5 py-1 text-xs rounded-full",
+                                                        children: "Technical PM"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 163,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "badge-brand px-2.5 py-1 text-xs rounded-full",
+                                                        children: "Product Ops"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 164,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 161,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                        lineNumber: 159,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mb-5",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                className: "text-xs font-semibold text-muted uppercase tracking-wide mb-2",
+                                                children: "Top fixes"
+                                            }, void 0, false, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 170,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                                                className: "space-y-1.5 text-sm text-secondary",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                        className: "flex items-start gap-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-warning flex-shrink-0",
+                                                                children: "→"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                                lineNumber: 173,
+                                                                columnNumber: 41
+                                                            }, this),
+                                                            "Add scope numbers to your top 2 bullets"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 172,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                        className: "flex items-start gap-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-warning flex-shrink-0",
+                                                                children: "→"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                                lineNumber: 177,
+                                                                columnNumber: 41
+                                                            }, this),
+                                                            "State one before/after metric in your headline"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 176,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                        className: "flex items-start gap-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-warning flex-shrink-0",
+                                                                children: "→"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                                lineNumber: 181,
+                                                                columnNumber: 41
+                                                            }, this),
+                                                            "Add a summary that positions your PM style"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                                        lineNumber: 180,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/web/components/landing/Hero.tsx",
+                                                lineNumber: 171,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                        lineNumber: 169,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/workspace?sample=true",
+                                        className: "btn-primary w-full text-center block text-sm py-3",
+                                        children: "See full sample report →"
+                                    }, void 0, false, {
+                                        fileName: "[project]/web/components/landing/Hero.tsx",
+                                        lineNumber: 188,
+                                        columnNumber: 29
+                                    }, this)
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/web/components/landing/Hero.tsx",
-                                lineNumber: 40,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm text-secondary text-left max-w-md",
-                                children: "Built by Matt — a recruiter who's run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups."
-                            }, void 0, false, {
-                                fileName: "[project]/web/components/landing/Hero.tsx",
-                                lineNumber: 49,
+                                lineNumber: 114,
                                 columnNumber: 25
                             }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/web/components/landing/Hero.tsx",
-                        lineNumber: 39,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center gap-3 mb-6",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: "/workspace",
-                                className: "btn-primary text-lg px-8 py-4",
-                                children: user ? "Go to Workspace →" : "See How Recruiters Read You →"
-                            }, void 0, false, {
-                                fileName: "[project]/web/components/landing/Hero.tsx",
-                                lineNumber: 57,
-                                columnNumber: 21
-                            }, this),
-                            !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                type: "button",
-                                className: "text-brand hover:text-brand-strong text-sm font-medium transition-colors",
-                                onClick: ()=>setShowPrivacy(true),
-                                children: "Your resume is yours →"
-                            }, void 0, false, {
-                                fileName: "[project]/web/components/landing/Hero.tsx",
-                                lineNumber: 61,
-                                columnNumber: 25
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/web/components/landing/Hero.tsx",
-                        lineNumber: 56,
-                        columnNumber: 17
-                    }, this),
-                    !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-sm text-muted",
-                        children: "Upload PDF/DOCX or paste text · First 2 full reports free · No signup required"
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Hero.tsx",
-                        lineNumber: 72,
-                        columnNumber: 21
-                    }, this)
-                ]
-            }, void 0, true, {
+                        }, void 0, false, {
+                            fileName: "[project]/web/components/landing/Hero.tsx",
+                            lineNumber: 113,
+                            columnNumber: 21
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/web/components/landing/Hero.tsx",
+                    lineNumber: 30,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
                 fileName: "[project]/web/components/landing/Hero.tsx",
                 lineNumber: 28,
                 columnNumber: 13
@@ -488,17 +863,17 @@ function Hero() {
                                     strokeLinecap: "round"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Hero.tsx",
-                                    lineNumber: 91,
+                                    lineNumber: 209,
                                     columnNumber: 33
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/Hero.tsx",
-                                lineNumber: 90,
+                                lineNumber: 208,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/Hero.tsx",
-                            lineNumber: 85,
+                            lineNumber: 203,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -506,7 +881,7 @@ function Hero() {
                             children: "How we handle data"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/Hero.tsx",
-                            lineNumber: 95,
+                            lineNumber: 213,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -516,38 +891,38 @@ function Hero() {
                                     children: "Your resume stays in your browser until you run a review."
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Hero.tsx",
-                                    lineNumber: 100,
+                                    lineNumber: 218,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: "When you run a review, we send only your text to our servers over an encrypted connection."
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Hero.tsx",
-                                    lineNumber: 103,
+                                    lineNumber: 221,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: "We don't keep your resume or use it to train anything."
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Hero.tsx",
-                                    lineNumber: 106,
+                                    lineNumber: 224,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/web/components/landing/Hero.tsx",
-                            lineNumber: 99,
+                            lineNumber: 217,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/web/components/landing/Hero.tsx",
-                    lineNumber: 84,
+                    lineNumber: 202,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/web/components/landing/Hero.tsx",
-                lineNumber: 80,
+                lineNumber: 198,
                 columnNumber: 17
             }, this)
         ]
@@ -565,368 +940,6 @@ _s(Hero, "YGSoD63vdGratzRp9nWgR2rIpkw=", false, function() {
 _c = Hero;
 var _c;
 __turbopack_context__.k.register(_c, "Hero");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
-}
-}),
-"[project]/web/components/landing/SampleReport.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "default",
-    ()=>SampleReport
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
-;
-;
-function SampleReport() {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-section-muted",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "section-inner flex justify-center",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "card-lg w-full max-w-lg",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-center mb-[var(--sp-l)]",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full",
-                            children: "Sample Report Preview"
-                        }, void 0, false, {
-                            fileName: "[project]/web/components/landing/SampleReport.tsx",
-                            lineNumber: 9,
-                            columnNumber: 25
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                        lineNumber: 8,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-[var(--sp-m)] mb-[var(--sp-l)]",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "animate-score-in w-20 h-20 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full shadow-button",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-3xl font-extrabold text-white",
-                                    children: "86"
-                                }, void 0, false, {
-                                    fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                    lineNumber: 17,
-                                    columnNumber: 29
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 16,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-sm text-secondary",
-                                        children: "Clarity Score"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 20,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "font-display font-bold text-brand",
-                                        children: "Strong foundation"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 21,
-                                        columnNumber: 29
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 19,
-                                columnNumber: 25
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                        lineNumber: 15,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-wrap gap-[var(--sp-s)] mb-[var(--sp-l)]",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "subscore-impact subscore-pill",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-label",
-                                        children: "Impact"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 28,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-value",
-                                        children: "82"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 29,
-                                        columnNumber: 29
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 27,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "subscore-clarity subscore-pill",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-label",
-                                        children: "Clarity"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 32,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-value",
-                                        children: "88"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 33,
-                                        columnNumber: 29
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 31,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "subscore-story subscore-pill",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-label",
-                                        children: "Story"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 36,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-value",
-                                        children: "84"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 37,
-                                        columnNumber: 29
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 35,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "subscore-readability subscore-pill",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-label",
-                                        children: "Readability"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 40,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "subscore-pill-value",
-                                        children: "90"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 41,
-                                        columnNumber: 29
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 39,
-                                columnNumber: 25
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                        lineNumber: 26,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("blockquote", {
-                        className: "text-secondary italic border-l-4 border-brand pl-[var(--sp-m)] mb-[var(--sp-l)] bg-[var(--bg-card-alt)] py-[var(--sp-s)] rounded-r-lg",
-                        children: '"You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls."'
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                        lineNumber: 46,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-[var(--sp-l)]",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                className: "text-sm font-semibold text-primary mb-[var(--sp-s)]",
-                                children: "Best fit roles"
-                            }, void 0, false, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 52,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-wrap gap-[var(--sp-s)]",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "badge-brand px-3 py-1 text-sm rounded-full",
-                                        children: "Program Manager"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 54,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "badge-brand px-3 py-1 text-sm rounded-full",
-                                        children: "Technical PM"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 55,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "badge-brand px-3 py-1 text-sm rounded-full",
-                                        children: "Product Ops"
-                                    }, void 0, false, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 56,
-                                        columnNumber: 29
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 53,
-                                columnNumber: 25
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                        lineNumber: 51,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-[var(--sp-l)]",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                className: "text-sm font-semibold text-primary mb-[var(--sp-s)]",
-                                children: "Top fixes"
-                            }, void 0, false, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 62,
-                                columnNumber: 25
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                className: "space-y-[var(--sp-s)] text-sm text-secondary",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        className: "flex items-start gap-[var(--sp-s)]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-warning",
-                                                children: "→"
-                                            }, void 0, false, {
-                                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                                lineNumber: 65,
-                                                columnNumber: 33
-                                            }, this),
-                                            "Add scope numbers to your top 2 bullets (teams, users, revenue)"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 64,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        className: "flex items-start gap-[var(--sp-s)]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-warning",
-                                                children: "→"
-                                            }, void 0, false, {
-                                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                                lineNumber: 69,
-                                                columnNumber: 33
-                                            }, this),
-                                            "State one before/after metric in your headline bullet"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 68,
-                                        columnNumber: 29
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        className: "flex items-start gap-[var(--sp-s)]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-warning",
-                                                children: "→"
-                                            }, void 0, false, {
-                                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                                lineNumber: 73,
-                                                columnNumber: 33
-                                            }, this),
-                                            "Add a summary that positions your PM style upfront"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                        lineNumber: 72,
-                                        columnNumber: 29
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                                lineNumber: 63,
-                                columnNumber: 25
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                        lineNumber: 61,
-                        columnNumber: 21
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        href: "/workspace?sample=true",
-                        className: "btn-primary w-full text-center block",
-                        children: "See full sample report →"
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/SampleReport.tsx",
-                        lineNumber: 79,
-                        columnNumber: 21
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/web/components/landing/SampleReport.tsx",
-                lineNumber: 7,
-                columnNumber: 17
-            }, this)
-        }, void 0, false, {
-            fileName: "[project]/web/components/landing/SampleReport.tsx",
-            lineNumber: 6,
-            columnNumber: 13
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/web/components/landing/SampleReport.tsx",
-        lineNumber: 5,
-        columnNumber: 9
-    }, this);
-}
-_c = SampleReport;
-var _c;
-__turbopack_context__.k.register(_c, "SampleReport");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -969,12 +982,12 @@ function ValueStrip() {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-10 max-w-3xl mx-auto",
+                className: "grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto",
                 children: items.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col gap-1",
+                        className: "bg-surface border border-subtle rounded-lg p-5 flex flex-col",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "font-display text-2xl font-bold text-gold",
+                                className: "inline-flex items-center justify-center w-8 h-8 rounded-md bg-brand-soft text-brand font-display font-bold text-sm mb-3",
                                 children: item.num
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ValueStrip.tsx",
@@ -982,7 +995,7 @@ function ValueStrip() {
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "font-display text-lg font-bold text-primary",
+                                className: "font-display text-base font-bold text-primary mb-1",
                                 children: item.title
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ValueStrip.tsx",
@@ -990,7 +1003,7 @@ function ValueStrip() {
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm text-muted leading-relaxed",
+                                className: "text-sm text-secondary leading-relaxed",
                                 children: item.desc
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ValueStrip.tsx",
@@ -1055,12 +1068,12 @@ function Testimonials() {
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-surface",
+        className: "section section-muted",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                    className: "font-display text-2xl md:text-3xl font-bold text-primary mb-8",
+                    className: "font-display text-2xl md:text-3xl font-bold text-primary mb-8 text-center",
                     children: "What users are saying"
                 }, void 0, false, {
                     fileName: "[project]/web/components/landing/Testimonials.tsx",
@@ -1068,12 +1081,12 @@ function Testimonials() {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "space-y-6",
-                    children: testimonials.map((t, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("blockquote", {
-                            className: "p-5 bg-muted rounded-xl border-l-4 border-brand",
+                    className: "grid md:grid-cols-2 gap-6",
+                    children: testimonials.map((t, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "card-sm bg-surface border border-subtle rounded-xl p-5",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-secondary italic mb-3",
+                                    className: "text-secondary italic mb-4",
                                     children: [
                                         '"',
                                         t.text,
@@ -1085,7 +1098,7 @@ function Testimonials() {
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("cite", {
-                                    className: "text-sm text-muted not-italic",
+                                    className: "text-sm text-muted not-italic font-medium",
                                     children: [
                                         "— ",
                                         t.author
@@ -1136,15 +1149,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 ;
 function CompareStrip() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-surface",
+        className: "section section-muted",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "text-center mb-10",
+                    className: "text-center mb-8",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full mb-4",
+                            className: "badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full mb-3",
                             children: "Recruiter-grade insight"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1152,7 +1165,7 @@ function CompareStrip() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-2xl md:text-3xl font-bold text-primary mb-3",
+                            className: "font-display text-2xl md:text-3xl font-bold text-primary mb-2",
                             children: "How this compares to typical resume checkers"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1160,7 +1173,7 @@ function CompareStrip() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-secondary max-w-2xl mx-auto",
+                            className: "text-secondary max-w-2xl mx-auto text-sm",
                             children: "Built by recruiters to show how your story really lands, not to chase keyword scores."
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1174,184 +1187,177 @@ function CompareStrip() {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid md:grid-cols-2 gap-6",
+                    className: "grid md:grid-cols-2 gap-5",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-muted rounded-xl",
+                            className: "bg-surface border border-subtle rounded-lg p-5 transition-all duration-200 ease-smooth hover:shadow-card hover:-translate-y-0.5",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "font-display font-bold text-primary mb-4",
+                                    className: "font-display font-bold text-primary mb-4 text-base",
                                     children: "Most resume checkers"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                    lineNumber: 19,
+                                    lineNumber: 20,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                     className: "space-y-3",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-secondary",
+                                            className: "flex items-start gap-3 text-secondary text-sm",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-muted",
-                                                    children: "•"
+                                                    className: "w-1.5 h-1.5 rounded-full bg-muted mt-2 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                                    lineNumber: 22,
+                                                    lineNumber: 23,
                                                     columnNumber: 33
                                                 }, this),
                                                 "Focus on ATS keywords and formatting scores."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                            lineNumber: 21,
+                                            lineNumber: 22,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-secondary",
+                                            className: "flex items-start gap-3 text-secondary text-sm",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-muted",
-                                                    children: "•"
+                                                    className: "w-1.5 h-1.5 rounded-full bg-muted mt-2 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                                    lineNumber: 26,
+                                                    lineNumber: 27,
                                                     columnNumber: 33
                                                 }, this),
                                                 "Give generic AI advice you've seen before."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                            lineNumber: 25,
+                                            lineNumber: 26,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-secondary",
+                                            className: "flex items-start gap-3 text-secondary text-sm",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-muted",
-                                                    children: "•"
+                                                    className: "w-1.5 h-1.5 rounded-full bg-muted mt-2 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                                    lineNumber: 30,
+                                                    lineNumber: 31,
                                                     columnNumber: 33
                                                 }, this),
                                                 "Often require an account before showing value."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                            lineNumber: 29,
+                                            lineNumber: 30,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                    lineNumber: 20,
+                                    lineNumber: 21,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                            lineNumber: 18,
+                            lineNumber: 19,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-brand-soft rounded-xl border-2 border-brand",
+                            className: "bg-surface border border-subtle rounded-lg p-5 transition-all duration-200 ease-smooth hover:shadow-card hover:-translate-y-0.5",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "font-display font-bold text-primary mb-4",
+                                    className: "font-display font-bold text-primary mb-4 text-base",
                                     children: "Recruiter in Your Pocket"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                    lineNumber: 37,
+                                    lineNumber: 39,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                     className: "space-y-3",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-primary",
+                                            className: "flex items-start gap-3 text-secondary text-sm",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-brand",
-                                                    children: "✓"
+                                                    className: "w-1.5 h-1.5 rounded-full bg-brand mt-2 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                                    lineNumber: 40,
+                                                    lineNumber: 42,
                                                     columnNumber: 33
                                                 }, this),
                                                 "Shows how your story actually lands to a recruiter."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                            lineNumber: 39,
+                                            lineNumber: 41,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-primary",
+                                            className: "flex items-start gap-3 text-secondary text-sm",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-brand",
-                                                    children: "✓"
+                                                    className: "w-1.5 h-1.5 rounded-full bg-brand mt-2 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                                    lineNumber: 44,
+                                                    lineNumber: 46,
                                                     columnNumber: 33
                                                 }, this),
                                                 "Surfaces what's working and what's easy to miss."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                            lineNumber: 43,
+                                            lineNumber: 45,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-primary",
+                                            className: "flex items-start gap-3 text-secondary text-sm",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-brand",
-                                                    children: "✓"
+                                                    className: "w-1.5 h-1.5 rounded-full bg-brand mt-2 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                                    lineNumber: 48,
+                                                    lineNumber: 50,
                                                     columnNumber: 33
                                                 }, this),
                                                 "Gives before/after bullet upgrades in your own voice."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                            lineNumber: 47,
+                                            lineNumber: 49,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-primary",
+                                            className: "flex items-start gap-3 text-secondary text-sm",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-brand",
-                                                    children: "✓"
+                                                    className: "w-1.5 h-1.5 rounded-full bg-brand mt-2 flex-shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                                    lineNumber: 52,
+                                                    lineNumber: 54,
                                                     columnNumber: 33
                                                 }, this),
                                                 "Provides clear next steps in plain language."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                            lineNumber: 51,
+                                            lineNumber: 53,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                                    lineNumber: 38,
+                                    lineNumber: 40,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
-                            lineNumber: 36,
+                            lineNumber: 38,
                             columnNumber: 21
                         }, this)
                     ]
@@ -1390,7 +1396,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 ;
 function ATSEducation() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-surface",
+        className: "section section-muted",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
             children: [
@@ -1431,7 +1437,7 @@ function ATSEducation() {
                     className: "grid md:grid-cols-2 gap-6 mb-10",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-surface rounded-xl border-l-4 border-l-red-500 border border-subtle",
+                            className: "p-5 bg-surface rounded-xl border-l-4 border-l-red-500 border border-subtle",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-danger font-semibold mb-2",
@@ -1442,7 +1448,7 @@ function ATSEducation() {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-secondary italic",
+                                    className: "text-secondary italic text-sm",
                                     children: '"75% of resumes are rejected by the Applicant Tracking System before a human ever sees them."'
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1456,7 +1462,7 @@ function ATSEducation() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-surface rounded-xl border-l-4 border-l-emerald-500 border border-subtle",
+                            className: "p-5 bg-surface rounded-xl border-l-4 border-l-emerald-500 border border-subtle",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-success font-semibold mb-2",
@@ -1467,7 +1473,7 @@ function ATSEducation() {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-secondary",
+                                    className: "text-secondary text-sm",
                                     children: "An ATS (Applicant Tracking System) is just a database — not a gatekeeper. The best recruiters don't wait for shortlists. We run keyword searches, pull resumes ourselves, and often share them with hiring managers before even reaching out."
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1487,10 +1493,10 @@ function ATSEducation() {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-surface rounded-xl border border-subtle p-6 mb-8",
+                    className: "bg-muted rounded-xl border border-subtle p-6 mb-8",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                            className: "font-display font-bold text-primary mb-6 text-center",
+                            className: "font-display font-bold text-primary mb-5 text-center",
                             children: "How it actually works"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1498,129 +1504,132 @@ function ATSEducation() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "space-y-6",
+                            className: "space-y-3",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-[var(--brand)] bg-brand-soft",
+                                    className: "flex gap-4 items-start p-4 bg-surface rounded-lg border-l-4 border-l-[var(--brand)]/80",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-brand font-display font-bold text-lg shrink-0",
+                                            className: "inline-flex items-center justify-center w-7 h-7 rounded-full bg-brand-soft text-brand text-xs font-bold flex-shrink-0",
                                             children: "01"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                            lineNumber: 38,
+                                            lineNumber: 39,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 min-w-0",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                                     className: "text-primary",
-                                                    children: "The ATS stores applications"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                                    lineNumber: 40,
-                                                    columnNumber: 33
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-secondary mt-1",
-                                                    children: "It's a searchable database, not a filter. High-volume roles may get 500+ applications, but they're all in there."
+                                                    children: "The ATS stores applications."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
                                                     lineNumber: 41,
                                                     columnNumber: 33
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-secondary text-sm",
+                                                    children: " It's a searchable database, not a filter. High-volume roles may get 500+ applications, but they're all in there."
+                                                }, void 0, false, {
+                                                    fileName: "[project]/web/components/landing/ATSEducation.tsx",
+                                                    lineNumber: 42,
+                                                    columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                            lineNumber: 39,
+                                            lineNumber: 40,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                    lineNumber: 37,
+                                    lineNumber: 38,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-emerald-500 bg-success-soft",
+                                    className: "flex gap-4 items-start p-4 bg-surface rounded-lg border-l-4 border-l-emerald-500/80",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-success font-display font-bold text-lg shrink-0",
+                                            className: "inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 text-xs font-bold flex-shrink-0",
                                             children: "02"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                            lineNumber: 45,
+                                            lineNumber: 47,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 min-w-0",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                                     className: "text-primary",
-                                                    children: "Good recruiters search actively"
+                                                    children: "Good recruiters search actively."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                                    lineNumber: 47,
+                                                    lineNumber: 49,
                                                     columnNumber: 33
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-secondary mt-1",
-                                                    children: "We run keyword searches, skim the top results, and often share promising resumes with hiring managers to gut-check fit before reaching out."
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-secondary text-sm",
+                                                    children: " We run keyword searches, skim the top results, and often share promising resumes with hiring managers before reaching out."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                                    lineNumber: 48,
+                                                    lineNumber: 50,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                            lineNumber: 46,
+                                            lineNumber: 48,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                    lineNumber: 44,
+                                    lineNumber: 46,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-amber-500 bg-warning-soft",
+                                    className: "flex gap-4 items-start p-4 bg-surface rounded-lg border-l-4 border-l-amber-500/80",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-warning font-display font-bold text-lg shrink-0",
+                                            className: "inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-bold flex-shrink-0",
                                             children: "03"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 55,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 min-w-0",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                                     className: "text-primary",
-                                                    children: "Content is the table stakes"
+                                                    children: "Content is the table stakes."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                                    lineNumber: 54,
+                                                    lineNumber: 57,
                                                     columnNumber: 33
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-secondary mt-1",
-                                                    children: "There's no magic \"ATS-ready\" formula. If your resume is clear, shows impact, and tells a story — that's what gets you noticed."
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-secondary text-sm",
+                                                    children: " There's no magic \"ATS-ready\" formula. If your resume is clear, shows impact, and tells a story — that's what gets you noticed."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                                    lineNumber: 55,
+                                                    lineNumber: 58,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                            lineNumber: 53,
+                                            lineNumber: 56,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                    lineNumber: 51,
+                                    lineNumber: 54,
                                     columnNumber: 25
                                 }, this)
                             ]
@@ -1636,15 +1645,15 @@ function ATSEducation() {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-brand-soft rounded-xl p-6 text-center max-w-2xl mx-auto border border-brand/20",
+                    className: "bg-surface rounded-xl p-5 text-center max-w-2xl mx-auto border border-subtle",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-secondary",
+                        className: "text-secondary text-sm",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                 children: "Our approach:"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                lineNumber: 64,
+                                lineNumber: 67,
                                 columnNumber: 25
                             }, this),
                             " We skip the keyword-stuffing theater and show you how a real recruiter reads your resume — what lands, what's buried, and what to fix. Because ",
@@ -1653,19 +1662,19 @@ function ATSEducation() {
                                 children: "clarity"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                                lineNumber: 64,
+                                lineNumber: 67,
                                 columnNumber: 204
                             }, this),
                             " is what actually gets you noticed."
                         ]
                     }, void 0, true, {
                         fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                        lineNumber: 63,
+                        lineNumber: 66,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
-                    lineNumber: 62,
+                    lineNumber: 65,
                     columnNumber: 17
                 }, this)
             ]
@@ -2290,68 +2299,77 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 ;
 function Footer() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
-        className: "py-8 px-6 text-center text-sm text-muted border-t border-subtle",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "mb-2",
-                children: "Made with care in Boulder, CO 🤍"
-            }, void 0, false, {
-                fileName: "[project]/web/components/landing/Footer.tsx",
-                lineNumber: 6,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center justify-center gap-2",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        href: "/terms",
-                        className: "hover:text-brand underline transition-colors",
-                        children: "Terms"
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Footer.tsx",
-                        lineNumber: 8,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        children: "·"
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Footer.tsx",
-                        lineNumber: 9,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        href: "/privacy",
-                        className: "hover:text-brand underline transition-colors",
-                        children: "Privacy"
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Footer.tsx",
-                        lineNumber: 10,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        children: "·"
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Footer.tsx",
-                        lineNumber: 11,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        href: "/research",
-                        className: "hover:text-brand underline transition-colors",
-                        children: "Hiring Research"
-                    }, void 0, false, {
-                        fileName: "[project]/web/components/landing/Footer.tsx",
-                        lineNumber: 12,
-                        columnNumber: 17
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/web/components/landing/Footer.tsx",
-                lineNumber: 7,
-                columnNumber: 13
-            }, this)
-        ]
-    }, void 0, true, {
+        className: "py-12 px-6 border-t border-subtle bg-surface",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-sm text-muted",
+                    children: "Made with care in Boulder, CO 🤍"
+                }, void 0, false, {
+                    fileName: "[project]/web/components/landing/Footer.tsx",
+                    lineNumber: 7,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex items-center gap-4",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            href: "/terms",
+                            className: "text-sm text-muted hover:text-brand transition-colors",
+                            children: "Terms"
+                        }, void 0, false, {
+                            fileName: "[project]/web/components/landing/Footer.tsx",
+                            lineNumber: 9,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "text-muted",
+                            children: "·"
+                        }, void 0, false, {
+                            fileName: "[project]/web/components/landing/Footer.tsx",
+                            lineNumber: 10,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            href: "/privacy",
+                            className: "text-sm text-muted hover:text-brand transition-colors",
+                            children: "Privacy"
+                        }, void 0, false, {
+                            fileName: "[project]/web/components/landing/Footer.tsx",
+                            lineNumber: 11,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "text-muted",
+                            children: "·"
+                        }, void 0, false, {
+                            fileName: "[project]/web/components/landing/Footer.tsx",
+                            lineNumber: 12,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            href: "/research",
+                            className: "text-sm text-muted hover:text-brand transition-colors",
+                            children: "Hiring Research"
+                        }, void 0, false, {
+                            fileName: "[project]/web/components/landing/Footer.tsx",
+                            lineNumber: 13,
+                            columnNumber: 21
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/web/components/landing/Footer.tsx",
+                    lineNumber: 8,
+                    columnNumber: 17
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/web/components/landing/Footer.tsx",
+            lineNumber: 6,
+            columnNumber: 13
+        }, this)
+    }, void 0, false, {
         fileName: "[project]/web/components/landing/Footer.tsx",
         lineNumber: 5,
         columnNumber: 9
@@ -3102,7 +3120,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$providers$2f$AuthProvider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/components/providers/AuthProvider.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Header$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/components/landing/Header.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Hero$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/components/landing/Hero.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$SampleReport$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/components/landing/SampleReport.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$ValueStrip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/components/landing/ValueStrip.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Testimonials$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/components/landing/Testimonials.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$CompareStrip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web/components/landing/CompareStrip.tsx [app-client] (ecmascript)");
@@ -3114,7 +3131,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$workspa
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
-;
 ;
 ;
 ;
@@ -3142,7 +3158,7 @@ function LandingClient() {
         setIsAuthOpen(false);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen bg-white",
+        className: "min-h-screen bg-body",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Header$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 user: user ? {
@@ -3153,57 +3169,44 @@ function LandingClient() {
                 onSignOut: signOut
             }, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 35,
+                lineNumber: 34,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Hero$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 40,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$SampleReport$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 41,
+                lineNumber: 39,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$ValueStrip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 42,
+                lineNumber: 40,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Testimonials$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 43,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "border-t border-subtle",
-                "aria-hidden": "true"
-            }, void 0, false, {
-                fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 45,
+                lineNumber: 41,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$CompareStrip$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 47,
+                lineNumber: 44,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$ATSEducation$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 48,
+                lineNumber: 45,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Pricing$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 onSelectTier: handleSelectTier
             }, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 49,
+                lineNumber: 47,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$landing$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 50,
+                lineNumber: 48,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$shared$2f$AuthModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3212,7 +3215,7 @@ function LandingClient() {
                 onSuccess: handleAuthSuccess
             }, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 53,
+                lineNumber: 51,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$workspace$2f$PaywallModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3224,13 +3227,13 @@ function LandingClient() {
                 }
             }, void 0, false, {
                 fileName: "[project]/web/components/landing/LandingClient.tsx",
-                lineNumber: 60,
+                lineNumber: 58,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/web/components/landing/LandingClient.tsx",
-        lineNumber: 34,
+        lineNumber: 33,
         columnNumber: 9
     }, this);
 }
@@ -3248,4 +3251,4 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 ]);
 
-//# sourceMappingURL=web_components_198a2ddd._.js.map
+//# sourceMappingURL=web_components_3f8a35b4._.js.map
