@@ -23,3 +23,5 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return <LandingClient />;
 }
+
+

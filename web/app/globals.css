@@ -901,3 +901,4 @@
 .animate-score-in {
   animation: score-in 220ms var(--ease-smooth) 40ms both;
 }
+

@@ -1,7 +1,1 @@
-{
-  "/(protected)/workspace/page": "app/(protected)/workspace/page.js",
-  "/api/checkout/route": "app/api/checkout/route.js",
-  "/api/free-status/route": "app/api/free-status/route.js",
-  "/api/stripe/webhook/route": "app/api/stripe/webhook/route.js",
-  "/page": "app/page.js"
-}
+{}
