@@ -1410,7 +1410,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "space-y-4",
-                                        children: report.top_fixes?.map((fix, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: report.top_fixes && report.top_fixes.length > 0 ? report.top_fixes.map((fix, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex gap-4 p-4 bg-muted rounded-lg",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1418,8 +1418,8 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         children: i + 1
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 319,
-                                                        columnNumber: 45
+                                                        lineNumber: 321,
+                                                        columnNumber: 49
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex-1",
@@ -1429,23 +1429,42 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: fix.fix || fix.text
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 323,
-                                                                columnNumber: 49
+                                                                lineNumber: 325,
+                                                                columnNumber: 53
                                                             }, this),
-                                                            fix.section_ref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "inline-block mt-2 text-xs text-muted bg-hover px-2 py-0.5 rounded",
-                                                                children: fix.section_ref
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 324,
-                                                                columnNumber: 69
-                                                            }, this),
-                                                            fix.impact_level && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: `inline-block mt-2 ml-2 text-xs px-2 py-0.5 rounded
-                                                        ${fix.impact_level === 'high' ? 'bg-danger-soft text-danger' : fix.impact_level === 'medium' ? 'bg-warning-soft text-warning' : 'bg-hover text-muted'}`,
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex flex-wrap items-center gap-2 mt-2",
                                                                 children: [
-                                                                    fix.impact_level,
-                                                                    " impact"
+                                                                    fix.impact_level && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: `text-xs ${fix.impact_level === 'high' ? 'text-secondary' : 'text-muted'}`,
+                                                                        children: [
+                                                                            "Impact: ",
+                                                                            fix.impact_level
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/web/components/workspace/ReportPanel.tsx",
+                                                                        lineNumber: 328,
+                                                                        columnNumber: 61
+                                                                    }, this),
+                                                                    fix.effort && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "text-xs text-muted",
+                                                                        children: [
+                                                                            "Effort: ",
+                                                                            fix.effort
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/web/components/workspace/ReportPanel.tsx",
+                                                                        lineNumber: 333,
+                                                                        columnNumber: 61
+                                                                    }, this),
+                                                                    fix.section_ref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "text-xs text-muted bg-hover px-2 py-0.5 rounded",
+                                                                        children: fix.section_ref
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/web/components/workspace/ReportPanel.tsx",
+                                                                        lineNumber: 338,
+                                                                        columnNumber: 61
+                                                                    }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
@@ -1455,21 +1474,52 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 322,
-                                                        columnNumber: 45
+                                                        lineNumber: 324,
+                                                        columnNumber: 49
                                                     }, this)
                                                 ]
                                             }, i, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 318,
-                                                columnNumber: 41
-                                            }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                lineNumber: 320,
+                                                columnNumber: 45
+                                            }, this)) : report.gaps && report.gaps.length > 0 ? report.gaps.map((gap, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex gap-4 p-4 bg-muted rounded-lg",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-warning-soft text-warning font-bold rounded-full",
+                                                        children: i + 1
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/workspace/ReportPanel.tsx",
+                                                        lineNumber: 349,
+                                                        columnNumber: 49
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex-1",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                            className: "text-secondary",
+                                                            children: gap
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/web/components/workspace/ReportPanel.tsx",
+                                                            lineNumber: 353,
+                                                            columnNumber: 53
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/web/components/workspace/ReportPanel.tsx",
+                                                        lineNumber: 352,
+                                                        columnNumber: 49
+                                                    }, this)
+                                                ]
+                                            }, i, true, {
+                                                fileName: "[project]/web/components/workspace/ReportPanel.tsx",
+                                                lineNumber: 348,
+                                                columnNumber: 45
+                                            }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-muted",
                                             children: "No fixes available"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 333,
-                                            columnNumber: 43
+                                            lineNumber: 358,
+                                            columnNumber: 41
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
@@ -1495,7 +1545,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         children: sectionName
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 345,
+                                                        lineNumber: 371,
                                                         columnNumber: 49
                                                     }, this),
                                                     section.grade && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1504,13 +1554,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         children: section.grade
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 347,
+                                                        lineNumber: 373,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 344,
+                                                lineNumber: 370,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1524,7 +1574,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: "✓ Working:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 358,
+                                                                lineNumber: 384,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1532,13 +1582,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: section.working
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 359,
+                                                                lineNumber: 385,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 357,
+                                                        lineNumber: 383,
                                                         columnNumber: 53
                                                     }, this),
                                                     section.missing && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1549,7 +1599,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: "△ Missing:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 364,
+                                                                lineNumber: 390,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1557,13 +1607,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: section.missing
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 365,
+                                                                lineNumber: 391,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 363,
+                                                        lineNumber: 389,
                                                         columnNumber: 53
                                                     }, this),
                                                     section.fix && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1574,7 +1624,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: "→ Fix:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 370,
+                                                                lineNumber: 396,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1582,37 +1632,37 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: section.fix
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 371,
+                                                                lineNumber: 397,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 369,
+                                                        lineNumber: 395,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 355,
+                                                lineNumber: 381,
                                                 columnNumber: 45
                                             }, this)
                                         ]
                                     }, i, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 343,
+                                        lineNumber: 369,
                                         columnNumber: 41
                                     }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-muted text-center py-8",
                                     children: "Section analysis not available"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 378,
+                                    lineNumber: 404,
                                     columnNumber: 37
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 340,
+                                lineNumber: 366,
                                 columnNumber: 29
                             }, this),
                             activeTab === "rewrites" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1625,7 +1675,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                 children: rw.label
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 388,
+                                                lineNumber: 414,
                                                 columnNumber: 54
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1639,7 +1689,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: "Original"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 391,
+                                                                lineNumber: 417,
                                                                 columnNumber: 49
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1647,13 +1697,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: rw.original
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 392,
+                                                                lineNumber: 418,
                                                                 columnNumber: 49
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 390,
+                                                        lineNumber: 416,
                                                         columnNumber: 45
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1664,7 +1714,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: "Better"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 395,
+                                                                lineNumber: 421,
                                                                 columnNumber: 49
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1672,7 +1722,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: rw.better
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 396,
+                                                                lineNumber: 422,
                                                                 columnNumber: 49
                                                             }, this),
                                                             rw.enhancement_note && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1680,37 +1730,37 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: rw.enhancement_note
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 398,
+                                                                lineNumber: 424,
                                                                 columnNumber: 53
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 394,
+                                                        lineNumber: 420,
                                                         columnNumber: 45
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 389,
+                                                lineNumber: 415,
                                                 columnNumber: 41
                                             }, this)
                                         ]
                                     }, i, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 387,
+                                        lineNumber: 413,
                                         columnNumber: 37
                                     }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-muted text-center py-8",
                                     children: "No rewrites available"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 403,
+                                    lineNumber: 429,
                                     columnNumber: 39
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 385,
+                                lineNumber: 411,
                                 columnNumber: 29
                             }, this),
                             activeTab === "alignment" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1728,7 +1778,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                             children: "✓ Strongly Aligned"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 414,
+                                                            lineNumber: 440,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1740,25 +1790,25 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     ]
                                                                 }, i, true, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 416,
+                                                                    lineNumber: 442,
                                                                     columnNumber: 111
                                                                 }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                 className: "text-muted",
                                                                 children: "None found"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 416,
+                                                                lineNumber: 442,
                                                                 columnNumber: 141
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 415,
+                                                            lineNumber: 441,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 413,
+                                                    lineNumber: 439,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1769,7 +1819,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                             children: "⚠ Underplayed"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 420,
+                                                            lineNumber: 446,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1781,25 +1831,25 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     ]
                                                                 }, i, true, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 422,
+                                                                    lineNumber: 448,
                                                                     columnNumber: 106
                                                                 }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                 className: "text-muted",
                                                                 children: "None found"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 422,
+                                                                lineNumber: 448,
                                                                 columnNumber: 136
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 421,
+                                                            lineNumber: 447,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 419,
+                                                    lineNumber: 445,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1810,7 +1860,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                             children: "✗ Missing/Weak"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 426,
+                                                            lineNumber: 452,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1822,31 +1872,31 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     ]
                                                                 }, i, true, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 428,
+                                                                    lineNumber: 454,
                                                                     columnNumber: 102
                                                                 }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                 className: "text-muted",
                                                                 children: "None found"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 428,
+                                                                lineNumber: 454,
                                                                 columnNumber: 132
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 427,
+                                                            lineNumber: 453,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 425,
+                                                    lineNumber: 451,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 412,
+                                            lineNumber: 438,
                                             columnNumber: 41
                                         }, this),
                                         report.job_alignment?.role_fit && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1857,7 +1907,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                     children: "Where You Read Strongest"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 436,
+                                                    lineNumber: 462,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1870,7 +1920,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: "Best Fit Roles"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 439,
+                                                                    lineNumber: 465,
                                                                     columnNumber: 57
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1880,18 +1930,18 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                             children: role
                                                                         }, i, false, {
                                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                            lineNumber: 442,
+                                                                            lineNumber: 468,
                                                                             columnNumber: 65
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 440,
+                                                                    lineNumber: 466,
                                                                     columnNumber: 57
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 438,
+                                                            lineNumber: 464,
                                                             columnNumber: 53
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1901,7 +1951,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: "Stretch Roles"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 447,
+                                                                    lineNumber: 473,
                                                                     columnNumber: 57
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1911,24 +1961,24 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                             children: role
                                                                         }, i, false, {
                                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                            lineNumber: 450,
+                                                                            lineNumber: 476,
                                                                             columnNumber: 65
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 448,
+                                                                    lineNumber: 474,
                                                                     columnNumber: 57
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 446,
+                                                            lineNumber: 472,
                                                             columnNumber: 53
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 437,
+                                                    lineNumber: 463,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1941,7 +1991,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: "Seniority Read"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 458,
+                                                                    lineNumber: 484,
                                                                     columnNumber: 61
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1949,13 +1999,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: report.job_alignment.role_fit.seniority_read
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 459,
+                                                                    lineNumber: 485,
                                                                     columnNumber: 61
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 457,
+                                                            lineNumber: 483,
                                                             columnNumber: 57
                                                         }, this),
                                                         report.job_alignment.role_fit.industry_signals && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1965,7 +2015,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: "Industry Signals"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 464,
+                                                                    lineNumber: 490,
                                                                     columnNumber: 61
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1973,13 +2023,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: report.job_alignment.role_fit.industry_signals.join(", ")
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 465,
+                                                                    lineNumber: 491,
                                                                     columnNumber: 61
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 463,
+                                                            lineNumber: 489,
                                                             columnNumber: 57
                                                         }, this),
                                                         report.job_alignment.role_fit.company_stage_fit && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1989,7 +2039,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: "Company Stage Fit"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 470,
+                                                                    lineNumber: 496,
                                                                     columnNumber: 61
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1997,25 +2047,25 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     children: report.job_alignment.role_fit.company_stage_fit
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 471,
+                                                                    lineNumber: 497,
                                                                     columnNumber: 61
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 469,
+                                                            lineNumber: 495,
                                                             columnNumber: 57
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 455,
+                                                    lineNumber: 481,
                                                     columnNumber: 49
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 435,
+                                            lineNumber: 461,
                                             columnNumber: 45
                                         }, this),
                                         report.job_alignment?.positioning_suggestion && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2026,7 +2076,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                     children: "Positioning Recommendation"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 481,
+                                                    lineNumber: 507,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2034,19 +2084,19 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                     children: report.job_alignment.positioning_suggestion
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 482,
+                                                    lineNumber: 508,
                                                     columnNumber: 49
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 480,
+                                            lineNumber: 506,
                                             columnNumber: 45
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 411,
+                                    lineNumber: 437,
                                     columnNumber: 37
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "p-8 bg-surface rounded-xl border border-subtle text-center shadow-card",
@@ -2056,7 +2106,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                             children: "📋"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 490,
+                                            lineNumber: 516,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2064,13 +2114,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                             children: "Add a job description to see alignment analysis"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 491,
+                                            lineNumber: 517,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 489,
+                                    lineNumber: 515,
                                     columnNumber: 37
                                 }, this)
                             }, void 0, false),
@@ -2082,7 +2132,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                         children: "Surface Missing Wins"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 500,
+                                        lineNumber: 526,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2090,7 +2140,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                         children: "Answer these questions to uncover hidden impact your resume isn't telling yet:"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 501,
+                                        lineNumber: 527,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2103,7 +2153,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         children: q.question
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 507,
+                                                        lineNumber: 533,
                                                         columnNumber: 45
                                                     }, this),
                                                     q.archetype && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2111,7 +2161,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         children: q.archetype
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 508,
+                                                        lineNumber: 534,
                                                         columnNumber: 61
                                                     }, this),
                                                     q.why && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2119,13 +2169,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         children: q.why
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 509,
+                                                        lineNumber: 535,
                                                         columnNumber: 55
                                                     }, this)
                                                 ]
                                             }, i, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 506,
+                                                lineNumber: 532,
                                                 columnNumber: 41
                                             }, this)) || report.next_steps?.map((step, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "p-4 bg-muted rounded-lg",
@@ -2134,24 +2184,24 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                     children: step
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 513,
+                                                    lineNumber: 539,
                                                     columnNumber: 45
                                                 }, this)
                                             }, i, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 512,
+                                                lineNumber: 538,
                                                 columnNumber: 41
                                             }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-muted",
                                             children: "No questions available"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 515,
+                                            lineNumber: 541,
                                             columnNumber: 43
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 504,
+                                        lineNumber: 530,
                                         columnNumber: 33
                                     }, this),
                                     report.ideas?.how_to_use && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2161,7 +2211,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                 children: "How to use:"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 519,
+                                                lineNumber: 545,
                                                 columnNumber: 41
                                             }, this),
                                             " ",
@@ -2169,13 +2219,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 518,
+                                        lineNumber: 544,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 499,
+                                lineNumber: 525,
                                 columnNumber: 29
                             }, this)
                         ]

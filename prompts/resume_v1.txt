@@ -239,6 +239,14 @@ The JSON must match this shape exactly:
   "summary": "",
   "strengths": [],
   "gaps": [],
+  "top_fixes": [
+    {
+      "fix": "",
+      "impact_level": "",
+      "effort": "",
+      "section_ref": ""
+    }
+  ],
   "rewrites": [
     {
       "label": "",
@@ -342,6 +350,24 @@ FIELD RULES
     - "Some outcomes do not have enough context to understand the scale."
     - "Important details are present, but they are not surfaced clearly."
     - "The story is here, but parts of it are hiding."
+
+- top_fixes
+  - Array of 3 to 5 prioritized, actionable fixes.
+  - Each fix must have:
+    - fix: A clear, concrete action the user can take (max ~20 words). Be prescriptive.
+    - impact_level: One of "high", "medium", or "low". High = will noticeably improve how recruiters read the resume.
+    - effort: One of "quick" (can do in 5 minutes), "moderate" (15-30 minutes), or "substantial" (requires research or rewriting).
+    - section_ref: Which resume section this applies to (e.g., "Work Experience", "Summary", "Skills").
+  - Order fixes by impact (highest first), then by effort (quickest first when impact is equal).
+  - Make each fix specific and grounded in what is on the page. Avoid generic advice.
+  - Focus on the highest-leverage changes that will improve clarity and signal.
+
+  Top fixes should sound like:
+    - "Add scope numbers to your top 2 bullets (teams, users, revenue)"
+    - "State one before/after metric in your headline bullet"
+    - "Add a summary that positions your PM style upfront"
+    - "Split bullets that mix decisions and outcomes"
+    - "List 2-3 specific tools or frameworks you use (not just generic skills)"
 
 - rewrites
   - Array of three to five objects.

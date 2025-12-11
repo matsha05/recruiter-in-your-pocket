@@ -314,23 +314,49 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                             <div className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
                                 <h3 className="font-semibold text-primary mb-4">Top Fixes — Prioritized</h3>
                                 <div className="space-y-4">
-                                    {report.top_fixes?.map((fix, i) => (
-                                        <div key={i} className="flex gap-4 p-4 bg-muted rounded-lg">
-                                            <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-soft text-brand font-bold rounded-full">
-                                                {i + 1}
-                                            </span>
-                                            <div className="flex-1">
-                                                <p className="text-secondary">{fix.fix || fix.text}</p>
-                                                {fix.section_ref && <span className="inline-block mt-2 text-xs text-muted bg-hover px-2 py-0.5 rounded">{fix.section_ref}</span>}
-                                                {fix.impact_level && (
-                                                    <span className={`inline-block mt-2 ml-2 text-xs px-2 py-0.5 rounded
-                                                        ${fix.impact_level === 'high' ? 'bg-danger-soft text-danger' : fix.impact_level === 'medium' ? 'bg-warning-soft text-warning' : 'bg-hover text-muted'}`}>
-                                                        {fix.impact_level} impact
-                                                    </span>
-                                                )}
+                                    {/* Show top_fixes if available, otherwise fall back to gaps */}
+                                    {(report.top_fixes && report.top_fixes.length > 0) ? (
+                                        report.top_fixes.map((fix, i) => (
+                                            <div key={i} className="flex gap-4 p-4 bg-muted rounded-lg">
+                                                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-soft text-brand font-bold rounded-full">
+                                                    {i + 1}
+                                                </span>
+                                                <div className="flex-1">
+                                                    <p className="text-secondary">{fix.fix || fix.text}</p>
+                                                    <div className="flex flex-wrap items-center gap-2 mt-2">
+                                                        {fix.impact_level && (
+                                                            <span className={`text-xs ${fix.impact_level === 'high' ? 'text-secondary' : 'text-muted'}`}>
+                                                                Impact: {fix.impact_level}
+                                                            </span>
+                                                        )}
+                                                        {fix.effort && (
+                                                            <span className="text-xs text-muted">
+                                                                Effort: {fix.effort}
+                                                            </span>
+                                                        )}
+                                                        {fix.section_ref && (
+                                                            <span className="text-xs text-muted bg-hover px-2 py-0.5 rounded">
+                                                                {fix.section_ref}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    )) || <p className="text-muted">No fixes available</p>}
+                                        ))
+                                    ) : (report.gaps && report.gaps.length > 0) ? (
+                                        report.gaps.map((gap, i) => (
+                                            <div key={i} className="flex gap-4 p-4 bg-muted rounded-lg">
+                                                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-warning-soft text-warning font-bold rounded-full">
+                                                    {i + 1}
+                                                </span>
+                                                <div className="flex-1">
+                                                    <p className="text-secondary">{gap}</p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p className="text-muted">No fixes available</p>
+                                    )}
                                 </div>
                             </div>
                         )}

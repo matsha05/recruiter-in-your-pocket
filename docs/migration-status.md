@@ -38,12 +38,12 @@
 ## Remaining 🚧
 
 ### Core Functionality
-- [ ] **Resume Analysis Flow** - Wire up workspace to submit resumes, call OpenAI, show reports
-- [ ] **ReportPanel** - Display analysis results (partially done, needs data wiring)
+- [x] **Resume Analysis Flow** - Wired workspace → /api/resume-feedback → Express (verified working)
+- [ ] **ReportPanel** - Display analysis results (works, may need polish)
 - [ ] **History Sidebar** - Fetch and display past reports
 
 ### Backend Routes to Migrate/Wire
-- [ ] `/api/resume-feedback` - Main analysis endpoint
+- [x] `/api/resume-feedback` - Main analysis endpoint (proxies to Express)
 - [ ] `/api/history/*` - Report history endpoints
 
 ### Deployment
