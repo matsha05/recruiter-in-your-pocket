@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/research/layout,_N_T_/research/ats-myths/layout,_N_T_/research/ats-myths/page,_N_T_/research/ats-myths"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/research/ats-myths/__PAGE__",
+    "/research/ats-myths",
+    "/research",
+    "/_index",
+    "/_head"
+  ]
+}

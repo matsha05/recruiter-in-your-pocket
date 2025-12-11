@@ -61,7 +61,6 @@ export default function LandingClient() {
                 isOpen={isPaywallOpen}
                 onClose={() => setIsPaywallOpen(false)}
                 freeUsesRemaining={2}
-                userEmail={user?.email || undefined}
                 onSuccess={() => {
                     setIsPaywallOpen(false);
                 }}

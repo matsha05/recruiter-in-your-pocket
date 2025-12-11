@@ -320,3 +320,15 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
 [02:56:11.204] Server  LOG      ✓ Compiled in 156ms
 [02:56:15.152] Server  LOG      ✓ Compiled in 69ms
 [02:57:07.555] Server  LOG      ✓ Compiled in 213ms
+[03:02:56.716] Server  LOG      ✓ Compiled in 182ms
+[03:03:00.554] Server  LOG      ✓ Compiled in 67ms
+[03:06:31.077] Server  WARN    Image with src "/assets/founder-avatar.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:06:31.277] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:06:31.399] Browser WARN    Image with src "/assets/founder-avatar.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[03:08:24.272] Server  LOG      ✓ Compiled in 118ms
+[03:09:04.475] Server  LOG      ✓ Compiled in 121ms
+[03:09:24.131] Server  WARN    Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[03:09:25.043] Server  LOG     [checkout] Created session for mattrshaw2011@gmail.com, tier: 24h
+[03:09:43.724] Server  LOG      ✓ Compiled in 125ms

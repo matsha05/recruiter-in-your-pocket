@@ -204,7 +204,7 @@ export default function WorkspaceClient() {
             <HistorySidebar
                 isOpen={isHistoryOpen}
                 onClose={() => setIsHistoryOpen(false)}
-                user={user ? { email: user.email || undefined, firstName: user.firstName || undefined } : null}
+                user={user ? { email: user.email || undefined } : null}
                 onSignIn={() => {
                     setIsHistoryOpen(false);
                     setIsAuthOpen(true);
@@ -221,7 +221,6 @@ export default function WorkspaceClient() {
                 isOpen={isPaywallOpen}
                 onClose={() => setIsPaywallOpen(false)}
                 freeUsesRemaining={freeUsesRemaining}
-                userEmail={user?.email || undefined}
                 onSuccess={() => {
                     setIsPaywallOpen(false);
                     // Refresh free uses count

@@ -12,10 +12,10 @@ export default function LegalHeader() {
 
     return (
         <>
-            <header className="flex items-center justify-between px-6 py-4 bg-white dark:bg-[#020617] sticky top-0 z-50 border-b border-gray-100 dark:border-[#1F2937]">
+            <header className="flex items-center justify-between px-6 py-4 bg-surface sticky top-0 z-50 border-b border-subtle">
                 <Link
                     href="/"
-                    className="font-display font-extrabold text-lg text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    className="font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors"
                     style={{ fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif' }}
                 >
                     Recruiter in Your Pocket
@@ -24,14 +24,14 @@ export default function LegalHeader() {
                 <div className="flex items-center gap-3">
                     {!user ? (
                         <button
-                            className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                            className="text-sm font-medium text-secondary hover:text-primary transition-colors"
                             onClick={() => setIsAuthOpen(true)}
                         >
                             Sign In
                         </button>
                     ) : (
                         <button
-                            className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                            className="text-sm font-medium text-secondary hover:text-primary transition-colors"
                             onClick={signOut}
                         >
                             Sign Out

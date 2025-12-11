@@ -228,7 +228,7 @@ export default function SettingsPage() {
                                         <label className="block text-sm font-medium text-secondary mb-1">Email</label>
                                         <input
                                             type="email"
-                                            value={user.email}
+                                            value={user.email ?? ""}
                                             disabled
                                             className="input bg-muted cursor-not-allowed text-muted"
                                         />

@@ -42,7 +42,9 @@ export default function WorkspaceShell() {
       setError(null);
       setUploading(true);
       try {
-        const parsed = await parseResume(file);
+        const formData = new FormData();
+        formData.append("file", file);
+        const parsed = await parseResume(formData);
         if (!parsed.ok || !parsed.text) {
           throw new Error(parsed.message || "Could not parse the file.");
         }
@@ -207,11 +209,10 @@ export default function WorkspaceShell() {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`rounded-full px-3 py-1 text-sm font-medium ${
-                activeTab === tab.id
+              className={`rounded-full px-3 py-1 text-sm font-medium ${activeTab === tab.id
                   ? "bg-blue-600 text-white shadow-sm"
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-              }`}
+                }`}
             >
               {tab.label}
             </button>

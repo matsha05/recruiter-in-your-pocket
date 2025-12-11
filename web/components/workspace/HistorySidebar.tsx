@@ -67,16 +67,16 @@ export default function HistorySidebar({
             {/* Sidebar */}
             <aside
                 className={`fixed top-0 right-0 w-[340px] max-w-full h-screen
-                    bg-white shadow-modal z-[101] flex flex-col
+                    bg-surface shadow-modal z-[101] flex flex-col
                     transition-transform duration-300 ease-out
                     ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
-                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
-                    <span className="font-display text-lg font-bold text-gray-900">Your Reports</span>
+                <div className="flex items-center justify-between px-5 py-4 border-b border-subtle">
+                    <span className="font-display text-lg font-bold text-primary">Your Reports</span>
                     <button
                         onClick={onClose}
                         aria-label="Close"
-                        className="text-2xl text-gray-500 hover:text-gray-900 transition-colors p-1"
+                        className="text-2xl text-muted hover:text-primary transition-colors p-1"
                     >
                         ×
                     </button>
@@ -84,9 +84,9 @@ export default function HistorySidebar({
 
                 <div className="flex-1 p-5 overflow-y-auto">
                     {!user?.email ? (
-                        <div className="text-center py-10 text-gray-500">
+                        <div className="text-center py-10 text-muted">
                             <div className="text-5xl mb-4">📊</div>
-                            <div className="text-lg font-semibold text-gray-900 mb-2">
+                            <div className="text-lg font-semibold text-primary mb-2">
                                 Track your progress
                             </div>
                             <p className="mb-5">
@@ -97,11 +97,11 @@ export default function HistorySidebar({
                             </button>
                         </div>
                     ) : loading ? (
-                        <div className="text-center py-10 text-gray-500">Loading...</div>
+                        <div className="text-center py-10 text-muted">Loading...</div>
                     ) : reports.length === 0 ? (
-                        <div className="text-center py-10 text-gray-500">
+                        <div className="text-center py-10 text-muted">
                             <div className="text-5xl mb-4">📋</div>
-                            <div className="text-lg font-semibold text-gray-900 mb-2">
+                            <div className="text-lg font-semibold text-primary mb-2">
                                 No reports yet
                             </div>
                             <p>Run an analysis to see your history here.</p>
@@ -112,19 +112,19 @@ export default function HistorySidebar({
                                 <div
                                     key={report.id}
                                     onClick={() => onLoadReport?.(report.id)}
-                                    className="p-4 bg-white border border-gray-200 rounded-lg cursor-pointer
-                                        hover:border-indigo-500 transition-colors"
+                                    className="p-4 bg-surface border border-subtle rounded-lg cursor-pointer
+                                        hover:border-brand transition-colors"
                                 >
                                     <div className="flex justify-between mb-2">
-                                        <span className="font-semibold text-indigo-600">
+                                        <span className="font-semibold text-brand">
                                             Score: {report.score}
                                         </span>
-                                        <span className="text-xs text-gray-500">
+                                        <span className="text-xs text-muted">
                                             {formatDate(report.createdAt)}
                                         </span>
                                     </div>
                                     {report.resumeSnippet && (
-                                        <p className="text-xs text-gray-500 leading-relaxed">
+                                        <p className="text-xs text-muted leading-relaxed">
                                             {report.resumeSnippet.substring(0, 100)}...
                                         </p>
                                     )}

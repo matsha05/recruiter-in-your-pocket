@@ -162,7 +162,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$lib$2f$supabase$2f$se
 ;
 // Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY ? new __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$stripe$2f$esm$2f$stripe$2e$esm$2e$node$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"](process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2023-10-16"
+    apiVersion: "2025-11-17.clover"
 }) : null;
 const PRICE_IDS = {
     "24h": process.env.STRIPE_PRICE_ID_24H || process.env.STRIPE_PRICE_ID,
@@ -187,7 +187,7 @@ async function POST(request) {
     }
     try {
         const body = await request.json();
-        const { tier, email, firstName } = body;
+        const { tier, email } = body;
         // Email is required for checkout
         if (!email || typeof email !== "string") {
             return __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
@@ -211,7 +211,7 @@ async function POST(request) {
         }
         const tierLabel = selectedTier === "30d" ? "30-Day Campaign Pass" : "24-Hour Fix Pass";
         const baseUrl = getBaseUrl();
-        // Check if user is already logged in (optional - for better UX)
+        // Check if user is already logged in (optional)
         let userId = null;
         try {
             const supabase = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$lib$2f$supabase$2f$serverClient$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["createSupabaseServerClient"])();
@@ -220,9 +220,10 @@ async function POST(request) {
                 userId = session.user.id;
             }
         } catch  {
-        // Ignore auth errors - we'll create user in webhook
+        // Ignore - user will be created in webhook
         }
         // Create Stripe checkout session
+        // Name will be collected by Stripe in the checkout form
         const checkoutSession = await stripe.checkout.sessions.create({
             mode: "payment",
             payment_method_types: [
@@ -235,14 +236,15 @@ async function POST(request) {
                 }
             ],
             customer_email: email.trim(),
+            // Collect billing name in checkout
+            billing_address_collection: "required",
             success_url: `${baseUrl}/workspace?payment=success&tier=${selectedTier}`,
             cancel_url: `${baseUrl}/workspace?payment=cancelled`,
             metadata: {
                 email: email.trim(),
-                first_name: firstName?.trim() || "",
                 tier: selectedTier,
                 tier_label: tierLabel,
-                user_id: userId || "" // May be empty - webhook will handle user creation
+                user_id: userId || ""
             },
             allow_promotion_codes: true,
             custom_text: {

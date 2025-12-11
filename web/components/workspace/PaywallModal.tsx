@@ -87,11 +87,11 @@ export default function PaywallModal({
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
             onClick={(e) => e.target === e.currentTarget && handleClose()}
         >
-            <div className="bg-white dark:bg-[#0F172A] rounded-2xl shadow-modal w-full max-w-[520px] p-8 relative max-h-[90vh] overflow-y-auto">
+            <div className="bg-surface rounded-2xl shadow-modal w-full max-w-[520px] p-8 relative max-h-[90vh] overflow-y-auto">
                 <button
                     onClick={handleClose}
                     aria-label="Close"
-                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2"
+                    className="absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2"
                 >
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -100,10 +100,10 @@ export default function PaywallModal({
 
                 {/* Header */}
                 <div className="text-center mb-6">
-                    <h2 className="font-display text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <h2 className="font-display text-xl font-bold text-primary mb-2">
                         {getHeaderText()}
                     </h2>
-                    <p className="text-gray-500">
+                    <p className="text-muted">
                         Pick a pass that fits your timeline. No subscriptions.
                     </p>
                 </div>
@@ -115,16 +115,16 @@ export default function PaywallModal({
                         onClick={() => setSelectedTier("24h")}
                         className={`flex-1 p-5 rounded-xl text-center transition-all
                             ${selectedTier === "24h"
-                                ? "border-2 border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10"
-                                : "border-2 border-gray-200 dark:border-gray-700 hover:border-indigo-300"
+                                ? "border-2 border-brand bg-brand-soft"
+                                : "border-2 border-subtle hover:border-brand"
                             }`}
                     >
-                        <div className="inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-indigo-500 text-white mb-3">
+                        <div className="inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-brand text-white mb-3">
                             Most popular
                         </div>
-                        <div className="text-3xl font-extrabold text-indigo-500 mb-1">$9</div>
-                        <div className="font-semibold text-gray-900 dark:text-white mb-2">24-Hour Fix Pass</div>
-                        <p className="text-xs text-gray-500 leading-relaxed">
+                        <div className="text-3xl font-extrabold text-brand mb-1">$9</div>
+                        <div className="font-semibold text-primary mb-2">24-Hour Fix Pass</div>
+                        <p className="text-xs text-muted leading-relaxed">
                             Unlimited reports for 24 hours.
                         </p>
                     </button>
@@ -134,27 +134,27 @@ export default function PaywallModal({
                         onClick={() => setSelectedTier("30d")}
                         className={`flex-1 p-5 rounded-xl text-center transition-all
                             ${selectedTier === "30d"
-                                ? "border-2 border-emerald-600 bg-emerald-50 dark:bg-emerald-500/10"
-                                : "border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-400"
+                                ? "border-2 border-success bg-success-soft"
+                                : "border-2 border-subtle hover:border-success"
                             }`}
                     >
-                        <div className="inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-emerald-600 text-white mb-3">
+                        <div className="inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-[var(--status-success)] text-white mb-3">
                             Best value
                         </div>
-                        <div className="text-3xl font-extrabold text-emerald-600 mb-1">$39</div>
-                        <div className="font-semibold text-gray-900 dark:text-white mb-2">30-Day Campaign Pass</div>
-                        <p className="text-xs text-gray-500 leading-relaxed">
+                        <div className="text-3xl font-extrabold text-success mb-1">$39</div>
+                        <div className="font-semibold text-primary mb-2">30-Day Campaign Pass</div>
+                        <p className="text-xs text-muted leading-relaxed">
                             Unlimited reports for 30 days.
                         </p>
                     </button>
                 </div>
 
                 {/* Checkout Section */}
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-5 mb-4">
+                <div className="bg-muted rounded-xl p-5 mb-4">
                     {isLoggedIn ? (
                         <>
-                            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                                You&apos;re getting this pass for <strong className="text-gray-900 dark:text-white">{user.email}</strong>
+                            <p className="text-sm text-secondary mb-4">
+                                You&apos;re getting this pass for <strong className="text-primary">{user.email}</strong>
                             </p>
                             <button
                                 type="button"
@@ -167,7 +167,7 @@ export default function PaywallModal({
                         </>
                     ) : (
                         <>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            <label className="block text-sm font-medium text-secondary mb-2">
                                 Your email
                             </label>
                             <input
@@ -185,7 +185,7 @@ export default function PaywallModal({
                             >
                                 {loading ? "Processing..." : `Continue to checkout →`}
                             </button>
-                            <p className="text-xs text-gray-500 text-center mt-3">
+                            <p className="text-xs text-muted text-center mt-3">
                                 Your email links your pass to any device.
                             </p>
                         </>
@@ -193,18 +193,18 @@ export default function PaywallModal({
                 </div>
 
                 {error && (
-                    <div className="text-red-600 text-sm text-center mb-4">
+                    <div className="text-danger text-sm text-center mb-4">
                         {error}
                     </div>
                 )}
 
                 {hasCurrentReport && (
-                    <p className="text-center text-xs text-gray-400 mb-2">
+                    <p className="text-center text-xs text-muted mb-2">
                         Your current report stays here while you upgrade.
                     </p>
                 )}
 
-                <p className="text-center text-xs text-gray-500">
+                <p className="text-center text-xs text-muted">
                     🔒 No recurring charges • Instant access
                 </p>
             </div>

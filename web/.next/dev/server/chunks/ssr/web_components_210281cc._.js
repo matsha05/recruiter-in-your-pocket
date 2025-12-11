@@ -2716,12 +2716,12 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
         className: "fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5",
         onClick: (e)=>e.target === e.currentTarget && handleClose(),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-white dark:bg-[#0F172A] rounded-2xl shadow-modal w-full max-w-[520px] p-8 relative max-h-[90vh] overflow-y-auto",
+            className: "bg-surface rounded-2xl shadow-modal w-full max-w-[520px] p-8 relative max-h-[90vh] overflow-y-auto",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                     onClick: handleClose,
                     "aria-label": "Close",
-                    className: "absolute top-4 right-4 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2",
+                    className: "absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                         width: "20",
                         height: "20",
@@ -2751,7 +2751,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                     className: "text-center mb-6",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-xl font-bold text-gray-900 dark:text-white mb-2",
+                            className: "font-display text-xl font-bold text-primary mb-2",
                             children: getHeaderText()
                         }, void 0, false, {
                             fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2759,7 +2759,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-500",
+                            className: "text-muted",
                             children: "Pick a pass that fits your timeline. No subscriptions."
                         }, void 0, false, {
                             fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2779,10 +2779,10 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                             type: "button",
                             onClick: ()=>setSelectedTier("24h"),
                             className: `flex-1 p-5 rounded-xl text-center transition-all
-                            ${selectedTier === "24h" ? "border-2 border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10" : "border-2 border-gray-200 dark:border-gray-700 hover:border-indigo-300"}`,
+                            ${selectedTier === "24h" ? "border-2 border-brand bg-brand-soft" : "border-2 border-subtle hover:border-brand"}`,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-indigo-500 text-white mb-3",
+                                    className: "inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-brand text-white mb-3",
                                     children: "Most popular"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2790,7 +2790,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-3xl font-extrabold text-indigo-500 mb-1",
+                                    className: "text-3xl font-extrabold text-brand mb-1",
                                     children: "$9"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2798,7 +2798,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "font-semibold text-gray-900 dark:text-white mb-2",
+                                    className: "font-semibold text-primary mb-2",
                                     children: "24-Hour Fix Pass"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2806,7 +2806,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-xs text-gray-500 leading-relaxed",
+                                    className: "text-xs text-muted leading-relaxed",
                                     children: "Unlimited reports for 24 hours."
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2823,10 +2823,10 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                             type: "button",
                             onClick: ()=>setSelectedTier("30d"),
                             className: `flex-1 p-5 rounded-xl text-center transition-all
-                            ${selectedTier === "30d" ? "border-2 border-emerald-600 bg-emerald-50 dark:bg-emerald-500/10" : "border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-400"}`,
+                            ${selectedTier === "30d" ? "border-2 border-success bg-success-soft" : "border-2 border-subtle hover:border-success"}`,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-emerald-600 text-white mb-3",
+                                    className: "inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-[var(--status-success)] text-white mb-3",
                                     children: "Best value"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2834,7 +2834,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-3xl font-extrabold text-emerald-600 mb-1",
+                                    className: "text-3xl font-extrabold text-success mb-1",
                                     children: "$39"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2842,7 +2842,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "font-semibold text-gray-900 dark:text-white mb-2",
+                                    className: "font-semibold text-primary mb-2",
                                     children: "30-Day Campaign Pass"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2850,7 +2850,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-xs text-gray-500 leading-relaxed",
+                                    className: "text-xs text-muted leading-relaxed",
                                     children: "Unlimited reports for 30 days."
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2870,15 +2870,15 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-gray-50 dark:bg-gray-800/50 rounded-xl p-5 mb-4",
+                    className: "bg-muted rounded-xl p-5 mb-4",
                     children: isLoggedIn ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm text-gray-600 dark:text-gray-300 mb-4",
+                                className: "text-sm text-secondary mb-4",
                                 children: [
                                     "You're getting this pass for ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                        className: "text-gray-900 dark:text-white",
+                                        className: "text-primary",
                                         children: user.email
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2906,7 +2906,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                     }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                className: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2",
+                                className: "block text-sm font-medium text-secondary mb-2",
                                 children: "Your email"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2936,7 +2936,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-xs text-gray-500 text-center mt-3",
+                                className: "text-xs text-muted text-center mt-3",
                                 children: "Your email links your pass to any device."
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2951,7 +2951,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                     columnNumber: 17
                 }, this),
                 error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "text-red-600 text-sm text-center mb-4",
+                    className: "text-danger text-sm text-center mb-4",
                     children: error
                 }, void 0, false, {
                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2959,7 +2959,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                     columnNumber: 21
                 }, this),
                 hasCurrentReport && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-center text-xs text-gray-400 mb-2",
+                    className: "text-center text-xs text-muted mb-2",
                     children: "Your current report stays here while you upgrade."
                 }, void 0, false, {
                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -2967,7 +2967,7 @@ function PaywallModal({ isOpen, onClose, freeUsesRemaining = 0, hasCurrentReport
                     columnNumber: 21
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-center text-xs text-gray-500",
+                    className: "text-center text-xs text-muted",
                     children: "🔒 No recurring charges • Instant access"
                 }, void 0, false, {
                     fileName: "[project]/web/components/workspace/PaywallModal.tsx",
@@ -3114,7 +3114,6 @@ function LandingClient() {
                 isOpen: isPaywallOpen,
                 onClose: ()=>setIsPaywallOpen(false),
                 freeUsesRemaining: 2,
-                userEmail: user?.email || undefined,
                 onSuccess: ()=>{
                     setIsPaywallOpen(false);
                 }

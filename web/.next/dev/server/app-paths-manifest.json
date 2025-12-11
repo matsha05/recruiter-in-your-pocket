@@ -2,6 +2,7 @@
   "/(protected)/workspace/page": "app/(protected)/workspace/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/api/auth/send-code/route": "app/api/auth/send-code/route.js",
+  "/api/auth/sign-out/route": "app/api/auth/sign-out/route.js",
   "/api/auth/verify-code/route": "app/api/auth/verify-code/route.js",
   "/api/checkout/route": "app/api/checkout/route.js",
   "/api/free-status/route": "app/api/free-status/route.js",
