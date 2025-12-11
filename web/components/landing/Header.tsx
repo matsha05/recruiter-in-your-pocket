@@ -32,8 +32,8 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
     const userInitial = user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?";
 
     return (
-        <header className="flex items-center justify-between px-6 py-4 bg-white dark:bg-[#020617] backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-[#1F2937]">
-            <Link href="/" className="font-display font-extrabold text-lg text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" style={{ fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif' }}>
+        <header className="flex items-center justify-between px-6 py-4 bg-surface dark:bg-surface backdrop-blur-sm sticky top-0 z-50 border-b border-subtle">
+            <Link href="/" className="font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors" style={{ fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif' }}>
                 Recruiter in Your Pocket
             </Link>
 
@@ -45,25 +45,25 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
                 ) : (
                     <div className="relative" ref={dropdownRef}>
                         <button
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                            className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-hover transition-colors"
                             type="button"
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         >
-                            <span className="w-8 h-8 flex items-center justify-center bg-indigo-500 text-white rounded-full font-semibold text-sm">
+                            <span className="w-8 h-8 flex items-center justify-center bg-brand text-white rounded-full font-semibold text-sm">
                                 {userInitial}
                             </span>
-                            <span className="text-sm text-gray-700 dark:text-gray-300 max-w-[120px] truncate hidden sm:block">
+                            <span className="text-sm text-secondary max-w-[120px] truncate hidden sm:block">
                                 {user.firstName || user.email}
                             </span>
-                            <span className="text-gray-400 text-xs">▾</span>
+                            <span className="text-muted text-xs">▾</span>
                         </button>
                         {isDropdownOpen && (
-                            <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-gray-700 rounded-xl shadow-modal z-50 py-2">
-                                <div className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400 truncate">{user.email}</div>
-                                <div className="border-t border-gray-100 dark:border-gray-700 my-1" />
+                            <div className="absolute right-0 top-full mt-2 w-56 bg-surface border border-subtle rounded-xl shadow-modal z-50 py-2">
+                                <div className="px-4 py-2 text-xs text-muted truncate">{user.email}</div>
+                                <div className="border-t border-subtle my-1" />
                                 <Link
                                     href="/workspace"
-                                    className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors"
+                                    className="flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                     onClick={() => setIsDropdownOpen(false)}
                                 >
                                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -73,7 +73,7 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
                                 </Link>
                                 <Link
                                     href="/settings"
-                                    className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors"
+                                    className="flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                     onClick={() => setIsDropdownOpen(false)}
                                 >
                                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -82,9 +82,9 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
                                     </svg>
                                     Settings
                                 </Link>
-                                <div className="border-t border-gray-100 dark:border-gray-700 my-1" />
+                                <div className="border-t border-subtle my-1" />
                                 <button
-                                    className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
+                                    className="w-full flex items-center gap-3 px-4 py-2 text-sm text-danger hover:bg-warning-soft transition-colors"
                                     type="button"
                                     onClick={() => { onSignOut?.(); setIsDropdownOpen(false); }}
                                 >

@@ -275,3 +275,48 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
 [02:06:30.010] Server  WARN    Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
 [02:06:30.132] Server  ERROR   API /free-status error: TypeError: fetch failed
 [02:06:30.182] Server  ERROR   API /free-status error: TypeError: fetch failed
+[02:17:09.154] Server  LOG      ✓ Compiled in 227ms
+[02:19:26.038] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:19:26.156] Browser WARN    Image with src "/assets/founder-avatar.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[02:19:53.973] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:19:54.091] Browser WARN    Image with src "/assets/founder-avatar.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[02:20:16.796] Server  WARN    Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[02:20:16.932] Server  ERROR   API /free-status error: TypeError: fetch failed
+[02:20:16.985] Server  ERROR   API /free-status error: TypeError: fetch failed
+[02:20:24.204] Server  ERROR   [passes] Error: "fetch failed"
+[02:20:24.215] Server  ERROR   [passes] Error: "fetch failed"
+[02:24:09.029] Server  LOG      ✓ Compiled in 207ms
+[02:24:16.028] Server  WARN    Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[02:24:16.172] Server  ERROR   API /free-status error: TypeError: fetch failed
+[02:24:16.226] Server  ERROR   API /free-status error: TypeError: fetch failed
+[02:24:27.514] Server  LOG      ✓ Compiled in 177ms
+[02:24:52.904] Server  LOG      ✓ Compiled in 112ms
+[02:25:06.100] Server  LOG      ✓ Compiled in 169ms
+[02:25:25.363] Server  ERROR   [passes] Error: "fetch failed"
+[02:25:25.379] Server  ERROR   [passes] Error: "fetch failed"
+[02:26:52.386] Server  ERROR   [passes] Error: "fetch failed"
+[02:26:52.396] Server  ERROR   [passes] Error: "fetch failed"
+[02:27:37.481] Server  LOG      ✓ Compiled in 498ms
+[02:32:22.024] Server  LOG      ✓ Compiled in 158ms
+[02:33:16.166] Server  LOG      ✓ Compiled in 199ms
+[02:33:38.025] Server  ERROR   [passes] Error: "fetch failed"
+[02:33:38.033] Server  ERROR   [passes] Error: "fetch failed"
+[02:34:48.941] Server  LOG      ✓ Compiled in 433ms
+[02:36:05.365] Server  LOG      ✓ Compiled in 152ms
+[02:36:09.816] Server  LOG      ✓ Compiled in 95ms
+[02:36:35.928] Server  ERROR   [passes] Error: "fetch failed"
+[02:36:35.948] Server  ERROR   [passes] Error: "fetch failed"
+[02:37:34.805] Server  WARN    Image with src "/assets/founder-avatar.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[02:37:34.929] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:37:35.045] Browser WARN    Image with src "/assets/founder-avatar.jpg" is using quality "100" which is not configured in images.qualities [70, 70, 70, 70, 70, 70, 75]. Please update your config to [100, 70, 70, 70, 70, 70, 70, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[02:54:29.573] Server  ERROR   [passes] Error: "fetch failed"
+[02:54:29.585] Server  ERROR   [passes] Error: "fetch failed"
+[02:55:11.400] Server  LOG      ✓ Compiled in 312ms
+[02:55:15.932] Server  LOG      ✓ Compiled in 128ms
+[02:56:11.204] Server  LOG      ✓ Compiled in 156ms
+[02:56:15.152] Server  LOG      ✓ Compiled in 69ms
+[02:57:07.555] Server  LOG      ✓ Compiled in 213ms

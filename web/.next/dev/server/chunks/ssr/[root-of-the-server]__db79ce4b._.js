@@ -59,7 +59,7 @@ function ThemeToggle() {
     // Prevent hydration mismatch
     if (!mounted) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-            className: "p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors",
+            className: "p-2 rounded-lg text-secondary hover:bg-hover transition-colors",
             type: "button",
             "aria-label": "Toggle dark mode",
             title: "Toggle dark mode",
@@ -78,7 +78,7 @@ function ThemeToggle() {
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-        className: "p-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors",
+        className: "p-2 rounded-lg text-secondary hover:bg-hover transition-colors",
         type: "button",
         "aria-label": "Toggle dark mode",
         title: "Toggle dark mode",
@@ -118,11 +118,11 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
     const [isDropdownOpen, setIsDropdownOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const userInitial = user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-        className: "flex items-center justify-between px-6 py-4 bg-white dark:bg-[#0F172A] border-b border-gray-200 dark:border-gray-700",
+        className: "flex items-center justify-between px-6 py-4 bg-surface border-b border-subtle",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                 href: "/",
-                className: "font-display font-bold text-lg text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors",
+                className: "font-display font-bold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors",
                 children: "Recruiter in Your Pocket"
             }, void 0, false, {
                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
@@ -143,7 +143,7 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: onNewReport,
-                        className: "inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white  font-semibold rounded-lg shadow-button hover:bg-emerald-600  transition-all duration-200",
+                        className: "inline-flex items-center gap-2 px-4 py-2 bg-success text-white  font-semibold rounded-lg shadow-button hover:opacity-90  transition-all duration-200",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                 width: "16",
@@ -185,30 +185,30 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>setIsDropdownOpen(!isDropdownOpen),
-                                className: "flex items-center gap-2 px-3 py-2 rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
+                                className: "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-hover transition-colors",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "w-8 h-8 flex items-center justify-center  bg-indigo-500 text-white rounded-full font-semibold text-sm",
+                                        className: "w-8 h-8 flex items-center justify-center bg-brand text-white rounded-full font-semibold text-sm",
                                         children: userInitial
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                        lineNumber: 66,
+                                        lineNumber: 65,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-sm text-gray-900 dark:text-white max-w-[120px] truncate",
+                                        className: "text-sm text-primary max-w-[120px] truncate",
                                         children: user.firstName || user.email
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                        lineNumber: 70,
+                                        lineNumber: 68,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-400 text-xs",
+                                        className: "text-muted text-xs",
                                         children: "▾"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 71,
                                         columnNumber: 29
                                     }, this)
                                 ]
@@ -224,25 +224,25 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                         onClick: ()=>setIsDropdownOpen(false)
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                        lineNumber: 78,
+                                        lineNumber: 76,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "absolute right-0 top-full mt-1 w-56  bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-gray-700 rounded-xl shadow-modal z-50 py-2",
+                                        className: "absolute right-0 top-full mt-1 w-56 bg-surface border border-subtle rounded-xl shadow-modal z-50 py-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "px-4 py-2 text-xs text-gray-500 dark:text-gray-400 truncate",
+                                                className: "px-4 py-2 text-xs text-muted truncate",
                                                 children: user.email
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 85,
+                                                lineNumber: 82,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "border-t border-gray-100 dark:border-gray-700 my-1"
+                                                className: "border-t border-subtle my-1"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 88,
+                                                lineNumber: 85,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -250,7 +250,7 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                     onHistory?.();
                                                     setIsDropdownOpen(false);
                                                 },
-                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm  text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors",
+                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                         className: "w-4 h-4",
@@ -263,7 +263,7 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                                 strokeWidth: "1.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                                lineNumber: 96,
+                                                                lineNumber: 92,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -273,20 +273,20 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                                 strokeLinecap: "round"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                                lineNumber: 97,
+                                                                lineNumber: 93,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                        lineNumber: 95,
+                                                        lineNumber: 91,
                                                         columnNumber: 41
                                                     }, this),
                                                     "My Reports"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 90,
+                                                lineNumber: 87,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -294,7 +294,7 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                     onNewReport?.();
                                                     setIsDropdownOpen(false);
                                                 },
-                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm  text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors",
+                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                         className: "w-4 h-4",
@@ -307,31 +307,31 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                            lineNumber: 108,
+                                                            lineNumber: 103,
                                                             columnNumber: 45
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                        lineNumber: 107,
+                                                        lineNumber: 102,
                                                         columnNumber: 41
                                                     }, this),
                                                     "New Report"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 98,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "border-t border-gray-100 dark:border-gray-700 my-1"
+                                                className: "border-t border-subtle my-1"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 113,
+                                                lineNumber: 108,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                 href: "/",
-                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm  text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors",
+                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors",
                                                 onClick: ()=>setIsDropdownOpen(false),
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -346,24 +346,24 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                             strokeLinejoin: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                            lineNumber: 122,
+                                                            lineNumber: 116,
                                                             columnNumber: 45
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                        lineNumber: 121,
+                                                        lineNumber: 115,
                                                         columnNumber: 41
                                                     }, this),
                                                     "Home"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 115,
+                                                lineNumber: 110,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                 href: "/settings",
-                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm  text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors",
+                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors",
                                                 onClick: ()=>setIsDropdownOpen(false),
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -377,7 +377,7 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                                 strokeWidth: "1.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                                lineNumber: 134,
+                                                                lineNumber: 127,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -386,20 +386,20 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                                 strokeWidth: "1.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                                lineNumber: 135,
+                                                                lineNumber: 128,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                        lineNumber: 133,
+                                                        lineNumber: 126,
                                                         columnNumber: 41
                                                     }, this),
                                                     "Settings"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 127,
+                                                lineNumber: 121,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -407,17 +407,17 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                                                     onSignOut?.();
                                                     setIsDropdownOpen(false);
                                                 },
-                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm  text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors",
+                                                className: "w-full flex items-center gap-3 px-4 py-2 text-sm text-danger hover:bg-warning-soft transition-colors",
                                                 children: "Sign Out"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                                lineNumber: 140,
+                                                lineNumber: 133,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                                        lineNumber: 82,
+                                        lineNumber: 80,
                                         columnNumber: 33
                                     }, this)
                                 ]
@@ -430,7 +430,7 @@ function WorkspaceHeader({ user, onNewReport, onSampleReport, onSignIn, onSignOu
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$components$2f$shared$2f$ThemeToggle$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/web/components/workspace/WorkspaceHeader.tsx",
-                        lineNumber: 153,
+                        lineNumber: 145,
                         columnNumber: 17
                     }, this)
                 ]
@@ -497,7 +497,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
     const charCount = resumeText.length;
     const isShortResume = charCount > 0 && charCount < 1500;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "bg-white p-6 flex flex-col gap-6 overflow-y-auto h-full",
+        className: "bg-surface p-6 flex flex-col gap-6 overflow-y-auto h-full",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col gap-6",
@@ -509,7 +509,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                 className: "flex items-center justify-between",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-semibold text-gray-900 text-sm",
+                                        className: "font-semibold text-primary text-sm",
                                         children: "Your Resume"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -517,7 +517,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-500 text-xs",
+                                        className: "text-muted text-xs",
                                         children: "PDF, DOCX, or paste text"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -534,7 +534,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                 className: `flex flex-col items-center justify-center gap-3 p-6
                             border-2 border-dashed rounded-xl cursor-pointer
                             transition-all duration-200
-                            ${isDragOver ? "border-indigo-500 bg-indigo-50" : "border-gray-300 hover:border-indigo-400 hover:bg-indigo-50/30"}`,
+                            ${isDragOver ? "border-brand bg-brand-soft" : "border-subtle hover:border-brand hover:bg-brand-soft/30"}`,
                                 onClick: (e)=>{
                                     if (e.target === e.currentTarget || !e.target.closest('input')) {
                                         fileInputRef.current?.click();
@@ -548,7 +548,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                 onDrop: handleDrop,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                        className: "w-8 h-8 text-gray-400",
+                                        className: "w-8 h-8 text-muted",
                                         fill: "none",
                                         viewBox: "0 0 24 24",
                                         stroke: "currentColor",
@@ -568,7 +568,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-gray-900 text-sm font-medium",
+                                        className: "text-primary text-sm font-medium",
                                         children: "Drop your resume here or click to upload"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -576,7 +576,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-gray-500 text-xs",
+                                        className: "text-muted text-xs",
                                         children: "Supports PDF and DOCX files"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -602,10 +602,10 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                 columnNumber: 21
                             }, this),
                             fileName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between px-4 py-2 bg-indigo-50 rounded-lg",
+                                className: "flex items-center justify-between px-4 py-2 bg-brand-soft rounded-lg",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-indigo-600 font-medium text-sm",
+                                        className: "text-brand font-medium text-sm",
                                         children: fileName
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -613,7 +613,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        className: "text-gray-500 hover:text-red-600 text-xs transition-colors",
+                                        className: "text-muted hover:text-danger text-xs transition-colors",
                                         onClick: handleRemoveFile,
                                         children: "✕ Remove"
                                     }, void 0, false, {
@@ -628,7 +628,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-center text-gray-400 text-sm py-2",
+                                className: "text-center text-muted text-sm py-2",
                                 children: "— or paste —"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -646,7 +646,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                 columnNumber: 21
                             }, this),
                             isShortResume && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-lg",
+                                className: "flex items-start gap-3 p-4 bg-warning-soft border border-amber-200 rounded-lg",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "text-lg",
@@ -659,7 +659,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "font-semibold text-gray-900 text-sm",
+                                                className: "font-semibold text-primary text-sm",
                                                 children: "Resume looks short"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -667,7 +667,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-gray-600 text-xs mt-1",
+                                                className: "text-secondary text-xs mt-1",
                                                 children: [
                                                     "We found ",
                                                     charCount,
@@ -703,7 +703,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                 className: "flex items-center justify-between",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-semibold text-gray-900 text-sm",
+                                        className: "font-semibold text-primary text-sm",
                                         children: "Job Description"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -711,7 +711,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-500 text-xs",
+                                        className: "text-muted text-xs",
                                         children: "Optional — enables alignment analysis"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/InputPanel.tsx",
@@ -747,7 +747,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col items-center gap-2 pt-4 border-t border-gray-200 mt-auto",
+                className: "flex flex-col items-center gap-2 pt-4 border-t border-subtle mt-auto",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         className: "btn-primary w-full",
@@ -775,7 +775,7 @@ function InputPanel({ resumeText, jobDescription, onResumeTextChange, onJobDescC
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-gray-500 text-xs",
+                        className: "text-muted text-xs",
                         children: getRunHint()
                     }, void 0, false, {
                         fileName: "[project]/web/components/workspace/InputPanel.tsx",

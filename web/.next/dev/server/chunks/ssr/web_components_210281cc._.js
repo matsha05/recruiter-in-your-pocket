@@ -41,7 +41,7 @@ function ThemeToggle() {
     // Prevent hydration mismatch
     if (!mounted) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-            className: "p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors",
+            className: "p-2 rounded-lg text-secondary hover:bg-hover transition-colors",
             type: "button",
             "aria-label": "Toggle dark mode",
             title: "Toggle dark mode",
@@ -60,7 +60,7 @@ function ThemeToggle() {
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-        className: "p-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors",
+        className: "p-2 rounded-lg text-secondary hover:bg-hover transition-colors",
         type: "button",
         "aria-label": "Toggle dark mode",
         title: "Toggle dark mode",
@@ -110,11 +110,11 @@ function Header({ user, onSignIn, onSignOut }) {
     }, []);
     const userInitial = user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-        className: "flex items-center justify-between px-6 py-4 bg-white dark:bg-[#020617] backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-[#1F2937]",
+        className: "flex items-center justify-between px-6 py-4 bg-surface dark:bg-surface backdrop-blur-sm sticky top-0 z-50 border-b border-subtle",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                 href: "/",
-                className: "font-display font-extrabold text-lg text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors",
+                className: "font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors",
                 style: {
                     fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif'
                 },
@@ -140,12 +140,12 @@ function Header({ user, onSignIn, onSignOut }) {
                         ref: dropdownRef,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
+                                className: "flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-hover transition-colors",
                                 type: "button",
                                 onClick: ()=>setIsDropdownOpen(!isDropdownOpen),
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "w-8 h-8 flex items-center justify-center bg-indigo-500 text-white rounded-full font-semibold text-sm",
+                                        className: "w-8 h-8 flex items-center justify-center bg-brand text-white rounded-full font-semibold text-sm",
                                         children: userInitial
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Header.tsx",
@@ -153,7 +153,7 @@ function Header({ user, onSignIn, onSignOut }) {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-sm text-gray-700 dark:text-gray-300 max-w-[120px] truncate hidden sm:block",
+                                        className: "text-sm text-secondary max-w-[120px] truncate hidden sm:block",
                                         children: user.firstName || user.email
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Header.tsx",
@@ -161,7 +161,7 @@ function Header({ user, onSignIn, onSignOut }) {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-400 text-xs",
+                                        className: "text-muted text-xs",
                                         children: "▾"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Header.tsx",
@@ -175,10 +175,10 @@ function Header({ user, onSignIn, onSignOut }) {
                                 columnNumber: 25
                             }, this),
                             isDropdownOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "absolute right-0 top-full mt-2 w-56 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-gray-700 rounded-xl shadow-modal z-50 py-2",
+                                className: "absolute right-0 top-full mt-2 w-56 bg-surface border border-subtle rounded-xl shadow-modal z-50 py-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "px-4 py-2 text-xs text-gray-500 dark:text-gray-400 truncate",
+                                        className: "px-4 py-2 text-xs text-muted truncate",
                                         children: user.email
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Header.tsx",
@@ -186,7 +186,7 @@ function Header({ user, onSignIn, onSignOut }) {
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "border-t border-gray-100 dark:border-gray-700 my-1"
+                                        className: "border-t border-subtle my-1"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Header.tsx",
                                         lineNumber: 63,
@@ -194,7 +194,7 @@ function Header({ user, onSignIn, onSignOut }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/workspace",
-                                        className: "flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors",
+                                        className: "flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors",
                                         onClick: ()=>setIsDropdownOpen(false),
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -226,7 +226,7 @@ function Header({ user, onSignIn, onSignOut }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/settings",
-                                        className: "flex items-center gap-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors",
+                                        className: "flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors",
                                         onClick: ()=>setIsDropdownOpen(false),
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -266,14 +266,14 @@ function Header({ user, onSignIn, onSignOut }) {
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "border-t border-gray-100 dark:border-gray-700 my-1"
+                                        className: "border-t border-subtle my-1"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Header.tsx",
                                         lineNumber: 85,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        className: "w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors",
+                                        className: "w-full flex items-center gap-3 px-4 py-2 text-sm text-danger hover:bg-warning-soft transition-colors",
                                         type: "button",
                                         onClick: ()=>{
                                             onSignOut?.();
@@ -543,16 +543,16 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 ;
 function SampleReport() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-gray-50",
+        className: "section bg-muted",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner flex justify-center",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "w-full max-w-lg p-8 bg-white rounded-2xl shadow-card border border-gray-100",
+                className: "w-full max-w-lg p-8 bg-surface rounded-2xl shadow-card border border-subtle",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-center mb-6",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-600 bg-indigo-50 rounded-full",
+                            className: "badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full",
                             children: "Sample Report Preview"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -568,7 +568,7 @@ function SampleReport() {
                         className: "flex items-center gap-4 mb-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-20 h-20 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full",
+                                className: "w-20 h-20 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-3xl font-extrabold text-white",
                                     children: "86"
@@ -585,7 +585,7 @@ function SampleReport() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-sm text-gray-500",
+                                        className: "text-sm text-muted",
                                         children: "Clarity Score"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -593,7 +593,7 @@ function SampleReport() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "font-display font-bold text-indigo-600",
+                                        className: "font-display font-bold text-brand",
                                         children: "Strong foundation"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -616,10 +616,10 @@ function SampleReport() {
                         className: "flex flex-wrap gap-2 mb-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-sm",
+                                className: "flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-sm",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-600",
+                                        className: "text-secondary",
                                         children: "Impact"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -627,7 +627,7 @@ function SampleReport() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-semibold text-emerald-600",
+                                        className: "font-semibold text-success",
                                         children: "82"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -641,10 +641,10 @@ function SampleReport() {
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-sm",
+                                className: "flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-sm",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-600",
+                                        className: "text-secondary",
                                         children: "Clarity"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -652,7 +652,7 @@ function SampleReport() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-semibold text-emerald-600",
+                                        className: "font-semibold text-success",
                                         children: "88"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -666,10 +666,10 @@ function SampleReport() {
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-sm",
+                                className: "flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-sm",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-600",
+                                        className: "text-secondary",
                                         children: "Story"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -677,7 +677,7 @@ function SampleReport() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-semibold text-emerald-600",
+                                        className: "font-semibold text-success",
                                         children: "84"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -691,10 +691,10 @@ function SampleReport() {
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-sm",
+                                className: "flex items-center gap-2 px-3 py-1 bg-muted rounded-full text-sm",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-gray-600",
+                                        className: "text-secondary",
                                         children: "Readability"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -702,7 +702,7 @@ function SampleReport() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-semibold text-purple-600",
+                                        className: "font-semibold text-brand",
                                         children: "90"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -722,7 +722,7 @@ function SampleReport() {
                         columnNumber: 21
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("blockquote", {
-                        className: "text-gray-600 italic border-l-4 border-indigo-500 pl-4 mb-6",
+                        className: "text-secondary italic border-l-4 border-brand pl-4 mb-6",
                         children: '"You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls."'
                     }, void 0, false, {
                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -733,7 +733,7 @@ function SampleReport() {
                         className: "mb-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                className: "text-sm font-semibold text-gray-900 mb-2",
+                                className: "text-sm font-semibold text-primary mb-2",
                                 children: "Best fit roles"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -744,7 +744,7 @@ function SampleReport() {
                                 className: "flex flex-wrap gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "px-3 py-1 bg-indigo-50 text-indigo-600 text-sm rounded-full",
+                                        className: "badge-brand px-3 py-1 text-sm rounded-full",
                                         children: "Program Manager"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -752,7 +752,7 @@ function SampleReport() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "px-3 py-1 bg-indigo-50 text-indigo-600 text-sm rounded-full",
+                                        className: "badge-brand px-3 py-1 text-sm rounded-full",
                                         children: "Technical PM"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -760,7 +760,7 @@ function SampleReport() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "px-3 py-1 bg-indigo-50 text-indigo-600 text-sm rounded-full",
+                                        className: "badge-brand px-3 py-1 text-sm rounded-full",
                                         children: "Product Ops"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -783,7 +783,7 @@ function SampleReport() {
                         className: "mb-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                className: "text-sm font-semibold text-gray-900 mb-2",
+                                className: "text-sm font-semibold text-primary mb-2",
                                 children: "Top fixes"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -791,13 +791,13 @@ function SampleReport() {
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                className: "space-y-2 text-sm text-gray-600",
+                                className: "space-y-2 text-sm text-secondary",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         className: "flex items-start gap-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-amber-500",
+                                                className: "text-warning",
                                                 children: "→"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -815,7 +815,7 @@ function SampleReport() {
                                         className: "flex items-start gap-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-amber-500",
+                                                className: "text-warning",
                                                 children: "→"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -833,7 +833,7 @@ function SampleReport() {
                                         className: "flex items-start gap-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-amber-500",
+                                                className: "text-warning",
                                                 children: "→"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/landing/SampleReport.tsx",
@@ -1079,7 +1079,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 ;
 function CompareStrip() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-white",
+        className: "section bg-surface",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
             children: [
@@ -1087,7 +1087,7 @@ function CompareStrip() {
                     className: "text-center mb-10",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-600 bg-indigo-50 rounded-full mb-4",
+                            className: "badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full mb-4",
                             children: "Recruiter-grade insight"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1095,7 +1095,7 @@ function CompareStrip() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-2xl md:text-3xl font-bold text-gray-900 mb-3",
+                            className: "font-display text-2xl md:text-3xl font-bold text-primary mb-3",
                             children: "How this compares to typical resume checkers"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1103,7 +1103,7 @@ function CompareStrip() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-600 max-w-2xl mx-auto",
+                            className: "text-secondary max-w-2xl mx-auto",
                             children: "Built by recruiters to show how your story really lands, not to chase keyword scores."
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1120,10 +1120,10 @@ function CompareStrip() {
                     className: "grid md:grid-cols-2 gap-6",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-gray-50 rounded-xl",
+                            className: "p-6 bg-muted rounded-xl",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "font-display font-bold text-gray-900 mb-4",
+                                    className: "font-display font-bold text-primary mb-4",
                                     children: "Most resume checkers"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1134,10 +1134,10 @@ function CompareStrip() {
                                     className: "space-y-3",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-gray-600",
+                                            className: "flex items-start gap-3 text-secondary",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-gray-400",
+                                                    className: "text-muted",
                                                     children: "•"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1152,10 +1152,10 @@ function CompareStrip() {
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-gray-600",
+                                            className: "flex items-start gap-3 text-secondary",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-gray-400",
+                                                    className: "text-muted",
                                                     children: "•"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1170,10 +1170,10 @@ function CompareStrip() {
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-gray-600",
+                                            className: "flex items-start gap-3 text-secondary",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-gray-400",
+                                                    className: "text-muted",
                                                     children: "•"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1200,10 +1200,10 @@ function CompareStrip() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-indigo-50 rounded-xl border-2 border-indigo-200",
+                            className: "p-6 bg-brand-soft rounded-xl border-2 border-brand",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "font-display font-bold text-gray-900 mb-4",
+                                    className: "font-display font-bold text-primary mb-4",
                                     children: "Recruiter in Your Pocket"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1214,10 +1214,10 @@ function CompareStrip() {
                                     className: "space-y-3",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-gray-700",
+                                            className: "flex items-start gap-3 text-primary",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-indigo-500",
+                                                    className: "text-brand",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1232,10 +1232,10 @@ function CompareStrip() {
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-gray-700",
+                                            className: "flex items-start gap-3 text-primary",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-indigo-500",
+                                                    className: "text-brand",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1250,10 +1250,10 @@ function CompareStrip() {
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-gray-700",
+                                            className: "flex items-start gap-3 text-primary",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-indigo-500",
+                                                    className: "text-brand",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1268,10 +1268,10 @@ function CompareStrip() {
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex items-start gap-3 text-gray-700",
+                                            className: "flex items-start gap-3 text-primary",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-indigo-500",
+                                                    className: "text-brand",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/CompareStrip.tsx",
@@ -1327,7 +1327,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 ;
 function ATSEducation() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-white dark:bg-[#020617]",
+        className: "section bg-surface",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
             children: [
@@ -1335,7 +1335,7 @@ function ATSEducation() {
                     className: "text-center mb-10",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-[#FBBF77] bg-amber-50 dark:bg-amber-500/10 rounded-full mb-4",
+                            className: "badge-warning inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full mb-4",
                             children: "From a recruiter who's read 10,000+ resumes"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1343,7 +1343,7 @@ function ATSEducation() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-2xl md:text-3xl font-bold text-gray-900 mb-3",
+                            className: "font-display text-2xl md:text-3xl font-bold text-primary mb-3",
                             children: "The ATS doesn't reject you. Recruiters do."
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1351,7 +1351,7 @@ function ATSEducation() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-600 max-w-2xl mx-auto",
+                            className: "text-secondary max-w-2xl mx-auto",
                             children: "After reviewing resumes at Google, Meta, and OpenAI, here's what I've learned about how hiring actually works."
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1368,10 +1368,10 @@ function ATSEducation() {
                     className: "grid md:grid-cols-2 gap-6 mb-10",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-white dark:bg-[#020617] rounded-xl border-l-4 border-l-red-500 border border-gray-200 dark:border-[#1F2937]",
+                            className: "p-6 bg-surface rounded-xl border-l-4 border-l-red-500 border border-subtle",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-red-600 dark:text-[#F87171] font-semibold mb-2",
+                                    className: "text-danger font-semibold mb-2",
                                     children: "❌ The myth"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1379,7 +1379,7 @@ function ATSEducation() {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-700 italic",
+                                    className: "text-secondary italic",
                                     children: '"75% of resumes are rejected by the Applicant Tracking System before a human ever sees them."'
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1393,10 +1393,10 @@ function ATSEducation() {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-6 bg-white dark:bg-[#020617] rounded-xl border-l-4 border-l-emerald-500 border border-gray-200 dark:border-[#1F2937]",
+                            className: "p-6 bg-surface rounded-xl border-l-4 border-l-emerald-500 border border-subtle",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-emerald-600 dark:text-[#4ADE80] font-semibold mb-2",
+                                    className: "text-success font-semibold mb-2",
                                     children: "✓ The reality"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1404,7 +1404,7 @@ function ATSEducation() {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-700",
+                                    className: "text-secondary",
                                     children: "An ATS (Applicant Tracking System) is just a database — not a gatekeeper. The best recruiters don't wait for shortlists. We run keyword searches, pull resumes ourselves, and often share them with hiring managers before even reaching out."
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1424,10 +1424,10 @@ function ATSEducation() {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-white dark:bg-[#020617] rounded-xl border border-gray-200 dark:border-[#1F2937] p-6 mb-8",
+                    className: "bg-surface rounded-xl border border-subtle p-6 mb-8",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                            className: "font-display font-bold text-gray-900 mb-6 text-center",
+                            className: "font-display font-bold text-primary mb-6 text-center",
                             children: "How it actually works"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1438,10 +1438,10 @@ function ATSEducation() {
                             className: "space-y-6",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-indigo-500 bg-indigo-50/50 dark:bg-indigo-500/10",
+                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-[var(--brand)] bg-brand-soft",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-indigo-500 dark:text-[#818CF8] font-display font-bold text-lg shrink-0",
+                                            className: "text-brand font-display font-bold text-lg shrink-0",
                                             children: "01"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1451,7 +1451,7 @@ function ATSEducation() {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                    className: "text-gray-900",
+                                                    className: "text-primary",
                                                     children: "The ATS stores applications"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1459,7 +1459,7 @@ function ATSEducation() {
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-gray-600 mt-1",
+                                                    className: "text-sm text-secondary mt-1",
                                                     children: "It's a searchable database, not a filter. High-volume roles may get 500+ applications, but they're all in there."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1479,10 +1479,10 @@ function ATSEducation() {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-emerald-500 bg-emerald-50/50 dark:bg-emerald-500/10",
+                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-emerald-500 bg-success-soft",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-emerald-600 dark:text-[#4ADE80] font-display font-bold text-lg shrink-0",
+                                            className: "text-success font-display font-bold text-lg shrink-0",
                                             children: "02"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1492,7 +1492,7 @@ function ATSEducation() {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                    className: "text-gray-900",
+                                                    className: "text-primary",
                                                     children: "Good recruiters search actively"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1500,7 +1500,7 @@ function ATSEducation() {
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-gray-600 mt-1",
+                                                    className: "text-sm text-secondary mt-1",
                                                     children: "We run keyword searches, skim the top results, and often share promising resumes with hiring managers to gut-check fit before reaching out."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1520,10 +1520,10 @@ function ATSEducation() {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-amber-500 bg-amber-50/50 dark:bg-amber-500/10",
+                                    className: "flex gap-4 items-start p-4 rounded-lg border-l-4 border-l-amber-500 bg-warning-soft",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-amber-600 dark:text-[#FBBF24] font-display font-bold text-lg shrink-0",
+                                            className: "text-warning font-display font-bold text-lg shrink-0",
                                             children: "03"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1533,7 +1533,7 @@ function ATSEducation() {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                    className: "text-gray-900",
+                                                    className: "text-primary",
                                                     children: "Content is the table stakes"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1541,7 +1541,7 @@ function ATSEducation() {
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-gray-600 mt-1",
+                                                    className: "text-sm text-secondary mt-1",
                                                     children: "There's no magic \"ATS-ready\" formula. If your resume is clear, shows impact, and tells a story — that's what gets you noticed."
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1573,9 +1573,9 @@ function ATSEducation() {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-indigo-50 dark:bg-indigo-500/10 rounded-xl p-6 text-center max-w-2xl mx-auto border border-indigo-100 dark:border-indigo-500/20",
+                    className: "bg-brand-soft rounded-xl p-6 text-center max-w-2xl mx-auto border border-brand/20",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-gray-700",
+                        className: "text-secondary",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                 children: "Our approach:"
@@ -1586,7 +1586,7 @@ function ATSEducation() {
                             }, this),
                             " We skip the keyword-stuffing theater and show you how a real recruiter reads your resume — what lands, what's buried, and what to fix. Because ",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("em", {
-                                className: "text-indigo-600 dark:text-[#A5B4FC]",
+                                className: "text-brand",
                                 children: "clarity"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ATSEducation.tsx",
@@ -1639,7 +1639,7 @@ function Pricing({ onSelectTier }) {
     // Shared hover animation classes
     const cardHover = "transition-all duration-200 ease-smooth hover:-translate-y-1 hover:shadow-lg";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-white dark:bg-[#020617]",
+        className: "section bg-surface",
         id: "pricing",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
@@ -1648,7 +1648,7 @@ function Pricing({ onSelectTier }) {
                     className: "text-center mb-10",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:text-[#A5B4FC] bg-indigo-50 dark:bg-indigo-500/10 rounded-full mb-4",
+                            className: "badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full mb-4",
                             children: "Simple pricing"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1656,7 +1656,7 @@ function Pricing({ onSelectTier }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-2xl md:text-3xl font-bold text-gray-900 mb-3",
+                            className: "font-display text-2xl md:text-3xl font-bold text-primary mb-3",
                             children: "Stop renting resume tools you only use for a week."
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1664,7 +1664,7 @@ function Pricing({ onSelectTier }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-600 max-w-xl mx-auto",
+                            className: "text-secondary max-w-xl mx-auto",
                             children: "No subscriptions. Just passes that match how people really job hunt."
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1681,12 +1681,12 @@ function Pricing({ onSelectTier }) {
                     className: "grid md:grid-cols-3 gap-6 mb-10",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: `flex flex-col p-6 bg-gray-50 dark:bg-[#020617] rounded-2xl border border-gray-200 dark:border-[#1F2937] ${cardHover}`,
+                            className: `flex flex-col p-6 bg-muted rounded-2xl border border-subtle ${cardHover}`,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "mb-4",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400",
+                                        className: "text-xs font-semibold uppercase tracking-wide text-muted",
                                         children: "Always free"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1699,7 +1699,7 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-4xl font-extrabold text-gray-900 mb-2",
+                                    className: "text-4xl font-extrabold text-primary mb-2",
                                     children: "$0"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1707,7 +1707,7 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "font-display font-bold text-gray-900 mb-4",
+                                    className: "font-display font-bold text-primary mb-4",
                                     children: "First Look"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1715,13 +1715,13 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                    className: "space-y-3 text-sm text-gray-600 mb-6 flex-1",
+                                    className: "space-y-3 text-sm text-secondary mb-6 flex-1",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-emerald-500 dark:text-[#4ADE80]",
+                                                    className: "text-success",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1754,7 +1754,7 @@ function Pricing({ onSelectTier }) {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-emerald-500 dark:text-[#4ADE80]",
+                                                    className: "text-success",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1772,7 +1772,7 @@ function Pricing({ onSelectTier }) {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-emerald-500 dark:text-[#4ADE80]",
+                                                    className: "text-success",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1790,7 +1790,7 @@ function Pricing({ onSelectTier }) {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-emerald-500 dark:text-[#4ADE80]",
+                                                    className: "text-success",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1812,7 +1812,7 @@ function Pricing({ onSelectTier }) {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/workspace",
-                                    className: "block w-full text-center py-3 px-4 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors",
+                                    className: "btn-secondary w-full text-center",
                                     children: "Start for free →"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1826,7 +1826,7 @@ function Pricing({ onSelectTier }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: `relative flex flex-col p-6 bg-indigo-50 dark:bg-indigo-500/10 rounded-2xl border-2 border-indigo-500 ${cardHover}`,
+                            className: `relative flex flex-col p-6 bg-brand-soft rounded-2xl border-2 border-brand ${cardHover}`,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-black bg-gold rounded-full shadow-[0_0_20px_rgba(245,178,92,0.5)]",
@@ -1837,9 +1837,9 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-4xl font-extrabold text-gray-900 mb-2 mt-2",
+                                    className: "text-4xl font-extrabold text-primary mb-2 mt-2",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-indigo-600 dark:text-[#818CF8]",
+                                        className: "text-brand",
                                         children: "$9"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1852,7 +1852,7 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "font-display font-bold text-gray-900 mb-4",
+                                    className: "font-display font-bold text-primary mb-4",
                                     children: "24-Hour Fix Pass"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1860,13 +1860,13 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                    className: "space-y-3 text-sm text-gray-600 mb-6 flex-1",
+                                    className: "space-y-3 text-sm text-secondary mb-6 flex-1",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-indigo-500 dark:text-[#818CF8]",
+                                                    className: "text-brand",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1884,7 +1884,7 @@ function Pricing({ onSelectTier }) {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-indigo-500 dark:text-[#818CF8]",
+                                                    className: "text-brand",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1902,7 +1902,7 @@ function Pricing({ onSelectTier }) {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-indigo-500 dark:text-[#818CF8]",
+                                                    className: "text-brand",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1938,12 +1938,12 @@ function Pricing({ onSelectTier }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: `flex flex-col p-6 bg-white dark:bg-[#020617] rounded-2xl border border-gray-200 dark:border-[#1F2937] ${cardHover}`,
+                            className: `flex flex-col p-6 bg-surface rounded-2xl border border-subtle ${cardHover}`,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "mb-4",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-[#4ADE80]",
+                                        className: "text-xs font-semibold uppercase tracking-wide text-success",
                                         children: "Best value"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1956,9 +1956,9 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-4xl font-extrabold text-gray-900 mb-2",
+                                    className: "text-4xl font-extrabold text-primary mb-2",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-emerald-600 dark:text-[#4ADE80]",
+                                        className: "text-success",
                                         children: "$39"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1971,7 +1971,7 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "font-display font-bold text-gray-900 mb-4",
+                                    className: "font-display font-bold text-primary mb-4",
                                     children: "30-Day Campaign Pass"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -1979,13 +1979,13 @@ function Pricing({ onSelectTier }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                    className: "space-y-3 text-sm text-gray-600 mb-6 flex-1",
+                                    className: "space-y-3 text-sm text-secondary mb-6 flex-1",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-emerald-500 dark:text-[#4ADE80]",
+                                                    className: "text-success",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -2003,7 +2003,7 @@ function Pricing({ onSelectTier }) {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-emerald-500 dark:text-[#4ADE80]",
+                                                    className: "text-success",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -2021,7 +2021,7 @@ function Pricing({ onSelectTier }) {
                                             className: "flex items-start gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-emerald-500 dark:text-[#4ADE80]",
+                                                    className: "text-success",
                                                     children: "✓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/landing/Pricing.tsx",
@@ -2063,7 +2063,7 @@ function Pricing({ onSelectTier }) {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-6",
+                    className: "flex flex-wrap justify-center gap-6 text-sm text-muted mb-6",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "flex items-center gap-2",
@@ -2173,7 +2173,7 @@ function Pricing({ onSelectTier }) {
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-center text-sm text-gray-500 max-w-md mx-auto",
+                    className: "text-center text-sm text-muted max-w-md mx-auto",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                             children: "Why do we ask for email?"
@@ -2215,7 +2215,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 ;
 function Footer() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
-        className: "py-8 px-6 text-center text-sm text-gray-500 border-t border-gray-200",
+        className: "py-8 px-6 text-center text-sm text-muted border-t border-subtle",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 className: "mb-2",
@@ -2230,7 +2230,7 @@ function Footer() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         href: "/terms",
-                        className: "hover:text-indigo-600 underline transition-colors",
+                        className: "hover:text-brand underline transition-colors",
                         children: "Terms"
                     }, void 0, false, {
                         fileName: "[project]/web/components/landing/Footer.tsx",
@@ -2246,7 +2246,7 @@ function Footer() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         href: "/privacy",
-                        className: "hover:text-indigo-600 underline transition-colors",
+                        className: "hover:text-brand underline transition-colors",
                         children: "Privacy"
                     }, void 0, false, {
                         fileName: "[project]/web/components/landing/Footer.tsx",
@@ -2262,7 +2262,7 @@ function Footer() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         href: "/research",
-                        className: "hover:text-indigo-600 underline transition-colors",
+                        className: "hover:text-brand underline transition-colors",
                         children: "Hiring Research"
                     }, void 0, false, {
                         fileName: "[project]/web/components/landing/Footer.tsx",

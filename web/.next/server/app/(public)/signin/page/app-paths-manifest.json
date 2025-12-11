@@ -1,0 +1,3 @@
+{
+  "/(public)/signin/page": "app/(public)/signin/page.js"
+}

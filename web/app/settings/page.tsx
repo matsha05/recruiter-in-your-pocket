@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import ThemeToggle from "@/components/shared/ThemeToggle";
+import Toggle from "@/components/shared/Toggle";
 
 type Section = "profile" | "passes" | "preferences" | "delete";
 
@@ -137,9 +138,9 @@ export default function SettingsPage() {
 
     if (!user) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-[#020617] flex items-center justify-center">
+            <div className="min-h-screen bg-body flex items-center justify-center">
                 <div className="text-center">
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">Please sign in to view settings</p>
+                    <p className="text-secondary mb-4">Please sign in to view settings</p>
                     <Link href="/" className="btn-primary">Go Home</Link>
                 </div>
             </div>
@@ -153,28 +154,16 @@ export default function SettingsPage() {
         { id: "delete", label: "Delete account" }
     ];
 
-    // Toggle component
-    const Toggle = ({ checked, onChange }: { checked: boolean; onChange: () => void }) => (
-        <button
-            onClick={onChange}
-            className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${checked ? "bg-indigo-500" : "bg-gray-200 dark:bg-gray-700"
-                }`}
-        >
-            <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${checked ? "translate-x-5" : ""
-                }`} />
-        </button>
-    );
-
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-[#020617]">
+        <div className="min-h-screen bg-body">
             {/* Header */}
-            <header className="bg-white dark:bg-[#0F172A] border-b border-gray-200 dark:border-gray-800">
+            <header className="bg-surface border-b border-subtle">
                 <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-                    <Link href="/" className="font-display text-lg font-bold text-gray-900 dark:text-white">
+                    <Link href="/" className="font-display text-lg font-bold text-primary">
                         Recruiter in Your Pocket
                     </Link>
                     <div className="flex items-center gap-4">
-                        <Link href="/workspace" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                        <Link href="/workspace" className="text-sm text-secondary hover:text-primary">
                             ← Back to Workspace
                         </Link>
                         <ThemeToggle />
@@ -185,8 +174,8 @@ export default function SettingsPage() {
             <div className="max-w-5xl mx-auto px-6">
                 {/* Page Header - Above Two Column Layout */}
                 <div className="pt-12 pb-8">
-                    <h1 className="font-display text-2xl font-bold text-gray-900 dark:text-white">Settings</h1>
-                    <p className="text-gray-500 dark:text-gray-400 mt-1">Manage your account, passes, and preferences.</p>
+                    <h1 className="font-display text-2xl font-bold text-primary">Settings</h1>
+                    <p className="text-muted mt-1">Manage your account, passes, and preferences.</p>
                 </div>
 
                 {/* Two Column Layout */}
@@ -194,11 +183,11 @@ export default function SettingsPage() {
                     {/* Left Sidebar */}
                     <nav className="w-52 flex-shrink-0">
                         {/* User Identity */}
-                        <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-800">
-                            <div className="text-sm font-medium text-gray-900 dark:text-white">
+                        <div className="mb-6 pb-6 border-b border-subtle">
+                            <div className="text-sm font-medium text-primary">
                                 {user.firstName || user.email?.split("@")[0]}
                             </div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                            <div className="text-xs text-muted mt-0.5">
                                 {activePass ? getTierLabel(activePass.tier) : "Free plan"}
                             </div>
                         </div>
@@ -210,14 +199,14 @@ export default function SettingsPage() {
                                     <button
                                         onClick={() => { setActiveSection(item.id); setDeleteConfirm(false); }}
                                         className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors relative ${activeSection === item.id
-                                                ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-medium"
-                                                : item.id === "delete"
-                                                    ? "text-gray-500 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 hover:bg-gray-50 dark:hover:bg-gray-800/50"
-                                                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                                            ? "bg-brand-soft text-brand font-medium"
+                                            : item.id === "delete"
+                                                ? "text-muted hover:text-danger hover:bg-hover"
+                                                : "text-secondary hover:bg-hover"
                                             }`}
                                     >
                                         {activeSection === item.id && (
-                                            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-indigo-500 rounded-r" />
+                                            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-brand rounded-r" />
                                         )}
                                         {item.label}
                                     </button>
@@ -230,24 +219,24 @@ export default function SettingsPage() {
                     <div className="flex-1 min-w-0">
                         {/* Profile Section */}
                         {activeSection === "profile" && (
-                            <div className="bg-white dark:bg-[#0F172A] rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-                                <h2 className="font-semibold text-gray-900 dark:text-white">Profile</h2>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-6">Update your basic account info.</p>
+                            <div className="bg-surface rounded-xl border border-subtle p-6">
+                                <h2 className="font-semibold text-primary">Profile</h2>
+                                <p className="text-sm text-muted mt-1 mb-6">Update your basic account info.</p>
 
                                 <div className="space-y-5">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                                        <label className="block text-sm font-medium text-secondary mb-1">Email</label>
                                         <input
                                             type="email"
                                             value={user.email}
                                             disabled
-                                            className="input bg-gray-50 dark:bg-gray-800 cursor-not-allowed text-gray-500"
+                                            className="input bg-muted cursor-not-allowed text-muted"
                                         />
-                                        <p className="text-xs text-gray-400 mt-1.5">Used for login and pass access.</p>
+                                        <p className="text-xs text-muted mt-1.5">Used for login and pass access.</p>
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                                        <label className="block text-sm font-medium text-secondary mb-1">Name</label>
                                         <input
                                             type="text"
                                             value={firstName}
@@ -267,7 +256,7 @@ export default function SettingsPage() {
                                         </button>
                                         <button
                                             onClick={handleSignOut}
-                                            className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:underline"
+                                            className="text-sm text-muted hover:text-secondary hover:underline"
                                         >
                                             Sign out
                                         </button>
@@ -280,30 +269,30 @@ export default function SettingsPage() {
                         {activeSection === "passes" && (
                             <div className="space-y-6">
                                 {/* Current Pass Card */}
-                                <div className="bg-white dark:bg-[#0F172A] rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+                                <div className="bg-surface rounded-xl border border-subtle p-6">
                                     <div className="flex items-start justify-between">
                                         <div>
-                                            <h2 className="font-semibold text-gray-900 dark:text-white">Your current plan</h2>
+                                            <h2 className="font-semibold text-primary">Your current plan</h2>
                                             {activePass ? (
                                                 <>
-                                                    <p className="text-sm font-medium text-gray-900 dark:text-white mt-2">
+                                                    <p className="text-sm font-medium text-primary mt-2">
                                                         {getTierLabel(activePass.tier)}
                                                     </p>
-                                                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+                                                    <p className="text-sm text-muted mt-0.5">
                                                         {formatPassExpiry(activePass.expires_at, activePass.tier)}
                                                     </p>
                                                 </>
                                             ) : (
                                                 <>
-                                                    <p className="text-sm font-medium text-gray-900 dark:text-white mt-2">Free plan</p>
-                                                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+                                                    <p className="text-sm font-medium text-primary mt-2">Free plan</p>
+                                                    <p className="text-sm text-muted mt-0.5">
                                                         You can run two full reports at no cost. Upgrade when you are ready for more.
                                                     </p>
                                                 </>
                                             )}
                                         </div>
                                         {activePass && (
-                                            <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400">
+                                            <span className="badge-success px-2.5 py-1 text-xs font-medium rounded-full">
                                                 Active
                                             </span>
                                         )}
@@ -311,33 +300,33 @@ export default function SettingsPage() {
                                 </div>
 
                                 {/* Past Passes Card */}
-                                <div className="bg-white dark:bg-[#0F172A] rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-                                    <h2 className="font-semibold text-gray-900 dark:text-white mb-4">Pass history</h2>
+                                <div className="bg-surface rounded-xl border border-subtle p-6">
+                                    <h2 className="font-semibold text-primary mb-4">Pass history</h2>
 
                                     {loadingPasses ? (
-                                        <p className="text-sm text-gray-500">Loading...</p>
+                                        <p className="text-sm text-muted">Loading...</p>
                                     ) : pastPasses.length === 0 ? (
-                                        <p className="text-sm text-gray-400">You have not used any passes yet.</p>
+                                        <p className="text-sm text-muted">You have not used any passes yet.</p>
                                     ) : (
-                                        <div className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden">
+                                        <div className="border border-subtle rounded-lg overflow-hidden">
                                             <table className="w-full text-sm">
-                                                <thead className="bg-gray-50 dark:bg-gray-800/50">
+                                                <thead className="bg-muted">
                                                     <tr>
-                                                        <th className="text-left px-4 py-2.5 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Pass</th>
-                                                        <th className="text-left px-4 py-2.5 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Date</th>
-                                                        <th className="text-left px-4 py-2.5 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Status</th>
+                                                        <th className="text-left px-4 py-2.5 text-xs font-medium text-muted uppercase tracking-wide">Pass</th>
+                                                        <th className="text-left px-4 py-2.5 text-xs font-medium text-muted uppercase tracking-wide">Date</th>
+                                                        <th className="text-left px-4 py-2.5 text-xs font-medium text-muted uppercase tracking-wide">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {pastPasses.map(pass => (
-                                                        <tr key={pass.id} className="border-t border-gray-100 dark:border-gray-800">
-                                                            <td className="px-4 py-3 text-gray-900 dark:text-white">
+                                                        <tr key={pass.id} className="border-t border-subtle">
+                                                            <td className="px-4 py-3 text-primary">
                                                                 {getTierLabel(pass.tier)}
                                                             </td>
-                                                            <td className="px-4 py-3 text-gray-500 dark:text-gray-400">
+                                                            <td className="px-4 py-3 text-muted">
                                                                 Used on {formatDate(pass.created_at)}
                                                             </td>
-                                                            <td className="px-4 py-3 text-gray-400">
+                                                            <td className="px-4 py-3 text-muted">
                                                                 Completed
                                                             </td>
                                                         </tr>
@@ -348,7 +337,7 @@ export default function SettingsPage() {
                                     )}
 
                                     <div className="mt-5">
-                                        <Link href="/workspace" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+                                        <Link href="/workspace" className="text-sm text-brand hover:underline">
                                             Get a new pass →
                                         </Link>
                                     </div>
@@ -358,18 +347,18 @@ export default function SettingsPage() {
 
                         {/* Preferences Section */}
                         {activeSection === "preferences" && (
-                            <div className="bg-white dark:bg-[#0F172A] rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-                                <h2 className="font-semibold text-gray-900 dark:text-white">Preferences</h2>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-6">
+                            <div className="bg-surface rounded-xl border border-subtle p-6">
+                                <h2 className="font-semibold text-primary">Preferences</h2>
+                                <p className="text-sm text-muted mt-1 mb-6">
                                     Customize how Recruiter in Your Pocket feels and behaves.
                                 </p>
 
                                 <div className="space-y-0">
                                     {/* Dark Mode Toggle */}
-                                    <div className="flex items-start justify-between py-4 border-b border-gray-100 dark:border-gray-800">
+                                    <div className="flex items-start justify-between py-4 border-b border-subtle">
                                         <div className="pr-4">
-                                            <div className="text-sm font-medium text-gray-900 dark:text-white">Dark mode</div>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                                            <div className="text-sm font-medium text-primary">Dark mode</div>
+                                            <p className="text-xs text-muted mt-0.5">
                                                 Use a darker theme that is easier on the eyes.
                                             </p>
                                         </div>
@@ -377,10 +366,10 @@ export default function SettingsPage() {
                                     </div>
 
                                     {/* Show Sample Report Toggle */}
-                                    <div className="flex items-start justify-between py-4 border-b border-gray-100 dark:border-gray-800">
+                                    <div className="flex items-start justify-between py-4 border-b border-subtle">
                                         <div className="pr-4">
-                                            <div className="text-sm font-medium text-gray-900 dark:text-white">Show sample report link in workspace</div>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                                            <div className="text-sm font-medium text-primary">Show sample report link in workspace</div>
+                                            <p className="text-xs text-muted mt-0.5">
                                                 Keep a shortcut to the sample report in your workspace.
                                             </p>
                                         </div>
@@ -390,8 +379,8 @@ export default function SettingsPage() {
                                     {/* Email Reminders Toggle */}
                                     <div className="flex items-start justify-between py-4">
                                         <div className="pr-4">
-                                            <div className="text-sm font-medium text-gray-900 dark:text-white">Email reminders before a pass expires</div>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                                            <div className="text-sm font-medium text-primary">Email reminders before a pass expires</div>
+                                            <p className="text-xs text-muted mt-0.5">
                                                 Get a quick reminder before your current pass ends.
                                             </p>
                                         </div>
@@ -403,12 +392,12 @@ export default function SettingsPage() {
 
                         {/* Delete Account Section */}
                         {activeSection === "delete" && (
-                            <div className="bg-white dark:bg-[#0F172A] rounded-xl border border-red-200 dark:border-red-500/30 p-6">
-                                <h2 className="font-semibold text-red-600 dark:text-red-400">Delete account</h2>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 mb-4">
+                            <div className="bg-surface rounded-xl border border-danger/30 p-6">
+                                <h2 className="font-semibold text-danger">Delete account</h2>
+                                <p className="text-sm text-muted mt-1 mb-4">
                                     Permanently remove your account and all reports from Recruiter in Your Pocket.
                                 </p>
-                                <p className="text-sm text-red-500 dark:text-red-400 mb-6">
+                                <p className="text-sm text-danger mb-6">
                                     This action cannot be undone.
                                 </p>
 
@@ -416,14 +405,14 @@ export default function SettingsPage() {
                                     <button
                                         onClick={handleDeleteAccount}
                                         disabled={deleting}
-                                        className="px-4 py-2 rounded-lg text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition-colors"
+                                        className="btn-destructive"
                                     >
                                         {deleting ? "Deleting..." : deleteConfirm ? "Click again to confirm" : "Delete account"}
                                     </button>
                                     {deleteConfirm && (
                                         <button
                                             onClick={() => setDeleteConfirm(false)}
-                                            className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:underline"
+                                            className="text-sm text-muted hover:text-secondary hover:underline"
                                         >
                                             Go back to settings
                                         </button>

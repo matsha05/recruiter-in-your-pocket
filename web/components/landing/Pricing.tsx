@@ -17,71 +17,71 @@ export default function Pricing({ onSelectTier }: PricingProps) {
     const cardHover = "transition-all duration-200 ease-smooth hover:-translate-y-1 hover:shadow-lg";
 
     return (
-        <section className="section bg-white dark:bg-[#020617]" id="pricing">
+        <section className="section bg-surface" id="pricing">
             <div className="section-inner">
                 <div className="text-center mb-10">
-                    <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:text-[#A5B4FC] bg-indigo-50 dark:bg-indigo-500/10 rounded-full mb-4">
+                    <span className="badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full mb-4">
                         Simple pricing
                     </span>
-                    <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                    <h2 className="font-display text-2xl md:text-3xl font-bold text-primary mb-3">
                         Stop renting resume tools you only use for a week.
                     </h2>
-                    <p className="text-gray-600 max-w-xl mx-auto">
+                    <p className="text-secondary max-w-xl mx-auto">
                         No subscriptions. Just passes that match how people really job hunt.
                     </p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-6 mb-10">
                     {/* Free Tier */}
-                    <div className={`flex flex-col p-6 bg-gray-50 dark:bg-[#020617] rounded-2xl border border-gray-200 dark:border-[#1F2937] ${cardHover}`}>
+                    <div className={`flex flex-col p-6 bg-muted rounded-2xl border border-subtle ${cardHover}`}>
                         <div className="mb-4">
-                            <span className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Always free</span>
+                            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Always free</span>
                         </div>
-                        <div className="text-4xl font-extrabold text-gray-900 mb-2">$0</div>
-                        <h3 className="font-display font-bold text-gray-900 mb-4">First Look</h3>
-                        <ul className="space-y-3 text-sm text-gray-600 mb-6 flex-1">
+                        <div className="text-4xl font-extrabold text-primary mb-2">$0</div>
+                        <h3 className="font-display font-bold text-primary mb-4">First Look</h3>
+                        <ul className="space-y-3 text-sm text-secondary mb-6 flex-1">
                             <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 dark:text-[#4ADE80]">✓</span>
+                                <span className="text-success">✓</span>
                                 <span><strong>2 full reports</strong> with score, diagnosis, and rewrites</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 dark:text-[#4ADE80]">✓</span>
+                                <span className="text-success">✓</span>
                                 See how your resume actually reads to a hiring manager
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 dark:text-[#4ADE80]">✓</span>
+                                <span className="text-success">✓</span>
                                 No account or credit card required
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 dark:text-[#4ADE80]">✓</span>
+                                <span className="text-success">✓</span>
                                 Upgrade any time for unlimited access
                             </li>
                         </ul>
-                        <Link href="/workspace" className="block w-full text-center py-3 px-4 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold rounded-xl hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
+                        <Link href="/workspace" className="btn-secondary w-full text-center">
                             Start for free →
                         </Link>
                     </div>
 
                     {/* 24-Hour Fix Pass */}
-                    <div className={`relative flex flex-col p-6 bg-indigo-50 dark:bg-indigo-500/10 rounded-2xl border-2 border-indigo-500 ${cardHover}`}>
+                    <div className={`relative flex flex-col p-6 bg-brand-soft rounded-2xl border-2 border-brand ${cardHover}`}>
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-black bg-gold rounded-full shadow-[0_0_20px_rgba(245,178,92,0.5)]">
                             Most popular
                         </div>
-                        <div className="text-4xl font-extrabold text-gray-900 mb-2 mt-2">
-                            <span className="text-indigo-600 dark:text-[#818CF8]">$9</span>
+                        <div className="text-4xl font-extrabold text-primary mb-2 mt-2">
+                            <span className="text-brand">$9</span>
                         </div>
-                        <h3 className="font-display font-bold text-gray-900 mb-4">24-Hour Fix Pass</h3>
-                        <ul className="space-y-3 text-sm text-gray-600 mb-6 flex-1">
+                        <h3 className="font-display font-bold text-primary mb-4">24-Hour Fix Pass</h3>
+                        <ul className="space-y-3 text-sm text-secondary mb-6 flex-1">
                             <li className="flex items-start gap-2">
-                                <span className="text-indigo-500 dark:text-[#818CF8]">✓</span>
+                                <span className="text-brand">✓</span>
                                 Unlimited full reports for 24 hours
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-indigo-500 dark:text-[#818CF8]">✓</span>
+                                <span className="text-brand">✓</span>
                                 Ideal when you need to send a resume today
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-indigo-500 dark:text-[#818CF8]">✓</span>
+                                <span className="text-brand">✓</span>
                                 Use on any device with your email
                             </li>
                         </ul>
@@ -94,25 +94,25 @@ export default function Pricing({ onSelectTier }: PricingProps) {
                     </div>
 
                     {/* 30-Day Campaign Pass */}
-                    <div className={`flex flex-col p-6 bg-white dark:bg-[#020617] rounded-2xl border border-gray-200 dark:border-[#1F2937] ${cardHover}`}>
+                    <div className={`flex flex-col p-6 bg-surface rounded-2xl border border-subtle ${cardHover}`}>
                         <div className="mb-4">
-                            <span className="text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-[#4ADE80]">Best value</span>
+                            <span className="text-xs font-semibold uppercase tracking-wide text-success">Best value</span>
                         </div>
-                        <div className="text-4xl font-extrabold text-gray-900 mb-2">
-                            <span className="text-emerald-600 dark:text-[#4ADE80]">$39</span>
+                        <div className="text-4xl font-extrabold text-primary mb-2">
+                            <span className="text-success">$39</span>
                         </div>
-                        <h3 className="font-display font-bold text-gray-900 mb-4">30-Day Campaign Pass</h3>
-                        <ul className="space-y-3 text-sm text-gray-600 mb-6 flex-1">
+                        <h3 className="font-display font-bold text-primary mb-4">30-Day Campaign Pass</h3>
+                        <ul className="space-y-3 text-sm text-secondary mb-6 flex-1">
                             <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 dark:text-[#4ADE80]">✓</span>
+                                <span className="text-success">✓</span>
                                 Unlimited full reports for 30 days
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 dark:text-[#4ADE80]">✓</span>
+                                <span className="text-success">✓</span>
                                 Perfect when you&apos;re applying to multiple roles
                             </li>
                             <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 dark:text-[#4ADE80]">✓</span>
+                                <span className="text-success">✓</span>
                                 Use on any device with your email
                             </li>
                         </ul>
@@ -126,7 +126,7 @@ export default function Pricing({ onSelectTier }: PricingProps) {
                 </div>
 
                 {/* Trust signals */}
-                <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-6">
+                <div className="flex flex-wrap justify-center gap-6 text-sm text-muted mb-6">
                     <span className="flex items-center gap-2">
                         <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6">
                             <path d="M9.022 3.173a.75.75 0 0 1 .956 0l5.25 4.2a.75.75 0 0 1 .272.577v3.7a5.25 5.25 0 0 1-3.089 4.79l-2.837 1.264a.75.75 0 0 1-.614 0l-2.837-1.264A5.25 5.25 0 0 1 3.5 11.65v-3.7a.75.75 0 0 1 .272-.577l5.25-4.2Z" strokeLinecap="round" strokeLinejoin="round" />
@@ -148,7 +148,7 @@ export default function Pricing({ onSelectTier }: PricingProps) {
                     </span>
                 </div>
 
-                <p className="text-center text-sm text-gray-500 max-w-md mx-auto">
+                <p className="text-center text-sm text-muted max-w-md mx-auto">
                     <strong>Why do we ask for email?</strong> So your pass works on any device—phone, laptop, wherever you&apos;re editing. We don&apos;t spam. Just access.
                 </p>
             </div>

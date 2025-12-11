@@ -51,10 +51,13 @@
     --color-amber-400: #FBBF24;
     --color-amber-500: #F59E0B;
 
-    /* ===== NEUTRALS (Slightly warm) ===== */
-    --color-ink: #111827;
-    --color-ink-soft: #4B5563;
-    --color-border-sub: #E5E7EB;
+    /* ===== NEUTRALS (Unified warm tint) ===== */
+    --color-ink: #1C1917;
+    /* Warm black (stone-900) */
+    --color-ink-soft: #57534E;
+    /* Warm gray (stone-600) */
+    --color-border-sub: #E7E5E4;
+    /* Warm border (stone-200) */
     --color-surface: #FFFFFF;
     --color-paper-warm: #F5F3EF;
 
@@ -333,6 +336,103 @@
     @apply max-w-6xl mx-auto px-5;
   }
 
+  /* ===== TAB SYSTEM ===== */
+  .tabs {
+    display: flex;
+    gap: var(--space-xs);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .tab {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    transition: color 140ms var(--ease-smooth), border-color 140ms var(--ease-smooth), background 140ms var(--ease-smooth);
+  }
+
+  .tab:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+
+  .tab.active,
+  .tab[data-active="true"] {
+    color: var(--brand);
+    border-bottom-color: var(--brand);
+  }
+
+  /* Tab variant: pill style */
+  .tabs-pill {
+    display: flex;
+    gap: var(--space-xs);
+    background: var(--bg-section-muted);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    border: none;
+  }
+
+  .tabs-pill .tab {
+    border-bottom: none;
+    border-radius: var(--radius-xs);
+    margin-bottom: 0;
+  }
+
+  .tabs-pill .tab.active,
+  .tabs-pill .tab[data-active="true"] {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* ===== TOGGLE/SWITCH ===== */
+  .toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: var(--border-subtle);
+    border-radius: var(--radius-pill);
+    border: none;
+    cursor: pointer;
+    transition: background 160ms var(--ease-smooth);
+    flex-shrink: 0;
+  }
+
+  .toggle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    transition: transform 160ms var(--ease-smooth);
+  }
+
+  .toggle.active,
+  .toggle[data-active="true"],
+  .toggle:checked {
+    background: var(--brand);
+  }
+
+  .toggle.active::after,
+  .toggle[data-active="true"]::after,
+  .toggle:checked::after {
+    transform: translateX(20px);
+  }
+
+  .toggle:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
   /* Alert soft */
   .alert-soft {
     display: flex;
@@ -376,6 +476,192 @@
     border-radius: 16px;
     padding: 1.1rem 1.2rem 1.1rem 1.4rem;
     border-left: 4px solid var(--accent-warm);
+  }
+
+  /* ===== SUBSCORE COLOR SYSTEM ===== */
+  /* Impact = Moss (positive, results-oriented) */
+  .subscore-impact {
+    --subscore-color: var(--color-moss-600);
+    --subscore-bg: var(--color-moss-50);
+  }
+
+  /* Clarity = Indigo (focused, structured) */
+  .subscore-clarity {
+    --subscore-color: var(--color-indigo-600);
+    --subscore-bg: var(--color-indigo-50);
+  }
+
+  /* Story = Warm (narrative, human) */
+  .subscore-story {
+    --subscore-color: #92400E;
+    --subscore-bg: #FEF3C7;
+  }
+
+  /* Readability = Amber (attention, improvement) */
+  .subscore-readability {
+    --subscore-color: var(--color-amber-500);
+    --subscore-bg: var(--color-amber-50);
+  }
+
+  .subscore-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: var(--radius-pill);
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--subscore-bg, var(--bg-card-alt));
+    color: var(--subscore-color, var(--text-primary));
+  }
+
+  /* Semantic text colors */
+  .text-positive {
+    color: var(--color-positive);
+  }
+
+  .text-caution {
+    color: var(--color-caution);
+  }
+
+  .text-moss {
+    color: var(--color-moss-600);
+  }
+
+  .text-amber {
+    color: var(--color-amber-500);
+  }
+
+  /* Semantic background colors */
+  .bg-moss-soft {
+    background: var(--color-moss-50);
+  }
+
+  .bg-amber-soft {
+    background: var(--color-amber-50);
+  }
+
+  /* ===== TOKEN UTILITY CLASSES ===== */
+  /* These map to CSS variables for consistent theming */
+
+  /* Brand backgrounds */
+  .bg-brand {
+    background: var(--brand);
+  }
+
+  .bg-brand-soft {
+    background: var(--color-indigo-50);
+  }
+
+  .dark .bg-brand-soft {
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  /* Surface backgrounds */
+  .bg-surface {
+    background: var(--bg-card);
+  }
+
+  .bg-body {
+    background: var(--bg-body);
+  }
+
+  .bg-muted {
+    background: var(--bg-section-muted);
+  }
+
+  .bg-hover {
+    background: var(--bg-hover);
+  }
+
+  /* Text colors */
+  .text-primary {
+    color: var(--text-primary);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .text-brand {
+    color: var(--brand);
+  }
+
+  .text-brand-strong {
+    color: var(--brand-strong);
+  }
+
+  .text-link {
+    color: var(--text-link);
+  }
+
+  /* Border colors */
+  .border-subtle {
+    border-color: var(--border-subtle);
+  }
+
+  .border-strong {
+    border-color: var(--border-strong);
+  }
+
+  .border-brand {
+    border-color: var(--brand);
+  }
+
+  /* Status colors */
+  .text-success {
+    color: var(--status-success);
+  }
+
+  .text-warning {
+    color: var(--status-warning);
+  }
+
+  .text-danger {
+    color: var(--status-danger);
+  }
+
+  .bg-success-soft {
+    background: var(--color-moss-50);
+  }
+
+  .bg-warning-soft {
+    background: var(--color-amber-50);
+  }
+
+  /* Pill/Badge variants */
+  .badge-brand {
+    background: var(--color-indigo-50);
+    color: var(--color-indigo-600);
+  }
+
+  .dark .badge-brand {
+    background: rgba(99, 102, 241, 0.15);
+    color: #A5B4FC;
+  }
+
+  .badge-success {
+    background: var(--color-moss-50);
+    color: var(--color-moss-600);
+  }
+
+  .dark .badge-success {
+    background: rgba(52, 211, 153, 0.15);
+    color: #4ADE80;
+  }
+
+  .badge-warning {
+    background: var(--color-amber-50);
+    color: var(--color-amber-500);
+  }
+
+  .dark .badge-warning {
+    background: rgba(251, 191, 36, 0.15);
+    color: #FBBF24;
   }
 }
 
