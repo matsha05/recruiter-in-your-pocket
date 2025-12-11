@@ -1,4 +1,0 @@
-:HL["/_next/static/chunks/4bfa6872a2a99a22.css","style"]
-:HL["/_next/static/chunks/6deff55a1fc77966.css","style"]
-:HL["https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap","style"]
-0:{"buildId":"4zGxnTWprNiv8H1dw3dym","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"research","paramType":null,"paramKey":"research","hasRuntimePrefetch":false,"slots":{"children":{"name":"how-people-scan","paramType":null,"paramKey":"how-people-scan","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
