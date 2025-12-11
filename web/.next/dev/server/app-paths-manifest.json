@@ -1,4 +1,9 @@
 {
   "/(protected)/workspace/page": "app/(protected)/workspace/page.js",
-  "/api/free-status/route": "app/api/free-status/route.js"
+  "/api/export-pdf/route": "app/api/export-pdf/route.js",
+  "/api/free-status/route": "app/api/free-status/route.js",
+  "/api/passes/route": "app/api/passes/route.js",
+  "/page": "app/page.js",
+  "/privacy/page": "app/privacy/page.js",
+  "/settings/page": "app/settings/page.js"
 }

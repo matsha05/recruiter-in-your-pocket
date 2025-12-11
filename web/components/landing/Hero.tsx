@@ -24,13 +24,13 @@ export default function Hero() {
         : "Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.";
 
     return (
-        <section className="section bg-gradient-to-b from-white to-gray-50 pt-12 md:pt-20">
+        <section className="section bg-gradient-to-b from-[var(--bg-surface)] to-[var(--bg-muted)] pt-12 md:pt-20">
             <div className="section-inner text-center">
-                <h1 className={`font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+                <h1 className={`font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight mb-6 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
                     {headline}
                 </h1>
 
-                <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+                <p className="text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8">
                     {subheadline}
                 </p>
 
@@ -46,7 +46,7 @@ export default function Hero() {
                             quality={100}
                             priority
                         />
-                        <p className="text-sm text-gray-600 text-left max-w-md">
+                        <p className="text-sm text-secondary text-left max-w-md">
                             Built by Matt — a recruiter who&apos;s run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups.
                         </p>
                     </div>
@@ -60,7 +60,7 @@ export default function Hero() {
                     {!user && (
                         <button
                             type="button"
-                            className="text-indigo-500 hover:text-indigo-600 text-sm font-medium transition-colors"
+                            className="text-brand hover:text-brand-strong text-sm font-medium transition-colors"
                             onClick={() => setShowPrivacy(true)}
                         >
                             Your resume is yours →
@@ -69,7 +69,7 @@ export default function Hero() {
                 </div>
 
                 {!user && (
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted">
                         Upload PDF/DOCX or paste text · First 2 full reports free · No signup required
                     </p>
                 )}
@@ -81,22 +81,22 @@ export default function Hero() {
                     className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
                     onClick={(e) => e.target === e.currentTarget && setShowPrivacy(false)}
                 >
-                    <div className="bg-white rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative">
+                    <div className="bg-surface rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative">
                         <button
                             onClick={() => setShowPrivacy(false)}
                             aria-label="Close"
-                            className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors rounded-full border border-gray-200 hover:border-gray-300"
+                            className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-muted hover:text-primary transition-colors rounded-full border border-subtle hover:border-[var(--border)]"
                         >
                             <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
                                 <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                             </svg>
                         </button>
 
-                        <h2 className="font-display text-xl font-bold text-gray-900 mb-4">
+                        <h2 className="font-display text-xl font-bold text-primary mb-4">
                             How we handle data
                         </h2>
 
-                        <div className="space-y-4 text-gray-600">
+                        <div className="space-y-4 text-secondary">
                             <p>
                                 Your resume stays in your browser until you run a review.
                             </p>

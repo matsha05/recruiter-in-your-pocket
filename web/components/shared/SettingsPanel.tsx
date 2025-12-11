@@ -87,11 +87,11 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
             />
 
             {/* Panel */}
-            <div className="fixed right-0 top-0 h-full w-80 bg-white dark:bg-[#0F172A] shadow-2xl z-[1000] flex flex-col">
+            <div className="fixed right-0 top-0 h-full w-80 bg-surface shadow-2xl z-[1000] flex flex-col">
                 {/* Header */}
-                <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-                    <h2 className="font-semibold text-gray-900 dark:text-white">Settings</h2>
-                    <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-subtle">
+                    <h2 className="font-semibold text-primary">Settings</h2>
+                    <button onClick={onClose} className="p-1 text-muted hover:text-secondary">
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -99,12 +99,12 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                 </div>
 
                 {/* Tabs */}
-                <div className="flex border-b border-gray-200 dark:border-gray-700">
+                <div className="flex border-b border-subtle">
                     <button
                         onClick={() => setActiveTab("profile")}
                         className={`flex-1 px-4 py-2 text-sm font-medium ${activeTab === "profile"
-                                ? "text-indigo-600 border-b-2 border-indigo-600"
-                                : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                            ? "text-brand border-b-2 border-brand"
+                            : "text-muted hover:text-secondary"
                             }`}
                     >
                         Profile
@@ -112,8 +112,8 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                     <button
                         onClick={() => setActiveTab("passes")}
                         className={`flex-1 px-4 py-2 text-sm font-medium ${activeTab === "passes"
-                                ? "text-indigo-600 border-b-2 border-indigo-600"
-                                : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                            ? "text-brand border-b-2 border-brand"
+                            : "text-muted hover:text-secondary"
                             }`}
                     >
                         Passes
@@ -126,13 +126,13 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                         <div className="space-y-4">
                             {/* Email */}
                             <div>
-                                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Email</label>
-                                <div className="text-sm text-gray-900 dark:text-white truncate">{user?.email}</div>
+                                <label className="block text-xs font-medium text-muted mb-1">Email</label>
+                                <div className="text-sm text-primary truncate">{user?.email}</div>
                             </div>
 
                             {/* Name */}
                             <div>
-                                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Name</label>
+                                <label className="block text-xs font-medium text-muted mb-1">Name</label>
                                 <div className="flex gap-2">
                                     <input
                                         type="text"
@@ -153,19 +153,19 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
 
                             {/* Active Pass */}
                             {activePass && (
-                                <div className="p-3 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg">
-                                    <div className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Active Pass</div>
-                                    <div className="text-sm text-gray-900 dark:text-white">
+                                <div className="p-3 bg-success-soft rounded-lg">
+                                    <div className="text-xs text-success font-medium">Active Pass</div>
+                                    <div className="text-sm text-primary">
                                         {getTierLabel(activePass.tier)} • {formatTimeRemaining(activePass.expires_at)}
                                     </div>
                                 </div>
                             )}
 
                             {/* Danger Zone */}
-                            <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div className="pt-4 border-t border-subtle">
                                 <button
                                     onClick={handleDelete}
-                                    className={`text-xs ${deleteConfirm ? "text-red-600 font-medium" : "text-gray-400 hover:text-red-500"}`}
+                                    className={`text-xs ${deleteConfirm ? "text-danger font-medium" : "text-muted hover:text-danger"}`}
                                 >
                                     {deleteConfirm ? "Click again to confirm" : "Delete account"}
                                 </button>
@@ -174,7 +174,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                     ) : (
                         <div className="space-y-2">
                             {passes.length === 0 ? (
-                                <p className="text-sm text-gray-500">No passes yet</p>
+                                <p className="text-sm text-muted">No passes yet</p>
                             ) : (
                                 passes.map(pass => {
                                     const isActive = new Date(pass.expires_at) > new Date();
@@ -182,19 +182,19 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                                         <div
                                             key={pass.id}
                                             className={`p-3 rounded-lg border ${isActive
-                                                    ? "border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10"
-                                                    : "border-gray-200 dark:border-gray-700"
+                                                ? "border-[var(--status-success)]/30 bg-success-soft"
+                                                : "border-subtle"
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between">
-                                                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                                                <span className="text-sm font-medium text-primary">
                                                     {getTierLabel(pass.tier)} Pass
                                                 </span>
                                                 {isActive && (
-                                                    <span className="text-xs text-emerald-600 dark:text-emerald-400">Active</span>
+                                                    <span className="text-xs text-success">Active</span>
                                                 )}
                                             </div>
-                                            <div className="text-xs text-gray-500 mt-1">
+                                            <div className="text-xs text-muted mt-1">
                                                 {isActive
                                                     ? formatTimeRemaining(pass.expires_at)
                                                     : `Expired ${new Date(pass.expires_at).toLocaleDateString()}`

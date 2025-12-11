@@ -23,7 +23,7 @@ export default function ValueStrip() {
     ];
 
     return (
-        <section className="section bg-white" aria-label="What you get">
+        <section className="section bg-surface" aria-label="What you get">
             <div className="section-inner">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-10 max-w-3xl mx-auto">
                     {items.map((item, i) => (
@@ -31,10 +31,10 @@ export default function ValueStrip() {
                             <span className="font-display text-2xl font-bold text-gold">
                                 {item.num}
                             </span>
-                            <h3 className="font-display text-lg font-bold text-gray-900">
+                            <h3 className="font-display text-lg font-bold text-primary">
                                 {item.title}
                             </h3>
-                            <p className="text-sm text-gray-500 leading-relaxed">
+                            <p className="text-sm text-muted leading-relaxed">
                                 {item.desc}
                             </p>
                         </div>

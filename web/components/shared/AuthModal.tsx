@@ -131,11 +131,11 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
             onClick={(e) => e.target === e.currentTarget && handleClose()}
         >
-            <div className="bg-white rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative">
+            <div className="bg-surface rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative">
                 <button
                     onClick={handleClose}
                     aria-label="Close"
-                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-900 transition-colors p-2"
+                    className="absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2"
                 >
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -143,12 +143,12 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                 </button>
 
                 <div className="text-center mb-6">
-                    <h2 className="font-display text-xl font-bold text-gray-900 mb-2">
+                    <h2 className="font-display text-xl font-bold text-primary mb-2">
                         {step === "email" && "Sign in or create account"}
                         {step === "code" && "Check your email"}
                         {step === "name" && "One last thing"}
                     </h2>
-                    <p className="text-gray-500 text-sm">
+                    <p className="text-muted text-sm">
                         {step === "email" && "We'll send you a login code. No password needed."}
                         {step === "code" && `We sent an 8-digit code to ${email}`}
                         {step === "name" && "What should we call you?"}
@@ -168,7 +168,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                         />
 
                         {error && (
-                            <div className="text-red-600 text-sm text-center">{error}</div>
+                            <div className="text-danger text-sm text-center">{error}</div>
                         )}
 
                         <button
@@ -194,7 +194,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                         />
 
                         {error && (
-                            <div className="text-red-600 text-sm text-center">{error}</div>
+                            <div className="text-danger text-sm text-center">{error}</div>
                         )}
 
                         <button
@@ -227,7 +227,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                         />
 
                         {error && (
-                            <div className="text-red-600 text-sm text-center">{error}</div>
+                            <div className="text-danger text-sm text-center">{error}</div>
                         )}
 
                         <button
@@ -251,7 +251,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                     </div>
                 )}
 
-                <p className="text-center text-xs text-gray-500 mt-4">
+                <p className="text-center text-xs text-muted mt-4">
                     By continuing, you agree to our Terms and Privacy Policy.
                 </p>
             </div>

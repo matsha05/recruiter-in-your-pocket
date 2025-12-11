@@ -808,13 +808,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$
 "use client";
 ;
 ;
-// Score-based color function - returns Tailwind color classes
+// Score-based color function - returns semantic Tailwind color classes
 function getScoreColorClass(score) {
-    if (score >= 90) return 'text-purple-500';
-    if (score >= 85) return 'text-blue-500';
-    if (score >= 80) return 'text-emerald-500';
-    if (score >= 70) return 'text-amber-500';
-    return 'text-red-500';
+    if (score >= 90) return 'text-[#8b5cf6]';
+    if (score >= 85) return 'text-brand';
+    if (score >= 80) return 'text-success';
+    if (score >= 70) return 'text-warning';
+    return 'text-danger';
 }
 function getScoreColor(score) {
     if (score >= 90) return '#8b5cf6';
@@ -824,11 +824,11 @@ function getScoreColor(score) {
     return '#ef4444';
 }
 function getScoreBgClass(score) {
-    if (score >= 90) return 'bg-purple-100 text-purple-700';
-    if (score >= 85) return 'bg-blue-100 text-blue-700';
-    if (score >= 80) return 'bg-emerald-100 text-emerald-700';
-    if (score >= 70) return 'bg-amber-100 text-amber-700';
-    return 'bg-red-100 text-red-700';
+    if (score >= 90) return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
+    if (score >= 85) return 'bg-brand-soft text-brand';
+    if (score >= 80) return 'bg-success-soft text-success';
+    if (score >= 70) return 'bg-warning-soft text-warning';
+    return 'bg-danger-soft text-danger';
 }
 const tabs = [
     {
@@ -858,6 +858,16 @@ const tabs = [
 ];
 function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExporting }) {
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("overview");
+    const [tabTransition, setTabTransition] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Fade animation when switching tabs
+    const handleTabChange = (newTab)=>{
+        if (newTab === activeTab) return;
+        setTabTransition(true);
+        setTimeout(()=>{
+            setActiveTab(newTab);
+            setTabTransition(false);
+        }, 150);
+    };
     const showEmptyState = !report && !isLoading;
     const showLoading = isLoading;
     const showReport = report && !isLoading;
@@ -899,32 +909,32 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
     ]);
     const dialColor = getScoreColor(animatedScore);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "bg-gray-50 flex flex-col h-full overflow-hidden",
+        className: "bg-muted flex flex-col h-full overflow-hidden",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200",
+                className: "sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-surface border-b border-subtle",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex gap-1 overflow-x-auto",
+                        className: "flex gap-2 overflow-x-auto",
                         children: tabs.map((tab)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: `px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors
-                            ${activeTab === tab.id ? "bg-indigo-100 text-indigo-700" : "text-gray-600 hover:bg-gray-100"}`,
-                                onClick: ()=>setActiveTab(tab.id),
+                                className: `px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200
+                            ${activeTab === tab.id ? "bg-brand-soft text-brand shadow-sm" : "text-secondary hover:bg-hover hover:text-primary"}`,
+                                onClick: ()=>handleTabChange(tab.id),
                                 children: tab.label
                             }, tab.id, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 145,
+                                lineNumber: 156,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                        lineNumber: 143,
+                        lineNumber: 154,
                         columnNumber: 17
                     }, this),
                     showReport && onExportPdf && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: onExportPdf,
                         disabled: isExporting,
-                        className: "flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50",
+                        className: "flex items-center gap-2 px-3 py-2 text-sm text-secondary hover:text-primary hover:bg-hover rounded-lg transition-colors disabled:opacity-50",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                 className: "w-4 h-4",
@@ -938,32 +948,32 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                     d: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 178,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 166,
+                                lineNumber: 177,
                                 columnNumber: 25
                             }, this),
                             isExporting ? "Exporting..." : "Export PDF"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                        lineNumber: 161,
+                        lineNumber: 172,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                lineNumber: 142,
+                lineNumber: 153,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 overflow-y-auto p-6",
+                className: `flex-1 overflow-y-auto p-6 transition-all duration-150 ${tabTransition ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`,
                 children: [
                     showEmptyState && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center justify-center h-full text-center text-gray-500",
+                        className: "flex flex-col items-center justify-center h-full text-center text-muted",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                 className: "w-16 h-16 mb-4 opacity-50",
@@ -977,65 +987,65 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                     d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 180,
+                                    lineNumber: 191,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 179,
+                                lineNumber: 190,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-lg font-semibold text-gray-700 mb-2",
+                                className: "text-lg font-semibold text-primary mb-2",
                                 children: "Ready when you are"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 183,
+                                lineNumber: 194,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "Upload or paste your resume to get recruiter-grade feedback in seconds."
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 184,
+                                lineNumber: 195,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                        lineNumber: 178,
+                        lineNumber: 189,
                         columnNumber: 21
                     }, this),
                     showLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-col items-center justify-center h-full text-center",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-10 h-10 border-4 border-indigo-200 border-t-indigo-500 rounded-full animate-spin mb-4"
+                                className: "w-10 h-10 border-4 border-brand/20 border-t-brand rounded-full animate-spin mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 191,
+                                lineNumber: 202,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-lg font-medium text-gray-700 mb-1",
+                                className: "text-lg font-medium text-primary mb-1",
                                 children: "Reading your resume like a recruiter..."
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 192,
+                                lineNumber: 203,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-gray-500",
+                                className: "text-muted",
                                 children: "This usually takes 10-15 seconds"
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 193,
+                                lineNumber: 204,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                        lineNumber: 190,
+                        lineNumber: 201,
                         columnNumber: 21
                     }, this),
                     showReport && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1044,7 +1054,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                             activeTab === "overview" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-start gap-6 p-6 bg-white rounded-xl border border-gray-200",
+                                        className: "flex items-start gap-6 p-6 bg-surface rounded-xl border border-subtle shadow-card",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex flex-col items-center gap-2 flex-shrink-0",
@@ -1061,11 +1071,12 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                         cy: "60",
                                                                         r: "54",
                                                                         fill: "none",
-                                                                        stroke: "#e5e7eb",
+                                                                        stroke: "currentColor",
+                                                                        className: "text-muted/30",
                                                                         strokeWidth: "8"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                        lineNumber: 209,
+                                                                        lineNumber: 220,
                                                                         columnNumber: 49
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1081,13 +1092,13 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                         className: "transition-all duration-100"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                        lineNumber: 210,
+                                                                        lineNumber: 221,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 208,
+                                                                lineNumber: 219,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1098,27 +1109,27 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                 children: animatedScore
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 218,
+                                                                lineNumber: 229,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 207,
+                                                        lineNumber: 218,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-xs font-medium text-gray-500 uppercase tracking-wide",
+                                                        className: "text-xs font-medium text-muted uppercase tracking-wide",
                                                         children: "Score"
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 225,
+                                                        lineNumber: 236,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 206,
+                                                lineNumber: 217,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1129,7 +1140,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                             className: "flex items-center gap-2 mb-2",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                    className: "w-5 h-5 text-indigo-500",
+                                                                    className: "w-5 h-5 text-brand",
                                                                     viewBox: "0 0 24 24",
                                                                     fill: "none",
                                                                     stroke: "currentColor",
@@ -1139,7 +1150,7 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                             d: "M12 5C16.478 5 20.268 7.405 22 11C20.268 14.595 16.478 17 12 17C7.522 17 3.732 14.595 2 11C3.732 7.405 7.522 5 12 5Z"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                            lineNumber: 234,
+                                                                            lineNumber: 245,
                                                                             columnNumber: 57
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1148,52 +1159,52 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                             r: "3"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                            lineNumber: 235,
+                                                                            lineNumber: 246,
                                                                             columnNumber: 57
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 233,
+                                                                    lineNumber: 244,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "font-semibold text-gray-900",
+                                                                    className: "font-semibold text-primary",
                                                                     children: "Recruiter First Impression"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 237,
+                                                                    lineNumber: 248,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 232,
+                                                            lineNumber: 243,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                            className: "text-gray-600 leading-relaxed",
+                                                            className: "text-secondary leading-relaxed",
                                                             children: firstImpressionText
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 239,
+                                                            lineNumber: 250,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 231,
+                                                    lineNumber: 242,
                                                     columnNumber: 45
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 229,
+                                                lineNumber: 240,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 204,
+                                        lineNumber: 215,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1220,22 +1231,22 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                 score: report.subscores?.readability
                                             }
                                         ].map(({ key, label, score })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-4 bg-white rounded-lg border border-gray-200 text-center",
+                                                className: "p-4 bg-surface rounded-lg border border-subtle text-center shadow-card",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: `text-2xl font-bold ${score ? getScoreColorClass(score) : 'text-gray-400'}`,
+                                                        className: `text-2xl font-bold ${score ? getScoreColorClass(score) : 'text-muted'}`,
                                                         children: score || "—"
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 254,
+                                                        lineNumber: 265,
                                                         columnNumber: 45
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-xs text-gray-500 mt-1",
+                                                        className: "text-xs text-muted mt-1",
                                                         children: label
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 257,
+                                                        lineNumber: 268,
                                                         columnNumber: 45
                                                     }, this),
                                                     score && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1243,52 +1254,52 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         children: score >= 90 ? 'EXCEPTIONAL' : score >= 85 ? 'STRONG' : score >= 80 ? 'GOOD' : score >= 70 ? 'NEEDS WORK' : 'RISK'
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 259,
+                                                        lineNumber: 270,
                                                         columnNumber: 49
                                                     }, this)
                                                 ]
                                             }, key, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 253,
+                                                lineNumber: 264,
                                                 columnNumber: 41
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 246,
+                                        lineNumber: 257,
                                         columnNumber: 33
                                     }, this),
                                     report.strengths && report.strengths.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 bg-white rounded-xl border border-gray-200",
+                                        className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "flex items-center gap-2 font-semibold text-gray-900 mb-3",
+                                                className: "flex items-center gap-2 font-semibold text-primary mb-3",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-emerald-500",
+                                                        className: "text-success",
                                                         children: "✓"
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 271,
+                                                        lineNumber: 282,
                                                         columnNumber: 45
                                                     }, this),
                                                     " What's Working"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 270,
+                                                lineNumber: 281,
                                                 columnNumber: 41
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                                 className: "space-y-2",
                                                 children: report.strengths.map((s, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                        className: "flex items-start gap-2 text-gray-600",
+                                                        className: "flex items-start gap-2 text-secondary",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-emerald-400 mt-1",
+                                                                className: "text-success/70 mt-1",
                                                                 children: "•"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 276,
+                                                                lineNumber: 287,
                                                                 columnNumber: 53
                                                             }, this),
                                                             " ",
@@ -1296,52 +1307,52 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         ]
                                                     }, i, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 275,
+                                                        lineNumber: 286,
                                                         columnNumber: 49
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 273,
+                                                lineNumber: 284,
                                                 columnNumber: 41
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 269,
+                                        lineNumber: 280,
                                         columnNumber: 37
                                     }, this),
                                     report.gaps && report.gaps.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 bg-white rounded-xl border border-gray-200",
+                                        className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "flex items-center gap-2 font-semibold text-gray-900 mb-3",
+                                                className: "flex items-center gap-2 font-semibold text-primary mb-3",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-amber-500",
+                                                        className: "text-warning",
                                                         children: "⚠"
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 287,
+                                                        lineNumber: 298,
                                                         columnNumber: 45
                                                     }, this),
                                                     " What's Missing"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 286,
+                                                lineNumber: 297,
                                                 columnNumber: 41
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                                 className: "space-y-2",
                                                 children: report.gaps.map((g, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                        className: "flex items-start gap-2 text-gray-600",
+                                                        className: "flex items-start gap-2 text-secondary",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-amber-400 mt-1",
+                                                                className: "text-warning/70 mt-1",
                                                                 children: "•"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 292,
+                                                                lineNumber: 303,
                                                                 columnNumber: 53
                                                             }, this),
                                                             " ",
@@ -1349,136 +1360,136 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         ]
                                                     }, i, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 291,
+                                                        lineNumber: 302,
                                                         columnNumber: 49
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 289,
+                                                lineNumber: 300,
                                                 columnNumber: 41
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 285,
+                                        lineNumber: 296,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true),
                             activeTab === "fixes" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "p-5 bg-white rounded-xl border border-gray-200",
+                                className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-semibold text-gray-900 mb-4",
+                                        className: "font-semibold text-primary mb-4",
                                         children: "Top Fixes — Prioritized"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 304,
+                                        lineNumber: 315,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "space-y-4",
                                         children: report.top_fixes?.map((fix, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex gap-4 p-4 bg-gray-50 rounded-lg",
+                                                className: "flex gap-4 p-4 bg-muted rounded-lg",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-indigo-100 text-indigo-600 font-bold rounded-full",
+                                                        className: "flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-soft text-brand font-bold rounded-full",
                                                         children: i + 1
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 308,
+                                                        lineNumber: 319,
                                                         columnNumber: 45
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex-1",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-gray-700",
+                                                                className: "text-secondary",
                                                                 children: fix.fix || fix.text
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 312,
+                                                                lineNumber: 323,
                                                                 columnNumber: 49
                                                             }, this),
                                                             fix.section_ref && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "inline-block mt-2 text-xs text-gray-500 bg-gray-200 px-2 py-0.5 rounded",
+                                                                className: "inline-block mt-2 text-xs text-muted bg-hover px-2 py-0.5 rounded",
                                                                 children: fix.section_ref
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 313,
+                                                                lineNumber: 324,
                                                                 columnNumber: 69
                                                             }, this),
                                                             fix.impact_level && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: `inline-block mt-2 ml-2 text-xs px-2 py-0.5 rounded
-                                                        ${fix.impact_level === 'high' ? 'bg-red-100 text-red-700' : fix.impact_level === 'medium' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600'}`,
+                                                        ${fix.impact_level === 'high' ? 'bg-danger-soft text-danger' : fix.impact_level === 'medium' ? 'bg-warning-soft text-warning' : 'bg-hover text-muted'}`,
                                                                 children: [
                                                                     fix.impact_level,
                                                                     " impact"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 315,
+                                                                lineNumber: 326,
                                                                 columnNumber: 53
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 311,
+                                                        lineNumber: 322,
                                                         columnNumber: 45
                                                     }, this)
                                                 ]
                                             }, i, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 307,
+                                                lineNumber: 318,
                                                 columnNumber: 41
                                             }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-500",
+                                            className: "text-muted",
                                             children: "No fixes available"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 322,
+                                            lineNumber: 333,
                                             columnNumber: 43
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 316,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 303,
+                                lineNumber: 314,
                                 columnNumber: 29
                             }, this),
                             activeTab === "sections" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-4",
                                 children: report.section_review ? Object.entries(report.section_review).map(([sectionName, section], i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 bg-white rounded-xl border border-gray-200",
+                                        className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center justify-between mb-3",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                        className: "font-semibold text-gray-900",
+                                                        className: "font-semibold text-primary",
                                                         children: sectionName
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 334,
+                                                        lineNumber: 345,
                                                         columnNumber: 49
                                                     }, this),
                                                     section.grade && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: `px-2 py-1 text-xs font-bold rounded
-                                                        ${section.grade.includes('A') ? 'bg-emerald-100 text-emerald-700' : section.grade.includes('B') ? 'bg-blue-100 text-blue-700' : section.grade.includes('C') ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`,
+                                                        ${section.grade.includes('A') ? 'bg-success-soft text-success' : section.grade.includes('B') ? 'bg-brand-soft text-brand' : section.grade.includes('C') ? 'bg-warning-soft text-warning' : 'bg-danger-soft text-danger'}`,
                                                         children: section.grade
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 336,
+                                                        lineNumber: 347,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 333,
+                                                lineNumber: 344,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1488,197 +1499,197 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         className: "flex gap-2",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-emerald-500 font-medium",
+                                                                className: "text-success font-medium",
                                                                 children: "✓ Working:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 347,
+                                                                lineNumber: 358,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-gray-600",
+                                                                className: "text-secondary",
                                                                 children: section.working
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 348,
+                                                                lineNumber: 359,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 346,
+                                                        lineNumber: 357,
                                                         columnNumber: 53
                                                     }, this),
                                                     section.missing && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex gap-2",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-amber-500 font-medium",
+                                                                className: "text-warning font-medium",
                                                                 children: "△ Missing:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 353,
+                                                                lineNumber: 364,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-gray-600",
+                                                                className: "text-secondary",
                                                                 children: section.missing
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 354,
+                                                                lineNumber: 365,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 352,
+                                                        lineNumber: 363,
                                                         columnNumber: 53
                                                     }, this),
                                                     section.fix && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "flex gap-2",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-indigo-500 font-medium",
+                                                                className: "text-brand font-medium",
                                                                 children: "→ Fix:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 359,
+                                                                lineNumber: 370,
                                                                 columnNumber: 57
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "text-gray-600",
+                                                                className: "text-secondary",
                                                                 children: section.fix
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 360,
+                                                                lineNumber: 371,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 358,
+                                                        lineNumber: 369,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 344,
+                                                lineNumber: 355,
                                                 columnNumber: 45
                                             }, this)
                                         ]
                                     }, i, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 332,
+                                        lineNumber: 343,
                                         columnNumber: 41
                                     }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-500 text-center py-8",
+                                    className: "text-muted text-center py-8",
                                     children: "Section analysis not available"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 367,
+                                    lineNumber: 378,
                                     columnNumber: 37
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 329,
+                                lineNumber: 340,
                                 columnNumber: 29
                             }, this),
                             activeTab === "rewrites" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-4",
                                 children: report.rewrites?.map((rw, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "p-5 bg-white rounded-xl border border-gray-200",
+                                        className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                         children: [
                                             rw.label && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-xs font-semibold text-indigo-600 uppercase mb-3",
+                                                className: "text-xs font-semibold text-brand uppercase mb-3",
                                                 children: rw.label
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 377,
+                                                lineNumber: 388,
                                                 columnNumber: 54
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "grid md:grid-cols-2 gap-4",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "p-4 bg-red-50 rounded-lg",
+                                                        className: "p-4 bg-danger-soft rounded-lg",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "text-xs font-medium text-red-600 mb-2",
+                                                                className: "text-xs font-medium text-danger mb-2",
                                                                 children: "Original"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 380,
+                                                                lineNumber: 391,
                                                                 columnNumber: 49
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-sm text-gray-700",
+                                                                className: "text-sm text-secondary",
                                                                 children: rw.original
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 381,
+                                                                lineNumber: 392,
                                                                 columnNumber: 49
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 379,
+                                                        lineNumber: 390,
                                                         columnNumber: 45
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "p-4 bg-emerald-50 rounded-lg",
+                                                        className: "p-4 bg-success-soft rounded-lg",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "text-xs font-medium text-emerald-600 mb-2",
+                                                                className: "text-xs font-medium text-success mb-2",
                                                                 children: "Better"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 384,
+                                                                lineNumber: 395,
                                                                 columnNumber: 49
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-sm text-gray-700",
+                                                                className: "text-sm text-secondary",
                                                                 children: rw.better
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 385,
+                                                                lineNumber: 396,
                                                                 columnNumber: 49
                                                             }, this),
                                                             rw.enhancement_note && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-xs text-emerald-600 mt-2 italic",
+                                                                className: "text-xs text-success mt-2 italic",
                                                                 children: rw.enhancement_note
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 387,
+                                                                lineNumber: 398,
                                                                 columnNumber: 53
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 383,
+                                                        lineNumber: 394,
                                                         columnNumber: 45
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 378,
+                                                lineNumber: 389,
                                                 columnNumber: 41
                                             }, this)
                                         ]
                                     }, i, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 376,
+                                        lineNumber: 387,
                                         columnNumber: 37
                                     }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-500 text-center py-8",
+                                    className: "text-muted text-center py-8",
                                     children: "No rewrites available"
                                 }, void 0, false, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 392,
+                                    lineNumber: 403,
                                     columnNumber: 39
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 374,
+                                lineNumber: 385,
                                 columnNumber: 29
                             }, this),
                             activeTab === "alignment" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1689,18 +1700,18 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                             className: "grid md:grid-cols-3 gap-4",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "p-4 bg-emerald-50 rounded-lg",
+                                                    className: "p-4 bg-success-soft rounded-lg",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                            className: "font-semibold text-emerald-700 mb-2",
+                                                            className: "font-semibold text-success mb-2",
                                                             children: "✓ Strongly Aligned"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 403,
+                                                            lineNumber: 414,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                                            className: "space-y-1 text-sm text-gray-600",
+                                                            className: "space-y-1 text-sm text-secondary",
                                                             children: report.job_alignment?.strongly_aligned?.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                     children: [
                                                                         "• ",
@@ -1708,40 +1719,40 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     ]
                                                                 }, i, true, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 405,
+                                                                    lineNumber: 416,
                                                                     columnNumber: 111
                                                                 }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                                className: "text-gray-400",
+                                                                className: "text-muted",
                                                                 children: "None found"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 405,
+                                                                lineNumber: 416,
                                                                 columnNumber: 141
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 404,
+                                                            lineNumber: 415,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 402,
+                                                    lineNumber: 413,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "p-4 bg-amber-50 rounded-lg",
+                                                    className: "p-4 bg-warning-soft rounded-lg",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                            className: "font-semibold text-amber-700 mb-2",
+                                                            className: "font-semibold text-warning mb-2",
                                                             children: "⚠ Underplayed"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 409,
+                                                            lineNumber: 420,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                                            className: "space-y-1 text-sm text-gray-600",
+                                                            className: "space-y-1 text-sm text-secondary",
                                                             children: report.job_alignment?.underplayed?.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                     children: [
                                                                         "• ",
@@ -1749,40 +1760,40 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     ]
                                                                 }, i, true, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 411,
+                                                                    lineNumber: 422,
                                                                     columnNumber: 106
                                                                 }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                                className: "text-gray-400",
+                                                                className: "text-muted",
                                                                 children: "None found"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 411,
+                                                                lineNumber: 422,
                                                                 columnNumber: 136
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 410,
+                                                            lineNumber: 421,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 408,
+                                                    lineNumber: 419,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "p-4 bg-red-50 rounded-lg",
+                                                    className: "p-4 bg-danger-soft rounded-lg",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                            className: "font-semibold text-red-700 mb-2",
+                                                            className: "font-semibold text-danger mb-2",
                                                             children: "✗ Missing/Weak"
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 415,
+                                                            lineNumber: 426,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                                            className: "space-y-1 text-sm text-gray-600",
+                                                            className: "space-y-1 text-sm text-secondary",
                                                             children: report.job_alignment?.missing?.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                     children: [
                                                                         "• ",
@@ -1790,42 +1801,42 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                                     ]
                                                                 }, i, true, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 417,
+                                                                    lineNumber: 428,
                                                                     columnNumber: 102
                                                                 }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                                                className: "text-gray-400",
+                                                                className: "text-muted",
                                                                 children: "None found"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                lineNumber: 417,
+                                                                lineNumber: 428,
                                                                 columnNumber: 132
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 416,
+                                                            lineNumber: 427,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 414,
+                                                    lineNumber: 425,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 401,
+                                            lineNumber: 412,
                                             columnNumber: 41
                                         }, this),
                                         report.job_alignment?.role_fit && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "p-5 bg-white rounded-xl border border-gray-200",
+                                            className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                    className: "font-semibold text-gray-900 mb-4",
+                                                    className: "font-semibold text-primary mb-4",
                                                     children: "Where You Read Strongest"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 425,
+                                                    lineNumber: 436,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1834,69 +1845,69 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "text-sm font-medium text-emerald-600 mb-2",
+                                                                    className: "text-sm font-medium text-success mb-2",
                                                                     children: "Best Fit Roles"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 428,
+                                                                    lineNumber: 439,
                                                                     columnNumber: 57
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "flex flex-wrap gap-2",
                                                                     children: report.job_alignment.role_fit.best_fit_roles?.map((role, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                            className: "px-3 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full",
+                                                                            className: "px-3 py-1 bg-success-soft text-success text-sm rounded-full",
                                                                             children: role
                                                                         }, i, false, {
                                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                            lineNumber: 431,
+                                                                            lineNumber: 442,
                                                                             columnNumber: 65
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 429,
+                                                                    lineNumber: 440,
                                                                     columnNumber: 57
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 427,
+                                                            lineNumber: 438,
                                                             columnNumber: 53
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "text-sm font-medium text-amber-600 mb-2",
+                                                                    className: "text-sm font-medium text-warning mb-2",
                                                                     children: "Stretch Roles"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 436,
+                                                                    lineNumber: 447,
                                                                     columnNumber: 57
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "flex flex-wrap gap-2",
                                                                     children: report.job_alignment.role_fit.stretch_roles?.map((role, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                            className: "px-3 py-1 bg-amber-100 text-amber-700 text-sm rounded-full",
+                                                                            className: "px-3 py-1 bg-warning-soft text-warning text-sm rounded-full",
                                                                             children: role
                                                                         }, i, false, {
                                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                            lineNumber: 439,
+                                                                            lineNumber: 450,
                                                                             columnNumber: 65
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 437,
+                                                                    lineNumber: 448,
                                                                     columnNumber: 57
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 435,
+                                                            lineNumber: 446,
                                                             columnNumber: 53
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 426,
+                                                    lineNumber: 437,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1905,231 +1916,231 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                                         report.job_alignment.role_fit.seniority_read && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "text-gray-500 mb-1",
+                                                                    className: "text-muted mb-1",
                                                                     children: "Seniority Read"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 447,
+                                                                    lineNumber: 458,
                                                                     columnNumber: 61
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "font-medium text-gray-900",
+                                                                    className: "font-medium text-primary",
                                                                     children: report.job_alignment.role_fit.seniority_read
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 448,
+                                                                    lineNumber: 459,
                                                                     columnNumber: 61
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 446,
+                                                            lineNumber: 457,
                                                             columnNumber: 57
                                                         }, this),
                                                         report.job_alignment.role_fit.industry_signals && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "text-gray-500 mb-1",
+                                                                    className: "text-muted mb-1",
                                                                     children: "Industry Signals"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 453,
+                                                                    lineNumber: 464,
                                                                     columnNumber: 61
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "font-medium text-gray-900",
+                                                                    className: "font-medium text-primary",
                                                                     children: report.job_alignment.role_fit.industry_signals.join(", ")
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 454,
+                                                                    lineNumber: 465,
                                                                     columnNumber: 61
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 452,
+                                                            lineNumber: 463,
                                                             columnNumber: 57
                                                         }, this),
                                                         report.job_alignment.role_fit.company_stage_fit && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "text-gray-500 mb-1",
+                                                                    className: "text-muted mb-1",
                                                                     children: "Company Stage Fit"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 459,
+                                                                    lineNumber: 470,
                                                                     columnNumber: 61
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "font-medium text-gray-900",
+                                                                    className: "font-medium text-primary",
                                                                     children: report.job_alignment.role_fit.company_stage_fit
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                                    lineNumber: 460,
+                                                                    lineNumber: 471,
                                                                     columnNumber: 61
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                            lineNumber: 458,
+                                                            lineNumber: 469,
                                                             columnNumber: 57
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 444,
+                                                    lineNumber: 455,
                                                     columnNumber: 49
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 424,
+                                            lineNumber: 435,
                                             columnNumber: 45
                                         }, this),
                                         report.job_alignment?.positioning_suggestion && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "p-5 bg-white rounded-xl border border-gray-200",
+                                            className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                    className: "font-semibold text-gray-900 mb-3",
+                                                    className: "font-semibold text-primary mb-3",
                                                     children: "Positioning Recommendation"
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 470,
+                                                    lineNumber: 481,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-600 leading-relaxed",
+                                                    className: "text-secondary leading-relaxed",
                                                     children: report.job_alignment.positioning_suggestion
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 471,
+                                                    lineNumber: 482,
                                                     columnNumber: 49
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 469,
+                                            lineNumber: 480,
                                             columnNumber: 45
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 400,
+                                    lineNumber: 411,
                                     columnNumber: 37
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-8 bg-white rounded-xl border border-gray-200 text-center",
+                                    className: "p-8 bg-surface rounded-xl border border-subtle text-center shadow-card",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "text-3xl mb-2",
                                             children: "📋"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 479,
+                                            lineNumber: 490,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-500",
+                                            className: "text-muted",
                                             children: "Add a job description to see alignment analysis"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 480,
+                                            lineNumber: 491,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                    lineNumber: 478,
+                                    lineNumber: 489,
                                     columnNumber: 37
                                 }, this)
                             }, void 0, false),
                             activeTab === "wins" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "p-5 bg-white rounded-xl border border-gray-200",
+                                className: "p-5 bg-surface rounded-xl border border-subtle shadow-card",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-semibold text-gray-900 mb-2",
+                                        className: "font-semibold text-primary mb-2",
                                         children: "Surface Missing Wins"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 489,
+                                        lineNumber: 500,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-500 text-sm mb-4",
+                                        className: "text-muted text-sm mb-4",
                                         children: "Answer these questions to uncover hidden impact your resume isn't telling yet:"
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 490,
+                                        lineNumber: 501,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "space-y-3",
                                         children: report.ideas?.questions?.map((q, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-4 bg-indigo-50 rounded-lg",
+                                                className: "p-4 bg-brand-soft rounded-lg",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "font-medium text-gray-900 mb-1",
+                                                        className: "font-medium text-primary mb-1",
                                                         children: q.question
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 496,
+                                                        lineNumber: 507,
                                                         columnNumber: 45
                                                     }, this),
                                                     q.archetype && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "inline-block text-xs bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded mr-2",
+                                                        className: "inline-block text-xs bg-brand/10 text-brand px-2 py-0.5 rounded mr-2",
                                                         children: q.archetype
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 497,
+                                                        lineNumber: 508,
                                                         columnNumber: 61
                                                     }, this),
                                                     q.why && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-sm text-gray-600 mt-2",
+                                                        className: "text-sm text-secondary mt-2",
                                                         children: q.why
                                                     }, void 0, false, {
                                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                        lineNumber: 498,
+                                                        lineNumber: 509,
                                                         columnNumber: 55
                                                     }, this)
                                                 ]
                                             }, i, true, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 495,
+                                                lineNumber: 506,
                                                 columnNumber: 41
                                             }, this)) || report.next_steps?.map((step, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-4 bg-gray-50 rounded-lg",
+                                                className: "p-4 bg-muted rounded-lg",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-gray-700",
+                                                    className: "text-secondary",
                                                     children: step
                                                 }, void 0, false, {
                                                     fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                    lineNumber: 502,
+                                                    lineNumber: 513,
                                                     columnNumber: 45
                                                 }, this)
                                             }, i, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 501,
+                                                lineNumber: 512,
                                                 columnNumber: 41
                                             }, this)) || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-500",
+                                            className: "text-muted",
                                             children: "No questions available"
                                         }, void 0, false, {
                                             fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                            lineNumber: 504,
+                                            lineNumber: 515,
                                             columnNumber: 43
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 493,
+                                        lineNumber: 504,
                                         columnNumber: 33
                                     }, this),
                                     report.ideas?.how_to_use && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-gray-600 mt-4 p-3 bg-gray-50 rounded",
+                                        className: "text-sm text-secondary mt-4 p-3 bg-muted rounded",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                                 children: "How to use:"
                                             }, void 0, false, {
                                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                                lineNumber: 508,
+                                                lineNumber: 519,
                                                 columnNumber: 41
                                             }, this),
                                             " ",
@@ -2137,31 +2148,31 @@ function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExpo
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                        lineNumber: 507,
+                                        lineNumber: 518,
                                         columnNumber: 37
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                                lineNumber: 488,
+                                lineNumber: 499,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                        lineNumber: 199,
+                        lineNumber: 210,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-                lineNumber: 175,
+                lineNumber: 186,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/web/components/workspace/ReportPanel.tsx",
-        lineNumber: 140,
+        lineNumber: 151,
         columnNumber: 9
     }, this);
 }
@@ -2874,12 +2885,12 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
         className: "fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5",
         onClick: (e)=>e.target === e.currentTarget && handleClose(),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-white rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
+            className: "bg-surface rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                     onClick: handleClose,
                     "aria-label": "Close",
-                    className: "absolute top-4 right-4 text-gray-400 hover:text-gray-900 transition-colors p-2",
+                    className: "absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                         width: "20",
                         height: "20",
@@ -2909,7 +2920,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                     className: "text-center mb-6",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-xl font-bold text-gray-900 mb-2",
+                            className: "font-display text-xl font-bold text-primary mb-2",
                             children: [
                                 step === "email" && "Sign in or create account",
                                 step === "code" && "Check your email",
@@ -2921,7 +2932,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-500 text-sm",
+                            className: "text-muted text-sm",
                             children: [
                                 step === "email" && "We'll send you a login code. No password needed.",
                                 step === "code" && `We sent an 8-digit code to ${email}`,
@@ -2955,7 +2966,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -2995,7 +3006,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -3048,7 +3059,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -3085,7 +3096,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                     columnNumber: 21
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-center text-xs text-gray-500 mt-4",
+                    className: "text-center text-xs text-muted mt-4",
                     children: "By continuing, you agree to our Terms and Privacy Policy."
                 }, void 0, false, {
                     fileName: "[project]/web/components/shared/AuthModal.tsx",

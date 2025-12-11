@@ -2,13 +2,13 @@
 
 import { useState, useMemo, useEffect, useRef } from "react";
 
-// Score-based color function - returns Tailwind color classes
+// Score-based color function - returns semantic Tailwind color classes
 function getScoreColorClass(score: number): string {
-    if (score >= 90) return 'text-purple-500';
-    if (score >= 85) return 'text-blue-500';
-    if (score >= 80) return 'text-emerald-500';
-    if (score >= 70) return 'text-amber-500';
-    return 'text-red-500';
+    if (score >= 90) return 'text-[#8b5cf6]';
+    if (score >= 85) return 'text-brand';
+    if (score >= 80) return 'text-success';
+    if (score >= 70) return 'text-warning';
+    return 'text-danger';
 }
 
 function getScoreColor(score: number): string {
@@ -20,11 +20,11 @@ function getScoreColor(score: number): string {
 }
 
 function getScoreBgClass(score: number): string {
-    if (score >= 90) return 'bg-purple-100 text-purple-700';
-    if (score >= 85) return 'bg-blue-100 text-blue-700';
-    if (score >= 80) return 'bg-emerald-100 text-emerald-700';
-    if (score >= 70) return 'bg-amber-100 text-amber-700';
-    return 'bg-red-100 text-red-700';
+    if (score >= 90) return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
+    if (score >= 85) return 'bg-brand-soft text-brand';
+    if (score >= 80) return 'bg-success-soft text-success';
+    if (score >= 70) return 'bg-warning-soft text-warning';
+    return 'bg-danger-soft text-danger';
 }
 
 type TabId = "overview" | "fixes" | "sections" | "rewrites" | "alignment" | "wins";
@@ -87,6 +87,17 @@ const tabs: { id: TabId; label: string }[] = [
 
 export default function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExporting }: ReportPanelProps) {
     const [activeTab, setActiveTab] = useState<TabId>("overview");
+    const [tabTransition, setTabTransition] = useState(false);
+
+    // Fade animation when switching tabs
+    const handleTabChange = (newTab: TabId) => {
+        if (newTab === activeTab) return;
+        setTabTransition(true);
+        setTimeout(() => {
+            setActiveTab(newTab);
+            setTabTransition(false);
+        }, 150);
+    };
 
     const showEmptyState = !report && !isLoading;
     const showLoading = isLoading;
@@ -137,19 +148,19 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
     const dialColor = getScoreColor(animatedScore);
 
     return (
-        <div className="bg-gray-50 flex flex-col h-full overflow-hidden">
-            {/* Tabs + Export Button */}
-            <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
-                <div className="flex gap-1 overflow-x-auto">
+        <div className="bg-muted flex flex-col h-full overflow-hidden">
+            {/* Tabs + Export Button - Sticky */}
+            <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-surface border-b border-subtle">
+                <div className="flex gap-2 overflow-x-auto">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors
+                            className={`px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200
                             ${activeTab === tab.id
-                                    ? "bg-indigo-100 text-indigo-700"
-                                    : "text-gray-600 hover:bg-gray-100"
+                                    ? "bg-brand-soft text-brand shadow-sm"
+                                    : "text-secondary hover:bg-hover hover:text-primary"
                                 }`}
-                            onClick={() => setActiveTab(tab.id)}
+                            onClick={() => handleTabChange(tab.id)}
                         >
                             {tab.label}
                         </button>
@@ -161,7 +172,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                     <button
                         onClick={onExportPdf}
                         disabled={isExporting}
-                        className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+                        className="flex items-center gap-2 px-3 py-2 text-sm text-secondary hover:text-primary hover:bg-hover rounded-lg transition-colors disabled:opacity-50"
                     >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -172,15 +183,15 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className={`flex-1 overflow-y-auto p-6 transition-all duration-150 ${tabTransition ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
                 {/* Empty State */}
                 {showEmptyState && (
-                    <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
+                    <div className="flex flex-col items-center justify-center h-full text-center text-muted">
                         <svg className="w-16 h-16 mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <div className="text-lg font-semibold text-gray-700 mb-2">Ready when you are</div>
+                        <div className="text-lg font-semibold text-primary mb-2">Ready when you are</div>
                         <p>Upload or paste your resume to get recruiter-grade feedback in seconds.</p>
                     </div>
                 )}
@@ -188,9 +199,9 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                 {/* Loading State */}
                 {showLoading && (
                     <div className="flex flex-col items-center justify-center h-full text-center">
-                        <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-500 rounded-full animate-spin mb-4" />
-                        <div className="text-lg font-medium text-gray-700 mb-1">Reading your resume like a recruiter...</div>
-                        <p className="text-gray-500">This usually takes 10-15 seconds</p>
+                        <div className="w-10 h-10 border-4 border-brand/20 border-t-brand rounded-full animate-spin mb-4" />
+                        <div className="text-lg font-medium text-primary mb-1">Reading your resume like a recruiter...</div>
+                        <p className="text-muted">This usually takes 10-15 seconds</p>
                     </div>
                 )}
 
@@ -201,12 +212,12 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                         {activeTab === "overview" && (
                             <>
                                 {/* Score Header */}
-                                <div className="flex items-start gap-6 p-6 bg-white rounded-xl border border-gray-200">
+                                <div className="flex items-start gap-6 p-6 bg-surface rounded-xl border border-subtle shadow-card">
                                     {/* Score Dial */}
                                     <div className="flex flex-col items-center gap-2 flex-shrink-0">
                                         <div className="relative w-28 h-28">
                                             <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
-                                                <circle cx="60" cy="60" r="54" fill="none" stroke="#e5e7eb" strokeWidth="8" />
+                                                <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" className="text-muted/30" strokeWidth="8" />
                                                 <circle
                                                     cx="60" cy="60" r="54" fill="none"
                                                     stroke={dialColor} strokeWidth="8" strokeLinecap="round"
@@ -222,7 +233,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                 {animatedScore}
                                             </div>
                                         </div>
-                                        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Score</span>
+                                        <span className="text-xs font-medium text-muted uppercase tracking-wide">Score</span>
                                     </div>
 
                                     {/* First Impression */}
@@ -230,13 +241,13 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                         {firstImpressionText && (
                                             <div>
                                                 <div className="flex items-center gap-2 mb-2">
-                                                    <svg className="w-5 h-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                    <svg className="w-5 h-5 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                                                         <path d="M12 5C16.478 5 20.268 7.405 22 11C20.268 14.595 16.478 17 12 17C7.522 17 3.732 14.595 2 11C3.732 7.405 7.522 5 12 5Z" />
                                                         <circle cx="12" cy="11" r="3" />
                                                     </svg>
-                                                    <span className="font-semibold text-gray-900">Recruiter First Impression</span>
+                                                    <span className="font-semibold text-primary">Recruiter First Impression</span>
                                                 </div>
-                                                <p className="text-gray-600 leading-relaxed">{firstImpressionText}</p>
+                                                <p className="text-secondary leading-relaxed">{firstImpressionText}</p>
                                             </div>
                                         )}
                                     </div>
@@ -250,11 +261,11 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                         { key: 'story', label: 'Story', score: report.subscores?.story },
                                         { key: 'readability', label: 'Readability', score: report.subscores?.readability }
                                     ].map(({ key, label, score }) => (
-                                        <div key={key} className="p-4 bg-white rounded-lg border border-gray-200 text-center">
-                                            <div className={`text-2xl font-bold ${score ? getScoreColorClass(score) : 'text-gray-400'}`}>
+                                        <div key={key} className="p-4 bg-surface rounded-lg border border-subtle text-center shadow-card">
+                                            <div className={`text-2xl font-bold ${score ? getScoreColorClass(score) : 'text-muted'}`}>
                                                 {score || "—"}
                                             </div>
-                                            <div className="text-xs text-gray-500 mt-1">{label}</div>
+                                            <div className="text-xs text-muted mt-1">{label}</div>
                                             {score && (
                                                 <span className={`inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-medium ${getScoreBgClass(score)}`}>
                                                     {score >= 90 ? 'EXCEPTIONAL' : score >= 85 ? 'STRONG' : score >= 80 ? 'GOOD' : score >= 70 ? 'NEEDS WORK' : 'RISK'}
@@ -266,14 +277,14 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
                                 {/* Strengths */}
                                 {report.strengths && report.strengths.length > 0 && (
-                                    <div className="p-5 bg-white rounded-xl border border-gray-200">
-                                        <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-3">
-                                            <span className="text-emerald-500">✓</span> What&apos;s Working
+                                    <div className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
+                                        <h3 className="flex items-center gap-2 font-semibold text-primary mb-3">
+                                            <span className="text-success">✓</span> What&apos;s Working
                                         </h3>
                                         <ul className="space-y-2">
                                             {report.strengths.map((s, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-gray-600">
-                                                    <span className="text-emerald-400 mt-1">•</span> {s}
+                                                <li key={i} className="flex items-start gap-2 text-secondary">
+                                                    <span className="text-success/70 mt-1">•</span> {s}
                                                 </li>
                                             ))}
                                         </ul>
@@ -282,14 +293,14 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
                                 {/* Gaps */}
                                 {report.gaps && report.gaps.length > 0 && (
-                                    <div className="p-5 bg-white rounded-xl border border-gray-200">
-                                        <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-3">
-                                            <span className="text-amber-500">⚠</span> What&apos;s Missing
+                                    <div className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
+                                        <h3 className="flex items-center gap-2 font-semibold text-primary mb-3">
+                                            <span className="text-warning">⚠</span> What&apos;s Missing
                                         </h3>
                                         <ul className="space-y-2">
                                             {report.gaps.map((g, i) => (
-                                                <li key={i} className="flex items-start gap-2 text-gray-600">
-                                                    <span className="text-amber-400 mt-1">•</span> {g}
+                                                <li key={i} className="flex items-start gap-2 text-secondary">
+                                                    <span className="text-warning/70 mt-1">•</span> {g}
                                                 </li>
                                             ))}
                                         </ul>
@@ -300,26 +311,26 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
                         {/* Top Fixes */}
                         {activeTab === "fixes" && (
-                            <div className="p-5 bg-white rounded-xl border border-gray-200">
-                                <h3 className="font-semibold text-gray-900 mb-4">Top Fixes — Prioritized</h3>
+                            <div className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
+                                <h3 className="font-semibold text-primary mb-4">Top Fixes — Prioritized</h3>
                                 <div className="space-y-4">
                                     {report.top_fixes?.map((fix, i) => (
-                                        <div key={i} className="flex gap-4 p-4 bg-gray-50 rounded-lg">
-                                            <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-indigo-100 text-indigo-600 font-bold rounded-full">
+                                        <div key={i} className="flex gap-4 p-4 bg-muted rounded-lg">
+                                            <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-soft text-brand font-bold rounded-full">
                                                 {i + 1}
                                             </span>
                                             <div className="flex-1">
-                                                <p className="text-gray-700">{fix.fix || fix.text}</p>
-                                                {fix.section_ref && <span className="inline-block mt-2 text-xs text-gray-500 bg-gray-200 px-2 py-0.5 rounded">{fix.section_ref}</span>}
+                                                <p className="text-secondary">{fix.fix || fix.text}</p>
+                                                {fix.section_ref && <span className="inline-block mt-2 text-xs text-muted bg-hover px-2 py-0.5 rounded">{fix.section_ref}</span>}
                                                 {fix.impact_level && (
                                                     <span className={`inline-block mt-2 ml-2 text-xs px-2 py-0.5 rounded
-                                                        ${fix.impact_level === 'high' ? 'bg-red-100 text-red-700' : fix.impact_level === 'medium' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600'}`}>
+                                                        ${fix.impact_level === 'high' ? 'bg-danger-soft text-danger' : fix.impact_level === 'medium' ? 'bg-warning-soft text-warning' : 'bg-hover text-muted'}`}>
                                                         {fix.impact_level} impact
                                                     </span>
                                                 )}
                                             </div>
                                         </div>
-                                    )) || <p className="text-gray-500">No fixes available</p>}
+                                    )) || <p className="text-muted">No fixes available</p>}
                                 </div>
                             </div>
                         )}
@@ -329,14 +340,14 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                             <div className="space-y-4">
                                 {report.section_review ? (
                                     Object.entries(report.section_review).map(([sectionName, section], i) => (
-                                        <div key={i} className="p-5 bg-white rounded-xl border border-gray-200">
+                                        <div key={i} className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
                                             <div className="flex items-center justify-between mb-3">
-                                                <h4 className="font-semibold text-gray-900">{sectionName}</h4>
+                                                <h4 className="font-semibold text-primary">{sectionName}</h4>
                                                 {section.grade && (
                                                     <span className={`px-2 py-1 text-xs font-bold rounded
-                                                        ${section.grade.includes('A') ? 'bg-emerald-100 text-emerald-700' :
-                                                            section.grade.includes('B') ? 'bg-blue-100 text-blue-700' :
-                                                                section.grade.includes('C') ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                                                        ${section.grade.includes('A') ? 'bg-success-soft text-success' :
+                                                            section.grade.includes('B') ? 'bg-brand-soft text-brand' :
+                                                                section.grade.includes('C') ? 'bg-warning-soft text-warning' : 'bg-danger-soft text-danger'}`}>
                                                         {section.grade}
                                                     </span>
                                                 )}
@@ -344,27 +355,27 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                             <div className="space-y-2 text-sm">
                                                 {section.working && (
                                                     <div className="flex gap-2">
-                                                        <span className="text-emerald-500 font-medium">✓ Working:</span>
-                                                        <span className="text-gray-600">{section.working}</span>
+                                                        <span className="text-success font-medium">✓ Working:</span>
+                                                        <span className="text-secondary">{section.working}</span>
                                                     </div>
                                                 )}
                                                 {section.missing && (
                                                     <div className="flex gap-2">
-                                                        <span className="text-amber-500 font-medium">△ Missing:</span>
-                                                        <span className="text-gray-600">{section.missing}</span>
+                                                        <span className="text-warning font-medium">△ Missing:</span>
+                                                        <span className="text-secondary">{section.missing}</span>
                                                     </div>
                                                 )}
                                                 {section.fix && (
                                                     <div className="flex gap-2">
-                                                        <span className="text-indigo-500 font-medium">→ Fix:</span>
-                                                        <span className="text-gray-600">{section.fix}</span>
+                                                        <span className="text-brand font-medium">→ Fix:</span>
+                                                        <span className="text-secondary">{section.fix}</span>
                                                     </div>
                                                 )}
                                             </div>
                                         </div>
                                     ))
                                 ) : (
-                                    <p className="text-gray-500 text-center py-8">Section analysis not available</p>
+                                    <p className="text-muted text-center py-8">Section analysis not available</p>
                                 )}
                             </div>
                         )}
@@ -373,23 +384,23 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                         {activeTab === "rewrites" && (
                             <div className="space-y-4">
                                 {report.rewrites?.map((rw, i) => (
-                                    <div key={i} className="p-5 bg-white rounded-xl border border-gray-200">
-                                        {rw.label && <div className="text-xs font-semibold text-indigo-600 uppercase mb-3">{rw.label}</div>}
+                                    <div key={i} className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
+                                        {rw.label && <div className="text-xs font-semibold text-brand uppercase mb-3">{rw.label}</div>}
                                         <div className="grid md:grid-cols-2 gap-4">
-                                            <div className="p-4 bg-red-50 rounded-lg">
-                                                <div className="text-xs font-medium text-red-600 mb-2">Original</div>
-                                                <p className="text-sm text-gray-700">{rw.original}</p>
+                                            <div className="p-4 bg-danger-soft rounded-lg">
+                                                <div className="text-xs font-medium text-danger mb-2">Original</div>
+                                                <p className="text-sm text-secondary">{rw.original}</p>
                                             </div>
-                                            <div className="p-4 bg-emerald-50 rounded-lg">
-                                                <div className="text-xs font-medium text-emerald-600 mb-2">Better</div>
-                                                <p className="text-sm text-gray-700">{rw.better}</p>
+                                            <div className="p-4 bg-success-soft rounded-lg">
+                                                <div className="text-xs font-medium text-success mb-2">Better</div>
+                                                <p className="text-sm text-secondary">{rw.better}</p>
                                                 {rw.enhancement_note && (
-                                                    <p className="text-xs text-emerald-600 mt-2 italic">{rw.enhancement_note}</p>
+                                                    <p className="text-xs text-success mt-2 italic">{rw.enhancement_note}</p>
                                                 )}
                                             </div>
                                         </div>
                                     </div>
-                                )) || <p className="text-gray-500 text-center py-8">No rewrites available</p>}
+                                )) || <p className="text-muted text-center py-8">No rewrites available</p>}
                             </div>
                         )}
 
@@ -399,44 +410,44 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                 {(report.job_alignment?.strongly_aligned?.length || report.job_alignment?.underplayed?.length || report.job_alignment?.missing?.length) ? (
                                     <div className="space-y-4">
                                         <div className="grid md:grid-cols-3 gap-4">
-                                            <div className="p-4 bg-emerald-50 rounded-lg">
-                                                <h4 className="font-semibold text-emerald-700 mb-2">✓ Strongly Aligned</h4>
-                                                <ul className="space-y-1 text-sm text-gray-600">
-                                                    {report.job_alignment?.strongly_aligned?.map((item, i) => <li key={i}>• {item}</li>) || <li className="text-gray-400">None found</li>}
+                                            <div className="p-4 bg-success-soft rounded-lg">
+                                                <h4 className="font-semibold text-success mb-2">✓ Strongly Aligned</h4>
+                                                <ul className="space-y-1 text-sm text-secondary">
+                                                    {report.job_alignment?.strongly_aligned?.map((item, i) => <li key={i}>• {item}</li>) || <li className="text-muted">None found</li>}
                                                 </ul>
                                             </div>
-                                            <div className="p-4 bg-amber-50 rounded-lg">
-                                                <h4 className="font-semibold text-amber-700 mb-2">⚠ Underplayed</h4>
-                                                <ul className="space-y-1 text-sm text-gray-600">
-                                                    {report.job_alignment?.underplayed?.map((item, i) => <li key={i}>• {item}</li>) || <li className="text-gray-400">None found</li>}
+                                            <div className="p-4 bg-warning-soft rounded-lg">
+                                                <h4 className="font-semibold text-warning mb-2">⚠ Underplayed</h4>
+                                                <ul className="space-y-1 text-sm text-secondary">
+                                                    {report.job_alignment?.underplayed?.map((item, i) => <li key={i}>• {item}</li>) || <li className="text-muted">None found</li>}
                                                 </ul>
                                             </div>
-                                            <div className="p-4 bg-red-50 rounded-lg">
-                                                <h4 className="font-semibold text-red-700 mb-2">✗ Missing/Weak</h4>
-                                                <ul className="space-y-1 text-sm text-gray-600">
-                                                    {report.job_alignment?.missing?.map((item, i) => <li key={i}>• {item}</li>) || <li className="text-gray-400">None found</li>}
+                                            <div className="p-4 bg-danger-soft rounded-lg">
+                                                <h4 className="font-semibold text-danger mb-2">✗ Missing/Weak</h4>
+                                                <ul className="space-y-1 text-sm text-secondary">
+                                                    {report.job_alignment?.missing?.map((item, i) => <li key={i}>• {item}</li>) || <li className="text-muted">None found</li>}
                                                 </ul>
                                             </div>
                                         </div>
 
                                         {/* Role Fit */}
                                         {report.job_alignment?.role_fit && (
-                                            <div className="p-5 bg-white rounded-xl border border-gray-200">
-                                                <h4 className="font-semibold text-gray-900 mb-4">Where You Read Strongest</h4>
+                                            <div className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
+                                                <h4 className="font-semibold text-primary mb-4">Where You Read Strongest</h4>
                                                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                                                     <div>
-                                                        <div className="text-sm font-medium text-emerald-600 mb-2">Best Fit Roles</div>
+                                                        <div className="text-sm font-medium text-success mb-2">Best Fit Roles</div>
                                                         <div className="flex flex-wrap gap-2">
                                                             {report.job_alignment.role_fit.best_fit_roles?.map((role, i) => (
-                                                                <span key={i} className="px-3 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">{role}</span>
+                                                                <span key={i} className="px-3 py-1 bg-success-soft text-success text-sm rounded-full">{role}</span>
                                                             ))}
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <div className="text-sm font-medium text-amber-600 mb-2">Stretch Roles</div>
+                                                        <div className="text-sm font-medium text-warning mb-2">Stretch Roles</div>
                                                         <div className="flex flex-wrap gap-2">
                                                             {report.job_alignment.role_fit.stretch_roles?.map((role, i) => (
-                                                                <span key={i} className="px-3 py-1 bg-amber-100 text-amber-700 text-sm rounded-full">{role}</span>
+                                                                <span key={i} className="px-3 py-1 bg-warning-soft text-warning text-sm rounded-full">{role}</span>
                                                             ))}
                                                         </div>
                                                     </div>
@@ -444,20 +455,20 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                 <div className="grid grid-cols-3 gap-4 text-sm">
                                                     {report.job_alignment.role_fit.seniority_read && (
                                                         <div>
-                                                            <div className="text-gray-500 mb-1">Seniority Read</div>
-                                                            <div className="font-medium text-gray-900">{report.job_alignment.role_fit.seniority_read}</div>
+                                                            <div className="text-muted mb-1">Seniority Read</div>
+                                                            <div className="font-medium text-primary">{report.job_alignment.role_fit.seniority_read}</div>
                                                         </div>
                                                     )}
                                                     {report.job_alignment.role_fit.industry_signals && (
                                                         <div>
-                                                            <div className="text-gray-500 mb-1">Industry Signals</div>
-                                                            <div className="font-medium text-gray-900">{report.job_alignment.role_fit.industry_signals.join(", ")}</div>
+                                                            <div className="text-muted mb-1">Industry Signals</div>
+                                                            <div className="font-medium text-primary">{report.job_alignment.role_fit.industry_signals.join(", ")}</div>
                                                         </div>
                                                     )}
                                                     {report.job_alignment.role_fit.company_stage_fit && (
                                                         <div>
-                                                            <div className="text-gray-500 mb-1">Company Stage Fit</div>
-                                                            <div className="font-medium text-gray-900">{report.job_alignment.role_fit.company_stage_fit}</div>
+                                                            <div className="text-muted mb-1">Company Stage Fit</div>
+                                                            <div className="font-medium text-primary">{report.job_alignment.role_fit.company_stage_fit}</div>
                                                         </div>
                                                     )}
                                                 </div>
@@ -466,18 +477,18 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
                                         {/* Positioning Recommendation */}
                                         {report.job_alignment?.positioning_suggestion && (
-                                            <div className="p-5 bg-white rounded-xl border border-gray-200">
-                                                <h4 className="font-semibold text-gray-900 mb-3">Positioning Recommendation</h4>
-                                                <p className="text-gray-600 leading-relaxed">
+                                            <div className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
+                                                <h4 className="font-semibold text-primary mb-3">Positioning Recommendation</h4>
+                                                <p className="text-secondary leading-relaxed">
                                                     {report.job_alignment.positioning_suggestion}
                                                 </p>
                                             </div>
                                         )}
                                     </div>
                                 ) : (
-                                    <div className="p-8 bg-white rounded-xl border border-gray-200 text-center">
+                                    <div className="p-8 bg-surface rounded-xl border border-subtle text-center shadow-card">
                                         <div className="text-3xl mb-2">📋</div>
-                                        <p className="text-gray-500">Add a job description to see alignment analysis</p>
+                                        <p className="text-muted">Add a job description to see alignment analysis</p>
                                     </div>
                                 )}
                             </>
@@ -485,26 +496,26 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
                         {/* Missing Wins */}
                         {activeTab === "wins" && (
-                            <div className="p-5 bg-white rounded-xl border border-gray-200">
-                                <h3 className="font-semibold text-gray-900 mb-2">Surface Missing Wins</h3>
-                                <p className="text-gray-500 text-sm mb-4">
+                            <div className="p-5 bg-surface rounded-xl border border-subtle shadow-card">
+                                <h3 className="font-semibold text-primary mb-2">Surface Missing Wins</h3>
+                                <p className="text-muted text-sm mb-4">
                                     Answer these questions to uncover hidden impact your resume isn&apos;t telling yet:
                                 </p>
                                 <div className="space-y-3">
                                     {report.ideas?.questions?.map((q, i) => (
-                                        <div key={i} className="p-4 bg-indigo-50 rounded-lg">
-                                            <p className="font-medium text-gray-900 mb-1">{q.question}</p>
-                                            {q.archetype && <span className="inline-block text-xs bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded mr-2">{q.archetype}</span>}
-                                            {q.why && <p className="text-sm text-gray-600 mt-2">{q.why}</p>}
+                                        <div key={i} className="p-4 bg-brand-soft rounded-lg">
+                                            <p className="font-medium text-primary mb-1">{q.question}</p>
+                                            {q.archetype && <span className="inline-block text-xs bg-brand/10 text-brand px-2 py-0.5 rounded mr-2">{q.archetype}</span>}
+                                            {q.why && <p className="text-sm text-secondary mt-2">{q.why}</p>}
                                         </div>
                                     )) || report.next_steps?.map((step, i) => (
-                                        <div key={i} className="p-4 bg-gray-50 rounded-lg">
-                                            <p className="text-gray-700">{step}</p>
+                                        <div key={i} className="p-4 bg-muted rounded-lg">
+                                            <p className="text-secondary">{step}</p>
                                         </div>
-                                    )) || <p className="text-gray-500">No questions available</p>}
+                                    )) || <p className="text-muted">No questions available</p>}
                                 </div>
                                 {report.ideas?.how_to_use && (
-                                    <p className="text-sm text-gray-600 mt-4 p-3 bg-gray-50 rounded">
+                                    <p className="text-sm text-secondary mt-4 p-3 bg-muted rounded">
                                         <strong>How to use:</strong> {report.ideas.how_to_use}
                                     </p>
                                 )}

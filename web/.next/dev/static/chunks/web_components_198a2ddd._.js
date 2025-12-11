@@ -373,13 +373,13 @@ function Hero() {
     const headline = user?.firstName ? `Hey ${user.firstName}, ready for your next review?` : "See how recruiters actually read your resume.";
     const subheadline = user?.firstName ? "Let's see what recruiters notice first." : "Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-gradient-to-b from-white to-gray-50 pt-12 md:pt-20",
+        className: "section bg-gradient-to-b from-[var(--bg-surface)] to-[var(--bg-muted)] pt-12 md:pt-20",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "section-inner text-center",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: `font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`,
+                        className: `font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight mb-6 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`,
                         children: headline
                     }, void 0, false, {
                         fileName: "[project]/web/components/landing/Hero.tsx",
@@ -387,7 +387,7 @@ function Hero() {
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8",
+                        className: "text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-8",
                         children: subheadline
                     }, void 0, false, {
                         fileName: "[project]/web/components/landing/Hero.tsx",
@@ -411,7 +411,7 @@ function Hero() {
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm text-gray-600 text-left max-w-md",
+                                className: "text-sm text-secondary text-left max-w-md",
                                 children: "Built by Matt — a recruiter who's run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups."
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/Hero.tsx",
@@ -438,7 +438,7 @@ function Hero() {
                             }, this),
                             !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 type: "button",
-                                className: "text-indigo-500 hover:text-indigo-600 text-sm font-medium transition-colors",
+                                className: "text-brand hover:text-brand-strong text-sm font-medium transition-colors",
                                 onClick: ()=>setShowPrivacy(true),
                                 children: "Your resume is yours →"
                             }, void 0, false, {
@@ -453,7 +453,7 @@ function Hero() {
                         columnNumber: 17
                     }, this),
                     !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-sm text-gray-500",
+                        className: "text-sm text-muted",
                         children: "Upload PDF/DOCX or paste text · First 2 full reports free · No signup required"
                     }, void 0, false, {
                         fileName: "[project]/web/components/landing/Hero.tsx",
@@ -470,12 +470,12 @@ function Hero() {
                 className: "fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5",
                 onClick: (e)=>e.target === e.currentTarget && setShowPrivacy(false),
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-white rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
+                    className: "bg-surface rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: ()=>setShowPrivacy(false),
                             "aria-label": "Close",
-                            className: "absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors rounded-full border border-gray-200 hover:border-gray-300",
+                            className: "absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-muted hover:text-primary transition-colors rounded-full border border-subtle hover:border-[var(--border)]",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                 width: "16",
                                 height: "16",
@@ -502,7 +502,7 @@ function Hero() {
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-xl font-bold text-gray-900 mb-4",
+                            className: "font-display text-xl font-bold text-primary mb-4",
                             children: "How we handle data"
                         }, void 0, false, {
                             fileName: "[project]/web/components/landing/Hero.tsx",
@@ -510,7 +510,7 @@ function Hero() {
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "space-y-4 text-gray-600",
+                            className: "space-y-4 text-secondary",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: "Your resume stays in your browser until you run a review."
@@ -964,7 +964,7 @@ function ValueStrip() {
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-white",
+        className: "section bg-surface",
         "aria-label": "What you get",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
@@ -982,7 +982,7 @@ function ValueStrip() {
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "font-display text-lg font-bold text-gray-900",
+                                className: "font-display text-lg font-bold text-primary",
                                 children: item.title
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ValueStrip.tsx",
@@ -990,7 +990,7 @@ function ValueStrip() {
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm text-gray-500 leading-relaxed",
+                                className: "text-sm text-muted leading-relaxed",
                                 children: item.desc
                             }, void 0, false, {
                                 fileName: "[project]/web/components/landing/ValueStrip.tsx",
@@ -1055,12 +1055,12 @@ function Testimonials() {
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "section bg-white",
+        className: "section bg-surface",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "section-inner",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                    className: "font-display text-2xl md:text-3xl font-bold text-gray-900 mb-8",
+                    className: "font-display text-2xl md:text-3xl font-bold text-primary mb-8",
                     children: "What users are saying"
                 }, void 0, false, {
                     fileName: "[project]/web/components/landing/Testimonials.tsx",
@@ -1070,10 +1070,10 @@ function Testimonials() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "space-y-6",
                     children: testimonials.map((t, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("blockquote", {
-                            className: "p-5 bg-gray-50 rounded-xl border-l-4 border-indigo-500",
+                            className: "p-5 bg-muted rounded-xl border-l-4 border-brand",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-700 italic mb-3",
+                                    className: "text-secondary italic mb-3",
                                     children: [
                                         '"',
                                         t.text,
@@ -1085,7 +1085,7 @@ function Testimonials() {
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("cite", {
-                                    className: "text-sm text-gray-500 not-italic",
+                                    className: "text-sm text-muted not-italic",
                                     children: [
                                         "— ",
                                         t.author
@@ -2496,12 +2496,12 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
         className: "fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5",
         onClick: (e)=>e.target === e.currentTarget && handleClose(),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-white rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
+            className: "bg-surface rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                     onClick: handleClose,
                     "aria-label": "Close",
-                    className: "absolute top-4 right-4 text-gray-400 hover:text-gray-900 transition-colors p-2",
+                    className: "absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                         width: "20",
                         height: "20",
@@ -2531,7 +2531,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                     className: "text-center mb-6",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-xl font-bold text-gray-900 mb-2",
+                            className: "font-display text-xl font-bold text-primary mb-2",
                             children: [
                                 step === "email" && "Sign in or create account",
                                 step === "code" && "Check your email",
@@ -2543,7 +2543,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-500 text-sm",
+                            className: "text-muted text-sm",
                             children: [
                                 step === "email" && "We'll send you a login code. No password needed.",
                                 step === "code" && `We sent an 8-digit code to ${email}`,
@@ -2577,7 +2577,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -2617,7 +2617,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -2670,7 +2670,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -2707,7 +2707,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                     columnNumber: 21
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-center text-xs text-gray-500 mt-4",
+                    className: "text-center text-xs text-muted mt-4",
                     children: "By continuing, you agree to our Terms and Privacy Policy."
                 }, void 0, false, {
                     fileName: "[project]/web/components/shared/AuthModal.tsx",

@@ -210,12 +210,12 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
         className: "fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5",
         onClick: (e)=>e.target === e.currentTarget && handleClose(),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-white rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
+            className: "bg-surface rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                     onClick: handleClose,
                     "aria-label": "Close",
-                    className: "absolute top-4 right-4 text-gray-400 hover:text-gray-900 transition-colors p-2",
+                    className: "absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                         width: "20",
                         height: "20",
@@ -245,7 +245,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                     className: "text-center mb-6",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "font-display text-xl font-bold text-gray-900 mb-2",
+                            className: "font-display text-xl font-bold text-primary mb-2",
                             children: [
                                 step === "email" && "Sign in or create account",
                                 step === "code" && "Check your email",
@@ -257,7 +257,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-gray-500 text-sm",
+                            className: "text-muted text-sm",
                             children: [
                                 step === "email" && "We'll send you a login code. No password needed.",
                                 step === "code" && `We sent an 8-digit code to ${email}`,
@@ -291,7 +291,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -331,7 +331,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -384,7 +384,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                             columnNumber: 25
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-red-600 text-sm text-center",
+                            className: "text-danger text-sm text-center",
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/web/components/shared/AuthModal.tsx",
@@ -421,7 +421,7 @@ function AuthModal({ isOpen, onClose, onSuccess }) {
                     columnNumber: 21
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-center text-xs text-gray-500 mt-4",
+                    className: "text-center text-xs text-muted mt-4",
                     children: "By continuing, you agree to our Terms and Privacy Policy."
                 }, void 0, false, {
                     fileName: "[project]/web/components/shared/AuthModal.tsx",
