@@ -1,26 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 
-const API_BASE = process.env.API_BASE_URL || "http://localhost:3000";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
-    try {
-        // Forward cookies from the request
-        const cookie = request.headers.get("cookie") || "";
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data: userData } = await supabase.auth.getUser();
+    const user = userData.user;
 
-        const response = await fetch(`${API_BASE}/api/reports`, {
-            headers: {
-                "Cookie": cookie,
-            },
-        });
-
-        const data = await response.json();
-
-        return NextResponse.json(data, { status: response.status });
-    } catch (error) {
-        console.error("API /reports error:", error);
-        return NextResponse.json(
-            { ok: false, reports: [] },
-            { status: 500 }
-        );
+    if (!user) {
+      return NextResponse.json(
+        { ok: false, errorCode: "AUTH_REQUIRED", message: "Please log in to view your report history." },
+        { status: 401 }
+      );
     }
+
+    const url = new URL(request.url);
+    const limit = Math.min(Number(url.searchParams.get("limit") || 20), 50);
+
+    const { data, error } = await supabase
+      .from("reports")
+      .select("id, score, score_label, resume_preview, created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      return NextResponse.json(
+        { ok: false, errorCode: "FETCH_REPORTS_FAILED", message: "Could not load your report history. Please try again." },
+        { status: 500 }
+      );
+    }
+
+    const reports = (data || []).map((r: any) => ({
+      id: r.id,
+      createdAt: r.created_at,
+      score: r.score,
+      scoreLabel: r.score_label || undefined,
+      resumeSnippet: r.resume_preview || undefined
+    }));
+
+    return NextResponse.json({ ok: true, reports });
+  } catch (error) {
+    console.error("API /reports error:", error);
+    return NextResponse.json({ ok: false, reports: [] }, { status: 500 });
+  }
 }

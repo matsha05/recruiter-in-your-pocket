@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
+
+const fontDisplay = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  display: "swap",
+  variable: "--font-display"
+});
+
+const fontBody = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-body"
+});
 
 export const metadata: Metadata = {
   title: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",
@@ -13,18 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${fontDisplay.variable} ${fontBody.variable}`}>
       <head>
         {/* Favicon */}
         <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-
-        {/* Google Fonts - matching original design system */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body>
         <AuthProvider>{children}</AuthProvider>

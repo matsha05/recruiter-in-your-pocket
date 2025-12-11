@@ -20,8 +20,8 @@ module.exports = {
 
       // Custom font families
       fontFamily: {
-        display: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-        body: ['Manrope', 'system-ui', '-apple-system', 'sans-serif']
+        display: ['var(--font-display)', 'system-ui', '-apple-system', 'sans-serif'],
+        body: ['var(--font-body)', 'system-ui', '-apple-system', 'sans-serif']
       },
 
       // Font sizes for heading hierarchy

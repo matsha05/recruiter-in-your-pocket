@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import type { User } from "@supabase/supabase-js";
 
@@ -23,18 +23,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<AuthUser | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const supabase = createSupabaseBrowserClient();
+    // Create the browser client once (stable instance)
+    const supabase = useMemo(() => createSupabaseBrowserClient(), []);
 
-    const mapUser = (supabaseUser: User | null): AuthUser | null => {
+    const mapUser = useCallback((supabaseUser: User | null): AuthUser | null => {
         if (!supabaseUser) return null;
         return {
             id: supabaseUser.id,
             email: supabaseUser.email || null,
             firstName: supabaseUser.user_metadata?.first_name || null
         };
-    };
+    }, []);
 
-    const refreshUser = async () => {
+    const refreshUser = useCallback(async () => {
         try {
             const { data: { user: supabaseUser } } = await supabase.auth.getUser();
             setUser(mapUser(supabaseUser));
@@ -42,7 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             console.error("Error refreshing user:", error);
             setUser(null);
         }
-    };
+    }, [mapUser, supabase]);
 
     const signOut = async () => {
         try {
@@ -67,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return () => {
             subscription.unsubscribe();
         };
-    }, []);
+    }, [mapUser, refreshUser, supabase]);
 
     return (
         <AuthContext.Provider value={{ user, isLoading, signOut, refreshUser }}>

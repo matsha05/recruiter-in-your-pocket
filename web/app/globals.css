@@ -1,6 +1,3 @@
-/* Google Fonts - Plus Jakarta Sans (display) + Manrope (body) */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Manrope:wght@400;500;600&display=swap");
-
 /* Tailwind CSS */
 @tailwind base;
 @tailwind components;

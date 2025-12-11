@@ -115,7 +115,7 @@ export default function WorkspaceClient() {
         } finally {
             setIsLoading(false);
         }
-    }, [resumeText, jobDescription]);
+    }, [resumeText, jobDescription, freeUsesRemaining]);
 
     const handleNewReport = useCallback(() => {
         setResumeText("");

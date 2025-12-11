@@ -1,6 +1,9 @@
 /* Calibration runner: reads tests/calibration_results.csv, sends each resume to
- * /api/resume-feedback, compares returned content_score to target ranges in notes,
- * and prints a drift report. */
+ * the Next.js /api/resume-feedback endpoint, compares returned content_score to target ranges in notes,
+ * and prints a drift report.
+ *
+ * This intentionally does NOT depend on Express.
+ */
 
 if (typeof process.env.USE_MOCK_OPENAI === "undefined") {
   process.env.USE_MOCK_OPENAI = "0";
@@ -9,23 +12,12 @@ if (process.env.USE_MOCK_OPENAI === "1") {
   console.error("Calibration aborted: running in mock mode. Set USE_MOCK_OPENAI=0.");
   process.exit(1);
 }
-process.env.API_AUTH_TOKEN = process.env.API_AUTH_TOKEN || "";
-
 const fs = require("fs");
 const path = require("path");
-const app = require("../app");
+const { startNextServer } = require("./next_server");
 
 async function startServerSafe() {
-  return new Promise((resolve, reject) => {
-    const server = app.listen({ port: 0, host: "127.0.0.1" });
-
-    server.on("listening", () => resolve(server));
-    server.on("error", (err) => {
-      reject(
-        new Error("Calibration server failed to start — port conflict or EPERM.")
-      );
-    });
-  });
+  return await startNextServer({ ensureBuild: true });
 }
 
 function parseContentRange(notes) {
@@ -134,9 +126,7 @@ async function runCalibration() {
   const rows = parseCsv(csvText);
 
   const server = await startServerSafe();
-  if (!server) return;
-  const port = server.address().port;
-  const baseUrl = `http://127.0.0.1:${port}`;
+  const baseUrl = server.baseUrl;
 
   const results = [];
 
@@ -178,7 +168,7 @@ async function runCalibration() {
     });
   }
 
-  server.close();
+  await server.stop();
 
   if (results.length === 0) {
     console.log("No resumes processed.");

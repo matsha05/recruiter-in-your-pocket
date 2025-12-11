@@ -5,3 +5,19 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Next.js / Turbopack build output
+.next
+**/.next/**
+.turbo
+**/.turbo/**
+
+# Vercel metadata
+.vercel
+**/.vercel/**
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Local logs
+*.log

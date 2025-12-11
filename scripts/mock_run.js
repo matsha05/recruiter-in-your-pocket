@@ -1,28 +1,12 @@
 // Run the app in mock mode and POST all test resumes to the API, asserting shape.
 const assert = require("assert");
 process.env.USE_MOCK_OPENAI = "1";
-process.env.API_AUTH_TOKEN = ""; // disable auth for mock script
-
-const app = require("../app");
+const { startNextServer } = require("./next_server");
 const fs = require("fs");
 const path = require("path");
 
 async function startServerSafe() {
-  return new Promise((resolve, reject) => {
-    const server = app.listen({ port: 0, host: "127.0.0.1" });
-
-    server.on("listening", () => resolve(server));
-    server.on("error", (err) => {
-      if (["EACCES", "EADDRINUSE", "EPERM"].includes(err.code)) {
-        console.warn(
-          `Mock run skipped: cannot bind test server in this environment (${err.code}).`
-        );
-        resolve(null);
-        return;
-      }
-      reject(err);
-    });
-  });
+  return await startNextServer({ ensureBuild: true });
 }
 
 async function run() {
@@ -31,8 +15,7 @@ async function run() {
     return;
   }
 
-  const port = server.address().port;
-  const baseUrl = `http://127.0.0.1:${port}`;
+  const baseUrl = server.baseUrl;
 
   const resumesDir = path.join(__dirname, "..", "tests", "resumes");
   const files = fs.readdirSync(resumesDir).filter((f) => f.endsWith(".txt"));
@@ -73,7 +56,7 @@ async function run() {
   assert.ok(Array.isArray(ideasPayload.data.notes));
   assert.ok(typeof ideasPayload.data.how_to_use === "string");
 
-  server.close();
+  await server.stop();
   console.log("Mock run completed across sample resumes and resume ideas.");
 }
 

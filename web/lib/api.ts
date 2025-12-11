@@ -60,17 +60,6 @@ export async function parseResume(formData: FormData): Promise<{ ok: boolean; te
   return data;
 }
 
-export async function createCheckoutSession(tier: "24h" | "30d" = "24h"): Promise<{ ok: boolean; url?: string; message?: string }> {
-  const res = await fetch(`/api/create-checkout-session`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ tier })
-  });
-  const data = await res.json();
-  return data;
-}
-
 // Wrapper for postResumeFeedback that returns data in format expected by WorkspaceClient
 export async function createResumeFeedback(resumeText: string, jobDescription?: string): Promise<{ ok: boolean; report?: any; message?: string }> {
   const result = await postResumeFeedback({

@@ -2,20 +2,12 @@
 const assert = require("assert");
 
 process.env.USE_MOCK_OPENAI = "1";
-const app = require("../app");
-
-let testServer = null;
+const { startNextServer } = require("../scripts/next_server");
+let next = null;
 
 async function request(method, url, body = null) {
-  // Start server if not already started
-  if (!testServer) {
-    testServer = app.listen(0); // Use random port
-    // Wait for server to be ready
-    await new Promise((resolve) => testServer.once("listening", resolve));
-  }
-
-  const port = testServer.address().port;
-  const fullUrl = `http://localhost:${port}${url}`;
+  if (!next) next = await startNextServer();
+  const fullUrl = `${next.baseUrl}${url}`;
 
   const response = await fetch(fullUrl, {
     method,
@@ -94,17 +86,12 @@ async function run() {
 
     console.log("Contract tests for /api/export-pdf passed.");
   } finally {
-    if (testServer) {
-      testServer.close();
-    }
+    if (next) await next.stop();
   }
 }
 
 run().catch((err) => {
   console.error(err);
-  if (testServer) {
-    testServer.close();
-  }
   process.exit(1);
 });
 

@@ -1,1 +1,12 @@
 .vercel
+
+# Next.js build output
+.next
+**/.next/**
+
+# Turbopack
+.turbo
+**/.turbo/**
+
+# TypeScript incremental build info
+*.tsbuildinfo

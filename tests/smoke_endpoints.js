@@ -1,64 +1,26 @@
-// Lightweight smoke test that exercises health/ready handlers without binding a port.
 const assert = require("assert");
-const http = require("http");
-const { Duplex } = require("stream");
 
 process.env.USE_MOCK_OPENAI = "1";
-const app = require("../app");
-
-function makeSocket() {
-  const socket = new Duplex({
-    read() { },
-    write(chunk, encoding, callback) {
-      callback();
-    }
-  });
-  socket.remoteAddress = "127.0.0.1";
-  return socket;
-}
-
-function request(app, method, url) {
-  return new Promise((resolve, reject) => {
-    const socket = makeSocket();
-    const req = new http.IncomingMessage(socket);
-    req.method = method;
-    req.url = url;
-    req.originalUrl = url;
-    req.headers = { host: "localhost" };
-
-    const res = new http.ServerResponse(req);
-    const chunks = [];
-
-    const end = res.end;
-    res.write = function (chunk) {
-      if (chunk) chunks.push(Buffer.from(chunk));
-      return true;
-    };
-    res.end = function (chunk, encoding, cb) {
-      if (chunk) chunks.push(Buffer.from(chunk, encoding));
-      end.call(res, chunk, encoding, cb);
-    };
-
-    res.on("finish", () => {
-      const body = Buffer.concat(chunks).toString("utf8");
-      resolve({ status: res.statusCode, body });
-    });
-
-    res.on("error", reject);
-    app.handle(req, res, (err) => {
-      if (err) reject(err);
-    });
-  });
-}
+const { startNextServer } = require("../scripts/next_server");
 
 async function run() {
-  const health = await request(app, "GET", "/health");
-  assert.strictEqual(health.status, 200);
-  assert.strictEqual(JSON.parse(health.body).ok, true);
+  const next = await startNextServer();
+  try {
+    const healthRes = await fetch(`${next.baseUrl}/api/health`);
+    assert.strictEqual(healthRes.status, 200);
+    assert.strictEqual((await healthRes.json()).ok, true);
 
-  const ready = await request(app, "GET", "/ready");
-  assert.strictEqual(ready.status, 200, `Ready failed: ${ready.body}`);
-  assert.strictEqual(JSON.parse(ready.body).ok, true);
+    const readyRes = await fetch(`${next.baseUrl}/api/ready`);
+    const readyJson = await readyRes.json().catch(() => null);
+    assert.strictEqual(
+      readyRes.status,
+      200,
+      `Ready failed: ${readyJson ? JSON.stringify(readyJson) : "non-json response"}`
+    );
+    assert.strictEqual(readyJson.ok, true);
+  } finally {
+    await next.stop();
+  }
 
   console.log("Smoke endpoints passed.");
   process.exit(0);

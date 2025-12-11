@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev:backend": "PORT=3001 nodemon server.js",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev --prefix web\"",
-    "test": "node tests/validation.js && node tests/schema_contract.js && node tests/schema_contract_ideas.js && node tests/smoke_endpoints.js && node scripts/mock_run.js",
+    "dev": "npm run dev --prefix web",
+    "dev:legacy": "concurrently \"npm run dev:backend\" \"npm run dev --prefix web\"",
+    "test": "node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js && node scripts/mock_run.js",
     "test:ready": "node tests/test_ready_and_auth.js",
     "calibrate": "node scripts/calibrate_score.js",
     "migrate": "node scripts/migrate.js"

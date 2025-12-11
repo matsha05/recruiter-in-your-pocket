@@ -16,7 +16,8 @@ const PRICE_IDS = {
 const getBaseUrl = () => {
     if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
     if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    return "http://localhost:3001";
+    // Next dev server default
+    return "http://localhost:3000";
 };
 
 export async function POST(request: Request) {
