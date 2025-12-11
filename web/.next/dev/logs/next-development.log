@@ -326,3 +326,6 @@ Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
 [00:19:06.949] Server  LOG      ✓ Compiled in 213ms
 [00:19:39.563] Server  LOG      ✓ Compiled in 328ms
 [00:19:44.263] Server  LOG      ✓ Compiled in 7ms
+[01:28:32.205] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:28:32.345] Browser WARN    Image with src "/assets/founder-avatar.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities

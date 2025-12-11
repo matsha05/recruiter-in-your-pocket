@@ -4,10 +4,10 @@ const API_BASE = process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE ||
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
     try {
-        const reportId = params.id;
+        const { id: reportId } = await context.params;
         const cookie = request.headers.get("cookie") || "";
 
         const response = await fetch(`${API_BASE}/api/reports/${reportId}`, {
