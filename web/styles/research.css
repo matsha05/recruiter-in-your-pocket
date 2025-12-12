@@ -1,10 +1,9 @@
 /**
  * research.css - Research Pages Styles
  * 
- * Uses unified tokens from tokens.css for consistent branding.
+ * Uses tokens from globals.css (single source of truth).
  */
 
-@import url("./tokens.css");
 
 * {
     margin: 0;

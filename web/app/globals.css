@@ -105,6 +105,8 @@
     /* ===== RADIUS ===== */
     --radius-xs: 8px;
     --radius-sm: 12px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
     --radius-card: 16px;
     --radius-card-lg: 24px;
     --radius-pill: 999px;
@@ -117,6 +119,39 @@
 
     /* ===== MOTION ===== */
     --ease-smooth: cubic-bezier(0.21, 0.74, 0.23, 0.99);
+    --motion-duration-short: 200ms;
+    --motion-duration-medium: 300ms;
+
+    /* ===== TYPOGRAPHY (additional sizes) ===== */
+    --fs-tiny: 12px;
+    --fs-xs: 13px;
+    --fs-small: 14px;
+
+    /* ===== SPACING (8px grid) ===== */
+    --sp-xs: 4px;
+    --sp-s: 8px;
+    --sp-m: 16px;
+    --sp-l: 24px;
+    --sp-xl: 32px;
+
+    /* ===== RESEARCH UI TOKENS ===== */
+    --text-reference: var(--text-secondary);
+    --text-reference-active: var(--text-primary);
+    --reference-indicator: var(--brand);
+    --text-citation: var(--text-link);
+    --bg-citation: var(--bg-card);
+    --border-citation: var(--border-subtle);
+    --shadow-citation: var(--shadow-soft);
+    --text-meta: var(--text-secondary);
+
+    /* ===== LEGACY ALIASES ===== */
+    --bg-page: var(--bg-body);
+    --accent: var(--brand);
+    --accent-soft: color-mix(in srgb, var(--brand) 24%, #ffffff);
+    --accent-wash: var(--color-indigo-50);
+    --accent-width: 2px;
+    --text-main: var(--text-primary);
+    --text-soft: var(--text-secondary);
   }
 
   .dark,
@@ -898,4 +933,3 @@
 .animate-score-in {
   animation: score-in 220ms var(--ease-smooth) 40ms both;
 }
-
