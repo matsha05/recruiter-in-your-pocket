@@ -1,0 +1,141 @@
+{
+    "slug": "how-people-scan",
+    "category": [
+        "Usability research"
+    ],
+    "title": "How People Scan Pages Before They Read",
+    "subtitle": "Usability research shows approximately 80% of users scan pages rather than reading word-by-word. Understanding these patterns helps structure resumes for the human eye.",
+    "year": "2006-2020",
+    "authors": [
+        "Nielsen Norman Group"
+    ],
+    "primarySource": {
+        "link": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/",
+        "type": "report"
+    },
+    "studySnapshot": {
+        "whatItStudied": "How people visually scan pages before deciding to read in depth",
+        "method": [
+            "Eye-tracking",
+            "Usability testing",
+            "Pattern analysis"
+        ],
+        "sample": "Multiple studies across thousands of participants",
+        "keyFinding": "~80% of users scan pages rather than reading word-by-word",
+        "keyStat": "~80% of users scan, not read",
+        "soWhatForResumes": "Your resume structure matters as much as the content itself"
+    },
+    "figures": [
+        {
+            "id": "figure-1",
+            "title": "F-Pattern scanning behavior",
+            "caption": "Eye-tracking reveals the F-pattern: horizontal sweep at top, shorter sweep below, vertical scan down the left edge.",
+            "component": "ScanPatternOverlay"
+        }
+    ],
+    "keyInsights": [
+        {
+            "marker": "F-PATTERN",
+            "title": "The F-shaped pattern dominates",
+            "explanation": "Eyes sweep horizontally at top, then shorter horizontal sweep, then vertical scan down the left side.",
+            "riypImplication": "We check that your most important info appears where F-pattern eyes land.",
+            "impacts": [
+                "Main Score",
+                "Structure"
+            ]
+        },
+        {
+            "marker": "SPOTTED",
+            "title": "Eyes jump to anchors",
+            "explanation": "The 'spotted pattern' shows eyes jumping to numbers, names, titles, and keywords.",
+            "riypImplication": "Bullet Upgrades encourage leading with metrics and strong verbs.",
+            "impacts": [
+                "Bullet Upgrades"
+            ]
+        },
+        {
+            "marker": "LAYER CAKE",
+            "title": "Headings create layers",
+            "explanation": "The 'layer cake pattern' shows eyes hopping from heading to heading, skimming content between.",
+            "riypImplication": "We ensure your section headers are clear and distinct.",
+            "impacts": [
+                "Readability Score"
+            ]
+        },
+        {
+            "index": 3,
+            "title": "One idea per bullet wins",
+            "explanation": "Multi-idea bullets get partially scanned; single-idea bullets get fully processed.",
+            "riypImplication": "We flag compound bullets and suggest splitting them.",
+            "impacts": [
+                "Top Fixes",
+                "Bullet Upgrades"
+            ]
+        },
+        {
+            "index": 4,
+            "title": "Numbers near the front get seen",
+            "explanation": "Impact buried at the end of sentences often gets missed during scanning.",
+            "riypImplication": "Bullet Upgrades move metrics toward the front of bullets.",
+            "impacts": [
+                "Bullet Upgrades"
+            ]
+        },
+        {
+            "index": 5,
+            "title": "Consistent alignment speeds scanning",
+            "explanation": "Predictable layouts let eyes move faster with more confidence.",
+            "riypImplication": "Our Readability score factors in formatting consistency.",
+            "impacts": [
+                "Readability Score"
+            ]
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Structure Analysis",
+            "why": "we check that important content appears where scanning patterns predict attention."
+        },
+        {
+            "feature": "Bullet Upgrades",
+            "why": "we encourage leading with metrics and strong verbs to catch scanning eyes."
+        },
+        {
+            "feature": "Readability Score",
+            "why": "we factor in formatting consistency that supports predictable scanning."
+        }
+    ],
+    "sources": [
+        {
+            "id": 1,
+            "name": "Nielsen Norman Group: F-Shaped Pattern",
+            "url": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/",
+            "date": "2006",
+            "notes": "primary"
+        },
+        {
+            "id": 2,
+            "name": "Nielsen Norman Group: How People Read Online",
+            "url": "https://www.nngroup.com/articles/how-people-read-online/",
+            "date": "2020",
+            "notes": "supporting"
+        }
+    ],
+    "footnotes": [
+        {
+            "id": 1,
+            "title": "How Users Read on the Web",
+            "author": "Nielsen Norman Group",
+            "year": 2006,
+            "evidence": "Studies show ~80% of users scan rather than read word-by-word.",
+            "sourceUrl": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/",
+            "position": "hero-section"
+        }
+    ],
+    "limitations": [
+        "Web scanning patterns may differ from paper document scanning",
+        "Individual reading habits vary significantly",
+        "Research focused on web content; resume-specific data is limited"
+    ],
+    "lastUpdated": "2024-12-12"
+}

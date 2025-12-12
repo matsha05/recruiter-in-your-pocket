@@ -18,7 +18,6 @@ const studies = [
         thesis: "Recruiters make fit/no-fit decisions in seconds, focusing on titles, companies, and dates.",
         methods: ["Eye-tracking", "Heat mapping"],
         readTime: "4 min",
-        tags: ["scanning", "structure"],
         href: "/research/how-recruiters-read",
         productTie: "Recruiter First Impression",
     },
@@ -30,7 +29,6 @@ const studies = [
         thesis: "People scan pages in F-patterns, latching onto headings, numbers, and the start of lines.",
         methods: ["Usability testing", "Pattern analysis"],
         readTime: "5 min",
-        tags: ["scanning", "bullets"],
         href: "/research/how-people-scan",
         productTie: "Bullet Upgrades",
     },
@@ -38,11 +36,10 @@ const studies = [
         id: "ats-myths",
         number: "03",
         category: "Industry analysis",
-        title: "ATS Myths vs Reality",
-        thesis: "The '75% never read' claim is marketing, not research. ATS organizes—it rarely auto-rejects.",
-        methods: ["Industry analysis", "Vendor research"],
+        title: "ATS: How Applicant Tracking Systems Actually Work",
+        thesis: "ATS systems rank and filter candidates. Human review, not algorithms, is the primary bottleneck.",
+        methods: ["Peer-reviewed research", "Vendor documentation"],
         readTime: "4 min",
-        tags: ["ats", "structure"],
         href: "/research/ats-myths",
         productTie: "Human clarity focus",
     },
@@ -58,84 +55,79 @@ export default function ResearchPage() {
                 <ThemeToggle />
             </header>
 
-            <section className="research-hero">
-                <span className="research-chip">The foundation</span>
-                <h1 className="research-title">Hiring Research Library</h1>
-                <p className="research-subtitle">
+            {/* Hero - no container, just text on background */}
+            <section className="library-hero">
+                <span className="library-label">The foundation</span>
+                <h1 className="library-title">Hiring Research Library</h1>
+                <p className="library-subtitle">
                     Most resume tools lean on myths about bots and secret filters. Recruiter in Your Pocket
                     is built on how recruiters actually read resumes and decide who moves forward.
                 </p>
             </section>
 
-            {/* Filter chips - static for now, could be interactive later */}
-            <div className="filter-chips">
-                <span className="filter-chip active">All Studies</span>
-                <span className="filter-chip">Scanning</span>
-                <span className="filter-chip">Structure</span>
-                <span className="filter-chip">Bullets</span>
-                <span className="filter-chip">ATS</span>
-            </div>
+            {/* Filter tabs - text-only with underline */}
+            <nav className="filter-tabs">
+                <button className="filter-tab active">All Studies</button>
+                <button className="filter-tab">Scanning</button>
+                <button className="filter-tab">Structure</button>
+                <button className="filter-tab">Bullets</button>
+                <button className="filter-tab">ATS</button>
+            </nav>
 
-            {/* Core Studies Section */}
-            <div className="core-studies-section">
-                <h2 className="core-studies-label">Core Studies</h2>
+            {/* Study list - editorial rows, not cards */}
+            <section className="study-index">
+                {studies.map((study) => (
+                    <article key={study.id} className="study-row">
+                        <span className="study-row-category">{study.category}</span>
+                        <h2 className="study-row-title">
+                            <Link href={study.href}>{study.title}</Link>
+                        </h2>
+                        <p className="study-row-thesis">{study.thesis}</p>
+                        <div className="study-row-meta">
+                            <span className="study-row-time">{study.readTime} read</span>
+                            <span className="study-row-dot">·</span>
+                            <span className="study-row-methods">
+                                Methods: {study.methods.join(", ").toLowerCase()}
+                            </span>
+                        </div>
+                        <p className="study-row-riyp">
+                            Informs <strong>{study.productTie}</strong>
+                        </p>
+                    </article>
+                ))}
+            </section>
 
-                <div className="research-card-grid">
-                    {studies.map((study) => (
-                        <Link key={study.id} href={study.href} className="research-card">
-                            <div className="research-card-source">
-                                {study.number} · {study.category}
-                            </div>
-                            <div className="research-card-title">{study.title}</div>
-                            <p className="research-card-excerpt">{study.thesis}</p>
-                            <div className="research-card-meta">
-                                <span className="research-card-read-time">📖 {study.readTime}</span>
-                                <div className="research-card-methods">
-                                    {study.methods.map((method) => (
-                                        <span key={method} className="research-card-method">
-                                            {method}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="research-card-takeaway">
-                                We use this to design <strong>{study.productTie}</strong>
-                            </div>
-                            <span className="research-card-arrow">Read the deep dive →</span>
-                        </Link>
-                    ))}
-                </div>
-            </div>
+            {/* How this shapes RIYP - simple editorial list */}
+            <section className="riyp-section">
+                <h2 className="riyp-heading">How this shapes Recruiter in Your Pocket</h2>
+                <ul className="riyp-list">
+                    <li>
+                        <strong>Recruiter First Impression</strong> models the first few seconds where a
+                        recruiter decides whether to move you forward or move on.
+                    </li>
+                    <li>
+                        Our <strong>main score</strong> focuses on clarity, scope, and story, not keyword
+                        stuffing.
+                    </li>
+                    <li>
+                        <strong>Bullet Upgrades</strong> are designed to match how eyes actually scan impact,
+                        numbers, and verbs.
+                    </li>
+                    <li>
+                        Our <strong>ATS education</strong> is honest and simple. We keep your resume parser
+                        friendly and recruiter clear instead of selling tricks.
+                    </li>
+                </ul>
+            </section>
 
-            <h2 className="research-section-title">How this shapes Recruiter in Your Pocket</h2>
+            {/* Note */}
+            <p className="library-note">
+                We will continue to add to this research section as we incorporate more evidence into
+                how we design and improve Recruiter in Your Pocket.
+            </p>
 
-            <ul className="research-bullets">
-                <li>
-                    <strong>Recruiter First Impression</strong> models the first few seconds where a
-                    recruiter decides whether to move you forward or move on.
-                </li>
-                <li>
-                    Our <strong>main score</strong> focuses on clarity, scope, and story, not keyword
-                    stuffing.
-                </li>
-                <li>
-                    <strong>Bullet Upgrades</strong> are designed to match how eyes actually scan impact,
-                    numbers, and verbs.
-                </li>
-                <li>
-                    Our <strong>ATS education</strong> is honest and simple. We keep your resume parser
-                    friendly and recruiter clear instead of selling tricks.
-                </li>
-            </ul>
-
-            <div className="highlight-box">
-                <p>
-                    We will continue to add to this research section as we incorporate more evidence into
-                    how we design and improve Recruiter in Your Pocket.
-                </p>
-            </div>
-
-            <div className="cta-section" style={{ textAlign: "center", margin: "40px 0" }}>
+            {/* CTA */}
+            <div className="cta-section" style={{ textAlign: "center", margin: "48px 0" }}>
                 <Link href="/workspace" className="cta-link">
                     Try it on your resume → Get your free analysis
                 </Link>

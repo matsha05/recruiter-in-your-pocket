@@ -1008,81 +1008,221 @@ a {
    LIBRARY PAGE ENHANCEMENTS
    ============================================= */
 
-/* Filter chips */
-.filter-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 32px;
-    justify-content: center;
-}
+/* ============================================
+   RESEARCH LIBRARY INDEX (Editorial Index)
+   Following Research UI Contract: documents, not interfaces
+   ============================================ */
 
-.filter-chip {
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-card);
-    color: var(--text-soft);
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.filter-chip:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-.filter-chip.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-}
-
-/* Enhanced research cards */
-.research-card-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-}
-
-.research-card-read-time {
-    font-size: 12px;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.research-card-methods {
-    display: flex;
-    gap: 4px;
-}
-
-.research-card-method {
-    font-size: 10px;
-    font-weight: 600;
-    background: var(--accent-wash);
-    color: var(--accent);
-    padding: 2px 6px;
-    border-radius: 3px;
-}
-
-/* Core studies section */
-.core-studies-section {
+/* Library hero - no container, text on body */
+.library-hero {
+    text-align: left;
     margin-bottom: 48px;
+    padding: 0;
+    /* No background, border, or container */
 }
 
-.core-studies-label {
-    font-size: 12px;
-    font-weight: 700;
+.library-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.library-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 800;
     margin-bottom: 16px;
+    line-height: 1.15;
+    color: var(--text-main);
+}
+
+.library-subtitle {
+    font-size: 17px;
+    color: var(--text-soft);
+    max-width: 640px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Filter tabs - text-only with underline indicator */
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 12px;
+}
+
+.filter-tab {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-soft);
+    background: none;
+    border: none;
+    padding: 8px 0;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.15s ease;
+}
+
+.filter-tab:hover {
+    color: var(--text-main);
+}
+
+.filter-tab.active {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.filter-tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+}
+
+/* Study index - editorial list, no cards */
+.study-index {
+    margin-bottom: 64px;
+}
+
+.study-row {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    /* No background, no card styling */
+}
+
+.study-row:first-child {
+    padding-top: 0;
+}
+
+.study-row-category {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.study-row-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.study-row-title a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.study-row-title a:hover {
+    color: var(--accent);
+}
+
+.study-row-thesis {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+    max-width: 600px;
+}
+
+.study-row-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.study-row-dot {
+    color: var(--text-muted);
+}
+
+.study-row-time,
+.study-row-methods {
+    color: var(--text-muted);
+}
+
+.study-row-riyp {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.study-row-riyp strong {
+    color: var(--text-soft);
+    font-weight: 600;
+}
+
+/* RIYP section - editorial list */
+.riyp-section {
+    margin-bottom: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.riyp-heading {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 24px 0;
+}
+
+.riyp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.riyp-list li {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.riyp-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+}
+
+.riyp-list strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* Library note */
+.library-note {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 32px 0;
+}
+
+/* Legacy: keep old filter chip styles for backward compat */
+.filter-chips {
+    display: none;
+    /* Hidden, replaced by filter-tabs */
 }
 
 

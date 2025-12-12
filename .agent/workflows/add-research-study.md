@@ -18,9 +18,59 @@ This workflow ensures every new research study follows consistent patterns, tone
 
 ---
 
+## Architecture Overview
+
+Research pages are data-driven. All structured content lives in JSON files.
+
+### File Locations
+
+| Type | Path |
+|------|------|
+| **TypeScript types** | `/web/types/research.ts` |
+| **JSON data files** | `/web/data/research/[slug].json` |
+| **Data loader** | `/web/data/index.ts` |
+| **Page component** | `/web/components/research/ResearchPage.tsx` |
+| **Individual pages** | `/web/app/research/[slug]/page.tsx` |
+
+### Adding a New Study
+
+1. **Create JSON file** at `/web/data/research/[slug].json`
+2. **Register in data loader** at `/web/data/index.ts`:
+   ```typescript
+   import newStudy from "./research/new-study.json";
+   
+   export const studies: Record<string, StudyData> = {
+       // ... existing studies
+       "new-study": newStudy as unknown as StudyData,
+   };
+   ```
+3. **Create page** at `/web/app/research/[slug]/page.tsx`:
+   ```typescript
+   import { getStudyBySlug } from "../../../data";
+   import { ResearchPage } from "../../../components/research";
+   
+   export default function NewStudyPage() {
+       const study = getStudyBySlug("new-study")!;
+       return <ResearchPage study={study} />;
+   }
+   ```
+
+### For Custom Narrative Content
+
+If your page needs custom prose sections beyond what JSON captures, use the `children` prop:
+
+```tsx
+<ResearchPage study={study}>
+    <h2>Custom Section Title</h2>
+    <p>Custom narrative content here...</p>
+</ResearchPage>
+```
+
+---
+
 ## Step 1: Create Study JSON (Ingestion)
 
-Create a new JSON file at `/web/data/research/[category]/[slug].json`.
+Create a new JSON file at `/web/data/research/[slug].json`.
 
 Use this prompt to convert source material into structured data:
 

@@ -1,0 +1,122 @@
+{
+    "slug": "how-recruiters-read",
+    "category": [
+        "Eye-tracking research"
+    ],
+    "title": "How Recruiters Actually Read Resumes",
+    "subtitle": "Eye-tracking research reveals recruiters spend an average of 6 seconds on initial resume screening. Here is what they look at, and what your resume needs to survive the skim.",
+    "year": 2012,
+    "authors": [
+        "TheLadders Research Team"
+    ],
+    "primarySource": {
+        "link": "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
+        "type": "report"
+    },
+    "studySnapshot": {
+        "whatItStudied": "How professional recruiters visually scan resumes during initial screening",
+        "method": [
+            "Eye-tracking",
+            "Heat mapping",
+            "Time analysis"
+        ],
+        "sample": "30 professional recruiters reviewing 300+ resumes",
+        "keyFinding": "~6 seconds for the initial fit/no-fit decision",
+        "keyStat": "~6 seconds for initial screening",
+        "soWhatForResumes": "The top of your resume carries more weight than the rest of the page combined"
+    },
+    "figures": [
+        {
+            "id": "figure-1",
+            "title": "Resume scanning zones based on eye-tracking data",
+            "caption": "Eye-tracking shows recruiters spend the majority of their initial scan on the top third of the page. The 'golden triangle' receives the most attention.",
+            "component": "ResumeScanZones"
+        }
+    ],
+    "keyInsights": [
+        {
+            "index": 0,
+            "title": "Name and title get the most attention",
+            "explanation": "Eye tracking heatmaps show the name/title area receives the longest fixation time during initial scan.",
+            "riypImplication": "Recruiter First Impression highlights how clearly your title and current role come across.",
+            "impacts": [
+                "Recruiter First Impression"
+            ]
+        },
+        {
+            "index": 1,
+            "title": "Current role is scanned second",
+            "explanation": "After the header, eyes move to the most recent job—title, company, and dates.",
+            "riypImplication": "Our main score weights your current role description heavily.",
+            "impacts": [
+                "Main Score"
+            ]
+        },
+        {
+            "index": 2,
+            "title": "Numbers catch the eye",
+            "explanation": "The 'spotted pattern' shows eyes jump to metrics, dollar amounts, and percentages.",
+            "riypImplication": "Bullet Upgrades push numbers toward the front of each bullet.",
+            "impacts": [
+                "Bullet Upgrades"
+            ]
+        },
+        {
+            "index": 3,
+            "title": "Dense text gets skimmed over",
+            "explanation": "Resumes with clear headings and consistent formatting got more focused attention.",
+            "riypImplication": "We flag overly long bullets and suggest breaking them up.",
+            "impacts": [
+                "Readability Score",
+                "Top Fixes"
+            ]
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Recruiter First Impression",
+            "why": "we simulate what a recruiter notices in their first scan, based on eye-tracking data."
+        },
+        {
+            "feature": "Bullet Upgrades",
+            "why": "we push numbers toward the front of bullets, where eyes land during the spotted pattern."
+        },
+        {
+            "feature": "Readability Score",
+            "why": "we flag dense walls of text that get skimmed over during fast scans."
+        }
+    ],
+    "sources": [
+        {
+            "id": 1,
+            "name": "TheLadders Eye-Tracking Study",
+            "url": "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
+            "date": "2012",
+            "notes": "primary"
+        },
+        {
+            "id": 2,
+            "name": "Nielsen Norman Group: F-Pattern Research",
+            "url": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/",
+            "date": "2006",
+            "notes": "supporting"
+        }
+    ],
+    "footnotes": [
+        {
+            "id": 1,
+            "title": "Eye Tracking Study",
+            "author": "TheLadders",
+            "year": 2012,
+            "evidence": "Eye-tracking data showed recruiters spend approximately 6 seconds on initial resume review.",
+            "sourceUrl": "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
+            "position": "hero-section"
+        }
+    ],
+    "limitations": [
+        "Study conducted in 2012; digital reading patterns may have evolved",
+        "Sample of 30 recruiters may not represent all industries",
+        "Study focused on US professional recruiting context"
+    ],
+    "lastUpdated": "2024-12-12"
+}

@@ -1,0 +1,162 @@
+{
+    "slug": "ats-myths",
+    "category": [
+        "Industry research"
+    ],
+    "title": "ATS: How Applicant Tracking Systems Actually Work",
+    "subtitle": "ATS systems store, rank, and help recruiters search candidates. They rarely auto-reject based on resume content alone. The real gate is human time and attention.",
+    "year": "2021-2024",
+    "authors": [],
+    "primarySource": {
+        "link": "",
+        "type": "practitioner-analysis"
+    },
+    "studySnapshot": {
+        "whatItStudied": "How ATS systems are used in hiring workflows, and where automation influences screening",
+        "method": [
+            "Peer-reviewed research",
+            "Legal scholarship",
+            "Vendor documentation"
+        ],
+        "sample": "Academic studies, ATS vendor help docs (Greenhouse, Lever, Workday), eye-tracking research",
+        "keyFinding": "Human time and attention, not algorithmic rejection, is the primary bottleneck",
+        "keyStat": "Human review is the primary bottleneck",
+        "soWhatForResumes": "Resume clarity and structure matter because humans still skim under time pressure"
+    },
+    "figures": [
+        {
+            "id": "figure-1",
+            "title": "ATS workflow: database and ranking, not automatic deletion",
+            "caption": "ATS systems organize candidates into searchable databases. Recruiters use filters, keyword search, and ranking to prioritize review. Auto-archive typically applies only to knockout questions (visa status, certifications), not resume formatting.",
+            "component": "MythRealityVisual"
+        }
+    ],
+    "keyInsights": [
+        {
+            "marker": "KNOCKOUT",
+            "title": "Knockout questions filter for eligibility",
+            "explanation": "Auto-archive typically triggers on work authorization, required certifications, or location—not resume keywords.",
+            "riypImplication": "We focus on clarity, not keyword stuffing, because content rarely triggers rejection.",
+            "impacts": [
+                "ATS Education"
+            ]
+        },
+        {
+            "marker": "RANKING",
+            "title": "Match scores rank, they don't delete",
+            "explanation": "Some ATS compute relevance scores, but these prioritize candidates for review rather than auto-rejecting.",
+            "riypImplication": "Our scoring simulates human impression, not ATS optimization.",
+            "impacts": [
+                "Main Score"
+            ]
+        },
+        {
+            "marker": "SEARCH",
+            "title": "Recruiters search the database",
+            "explanation": "Recruiters use keyword and boolean searches to find candidates. ATS surfaces results; humans decide.",
+            "riypImplication": "We help your resume communicate clearly to both systems and humans.",
+            "impacts": [
+                "Clarity"
+            ]
+        },
+        {
+            "marker": "WORKFLOW",
+            "title": "Stage rules manage pipeline flow",
+            "explanation": "Automated emails, interview scheduling, and status updates are workflow features, not rejection mechanisms.",
+            "riypImplication": "Recruiter First Impression focuses on the human skim, where decisions actually happen.",
+            "impacts": [
+                "Recruiter First Impression"
+            ]
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Clarity over keywords",
+            "why": "resume content rarely triggers automatic rejection—but unclear writing loses the human skim."
+        },
+        {
+            "feature": "Structure matters",
+            "why": "well-organized resumes get parsed correctly AND scanned faster by recruiters."
+        },
+        {
+            "feature": "Recruiter First Impression",
+            "why": "focuses on what a human sees first, because that is where decisions happen."
+        },
+        {
+            "feature": "No ATS tricks",
+            "why": "we do not sell fear-based optimization because the evidence does not support it."
+        }
+    ],
+    "sources": [
+        {
+            "id": 1,
+            "name": "Hunkenschroer & Luetge (2022) — Ethics of AI-Enabled Recruiting",
+            "url": "https://link.springer.com/article/10.1007/s10551-022-05049-6",
+            "date": "2022",
+            "notes": "primary"
+        },
+        {
+            "id": 2,
+            "name": "Ajunwa (2021) — Auditing Imperative for Automated Hiring",
+            "url": "https://jolt.law.harvard.edu/assets/articlePDFs/v34/5.-Ajunwa-An-Auditing-Imperative-for-Automated-Hiring-Systems.pdf",
+            "date": "2021",
+            "notes": "primary"
+        },
+        {
+            "id": 3,
+            "name": "TheLadders Eye-Tracking Study",
+            "url": "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
+            "date": "2012",
+            "notes": "primary"
+        },
+        {
+            "id": 4,
+            "name": "Greenhouse: Candidate Filters",
+            "url": "https://support.greenhouse.io/hc/en-us/articles/360043184152-Candidate-and-prospect-filters",
+            "date": "2024",
+            "notes": "supporting"
+        },
+        {
+            "id": 5,
+            "name": "Lever: Searching the Database",
+            "url": "https://help.lever.co/hc/en-us/articles/20087317030685-Searching-the-Database-for-Candidates",
+            "date": "2024",
+            "notes": "supporting"
+        }
+    ],
+    "footnotes": [
+        {
+            "id": 1,
+            "title": "Ethics of AI-Enabled Recruiting and Selection",
+            "author": "Hunkenschroer & Luetge",
+            "year": 2022,
+            "evidence": "Screening produces shortlists and rankings; ATS used for rediscovery and candidate tracking.",
+            "sourceUrl": "https://link.springer.com/article/10.1007/s10551-022-05049-6",
+            "position": "what-ats-does"
+        },
+        {
+            "id": 2,
+            "title": "An Auditing Imperative for Automated Hiring Systems",
+            "author": "Ajunwa",
+            "year": 2021,
+            "evidence": "Automated hiring systems are operationally meaningful but require oversight; not autonomous decision-makers.",
+            "sourceUrl": "https://jolt.law.harvard.edu/assets/articlePDFs/v34/5.-Ajunwa-An-Auditing-Imperative-for-Automated-Hiring-Systems.pdf",
+            "position": "what-ats-does"
+        },
+        {
+            "id": 3,
+            "title": "Eye Tracking Study",
+            "author": "TheLadders",
+            "year": 2012,
+            "evidence": "Eye-tracking data showed recruiters spend approximately 6 seconds on initial resume review.",
+            "sourceUrl": "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
+            "position": "why-feels-like-filter"
+        }
+    ],
+    "limitations": [
+        "ATS configurations vary by company",
+        "This analysis covers typical enterprise workflows; smaller organizations may differ",
+        "The 75% statistic origin is traced to media amplification, not a single identifiable source"
+    ],
+    "lastUpdated": "2024-12-12"
+}

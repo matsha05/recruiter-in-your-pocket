@@ -8,8 +8,10 @@ export { default as ExpandCollapse } from "./ExpandCollapse";
 export { default as FigureWrapper } from "./FigureWrapper";
 export { default as Footnote } from "./Footnote";
 export { default as OnThisPage } from "./OnThisPage";
+export { default as ResearchPage } from "./ResearchPage";
 
 // Diagrams
 export { default as ResumeScanZones } from "./diagrams/ResumeScanZones";
 export { default as ScanPatternOverlay } from "./diagrams/ScanPatternOverlay";
 export { default as MythRealityVisual } from "./diagrams/MythRealityVisual";
+
