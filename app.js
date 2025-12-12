@@ -665,7 +665,9 @@ setInterval(() => {
   }
 }, CLEANUP_INTERVAL_MS);
 
-app.use(express.static(path.join(__dirname)));
+// NOTE: Static files (assets, sample-report.json, robots.txt, sitemap.xml)
+// are now served by Next.js from /web/public/. Express is API-only.
+
 
 // File upload configuration for resume parsing
 const upload = multer({
