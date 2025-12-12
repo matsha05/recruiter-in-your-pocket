@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 
 interface AuthModalProps {
@@ -17,6 +17,56 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [isNewUser, setIsNewUser] = useState(false);
+
+    // Prevent double-submit on auto-verify
+    const isVerifyingRef = useRef(false);
+
+    // Define verifyCode as useCallback so it can be used in useEffect
+    const verifyCode = useCallback(async () => {
+        if (!code.trim() || loading) return;
+
+        setLoading(true);
+        setError(null);
+
+        try {
+            const res = await fetch("/api/auth/verify-code", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email.trim(), code: code.trim() })
+            });
+            const data = await res.json();
+
+            if (data.ok) {
+                // Check if user already has a first name set
+                if (data.user?.firstName) {
+                    // Existing user with name - done!
+                    onSuccess?.();
+                    onClose();
+                } else {
+                    // New user or no name yet - ask for name
+                    setIsNewUser(true);
+                    setStep("name");
+                }
+            } else {
+                setError(data.message || "Invalid code");
+                // Reset the ref so user can try again
+                isVerifyingRef.current = false;
+            }
+        } catch (err) {
+            setError("Something went wrong. Please try again.");
+            isVerifyingRef.current = false;
+        } finally {
+            setLoading(false);
+        }
+    }, [code, email, loading, onClose, onSuccess]);
+
+    // Auto-submit when code is complete (8 digits)
+    useEffect(() => {
+        if (step === "code" && code.length === 8 && !loading && !isVerifyingRef.current) {
+            isVerifyingRef.current = true;
+            verifyCode();
+        }
+    }, [code, step, loading, verifyCode]);
 
     if (!isOpen) return null;
 
@@ -49,43 +99,6 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         }
     };
 
-    const handleVerifyCode = async () => {
-        if (!code.trim()) {
-            setError("Please enter the code");
-            return;
-        }
-
-        setLoading(true);
-        setError(null);
-
-        try {
-            const res = await fetch("/api/auth/verify-code", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: email.trim(), code: code.trim() })
-            });
-            const data = await res.json();
-
-            if (data.ok) {
-                // Check if user already has a first name set
-                if (data.user?.firstName) {
-                    // Existing user with name - done!
-                    onSuccess?.();
-                    onClose();
-                } else {
-                    // New user or no name yet - ask for name
-                    setIsNewUser(true);
-                    setStep("name");
-                }
-            } else {
-                setError(data.message || "Invalid code");
-            }
-        } catch (err) {
-            setError("Something went wrong. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleSaveName = async () => {
         if (!firstName.trim()) {
@@ -190,7 +203,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                             placeholder="00000000"
                             className="input text-center text-2xl tracking-widest font-mono"
                             autoFocus
-                            onKeyDown={(e) => e.key === "Enter" && handleVerifyCode()}
+                            onKeyDown={(e) => e.key === "Enter" && verifyCode()}
                         />
 
                         {error && (
@@ -198,7 +211,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                         )}
 
                         <button
-                            onClick={handleVerifyCode}
+                            onClick={verifyCode}
                             disabled={loading || code.length !== 8}
                             className="btn-primary w-full"
                         >
@@ -206,7 +219,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                         </button>
 
                         <button
-                            onClick={() => { setStep("email"); setCode(""); setError(null); }}
+                            onClick={() => { setStep("email"); setCode(""); setError(null); isVerifyingRef.current = false; }}
                             className="btn-ghost w-full text-sm"
                         >
                             Use a different email
