@@ -112,13 +112,6 @@ export default function Hero() {
                     {/* Right column - Sample Report Preview Card */}
                     <div className="flex justify-center lg:justify-end">
                         <div className={`card-lg max-w-md w-full ${loaded ? "animate-score-in" : "opacity-0"}`}>
-                            {/* Label - reduced emphasis */}
-                            <div className="text-center mb-2">
-                                <span className="text-[var(--fs-small)] text-brand font-medium uppercase tracking-wide">
-                                    Sample Report Preview
-                                </span>
-                            </div>
-
                             {/* Score cluster */}
                             <div className="flex items-center gap-4 mb-4">
                                 <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full shadow-button flex-shrink-0">
