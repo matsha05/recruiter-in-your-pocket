@@ -4,7 +4,7 @@
 ## Overview
 This document defines the core design philosophy and principles for Recruiter in Your Pocket.
 
-**Last Updated:** 2025-12-09 (Unified Design System Refactor)
+**Last Updated:** 2025-12-12 (Report Craft Polish)
 
 Recruiter in Your Pocket is a tiny, high-end studio for your career story.  
 It should feel like a recruiter who's hired 1000+ people at Google, Facebook, OpenAI, and startups sat down with a thoughtful designer to read your resume and hand you a crafted report—not generic AI advice, but real insight from someone who's made actual hiring decisions.
@@ -183,7 +183,7 @@ Make the insight stack unmistakable:
 - the main takeaway visible in one second  
 - the Insight Stack, PDF, and Copy outputs get the most design attention  
 
-The report should have one obvious hero on each view (score + verdict, then one clear next action). Calm layout, strong hierarchy.
+The report should have one obvious hero on each view. **The recruiter first impression is the hero, not the score dial.** The dial provides a quick scannable signal, but the *insight text* is what differentiates us. Calm layout, strong hierarchy.
 
 If something doesn’t help the user understand their story faster, remove it with confidence.
 
@@ -193,13 +193,15 @@ If something doesn’t help the user understand their story faster, remove it wi
 Every screen, section, and panel must have one clear visual hero—the element the eye lands on first.
 
 A hero can be:
-- the score + verdict
+- the recruiter first impression (in reports, this is primary)
 - the primary CTA
 - the top insight in a section
 - the first “Better” rewrite
 - the clearest next action
 
-Everything else should support that hero, not compete with it.
+**The score dial is secondary.** It supports the insight but doesn't dominate. The dial's role is to provide a quick scannable signal—the recruiter read is what creates the "oh shit" moment.
+
+Everything else should support the hero, not compete with it.
 
 Hero hierarchy prevents “false calm,” reduces cognitive load, and makes the experience feel premium, confident, and intentionally crafted.
 
@@ -207,7 +209,31 @@ If a layout feels noisy or confusing, identify the hero and reduce everything el
 
 ---
 
-## 8. Premium Over Perfect  
+## 8. Document Feel, Not Dashboard  
+Reports should read like a crafted document from an expert, not a widget-filled dashboard.
+
+**Left-alignment signals authority:**
+- Chapter titles, content, and cards all share the same left edge
+- Left-aligned text reads like a professional report
+- Center-aligned text reads like a marketing page—use it there, not in reports
+
+**One frame of chrome:**
+- The report spine is the only sticky element
+- Tabs are quiet: typographic weight + thin underline, not colored pills or boxes
+- Score appears as a compact chip in the spine; the full dial lives only in the Overview content
+
+**Rhythm through repetition:**
+- Cards use one radius, one border, one shadow strategy
+- Card-to-card spacing is consistent (not varied gaps)
+- Premium comes from visual repetition, not variety
+
+**Line length matters:**
+- Long paragraphs (recruiter read, positioning) should have max-width for readability
+- Content width ~720px; recruiter read ~520px
+
+---
+
+## 9. Premium Over Perfect  
 We favor:
 - clarity over polish paralysis  
 - crafted moments over sterile minimalism  
@@ -220,7 +246,7 @@ The product should feel alive, not mechanical; expressive, not ornamental.
 
 ---
 
-## 9. Design Risks That Serve Insight
+## 10. Design Risks That Serve Insight
 
 We take design risks, but not randomly. We take risks that serve our dogma: **Insight + Premium Atmosphere.**
 
@@ -248,7 +274,7 @@ We take design risks, but not randomly. We take risks that serve our dogma: **In
 
 ---
 
-## 10. Consistency Builds Trust
+## 11. Consistency Builds Trust
 Recruiter in Your Pocket must maintain consistent:
 - spacing  
 - typography rules  
@@ -262,7 +288,7 @@ Ease builds trust.
 
 ---
 
-## 11. Recruiter-Grade Authority
+## 12. Recruiter-Grade Authority
 
 We speak from real experience: 1000+ hires across Google, Facebook, OpenAI, startups (Series A-C), and nonprofits. We've been CPOs, principal recruiters, and hiring managers who've seen what actually works.
 
@@ -280,7 +306,7 @@ This is the difference between recruiter-grade insight and generic AI slop.
 
 ---
 
-## 11.5. Visual Evidence of Expertise
+## 12.5. Visual Evidence of Expertise
 The interface should visually communicate that a real recruiter’s mind shaped the analysis.
 
 We reinforce expertise through:
@@ -296,7 +322,7 @@ If a screen feels generic or algorithmic, introduce editorial cues—clear summa
 
 ---
 
-## 12. Specificity Over Generics
+## 13. Specificity Over Generics
 
 Every insight should feel tailored to this person's story, not generic advice that could apply to anyone.
 
@@ -318,7 +344,7 @@ Recruiter-grade specificity sounds like:
 
 If feedback could apply to any resume, it's not specific enough. If it feels like we read their actual story, it's working.
 
-## 13. Instant Value Visibility
+## 14. Instant Value Visibility
 Users should immediately understand what the product does and what they get, visually and conceptually, without scrolling or reading deeply. We reinforce this by:
 - Showing an example of the report (score + summary + bullets) above the fold  
 - Demonstrating value before asking for input  
@@ -329,7 +355,7 @@ If they see the outcome, conversion accelerates.
 
 ---
 
-## 14. CTA Principles: The Moment of Commitment
+## 15. CTA Principles: The Moment of Commitment
 
 CTAs are the most important UI element for conversion. They deserve obsessive attention. A CTA is not just a button—it's an invitation, a promise, and a moment of vulnerability for the user.
 
