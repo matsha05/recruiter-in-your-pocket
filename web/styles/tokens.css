@@ -76,6 +76,32 @@
     --score-risk: var(--status-danger);
 
     /* =============================================
+     RESEARCH / REFERENCE UI
+     ============================================= */
+
+    /* Reference navigation (On this page rail) */
+    --text-reference: var(--text-secondary);
+    --text-reference-active: var(--text-primary);
+    --reference-indicator: var(--brand);
+
+    /* Citations / Footnotes */
+    --text-citation: var(--text-link);
+    --bg-citation: var(--bg-card);
+    --border-citation: var(--border-subtle);
+    --shadow-citation: var(--shadow-soft);
+
+    /* Figures and captions */
+    --text-figure-label: var(--text-secondary);
+    --text-figure-caption: var(--text-secondary);
+    --fs-figure-label: var(--fs-tiny);
+    --fs-figure-caption: var(--fs-tiny);
+
+    /* Research metadata */
+    --text-meta: var(--text-secondary);
+    --fs-meta: var(--fs-tiny);
+    --bg-meta: var(--bg-section-muted);
+
+    /* =============================================
      TYPOGRAPHY
      ============================================= */
     /* Fonts are loaded via next/font in app/layout.tsx and exposed as CSS variables:
