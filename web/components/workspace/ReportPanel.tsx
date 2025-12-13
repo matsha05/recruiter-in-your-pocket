@@ -19,6 +19,8 @@ interface ReportData {
     score_label?: string;
     score_comment_short?: string;
     score_comment_long?: string;
+    score_plain?: string;
+    biggest_gap_example?: string;
     summary?: string;
     subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
     first_impression?: string;
@@ -246,12 +248,34 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                     <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Recruiter First Impression</span>
                                                 </div>
                                                 <p className="text-[14px] leading-relaxed text-[var(--text-secondary)] max-w-[420px]">{firstImpressionText}</p>
-                                                {report.top_fixes?.[0] && (
-                                                    <div className="mt-4 pt-4 border-t border-[var(--border-subtle)]">
-                                                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)]">Next Step</span>
-                                                        <p className="text-[13px] text-[var(--text-secondary)] mt-1 max-w-[420px]">{report.top_fixes[0].fix || report.top_fixes[0].text}</p>
-                                                    </div>
+
+                                                {/* Score Plain */}
+                                                {report.score_plain && (
+                                                    <p className="text-[13px] text-[var(--text-primary)] mt-3 font-medium max-w-[420px]">{report.score_plain}</p>
                                                 )}
+
+                                                {/* Biggest Gap Example */}
+                                                {report.biggest_gap_example && (() => {
+                                                    // Parse quote (in single quotes) from explanation
+                                                    const match = report.biggest_gap_example.match(/^'([^']+)',?\s*(.*)$/);
+                                                    if (match) {
+                                                        return (
+                                                            <div className="mt-4 pt-4 border-t border-[var(--border-subtle)]">
+                                                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--status-warning)]">Biggest Gap</span>
+                                                                <div className="mt-2 max-w-[420px] bg-[var(--bg-section-muted)] px-3 py-2 rounded-lg border-l-2 border-[var(--status-warning)]">
+                                                                    <p className="text-[13px] font-medium text-[var(--text-primary)] italic">"{match[1]}"</p>
+                                                                    <p className="text-[13px] text-[var(--text-secondary)] mt-1">{match[2]}</p>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    }
+                                                    return (
+                                                        <div className="mt-4 pt-4 border-t border-[var(--border-subtle)]">
+                                                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--status-warning)]">Biggest Gap</span>
+                                                            <p className="text-[13px] text-[var(--text-secondary)] mt-2 max-w-[420px] bg-[var(--bg-section-muted)] px-3 py-2 rounded-lg border-l-2 border-[var(--status-warning)]">{report.biggest_gap_example}</p>
+                                                        </div>
+                                                    );
+                                                })()}
                                             </div>
                                         </div>
                                     </div>
