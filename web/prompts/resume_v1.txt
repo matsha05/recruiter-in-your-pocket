@@ -261,6 +261,16 @@ The JSON must match this shape exactly:
       "enhancement_note": ""
     }
   ],
+  "top_fixes": [
+    {
+      "fix": "",
+      "why": "",
+      "evidence": "",
+      "impact_level": "",
+      "effort": "",
+      "section_ref": ""
+    }
+  ],
   "next_steps": [],
   "subscores": {
     "impact": 0,
@@ -414,6 +424,32 @@ FIELD RULES
   - At the end of each enhancement_note, include a brief clause explaining why adding that detail helps (for example "so the reader can understand the scale of your work" or "which clarifies the magnitude of your impact"). Keep this explanation short and grounded.
   - enhancement_note must be one sentence, calm in tone, and supportive rather than prescriptive.
   - Do not add extra keys beyond label, original, better, and enhancement_note.
+
+- top_fixes
+  - Array of 3-5 highest-leverage edits the user can make right now.
+  - These are not general advice. Each fix must be specific and tied to something on the resume.
+  - Each top_fix object must have:
+    - fix: The specific action to take. Short and clear.
+    - why: A unique sentence explaining why this matters. Must be specific to this fix, not generic.
+    - evidence: A direct quote from the resume that triggered this fix. Always quote actual text.
+    - template: A fill-in-the-blank pattern they can paste and adapt.
+    - impact_level: "high", "medium", or "low"
+    - effort: "quick" (5 min), "moderate" (15 min), or "involved" (30+ min)
+    - section_ref: Which section this applies to (e.g., "Work Experience", "Summary")
+
+  Example fix:
+    - fix: "Add scope numbers to your top 2 bullets"
+    - why: "Right now your bullets sound real, but the size of the work is invisible."
+    - evidence: "Improved process across teams."
+    - impact_level: "high"
+    - effort: "quick"
+    - section_ref: "Work Experience"
+
+  Voice rules for top_fixes:
+  - "why" must be unique per fix. Do not repeat the same sentence across fixes.
+  - "why" should explain the consequence: what does this cost them if they don't fix it?
+  - "evidence" must quote actual text from the resume. Do not paraphrase.
+  - Do not use em dashes. Use commas or periods.
 
 - next_steps
   - Give clear steps the user can complete in one or two focused sessions.

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Download, FilePlus, Eye, Check, ArrowRight } from "lucide-react";
+import { Download, FilePlus, Eye, Check, ArrowRight, ChevronDown, Copy } from "lucide-react";
 
 // Score color
 function getScoreColor(score: number): string {
@@ -26,7 +26,7 @@ interface ReportData {
     first_impression?: string;
     strengths?: string[];
     gaps?: string[];
-    top_fixes?: Array<{ fix?: string; text?: string; impact_level?: string; effort?: string; section_ref?: string }>;
+    top_fixes?: Array<{ fix?: string; text?: string; why?: string; evidence?: string; impact_level?: string; effort?: string; section_ref?: string }>;
     section_review?: Record<string, { working?: string | null; missing?: string | null; fix?: string | null; grade?: string; priority?: string }>;
     rewrites?: Array<{ original: string; better: string; label?: string; enhancement_note?: string }>;
     job_alignment?: {
@@ -62,7 +62,9 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
     const [activeTab, setActiveTab] = useState<TabId>("overview");
     const [tabTransition, setTabTransition] = useState(false);
     const [completedFixes, setCompletedFixes] = useState<Set<number>>(new Set());
+    const [expandedFixes, setExpandedFixes] = useState<Set<number>>(new Set());
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+    const [copiedTemplate, setCopiedTemplate] = useState<number | null>(null);
 
     // Animation states
     const [animatedScore, setAnimatedScore] = useState(0);
@@ -124,6 +126,18 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
         next.has(i) ? next.delete(i) : next.add(i);
         return next;
     });
+
+    const toggleExpand = (i: number) => setExpandedFixes(prev => {
+        const next = new Set(prev);
+        next.has(i) ? next.delete(i) : next.add(i);
+        return next;
+    });
+
+    const copyTemplate = async (text: string, i: number) => {
+        await navigator.clipboard.writeText(text);
+        setCopiedTemplate(i);
+        setTimeout(() => setCopiedTemplate(null), 1500);
+    };
 
     const copyText = async (text: string, i: number) => {
         await navigator.clipboard.writeText(text);
@@ -324,19 +338,46 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                     )}
                                     {(report.top_fixes && report.top_fixes.length > 0) ? report.top_fixes.map((fix, i) => {
                                         const isDone = completedFixes.has(i);
+                                        const isExpanded = expandedFixes.has(i);
+                                        const hasExpandContent = fix.evidence;
                                         return (
-                                            <div key={i} className={`bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4 flex gap-3 ${isDone ? 'opacity-60' : ''}`}>
-                                                <button onClick={() => toggleFix(i)} className={`w-[18px] h-[18px] mt-0.5 flex-shrink-0 rounded flex items-center justify-center border ${isDone ? 'bg-[var(--brand)] border-transparent' : 'bg-[var(--bg-card)] border-[var(--border-subtle)]'}`}>
-                                                    {isDone && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
-                                                </button>
-                                                <div className="flex-1 min-w-0">
-                                                    <p className={`text-[14px] font-medium ${isDone ? 'text-[var(--text-muted)]' : 'text-[var(--text-primary)]'}`}>{fix.fix || fix.text}</p>
-                                                    <div className="flex flex-wrap gap-2 mt-2">
-                                                        {fix.impact_level && <span className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-section-muted)] text-[var(--text-secondary)]">↑ {fix.impact_level}</span>}
-                                                        {fix.effort && <span className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-section-muted)] text-[var(--text-secondary)]">⏱ {fix.effort}</span>}
-                                                        {fix.section_ref && <span className="text-[11px] text-[var(--text-muted)]">{fix.section_ref}</span>}
+                                            <div key={i} className={`bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] overflow-hidden ${isDone ? 'opacity-60' : ''}`}>
+                                                {/* Header */}
+                                                <div className="p-4 flex gap-3">
+                                                    <button onClick={() => toggleFix(i)} className={`w-[18px] h-[18px] mt-0.5 flex-shrink-0 rounded flex items-center justify-center border ${isDone ? 'bg-[var(--brand)] border-transparent' : 'bg-[var(--bg-card)] border-[var(--border-subtle)]'}`}>
+                                                        {isDone && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
+                                                    </button>
+                                                    <div className="flex-1 min-w-0">
+                                                        <p className={`text-[14px] font-medium ${isDone ? 'text-[var(--text-muted)]' : 'text-[var(--text-primary)]'}`}>{fix.fix || fix.text}</p>
+                                                        {fix.why && <p className="text-[13px] text-[var(--text-secondary)] mt-1">{fix.why}</p>}
+                                                        <div className="flex flex-wrap items-center gap-2 mt-2">
+                                                            {fix.impact_level && <span className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-section-muted)] text-[var(--text-secondary)]">↑ {fix.impact_level}</span>}
+                                                            {fix.effort && <span className="text-[11px] px-2 py-0.5 rounded bg-[var(--bg-section-muted)] text-[var(--text-secondary)]">⏱ {fix.effort}</span>}
+                                                            {fix.section_ref && <span className="text-[11px] text-[var(--text-muted)]">{fix.section_ref}</span>}
+                                                            {hasExpandContent && (
+                                                                <button
+                                                                    onClick={() => toggleExpand(i)}
+                                                                    className="ml-auto text-[11px] text-[var(--text-muted)] hover:text-[var(--text-primary)] flex items-center gap-1"
+                                                                >
+                                                                    {isExpanded ? 'Hide details' : 'Show details'}
+                                                                    <ChevronDown className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`} strokeWidth={2} />
+                                                                </button>
+                                                            )}
+                                                        </div>
                                                     </div>
                                                 </div>
+
+                                                {/* Expandable Content */}
+                                                {isExpanded && hasExpandContent && (
+                                                    <div className="border-t border-[var(--border-subtle)] bg-[var(--bg-section-muted)] p-4">
+                                                        {fix.evidence && (
+                                                            <div>
+                                                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">From your resume</span>
+                                                                <p className="text-[13px] italic text-[var(--text-secondary)] mt-1">"{fix.evidence}"</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
                                             </div>
                                         );
                                     }) : report.gaps?.map((gap, i) => (

@@ -29,30 +29,40 @@
   "top_fixes": [
     {
       "fix": "Add scope numbers to your top 2 bullets (teams, users, revenue)",
+      "why": "Right now your bullets sound real, but the size of the work is invisible. Recruiters can't tell if this was 5 people or 500.",
+      "evidence": "Drove program improvements across multiple teams.",
       "impact_level": "high",
       "effort": "quick",
       "section_ref": "Work Experience"
     },
     {
       "fix": "State one before/after metric in your headline bullet",
+      "why": "Your strongest bullet describes what you did, but not what changed because of it. That's the difference between 'did work' and 'drove results.'",
+      "evidence": "Ran a cross-team launch with clear owners and checkpoints.",
       "impact_level": "high",
       "effort": "moderate",
       "section_ref": "Work Experience"
     },
     {
-      "fix": "Add a summary that positions your PM style upfront",
+      "fix": "Add a summary that positions your Program Manager style upfront",
+      "why": "Without a summary, recruiters have to read 3 bullets before they understand who you are. That's too long.",
+      "evidence": "(No summary section present)",
       "impact_level": "high",
       "effort": "moderate",
       "section_ref": "Summary"
     },
     {
       "fix": "Split bullets that mix decisions and outcomes",
+      "why": "When you combine what you decided with what happened, neither lands clearly. Recruiters skim, and blended bullets get skipped.",
+      "evidence": "Managed stakeholder alignment and delivered quarterly roadmap on time.",
       "impact_level": "medium",
       "effort": "quick",
       "section_ref": "Work Experience"
     },
     {
-      "fix": "List 2-3 specific tools or frameworks you use (not just generic skills)",
+      "fix": "List 2-3 specific tools or frameworks you use",
+      "why": "Generic skills like 'project management' don't help. Recruiters search for specific tools. If you use Jira, Asana, or Linear, say so.",
+      "evidence": "Skilled in project management and cross-functional collaboration.",
       "impact_level": "medium",
       "effort": "quick",
       "section_ref": "Skills"
