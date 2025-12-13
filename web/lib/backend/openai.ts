@@ -74,75 +74,78 @@ export function extractJsonFromText(text: unknown) {
 export async function callOpenAIChat(messages: Array<{ role: "system" | "user" | "assistant"; content: string }>, mode: Mode) {
   const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-  const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-mini";
-  const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 60000);
-  const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 1);
+  const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 90000); // 90s - large prompt needs time
+  const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 1);   // 1 retry only
   const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);
+
+  // Debug logging
+  console.log(`[OpenAI] Model: ${OPENAI_MODEL}, Timeout: ${OPENAI_TIMEOUT_MS}ms, Retries: ${OPENAI_MAX_RETRIES}, Mode: ${mode}`);
 
   if (USE_MOCK_OPENAI) {
     const mock =
       mode === "resume_ideas"
         ? {
-            questions: [
-              {
-                question: "What was the highest-stakes decision you made, and what changed because of it?",
-                archetype: "HIGH STAKES",
-                why: "This shows judgment under pressure and what you actually owned."
-              },
-              {
-                question: "Where did you scale a process or system, and what broke before you fixed it?",
-                archetype: "SCALING",
-                why: "Scaling stories surface real constraints and engineering/ops maturity."
-              },
-              {
-                question: "What quality bar did you raise, and how did you enforce it day to day?",
-                archetype: "QUALITY UNDER PRESSURE",
-                why: "Recruiters look for repeatable execution, not one-off wins."
-              },
-              {
-                question: "What did you improve that saved time or reduced risk, and what was the before/after?",
-                archetype: "IMPROVEMENT",
-                why: "Before/after makes impact legible fast."
-              },
-              {
-                question: "What cross-team tension did you resolve, and what tradeoff did you choose?",
-                archetype: "CROSS-FUNCTIONAL COMPLEXITY",
-                why: "This reveals collaboration skill and decision-making, not just participation."
-              }
-            ],
-            notes: [
-              "Answer 1–3 questions in a separate doc so you don’t overwrite what already works.",
-              "From each answer, pull scope, the call you made, and the outcome (ideally with a number).",
-              "Turn each into one bullet: verb + what you owned + outcome with a number."
-            ],
-            how_to_use:
-              "Use these to surface wins your resume isn’t telling yet. If it would repeat what’s already on the page, skip it."
-          }
+          questions: [
+            {
+              question: "What was the highest-stakes decision you made, and what changed because of it?",
+              archetype: "HIGH STAKES",
+              why: "This shows judgment under pressure and what you actually owned."
+            },
+            {
+              question: "Where did you scale a process or system, and what broke before you fixed it?",
+              archetype: "SCALING",
+              why: "Scaling stories surface real constraints and engineering/ops maturity."
+            },
+            {
+              question: "What quality bar did you raise, and how did you enforce it day to day?",
+              archetype: "QUALITY UNDER PRESSURE",
+              why: "Recruiters look for repeatable execution, not one-off wins."
+            },
+            {
+              question: "What did you improve that saved time or reduced risk, and what was the before/after?",
+              archetype: "IMPROVEMENT",
+              why: "Before/after makes impact legible fast."
+            },
+            {
+              question: "What cross-team tension did you resolve, and what tradeoff did you choose?",
+              archetype: "CROSS-FUNCTIONAL COMPLEXITY",
+              why: "This reveals collaboration skill and decision-making, not just participation."
+            }
+          ],
+          notes: [
+            "Answer 1–3 questions in a separate doc so you don’t overwrite what already works.",
+            "From each answer, pull scope, the call you made, and the outcome (ideally with a number).",
+            "Turn each into one bullet: verb + what you owned + outcome with a number."
+          ],
+          how_to_use:
+            "Use these to surface wins your resume isn’t telling yet. If it would repeat what’s already on the page, skip it."
+        }
         : {
-            score: 86,
-            score_label: "Strong",
-            score_comment_short: "Clear ownership with real signal; a few scope gaps keep it from landing faster.",
-            score_comment_long: "You read as someone who ships and owns outcomes. Tighten scope and add one before/after metric.",
-            summary:
-              "You read as someone who takes messy work and makes it shippable. You keep momentum and close loops. You operate with structure. What is harder to see is the scale and before/after change. Trajectory is up if you surface scope and outcomes faster.",
-            strengths: ["You show ownership instead of vague participation."],
-            gaps: ["Scope and measurable outcomes are missing in a few key bullets."],
-            top_fixes: [{ fix: "Add scope numbers to your top 2 bullets.", impact_level: "high", effort: "moderate", section_ref: "Work Experience" }],
-            rewrites: [{ label: "Impact", original: "Improved process across teams.", better: "Led a cross-team change that reduced handoff confusion and sped up delivery.", enhancement_note: "If you have it, include: the before/after time or error rate so the reader can see scale." }],
-            next_steps: ["Add one before/after metric to your top bullet."],
-            subscores: { impact: 82, clarity: 84, story: 80, readability: 83 },
-            section_review: {
-              Summary: { grade: "B", priority: "Medium", working: "Clear identity statement.", missing: "Scope is vague.", fix: "Add 1 scope detail (team/users) in the first line." }
-            },
-            job_alignment: {
-              strongly_aligned: ["Ownership", "Execution"],
-              underplayed: ["Scale context"],
-              missing: ["Named metrics"],
-              role_fit: { best_fit_roles: ["Software Engineer"], stretch_roles: ["Tech Lead"], seniority_read: "Senior IC", industry_signals: ["Tech"], company_stage_fit: "Growth to public" },
-              positioning_suggestion: "Lead with the biggest system or product you owned, then add one hard metric so scale is obvious."
-            },
-            ideas: { questions: [], notes: [], how_to_use: "" }
-          };
+          score: 86,
+          score_label: "Strong",
+          score_comment_short: "Clear ownership with real signal; a few scope gaps keep it from landing faster.",
+          score_comment_long: "You read as someone who ships and owns outcomes. Tighten scope and add one before/after metric.",
+          summary:
+            "You read as someone who takes messy work and makes it shippable. You keep momentum and close loops. You operate with structure. What is harder to see is the scale and before/after change. Trajectory is up if you surface scope and outcomes faster.",
+          strengths: ["You show ownership instead of vague participation."],
+          gaps: ["Scope and measurable outcomes are missing in a few key bullets."],
+          top_fixes: [{ fix: "Add scope numbers to your top 2 bullets.", impact_level: "high", effort: "moderate", section_ref: "Work Experience" }],
+          rewrites: [{ label: "Impact", original: "Improved process across teams.", better: "Led a cross-team change that reduced handoff confusion and sped up delivery.", enhancement_note: "If you have it, include: the before/after time or error rate so the reader can see scale." }],
+          next_steps: ["Add one before/after metric to your top bullet."],
+          subscores: { impact: 82, clarity: 84, story: 80, readability: 83 },
+          section_review: {
+            Summary: { grade: "B", priority: "Medium", working: "Clear identity statement.", missing: "Scope is vague.", fix: "Add 1 scope detail (team/users) in the first line." }
+          },
+          job_alignment: {
+            strongly_aligned: ["Ownership", "Execution"],
+            underplayed: ["Scale context"],
+            missing: ["Named metrics"],
+            role_fit: { best_fit_roles: ["Software Engineer"], stretch_roles: ["Tech Lead"], seniority_read: "Senior IC", industry_signals: ["Tech"], company_stage_fit: "Growth to public" },
+            positioning_suggestion: "Lead with the biggest system or product you owned, then add one hard metric so scale is obvious."
+          },
+          ideas: { questions: [], notes: [], how_to_use: "" }
+        };
 
     return {
       choices: [{ message: { content: JSON.stringify(mock) } }]
@@ -150,7 +153,11 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
   }
 
   if (!OPENAI_API_KEY) {
-    throw createAppError("OPENAI_API_KEY_MISSING", "The service is not configured with an OpenAI API key.", 500);
+    throw createAppError(
+      "OPENAI_API_KEY_MISSING",
+      "Missing OPENAI_API_KEY. Add it to web/.env.local (or export it in your shell) and restart the dev server. If you put it in the repo root .env, Next won't read it when running from web/.",
+      500
+    );
   }
 
   let lastError: any = null;

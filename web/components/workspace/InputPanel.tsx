@@ -167,7 +167,7 @@ export default function InputPanel({
                 <button
                     className="btn-primary w-full"
                     onClick={onRun}
-                    disabled={isLoading || (!resumeText.trim() && !fileName)}
+                    disabled={isLoading || !resumeText.trim()}
                 >
                     <span>{isLoading ? "Analyzing..." : "See How Recruiters Read You"}</span>
                     <span>→</span>

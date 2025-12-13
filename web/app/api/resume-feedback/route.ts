@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import crypto from "crypto";
 import {
   FREE_COOKIE,
@@ -71,9 +71,11 @@ export async function POST(request: Request) {
     const { text, mode, jobDescription } = validation.value;
     const hasJobDescription = Boolean(jobDescription && jobDescription.length > 50);
 
-    const supabase = await createSupabaseServerClient();
-    const { data: userData } = await supabase.auth.getUser();
-    const user = userData.user || null;
+    // Supabase is optional for anonymous usage of the workspace.
+    // If it's not configured locally, treat the user as anonymous and skip pass checks/report saving.
+    const supabase = await maybeCreateSupabaseServerClient();
+    const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
+    const user = userData.data.user || null;
 
     // Determine access
     const cookieStore = await cookies();
@@ -82,7 +84,7 @@ export async function POST(request: Request) {
       freeParsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
 
     const bypass = getBypassPaywall();
-    const activePass = user ? await getActivePass(supabase, user.id) : null;
+    const activePass = user && supabase ? await getActivePass(supabase, user.id) : null;
     const freeUsed = freeMeta.used || 0;
     const freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - freeUsed);
 
@@ -160,7 +162,7 @@ ${jobDescription}`;
 
     // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
-    if (user && mode === "resume") {
+    if (user && supabase && mode === "resume") {
       try {
         const resumeHash = hashResumeText(text);
         let preview = text.slice(0, 200).trim();

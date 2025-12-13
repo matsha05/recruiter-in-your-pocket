@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
-import { getSupabaseAnonKey, getSupabaseUrl } from "../env";
+import { getOptionalSupabaseAnonKey, getOptionalSupabaseUrl, getSupabaseAnonKey, getSupabaseUrl } from "../env";
 
 /**
  * Read-only Supabase client for Server Components
@@ -16,6 +16,25 @@ export async function createSupabaseServerClient() {
         return cookieStore.get(name)?.value;
       }
       // No set/remove: read-only in Server Components
+    }
+  });
+}
+
+/**
+ * Optional Supabase client (returns null if env vars are missing).
+ * Useful for routes that should work for anonymous users without requiring Supabase setup.
+ */
+export async function maybeCreateSupabaseServerClient() {
+  const url = getOptionalSupabaseUrl();
+  const anonKey = getOptionalSupabaseAnonKey();
+  if (!url || !anonKey) return null;
+
+  const cookieStore = await cookies();
+  return createServerClient(url, anonKey, {
+    cookies: {
+      get(name: string) {
+        return cookieStore.get(name)?.value;
+      }
     }
   });
 }
