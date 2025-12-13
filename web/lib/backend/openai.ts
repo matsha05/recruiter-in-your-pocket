@@ -223,3 +223,114 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
   throw lastError;
 }
 
+/**
+ * Streaming version of callOpenAIChat.
+ * Returns an async generator that yields text chunks as they arrive.
+ * The caller is responsible for accumulating and parsing the JSON.
+ */
+export async function* callOpenAIChatStreaming(
+  messages: Array<{ role: "system" | "user" | "assistant"; content: string }>,
+  mode: Mode
+): AsyncGenerator<string, void, unknown> {
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 90000);
+
+  console.log(`[OpenAI Streaming] Model: ${OPENAI_MODEL}, Timeout: ${OPENAI_TIMEOUT_MS}ms, Mode: ${mode}`);
+
+  if (!OPENAI_API_KEY) {
+    throw createAppError(
+      "OPENAI_API_KEY_MISSING",
+      "Missing OPENAI_API_KEY. Add it to web/.env.local and restart the dev server.",
+      500
+    );
+  }
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), OPENAI_TIMEOUT_MS);
+
+  try {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: OPENAI_MODEL,
+        temperature: mode === "resume_ideas" ? 0.12 : 0,
+        response_format: { type: "json_object" },
+        stream: true,
+        messages
+      }),
+      signal: controller.signal
+    });
+
+    if (!res.ok) {
+      const textBody = await res.text();
+      throw createAppError(
+        "OPENAI_HTTP_ERROR",
+        "The model had trouble finishing your resume review.",
+        res.status >= 500 || res.status === 429 ? 502 : res.status,
+        textBody
+      );
+    }
+
+    if (!res.body) {
+      throw createAppError("OPENAI_NO_STREAM", "No stream body received from OpenAI.", 502);
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop() || "";
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed === "data: [DONE]") continue;
+        if (!trimmed.startsWith("data: ")) continue;
+
+        try {
+          const json = JSON.parse(trimmed.slice(6));
+          const content = json.choices?.[0]?.delta?.content;
+          if (content) {
+            yield content;
+          }
+        } catch {
+          // Ignore malformed JSON chunks
+        }
+      }
+    }
+
+    // Process any remaining buffer
+    if (buffer.trim() && buffer.trim() !== "data: [DONE]" && buffer.startsWith("data: ")) {
+      try {
+        const json = JSON.parse(buffer.trim().slice(6));
+        const content = json.choices?.[0]?.delta?.content;
+        if (content) yield content;
+      } catch {
+        // Ignore
+      }
+    }
+  } catch (err: any) {
+    if (err?.name === "AbortError") {
+      throw createAppError("OPENAI_TIMEOUT", "OpenAI request timed out.", 504);
+    }
+    if (err?.code) throw err;
+    throw createAppError(
+      "OPENAI_NETWORK_ERROR",
+      "There was a network hiccup while getting your resume review.",
+      502,
+      err?.message
+    );
+  } finally {
+    clearTimeout(timer);
+  }
+}

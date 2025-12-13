@@ -30,7 +30,7 @@ function hashResumeText(text: string) {
   return crypto.createHash("sha256").update(text).digest("hex");
 }
 
-async function getActivePass(supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>, userId: string) {
+async function getActivePass(supabase: NonNullable<Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>>>, userId: string) {
   const { data, error } = await supabase
     .from("passes")
     .select("id, tier, expires_at, created_at")

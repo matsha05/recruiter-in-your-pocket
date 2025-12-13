@@ -9,7 +9,7 @@ import ReportPanel from "@/components/workspace/ReportPanel";
 import HistorySidebar from "@/components/workspace/HistorySidebar";
 import PaywallModal from "@/components/workspace/PaywallModal";
 import AuthModal from "@/components/shared/AuthModal";
-import { createResumeFeedback, parseResume } from "@/lib/api";
+import { createResumeFeedback, streamResumeFeedback, parseResume } from "@/lib/api";
 
 export default function WorkspaceClient() {
     const searchParams = useSearchParams();
@@ -17,6 +17,7 @@ export default function WorkspaceClient() {
     const [resumeText, setResumeText] = useState("");
     const [jobDescription, setJobDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isStreaming, setIsStreaming] = useState(false);
     const [report, setReport] = useState<any>(null);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(2);
 
@@ -94,15 +95,26 @@ export default function WorkspaceClient() {
         }
 
         setIsLoading(true);
+        setIsStreaming(true);
         setReport(null);
 
         try {
-            console.log("[WorkspaceClient] Calling createResumeFeedback...");
-            const result = await createResumeFeedback(resumeText, jobDescription || undefined);
-            console.log("[WorkspaceClient] createResumeFeedback result:", result);
+            console.log("[WorkspaceClient] Calling streamResumeFeedback...");
+            const result = await streamResumeFeedback(
+                resumeText,
+                jobDescription || undefined,
+                (partialJson, partialReport) => {
+                    // Update report with partial data as it arrives
+                    if (partialReport) {
+                        console.log("[WorkspaceClient] Got partial report:", Object.keys(partialReport));
+                        setReport(partialReport);
+                    }
+                }
+            );
+            console.log("[WorkspaceClient] streamResumeFeedback result:", result);
 
             if (result.ok && result.report) {
-                console.log("[WorkspaceClient] Setting report:", result.report);
+                console.log("[WorkspaceClient] Setting final report:", result.report);
                 setReport(result.report);
                 setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
             } else {
@@ -114,6 +126,7 @@ export default function WorkspaceClient() {
             alert("Report generation error. Check console for details.");
         } finally {
             setIsLoading(false);
+            setIsStreaming(false);
         }
     }, [resumeText, jobDescription, freeUsesRemaining]);
 

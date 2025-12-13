@@ -113,8 +113,8 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
     const dialColor = getScoreColor(animatedScore);
     const showEmptyState = !report && !isLoading;
-    const showLoading = isLoading;
-    const showReport = report && !isLoading;
+    const showLoading = isLoading && !report; // Only show loading spinner if no report data yet
+    const showReport = !!report; // Show report whenever we have data (even partial)
 
     const activeTabData = tabConfig.find(t => t.id === activeTab);
     const firstImpressionText = report?.score_comment_long || report?.score_comment_short || report?.first_impression || report?.summary;
@@ -149,6 +149,16 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
         fixes: report?.top_fixes?.length || report?.gaps?.length || 0,
         rewrites: report?.rewrites?.length || 0,
         wins: report?.ideas?.questions?.length || report?.next_steps?.length || 0,
+    };
+
+    // Track which tabs have data loaded
+    const tabReady: Record<TabId, boolean> = {
+        overview: true, // Always ready - shows progressively
+        fixes: !!(report?.top_fixes?.length || report?.gaps?.length),
+        sections: !!report?.section_review,
+        rewrites: !!(report?.rewrites?.length),
+        alignment: !!(report?.job_alignment?.strongly_aligned || report?.job_alignment?.underplayed || report?.job_alignment?.missing || report?.job_alignment?.role_fit),
+        wins: !!(report?.ideas?.questions?.length || report?.next_steps?.length),
     };
 
     const gradeColor = (grade: string) => {
@@ -187,17 +197,27 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                     <nav className="flex gap-0 px-6 overflow-x-auto scrollbar-hide">
                         {tabConfig.map((tab) => {
                             const isActive = activeTab === tab.id;
+                            const isReady = tabReady[tab.id];
+                            const isLocked = !isReady && isLoading;
                             const count = tab.id === 'fixes' ? counts.fixes : tab.id === 'rewrites' ? counts.rewrites : tab.id === 'wins' ? counts.wins : null;
                             return (
                                 <button
                                     key={tab.id}
-                                    onClick={() => handleTabChange(tab.id)}
-                                    className={`relative flex items-center gap-1.5 px-3 py-2.5 text-[13px] whitespace-nowrap transition-colors ${isActive ? 'font-semibold text-[var(--text-primary)]' : 'font-normal text-[var(--text-muted)] hover:text-[var(--text-secondary)]'}`}
+                                    onClick={() => isReady && handleTabChange(tab.id)}
+                                    disabled={isLocked}
+                                    className={`relative flex items-center gap-1.5 px-3 py-2.5 text-[13px] whitespace-nowrap transition-colors ${isLocked
+                                        ? 'font-normal text-[var(--text-muted)] opacity-50 cursor-not-allowed'
+                                        : isActive
+                                            ? 'font-semibold text-[var(--text-primary)]'
+                                            : 'font-normal text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                                        }`}
                                 >
                                     <span>{tab.label}</span>
-                                    {count !== null && count > 0 && (
+                                    {isLocked ? (
+                                        <span className="w-3 h-3 border border-[var(--text-muted)] border-t-transparent rounded-full animate-spin opacity-50" />
+                                    ) : count !== null && count > 0 ? (
                                         <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${isActive ? 'bg-indigo-100 text-indigo-700' : 'bg-[var(--bg-section-muted)] text-[var(--text-muted)]'}`}>{count}</span>
-                                    )}
+                                    ) : null}
                                     {isActive && <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-[var(--brand)]" />}
                                 </button>
                             );
@@ -251,7 +271,12 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                         <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" className="text-[var(--border-subtle)]" strokeWidth="6" opacity="0.3" />
                                                         <circle cx="60" cy="60" r="52" fill="none" stroke={dialColor} strokeWidth="6" strokeLinecap="round" strokeDasharray="326.73" strokeDashoffset={326.73 * (1 - animatedScore / 100)} className="transition-all duration-100" />
                                                     </svg>
-                                                    <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold" style={{ color: dialColor }}>{animatedScore}</div>
+                                                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                                        <span className="text-2xl font-bold" style={{ color: dialColor }}>{animatedScore}</span>
+                                                        {report.score_label && (
+                                                            <span className="text-[10px] font-medium text-[var(--text-muted)] uppercase tracking-wide">{report.score_label}</span>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -293,6 +318,25 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                             </div>
                                         </div>
                                     </div>
+
+                                    {/* Subscores */}
+                                    {report.subscores && (
+                                        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
+                                            <div className="grid grid-cols-4 gap-4">
+                                                {[
+                                                    { key: 'impact', label: 'Impact', score: report.subscores.impact },
+                                                    { key: 'clarity', label: 'Clarity', score: report.subscores.clarity },
+                                                    { key: 'story', label: 'Story', score: report.subscores.story },
+                                                    { key: 'readability', label: 'Readability', score: report.subscores.readability },
+                                                ].map(({ key, label, score }) => score !== undefined && (
+                                                    <div key={key} className="text-center">
+                                                        <div className="text-xl font-bold" style={{ color: getScoreColor(score) }}>{score}</div>
+                                                        <div className="text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wide">{label}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
 
                                     {/* Working vs Missing */}
                                     <div className="grid grid-cols-2 gap-3">
