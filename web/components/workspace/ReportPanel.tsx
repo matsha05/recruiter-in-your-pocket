@@ -516,19 +516,18 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                     {(report.job_alignment?.strongly_aligned?.length || report.job_alignment?.underplayed?.length || report.job_alignment?.missing?.length) ? (
                                         <>
                                             {[
-                                                { key: 'aligned', title: 'Strongly Aligned', items: report.job_alignment?.strongly_aligned, color: 'bg-green-500', meaning: 'Already legible on the page.' },
-                                                { key: 'underplayed', title: 'Underplayed', items: report.job_alignment?.underplayed, color: 'bg-amber-400', meaning: 'Signals exist, but evidence is buried.' },
-                                                { key: 'missing', title: 'Missing/Weak', items: report.job_alignment?.missing, color: 'bg-red-500', meaning: 'Add one bullet that proves this.' },
-                                            ].map(({ key, title, items, color, meaning }) => (
+                                                { key: 'aligned', title: 'Strongly Aligned', items: report.job_alignment?.strongly_aligned, color: 'bg-green-500' },
+                                                { key: 'underplayed', title: 'Underplayed', items: report.job_alignment?.underplayed, color: 'bg-amber-400' },
+                                                { key: 'missing', title: 'Missing/Weak', items: report.job_alignment?.missing, color: 'bg-red-500' },
+                                            ].map(({ key, title, items, color }) => (
                                                 <div key={key} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
-                                                    <div className="flex items-center gap-2 mb-2">
+                                                    <div className="flex items-center gap-2 mb-3">
                                                         <span className={`w-2 h-2 rounded-full ${color}`} />
                                                         <span className="text-sm font-semibold text-[var(--text-primary)]">{title}</span>
                                                     </div>
-                                                    <div className="flex flex-wrap gap-1.5 mb-2">
+                                                    <div className="flex flex-wrap gap-1.5">
                                                         {items?.map((item, i) => <span key={i} className="text-[12px] px-2.5 py-1 rounded-full bg-[var(--bg-section-muted)] text-[var(--text-secondary)]">{item}</span>) || <span className="text-xs text-[var(--text-muted)]">None found</span>}
                                                     </div>
-                                                    <p className="text-[11px] italic text-[var(--text-muted)] pt-2 border-t border-[var(--border-subtle)]">{meaning}</p>
                                                 </div>
                                             ))}
                                             {/* Role Fit Section */}
