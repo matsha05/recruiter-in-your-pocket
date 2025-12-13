@@ -427,24 +427,62 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
                             {/* ===== BULLET UPGRADES ===== */}
                             {activeTab === "rewrites" && (
-                                <div className="flex flex-col gap-3">
+                                <div className="flex flex-col gap-4">
+                                    {/* Control Row */}
+                                    <div className="flex items-center justify-between gap-4 pb-3 border-b border-[var(--border-subtle)]">
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wide">Show</span>
+                                            <div className="flex rounded-lg overflow-hidden border border-[var(--border-subtle)]">
+                                                <button className="text-[12px] px-3 py-1.5 bg-[var(--bg-card)] text-[var(--text-primary)] font-medium border-r border-[var(--border-subtle)]">All</button>
+                                                <button className="text-[12px] px-3 py-1.5 bg-[var(--bg-section-muted)] text-[var(--text-muted)] hover:bg-[var(--bg-hover)]">High leverage</button>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wide">Group by</span>
+                                            <div className="flex rounded-lg overflow-hidden border border-[var(--border-subtle)]">
+                                                <button className="text-[12px] px-3 py-1.5 bg-[var(--bg-card)] text-[var(--text-primary)] font-medium border-r border-[var(--border-subtle)]">Pattern</button>
+                                                <button className="text-[12px] px-3 py-1.5 bg-[var(--bg-section-muted)] text-[var(--text-muted)] hover:bg-[var(--bg-hover)]">Role</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Rewrite Cards */}
                                     {report.rewrites?.map((rw, i) => (
-                                        <div key={i} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
-                                            {rw.label && <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">{rw.label}</div>}
+                                        <div key={i} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
+                                            {/* Header with label and copy button */}
+                                            <div className="flex items-center justify-between mb-4">
+                                                {rw.label && <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-section-muted)] text-[var(--text-secondary)]">{rw.label}</span>}
+                                                <button
+                                                    onClick={() => copyText(rw.better, i)}
+                                                    className="flex items-center gap-1.5 text-[12px] font-medium px-3 py-1.5 rounded-lg bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white transition-colors"
+                                                >
+                                                    {copiedIndex === i ? <Check className="w-3.5 h-3.5" strokeWidth={2} /> : <Copy className="w-3.5 h-3.5" strokeWidth={2} />}
+                                                    <span>{copiedIndex === i ? 'Copied' : 'Copy'}</span>
+                                                </button>
+                                            </div>
+
+                                            {/* Two-column layout */}
                                             <div className="grid grid-cols-2 gap-6">
+                                                {/* Original - Muted */}
                                                 <div>
-                                                    <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-1.5">Original</div>
-                                                    <p className="text-[13px] leading-relaxed text-[var(--text-muted)]">{rw.original}</p>
+                                                    <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">Original</div>
+                                                    <p className="text-[13px] leading-relaxed text-[var(--text-muted)] opacity-70">{rw.original}</p>
                                                 </div>
+                                                {/* Better - Dominant */}
                                                 <div>
-                                                    <div className="flex items-center justify-between mb-1.5">
-                                                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)]">Better</span>
-                                                        <button onClick={() => copyText(rw.better, i)} className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[var(--bg-section-muted)] hover:bg-[var(--bg-hover)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">{copiedIndex === i ? '✓ Copied' : 'Copy rewrite'}</button>
-                                                    </div>
-                                                    <p className="text-[13px] leading-relaxed text-[var(--text-primary)]">{rw.better}</p>
-                                                    {rw.enhancement_note && <p className="text-[11px] text-[var(--text-muted)] italic mt-2">If you have it: {rw.enhancement_note}</p>}
+                                                    <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)] mb-2">Better</div>
+                                                    <p className="text-[14px] leading-relaxed text-[var(--text-primary)] font-medium">{rw.better}</p>
                                                 </div>
                                             </div>
+
+                                            {/* Coaching line - Smallest and calmest */}
+                                            {rw.enhancement_note && (
+                                                <div className="mt-4 pt-3 border-t border-[var(--border-subtle)]">
+                                                    <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
+                                                        {rw.enhancement_note.replace(/^If you have it[:,]?\s*/i, '')}
+                                                    </p>
+                                                </div>
+                                            )}
                                         </div>
                                     )) || <p className="text-[13px] text-[var(--text-muted)] text-center p-8">No rewrites available</p>}
                                 </div>

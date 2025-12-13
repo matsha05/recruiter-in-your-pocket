@@ -402,6 +402,11 @@ FIELD RULES
     - Mechanism: what the user actually did.
     - Scope: who or what it applied to (team, org, customers, departments, regions, systems, programs).
     - Impact: why it mattered (measurable or observable outcome).
+  - THE "SO WHAT" TEST (STRICT): Every "better" bullet must include at least ONE of the following:
+    - A before/after comparison (e.g., "from X to Y", "reduced from... to...", "increased by...")
+    - A specific number (team size, project count, revenue, users, time saved, percentage improvement)
+    - A clear concrete outcome (time saved, risk reduced, revenue impact, quality improvement, customer impact)
+    If the resume lacks numbers, use concrete outcomes with qualitative but specific language. Never leave a bullet ending in vague results like "kept things on track" or "improved efficiency" without a clear anchor.
   - Preserve these elements when present. If something is missing, strengthen clarity without inventing facts.
   - A rewritten bullet must never contain more than one sentence. If the original mixes multiple ideas that cannot fit into one strong sentence, split into two rewritten bullets under the same label.
   - Never shorten a bullet at the cost of meaning. Clarity and signal outweigh brevity.
@@ -413,12 +418,18 @@ FIELD RULES
   - For technical resumes, include relevant tools, languages, databases, frameworks, or infrastructure components inside the rewritten bullet when the original resume or surrounding context clearly implies them (for example APIs implemented in Go or Python, database tuning in PostgreSQL, automation with Bash or Python). Do not invent tools; only surface what is present or clearly implied.
   - For technical roles, when a bullet describes APIs, automation, query optimization, infrastructure, or tooling, explicitly surface stack elements (for example REST, GraphQL, PostgreSQL, Kubernetes, Jenkins, GitHub Actions) if these appear anywhere in the resume. This detail should appear inside the rewritten bullet to increase clarity for technical reviewers.
 
-  enhancement_note requirements:
-  - enhancement_note must NEVER describe how or why you rewrote the bullet. Do not reference clarity, conciseness, grammar, structure, or editing decisions.
-  - enhancement_note must begin with "If you have it, include:" and then give exactly one optional metric or contextual detail that would strengthen that specific bullet.
-  - enhancement_note must be tailored to the bullet.
-    Suggest optional additions such as before or after changes, number of people impacted, program or project size, geographic scope, team span, time saved, volume handled, improvement percentages, or baseline to final values.
-    These suggestions must be broadly applicable to many backgrounds.
+  enhancement_note requirements (SPECIFIC COACHING):
+  - enhancement_note must suggest ONE exact missing detail for that specific bullet. Be precise, not generic.
+  - Use specific prompts like:
+    - "Add the team size (e.g., '5-person team' or '12 engineers')."
+    - "Include the number of projects or initiatives."
+    - "Specify what metric moved (e.g., 'reduced churn by X%' or 'increased throughput')."
+    - "Add the baseline-to-final change (e.g., 'from 2 weeks to 3 days')."
+    - "Name the specific system or product affected."
+    - "Include the geographic scope or number of regions."
+  - Do NOT use generic phrases like "add more context" or "include relevant details."
+  - Do NOT begin with "If you have it" since the UI handles context framing.
+  - enhancement_note must be tailored to what is actually missing from that specific bullet.
   - enhancement_note must avoid industry-specific metrics unless the resume explicitly indicates that industry. It should work for users from any field (education, ministry, operations, legal, engineering, HR, nonprofit, sales).
   - enhancement_note must never invent or guess new metrics. Only suggest adding metrics the user may already know.
   - At the end of each enhancement_note, include a brief clause explaining why adding that detail helps (for example "so the reader can understand the scale of your work" or "which clarifies the magnitude of your impact"). Keep this explanation short and grounded.

@@ -73,37 +73,37 @@
       "label": "Impact",
       "original": "Improved process across teams.",
       "better": "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
-      "enhancement_note": "If you have it: add number of teams/regions and shipments or users affected."
+      "enhancement_note": "Add the number of teams involved and users/shipments affected, so the reader can understand the scale of impact."
     },
     {
       "label": "Scope",
       "original": "Supported leadership on projects.",
       "better": "Supported leadership by running risk reviews and comms for 8 concurrent projects across 3 regions.",
-      "enhancement_note": "If you have it: add project count, budget, or team size."
+      "enhancement_note": "Include the project count, total budget, or team size to clarify the scope of your oversight."
     },
     {
       "label": "Clarity",
       "original": "Handled stakeholder updates.",
       "better": "Kept launches on track by running weekly checklists, risk reviews, and exec stakeholder comms—shipping 12 features on schedule.",
-      "enhancement_note": "If you have it: add cadence, audience size, or launch count."
+      "enhancement_note": "Specify the meeting cadence, audience size, or launch count to show the rhythm and scale of your work."
     },
     {
       "label": "Ownership",
       "original": "Managed cross-functional initiatives.",
       "better": "Led cross-functional initiatives (eng, design, ops) with documented decisions, risks, and next steps—reducing escalations by 40%.",
-      "enhancement_note": "If you have it: name the functions involved and any measurable improvement."
+      "enhancement_note": "Name the specific functions involved (e.g., 'eng, design, ops') and include any measurable improvement like escalations reduced or cycle time saved."
     },
     {
       "label": "Mechanism",
       "original": "Built relationships with key partners.",
       "better": "Built relationships with 5 key partners through weekly syncs and shared roadmap reviews, securing 2 strategic integrations.",
-      "enhancement_note": "If you have it: add partner count and what it unlocked."
+      "enhancement_note": "Add the partner count and what the partnerships unlocked (e.g., 'revenue, integrations, market access') to show business impact."
     },
     {
       "label": "Before/After",
       "original": "Drove process improvements.",
       "better": "Drove process improvements that cut sprint-to-release cycle from 6 weeks to 3 weeks while maintaining quality bar.",
-      "enhancement_note": "If you have it: show the before and after state with numbers."
+      "enhancement_note": "Include the baseline-to-final numbers (e.g., 'from 6 weeks to 3 weeks') to make the improvement concrete and verifiable."
     }
   ],
   "section_review": {
