@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Download, FilePlus, Eye, Check, ArrowRight, ChevronDown, Copy } from "lucide-react";
+import AnalysisScanning from "./AnalysisScanning";
 
 // Score color
 function getScoreColor(score: number): string {
@@ -58,7 +59,14 @@ const tabConfig: { id: TabId; label: string; subtitle: string }[] = [
     { id: "wins", label: "Missing Wins", subtitle: "Uncover hidden impact your resume isn't telling yet" }
 ];
 
-export default function ReportPanel({ report, isLoading, hasJobDescription, onExportPdf, isExporting, isSample = false }: ReportPanelProps) {
+export default function ReportPanel({
+    report,
+    isLoading,
+    hasJobDescription = false,
+    onExportPdf,
+    isExporting = false,
+    isSample = false
+}: ReportPanelProps) {
     const [activeTab, setActiveTab] = useState<TabId>("overview");
     const [tabTransition, setTabTransition] = useState(false);
     const [completedFixes, setCompletedFixes] = useState<Set<number>>(new Set());
@@ -238,12 +246,10 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                     </div>
                 )}
 
-                {/* Loading State */}
-                {showLoading && (
-                    <div className="flex flex-col items-center justify-center h-full text-center p-8">
-                        <div className="w-7 h-7 border-2 border-[var(--border-subtle)] border-t-[var(--brand)] rounded-full animate-spin mb-4" />
-                        <div className="text-sm font-medium text-[var(--text-primary)] mb-1">Reading like a recruiter...</div>
-                        <p className="text-[13px] text-[var(--text-muted)]">10-15 seconds</p>
+                {/* Analysis Theater - Scanning Animation */}
+                {isLoading && !report && (
+                    <div className="h-full">
+                        <AnalysisScanning />
                     </div>
                 )}
 
@@ -525,17 +531,28 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                     </button>
                                                 </div>
 
-                                                {/* Two-column layout: Better FIRST (left), Original second (right) */}
-                                                <div className="grid grid-cols-2 gap-6">
-                                                    {/* Better - Dominant, LEFT column */}
-                                                    <div>
-                                                        <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)] mb-2">Better</div>
-                                                        <p className="text-[15px] leading-[1.6] text-[var(--text-primary)] font-medium">{rw.better}</p>
+                                                {/* Visual Redlining Layout */}
+                                                <div className="flex flex-col gap-3">
+                                                    {/* The Fix (Green) */}
+                                                    <div className="relative group/better">
+                                                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500/30 rounded-l-lg transition-colors group-hover/better:bg-green-500/60" />
+                                                        <div className="bg-green-50/50 dark:bg-green-900/10 p-3 pl-4 rounded-r-lg border border-green-100 dark:border-green-900/30">
+                                                            <div className="flex items-center justify-between mb-1.5">
+                                                                <span className="text-[10px] font-bold uppercase tracking-wider text-green-700 dark:text-green-400">Better</span>
+                                                            </div>
+                                                            <p className="text-[15px] leading-[1.6] text-[var(--text-primary)] font-medium">{rw.better}</p>
+                                                        </div>
                                                     </div>
-                                                    {/* Original - Muted, RIGHT column */}
-                                                    <div>
-                                                        <div className="text-[10px] font-medium uppercase tracking-wider text-[var(--text-muted)] opacity-60 mb-2">Original</div>
-                                                        <p className="text-[12px] leading-[1.5] text-[var(--text-muted)] opacity-60">{rw.original}</p>
+
+                                                    {/* The Original (Red) */}
+                                                    <div className="relative group/original mt-1">
+                                                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-400/30 rounded-l-lg transition-colors group-hover/original:bg-red-500/60" />
+                                                        <div className="bg-red-50/30 dark:bg-red-900/10 p-3 pl-4 rounded-r-lg border border-red-100 dark:border-red-900/20 opacity-80 hover:opacity-100 transition-opacity">
+                                                            <div className="flex items-center justify-between mb-1.5">
+                                                                <span className="text-[10px] font-medium uppercase tracking-wider text-red-700/70 dark:text-red-400/70">Original</span>
+                                                            </div>
+                                                            <p className="text-[13px] leading-[1.5] text-[var(--text-muted)] line-through decoration-red-300 dark:decoration-red-900/50">{rw.original}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
 

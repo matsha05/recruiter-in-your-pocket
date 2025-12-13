@@ -25,6 +25,20 @@ We prefer expressive restraint over polite neutrality; it’s okay if a few thin
 
 ---
 
+## North Star: Growth Through Product Excellence
+
+**Goal:** Design decisions must drive user growth, MRR growth, and virality.
+**Method:** Build such strong content and such a beautiful app that people are compelled to share and upgrade.
+
+We do not use dark patterns or trickery. We achieve growth by making the product:
+1.  **A "Power Tool" (SaaS Feel):** Tools are paid for; reports are read once. We build an interactive studio that feels like a utility, creating recurring value (MRR).
+2.  **Viral via Craft:** The "wow" factor of the design and the "truth" of the content should be so high that users screenshot and share it naturally.
+3.  **Obvious Value:** The path to paid value must be clear, desirable, and emotion-inducing.
+
+Every design choice should be checked against: *"Does this make the product more shareable or more upgrade-worthy?"*
+
+---
+
 ## Unified Theme Philosophy
 
 The design system prioritizes cohesion between light and dark modes so the product feels consistent regardless of theme.

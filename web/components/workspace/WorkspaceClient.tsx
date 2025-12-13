@@ -19,6 +19,7 @@ export default function WorkspaceClient() {
     const [isLoading, setIsLoading] = useState(false);
     const [isStreaming, setIsStreaming] = useState(false);
     const [report, setReport] = useState<any>(null);
+    const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(2);
 
     // History sidebar, paywall modal, and auth modal state
@@ -28,13 +29,13 @@ export default function WorkspaceClient() {
 
     // Auto-load sample report if ?sample=true
     useEffect(() => {
-        if (searchParams.get("sample") === "true" && !report) {
+        if (searchParams.get("sample") === "true" && !report && !skipSample) {
             fetch("/sample-report.json")
                 .then(res => res.json())
                 .then(data => setReport(data))
                 .catch(err => console.error("Failed to load sample report:", err));
         }
-    }, [searchParams, report]);
+    }, [searchParams, report, skipSample]);
 
     // Handle successful payment redirect
     useEffect(() => {
@@ -98,16 +99,40 @@ export default function WorkspaceClient() {
         setIsStreaming(true);
         setReport(null);
 
+        // REPORT BUFFERING LOGIC
+        // We enforce a minimum "Theater Duration" of 10s so the user sees the scanning animation.
+        // During this time, we capture the report in a ref but do NOT show it.
+        const theaterDurationMs = 10000;
+        const startTime = Date.now();
+        let isTheaterOver = false;
+        let bufferedReport: any = null;
+
         try {
             console.log("[WorkspaceClient] Calling streamResumeFeedback...");
+
+            // Start the "Theater Timer"
+            setTimeout(() => {
+                isTheaterOver = true;
+                // If we have a buffered report ready, show it now
+                if (bufferedReport) {
+                    console.log("[WorkspaceClient] Theater over, revealing buffered report");
+                    setReport(bufferedReport);
+                }
+            }, theaterDurationMs);
+
             const result = await streamResumeFeedback(
                 resumeText,
                 jobDescription || undefined,
                 (partialJson, partialReport) => {
                     // Update report with partial data as it arrives
                     if (partialReport) {
-                        console.log("[WorkspaceClient] Got partial report:", Object.keys(partialReport));
-                        setReport(partialReport);
+                        if (isTheaterOver) {
+                            // If theater is over, show immediately
+                            setReport(partialReport);
+                        } else {
+                            // If theater is still running, just buffer it
+                            bufferedReport = partialReport;
+                        }
                     }
                 }
             );
@@ -115,25 +140,41 @@ export default function WorkspaceClient() {
 
             if (result.ok && result.report) {
                 console.log("[WorkspaceClient] Setting final report:", result.report);
-                setReport(result.report);
-                setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
+                // Ensure we respect the theater timer even for the final result
+                const elapsed = Date.now() - startTime;
+                const remaining = Math.max(0, theaterDurationMs - elapsed);
+
+                setTimeout(() => {
+                    setReport(result.report);
+                    setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
+                    setIsStreaming(false);
+                    setIsLoading(false);
+                }, remaining);
             } else {
+                // Error case - show immediately
                 console.error("Failed to generate report:", result.message);
                 alert("Failed to generate report: " + (result.message || "Unknown error"));
+                setIsLoading(false);
+                setIsStreaming(false);
             }
         } catch (err) {
             console.error("Report generation error:", err);
             alert("Report generation error. Check console for details.");
-        } finally {
             setIsLoading(false);
             setIsStreaming(false);
         }
+        // Note: We handle setIsLoading(false) in the success timeout above
     }, [resumeText, jobDescription, freeUsesRemaining]);
 
     const handleNewReport = useCallback(() => {
+        setSkipSample(true);
         setResumeText("");
         setJobDescription("");
         setReport(null);
+        // Remove sample param so it doesn't auto-load again
+        if (window?.history) {
+            window.history.replaceState({}, "", "/workspace");
+        }
     }, []);
 
     const handleSampleReport = useCallback(async () => {
@@ -292,4 +333,3 @@ export default function WorkspaceClient() {
         </>
     );
 }
-

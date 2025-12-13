@@ -148,18 +148,16 @@ export default function InputPanel({
                 </div>
 
                 {/* Job Description (Optional) */}
-                <div className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between">
-                        <span className="font-semibold text-primary text-sm">Job Description</span>
-                        <span className="text-muted text-xs">Optional — enables alignment analysis</span>
-                    </div>
-                    <textarea
-                        value={jobDescription}
-                        onChange={(e) => onJobDescChange(e.target.value)}
-                        className="textarea min-h-[120px]"
-                        placeholder="Paste the job description to see how well your resume aligns..."
-                    />
+                <div className="flex items-center justify-between">
+                    <span className="font-semibold text-primary text-sm">Job Description</span>
+                    <span className="text-muted text-xs">Optional — enables alignment analysis</span>
                 </div>
+                <textarea
+                    value={jobDescription}
+                    onChange={(e) => onJobDescChange(e.target.value)}
+                    className="textarea min-h-[120px]"
+                    placeholder="Paste the job description to see how well your resume aligns..."
+                />
             </div>
 
             {/* Run Button */}

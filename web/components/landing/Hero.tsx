@@ -115,12 +115,17 @@ export default function Hero() {
                         <div className={`card-lg max-w-md w-full ${loaded ? "animate-score-in" : "opacity-0"}`}>
                             {/* Score cluster */}
                             <div className="flex items-center gap-4 mb-4">
-                                <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full shadow-button flex-shrink-0">
-                                    <span className="text-xl font-extrabold text-white">86</span>
+                                <div className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full shadow-button flex-shrink-0 relative overflow-hidden">
+                                    <div className="absolute inset-0 bg-white/10" />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-white/15 to-transparent" />
+                                    <div className="relative flex flex-col items-center leading-tight">
+                                        <span className="text-2xl font-extrabold text-white">86</span>
+                                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/90">Strong</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div className="text-xs text-secondary uppercase tracking-wide">Clarity Score</div>
-                                    <div className="font-display font-bold text-brand text-sm">Strong foundation</div>
+                                <div className="flex flex-col">
+                                    <div className="text-xs text-secondary uppercase tracking-wide">Recruiter read</div>
+                                    <div className="font-display font-bold text-primary text-sm">Steady owner; tighten scope & impact</div>
                                 </div>
                             </div>
 
