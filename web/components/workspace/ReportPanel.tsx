@@ -447,44 +447,66 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                     </div>
 
                                     {/* Rewrite Cards */}
-                                    {report.rewrites?.map((rw, i) => (
-                                        <div key={i} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-                                            {/* Header with label and copy button */}
-                                            <div className="flex items-center justify-between mb-4">
-                                                {rw.label && <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-section-muted)] text-[var(--text-secondary)]">{rw.label}</span>}
-                                                <button
-                                                    onClick={() => copyText(rw.better, i)}
-                                                    className="flex items-center gap-1.5 text-[12px] font-medium px-3 py-1.5 rounded-lg bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white transition-colors"
-                                                >
-                                                    {copiedIndex === i ? <Check className="w-3.5 h-3.5" strokeWidth={2} /> : <Copy className="w-3.5 h-3.5" strokeWidth={2} />}
-                                                    <span>{copiedIndex === i ? 'Copied' : 'Copy'}</span>
-                                                </button>
-                                            </div>
+                                    {report.rewrites?.map((rw, i) => {
+                                        // Pattern chip helper text mapping
+                                        const patternHelpers: Record<string, string> = {
+                                            'Impact': 'Shows why this mattered.',
+                                            'Scope': 'Shows how big this work really was.',
+                                            'Clarity': 'Makes the action obvious on a fast skim.',
+                                            'Ownership': 'Shows you drove this, not just participated.',
+                                            'Mechanism': 'Shows exactly how you did it.',
+                                            'Before/After': 'Makes the change concrete and verifiable.',
+                                            'Conciseness': 'Sharpens the signal without losing meaning.',
+                                        };
+                                        const helperText = rw.label ? patternHelpers[rw.label] || '' : '';
 
-                                            {/* Two-column layout */}
-                                            <div className="grid grid-cols-2 gap-6">
-                                                {/* Original - Muted */}
-                                                <div>
-                                                    <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">Original</div>
-                                                    <p className="text-[13px] leading-relaxed text-[var(--text-muted)] opacity-70">{rw.original}</p>
+                                        return (
+                                            <div key={i} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
+                                                {/* Header with pattern chip + helper and copy button */}
+                                                <div className="flex items-start justify-between mb-4">
+                                                    <div className="flex flex-col gap-1">
+                                                        {rw.label && (
+                                                            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-section-muted)] text-[var(--text-secondary)] w-fit">{rw.label}</span>
+                                                        )}
+                                                        {helperText && (
+                                                            <span className="text-[10px] text-[var(--text-muted)] pl-0.5">{helperText}</span>
+                                                        )}
+                                                    </div>
+                                                    <button
+                                                        onClick={() => copyText(rw.better, i)}
+                                                        className="flex items-center gap-1.5 text-[12px] font-medium px-3 py-1.5 rounded-lg bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white transition-all"
+                                                    >
+                                                        {copiedIndex === i ? <Check className="w-3.5 h-3.5" strokeWidth={2} /> : <Copy className="w-3.5 h-3.5" strokeWidth={2} />}
+                                                        <span>{copiedIndex === i ? 'Copied' : 'Copy'}</span>
+                                                    </button>
                                                 </div>
-                                                {/* Better - Dominant */}
-                                                <div>
-                                                    <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)] mb-2">Better</div>
-                                                    <p className="text-[14px] leading-relaxed text-[var(--text-primary)] font-medium">{rw.better}</p>
-                                                </div>
-                                            </div>
 
-                                            {/* Coaching line - Smallest and calmest */}
-                                            {rw.enhancement_note && (
-                                                <div className="mt-4 pt-3 border-t border-[var(--border-subtle)]">
-                                                    <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
-                                                        {rw.enhancement_note.replace(/^If you have it[:,]?\s*/i, '')}
-                                                    </p>
+                                                {/* Two-column layout: Better FIRST (left), Original second (right) */}
+                                                <div className="grid grid-cols-2 gap-6">
+                                                    {/* Better - Dominant, LEFT column */}
+                                                    <div>
+                                                        <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)] mb-2">Better</div>
+                                                        <p className="text-[15px] leading-[1.6] text-[var(--text-primary)] font-medium">{rw.better}</p>
+                                                    </div>
+                                                    {/* Original - Muted, RIGHT column */}
+                                                    <div>
+                                                        <div className="text-[10px] font-medium uppercase tracking-wider text-[var(--text-muted)] opacity-60 mb-2">Original</div>
+                                                        <p className="text-[12px] leading-[1.5] text-[var(--text-muted)] opacity-60">{rw.original}</p>
+                                                    </div>
                                                 </div>
-                                            )}
-                                        </div>
-                                    )) || <p className="text-[13px] text-[var(--text-muted)] text-center p-8">No rewrites available</p>}
+
+                                                {/* Coaching line - grouped with label */}
+                                                {rw.enhancement_note && (
+                                                    <div className="mt-5 pt-4 border-t border-[var(--border-subtle)]">
+                                                        <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--text-muted)] opacity-70 block mb-1.5">If you want to level this up</span>
+                                                        <p className="text-[11px] text-[var(--text-secondary)] leading-relaxed pl-0.5">
+                                                            {rw.enhancement_note.replace(/^If you have it[:,]?\s*/i, '')}
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    }) || <p className="text-[13px] text-[var(--text-muted)] text-center p-8">No rewrites available</p>}
                                 </div>
                             )}
 
