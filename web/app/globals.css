@@ -67,6 +67,8 @@
     --bg-card: var(--color-surface);
     --bg-card-alt: var(--color-indigo-50);
     --bg-hover: rgba(99, 102, 241, 0.06);
+    --bg-canvas: #FAFAF8;
+    /* Warm document surface - between body and card */
 
     /* ===== SEMANTIC ACCENTS ===== */
     --color-positive: var(--color-moss-600);
@@ -185,6 +187,8 @@
     /* #1F2227 */
     --bg-card-alt: rgba(79, 70, 229, 0.16);
     --bg-hover: rgba(99, 102, 241, 0.12);
+    --bg-canvas: #17191D;
+    /* Warm document surface - dark mode */
 
     /* Text */
     --text-primary: var(--color-ink);

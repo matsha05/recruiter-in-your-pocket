@@ -212,11 +212,11 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
 
                 {/* Report Canvas */}
                 {showReport && (
-                    <div className="bg-[var(--bg-section-muted)] min-h-full p-6 lg:p-8">
-                        <div className="max-w-[800px] mx-auto">
+                    <div className="bg-[var(--bg-body)] min-h-full p-4 lg:p-6">
+                        <div className="max-w-[900px] mx-auto bg-[var(--bg-canvas)] rounded-2xl border border-[var(--border-subtle)] shadow-[var(--shadow-soft)] p-6 lg:p-8">
 
                             {/* Chapter Title */}
-                            <div className="mb-5">
+                            <div className="mb-6">
                                 <h1 className="text-lg font-semibold text-[var(--text-primary)]">{activeTabData?.label}</h1>
                                 <p className="text-[13px] text-[var(--text-muted)] mt-0.5">{activeTabData?.subtitle}</p>
                             </div>
@@ -373,7 +373,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                 <div>
                                                     <div className="flex items-center justify-between mb-1.5">
                                                         <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)]">Better</span>
-                                                        <button onClick={() => copyText(rw.better, i)} className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-primary)]">{copiedIndex === i ? '✓ Copied' : 'Copy'}</button>
+                                                        <button onClick={() => copyText(rw.better, i)} className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[var(--bg-section-muted)] hover:bg-[var(--bg-hover)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">{copiedIndex === i ? '✓ Copied' : 'Copy rewrite'}</button>
                                                     </div>
                                                     <p className="text-[13px] leading-relaxed text-[var(--text-primary)]">{rw.better}</p>
                                                     {rw.enhancement_note && <p className="text-[11px] text-[var(--text-muted)] italic mt-2">If you have it: {rw.enhancement_note}</p>}
@@ -411,28 +411,28 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                     <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-3">Role Fit Analysis</h4>
                                                     <div className="flex flex-col gap-4">
                                                         {/* Best Fit Roles */}
-                                                        {report.job_alignment.role_fit.best_fit_roles?.length > 0 && (
+                                                        {(report.job_alignment.role_fit.best_fit_roles?.length ?? 0) > 0 && (
                                                             <div>
                                                                 <div className="flex items-center gap-2 mb-2">
                                                                     <span className="w-2 h-2 rounded-full bg-green-500" />
                                                                     <span className="text-[13px] font-medium text-[var(--text-primary)]">Best Fit Roles</span>
                                                                 </div>
                                                                 <div className="flex flex-wrap gap-1.5">
-                                                                    {report.job_alignment.role_fit.best_fit_roles.map((role, i) => (
+                                                                    {report.job_alignment.role_fit.best_fit_roles?.map((role, i) => (
                                                                         <span key={i} className="text-[12px] px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">{role}</span>
                                                                     ))}
                                                                 </div>
                                                             </div>
                                                         )}
                                                         {/* Stretch Roles */}
-                                                        {report.job_alignment.role_fit.stretch_roles?.length > 0 && (
+                                                        {(report.job_alignment.role_fit.stretch_roles?.length ?? 0) > 0 && (
                                                             <div>
                                                                 <div className="flex items-center gap-2 mb-2">
                                                                     <span className="w-2 h-2 rounded-full bg-amber-400" />
                                                                     <span className="text-[13px] font-medium text-[var(--text-primary)]">Stretch Roles</span>
                                                                 </div>
                                                                 <div className="flex flex-wrap gap-1.5">
-                                                                    {report.job_alignment.role_fit.stretch_roles.map((role, i) => (
+                                                                    {report.job_alignment.role_fit.stretch_roles?.map((role, i) => (
                                                                         <span key={i} className="text-[12px] px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">{role}</span>
                                                                     ))}
                                                                 </div>
@@ -447,10 +447,10 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                                     <span className="text-[13px] text-[var(--text-primary)]">{report.job_alignment.role_fit.seniority_read}</span>
                                                                 </div>
                                                             )}
-                                                            {report.job_alignment.role_fit.industry_signals?.length > 0 && (
+                                                            {(report.job_alignment.role_fit.industry_signals?.length ?? 0) > 0 && (
                                                                 <div>
                                                                     <span className="text-[11px] font-medium text-[var(--text-muted)] block mb-1">Industry Signals</span>
-                                                                    <span className="text-[13px] text-[var(--text-primary)]">{report.job_alignment.role_fit.industry_signals.join(", ")}</span>
+                                                                    <span className="text-[13px] text-[var(--text-primary)]">{report.job_alignment.role_fit.industry_signals?.join(", ")}</span>
                                                                 </div>
                                                             )}
                                                             {report.job_alignment.role_fit.company_stage_fit && (
@@ -488,7 +488,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                 {q.archetype && <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-indigo-100 text-indigo-700">{q.archetype}</span>}
                                                 {q.why && <p className="text-[12px] text-[var(--text-muted)] mt-2">{q.why}</p>}
                                             </div>
-                                            <button className="self-start text-[10px] font-semibold uppercase tracking-wider px-3 py-1.5 rounded border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)]">Draft answer</button>
+                                            <button className="self-start text-[11px] font-medium px-2.5 py-1 rounded-full bg-[var(--bg-section-muted)] hover:bg-[var(--bg-hover)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors whitespace-nowrap">Draft answer</button>
                                         </div>
                                     )) || report.next_steps?.map((step, i) => (
                                         <div key={i} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
