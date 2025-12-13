@@ -405,6 +405,64 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                                     <p className="text-[11px] italic text-[var(--text-muted)] pt-2 border-t border-[var(--border-subtle)]">{meaning}</p>
                                                 </div>
                                             ))}
+                                            {/* Role Fit Section */}
+                                            {report.job_alignment?.role_fit && (
+                                                <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
+                                                    <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-3">Role Fit Analysis</h4>
+                                                    <div className="flex flex-col gap-4">
+                                                        {/* Best Fit Roles */}
+                                                        {report.job_alignment.role_fit.best_fit_roles?.length > 0 && (
+                                                            <div>
+                                                                <div className="flex items-center gap-2 mb-2">
+                                                                    <span className="w-2 h-2 rounded-full bg-green-500" />
+                                                                    <span className="text-[13px] font-medium text-[var(--text-primary)]">Best Fit Roles</span>
+                                                                </div>
+                                                                <div className="flex flex-wrap gap-1.5">
+                                                                    {report.job_alignment.role_fit.best_fit_roles.map((role, i) => (
+                                                                        <span key={i} className="text-[12px] px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">{role}</span>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                        {/* Stretch Roles */}
+                                                        {report.job_alignment.role_fit.stretch_roles?.length > 0 && (
+                                                            <div>
+                                                                <div className="flex items-center gap-2 mb-2">
+                                                                    <span className="w-2 h-2 rounded-full bg-amber-400" />
+                                                                    <span className="text-[13px] font-medium text-[var(--text-primary)]">Stretch Roles</span>
+                                                                </div>
+                                                                <div className="flex flex-wrap gap-1.5">
+                                                                    {report.job_alignment.role_fit.stretch_roles.map((role, i) => (
+                                                                        <span key={i} className="text-[12px] px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">{role}</span>
+                                                                    ))}
+                                                                </div>
+                                                                <p className="text-[11px] text-[var(--text-muted)] mt-1 italic">You could grow into these, but would need to emphasize different skills.</p>
+                                                            </div>
+                                                        )}
+                                                        {/* Seniority, Industry, and Company Stage */}
+                                                        <div className="pt-3 border-t border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                                            {report.job_alignment.role_fit.seniority_read && (
+                                                                <div>
+                                                                    <span className="text-[11px] font-medium text-[var(--text-muted)] block mb-1">Seniority Read</span>
+                                                                    <span className="text-[13px] text-[var(--text-primary)]">{report.job_alignment.role_fit.seniority_read}</span>
+                                                                </div>
+                                                            )}
+                                                            {report.job_alignment.role_fit.industry_signals?.length > 0 && (
+                                                                <div>
+                                                                    <span className="text-[11px] font-medium text-[var(--text-muted)] block mb-1">Industry Signals</span>
+                                                                    <span className="text-[13px] text-[var(--text-primary)]">{report.job_alignment.role_fit.industry_signals.join(", ")}</span>
+                                                                </div>
+                                                            )}
+                                                            {report.job_alignment.role_fit.company_stage_fit && (
+                                                                <div>
+                                                                    <span className="text-[11px] font-medium text-[var(--text-muted)] block mb-1">Company Stage Fit</span>
+                                                                    <span className="text-[13px] text-[var(--text-primary)]">{report.job_alignment.role_fit.company_stage_fit}</span>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
                                             {report.job_alignment?.positioning_suggestion && (
                                                 <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
                                                     <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-2">Positioning</h4>
