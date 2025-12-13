@@ -519,7 +519,7 @@ FIELD RULES
   - Generate 5 role-aware questions to help the user uncover hidden achievements.
   - Each question must have:
     - question: A concise prompt under ~22 words targeting unspoken decisions, tradeoffs, or before/after gaps
-    - archetype: One of: TENSION POINT, SCALING, QUALITY UNDER PRESSURE, IMPROVEMENT, CROSS-FUNCTIONAL COMPLEXITY, END-TO-END OWNERSHIP, DOMAIN LIFT, HIGH STAKES
+    - archetype: One of: TENSION POINT, SCALING, QUALITY UNDER PRESSURE, IMPROVEMENT, CROSS-FUNCTIONAL COMPLEXITY, END-TO-END OWNERSHIP, DOMAIN LIFT, HIGH STAKES, LEARNING, DURABILITY
     - why: One sentence explaining why this matters to recruiters/hiring managers
   - Ground every question in the resume's companies, teams, tools, metrics, or scope.
   - Use 5 different archetypes (no repeats).

@@ -185,27 +185,27 @@
       {
         "question": "What was the hardest tradeoff you made on a launch, and how did you decide?",
         "archetype": "TENSION POINT",
-        "why": "Shows judgment under pressure—recruiters want to see how you think, not just what you shipped."
+        "why": "This tells recruiters whether you can make calls under pressure, not just execute tasks."
       },
       {
         "question": "Which project had the most at stake, and what was your role when things got tense?",
         "archetype": "HIGH STAKES",
-        "why": "Surfaces ownership and composure—both are hard to fake and memorable."
+        "why": "Recruiters look for ownership and composure. Both are hard to fake and memorable."
       },
       {
         "question": "What's the biggest scope you've managed (teams, geos, budget) that isn't on the page yet?",
-        "archetype": "SCALE",
+        "archetype": "SCALING",
         "why": "Scope is often hidden; surfacing it can jump you to the next tier."
       },
       {
         "question": "When did you change your mind based on data or customer feedback, and what happened?",
         "archetype": "LEARNING",
-        "why": "Shows intellectual honesty and user-centricity—rare and valued."
+        "why": "Recruiters value intellectual honesty and user focus. This shows you can update your thinking."
       },
       {
         "question": "What system, process, or tool did you build that's still running without you?",
         "archetype": "DURABILITY",
-        "why": "Lasting impact signals senior thinking—you're not just shipping, you're building foundations."
+        "why": "Lasting impact signals senior thinking. Recruiters want to know you build foundations, not just ship."
       }
     ],
     "notes": [

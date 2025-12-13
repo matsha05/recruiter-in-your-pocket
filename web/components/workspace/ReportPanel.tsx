@@ -513,6 +513,12 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                             {/* ===== JOB ALIGNMENT ===== */}
                             {activeTab === "alignment" && (
                                 <div className="flex flex-col gap-3">
+                                    {/* Resume-only hint */}
+                                    {!hasJobDescription && (
+                                        <div className="text-[13px] text-[var(--text-secondary)] pl-4 py-2 border-l-2 border-[var(--brand)]">
+                                            <span className="font-semibold">Note:</span> This is based on your resume alone. Paste a job description to see how you match a specific role.
+                                        </div>
+                                    )}
                                     {(report.job_alignment?.strongly_aligned?.length || report.job_alignment?.underplayed?.length || report.job_alignment?.missing?.length) ? (
                                         <>
                                             {[
@@ -606,6 +612,20 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                             {/* ===== MISSING WINS ===== */}
                             {activeTab === "wins" && (
                                 <div className="flex flex-col gap-3">
+                                    {/* How to use - styled like Job Alignment note, at top */}
+                                    {report.ideas?.questions && report.ideas.questions.length > 0 && (
+                                        <div className="text-[13px] text-[var(--text-secondary)] pl-4 py-2 mb-1 border-l-2 border-[var(--brand)]">
+                                            <span className="font-semibold">How to use:</span> Pick a question → write 2-3 rough sentences → turn it into a bullet using Mechanism → Scope → Impact.
+                                        </div>
+                                    )}
+
+                                    {/* Progress indicator */}
+                                    {report.ideas?.questions && report.ideas.questions.length > 0 && (
+                                        <div className="text-[12px] text-[var(--text-muted)]">
+                                            <span className="font-medium text-[var(--text-primary)]">0</span> of {report.ideas.questions.length} answered
+                                        </div>
+                                    )}
+
                                     {report.ideas?.questions?.map((q, i) => (
                                         <div key={i} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4 flex justify-between gap-4">
                                             <div className="flex-1 min-w-0">
@@ -620,12 +640,6 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                             <p className="text-[13px] text-[var(--text-secondary)]">{step}</p>
                                         </div>
                                     )) || <p className="text-[13px] text-[var(--text-muted)] text-center p-8">No questions available</p>}
-
-                                    {report.ideas?.how_to_use && (
-                                        <div className="bg-[var(--bg-card-alt)] rounded-xl border border-[var(--border-subtle)] p-4">
-                                            <p className="text-[11px] text-[var(--text-muted)]"><strong>How to use:</strong> {report.ideas.how_to_use}</p>
-                                        </div>
-                                    )}
                                 </div>
                             )}
                         </div>
