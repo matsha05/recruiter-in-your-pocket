@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
+import { X } from "lucide-react";
 
 interface AuthModalProps {
     isOpen: boolean;
@@ -150,9 +151,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                     aria-label="Close"
                     className="absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2"
                 >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
+                    <X className="w-5 h-5" strokeWidth={2} />
                 </button>
 
                 <div className="text-center mb-6">

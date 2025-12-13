@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ShieldCheck, Lock, Receipt } from "lucide-react";
 
 interface PricingProps {
     onSelectTier?: (tier: "24h" | "30d") => void;
@@ -128,22 +129,15 @@ export default function Pricing({ onSelectTier }: PricingProps) {
                 {/* Trust signals */}
                 <div className="flex flex-wrap justify-center gap-6 text-sm text-muted mb-6">
                     <span className="flex items-center gap-2">
-                        <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6">
-                            <path d="M9.022 3.173a.75.75 0 0 1 .956 0l5.25 4.2a.75.75 0 0 1 .272.577v3.7a5.25 5.25 0 0 1-3.089 4.79l-2.837 1.264a.75.75 0 0 1-.614 0l-2.837-1.264A5.25 5.25 0 0 1 3.5 11.65v-3.7a.75.75 0 0 1 .272-.577l5.25-4.2Z" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="m7.75 10.75 1.75 1.75 3.75-3.75" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <ShieldCheck className="w-4 h-4" strokeWidth={2} />
                         Built by a top recruiter from OpenAI, FAANG, and global startups
                     </span>
                     <span className="flex items-center gap-2">
-                        <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6">
-                            <path d="M12.75 9V5.25a3.75 3.75 0 10-7.5 0V9m-.75 0h9a.75.75 0 01.75.75v7.5a.75.75 0 01-.75.75h-9a.75.75 0 01-.75-.75v-7.5a.75.75 0 01.75-.75z" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <Lock className="w-4 h-4" strokeWidth={2} />
                         Your resume never trains models
                     </span>
                     <span className="flex items-center gap-2">
-                        <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6">
-                            <path d="M6.75 4.5h10.5v11.25l-2.25-1.5-2.25 1.5-2.25-1.5-2.25 1.5-2.25-1.5-2.25 1.5V4.5z" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <Receipt className="w-4 h-4" strokeWidth={2} />
                         No hidden subscriptions
                     </span>
                 </div>

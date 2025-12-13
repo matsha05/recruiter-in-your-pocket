@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "../shared/ThemeToggle";
+import { Plus, Files, ArrowLeft, Settings } from "lucide-react";
 
 interface User {
     email?: string;
@@ -46,9 +47,7 @@ export default function WorkspaceHeader({
                         font-semibold rounded-lg shadow-button hover:opacity-90 
                         transition-all duration-200"
                 >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 8V16M8 12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
+                    <Plus className="w-4 h-4" strokeWidth={2} />
                     New Report
                 </button>
 
@@ -88,10 +87,7 @@ export default function WorkspaceHeader({
                                         onClick={() => { onHistory?.(); setIsDropdownOpen(false); }}
                                         className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                     >
-                                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                            <path d="M3 7C3 4.239 4.239 3 7 3H17C19.761 3 21 4.239 21 7V17C21 19.761 19.761 21 17 21H7C4.239 21 3 19.761 3 17V7Z" stroke="currentColor" strokeWidth="1.5" />
-                                            <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                        </svg>
+                                        <Files className="w-4 h-4" strokeWidth={2} />
                                         My Reports
                                     </button>
 
@@ -99,9 +95,7 @@ export default function WorkspaceHeader({
                                         onClick={() => { onNewReport?.(); setIsDropdownOpen(false); }}
                                         className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                     >
-                                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                            <path d="M12 8V16M8 12H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                        </svg>
+                                        <Plus className="w-4 h-4" strokeWidth={2} />
                                         New Report
                                     </button>
 
@@ -112,9 +106,7 @@ export default function WorkspaceHeader({
                                         className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                         onClick={() => setIsDropdownOpen(false)}
                                     >
-                                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                            <path d="M11 6L5 12M5 12L11 18M5 12H19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
+                                        <ArrowLeft className="w-4 h-4" strokeWidth={2} />
                                         Home
                                     </Link>
 
@@ -123,10 +115,7 @@ export default function WorkspaceHeader({
                                         className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                         onClick={() => setIsDropdownOpen(false)}
                                     >
-                                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                            <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="1.5" />
-                                            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" strokeWidth="1.5" />
-                                        </svg>
+                                        <Settings className="w-4 h-4" strokeWidth={2} />
                                         Settings
                                     </Link>
 

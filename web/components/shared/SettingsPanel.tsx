@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
+import { X } from "lucide-react";
 
 interface Pass {
     id: string;
@@ -92,9 +93,7 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                 <div className="flex items-center justify-between px-4 py-3 border-b border-subtle">
                     <h2 className="font-semibold text-primary">Settings</h2>
                     <button onClick={onClose} className="p-1 text-muted hover:text-secondary">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                        <X className="w-5 h-5" strokeWidth={2} />
                     </button>
                 </div>
 

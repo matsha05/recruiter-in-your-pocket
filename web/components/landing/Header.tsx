@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import ThemeToggle from "../shared/ThemeToggle";
+import { ArrowRight, Settings } from "lucide-react";
 
 interface User {
     email?: string;
@@ -66,9 +67,7 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
                                     className="flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                     onClick={() => setIsDropdownOpen(false)}
                                 >
-                                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                        <path d="M13 6L19 12M19 12L13 18M19 12H5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                    <ArrowRight className="w-4 h-4" strokeWidth={2} />
                                     Go to Workspace
                                 </Link>
                                 <Link
@@ -76,10 +75,7 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
                                     className="flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
                                     onClick={() => setIsDropdownOpen(false)}
                                 >
-                                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                                        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="1.5" />
-                                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" strokeWidth="1.5" />
-                                    </svg>
+                                    <Settings className="w-4 h-4" strokeWidth={2} />
                                     Settings
                                 </Link>
                                 <div className="border-t border-subtle my-1" />

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { X } from "lucide-react";
 
 type Tier = "24h" | "30d";
 
@@ -93,9 +94,7 @@ export default function PaywallModal({
                     aria-label="Close"
                     className="absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2"
                 >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
+                    <X className="w-5 h-5" strokeWidth={2} />
                 </button>
 
                 {/* Header */}

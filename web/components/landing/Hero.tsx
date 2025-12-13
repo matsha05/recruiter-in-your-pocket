@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../providers/AuthProvider";
+import { X } from "lucide-react";
 
 export default function Hero() {
     const [loaded, setLoaded] = useState(false);
@@ -198,9 +199,7 @@ export default function Hero() {
                             aria-label="Close"
                             className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-muted hover:text-primary transition-colors rounded-full border border-subtle hover:border-[var(--border)]"
                         >
-                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                                <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                            </svg>
+                            <X className="w-4 h-4" strokeWidth={2} />
                         </button>
 
                         <h2 className="font-display text-xl font-bold text-primary mb-4">

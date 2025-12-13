@@ -620,3 +620,76 @@ If removing it improves clarity, it was noise.
 - Avoid the safe, generic choice
 - Prioritize understanding first, then delight
 - Be dogmatic about quality, not "rules"
+
+---
+
+## 18. Icon System
+
+### System Rules
+
+**Rule 1: One Family for UI**
+- **Lucide** (`lucide-react`) for all functional icons (buttons, tabs, nav, status)
+- **Custom SVG only** for: score dial animations, research diagrams
+
+**Rule 2: Two Sizes Only**
+| Size | Tailwind | Use |
+|------|----------|-----|
+| 16px | `w-4 h-4` | Inline actions (buttons, chips, rows) |
+| 20px | `w-5 h-5` | Section headers, empty states, primary nav |
+
+**Rule 3: One Stroke Weight**
+- `strokeWidth={2}` (Lucide default) everywhere
+
+**Rule 4: Semantic Color**
+| State | Class |
+|-------|-------|
+| Default | `text-[var(--text-muted)]` |
+| Hover/Active | `text-[var(--text-primary)]` |
+| Hero path | `text-[var(--brand)]` |
+
+### Canonical Icon Mapping
+
+**Navigation:**
+- Home/Back: `ArrowLeft`
+- Forward/Workspace: `ArrowRight`
+- New: `Plus`
+- Reports list: `Files`
+- Settings: `Settings`
+
+**Report Actions:**
+- Export: `Download`
+- Copy: `Copy`
+- Edit: `Pencil`
+- Delete: `Trash2`
+- Close: `X`
+
+**Report Semantics:**
+- First impression: `Eye`
+- Success status: `CircleCheck`
+- Done checkbox: `Check`
+- Warning: `AlertTriangle`
+- Info: `Info`
+
+**Document States:**
+- Reports collection: `Files`
+- Create new: `FilePlus`
+- Resume uploaded: `FileUser`
+- Resume reviewed: `FileCheck`
+
+**Trust (Pricing):**
+- Security: `ShieldCheck`
+- No training: `Lock`
+- No subscriptions: `Receipt`
+
+**General:**
+- Upload: `CloudUpload`
+- Jobs: `Briefcase`
+- Verified: `UserCheck`
+- Search: `Search`
+- Filter: `Filter`
+- Sort: `ArrowUpDown`
+- Calendar: `Calendar`
+- Time: `Clock`
+- Profile: `User`
+- Email: `Mail`
+- External link: `ExternalLink`

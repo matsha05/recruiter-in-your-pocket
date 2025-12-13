@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { Download, FilePlus, Eye, Check } from "lucide-react";
 
 // Score color
 function getScoreColor(score: number): string {
@@ -159,7 +160,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                             <span className="font-bold" style={{ color: dialColor }}>{report.score}</span>
                             {onExportPdf && (
                                 <button onClick={onExportPdf} disabled={isExporting} className="flex items-center gap-1 px-2 py-1 rounded text-[var(--text-muted)] hover:bg-[var(--bg-hover)] transition-colors">
-                                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                                    <Download className="w-4 h-4" strokeWidth={2} />
                                     <span>{isExporting ? "..." : "Export"}</span>
                                 </button>
                             )}
@@ -195,7 +196,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                 {/* Empty State */}
                 {showEmptyState && (
                     <div className="flex flex-col items-center justify-center h-full text-center p-8 text-[var(--text-muted)]">
-                        <svg width="48" height="48" className="mb-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        <FilePlus className="w-12 h-12 mb-4 opacity-40" strokeWidth={1.5} />
                         <div className="text-sm font-medium text-[var(--text-primary)] mb-1">Ready when you are</div>
                         <p className="text-[13px]">Upload or paste your resume to get recruiter-grade feedback.</p>
                     </div>
@@ -241,7 +242,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                             {/* Recruiter Read */}
                                             <div className={`flex-1 min-w-0 max-w-[520px] transition-opacity duration-300 ${dialComplete ? 'opacity-100' : 'opacity-0'}`}>
                                                 <div className="flex items-center gap-1.5 mb-2">
-                                                    <svg width="14" height="14" className="text-[var(--brand)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 5C16.478 5 20.268 7.405 22 11C20.268 14.595 16.478 17 12 17C7.522 17 3.732 14.595 2 11C3.732 7.405 7.522 5 12 5Z" /><circle cx="12" cy="11" r="3" /></svg>
+                                                    <Eye className="w-4 h-4 text-[var(--brand)]" strokeWidth={2} />
                                                     <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Recruiter First Impression</span>
                                                 </div>
                                                 <p className="text-[14px] leading-relaxed text-[var(--text-secondary)]">{firstImpressionText}</p>
@@ -302,7 +303,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                         return (
                                             <div key={i} className={`bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4 flex gap-3 ${isDone ? 'opacity-60' : ''}`}>
                                                 <button onClick={() => toggleFix(i)} className={`w-[18px] h-[18px] mt-0.5 flex-shrink-0 rounded flex items-center justify-center border ${isDone ? 'bg-[var(--brand)] border-transparent' : 'bg-[var(--bg-card)] border-[var(--border-subtle)]'}`}>
-                                                    {isDone && <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
+                                                    {isDone && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                                                 </button>
                                                 <div className="flex-1 min-w-0">
                                                     <p className={`text-[14px] font-medium ${isDone ? 'text-[var(--text-muted)]' : 'text-[var(--text-primary)]'}`}>{fix.fix || fix.text}</p>
@@ -317,7 +318,7 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                     }) : report.gaps?.map((gap, i) => (
                                         <div key={i} className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4 flex gap-3">
                                             <button onClick={() => toggleFix(i)} className={`w-[18px] h-[18px] mt-0.5 flex-shrink-0 rounded flex items-center justify-center border ${completedFixes.has(i) ? 'bg-[var(--brand)] border-transparent' : 'bg-[var(--bg-card)] border-[var(--border-subtle)]'}`}>
-                                                {completedFixes.has(i) && <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
+                                                {completedFixes.has(i) && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                                             </button>
                                             <p className="text-[14px] text-[var(--text-secondary)]">{gap}</p>
                                         </div>
