@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Download, FilePlus, Eye, Check } from "lucide-react";
+import { Download, FilePlus, Eye, Check, ArrowRight } from "lucide-react";
 
 // Score color
 function getScoreColor(score: number): string {
@@ -240,16 +240,16 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                             </div>
 
                                             {/* Recruiter Read */}
-                                            <div className={`flex-1 min-w-0 max-w-[520px] transition-opacity duration-300 ${dialComplete ? 'opacity-100' : 'opacity-0'}`}>
+                                            <div className={`flex-1 min-w-0 transition-opacity duration-300 ${dialComplete ? 'opacity-100' : 'opacity-0'}`}>
                                                 <div className="flex items-center gap-1.5 mb-2">
                                                     <Eye className="w-4 h-4 text-[var(--brand)]" strokeWidth={2} />
                                                     <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Recruiter First Impression</span>
                                                 </div>
-                                                <p className="text-[14px] leading-relaxed text-[var(--text-secondary)]">{firstImpressionText}</p>
+                                                <p className="text-[14px] leading-relaxed text-[var(--text-secondary)] max-w-[420px]">{firstImpressionText}</p>
                                                 {report.top_fixes?.[0] && (
                                                     <div className="mt-4 pt-4 border-t border-[var(--border-subtle)]">
                                                         <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand)]">Next Step</span>
-                                                        <p className="text-[13px] text-[var(--text-secondary)] mt-1">{report.top_fixes[0].fix || report.top_fixes[0].text}</p>
+                                                        <p className="text-[13px] text-[var(--text-secondary)] mt-1 max-w-[420px]">{report.top_fixes[0].fix || report.top_fixes[0].text}</p>
                                                     </div>
                                                 )}
                                             </div>
@@ -259,28 +259,28 @@ export default function ReportPanel({ report, isLoading, hasJobDescription, onEx
                                     {/* Working vs Missing */}
                                     <div className="grid grid-cols-2 gap-3">
                                         {report.strengths && report.strengths.length > 0 && (
-                                            <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
-                                                <h3 className="flex items-center gap-1.5 text-sm font-semibold text-[var(--text-primary)] mb-3">
-                                                    <span className="text-[var(--status-success)]">✓</span> Working
+                                            <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 min-h-[160px]">
+                                                <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--text-primary)] mb-4">
+                                                    <span className="w-2 h-2 rounded-full bg-[var(--status-success)]"></span>Working
                                                 </h3>
-                                                <ul className="flex flex-col gap-1.5">
+                                                <ul className="flex flex-col gap-2">
                                                     {report.strengths.slice(0, 5).map((s, i) => (
-                                                        <li key={i} className="flex items-start gap-2 text-[13px] text-[var(--text-secondary)]">
-                                                            <span className="text-[var(--status-success)] opacity-60">•</span><span>{s}</span>
+                                                        <li key={i} className="flex items-start gap-2.5 text-[13px] leading-relaxed text-[var(--text-secondary)]">
+                                                            <span className="text-[var(--status-success)] mt-1.5 text-[8px]">●</span><span>{s}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
                                             </div>
                                         )}
                                         {report.gaps && report.gaps.length > 0 && (
-                                            <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-4">
-                                                <h3 className="flex items-center gap-1.5 text-sm font-semibold text-[var(--text-primary)] mb-3">
-                                                    <span className="text-[var(--status-warning)]">△</span> Missing
+                                            <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 min-h-[160px]">
+                                                <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--text-primary)] mb-4">
+                                                    <span className="w-2 h-2 rounded-full bg-[var(--status-warning)]"></span>Missing
                                                 </h3>
-                                                <ul className="flex flex-col gap-1.5">
+                                                <ul className="flex flex-col gap-2">
                                                     {report.gaps.slice(0, 5).map((g, i) => (
-                                                        <li key={i} className="flex items-start gap-2 text-[13px] text-[var(--text-secondary)]">
-                                                            <span className="text-[var(--status-warning)] opacity-60">•</span><span>{g}</span>
+                                                        <li key={i} className="flex items-start gap-2.5 text-[13px] leading-relaxed text-[var(--text-secondary)]">
+                                                            <span className="text-[var(--status-warning)] mt-1.5 text-[8px]">●</span><span>{g}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
