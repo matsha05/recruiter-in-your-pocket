@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import type { AuthUser } from "@/components/providers/AuthProvider";
 
 interface UserNavProps {
-interface UserNavProps {
+
     user: AuthUser;
     onSignOut: () => void;
     onHistoryClick?: () => void;
