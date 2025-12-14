@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, R
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import type { User } from "@supabase/supabase-js";
 
-interface AuthUser {
+export interface AuthUser {
     id: string;
     email: string | null;
     firstName?: string | null;

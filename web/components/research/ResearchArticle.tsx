@@ -152,7 +152,7 @@ export function ResearchArticle({
 }
 
 // Re-export common insights for use inside the article body
-import { ReactNode } from "react";
+
 export function ArticleInsight({ icon, title, desc }: { icon: ReactNode, title: string, desc: string }) {
     return (
         <div className="p-4 border rounded-lg bg-card hover:border-primary/20 transition-colors">

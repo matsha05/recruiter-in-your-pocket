@@ -4,12 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { LogOut, Files, Settings, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { AuthUser } from "@/components/providers/AuthProvider";
 
 interface UserNavProps {
-    user: {
-        email?: string | null;
-        firstName?: string | null;
-    };
+interface UserNavProps {
+    user: AuthUser;
     onSignOut: () => void;
     onHistoryClick?: () => void;
     onSettingsClick?: () => void;
