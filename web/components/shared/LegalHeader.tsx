@@ -16,7 +16,6 @@ export default function LegalHeader() {
                 <Link
                     href="/"
                     className="font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors"
-                    className="font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors"
                 >
                     Recruiter in Your Pocket
                 </Link>
