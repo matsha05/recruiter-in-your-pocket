@@ -16,7 +16,7 @@ export default function LegalHeader() {
                 <Link
                     href="/"
                     className="font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors"
-                    style={{ fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif' }}
+                    className="font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors"
                 >
                     Recruiter in Your Pocket
                 </Link>
