@@ -99,6 +99,17 @@ export async function POST(request: NextRequest) {
                 } else if (newUser?.user) {
                     userId = newUser.user.id;
                     console.log(`[webhook] Created new user: ${userId}`);
+
+                    // Trigger login code email so they can access their account
+                    const { error: otpError } = await supabaseAdmin.auth.signInWithOtp({
+                        email: email.toLowerCase()
+                    });
+
+                    if (otpError) {
+                        console.error("[webhook] Failed to send login code:", otpError.message);
+                    } else {
+                        console.log(`[webhook] Sent login code to ${email}`);
+                    }
                 }
             }
 

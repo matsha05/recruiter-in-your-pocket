@@ -38,7 +38,11 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
                 Recruiter in Your Pocket
             </Link>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
+                <Link href="/research" className="text-sm font-medium text-muted hover:text-foreground transition-colors hidden md:block">
+                    Research Library
+                </Link>
+
                 {!user ? (
                     <button className="btn-ghost font-semibold" onClick={onSignIn}>
                         Sign In

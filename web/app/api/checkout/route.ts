@@ -8,8 +8,8 @@ const stripe = process.env.STRIPE_SECRET_KEY
     : null;
 
 const PRICE_IDS = {
-    "24h": process.env.STRIPE_PRICE_ID_24H || process.env.STRIPE_PRICE_ID,
-    "30d": process.env.STRIPE_PRICE_ID_30D
+    "24h": process.env.STRIPE_PRICE_ID_24H || "price_1SeJLJK3nCOONJJ0g2JncGeY",
+    "30d": process.env.STRIPE_PRICE_ID_30D || "price_1SeJLsK3nCOONJJ0mrQIVesj"
 };
 
 // Base URL for redirects
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const tierLabel = selectedTier === "30d" ? "30-Day Campaign Pass" : "24-Hour Fix Pass";
+        const tierLabel = selectedTier === "30d" ? "Pro Membership" : "Single Audit Pass";
         const baseUrl = getBaseUrl();
 
         // Check if user is already logged in (optional)

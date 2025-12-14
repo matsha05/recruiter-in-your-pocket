@@ -1,939 +1,114 @@
-/* Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
-   COLOR SYSTEM TOKENS
-   ============================================ */
-
 @layer base {
   :root {
-    color-scheme: light;
+    /* 
+      Linear-style Color System 
+      - Heavy reliance on semantic "ink" names
+      - Alpha-based borders for glass feel
+    */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    /* Ink High */
 
-    /* ===== SPACING SCALE ===== */
-    --space-xs: 8px;
-    --space-sm: 16px;
-    --space-md: 24px;
-    --space-lg: 32px;
-    --space-xl: 40px;
-    --space-section: 48px;
-    --space-section-lg: 64px;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
 
-    /* ===== HEADING HIERARCHY ===== */
-    --fs-h1: 2rem;
-    --fs-h2: 1.5rem;
-    --fs-h3: 1.125rem;
-    --fs-body: 1rem;
-    --fs-body-sm: 0.875rem;
-    --fs-caption: 0.8125rem;
-    --lh-tight: 1.2;
-    --lh-snug: 1.3;
-    --lh-normal: 1.5;
-    --lh-relaxed: 1.6;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
 
-    /* ===== BRAND BASE PALETTE ===== */
-    --color-indigo-50: #EEF2FF;
-    --color-indigo-100: #E0E7FF;
-    --color-indigo-500: #4F46E5;
-    --color-indigo-600: #4338CA;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-    /* ===== MOSS (Positive/Success) ===== */
-    --color-moss-50: #ECFDF5;
-    --color-moss-400: #34D399;
-    --color-moss-600: #059669;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
 
-    /* ===== AMBER (Caution/Attention) ===== */
-    --color-amber-50: #FFFBEB;
-    --color-amber-400: #FBBF24;
-    --color-amber-500: #F59E0B;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
 
-    /* ===== NEUTRALS (Cool gray, crisp modern) ===== */
-    --color-ink: #1C1917;
-    /* Rich charcoal */
-    --color-ink-soft: #4B5563;
-    /* Cool gray 600 */
-    --color-border-sub: #D9DBE0;
-    /* Cool gray border */
-    --color-surface: #FFFFFF;
-    --color-paper-cool: #F7F8FA;
-    /* Cool gray background */
-    --color-muted: #EFF0F3;
-    /* Cool gray muted */
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
 
-    /* ===== BACKGROUNDS ===== */
-    --bg-body: #F7F8FA;
-    --bg-section-muted: var(--color-muted);
-    --bg-card: var(--color-surface);
-    --bg-card-alt: var(--color-indigo-50);
-    --bg-hover: rgba(99, 102, 241, 0.06);
-    --bg-canvas: #FAFAF8;
-    /* Warm document surface - between body and card */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    /* ===== SEMANTIC ACCENTS ===== */
-    --color-positive: var(--color-moss-600);
-    --color-caution: var(--color-amber-400);
-    --color-danger: #F43F5E;
-    /* Rose 500 */
-    --color-accent-warm: #F5B25C;
-    --color-accent-success: var(--color-moss-600);
-    --color-accent-warning: #D97706;
+    /* The "Linear" Border: Alpha-based, not gray-based */
+    --border: 0 0% 0% 0.08;
+    --input: 0 0% 0% 0.08;
+    --ring: 0 0% 9%;
 
-    /* ===== TEXT SEMANTIC ===== */
-    --text-primary: var(--color-ink);
-    --text-secondary: var(--color-ink-soft);
-    --text-muted: #6B7280;
-    --text-placeholder: #9CA3AF;
-    --text-inverse: #F9FAFB;
-    --text-link: var(--color-indigo-600);
+    --radius: 0.5rem;
 
-    /* ===== BORDER SEMANTIC ===== */
-    --border-subtle: var(--color-border-sub);
-    --border-soft: rgba(0, 0, 0, 0.06);
-    --border-strong: #D1D5DB;
+    /* Product Specifics - Semantic Signals (Studio Tuned) */
+    --gold: 35 92% 50%;
+    /* Warmer, deeper gold (less yellow) */
+    --moss: 160 84% 39%;
+    /* Technical Emerald/Teal (not grass green) */
+    --amber: 30 90% 50%;
+    /* Burnt Orange (not neon yellow) */
+    --rose: 350 89% 60%;
+    /* Soft Crimson (not default red) */
 
-    /* ===== BRAND SEMANTIC ===== */
-    --brand: var(--color-indigo-500);
-    --brand-strong: var(--color-indigo-600);
-
-    /* ===== STATUS SEMANTIC ===== */
-    --status-success: var(--color-moss-600);
-    --status-warning: var(--color-amber-400);
-    --status-danger: var(--color-danger);
-
-    /* ===== ACCENT SEMANTIC ===== */
-    --accent-warm: var(--color-accent-warm);
-
-    /* ===== RADIUS ===== */
-    --radius-xs: 8px;
-    --radius-sm: 12px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-card: 16px;
-    --radius-card-lg: 24px;
-    --radius-pill: 999px;
-
-    /* ===== SHADOW ===== */
-    --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.08);
-    --shadow-card-hover: 0 22px 50px rgba(15, 23, 42, 0.12);
-    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
-    --shadow-inner-soft: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-
-    /* ===== MOTION ===== */
-    --ease-smooth: cubic-bezier(0.21, 0.74, 0.23, 0.99);
-    --motion-duration-short: 200ms;
-    --motion-duration-medium: 300ms;
-
-    /* ===== TYPOGRAPHY (additional sizes) ===== */
-    --fs-tiny: 12px;
-    --fs-xs: 13px;
-    --fs-small: 14px;
-
-    /* ===== SPACING (8px grid) ===== */
-    --sp-xs: 4px;
-    --sp-s: 8px;
-    --sp-m: 16px;
-    --sp-l: 24px;
-    --sp-xl: 32px;
-
-    /* ===== RESEARCH UI TOKENS ===== */
-    --text-reference: var(--text-secondary);
-    --text-reference-active: var(--text-primary);
-    --reference-indicator: var(--brand);
-    --text-citation: var(--text-link);
-    --bg-citation: var(--bg-card);
-    --border-citation: var(--border-subtle);
-    --shadow-citation: var(--shadow-soft);
-    --text-meta: var(--text-secondary);
-
-    /* ===== LEGACY ALIASES ===== */
-    --bg-page: var(--bg-body);
-    --accent: var(--brand);
-    --accent-soft: color-mix(in srgb, var(--brand) 24%, #ffffff);
-    --accent-wash: var(--color-indigo-50);
-    --accent-width: 2px;
-    --text-main: var(--text-primary);
-    --text-soft: var(--text-secondary);
+    --score-dial-bg: 0 0% 96%;
   }
 
-  .dark,
-  [data-theme="dark"] {
-    color-scheme: dark;
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-    /* Neutrals - dark (charcoal palette) */
-    --color-ink: #E5E7EB;
-    --color-ink-soft: #9CA3AF;
-    --color-border-sub: #2D3139;
-    --color-surface: #1F2227;
-    /* Card surface */
-    --color-paper-cool: #1A1D21;
-    /* Secondary surface */
-    --color-muted: #1A1D21;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    /* Moss/Amber in dark */
-    --color-moss-400: #4ADE80;
-    --color-moss-600: #34D399;
-    --color-amber-400: #FBBF24;
-    --color-amber-500: #F59E0B;
-    --color-danger: #FB7185;
-    /* Rose 400 for dark mode */
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Backgrounds - dark (charcoal hierarchy) */
-    --bg-body: #0E1013;
-    /* Primary background - rich charcoal */
-    --bg-section-muted: #1A1D21;
-    /* Secondary surface */
-    --bg-card: var(--color-surface);
-    /* #1F2227 */
-    --bg-card-alt: rgba(79, 70, 229, 0.16);
-    --bg-hover: rgba(99, 102, 241, 0.12);
-    --bg-canvas: #17191D;
-    /* Warm document surface - dark mode */
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
 
-    /* Text */
-    --text-primary: var(--color-ink);
-    --text-secondary: var(--color-ink-soft);
-    --text-muted: #6B7280;
-    --text-placeholder: #4B5563;
-    --text-inverse: #020617;
-    --text-link: #A5B4FC;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    /* Border */
-    --border-subtle: var(--color-border-sub);
-    --border-soft: rgba(255, 255, 255, 0.06);
-    --border-strong: #111827;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
 
-    /* Brand */
-    --brand: #6366F1;
-    --brand-strong: #818CF8;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
 
-    /* Semantic accents */
-    --color-positive: var(--color-moss-400);
-    --color-caution: var(--color-amber-400);
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-    /* Status - tuned for dark */
-    --status-success: var(--color-moss-400);
-    --status-warning: var(--color-amber-400);
-    --status-danger: var(--color-danger);
+    /* Dark Mode Alpha Borders */
+    --border: 0 0% 100% 0.08;
+    --input: 0 0% 100% 0.08;
+    --ring: 0 0% 83.1%;
+  }
+}
 
-    /* Accent warm */
-    --accent-warm: #FBBF77;
-
-    /* Shadow - deeper for dark */
-    --shadow-card: 0 22px 45px rgba(0, 0, 0, 0.5);
-    --shadow-card-hover: 0 26px 55px rgba(0, 0, 0, 0.6);
-    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
+@layer base {
+  * {
+    @apply border-border;
   }
 
   body {
-    @apply font-body antialiased;
-    background-color: var(--bg-body);
-    color: var(--text-primary);
-  }
-
-  a {
-    @apply text-inherit no-underline;
-  }
-
-  ::selection {
-    background-color: rgba(99, 102, 241, 0.3);
-    color: var(--text-primary);
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-/* ============================================
-   COMPONENT CLASSES
-   ============================================ */
+@layer utilities {
 
-@layer components {
-
-  /* Primary button */
-  .btn-primary {
-    background: var(--brand);
-    color: #FFFFFF;
-    border-radius: var(--radius-pill);
-    padding: 0.6rem 1.4rem;
-    font-weight: 600;
-    box-shadow: 0 14px 30px rgba(79, 70, 229, 0.25);
-    transition:
-      background 160ms var(--ease-smooth),
-      transform 160ms var(--ease-smooth),
-      box-shadow 160ms var(--ease-smooth);
-    @apply inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  .btn-primary:hover {
-    background: var(--brand-strong);
-    transform: translateY(-1px);
-    box-shadow: 0 18px 40px rgba(79, 70, 229, 0.32);
-  }
-
-  .btn-primary:active {
-    transform: translateY(0);
-    box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
-  }
-
-  /* Secondary button */
-  .btn-secondary {
-    background: var(--bg-card);
-    color: var(--text-primary);
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--border-subtle);
-    padding: 0.55rem 1.2rem;
-    font-weight: 500;
-    transition: background 140ms var(--ease-smooth), border-color 140ms var(--ease-smooth);
-    @apply inline-flex items-center justify-center gap-2;
-  }
-
-  .btn-secondary:hover {
-    background: var(--bg-card-alt);
-    border-color: rgba(148, 163, 184, 0.8);
-  }
-
-  /* Ghost button */
-  .btn-ghost {
-    background: transparent;
-    color: var(--text-secondary);
-    border-radius: var(--radius-pill);
-    padding: 0.4rem 0.8rem;
-    transition: color 140ms var(--ease-smooth), background 140ms var(--ease-smooth);
-    @apply inline-flex items-center justify-center gap-2;
-  }
-
-  .btn-ghost:hover {
-    color: var(--text-primary);
-    background: var(--bg-hover);
-  }
-
-  /* Destructive button */
-  .btn-destructive {
-    background: var(--status-danger);
-    color: #FFFFFF;
-    border-radius: var(--radius-pill);
-    padding: 0.6rem 1.4rem;
-    font-weight: 600;
-    transition: background 160ms var(--ease-smooth), transform 160ms var(--ease-smooth);
-    @apply inline-flex items-center justify-center gap-2;
-  }
-
-  .btn-destructive:hover {
-    background: #991B1B;
-    transform: translateY(-1px);
-  }
-
-  /* ===== UNIFIED CARD STRUCTURE ===== */
-  .card {
-    background: var(--bg-card);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--border-subtle);
-    padding: var(--space-md);
-    transition: box-shadow 200ms var(--ease-smooth);
-  }
-
-  .card:hover {
-    box-shadow: var(--shadow-card-hover);
-  }
-
-  .card-sm {
-    background: var(--bg-card);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-subtle);
-    padding: var(--space-sm);
-  }
-
-  .card-lg {
-    background: var(--bg-card);
-    border-radius: var(--radius-card-lg);
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--border-subtle);
-    padding: var(--space-lg);
-  }
-
-  /* ===== ENHANCED INPUT ===== */
-  .input {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-inner-soft);
-    color: var(--text-primary);
-    border-radius: var(--radius-sm);
-    padding: 0.75rem 1rem;
-    transition: border-color 140ms var(--ease-smooth), box-shadow 140ms var(--ease-smooth);
-    @apply w-full focus:outline-none;
-  }
-
-  .input::placeholder {
-    color: var(--text-placeholder);
-  }
-
-  .input:focus {
-    border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-  }
-
-  /* Section containers */
-  .section {
-    @apply py-16 md:py-24;
-  }
-
-  .section-muted {
-    background-color: var(--bg-section-muted);
-  }
-
-  .dark .section-muted,
-  [data-theme="dark"] .section-muted {
-    background-color: #1A1D21 !important;
-  }
-
-  .section-inner {
-    @apply max-w-6xl mx-auto px-5;
-  }
-
-  /* ===== TAB SYSTEM ===== */
-  .tabs {
-    display: flex;
-    gap: var(--space-xs);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .tab {
-    padding: var(--space-sm) var(--space-md);
-    font-size: var(--fs-body-sm);
-    font-weight: 500;
-    color: var(--text-muted);
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    cursor: pointer;
-    transition: color 140ms var(--ease-smooth), border-color 140ms var(--ease-smooth), background 140ms var(--ease-smooth);
-  }
-
-  .tab:hover {
-    color: var(--text-primary);
-    background: var(--bg-hover);
-  }
-
-  .tab.active,
-  .tab[data-active="true"] {
-    color: var(--brand);
-    border-bottom-color: var(--brand);
-  }
-
-  /* Tab variant: pill style */
-  .tabs-pill {
-    display: flex;
-    gap: var(--space-xs);
-    background: var(--bg-section-muted);
-    padding: 4px;
-    border-radius: var(--radius-sm);
-    border: none;
-  }
-
-  .tabs-pill .tab {
-    border-bottom: none;
-    border-radius: var(--radius-xs);
-    margin-bottom: 0;
-  }
-
-  .tabs-pill .tab.active,
-  .tabs-pill .tab[data-active="true"] {
-    background: var(--bg-card);
-    color: var(--text-primary);
-    box-shadow: var(--shadow-soft);
-  }
-
-  /* ===== TOGGLE/SWITCH ===== */
-  .toggle {
-    position: relative;
-    width: 44px;
-    height: 24px;
-    background: var(--border-subtle);
-    border-radius: var(--radius-pill);
-    border: none;
-    cursor: pointer;
-    transition: background 160ms var(--ease-smooth);
-    flex-shrink: 0;
-  }
-
-  .toggle::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    transition: transform 160ms var(--ease-smooth);
-  }
-
-  .toggle.active,
-  .toggle[data-active="true"],
-  .toggle:checked {
-    background: var(--brand);
-  }
-
-  .toggle.active::after,
-  .toggle[data-active="true"]::after,
-  .toggle:checked::after {
-    transform: translateX(20px);
-  }
-
-  .toggle:focus-visible {
-    outline: 2px solid var(--brand);
-    outline-offset: 2px;
-  }
-
-  /* Alert soft */
-  .alert-soft {
-    display: flex;
-    gap: 0.5rem;
-    align-items: flex-start;
-    border-radius: 12px;
-    padding: 0.75rem 0.9rem;
-    border: 1px solid rgba(245, 178, 92, 0.4);
-    background: rgba(245, 178, 92, 0.08);
-    color: var(--text-primary);
-  }
-
-  /* Score pills */
-  .score-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    border-radius: var(--radius-pill);
-    padding: 0.35rem 0.85rem;
-    font-size: 0.8rem;
-    background: var(--bg-card-alt);
-    color: var(--text-primary);
-  }
-
-  .score-pill__value {
-    font-weight: 600;
-  }
-
-  /* Card variants */
-  .card-positive {
-    position: relative;
-    background: var(--bg-card);
-    border-radius: 16px;
-    padding: 1.1rem 1.2rem 1.1rem 1.4rem;
-    border-left: 4px solid var(--status-success);
-  }
-
-  .card-attention {
-    position: relative;
-    background: var(--bg-card);
-    border-radius: 16px;
-    padding: 1.1rem 1.2rem 1.1rem 1.4rem;
-    border-left: 4px solid var(--accent-warm);
-  }
-
-  /* ===== SUBSCORE COLOR SYSTEM ===== */
-  /* Impact = Moss (positive, results-oriented) */
-  .subscore-impact {
-    --subscore-color: var(--color-moss-600);
-    --subscore-bg: var(--color-moss-50);
-  }
-
-  /* Clarity = Indigo (focused, structured) */
-  .subscore-clarity {
-    --subscore-color: var(--color-indigo-600);
-    --subscore-bg: var(--color-indigo-50);
-  }
-
-  /* Story = Warm (narrative, human) */
-  .subscore-story {
-    --subscore-color: #92400E;
-    --subscore-bg: #FEF3C7;
-  }
-
-  /* Readability = Amber (attention, improvement) */
-  .subscore-readability {
-    --subscore-color: var(--color-amber-500);
-    --subscore-bg: var(--color-amber-50);
-  }
-
-  .subscore-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    border-radius: var(--radius-pill);
-    padding: 0.35rem 0.85rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    background: var(--subscore-bg, var(--bg-card-alt));
-    color: var(--subscore-color, var(--text-primary));
-  }
-
-  /* Semantic text colors */
-  .text-positive {
-    color: var(--color-positive);
-  }
-
-  .text-caution {
-    color: var(--color-caution);
-  }
-
-  .text-moss {
-    color: var(--color-moss-600);
-  }
-
-  .text-amber {
-    color: var(--color-amber-500);
-  }
-
-  /* Semantic background colors */
-  .bg-moss-soft {
-    background: var(--color-moss-50);
-  }
-
-  .bg-amber-soft {
-    background: var(--color-amber-50);
-  }
-
-  /* ===== TOKEN UTILITY CLASSES ===== */
-  /* These map to CSS variables for consistent theming */
-
-  /* Brand backgrounds */
-  .bg-brand {
-    background: var(--brand);
-  }
-
-  .bg-brand-soft {
-    background: var(--color-indigo-50);
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
-  .dark .bg-brand-soft {
-    background: rgba(99, 102, 241, 0.1);
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
-
-  /* Surface backgrounds */
-  .bg-surface {
-    background: var(--bg-card);
-  }
-
-  .bg-body {
-    background: var(--bg-body);
-  }
-
-  .bg-muted {
-    background: var(--bg-section-muted);
-  }
-
-  .bg-hover {
-    background: var(--bg-hover);
-  }
-
-  /* Dark mode explicit overrides for surface backgrounds */
-  .dark .bg-surface,
-  [data-theme="dark"] .bg-surface {
-    background: #1F2227 !important;
-  }
-
-  .dark .bg-muted,
-  [data-theme="dark"] .bg-muted {
-    background: #1A1D21 !important;
-  }
-
-  .dark .bg-body,
-  [data-theme="dark"] .bg-body {
-    background: #0E1013 !important;
-  }
-
-  /* Dark mode card overrides */
-  .dark .card,
-  .dark .card-sm,
-  .dark .card-lg,
-  [data-theme="dark"] .card,
-  [data-theme="dark"] .card-sm,
-  [data-theme="dark"] .card-lg {
-    background: #1F2227 !important;
-  }
-
-  /* Text colors */
-  .text-primary {
-    color: var(--text-primary);
-  }
-
-  .text-secondary {
-    color: var(--text-secondary);
-  }
-
-  .text-muted {
-    color: var(--text-muted);
-  }
-
-  .text-brand {
-    color: var(--brand);
-  }
-
-  .text-brand-strong {
-    color: var(--brand-strong);
-  }
-
-  .text-link {
-    color: var(--text-link);
-  }
-
-  /* Border colors */
-  .border-subtle {
-    border-color: var(--border-subtle);
-  }
-
-  .border-strong {
-    border-color: var(--border-strong);
-  }
-
-  .border-brand {
-    border-color: var(--brand);
-  }
-
-  /* Status colors */
-  .text-success {
-    color: var(--status-success);
-  }
-
-  .text-warning {
-    color: var(--status-warning);
-  }
-
-  .text-danger {
-    color: var(--status-danger);
-  }
-
-  .bg-success {
-    background: var(--status-success);
-  }
-
-  .bg-gold {
-    background: #F5B25C;
-  }
-
-  .bg-success-soft {
-    background: var(--color-moss-50);
-  }
-
-  .bg-warning-soft {
-    background: var(--color-amber-50);
-  }
-
-  .bg-danger-soft {
-    background: rgba(244, 63, 94, 0.1);
-  }
-
-  /* Dark mode overrides for soft backgrounds */
-  .dark .bg-success-soft {
-    background: rgba(52, 211, 153, 0.15);
-  }
-
-  .dark .bg-warning-soft {
-    background: rgba(251, 191, 36, 0.15);
-  }
-
-  .dark .bg-danger-soft {
-    background: rgba(251, 113, 133, 0.15);
-  }
-
-  /* Pill/Badge variants */
-  .badge-brand {
-    background: var(--color-indigo-50);
-    color: var(--color-indigo-600);
-  }
-
-  .dark .badge-brand {
-    background: rgba(99, 102, 241, 0.15);
-    color: #A5B4FC;
-  }
-
-  .badge-success {
-    background: var(--color-moss-50);
-    color: var(--color-moss-600);
-  }
-
-  .dark .badge-success {
-    background: rgba(52, 211, 153, 0.15);
-    color: #4ADE80;
-  }
-
-  .badge-warning {
-    background: var(--color-amber-50);
-    color: var(--color-amber-500);
-  }
-
-  .dark .badge-warning {
-    background: rgba(251, 191, 36, 0.15);
-    color: #FBBF24;
-  }
-}
-
-/* ============================================
-   DARK MODE OVERRIDES
-   ============================================ */
-
-/* Background overrides */
-.dark .bg-white,
-[data-theme="dark"] .bg-white {
-  background-color: var(--bg-card) !important;
-}
-
-.dark .bg-gray-50,
-[data-theme="dark"] .bg-gray-50 {
-  background-color: var(--bg-body) !important;
-}
-
-.dark .bg-gray-100,
-[data-theme="dark"] .bg-gray-100 {
-  background-color: var(--bg-body) !important;
-}
-
-/* Text overrides */
-.dark .text-gray-900,
-[data-theme="dark"] .text-gray-900 {
-  color: var(--text-primary) !important;
-}
-
-.dark .text-gray-800,
-[data-theme="dark"] .text-gray-800 {
-  color: var(--text-primary) !important;
-}
-
-.dark .text-gray-700,
-[data-theme="dark"] .text-gray-700 {
-  color: var(--text-secondary) !important;
-}
-
-.dark .text-gray-600,
-[data-theme="dark"] .text-gray-600 {
-  color: var(--text-secondary) !important;
-}
-
-.dark .text-gray-500,
-[data-theme="dark"] .text-gray-500 {
-  color: #6B7280 !important;
-}
-
-.dark .text-gray-400,
-[data-theme="dark"] .text-gray-400 {
-  color: #9CA3AF !important;
-}
-
-/* Border overrides */
-.dark .border-gray-200,
-[data-theme="dark"] .border-gray-200,
-.dark .border-gray-100,
-[data-theme="dark"] .border-gray-100 {
-  border-color: var(--border-subtle) !important;
-}
-
-/* Gradient overrides */
-.dark .from-white,
-[data-theme="dark"] .from-white {
-  --tw-gradient-from: var(--bg-card) !important;
-}
-
-.dark .to-gray-50,
-[data-theme="dark"] .to-gray-50 {
-  --tw-gradient-to: var(--bg-body) !important;
-}
-
-/* Semantic backgrounds in dark */
-.dark .bg-green-50,
-[data-theme="dark"] .bg-green-50 {
-  background-color: rgba(34, 197, 94, 0.1) !important;
-}
-
-.dark .bg-amber-50,
-[data-theme="dark"] .bg-amber-50 {
-  background-color: rgba(245, 158, 11, 0.1) !important;
-}
-
-.dark .bg-red-50,
-[data-theme="dark"] .bg-red-50 {
-  background-color: rgba(239, 68, 68, 0.1) !important;
-}
-
-.dark .bg-indigo-50,
-[data-theme="dark"] .bg-indigo-50 {
-  background-color: var(--bg-card-alt) !important;
-}
-
-.dark .bg-indigo-100,
-[data-theme="dark"] .bg-indigo-100 {
-  background-color: rgba(99, 102, 241, 0.2) !important;
-}
-
-/* Semantic text colors in dark */
-.dark .text-green-700,
-[data-theme="dark"] .text-green-700,
-.dark .text-green-600,
-[data-theme="dark"] .text-green-600 {
-  color: var(--status-success) !important;
-}
-
-.dark .text-amber-700,
-[data-theme="dark"] .text-amber-700,
-.dark .text-amber-600,
-[data-theme="dark"] .text-amber-600 {
-  color: var(--status-warning) !important;
-}
-
-.dark .text-red-700,
-[data-theme="dark"] .text-red-700,
-.dark .text-red-600,
-[data-theme="dark"] .text-red-600 {
-  color: var(--status-danger) !important;
-}
-
-.dark .text-indigo-600,
-[data-theme="dark"] .text-indigo-600,
-.dark .text-indigo-700,
-[data-theme="dark"] .text-indigo-700 {
-  color: var(--brand-strong) !important;
-}
-
-.dark .text-indigo-500,
-[data-theme="dark"] .text-indigo-500 {
-  color: var(--brand) !important;
-}
-
-/* Alert soft in dark */
-.dark .alert-soft,
-[data-theme="dark"] .alert-soft {
-  border-color: rgba(251, 191, 36, 0.45);
-  background: rgba(251, 191, 36, 0.12);
-}
-
-/* Ring colors */
-.dark .ring-gray-200,
-[data-theme="dark"] .ring-gray-200 {
-  --tw-ring-color: var(--border-subtle) !important;
-}
-
-/* Divide colors */
-.dark .divide-gray-200>*+*,
-[data-theme="dark"] .divide-gray-200>*+* {
-  border-color: var(--border-subtle) !important;
-}
-
-/* ============================================
-   MOTION
-   ============================================ */
-
-@keyframes score-in {
-  from {
-    opacity: 0;
-    transform: translateY(4px) scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-score-in {
-  animation: score-in 220ms var(--ease-smooth) 40ms both;
 }

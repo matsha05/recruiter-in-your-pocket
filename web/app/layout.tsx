@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/AuthProvider";
-import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import { Geist } from "next/font/google";
+import { Newsreader } from "next/font/google";
 
-const fontDisplay = Plus_Jakarta_Sans({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  display: "swap",
-  variable: "--font-display"
 });
 
-const fontBody = Manrope({
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-body"
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -28,10 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fontDisplay.variable} ${fontBody.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${newsreader.variable}`}>
       <head>
-        {/* Favicon */}
-        <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+        {/* Favicon is handled automatically by icon.tsx */}
       </head>
       <body>
         <AuthProvider>{children}</AuthProvider>

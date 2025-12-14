@@ -27,6 +27,15 @@ export default function WorkspaceClient() {
     const [isPaywallOpen, setIsPaywallOpen] = useState(false);
     const [isAuthOpen, setIsAuthOpen] = useState(false);
 
+    // Check for pending text from homepage upload
+    useEffect(() => {
+        const pendingText = sessionStorage.getItem("pending_resume_text");
+        if (pendingText) {
+            setResumeText(pendingText);
+            sessionStorage.removeItem("pending_resume_text");
+        }
+    }, []);
+
     // Auto-load sample report if ?sample=true
     useEffect(() => {
         if (searchParams.get("sample") === "true" && !report && !skipSample) {
@@ -241,7 +250,7 @@ export default function WorkspaceClient() {
 
     return (
         <>
-            <main className="min-h-screen flex flex-col bg-body">
+            <main className="h-screen max-h-screen flex flex-col bg-body overflow-hidden">
                 <h1 className="sr-only">Resume Workspace — Analyze Your Resume</h1>
 
                 <WorkspaceHeader
@@ -253,28 +262,30 @@ export default function WorkspaceClient() {
                     onHistory={() => setIsHistoryOpen(true)}
                 />
 
-                <div className={`flex-1 grid ${report ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-2"}`}>
-                    {/* Input Panel - hidden when report is showing */}
-                    <div className={`${report ? "hidden" : "block"} h-full`}>
-                        <InputPanel
-                            resumeText={resumeText}
-                            jobDescription={jobDescription}
-                            onResumeTextChange={setResumeText}
-                            onJobDescChange={setJobDescription}
-                            onFileSelect={handleFileSelect}
-                            onRun={handleRun}
+                <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
+                    {/* View Switcher: Input vs Report */}
+                    {!report ? (
+                        <div className="h-full overflow-y-auto bg-muted/10">
+                            <InputPanel
+                                resumeText={resumeText}
+                                jobDescription={jobDescription}
+                                onResumeTextChange={setResumeText}
+                                onJobDescChange={setJobDescription}
+                                onFileSelect={handleFileSelect}
+                                onRun={handleRun}
+                                isLoading={isLoading}
+                                freeUsesRemaining={freeUsesRemaining}
+                            />
+                        </div>
+                    ) : (
+                        <ReportPanel
+                            report={report}
                             isLoading={isLoading}
-                            freeUsesRemaining={freeUsesRemaining}
+                            hasJobDescription={!!jobDescription.trim()}
+                            onExportPdf={handleExportPdf}
+                            isExporting={isExporting}
                         />
-                    </div>
-
-                    <ReportPanel
-                        report={report}
-                        isLoading={isLoading}
-                        hasJobDescription={!!jobDescription.trim()}
-                        onExportPdf={handleExportPdf}
-                        isExporting={isExporting}
-                    />
+                    )}
                 </div>
             </main>
 

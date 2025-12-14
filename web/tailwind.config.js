@@ -1,132 +1,117 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: ["class"],
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}"
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
-      // Consistent spacing scale
-      spacing: {
-        'xs': '8px',
-        'sm': '16px',
-        'md': '24px',
-        'lg': '32px',
-        'xl': '40px',
-        'section': '48px',
-        'section-lg': '64px',
-      },
-
-      // Custom font families
       fontFamily: {
-        display: ['var(--font-display)', 'system-ui', '-apple-system', 'sans-serif'],
-        body: ['var(--font-body)', 'system-ui', '-apple-system', 'sans-serif']
+        // The Studio Pairing: Geist for UI, Newsreader for Truth
+        sans: ["var(--font-geist-sans)", "sans-serif"],
+        serif: ["var(--font-newsreader)", "serif"],
       },
-
-      // Font sizes for heading hierarchy
-      fontSize: {
-        'h1': ['2rem', { lineHeight: '1.2', fontWeight: '700' }],      // Main page titles
-        'h2': ['1.5rem', { lineHeight: '1.3', fontWeight: '600' }],    // Major card titles
-        'h3': ['1.125rem', { lineHeight: '1.4', fontWeight: '600' }],  // Subsection titles
-        'body': ['1rem', { lineHeight: '1.6' }],
-        'body-sm': ['0.875rem', { lineHeight: '1.5' }],
-        'caption': ['0.8125rem', { lineHeight: '1.4' }],
-      },
-
-      // Brand color palette
       colors: {
-        brand: {
-          50: '#EEF2FF',
-          100: '#E0E7FF',
-          500: '#4F46E5',
-          600: '#4338CA',
-          DEFAULT: '#4F46E5'
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
-        ink: {
-          DEFAULT: '#1C1917',
-          soft: '#4B5563'
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
-        surface: '#FFFFFF',
-        paper: {
-          cool: '#F7F8FA'
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        // Cool gray neutrals
-        neutral: {
-          50: '#F7F8FA',
-          100: '#EFF0F3',
-          200: '#D9DBE0',
-          600: '#4B5563',
-          900: '#1C1917'
-        },
-        gold: {
-          DEFAULT: '#F5B25C',
-          light: '#FBBF77'
-        },
-        // Moss - for positive/success states
-        moss: {
-          50: '#ECFDF5',
-          100: '#D1FAE5',
-          400: '#34D399',
-          500: '#10B981',
-          600: '#059669',
-          DEFAULT: '#059669'
-        },
-        emerald: {
-          50: '#ECFDF5',
-          100: '#D1FAE5',
-          500: '#10B981',
-          600: '#059669',
-          DEFAULT: '#059669'
-        },
-        // Amber - for caution/attention states
-        amber: {
-          50: '#FFFBEB',
-          100: '#FEF3C7',
-          300: '#FCD34D',
-          400: '#FBBF24',
-          500: '#F59E0B',
-          DEFAULT: '#FBBF24'
-        },
-        // Rose - for error states
-        rose: {
-          400: '#FB7185',
-          500: '#F43F5E',
-          DEFAULT: '#F43F5E'
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          warm: '#F5B25C',
-          success: '#059669',
-          warning: '#D97706',
-          danger: '#F43F5E'
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        // Studio Specifics
+        sidebar: {
+          glass: "rgba(255, 255, 255, 0.7)",
+        },
+        // Product Semantics
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        moss: {
+          DEFAULT: "hsl(var(--moss))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        amber: {
+          DEFAULT: "hsl(var(--amber))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        rose: {
+          DEFAULT: "hsl(var(--rose))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+      },
+      fontSize: {
+        // Linear Scale
+        "2xs": ["0.6875rem", { lineHeight: "1rem" }], // 11px
+        "xs": ["0.75rem", { lineHeight: "1rem" }],    // 12px
+        "sm": ["0.8125rem", { lineHeight: "1.25rem" }], // 13px (The "Linear" Body)
+        "base": ["0.875rem", { lineHeight: "1.5rem" }], // 14px
+        "lg": ["1rem", { lineHeight: "1.75rem" }],      // 16px
+        "xl": ["1.125rem", { lineHeight: "1.75rem" }],  // 18px
+        "2xl": ["1.5rem", { lineHeight: "2rem" }],      // 24px
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+        "fade-in-up": {
+          "0%": { opacity: 0, transform: "translateY(10px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
         }
       },
-
-      // Custom box shadows
-      boxShadow: {
-        card: '0 18px 40px rgba(15, 23, 42, 0.08)',
-        'card-hover': '0 22px 50px rgba(15, 23, 42, 0.12)',
-        'card-dark': '0 22px 45px rgba(0, 0, 0, 0.5)',
-        soft: '0 18px 30px rgba(15, 23, 42, 0.06)',
-        button: '0 4px 14px rgba(79, 70, 229, 0.25)',
-        'button-hover': '0 6px 18px rgba(79, 70, 229, 0.32)',
-        modal: '0 18px 45px rgba(15, 23, 42, 0.12)',
-        'inner-soft': 'inset 0 1px 2px rgba(0, 0, 0, 0.05)'
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in-up": "fade-in-up 0.5s ease-out forwards",
       },
-
-      // Custom border radius
-      borderRadius: {
-        card: '24px',
-        'card-sm': '16px',
-        'card-xs': '12px',
-        pill: '999px'
-      },
-
-      // Easing
-      transitionTimingFunction: {
-        smooth: 'cubic-bezier(0.21, 0.74, 0.23, 0.99)'
-      }
-    }
+    },
   },
-  plugins: []
-};
+  plugins: [require("tailwindcss-animate")],
+}

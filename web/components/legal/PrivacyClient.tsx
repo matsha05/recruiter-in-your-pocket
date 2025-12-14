@@ -1,152 +1,101 @@
 "use client";
 
 import Link from "next/link";
-import LegalHeader from "@/components/shared/LegalHeader";
+import { StudioShell } from "@/components/layout/StudioShell";
+import { Button } from "@/components/ui/button";
 
 export default function PrivacyClient() {
     return (
-        <div className="min-h-screen bg-[var(--bg-body)]">
-            <LegalHeader />
+        <StudioShell showSidebar={false} className="max-w-3xl mx-auto py-16">
+            {/* Nav */}
+            <div className="mb-12">
+                <Link href="/">
+                    <Button variant="ghost" size="sm" className="gap-2 -ml-4">
+                        ← Back to Home
+                    </Button>
+                </Link>
+            </div>
 
-            <main className="max-w-[680px] mx-auto px-6 pt-12 pb-16 sm:px-4 sm:pt-8 sm:pb-12">
-                {/* Header */}
-                <header className="mb-10">
-                    <h1 className="font-display text-[clamp(28px,5vw,36px)] font-semibold text-[var(--text-primary)] leading-tight mb-2">
-                        Privacy Policy
-                    </h1>
-                    <p className="text-[13px] text-[var(--text-muted)]">Last updated: December 2025</p>
-                </header>
+            {/* Header */}
+            <header className="mb-12 border-b border-border/50 pb-8">
+                <h1 className="font-serif text-4xl font-medium text-foreground mb-4 tracking-tight">
+                    Privacy Policy
+                </h1>
+                <p className="text-sm text-muted-foreground font-mono">Last updated: December 2025</p>
+            </header>
 
-                {/* TL;DR - understated summary */}
-                <aside className="mb-10 p-5 bg-[var(--bg-section-muted)] rounded-[var(--radius-md)]">
-                    <span className="block text-[11px] font-semibold uppercase tracking-wide text-[var(--text-muted)] mb-2">
-                        TL;DR
-                    </span>
-                    <p className="text-[15px] text-[var(--text-primary)] leading-relaxed">
-                        We only collect what we need to make the product work. Resume data is processed
-                        for feedback and deleted after processing. We don&apos;t sell your info.
-                    </p>
-                </aside>
+            {/* Content */}
+            <article className="space-y-12 font-sans text-foreground/90 leading-relaxed">
+                <Section title="1. Introduction">
+                    Recruiter in Your Pocket (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy.
+                    This Privacy Policy explains how we collect, use, and protect your personal information
+                    when you use our resume feedback service.
+                </Section>
 
-                {/* Content */}
-                <article className="space-y-10">
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            1. What We Collect
-                        </h2>
-                        <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed mb-4">
-                            When you use Recruiter in Your Pocket, we may collect:
-                        </p>
-                        <ul className="list-disc pl-5 space-y-2.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Resume text:</strong> The content you paste or upload. This is sent to our AI provider for processing and is not stored on our servers after your feedback is generated.</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Job descriptions:</strong> If you provide one for alignment analysis, it&apos;s processed along with your resume and handled the same way.</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Email address:</strong> If you sign in, we collect your email to manage your account and purchased passes.</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Technical data:</strong> IP address, browser type, device information, and timestamps for security and debugging.</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Usage analytics:</strong> Page views and feature usage (via Mixpanel). This does not include your resume content.</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Payment info:</strong> Handled securely by Stripe. We do not store your credit card details.</li>
-                        </ul>
-                    </section>
+                <Section title="2. Information We Collect">
+                    <ul className="list-disc pl-5 space-y-2 mt-4 ml-2 marker:text-muted-foreground">
+                        <li><strong>Resume Data:</strong> The text and content of resumes you upload.</li>
+                        <li><strong>Account Info:</strong> Email address and name (if you sign up).</li>
+                        <li><strong>Usage Data:</strong> How you interact with our reports and features.</li>
+                        <li><strong>Payment Data:</strong> Processed securely by Stripe; we do not store card numbers.</li>
+                    </ul>
+                </Section>
 
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            2. Data Retention
-                        </h2>
-                        <ul className="list-disc pl-5 space-y-2.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Without an account:</strong> Resume text is processed in memory and not stored after your feedback is generated.</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">With an account:</strong> Your email and account data are stored until you request deletion.</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Logs and analytics:</strong> Technical logs are retained for up to 90 days for debugging and security.</li>
-                        </ul>
-                    </section>
+                <Section title="3. How We Use Your Data">
+                    <ul className="list-disc pl-5 space-y-2 mt-4 ml-2 marker:text-muted-foreground">
+                        <li>To provide the Feedback and Skim analysis.</li>
+                        <li>To allow you to access past reports.</li>
+                        <li>To improve the accuracy of our parsing heuristics.</li>
+                        <li>To communicate with you about your account (e.g., login codes).</li>
+                    </ul>
+                </Section>
 
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            3. How We Use Your Data
-                        </h2>
-                        <ul className="list-disc pl-5 space-y-2.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            <li>To generate AI-powered resume feedback</li>
-                            <li>To manage your account and purchased passes</li>
-                            <li>To send transactional emails (login codes, receipts)</li>
-                            <li>To improve the product using aggregated, anonymized usage data</li>
-                            <li>To maintain security and prevent abuse</li>
-                        </ul>
-                    </section>
+                <Section title="4. Resume Data Retention">
+                    We process resume uploads primarily in-memory for the &quot;Skim&quot; feature.
+                    If you are logged in, we store the generated Report for your history.
+                    You can delete your account and data at any time.
+                </Section>
 
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            4. What We Don&apos;t Do
-                        </h2>
-                        <ul className="list-disc pl-5 space-y-2.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            <li>We don&apos;t sell your personal information</li>
-                            <li>We don&apos;t use your resume content to train our own AI models</li>
-                            <li>We don&apos;t share your data with third parties for marketing</li>
-                        </ul>
-                        <p className="text-[14px] text-[var(--text-secondary)] leading-relaxed mt-4 pt-4 border-t border-[var(--border-subtle)]">
-                            <strong className="text-[var(--text-primary)]">Note on AI processing:</strong> Resume content is processed using OpenAI&apos;s API
-                            solely to generate feedback. OpenAI may process this data in accordance with their{" "}
-                            <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[var(--text-link)] hover:underline">
-                                privacy policy
-                            </a>. We do not use your resume content to train our own models.
-                        </p>
-                    </section>
+                <Section title="5. Third-Party Services">
+                    We use trusted providers to run our service:
+                    <ul className="list-disc pl-5 space-y-1 mt-2 text-sm">
+                        <li><strong>OpenAI:</strong> For generating feedback text.</li>
+                        <li><strong>Stripe:</strong> For payment processing.</li>
+                        <li><strong>Supabase:</strong> For database and authentication.</li>
+                        <li><strong>Vercel:</strong> For hosting.</li>
+                    </ul>
+                </Section>
 
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            5. Cookies and Tracking
-                        </h2>
-                        <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed mb-4">We use cookies to:</p>
-                        <ul className="list-disc pl-5 space-y-2.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            <li>Keep you logged in (session cookies)</li>
-                            <li>Track your free report usage (persistent cookie)</li>
-                            <li>Remember your preferences (like dark mode)</li>
-                        </ul>
-                    </section>
+                <Section title="6. Your Rights">
+                    You have the right to access, correct, or delete your personal data.
+                    Contact us if you wish to exercise these rights.
+                </Section>
 
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            6. Third-Party Services
-                        </h2>
-                        <ul className="list-disc pl-5 space-y-2.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            <li><strong className="text-[var(--text-primary)] font-semibold">OpenAI:</strong> Powers our AI feedback</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Stripe:</strong> Handles payments securely</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Vercel:</strong> Hosts our application</li>
-                            <li><strong className="text-[var(--text-primary)] font-semibold">Mixpanel:</strong> Provides usage analytics</li>
-                        </ul>
-                    </section>
+                <Section title="7. Contact Us">
+                    If you have questions about this Privacy Policy, please contact us via our website
+                    or at support@recruiterinyourpocket.com.
+                </Section>
+            </article>
 
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            7. Your Rights
-                        </h2>
-                        <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed mb-4">You have the right to:</p>
-                        <ul className="list-disc pl-5 space-y-2.5 text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            <li>Request a copy of the data we have about you</li>
-                            <li>Request correction of inaccurate data</li>
-                            <li>Request deletion of your account and associated data</li>
-                            <li>Opt out of marketing communications</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2 className="font-display text-[17px] font-semibold text-[var(--text-primary)] mb-4 leading-snug">
-                            8. Contact
-                        </h2>
-                        <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
-                            If you have questions about this Privacy Policy or want to exercise your data rights,
-                            please reach out via our website.
-                        </p>
-                    </section>
-                </article>
-
-                {/* Footer */}
-                <footer className="mt-16 pt-6 border-t border-[var(--border-subtle)] text-center">
-                    <p className="text-[14px] text-[var(--text-muted)] mb-2">Made with care in Boulder, CO 🤍</p>
-                    <p className="text-[14px] text-[var(--text-muted)]">
-                        <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">Home</Link>
-                        {" · "}
-                        <Link href="/terms" className="hover:text-[var(--text-primary)] transition-colors">Terms of Service</Link>
-                    </p>
-                </footer>
-            </main>
-        </div>
+            {/* Footer */}
+            <footer className="mt-20 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
+                <p className="mb-2">Made with care in Boulder, CO 🤍</p>
+                <div className="flex justify-center gap-4 text-xs font-medium uppercase tracking-wider">
+                    <Link href="/" className="hover:text-foreground">Home</Link>
+                    <Link href="/terms" className="hover:text-foreground">Terms of Service</Link>
+                </div>
+            </footer>
+        </StudioShell>
     );
+}
+
+function Section({ title, children }: { title: string, children: React.ReactNode }) {
+    return (
+        <section>
+            <h2 className="font-serif text-xl font-medium text-foreground mb-4">{title}</h2>
+            <div className="text-[15px] md:text-base text-muted-foreground leading-relaxed">
+                {children}
+            </div>
+        </section>
+    )
 }

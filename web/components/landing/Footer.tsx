@@ -10,7 +10,7 @@ export default function Footer() {
                     <span className="text-muted">·</span>
                     <Link href="/privacy" className="text-sm text-muted hover:text-brand transition-colors">Privacy</Link>
                     <span className="text-muted">·</span>
-                    <Link href="/research" className="text-sm text-muted hover:text-brand transition-colors">Hiring Research</Link>
+                    <Link href="/research" className="text-sm text-muted hover:text-brand transition-colors">Research Library</Link>
                 </div>
             </div>
         </footer>

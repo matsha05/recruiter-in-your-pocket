@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ThemeToggle from "../../components/shared/ThemeToggle";
-import "../../styles/research.css";
+import { StudioShell } from "@/components/layout/StudioShell";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { ArrowRight, BookOpen, Clock, Activity, Target } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Hiring Research | Recruiter in Your Pocket",
-    description:
-        "Recruiter In Your Pocket is built on how recruiters actually read resumes, not on myths about bots and secret scores. Here is the research that informs our product.",
+    description: "Recruiter In Your Pocket is built on how recruiters actually read resumes, not on myths about bots and secret scores.",
 };
 
 const studies = [
@@ -20,6 +21,7 @@ const studies = [
         readTime: "4 min",
         href: "/research/how-recruiters-read",
         productTie: "Recruiter First Impression",
+        icon: Activity
     },
     {
         id: "how-people-scan",
@@ -31,6 +33,7 @@ const studies = [
         readTime: "5 min",
         href: "/research/how-people-scan",
         productTie: "Bullet Upgrades",
+        icon: Target
     },
     {
         id: "ats-myths",
@@ -42,104 +45,105 @@ const studies = [
         readTime: "4 min",
         href: "/research/ats-myths",
         productTie: "Human clarity focus",
+        icon: BookOpen
     },
 ];
 
 export default function ResearchPage() {
     return (
-        <div className="research-container">
-            <header className="research-header">
-                <Link href="/" className="back-link">
-                    ← Back to Home
-                </Link>
-                <ThemeToggle />
-            </header>
-
-            {/* Hero - no container, just text on background */}
-            <section className="library-hero">
-                <span className="library-label">The foundation</span>
-                <h1 className="library-title">Hiring Research Library</h1>
-                <p className="library-subtitle">
-                    Most resume tools lean on myths about bots and secret filters. Recruiter in Your Pocket
-                    is built on how recruiters actually read resumes and decide who moves forward.
-                </p>
-            </section>
-
-            {/* Filter tabs - text-only with underline */}
-            <nav className="filter-tabs">
-                <button className="filter-tab active">All Studies</button>
-                <button className="filter-tab">Scanning</button>
-                <button className="filter-tab">Structure</button>
-                <button className="filter-tab">Bullets</button>
-                <button className="filter-tab">ATS</button>
-            </nav>
-
-            {/* Study list - editorial rows, not cards */}
-            <section className="study-index">
-                {studies.map((study) => (
-                    <article key={study.id} className="study-row">
-                        <span className="study-row-category">{study.category}</span>
-                        <h2 className="study-row-title">
-                            <Link href={study.href}>{study.title}</Link>
-                        </h2>
-                        <p className="study-row-thesis">{study.thesis}</p>
-                        <div className="study-row-meta">
-                            <span className="study-row-time">{study.readTime} read</span>
-                            <span className="study-row-dot">·</span>
-                            <span className="study-row-methods">
-                                Methods: {study.methods.join(", ").toLowerCase()}
-                            </span>
-                        </div>
-                        <p className="study-row-riyp">
-                            Informs <strong>{study.productTie}</strong>
-                        </p>
-                    </article>
-                ))}
-            </section>
-
-            {/* How this shapes RIYP - simple editorial list */}
-            <section className="riyp-section">
-                <h2 className="riyp-heading">How this shapes Recruiter in Your Pocket</h2>
-                <ul className="riyp-list">
-                    <li>
-                        <strong>Recruiter First Impression</strong> models the first few seconds where a
-                        recruiter decides whether to move you forward or move on.
-                    </li>
-                    <li>
-                        Our <strong>main score</strong> focuses on clarity, scope, and story, not keyword
-                        stuffing.
-                    </li>
-                    <li>
-                        <strong>Bullet Upgrades</strong> are designed to match how eyes actually scan impact,
-                        numbers, and verbs.
-                    </li>
-                    <li>
-                        Our <strong>ATS education</strong> is honest and simple. We keep your resume parser
-                        friendly and recruiter clear instead of selling tricks.
-                    </li>
-                </ul>
-            </section>
-
-            {/* Note */}
-            <p className="library-note">
-                We will continue to add to this research section as we incorporate more evidence into
-                how we design and improve Recruiter in Your Pocket.
-            </p>
-
-            {/* CTA */}
-            <div className="cta-section" style={{ textAlign: "center", margin: "48px 0" }}>
-                <Link href="/workspace" className="cta-link">
-                    Try it on your resume → Get your free analysis
+        <StudioShell showSidebar={true}>
+            {/* Header / Breadcrumb */}
+            <div className="mb-8 flex items-center justify-between">
+                <div>
+                    <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground/80">The Foundation</span>
+                    <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground mt-2 tracking-tight">Hiring Research Library</h1>
+                </div>
+                <Link href="/workspace">
+                    <Button variant="outline" size="sm">Back to Studio</Button>
                 </Link>
             </div>
 
-            <footer className="research-footer">
-                <p>Made with care in Boulder, CO 🤍</p>
-                <p>
-                    <Link href="/">Home</Link> · <Link href="/terms">Terms</Link> ·{" "}
-                    <Link href="/privacy">Privacy</Link>
+            {/* Intro */}
+            <div className="max-w-2xl mb-12">
+                <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+                    Most resume tools lean on myths about bots and secret filters. Recruiter in Your Pocket
+                    is built on how recruiters actually read resumes and decide who moves forward.
                 </p>
-            </footer>
-        </div>
+            </div>
+
+            {/* Research Grid */}
+            <div className="grid gap-6">
+                {studies.map((study) => (
+                    <Link key={study.id} href={study.href} className="group blcok">
+                        <Card className="hover:border-primary/20 transition-all duration-300 hover:bg-muted/30">
+                            <CardContent className="p-8 flex items-start gap-6">
+                                {/* Number / Icon */}
+                                <div className="hidden md:flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-secondary text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                                    <study.icon className="h-6 w-6" />
+                                </div>
+
+                                <div className="flex-1 space-y-2">
+                                    <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                                        <span className="text-primary/80">{study.category}</span>
+                                        <span>•</span>
+                                        <span>{study.readTime} read</span>
+                                    </div>
+                                    <h3 className="font-serif text-2xl font-medium text-foreground group-hover:text-primary transition-colors">
+                                        {study.title}
+                                    </h3>
+                                    <p className="text-muted-foreground max-w-2xl leading-relaxed">
+                                        {study.thesis}
+                                    </p>
+
+                                    <div className="flex items-center gap-2 mt-4 text-xs font-medium text-muted-foreground/60">
+                                        <span className="px-2 py-1 rounded-md bg-secondary/50 border border-border/50">
+                                            Methods: {study.methods.join(", ")}
+                                        </span>
+                                        <span>→ Informs {study.productTie}</span>
+                                    </div>
+                                </div>
+
+                                <div className="self-center hidden md:block opacity-0 lg:opacity-100 group-hover:opacity-100 transition-opacity">
+                                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                ))}
+            </div>
+
+            {/* Principles Section */}
+            <div className="mt-16 pt-12 border-t border-border/40">
+                <h2 className="font-serif text-2xl font-medium mb-6">How this shapes the product</h2>
+                <div className="grid md:grid-cols-2 gap-8">
+                    <Principle
+                        title="First Impressions Matter"
+                        desc="Recruiter First Impression models the first few seconds where a recruiter decides whether to move you forward."
+                    />
+                    <Principle
+                        title="Clarity over Keywords"
+                        desc="Our main score focuses on clarity, scope, and story, not keyword stuffing."
+                    />
+                    <Principle
+                        title="Eye-Flow Optimization"
+                        desc="Bullet Upgrades are designed to match how eyes actually scan impact, numbers, and verbs."
+                    />
+                    <Principle
+                        title="Honest ATS Education"
+                        desc="We keep your resume parser-friendly and recruiter-clear instead of selling 'beat the bot' tricks."
+                    />
+                </div>
+            </div>
+
+        </StudioShell>
     );
+}
+
+function Principle({ title, desc }: { title: string, desc: string }) {
+    return (
+        <div className="space-y-2">
+            <h3 className="font-medium text-foreground">{title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+        </div>
+    )
 }

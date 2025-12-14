@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { FileText, BarChart3 } from "lucide-react";
 
 interface HistoryReport {
     id: string;
@@ -85,7 +86,7 @@ export default function HistorySidebar({
                 <div className="flex-1 p-5 overflow-y-auto">
                     {!user?.email ? (
                         <div className="text-center py-10 text-muted">
-                            <div className="text-5xl mb-4">📊</div>
+                            <BarChart3 className="w-12 h-12 text-muted-foreground/20 mx-auto mb-4" />
                             <div className="text-lg font-semibold text-primary mb-2">
                                 Track your progress
                             </div>
@@ -100,7 +101,7 @@ export default function HistorySidebar({
                         <div className="text-center py-10 text-muted">Loading...</div>
                     ) : reports.length === 0 ? (
                         <div className="text-center py-10 text-muted">
-                            <div className="text-5xl mb-4">📋</div>
+                            <FileText className="w-12 h-12 text-muted-foreground/20 mx-auto mb-4" />
                             <div className="text-lg font-semibold text-primary mb-2">
                                 No reports yet
                             </div>

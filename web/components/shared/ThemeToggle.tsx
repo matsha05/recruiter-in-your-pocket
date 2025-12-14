@@ -1,5 +1,4 @@
-"use client";
-
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
@@ -34,29 +33,23 @@ export default function ThemeToggle() {
         }
     };
 
-    // Prevent hydration mismatch
     if (!mounted) {
         return (
-            <button
-                className="p-2 rounded-lg text-secondary hover:bg-hover transition-colors"
-                type="button"
-                aria-label="Toggle dark mode"
-                title="Toggle dark mode"
-            >
-                <span className="text-xl">🌙</span>
-            </button>
+            <div className="w-9 h-9" /> // Skeleton placeholder
         );
     }
 
     return (
         <button
-            className="p-2 rounded-lg text-secondary hover:bg-hover transition-colors"
-            type="button"
-            aria-label="Toggle dark mode"
-            title="Toggle dark mode"
             onClick={toggleTheme}
+            className="p-2 rounded-md hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+            aria-label="Toggle theme"
         >
-            <span className="text-xl">{isDark ? "☀️" : "🌙"}</span>
+            {isDark ? (
+                <Sun className="w-5 h-5" />
+            ) : (
+                <Moon className="w-5 h-5" />
+            )}
         </button>
     );
 }

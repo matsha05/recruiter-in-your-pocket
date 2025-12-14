@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "../shared/ThemeToggle";
-import { Plus, Files, ArrowLeft, Settings } from "lucide-react";
+import { Plus, Files, ArrowLeft, Settings, FileText, LogOut, CreditCard } from "lucide-react";
+import { UserNav } from "../shared/UserNav";
+import { cn } from "@/lib/utils";
 
 interface User {
     email?: string;
@@ -31,108 +33,60 @@ export default function WorkspaceHeader({
     const userInitial = user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?";
 
     return (
-        <header className="flex items-center justify-between px-6 py-4 bg-surface border-b border-subtle">
-            <Link href="/" className="font-display font-bold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors">
-                Recruiter in Your Pocket
-            </Link>
+        <header className="flex h-14 items-center justify-between px-6 border-b border-border bg-background sticky top-0 z-30">
+            {/* Brand - Mobile Only (Hidden on Desktop to avoid duplication with Sidebar) */}
+            <div className="flex items-center gap-4 md:hidden">
+                <h1 className="font-serif italic font-semibold text-lg tracking-tight text-foreground">
+                    Recruiter in Your Pocket
+                </h1>
+            </div>
 
-            <div className="flex items-center gap-3">
-                <button className="btn-ghost" onClick={onSampleReport}>
-                    📄 Sample Report
+            {/* Desktop Spacer (keeps right actions aligned if brand is hidden) */}
+            <div className="hidden md:block" />
+
+            <div className="flex items-center gap-2">
+                <button
+                    onClick={onSampleReport}
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
+                >
+                    <FileText className="w-4 h-4" />
+                    <span className="hidden sm:inline">Sample Report</span>
                 </button>
 
+                {/* 
+                   "New Report" button is often in the sidebar or main CTA area, 
+                   but keeping it here as a primary action is fine.
+                */}
                 <button
                     onClick={onNewReport}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-success text-white 
-                        font-semibold rounded-lg shadow-button hover:opacity-90 
-                        transition-all duration-200"
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors"
                 >
-                    <Plus className="w-4 h-4" strokeWidth={2} />
-                    New Report
+                    <Plus className="w-4 h-4" />
+                    <span>New Report</span>
                 </button>
 
                 {!user ? (
-                    <button className="btn-ghost font-semibold" onClick={onSignIn}>
+                    <button
+                        className="px-3 py-1.5 text-sm font-medium hover:bg-muted rounded-md transition-colors"
+                        onClick={onSignIn}
+                    >
                         Sign In
                     </button>
                 ) : (
-                    <div className="relative">
-                        <button
-                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-hover transition-colors"
-                        >
-                            <span className="w-8 h-8 flex items-center justify-center bg-brand text-white rounded-full font-semibold text-sm">
-                                {userInitial}
-                            </span>
-                            <span className="text-sm text-primary max-w-[120px] truncate">
-                                {user.firstName || user.email}
-                            </span>
-                            <span className="text-muted text-xs">▾</span>
-                        </button>
-
-                        {isDropdownOpen && (
-                            <>
-                                <div
-                                    className="fixed inset-0 z-40"
-                                    onClick={() => setIsDropdownOpen(false)}
-                                />
-                                <div className="absolute right-0 top-full mt-1 w-56 bg-surface border border-subtle rounded-xl shadow-modal z-50 py-2">
-
-                                    <div className="px-4 py-2 text-xs text-muted truncate">
-                                        {user.email}
-                                    </div>
-                                    <div className="border-t border-subtle my-1" />
-
-                                    <button
-                                        onClick={() => { onHistory?.(); setIsDropdownOpen(false); }}
-                                        className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
-                                    >
-                                        <Files className="w-4 h-4" strokeWidth={2} />
-                                        My Reports
-                                    </button>
-
-                                    <button
-                                        onClick={() => { onNewReport?.(); setIsDropdownOpen(false); }}
-                                        className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
-                                    >
-                                        <Plus className="w-4 h-4" strokeWidth={2} />
-                                        New Report
-                                    </button>
-
-                                    <div className="border-t border-subtle my-1" />
-
-                                    <Link
-                                        href="/"
-                                        className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
-                                        onClick={() => setIsDropdownOpen(false)}
-                                    >
-                                        <ArrowLeft className="w-4 h-4" strokeWidth={2} />
-                                        Home
-                                    </Link>
-
-                                    <Link
-                                        href="/settings"
-                                        className="w-full flex items-center gap-3 px-4 py-2 text-sm text-secondary hover:bg-brand-soft transition-colors"
-                                        onClick={() => setIsDropdownOpen(false)}
-                                    >
-                                        <Settings className="w-4 h-4" strokeWidth={2} />
-                                        Settings
-                                    </Link>
-
-                                    <button
-                                        onClick={() => { onSignOut?.(); setIsDropdownOpen(false); }}
-                                        className="w-full flex items-center gap-3 px-4 py-2 text-sm text-danger hover:bg-warning-soft transition-colors"
-                                    >
-                                        Sign Out
-                                    </button>
-                                </div>
-                            </>
-                        )}
+                    <div className="ml-2">
+                        <UserNav
+                            user={user}
+                            onSignOut={onSignOut || (() => { })}
+                            onHistoryClick={onHistory}
+                        />
                     </div>
                 )}
 
-                <ThemeToggle />
+                <div className="ml-2">
+                    <ThemeToggle />
+                </div>
             </div>
         </header>
     );
 }
+

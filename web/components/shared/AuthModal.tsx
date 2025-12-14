@@ -2,7 +2,18 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
-import { X } from "lucide-react";
+import { Loader2 } from "lucide-react";
+
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface AuthModalProps {
     isOpen: boolean;
@@ -17,7 +28,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
     const [step, setStep] = useState<"email" | "code" | "name">("email");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [isNewUser, setIsNewUser] = useState(false);
+    const [, setIsNewUser] = useState(false);
 
     // Prevent double-submit on auto-verify
     const isVerifyingRef = useRef(false);
@@ -33,7 +44,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
             const res = await fetch("/api/auth/verify-code", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: email.trim(), code: code.trim() })
+                body: JSON.stringify({ email: email.trim(), code: code.trim() }),
             });
             const data = await res.json();
 
@@ -69,8 +80,6 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         }
     }, [code, step, loading, verifyCode]);
 
-    if (!isOpen) return null;
-
     const handleSendCode = async () => {
         if (!email.trim()) {
             setError("Please enter your email");
@@ -84,7 +93,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
             const res = await fetch("/api/auth/send-code", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: email.trim() })
+                body: JSON.stringify({ email: email.trim() }),
             });
             const data = await res.json();
 
@@ -100,7 +109,6 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         }
     };
 
-
     const handleSaveName = async () => {
         if (!firstName.trim()) {
             setError("Please enter your first name");
@@ -113,7 +121,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         try {
             const supabase = createSupabaseBrowserClient();
             const { error: updateError } = await supabase.auth.updateUser({
-                data: { first_name: firstName.trim() }
+                data: { first_name: firstName.trim() },
             });
 
             if (updateError) {
@@ -130,7 +138,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         }
     };
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         setEmail("");
         setCode("");
         setFirstName("");
@@ -138,135 +146,123 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
         setError(null);
         setIsNewUser(false);
         onClose();
-    };
+    }, [onClose]);
 
     return (
-        <div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
-            onClick={(e) => e.target === e.currentTarget && handleClose()}
-        >
-            <div className="bg-surface rounded-2xl shadow-modal w-full max-w-[400px] p-8 relative">
-                <button
-                    onClick={handleClose}
-                    aria-label="Close"
-                    className="absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2"
-                >
-                    <X className="w-5 h-5" strokeWidth={2} />
-                </button>
-
-                <div className="text-center mb-6">
-                    <h2 className="font-display text-xl font-bold text-primary mb-2">
+        <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
+            <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                    <DialogTitle className="font-serif text-2xl">
                         {step === "email" && "Sign in or create account"}
                         {step === "code" && "Check your email"}
                         {step === "name" && "One last thing"}
-                    </h2>
-                    <p className="text-muted text-sm">
+                    </DialogTitle>
+                    <DialogDescription>
                         {step === "email" && "We'll send you a login code. No password needed."}
                         {step === "code" && `We sent an 8-digit code to ${email}`}
                         {step === "name" && "What should we call you?"}
-                    </p>
+                    </DialogDescription>
+                </DialogHeader>
+
+                <div className="space-y-4 py-4">
+                    {error && (
+                        <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md border border-destructive/20">
+                            {error}
+                        </div>
+                    )}
+
+                    {step === "email" && (
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email address</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    placeholder="name@company.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    onKeyDown={(e) => e.key === "Enter" && handleSendCode()}
+                                    autoFocus
+                                />
+                            </div>
+                            <Button onClick={handleSendCode} disabled={loading} className="w-full" variant="studio">
+                                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Send Login Code
+                            </Button>
+                        </div>
+                    )}
+
+                    {step === "code" && (
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="code">Login Code</Label>
+                                <Input
+                                    id="code"
+                                    type="text"
+                                    placeholder="00000000"
+                                    className="font-mono tracking-widest text-center text-lg"
+                                    value={code}
+                                    onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 8))}
+                                    onKeyDown={(e) => e.key === "Enter" && verifyCode()}
+                                    autoFocus
+                                />
+                            </div>
+                            <Button onClick={verifyCode} disabled={loading || code.length !== 8} className="w-full" variant="studio">
+                                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Verify Code
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                className="w-full"
+                                onClick={() => {
+                                    setStep("email");
+                                    setCode("");
+                                    setError(null);
+                                    isVerifyingRef.current = false;
+                                }}
+                            >
+                                Use a different email
+                            </Button>
+                        </div>
+                    )}
+
+                    {step === "name" && (
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="fname">First Name</Label>
+                                <Input
+                                    id="fname"
+                                    type="text"
+                                    placeholder="Jane"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    onKeyDown={(e) => e.key === "Enter" && handleSaveName()}
+                                    autoFocus
+                                />
+                            </div>
+                            <Button onClick={handleSaveName} disabled={loading || !firstName.trim()} className="w-full" variant="studio">
+                                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                Continue to Studio
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                className="w-full"
+                                onClick={() => {
+                                    onSuccess?.();
+                                    handleClose();
+                                }}
+                            >
+                                Skip for now
+                            </Button>
+                        </div>
+                    )}
                 </div>
 
-                {step === "email" && (
-                    <div className="space-y-4">
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="you@example.com"
-                            className="input"
-                            autoFocus
-                            onKeyDown={(e) => e.key === "Enter" && handleSendCode()}
-                        />
-
-                        {error && (
-                            <div className="text-danger text-sm text-center">{error}</div>
-                        )}
-
-                        <button
-                            onClick={handleSendCode}
-                            disabled={loading}
-                            className="btn-primary w-full"
-                        >
-                            {loading ? "Sending..." : "Send Code"}
-                        </button>
-                    </div>
-                )}
-
-                {step === "code" && (
-                    <div className="space-y-4">
-                        <input
-                            type="text"
-                            value={code}
-                            onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 8))}
-                            placeholder="00000000"
-                            className="input text-center text-2xl tracking-widest font-mono"
-                            autoFocus
-                            onKeyDown={(e) => e.key === "Enter" && verifyCode()}
-                        />
-
-                        {error && (
-                            <div className="text-danger text-sm text-center">{error}</div>
-                        )}
-
-                        <button
-                            onClick={verifyCode}
-                            disabled={loading || code.length !== 8}
-                            className="btn-primary w-full"
-                        >
-                            {loading ? "Verifying..." : "Verify Code"}
-                        </button>
-
-                        <button
-                            onClick={() => { setStep("email"); setCode(""); setError(null); isVerifyingRef.current = false; }}
-                            className="btn-ghost w-full text-sm"
-                        >
-                            Use a different email
-                        </button>
-                    </div>
-                )}
-
-                {step === "name" && (
-                    <div className="space-y-4">
-                        <input
-                            type="text"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            placeholder="Your first name"
-                            className="input"
-                            autoFocus
-                            onKeyDown={(e) => e.key === "Enter" && handleSaveName()}
-                        />
-
-                        {error && (
-                            <div className="text-danger text-sm text-center">{error}</div>
-                        )}
-
-                        <button
-                            onClick={handleSaveName}
-                            disabled={loading || !firstName.trim()}
-                            className="btn-primary w-full"
-                        >
-                            {loading ? "Saving..." : "Continue"}
-                        </button>
-
-                        <button
-                            onClick={() => {
-                                // Skip name - just close
-                                onSuccess?.();
-                                onClose();
-                            }}
-                            className="btn-ghost w-full text-sm"
-                        >
-                            Skip for now
-                        </button>
-                    </div>
-                )}
-
-                <p className="text-center text-xs text-muted mt-4">
+                {/* Footer Note */}
+                <div className="text-[11px] text-center text-muted-foreground">
                     By continuing, you agree to our Terms and Privacy Policy.
-                </p>
-            </div>
-        </div>
+                </div>
+            </DialogContent>
+        </Dialog>
     );
 }
