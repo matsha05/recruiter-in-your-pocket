@@ -28,7 +28,7 @@ export function LegalNav({ className }: LegalNavProps) {
             </Link>
 
             {/* Pill Navigation */}
-            <nav className="flex items-center p-1.5 bg-secondary/40 border border-border/50 rounded-full animate-in fade-in zoom-in-95 duration-500">
+            <nav className="flex items-center space-x-1 p-1.5 bg-secondary/40 border border-border/50 rounded-full animate-in fade-in zoom-in-95 duration-500 max-w-[90vw] overflow-x-auto no-scrollbar">
                 {tabs.map((tab) => {
                     const isActive = pathname === tab.href;
                     return (

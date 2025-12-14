@@ -6,6 +6,7 @@ import ThemeToggle from "../shared/ThemeToggle";
 import { Plus, Files, ArrowLeft, Settings, FileText, LogOut, CreditCard } from "lucide-react";
 import { UserNav } from "../shared/UserNav";
 import { cn } from "@/lib/utils";
+import { MobileNav } from "@/components/layout/MobileNav";
 import type { AuthUser } from "@/components/providers/AuthProvider";
 
 interface WorkspaceHeaderProps {
@@ -30,8 +31,9 @@ export default function WorkspaceHeader({
 
     return (
         <header className="flex h-14 items-center justify-between px-6 border-b border-border bg-background sticky top-0 z-30">
-            {/* Brand - Mobile Only (Hidden on Desktop to avoid duplication with Sidebar) */}
-            <div className="flex items-center gap-4 md:hidden">
+            {/* Brand - Mobile Only */}
+            <div className="flex items-center gap-2 md:hidden">
+                <MobileNav />
                 <h1 className="font-serif italic font-semibold text-lg tracking-tight text-foreground">
                     Recruiter in Your Pocket
                 </h1>
