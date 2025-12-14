@@ -200,6 +200,29 @@ export async function POST(request: Request) {
                     free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining
                 }) + "\n"));
 
+                // CONSUME SINGLE USE PASS
+                // If the user used a 'single_use' pass, we must expire it now that the report is generated.
+                if (activePass && activePass.tier === "single_use" && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+                    try {
+                        const { createClient } = await import("@supabase/supabase-js");
+                        const admin = createClient(
+                            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+                            process.env.SUPABASE_SERVICE_ROLE_KEY,
+                            { auth: { persistSession: false } }
+                        );
+
+                        // Set expires_at to NOW, effectively killing the pass
+                        await admin
+                            .from("passes")
+                            .update({ expires_at: new Date().toISOString() })
+                            .eq("id", activePass.id);
+
+                        console.log(`[stream] Consumed single_use pass: ${activePass.id}`);
+                    } catch (passErr) {
+                        console.error("[stream] Failed to consume pass:", passErr);
+                    }
+                }
+
                 controller.close();
 
             } catch (err: any) {

@@ -50,8 +50,24 @@ export function MobileNav() {
                                 </div>
                                 <div className="flex-1 overflow-hidden">
                                     <p className="font-medium truncate">{user.email}</p>
-                                    <p className="text-xs text-muted-foreground capitalize">
-                                        {user.credits} Credits Available
+                                    <p className="text-xs text-muted-foreground capitalize flex items-center gap-1.5 mt-0.5">
+                                        {user.membership === "pro" && (
+                                            <span className="inline-flex items-center gap-1">
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">Pro Member</span>
+                                                <span className="text-[10px] text-muted-foreground font-medium">• {user.daysLeft} days left</span>
+                                            </span>
+                                        )}
+                                        {user.membership === "audit" && (
+                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600">1 Audit Available</span>
+                                        )}
+                                        {(user.membership === "free" || !user.membership) && (
+                                            <span className="inline-flex items-center gap-1">
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-muted text-muted-foreground">Free Plan</span>
+                                                {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
+                                                    <span className="text-[10px] text-emerald-600 font-medium">• {user.freeUsesLeft} Free Audit remaining</span>
+                                                )}
+                                            </span>
+                                        )}
                                     </p>
                                 </div>
                             </div>

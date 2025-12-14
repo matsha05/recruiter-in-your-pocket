@@ -71,7 +71,7 @@ export default function ATSMythsPage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where the '75%' myth comes from</h2>
             <p className="text-muted-foreground leading-relaxed">
                 The claim that "75% of resumes are never seen" is a misunderstanding. It's not that a robot deleted them.
-                It's that **recruiters are busy**. If 1,000 people apply, a human might only have time to open 50.
+                It's that <strong>recruiters are busy</strong>. If 1,000 people apply, a human might only have time to open 50.
                 The bottleneck is human time, not AI malice.
             </p>
         </ResearchArticle>

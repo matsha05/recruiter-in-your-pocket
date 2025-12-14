@@ -62,13 +62,13 @@ export function ATSFunnel() {
                 <div className="relative">
                     <div className="flex justify-between text-xs uppercase tracking-wider text-muted-foreground mb-2">
                         <span className="flex items-center gap-2 text-primary"><Eye className="w-3 h-3" /> 3. Human Review</span>
-                        <span className="text-primary font-bold">25 Seen (2.5%)</span>
+                        <span className="text-primary font-bold">50 Seen (5%)</span>
                     </div>
                     <div className="h-12 w-full bg-secondary/30 rounded-md border border-border border-dashed flex relative overflow-hidden">
                         {/* The actual processed volume */}
                         <motion.div
                             initial={{ width: 0 }}
-                            whileInView={{ width: "2.5%" }}
+                            whileInView={{ width: "5%" }}
                             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                             className="h-full bg-primary absolute left-0 top-0"
                         />

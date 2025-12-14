@@ -46,6 +46,26 @@ export function UserNav({
                         <div className="px-3 py-2 border-b border-border bg-muted/30">
                             <p className="text-xs font-medium text-foreground truncate">{user.firstName || 'User'}</p>
                             <p className="text-[10px] text-muted-foreground truncate">{user.email}</p>
+
+                            {/* Membership Status Badge */}
+                            <div className="mt-2 text-[10px] font-medium uppercase tracking-wider flex flex-col gap-1">
+                                {user.membership === "pro" && (
+                                    <span className="text-primary flex items-center gap-1">
+                                        Pro Member • <span className="text-muted-foreground lowercase normal-case">{user.daysLeft} days left</span>
+                                    </span>
+                                )}
+                                {user.membership === "audit" && (
+                                    <span className="text-emerald-600">1 Audit Available</span>
+                                )}
+                                {(user.membership === "free" || !user.membership) && (
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-muted-foreground">Free Plan</span>
+                                        {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
+                                            <span className="text-emerald-600 lowercase normal-case">• {user.freeUsesLeft} free audit remaining</span>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         <div className="p-1">
