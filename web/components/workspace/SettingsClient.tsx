@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Check, Sparkles, CreditCard, Clock, FileText, Zap, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 
@@ -38,10 +39,10 @@ export default function SettingsClient() {
             if (error) throw error;
 
             await refreshUser?.();
-            alert("Profile updated successfully");
+            toast.success("Profile updated successfully");
         } catch (err: any) {
             console.error("Profile update error:", err);
-            alert(err.message || "Failed to update profile");
+            toast.error(err.message || "Failed to update profile");
         } finally {
             setIsSavingProfile(false);
         }
@@ -95,7 +96,7 @@ export default function SettingsClient() {
             }
         } catch (err: any) {
             console.error("Checkout error:", err);
-            alert(err.message || "Something went wrong. Please try again.");
+            toast.error(err.message || "Something went wrong. Please try again.");
             setIsLoading(null);
             setShowEmailInput(null);
         }
@@ -286,7 +287,7 @@ export default function SettingsClient() {
                             Permanently delete your account and all report history. This action cannot be undone.
                         </p>
                         <button
-                            onClick={() => alert("Please email support@recruiterinyourpocket.com to process deletion requests safely.")}
+                            onClick={() => toast.info("Please email support@recruiterinyourpocket.com to process deletion requests safely.")}
                             className="text-sm px-4 py-2 bg-background border border-destructive/30 text-destructive rounded-md hover:bg-destructive/10 transition-colors font-medium"
                         >
                             Delete Account

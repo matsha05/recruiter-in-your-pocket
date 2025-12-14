@@ -3,7 +3,9 @@ import "./globals.css";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 import { Geist } from "next/font/google";
 import { Newsreader } from "next/font/google";
-
+import { Geist } from "next/font/google";
+import { Newsreader } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,7 +33,10 @@ export default function RootLayout({
         {/* Favicon is handled automatically by icon.tsx */}
       </head>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          {children}
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );

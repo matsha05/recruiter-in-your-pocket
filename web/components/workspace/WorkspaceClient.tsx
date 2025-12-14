@@ -10,6 +10,7 @@ import HistorySidebar from "@/components/workspace/HistorySidebar";
 import PaywallModal from "@/components/workspace/PaywallModal";
 import AuthModal from "@/components/shared/AuthModal";
 import { createResumeFeedback, streamResumeFeedback, parseResume } from "@/lib/api";
+import { toast } from "sonner";
 
 export default function WorkspaceClient() {
     const searchParams = useSearchParams();
@@ -54,7 +55,9 @@ export default function WorkspaceClient() {
         if (paymentStatus === "success") {
             // Show success message
             const tierLabel = tier === "30d" ? "30-Day Campaign Pass" : "24-Hour Fix Pass";
-            alert(`🎉 Payment successful! Your ${tierLabel} is now active.\n\nYou now have unlimited resume reviews. Log in to access your pass!`);
+            toast.success("Payment successful!", {
+                description: `Your ${tierLabel} is now active. You have unlimited resume reviews. Log in to access your pass!`
+            });
 
             // Clean URL params
             window.history.replaceState({}, "", "/workspace");
@@ -84,11 +87,11 @@ export default function WorkspaceClient() {
                 setResumeText(result.text);
             } else {
                 console.error("Failed to parse resume:", result.message);
-                alert("Failed to parse resume: " + (result.message || "Unknown error"));
+                toast.error("Failed to parse resume", { description: result.message || "Unknown error" });
             }
         } catch (err) {
             console.error("File parsing error:", err);
-            alert("File parsing error. Check console for details.");
+            toast.error("File parsing error", { description: "Please try another file." });
         } finally {
             setIsLoading(false);
         }
@@ -162,13 +165,13 @@ export default function WorkspaceClient() {
             } else {
                 // Error case - show immediately
                 console.error("Failed to generate report:", result.message);
-                alert("Failed to generate report: " + (result.message || "Unknown error"));
+                toast.error("Failed to generate report", { description: result.message || "Unknown error" });
                 setIsLoading(false);
                 setIsStreaming(false);
             }
         } catch (err) {
             console.error("Report generation error:", err);
-            alert("Report generation error. Check console for details.");
+            toast.error("Report generation error", { description: "Please try again." });
             setIsLoading(false);
             setIsStreaming(false);
         }
@@ -213,7 +216,7 @@ export default function WorkspaceClient() {
 
             if (!response.ok) {
                 const error = await response.json().catch(() => ({}));
-                alert(error.message || "Failed to export PDF");
+                toast.error(error.message || "Failed to export PDF");
                 return;
             }
 
@@ -229,7 +232,7 @@ export default function WorkspaceClient() {
             URL.revokeObjectURL(url);
         } catch (err) {
             console.error("PDF export error:", err);
-            alert("Failed to export PDF");
+            toast.error("Failed to export PDF");
         } finally {
             setIsExporting(false);
         }
@@ -310,11 +313,11 @@ export default function WorkspaceClient() {
                             setReport(data.report);
                         } else {
                             console.error("Failed to load report:", data.message);
-                            alert("Failed to load report: " + (data.message || "Unknown error"));
+                            toast.error("Failed to load report", { description: data.message || "Unknown error" });
                         }
                     } catch (err) {
                         console.error("Report load error:", err);
-                        alert("Failed to load report");
+                        toast.error("Failed to load report");
                     } finally {
                         setIsLoading(false);
                     }
