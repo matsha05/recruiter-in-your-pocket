@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 
 interface UserNavProps {
     user: {
-        email?: string;
-        firstName?: string;
+        email?: string | null;
+        firstName?: string | null;
     };
     onSignOut: () => void;
     onHistoryClick?: () => void;
