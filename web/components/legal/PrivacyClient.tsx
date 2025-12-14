@@ -3,25 +3,25 @@
 import Link from "next/link";
 import { StudioShell } from "@/components/layout/StudioShell";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/landing/Footer";
+
+import { LegalNav } from "@/components/legal/LegalNav";
 
 export default function PrivacyClient() {
     return (
         <StudioShell showSidebar={false} className="max-w-3xl mx-auto py-16">
-            {/* Nav */}
-            <div className="mb-12">
-                <Link href="/">
-                    <Button variant="ghost" size="sm" className="gap-2 -ml-4">
-                        ← Back to Home
-                    </Button>
-                </Link>
-            </div>
+            <LegalNav />
 
             {/* Header */}
-            <header className="mb-12 border-b border-border/50 pb-8">
-                <h1 className="font-serif text-4xl font-medium text-foreground mb-4 tracking-tight">
+            <header className="mb-20 text-center max-w-2xl mx-auto">
+                <h1 className="font-serif text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
                     Privacy Policy
                 </h1>
-                <p className="text-sm text-muted-foreground font-mono">Last updated: December 2025</p>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                    How we handle your data, in plain English.
+                    <br />
+                    <span className="text-sm font-mono mt-2 block opacity-70">Last updated: December 2025</span>
+                </p>
             </header>
 
             {/* Content */}
@@ -78,13 +78,9 @@ export default function PrivacyClient() {
             </article>
 
             {/* Footer */}
-            <footer className="mt-20 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-                <p className="mb-2">Made with care in Boulder, CO 🤍</p>
-                <div className="flex justify-center gap-4 text-xs font-medium uppercase tracking-wider">
-                    <Link href="/" className="hover:text-foreground">Home</Link>
-                    <Link href="/terms" className="hover:text-foreground">Terms of Service</Link>
-                </div>
-            </footer>
+            <div className="mt-20">
+                <Footer />
+            </div>
         </StudioShell>
     );
 }

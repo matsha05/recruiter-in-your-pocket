@@ -9,7 +9,8 @@ import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { SkimView } from "@/components/workspace/SkimView";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, Eye, Target, PenTool } from "lucide-react";
+import Footer from "@/components/landing/Footer";
 
 export default function LandingClient() {
     const router = useRouter();
@@ -62,7 +63,7 @@ export default function LandingClient() {
             {/* Navbar: Minimal, Technical */}
             <header className="h-16 flex items-center justify-between px-6 border-b border-border/50 bg-background/50 backdrop-blur-sm sticky top-0 z-50">
                 <div className="flex items-center gap-2">
-                    <span className="text-lg font-serif italic font-semibold tracking-tight text-foreground">Recruiter in Your Pocket</span>
+                    <span className="text-xl font-serif italic font-semibold tracking-tight text-foreground">Recruiter in Your Pocket</span>
                 </div>
                 <nav className="flex items-center gap-4">
                     <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">Research</Link>
@@ -132,8 +133,8 @@ export default function LandingClient() {
                     <div className="grid md:grid-cols-3 gap-8">
                         {/* Feature 1: The Scan */}
                         <div className="bg-card/50 backdrop-blur-sm border border-border/60 p-8 rounded-xl flex flex-col items-center text-center group hover:border-border transition-colors">
-                            <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary/10 transition-colors">
-                                <span className="font-serif italic text-xl">1</span>
+                            <div className="w-12 h-12 bg-rose/10 rounded-xl flex items-center justify-center mb-6 text-rose hover:scale-110 transition-transform">
+                                <Eye className="w-6 h-6" strokeWidth={1.5} />
                             </div>
                             <h3 className="font-serif text-xl text-primary mb-3">The 6-Second Scan</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -143,8 +144,8 @@ export default function LandingClient() {
 
                         {/* Feature 2: The Score */}
                         <div className="bg-card/50 backdrop-blur-sm border border-border/60 p-8 rounded-xl flex flex-col items-center text-center group hover:border-border transition-colors">
-                            <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary/10 transition-colors">
-                                <span className="font-serif italic text-xl">2</span>
+                            <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold hover:scale-110 transition-transform">
+                                <Target className="w-6 h-6" strokeWidth={1.5} />
                             </div>
                             <h3 className="font-serif text-xl text-primary mb-3">The Reality Check</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -154,8 +155,8 @@ export default function LandingClient() {
 
                         {/* Feature 3: The Fix */}
                         <div className="bg-card/50 backdrop-blur-sm border border-border/60 p-8 rounded-xl flex flex-col items-center text-center group hover:border-border transition-colors">
-                            <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary/10 transition-colors">
-                                <span className="font-serif italic text-xl">3</span>
+                            <div className="w-12 h-12 bg-moss/10 rounded-xl flex items-center justify-center mb-6 text-moss hover:scale-110 transition-transform">
+                                <PenTool className="w-6 h-6" strokeWidth={1.5} />
                             </div>
                             <h3 className="font-serif text-xl text-primary mb-3">The Rewrite</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -194,19 +195,7 @@ export default function LandingClient() {
             </Dialog>
 
             {/* Footer */}
-            <footer className="border-t border-border/50 py-12 bg-muted/20">
-                <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="flex flex-col gap-2">
-                        <span className="text-sm font-semibold text-foreground">Recruiter in Your Pocket</span>
-                        <p className="text-xs text-muted-foreground">© 2025. Built in Boulder, CO.</p>
-                    </div>
-                    <div className="flex items-center gap-6 text-xs text-muted-foreground font-medium">
-                        <Link href="/research" className="hover:text-foreground">Library</Link>
-                        <Link href="/terms" className="hover:text-foreground">Terms</Link>
-                        <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

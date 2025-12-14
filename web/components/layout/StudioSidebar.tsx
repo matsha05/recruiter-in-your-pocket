@@ -27,7 +27,7 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
             {/* Brand - Matches Landing Page Wordmark */}
             <div className="h-14 flex items-center px-6 border-b border-border bg-background relative z-10">
                 <Link href="/" className="hover:opacity-80 transition-opacity">
-                    <span className="font-serif italic font-semibold tracking-tight text-sidebar-foreground text-lg">
+                    <span className="font-serif italic font-semibold tracking-tight text-sidebar-foreground text-xl">
                         Recruiter in Your Pocket
                     </span>
                 </Link>
