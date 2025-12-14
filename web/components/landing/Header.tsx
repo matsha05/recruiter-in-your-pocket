@@ -4,14 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import ThemeToggle from "../shared/ThemeToggle";
 import { ArrowRight, Settings } from "lucide-react";
-
-interface User {
-    email?: string;
-    firstName?: string;
-}
+import type { AuthUser } from "@/components/providers/AuthProvider";
 
 interface HeaderProps {
-    user?: User | null;
+    user?: AuthUser | null;
     onSignIn?: () => void;
     onSignOut?: () => void;
 }

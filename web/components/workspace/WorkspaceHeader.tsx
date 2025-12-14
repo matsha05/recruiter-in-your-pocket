@@ -6,14 +6,10 @@ import ThemeToggle from "../shared/ThemeToggle";
 import { Plus, Files, ArrowLeft, Settings, FileText, LogOut, CreditCard } from "lucide-react";
 import { UserNav } from "../shared/UserNav";
 import { cn } from "@/lib/utils";
-
-interface User {
-    email?: string;
-    firstName?: string;
-}
+import type { AuthUser } from "@/components/providers/AuthProvider";
 
 interface WorkspaceHeaderProps {
-    user?: User | null;
+    user?: AuthUser | null;
     onNewReport?: () => void;
     onSampleReport?: () => void;
     onSignIn?: () => void;
