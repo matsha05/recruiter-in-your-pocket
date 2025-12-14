@@ -254,7 +254,7 @@ export default function WorkspaceClient() {
                 <h1 className="sr-only">Resume Workspace — Analyze Your Resume</h1>
 
                 <WorkspaceHeader
-                    user={user ? { email: user.email || undefined, firstName: user.firstName || undefined } : null}
+                    user={user}
                     onNewReport={handleNewReport}
                     onSampleReport={handleSampleReport}
                     onSignIn={() => setIsAuthOpen(true)}
