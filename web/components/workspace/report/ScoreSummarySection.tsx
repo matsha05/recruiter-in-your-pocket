@@ -24,9 +24,9 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     { key: 'story', label: 'Story', score: data.subscores.story },
                     { key: 'readability', label: 'Readability', score: data.subscores.readability },
                 ].map((item) => item.score !== undefined && (
-                    <div key={item.key} className="bg-card border border-border/50 p-4 rounded-lg flex flex-col items-center justify-center text-center gap-1">
-                        <span className={cn("text-2xl font-bold", getScoreColor(item.score))}>{item.score}</span>
-                        <span className="text-xs text-muted-foreground uppercase tracking-wide font-medium">{item.label}</span>
+                    <div key={item.key} className="bg-secondary/30 border border-border/40 p-5 rounded-xl flex flex-col items-center justify-center text-center gap-1 group hover:bg-secondary/50 transition-colors">
+                        <span className={cn("text-3xl font-serif font-bold", getScoreColor(item.score))}>{item.score}</span>
+                        <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">{item.label}</span>
                     </div>
                 ))}
             </div>

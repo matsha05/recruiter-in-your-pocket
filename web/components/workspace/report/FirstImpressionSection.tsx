@@ -6,9 +6,9 @@ import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
 
 function getScoreColor(score: number): string {
-    if (score >= 90) return 'hsl(var(--moss))';
-    if (score >= 80) return 'hsl(var(--amber))';
-    return 'hsl(var(--rose))';
+    if (score >= 90) return 'text-moss';
+    if (score >= 80) return 'text-amber';
+    return 'text-rose';
 }
 
 export function FirstImpressionSection({ data }: { data: ReportData }) {
@@ -17,7 +17,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
     const firstImpressionText = data.score_comment_long || data.score_comment_short || data.first_impression || data.summary;
     const targetScore = data.score || 0;
-    const dialColor = getScoreColor(targetScore);
+    const scoreColorClass = getScoreColor(targetScore);
 
     useEffect(() => {
         if (targetScore <= 0 || hasAnimated.current) {
@@ -48,7 +48,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
             </div>
 
             {/* Main Dossier Card */}
-            <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden relative group">
+            <div className="bg-card rounded-xl border border-border/60 shadow-sm overflow-hidden relative group">
                 {/* Subtle background grain or noise could go here */}
 
                 <div className="p-8 md:p-10 space-y-8">
@@ -56,9 +56,9 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     {/* Header Row: Label & Score Stamp */}
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-border/60">
                         <div className="space-y-2">
-                            <div className="inline-flex items-center gap-2 text-primary/80">
+                            <div className="inline-flex items-center gap-2 text-foreground/70">
                                 <Eye className="w-4 h-4" />
-                                <span className="text-xs font-bold tracking-widest uppercase">First Impression</span>
+                                <span className="text-[10px] font-bold tracking-widest uppercase">First Impression</span>
                             </div>
                             <h3 className="font-serif text-3xl md:text-4xl text-foreground leading-tight max-w-3xl">
                                 "Here is exactly what I noticed..."
@@ -67,14 +67,14 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
                         {/* The "Stamp" - Typography Based */}
                         <div className="flex-shrink-0">
-                            <div className="flex flex-col items-center justify-center px-6 py-4 bg-muted/20 border-2 border-primary/10 rounded-lg text-center min-w-[140px]">
-                                <span className="text-sm font-bold tracking-widest text-muted-foreground uppercase mb-1">Audit Score</span>
-                                <div className="flex items-baseline gap-1" style={{ color: dialColor }}>
+                            <div className="flex flex-col items-center justify-center px-8 py-5 bg-secondary/30 border border-border/50 rounded-xl text-center min-w-[140px]">
+                                <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase mb-1">Audit Score</span>
+                                <div className={cn("flex items-baseline gap-1", scoreColorClass)}>
                                     <span className="text-5xl font-serif font-bold tracking-tighter">{animatedScore}</span>
-                                    <span className="text-lg font-medium text-muted-foreground">/100</span>
+                                    <span className="text-lg font-medium text-muted-foreground font-sans">/100</span>
                                 </div>
                                 {data.score_label && (
-                                    <div className="mt-2 px-2 py-0.5 bg-background border border-border/50 rounded text-[10px] font-bold uppercase tracking-wider text-foreground">
+                                    <div className="mt-2 px-2.5 py-1 bg-background border border-border/50 rounded-md text-[10px] font-bold uppercase tracking-wider text-foreground shadow-sm">
                                         {data.score_label}
                                     </div>
                                 )}
@@ -94,10 +94,10 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                         {/* Critical Issue Sidebar (1/3 width) */}
                         <div className="space-y-4">
                             {data.biggest_gap_example && (
-                                <div className="p-5 bg-amber-500/5 border border-amber-500/20 rounded-lg">
+                                <div className="p-5 bg-amber/10 border border-amber/20 rounded-lg">
                                     <div className="flex items-center gap-2 mb-3">
-                                        <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                                        <span className="text-xs font-bold uppercase tracking-widest text-amber-700 dark:text-amber-500">Critical Miss</span>
+                                        <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
+                                        <span className="text-xs font-bold uppercase tracking-widest text-amber">Critical Miss</span>
                                     </div>
                                     <p className="text-xs md:text-sm text-foreground/80 leading-relaxed font-medium">
                                         {data.biggest_gap_example}

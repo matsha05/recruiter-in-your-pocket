@@ -287,7 +287,7 @@ export default function SettingsClient() {
                 <section className="pt-16 border-t border-border/50">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 opacity-60 hover:opacity-100 transition-opacity duration-300">
                         <div>
-                            <h3 className="text-sm font-medium text-border-destructive mb-1">Danger Zone</h3>
+                            <h3 className="text-sm font-medium text-destructive mb-1">Danger Zone</h3>
                             <p className="text-xs text-muted-foreground">
                                 Permanently delete your account and all data.
                             </p>
