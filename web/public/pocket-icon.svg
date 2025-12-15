@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- 
+    Pocket Icon - A minimal, premium shirt pocket mark.
+    Design: Rounded rectangle with a subtle fold at the top.
+    Inspired by the intimacy of "having an expert in your pocket."
+  -->
+  
+  <!-- Background circle (optional, for favicon use) -->
+  <circle cx="256" cy="256" r="256" fill="#0a0a0a"/>
+  
+  <!-- The Pocket Shape -->
+  <g transform="translate(128, 140)">
+    <!-- Main pocket body -->
+    <path 
+      d="M24 48 L24 208 C24 224 36 236 52 236 L204 236 C220 236 232 224 232 208 L232 48" 
+      stroke="#fafafa" 
+      stroke-width="16" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+      fill="none"
+    />
+    
+    <!-- Top fold/opening -->
+    <path 
+      d="M8 48 L248 48" 
+      stroke="#fafafa" 
+      stroke-width="16" 
+      stroke-linecap="round"
+    />
+    
+    <!-- Subtle stitch detail (optional premium touch) -->
+    <path 
+      d="M52 72 L52 200 M204 72 L204 200" 
+      stroke="#fafafa" 
+      stroke-width="4" 
+      stroke-linecap="round"
+      stroke-dasharray="12 12"
+      opacity="0.3"
+    />
+  </g>
+</svg>

@@ -30,8 +30,8 @@ export default function Header({ user, onSignIn, onSignOut }: HeaderProps) {
 
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-surface dark:bg-surface backdrop-blur-sm sticky top-0 z-50 border-b border-subtle">
-            <Link href="/" className="font-display font-extrabold text-lg text-primary hover:text-brand dark:hover:text-brand-strong transition-colors">
-                Recruiter in Your Pocket
+            <Link href="/" className="font-serif italic font-semibold text-xl text-foreground hover:opacity-80 transition-opacity">
+                Pocket
             </Link>
 
             <div className="flex items-center gap-4">

@@ -24,7 +24,7 @@ export function MobileNav() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] flex flex-col p-0">
                 <SheetHeader className="p-6 border-b text-left">
-                    <SheetTitle className="font-serif italic text-xl">Recruiter in Your Pocket</SheetTitle>
+                    <SheetTitle className="font-serif italic text-xl">Pocket</SheetTitle>
                 </SheetHeader>
 
                 <div className="flex-1 overflow-y-auto py-6 px-4">

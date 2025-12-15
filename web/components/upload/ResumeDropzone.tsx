@@ -54,14 +54,15 @@ export function ResumeDropzone({
             <div
                 {...getRootProps()}
                 className={cn(
-                    "relative group cursor-pointer rounded-xl border border-dashed transition-all duration-300 ease-out",
+                    "relative group cursor-pointer rounded-2xl border transition-all duration-500 ease-out",
                     "h-[420px] flex flex-col items-center justify-center text-center p-12",
-                    "bg-white/50 backdrop-blur-sm dark:bg-black/20", // Glass base
+                    "bg-gradient-to-b from-white/80 to-white/40 dark:from-white/5 dark:to-transparent backdrop-blur-xl", // Premium glass gradient
+                    "shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.06)]", // Soft elevated shadow
 
-                    // Border logic: Alpha-based
+                    // Border logic: Alpha-based solid, not dashed
                     isDragActive
-                        ? "border-primary/50 bg-primary/5 scale-[1.02]"
-                        : "border-primary/20 hover:border-primary/40 hover:bg-primary/[0.02]",
+                        ? "border-primary/40 bg-primary/5 scale-[1.01]"
+                        : "border-primary/10 hover:border-primary/20",
 
                     isDragReject && "border-destructive/50 bg-destructive/5",
 
@@ -108,11 +109,11 @@ export function ResumeDropzone({
                                 <Sparkles className="absolute -right-4 -top-4 h-6 w-6 text-premium-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
                             </div>
 
-                            <div className="space-y-2 text-center">
-                                <h3 className="text-2xl font-serif italic font-medium text-foreground tracking-tight">
+                            <div className="space-y-3 text-center">
+                                <h3 className="text-3xl font-serif italic font-medium text-foreground tracking-tight">
                                     Drop your resume.
                                 </h3>
-                                <p className="text-base text-muted-foreground">
+                                <p className="text-base text-muted-foreground font-medium">
                                     PDF only.
                                 </p>
                             </div>

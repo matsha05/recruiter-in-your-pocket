@@ -35,7 +35,7 @@ export default function WorkspaceHeader({
             <div className="flex items-center gap-2 md:hidden">
                 <MobileNav />
                 <h1 className="font-serif italic font-semibold text-lg tracking-tight text-foreground">
-                    Recruiter in Your Pocket
+                    Pocket
                 </h1>
             </div>
 

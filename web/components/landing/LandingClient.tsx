@@ -63,7 +63,7 @@ export default function LandingClient() {
             {/* Navbar: Minimal, Technical */}
             <header className="h-16 flex items-center justify-between px-6 border-b border-border/50 bg-background/50 backdrop-blur-sm sticky top-0 z-50">
                 <div className="flex items-center gap-2">
-                    <span className="text-xl font-serif italic font-semibold tracking-tight text-foreground">Recruiter in Your Pocket</span>
+                    <span className="text-xl font-serif italic font-semibold tracking-tight text-foreground">Pocket</span>
                 </div>
                 <nav className="flex items-center gap-4">
                     <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">Research</Link>
@@ -109,11 +109,11 @@ export default function LandingClient() {
                     <p className="text-[11px] uppercase tracking-widest text-muted-foreground/60 font-semibold mb-6">
                         Analyzing resumes from candidates at
                     </p>
-                    <div className="flex items-center justify-center gap-8 opacity-40 text-sm font-semibold">
-                        <span>Google</span>
-                        <span>Linear</span>
-                        <span>OpenAI</span>
-                        <span>Netflix</span>
+                    <div className="flex items-center justify-center gap-8 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                        <span className="font-sans font-bold text-lg tracking-tight">Google</span>
+                        <span className="font-sans font-bold text-lg tracking-tight">Linear</span>
+                        <span className="font-sans font-bold text-lg tracking-tight">OpenAI</span>
+                        <span className="font-sans font-bold text-lg tracking-tight">Netflix</span>
                     </div>
                 </div>
 
@@ -127,7 +127,7 @@ export default function LandingClient() {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {/* Feature 1: The Scan */}
-                        <div className="bg-card/50 backdrop-blur-sm border border-border/60 p-8 rounded-xl flex flex-col items-center text-center group hover:border-border transition-colors">
+                        <div className="bg-secondary/30 p-8 rounded-2xl flex flex-col items-center text-center group transition-colors">
                             <div className="w-12 h-12 bg-rose/10 rounded-xl flex items-center justify-center mb-6 text-rose hover:scale-110 transition-transform">
                                 <Eye className="w-6 h-6" strokeWidth={1.5} />
                             </div>
@@ -138,7 +138,7 @@ export default function LandingClient() {
                         </div>
 
                         {/* Feature 2: The Score */}
-                        <div className="bg-card/50 backdrop-blur-sm border border-border/60 p-8 rounded-xl flex flex-col items-center text-center group hover:border-border transition-colors">
+                        <div className="bg-secondary/30 p-8 rounded-2xl flex flex-col items-center text-center group transition-colors">
                             <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold hover:scale-110 transition-transform">
                                 <Target className="w-6 h-6" strokeWidth={1.5} />
                             </div>
@@ -149,7 +149,7 @@ export default function LandingClient() {
                         </div>
 
                         {/* Feature 3: The Fix */}
-                        <div className="bg-card/50 backdrop-blur-sm border border-border/60 p-8 rounded-xl flex flex-col items-center text-center group hover:border-border transition-colors">
+                        <div className="bg-secondary/30 p-8 rounded-2xl flex flex-col items-center text-center group transition-colors">
                             <div className="w-12 h-12 bg-moss/10 rounded-xl flex items-center justify-center mb-6 text-moss hover:scale-110 transition-transform">
                                 <PenTool className="w-6 h-6" strokeWidth={1.5} />
                             </div>
