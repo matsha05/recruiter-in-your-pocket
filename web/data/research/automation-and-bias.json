@@ -1,0 +1,41 @@
+{
+    "slug": "automation-and-bias",
+    "category": [
+        "ATS",
+        "Automation"
+    ],
+    "title": "Hiring algorithms, equity, and bias",
+    "subtitle": "Where automation enters the funnel",
+    "year": "2018",
+    "authors": [
+        "Bogen",
+        "Rieke"
+    ],
+    "primarySource": {
+        "link": "https://www.upturn.org/reports/2018/help-wanted/",
+        "type": "report"
+    },
+    "studySnapshot": {
+        "whatItStudied": "The hiring funnel and automation points",
+        "method": [
+            "Policy analysis"
+        ],
+        "sample": "Hiring platforms",
+        "keyFinding": "Bias compounds across ads, screening, and ranking",
+        "keyStat": "Compounding Bias",
+        "soWhatForResumes": "Understand the system to navigate it effectively"
+    },
+    "keyInsights": [
+        {
+            "title": "Hidden Funnel",
+            "explanation": "Ad delivery filters candidates before they apply."
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Screening Education",
+            "why": "Demystify the black box"
+        }
+    ],
+    "lastUpdated": "2025-01-01"
+}

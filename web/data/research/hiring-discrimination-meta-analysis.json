@@ -1,0 +1,43 @@
+{
+    "slug": "hiring-discrimination-meta-analysis",
+    "category": [
+        "Industry Analysis",
+        "Bias"
+    ],
+    "title": "Discrimination in hiring has not magically disappeared",
+    "subtitle": "Meta-analysis of 25 years of field experiments",
+    "year": "2017",
+    "authors": [
+        "Quillian",
+        "Pager",
+        "Hexel",
+        "Midtbøen"
+    ],
+    "primarySource": {
+        "link": "https://www.pnas.org/doi/10.1073/pnas.1706255114",
+        "type": "journal-article"
+    },
+    "studySnapshot": {
+        "whatItStudied": "Trends in hiring discrimination over time",
+        "method": [
+            "Meta-analysis"
+        ],
+        "sample": "55,000+ applications",
+        "keyFinding": "No decline in discrimination against African Americans in 25 years",
+        "keyStat": "No Change",
+        "soWhatForResumes": "Perfect resumes cannot fix structural bias; focus on what you can control"
+    },
+    "keyInsights": [
+        {
+            "title": "Persistence of Bias",
+            "explanation": "Process changes have not yet eliminated human bias in screening."
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Focus on controllables",
+            "why": "Maximize signal where possible"
+        }
+    ],
+    "lastUpdated": "2025-01-01"
+}

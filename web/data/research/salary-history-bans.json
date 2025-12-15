@@ -1,0 +1,41 @@
+{
+    "slug": "salary-history-bans",
+    "category": [
+        "Negotiation",
+        "Policy"
+    ],
+    "title": "Salary history bans: just be honest is a trap",
+    "subtitle": "Why revealing current pay hurts your leverage",
+    "year": "2020",
+    "authors": [
+        "Hansen",
+        "McNichols"
+    ],
+    "primarySource": {
+        "link": "https://www.nber.org/papers/w27054",
+        "type": "working-paper"
+    },
+    "studySnapshot": {
+        "whatItStudied": "Effect of salary history bans on wages",
+        "method": [
+            "Econometric analysis"
+        ],
+        "sample": "US States",
+        "keyFinding": "Bans lead to higher wages for changing jobs",
+        "keyStat": "+8% Pay Increase",
+        "soWhatForResumes": "Protect your leverage by anchoring to market, not history"
+    },
+    "keyInsights": [
+        {
+            "title": "Information Asymmetry",
+            "explanation": "Withholding history forces market-based pricing."
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Negotiation Scripts",
+            "why": "Avoid the honesty trap"
+        }
+    ],
+    "lastUpdated": "2025-01-01"
+}

@@ -4,7 +4,7 @@ import { StudioShell } from "@/components/layout/StudioShell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, BookOpen, Activity, Target, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BookOpen, Activity, Target, CheckCircle2, User, Type, Scale, Network, Lock, DollarSign, Handshake } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Hiring Research | Recruiter in Your Pocket",
@@ -23,7 +23,7 @@ const studies = [
         href: "/research/how-recruiters-read",
         productTie: "Recruiter First Impression",
         icon: Activity,
-        color: "text-rose"
+        color: "text-rose-500"
     },
     {
         id: "how-people-scan",
@@ -36,7 +36,7 @@ const studies = [
         href: "/research/how-people-scan",
         productTie: "Bullet Upgrades",
         icon: Target,
-        color: "text-gold"
+        color: "text-amber-500"
     },
     {
         id: "ats-myths",
@@ -49,8 +49,73 @@ const studies = [
         href: "/research/ats-myths",
         productTie: "Human clarity focus",
         icon: BookOpen,
-        color: "text-moss"
+        color: "text-emerald-500"
     },
+    {
+        id: "human-vs-algorithm",
+        number: "04",
+        category: "Algorithmic aversion",
+        title: "Recruiters trust humans more than algorithms",
+        thesis: "Recruiters punish algorithmic errors but forgive human inconsistency. Trust relies on human judgment.",
+        methods: ["Experimental study", "N=694"],
+        readTime: "5 min",
+        href: "/research/human-vs-algorithm",
+        productTie: "Prioritizing clarity",
+        icon: User,
+        color: "text-indigo-500"
+    },
+    {
+        id: "spelling-errors-impact",
+        number: "05",
+        category: "Screening heuristics",
+        title: "Spelling errors carry real weight in judgment",
+        thesis: "For many recruiters, 'form' is a gateway. Bad spelling can override strong experience.",
+        methods: ["Experimental study"],
+        readTime: "3 min",
+        href: "/research/spelling-errors-impact",
+        productTie: "Dedicated Error Pass",
+        icon: Type,
+        color: "text-rose-500"
+    },
+    {
+        id: "hiring-discrimination-meta-analysis",
+        number: "06",
+        category: "Industry Analysis",
+        title: "Discrimination in hiring has not disappeared",
+        thesis: "A 25-year meta-analysis shows no decline in hiring discrimination. Resumes are necessary but not sufficient.",
+        methods: ["Meta-analysis", "Field experiments"],
+        readTime: "6 min",
+        href: "/research/hiring-discrimination-meta-analysis",
+        productTie: "Focus on controllables",
+        icon: Scale,
+        color: "text-foreground"
+    },
+    {
+        id: "automation-and-bias",
+        number: "07",
+        category: "ATS & Automation",
+        title: "Hiring algorithms: Where automation enters",
+        thesis: "Bias isn't just one step. It compounds across ad delivery, screening, and ranking algorithms.",
+        methods: ["Policy analysis", "Technical audit"],
+        readTime: "5 min",
+        href: "/research/automation-and-bias",
+        productTie: "Screening Education",
+        icon: Network,
+        color: "text-purple-500"
+    },
+    {
+        id: "salary-history-bans",
+        number: "08",
+        category: "Negotiation",
+        title: "Salary history bans: Just being honest is a trap",
+        thesis: "Revealing salary history anchors offers to your past, not the market. Bans shift leverage back to you.",
+        methods: ["Econometric analysis"],
+        readTime: "4 min",
+        href: "/research/salary-history-bans",
+        productTie: "Negotiation Scripts",
+        icon: Lock,
+        color: "text-emerald-600"
+    }
 ];
 
 export default function ResearchPage() {
@@ -69,7 +134,51 @@ export default function ResearchPage() {
                 </p>
             </header>
 
+            {/* Guides Section (New) */}
+            <div className="mb-20">
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="h-8 w-1 bg-indigo-500 rounded-full" />
+                    <h2 className="font-serif text-3xl font-medium text-foreground tracking-tight">Playbooks & Guides</h2>
+                </div>
+
+                <Link href="/guides/offer-negotiation" className="group block">
+                    <Card className="hover:border-indigo-500/50 transition-all duration-300 hover:bg-gradient-to-r hover:from-indigo-500/5 hover:to-transparent border-border bg-card overflow-hidden relative group">
+                        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-700">
+                            <Handshake className="w-32 h-32 text-indigo-500" />
+                        </div>
+                        <CardContent className="p-8 md:p-10 flex flex-col md:flex-row items-start gap-8 relative z-10">
+                            <div className="hidden md:flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 shadow-sm group-hover:shadow-md transition-all">
+                                <Handshake className="h-8 w-8" strokeWidth={1.5} />
+                            </div>
+
+                            <div className="flex-1 space-y-4">
+                                <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+                                    <span className="bg-indigo-500/10 px-2 py-1 rounded">The Recruiter's Playbook</span>
+                                    <span className="text-muted-foreground font-medium normal-case tracking-normal">12 min read</span>
+                                </div>
+                                <div>
+                                    <h3 className="font-serif text-3xl font-medium text-foreground mb-2 group-hover:text-indigo-600 transition-colors">
+                                        Offer Negotiation Strategy
+                                    </h3>
+                                    <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">
+                                        A complete playbook for maximizing your offer without risking the deal. Backed by negotiation research and recruiter psychology.
+                                    </p>
+                                </div>
+                                <div className="pt-2 flex items-center gap-2 text-sm font-medium text-indigo-600 group-hover:gap-3 transition-all">
+                                    Read the Guide <ArrowRight className="w-4 h-4" />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </Link>
+            </div>
+
             {/* Research Grid */}
+            <div className="flex items-center gap-4 mb-8">
+                <div className="h-8 w-1 bg-foreground/20 rounded-full" />
+                <h2 className="font-serif text-3xl font-medium text-foreground tracking-tight">Deep Dive Studies</h2>
+            </div>
+
             <div className="grid gap-6 mb-24">
                 {studies.map((study) => (
                     <Link key={study.id} href={study.href} className="group block">

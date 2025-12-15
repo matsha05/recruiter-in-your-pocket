@@ -1,0 +1,40 @@
+{
+    "slug": "spelling-errors-impact",
+    "category": [
+        "Screening heuristics",
+        "Form"
+    ],
+    "title": "Spelling errors carry real weight in recruiter judgment",
+    "subtitle": "Form vs Content: Why typos kill credibility",
+    "year": "2017",
+    "authors": [
+        "Martin-Lacroux"
+    ],
+    "primarySource": {
+        "link": "https://www.researchgate.net/publication/313880479_The_impact_of_spelling_errors_on_recruiters'_judgment",
+        "type": "journal-article"
+    },
+    "studySnapshot": {
+        "whatItStudied": "Impact of spelling errors on recruiter judgment",
+        "method": [
+            "Experiment"
+        ],
+        "sample": "Recruiters",
+        "keyFinding": "Spelling errors can be weighted as heavily as missing experience",
+        "keyStat": "Form > Content",
+        "soWhatForResumes": "You need a dedicated error pass because typos are instant reject signals"
+    },
+    "keyInsights": [
+        {
+            "title": "Form Penalty",
+            "explanation": "Errors signal lack of conscientiousness."
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Error Pass",
+            "why": "Prevent unforced errors"
+        }
+    ],
+    "lastUpdated": "2025-01-01"
+}

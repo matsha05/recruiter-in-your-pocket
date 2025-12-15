@@ -1,0 +1,41 @@
+{
+    "slug": "human-vs-algorithm",
+    "category": [
+        "Algorithmic aversion",
+        "Trust"
+    ],
+    "title": "Recruiters trust humans more than algorithms",
+    "subtitle": "Where automation breaks recruiter judgment: The Trust Gap",
+    "year": "2022",
+    "authors": [
+        "Lacroux",
+        "Martin-Lacroux"
+    ],
+    "primarySource": {
+        "link": "https://www.frontiersin.org/articles/10.3389/fpsyg.2022.955462/full",
+        "type": "journal-article"
+    },
+    "studySnapshot": {
+        "whatItStudied": "Recruiter trust in human vs algorithmic recommendations",
+        "method": [
+            "Experiment"
+        ],
+        "sample": "N=694 recruiters",
+        "keyFinding": "Recruiters punish algorithmic errors more harshly than human errors",
+        "keyStat": "Humans > Bots in Trust",
+        "soWhatForResumes": "Clarity is more important than keyword stuffing because humans are the final decision makers"
+    },
+    "keyInsights": [
+        {
+            "title": "The Trust Gap",
+            "explanation": "Recruiters forgive human inconsistency but reject algorithms after a single error."
+        }
+    ],
+    "riypChanges": [
+        {
+            "feature": "Prioritize clarity",
+            "why": "Humans need to trust the narrative"
+        }
+    ],
+    "lastUpdated": "2025-01-01"
+}
