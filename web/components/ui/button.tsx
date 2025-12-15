@@ -2,6 +2,8 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { motion, HTMLMotionProps } from "framer-motion"
+import { BUTTON_TAP } from "@/lib/animation"
 
 const buttonVariants = cva(
     "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
@@ -36,18 +38,28 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onAnimationStart" | "onDrag" | "onDragStart" | "onDragEnd" | "style">,
     VariantProps<typeof buttonVariants> {
     asChild?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant, size, asChild = false, ...props }, ref) => {
-        const Comp = asChild ? Slot : "button"
+        const Comp = asChild ? Slot : motion.button
+
+        // If it's a Slot (asChild), we don't apply motion props directly to avoid conflict, 
+        // or we would need to compose them. For now, physics apply to standard buttons.
+        const motionProps = asChild ? {} : {
+            whileTap: BUTTON_TAP,
+            layout: "position" as const
+        }
+
         return (
+            // @ts-ignore - Radix Slot polymorphism vs Framer Motion types is tricky
             <Comp
                 className={cn(buttonVariants({ variant, size, className }))}
                 ref={ref}
+                {...motionProps}
                 {...props}
             />
         )

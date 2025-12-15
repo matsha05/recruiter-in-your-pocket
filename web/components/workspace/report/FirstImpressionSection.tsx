@@ -6,11 +6,9 @@ import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
 
 function getScoreColor(score: number): string {
-    if (score >= 90) return 'var(--color-moss-600)';
-    if (score >= 85) return 'var(--color-indigo-500)';
-    if (score >= 80) return 'var(--color-amber-500)';
-    if (score >= 70) return 'var(--color-amber-400)';
-    return 'var(--color-danger)';
+    if (score >= 90) return 'hsl(var(--moss))';
+    if (score >= 80) return 'hsl(var(--amber))';
+    return 'hsl(var(--rose))';
 }
 
 export function FirstImpressionSection({ data }: { data: ReportData }) {
@@ -60,7 +58,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                         <div className="space-y-2">
                             <div className="inline-flex items-center gap-2 text-primary/80">
                                 <Eye className="w-4 h-4" />
-                                <span className="text-xs font-bold tracking-widest uppercase">The 6-Second Scan</span>
+                                <span className="text-xs font-bold tracking-widest uppercase">First Impression</span>
                             </div>
                             <h3 className="font-serif text-3xl md:text-4xl text-foreground leading-tight max-w-3xl">
                                 "Here is exactly what I noticed..."

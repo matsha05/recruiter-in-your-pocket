@@ -55,7 +55,7 @@ export function ResumeDropzone({
                 {...getRootProps()}
                 className={cn(
                     "relative group cursor-pointer rounded-xl border border-dashed transition-all duration-300 ease-out",
-                    "h-[320px] flex flex-col items-center justify-center text-center p-8",
+                    "h-[420px] flex flex-col items-center justify-center text-center p-12",
                     "bg-white/50 backdrop-blur-sm dark:bg-black/20", // Glass base
 
                     // Border logic: Alpha-based
@@ -91,52 +91,49 @@ export function ResumeDropzone({
                             </div>
                         </motion.div>
                     ) : (
-                        /* State: Idle */
                         <motion.div
                             key="idle"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="flex flex-col items-center gap-6"
+                            className="flex flex-col items-center gap-8"
                         >
+                            {/* State: Idle */}
                             {/* Icon / Brand Mark */}
                             <div className="relative">
                                 <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-white to-neutral-100 shadow-sm border border-black/5 flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-500 ease-out">
                                     <FileText className="h-10 w-10 text-neutral-400 group-hover:text-primary transition-colors" opacity={0.5} strokeWidth={1.5} />
                                 </div>
                                 {/* Decorative Elements */}
-                                <Sparkles className="absolute -right-4 -top-4 h-6 w-6 text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
+                                <Sparkles className="absolute -right-4 -top-4 h-6 w-6 text-premium-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
                             </div>
 
-                            <div className="space-y-2 text-center max-w-xs">
-                                <h3 className="text-xl font-serif font-medium text-foreground">
-                                    Drop your resume here
+                            <div className="space-y-2 text-center">
+                                <h3 className="text-2xl font-serif italic font-medium text-foreground tracking-tight">
+                                    Drop your resume.
                                 </h3>
-                                <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-                                    We'll simulate a 6-second recruiter skim to show you what you're missing.
+                                <p className="text-base text-muted-foreground">
+                                    PDF only.
                                 </p>
                             </div>
 
-                            {/* Fake Button for affordance */}
-                            <Button variant="studio" size="lg" className="mt-2 pointer-events-none group-hover:scale-105 transition-transform">
-                                Select PDF
+                            <Button variant="studio" size="lg" className="mt-4 pointer-events-none group-hover:scale-105 transition-transform px-8 h-12 text-base">
+                                Analyze
                             </Button>
-
-                            <p className="text-[11px] uppercase tracking-widest text-muted-foreground/60 font-medium mt-4">
-                                Private & Secure · PDF Only
-                            </p>
                         </motion.div>
                     )}
                 </AnimatePresence>
+
+                {/* Footer removed - info now in body */}
 
                 {/* Error State */}
                 {error && (
                     <motion.div
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="absolute bottom-4 left-0 right-0 flex justify-center"
+                        className="absolute bottom-12 left-0 right-0 flex justify-center z-10"
                     >
-                        <div className="flex items-center gap-2 text-xs text-destructive bg-destructive/10 px-3 py-1.5 rounded-full">
+                        <div className="flex items-center gap-2 text-xs text-destructive bg-destructive/10 px-3 py-1.5 rounded-full border border-destructive/20 backdrop-blur-md">
                             <AlertCircle className="h-3 w-3" />
                             {error}
                         </div>

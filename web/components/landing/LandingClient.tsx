@@ -92,12 +92,11 @@ export default function LandingClient() {
             {/* Hero Section */}
             <main className="flex-1 flex flex-col items-center pt-24 pb-20 px-6">
                 <div className="text-center max-w-2xl mx-auto mb-12">
-                    <h1 className="font-serif text-5xl md:text-6xl font-medium tracking-tight text-primary mb-6 leading-[1.1]">
-                        Stop guessing what <br />
-                        recruiters see.
+                    <h1 className="font-serif text-5xl md:text-6xl font-medium tracking-tight text-primary mb-4 leading-[1.1]">
+                        See what recruiters see.
                     </h1>
-                    <p className="font-sans text-lg text-muted-foreground leading-relaxed max-w-lg mx-auto">
-                        We simulate the 6-second recruiter skim to show you exactly why you aren't getting interviews. <span className="text-foreground font-medium">No generic advice. Just evidence.</span>
+                    <p className="font-sans text-lg text-muted-foreground">
+                        No ATS games. <span className="text-foreground font-medium">Just the truth.</span>
                     </p>
                 </div>
 
@@ -110,24 +109,20 @@ export default function LandingClient() {
                     <p className="text-[11px] uppercase tracking-widest text-muted-foreground/60 font-semibold mb-6">
                         Analyzing resumes from candidates at
                     </p>
-                    <div className="flex items-center justify-center gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 dark:brightness-200 dark:contrast-200">
-                        <span className="font-semibold text-sm">Google</span>
-                        <span className="font-semibold text-sm">Linear</span>
-                        <span className="font-semibold text-sm">OpenAI</span>
-                        <span className="font-semibold text-sm">Netflix</span>
+                    <div className="flex items-center justify-center gap-8 opacity-40 text-sm font-semibold">
+                        <span>Google</span>
+                        <span>Linear</span>
+                        <span>OpenAI</span>
+                        <span>Netflix</span>
                     </div>
                 </div>
 
-                {/* Feature Showcase: "The Artifact" */}
+                {/* Feature Showcase */}
                 <div className="w-full max-w-5xl mx-auto mt-32 mb-20 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
                     <div className="text-center mb-16">
-                        <span className="text-[11px] font-bold uppercase tracking-widest text-primary/40 mb-3 block"> The Output </span>
                         <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
                             See what they see. Fix what matters.
                         </h2>
-                        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                            We don't just give you a generic score. We give you the exact feedback a hiring manager would give you.
-                        </p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
@@ -136,9 +131,9 @@ export default function LandingClient() {
                             <div className="w-12 h-12 bg-rose/10 rounded-xl flex items-center justify-center mb-6 text-rose hover:scale-110 transition-transform">
                                 <Eye className="w-6 h-6" strokeWidth={1.5} />
                             </div>
-                            <h3 className="font-serif text-xl text-primary mb-3">The 6-Second Scan</h3>
+                            <h3 className="font-serif text-xl text-primary mb-3">The Recruiter Scan</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">
-                                We simulate the quick glance used to filter candidates. See exactly what gets read and what gets skipped.
+                                We simulate the critical glance used to filter candidates. See exactly what gets read and what gets skipped.
                             </p>
                         </div>
 
@@ -171,7 +166,7 @@ export default function LandingClient() {
             <Dialog open={isSkimOpen} onOpenChange={setIsSkimOpen}>
                 <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
                     <DialogHeader className="px-6 pt-6">
-                        <DialogTitle className="font-serif text-2xl">The 6-Second First Impression</DialogTitle>
+                        <DialogTitle className="font-serif text-2xl">The First Impression</DialogTitle>
                         <DialogDescription>
                             This is what a recruiter sees before they decide to read or reject.
                         </DialogDescription>

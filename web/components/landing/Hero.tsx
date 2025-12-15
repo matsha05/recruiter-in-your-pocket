@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../providers/AuthProvider";
 import { X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
     const [loaded, setLoaded] = useState(false);
@@ -25,169 +27,144 @@ export default function Hero() {
         : "Get a recruiter-grade read, stronger bullets, and clear next steps in minutes.";
 
     return (
-        <section className="section bg-gradient-to-b from-[var(--bg-body)] to-[var(--bg-section-muted)]">
-            <div className="section-inner">
-                {/* Two-column grid: text column slightly wider on lg */}
-                <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] items-center">
+        <section className="relative w-full py-24 md:py-32 lg:py-40 overflow-hidden">
+            {/* Background Atmosphere */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-primary/5 blur-[100px] rounded-full" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-premium-accent/5 blur-[120px] rounded-full" />
+            </div>
 
-                    {/* Left column - Hero copy and CTA */}
-                    <div className="max-w-xl">
-                        {/* Optional label line */}
+            <div className="container relative z-10 mx-auto px-6">
+                <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] items-center">
+                    {/* Left Column: Copy */}
+                    <div className="flex flex-col items-start max-w-2xl">
                         {!user && (
-                            <p className="mb-3 text-xs font-semibold tracking-[0.16em] uppercase text-brand">
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="text-eyebrow mb-6 text-premium-accent"
+                            >
                                 Recruiter-grade insight
-                            </p>
+                            </motion.p>
                         )}
 
-                        {/* Hero H1 - THE dominant line on the site */}
-                        <h1
-                            className={`
-                                text-primary
-                                max-w-[18ch]
-                                mb-4
-                                transition-all duration-700
-                                ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-                            `}
-                            style={{
-                                fontFamily: 'var(--font-display)',
-                                fontSize: 'clamp(3rem, 7vw, 4.75rem)',
-                                lineHeight: '1.15',
-                                letterSpacing: '-0.02em',
-                                fontWeight: 800
-                            }}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2, duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+                            className="text-display text-5xl md:text-7xl mb-6 text-primary tracking-tighter"
                         >
                             {headline}
-                        </h1>
+                        </motion.h1>
 
-                        {/* Subcopy */}
-                        <p className="text-secondary text-[var(--fs-body)] leading-[var(--lh-normal)] max-w-lg mb-6">
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-body-pro text-lg md:text-xl mb-8 max-w-lg text-muted-foreground"
+                        >
                             {subheadline}
-                        </p>
+                        </motion.p>
 
-                        {/* Built by Matt row - only for non-logged-in users */}
                         {!user && (
-                            <div className="flex items-center gap-3 mb-6">
-                                <Image
-                                    src="/assets/founder-avatar.jpg"
-                                    alt="Matt"
-                                    width={48}
-                                    height={48}
-                                    className="rounded-full border-2 border-white shadow-md object-cover flex-shrink-0"
-                                    quality={100}
-                                    priority
-                                />
-                                <p className="text-[var(--fs-small)] text-secondary leading-relaxed">
-                                    Built by Matt — a recruiter who&apos;s run 10,000+ interviews and hired 1,000+ across Google, Meta, OpenAI, and high-growth startups.
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="flex items-center gap-4 mb-8"
+                            >
+                                <div className="flex -space-x-3">
+                                    {[1, 2, 3].map((i) => (
+                                        <div key={i} className="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center text-[10px] overflow-hidden">
+                                            {/* Placeholder avatars would go here, using gray div for now */}
+                                            <div className={`w-full h-full bg-neutral-${i * 200}`} />
+                                        </div>
+                                    ))}
+                                </div>
+                                <p className="text-sm text-muted-foreground">
+                                    Trusted by candidates from <span className="font-semibold text-foreground">Google, OpenAI, Linear</span>
                                 </p>
-                            </div>
+                            </motion.div>
                         )}
 
-                        {/* CTA row */}
-                        <div className="flex flex-wrap items-center gap-3 mb-4">
-                            <Link
-                                href="/workspace"
-                                className="btn-primary transition-transform transition-shadow duration-150"
-                                style={{ transitionTimingFunction: 'var(--ease-smooth)' }}
-                            >
-                                {user ? "Continue in Workspace →" : "See How Recruiters Read You →"}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="flex flex-wrap items-center gap-4"
+                        >
+                            <Link href="/workspace">
+                                <Button size="lg" className="h-12 px-8 text-base">
+                                    {user ? "Continue in Workspace →" : "See How Recruiters Read You →"}
+                                </Button>
                             </Link>
                             {!user && (
                                 <button
-                                    type="button"
-                                    className="btn-ghost text-brand hover:text-brand-strong text-[var(--fs-small)] font-medium"
                                     onClick={() => setShowPrivacy(true)}
+                                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors px-4 py-2"
                                 >
-                                    Your resume is yours →
+                                    Private & Secure →
                                 </button>
                             )}
-                        </div>
-
-                        {/* Helper line */}
-                        {!user && (
-                            <p className="text-[var(--fs-small)] text-muted">
-                                Upload PDF/DOCX or paste text · First 2 full reports free · No signup required
-                            </p>
-                        )}
+                        </motion.div>
                     </div>
 
-                    {/* Right column - Sample Report Preview Card */}
-                    <div className="flex justify-center lg:justify-end">
-                        <div className={`card-lg max-w-md w-full ${loaded ? "animate-score-in" : "opacity-0"}`}>
-                            {/* Score cluster */}
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[var(--brand)] to-[var(--brand-strong)] rounded-full shadow-button flex-shrink-0 relative overflow-hidden">
-                                    <div className="absolute inset-0 bg-white/10" />
-                                    <div className="absolute inset-0 bg-gradient-to-b from-white/15 to-transparent" />
-                                    <div className="relative flex flex-col items-center leading-tight">
-                                        <span className="text-2xl font-extrabold text-white">86</span>
-                                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/90">Strong</span>
+                    {/* Right Column: Visual Evidence (Sample Report Card) */}
+                    <div className="relative">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, rotate: 1 }}
+                            animate={{ opacity: 1, scale: 1, rotate: -1 }}
+                            transition={{ delay: 0.4, duration: 0.8 }}
+                            className="relative bg-card border border-border/50 shadow-2xl rounded-2xl p-6 md:p-8 max-w-md mx-auto rotate-[-2deg] hover:rotate-[0deg] transition-transform duration-500 ease-out"
+                        >
+                            {/* Card Header */}
+                            <div className="flex items-start justify-between mb-8">
+                                <div>
+                                    <p className="text-eyebrow text-muted-foreground mb-1">Recruiter Signal</p>
+                                    <h3 className="text-lg font-semibold tracking-tight">Tech Product Manager</h3>
+                                </div>
+                                <div className="text-right">
+                                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground font-bold text-lg shadow-inner">
+                                        86
                                     </div>
                                 </div>
-                                <div className="flex flex-col">
-                                    <div className="text-xs text-secondary uppercase tracking-wide">Recruiter read</div>
-                                    <div className="font-display font-bold text-primary text-sm">Steady owner; tighten scope & impact</div>
+                            </div>
+
+                            {/* Quote */}
+                            <div className="mb-8 relative">
+                                <span className="absolute -left-2 top-0 text-4xl text-premium-accent/20 font-serif leading-none">&ldquo;</span>
+                                <p className="font-serif italic text-lg leading-relaxed text-foreground/90 pl-4 border-l-2 border-premium-accent/30">
+                                    You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership.
+                                </p>
+                            </div>
+
+                            {/* Metrics Grid */}
+                            <div className="grid grid-cols-2 gap-3 mb-6">
+                                <div className="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                    <div className="text-xs text-muted-foreground font-medium mb-1">Impact</div>
+                                    <div className="text-sm font-semibold text-status-success">High Signal</div>
+                                </div>
+                                <div className="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                    <div className="text-xs text-muted-foreground font-medium mb-1">Clarity</div>
+                                    <div className="text-sm font-semibold text-foreground">Strong</div>
                                 </div>
                             </div>
 
-                            {/* Subscores row */}
-                            <div className="flex flex-wrap gap-2 mb-5">
-                                <div className="subscore-impact subscore-pill">
-                                    <span className="subscore-pill-label">Impact</span>
-                                    <span className="subscore-pill-value">82</span>
-                                </div>
-                                <div className="subscore-clarity subscore-pill">
-                                    <span className="subscore-pill-label">Clarity</span>
-                                    <span className="subscore-pill-value">88</span>
-                                </div>
-                                <div className="subscore-story subscore-pill">
-                                    <span className="subscore-pill-label">Story</span>
-                                    <span className="subscore-pill-value">84</span>
-                                </div>
-                                <div className="subscore-readability subscore-pill">
-                                    <span className="subscore-pill-label">Readability</span>
-                                    <span className="subscore-pill-value">90</span>
+                            {/* Action */}
+                            <div className="pt-4 border-t border-border/40">
+                                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                    <span>Based on 1,000+ hires</span>
+                                    <div className="flex items-center gap-1.5">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-status-success" />
+                                        <span>Verified</span>
+                                    </div>
                                 </div>
                             </div>
+                        </motion.div>
 
-                            {/* Verdict quote */}
-                            <blockquote className="text-brand-strong italic border-l-4 border-brand pl-4 mb-4 bg-[var(--bg-card-alt)] py-3 pr-3 rounded-r-lg text-sm leading-relaxed">
-                                &quot;You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership.&quot;
-                            </blockquote>
-
-                            {/* Best fit roles */}
-                            <div className="mb-4">
-                                <h4 className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">Best fit roles</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    <span className="badge-brand px-2.5 py-1 text-xs rounded-full">Program Manager</span>
-                                    <span className="badge-brand px-2.5 py-1 text-xs rounded-full">Technical PM</span>
-                                    <span className="badge-brand px-2.5 py-1 text-xs rounded-full">Product Ops</span>
-                                </div>
-                            </div>
-
-                            {/* Top fixes */}
-                            <div className="mb-5">
-                                <h4 className="text-xs font-semibold text-muted uppercase tracking-wide mb-2">Top fixes</h4>
-                                <ul className="space-y-1.5 text-sm text-secondary">
-                                    <li className="flex items-start gap-2">
-                                        <span className="text-warning flex-shrink-0">→</span>
-                                        <span>Add scope numbers to your top 2 bullets</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span className="text-warning flex-shrink-0">→</span>
-                                        <span>State one before/after metric in your headline</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <span className="text-warning flex-shrink-0">→</span>
-                                        <span>Add a summary that positions your PM style</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {/* CTA */}
-                            <Link href="/workspace?sample=true" className="btn-primary w-full text-center block text-sm py-3">
-                                See full sample report →
-                            </Link>
-                        </div>
+                        {/* Glow behind card */}
+                        <div className="absolute inset-0 bg-primary/5 blur-2xl -z-10 transform translate-y-4 scale-95" />
                     </div>
                 </div>
             </div>

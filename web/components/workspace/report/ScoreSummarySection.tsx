@@ -4,9 +4,9 @@ import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
 
 function getScoreColor(score: number): string {
-    if (score >= 90) return 'text-green-600';
-    if (score >= 80) return 'text-amber-500';
-    return 'text-red-500';
+    if (score >= 90) return 'text-moss';
+    if (score >= 80) return 'text-amber';
+    return 'text-rose';
 }
 
 export function ScoreSummarySection({ data }: { data: ReportData }) {
@@ -35,8 +35,8 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
             <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {/* Working */}
                 <div className="space-y-3">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-green-600 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500" /> Working
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-moss flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-moss" /> Working
                     </h3>
                     <ul className="space-y-2">
                         {data.strengths?.slice(0, 5).map((s, i) => (
@@ -49,8 +49,8 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
 
                 {/* Missing */}
                 <div className="space-y-3">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-600 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500" /> Missing
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-amber flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber" /> Missing
                     </h3>
                     <ul className="space-y-2">
                         {data.gaps?.slice(0, 5).map((s, i) => (

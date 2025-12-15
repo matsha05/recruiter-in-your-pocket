@@ -68,7 +68,7 @@ export default function TrustClient() {
                     <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                         <p>
                             Most career tools use generic rules ("Don't use passive voice").
-                            We rely on the <strong>6-Second Skim</strong> heuristic used by top-tier technical recruiters at FAANG companies.
+                            We rely on <Link href="/research/how-recruiters-read" className="underline underline-offset-4 decoration-muted-foreground hover:decoration-primary transition-colors font-medium">recruiter behavior research</Link> — how candidates are actually evaluated in seconds.
                         </p>
                         <ul className="space-y-4 mt-6">
                             <li className="flex gap-3">

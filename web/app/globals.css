@@ -42,12 +42,12 @@
     --radius: 0.5rem;
 
     /* Product Specifics - Semantic Signals (Studio Tuned) */
-    --gold: 35 92% 50%;
-    /* Warmer, deeper gold (less yellow) */
+    --gold: 45 95% 50%;
+    /* Warmer, metallic gold (distinct from warning) */
     --moss: 160 84% 39%;
     /* Technical Emerald/Teal (not grass green) */
-    --amber: 30 90% 50%;
-    /* Burnt Orange (not neon yellow) */
+    --amber: 25 90% 55%;
+    /* Burnt Orange/Traffic Light (distinct from gold) */
     --rose: 350 89% 60%;
     /* Soft Crimson (not default red) */
 
@@ -62,10 +62,21 @@
     --chart-4: 43 74% 66%;
 
     --chart-5: 27 87% 67%;
+
+    --font-newsreader: "Newsreader";
+    --font-display: var(--font-geist-sans);
+    --font-body: var(--font-geist-sans);
+
+    /* Semantic Status Colors (Studio Mapped) */
+    --status-success: var(--moss);
+    --status-warning: var(--amber);
+    --status-error: var(--rose);
+    --premium-accent: var(--gold);
   }
 
   .dark {
-    --background: 0 0% 3.9%;
+    /* Deeper, richer black for "OLED" feel */
+    --background: 0 0% 2%;
     --foreground: 0 0% 98%;
 
     --card: 0 0% 3.9%;
@@ -126,6 +137,24 @@
     scrollbar-width: none;
     /* Firefox */
   }
+
+  /* 
+    God Tier Typesetting Utilities 
+    - Enforces the "Swiss Style" tracking/leading rules
+  */
+  .text-display {
+    @apply font-display font-semibold tracking-[-0.03em] leading-[1.1];
+  }
+
+  .text-body-pro {
+    @apply font-sans tracking-normal leading-[1.6] text-secondary;
+    font-feature-settings: "ss01", "ss02";
+    /* Enable stylistic sets if available in Geist */
+  }
+
+  .text-eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground;
+  }
 }
 
 /* 
@@ -136,6 +165,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

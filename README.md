@@ -37,10 +37,25 @@ Your resume text stays in your browser until you request feedback. We don't stor
 
 ## Tech Stack
 
-- **Backend:** Node.js + Express
-- **Frontend:** Static HTML/JS (no build step)
-- **PDF Generation:** Puppeteer
-- **AI:** OpenAI GPT-4
+- **App:** Next.js (`web/`) with Route Handlers (`/api/*`)
+- **PDF Generation:** Puppeteer (optionally via `@sparticuz/chromium`)
+- **AI:** OpenAI
+- **Auth/Storage (optional):** Supabase
+- **Payments (optional):** Stripe
+
+## Local Development
+
+1. Install dependencies:
+   - `npm install`
+2. Configure env:
+   - Backend/scripts: copy `.env.example` → `.env`
+   - Next app: copy `web/env.example` → `web/.env.local`
+3. Run the app:
+   - `npm run dev`
+
+Build/serve production:
+- `npm run build`
+- `npm start`
 
 ---
 
