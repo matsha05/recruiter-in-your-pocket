@@ -263,6 +263,8 @@ export default function WorkspaceClient() {
                     onSignIn={() => setIsAuthOpen(true)}
                     onSignOut={signOut}
                     onHistory={() => setIsHistoryOpen(true)}
+                    showBack={!!report}
+                    onBack={handleNewReport}
                 />
 
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">

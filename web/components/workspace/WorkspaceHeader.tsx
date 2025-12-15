@@ -16,6 +16,8 @@ interface WorkspaceHeaderProps {
     onSignIn?: () => void;
     onSignOut?: () => void;
     onHistory?: () => void;
+    showBack?: boolean;
+    onBack?: () => void;
 }
 
 export default function WorkspaceHeader({
@@ -24,7 +26,9 @@ export default function WorkspaceHeader({
     onSampleReport,
     onSignIn,
     onSignOut,
-    onHistory
+    onHistory,
+    showBack,
+    onBack
 }: WorkspaceHeaderProps) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const userInitial = user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?";
@@ -33,7 +37,13 @@ export default function WorkspaceHeader({
         <header className="flex h-14 items-center justify-between px-6 border-b border-border bg-background sticky top-0 z-30">
             {/* Brand - Mobile Only */}
             <div className="flex items-center gap-2 md:hidden">
-                <MobileNav />
+                {showBack && onBack ? (
+                    <button onClick={onBack} className="p-2 -ml-2 text-muted-foreground hover:text-foreground">
+                        <ArrowLeft className="w-5 h-5" />
+                    </button>
+                ) : (
+                    <MobileNav />
+                )}
                 <h1 className="font-serif italic font-semibold text-lg tracking-tight text-foreground">
                     Pocket
                 </h1>
