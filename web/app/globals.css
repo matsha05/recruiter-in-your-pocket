@@ -120,6 +120,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
   }
 }
 
@@ -154,19 +155,5 @@
 
   .text-eyebrow {
     @apply text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground;
-  }
-}
-
-/* 
-      ---break---
-    */
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 }
