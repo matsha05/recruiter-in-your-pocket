@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StudioShell } from "@/components/layout/StudioShell";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, BookOpen, Activity, Target, CheckCircle2, User, Type, Scale, Network, Lock, DollarSign, Handshake } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Hiring Research | Recruiter in Your Pocket",
@@ -13,254 +10,195 @@ export const metadata: Metadata = {
 
 const studies = [
     {
-        id: "how-recruiters-read",
+        id: "offer-negotiation",
         number: "01",
+        category: "Offer & Negotiation",
+        title: "Offer Negotiation Strategy: The Recruiter’s Playbook",
+        thesis: "Negotiation is coordination, not combat. Treating it like a taboo reduces your leverage.",
+        methods: ["Field experiment", "N=2,500"],
+        readTime: "12 min",
+        href: "/guides/offer-negotiation", // Linking to the guide
+        type: "Guide"
+    },
+    {
+        id: "how-recruiters-read",
+        number: "02",
         category: "Eye-tracking research",
         title: "How Recruiters Skim Resumes in 6 Seconds",
         thesis: "Recruiters make fit/no-fit decisions in seconds, focusing on titles, companies, and dates.",
         methods: ["Eye-tracking", "Heat mapping"],
         readTime: "4 min",
         href: "/research/how-recruiters-read",
-        productTie: "Recruiter First Impression",
-        icon: Activity,
-        color: "text-rose-500"
+        type: "Study"
     },
     {
         id: "how-people-scan",
-        number: "02",
+        number: "03",
         category: "Usability research",
         title: "How People Scan Text and Bullets",
         thesis: "People scan pages in F-patterns, latching onto headings, numbers, and the start of lines.",
         methods: ["Usability testing", "Pattern analysis"],
         readTime: "5 min",
         href: "/research/how-people-scan",
-        productTie: "Bullet Upgrades",
-        icon: Target,
-        color: "text-amber-500"
+        type: "Study"
     },
     {
         id: "ats-myths",
-        number: "03",
+        number: "04",
         category: "Industry analysis",
         title: "ATS: How Applicant Tracking Systems Actually Work",
         thesis: "ATS systems rank and filter candidates. Human review, not algorithms, is the primary bottleneck.",
         methods: ["Peer-reviewed research", "Vendor documentation"],
         readTime: "4 min",
         href: "/research/ats-myths",
-        productTie: "Human clarity focus",
-        icon: BookOpen,
-        color: "text-emerald-500"
+        type: "Study"
     },
     {
         id: "human-vs-algorithm",
-        number: "04",
+        number: "05",
         category: "Algorithmic aversion",
         title: "Recruiters trust humans more than algorithms",
         thesis: "Recruiters punish algorithmic errors but forgive human inconsistency. Trust relies on human judgment.",
         methods: ["Experimental study", "N=694"],
         readTime: "5 min",
         href: "/research/human-vs-algorithm",
-        productTie: "Prioritizing clarity",
-        icon: User,
-        color: "text-indigo-500"
+        type: "Study"
     },
     {
         id: "spelling-errors-impact",
-        number: "05",
+        number: "06",
         category: "Screening heuristics",
         title: "Spelling errors carry real weight in judgment",
         thesis: "For many recruiters, 'form' is a gateway. Bad spelling can override strong experience.",
         methods: ["Experimental study"],
         readTime: "3 min",
         href: "/research/spelling-errors-impact",
-        productTie: "Dedicated Error Pass",
-        icon: Type,
-        color: "text-rose-500"
+        type: "Study"
     },
     {
         id: "hiring-discrimination-meta-analysis",
-        number: "06",
+        number: "07",
         category: "Industry Analysis",
         title: "Discrimination in hiring has not disappeared",
         thesis: "A 25-year meta-analysis shows no decline in hiring discrimination. Resumes are necessary but not sufficient.",
         methods: ["Meta-analysis", "Field experiments"],
         readTime: "6 min",
         href: "/research/hiring-discrimination-meta-analysis",
-        productTie: "Focus on controllables",
-        icon: Scale,
-        color: "text-foreground"
+        type: "Study"
     },
     {
         id: "automation-and-bias",
-        number: "07",
+        number: "08",
         category: "ATS & Automation",
-        title: "Hiring algorithms: Where automation enters",
+        title: "Hiring algorithms: Where automation enters the funnel",
         thesis: "Bias isn't just one step. It compounds across ad delivery, screening, and ranking algorithms.",
         methods: ["Policy analysis", "Technical audit"],
         readTime: "5 min",
         href: "/research/automation-and-bias",
-        productTie: "Screening Education",
-        icon: Network,
-        color: "text-purple-500"
+        type: "Study"
     },
     {
         id: "salary-history-bans",
-        number: "08",
+        number: "09",
         category: "Negotiation",
-        title: "Salary history bans: Just being honest is a trap",
+        title: "Salary history bans: Why 'just being honest' is a trap",
         thesis: "Revealing salary history anchors offers to your past, not the market. Bans shift leverage back to you.",
         methods: ["Econometric analysis"],
         readTime: "4 min",
         href: "/research/salary-history-bans",
-        productTie: "Negotiation Scripts",
-        icon: Lock,
-        color: "text-emerald-600"
+        type: "Study"
     }
 ];
 
 export default function ResearchPage() {
     return (
-        <StudioShell showSidebar={true} className="max-w-4xl mx-auto py-20">
-            {/* Hero */}
-            <header className="mb-24 text-center max-w-2xl mx-auto">
-                <span className="text-xs font-semibold uppercase tracking-wider text-moss bg-moss/10 px-3 py-1 rounded-full mb-6 inline-block">
-                    The Research Library
-                </span>
-                <h1 className="font-serif text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
-                    Built on Evidence.
+        <StudioShell showSidebar={true} className="max-w-3xl mx-auto py-24">
+
+            {/* Editorial Header */}
+            <header className="mb-24">
+                <h1 className="font-serif text-5xl font-medium text-foreground tracking-tight mb-6">
+                    Hiring Research.
                 </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                    Most resume tools lean on myths about bots. We build on how humans actually make hiring decisions.
+                <p className="text-xl text-muted-foreground font-sans leading-relaxed max-w-xl">
+                    Our product is built on how recruiters actually read resumes, not on myths about bots and secret scores.
                 </p>
             </header>
 
-            {/* Guides Section (New) */}
-            <div className="mb-20">
-                <div className="flex items-center gap-4 mb-6">
-                    <div className="h-8 w-1 bg-indigo-500 rounded-full" />
-                    <h2 className="font-serif text-3xl font-medium text-foreground tracking-tight">Playbooks & Guides</h2>
-                </div>
-
-                <Link href="/guides/offer-negotiation" className="group block">
-                    <Card className="hover:border-indigo-500/50 transition-all duration-300 hover:bg-gradient-to-r hover:from-indigo-500/5 hover:to-transparent border-border bg-card overflow-hidden relative group">
-                        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-700">
-                            <Handshake className="w-32 h-32 text-indigo-500" />
-                        </div>
-                        <CardContent className="p-8 md:p-10 flex flex-col md:flex-row items-start gap-8 relative z-10">
-                            <div className="hidden md:flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 shadow-sm group-hover:shadow-md transition-all">
-                                <Handshake className="h-8 w-8" strokeWidth={1.5} />
-                            </div>
-
-                            <div className="flex-1 space-y-4">
-                                <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-                                    <span className="bg-indigo-500/10 px-2 py-1 rounded">The Recruiter's Playbook</span>
-                                    <span className="text-muted-foreground font-medium normal-case tracking-normal">12 min read</span>
-                                </div>
-                                <div>
-                                    <h3 className="font-serif text-3xl font-medium text-foreground mb-2 group-hover:text-indigo-600 transition-colors">
-                                        Offer Negotiation Strategy
-                                    </h3>
-                                    <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">
-                                        A complete playbook for maximizing your offer without risking the deal. Backed by negotiation research and recruiter psychology.
-                                    </p>
-                                </div>
-                                <div className="pt-2 flex items-center gap-2 text-sm font-medium text-indigo-600 group-hover:gap-3 transition-all">
-                                    Read the Guide <ArrowRight className="w-4 h-4" />
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </Link>
-            </div>
-
-            {/* Research Grid */}
-            <div className="flex items-center gap-4 mb-8">
-                <div className="h-8 w-1 bg-foreground/20 rounded-full" />
-                <h2 className="font-serif text-3xl font-medium text-foreground tracking-tight">Deep Dive Studies</h2>
-            </div>
-
-            <div className="grid gap-6 mb-24">
+            {/* The Stack (Editorial List) */}
+            <div className="space-y-16 mb-24">
                 {studies.map((study) => (
-                    <Link key={study.id} href={study.href} className="group block">
-                        <Card className="hover:border-primary/20 transition-all duration-300 hover:bg-muted/30 border-border/50 bg-card/50">
-                            <CardContent className="p-8 flex items-start gap-6">
-                                {/* Icon */}
-                                <div className={`hidden md:flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-surface border border-border/50 ${study.color} group-hover:scale-110 transition-transform`}>
-                                    <study.icon className="h-6 w-6" strokeWidth={1.5} />
-                                </div>
+                    <div key={study.id} className="group">
+                        <Link href={study.href} className="block">
+                            <div className="flex items-baseline gap-4 mb-2">
+                                <span className="font-mono text-xs text-muted-foreground/50">
+                                    {study.number}
+                                </span>
+                                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                    {study.category}
+                                </span>
+                            </div>
 
-                                <div className="flex-1 space-y-3">
-                                    <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                                        <span className="text-foreground/80">{study.category}</span>
-                                        <span className="opacity-30">•</span>
-                                        <span>{study.readTime} read</span>
-                                    </div>
-                                    <h3 className="font-serif text-2xl font-medium text-foreground group-hover:text-primary transition-colors">
-                                        {study.title}
-                                    </h3>
-                                    <p className="text-muted-foreground max-w-2xl leading-relaxed">
-                                        {study.thesis}
-                                    </p>
+                            <h2 className="font-serif text-2xl md:text-3xl font-medium text-foreground mb-3 decoration-1 decoration-muted-foreground/30 group-hover:underline underline-offset-4 transition-all">
+                                {study.title}
+                            </h2>
 
-                                    <div className="flex items-center gap-2 mt-4 text-xs font-medium text-muted-foreground/60 pt-2">
-                                        <span className="px-2 py-1 rounded-md bg-secondary/50 border border-border/50 truncate max-w-[200px] md:max-w-none">
-                                            Methods: {study.methods.join(", ")}
-                                        </span>
-                                    </div>
-                                </div>
+                            <p className="text-muted-foreground text-lg leading-relaxed mb-4 max-w-2xl">
+                                {study.thesis}
+                            </p>
 
-                                <div className="self-center hidden md:block opacity-0 lg:opacity-100 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0 duration-300">
-                                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </Link>
+                            <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground/60 font-mono">
+                                <span>{study.readTime}</span>
+                                <span className="opacity-30">/</span>
+                                <span>{study.type}</span>
+                                <span className="opacity-30">/</span>
+                                <span>{study.methods.join(", ")}</span>
+                            </div>
+                        </Link>
+                    </div>
                 ))}
             </div>
 
-            {/* Principles Section */}
-            <div className="bg-surface border border-border/50 rounded-2xl p-8 md:p-12 shadow-sm">
-                <div className="text-center mb-12">
-                    <h2 className="font-serif text-3xl font-medium mb-4">How this shapes the product</h2>
-                    <p className="text-muted-foreground">Every feature in the Studio maps to a research finding.</p>
-                </div>
+            <hr className="border-border/50 mb-16" />
 
-                <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
-                    <Principle
-                        title="First Impressions Matter"
-                        desc="Recruiter First Impression (the header feature) models the first 6 seconds where fit decisions happen."
-                    />
-                    <Principle
-                        title="Clarity over Keywords"
-                        desc="Our main scoring engine rewards clarity, scope, and story, penalizing keyword stuffing."
-                    />
-                    <Principle
-                        title="Eye-Flow Optimization"
-                        desc="Bullet Upgrades are specifically designed to catch the eye's F-pattern scan."
-                    />
-                    <Principle
-                        title="Honest ATS Education"
-                        desc="We educate you on how parsers actually work (they are dumb databases) instead of selling 'beat the bot' fear."
-                    />
-                </div>
+            {/* Principles Section (Plain List) */}
+            <div className="mb-24">
+                <h3 className="font-serif text-2xl font-medium mb-8">How this shapes the product</h3>
+                <ul className="space-y-6">
+                    <li className="flex gap-6">
+                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">01</span>
+                        <div>
+                            <strong className="block text-foreground mb-1">First Impressions Matter</strong>
+                            <p className="text-muted-foreground">Recruiter First Impression (the header feature) models the first 6 seconds where fit decisions happen.</p>
+                        </div>
+                    </li>
+                    <li className="flex gap-6">
+                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">02</span>
+                        <div>
+                            <strong className="block text-foreground mb-1">Clarity over Keywords</strong>
+                            <p className="text-muted-foreground">Our main scoring engine rewards clarity, scope, and story, penalizing keyword stuffing.</p>
+                        </div>
+                    </li>
+                    <li className="flex gap-6">
+                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">03</span>
+                        <div>
+                            <strong className="block text-foreground mb-1">Eye-Flow Optimization</strong>
+                            <p className="text-muted-foreground">Bullet Upgrades are specifically designed to catch the eye's F-pattern scan.</p>
+                        </div>
+                    </li>
+                    <li className="flex gap-6">
+                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">04</span>
+                        <div>
+                            <strong className="block text-foreground mb-1">Honest ATS Education</strong>
+                            <p className="text-muted-foreground">We educate you on how parsers actually work (they are dumb databases) instead of selling 'beat the bot' fear.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
-            <div className="mt-20">
-                <Footer />
-            </div>
+            <Footer />
 
         </StudioShell>
     );
 }
 
-function Principle({ title, desc }: { title: string, desc: string }) {
-    return (
-        <div className="flex gap-4">
-            <CheckCircle2 className="w-5 h-5 text-moss flex-shrink-0 mt-1" strokeWidth={2} />
-            <div>
-                <h3 className="font-medium text-foreground text-lg mb-1">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-            </div>
-        </div>
-    )
-}
+// Removed the old Principle component as it used icons
