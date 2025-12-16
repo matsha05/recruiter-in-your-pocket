@@ -34,7 +34,7 @@ export function SampleReportPreview() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-premium/20 via-brand/5 to-success/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-1000" />
 
                 {/* Main Interface Card */}
-                <div className="relative bg-white dark:bg-[#0A0A0A] rounded-xl border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden">
+                <div className="relative bg-white dark:bg-background rounded-xl border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden">
 
                     {/* Header - Clean, Report-style */}
                     <div className="flex items-center justify-between px-6 py-4 border-b border-black/5 dark:border-white/5 bg-secondary/30 backdrop-blur-md">
@@ -85,7 +85,7 @@ export function SampleReportPreview() {
                                 <div className="relative inline-flex items-center justify-center">
                                     <svg className="w-32 h-32 transform -rotate-90">
                                         <circle cx="64" cy="64" r="60" stroke="currentColor" strokeWidth="2" fill="transparent" className="text-black/5 dark:text-white/5" />
-                                        <circle cx="64" cy="64" r="60" stroke="#18A95E" strokeWidth="2" fill="transparent" strokeDasharray={377} strokeDashoffset={377 - (377 * score) / 100} className="transition-all duration-1000 ease-out" />
+                                        <circle cx="64" cy="64" r="60" stroke="hsl(var(--success))" strokeWidth="2" fill="transparent" strokeDasharray={377} strokeDashoffset={377 - (377 * score) / 100} className="transition-all duration-1000 ease-out" />
                                     </svg>
                                     <div className="absolute inset-0 flex items-center justify-center flex-col">
                                         <span className="text-5xl font-display font-medium tracking-tighter tabular-nums">{score}</span>
@@ -115,7 +115,7 @@ export function SampleReportPreview() {
                                             <p className="text-xs text-destructive line-through decoration-destructive/50 mb-1">Managed a team of 5 PMs...</p>
                                         </div>
 
-                                        <div className={cn("absolute inset-0 p-4 bg-white dark:bg-[#0A0A0A] flex flex-col justify-center transition-all duration-300", fixed ? "translate-y-0 opacity-100" : "translate-y-full opacity-0")}>
+                                        <div className={cn("absolute inset-0 p-4 bg-white dark:bg-background flex flex-col justify-center transition-all duration-300", fixed ? "translate-y-0 opacity-100" : "translate-y-full opacity-0")}>
                                             <p className="text-sm font-medium text-success flex items-center gap-2">
                                                 <CheckCircle2 className="w-4 h-4" />
                                                 Scaled product org to 5 PMs...

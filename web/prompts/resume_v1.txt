@@ -250,6 +250,7 @@ The JSON must match this shape exactly:
   "score_comment_long": "",
   "score_plain": "",
   "biggest_gap_example": "",
+  "first_impression_takeaway": "",
   "summary": "",
   "strengths": [],
   "gaps": [],
@@ -359,6 +360,18 @@ FIELD RULES
     - "The phrase 'managed stakeholders' shows up twice but never names who or what the stakes were."
   - Always quote actual text from the resume. Do not invent or paraphrase.
   - Do not use em dashes.
+
+- first_impression_takeaway
+  - A punchy concluding sentence (max 6 words) that gives the user a clear call to action.
+  - This appears bold at the end of the first impression section.
+  - Use direct, imperative language. Examples:
+    - "Lead with the win."
+    - "Surface the scale."
+    - "Show the before and after."
+    - "Name the system you built."
+    - "Make the outcome visible."
+  - Must be specific to what's missing in this resume, not generic advice.
+  - No em dashes. No hedging. Short and confident.
 
 - strengths
   - Use simple, concrete language. Avoid vague phrases or metaphors.

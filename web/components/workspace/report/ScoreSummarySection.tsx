@@ -3,22 +3,25 @@
 import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
 import { SignalRadarIcon } from "@/components/icons";
+import { ReportSectionHeader } from "./ReportSectionHeader";
 
 function getScoreColor(score: number): string {
-    if (score >= 90) return 'text-moss';
-    if (score >= 80) return 'text-amber';
-    return 'text-rose';
+    if (score >= 90) return 'text-success';
+    if (score >= 80) return 'text-premium';
+    return 'text-destructive';
 }
 
 export function ScoreSummarySection({ data }: { data: ReportData }) {
     if (!data.subscores) return null;
 
     return (
-        <section className="space-y-4">
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                <SignalRadarIcon className="w-4 h-4 text-brand" />
-                02. Signal Analysis
-            </h2>
+        <section className="space-y-6">
+            <ReportSectionHeader
+                icon={<SignalRadarIcon className="w-4 h-4 text-brand" />}
+                number="02"
+                title="Signal Analysis"
+                subtitle="What made me lean in, and what made me pause."
+            />
 
             {/* Subscores Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -39,8 +42,8 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
             <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {/* Working */}
                 <div className="space-y-3">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-moss flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-moss" /> Working
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-success flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-success" /> Working
                     </h3>
                     <ul className="space-y-2">
                         {data.strengths?.slice(0, 5).map((s, i) => (
@@ -53,8 +56,8 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
 
                 {/* Missing */}
                 <div className="space-y-3">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-amber flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber" /> Missing
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-premium flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-premium" /> Missing
                     </h3>
                     <ul className="space-y-2">
                         {data.gaps?.slice(0, 5).map((s, i) => (

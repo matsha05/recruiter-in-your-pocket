@@ -3,21 +3,24 @@
 import { ReportData } from "./ReportTypes";
 import { DiffView } from "../DiffView";
 import { TransformArrowIcon, InsightSparkleIcon } from "@/components/icons";
+import { ReportSectionHeader } from "./ReportSectionHeader";
 
 export function BulletUpgradesSection({ data }: { data: ReportData }) {
     if (!data.rewrites || data.rewrites.length === 0) return null;
 
     return (
         <section className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                    <TransformArrowIcon className="w-4 h-4 text-brand" />
-                    03. The Red Pen
-                </h2>
-                <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
-                    {data.rewrites.length} Critical Fixes
-                </span>
-            </div>
+            <ReportSectionHeader
+                icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
+                number="03"
+                title="The Red Pen"
+                subtitle="How I'd rewrite these to land harder."
+                badge={
+                    <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
+                        {data.rewrites.length} Critical Fixes
+                    </span>
+                }
+            />
 
             <div className="space-y-8">
                 {data.rewrites.map((rewrite, i) => (

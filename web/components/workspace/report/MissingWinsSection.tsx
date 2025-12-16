@@ -5,26 +5,14 @@ import { ReportData } from "./ReportTypes";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { HiddenGemIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import { ReportSectionHeader } from "./ReportSectionHeader";
 
 interface MissingWinsSectionProps {
     data: ReportData;
 }
 
-// Archetype color mapping (subtle, semantic)
-const archetypeStyles: Record<string, { label: string; border: string; bg: string }> = {
-    "TENSION POINT": { label: "Tension Point", border: "border-premium/20", bg: "bg-premium/5" },
-    "HIGH STAKES": { label: "High Stakes", border: "border-destructive/20", bg: "bg-destructive/5" },
-    "SCALING": { label: "Scaling", border: "border-indigo-500/20", bg: "bg-indigo-500/5" },
-    "LEARNING": { label: "Learning", border: "border-success/20", bg: "bg-success/5" },
-    "DURABILITY": { label: "Durability", border: "border-sky-500/20", bg: "bg-sky-500/5" },
-    "IMPROVEMENT": { label: "Improvement", border: "border-success/20", bg: "bg-success/5" },
-    "QUALITY UNDER PRESSURE": { label: "Quality Under Pressure", border: "border-premium/20", bg: "bg-premium/5" },
-    "CROSS-FUNCTIONAL COMPLEXITY": { label: "Cross-Functional", border: "border-violet-500/20", bg: "bg-violet-500/5" },
-    "END-TO-END OWNERSHIP": { label: "End-to-End", border: "border-indigo-500/20", bg: "bg-indigo-500/5" },
-    "DOMAIN LIFT": { label: "Domain Lift", border: "border-sky-500/20", bg: "bg-sky-500/5" },
-};
-
-const defaultStyle = { label: "Question", border: "border-border", bg: "bg-secondary/20" };
+// Single neutral card style for all archetypes — let the label provide differentiation
+const cardStyle = { border: "border-border", bg: "bg-secondary/5" };
 
 export function MissingWinsSection({ data }: MissingWinsSectionProps) {
     const questions = data.ideas?.questions || [];
@@ -52,26 +40,12 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
 
     return (
         <section className="space-y-8">
-            {/* Section Header - Standardized */}
-            <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                    <HiddenGemIcon className="w-4 h-4 text-brand" />
-                    04. Missing Wins
-                </h2>
-                <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
-                    {answeredCount} / {questions.length}
-                </span>
-            </div>
-
-            {/* Content */}
-            <div className="space-y-3">
-                <h3 className="font-serif text-3xl text-foreground tracking-tight">
-                    What recruiters wish you'd told them.
-                </h3>
-                <p className="text-muted-foreground leading-relaxed max-w-xl">
-                    These are the questions a recruiter asks after skimming your resume. If you have answers, they should be on the page.
-                </p>
-            </div>
+            <ReportSectionHeader
+                icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
+                number="04"
+                title="Missing Wins"
+                subtitle="What recruiters wish you'd told them."
+            />
 
             {/* Progress Indicator */}
             <div className="flex items-center gap-4">
@@ -118,23 +92,26 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
             {/* Questions Grid */}
             <div className="space-y-4">
                 {questions.map((q, i) => {
-                    const style = archetypeStyles[q.archetype || ""] || defaultStyle;
                     const isAnswered = answeredIds.has(i);
+                    // Format archetype label: "TENSION POINT" -> "Tension Point"
+                    const archetypeLabel = q.archetype
+                        ? q.archetype.split(' ').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ')
+                        : 'Question';
 
                     return (
                         <div
                             key={i}
                             className={cn(
                                 "group border rounded-lg p-6 transition-all duration-300",
-                                style.border,
-                                isAnswered ? "opacity-50" : style.bg
+                                cardStyle.border,
+                                isAnswered ? "opacity-50" : cardStyle.bg
                             )}
                         >
                             <div className="flex items-start justify-between gap-4">
                                 <div className="flex-1 space-y-3">
                                     {/* Archetype Tag */}
                                     <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
-                                        {style.label}
+                                        {archetypeLabel}
                                     </span>
 
                                     {/* Question */}
@@ -159,8 +136,8 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
                                     className={cn(
                                         "shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-all",
                                         isAnswered
-                                            ? "bg-moss border-moss text-white"
-                                            : "border-border hover:border-moss hover:bg-moss/10"
+                                            ? "bg-success border-success text-white"
+                                            : "border-border hover:border-success hover:bg-success/10"
                                     )}
                                     aria-label={isAnswered ? "Mark as unanswered" : "Mark as answered"}
                                 >
@@ -175,7 +152,7 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
             {/* Completion Message */}
             {answeredCount === questions.length && questions.length > 0 && (
                 <div className="text-center py-6 space-y-2 animate-in fade-in duration-500">
-                    <p className="text-lg font-medium text-moss">All questions answered.</p>
+                    <p className="text-lg font-medium text-success">All questions answered.</p>
                     <p className="text-sm text-muted-foreground">
                         Go back to your resume and add these details. They'll make a difference.
                     </p>

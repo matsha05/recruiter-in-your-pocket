@@ -78,6 +78,13 @@
     --rose: 347 77% 40%;
     /* Rose-700 */
 
+    /* V2.1 Semantic Tokens (Use These) */
+    --success: 142 71% 29%;
+    /* = moss */
+    --premium: 43 96% 44%;
+    /* = gold */
+    /* --destructive already defined above */
+
     /* V2.1 TYPOGRAPHY */
     --font-fraunces: "Fraunces Variable", serif;
     --font-geist-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
@@ -92,11 +99,6 @@
     --duration-fast: 100ms;
     --duration-normal: 200ms;
     --duration-slow: 350ms;
-
-    /* STATUS ALIASES */
-    --status-success: var(--moss);
-    --status-warning: var(--amber);
-    --status-error: var(--rose);
   }
 
   .dark {

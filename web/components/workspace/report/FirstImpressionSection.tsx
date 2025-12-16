@@ -7,15 +7,16 @@ import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
 
 function getScoreColor(score: number): string {
-    if (score >= 85) return '#18A95E'; // moss
-    if (score >= 70) return '#F59E0B'; // amber
-    return '#F43F5E'; // rose
+    // Return hsl color string for inline SVG stroke
+    if (score >= 85) return 'hsl(var(--success))';
+    if (score >= 70) return 'hsl(var(--premium))';
+    return 'hsl(var(--destructive))';
 }
 
 function getScoreBand(score: number): { label: string; colorClass: string } {
-    if (score >= 85) return { label: 'Competes for Senior Roles', colorClass: 'bg-moss/10 border-moss/20 text-moss' };
-    if (score >= 70) return { label: 'Solid Foundation', colorClass: 'bg-amber/10 border-amber/20 text-amber' };
-    return { label: 'Needs Work', colorClass: 'bg-rose/10 border-rose/20 text-rose' };
+    if (score >= 85) return { label: 'Competes for Senior Roles', colorClass: 'bg-success/10 border-success/20 text-success' };
+    if (score >= 70) return { label: 'Solid Foundation', colorClass: 'bg-premium/10 border-premium/20 text-premium' };
+    return { label: 'Needs Work', colorClass: 'bg-destructive/10 border-destructive/20 text-destructive' };
 }
 
 export function FirstImpressionSection({ data }: { data: ReportData }) {
@@ -52,7 +53,9 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
     return (
         <section className="space-y-6">
-            <div className="flex items-center justify-between">
+            {/* Section Header with horizontal line decoration (matching landing page) */}
+            <div className="flex items-center gap-3">
+                <div className="w-6 h-px bg-border" />
                 <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                     <PrincipalRecruiterIcon className="w-4 h-4 text-brand" />
                     01. Recruiter First Impression
@@ -73,14 +76,17 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
                         <p className="text-lg text-muted-foreground leading-relaxed font-serif">
                             {firstImpressionText}
+                            {data.first_impression_takeaway && (
+                                <> <span className="font-semibold text-foreground">{data.first_impression_takeaway}</span></>
+                            )}
                         </p>
 
                         {/* The Critical Miss */}
                         {data.biggest_gap_example && (
-                            <div className="p-4 bg-amber/10 border border-amber/20 rounded-lg">
+                            <div className="p-4 bg-premium/10 border border-premium/20 rounded-lg">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber">Critical Miss</span>
+                                    <div className="w-2 h-2 rounded-full bg-premium animate-pulse" />
+                                    <span className="text-[11px] font-bold uppercase tracking-wider text-premium">Critical Miss</span>
                                 </div>
                                 <p className="text-sm text-foreground/90 leading-relaxed">
                                     {data.biggest_gap_example}
@@ -137,19 +143,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             </div>
                         </div>
 
-                        {/* Subscores Preview (if available) */}
-                        {data.subscores && (
-                            <div className="w-full space-y-2 pt-4 border-t border-border/30">
-                                <div className="grid grid-cols-2 gap-2 text-xs">
-                                    {Object.entries(data.subscores).map(([key, value]) => (
-                                        <div key={key} className="flex items-center justify-between px-3 py-2 bg-background/50 rounded-lg border border-border/30">
-                                            <span className="text-muted-foreground capitalize">{key}</span>
-                                            <span className="font-mono font-medium text-foreground">{value}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+
                     </div>
                 </div>
             </div>

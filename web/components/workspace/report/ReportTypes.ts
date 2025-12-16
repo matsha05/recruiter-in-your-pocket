@@ -5,6 +5,7 @@ export interface ReportData {
     score_comment_long?: string;
     score_plain?: string;
     biggest_gap_example?: string;
+    first_impression_takeaway?: string;
     summary?: string;
     subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
     first_impression?: string;

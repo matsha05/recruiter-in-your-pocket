@@ -34,18 +34,27 @@ export default function WorkspaceClient() {
         if (pendingText) {
             setResumeText(pendingText);
             sessionStorage.removeItem("pending_resume_text");
+            setSkipSample(true); // Don't show sample if user came with text
         }
     }, []);
 
-    // Auto-load sample report if ?sample=true
+    // Auto-load sample report for first-time users
+    // Conditions: No report, not skipped, no pending resume text, not opted out via ?sample=false
     useEffect(() => {
-        if (searchParams.get("sample") === "true" && !report && !skipSample) {
-            fetch("/sample-report.json")
-                .then(res => res.json())
-                .then(data => setReport(data))
-                .catch(err => console.error("Failed to load sample report:", err));
+        const sampleParam = searchParams.get("sample");
+        const hasPendingText = resumeText.trim().length > 0;
+
+        // Skip if: already have report, user skipped, has resume text, or explicitly opted out
+        if (report || skipSample || hasPendingText || sampleParam === "false") {
+            return;
         }
-    }, [searchParams, report, skipSample]);
+
+        // Auto-load sample for first-time users (or if ?sample=true)
+        fetch("/sample-report.json")
+            .then(res => res.json())
+            .then(data => setReport(data))
+            .catch(err => console.error("Failed to load sample report:", err));
+    }, [searchParams, report, skipSample, resumeText]);
 
     // Handle successful payment redirect
     useEffect(() => {
@@ -289,6 +298,8 @@ export default function WorkspaceClient() {
                             hasJobDescription={!!jobDescription.trim()}
                             onExportPdf={handleExportPdf}
                             isExporting={isExporting}
+                            isSample={searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim())}
+                            onNewReport={handleNewReport}
                         />
                     )}
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, FilePlus } from "lucide-react";
+import { Download, Plus, ArrowRight } from "lucide-react";
 import AnalysisScanning from "./AnalysisScanning";
 import { ReportStream } from "./report/ReportStream";
 import { ReportData } from "./report/ReportTypes";
@@ -13,6 +13,7 @@ interface ReportPanelProps {
     onExportPdf?: () => void;
     isExporting?: boolean;
     isSample?: boolean;
+    onNewReport?: () => void;
 }
 
 export default function ReportPanel({
@@ -22,7 +23,8 @@ export default function ReportPanel({
     hasJobDescription,
     onExportPdf,
     isExporting = false,
-    isSample = false
+    isSample = false,
+    onNewReport
 }: ReportPanelProps) {
 
     // Derived states
@@ -35,8 +37,25 @@ export default function ReportPanel({
             {/* BACKGROUND NOISE/TEXTURE (Subtle Studio Feel) */}
             <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.015] pointer-events-none mix-blend-overlay" />
 
+            {/* 1. Loading State - Analysis Theater */}
+            {isLoading && (
+                <AnalysisScanning />
+            )}
+
+            {/* 2. Empty State - Guidance */}
+            {showEmptyState && (
+                <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                    <h2 className="font-serif text-2xl text-foreground mb-2">
+                        No report yet.
+                    </h2>
+                    <p className="text-muted-foreground max-w-sm">
+                        Upload your resume to see what a recruiter sees in 6 seconds.
+                    </p>
+                </div>
+            )}
+
             {/* 3. The Report Stream */}
-            {showReport && (
+            {showReport && !isLoading && (
                 <div className="flex justify-center p-6 md:p-12 lg:py-16 bg-muted/10 min-h-full">
                     <div className="w-full max-w-4xl space-y-6">
 
@@ -48,7 +67,7 @@ export default function ReportPanel({
                                         {report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Audit'}
                                     </h1>
                                     {isSample && (
-                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-premium/10 text-premium border border-premium/20">
+                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">
                                             Sample
                                         </span>
                                     )}
@@ -56,16 +75,40 @@ export default function ReportPanel({
                                 <p className="text-sm text-muted-foreground">This is what a recruiter sees.</p>
                             </div>
 
-                            {onExportPdf && (
-                                <button
-                                    onClick={onExportPdf}
-                                    disabled={isExporting}
-                                    className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-white dark:bg-card border border-border shadow-sm hover:bg-muted/50 transition-colors disabled:opacity-50 text-foreground"
-                                >
-                                    <Download className="w-4 h-4" />
-                                    <span>{isExporting ? "Exporting..." : "Download PDF"}</span>
-                                </button>
-                            )}
+                            {/* Action Buttons */}
+                            <div className="flex items-center gap-2">
+                                {/* Primary: Run Another (for real reports) or Run Your Report (for sample) */}
+                                {onNewReport && (
+                                    <button
+                                        onClick={onNewReport}
+                                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                    >
+                                        {isSample ? (
+                                            <>
+                                                Run Your Report
+                                                <ArrowRight className="w-4 h-4" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Plus className="w-4 h-4" />
+                                                Run Another
+                                            </>
+                                        )}
+                                    </button>
+                                )}
+
+                                {/* Secondary: PDF Export (hidden for sample) */}
+                                {onExportPdf && !isSample && (
+                                    <button
+                                        onClick={onExportPdf}
+                                        disabled={isExporting}
+                                        className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50"
+                                    >
+                                        <Download className="w-4 h-4" />
+                                        <span className="hidden sm:inline">{isExporting ? "Exporting..." : "PDF"}</span>
+                                    </button>
+                                )}
+                            </div>
                         </div>
 
                         {/* The "Paper" */}

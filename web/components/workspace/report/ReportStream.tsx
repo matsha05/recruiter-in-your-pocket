@@ -5,6 +5,7 @@ import { FirstImpressionSection } from "./FirstImpressionSection";
 import { ScoreSummarySection } from "./ScoreSummarySection";
 import { BulletUpgradesSection } from "./BulletUpgradesSection";
 import { MissingWinsSection } from "./MissingWinsSection";
+import { JobAlignmentSection } from "./JobAlignmentSection";
 import { cn } from "@/lib/utils";
 
 interface ReportStreamProps {
@@ -37,6 +38,12 @@ export function ReportStream({ report, className }: ReportStreamProps) {
             {/* 4. Missing Wins (Uncover Hidden Achievements) */}
             <MissingWinsSection data={report} />
 
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+            {/* 5. Where You Compete (Job Alignment) */}
+            <JobAlignmentSection data={report} />
+
             {/* Footer / CTA - Placeholder for Paywall or Next Steps */}
             <div className="text-center pt-12 text-muted-foreground text-sm">
                 <p>That's the full picture. Now you know.</p>
@@ -44,3 +51,4 @@ export function ReportStream({ report, className }: ReportStreamProps) {
         </div>
     );
 }
+

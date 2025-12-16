@@ -38,7 +38,7 @@ export default function PaywallModal({
         } else if (freeUsesRemaining === 1) {
             return "You have 1 free review left";
         } else {
-            return "You've used your free reviews. Pick a pass to keep going.";
+            return "You've seen what recruiters see. Unlock unlimited audits.";
         }
     };
 
@@ -101,10 +101,12 @@ export default function PaywallModal({
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h2 className="font-display text-2xl font-medium text-foreground mb-3">
-                        Ready for the full recruiter perspective?
+                        {freeUsesRemaining <= 0 ? "You've seen what recruiters see." : "Ready for the full recruiter perspective?"}
                     </h2>
                     <p className="text-muted-foreground text-sm">
-                        See your strengths, your gaps, your exact next steps.
+                        {freeUsesRemaining <= 0
+                            ? "Unlock unlimited audits to keep improving."
+                            : "See your strengths, your gaps, your exact next steps."}
                     </p>
 
                     {/* Value Summary */}
