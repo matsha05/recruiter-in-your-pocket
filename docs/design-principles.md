@@ -89,6 +89,32 @@ Location: `/web/components/icons/`
 - **Never use** Lucide `Sparkles` — use `InsightSparkleIcon` instead
 - **Never use** generic User/Eye icons for recruiter persona — use `PrincipalRecruiterIcon`
 
+### Navigation Patterns
+
+| Context | Pattern | Example |
+|---------|---------|---------|
+| **Back to parent** | `<ArrowLeft>` icon + text | `<ArrowLeft className="w-4 h-4" /> Back to Home` |
+| **Mobile header** | Icon button only | `<ArrowLeft className="w-5 h-5" />` |
+| **Modal dismiss** | X icon, top-right | Lucide `X` |
+
+**Rules:**
+- Always use Lucide `ArrowLeft`, never text arrows (`←`)
+- Text follows icon with `gap-2` spacing
+- **Sentence case** (not uppercase)
+- Color: `text-muted-foreground hover:text-foreground`
+
+### Article Tags (Category Pills)
+
+| Content Type | Color | Example |
+|--------------|-------|---------|
+| **Research articles** | Neutral gray | `border-border bg-muted/50 text-muted-foreground` |
+| **Guides/Playbooks** | Brand teal | `border-brand/20 bg-brand/10 text-brand` |
+
+**Rules:**
+- Always **UPPERCASE** with `tracking-widest`
+- Font size: `text-[10px]`
+- **Never use Gold** for content tags (reserved for unlock moments)
+
 ---
 
 ## Messaging: "See What They See"

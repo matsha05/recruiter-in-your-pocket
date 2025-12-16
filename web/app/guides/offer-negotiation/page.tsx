@@ -10,7 +10,7 @@ import { SalaryHistoryTrap } from "@/components/research/diagrams/SalaryHistoryT
 import { LevelLadder } from "@/components/research/diagrams/LevelLadder";
 // Re-using ArticleInsight for consistency in "insight" blocks
 import { ArticleInsight } from "@/components/research/ResearchArticle";
-import { AlertCircle, Quote, TrendingUp, Handshake, ListCheck, Lock, Anchor, MousePointer2, CheckCircle2, ArrowRight } from "lucide-react";
+import { AlertCircle, Quote, TrendingUp, Handshake, ListCheck, Lock, Anchor, MousePointer2, CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function OfferNegotiationGuidePage() {
     return (
@@ -21,11 +21,12 @@ export default function OfferNegotiationGuidePage() {
                 <header>
                     <Link href="/research" className="inline-block mb-6">
                         <Button variant="ghost" size="sm" className="-ml-3 gap-2 text-muted-foreground">
-                            ← Back to Library
+                            <ArrowLeft className="w-4 h-4" />
+                            Back to Library
                         </Button>
                     </Link>
                     <div className="space-y-4">
-                        <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
+                        <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-brand">
                             The Recruiter's Playbook
                         </span>
                         <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground">

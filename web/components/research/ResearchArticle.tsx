@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 import { StudioShell } from "@/components/layout/StudioShell";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ArrowLeft, ExternalLink } from "lucide-react";
 
 interface ResearchArticleProps {
     header: {
@@ -58,13 +58,12 @@ export function ResearchArticle({
 
                 {/* 1. Header & Breadcrumb */}
                 <header>
-                    <Link href="/research" className="inline-block mb-8 group">
-                        <span className="text-label text-muted-foreground/50 group-hover:text-foreground transition-colors">
-                            ← Back to Research
-                        </span>
+                    <Link href="/research" className="inline-flex items-center gap-2 mb-8 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        <ArrowLeft className="w-4 h-4" />
+                        Back to Research
                     </Link>
                     <div className="space-y-6">
-                        <span className="inline-block text-label text-gold uppercase tracking-widest font-semibold text-[10px] border border-gold/20 px-2 py-1 rounded-sm bg-gold/5">
+                        <span className="inline-block text-[10px] uppercase tracking-widest font-semibold border border-border px-2 py-1 rounded-sm bg-muted/50 text-muted-foreground">
                             {header.tag}
                         </span>
                         <h1 className="text-hero text-5xl md:text-6xl text-foreground">

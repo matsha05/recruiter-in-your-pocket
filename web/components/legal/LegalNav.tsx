@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -23,7 +24,8 @@ export function LegalNav({ className }: LegalNavProps) {
             {/* Back Link */}
             <Link href="/" className="mb-8">
                 <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    ← Back to Home
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to Home
                 </Button>
             </Link>
 
