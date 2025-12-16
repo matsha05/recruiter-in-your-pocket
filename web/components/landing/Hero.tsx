@@ -43,7 +43,7 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="text-eyebrow mb-6 text-premium-accent"
+                                className="text-eyebrow mb-6 text-brand"
                             >
                                 Recruiter-grade insight
                             </motion.p>
@@ -116,7 +116,7 @@ export default function Hero() {
                             initial={{ opacity: 0, scale: 0.95, rotate: 1 }}
                             animate={{ opacity: 1, scale: 1, rotate: -1 }}
                             transition={{ delay: 0.4, duration: 0.8 }}
-                            className="relative bg-card border border-border/50 shadow-2xl rounded-2xl p-6 md:p-8 max-w-md mx-auto rotate-[-2deg] hover:rotate-[0deg] transition-transform duration-500 ease-out"
+                            className="relative bg-card border border-border/50 shadow-2xl rounded-lg p-6 md:p-8 max-w-md mx-auto rotate-[-2deg] hover:rotate-[0deg] transition-transform duration-500 ease-out"
                         >
                             {/* Card Header */}
                             <div className="flex items-start justify-between mb-8">
@@ -133,8 +133,8 @@ export default function Hero() {
 
                             {/* Quote */}
                             <div className="mb-8 relative">
-                                <span className="absolute -left-2 top-0 text-4xl text-premium-accent/20 font-serif leading-none">&ldquo;</span>
-                                <p className="font-serif italic text-lg leading-relaxed text-foreground/90 pl-4 border-l-2 border-premium-accent/30">
+                                <span className="absolute -left-2 top-0 text-4xl text-brand/20 font-display leading-none">&ldquo;</span>
+                                <p className="font-display italic text-lg leading-relaxed text-foreground/90 pl-4 border-l-2 border-brand/30">
                                     You read as someone who takes messy workstreams and makes them shippable. Your edge is steady ownership.
                                 </p>
                             </div>

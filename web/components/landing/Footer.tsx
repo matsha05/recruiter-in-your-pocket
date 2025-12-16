@@ -8,16 +8,16 @@ export default function Footer() {
 
                 {/* Trust Signals Row */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-12 border-b border-border/10">
-                    <div className="flex items-center gap-3 text-muted-foreground/80">
-                        <Lock className="w-4 h-4 text-emerald-600/70" />
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                        <Lock className="w-4 h-4 text-brand" />
                         <span className="text-xs font-medium uppercase tracking-wide">End-to-End Encrypted</span>
                     </div>
-                    <div className="flex items-center gap-3 text-muted-foreground/80">
-                        <Trash2 className="w-4 h-4 text-rose-600/70" />
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                        <Trash2 className="w-4 h-4 text-muted-foreground" />
                         <span className="text-xs font-medium uppercase tracking-wide">Auto-Deleted in 24h</span>
                     </div>
-                    <div className="flex items-center gap-3 text-muted-foreground/80">
-                        <ShieldOff className="w-4 h-4 text-amber-600/70" />
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                        <ShieldOff className="w-4 h-4 text-muted-foreground" />
                         <span className="text-xs font-medium uppercase tracking-wide">Your Data Never Trains AI</span>
                     </div>
                 </div>
