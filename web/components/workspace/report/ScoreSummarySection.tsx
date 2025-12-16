@@ -2,6 +2,7 @@
 
 import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
+import { SignalRadarIcon } from "@/components/icons";
 
 function getScoreColor(score: number): string {
     if (score >= 90) return 'text-moss';
@@ -14,7 +15,10 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
 
     return (
         <section className="space-y-4">
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">02. Signal Analysis</h2>
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                <SignalRadarIcon className="w-4 h-4 text-brand" />
+                02. Signal Analysis
+            </h2>
 
             {/* Subscores Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

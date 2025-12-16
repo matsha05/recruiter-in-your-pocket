@@ -208,24 +208,24 @@ function ScriptBlock({ title, doText, dontText }: { title: string, doText: React
             <h3 className="font-display text-lg font-medium text-foreground mb-4">{title}</h3>
 
             <div className="grid md:grid-cols-2 gap-4">
-                {/* DO THIS - Luminous Emerald (Success/Growth) */}
-                <div className="relative p-6 rounded-md border border-emerald-500/20 bg-emerald-500/5 overflow-hidden">
+                {/* DO THIS - Success (Growth) */}
+                <div className="relative p-6 rounded-md border border-success/20 bg-success/5 overflow-hidden">
                     <div className="flex items-center gap-2 mb-3">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Winning Approach</span>
+                        <CheckCircle2 className="w-4 h-4 text-success" />
+                        <span className="text-[10px] font-bold text-success uppercase tracking-widest">Winning Approach</span>
                     </div>
-                    <p className="text-base text-foreground/90 leading-relaxed font-medium font-display border-l border-emerald-500/30 pl-4">
+                    <p className="text-base text-foreground/90 leading-relaxed font-medium font-display border-l border-success/30 pl-4">
                         "{doText}"
                     </p>
                 </div>
 
-                {/* NOT THIS - Luminous Rose (Risk/Mistake) */}
-                <div className="relative p-6 rounded-md border border-rose-500/10 bg-rose-500/5 opacity-80 hover:opacity-100 transition-opacity">
+                {/* NOT THIS - Destructive (Risk/Mistake) */}
+                <div className="relative p-6 rounded-md border border-destructive/10 bg-destructive/5 opacity-80 hover:opacity-100 transition-opacity">
                     <div className="flex items-center gap-2 mb-3">
-                        <AlertCircle className="w-4 h-4 text-rose-400" />
-                        <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Common Mistake</span>
+                        <AlertCircle className="w-4 h-4 text-destructive" />
+                        <span className="text-[10px] font-bold text-destructive uppercase tracking-widest">Common Mistake</span>
                     </div>
-                    <p className="text-base text-muted-foreground leading-relaxed italic font-display border-l border-rose-500/20 pl-4">
+                    <p className="text-base text-muted-foreground leading-relaxed italic font-display border-l border-destructive/20 pl-4">
                         "{dontText}"
                     </p>
                 </div>

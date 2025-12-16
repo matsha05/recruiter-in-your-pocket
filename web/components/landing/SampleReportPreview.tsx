@@ -31,7 +31,7 @@ export function SampleReportPreview() {
             <div className="relative group perspective-1000">
 
                 {/* Glow Effect behind */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-premium/20 via-brand/5 to-emerald-500/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-1000" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-premium/20 via-brand/5 to-success/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-1000" />
 
                 {/* Main Interface Card */}
                 <div className="relative bg-white dark:bg-[#0A0A0A] rounded-xl border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden">
@@ -93,7 +93,7 @@ export function SampleReportPreview() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold uppercase tracking-wider">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-success/10 border border-success/20 text-success text-[11px] font-bold uppercase tracking-wider">
                                         <CheckCircle2 className="w-3 h-3" /> Competes for Senior Roles
                                     </span>
                                 </div>
@@ -116,13 +116,13 @@ export function SampleReportPreview() {
                                         </div>
 
                                         <div className={cn("absolute inset-0 p-4 bg-white dark:bg-[#0A0A0A] flex flex-col justify-center transition-all duration-300", fixed ? "translate-y-0 opacity-100" : "translate-y-full opacity-0")}>
-                                            <p className="text-sm font-medium text-emerald-600 flex items-center gap-2">
+                                            <p className="text-sm font-medium text-success flex items-center gap-2">
                                                 <CheckCircle2 className="w-4 h-4" />
                                                 Scaled product org to 5 PMs...
                                             </p>
                                         </div>
 
-                                        <div className={cn("mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors", fixed ? "text-emerald-600" : "text-premium")}>
+                                        <div className={cn("mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors", fixed ? "text-success" : "text-premium")}>
                                             {fixed ? "Recruiter sees: Clear ownership" : "Tap to Rewrite"}
                                             {!fixed && <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />}
                                         </div>

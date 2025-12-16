@@ -53,9 +53,9 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                                     {/* Coaching Note Footer */}
                                     {rewrite.enhancement_note && (
                                         <div className="bg-secondary/20 border-t border-border/50 px-4 py-3 flex gap-3 text-sm text-muted-foreground">
-                                            <InsightSparkleIcon className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                                            <InsightSparkleIcon className="w-4 h-4 text-premium flex-shrink-0 mt-0.5" />
                                             <div className="space-y-1">
-                                                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 block">Recruiter Note</span>
+                                                <span className="text-[10px] font-bold uppercase tracking-wider text-premium block">Recruiter Note</span>
                                                 <p className="leading-snug">{rewrite.enhancement_note}</p>
                                             </div>
                                         </div>

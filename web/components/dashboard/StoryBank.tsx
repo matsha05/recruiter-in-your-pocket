@@ -66,7 +66,7 @@ export function StoryBank({ artifact, onUpdate }: StoryBankProps) {
                                     <span className="text-foreground">{story.action}</span>
                                 </div>
                                 <div className="grid grid-cols-[60px_1fr] gap-2">
-                                    <span className="font-bold text-emerald-600 uppercase opacity-70">Result</span>
+                                    <span className="font-bold text-success uppercase opacity-70">Result</span>
                                     <span className="text-foreground">{story.result}</span>
                                 </div>
                             </div>

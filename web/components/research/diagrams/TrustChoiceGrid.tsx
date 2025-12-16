@@ -58,10 +58,10 @@ export function TrustChoiceGrid() {
                         </div>
 
                         {/* Algorithm + Inconsistent = Rejected */}
-                        <div className="bg-rose-500/5 border border-rose-500/10 rounded-md p-5 text-center flex flex-col items-center justify-center relative h-28">
-                            <span className="font-medium text-rose-500">Rejected</span>
-                            <span className="text-xs text-rose-400/70 mt-1 uppercase tracking-wide">"Broken system"</span>
-                            <X className="absolute top-2 right-2 w-4 h-4 text-rose-400" />
+                        <div className="bg-destructive/5 border border-destructive/10 rounded-md p-5 text-center flex flex-col items-center justify-center relative h-28">
+                            <span className="font-medium text-destructive">Rejected</span>
+                            <span className="text-xs text-destructive/70 mt-1 uppercase tracking-wide">"Broken system"</span>
+                            <X className="absolute top-2 right-2 w-4 h-4 text-destructive/70" />
                         </div>
                     </div>
                 </div>

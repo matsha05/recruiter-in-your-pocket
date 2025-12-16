@@ -170,7 +170,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
 
                 <div className="space-y-6 py-4">
                     {error && (
-                        <div className="p-3 text-sm text-center text-rose-500 bg-rose-500/10 rounded-md border border-rose-500/20">
+                        <div className="p-3 text-sm text-center text-destructive bg-destructive/10 rounded-md border border-destructive/20">
                             {error}
                         </div>
                     )}

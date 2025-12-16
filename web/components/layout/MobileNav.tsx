@@ -65,7 +65,7 @@ export function MobileNav() {
                                             </span>
                                         )}
                                         {user.membership === "audit" && (
-                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600">1 Audit Available</span>
+                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success">1 Audit Available</span>
                                         )}
                                         {(user.membership === "free" || !user.membership) && (
                                             <span className="inline-flex items-center gap-1">

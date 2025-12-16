@@ -96,7 +96,7 @@ export function InterviewCoach({ roleTitle, companyName }: { roleTitle: string; 
                                     <p className="text-sm text-muted-foreground leading-relaxed">{result.improved_answer.structure_fix}</p>
                                 </div>
                                 <div className="bg-muted/30 p-4 rounded-lg">
-                                    <h4 className="text-xs font-bold uppercase text-emerald-600 mb-2 flex items-center gap-2">
+                                    <h4 className="text-xs font-bold uppercase text-success mb-2 flex items-center gap-2">
                                         <CheckCircle2 className="w-3 h-3" /> Tightened Version
                                     </h4>
                                     <p className="text-sm text-foreground/90 whitespace-pre-wrap font-serif leading-relaxed">
@@ -125,7 +125,7 @@ export function InterviewCoach({ roleTitle, companyName }: { roleTitle: string; 
                         <h3 className="font-serif text-xl font-medium">Micro-Drills</h3>
                         <ul className="space-y-2">
                             {result.micro_drills.map((drill, i) => (
-                                <li key={i} className="p-3 bg-amber-500/5 border border-amber-500/20 rounded-lg text-sm">
+                                <li key={i} className="p-3 bg-premium/5 border border-premium/20 rounded-lg text-sm">
                                     <div className="font-medium text-foreground mb-1">{drill.drill}</div>
                                     <div className="text-muted-foreground text-xs">{drill.why}</div>
                                 </li>

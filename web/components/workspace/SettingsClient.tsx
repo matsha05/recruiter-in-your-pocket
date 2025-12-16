@@ -300,7 +300,7 @@ export default function SettingsClient() {
                                                 <span className={cn(
                                                     "inline-flex items-center px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold",
                                                     isActive
-                                                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                                                        ? "bg-success/10 text-success"
                                                         : "bg-muted text-muted-foreground"
                                                 )}>
                                                     {isActive ? "Active" : "Expired"}

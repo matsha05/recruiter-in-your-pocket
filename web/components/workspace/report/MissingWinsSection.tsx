@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { ReportData } from "./ReportTypes";
-import { Lightbulb, Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, ChevronDown, ChevronUp } from "lucide-react";
+import { HiddenGemIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 interface MissingWinsSectionProps {
@@ -11,13 +12,13 @@ interface MissingWinsSectionProps {
 
 // Archetype color mapping (subtle, semantic)
 const archetypeStyles: Record<string, { label: string; border: string; bg: string }> = {
-    "TENSION POINT": { label: "Tension Point", border: "border-amber-500/20", bg: "bg-amber-500/5" },
-    "HIGH STAKES": { label: "High Stakes", border: "border-rose-500/20", bg: "bg-rose-500/5" },
+    "TENSION POINT": { label: "Tension Point", border: "border-premium/20", bg: "bg-premium/5" },
+    "HIGH STAKES": { label: "High Stakes", border: "border-destructive/20", bg: "bg-destructive/5" },
     "SCALING": { label: "Scaling", border: "border-indigo-500/20", bg: "bg-indigo-500/5" },
-    "LEARNING": { label: "Learning", border: "border-emerald-500/20", bg: "bg-emerald-500/5" },
+    "LEARNING": { label: "Learning", border: "border-success/20", bg: "bg-success/5" },
     "DURABILITY": { label: "Durability", border: "border-sky-500/20", bg: "bg-sky-500/5" },
-    "IMPROVEMENT": { label: "Improvement", border: "border-emerald-500/20", bg: "bg-emerald-500/5" },
-    "QUALITY UNDER PRESSURE": { label: "Quality Under Pressure", border: "border-amber-500/20", bg: "bg-amber-500/5" },
+    "IMPROVEMENT": { label: "Improvement", border: "border-success/20", bg: "bg-success/5" },
+    "QUALITY UNDER PRESSURE": { label: "Quality Under Pressure", border: "border-premium/20", bg: "bg-premium/5" },
     "CROSS-FUNCTIONAL COMPLEXITY": { label: "Cross-Functional", border: "border-violet-500/20", bg: "bg-violet-500/5" },
     "END-TO-END OWNERSHIP": { label: "End-to-End", border: "border-indigo-500/20", bg: "bg-indigo-500/5" },
     "DOMAIN LIFT": { label: "Domain Lift", border: "border-sky-500/20", bg: "bg-sky-500/5" },
@@ -51,17 +52,22 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
 
     return (
         <section className="space-y-8">
-            {/* Section Header */}
-            <div className="space-y-3">
-                <div className="flex items-center gap-2 text-gold">
-                    <Lightbulb className="w-4 h-4" />
-                    <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
-                        Missing Wins
-                    </span>
-                </div>
-                <h2 className="font-serif text-3xl text-foreground tracking-tight">
-                    What recruiters wish you'd told them.
+            {/* Section Header - Standardized */}
+            <div className="flex items-center justify-between">
+                <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                    <HiddenGemIcon className="w-4 h-4 text-brand" />
+                    04. Missing Wins
                 </h2>
+                <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
+                    {answeredCount} / {questions.length}
+                </span>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-3">
+                <h3 className="font-serif text-3xl text-foreground tracking-tight">
+                    What recruiters wish you'd told them.
+                </h3>
                 <p className="text-muted-foreground leading-relaxed max-w-xl">
                     These are the questions a recruiter asks after skimming your resume. If you have answers, they should be on the page.
                 </p>

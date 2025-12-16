@@ -23,7 +23,7 @@ export function SixSecondIcon({ className = "", size = 24 }: IconProps) {
             xmlns="http://www.w3.org/2000/svg"
             className={className}
         >
-            {/* Main dial - slightly elongated for sophistication */}
+            {/* Main dial container */}
             <circle
                 cx="12"
                 cy="13"
@@ -33,7 +33,7 @@ export function SixSecondIcon({ className = "", size = 24 }: IconProps) {
                 fill="none"
             />
 
-            {/* Top button/crown */}
+            {/* Top crown - minimalist */}
             <path
                 d="M12 2 L12 4"
                 stroke="currentColor"
@@ -41,25 +41,16 @@ export function SixSecondIcon({ className = "", size = 24 }: IconProps) {
                 strokeLinecap="round"
             />
 
-            {/* Side button */}
+            {/* The "6 Seconds" Segment - 10% Pie Slice (0 to 36 degrees) */}
+            {/* Center (12,13) -> Top (12,4) -> Arc to approx (17.3, 5.8) */}
             <path
-                d="M18.5 5.5 L20 4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
+                d="M12 13 L12 4 A 9 9 0 0 1 17.29 5.76 L12 13 Z"
+                fill="currentColor"
+                opacity="0.2" // Subtle fill for the segment
             />
-
-            {/* Hour hand pointing to ~1 o'clock (6 seconds) */}
+            {/* Segment border for precision */}
             <path
-                d="M12 13 L12 8"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-            />
-
-            {/* Second hand - swept to the 6 second position */}
-            <path
-                d="M12 13 L16 10"
+                d="M12 4 A 9 9 0 0 1 17.29 5.76"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
@@ -69,15 +60,9 @@ export function SixSecondIcon({ className = "", size = 24 }: IconProps) {
             <circle
                 cx="12"
                 cy="13"
-                r="1"
+                r="1.5"
                 fill="currentColor"
             />
-
-            {/* Tick marks - only at key positions for minimalism */}
-            <path d="M12 5 L12 6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-            <path d="M19 13 L18 13" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-            <path d="M6 13 L5 13" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-            <path d="M12 20 L12 21" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
         </svg>
     );
 }

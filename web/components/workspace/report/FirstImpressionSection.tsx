@@ -54,7 +54,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
         <section className="space-y-6">
             <div className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                    <span className="w-6 h-px bg-border"></span>
+                    <PrincipalRecruiterIcon className="w-4 h-4 text-brand" />
                     01. Recruiter First Impression
                 </h2>
             </div>
@@ -66,10 +66,6 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     {/* LEFT: THE VERDICT (3 cols) */}
                     <div className="md:col-span-3 p-8 md:p-10 border-r border-border/40 space-y-8">
                         <div className="space-y-3">
-                            <div className="flex items-center gap-2 text-gold">
-                                <PrincipalRecruiterIcon className="w-5 h-5" />
-                                <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">First Impression</span>
-                            </div>
                             <h3 className="font-serif text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
                                 "Here is exactly what I noticed..."
                             </h3>

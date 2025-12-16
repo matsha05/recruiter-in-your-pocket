@@ -78,15 +78,35 @@
 
 Location: `/web/components/icons/`
 
-| Icon | Purpose |
-|---|---|
-| `PocketMark` | Brand mark (headers, favicon) |
-| `Wordmark` | Path-based "pocket" wordmark |
-| `PrincipalRecruiterIcon` | Recruiter persona |
-| `SixSecondIcon` | "6 seconds" concept |
-| `TransformArrowIcon` | Before/After rewrite |
-| `EmptyReportIcon` | Empty states (reserved) |
-| `InsightSparkleIcon` | AI insights, tips |
+| Icon | Purpose | Usage |
+|---|---|---|
+| `PocketMark` | Brand mark | Headers, Favicon |
+| `Wordmark` | Path-based "pocket" wordmark | Brand applications |
+| `PrincipalRecruiterIcon` | Authority/Expert Profile | 01. First Impression header |
+| `SignalRadarIcon` | Data Visualization | 02. Signal Analysis header |
+| `TransformArrowIcon` | Editorial Quill | 03. The Red Pen header |
+| `HiddenGemIcon` | Discovery/Treasure | 04. Missing Wins header |
+| `SixSecondIcon` | Timer Segment | Scanning state, InputPanel |
+| `EmptyReportIcon` | Empty states (reserved) | Text-first preferred |
+| `InsightSparkleIcon` | North Star/Value | Premium features, Coach notes |
+
+### Design Rules
+- **Stroke:** `1.5px` (unified)
+- **ViewBox:** `0 0 24 24` (standard)
+- **Fill:** `none` (stroke-based)
+- **Color:** `currentColor` (inherits from parent)
+
+### Report Section Header Format
+```
+[Icon w-4 text-brand] [Number]. [Title]    [Optional Badge]
+```
+
+### Color Standards
+| Context | Token |
+|---------|-------|
+| Section header icons | `text-brand` (Teal) |
+| Premium/Upgrade CTAs | `text-premium` (Gold) |
+| Muted/Disabled | `text-muted-foreground` |
 
 ---
 

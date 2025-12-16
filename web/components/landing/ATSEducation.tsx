@@ -22,7 +22,7 @@ export default function ATSEducation() {
                             &quot;75% of resumes are rejected by the Applicant Tracking System before a human ever sees them.&quot;
                         </p>
                     </div>
-                    <div className="p-5 bg-surface rounded-xl border-l-4 border-l-emerald-500 border border-subtle">
+                    <div className="p-5 bg-surface rounded-xl border-l-4 border-l-success border border-subtle">
                         <div className="text-success font-semibold mb-2">✓ The reality</div>
                         <p className="text-secondary text-sm">
                             An ATS (Applicant Tracking System) is just a database — not a gatekeeper. The best recruiters don&apos;t wait for shortlists. We run keyword searches, pull resumes ourselves, and often share them with hiring managers before even reaching out.
@@ -42,17 +42,17 @@ export default function ATSEducation() {
                                 <span className="text-secondary text-sm"> It&apos;s a searchable database, not a filter. High-volume roles may get 500+ applications, but they&apos;re all in there.</span>
                             </div>
                         </div>
-                        {/* Step 2 - white row with thin emerald left border */}
-                        <div className="flex gap-4 items-start p-4 bg-surface rounded-lg border-l-4 border-l-emerald-500/80">
-                            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 text-xs font-bold flex-shrink-0">02</span>
+                        {/* Step 2 - white row with thin success left border */}
+                        <div className="flex gap-4 items-start p-4 bg-surface rounded-lg border-l-4 border-l-success/80">
+                            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-success/10 text-success text-xs font-bold flex-shrink-0">02</span>
                             <div className="flex-1 min-w-0">
                                 <strong className="text-primary">Good recruiters search actively.</strong>
                                 <span className="text-secondary text-sm"> We run keyword searches, skim the top results, and often share promising resumes with hiring managers before reaching out.</span>
                             </div>
                         </div>
-                        {/* Step 3 - white row with thin amber left border */}
-                        <div className="flex gap-4 items-start p-4 bg-surface rounded-lg border-l-4 border-l-amber-500/80">
-                            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-bold flex-shrink-0">03</span>
+                        {/* Step 3 - white row with thin premium left border */}
+                        <div className="flex gap-4 items-start p-4 bg-surface rounded-lg border-l-4 border-l-premium/80">
+                            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-premium/10 text-premium text-xs font-bold flex-shrink-0">03</span>
                             <div className="flex-1 min-w-0">
                                 <strong className="text-primary">Content is the table stakes.</strong>
                                 <span className="text-secondary text-sm"> There&apos;s no magic &quot;ATS-ready&quot; formula. If your resume is clear, shows impact, and tells a story — that&apos;s what gets you noticed.</span>

@@ -48,7 +48,7 @@ export default function ReportPanel({
                                         {report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Audit'}
                                     </h1>
                                     {isSample && (
-                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20">
+                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-premium/10 text-premium border border-premium/20">
                                             Sample
                                         </span>
                                     )}

@@ -77,17 +77,41 @@ Location: `/web/components/icons/`
 |------|------|---------|-------|
 | **PocketMark** | `PocketMark.tsx` | Brand mark | Headers, Favicon |
 | **Wordmark** | `Wordmark.tsx` | Path-based "pocket" wordmark | Brand applications |
-| **PrincipalRecruiterIcon** | `PrincipalRecruiterIcon.tsx` | Recruiter persona | First Impression section |
-| **SixSecondIcon** | `SixSecondIcon.tsx` | "6 seconds" concept | InputPanel header |
-| **TransformArrowIcon** | `TransformArrowIcon.tsx` | Before/After rewrite | Bullet Upgrades section |
+| **PrincipalRecruiterIcon** | `PrincipalRecruiterIcon.tsx` | Authority/Expert Profile | 01. First Impression header |
+| **SignalRadarIcon** | `SignalRadarIcon.tsx` | Data Visualization | 02. Signal Analysis header |
+| **TransformArrowIcon** | `TransformArrowIcon.tsx` | Editorial Quill | 03. The Red Pen header |
+| **HiddenGemIcon** | `HiddenGemIcon.tsx` | Discovery/Treasure | 04. Missing Wins header |
+| **SixSecondIcon** | `SixSecondIcon.tsx` | Timer Segment | Scanning state, InputPanel |
 | **EmptyReportIcon** | `EmptyReportIcon.tsx` | Empty states | Reserved (text-first preferred) |
-| **InsightSparkleIcon** | `InsightSparkleIcon.tsx` | AI insights, tips | Pro Tip, Pricing, Coaching notes |
+| **InsightSparkleIcon** | `InsightSparkleIcon.tsx` | North Star/Value | Pro Tip, Pricing, Coach notes |
 
-#### Rules
+#### Icon Design Rules
 - All custom icons use `strokeWidth: 1.5` for consistency with Lucide utility icons
+- ViewBox: `0 0 24 24` (standard)
+- Fill: `none` (stroke-based)
 - Custom icons support `className` and `size` props
 - **Never use** Lucide `Sparkles` — use `InsightSparkleIcon` instead
 - **Never use** generic User/Eye icons for recruiter persona — use `PrincipalRecruiterIcon`
+
+#### Report Section Header Format
+All report sections use identical chrome:
+```
+[Icon w-4 text-brand] [Number]. [Title]    [Optional Badge]
+```
+
+```tsx
+<h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+    <SignalRadarIcon className="w-4 h-4 text-brand" />
+    02. Signal Analysis
+</h2>
+```
+
+#### Icon Color Standards
+| Context | Token |
+|---------|-------|
+| Section header icons | `text-brand` (Teal) |
+| Premium/Upgrade CTAs | `text-premium` (Gold) |
+| Muted/Disabled | `text-muted-foreground` |
 
 ### Navigation Patterns
 

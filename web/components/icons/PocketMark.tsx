@@ -42,15 +42,17 @@ export function PocketMark({ className = "", size = 24 }: IconProps) {
                 strokeWidth="1.5"
             />
 
-            {/* Abstract "P" form using negative space */}
+            {/* Abstract "P" form - Geometric Refinement */}
+            {/* Stem */}
             <path
-                d="M9 14 L9 17"
+                d="M9 13.5 L9 17"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="1.5"
                 strokeLinecap="round"
             />
+            {/* Bowl - Perfect Arc */}
             <path
-                d="M9 14 C9 14, 12 13, 14 14 C16 15, 15 17, 12 17 L9 17"
+                d="M9 13.5 H12 C13.6569 13.5 15 14.8431 15 16.5 C15 16.7761 14.7761 17 14.5 17 H9"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"

@@ -106,16 +106,16 @@ export function ResumeCase({ artifact }: ResumeCaseProps) {
 
                             <div className="grid md:grid-cols-2 gap-8 pl-8 border-l border-border/50 group-hover:border-indigo-500/30 transition-colors">
                                 <div className="space-y-2">
-                                    <div className="text-eyebrow text-amber-600/80">Problem</div>
+                                    <div className="text-eyebrow text-premium/80">Problem</div>
                                     <p className="text-sm text-muted-foreground leading-relaxed">
                                         {fix.why_it_matters}
                                     </p>
                                 </div>
                                 <div className="space-y-3">
-                                    <div className="text-eyebrow text-emerald-600/80">Rewrite</div>
+                                    <div className="text-eyebrow text-success/80">Rewrite</div>
                                     <div className="relative">
-                                        <div className="absolute -left-4 top-1 text-emerald-500"><ArrowDown className="w-3 h-3" /></div>
-                                        <div className="font-serif text-foreground text-lg leading-relaxed bg-emerald-50/50 -mx-2 px-2 py-1 rounded">
+                                        <div className="absolute -left-4 top-1 text-success"><ArrowDown className="w-3 h-3" /></div>
+                                        <div className="font-serif text-foreground text-lg leading-relaxed bg-success/5 -mx-2 px-2 py-1 rounded">
                                             {fix.rewrite}
                                         </div>
                                     </div>
@@ -132,9 +132,9 @@ export function ResumeCase({ artifact }: ResumeCaseProps) {
 
 function VerdictStamp({ verdict }: { verdict: 'shortlist' | 'maybe' | 'pass' }) {
     const styles = {
-        shortlist: "text-emerald-700 border-emerald-700 bg-emerald-50 rounded-lg",
-        maybe: "text-amber-700 border-amber-700 bg-amber-50 rounded-lg",
-        pass: "text-rose-700 border-rose-700 bg-rose-50 rounded-lg"
+        shortlist: "text-success border-success bg-success/10 rounded-lg",
+        maybe: "text-premium border-premium bg-premium/10 rounded-lg",
+        pass: "text-destructive border-destructive bg-destructive/10 rounded-lg"
     }
 
     return (
@@ -146,9 +146,9 @@ function VerdictStamp({ verdict }: { verdict: 'shortlist' | 'maybe' | 'pass' }) 
 
 function LadderStrength({ text }: { text: 'weak' | 'medium' | 'strong' }) {
     const colors = {
-        weak: "text-rose-500 bg-rose-500/10 border-rose-500/20",
-        medium: "text-amber-500 bg-amber-500/10 border-amber-500/20",
-        strong: "text-emerald-600 bg-emerald-500/10 border-emerald-500/20"
+        weak: "text-destructive bg-destructive/10 border-destructive/20",
+        medium: "text-premium bg-premium/10 border-premium/20",
+        strong: "text-success bg-success/10 border-success/20"
     }
     return (
         <span className={cn("text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border", colors[text])}>

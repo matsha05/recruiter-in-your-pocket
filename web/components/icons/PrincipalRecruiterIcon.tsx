@@ -23,54 +23,42 @@ export function PrincipalRecruiterIcon({ className = "", size = 24 }: IconProps)
             xmlns="http://www.w3.org/2000/svg"
             className={className}
         >
-            {/* Head silhouette - rounded square, not circle (more sophisticated) */}
-            <rect
-                x="4"
-                y="3"
-                width="16"
-                height="18"
-                rx="4"
+            {/* Head/Shoulders Silhouette - Abstract & Professional */}
+            {/* Shoulders */}
+            <path
+                d="M4 21 C4 17.134 7.13401 14 11 14 H13 C16.866 14 20 17.134 20 21"
                 stroke="currentColor"
                 strokeWidth="1.5"
-                fill="none"
+                strokeLinecap="round"
             />
-
-            {/* Left eye - evaluative, asymmetric */}
+            {/* Head - Circle for geometric purity */}
             <circle
-                cx="9"
-                cy="10"
-                r="1.5"
-                fill="currentColor"
+                cx="12"
+                cy="8"
+                r="5"
+                stroke="currentColor"
+                strokeWidth="1.5"
             />
 
-            {/* Right eye - slightly different, suggests depth */}
+            {/* Focus/Authority Indicator - Abstract "Eye" or "Lens" */}
+            {/* Instead of a face, imply a "verified" or "expert" badge detail */}
             <circle
-                cx="15"
-                cy="10"
-                r="1.5"
+                cx="15.5"
+                cy="11.5"
+                r="3"
                 fill="currentColor"
+                stroke="white" // Knockout effect (assuming white bg, or transparent)
+                strokeWidth="2"
             />
-
-            {/* Subtle brow line - conveys scrutiny */}
+            {/* Checkmark inside the badge - implies "Decision Maker" */}
             <path
-                d="M7 7.5 L11 7"
-                stroke="currentColor"
+                d="M14.5 11.5 L15.2 12.2 L17 10.4"
+                stroke="white" // This would need to be background color ideally, but stroke works for knockout
                 strokeWidth="1.5"
                 strokeLinecap="round"
-            />
-            <path
-                d="M13 7 L17 7.5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-            />
-
-            {/* Neutral expression line - serious, professional */}
-            <path
-                d="M9 15.5 L15 15.5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-background" // Attempt to use CSS class for knockout color if possible, fallback to white/bg
+                style={{ stroke: 'var(--background)' }}
             />
         </svg>
     );

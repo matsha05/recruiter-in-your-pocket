@@ -223,7 +223,7 @@ export default function PaywallModal({
                 </div>
 
                 {error && (
-                    <div className="text-rose-500 text-sm text-center mb-4 bg-rose-500/10 p-2 rounded">
+                    <div className="text-destructive text-sm text-center mb-4 bg-destructive/10 p-2 rounded">
                         {error}
                     </div>
                 )}

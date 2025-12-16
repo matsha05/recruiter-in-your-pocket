@@ -16,7 +16,7 @@ export default function Icon() {
         (
             <div
                 style={{
-                    background: "#0D9488", // Brand teal
+                    background: "#0D9488", // Brand teal --brand matches Tailwind config
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -51,17 +51,15 @@ export default function Icon() {
                         strokeWidth="1.5"
                     />
 
-                    {/* Abstract P - vertical stem */}
+                    {/* Abstract P - Geometric Refinement Match */}
                     <path
-                        d="M9 14 L9 17"
+                        d="M9 13.5 L9 17"
                         stroke="white"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
                         strokeLinecap="round"
                     />
-
-                    {/* Abstract P - bowl */}
                     <path
-                        d="M9 14 C9 14, 12 13, 14 14 C16 15, 15 17, 12 17 L9 17"
+                        d="M9 13.5 H12 C13.6569 13.5 15 14.8431 15 16.5 C15 16.7761 14.7761 17 14.5 17 H9"
                         stroke="white"
                         strokeWidth="1.5"
                         strokeLinecap="round"

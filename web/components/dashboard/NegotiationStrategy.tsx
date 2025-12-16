@@ -26,9 +26,9 @@ export function NegotiationStrategy({ strategy }: NegotiationStrategyProps) {
                     </CardContent>
                 </Card>
 
-                <Card className={`border ${strategy.risk_assessment.toLowerCase().includes('high') ? 'bg-rose-50 border-rose-200' :
-                        strategy.risk_assessment.toLowerCase().includes('medium') ? 'bg-amber-50 border-amber-200' :
-                            'bg-emerald-50 border-emerald-200'
+                <Card className={`border ${strategy.risk_assessment.toLowerCase().includes('high') ? 'bg-destructive/5 border-destructive/20' :
+                    strategy.risk_assessment.toLowerCase().includes('medium') ? 'bg-premium/5 border-premium/20' :
+                        'bg-success/5 border-success/20'
                     }`}>
                     <CardHeader className="pb-2">
                         <CardTitle className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
@@ -100,9 +100,9 @@ export function NegotiationStrategy({ strategy }: NegotiationStrategyProps) {
                             ))}
                         </div>
 
-                        <div className="bg-amber-500/5 border border-amber-500/20 p-4 rounded-lg mt-4">
-                            <h4 className="text-xs font-bold uppercase text-amber-700 mb-1">Fallback Plan</h4>
-                            <p className="text-sm text-amber-900/80 leading-relaxed">
+                        <div className="bg-premium/5 border border-premium/20 p-4 rounded-lg mt-4">
+                            <h4 className="text-xs font-bold uppercase text-premium mb-1">Fallback Plan</h4>
+                            <p className="text-sm text-foreground/80 leading-relaxed">
                                 {strategy.fallback_plan}
                             </p>
                         </div>

@@ -55,7 +55,7 @@ export function UserNav({
                                     </span>
                                 )}
                                 {user.membership === "audit" && (
-                                    <span className="text-emerald-600">1 Audit Available</span>
+                                    <span className="text-success">1 Audit Available</span>
                                 )}
                                 {(user.membership === "free" || !user.membership) && (
                                     <div className="flex flex-col gap-1">
