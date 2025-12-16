@@ -1,88 +1,100 @@
-# Design System Technical Specifications: "Luminous Studio"
+# Design System V2.1 — Technical Specifications
 
-**Version 3.0 (Elite Identity)**
 *Last Updated: Dec 15, 2025*
 
-This document defines the technical implementation standards for the "Elite Studio" aesthetic. These values are the source of truth for all frontend engineering.
-
-## 1. Typography System
-
-We use a "Luminous Authority" contrast model.
-
-### Fonts
-| Role | Font Family | Variable | Intent |
-|------|-------------|----------|--------|
-| **Editorial** | **Newsreader** | `var(--font-display)` | Authority, main headlines, "The Verdict". |
-| **Interface** | **Geist Sans** | `var(--font-body)` | Utility, controls, labels, body text. |
-| **Data** | **Geist Mono** | `var(--font-mono)` | Scores, code, technical metrics. |
-
-### Typesetting Rules
-| Element | Class | Tracking | Leading | Font |
-|---------|-------|----------|---------|------|
-| **Hero Heading** | `.text-hero` | `-0.02em` | `1.1` | Newsreader (Display) |
-| **Section Title** | `.text-title` | `-0.01em` | `1.2` | Newsreader (Display) |
-| **Body (Long)** | `.text-reading` | `0em` | `1.6` | Geist Sans |
-| **Label/Meta** | `.text-label` | `0.05em` | `1` | Geist Sans (Uppercase often) |
-| **The Score** | `.text-score` | `-0.03em` | `1` | Geist Mono |
-
 ---
 
-## 2. Color System: "Ink & Light"
+## 1. Typography
 
-We use strictly defined semantic colors. Avoid raw hex values.
+| Role | Font | Variable | Weight |
+|---|---|---|---|
+| **Display** | Fraunces | `var(--font-display)` | 400 (H1), 500 (H2+) |
+| **Body** | Geist Sans | `var(--font-body)` | 400, 500 |
+| **Mono** | Geist Mono | `var(--font-mono)` | 400 |
 
-### Palette HSL
-| Semantic Token | Tailwind | Verified Value | Description |
-|----------------|----------|----------------|-------------|
-| **Premium / Hero** | `--gold` | `43 96% 64%` | **Luminous Gold**. High saturation active state. |
-| **Success / Valid** | `--moss` | `160 84% 39%` | **Technical Teal**. Not "tree green". |
-| **Warning / Fix** | `--amber` | `25 90% 55%` | **Dirty Orange**. Traffic light yellow-orange. |
-| **Error / Critical** | `--rose` | `350 89% 60%` | **Soft Crimson**. Serious but not screaming. |
-| **Ink (Text)** | `--foreground` | `0 0% 9%` | **Off-Black**. Sharp contrast against paper. |
-
-### Backgrounds
-- **Paper:** `--background` (White / #050505)
-- **Subtle:** `--secondary` (Gray-50 / Gray-900)
-- **Glass:** Backdrops use `backdrop-blur-md` with alpha backgrounds.
-
----
-
-## 3. Depth System: "Luminous Borders"
-
-We typically avoid heavy shadows in favor of "Alpha Borders" (white/10% or black/5%).
-
-### Depth Classes
-| Utility | CSS Logic | Usage |
-|---------|-----------|-------|
-| `.studio-panel` | `border border-black/5 bg-surface shadow-sm` | Cards, Report Sections. |
-| `.studio-glass` | `border border-white/10 bg-white/50 backdrop-blur` | Sticky Headers, Toast Messages. |
-| `.studio-shimmer` | `linear-gradient` animation | Loading states, Premium buttons. |
-
----
-
-## 4. Animation Physics: "Snap"
-
-All interactivity should feel immediate and crisp.
-
-### Physics Config
-```javascript
-export const TRANSITION_SNAP = {
-    type: "spring",
-    stiffness: 400,
-    damping: 30
-};
-
-export const TRANSITION_REVEAL = {
-    duration: 0.6,
-    ease: [0.22, 1, 0.36, 1] // "Cinematic Ease"
-};
+### Installation
+```bash
+npm install @fontsource/fraunces
+# Geist already installed via `geist` package
 ```
 
 ---
 
-## 5. Trust Signals
+## 2. Colors
 
-Trust must be visible but secondary.
-- **Lock Icon:** Use `w-3 h-3` (tiny).
-- **Placement:** Footer or micro-copy under buttons.
-- **Copy:** "Encrypted", "Auto-deleted", "No training".
+| Token | Light | Dark | Usage |
+|---|---|---|---|
+| `--background` | `#FAFAFA` | `#111111` | Page |
+| `--foreground` | `#111111` | `#EEEEEE` | Text |
+| `--muted` | `#6B7280` | `#9CA3AF` | Secondary |
+| `--border` | `rgba(0,0,0,0.08)` | `rgba(255,255,255,0.10)` | Dividers |
+| **`--brand`** | `#0D9488` | `#2DD4BF` | **Primary CTA, Score** |
+| `--accent` | `#334155` | `#94A3B8` | UI chrome |
+| `--accent-muted` | `#64748B` | `#64748B` | Links |
+| `--premium` | `#D97706` | `#FBBF24` | Gold unlock only |
+
+---
+
+## 3. Radius & Shadows
+
+| Token | Value |
+|---|---|
+| `--radius` | `4px` |
+| `--radius-sm` | `2px` |
+| `--radius-lg` | `8px` |
+| `shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.04)` |
+
+**No other shadows allowed.**
+
+---
+
+## 4. Motion
+
+| Token | Value |
+|---|---|
+| `--ease` | `cubic-bezier(0.16, 1, 0.3, 1)` |
+| `--duration-fast` | `100ms` |
+| `--duration-normal` | `200ms` |
+| `--duration-slow` | `350ms` |
+
+**Animatable properties:** `opacity`, `transform`, `background-color` only.
+
+---
+
+## 5. States
+
+| State | Rule |
+|---|---|
+| Hover | Lighten 10% |
+| Active | Darken 10% |
+| Disabled | `opacity-50`, `pointer-events-none` |
+| Focus | Offset Slate ring, 2px gap |
+
+---
+
+## 6. Z-Index Scale
+
+| Level | Value | Usage |
+|---|---|---|
+| Sticky | `10` | Headers |
+| Dropdown | `20` | Menus |
+| Modal | `30` | Dialogs |
+| Toast | `40` | Notifications |
+
+---
+
+## 7. Responsive
+
+| Breakpoint | Width |
+|---|---|
+| `sm` | 640px |
+| `md` | 768px |
+| `lg` | 1024px |
+| `xl` | 1280px |
+
+**Max widths:** 768px (prose), 1200px (app).
+**Touch targets:** 44px minimum on mobile.
+
+---
+
+*See also: `research-ui-contract.md` for diagram specifications.*

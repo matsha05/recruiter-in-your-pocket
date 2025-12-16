@@ -1,6 +1,6 @@
-# Research UI Contract (v1.0)
+# Research UI Contract (v2.0)
 
-**Applies to:** All Hiring Research Library pages and all future research deep dives.
+**Applies to:** All Hiring Research Library pages and future research deep dives.
 
 **Purpose:** Ensure every research page feels calm, editorial, credible, and research-grade. Prevent drift toward marketing UI, dashboards, or decorative patterns.
 
@@ -12,258 +12,184 @@
 
 **They should feel like:**
 - Internal research memos
-- Technical documentation
+- Technical documentation from The Economist or academic journals
 - Editorial analysis
 
 **They should NOT feel like:**
 - Marketing landing pages
 - Feature explainers
 - Dashboard cards
-- UI component galleries
 
 **If an element draws attention to itself rather than the content, it is wrong.**
 
 ---
 
-## 2. Allowed Visual Primitives (Hard Limit)
+## 2. Color Contract (V2.1 Alignment)
+
+### Primary Palette
+| Token | Light | Dark | Usage |
+|---|---|---|---|
+| `--foreground` | `#111111` | `#EEEEEE` | Headings, body text |
+| `--muted` | `#6B7280` | `#9CA3AF` | Secondary text, labels, captions |
+| `--border` | `rgba(0,0,0,0.08)` | `rgba(255,255,255,0.10)` | Dividers, figure borders |
+| **`--brand`** | **`#0D9488` (Teal-600)** | **`#2DD4BF`** | Key finding highlights, data emphasis |
+| `--premium` | `#D97706` | `#FBBF24` | **Reserved for product CTAs only. Never in research content.** |
+
+### Usage Rules
+- **Teal (`--brand`)** may be used for: key finding borders, data visualization highlights, subtle background tones (`bg-brand/5`).
+- **Gold (`--premium`)** is **prohibited** in research content. It signals "premium unlock" which is wrong for credibility.
+- Research content should be **90% neutral** (Ink & Paper) with Teal as the sole accent.
+
+---
+
+## 3. Allowed Visual Primitives (Hard Limit)
 
 Research pages may ONLY use:
 
 - Typography
 - Whitespace
 - Dividers
-- Figures (images, diagrams)
+- Figures (diagrams, data visualizations)
 - Inline links
-- One brand accent color (indigo), used sparingly
+- One brand accent color (Teal), used sparingly
 
 **Anything outside this list requires explicit approval.**
 
 ---
 
-## 3. Prohibited UI Patterns
-
-The following patterns are **NOT allowed** on research pages:
+## 4. Prohibited UI Patterns
 
 | ❌ Prohibited | Reason |
-|---------------|--------|
+|---|---|
 | Decorative icons | Draws attention to UI, not content |
 | Emoji-style icons | Undermines credibility |
-| Icon tiles | Marketing pattern |
-| Chips | Marketing pattern |
-| Pills | Marketing pattern |
-| Badges | Marketing pattern |
-| Card grids for insights | Dashboard pattern |
-| Marketing-style callouts | Wrong tone |
-| Decorative backgrounds | Visual noise |
-| Excessive borders | Visual noise |
+| Chips, Pills, Badges | Marketing patterns |
+| Card grids | Dashboard pattern |
+| Glows, Blurs, Drop shadows | Decorative noise |
+| Infinite animations | Distracting; undermines seriousness |
 
-**Do not restyle these. Do not replace them. Remove them.**
+**Do not restyle these. Remove them.**
 
 ---
 
-## 4. Page Anatomy (Canonical Structure)
+## 5. Diagram Specification (NEW — V2.0)
 
-Every research deep dive must follow this exact structure and order:
+Diagrams are the **only** place where visual emphasis is encouraged. They must feel like data visualizations from a research paper or The Economist, not SaaS marketing.
 
-### 4.1 Page Header
+### 5.1 Visual Style
 
-- Category label (text-only)
-- Title
-- Subtitle or framing sentence
+| Attribute | Rule |
+|---|---|
+| **Strokes** | 1px, solid. No dashed lines unless semantically meaningful (e.g., "projected"). |
+| **Corners** | Sharp (`stroke-linejoin: miter`). No rounded corners on data paths. |
+| **Fills** | Flat colors only. No gradients. |
+| **Colors** | Monochrome base (`--foreground`, `--muted`). `--brand` (Teal) for primary data emphasis. ONE highlight per diagram max. |
+| **Shadows/Glows** | **Prohibited.** No `blur()`, no `box-shadow`, no `drop-shadow`. |
+| **Backgrounds** | Transparent or `--background`. No decorative fills. |
 
-**Rules:**
-- No icons
-- No pills
-- No background container
-- Typography only
+### 5.2 Typography in Diagrams
 
-### 4.2 Study Snapshot (Structured Container)
+| Element | Font | Size | Style |
+|---|---|---|---|
+| Axis labels | Geist Mono | 10px | Uppercase, `--muted` |
+| Data labels | Geist Mono | 11px | `--foreground` |
+| Figure caption | Geist Sans | 12px | `--muted`, italic allowed |
+| Key stat callout | Fraunces | 24-32px | `--brand` or `--foreground` |
 
-**Purpose:** Present study metadata and anchor credibility.
+### 5.3 Animation Rules
 
-**Allowed:**
-- Background container
-- Key statistic highlight
-- Editorial metadata rows
+| Rule | Reason |
+|---|---|
+| **Draw-in once on scroll** | Creates "reveal" moment. |
+| **No loops** | Loops are distracting and undermine seriousness. |
+| **End in static state** | The final frame must be fully legible. |
+| **Duration: 350-500ms** | Slow enough to perceive, fast enough to not feel sluggish. |
+| **Easing: `--ease`** | `cubic-bezier(0.16, 1, 0.3, 1)` — snappy. |
 
-**Required Content:**
-- Key statistic
-- What it studied
-- Method
-- Sample
-- Key finding
-- "So what for resumes"
-- Source + year range
+### 5.4 Figure Labeling
 
-**Rules:**
-- No chips, pills, or icons
-- Metadata must be label + value text
-- Background must be subtle and calm
+Every diagram must include:
+- **Figure number:** "Fig. 1", "Fig. 2", etc. (Geist Mono, 10px, uppercase, `--muted`)
+- **Caption:** One sentence explaining what the figure shows. (Geist Sans, 12px, `--muted`)
 
-### 4.3 Figures
+Example:
+```
+Fig. 1 — Aggregated gaze duration across 30 recruiter sessions.
+```
 
-**Purpose:** Visually explain evidence.
+### 5.5 Diagram Anatomy Examples
 
-**Rules:**
-- Figures must be labeled (Figure 1, Figure 2, etc.)
-- Each figure must have a one-sentence caption explaining meaning
-- Figures may be visually expressive
-- Figures must never compete with text hierarchy
+**Bar/Funnel Chart:**
+- Bars: `--muted` fill for secondary data, `--brand` fill for highlighted bar.
+- Axis: 1px `--border` stroke.
+- Labels: Geist Mono, right-aligned for Y-axis, centered for X-axis.
 
-> Figures are the only place where visual emphasis is encouraged.
+**Heatmap:**
+- Gradient: Monochrome (white → `--foreground`) or Teal gradient (`--brand/10` → `--brand`).
+- No "glow" overlays. Use opacity steps for intensity.
 
-### 4.4 Narrative Sections
+**Path/Flowchart:**
+- Lines: 1px `--foreground` or `--muted`.
+- Nodes: 4px radius, 1px border, no fill (or subtle `--muted/10`).
+- Arrows: Simple, not decorative.
 
-Example headings:
-- "People scan first, then decide whether to read"
-- "Why dense bullets underperform"
+---
 
-**Rules:**
-- Plain text
-- No containers
-- No icons
-- No background fills
-- Use whitespace and typography only
+## 6. Page Anatomy (Canonical Structure)
 
-> These sections should read like an essay.
+### 6.1 Page Header
+- Category label (text-only, Geist Mono, uppercase, `--muted`)
+- Title (Fraunces, `--foreground`)
+- Subtitle (Geist Sans, `--muted`)
 
-### 4.5 Insight Sections
+**No icons. No pills. No background container.**
 
-**Purpose:** Summarize key research insights.
+### 6.2 Study Snapshot
+- Background: `bg-brand/5` (subtle Teal tint) or `bg-secondary/20`
+- Border-left: 4px `--brand`
+- Key statistic: Fraunces, 32-40px
+- Metadata: Geist Sans, label-value pairs
 
-**Structure (each insight):**
-- Optional typographic marker (e.g. "INSIGHT 01", "F-PATTERN")
-- Headline
-- Supporting explanation
-- Optional RIYP mapping
+### 6.3 Figures
+- Labeled: "Fig. X"
+- Captioned: One-sentence explanation
+- May be visually expressive (within rules above)
 
-**Rules:**
-- No cards
-- No iconography
-- No chips
-- No colored tiles
-- Headline must carry hierarchy
-- Marker, if used, must be text-only and secondary
+### 6.4 Narrative Sections
+- Plain text. No containers, no icons, no background fills.
+- Whitespace and typography only.
 
-> If an insight does not need a marker, omit it.
-
-### 4.6 Examples (Do / Don't)
-
-**Purpose:** Make abstract findings concrete.
-
-**Allowed:**
-- Subtle background for contrast
-- Clear "Do" / "Don't" labeling
-
-**Rules:**
-- No icons or emoji
-- Labels must be typographic
-- Backgrounds must be neutral, not branded
-
-### 4.7 "What this changes in RIYP"
-
-**Purpose:** Explain how research informs the product.
-
-**Allowed:**
-- Background container
-- Clear list of product impacts
-
-**Rules:**
+### 6.5 Product Tie-In ("How this shapes RIYP")
+- Background container allowed
 - No pills or badges
-- No icons
-- Product names may be bolded or prefixed inline
-- Use editorial sentences, not UI labels
+- Editorial sentences, not UI labels
 
-**Example format:**
-> **Bullet Upgrades** encourage leading with metrics and strong verbs.
-
-### 4.8 Sources & Notes
-
-**Purpose:** Enable verification and transparency.
-
-**Allowed:**
-- Background container
-- Inline footnotes
-- Hover citation cards
-
-**Rules:**
-- Sources must be clearly separated from narrative content
-- Limitations must be explicitly stated
-- Footnotes must be quiet and unobtrusive
+### 6.6 Sources & Notes
+- Numbered footnotes or endnotes
+- Quiet and unobtrusive
 
 ---
 
-## 5. Color Contract
+## 7. Enforcement Checklist
 
-### Brand Gold Usage
-
-**Gold may be used ONLY for:**
-- Primary CTA
-- Key finding highlight borders
-- Very subtle background tones (bg-gold/5)
-- "Hot" spots in data visualizations (if appropriate)
-
-**Gold may NOT be used for:**
-- Body text
-- Decorative backgrounds (beyond subtle tint)
-- Excessive borders
-
-> Research content should be predominantly neutral (Ink & Paper).
-
----
-
-## 6. Typography Contract
-
-- Typography is the primary hierarchy mechanism
-- Headings must do the work, not UI elements
-- Metadata must be visually subordinate
-- Nothing should compete with reading flow
-
-**If you feel the need to add a visual element, first try:**
-1. Adjusting spacing
-2. Adjusting font size or weight
-3. Removing something else
-
----
-
-## 7. Spacing & Rhythm Contract
-
-- Large spacing between conceptual sections
-- Tight spacing within related content
-- Avoid evenly stacked layouts
-- Pages should feel breathable, not grid-bound
-
-> Editorial rhythm over UI rhythm.
-
----
-
-## 8. Side Rail & Footnotes
-
-- Side rail remains text-only
-- Footnotes remain minimal and citation-focused
-- Both must feel secondary to the main content
-
-> They support reading. They do not command attention.
-
----
-
-## 9. Enforcement Rules
-
-Any new research page must satisfy the following before merge:
+Before merge, every research page must pass:
 
 - [ ] No decorative icons
 - [ ] No chips, pills, or badges
-- [ ] No unnecessary card containers
-- [ ] Indigo used only in allowed roles
-- [ ] Page reads cleanly with CSS disabled except typography
+- [ ] No Gold (`--premium`) anywhere
+- [ ] Teal (`--brand`) used only in allowed roles
+- [ ] All diagrams have figure numbers and captions
+- [ ] No infinite animations
+- [ ] No glows or blurs
 
-**If any of these fail, the page is non-compliant.**
+**If any fail, the page is non-compliant.**
 
 ---
 
-## 10. Design Philosophy (Non-Optional)
+## 8. Design Philosophy
 
 > If a UI element exists, it must justify itself.
 > If removing an element improves reading, it should be removed.
 
 **Restraint is not a lack of design. Restraint is the design.**
+
