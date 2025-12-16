@@ -85,27 +85,27 @@ export default function HistorySidebar({
 
                 <div className="flex-1 p-5 overflow-y-auto">
                     {!user?.email ? (
-                        <div className="text-center py-10 text-muted-foreground">
-                            <EmptyReportIcon className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                            <div className="text-lg font-semibold text-foreground mb-2">
+                        <div className="text-center py-12">
+                            <h3 className="font-display text-xl text-foreground mb-2">
                                 Track your progress
-                            </div>
-                            <p className="mb-5">
-                                Log in to save every analysis, track your score improvements, and compare different versions of your resume.
+                            </h3>
+                            <p className="text-sm text-muted-foreground mb-6 max-w-[200px] mx-auto">
+                                Log in to save analyses and track score improvements.
                             </p>
                             <button onClick={onSignIn} className="w-full py-3 px-4 rounded-md bg-brand text-white font-medium text-sm hover:opacity-90 transition-opacity">
                                 Log In to Save History
                             </button>
                         </div>
                     ) : loading ? (
-                        <div className="text-center py-10 text-muted-foreground">Loading...</div>
+                        <div className="text-center py-12 text-muted-foreground">Loading...</div>
                     ) : reports.length === 0 ? (
-                        <div className="text-center py-10 text-muted-foreground">
-                            <EmptyReportIcon className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                            <div className="text-lg font-semibold text-foreground mb-2">
+                        <div className="text-center py-12">
+                            <h3 className="font-display text-xl text-foreground mb-2">
                                 No reports yet
-                            </div>
-                            <p>Run an analysis to see your history here.</p>
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                                Run an analysis to see your history here.
+                            </p>
                         </div>
                     ) : (
                         <div className="space-y-3">

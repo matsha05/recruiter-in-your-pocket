@@ -14,3 +14,4 @@ export { TransformArrowIcon } from './TransformArrowIcon';
 export { EmptyReportIcon } from './EmptyReportIcon';
 export { PocketMark } from './PocketMark';
 export { InsightSparkleIcon } from './InsightSparkleIcon';
+export { Wordmark } from './Wordmark';

@@ -50,6 +50,9 @@
     --radius: 0.25rem;
     /* 4px - V2.1 */
 
+    /* V2.1 Loading States */
+    --skeleton: hsl(var(--muted) / 0.1);
+
     /* V2.1 BRAND PALETTE */
     /* Brand: Teal (Primary CTA, Score) */
     --brand: 173 80% 30%;
@@ -234,5 +237,23 @@
   .animate-reveal {
     transition-timing-function: var(--ease);
     transition-duration: var(--duration-slow);
+  }
+
+  /* V2.1 FOCUS RING - Offset Slate, 2px gap */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+/* V2.1 REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

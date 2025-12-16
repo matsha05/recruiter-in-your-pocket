@@ -44,7 +44,7 @@ export default function WorkspaceHeader({
                     </button>
                 ) : (
                     <Link href="/" className="flex items-center gap-2">
-                        <PocketMark className="w-5 h-5 text-brand" /> {/* Changed mobile brand */}
+                        <PocketMark className="w-5 h-5 text-brand" />
                         <span className="font-display font-medium tracking-tight text-xl text-foreground">
                             Pocket
                         </span>

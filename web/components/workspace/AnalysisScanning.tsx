@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Scan, Brain, Ruler, Search } from "lucide-react";
-import { InsightSparkleIcon } from "@/components/icons";
+import { InsightSparkleIcon, SixSecondIcon } from "@/components/icons";
 
-
-
-const UNIVERSAL_HEURISTICS = [
+const ANALYSIS_STEPS = [
     { text: "Scanning for impact verbs & ROI...", icon: Search },
     { text: "Measuring narrative clarity...", icon: Ruler },
     { text: "Checking pattern alignment...", icon: Scan },
@@ -21,19 +19,19 @@ export default function AnalysisScanning() {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Cycle through heuristics
+        // Cycle through heuristics with smooth timing
         const stepInterval = setInterval(() => {
-            setStepIndex((prev) => (prev + 1) % UNIVERSAL_HEURISTICS.length);
-        }, 1800);
+            setStepIndex((prev) => (prev + 1) % ANALYSIS_STEPS.length);
+        }, 2000);
 
-        // Simulated progress bar (slower at end)
+        // Eased progress bar (slows at end for perceived thoroughness)
         const progressInterval = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 95) return prev;
-                const increment = Math.max(0.5, (95 - prev) / 40);
+                const increment = Math.max(0.3, (95 - prev) / 50);
                 return prev + increment;
             });
-        }, 100);
+        }, 80);
 
         return () => {
             clearInterval(stepInterval);
@@ -41,49 +39,76 @@ export default function AnalysisScanning() {
         };
     }, []);
 
-    const CurrentIcon = UNIVERSAL_HEURISTICS[stepIndex].icon;
+    const CurrentIcon = ANALYSIS_STEPS[stepIndex].icon;
 
     return (
         <div className="flex flex-col items-center justify-center h-full p-8 animate-in fade-in duration-500">
-            {/* Visual Scanner */}
-            <div className="relative w-24 h-24 mb-8">
-                {/* Pulse rings */}
-                <div className="absolute inset-0 border-2 border-[var(--brand)] rounded-full opacity-20 animate-ping" style={{ animationDuration: '2s' }} />
-                <div className="absolute inset-2 border border-[var(--brand)] rounded-full opacity-40 animate-ping" style={{ animationDuration: '2s', animationDelay: '0.4s' }} />
+            {/* Visual Scanner - Refined with V2.1 tokens */}
+            <div className="relative w-28 h-28 mb-10">
+                {/* Subtle pulse rings - brand color */}
+                <div
+                    className="absolute inset-0 border border-brand/30 rounded-full animate-ping"
+                    style={{ animationDuration: '2.5s' }}
+                />
+                <div
+                    className="absolute inset-3 border border-brand/20 rounded-full animate-ping"
+                    style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}
+                />
 
-                {/* Center Icon Container */}
-                <div className="absolute inset-0 flex items-center justify-center bg-[var(--bg-card)] rounded-full border border-[var(--brand)] shadow-[0_0_30px_rgba(79,70,229,0.15)] z-10">
-                    <CurrentIcon className="w-8 h-8 text-[var(--brand)] transition-all duration-300 animate-pulse" strokeWidth={1.5} />
+                {/* Center Icon Container - clean, no glow */}
+                <div className="absolute inset-0 flex items-center justify-center bg-card rounded-full border border-border z-10">
+                    <CurrentIcon
+                        className="w-10 h-10 text-brand transition-all duration-300"
+                        strokeWidth={1.5}
+                    />
                 </div>
 
-                {/* Rotating scanner line */}
-                <div className="absolute inset-[-4px] rounded-full overflow-hidden z-0 opacity-40">
-                    <div className="w-full h-1/2 bg-gradient-to-b from-transparent to-[var(--brand)] opacity-20 animate-spin origin-bottom" style={{ animationDuration: '3s', animationTimingFunction: 'linear' }} />
-                </div>
+                {/* Rotating accent arc */}
+                <svg
+                    className="absolute inset-[-8px] w-[calc(100%+16px)] h-[calc(100%+16px)] animate-spin z-0"
+                    style={{ animationDuration: '4s', animationTimingFunction: 'linear' }}
+                >
+                    <circle
+                        cx="50%"
+                        cy="50%"
+                        r="48%"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        strokeDasharray="40 200"
+                        className="text-brand/40"
+                    />
+                </svg>
             </div>
 
-            {/* Heuristic Text */}
-            <div className="flex flex-col items-center text-center h-[60px]">
+            {/* Heuristic Text - refined typography */}
+            <div className="flex flex-col items-center text-center h-16">
                 <div
                     key={stepIndex}
                     className="animate-in slide-in-from-bottom-2 fade-in duration-300"
                 >
-                    <p className="text-[15px] font-medium text-[var(--text-primary)] mb-1 font-display tracking-tight">
-                        {UNIVERSAL_HEURISTICS[stepIndex].text}
+                    <p className="text-base font-medium text-foreground mb-1 font-display tracking-tight">
+                        {ANALYSIS_STEPS[stepIndex].text}
                     </p>
                 </div>
-                <p className="text-[12px] text-[var(--text-muted)] mt-1">
-                    Analyzing pattern {stepIndex + 1} of {UNIVERSAL_HEURISTICS.length}...
+                <p className="text-xs text-muted-foreground mt-1">
+                    Analyzing pattern {stepIndex + 1} of {ANALYSIS_STEPS.length}
                 </p>
             </div>
 
-            {/* Progress Bar */}
-            <div className="w-64 h-1 bg-[var(--bg-section-muted)] rounded-full mt-8 overflow-hidden">
+            {/* Progress Bar - minimal, brand colored */}
+            <div className="w-56 h-1 bg-secondary rounded-full mt-10 overflow-hidden">
                 <div
-                    className="h-full bg-[var(--brand)] rounded-full transition-all duration-100 ease-out"
+                    className="h-full bg-brand rounded-full transition-all duration-100 ease-out"
                     style={{ width: `${progress}%` }}
                 />
             </div>
+
+            {/* Subtle reassurance */}
+            <p className="text-[11px] text-muted-foreground/60 mt-4 flex items-center gap-1.5">
+                <SixSecondIcon className="w-3.5 h-3.5" />
+                Simulating a principal recruiter's 6-second scan
+            </p>
         </div>
     );
 }

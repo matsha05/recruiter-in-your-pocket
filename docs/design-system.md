@@ -1,6 +1,6 @@
 # Design System V2.1 — Technical Specifications
 
-*Last Updated: Dec 15, 2025*
+*Last Updated: Dec 16, 2025*
 
 ---
 
@@ -11,12 +11,6 @@
 | **Display** | Fraunces | `var(--font-display)` | 400 (H1), 500 (H2+) |
 | **Body** | Geist Sans | `var(--font-body)` | 400, 500 |
 | **Mono** | Geist Mono | `var(--font-mono)` | 400 |
-
-### Installation
-```bash
-npm install @fontsource/fraunces
-# Geist already installed via `geist` package
-```
 
 ---
 
@@ -30,7 +24,6 @@ npm install @fontsource/fraunces
 | `--border` | `rgba(0,0,0,0.08)` | `rgba(255,255,255,0.10)` | Dividers |
 | **`--brand`** | `#0D9488` | `#2DD4BF` | **Primary CTA, Score** |
 | `--accent` | `#334155` | `#94A3B8` | UI chrome |
-| `--accent-muted` | `#64748B` | `#64748B` | Links |
 | `--premium` | `#D97706` | `#FBBF24` | Gold unlock only |
 
 ---
@@ -44,8 +37,6 @@ npm install @fontsource/fraunces
 | `--radius-lg` | `8px` |
 | `shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.04)` |
 
-**No other shadows allowed.**
-
 ---
 
 ## 4. Motion
@@ -58,6 +49,7 @@ npm install @fontsource/fraunces
 | `--duration-slow` | `350ms` |
 
 **Animatable properties:** `opacity`, `transform`, `background-color` only.
+**Reduced motion:** Respects `prefers-reduced-motion` globally.
 
 ---
 
@@ -68,11 +60,37 @@ npm install @fontsource/fraunces
 | Hover | Lighten 10% |
 | Active | Darken 10% |
 | Disabled | `opacity-50`, `pointer-events-none` |
-| Focus | Offset Slate ring, 2px gap |
+| Focus | `.focus-ring` utility (Slate ring, 2px offset) |
 
 ---
 
-## 6. Z-Index Scale
+## 6. Loading States
+
+| Pattern | Implementation |
+|---|---|
+| **Skeleton** | `<Skeleton />` component: `bg-[var(--skeleton)]`, `animate-pulse` |
+| **Empty State** | Text-first, Fraunces headline, no icons |
+| **Analysis Theater** | `AnalysisScanning.tsx` with recruiter-language phases |
+
+---
+
+## 7. Custom Icons
+
+Location: `/web/components/icons/`
+
+| Icon | Purpose |
+|---|---|
+| `PocketMark` | Brand mark (headers, favicon) |
+| `Wordmark` | Path-based "pocket" wordmark |
+| `PrincipalRecruiterIcon` | Recruiter persona |
+| `SixSecondIcon` | "6 seconds" concept |
+| `TransformArrowIcon` | Before/After rewrite |
+| `EmptyReportIcon` | Empty states (reserved) |
+| `InsightSparkleIcon` | AI insights, tips |
+
+---
+
+## 8. Z-Index Scale
 
 | Level | Value | Usage |
 |---|---|---|
@@ -83,7 +101,7 @@ npm install @fontsource/fraunces
 
 ---
 
-## 7. Responsive
+## 9. Responsive
 
 | Breakpoint | Width |
 |---|---|
@@ -97,4 +115,4 @@ npm install @fontsource/fraunces
 
 ---
 
-*See also: `research-ui-contract.md` for diagram specifications.*
+*See also: `design-principles.md` for brand guidelines, `research-ui-contract.md` for diagram specs.*

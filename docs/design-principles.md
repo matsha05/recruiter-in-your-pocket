@@ -75,12 +75,13 @@ Location: `/web/components/icons/`
 
 | Icon | File | Purpose | Usage |
 |------|------|---------|-------|
-| **PocketMark** | `PocketMark.tsx` | Brand wordmark | Headers (Landing, Workspace) |
+| **PocketMark** | `PocketMark.tsx` | Brand mark | Headers, Favicon |
+| **Wordmark** | `Wordmark.tsx` | Path-based "pocket" wordmark | Brand applications |
 | **PrincipalRecruiterIcon** | `PrincipalRecruiterIcon.tsx` | Recruiter persona | First Impression section |
 | **SixSecondIcon** | `SixSecondIcon.tsx` | "6 seconds" concept | InputPanel header |
 | **TransformArrowIcon** | `TransformArrowIcon.tsx` | Before/After rewrite | Bullet Upgrades section |
-| **EmptyReportIcon** | `EmptyReportIcon.tsx` | Empty states | HistorySidebar |
-| **InsightSparkleIcon** | `InsightSparkleIcon.tsx` | AI insights, tips | Pro Tip, Pricing features, Coaching notes |
+| **EmptyReportIcon** | `EmptyReportIcon.tsx` | Empty states | Reserved (text-first preferred) |
+| **InsightSparkleIcon** | `InsightSparkleIcon.tsx` | AI insights, tips | Pro Tip, Pricing, Coaching notes |
 
 #### Rules
 - All custom icons use `strokeWidth: 1.5` for consistency with Lucide utility icons
@@ -105,4 +106,4 @@ Location: `/web/components/icons/`
 
 ---
 
-*V2.1 — Updated Dec 15, 2025*
+*V2.1 — Updated Dec 16, 2025*
