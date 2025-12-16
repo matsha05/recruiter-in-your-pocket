@@ -300,6 +300,8 @@ export default function WorkspaceClient() {
                             isExporting={isExporting}
                             isSample={searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim())}
                             onNewReport={handleNewReport}
+                            freeUsesRemaining={freeUsesRemaining}
+                            onUpgrade={() => setIsPaywallOpen(true)}
                         />
                     )}
                 </div>

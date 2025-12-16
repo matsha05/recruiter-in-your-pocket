@@ -141,6 +141,47 @@ All report sections use identical chrome:
 
 ---
 
+## Report Section Patterns
+
+### Subscore Color Thresholds
+Signal Analysis subscores use semantic colors based on score value:
+
+| Score Range | Token | Meaning |
+|-------------|-------|---------|
+| **85+** | `text-success` (Green) | Strong signal |
+| **70–84** | `text-premium` (Gold) | Solid foundation |
+| **<70** | `text-destructive` (Red) | Needs work |
+
+**Implementation:** Color applies to numbers only, not backgrounds. Cards remain neutral (`bg-secondary/20`).
+
+### Subscore Hierarchy
+**Story is the most important subscore.** Order: Story → Impact → Clarity → Readability.
+
+The methodology tooltip explains:
+- **Story** — "What narrative are you telling? This is the most important signal."
+- **Impact, Clarity, Readability** — "Supporting dimensions that strengthen your story."
+
+### List Hierarchy (Working/Missing)
+- All items have **equal visual weight** (`text-muted-foreground`)
+- No colored backgrounds on list items
+- Headers: "Working" (neutral), "Missing" (gold text)
+
+### The Red Pen Pattern
+- **Hero rewrite:** Interactive tap-to-reveal, clean white card
+- **Body font only** — no monospace for rewrites (jarring)
+- **Collapsed list:** Show 2 rewrites by default, "Show X more" to expand
+- **Coaching notes:** Inline text, not separate boxes
+
+### Report Footer CTA States
+
+| Context | CTA | Button Color |
+|---------|-----|--------------|
+| **Sample report** | "That's the full picture." → **Run Your Free Report →** | `bg-brand` (Teal) |
+| **Real report, has credits** | "That's the full picture." → **+ Run Another** | `bg-brand` (Teal) |
+| **Real report, exhausted** | "You've used your free reports." → **✨ Unlock Unlimited** | `bg-premium` (Gold) |
+
+---
+
 ## Messaging: "See What They See"
 
 **One-Liner:** `See what they see.`
@@ -156,4 +197,4 @@ All report sections use identical chrome:
 
 ---
 
-*V2.1 — Updated Dec 16, 2025*
+*V2.2 — Updated Dec 16, 2025*

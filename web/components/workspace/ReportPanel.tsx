@@ -14,6 +14,8 @@ interface ReportPanelProps {
     isExporting?: boolean;
     isSample?: boolean;
     onNewReport?: () => void;
+    freeUsesRemaining?: number;
+    onUpgrade?: () => void;
 }
 
 export default function ReportPanel({
@@ -24,7 +26,9 @@ export default function ReportPanel({
     onExportPdf,
     isExporting = false,
     isSample = false,
-    onNewReport
+    onNewReport,
+    freeUsesRemaining = 2,
+    onUpgrade
 }: ReportPanelProps) {
 
     // Derived states
@@ -113,7 +117,13 @@ export default function ReportPanel({
 
                         {/* The "Paper" */}
                         <div className="bg-background border border-border/50 shadow-sm rounded-xl p-8 md:p-12">
-                            <ReportStream report={report} />
+                            <ReportStream
+                                report={report}
+                                isSample={isSample}
+                                onNewReport={onNewReport}
+                                freeUsesRemaining={freeUsesRemaining}
+                                onUpgrade={onUpgrade}
+                            />
                         </div>
                     </div>
                 </div>

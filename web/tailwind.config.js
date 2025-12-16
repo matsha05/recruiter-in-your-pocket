@@ -105,10 +105,12 @@ module.exports = {
 					DEFAULT: 'hsl(var(--rose))',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
-				// Status aliases
-				'status-success': 'hsl(var(--status-success))',
-				'status-warning': 'hsl(var(--status-warning))',
-				'status-error': 'hsl(var(--status-error))'
+				// Semantic status colors
+				success: 'hsl(var(--success))',
+				premium: 'hsl(var(--premium))',
+				'status-success': 'hsl(var(--success))',
+				'status-warning': 'hsl(var(--premium))',
+				'status-error': 'hsl(var(--destructive))'
 			},
 			fontSize: {
 				'2xs': ['0.6875rem', { lineHeight: '1rem' }],
