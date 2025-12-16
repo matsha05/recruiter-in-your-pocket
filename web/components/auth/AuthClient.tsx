@@ -70,11 +70,11 @@ export default function AuthClient() {
         <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
             <div className="w-full max-w-md space-y-8">
                 <div className="text-center space-y-2">
-                    <h1 className="text-3xl font-serif font-medium text-foreground">Welcome Back</h1>
+                    <h1 className="text-3xl font-display font-medium text-foreground">Welcome Back</h1>
                     <p className="text-muted-foreground">Sign in to access your reports and history.</p>
                 </div>
 
-                <div className="bg-card border border-border rounded-xl p-8 shadow-sm">
+                <div className="bg-card border border-border/10 rounded-md p-8 shadow-sm">
                     {step === "email" ? (
                         <form onSubmit={handleSendCode} className="space-y-4">
                             <div className="space-y-2">
@@ -87,7 +87,7 @@ export default function AuthClient() {
                                         placeholder="you@company.com"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-2 bg-background border border-input rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                        className="w-full pl-10 pr-4 py-2 bg-secondary/50 border-0 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-ring transition-all"
                                         autoFocus
                                     />
                                 </div>
@@ -96,7 +96,7 @@ export default function AuthClient() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                                className="w-full py-2 bg-brand text-white rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                             >
                                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Send Login Code <ArrowRight className="w-4 h-4" /></>}
                             </button>
@@ -129,7 +129,7 @@ export default function AuthClient() {
                                             verifyToken(val);
                                         }
                                     }}
-                                    className="w-full px-4 py-2 bg-background border border-input rounded-md text-center text-lg tracking-widest font-mono focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                    className="w-full px-4 py-2 bg-secondary/50 border-0 rounded-md text-center text-lg tracking-widest font-mono focus:outline-none focus:ring-1 focus:ring-ring transition-all"
                                     autoFocus
                                     maxLength={8}
                                 />
@@ -138,7 +138,7 @@ export default function AuthClient() {
                             <button
                                 type="submit"
                                 disabled={loading || otp.length < 8}
-                                className="w-full py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                                className="w-full py-2 bg-brand text-white rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                             >
                                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Verify & Sign In <Check className="w-4 h-4" /></>}
                             </button>

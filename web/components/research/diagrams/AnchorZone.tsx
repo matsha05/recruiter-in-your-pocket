@@ -19,19 +19,19 @@ export function AnchorZone() {
 
                 {/* Point 1: First Offer (The Anchor) - Indigo/Tech */}
                 <div className="absolute left-[15%] flex flex-col items-center group">
-                    <div className="w-3 h-3 bg-neutral-900 border-2 border-indigo-400 rounded-full shadow-[0_0_10px_rgba(129,140,248,0.3)] z-10 mb-5 transition-transform group-hover:scale-125" />
+                    <div className="w-3 h-3 bg-background border-2 border-slate rounded-full z-10 mb-5 transition-transform group-hover:scale-125" />
                     <div className="absolute top-8 w-max text-center opacity-60 group-hover:opacity-100 transition-opacity">
-                        <span className="block text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-1">First Offer</span>
-                        <span className="font-mono text-xs text-indigo-300">$130k</span>
+                        <span className="block text-[10px] font-bold uppercase tracking-widest text-slate mb-1">First Offer</span>
+                        <span className="font-mono text-xs text-muted-foreground">$130k</span>
                     </div>
                 </div>
 
                 {/* Point 2: Healthy Anchor (The Strategy) - Gold */}
                 <div className="absolute left-[50%] flex flex-col items-center group">
-                    <div className="w-5 h-5 bg-neutral-900 border-[3px] border-gold rounded-full shadow-[0_0_20px_rgba(251,191,36,0.5)] z-20 mb-5 scale-110 group-hover:scale-125 transition-transform" />
+                    <div className="w-5 h-5 bg-background border-[3px] border-brand rounded-full z-20 mb-5 scale-110 group-hover:scale-125 transition-transform" />
                     <div className="absolute top-8 w-max text-center">
-                        <span className="block text-[10px] font-bold uppercase tracking-widest text-gold mb-1">Package Ask</span>
-                        <span className="font-mono text-sm text-foreground bg-gold/10 px-2 py-0.5 rounded border border-gold/20 shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]">$145k</span>
+                        <span className="block text-[10px] font-bold uppercase tracking-widest text-brand mb-1">Package Ask</span>
+                        <span className="font-mono text-sm text-foreground bg-brand/10 px-2 py-0.5 rounded-sm border border-brand/20">$145k</span>
                     </div>
                 </div>
 
@@ -58,10 +58,10 @@ export function AnchorZone() {
 
             </div>
 
-            <div className="mt-8 p-4 bg-neutral-900 rounded-lg border border-white/10 text-center shadow-inner">
-                <p className="text-sm text-muted-foreground font-serif">
+            <div className="mt-8 p-4 bg-secondary/20 rounded-md border border-border/10 text-center">
+                <p className="text-sm text-muted-foreground font-display">
                     Research shows you want to anchor <strong>just below</strong> the impasse point. <br />
-                    Correct for "First Offer" anchoring by responding with a <span className="text-gold font-medium">Package Ask</span>.
+                    Correct for "First Offer" anchoring by responding with a <span className="text-brand font-medium">Package Ask</span>.
                 </p>
             </div>
         </div>

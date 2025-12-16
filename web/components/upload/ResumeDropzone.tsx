@@ -3,7 +3,8 @@
 import { useState, useCallback } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import { motion, AnimatePresence } from "framer-motion";
-import { Upload, FileText, AlertCircle, Sparkles } from "lucide-react";
+import { Upload, FileText, AlertCircle } from "lucide-react";
+import { InsightSparkleIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -106,7 +107,7 @@ export function ResumeDropzone({
                                     <FileText className="h-10 w-10 text-neutral-400 group-hover:text-primary transition-colors" opacity={0.5} strokeWidth={1.5} />
                                 </div>
                                 {/* Decorative Elements */}
-                                <Sparkles className="absolute -right-4 -top-4 h-6 w-6 text-premium-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
+                                <InsightSparkleIcon className="absolute -right-4 -top-4 h-6 w-6 text-premium-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
                             </div>
 
                             <div className="space-y-3 text-center">

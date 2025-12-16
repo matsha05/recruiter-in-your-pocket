@@ -53,13 +53,13 @@ export function NegotiationTimeline() {
                             </div>
 
                             {/* Content */}
-                            <h4 className="font-serif font-medium text-foreground mb-2 text-sm">{step.title}</h4>
+                            <h4 className="font-display font-medium text-foreground mb-2 text-sm">{step.title}</h4>
                             <p className="text-[11px] text-muted-foreground mb-4 h-8 leading-snug px-2 max-w-[140px] mx-auto">
                                 {step.desc}
                             </p>
 
                             {/* Action Tag - Pill */}
-                            <div className="inline-flex items-center justify-center px-3 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-[10px] font-mono font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide group-hover:border-neutral-400 dark:group-hover:border-neutral-600 transition-colors">
+                            <div className="inline-flex items-center justify-center px-3 py-1.5 rounded-sm bg-secondary/50 border border-border/10 text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wide group-hover:border-border/30 transition-colors">
                                 {step.action}
                             </div>
                         </div>

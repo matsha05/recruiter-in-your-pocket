@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { SkimView } from "@/components/workspace/SkimView";
 import { ArrowRight, Lock } from "lucide-react";
+import { PocketMark } from "@/components/icons";
 import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
 import { BackedByResearch } from "@/components/landing/BackedByResearch";
@@ -60,11 +61,12 @@ export default function LandingClient() {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-gold/20">
+        <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-brand/20">
             {/* Navbar: Minimal, Technical */}
             <header className="h-16 flex items-center justify-between px-6 border-b border-white/5 bg-background/80 backdrop-blur-md sticky top-0 z-50">
                 <div className="flex items-center gap-2">
-                    <span className="text-xl font-serif font-medium tracking-tight text-foreground">Recruiter in Your Pocket</span>
+                    <PocketMark className="w-6 h-6 text-brand" />
+                    <span className="text-xl font-display font-medium tracking-tight text-foreground">Recruiter in Your Pocket</span>
                 </div>
                 <nav className="flex items-center gap-6">
                     <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">Research</Link>
@@ -74,7 +76,7 @@ export default function LandingClient() {
                         <div className="flex items-center gap-4">
                             <UserNav user={user} onSignOut={signOut} />
                             <Link href="/workspace">
-                                <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:translate-y-[-1px] transition-transform">Open Studio</Button>
+                                <Button variant="brand" size="sm">Open Studio</Button>
                             </Link>
                         </div>
                     ) : (
@@ -83,7 +85,7 @@ export default function LandingClient() {
                                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Log In</Button>
                             </Link>
                             <Link href="/workspace">
-                                <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:translate-y-[-1px] transition-transform shadow-lg shadow-black/5">Get Started</Button>
+                                <Button variant="brand" size="sm">Get Started</Button>
                             </Link>
                         </div>
                     )}
@@ -143,7 +145,7 @@ export default function LandingClient() {
                         <div className="text-sm text-muted-foreground font-medium">
                             <p>Is this impression strong enough?</p>
                         </div>
-                        <Button onClick={handleFullAnalysis} size="lg" className="gap-2 bg-primary text-primary-foreground hover:translate-y-[-1px] transition-transform">
+                        <Button onClick={handleFullAnalysis} variant="brand" size="lg" className="gap-2">
                             Continue to Full Report <ArrowRight className="w-4 h-4" />
                         </Button>
                     </div>

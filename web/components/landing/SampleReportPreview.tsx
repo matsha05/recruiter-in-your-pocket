@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Eye, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { PrincipalRecruiterIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 export function SampleReportPreview() {
@@ -30,7 +31,7 @@ export function SampleReportPreview() {
             <div className="relative group perspective-1000">
 
                 {/* Glow Effect behind */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-gold/20 via-primary/5 to-moss/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-1000" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-premium/20 via-brand/5 to-emerald-500/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-1000" />
 
                 {/* Main Interface Card */}
                 <div className="relative bg-white dark:bg-[#0A0A0A] rounded-xl border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden">
@@ -50,24 +51,24 @@ export function SampleReportPreview() {
                         <div className="md:col-span-3 p-8 md:p-10 border-r border-black/5 dark:border-white/5 relative overflow-hidden">
                             <div className="space-y-8">
                                 <div className="space-y-3">
-                                    <div className="flex items-center gap-2 text-gold">
-                                        <Eye className="w-4 h-4" />
+                                    <div className="flex items-center gap-2 text-premium">
+                                        <PrincipalRecruiterIcon className="w-5 h-5" />
                                         <span className="text-[10px] font-bold tracking-widest uppercase text-foreground/60">First Impression</span>
                                     </div>
-                                    <h3 className="font-serif text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
+                                    <h3 className="font-display text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
                                         "You read like a Founder, but you're burying the outcome."
                                     </h3>
                                 </div>
 
                                 <p className="text-lg text-muted-foreground leading-relaxed">
-                                    I scanned your "Leadership" section. You list 12 responsibilities, but I had to dig line-by-line to find the $5M expansion. <span className="text-foreground font-medium bg-gold/10 px-1 rounded">Lead with the win.</span>
+                                    I scanned your "Leadership" section. You list 12 responsibilities, but I had to dig line-by-line to find the $5M expansion. <span className="text-foreground font-medium bg-premium/10 px-1 rounded">Lead with the win.</span>
                                 </p>
 
                                 {/* The Critical Miss */}
-                                <div className="p-4 bg-amber/10 border border-amber/20 rounded-lg">
+                                <div className="p-4 bg-premium/10 border border-premium/20 rounded-md">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                                        <span className="text-[11px] font-bold uppercase tracking-wider text-amber">Critical Miss</span>
+                                        <div className="w-2 h-2 rounded-full bg-premium animate-pulse" />
+                                        <span className="text-[11px] font-bold uppercase tracking-wider text-premium">Critical Miss</span>
                                     </div>
                                     <p className="text-sm text-foreground/90">
                                         Your skills section lists "Strategy" but your bullets only show "Execution." There is a mismatch between your title and your evidence.
@@ -87,12 +88,12 @@ export function SampleReportPreview() {
                                         <circle cx="64" cy="64" r="60" stroke="#18A95E" strokeWidth="2" fill="transparent" strokeDasharray={377} strokeDashoffset={377 - (377 * score) / 100} className="transition-all duration-1000 ease-out" />
                                     </svg>
                                     <div className="absolute inset-0 flex items-center justify-center flex-col">
-                                        <span className="text-5xl font-serif font-medium tracking-tighter tabular-nums">{score}</span>
+                                        <span className="text-5xl font-display font-medium tracking-tighter tabular-nums">{score}</span>
                                         <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Score</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-moss/10 border border-moss/20 text-moss text-[11px] font-bold uppercase tracking-wider">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold uppercase tracking-wider">
                                         <CheckCircle2 className="w-3 h-3" /> Competes for Senior Roles
                                     </span>
                                 </div>
@@ -103,25 +104,25 @@ export function SampleReportPreview() {
                                 <div className="space-y-2">
                                     <div className="flex justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
                                         <span>Bullet Upgrade</span>
-                                        <span className="text-gold">{fixed ? "Applied" : "Try it"}</span>
+                                        <span className="text-premium">{fixed ? "Applied" : "Try it"}</span>
                                     </div>
 
                                     <div
-                                        className="group cursor-pointer bg-white dark:bg-black/40 border border-black/5 dark:border-white/5 rounded-lg p-4 transition-all hover:border-gold/50 relative overflow-hidden"
+                                        className="group cursor-pointer bg-white dark:bg-black/40 border border-black/5 dark:border-white/5 rounded-md p-4 transition-all hover:border-premium/50 relative overflow-hidden"
                                         onClick={() => setFixed(!fixed)}
                                     >
                                         <div className={cn("transition-all duration-500", fixed ? "opacity-40 blur-[1px] grayscale" : "opacity-100")}>
-                                            <p className="text-xs text-rose line-through decoration-rose/50 mb-1">Managed a team of 5 PMs...</p>
+                                            <p className="text-xs text-destructive line-through decoration-destructive/50 mb-1">Managed a team of 5 PMs...</p>
                                         </div>
 
                                         <div className={cn("absolute inset-0 p-4 bg-white dark:bg-[#0A0A0A] flex flex-col justify-center transition-all duration-300", fixed ? "translate-y-0 opacity-100" : "translate-y-full opacity-0")}>
-                                            <p className="text-sm font-medium text-moss flex items-center gap-2">
+                                            <p className="text-sm font-medium text-emerald-600 flex items-center gap-2">
                                                 <CheckCircle2 className="w-4 h-4" />
                                                 Scaled product org to 5 PMs...
                                             </p>
                                         </div>
 
-                                        <div className={cn("mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors", fixed ? "text-moss" : "text-gold")}>
+                                        <div className={cn("mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors", fixed ? "text-emerald-600" : "text-premium")}>
                                             {fixed ? "Recruiter sees: Clear ownership" : "Tap to Rewrite"}
                                             {!fixed && <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />}
                                         </div>

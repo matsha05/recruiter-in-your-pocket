@@ -59,9 +59,34 @@ We are NOT a friendly university career center. We are a high-stakes partner.
 - **No heavy shadows.** Depth via borders and background contrast.
 
 ### Iconography
-- **Set:** Lucide React
-- **Stroke:** `1.5px` (always)
-- **Style:** Outline only, no fill
+
+**The Problem:** Lucide is npm install-able by anyone. Every YC startup, every indie SaaS, every bootstrapped product uses Lucide. Stock icons are the design equivalent of system fonts—functional, but they scream "template."
+
+**The Standard:** Elite products (OpenAI, Notion, Stripe, Linear) use stock icons for **utility chrome only** and invest in **custom glyphs for signature moments**.
+
+#### Utility Icons (Lucide OK)
+- Navigation: Home, Settings, Menu, ChevronDown
+- Actions: Plus, Edit, Trash, Download, Send
+- Feedback: Check, X, AlertCircle, Loader
+- **Rules:** `strokeWidth: 1.5`, outline only, never filled
+
+#### Custom Signature Icons (IMPLEMENTED)
+Location: `/web/components/icons/`
+
+| Icon | File | Purpose | Usage |
+|------|------|---------|-------|
+| **PocketMark** | `PocketMark.tsx` | Brand wordmark | Headers (Landing, Workspace) |
+| **PrincipalRecruiterIcon** | `PrincipalRecruiterIcon.tsx` | Recruiter persona | First Impression section |
+| **SixSecondIcon** | `SixSecondIcon.tsx` | "6 seconds" concept | InputPanel header |
+| **TransformArrowIcon** | `TransformArrowIcon.tsx` | Before/After rewrite | Bullet Upgrades section |
+| **EmptyReportIcon** | `EmptyReportIcon.tsx` | Empty states | HistorySidebar |
+| **InsightSparkleIcon** | `InsightSparkleIcon.tsx` | AI insights, tips | Pro Tip, Pricing features, Coaching notes |
+
+#### Rules
+- All custom icons use `strokeWidth: 1.5` for consistency with Lucide utility icons
+- Custom icons support `className` and `size` props
+- **Never use** Lucide `Sparkles` — use `InsightSparkleIcon` instead
+- **Never use** generic User/Eye icons for recruiter persona — use `PrincipalRecruiterIcon`
 
 ---
 

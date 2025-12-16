@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, Sparkles, CreditCard, Clock, FileText, Zap, Loader2, Crown } from "lucide-react";
+import { Check, CreditCard, Clock, FileText, Zap, Loader2, Crown } from "lucide-react";
+import { InsightSparkleIcon, PocketMark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers/AuthProvider";
@@ -108,9 +109,10 @@ export default function SettingsClient() {
             <header className="bg-background/80 backdrop-blur-xl border-b border-border sticky top-0 z-20">
                 <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <span className="font-serif italic font-semibold text-xl text-foreground">Pocket</span>
-                        <span className="text-muted-foreground">/</span>
-                        <h1 className="font-medium text-sm text-foreground">Settings</h1>
+                        <PocketMark className="w-5 h-5 text-brand" />
+                        <span className="font-display font-medium text-xl text-foreground">Pocket</span>
+                        <span className="text-muted-foreground/30 text-xl font-light">/</span>
+                        <span className="font-display text-lg text-foreground/80">Settings</span>
                     </div>
                     <div className="text-[10px] uppercase tracking-widest text-muted-foreground/60 font-semibold hidden sm:block">
                         Secured by Stripe
@@ -121,35 +123,40 @@ export default function SettingsClient() {
             <main className="max-w-5xl mx-auto px-6 py-12 space-y-16">
 
                 {/* 1. Account Overview */}
-                <section className="space-y-6">
-                    <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 rounded-2xl bg-secondary/50 flex items-center justify-center text-foreground font-serif italic text-2xl select-none shrink-0 border border-border/50">
-                            {user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?"}
+                <section className="space-y-8">
+                    <div className="flex items-start gap-6">
+                        {/* Premium Avatar */}
+                        <div className="w-20 h-20 rounded-md bg-brand flex items-center justify-center text-white font-display font-semibold text-2xl select-none shrink-0 shadow-lg shadow-brand/20">
+                            {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "?"}
                         </div>
-                        <div className="space-y-4 flex-1 max-w-sm">
-                            <div>
-                                <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5 block">Display Name</label>
-                                <div className="flex gap-2">
+
+                        <div className="flex-1 space-y-6 pt-1">
+                            {/* Name Field */}
+                            <div className="max-w-md">
+                                <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Display Name</label>
+                                <div className="flex gap-3">
                                     <input
                                         type="text"
                                         value={displayName}
                                         onChange={(e) => setDisplayName(e.target.value)}
                                         placeholder="Enter your name"
-                                        className="flex-1 bg-secondary/30 border-0 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all"
+                                        className="flex-1 bg-background border border-border/20 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand/30 transition-all"
                                     />
                                     <button
                                         onClick={handleSaveProfile}
                                         disabled={isSavingProfile || !displayName.trim() || displayName === user?.firstName}
-                                        className="text-xs px-4 py-2 bg-foreground text-background hover:bg-foreground/90 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                                        className="px-5 py-2.5 bg-brand text-white hover:opacity-90 rounded-md font-medium text-sm transition-opacity disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
                                     >
                                         {isSavingProfile && <Loader2 className="w-3 h-3 animate-spin" />}
                                         Save
                                     </button>
                                 </div>
                             </div>
-                            <div>
-                                <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1.5 block">Email</label>
-                                <div className="text-sm font-medium text-muted-foreground bg-secondary/30 px-3 py-2 rounded-lg border-0">
+
+                            {/* Email Field */}
+                            <div className="max-w-md">
+                                <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Email</label>
+                                <div className="text-sm text-foreground bg-secondary/20 px-4 py-2.5 rounded-md border border-border/10">
                                     {user?.email}
                                 </div>
                             </div>
@@ -161,77 +168,90 @@ export default function SettingsClient() {
                 <section>
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h2 className="text-2xl font-serif font-medium text-foreground">Available Plans</h2>
+                            <h2 className="text-2xl font-display font-medium text-foreground">Available Plans</h2>
                             <p className="text-sm text-muted-foreground mt-1">Unlock Principal Recruiter analysis for every application.</p>
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {/* Single Pass ($19) */}
-                        <div className="bg-secondary/20 border border-black/5 dark:border-white/5 rounded-2xl p-8 flex flex-col relative overflow-hidden group hover:bg-secondary/30 transition-colors">
+                    <div className="grid md:grid-cols-3 gap-6 items-center">
+                        {/* TIER 1: Single Scan ($19) */}
+                        <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
                             <div className="mb-6">
-                                <h3 className="font-bold text-muted-foreground uppercase tracking-widest text-[10px] mb-2">One Report</h3>
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl font-display font-medium text-foreground">$19</span>
-                                    <span className="text-muted-foreground font-medium">/ pass</span>
-                                </div>
-                                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
-                                    One-time deep dive. Perfect for a final sanity check.
-                                </p>
+                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Scan</div>
+                                <div className="text-3xl font-display font-bold text-foreground">$19</div>
+                                <p className="text-sm text-muted-foreground mt-2">One-time deep dive.</p>
                             </div>
-
-                            <div className="space-y-4 flex-1">
+                            <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
                                 <FeatureItem text="1 Full Audit + Fixes" icon={Check} />
                                 <FeatureItem text="PDF Export included" icon={Check} />
-                                <FeatureItem text="Lifetime Access" icon={Check} />
-                            </div>
-
+                                <FeatureItem text="Lifetime access to report" icon={Check} />
+                            </ul>
                             <button
                                 onClick={() => onCheckoutClick("24h")}
                                 disabled={!!isLoading}
-                                className="mt-8 w-full py-3 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-black font-bold text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
+                                className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading === "24h" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Buy Single Pass
+                                Get Single Pass
                             </button>
                         </div>
 
-                        {/* Pro Membership ($39) - PRIMARY */}
-                        <div className="bg-background border border-gold/30 rounded-2xl p-8 flex flex-col relative overflow-hidden ring-1 ring-gold/10 shadow-2xl">
-                            <div className="absolute top-0 right-0 p-6">
-                                <Sparkles className="w-5 h-5 text-gold fill-gold/20" />
+                        {/* TIER 2: Pro Membership ($39) - HIGHLIGHTED */}
+                        <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] scale-[1.02] z-10">
+                            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
+                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-lg flex items-center gap-1.5">
+                                <Crown className="w-3 h-3 fill-white" /> Best Value
                             </div>
-
-                            {/* Shine */}
-                            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
                             <div className="mb-6">
-                                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-gold text-black text-[10px] font-bold uppercase tracking-widest mb-3">
-                                    <Crown className="w-3 h-3 fill-black/20" /> Best Value
-                                </div>
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl font-display font-medium text-foreground">$39</span>
-                                    <span className="text-muted-foreground font-medium">/ month</span>
-                                </div>
-                                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                                    The full system for a serious career move.
-                                </p>
+                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Pro Membership</div>
+                                <div className="text-4xl font-display font-bold text-foreground">$39<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/mo</span></div>
+                                <p className="text-sm text-muted-foreground mt-2">The complete toolkit.</p>
                             </div>
-
-                            <div className="space-y-4 flex-1">
-                                <FeatureItem text="Unlimited Reports" icon={Zap} highlight accent="gold" />
-                                <FeatureItem text="Version History & Tracking" highlight />
-                                <FeatureItem text="Offer Negotiation Guide" highlight />
-                                <FeatureItem text="Cancel Anytime" highlight />
-                            </div>
-
+                            <ul className="space-y-4 mb-8 text-sm text-foreground font-medium">
+                                <FeatureItem text="Unlimited Full Audits" icon={InsightSparkleIcon} accent="gold" />
+                                <FeatureItem text="Offer Negotiation Guide" />
+                                <FeatureItem text="Version History" />
+                                <FeatureItem text="Smart Bullet Rewriter" />
+                            </ul>
                             <button
                                 onClick={() => onCheckoutClick("30d")}
                                 disabled={!!isLoading}
-                                className="mt-8 w-full py-3 rounded-xl bg-gold text-black hover:translate-y-[-1px] transition-transform font-bold text-sm shadow-lg shadow-gold/20 flex items-center justify-center gap-2"
+                                className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20 flex items-center justify-center gap-2"
                             >
-                                {isLoading === "30d" && <Loader2 className="w-4 h-4 animate-spin text-black" />}
-                                Start Full Access
+                                {isLoading === "30d" && <Loader2 className="w-4 h-4 animate-spin" />}
+                                Start Pro Access
+                            </button>
+                        </div>
+
+                        {/* TIER 3: Executive ($79) */}
+                        <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
+                            <div className="mb-6">
+                                <div className="text-xs font-bold uppercase tracking-widest text-slate mb-2">Executive</div>
+                                <div className="text-3xl font-display font-bold text-foreground">$79<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/qtr</span></div>
+                                <p className="text-sm text-muted-foreground mt-2">For high-stakes searches.</p>
+                            </div>
+                            <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
+                                <li className="flex items-start gap-3">
+                                    <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
+                                    <span>Includes <strong>Pro Features</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
+                                    <span>LinkedIn Audit Guide</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
+                                    <span>Cover Letter Architect</span>
+                                </li>
+                            </ul>
+                            <button
+                                onClick={() => onCheckoutClick("90d" as any)}
+                                disabled={!!isLoading}
+                                className="w-full py-3 px-4 rounded-md border border-slate/20 bg-slate/5 text-slate font-medium text-sm hover:bg-slate/10 transition-colors flex items-center justify-center gap-2"
+                            >
+                                {isLoading === "90d" && <Loader2 className="w-4 h-4 animate-spin" />}
+                                Get Executive
                             </button>
                         </div>
                     </div>
@@ -249,7 +269,7 @@ export default function SettingsClient() {
                         <h2 className="text-lg font-medium text-foreground">Billing History</h2>
                     </div>
 
-                    <div className="bg-card border border-border/30 rounded-2xl overflow-hidden">
+                    <div className="bg-card border border-border/10 rounded-md overflow-hidden">
                         {loadingPasses ? (
                             <div className="p-12 text-center text-muted-foreground text-sm">Loading history...</div>
                         ) : passes.length === 0 ? (
@@ -280,7 +300,7 @@ export default function SettingsClient() {
                                                 <span className={cn(
                                                     "inline-flex items-center px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold",
                                                     isActive
-                                                        ? "bg-status-success/10 text-status-success"
+                                                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                                                         : "bg-muted text-muted-foreground"
                                                 )}>
                                                     {isActive ? "Active" : "Expired"}
@@ -305,7 +325,7 @@ export default function SettingsClient() {
                         </div>
                         <button
                             onClick={() => toast.info("Please email privacy@recruiterinyourpocket.com to process deletion requests safely.")}
-                            className="text-xs px-4 py-2 border border-border rounded-lg text-muted-foreground hover:bg-destructive/5 hover:text-destructive hover:border-destructive/30 transition-all font-medium"
+                            className="text-xs px-4 py-2 border border-border/10 rounded-md text-muted-foreground hover:bg-destructive/5 hover:text-destructive hover:border-destructive/30 transition-all font-medium"
                         >
                             Delete Account
                         </button>
@@ -314,9 +334,9 @@ export default function SettingsClient() {
                 {/* Email Prompt Modal */}
                 {showEmailInput && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200">
-                        <div className="bg-card border border-border shadow-lg rounded-xl w-full max-w-md p-6 space-y-6 animate-in zoom-in-95 duration-200">
+                        <div className="bg-card border border-border/10 shadow-lg rounded-md w-full max-w-md p-6 space-y-6 animate-in zoom-in-95 duration-200">
                             <div className="space-y-2 text-center">
-                                <h3 className="text-xl font-serif font-semibold">Where should we send your receipt?</h3>
+                                <h3 className="text-xl font-display font-semibold">Where should we send your receipt?</h3>
                                 <p className="text-muted-foreground text-sm">
                                     We'll link your pass to this email. You can create a password later.
                                 </p>
@@ -329,13 +349,13 @@ export default function SettingsClient() {
                                     placeholder="recruiter@example.com"
                                     value={guestEmail}
                                     onChange={(e) => setGuestEmail(e.target.value)}
-                                    className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="w-full px-4 py-3 rounded-md border border-border/10 bg-background focus:outline-none focus:ring-1 focus:ring-ring"
                                     autoFocus
                                 />
                                 <button
                                     type="submit"
                                     disabled={!guestEmail || !!isLoading}
-                                    className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                                    className="w-full py-3 rounded-md bg-brand text-white font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                                 >
                                     {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Continue to Checkout"}
                                 </button>

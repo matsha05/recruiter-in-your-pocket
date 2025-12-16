@@ -25,10 +25,10 @@ export default function OfferNegotiationGuidePage() {
                         </Button>
                     </Link>
                     <div className="space-y-4">
-                        <span className="inline-flex items-center rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                        <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">
                             The Recruiter's Playbook
                         </span>
-                        <h1 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-foreground">
+                        <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground">
                             Offer Negotiation Strategy
                         </h1>
                         <p className="text-xl text-muted-foreground font-sans leading-relaxed">
@@ -44,8 +44,8 @@ export default function OfferNegotiationGuidePage() {
                 </header>
 
                 {/* 2. Research Foundation (Custom Card for Guide) */}
-                <div className="bg-secondary/30 border border-border rounded-xl p-8 space-y-6">
-                    <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-medium text-sm uppercase tracking-wider">
+                <div className="bg-secondary/30 border border-border/10 rounded-md p-8 space-y-6">
+                    <div className="flex items-center gap-2 text-brand font-medium text-sm uppercase tracking-wider">
                         <Handshake className="w-4 h-4" />
                         <span>Research Foundation</span>
                     </div>
@@ -77,7 +77,7 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* 3. Main Content - Timeline */}
                 <section>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Figure 1: The negotiation timeline</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 1: The negotiation timeline</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         Most outcomes are decided by sequence, not cleverness. You win by moving in a calm, professional order.
                     </p>
@@ -88,7 +88,7 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* 4. Comp Stack */}
                 <section>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Figure 2: The comp stack, and why levers matter</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 2: The comp stack, and why levers matter</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         When you negotiate like it is “one number,” you miss the levers that companies actually use to close.
                     </p>
@@ -103,8 +103,8 @@ export default function OfferNegotiationGuidePage() {
                         <li>What is the company optimizing for (budget vs start date)?</li>
                         <li>What is your actual priority?</li>
                     </ul>
-                    <div className="bg-indigo-500/5 border border-indigo-500/10 p-6 rounded-xl">
-                        <strong className="block text-indigo-700 dark:text-indigo-400 mb-2 font-medium">A Recruiter Truth</strong>
+                    <div className="bg-brand/5 border border-brand/10 p-6 rounded-md">
+                        <strong className="block text-brand mb-2 font-medium">A Recruiter Truth</strong>
                         <p className="text-sm text-muted-foreground">Recruiters want the deal to happen. They need a story to take to comp. Give them that story.</p>
                     </div>
                 </section>
@@ -113,7 +113,7 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* 5. Anchor Zone */}
                 <section>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The counter: anchor confidently</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The counter: anchor confidently</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         First offers anchor outcomes. But extremely aggressive openings can increase impasse risk.
                     </p>
@@ -131,7 +131,7 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* 6. Salary History */}
                 <section>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Figure 4: The Salary History Trap</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 4: The Salary History Trap</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         Why do people volunteer their past salary even when they don't have to? Social pressure.
                     </p>
@@ -142,13 +142,13 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* 7. Level Ladder */}
                 <section>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Figure 5: Level is the Hidden Lever</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 5: Level is the Hidden Lever</h2>
                     <LevelLadder />
                 </section>
 
                 {/* 8. Scripts */}
                 <section>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-8">The Scripts (Copy/Paste)</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-8">The Scripts (Copy/Paste)</h2>
                     <div className="space-y-8">
                         <ScriptBlock
                             title="Asking for time"
@@ -169,9 +169,9 @@ export default function OfferNegotiationGuidePage() {
                 </section>
 
                 {/* 9. Product Tie In */}
-                <div className="bg-surface border border-border rounded-xl p-8 md:p-12">
+                <div className="bg-secondary/10 border border-border/10 rounded-md p-8 md:p-12">
                     <div className="max-w-xl mx-auto text-center space-y-6">
-                        <h2 className="font-serif text-3xl font-medium">How we built this into the product</h2>
+                        <h2 className="font-display text-3xl font-medium">How we built this into the product</h2>
                         <p className="text-muted-foreground">Every analysis tool in Recruiter In Your Pocket is built on this playbook.</p>
 
                         <div className="grid gap-4 text-left">
@@ -187,7 +187,7 @@ export default function OfferNegotiationGuidePage() {
 
                         <div className="pt-4">
                             <Link href="/workspace">
-                                <Button size="lg" className="w-full md:w-auto">
+                                <Button variant="brand" size="lg" className="w-full md:w-auto">
                                     Start Your Analysis
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
@@ -204,27 +204,27 @@ export default function OfferNegotiationGuidePage() {
 function ScriptBlock({ title, doText, dontText }: { title: string, doText: React.ReactNode, dontText: string }) {
     return (
         <div className="group relative">
-            <h3 className="font-serif text-lg font-medium text-foreground mb-4">{title}</h3>
+            <h3 className="font-display text-lg font-medium text-foreground mb-4">{title}</h3>
 
             <div className="grid md:grid-cols-2 gap-4">
                 {/* DO THIS - Luminous Emerald (Success/Growth) */}
-                <div className="relative p-6 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-transparent shadow-[0_0_20px_-10px_rgba(16,185,129,0.1)] overflow-hidden">
+                <div className="relative p-6 rounded-md border border-emerald-500/20 bg-emerald-500/5 overflow-hidden">
                     <div className="flex items-center gap-2 mb-3">
                         <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                         <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Winning Approach</span>
                     </div>
-                    <p className="text-base text-foreground/90 leading-relaxed font-medium font-serif border-l-2 border-emerald-500/30 pl-4">
+                    <p className="text-base text-foreground/90 leading-relaxed font-medium font-display border-l border-emerald-500/30 pl-4">
                         "{doText}"
                     </p>
                 </div>
 
                 {/* NOT THIS - Luminous Rose (Risk/Mistake) */}
-                <div className="relative p-6 rounded-xl border border-rose-500/10 bg-gradient-to-br from-rose-500/5 to-transparent opacity-80 hover:opacity-100 transition-opacity">
+                <div className="relative p-6 rounded-md border border-rose-500/10 bg-rose-500/5 opacity-80 hover:opacity-100 transition-opacity">
                     <div className="flex items-center gap-2 mb-3">
                         <AlertCircle className="w-4 h-4 text-rose-400" />
                         <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Common Mistake</span>
                     </div>
-                    <p className="text-base text-muted-foreground leading-relaxed italic font-serif border-l-2 border-rose-500/20 pl-4">
+                    <p className="text-base text-muted-foreground leading-relaxed italic font-display border-l border-rose-500/20 pl-4">
                         "{dontText}"
                     </p>
                 </div>

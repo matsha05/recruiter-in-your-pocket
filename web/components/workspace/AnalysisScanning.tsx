@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Scan, Brain, Sparkles, Ruler, Search } from "lucide-react";
+import { Scan, Brain, Ruler, Search } from "lucide-react";
+import { InsightSparkleIcon } from "@/components/icons";
 
 
 
@@ -11,7 +12,7 @@ const UNIVERSAL_HEURISTICS = [
     { text: "Checking pattern alignment...", icon: Scan },
     { text: "Analyzing visual hierarchy...", icon: Brain },
     { text: "Detecting passive voice...", icon: Search },
-    { text: "Identifying hidden wins...", icon: Sparkles },
+    { text: "Identifying hidden wins...", icon: InsightSparkleIcon },
     { text: "Formatting recruiter read...", icon: Brain },
 ];
 

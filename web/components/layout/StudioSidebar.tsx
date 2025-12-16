@@ -9,8 +9,10 @@ import {
     FileText,
     CreditCard,
     LogOut,
-    Sparkles
+    Zap
 } from "lucide-react";
+import { InsightSparkleIcon } from "@/components/icons";
+import { PocketMark } from "@/components/icons";
 
 interface StudioSidebarProps {
     className?: string;
@@ -26,8 +28,9 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
         >
             {/* Brand - Matches Landing Page Wordmark */}
             <div className="h-14 flex items-center px-6 border-b border-border bg-background relative z-10">
-                <Link href="/" className="px-6 py-6 block">
-                    <span className="font-serif font-medium tracking-tight text-xl text-foreground">
+                <Link href="/" className="flex items-center gap-2">
+                    <PocketMark className="w-5 h-5 text-brand" />
+                    <span className="font-display font-medium tracking-tight text-lg text-foreground">
                         Recruiter in Your Pocket
                     </span>
                 </Link>
@@ -47,9 +50,9 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
 
             {/* Footer / CTA */}
             <div className="p-4 border-t border-border/50 bg-background/50">
-                <div className="rounded-lg border bg-gradient-to-br from-background to-secondary/50 p-4">
+                <div className="rounded-md border border-border/10 bg-secondary/30 p-4">
                     <div className="flex items-center gap-2 mb-2">
-                        <Sparkles className="w-4 h-4 text-amber-500" />
+                        <InsightSparkleIcon className="w-4 h-4 text-premium" />
                         <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Pro Tip</span>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed mb-3">
@@ -84,11 +87,11 @@ function StudioNavLink({
             className={cn(
                 "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors",
                 isActive
-                    ? "bg-primary/5 text-primary"
+                    ? "bg-brand/5 text-brand"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
             )}
         >
-            <Icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-muted-foreground")} />
+            <Icon className={cn("h-4 w-4", isActive ? "text-brand" : "text-muted-foreground")} />
             {children}
         </Link>
     );

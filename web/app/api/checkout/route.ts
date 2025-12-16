@@ -13,10 +13,17 @@ const PRICE_IDS = {
     "90d": process.env.STRIPE_PRICE_ID_90D || "price_MISSING_90D_ID"
 };
 
-// ...
+const getBaseUrl = () => {
+    if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
+    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+    return "http://localhost:3000";
+};
 
 export async function POST(request: Request) {
-    // ... (guard checks)
+    if (!stripe) {
+        console.error("[checkout] STRIPE_SECRET_KEY not set");
+        return NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
+    }
 
     try {
         const body = await request.json();

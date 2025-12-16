@@ -18,36 +18,36 @@ export function LevelLadder() {
                     <div key={i} className="flex flex-col items-center group relative w-1/4">
                         {/* Bar */}
                         <div
-                            className="w-full bg-neutral-900 border border-white/10 rounded-t-lg shadow-sm group-hover:bg-gold/5 group-hover:border-gold/30 transition-all duration-300 relative overflow-hidden"
+                            className="w-full bg-secondary/30 border border-border/10 rounded-t-sm group-hover:bg-brand/5 group-hover:border-brand/30 transition-all duration-normal relative overflow-hidden"
                             style={{ height: `${lvl.h * 4}px` }}
                         >
-                            <div className="absolute bottom-0 w-full h-1 bg-white/10 group-hover:bg-gold/50 transition-colors" />
+                            <div className="absolute bottom-0 w-full h-px bg-border/20 group-hover:bg-brand/50 transition-colors" />
                         </div>
 
                         {/* Label */}
                         <div className="mt-4 text-center">
-                            <span className="block text-sm font-bold text-foreground font-serif">{lvl.name}</span>
+                            <span className="block text-sm font-bold text-foreground font-display">{lvl.name}</span>
                             <span className="block text-xs text-muted-foreground uppercase tracking-wider scale-90">{lvl.title}</span>
                         </div>
 
                         {/* Hover Detail */}
-                        <div className="absolute bottom-full mb-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 bg-neutral-900 border border-gold/20 text-foreground text-[10px] px-3 py-1.5 rounded shadow-xl whitespace-nowrap z-10 font-mono">
-                            <span className="text-gold">Scope:</span> {lvl.scope} • <span className="text-gold">Comp:</span> {lvl.comp}
+                        <div className="absolute bottom-full mb-2 opacity-0 group-hover:opacity-100 transition-all duration-normal translate-y-2 group-hover:translate-y-0 bg-card border border-brand/20 text-foreground text-[10px] px-3 py-1.5 rounded-sm whitespace-nowrap z-10 font-mono">
+                            <span className="text-brand">Scope:</span> {lvl.scope} • <span className="text-brand">Comp:</span> {lvl.comp}
                         </div>
                     </div>
                 ))}
 
                 {/* The "Hidden Lever" Arrow */}
-                <div className="absolute top-10 right-[15%] flex flex-col items-center text-gold animate-pulse">
+                <div className="absolute top-10 right-[15%] flex flex-col items-center text-brand">
                     <span className="text-[10px] font-bold uppercase tracking-widest mb-2 font-mono">The Big Jump</span>
-                    <TrendingUp className="w-8 h-8 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                    <TrendingUp className="w-8 h-8" />
                 </div>
             </div>
 
             <div className="text-center mt-8 max-w-md mx-auto">
-                <p className="text-sm text-muted-foreground font-medium font-serif">
+                <p className="text-sm text-muted-foreground font-medium font-display">
                     Negotiating base salary gets you +5%. <br />
-                    Negotiating <span className="text-gold border-b border-gold/30 pb-0.5">Level</span> gets you +30% to +50%.
+                    Negotiating <span className="text-brand border-b border-brand/30 pb-0.5">Level</span> gets you +30% to +50%.
                 </p>
             </div>
         </div>

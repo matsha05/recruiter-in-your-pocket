@@ -2,6 +2,7 @@
 
 import { useState, useRef, ChangeEvent } from "react";
 import { CloudUpload, FileText, ArrowRight, Loader2, Info } from "lucide-react";
+import { SixSecondIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 interface InputPanelProps {
@@ -72,15 +73,16 @@ export default function InputPanel({
             <div className="w-full max-w-2xl space-y-8">
 
                 {/* Header */}
-                <div className="text-center space-y-2">
-                    <h1 className="font-serif text-3xl md:text-4xl text-foreground">Prepare your Audit</h1>
-                    <p className="text-muted-foreground text-lg">
-                        Upload your resume to see what a Principal Recruiter would say in 6 seconds.
-                    </p>
+                <div className="text-center space-y-3">
+                    <h1 className="font-display text-3xl md:text-4xl text-foreground">Prepare your Audit</h1>
+                    <div className="flex items-center justify-center gap-2 text-muted-foreground text-lg">
+                        <SixSecondIcon className="w-5 h-5 text-brand" />
+                        <p>See what a Principal Recruiter sees in 6 seconds.</p>
+                    </div>
                 </div>
 
                 {/* Main Card */}
-                <div className="bg-card border border-border/50 shadow-sm rounded-xl overflow-hidden">
+                <div className="bg-card border border-border/10 shadow-sm rounded-md overflow-hidden">
 
                     {/* Section 1: Resume */}
                     <div className="p-6 md:p-8 space-y-6">
@@ -95,10 +97,10 @@ export default function InputPanel({
                         {/* Dropzone */}
                         <div
                             className={cn(
-                                "relative flex flex-col items-center justify-center gap-3 p-8 border border-dashed rounded-lg cursor-pointer transition-all duration-300",
+                                "relative flex flex-col items-center justify-center gap-3 p-8 border border-dashed rounded-md cursor-pointer transition-all duration-normal",
                                 isDragOver
-                                    ? "border-primary bg-primary/5"
-                                    : "border-border/60 hover:border-primary/50 hover:bg-muted/30"
+                                    ? "border-brand bg-brand/5"
+                                    : "border-border/60 hover:border-brand/50 hover:bg-muted/30"
                             )}
                             onClick={(e) => {
                                 if (e.target === e.currentTarget || !(e.target as HTMLElement).closest('input')) {
@@ -109,7 +111,7 @@ export default function InputPanel({
                             onDragLeave={() => setIsDragOver(false)}
                             onDrop={handleDrop}
                         >
-                            <CloudUpload className={cn("w-10 h-10 transition-colors", isDragOver ? "text-primary" : "text-muted-foreground/60")} strokeWidth={1.5} />
+                            <CloudUpload className={cn("w-10 h-10 transition-colors", isDragOver ? "text-brand" : "text-muted-foreground/60")} strokeWidth={1.5} />
                             <div className="text-center space-y-1">
                                 <div className="text-sm font-medium text-foreground">Click to upload or drag and drop</div>
                                 <div className="text-xs text-muted-foreground">PDF or DOCX (Text is parsed locally)</div>
@@ -148,8 +150,8 @@ export default function InputPanel({
 
                         {/* File Tag */}
                         {fileName && (
-                            <div className="flex items-center justify-between px-3 py-2 bg-primary/5 border border-primary/10 rounded-md animate-in fade-in slide-in-from-top-2">
-                                <span className="text-sm font-medium text-primary flex items-center gap-2">
+                            <div className="flex items-center justify-between px-3 py-2 bg-brand/5 border border-brand/10 rounded-md animate-in fade-in slide-in-from-top-2">
+                                <span className="text-sm font-medium text-brand flex items-center gap-2">
                                     <FileText className="w-3.5 h-3.5" />
                                     {fileName}
                                 </span>
@@ -211,8 +213,8 @@ export default function InputPanel({
                             onClick={onRun}
                             disabled={isLoading || !resumeText.trim()}
                             className={cn(
-                                "w-full flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold text-primary-foreground shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-                                "bg-primary hover:bg-primary/90"
+                                "w-full flex items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-medium text-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+                                "bg-brand hover:bg-brand/90"
                             )}
                         >
                             {isLoading ? (

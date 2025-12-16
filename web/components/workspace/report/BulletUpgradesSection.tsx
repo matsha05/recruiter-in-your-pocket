@@ -2,7 +2,7 @@
 
 import { ReportData } from "./ReportTypes";
 import { DiffView } from "../DiffView";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { TransformArrowIcon, InsightSparkleIcon } from "@/components/icons";
 
 export function BulletUpgradesSection({ data }: { data: ReportData }) {
     if (!data.rewrites || data.rewrites.length === 0) return null;
@@ -10,7 +10,10 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
     return (
         <section className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">03. The Red Pen</h2>
+                <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                    <TransformArrowIcon className="w-4 h-4 text-brand" />
+                    03. The Red Pen
+                </h2>
                 <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-1 rounded">
                     {data.rewrites.length} Critical Fixes
                 </span>
@@ -50,7 +53,7 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                                     {/* Coaching Note Footer */}
                                     {rewrite.enhancement_note && (
                                         <div className="bg-secondary/20 border-t border-border/50 px-4 py-3 flex gap-3 text-sm text-muted-foreground">
-                                            <Sparkles className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                                            <InsightSparkleIcon className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                                             <div className="space-y-1">
                                                 <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 block">Recruiter Note</span>
                                                 <p className="leading-snug">{rewrite.enhancement_note}</p>

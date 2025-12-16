@@ -36,9 +36,9 @@ export function AutomationPipeline() {
             stage: "Interview",
             automation: "Scoring",
             risk: "Standardized questions with biased grading",
-            color: "text-gold",
-            bg: "bg-gold/10",
-            border: "border-gold/30"
+            color: "text-brand",
+            bg: "bg-brand/10",
+            border: "border-brand/30"
         }
     ];
 
@@ -47,7 +47,7 @@ export function AutomationPipeline() {
             <div className="min-w-[600px] flex items-stretch gap-2">
                 {steps.map((s, i) => (
                     <div key={i} className="flex-1 flex items-center">
-                        <div className={`flex-1 flex flex-col h-full rounded-xl border ${s.border} ${s.bg} p-4`}>
+                        <div className={`flex-1 flex flex-col h-full rounded-md border ${s.border} ${s.bg} p-4`}>
                             <div className="flex items-center gap-2 mb-3">
                                 <s.icon className={`w-4 h-4 ${s.color}`} />
                                 <span className={`text-xs font-bold uppercase tracking-wider ${s.color}`}>{s.stage}</span>
@@ -55,7 +55,7 @@ export function AutomationPipeline() {
                             <div className="mb-4">
                                 <span className="text-sm font-medium text-foreground block">{s.automation}</span>
                             </div>
-                            <div className="mt-auto pt-3 border-t border-black/5 dark:border-white/5">
+                            <div className="mt-auto pt-3 border-t border-border/10">
                                 <p className="text-[10px] text-muted-foreground leading-snug">
                                     <strong className="block mb-0.5 text-foreground/70">Risk:</strong>
                                     {s.risk}

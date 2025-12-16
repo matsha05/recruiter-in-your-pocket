@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Eye, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { PrincipalRecruiterIcon } from "@/components/icons";
 import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
 
@@ -66,7 +67,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     <div className="md:col-span-3 p-8 md:p-10 border-r border-border/40 space-y-8">
                         <div className="space-y-3">
                             <div className="flex items-center gap-2 text-gold">
-                                <Eye className="w-4 h-4" />
+                                <PrincipalRecruiterIcon className="w-5 h-5" />
                                 <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">First Impression</span>
                             </div>
                             <h3 className="font-serif text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">

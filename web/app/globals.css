@@ -5,120 +5,174 @@
 @layer base {
   :root {
     /* 
-      STUDIO DESIGN SYSTEM V2 (Luminosity & Authority)
-      - Authority: Newsreader Serif for judgment
-      - Luminosity: Alpha-borders and diffuse shadows
-      - Ink: Sharp, high-contrast text
+      DESIGN SYSTEM V2.1
+      - Fraunces Display (Authority)
+      - Geist Sans/Mono (Precision)
+      - Teal Brand + Slate UI + Gold Premium
     */
-    
+
     /* Base Tones (Paper & Ink) */
-    --background: 0 0% 99%;      /* Slightly off-white paper */
-    --foreground: 220 10% 10%;   /* Deep Charcoal Ink */
+    --background: 0 0% 98%;
+    /* #FAFAFA */
+    --foreground: 0 0% 7%;
+    /* #111111 */
 
     --card: 0 0% 100%;
-    --card-foreground: 220 10% 10%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 10% 10%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 220 10% 10%;      /* Ink Primary */
+    --primary: 0 0% 7%;
+    /* Ink */
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 220 5% 96%;     /* Very subtle cool gray */
-    --secondary-foreground: 220 10% 10%;
+    --secondary: 220 5% 96%;
+    --secondary-foreground: 0 0% 7%;
 
     --muted: 220 5% 96%;
-    --muted-foreground: 220 5% 45%;
+    --muted-foreground: 220 9% 46%;
+    /* Gray-500 */
 
     --accent: 220 5% 96%;
-    --accent-foreground: 220 10% 10%;
+    --accent-foreground: 0 0% 7%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    /* Luminous Borders (Alpha-based for depth) */
-    /* This allows borders to darken the background rather than being a flat grey */
-    --border: 220 10% 10%; /* We use opacity in utility classes or handle this carefully */
-    --input: 220 10% 90%; 
-    --ring: 220 10% 10%;
+    /* V2.1 Borders */
+    --border: 0 0% 7%;
+    /* Uses opacity in utilities */
+    --input: 220 10% 90%;
+    --ring: 215 20% 27%;
+    /* Slate-700 */
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
+    /* 4px - V2.1 */
 
-    /* RECRUITER PALETTE */
-    /* Gold: Insight/Premium (The "Highlighter") */
-    --gold: 45 95% 50%;
-    
-    /* Moss: Strength/Working (Natural) */
-    --moss: 160 84% 39%;
-    
-    /* Amber: Warning/Gap (Caution) */
-    --amber: 25 90% 55%;
-    
-    /* Rose: Critical Miss (Brutal) */
-    --rose: 350 89% 60%;
+    /* V2.1 BRAND PALETTE */
+    /* Brand: Teal (Primary CTA, Score) */
+    --brand: 173 80% 30%;
+    /* Teal-600 #0D9488 */
 
-    /* TYPOGRAPHY TOKENS */
-    --font-newsreader: "Newsreader", serif;
-    --font-geist-sans: "Geist Sans", sans-serif;
-    --font-geist-mono: "Geist Mono", monospace;
-    
+    /* Accent: Slate (UI Chrome) */
+    --slate: 215 25% 27%;
+    /* Slate-700 #334155 */
+    --slate-muted: 215 16% 47%;
+    /* Slate-500 #64748B */
+
+    /* Premium: Gold (Unlock moments ONLY) */
+    --premium: 43 96% 44%;
+    /* Amber-600 #D97706 */
+
+    /* Semantic Colors */
+    --gold: 43 96% 44%;
+    /* Legacy alias */
+    --moss: 142 71% 29%;
+    /* Green-700 */
+    --amber: 48 96% 53%;
+    /* Yellow-500 */
+    --rose: 347 77% 40%;
+    /* Rose-700 */
+
+    /* V2.1 TYPOGRAPHY */
+    --font-fraunces: "Fraunces Variable", serif;
+    --font-geist-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
+    --font-geist-mono: var(--font-geist-mono), ui-monospace, monospace;
+
     /* Usage Mapping */
-    --font-display: var(--font-newsreader);
+    --font-display: var(--font-fraunces);
     --font-body: var(--font-geist-sans);
+
+    /* V2.1 MOTION */
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 100ms;
+    --duration-normal: 200ms;
+    --duration-slow: 350ms;
 
     /* STATUS ALIASES */
     --status-success: var(--moss);
     --status-warning: var(--amber);
     --status-error: var(--rose);
-    --premium-accent: var(--gold);
   }
 
   .dark {
-    /* OLED/Cinema Mode */
-    --background: 220 10% 2%;    /* Almost pure black */
-    --foreground: 0 0% 98%;
+    /* V2.1 Dark Mode */
+    --background: 0 0% 7%;
+    /* #111111 */
+    --foreground: 0 0% 93%;
+    /* #EEEEEE */
 
-    --card: 220 10% 4%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 93%;
 
-    --popover: 220 10% 4%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 93%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 220 10% 10%;
+    --primary: 0 0% 93%;
+    --primary-foreground: 0 0% 7%;
 
     --secondary: 220 10% 12%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 0 0% 93%;
 
     --muted: 220 10% 12%;
-    --muted-foreground: 220 10% 65%;
+    --muted-foreground: 220 9% 64%;
 
     --accent: 220 10% 12%;
-    --accent-foreground: 0 0% 98%;
+    --accent-foreground: 0 0% 93%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 62% 31%;
+    --destructive-foreground: 0 0% 93%;
 
-    --border: 0 0% 98%; /* Opacity handled in utilities */
+    --border: 0 0% 93%;
+    /* Uses opacity */
     --input: 220 10% 20%;
-    --ring: 220 10% 80%;
+    --ring: 213 27% 60%;
+    /* Slate-400 */
+
+    /* V2.1 Dark Brand */
+    --brand: 168 76% 50%;
+    /* Teal-400 #2DD4BF */
+    --slate: 213 27% 60%;
+    /* Slate-400 */
+    --premium: 45 93% 55%;
+    /* Amber-400 #FBBF24 */
   }
 }
 
 @layer base {
   * {
-    /* Subtle borders by default */
-    @apply border-border/10; 
+    @apply border-border/10;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
-  /* The "Authority" Headers */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-primary;
+
+  /* V2.1 Typography Hierarchy */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight text-foreground;
+  }
+
+  h1 {
+    font-weight: 400;
+    /* V2.1: Lighter for hero */
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+    /* V2.1: Medium for subheadings */
   }
 }
 
@@ -126,16 +180,28 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-  /* 10x TYPOGRAPHY CLASSES */
-  
+  /* V2.1 TYPOGRAPHY CLASSES */
+
   /* Hero Verdicts */
   .text-hero {
-    @apply font-display font-medium tracking-tight leading-[1.05];
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  /* Section Titles */
+  .text-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
   }
 
   /* UI Labels */
@@ -143,23 +209,30 @@
     @apply font-sans text-[13px] font-medium tracking-wide uppercase text-muted-foreground;
   }
 
-  /* Body Copy (The Memo) */
+  /* Body Copy */
   .text-memo {
-    @apply font-sans text-[15px] leading-relaxed text-secondary-foreground/90;
+    @apply font-sans text-[15px] leading-relaxed text-foreground/90;
   }
-  
-  /* DEPTH UTILITIES */
+
+  /* V2.1 DEPTH UTILITIES */
   .studio-panel {
-    @apply bg-card border border-border/10 shadow-sm backdrop-blur-sm;
+    @apply bg-card border border-border/10;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
   }
-  
+
   .studio-glass {
     @apply bg-white/80 dark:bg-black/80 backdrop-blur-md border border-white/20 dark:border-white/10;
   }
 
-  /* ANIMATION UTILITIES */
+  /* V2.1 ANIMATION */
   .animate-snap {
-    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* Apple Ease */
-    transition-duration: 250ms;
+    transition-timing-function: var(--ease);
+    transition-duration: var(--duration-normal);
+  }
+
+  .animate-reveal {
+    transition-timing-function: var(--ease);
+    transition-duration: var(--duration-slow);
   }
 }

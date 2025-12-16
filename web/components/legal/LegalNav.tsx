@@ -28,7 +28,7 @@ export function LegalNav({ className }: LegalNavProps) {
             </Link>
 
             {/* Pill Navigation */}
-            <nav className="flex items-center space-x-1 p-1.5 bg-secondary/40 border border-border/50 rounded-full animate-in fade-in zoom-in-95 duration-500 max-w-[90vw] overflow-x-auto no-scrollbar">
+            <nav className="flex items-center space-x-1 p-1.5 bg-secondary/40 border border-border/10 rounded-md animate-in fade-in zoom-in-95 duration-500 max-w-[90vw] overflow-x-auto no-scrollbar">
                 {tabs.map((tab) => {
                     const isActive = pathname === tab.href;
                     return (
@@ -36,7 +36,7 @@ export function LegalNav({ className }: LegalNavProps) {
                             key={tab.href}
                             href={tab.href}
                             className={cn(
-                                "px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-200",
+                                "px-4 py-1.5 text-sm font-medium rounded-sm transition-all duration-normal",
                                 isActive
                                     ? "bg-background text-foreground shadow-sm ring-1 ring-black/5"
                                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"

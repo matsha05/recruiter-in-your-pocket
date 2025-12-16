@@ -15,7 +15,7 @@ export default function TrustClient() {
 
             {/* Hero */}
             <header className="mb-24 text-center max-w-2xl mx-auto">
-                <h1 className="font-serif text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
+                <h1 className="font-display text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
                     Your Data. Your Rules.
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed">
@@ -34,7 +34,7 @@ export default function TrustClient() {
                 />
                 <PromiseCard
                     icon={Lock}
-                    iconColor="text-gold"
+                    iconColor="text-premium"
                     title="Bank-grade Encryption"
                     description="We use Supabase (Postgres) for data storage, which is encrypted at rest and in transit. Payments are processed by Stripe; we never touch your credit card numbers."
                 />
@@ -55,14 +55,14 @@ export default function TrustClient() {
             {/* Methodology Divider */}
             <div className="flex items-center justify-center mb-16">
                 <div className="h-px bg-border w-24"></div>
-                <span className="px-4 text-muted-foreground font-serif italic text-lg">The Philosophy</span>
+                <span className="px-4 text-muted-foreground font-display italic text-lg">The Philosophy</span>
                 <div className="h-px bg-border w-24"></div>
             </div>
 
             {/* Methodology Section */}
-            <section className="bg-surface border border-border/50 rounded-2xl p-8 md:p-12 shadow-sm">
+            <section className="bg-secondary/10 border border-border/10 rounded-md p-8 md:p-12 shadow-sm">
                 <div className="max-w-2xl mx-auto">
-                    <h2 className="font-serif text-3xl font-medium text-foreground mb-8 text-center">
+                    <h2 className="font-display text-3xl font-medium text-foreground mb-8 text-center">
                         Evidence, then Advice.
                     </h2>
                     <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
@@ -97,8 +97,8 @@ export default function TrustClient() {
 
 function PromiseCard({ icon: Icon, iconColor, title, description }: { icon: any, iconColor: string, title: string, description: string }) {
     return (
-        <div className="flex flex-col gap-4 p-8 rounded-2xl border border-border/40 bg-card/30 hover:bg-surface hover:border-border/80 hover:shadow-md transition-all duration-300">
-            <div className={`w-12 h-12 rounded-xl bg-surface border border-border/50 flex items-center justify-center ${iconColor} shadow-sm`}>
+        <div className="flex flex-col gap-4 p-8 rounded-md border border-border/10 bg-card/30 hover:bg-secondary/20 hover:border-border/20 transition-all duration-normal">
+            <div className={`w-12 h-12 rounded-md bg-secondary/20 border border-border/10 flex items-center justify-center ${iconColor}`}>
                 <Icon className="w-6 h-6" strokeWidth={1.5} />
             </div>
             <div>

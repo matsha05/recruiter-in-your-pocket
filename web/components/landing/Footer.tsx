@@ -3,11 +3,11 @@ import { Lock, Trash2, ShieldOff } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="py-12 px-6 border-t border-black/5 dark:border-white/5 bg-background">
+        <footer className="py-12 px-6 border-t border-border/10 bg-background">
             <div className="max-w-4xl mx-auto space-y-12">
 
                 {/* Trust Signals Row */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-12 border-b border-black/5 dark:border-white/5">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-12 border-b border-border/10">
                     <div className="flex items-center gap-3 text-muted-foreground/80">
                         <Lock className="w-4 h-4 text-emerald-600/70" />
                         <span className="text-xs font-medium uppercase tracking-wide">End-to-End Encrypted</span>

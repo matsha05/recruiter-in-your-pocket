@@ -14,7 +14,7 @@ export default function PrivacyClient() {
 
             {/* Header */}
             <header className="mb-20 text-center max-w-2xl mx-auto">
-                <h1 className="font-serif text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
+                <h1 className="font-display text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
                     Privacy Policy
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed">
@@ -88,7 +88,7 @@ export default function PrivacyClient() {
 function Section({ title, children }: { title: string, children: React.ReactNode }) {
     return (
         <section>
-            <h2 className="font-serif text-xl font-medium text-foreground mb-4">{title}</h2>
+            <h2 className="font-display text-xl font-medium text-foreground mb-4">{title}</h2>
             <div className="text-[15px] md:text-base text-muted-foreground leading-relaxed">
                 {children}
             </div>

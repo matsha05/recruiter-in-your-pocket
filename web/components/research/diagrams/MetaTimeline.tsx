@@ -30,17 +30,17 @@ export function MetaTimeline() {
 
                 {/* 2017 Meta - The Gold Standard */}
                 <div className="relative">
-                    <div className="absolute -left-[43px] bg-neutral-900 border-4 border-gold w-6 h-6 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.6)]" />
-                    <span className="text-xs font-bold text-gold mb-1 block tracking-widest">2017 META-ANALYSIS</span>
-                    <div className="bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 rounded-lg p-5 shadow-sm">
-                        <h4 className="text-lg font-serif font-medium text-gold mb-2">The Quillian et al. Synthesis</h4>
-                        <p className="text-sm text-foreground/90 mb-3 font-serif leading-relaxed">
-                            Aggregated data from <strong>123</strong> field experiments covering <span className="text-gold font-mono">55,000+</span> applications.
+                    <div className="absolute -left-[43px] bg-background border-4 border-brand w-6 h-6 rounded-full" />
+                    <span className="text-xs font-bold text-brand mb-1 block tracking-widest">2017 META-ANALYSIS</span>
+                    <div className="bg-brand/5 border border-brand/20 rounded-md p-5">
+                        <h4 className="text-lg font-display font-medium text-brand mb-2">The Quillian et al. Synthesis</h4>
+                        <p className="text-sm text-foreground/90 mb-3 font-display leading-relaxed">
+                            Aggregated data from <strong>123</strong> field experiments covering <span className="text-brand font-mono">55,000+</span> applications.
                         </p>
-                        <div className="flex items-start gap-3 text-xs bg-neutral-900/50 p-3 rounded border border-gold/20">
-                            <ArrowRight className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                        <div className="flex items-start gap-3 text-xs bg-secondary/30 p-3 rounded-sm border border-brand/20">
+                            <ArrowRight className="w-4 h-4 text-brand mt-0.5 shrink-0" />
                             <span className="leading-relaxed text-muted-foreground">
-                                <strong className="text-gold">Finding:</strong> No decrease in hiring discrimination against African Americans over 25 years, despite diversity initiatives.
+                                <strong className="text-brand">Finding:</strong> No decrease in hiring discrimination against African Americans over 25 years, despite diversity initiatives.
                             </span>
                         </div>
                     </div>

@@ -129,7 +129,7 @@ export default function ResearchPage() {
             <div className="space-y-4 mb-24">
                 {studies.map((study) => (
                     <div key={study.id} className="group">
-                        <Link href={study.href} className="block group-hover:bg-secondary/20 -mx-6 px-6 py-6 rounded-xl transition-colors">
+                        <Link href={study.href} className="block group-hover:bg-secondary/20 -mx-6 px-6 py-6 rounded-md transition-colors">
                             <div className="grid md:grid-cols-[100px_1fr_200px] items-start gap-6">
                                 {/* Number */}
                                 <div className="text-label text-muted-foreground/30 mt-1.5">
@@ -138,7 +138,7 @@ export default function ResearchPage() {
 
                                 {/* Content */}
                                 <div>
-                                    <h2 className="text-title text-2xl md:text-3xl text-foreground mb-3 group-hover:text-gold transition-colors">
+                                    <h2 className="text-title text-2xl md:text-3xl text-foreground mb-3 group-hover:text-brand transition-colors">
                                         {study.title}
                                     </h2>
                                     <p className="text-muted-foreground leading-relaxed max-w-xl">
