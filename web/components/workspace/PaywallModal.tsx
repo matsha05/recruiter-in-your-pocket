@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { X } from "lucide-react";
 
-type Tier = "24h" | "30d";
+type Tier = "24h" | "30d" | "90d";
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -88,85 +88,115 @@ export default function PaywallModal({
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
             onClick={(e) => e.target === e.currentTarget && handleClose()}
         >
-            <div className="bg-surface rounded-2xl shadow-modal w-full max-w-[520px] p-8 relative max-h-[90vh] overflow-y-auto">
+            <div className="bg-background border border-white/10 rounded-xl shadow-2xl w-full max-w-[500px] p-8 relative max-h-[90vh] overflow-y-auto">
                 <button
                     onClick={handleClose}
                     aria-label="Close"
-                    className="absolute top-4 right-4 text-muted hover:text-primary transition-colors p-2"
+                    className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors p-2"
                 >
                     <X className="w-5 h-5" strokeWidth={2} />
                 </button>
 
                 {/* Header */}
-                <div className="text-center mb-6">
-                    <h2 className="font-display text-xl font-bold text-primary mb-2">
-                        {getHeaderText()}
+                <div className="text-center mb-8">
+                    <h2 className="font-serif text-2xl font-medium text-foreground mb-3">
+                        Ready for the full recruiter perspective?
                     </h2>
-                    <p className="text-muted">
-                        Pick a pass that fits your timeline. No subscriptions.
+                    <p className="text-muted-foreground text-sm">
+                        See your strengths, your gaps, your exact next steps.
                     </p>
+
+                    {/* Value Summary */}
+                    <div className="mt-6 bg-secondary/20 border border-white/5 rounded-lg p-5 text-left space-y-3">
+                        <p className="text-sm font-medium text-foreground">Pro Studio Access includes:</p>
+                        <ul className="text-sm text-muted-foreground space-y-2">
+                            <li className="flex items-center gap-3">
+                                <span className="text-gold">✓</span>
+                                Unlimited recruiter-grade resume reviews
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <span className="text-gold">✓</span>
+                                Deep-dive feedback per line
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <span className="text-gold">✓</span>
+                                "Before & After" bullet rewrites
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <span className="text-gold">✓</span>
+                                PDF export of your reports
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Testimonial */}
+                    <div className="mt-6 pt-4 border-t border-white/5">
+                        <p className="text-sm text-muted-foreground italic font-serif">
+                            &ldquo;Finally, feedback that sounds like a real recruiter, not a robot.&rdquo;
+                        </p>
+                        <p className="text-xs text-muted-foreground/60 mt-2 uppercase tracking-widest font-medium">— Senior PM, Google</p>
+                    </div>
                 </div>
 
-                {/* Tier Selection */}
-                <div className="flex gap-4 mb-6">
+                {/* Tier Selection - Grid 3 */}
+                <div className="grid grid-cols-3 gap-3 mb-8">
+                    {/* Single */}
                     <button
                         type="button"
                         onClick={() => setSelectedTier("24h")}
-                        className={`flex-1 p-5 rounded-xl text-center transition-all
-                            ${selectedTier === "24h"
-                                ? "border-2 border-brand bg-brand-soft"
-                                : "border-2 border-subtle hover:border-brand"
-                            }`}
+                        className={cn("p-3 rounded-lg text-center transition-all border relative flex flex-col items-center justify-center",
+                            selectedTier === "24h" ? "bg-secondary/40 border-foreground/30" : "bg-transparent border-white/5 hover:bg-secondary/10"
+                        )}
                     >
-                        <div className="inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-brand text-white mb-3">
-                            Most popular
-                        </div>
-                        <div className="text-3xl font-extrabold text-brand mb-1">$9</div>
-                        <div className="font-semibold text-primary mb-2">24-Hour Fix Pass</div>
-                        <p className="text-xs text-muted leading-relaxed">
-                            Unlimited reports for 24 hours.
-                        </p>
+                        <span className="text-xl font-serif font-medium text-foreground">$19</span>
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Single</span>
                     </button>
 
+                    {/* Pro - Highlighted */}
                     <button
                         type="button"
                         onClick={() => setSelectedTier("30d")}
-                        className={`flex-1 p-5 rounded-xl text-center transition-all
-                            ${selectedTier === "30d"
-                                ? "border-2 border-success bg-success-soft"
-                                : "border-2 border-subtle hover:border-success"
-                            }`}
+                        className={cn("p-3 rounded-lg text-center transition-all border relative flex flex-col items-center justify-center overflow-hidden",
+                            selectedTier === "30d" ? "bg-gold/10 border-gold shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]" : "bg-transparent border-white/5 hover:bg-secondary/10"
+                        )}
                     >
-                        <div className="inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wide rounded bg-[var(--status-success)] text-white mb-3">
-                            Best value
-                        </div>
-                        <div className="text-3xl font-extrabold text-success mb-1">$39</div>
-                        <div className="font-semibold text-primary mb-2">30-Day Campaign Pass</div>
-                        <p className="text-xs text-muted leading-relaxed">
-                            Unlimited reports for 30 days.
-                        </p>
+                        <div className="absolute top-0 right-0 left-0 h-0.5 bg-gold/50" />
+                        <span className="text-xl font-serif font-medium text-gold">$39</span>
+                        <span className="text-[10px] uppercase tracking-wider text-gold mt-1 font-bold">Monthly</span>
+                    </button>
+
+                    {/* Exec */}
+                    <button
+                        type="button"
+                        onClick={() => setSelectedTier("90d")}
+                        className={cn("p-3 rounded-lg text-center transition-all border relative flex flex-col items-center justify-center",
+                            selectedTier === "90d" ? "bg-purple-500/10 border-purple-500/30" : "bg-transparent border-white/5 hover:bg-secondary/10"
+                        )}
+                    >
+                        <span className="text-xl font-serif font-medium text-purple-300">$79</span>
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Quarterly</span>
                     </button>
                 </div>
 
                 {/* Checkout Section */}
-                <div className="bg-muted rounded-xl p-5 mb-4">
+                <div className="bg-secondary/10 rounded-xl p-6 border border-white/5 mb-4">
                     {isLoggedIn ? (
                         <>
-                            <p className="text-sm text-secondary mb-4">
-                                You&apos;re getting this pass for <strong className="text-primary">{user.email}</strong>
+                            <p className="text-sm text-muted-foreground mb-4 text-center">
+                                Adding pass to <strong className="text-foreground">{user.email}</strong>
                             </p>
                             <button
                                 type="button"
                                 onClick={handleCheckout}
                                 disabled={loading}
-                                className="btn-primary w-full"
+                                className="w-full bg-foreground text-background hover:bg-foreground/90 h-10 rounded-md font-medium text-sm transition-colors"
                             >
-                                {loading ? "Processing..." : `Get ${selectedTier === "24h" ? "24-Hour" : "30-Day"} Pass →`}
+                                {loading ? "Processing..." : `Get ${selectedTier === "24h" ? "Single" : selectedTier === "90d" ? "Executive" : "Pro"} Pass →`}
                             </button>
                         </>
                     ) : (
                         <>
-                            <label className="block text-sm font-medium text-secondary mb-2">
+                            <label className="block text-sm font-medium text-muted-foreground mb-2">
                                 Your email
                             </label>
                             <input
@@ -174,37 +204,37 @@ export default function PaywallModal({
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="input mb-4"
+                                className="w-full h-10 rounded-md border border-white/10 bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-gold/50 mb-4"
                             />
                             <button
                                 type="button"
                                 onClick={handleCheckout}
                                 disabled={loading || !email.trim()}
-                                className="btn-primary w-full"
+                                className="w-full bg-foreground text-background hover:bg-foreground/90 h-10 rounded-md font-medium text-sm transition-colors"
                             >
                                 {loading ? "Processing..." : `Continue to checkout →`}
                             </button>
-                            <p className="text-xs text-muted text-center mt-3">
-                                Your email links your pass to any device.
+                            <p className="text-xs text-muted-foreground/50 text-center mt-3">
+                                We'll email you a magic link to log in.
                             </p>
                         </>
                     )}
                 </div>
 
                 {error && (
-                    <div className="text-danger text-sm text-center mb-4">
+                    <div className="text-rose-500 text-sm text-center mb-4 bg-rose-500/10 p-2 rounded">
                         {error}
                     </div>
                 )}
 
                 {hasCurrentReport && (
-                    <p className="text-center text-xs text-muted mb-2">
-                        Your current report stays here while you upgrade.
+                    <p className="text-center text-xs text-muted-foreground/50 mb-2">
+                        Your current report is saved and waiting for you.
                     </p>
                 )}
 
-                <p className="text-center text-xs text-muted">
-                    🔒 No recurring charges • Instant access
+                <p className="text-center text-[10px] text-muted-foreground/40 uppercase tracking-widest">
+                    Secure Payment by Stripe • 100% Satisfaction Guarantee
                 </p>
             </div>
         </div>

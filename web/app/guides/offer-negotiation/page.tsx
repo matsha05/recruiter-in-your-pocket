@@ -203,24 +203,30 @@ export default function OfferNegotiationGuidePage() {
 
 function ScriptBlock({ title, doText, dontText }: { title: string, doText: React.ReactNode, dontText: string }) {
     return (
-        <div className="border border-border rounded-lg p-6 bg-card shadow-sm">
-            <h3 className="font-medium text-foreground mb-4 text-sm uppercase tracking-wide opacity-80">{title}</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                    <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
-                        <CheckCircle2 className="w-3 h-3" /> Do This
-                    </span>
-                    <div className="p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/10 text-sm text-foreground/90 leading-relaxed font-medium">
+        <div className="group relative">
+            <h3 className="font-serif text-lg font-medium text-foreground mb-4">{title}</h3>
+
+            <div className="grid md:grid-cols-2 gap-4">
+                {/* DO THIS - Luminous Emerald (Success/Growth) */}
+                <div className="relative p-6 rounded-xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-transparent shadow-[0_0_20px_-10px_rgba(16,185,129,0.1)] overflow-hidden">
+                    <div className="flex items-center gap-2 mb-3">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Winning Approach</span>
+                    </div>
+                    <p className="text-base text-foreground/90 leading-relaxed font-medium font-serif border-l-2 border-emerald-500/30 pl-4">
                         "{doText}"
-                    </div>
+                    </p>
                 </div>
-                <div className="space-y-2">
-                    <span className="text-xs font-bold text-destructive uppercase tracking-wider flex items-center gap-2">
-                        <AlertCircle className="w-3 h-3" /> Not This
-                    </span>
-                    <div className="p-4 rounded-lg bg-destructive/5 border border-destructive/10 text-sm text-muted-foreground leading-relaxed italic">
-                        "{dontText}"
+
+                {/* NOT THIS - Luminous Rose (Risk/Mistake) */}
+                <div className="relative p-6 rounded-xl border border-rose-500/10 bg-gradient-to-br from-rose-500/5 to-transparent opacity-80 hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-2 mb-3">
+                        <AlertCircle className="w-4 h-4 text-rose-400" />
+                        <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Common Mistake</span>
                     </div>
+                    <p className="text-base text-muted-foreground leading-relaxed italic font-serif border-l-2 border-rose-500/20 pl-4">
+                        "{dontText}"
+                    </p>
                 </div>
             </div>
         </div>

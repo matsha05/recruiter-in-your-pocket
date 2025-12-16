@@ -28,19 +28,19 @@ export function MetaTimeline() {
                     <p className="text-sm text-muted-foreground">"Are Emily and Greg More Employable than Lakisha and Jamal?" sets the benchmark.</p>
                 </div>
 
-                {/* 2017 Meta */}
+                {/* 2017 Meta - The Gold Standard */}
                 <div className="relative">
-                    <div className="absolute -left-[43px] bg-primary border-4 border-background w-6 h-6 rounded-full shadow-sm" />
-                    <span className="text-xs font-bold text-primary mb-1 block">2017 META-ANALYSIS</span>
-                    <div className="bg-primary/5 border border-primary/20 rounded-lg p-5">
-                        <h4 className="text-lg font-serif font-medium text-primary mb-2">The Quillian et al. Synthesis</h4>
-                        <p className="text-sm text-foreground/90 mb-3">
-                            Aggregated data from <strong>123</strong> field experiments covering <strong>55,000+</strong> applications.
+                    <div className="absolute -left-[43px] bg-neutral-900 border-4 border-gold w-6 h-6 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.6)]" />
+                    <span className="text-xs font-bold text-gold mb-1 block tracking-widest">2017 META-ANALYSIS</span>
+                    <div className="bg-gradient-to-br from-gold/10 to-transparent border border-gold/20 rounded-lg p-5 shadow-sm">
+                        <h4 className="text-lg font-serif font-medium text-gold mb-2">The Quillian et al. Synthesis</h4>
+                        <p className="text-sm text-foreground/90 mb-3 font-serif leading-relaxed">
+                            Aggregated data from <strong>123</strong> field experiments covering <span className="text-gold font-mono">55,000+</span> applications.
                         </p>
-                        <div className="flex items-start gap-3 text-xs bg-background/50 p-3 rounded border border-primary/10">
-                            <ArrowRight className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                            <span className="leading-relaxed">
-                                <strong>Finding:</strong> No decrease in hiring discrimination against African Americans over 25 years, despite diversity initiatives.
+                        <div className="flex items-start gap-3 text-xs bg-neutral-900/50 p-3 rounded border border-gold/20">
+                            <ArrowRight className="w-4 h-4 text-gold mt-0.5 shrink-0" />
+                            <span className="leading-relaxed text-muted-foreground">
+                                <strong className="text-gold">Finding:</strong> No decrease in hiring discrimination against African Americans over 25 years, despite diversity initiatives.
                             </span>
                         </div>
                     </div>

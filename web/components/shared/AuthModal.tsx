@@ -150,23 +150,27 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-            <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                    <DialogTitle className="font-serif text-2xl">
-                        {step === "email" && "Sign in or create account"}
-                        {step === "code" && "Check your email"}
+            <DialogContent className="sm:max-w-md bg-background border border-white/10 shadow-2xl p-8 rounded-xl sm:rounded-2xl">
+                <DialogHeader className="space-y-4">
+                    <DialogTitle className="font-serif text-3xl font-medium tracking-tight text-center">
+                        {step === "email" && "Welcome to the Studio"}
+                        {step === "code" && "Check your inbox"}
                         {step === "name" && "One last thing"}
                     </DialogTitle>
-                    <DialogDescription>
-                        {step === "email" && "We'll send you a login code. No password needed."}
-                        {step === "code" && `We sent an 8-digit code to ${email}`}
+                    <DialogDescription className="text-center text-muted-foreground text-base">
+                        {step === "email" && "Sign in to access your reports and history."}
+                        {step === "code" && (
+                            <span>
+                                We sent an 8-digit code to <span className="text-foreground font-medium">{email}</span>
+                            </span>
+                        )}
                         {step === "name" && "What should we call you?"}
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="space-y-4 py-4">
+                <div className="space-y-6 py-4">
                     {error && (
-                        <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md border border-destructive/20">
+                        <div className="p-3 text-sm text-center text-rose-500 bg-rose-500/10 rounded-md border border-rose-500/20">
                             {error}
                         </div>
                     )}
@@ -174,7 +178,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                     {step === "email" && (
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <Label htmlFor="email" className="sr-only">Email address</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -183,9 +187,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                                     onChange={(e) => setEmail(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSendCode()}
                                     autoFocus
+                                    className="h-12 text-base bg-secondary/10 border-white/10 focus:ring-gold/20 focus:border-gold/50 placeholder:text-muted-foreground/40"
                                 />
                             </div>
-                            <Button onClick={handleSendCode} disabled={loading} className="w-full" variant="studio">
+                            <Button onClick={handleSendCode} disabled={loading} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-all rounded-lg">
                                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Send Login Code
                             </Button>
@@ -195,25 +200,25 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                     {step === "code" && (
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="code">Login Code</Label>
+                                <Label htmlFor="code" className="sr-only">Login Code</Label>
                                 <Input
                                     id="code"
                                     type="text"
                                     placeholder="00000000"
-                                    className="font-mono tracking-widest text-center text-lg"
+                                    className="h-14 font-mono tracking-[0.5em] text-center text-2xl bg-secondary/10 border-white/10 focus:ring-gold/20 focus:border-gold/50 placeholder:text-muted-foreground/20"
                                     value={code}
                                     onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 8))}
                                     onKeyDown={(e) => e.key === "Enter" && verifyCode()}
                                     autoFocus
                                 />
                             </div>
-                            <Button onClick={verifyCode} disabled={loading || code.length !== 8} className="w-full" variant="studio">
+                            <Button onClick={verifyCode} disabled={loading || code.length !== 8} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-all rounded-lg">
                                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Verify Code
                             </Button>
                             <Button
                                 variant="ghost"
-                                className="w-full"
+                                className="w-full text-muted-foreground hover:text-foreground hover:bg-transparent"
                                 onClick={() => {
                                     setStep("email");
                                     setCode("");
@@ -229,7 +234,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                     {step === "name" && (
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="fname">First Name</Label>
+                                <Label htmlFor="fname" className="sr-only">First Name</Label>
                                 <Input
                                     id="fname"
                                     type="text"
@@ -238,15 +243,16 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                                     onChange={(e) => setFirstName(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSaveName()}
                                     autoFocus
+                                    className="h-12 text-base bg-secondary/10 border-white/10 focus:ring-gold/20 focus:border-gold/50"
                                 />
                             </div>
-                            <Button onClick={handleSaveName} disabled={loading || !firstName.trim()} className="w-full" variant="studio">
+                            <Button onClick={handleSaveName} disabled={loading || !firstName.trim()} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-all rounded-lg">
                                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Continue to Studio
                             </Button>
                             <Button
                                 variant="ghost"
-                                className="w-full"
+                                className="w-full text-muted-foreground hover:text-foreground"
                                 onClick={() => {
                                     onSuccess?.();
                                     handleClose();
@@ -259,8 +265,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                 </div>
 
                 {/* Footer Note */}
-                <div className="text-[11px] text-center text-muted-foreground">
-                    By continuing, you agree to our Terms and Privacy Policy.
+                <div className="text-[10px] text-center text-muted-foreground/50 uppercase tracking-wider font-medium">
+                    Secure Login • No Password Required
                 </div>
             </DialogContent>
         </Dialog>

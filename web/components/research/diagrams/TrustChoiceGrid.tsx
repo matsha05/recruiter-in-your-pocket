@@ -18,36 +18,36 @@ export function TrustChoiceGrid() {
 
                 {/* Cols */}
                 <div className="space-y-4">
-                    <div className="text-center font-medium flex items-center justify-center gap-2 mb-2">
-                        <User className="w-4 h-4 text-primary" /> Human
+                    <div className="text-center font-medium flex items-center justify-center gap-2 mb-2 text-foreground/80">
+                        <User className="w-4 h-4 text-gold" /> Human
                     </div>
-                    {/* Human Consistent */}
-                    <div className="bg-primary/10 border-2 border-primary/20 rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center relative">
-                        <span className="text-2xl font-serif text-primary mb-1">High Trust</span>
-                        <span className="text-xs text-primary/70 uppercase tracking-wide">Most Preferred</span>
-                        <Check className="absolute top-2 right-2 w-4 h-4 text-primary" />
+                    {/* Human Consistent - Gold Standard */}
+                    <div className="bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center relative shadow-[0_0_20px_-10px_rgba(251,191,36,0.2)]">
+                        <span className="text-2xl font-serif text-gold mb-1">High Trust</span>
+                        <span className="text-[10px] text-gold/70 uppercase tracking-widest">Most Preferred</span>
+                        <Check className="absolute top-2 right-2 w-4 h-4 text-gold" />
                     </div>
-                    {/* Human Inconsistent */}
-                    <div className="bg-secondary/50 border border-border rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center">
-                        <span className="font-medium text-foreground">Forgiven</span>
-                        <span className="text-xs text-muted-foreground mt-1">"Humans make mistakes"</span>
+                    {/* Human Inconsistent - Forgiven (Slate) */}
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
+                        <span className="font-medium text-slate-200">Forgiven</span>
+                        <span className="text-xs text-slate-400 mt-1 font-serif italic">"Humans make mistakes"</span>
                     </div>
                 </div>
 
                 <div className="space-y-4">
-                    <div className="text-center font-medium flex items-center justify-center gap-2 mb-2">
-                        <Cpu className="w-4 h-4 text-muted-foreground" /> Algorithm
+                    <div className="text-center font-medium flex items-center justify-center gap-2 mb-2 text-muted-foreground">
+                        <Cpu className="w-4 h-4" /> Algorithm
                     </div>
-                    {/* Algo Consistent */}
-                    <div className="bg-secondary/30 border border-border dashed rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center opacity-70">
+                    {/* Algo Consistent - Muted */}
+                    <div className="bg-neutral-900 border border-white/5 dashed rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center opacity-50 grayscale">
                         <span className="font-medium text-muted-foreground">Accepted</span>
                         <span className="text-xs text-muted-foreground mt-1">Utility function</span>
                     </div>
-                    {/* Algo Inconsistent */}
-                    <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center">
-                        <span className="font-medium text-destructive">Rejected</span>
-                        <span className="text-xs text-destructive/70 mt-1">"Broken system"</span>
-                        <X className="absolute top-2 right-2 w-4 h-4 text-destructive" />
+                    {/* Algo Inconsistent - Rejected (Luminous Rose) */}
+                    <div className="bg-gradient-to-br from-rose-500/10 to-transparent border border-rose-500/20 rounded-xl p-6 text-center h-32 flex flex-col items-center justify-center shadow-[0_0_15px_-5px_rgba(244,63,94,0.1)]">
+                        <span className="font-medium text-rose-400">Rejected</span>
+                        <span className="text-xs text-rose-400/70 mt-1 uppercase tracking-wide">"Broken system"</span>
+                        <X className="absolute top-2 right-2 w-4 h-4 text-rose-400" />
                     </div>
                 </div>
             </div>

@@ -1,151 +1,147 @@
 "use client";
 
+import { Check, CheckCircle2, Crown, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { ShieldCheck, Lock, Receipt } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PricingProps {
     onSelectTier?: (tier: "24h" | "30d") => void;
 }
 
-export default function Pricing({ onSelectTier }: PricingProps) {
+export function Pricing({ onSelectTier }: PricingProps) {
     const handlePurchase = (tier: "24h" | "30d") => {
         if (onSelectTier) {
             onSelectTier(tier);
+        } else {
+            // Default behavior (if used on landing page)
+            // Redirect to workspace setting or signup with intent
+            window.location.href = `/workspace?tier=${tier}`;
         }
     };
 
-    // Shared hover animation classes
-    const cardHover = "transition-all duration-200 ease-smooth hover:-translate-y-1 hover:shadow-lg";
-
     return (
-        <section className="section bg-surface" id="pricing">
-            <div className="section-inner">
-                <div className="text-center mb-10">
-                    <span className="badge-brand inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full mb-4">
-                        Simple pricing
-                    </span>
-                    <h2 className="font-display text-2xl md:text-3xl font-bold text-primary mb-3">
-                        Stop renting resume tools you only use for a week.
+        <section className="py-24 px-6 bg-background relative overflow-hidden" id="pricing">
+            <div className="max-w-5xl mx-auto relative z-10">
+
+                <div className="text-center mb-16 max-w-2xl mx-auto">
+                    <h2 className="font-display text-4xl md:text-5xl text-primary mb-4 leading-tight tracking-tight">
+                        Know <span className="text-gold italic">before</span> <br /> you apply.
                     </h2>
-                    <p className="text-secondary max-w-xl mx-auto">
-                        No subscriptions. Just passes that match how people really job hunt.
+                    <p className="text-memo text-lg text-muted-foreground">
+                        One scan shows you what they see. The rest helps you win.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 mb-10">
-                    {/* Free Tier */}
-                    <div className={`flex flex-col p-6 bg-muted rounded-2xl border border-subtle ${cardHover}`}>
-                        <div className="mb-4">
-                            <span className="text-xs font-semibold uppercase tracking-wide text-muted">Always free</span>
-                        </div>
-                        <div className="text-4xl font-extrabold text-primary mb-2">$0</div>
-                        <h3 className="font-display font-bold text-primary mb-4">First Look</h3>
-                        <ul className="space-y-3 text-sm text-secondary mb-6 flex-1">
-                            <li className="flex items-start gap-2">
-                                <span className="text-success">✓</span>
-                                <span><strong>2 full reports</strong> with score, diagnosis, and rewrites</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-success">✓</span>
-                                See how your resume actually reads to a hiring manager
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-success">✓</span>
-                                No account or credit card required
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-success">✓</span>
-                                Upgrade any time for unlimited access
-                            </li>
-                        </ul>
-                        <Link href="/workspace" className="btn-secondary w-full text-center">
-                            Start for free →
-                        </Link>
-                    </div>
+                <div className="grid md:grid-cols-3 gap-6 items-center">
 
-                    {/* 24-Hour Fix Pass */}
-                    <div className={`relative flex flex-col p-6 bg-brand-soft rounded-2xl border-2 border-brand ${cardHover}`}>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-black bg-gold rounded-full shadow-[0_0_20px_rgba(245,178,92,0.5)]">
-                            Most popular
+                    {/* TIER 1: SINGLE (The Quick Fix) - $19 */}
+                    <div className="p-8 rounded-xl border border-black/5 dark:border-white/5 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
+                        <div className="mb-6">
+                            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Scan</div>
+                            <div className="text-3xl font-display font-bold text-foreground">$19</div>
+                            <p className="text-sm text-muted-foreground mt-2">One-time deep dive.</p>
                         </div>
-                        <div className="text-4xl font-extrabold text-primary mb-2 mt-2">
-                            <span className="text-brand">$9</span>
-                        </div>
-                        <h3 className="font-display font-bold text-primary mb-4">24-Hour Fix Pass</h3>
-                        <ul className="space-y-3 text-sm text-secondary mb-6 flex-1">
-                            <li className="flex items-start gap-2">
-                                <span className="text-brand">✓</span>
-                                Unlimited full reports for 24 hours
+                        <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
+                            <li className="flex items-start gap-3">
+                                <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
+                                <span>1 Full Audit + Fixes</span>
                             </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-brand">✓</span>
-                                Ideal when you need to send a resume today
+                            <li className="flex items-start gap-3">
+                                <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
+                                <span>PDF Export included</span>
                             </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-brand">✓</span>
-                                Use on any device with your email
+                            <li className="flex items-start gap-3">
+                                <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
+                                <span>Lifetime access to report</span>
                             </li>
                         </ul>
                         <button
-                            className="btn-primary w-full"
                             onClick={() => handlePurchase("24h")}
+                            className="w-full py-3 px-4 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-black font-bold text-sm hover:bg-secondary transition-colors"
                         >
-                            Get 24-Hour Fix Pass
+                            Get Single Pass
                         </button>
                     </div>
 
-                    {/* 30-Day Campaign Pass */}
-                    <div className={`flex flex-col p-6 bg-surface rounded-2xl border border-subtle ${cardHover}`}>
-                        <div className="mb-4">
-                            <span className="text-xs font-semibold uppercase tracking-wide text-success">Best value</span>
+                    {/* TIER 2: MONTHLY (The Career Move) - $39 - HIGHLIGHTED */}
+                    <div className="relative p-8 rounded-xl border-2 border-gold bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] scale-105 z-10">
+                        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-black text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full shadow-lg flex items-center gap-1.5">
+                            <Crown className="w-3 h-3 fill-black" /> Best Value
                         </div>
-                        <div className="text-4xl font-extrabold text-primary mb-2">
-                            <span className="text-success">$39</span>
+
+                        <div className="mb-6">
+                            <div className="text-xs font-bold uppercase tracking-widest text-gold mb-2">Pro Membership</div>
+                            <div className="text-4xl font-display font-bold text-foreground">$39<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/mo</span></div>
+                            <p className="text-sm text-muted-foreground mt-2">The complete toolkit.</p>
                         </div>
-                        <h3 className="font-display font-bold text-primary mb-4">30-Day Campaign Pass</h3>
-                        <ul className="space-y-3 text-sm text-secondary mb-6 flex-1">
-                            <li className="flex items-start gap-2">
-                                <span className="text-success">✓</span>
-                                Unlimited full reports for 30 days
+                        <ul className="space-y-4 mb-8 text-sm text-foreground font-medium">
+                            <Feature text="Unlimited Full Audits" icon={Sparkles} accent="gold" />
+                            <Feature text="Offer Negotiation Guide" />
+                            <Feature text="Version History" />
+                            <Feature text="Smart Bullet Rewriter" />
+                        </ul>
+                        <button
+                            onClick={() => handlePurchase("30d")}
+                            className="w-full py-3 px-4 rounded-lg bg-gold text-black font-bold text-sm hover:translate-y-[-1px] transition-transform shadow-lg shadow-gold/20 flex items-center justify-center gap-2"
+                        >
+                            Start Pro Access
+                        </button>
+                    </div>
+
+                    {/* TIER 3: QUARTERLY (The Executive) - $79 */}
+                    <div className="p-8 rounded-xl border border-black/5 dark:border-white/5 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
+                        <div className="mb-6">
+                            <div className="text-xs font-bold uppercase tracking-widest text-purple-400 mb-2">Executive</div>
+                            <div className="text-3xl font-display font-bold text-foreground">$79<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/qtr</span></div>
+                            <p className="text-sm text-muted-foreground mt-2">For high-stakes searches.</p>
+                        </div>
+                        <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
+                            <li className="flex items-start gap-3">
+                                <Check className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                                <span>Includes <strong>Pro Features</strong></span>
                             </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-success">✓</span>
-                                Perfect when you&apos;re applying to multiple roles
+                            <li className="flex items-start gap-3">
+                                <Check className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                                <span>LinkedIn Audit Guide</span>
                             </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-success">✓</span>
-                                Use on any device with your email
+                            <li className="flex items-start gap-3">
+                                <Check className="w-4 h-4 text-purple-400 mt-0.5 shrink-0" />
+                                <span>Cover Letter Architect</span>
                             </li>
                         </ul>
                         <button
-                            className="btn-secondary w-full"
-                            onClick={() => handlePurchase("30d")}
+                            onClick={() => handlePurchase("90d")} // Maps to new tier
+                            className="w-full py-3 px-4 rounded-lg border border-purple-500/20 bg-purple-500/5 text-purple-300 font-bold text-sm hover:bg-purple-500/10 transition-colors"
                         >
-                            Get 30-Day Campaign Pass
+                            Get Executive
                         </button>
                     </div>
+
                 </div>
 
-                {/* Trust signals */}
-                <div className="flex flex-wrap justify-center gap-6 text-sm text-muted mb-6">
-                    <span className="flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4" strokeWidth={2} />
-                        Built by a top recruiter from OpenAI, FAANG, and global startups
-                    </span>
-                    <span className="flex items-center gap-2">
-                        <Lock className="w-4 h-4" strokeWidth={2} />
-                        Your resume never trains models
-                    </span>
-                    <span className="flex items-center gap-2">
-                        <Receipt className="w-4 h-4" strokeWidth={2} />
-                        No hidden subscriptions
-                    </span>
+                <div className="mt-8 text-center">
+                    <Link href="/workspace" className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-4 pointer-events-auto">
+                        Not ready? Try 1 free scan.
+                    </Link>
                 </div>
 
-                <p className="text-center text-sm text-muted max-w-md mx-auto">
-                    <strong>Why do we ask for email?</strong> So your pass works on any device—phone, laptop, wherever you&apos;re editing. We don&apos;t spam. Just access.
-                </p>
+                <div className="mt-12 text-center">
+                    <p className="text-xs text-muted-foreground">
+                        <strong>100% Satisfaction Guarantee:</strong> If you don't feel more confident, email us within 24h for a full refund.
+                    </p>
+                </div>
+
             </div>
         </section>
+    );
+}
+
+function Feature({ text, icon: Icon = CheckCircle2, accent }: { text: string; icon?: any; accent?: string }) {
+    return (
+        <li className="flex items-start gap-3 text-foreground/90">
+            <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", accent === "gold" ? "text-gold" : "text-foreground/40")} />
+            <span>{text}</span>
+        </li>
     );
 }

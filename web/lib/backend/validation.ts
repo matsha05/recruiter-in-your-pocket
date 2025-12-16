@@ -1,7 +1,7 @@
 import { createAppError } from "./openai";
 
 const MAX_TEXT_LENGTH = 30000;
-const ALLOWED_MODES = ["resume", "resume_ideas"] as const;
+const ALLOWED_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation"] as const;
 
 export type Mode = (typeof ALLOWED_MODES)[number];
 
@@ -175,3 +175,76 @@ export function validateResumeIdeasPayload(obj: any) {
   return obj;
 }
 
+export function validateCaseResumePayload(obj: any) {
+  if (!obj || typeof obj !== "object") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
+  }
+  // Basic checks
+  if (!obj.verdict || !["shortlist", "maybe", "pass"].includes(obj.verdict)) {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing or invalid verdict.", 502);
+  }
+  if (!Array.isArray(obj.signal_ladder)) {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing signal_ladder array.", 502);
+  }
+  return obj;
+}
+
+export function validateCaseInterviewPayload(obj: any) {
+  if (!obj || typeof obj !== "object") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
+  }
+  if (!obj.scorecard) {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing scorecard.", 502);
+  }
+  if (!obj.improved_answer) {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing improved_answer.", 502);
+  }
+  return obj;
+}
+
+export function validateCaseNegotiationPayload(obj: any) {
+  if (!obj || typeof obj !== "object") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
+  }
+
+  if (typeof obj.strategy_summary !== "string") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing strategy_summary.", 502);
+  }
+  if (!Array.isArray(obj.levers_checklist)) {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing levers_checklist.", 502);
+  }
+  for (const item of obj.levers_checklist) {
+    if (!item || typeof item !== "object") {
+      throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Invalid levers_checklist item.", 502);
+    }
+    for (const key of ["lever", "status", "coach_note"]) {
+      if (typeof (item as any)[key] !== "string") {
+        throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Invalid levers_checklist item fields.", 502);
+      }
+    }
+  }
+
+  if (!obj.ask_script || typeof obj.ask_script !== "object") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing ask_script.", 502);
+  }
+  if (typeof obj.ask_script.email_subject !== "string" || typeof obj.ask_script.email_body !== "string") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing ask_script email fields.", 502);
+  }
+  if (!Array.isArray(obj.ask_script.call_script_bullets)) {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing ask_script call_script_bullets.", 502);
+  }
+  for (const bullet of obj.ask_script.call_script_bullets) {
+    if (typeof bullet !== "string") {
+      throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Invalid ask_script call_script_bullets.", 502);
+    }
+  }
+
+  if (typeof obj.risk_assessment !== "string") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing risk_assessment.", 502);
+  }
+  if (typeof obj.fallback_plan !== "string") {
+    throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "Missing fallback_plan.", 502);
+  }
+
+  return obj;
+}

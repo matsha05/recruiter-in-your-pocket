@@ -1,7 +1,7 @@
 export type ResumeFeedbackRequest = {
   text: string;
   jobDescription?: string;
-  mode?: "resume" | "resume_ideas";
+  mode?: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation";
 };
 
 export type ResumeFeedbackResponse = {
@@ -92,7 +92,8 @@ export async function createResumeFeedback(resumeText: string, jobDescription?: 
 export async function streamResumeFeedback(
   resumeText: string,
   jobDescription: string | undefined,
-  onChunk: (partialJson: string, partialReport: any | null) => void
+  onChunk: (partialJson: string, partialReport: any | null) => void,
+  mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume"
 ): Promise<{ ok: boolean; report?: any; message?: string }> {
   console.log("[streamResumeFeedback] Starting...");
 
@@ -103,7 +104,7 @@ export async function streamResumeFeedback(
     body: JSON.stringify({
       text: resumeText,
       jobDescription,
-      mode: "resume"
+      mode: mode
     })
   });
 

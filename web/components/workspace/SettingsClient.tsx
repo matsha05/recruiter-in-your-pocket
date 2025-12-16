@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, Sparkles, CreditCard, Clock, FileText, Zap, Loader2 } from "lucide-react";
+import { Check, Sparkles, CreditCard, Clock, FileText, Zap, Loader2, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers/AuthProvider";
@@ -167,68 +167,79 @@ export default function SettingsClient() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        {/* Free / Pay As You Go */}
-                        <div className="bg-gradient-to-br from-moss/5 to-transparent border border-moss/30 rounded-2xl p-8 flex flex-col relative overflow-hidden ring-1 ring-moss/10 shadow-[0_8px_32px_rgba(16,185,129,0.04)] group">
+                        {/* Single Pass ($19) */}
+                        <div className="bg-secondary/20 border border-black/5 dark:border-white/5 rounded-2xl p-8 flex flex-col relative overflow-hidden group hover:bg-secondary/30 transition-colors">
                             <div className="mb-6">
-                                <h3 className="font-bold text-moss uppercase tracking-widest text-[10px] mb-2">Basic</h3>
+                                <h3 className="font-bold text-muted-foreground uppercase tracking-widest text-[10px] mb-2">One Report</h3>
                                 <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl font-serif font-medium text-foreground">$19</span>
-                                    <span className="text-muted-foreground font-medium">/ report</span>
+                                    <span className="text-4xl font-display font-medium text-foreground">$19</span>
+                                    <span className="text-muted-foreground font-medium">/ pass</span>
                                 </div>
                                 <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
-                                    Perfect for a sanity check before a big application.
+                                    One-time deep dive. Perfect for a final sanity check.
                                 </p>
                             </div>
 
                             <div className="space-y-4 flex-1">
-                                <FeatureItem text="Single Resume Audit" icon={Check} accent="moss" />
-                                <FeatureItem text="6-Second Recruiter Scan" icon={Check} accent="moss" />
-                                <FeatureItem text="Fix-It Instructions" icon={Check} accent="moss" />
+                                <FeatureItem text="1 Full Audit + Fixes" icon={Check} />
+                                <FeatureItem text="PDF Export included" icon={Check} />
+                                <FeatureItem text="Lifetime Access" icon={Check} />
                             </div>
 
                             <button
                                 onClick={() => onCheckoutClick("24h")}
                                 disabled={!!isLoading}
-                                className="mt-8 w-full py-3 rounded-xl bg-moss text-white hover:opacity-90 font-bold text-sm shadow-sm transition-opacity flex items-center justify-center gap-2"
+                                className="mt-8 w-full py-3 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-black font-bold text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading === "24h" && <Loader2 className="w-4 h-4 animate-spin" />}
                                 Buy Single Pass
                             </button>
                         </div>
 
-                        {/* Pro Subscription */}
-                        <div className="bg-gradient-to-br from-premium-accent/5 to-transparent border border-premium-accent/30 rounded-2xl p-8 flex flex-col relative overflow-hidden ring-1 ring-premium-accent/10 shadow-[0_8px_32px_rgba(255,215,0,0.04)]">
+                        {/* Pro Membership ($39) - PRIMARY */}
+                        <div className="bg-background border border-gold/30 rounded-2xl p-8 flex flex-col relative overflow-hidden ring-1 ring-gold/10 shadow-2xl">
                             <div className="absolute top-0 right-0 p-6">
-                                <Sparkles className="w-5 h-5 text-premium-accent fill-premium-accent/20" />
+                                <Sparkles className="w-5 h-5 text-gold fill-gold/20" />
                             </div>
 
+                            {/* Shine */}
+                            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+
                             <div className="mb-6">
-                                <h3 className="font-bold text-premium-accent uppercase tracking-widest text-[10px] mb-2">Pro Membership</h3>
+                                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-gold text-black text-[10px] font-bold uppercase tracking-widest mb-3">
+                                    <Crown className="w-3 h-3 fill-black/20" /> Best Value
+                                </div>
                                 <div className="flex items-baseline gap-1">
-                                    <span className="text-4xl font-serif font-medium text-foreground">$29</span>
+                                    <span className="text-4xl font-display font-medium text-foreground">$39</span>
                                     <span className="text-muted-foreground font-medium">/ month</span>
                                 </div>
-                                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
-                                    Continuous improvement for active job seekers.
+                                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                                    The full system for a serious career move.
                                 </p>
                             </div>
 
                             <div className="space-y-4 flex-1">
-                                <FeatureItem text="Unlimited Reports" icon={Zap} highlight />
-                                <FeatureItem text="Priority Processing" highlight />
-                                <FeatureItem text="Compare Versions" highlight />
-                                <FeatureItem text="PDF Export" highlight />
+                                <FeatureItem text="Unlimited Reports" icon={Zap} highlight accent="gold" />
+                                <FeatureItem text="Version History & Tracking" highlight />
+                                <FeatureItem text="Offer Negotiation Guide" highlight />
+                                <FeatureItem text="Cancel Anytime" highlight />
                             </div>
 
                             <button
                                 onClick={() => onCheckoutClick("30d")}
                                 disabled={!!isLoading}
-                                className="mt-8 w-full py-3 rounded-xl bg-premium-accent text-primary-foreground hover:opacity-90 font-bold text-sm shadow-sm transition-opacity flex items-center justify-center gap-2"
+                                className="mt-8 w-full py-3 rounded-xl bg-gold text-black hover:translate-y-[-1px] transition-transform font-bold text-sm shadow-lg shadow-gold/20 flex items-center justify-center gap-2"
                             >
-                                {isLoading === "30d" && <Loader2 className="w-4 h-4 animate-spin text-primary-foreground" />}
-                                Upgrade to Pro
+                                {isLoading === "30d" && <Loader2 className="w-4 h-4 animate-spin text-black" />}
+                                Start Full Access
                             </button>
                         </div>
+                    </div>
+
+                    <div className="mt-12 text-center border-t border-border/50 pt-8">
+                        <p className="text-xs text-muted-foreground max-w-md mx-auto">
+                            <strong>100% Satisfaction Guarantee:</strong> If you don't feel more confident after your first report, email us within 24h for a full refund.
+                        </p>
                     </div>
                 </section>
 

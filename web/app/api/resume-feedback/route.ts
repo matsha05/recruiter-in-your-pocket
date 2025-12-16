@@ -15,6 +15,9 @@ import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/pro
 import {
   ensureLayoutAndContentFields,
   validateResumeFeedbackRequest,
+  validateCaseResumePayload,
+  validateCaseInterviewPayload,
+  validateCaseNegotiationPayload,
   validateResumeIdeasPayload,
   validateResumeModelPayload
 } from "@/lib/backend/validation";
@@ -126,15 +129,31 @@ The user wants to know: "Am I a fit for THIS role, and what should I emphasize o
 `;
     }
 
-    let userPrompt = `Here is the user's input. Use the system instructions to respond.
+    let userPrompt = "";
+
+    if (mode === "case_interview") {
+      userPrompt = `CONTEXT (Role & Question):
+${jobDescription || "No specific context provided."}
+
+TRANSCRIPT (Candidate Answer):
+${text}`;
+    } else if (mode === "case_negotiation") {
+      userPrompt = `CONTEXT (Role & Goals):
+${jobDescription || "No specific context."}
+
+OFFER DETAILS:
+${text}`;
+    } else {
+      userPrompt = `Here is the user's input. Use the system instructions to respond.
 
 USER RESUME:
 ${text}`;
-    if (hasJobDescription && jobDescription) {
-      userPrompt += `
+      if (hasJobDescription && jobDescription) {
+        userPrompt += `
 
 JOB DESCRIPTION (for alignment analysis):
 ${jobDescription}`;
+      }
     }
 
     const data = await callOpenAIChat(
@@ -150,10 +169,18 @@ ${jobDescription}`;
     const parsedJson = extractJsonFromText(rawContent);
 
     let payload: any;
-    if (mode === "resume_ideas") payload = validateResumeIdeasPayload(parsedJson);
-    else payload = validateResumeModelPayload(parsedJson);
-
-    if (mode !== "resume_ideas") payload = ensureLayoutAndContentFields(payload);
+    if (mode === "resume_ideas") {
+      payload = validateResumeIdeasPayload(parsedJson);
+    } else if (mode === "case_resume") {
+      payload = validateCaseResumePayload(parsedJson);
+    } else if (mode === "case_interview") {
+      payload = validateCaseInterviewPayload(parsedJson);
+    } else if (mode === "case_negotiation") {
+      payload = validateCaseNegotiationPayload(parsedJson);
+    } else {
+      payload = validateResumeModelPayload(parsedJson);
+      payload = ensureLayoutAndContentFields(payload);
+    }
 
     // Increment free run counter only when using free tier (no pass) and not bypassing
     const shouldIncrementFree = !bypass && !activePass && freeUsed < FREE_RUN_LIMIT;
@@ -234,5 +261,4 @@ ${jobDescription}`;
     return NextResponse.json({ ok: false, errorCode: code, message }, { status });
   }
 }
-
 

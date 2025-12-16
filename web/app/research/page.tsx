@@ -112,87 +112,86 @@ const studies = [
 
 export default function ResearchPage() {
     return (
-        <StudioShell showSidebar={true} className="max-w-3xl mx-auto py-24">
+        <StudioShell showSidebar={true} className="max-w-4xl mx-auto py-24 px-6 md:px-0">
 
             {/* Editorial Header */}
             <header className="mb-24">
-                <h1 className="font-serif text-5xl font-medium text-foreground tracking-tight mb-6">
-                    Hiring Research.
+                <span className="text-label text-muted-foreground/60 mb-4 block">The Hiring Playbook</span>
+                <h1 className="text-hero text-6xl md:text-7xl mb-8">
+                    The rules they <br /> don't teach you.
                 </h1>
-                <p className="text-xl text-muted-foreground font-sans leading-relaxed max-w-xl">
-                    Our product is built on how recruiters actually read resumes, not on myths about bots and secret scores.
+                <p className="text-reading text-xl text-muted-foreground max-w-2xl">
+                    The biases, the shortcuts, the patterns. Learn what recruiters actually see—and why.
                 </p>
             </header>
 
             {/* The Stack (Editorial List) */}
-            <div className="space-y-16 mb-24">
+            <div className="space-y-4 mb-24">
                 {studies.map((study) => (
                     <div key={study.id} className="group">
-                        <Link href={study.href} className="block">
-                            <div className="flex items-baseline gap-4 mb-2">
-                                <span className="font-mono text-xs text-muted-foreground/50">
+                        <Link href={study.href} className="block group-hover:bg-secondary/20 -mx-6 px-6 py-6 rounded-xl transition-colors">
+                            <div className="grid md:grid-cols-[100px_1fr_200px] items-start gap-6">
+                                {/* Number */}
+                                <div className="text-label text-muted-foreground/30 mt-1.5">
                                     {study.number}
-                                </span>
-                                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                                    {study.category}
-                                </span>
-                            </div>
+                                </div>
 
-                            <h2 className="font-serif text-2xl md:text-3xl font-medium text-foreground mb-3 decoration-1 decoration-muted-foreground/30 group-hover:underline underline-offset-4 transition-all">
-                                {study.title}
-                            </h2>
+                                {/* Content */}
+                                <div>
+                                    <h2 className="text-title text-2xl md:text-3xl text-foreground mb-3 group-hover:text-gold transition-colors">
+                                        {study.title}
+                                    </h2>
+                                    <p className="text-muted-foreground leading-relaxed max-w-xl">
+                                        {study.thesis}
+                                    </p>
+                                </div>
 
-                            <p className="text-muted-foreground text-lg leading-relaxed mb-4 max-w-2xl">
-                                {study.thesis}
-                            </p>
-
-                            <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground/60 font-mono">
-                                <span>{study.readTime}</span>
-                                <span className="opacity-30">/</span>
-                                <span>{study.type}</span>
-                                <span className="opacity-30">/</span>
-                                <span>{study.methods.join(", ")}</span>
+                                {/* Meta */}
+                                <div className="hidden md:flex flex-col items-end gap-1 text-xs font-medium text-muted-foreground/50 font-mono mt-2">
+                                    <span>{study.readTime}</span>
+                                    <span>{study.category}</span>
+                                </div>
                             </div>
                         </Link>
                     </div>
                 ))}
             </div>
 
-            <hr className="border-border/50 mb-16" />
+            <hr className="border-black/5 dark:border-white/5 mb-24" />
 
-            {/* Principles Section (Plain List) */}
+            {/* Principles Section */}
             <div className="mb-24">
-                <h3 className="font-serif text-2xl font-medium mb-8">How this shapes the product</h3>
-                <ul className="space-y-6">
-                    <li className="flex gap-6">
-                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">01</span>
+                <h3 className="text-title text-3xl mb-12">How this shapes the product</h3>
+                <div className="grid md:grid-cols-2 gap-12">
+                    <div className="flex gap-6">
+                        <span className="text-label text-muted-foreground/30 mt-1">01</span>
                         <div>
-                            <strong className="block text-foreground mb-1">First Impressions Matter</strong>
-                            <p className="text-muted-foreground">Recruiter First Impression (the header feature) models the first 6 seconds where fit decisions happen.</p>
+                            <strong className="block text-foreground font-medium mb-1 font-display text-lg">First Impressions Matter</strong>
+                            <p className="text-muted-foreground text-sm leading-relaxed">Recruiter First Impression (the header feature) models the first 6 seconds where fit decisions happen.</p>
                         </div>
-                    </li>
-                    <li className="flex gap-6">
-                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">02</span>
+                    </div>
+                    <div className="flex gap-6">
+                        <span className="text-label text-muted-foreground/30 mt-1">02</span>
                         <div>
-                            <strong className="block text-foreground mb-1">Clarity over Keywords</strong>
-                            <p className="text-muted-foreground">Our main scoring engine rewards clarity, scope, and story, penalizing keyword stuffing.</p>
+                            <strong className="block text-foreground font-medium mb-1 font-display text-lg">Clarity over Keywords</strong>
+                            <p className="text-muted-foreground text-sm leading-relaxed">Our main scoring engine rewards clarity, scope, and story, penalizing keyword stuffing.</p>
                         </div>
-                    </li>
-                    <li className="flex gap-6">
-                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">03</span>
+                    </div>
+                    <div className="flex gap-6">
+                        <span className="text-label text-muted-foreground/30 mt-1">03</span>
                         <div>
-                            <strong className="block text-foreground mb-1">Eye-Flow Optimization</strong>
-                            <p className="text-muted-foreground">Bullet Upgrades are specifically designed to catch the eye's F-pattern scan.</p>
+                            <strong className="block text-foreground font-medium mb-1 font-display text-lg">Eye-Flow Optimization</strong>
+                            <p className="text-muted-foreground text-sm leading-relaxed">Bullet Upgrades are specifically designed to catch the eye's F-pattern scan.</p>
                         </div>
-                    </li>
-                    <li className="flex gap-6">
-                        <span className="font-mono text-xs text-muted-foreground/50 mt-1">04</span>
+                    </div>
+                    <div className="flex gap-6">
+                        <span className="text-label text-muted-foreground/30 mt-1">04</span>
                         <div>
-                            <strong className="block text-foreground mb-1">Honest ATS Education</strong>
-                            <p className="text-muted-foreground">We educate you on how parsers actually work (they are dumb databases) instead of selling 'beat the bot' fear.</p>
+                            <strong className="block text-foreground font-medium mb-1 font-display text-lg">Honest ATS Education</strong>
+                            <p className="text-muted-foreground text-sm leading-relaxed">We educate you on how parsers actually work (they are dumb databases) instead of selling 'beat the bot' fear.</p>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
 
             <Footer />

@@ -72,19 +72,19 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="flex items-center gap-4 mb-8"
+                                className="flex items-center gap-4 mb-8 p-4 bg-card border border-border/50 rounded-xl"
                             >
-                                <div className="flex -space-x-3">
-                                    {[1, 2, 3].map((i) => (
-                                        <div key={i} className="w-10 h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center text-[10px] overflow-hidden">
-                                            {/* Placeholder avatars would go here, using gray div for now */}
-                                            <div className={`w-full h-full bg-neutral-${i * 200}`} />
-                                        </div>
-                                    ))}
+                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-xl font-semibold text-primary">
+                                    M
                                 </div>
-                                <p className="text-sm text-muted-foreground">
-                                    Trusted by candidates from <span className="font-semibold text-foreground">Google, OpenAI, Linear</span>
-                                </p>
+                                <div className="flex-1">
+                                    <p className="text-sm font-medium text-foreground">
+                                        Built by a recruiter who&apos;s reviewed 10,000+ resumes
+                                    </p>
+                                    <p className="text-xs text-muted-foreground">
+                                        Ex-Meta, Ex-Google recruiting • 8 years in tech hiring
+                                    </p>
+                                </div>
                             </motion.div>
                         )}
 

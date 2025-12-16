@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 export function CompStack() {
     const stack = [
-        { label: "Level & Title", value: "Multi-year trajectory", h: 48, color: "bg-neutral-900 dark:bg-neutral-100", text: "text-bg dark:text-bg-inv", sub: "The scope promise" },
-        { label: "Sign-on Bonus", value: "$20k - $50k", h: 56, color: "bg-emerald-500", text: "text-white", sub: "Easy cash lever" },
-        { label: "Equity / RSUs", value: "$100k / 4yr", h: 72, color: "bg-indigo-500", text: "text-white", sub: "High variance lever" },
-        { label: "Annual Bonus", value: "15% Target", h: 40, color: "bg-blue-500", text: "text-white", sub: "Performance tied" },
-        { label: "Base Salary", value: "$165k", h: 80, color: "bg-slate-700", text: "text-white", sub: "Hardest to move" },
+        { label: "Level & Title", value: "Multi-year trajectory", h: 48, color: "neutral", sub: "The scope promise" },
+        { label: "Sign-on Bonus", value: "$20k - $50k", h: 56, color: "gold", sub: "Easy cash lever" },
+        { label: "Equity / RSUs", value: "$100k / 4yr", h: 72, color: "neutral", sub: "High variance lever" },
+        { label: "Annual Bonus", value: "15% Target", h: 40, color: "neutral", sub: "Performance tied" },
+        { label: "Base Salary", value: "$165k", h: 80, color: "neutral", sub: "Hardest to move" },
     ];
 
     return (
@@ -21,22 +21,29 @@ export function CompStack() {
                 {stack.map((item, i) => (
                     <motion.div
                         key={i}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        className={`relative w-full rounded-md shadow-sm overflow-hidden group hover:scale-[1.02] transition-transform duration-300 ease-out`}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.05 }}
+                        className={`relative w-full rounded-none border-l border-r border-t bg-background hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-colors group ${i === stack.length - 1 ? 'border-b' : ''} ${item.color.includes('gold') ? 'z-10 -mx-1 w-[calc(100%+8px)] border border-gold/40 shadow-[0_0_20px_-10px_rgba(251,191,36,0.2)] rounded-sm bg-neutral-900' : 'border-neutral-200 dark:border-white/10'}`}
                         style={{ height: item.h }}
                     >
-                        <div className={`absolute inset-0 ${item.color} opacity-90`} />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-white/5 to-black/10" />
-
-                        <div className={`relative z-10 flex items-center justify-between px-5 h-full ${item.text}`}>
-                            <div>
-                                <span className="font-semibold text-sm block">{item.label}</span>
-                                <span className="text-[10px] opacity-80 font-medium tracking-wide uppercase">{item.sub}</span>
+                        <div className="flex items-center justify-between px-6 h-full">
+                            <div className="flex flex-col justify-center">
+                                <span className={`text-sm font-medium ${item.color.includes('gold') ? 'text-gold' : 'text-neutral-900 dark:text-neutral-100'} font-serif tracking-tight`}>
+                                    {item.label}
+                                </span>
+                                <span className={`text-[10px] uppercase tracking-widest ${item.color.includes('gold') ? 'text-gold/60' : 'text-neutral-400'}`}>
+                                    {item.sub}
+                                </span>
                             </div>
-                            <span className="font-mono text-xs opacity-90">{item.value}</span>
+                            <span className={`font-mono text-xs ${item.color.includes('gold') ? 'text-gold' : 'text-neutral-600 dark:text-neutral-400'}`}>
+                                {item.value}
+                            </span>
                         </div>
+                        {/* Subtle Grid Lines for non-highlight items */}
+                        {!item.color.includes('gold') && (
+                            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-transparent group-hover:bg-neutral-900 dark:group-hover:bg-white transition-colors" />
+                        )}
                     </motion.div>
                 ))}
             </div>

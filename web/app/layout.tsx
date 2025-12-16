@@ -4,6 +4,15 @@ import { AuthProvider } from "@/components/providers/AuthProvider";
 
 import { Toaster } from "@/components/ui/sonner";
 import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Newsreader } from "next/font/google";
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  display: "swap",
+  style: ["normal", "italic"],
+});
 
 export const metadata: Metadata = {
   title: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",
@@ -16,14 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={GeistSans.variable}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${newsreader.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,200..800;1,200..800&display=swap"
-          rel="stylesheet"
-        />
         {/* Favicon is handled automatically by icon.tsx */}
       </head>
       <body>

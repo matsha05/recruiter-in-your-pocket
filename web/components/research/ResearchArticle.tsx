@@ -54,84 +54,84 @@ export function ResearchArticle({
 }: ResearchArticleProps) {
     return (
         <StudioShell showSidebar={true}>
-            <div className="max-w-3xl mx-auto space-y-12 pb-20">
+            <div className="max-w-3xl mx-auto space-y-16 pb-24 px-6 md:px-0 pt-12">
 
                 {/* 1. Header & Breadcrumb */}
                 <header>
-                    <Link href="/research" className="inline-block mb-6">
-                        <Button variant="ghost" size="sm" className="-ml-3 gap-2 text-muted-foreground">
-                            ← Back to Library
-                        </Button>
+                    <Link href="/research" className="inline-block mb-8 group">
+                        <span className="text-label text-muted-foreground/50 group-hover:text-foreground transition-colors">
+                            ← Back to Research
+                        </span>
                     </Link>
-                    <div className="space-y-4">
-                        <span className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs font-semibold text-foreground">
+                    <div className="space-y-6">
+                        <span className="inline-block text-label text-gold uppercase tracking-widest font-semibold text-[10px] border border-gold/20 px-2 py-1 rounded-sm bg-gold/5">
                             {header.tag}
                         </span>
-                        <h1 className="font-serif text-4xl md:text-5xl font-medium tracking-tight text-foreground">
+                        <h1 className="text-hero text-5xl md:text-6xl text-foreground">
                             {header.title}
                         </h1>
-                        <p className="text-xl text-muted-foreground font-sans leading-relaxed">
+                        <p className="text-reading text-xl text-muted-foreground leading-relaxed">
                             {header.description}
                         </p>
                     </div>
                 </header>
 
                 {/* 2. Key Finding Card */}
-                <Card className="bg-secondary/30 border-primary/10">
-                    <CardContent className="p-8 md:p-10 space-y-6">
-                        <div className="flex items-center gap-2 text-amber-600 font-medium text-sm uppercase tracking-wider">
-                            {/* Render the passed node directly */}
-                            {keyFinding.icon}
-                            <span>{keyFinding.subtitle}</span>
-                        </div>
-                        <div className="space-y-2">
-                            <h2 className="font-serif text-3xl font-medium">{keyFinding.stat}</h2>
-                            <p className="text-muted-foreground text-lg">
-                                {keyFinding.statDescription}
-                            </p>
-                        </div>
-                        <div className="pt-6 border-t border-border/50 text-sm text-muted-foreground space-y-2">
-                            <p className="flex items-center gap-2">
-                                <strong>Source:</strong>
-                                {keyFinding.source.href ? (
-                                    <a href={keyFinding.source.href} target="_blank" className="inline-flex items-center gap-1 underline hover:text-foreground">
-                                        {keyFinding.source.text} <ExternalLink className="h-3 w-3" />
-                                    </a>
-                                ) : (
-                                    <span>{keyFinding.source.text}</span>
-                                )}
-                            </p>
-                            {keyFinding.sampleSize && (
-                                <p><strong>Sample:</strong> {keyFinding.sampleSize}</p>
+                <div className="border border-gold/20 bg-gold/5 rounded-none border-l-4 border-l-gold p-8 md:p-10 space-y-6">
+                    <div className="flex items-center gap-2 text-gold font-bold text-xs uppercase tracking-widest">
+                        {/* Render the passed node directly */}
+                        {keyFinding.icon}
+                        <span>{keyFinding.subtitle}</span>
+                    </div>
+                    <div className="space-y-2">
+                        <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground tracking-tight">{keyFinding.stat}</h2>
+                        <p className="text-muted-foreground text-lg leading-relaxed">
+                            {keyFinding.statDescription}
+                        </p>
+                    </div>
+                    <div className="pt-6 border-t border-gold/10 text-xs font-mono text-muted-foreground/70 space-y-2">
+                        <p className="flex items-center gap-2">
+                            <span className="text-gold/80 uppercase">Source:</span>
+                            {keyFinding.source.href ? (
+                                <a href={keyFinding.source.href} target="_blank" className="inline-flex items-center gap-1 hover:text-foreground underline underline-offset-4 decoration-border">
+                                    {keyFinding.source.text}
+                                </a>
+                            ) : (
+                                <span>{keyFinding.source.text}</span>
                             )}
-                        </div>
-                    </CardContent>
-                </Card>
+                        </p>
+                        {keyFinding.sampleSize && (
+                            <p><span className="text-gold/80 uppercase">Sample:</span> {keyFinding.sampleSize}</p>
+                        )}
+                    </div>
+                </div>
 
                 {/* 3. Visualization Section (Optional) */}
                 {visualization && (
-                    <section>
+                    <section className="my-16">
                         {visualization}
                     </section>
                 )}
 
                 {/* 4. Main Prose Content */}
-                <article className="prose prose-neutral dark:prose-invert max-w-none font-sans">
+                <article className="prose prose-neutral dark:prose-invert max-w-none font-sans prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight prose-p:text-lg prose-p:leading-relaxed prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground">
                     {children}
                 </article>
 
+                <hr className="border-black/5 dark:border-white/5 my-16" />
+
                 {/* 5. Product Tie-In */}
-                <div className="border-t border-border pt-12 mt-12">
-                    <h3 className="font-serif text-2xl font-medium mb-6">{productTieIn.title}</h3>
-                    <div className="grid gap-4">
+                <div className="bg-secondary/20 p-8 md:p-10 rounded-sm border border-black/5 dark:border-white/5">
+                    <h3 className="font-serif text-2xl font-medium mb-8 text-foreground">How this shapes the product</h3>
+                    <div className="grid gap-8">
                         {productTieIn.items.map((item, i) => (
-                            <div key={i} className="flex gap-4 items-start">
-                                <div className="mt-1 h-6 w-6 rounded bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                    <ArrowRight className="h-4 w-4" />
+                            <div key={i} className="flex gap-4 items-start group">
+                                <div className="mt-1 h-5 w-5 flex items-center justify-center text-gold shrink-0">
+                                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                 </div>
                                 <div>
-                                    <h4 className="font-medium">{item.title}</h4>
-                                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                                    <h4 className="font-medium text-foreground mb-1">{item.title}</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                                 </div>
                             </div>
                         ))}
@@ -139,10 +139,15 @@ export function ResearchArticle({
                 </div>
 
                 {/* 6. Standard CTA */}
-                <div className="flex flex-col items-center justify-center gap-4 py-12 bg-muted/20 rounded-2xl">
-                    <h3 className="font-serif text-xl font-medium">{cta.title}</h3>
+                <div className="flex flex-col items-center justify-center gap-6 py-20">
+                    <h3 className="font-serif text-2xl font-medium text-center">{cta.title}</h3>
                     <Link href={cta.href}>
-                        <Button size="lg" variant="studio">{cta.buttonText}</Button>
+                        <div className="relative group">
+                            <div className="absolute -inset-1 bg-gold rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-200"></div>
+                            <Button size="lg" className="relative bg-foreground text-background hover:bg-foreground/90 font-medium px-8 h-12 rounded-lg border border-white/10">
+                                {cta.buttonText}
+                            </Button>
+                        </div>
                     </Link>
                 </div>
 
@@ -155,10 +160,10 @@ export function ResearchArticle({
 
 export function ArticleInsight({ icon, title, desc }: { icon: ReactNode, title: string, desc: string }) {
     return (
-        <div className="p-4 border rounded-lg bg-card hover:border-primary/20 transition-colors">
-            <div className="flex items-center gap-2 mb-2 text-primary font-medium">
+        <div className="p-6 border border-black/5 dark:border-white/5 bg-background hover:bg-secondary/10 transition-colors">
+            <div className="flex items-center gap-2 mb-3 text-foreground font-medium">
                 {icon}
-                <span>{title}</span>
+                <span className="font-serif text-lg tracking-tight">{title}</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
         </div>

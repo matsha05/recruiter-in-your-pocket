@@ -42,11 +42,12 @@ export default function WorkspaceHeader({
                         <ArrowLeft className="w-5 h-5" />
                     </button>
                 ) : (
-                    <MobileNav />
+                    <Link href="/" className="flex items-center gap-2">
+                        <span className="font-serif font-medium tracking-tight text-xl text-foreground">
+                            Recruiter in Your Pocket
+                        </span>
+                    </Link>
                 )}
-                <h1 className="font-serif italic font-semibold text-lg tracking-tight text-foreground">
-                    Pocket
-                </h1>
             </div>
 
             {/* Desktop Spacer (keeps right actions aligned if brand is hidden) */}

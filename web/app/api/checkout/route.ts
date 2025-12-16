@@ -9,52 +9,41 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 const PRICE_IDS = {
     "24h": process.env.STRIPE_PRICE_ID_24H || "price_1SeJLJK3nCOONJJ0g2JncGeY",
-    "30d": process.env.STRIPE_PRICE_ID_30D || "price_1SeJLsK3nCOONJJ0mrQIVesj"
+    "30d": process.env.STRIPE_PRICE_ID_30D || "price_1SeJLsK3nCOONJJ0mrQIVesj",
+    "90d": process.env.STRIPE_PRICE_ID_90D || "price_MISSING_90D_ID"
 };
 
-// Base URL for redirects
-const getBaseUrl = () => {
-    if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    // Next dev server default
-    return "http://localhost:3000";
-};
+// ...
 
 export async function POST(request: Request) {
-    // Guard: Stripe must be configured
-    if (!stripe) {
-        console.error("[checkout] STRIPE_SECRET_KEY not set");
-        return NextResponse.json(
-            { ok: false, message: "Payments are not configured yet." },
-            { status: 500 }
-        );
-    }
+    // ... (guard checks)
 
     try {
         const body = await request.json();
         const { tier, email } = body;
 
-        // Email is required for checkout
-        if (!email || typeof email !== "string") {
-            return NextResponse.json(
-                { ok: false, message: "Email is required." },
-                { status: 400 }
-            );
-        }
+        // ... (email check)
 
         // Determine tier
-        const selectedTier = tier === "30d" ? "30d" : "24h";
-        const priceId = PRICE_IDS[selectedTier];
+        let selectedTier = "24h";
+        if (tier === "30d") selectedTier = "30d";
+        if (tier === "90d") selectedTier = "90d";
 
-        if (!priceId) {
-            console.error(`[checkout] No price ID for tier: ${selectedTier}`);
+        const priceId = PRICE_IDS[selectedTier as keyof typeof PRICE_IDS];
+
+        if (!priceId || priceId.includes("MISSING")) {
+            console.error(`[checkout] Invalid or missing price ID for tier: ${selectedTier}`);
             return NextResponse.json(
-                { ok: false, message: "Invalid pass tier." },
+                { ok: false, message: "This plan is currently unavailable." },
                 { status: 400 }
             );
         }
 
-        const tierLabel = selectedTier === "30d" ? "Pro Membership" : "Single Audit Pass";
+        const tierLabel =
+            selectedTier === "90d" ? "Executive Membership (Quarterly)" :
+                selectedTier === "30d" ? "Pro Membership" :
+                    "Single Audit Pass";
+
         const baseUrl = getBaseUrl();
 
         // Check if user is already logged in (optional)

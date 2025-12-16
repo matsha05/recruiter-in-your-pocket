@@ -195,21 +195,20 @@ Example headings:
 
 ## 5. Color Contract
 
-### Brand Indigo Usage
+### Brand Gold Usage
 
-**Indigo may be used ONLY for:**
+**Gold may be used ONLY for:**
 - Primary CTA
-- Active section indicator in side rail
-- Small section labels
+- Key finding highlight borders
+- Very subtle background tones (bg-gold/5)
+- "Hot" spots in data visualizations (if appropriate)
 
-**Indigo may NOT be used for:**
-- Icons
+**Gold may NOT be used for:**
 - Body text
-- Decorative borders
-- Decorative backgrounds
-- Insight emphasis
+- Decorative backgrounds (beyond subtle tint)
+- Excessive borders
 
-> Research content should be predominantly neutral.
+> Research content should be predominantly neutral (Ink & Paper).
 
 ---
 

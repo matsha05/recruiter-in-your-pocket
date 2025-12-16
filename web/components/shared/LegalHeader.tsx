@@ -15,7 +15,7 @@ export default function LegalHeader() {
             <header className="flex items-center justify-between px-6 py-4 bg-surface sticky top-0 z-50 border-b border-subtle">
                 <Link
                     href="/"
-                    className="font-serif italic font-semibold tracking-tight text-xl text-foreground hover:opacity-80 transition-opacity"
+                    className="font-serif font-medium tracking-tight text-xl text-foreground hover:opacity-80 transition-opacity"
                 >
                     Recruiter in Your Pocket
                 </Link>

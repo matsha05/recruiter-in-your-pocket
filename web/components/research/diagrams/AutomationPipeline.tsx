@@ -9,16 +9,16 @@ export function AutomationPipeline() {
             stage: "Sourcing",
             automation: "Ad Delivery",
             risk: "Old ads only shown to certain demographics",
-            color: "text-blue-500",
-            bg: "bg-blue-500/10",
-            border: "border-blue-500/20"
+            color: "text-sky-400",
+            bg: "bg-sky-500/10",
+            border: "border-sky-500/20"
         },
         {
             icon: Search,
             stage: "Screening",
             automation: "Resume Parsing",
             risk: "Non-standard formats parsed incorrectly",
-            color: "text-indigo-500",
+            color: "text-indigo-400",
             bg: "bg-indigo-500/10",
             border: "border-indigo-500/20"
         },
@@ -27,18 +27,18 @@ export function AutomationPipeline() {
             stage: "Selection",
             automation: "Ranking Algo",
             risk: "Bias against gaps or 'non-target' schools",
-            color: "text-purple-500",
-            bg: "bg-purple-500/10",
-            border: "border-purple-500/20"
+            color: "text-violet-400",
+            bg: "bg-violet-500/10",
+            border: "border-violet-500/20"
         },
         {
             icon: BarChart3,
             stage: "Interview",
             automation: "Scoring",
             risk: "Standardized questions with biased grading",
-            color: "text-rose-500",
-            bg: "bg-rose-500/10",
-            border: "border-rose-500/20"
+            color: "text-gold",
+            bg: "bg-gold/10",
+            border: "border-gold/30"
         }
     ];
 

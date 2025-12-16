@@ -14,11 +14,16 @@ import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/pro
 import {
     ensureLayoutAndContentFields,
     validateResumeFeedbackRequest,
-    validateResumeModelPayload
+    validateResumeModelPayload,
+    validateCaseResumePayload,
+    validateCaseInterviewPayload,
+    validateCaseNegotiationPayload
 } from "@/lib/backend/validation";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+// Force recompile check
 
 function nowIso() {
     return new Date().toISOString();
@@ -122,9 +127,18 @@ export async function POST(request: Request) {
                     systemPrompt += `\n\nJOB-SPECIFIC ALIGNMENT (ADDITIONAL CONTEXT)\n\nThe user has provided a specific job description. In your job_alignment response, pay special attention to:\n- How well the resume aligns with THIS specific job's requirements\n- Themes in the job description that the resume demonstrates (strongly_aligned)\n- Themes in the job description that are present but underemphasized (underplayed)\n- Critical requirements from the job description that are missing (missing)\n\nThe user wants to know: \"Am I a fit for THIS role, and what should I emphasize or add?\"\n`;
                 }
 
-                let userPrompt = `Here is the user's input. Use the system instructions to respond.\n\nUSER RESUME:\n${text}`;
-                if (hasJobDescription && jobDescription) {
-                    userPrompt += `\n\nJOB DESCRIPTION (for alignment analysis):\n${jobDescription}`;
+                let userPrompt = "";
+                if (mode === "case_interview") {
+                    userPrompt = `CONTEXT (Role & Question):\n${jobDescription || "No specific context provided."}\n\nTRANSCRIPT (Candidate Answer):\n${text}`;
+                } else if (mode === "case_negotiation") {
+                    // For negotiation, 'text' contains offer details (JSON string or formatted text)
+                    // 'jobDescription' contains Context + User Goals
+                    userPrompt = `CONTEXT (Role & Goals):\n${jobDescription || "No specific context."}\n\nOFFER DETAILS:\n${text}`;
+                } else {
+                    userPrompt = `Here is the user's input. Use the system instructions to respond.\n\nUSER RESUME:\n${text}`;
+                    if (hasJobDescription && jobDescription) {
+                        userPrompt += `\n\nJOB DESCRIPTION (for alignment analysis):\n${jobDescription}`;
+                    }
                 }
 
                 // Stream the OpenAI response
@@ -147,8 +161,18 @@ export async function POST(request: Request) {
                 let payload: any;
                 try {
                     const parsedJson = extractJsonFromText(accumulatedJson);
-                    payload = validateResumeModelPayload(parsedJson);
-                    payload = ensureLayoutAndContentFields(payload);
+
+                    if (mode === "case_resume") {
+                        payload = validateCaseResumePayload(parsedJson);
+                    } else if (mode === "case_interview") {
+                        payload = validateCaseInterviewPayload(parsedJson);
+                    } else if (mode === "case_negotiation") {
+                        payload = validateCaseNegotiationPayload(parsedJson);
+                    } else {
+                        // Original legacy modes
+                        payload = validateResumeModelPayload(parsedJson);
+                        payload = ensureLayoutAndContentFields(payload);
+                    }
                 } catch (err: any) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",

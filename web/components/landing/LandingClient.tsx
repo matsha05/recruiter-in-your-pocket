@@ -9,14 +9,17 @@ import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { SkimView } from "@/components/workspace/SkimView";
-import { ArrowRight, Loader2, Eye, Target, PenTool } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import Footer from "@/components/landing/Footer";
+import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
+import { BackedByResearch } from "@/components/landing/BackedByResearch";
+import { Pricing } from "@/components/landing/Pricing";
 
 export default function LandingClient() {
     const router = useRouter();
     const { user, isLoading: isAuthLoading, signOut } = useAuth();
     const [isProcessing, setIsProcessing] = useState(false);
-    const [skimData, setSkimData] = useState<any>(null); // Ideally type this shared interface
+    const [skimData, setSkimData] = useState<any>(null);
     const [previewText, setPreviewText] = useState<string>("");
     const [isSkimOpen, setIsSkimOpen] = useState(false);
 
@@ -43,7 +46,6 @@ export default function LandingClient() {
             }
         } catch (err) {
             console.error(err);
-            // Fallback: just go to workspace if quick skim fails
             router.push("/workspace");
         } finally {
             setIsProcessing(false);
@@ -51,7 +53,6 @@ export default function LandingClient() {
     };
 
     const handleFullAnalysis = () => {
-        // Pass the preview text to the workspace via storage
         if (previewText) {
             sessionStorage.setItem("pending_resume_text", previewText);
         }
@@ -59,13 +60,13 @@ export default function LandingClient() {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground flex flex-col">
+        <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-gold/20">
             {/* Navbar: Minimal, Technical */}
-            <header className="h-16 flex items-center justify-between px-6 border-b border-border/50 bg-background/50 backdrop-blur-sm sticky top-0 z-50">
+            <header className="h-16 flex items-center justify-between px-6 border-b border-white/5 bg-background/80 backdrop-blur-md sticky top-0 z-50">
                 <div className="flex items-center gap-2">
-                    <span className="text-xl font-serif italic font-semibold tracking-tight text-foreground">Pocket</span>
+                    <span className="text-xl font-serif font-medium tracking-tight text-foreground">Recruiter in Your Pocket</span>
                 </div>
-                <nav className="flex items-center gap-4">
+                <nav className="flex items-center gap-6">
                     <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">Research</Link>
                     {isAuthLoading ? (
                         <div className="w-24 h-9" />
@@ -73,117 +74,77 @@ export default function LandingClient() {
                         <div className="flex items-center gap-4">
                             <UserNav user={user} onSignOut={signOut} />
                             <Link href="/workspace">
-                                <Button variant="studio" size="sm">Open Studio</Button>
+                                <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:translate-y-[-1px] transition-transform">Open Studio</Button>
                             </Link>
                         </div>
                     ) : (
-                        <>
+                        <div className="flex items-center gap-4">
                             <Link href="/auth">
-                                <Button variant="ghost" size="sm" className="text-muted-foreground">Log In</Button>
+                                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Log In</Button>
                             </Link>
                             <Link href="/workspace">
-                                <Button variant="studio" size="sm">Get Started</Button>
+                                <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:translate-y-[-1px] transition-transform shadow-lg shadow-black/5">Get Started</Button>
                             </Link>
-                        </>
+                        </div>
                     )}
                 </nav>
             </header>
 
             {/* Hero Section */}
-            <main className="flex-1 flex flex-col items-center pt-24 pb-20 px-6">
-                <div className="text-center max-w-2xl mx-auto mb-12">
-                    <h1 className="font-serif text-5xl md:text-6xl font-medium tracking-tight text-primary mb-4 leading-[1.1]">
-                        See what recruiters see.
+            <main className="flex-1 flex flex-col items-center pt-24 pb-20 px-6 overflow-hidden">
+                <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
+                    <h1 className="text-hero text-6xl md:text-7xl lg:text-8xl text-primary mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                        See what <br className="hidden md:block" /> they see.
                     </h1>
-                    <p className="font-sans text-lg text-muted-foreground">
-                        No ATS games. <span className="text-foreground font-medium">Just the truth.</span>
+                    <p className="text-memo text-xl text-muted-foreground max-w-lg mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                        In 7.4 seconds, a recruiter has already decided. <br />
+                        <span className="text-foreground font-medium">This is what they saw.</span>
                     </p>
-                </div>
 
-                <div className="w-full max-w-xl mb-16 animate-fade-in-up">
-                    <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
-                </div>
-
-                {/* Social Proof */}
-                <div className="text-center">
-                    <p className="text-[11px] uppercase tracking-widest text-muted-foreground/60 font-semibold mb-6">
-                        Analyzing resumes from candidates at
-                    </p>
-                    <div className="flex items-center justify-center gap-8 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                        <span className="font-sans font-bold text-lg tracking-tight">Google</span>
-                        <span className="font-sans font-bold text-lg tracking-tight">Linear</span>
-                        <span className="font-sans font-bold text-lg tracking-tight">OpenAI</span>
-                        <span className="font-sans font-bold text-lg tracking-tight">Netflix</span>
-                    </div>
-                </div>
-
-                {/* Feature Showcase */}
-                <div className="w-full max-w-5xl mx-auto mt-32 mb-20 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-                    <div className="text-center mb-16">
-                        <h2 className="font-serif text-3xl md:text-4xl text-primary mb-4">
-                            See what they see. Fix what matters.
-                        </h2>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {/* Feature 1: The Scan */}
-                        <div className="bg-secondary/30 p-8 rounded-2xl flex flex-col items-center text-center group transition-colors">
-                            <div className="w-12 h-12 bg-rose/10 rounded-xl flex items-center justify-center mb-6 text-rose hover:scale-110 transition-transform">
-                                <Eye className="w-6 h-6" strokeWidth={1.5} />
-                            </div>
-                            <h3 className="font-serif text-xl text-primary mb-3">The Recruiter Scan</h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                                We simulate the critical glance used to filter candidates. See exactly what gets read and what gets skipped.
-                            </p>
-                        </div>
-
-                        {/* Feature 2: The Score */}
-                        <div className="bg-secondary/30 p-8 rounded-2xl flex flex-col items-center text-center group transition-colors">
-                            <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center mb-6 text-gold hover:scale-110 transition-transform">
-                                <Target className="w-6 h-6" strokeWidth={1.5} />
-                            </div>
-                            <h3 className="font-serif text-xl text-primary mb-3">The Reality Check</h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                                Get a clear valid signal on your resume's impact and clarity—not detailed grammar rules.
-                            </p>
-                        </div>
-
-                        {/* Feature 3: The Fix */}
-                        <div className="bg-secondary/30 p-8 rounded-2xl flex flex-col items-center text-center group transition-colors">
-                            <div className="w-12 h-12 bg-moss/10 rounded-xl flex items-center justify-center mb-6 text-moss hover:scale-110 transition-transform">
-                                <PenTool className="w-6 h-6" strokeWidth={1.5} />
-                            </div>
-                            <h3 className="font-serif text-xl text-primary mb-3">The Rewrite</h3>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                                We don't just give advice. We suggest specific text changes to make your experience stand out.
-                            </p>
+                    <div className="w-full max-w-xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                        <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
+                        <div className="mt-4 flex items-center justify-center gap-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
+                            <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
+                            <span>•</span>
+                            <span>Auto-deleted in 24h</span>
                         </div>
                     </div>
                 </div>
+
+                {/* The Hero Artifact (Sample Preview) */}
+                <div className="w-full flex justify-center mb-32 relative z-0 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                    <SampleReportPreview />
+                </div>
+
+                {/* Proof Section */}
+                <BackedByResearch />
+
+                {/* Pricing Section */}
+                <Pricing />
             </main>
 
             {/* Skim Result Modal */}
             <Dialog open={isSkimOpen} onOpenChange={setIsSkimOpen}>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-                    <DialogHeader className="px-6 pt-6">
-                        <DialogTitle className="font-serif text-2xl">The First Impression</DialogTitle>
-                        <DialogDescription>
-                            This is what a recruiter sees before they decide to read or reject.
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col border-black/5 dark:border-white/5 shadow-2xl">
+                    <DialogHeader className="px-6 pt-6 border-b border-border/50 bg-secondary/20">
+                        <DialogTitle className="font-display text-2xl tracking-tight">What They See in 6 Seconds</DialogTitle>
+                        <DialogDescription className="text-muted-foreground font-sans">
+                            This is the moment. Before they read a single bullet, this is the impression.
                         </DialogDescription>
                     </DialogHeader>
 
-                    <div className="flex-1 overflow-y-auto p-6 bg-secondary/20 border-y">
+                    <div className="flex-1 overflow-y-auto p-6 bg-background">
                         {skimData && (
                             <SkimView text={previewText} skimData={skimData} />
                         )}
                     </div>
 
-                    <div className="p-6 flex items-center justify-between bg-background">
-                        <div className="text-sm text-muted-foreground">
+                    <div className="p-6 flex items-center justify-between bg-background border-t border-border/50">
+                        <div className="text-sm text-muted-foreground font-medium">
                             <p>Is this impression strong enough?</p>
                         </div>
-                        <Button onClick={handleFullAnalysis} size="lg" className="gap-2">
-                            Get Full Audit & Fixes <ArrowRight className="w-4 h-4" />
+                        <Button onClick={handleFullAnalysis} size="lg" className="gap-2 bg-primary text-primary-foreground hover:translate-y-[-1px] transition-transform">
+                            Continue to Full Report <ArrowRight className="w-4 h-4" />
                         </Button>
                     </div>
                 </DialogContent>
