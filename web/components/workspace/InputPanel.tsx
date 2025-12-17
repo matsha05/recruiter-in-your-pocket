@@ -82,7 +82,7 @@ export default function InputPanel({
                 </div>
 
                 {/* Main Card */}
-                <div className="bg-card border border-border/10 shadow-sm rounded-md overflow-hidden">
+                <div className="bg-card border border-border shadow-sm rounded-md overflow-hidden">
 
                     {/* Section 1: Resume */}
                     <div className="p-6 md:p-8 space-y-6">
@@ -97,7 +97,7 @@ export default function InputPanel({
                         {/* Dropzone */}
                         <div
                             className={cn(
-                                "relative flex flex-col items-center justify-center gap-3 p-8 border border-dashed rounded-md cursor-pointer transition-all duration-normal",
+                                "relative flex flex-col items-center justify-center gap-3 p-8 border-2 border-dashed rounded-md cursor-pointer transition-all duration-normal",
                                 isDragOver
                                     ? "border-brand bg-brand/5"
                                     : "border-border/60 hover:border-brand/50 hover:bg-muted/30"
@@ -127,25 +127,17 @@ export default function InputPanel({
                         </div>
 
                         {/* Trust Module */}
-                        <div className="flex items-center justify-center gap-6 text-[11px] text-muted-foreground">
+                        <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground">
                             <span className="flex items-center gap-1.5">
                                 <svg className="w-3 h-3 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
-                                End-to-end encrypted
+                                Encrypted
                             </span>
-                            <span className="flex items-center gap-1.5">
-                                <svg className="w-3 h-3 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                                Auto-deleted in 24h
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                                <svg className="w-3 h-3 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                </svg>
-                                Never shared or sold
-                            </span>
+                            <span>·</span>
+                            <span>Auto-deleted in 24h</span>
+                            <span>·</span>
+                            <span>Never trains AI</span>
                         </div>
 
                         {/* File Tag */}
@@ -177,7 +169,7 @@ export default function InputPanel({
                             value={resumeText}
                             onChange={(e) => onResumeTextChange(e.target.value)}
                             placeholder="Paste your resume content here if you don't have a file..."
-                            className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[150px] font-mono text-xs leading-relaxed"
+                            className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[150px] leading-relaxed"
                         />
 
                         {isShortResume && (

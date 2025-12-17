@@ -3,37 +3,15 @@ import { ImageResponse } from "next/og";
 // Route segment config
 export const runtime = "edge";
 
-// Image sizes for all required icons
-export function generateImageMetadata() {
-    return [
-        {
-            contentType: "image/png",
-            size: { width: 32, height: 32 },
-            id: "small",
-        },
-        {
-            contentType: "image/png",
-            size: { width: 192, height: 192 },
-            id: "medium",
-        },
-        {
-            contentType: "image/png",
-            size: { width: 512, height: 512 },
-            id: "large",
-        },
-    ];
-}
+// Image metadata - 180x180 for iOS
+export const size = {
+    width: 180,
+    height: 180,
+};
+export const contentType = "image/png";
 
-// Generate icons for all sizes
-export default function Icon({ id }: { id: string }) {
-    const sizes: Record<string, { size: number; iconSize: number; radius: number }> = {
-        small: { size: 32, iconSize: 20, radius: 6 },
-        medium: { size: 192, iconSize: 128, radius: 24 },
-        large: { size: 512, iconSize: 340, radius: 64 },
-    };
-
-    const { size, iconSize, radius } = sizes[id] || sizes.small;
-
+// Apple Touch Icon - PocketMark on Brand Teal
+export default function Icon() {
     return new ImageResponse(
         (
             <div
@@ -44,12 +22,12 @@ export default function Icon({ id }: { id: string }) {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    borderRadius: `${radius}px`,
+                    borderRadius: "36px", // iOS rounds corners, but we add subtle rounding
                 }}
             >
                 <svg
-                    width={iconSize}
-                    height={iconSize}
+                    width="120"
+                    height="120"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,8 +70,7 @@ export default function Icon({ id }: { id: string }) {
             </div>
         ),
         {
-            width: size,
-            height: size,
+            ...size,
         }
     );
 }

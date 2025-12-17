@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { SkimView } from "@/components/workspace/SkimView";
 import { ArrowRight, Lock } from "lucide-react";
-import { PocketMark } from "@/components/icons";
+import { PocketMark, Wordmark } from "@/components/icons";
 import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
 import { BackedByResearch } from "@/components/landing/BackedByResearch";
@@ -66,7 +66,7 @@ export default function LandingClient() {
             <header className="h-16 flex items-center justify-between px-6 border-b border-white/5 bg-background/80 backdrop-blur-md sticky top-0 z-50">
                 <div className="flex items-center gap-2">
                     <PocketMark className="w-6 h-6 text-brand" />
-                    <span className="text-xl font-display font-medium tracking-tight text-foreground">Recruiter in Your Pocket</span>
+                    <Wordmark className="h-6 text-foreground" />
                 </div>
                 <nav className="flex items-center gap-6">
                     <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">Research</Link>
@@ -111,8 +111,10 @@ export default function LandingClient() {
                                 <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
                                 <div className="flex items-center gap-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
                                     <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
-                                    <span>•</span>
+                                    <span>·</span>
                                     <span>Auto-deleted in 24h</span>
+                                    <span>·</span>
+                                    <span>Never trains AI</span>
                                 </div>
                             </div>
                         </div>

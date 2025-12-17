@@ -24,34 +24,53 @@ export function Pricing({ onSelectTier }: PricingProps) {
 
                 <div className="text-center mb-16 max-w-2xl mx-auto">
                     <h2 className="font-display text-4xl md:text-5xl text-primary mb-4 leading-tight tracking-tight">
-                        Know <span className="text-brand italic">before</span> <br /> you apply.
+                        Fix it <span className="text-brand italic">before</span> <br />they see it.
                     </h2>
                     <p className="text-memo text-lg text-muted-foreground">
-                        Your first audit is free. Need more? Buy credits.
+                        Get your free recruiter-grade audit in 60 seconds.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6 items-stretch">
+                {/* Primary Free CTA */}
+                <div className="text-center">
+                    <Link
+                        href="/workspace"
+                        className="inline-flex items-center gap-2 px-8 py-4 rounded-md bg-brand text-white font-medium text-base hover:opacity-90 transition-all shadow-lg shadow-brand/20"
+                    >
+                        Start Your Free Audit →
+                    </Link>
+                    <p className="mt-4 text-sm text-muted-foreground">No credit card required</p>
+                </div>
 
-                    {/* TIER 1: QUICK FIX - $9 for 1 audit */}
+                {/* "Need more?" Divider */}
+                <div className="mt-16 flex items-center gap-4">
+                    <div className="flex-1 h-px bg-border/30" />
+                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Need more audits?</span>
+                    <div className="flex-1 h-px bg-border/30" />
+                </div>
+
+                {/* Paid Tiers - shown after free CTA */}
+                <div className="mt-8 grid md:grid-cols-2 gap-6 items-stretch">
+
+                    {/* TIER 1: SINGLE AUDIT - $9 for 1 audit */}
                     <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
                         <div className="mb-6">
-                            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Quick Fix</div>
+                            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Audit</div>
                             <div className="text-4xl font-display font-bold text-foreground">$9</div>
                             <p className="text-sm text-muted-foreground mt-2">1 additional audit</p>
                         </div>
                         <ul className="space-y-3 mb-8 text-sm text-muted-foreground font-medium flex-1">
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 mt-0.5 shrink-0" />
-                                <span>Full recruiter-grade audit</span>
+                                <span>See exactly what recruiters see</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 mt-0.5 shrink-0" />
-                                <span>Before & after rewrites</span>
+                                <span>Copy-paste ready upgrades</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 mt-0.5 shrink-0" />
-                                <span>PDF export</span>
+                                <span>Share with your coach or mentor</span>
                             </li>
                         </ul>
                         <button
@@ -80,23 +99,23 @@ export function Pricing({ onSelectTier }: PricingProps) {
                         <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
                             <li className="flex items-start gap-3">
                                 <InsightSparkleIcon className="w-4 h-4 mt-0.5 shrink-0 text-premium" />
-                                <span>5 full audits</span>
+                                <span>5 audits for multiple versions</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
-                                <span>Before & after rewrites</span>
+                                <span>Copy-paste ready upgrades</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
-                                <span>PDF export</span>
+                                <span>Share with your coach or mentor</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
-                                <span>Saved report history</span>
+                                <span>Track improvements across versions</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
-                                <span>Job description targeting</span>
+                                <span>Tailor your resume to specific roles</span>
                             </li>
                         </ul>
                         <button
@@ -107,12 +126,6 @@ export function Pricing({ onSelectTier }: PricingProps) {
                         </button>
                     </div>
 
-                </div>
-
-                <div className="mt-8 text-center">
-                    <Link href="/workspace" className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-4">
-                        Your first audit is free →
-                    </Link>
                 </div>
 
                 <div className="mt-12 text-center">

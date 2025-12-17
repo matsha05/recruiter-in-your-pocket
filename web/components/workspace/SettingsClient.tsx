@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Check, CreditCard, Clock, FileText, Zap, Loader2, Crown } from "lucide-react";
-import { InsightSparkleIcon, PocketMark } from "@/components/icons";
+import { InsightSparkleIcon, PocketMark, Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers/AuthProvider";
@@ -110,7 +110,7 @@ export default function SettingsClient() {
                 <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <PocketMark className="w-5 h-5 text-brand" />
-                        <span className="font-display font-medium text-xl text-foreground">Pocket</span>
+                        <Wordmark className="h-5 text-foreground" />
                         <span className="text-muted-foreground/30 text-xl font-light">/</span>
                         <span className="font-display text-lg text-foreground/80">Settings</span>
                     </div>
@@ -164,27 +164,27 @@ export default function SettingsClient() {
                     </div>
                 </section>
 
-                {/* 2. Buy Credits */}
+                {/* 2. Buy Audit Credits */}
                 <section>
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h2 className="text-2xl font-display font-medium text-foreground">Buy Audit Credits</h2>
-                            <p className="text-sm text-muted-foreground mt-1">Your first audit is free. Need more? Buy credits below.</p>
+                            <h2 className="text-2xl font-display font-medium text-foreground">Get More Audits</h2>
+                            <p className="text-sm text-muted-foreground mt-1">Your first audit is free. Need more? Prices start at $9.</p>
                         </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
-                        {/* TIER 1: Quick Fix ($9/1) */}
+                        {/* TIER 1: Single Audit ($9/1) */}
                         <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Quick Fix</div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Audit</div>
                                 <div className="text-4xl font-display font-bold text-foreground">$9</div>
                                 <p className="text-sm text-muted-foreground mt-2">1 additional audit</p>
                             </div>
                             <ul className="space-y-3 mb-8 text-sm text-muted-foreground font-medium flex-1">
-                                <FeatureItem text="Full recruiter-grade audit" icon={Check} />
-                                <FeatureItem text="Before & after rewrites" icon={Check} />
-                                <FeatureItem text="PDF export" icon={Check} />
+                                <FeatureItem text="See exactly what recruiters see" icon={Check} />
+                                <FeatureItem text="Copy-paste ready upgrades" icon={Check} />
+                                <FeatureItem text="Share with your coach or mentor" icon={Check} />
                             </ul>
                             <button
                                 onClick={() => onCheckoutClick("single")}
@@ -192,7 +192,7 @@ export default function SettingsClient() {
                                 className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading === "single" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Buy 1 Audit
+                                Get My Audit
                             </button>
                         </div>
 
@@ -212,11 +212,11 @@ export default function SettingsClient() {
                                 <p className="text-sm text-muted-foreground mt-2">5 audits — $5.80 each</p>
                             </div>
                             <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
-                                <FeatureItem text="5 full audits" icon={InsightSparkleIcon} accent="gold" />
-                                <FeatureItem text="Before & after rewrites" />
-                                <FeatureItem text="PDF export" />
-                                <FeatureItem text="Saved report history" />
-                                <FeatureItem text="Job description targeting" />
+                                <FeatureItem text="5 audits for multiple versions" icon={InsightSparkleIcon} accent="gold" />
+                                <FeatureItem text="Copy-paste ready upgrades" />
+                                <FeatureItem text="Share with your coach or mentor" />
+                                <FeatureItem text="Track improvements across versions" />
+                                <FeatureItem text="Tailor your resume to specific roles" />
                             </ul>
                             <button
                                 onClick={() => onCheckoutClick("pack")}
@@ -224,7 +224,7 @@ export default function SettingsClient() {
                                 className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20 flex items-center justify-center gap-2"
                             >
                                 {isLoading === "pack" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Buy 5 Audits
+                                Get the Pack
                             </button>
                         </div>
                     </div>

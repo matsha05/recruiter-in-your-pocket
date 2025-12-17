@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, FileText, Library, CreditCard, LogOut, Settings, Home } from "lucide-react";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { PocketMark, Wordmark } from "@/components/icons";
 
 export function MobileNav() {
     const [open, setOpen] = useState(false);
@@ -24,9 +25,10 @@ export function MobileNav() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] flex flex-col p-0">
                 <SheetHeader className="p-6 border-b text-left">
-                    <SheetTitle className="font-serif italic text-xl">
-                        <Link href="/" onClick={() => setOpen(false)}>
-                            Pocket
+                    <SheetTitle>
+                        <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
+                            <PocketMark className="w-5 h-5 text-brand" />
+                            <Wordmark className="h-5 text-foreground" />
                         </Link>
                     </SheetTitle>
                 </SheetHeader>

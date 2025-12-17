@@ -128,7 +128,7 @@ export function ResearchArticle({
                         <span>{keyFinding.subtitle}</span>
                     </div>
                     <div className="space-y-2">
-                        <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground tracking-tight">{keyFinding.stat}</h2>
+                        <h2 className="font-serif text-4xl md:text-5xl font-medium text-gold tracking-tight">{keyFinding.stat}</h2>
                         <p className="text-muted-foreground text-lg leading-relaxed">
                             {keyFinding.statDescription}
                         </p>

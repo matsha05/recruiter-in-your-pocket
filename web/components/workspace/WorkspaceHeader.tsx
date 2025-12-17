@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "../shared/ThemeToggle";
 import { Plus, Files, ArrowLeft, Settings, FileText, LogOut, CreditCard } from "lucide-react";
-import { PocketMark } from "@/components/icons";
+import { PocketMark, Wordmark } from "@/components/icons";
 import { UserNav } from "../shared/UserNav";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "@/components/layout/MobileNav";
@@ -45,9 +45,7 @@ export default function WorkspaceHeader({
                 ) : (
                     <Link href="/" className="flex items-center gap-2">
                         <PocketMark className="w-5 h-5 text-brand" />
-                        <span className="font-display font-medium tracking-tight text-xl text-foreground">
-                            Pocket
-                        </span>
+                        <Wordmark className="h-4 text-foreground" />
                     </Link>
                 )}
             </div>
@@ -56,9 +54,7 @@ export default function WorkspaceHeader({
             <div className="hidden md:flex items-center gap-2">
                 <Link href="/" className="group flex items-center gap-2">
                     <PocketMark className="w-5 h-5 text-brand group-hover:text-brand/80 transition-colors" />
-                    <span className="font-display font-medium tracking-tight text-xl text-foreground group-hover:opacity-80 transition-opacity">
-                        Pocket
-                    </span>
+                    <Wordmark className="h-5 text-foreground group-hover:opacity-80 transition-opacity" />
                 </Link>
                 <span className="text-muted-foreground/30 text-xl font-light">/</span>
                 <span className="font-display text-lg text-foreground/80">Workspace</span>
