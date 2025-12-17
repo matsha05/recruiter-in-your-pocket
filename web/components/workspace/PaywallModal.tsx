@@ -5,7 +5,7 @@ import { useAuth } from "@/components/providers/AuthProvider";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Tier = "24h" | "30d" | "90d";
+type Tier = "single" | "monthly";
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -23,7 +23,7 @@ export default function PaywallModal({
     onSuccess
 }: PaywallModalProps) {
     const { user } = useAuth();
-    const [selectedTier, setSelectedTier] = useState<Tier>("24h");
+    const [selectedTier, setSelectedTier] = useState<Tier>("single");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -141,43 +141,31 @@ export default function PaywallModal({
                     </div>
                 </div>
 
-                {/* Tier Selection - Grid 3 */}
-                <div className="grid grid-cols-3 gap-3 mb-8">
-                    {/* Single */}
+                {/* Tier Selection - 2 tiers */}
+                <div className="grid grid-cols-2 gap-3 mb-8">
+                    {/* Quick Fix */}
                     <button
                         type="button"
-                        onClick={() => setSelectedTier("24h")}
-                        className={cn("p-3 rounded-md text-center transition-all border relative flex flex-col items-center justify-center",
-                            selectedTier === "24h" ? "bg-secondary/40 border-foreground/30" : "bg-transparent border-border/10 hover:bg-secondary/10"
+                        onClick={() => setSelectedTier("single")}
+                        className={cn("p-4 rounded-md text-center transition-all border relative flex flex-col items-center justify-center",
+                            selectedTier === "single" ? "bg-secondary/40 border-foreground/30" : "bg-transparent border-border/10 hover:bg-secondary/10"
                         )}
                     >
-                        <span className="text-xl font-display font-medium text-foreground">$19</span>
-                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Single</span>
+                        <span className="text-2xl font-display font-medium text-foreground">$9</span>
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Quick Fix</span>
                     </button>
 
-                    {/* Pro - Highlighted */}
+                    {/* Job Search Pass - Highlighted */}
                     <button
                         type="button"
-                        onClick={() => setSelectedTier("30d")}
-                        className={cn("p-3 rounded-md text-center transition-all border relative flex flex-col items-center justify-center overflow-hidden",
-                            selectedTier === "30d" ? "bg-premium/10 border-premium shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]" : "bg-transparent border-border/10 hover:bg-secondary/10"
+                        onClick={() => setSelectedTier("monthly")}
+                        className={cn("p-4 rounded-md text-center transition-all border relative flex flex-col items-center justify-center overflow-hidden",
+                            selectedTier === "monthly" ? "bg-premium/10 border-premium shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]" : "bg-transparent border-border/10 hover:bg-secondary/10"
                         )}
                     >
                         <div className="absolute top-0 right-0 left-0 h-0.5 bg-premium/50" />
-                        <span className="text-xl font-display font-medium text-premium">$39</span>
+                        <span className="text-2xl font-display font-medium text-premium">$29</span>
                         <span className="text-[10px] uppercase tracking-wider text-premium mt-1 font-bold">Monthly</span>
-                    </button>
-
-                    {/* Exec */}
-                    <button
-                        type="button"
-                        onClick={() => setSelectedTier("90d")}
-                        className={cn("p-3 rounded-md text-center transition-all border relative flex flex-col items-center justify-center",
-                            selectedTier === "90d" ? "bg-slate/10 border-slate/30" : "bg-transparent border-border/10 hover:bg-secondary/10"
-                        )}
-                    >
-                        <span className="text-xl font-display font-medium text-slate">$79</span>
-                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Quarterly</span>
                     </button>
                 </div>
 
@@ -194,7 +182,7 @@ export default function PaywallModal({
                                 disabled={loading}
                                 className="w-full bg-foreground text-background hover:bg-foreground/90 h-10 rounded-md font-medium text-sm transition-colors"
                             >
-                                {loading ? "Processing..." : `Get ${selectedTier === "24h" ? "Single" : selectedTier === "90d" ? "Executive" : "Pro"} Pass →`}
+                                {loading ? "Processing..." : `Get ${selectedTier === "single" ? "Quick Fix" : "Job Search Pass"} →`}
                             </button>
                         </>
                     ) : (

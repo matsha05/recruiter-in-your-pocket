@@ -11,9 +11,9 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 export default function SettingsClient() {
     const { user, refreshUser } = useAuth();
     const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("yearly");
-    const [isLoading, setIsLoading] = useState<string | null>(null); // "24h" or "30d"
+    const [isLoading, setIsLoading] = useState<string | null>(null); // "single" or "monthly"
 
-    const [showEmailInput, setShowEmailInput] = useState<"24h" | "30d" | null>(null);
+    const [showEmailInput, setShowEmailInput] = useState<"single" | "monthly" | null>(null);
     const [guestEmail, setGuestEmail] = useState("");
     const [passes, setPasses] = useState<any[]>([]);
     const [loadingPasses, setLoadingPasses] = useState(false);
@@ -62,7 +62,7 @@ export default function SettingsClient() {
         }
     }, [user?.email]);
 
-    const onCheckoutClick = (tier: "24h" | "30d") => {
+    const onCheckoutClick = (tier: "single" | "monthly") => {
         if (user?.email) {
             handleCheckout(tier, user.email);
         } else {
@@ -77,7 +77,7 @@ export default function SettingsClient() {
         }
     };
 
-    const handleCheckout = async (tier: "24h" | "30d", email: string) => {
+    const handleCheckout = async (tier: "single" | "monthly", email: string) => {
         try {
             setIsLoading(tier);
             const res = await fetch("/api/checkout", {
@@ -173,85 +173,56 @@ export default function SettingsClient() {
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6 items-center">
-                        {/* TIER 1: Single Scan ($19) */}
-                        <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
+                    <div className="grid md:grid-cols-2 gap-6 items-stretch">
+                        {/* TIER 1: Quick Fix ($9) */}
+                        <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Scan</div>
-                                <div className="text-3xl font-display font-bold text-foreground">$19</div>
-                                <p className="text-sm text-muted-foreground mt-2">One-time deep dive.</p>
+                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Quick Fix</div>
+                                <div className="text-4xl font-display font-bold text-foreground">$9</div>
+                                <p className="text-sm text-muted-foreground mt-2">One scan. See what recruiters see.</p>
                             </div>
-                            <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
-                                <FeatureItem text="1 Full Audit + Fixes" icon={Check} />
-                                <FeatureItem text="PDF Export included" icon={Check} />
+                            <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium flex-1">
+                                <FeatureItem text="1 Full Audit + Rewrites" icon={Check} />
+                                <FeatureItem text="PDF Export" icon={Check} />
                                 <FeatureItem text="Lifetime access to report" icon={Check} />
                             </ul>
                             <button
-                                onClick={() => onCheckoutClick("24h")}
+                                onClick={() => onCheckoutClick("single")}
                                 disabled={!!isLoading}
                                 className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
                             >
-                                {isLoading === "24h" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Get Single Pass
+                                {isLoading === "single" && <Loader2 className="w-4 h-4 animate-spin" />}
+                                Get Quick Fix
                             </button>
                         </div>
 
-                        {/* TIER 2: Pro Membership ($39) - HIGHLIGHTED */}
-                        <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] scale-[1.02] z-10">
+                        {/* TIER 2: Job Search Pass ($29) - HIGHLIGHTED */}
+                        <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] flex flex-col">
                             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
                             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-lg flex items-center gap-1.5">
                                 <Crown className="w-3 h-3 fill-white" /> Best Value
                             </div>
 
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Pro Membership</div>
-                                <div className="text-4xl font-display font-bold text-foreground">$39<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/mo</span></div>
-                                <p className="text-sm text-muted-foreground mt-2">The complete toolkit.</p>
+                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Job Search Pass</div>
+                                <div className="text-4xl font-display font-bold text-foreground">$29<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/mo</span></div>
+                                <p className="text-sm text-muted-foreground mt-2">Unlimited audits for active job seekers.</p>
                             </div>
-                            <ul className="space-y-4 mb-8 text-sm text-foreground font-medium">
+                            <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
                                 <FeatureItem text="Unlimited Full Audits" icon={InsightSparkleIcon} accent="gold" />
-                                <FeatureItem text="Offer Negotiation Guide" />
-                                <FeatureItem text="Version History" />
-                                <FeatureItem text="Smart Bullet Rewriter" />
+                                <FeatureItem text="Before & After Rewrites" />
+                                <FeatureItem text="PDF Report Export" />
+                                <FeatureItem text="Saved Report History" />
+                                <FeatureItem text="Job-Specific Calibration" />
+                                <FeatureItem text="Priority Analysis Speed" />
                             </ul>
                             <button
-                                onClick={() => onCheckoutClick("30d")}
+                                onClick={() => onCheckoutClick("monthly")}
                                 disabled={!!isLoading}
                                 className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20 flex items-center justify-center gap-2"
                             >
-                                {isLoading === "30d" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Start Pro Access
-                            </button>
-                        </div>
-
-                        {/* TIER 3: Executive ($79) */}
-                        <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
-                            <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-slate mb-2">Executive</div>
-                                <div className="text-3xl font-display font-bold text-foreground">$79<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/qtr</span></div>
-                                <p className="text-sm text-muted-foreground mt-2">For high-stakes searches.</p>
-                            </div>
-                            <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
-                                <li className="flex items-start gap-3">
-                                    <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
-                                    <span>Includes <strong>Pro Features</strong></span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
-                                    <span>LinkedIn Audit Guide</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
-                                    <span>Cover Letter Architect</span>
-                                </li>
-                            </ul>
-                            <button
-                                onClick={() => onCheckoutClick("90d" as any)}
-                                disabled={!!isLoading}
-                                className="w-full py-3 px-4 rounded-md border border-slate/20 bg-slate/5 text-slate font-medium text-sm hover:bg-slate/10 transition-colors flex items-center justify-center gap-2"
-                            >
-                                {isLoading === "90d" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Get Executive
+                                {isLoading === "monthly" && <Loader2 className="w-4 h-4 animate-spin" />}
+                                Start Job Search Pass
                             </button>
                         </div>
                     </div>
@@ -289,7 +260,7 @@ export default function SettingsClient() {
                                                 </div>
                                                 <div>
                                                     <p className="font-medium text-foreground text-sm">
-                                                        {pass.tier === "30d" ? "Pro Membership" : "Single Audit Pass"}
+                                                        {pass.tier === "monthly" ? "Job Search Pass" : "Quick Fix"}
                                                     </p>
                                                     <p className="text-xs text-muted-foreground font-variant-numeric tabular-nums font-medium opacity-60">
                                                         {new Date(pass.created_at).toLocaleDateString()}

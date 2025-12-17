@@ -1,28 +1,27 @@
 "use client";
 
-import { Check, CheckCircle2, Crown } from "lucide-react";
+import { Check, Crown } from "lucide-react";
 import { InsightSparkleIcon } from "@/components/icons";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface PricingProps {
-    onSelectTier?: (tier: "24h" | "30d" | "90d") => void;
+    onSelectTier?: (tier: "single" | "monthly") => void;
 }
 
 export function Pricing({ onSelectTier }: PricingProps) {
-    const handlePurchase = (tier: "24h" | "30d" | "90d") => {
+    const handlePurchase = (tier: "single" | "monthly") => {
         if (onSelectTier) {
             onSelectTier(tier);
         } else {
             // Default behavior (if used on landing page)
-            // Redirect to workspace setting or signup with intent
             window.location.href = `/workspace?tier=${tier}`;
         }
     };
 
     return (
         <section className="py-24 px-6 bg-background relative overflow-hidden" id="pricing">
-            <div className="max-w-5xl mx-auto relative z-10">
+            <div className="max-w-3xl mx-auto relative z-10">
 
                 <div className="text-center mb-16 max-w-2xl mx-auto">
                     <h2 className="font-display text-4xl md:text-5xl text-primary mb-4 leading-tight tracking-tight">
@@ -33,23 +32,23 @@ export function Pricing({ onSelectTier }: PricingProps) {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 items-center">
+                <div className="grid md:grid-cols-2 gap-6 items-stretch">
 
-                    {/* TIER 1: SINGLE (The Quick Fix) - $19 */}
-                    <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
+                    {/* TIER 1: QUICK FIX - $9 */}
+                    <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
                         <div className="mb-6">
-                            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Scan</div>
-                            <div className="text-3xl font-display font-bold text-foreground">$19</div>
-                            <p className="text-sm text-muted-foreground mt-2">One-time deep dive.</p>
+                            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Quick Fix</div>
+                            <div className="text-4xl font-display font-bold text-foreground">$9</div>
+                            <p className="text-sm text-muted-foreground mt-2">One scan. See what recruiters see.</p>
                         </div>
-                        <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
+                        <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium flex-1">
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
-                                <span>1 Full Audit + Fixes</span>
+                                <span>1 Full Audit + Rewrites</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
-                                <span>PDF Export included</span>
+                                <span>PDF Export</span>
                             </li>
                             <li className="flex items-start gap-3">
                                 <Check className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
@@ -57,65 +56,38 @@ export function Pricing({ onSelectTier }: PricingProps) {
                             </li>
                         </ul>
                         <button
-                            onClick={() => handlePurchase("24h")}
+                            onClick={() => handlePurchase("single")}
                             className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors"
                         >
-                            Get Single Pass
+                            Get Quick Fix
                         </button>
                     </div>
 
-                    {/* TIER 2: MONTHLY (The Career Move) - $39 - HIGHLIGHTED */}
-                    <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] scale-105 z-10">
+                    {/* TIER 2: JOB SEARCH PASS - $29/mo - HIGHLIGHTED */}
+                    <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] flex flex-col">
                         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-lg flex items-center gap-1.5">
                             <Crown className="w-3 h-3 fill-white" /> Best Value
                         </div>
 
                         <div className="mb-6">
-                            <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Pro Membership</div>
-                            <div className="text-4xl font-display font-bold text-foreground">$39<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/mo</span></div>
-                            <p className="text-sm text-muted-foreground mt-2">The complete toolkit.</p>
+                            <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Job Search Pass</div>
+                            <div className="text-4xl font-display font-bold text-foreground">$29<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/mo</span></div>
+                            <p className="text-sm text-muted-foreground mt-2">Unlimited audits for active job seekers.</p>
                         </div>
-                        <ul className="space-y-4 mb-8 text-sm text-foreground font-medium">
+                        <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
                             <Feature text="Unlimited Full Audits" icon={InsightSparkleIcon} accent="gold" />
-                            <Feature text="Offer Negotiation Guide" />
-                            <Feature text="Version History" />
-                            <Feature text="Smart Bullet Rewriter" />
+                            <Feature text="Before & After Rewrites" />
+                            <Feature text="PDF Report Export" />
+                            <Feature text="Saved Report History" />
+                            <Feature text="Job-Specific Calibration" />
+                            <Feature text="Priority Analysis Speed" />
                         </ul>
                         <button
-                            onClick={() => handlePurchase("30d")}
+                            onClick={() => handlePurchase("monthly")}
                             className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20 flex items-center justify-center gap-2"
                         >
-                            Start Pro Access
-                        </button>
-                    </div>
-
-                    {/* TIER 3: QUARTERLY (The Executive) - $79 */}
-                    <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors h-min">
-                        <div className="mb-6">
-                            <div className="text-xs font-bold uppercase tracking-widest text-slate mb-2">Executive</div>
-                            <div className="text-3xl font-display font-bold text-foreground">$79<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/qtr</span></div>
-                            <p className="text-sm text-muted-foreground mt-2">For high-stakes searches.</p>
-                        </div>
-                        <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium">
-                            <li className="flex items-start gap-3">
-                                <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
-                                <span>Includes <strong>Pro Features</strong></span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
-                                <span>LinkedIn Audit Guide</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <Check className="w-4 h-4 text-slate mt-0.5 shrink-0" />
-                                <span>Cover Letter Architect</span>
-                            </li>
-                        </ul>
-                        <button
-                            onClick={() => handlePurchase("90d")} // Maps to new tier
-                            className="w-full py-3 px-4 rounded-md border border-slate/20 bg-slate/5 text-slate font-medium text-sm hover:bg-slate/10 transition-colors"
-                        >
-                            Get Executive
+                            Start Job Search Pass
                         </button>
                     </div>
 
@@ -138,11 +110,12 @@ export function Pricing({ onSelectTier }: PricingProps) {
     );
 }
 
-function Feature({ text, icon: Icon = CheckCircle2, accent }: { text: string; icon?: any; accent?: string }) {
+function Feature({ text, icon: Icon = Check, accent }: { text: string; icon?: any; accent?: string }) {
     return (
         <li className="flex items-start gap-3 text-foreground/90">
-            <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", accent === "gold" ? "text-premium" : "text-foreground/40")} />
+            <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", accent === "gold" ? "text-premium" : "text-muted-foreground")} />
             <span>{text}</span>
         </li>
     );
 }
+
