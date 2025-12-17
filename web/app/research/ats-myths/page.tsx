@@ -14,7 +14,9 @@ export default function ATSMythsPage() {
             header={{
                 tag: "Industry research",
                 title: "ATS: How They Actually Work",
-                description: "ATS systems store, rank, and help recruiters search candidates. They rarely auto-reject based on resume content alone. The real gate is human attention."
+                description: "ATS systems store, rank, and help recruiters search candidates. They rarely auto-reject based on resume content alone. The real gate is human attention.",
+                lastUpdated: "December 2024",
+                readTime: "4 min read"
             }}
             keyFinding={{
                 icon: <Server className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function ATSMythsPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "Human vs. Algorithm", href: "/research/human-vs-algorithm", tag: "AI" },
+                { title: "Automation and Bias", href: "/research/automation-and-bias", tag: "Research" },
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What an ATS actually does</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

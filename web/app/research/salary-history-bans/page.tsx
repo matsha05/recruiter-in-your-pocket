@@ -14,7 +14,9 @@ export default function SalaryHistoryPage() {
             header={{
                 tag: "Negotiation",
                 title: "Salary history bans: Just being honest is a trap",
-                description: "Research-grade justification for our negotiation scripts. Why revealing early costs you leverage."
+                description: "Research-grade justification for our negotiation scripts. Why revealing early costs you leverage.",
+                lastUpdated: "December 2024",
+                readTime: "4 min read"
             }}
             keyFinding={{
                 icon: <DollarSign className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function SalaryHistoryPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "Skills-Based Hiring", href: "/research/skills-based-hiring", tag: "Trends" },
+                { title: "The Referral Advantage", href: "/research/referral-advantage", tag: "Strategy" },
+                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why 'just be honest' fails</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

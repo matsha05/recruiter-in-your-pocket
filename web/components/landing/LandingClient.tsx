@@ -101,34 +101,42 @@ export default function LandingClient() {
                     Right: Headline + Dropzone enables action
                     This layout places evidence *alongside* the CTA, not below it.
                 */}
+                {/* Hero Section — Centered Header + Side-by-Side Proof + Action */}
                 <section className="flex-1 flex items-center justify-center px-6 py-16 lg:py-20">
-                    <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div className="w-full max-w-7xl mx-auto flex flex-col items-center gap-12 lg:gap-16">
 
-                        {/* LEFT: The Proof (HeroArtifact) */}
-                        <div className="order-2 lg:order-1 flex justify-center lg:justify-start animate-in fade-in slide-in-from-left-8 duration-1000">
-                            <HeroArtifact />
-                        </div>
-
-                        {/* RIGHT: The Promise + Action */}
-                        <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
-                            <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                                See what <br className="hidden md:block" /> they see.
+                        {/* Centered Hero Header */}
+                        <div className="text-center max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+                            <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary mb-6">
+                                See what they see.
                             </h1>
-                            <p className="text-memo text-xl text-muted-foreground max-w-md mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                            <p className="text-memo text-xl text-muted-foreground">
                                 In 6 seconds, a recruiter has already decided. <br />
                                 <span className="text-foreground font-medium">This is what they saw.</span>
                             </p>
-
-                            <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                                <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
-                                <div className="mt-4 flex items-center justify-center lg:justify-start gap-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
-                                    <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
-                                    <span>•</span>
-                                    <span>Auto-deleted in 24h</span>
-                                </div>
-                            </div>
                         </div>
 
+                        {/* Side-by-Side: Proof (Left) + Action (Right) */}
+                        <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+                            {/* LEFT: The Proof (HeroArtifact) */}
+                            <div className="flex justify-center lg:justify-end animate-in fade-in slide-in-from-left-8 duration-1000">
+                                <HeroArtifact />
+                            </div>
+
+                            {/* RIGHT: The Action (Dropzone) */}
+                            <div className="flex flex-col items-center lg:items-start animate-in fade-in slide-in-from-right-8 duration-1000">
+                                <div className="w-full max-w-md">
+                                    <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
+                                    <div className="mt-4 flex items-center justify-center lg:justify-start gap-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
+                                        <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
+                                        <span>•</span>
+                                        <span>Auto-deleted in 24h</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </section>
 

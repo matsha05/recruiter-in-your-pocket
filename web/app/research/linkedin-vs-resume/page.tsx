@@ -14,7 +14,9 @@ export default function LinkedInVsResumePage() {
             header={{
                 tag: "Sourcing research",
                 title: "LinkedIn vs. Resume: What Gets Seen",
-                description: "Recruiters use LinkedIn and resumes for different purposes. Understanding when each matters helps you optimize both."
+                description: "Recruiters use LinkedIn and resumes for different purposes. Understanding when each matters helps you optimize both.",
+                lastUpdated: "December 2024",
+                readTime: "4 min read"
             }}
             keyFinding={{
                 icon: <Linkedin className="w-4 h-4" />,
@@ -49,6 +51,11 @@ export default function LinkedInVsResumePage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "The Referral Advantage", href: "/research/referral-advantage", tag: "Networking" },
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "Skills-Based Hiring", href: "/research/skills-based-hiring", tag: "Trends" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why both matter equally</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

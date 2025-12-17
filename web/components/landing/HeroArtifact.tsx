@@ -1,240 +1,261 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 /**
- * HeroArtifact — The "First 6 Seconds" Resume Preview
+ * HeroArtifact - Landing Page Hero Resume with Heatmap
  * 
- * A realistic resume mockup with eye-tracking heatmap overlay demonstrating
- * where recruiters actually look in their initial scan.
- * 
- * Features:
- * - Fictional sample resume with realistic structure (month/year dates, 4-5 bullets)
- * - Animated heatmap zones showing fixation areas
- * - Blurred bullet text (focus on structure, not content)
- * - "6 seconds" timer visualization
+ * Design principles (from first principles):
+ * 1. Abstract resume skeleton (gray placeholder bars, not real text)
+ * 2. Soft, diffuse heat gradients following F-pattern (red → orange → yellow → green)
+ * 3. Timer animation showing the 6-second constraint
+ * 4. Professional caption like research diagrams
+ * 5. Design system tokens (bg-card, border, brand colors)
  */
 
-// Fictional sample resume data
-const sampleResume = {
-    name: "Alexandra Chen",
-    title: "Senior Product Manager",
-    email: "a.chen@email.com",
-    location: "San Francisco, CA",
-    experience: [
-        {
-            company: "Stripe",
-            title: "Senior Product Manager",
-            dates: "March 2022 — Present",
-            bullets: [
-                "Led the redesign of the merchant onboarding flow, reducing drop-off by 34% and increasing activation rate from 67% to 89%",
-                "Managed cross-functional team of 8 engineers, 2 designers, and 1 data scientist to ship 3 major platform features",
-                "Defined product strategy for SMB segment ($50M ARR), presenting quarterly roadmaps to executive leadership",
-                "Partnered with sales to develop pricing model that increased average deal size by 22%",
-            ]
-        },
-        {
-            company: "Airbnb",
-            title: "Product Manager",
-            dates: "June 2019 — February 2022",
-            bullets: [
-                "Owned the host earnings dashboard, serving 4M+ active hosts with $5B in annual payouts",
-                "Launched dynamic pricing recommendations that increased host revenue by 18% on average",
-                "Built and maintained product analytics infrastructure using Amplitude and internal tools",
-                "Collaborated with trust & safety team to reduce fraudulent listings by 45%",
-                "Mentored 2 associate PMs through onboarding and first ship cycles",
-            ]
-        }
-    ],
-    education: {
-        school: "UC Berkeley",
-        degree: "B.S. Computer Science",
-        year: "2019"
-    }
-};
-
-// Heatmap zones - coordinates and intensity for eye fixation areas
-const heatmapZones = [
-    { id: "name", x: 24, y: 24, width: 200, height: 32, intensity: 1.0, delay: 0 },
-    { id: "title", x: 24, y: 56, width: 180, height: 20, intensity: 0.9, delay: 0.3 },
-    { id: "company1", x: 24, y: 110, width: 80, height: 18, intensity: 0.85, delay: 0.6 },
-    { id: "dates1", x: 220, y: 110, width: 120, height: 18, intensity: 0.7, delay: 0.9 },
-    { id: "role1", x: 24, y: 128, width: 160, height: 18, intensity: 0.8, delay: 1.2 },
-    { id: "company2", x: 24, y: 240, width: 80, height: 18, intensity: 0.6, delay: 1.8 },
-];
-
-function HeatmapOverlay() {
-    const [isVisible, setIsVisible] = useState(false);
+export function HeroArtifact() {
+    const [elapsed, setElapsed] = useState(0);
+    const duration = 5.8;
 
     useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 500);
-        return () => clearTimeout(timer);
-    }, []);
-
-    return (
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
-            <defs>
-                <radialGradient id="heatGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                    <stop offset="0%" stopColor="hsl(0, 100%, 50%)" stopOpacity="0.6" />
-                    <stop offset="40%" stopColor="hsl(30, 100%, 50%)" stopOpacity="0.4" />
-                    <stop offset="70%" stopColor="hsl(60, 100%, 50%)" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="hsl(60, 100%, 50%)" stopOpacity="0" />
-                </radialGradient>
-            </defs>
-
-            {heatmapZones.map((zone) => (
-                <motion.ellipse
-                    key={zone.id}
-                    cx={zone.x + zone.width / 2}
-                    cy={zone.y + zone.height / 2}
-                    rx={zone.width / 1.5}
-                    ry={zone.height * 1.5}
-                    fill="url(#heatGradient)"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={isVisible ? { opacity: zone.intensity * 0.8, scale: 1 } : {}}
-                    transition={{
-                        delay: zone.delay,
-                        duration: 0.6,
-                        ease: [0.16, 1, 0.3, 1]
-                    }}
-                />
-            ))}
-        </svg>
-    );
-}
-
-function BlurredText({ children, intensity = 1 }: { children: string; intensity?: number }) {
-    return (
-        <span
-            className="select-none"
-            style={{
-                filter: `blur(${2 * intensity}px)`,
-                WebkitUserSelect: "none",
-                userSelect: "none"
-            }}
-        >
-            {children}
-        </span>
-    );
-}
-
-function ResumeMockup() {
-    return (
-        <div className="relative bg-white text-[#111] text-left p-6 md:p-8 font-sans text-[11px] md:text-[12px] leading-relaxed space-y-5 overflow-hidden">
-            {/* Header */}
-            <div className="space-y-1 border-b border-black/10 pb-4">
-                <h2 className="text-xl md:text-2xl font-semibold tracking-tight">{sampleResume.name}</h2>
-                <div className="text-sm text-[#666]">{sampleResume.title}</div>
-                <div className="text-[10px] text-[#999] flex items-center gap-3">
-                    <span>{sampleResume.email}</span>
-                    <span>•</span>
-                    <span>{sampleResume.location}</span>
-                </div>
-            </div>
-
-            {/* Experience */}
-            <div className="space-y-4">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#999]">Experience</h3>
-
-                {sampleResume.experience.map((job, i) => (
-                    <div key={i} className="space-y-1.5">
-                        <div className="flex items-baseline justify-between">
-                            <div className="flex items-baseline gap-2">
-                                <span className="font-semibold">{job.company}</span>
-                                <span className="text-[#666]">—</span>
-                                <span className="text-[#666]">{job.title}</span>
-                            </div>
-                            <span className="text-[10px] text-[#999] tabular-nums">{job.dates}</span>
-                        </div>
-                        <ul className="space-y-0.5 text-[#444]">
-                            {job.bullets.map((bullet, j) => (
-                                <li key={j} className="flex items-start gap-2">
-                                    <span className="text-[#999] mt-[2px]">•</span>
-                                    <span>
-                                        <BlurredText intensity={j > 0 ? 1.2 : 0.6}>{bullet}</BlurredText>
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-
-            {/* Education - more blurred since recruiters spend less time here */}
-            <div className="space-y-2 opacity-60">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#999]">Education</h3>
-                <div className="flex items-baseline justify-between">
-                    <div>
-                        <span className="font-semibold">{sampleResume.education.school}</span>
-                        <span className="text-[#666] ml-2">— {sampleResume.education.degree}</span>
-                    </div>
-                    <span className="text-[10px] text-[#999]">{sampleResume.education.year}</span>
-                </div>
-            </div>
-
-            {/* Heatmap Overlay */}
-            <HeatmapOverlay />
-        </div>
-    );
-}
-
-function TimerBadge() {
-    const [seconds, setSeconds] = useState(0);
-
-    useEffect(() => {
+        const startTime = Date.now();
         const interval = setInterval(() => {
-            setSeconds(prev => {
-                if (prev >= 5.8) {
-                    clearInterval(interval);
-                    return 5.8;
-                }
-                return Math.min(prev + 0.1, 5.8);
-            });
+            const current = (Date.now() - startTime) / 1000;
+            if (current >= duration) {
+                setElapsed(duration);
+                clearInterval(interval);
+            } else {
+                setElapsed(current);
+            }
         }, 100);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="absolute top-4 right-4 z-10">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/80 backdrop-blur-md border border-white/10">
-                <div className="w-2 h-2 rounded-full bg-premium animate-pulse" />
-                <span className="text-white text-xs font-mono tabular-nums">
-                    {seconds.toFixed(1)}s
+        <div className="relative w-full max-w-[420px] mx-auto">
+            {/* "What they saw" Label */}
+            <div className="absolute -top-8 left-0 z-20">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-green-600 font-medium">
+                    ✓ What they saw
                 </span>
+            </div>
+
+            {/* "What they missed" Label */}
+            <div className="absolute -top-8 right-0 z-20">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-red-500/80 font-medium">
+                    ✕ What they missed
+                </span>
+            </div>
+
+            {/* Timer Badge */}
+            <div className="absolute top-2 right-4 z-20">
+                <div className="flex items-center gap-2 bg-neutral-900 text-white px-3 py-1.5 rounded-full text-sm font-mono shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                    {elapsed.toFixed(1)}s
+                </div>
+            </div>
+
+            {/* Resume Card */}
+            <div className="relative bg-white rounded-lg shadow-2xl overflow-hidden border border-black/5">
+                {/* Resume Skeleton */}
+                <div className="p-6 md:p-8 space-y-5">
+                    {/* Header - Name & Title */}
+                    <div className="space-y-2 border-b border-black/5 pb-5">
+                        <div className="h-7 w-3/5 bg-neutral-200 rounded-sm" />
+                        <div className="h-4 w-2/5 bg-neutral-100 rounded-sm" />
+                        <div className="flex gap-2 pt-1">
+                            <div className="h-2.5 w-24 bg-neutral-100 rounded-sm" />
+                            <div className="h-2.5 w-20 bg-neutral-100 rounded-sm" />
+                        </div>
+                    </div>
+
+                    {/* Experience Section Label */}
+                    <div className="h-3 w-20 bg-neutral-200 rounded-sm" />
+
+                    {/* Job 1 */}
+                    <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                            <div className="flex gap-2 items-center">
+                                <div className="h-4 w-16 bg-neutral-200 rounded-sm" />
+                                <div className="h-3 w-28 bg-neutral-100 rounded-sm" />
+                            </div>
+                            <div className="h-3 w-24 bg-neutral-100 rounded-sm" />
+                        </div>
+                        <div className="space-y-1.5 pl-4">
+                            <div className="h-2.5 w-full bg-neutral-100 rounded-sm" />
+                            <div className="h-2.5 w-11/12 bg-neutral-50 rounded-sm" />
+                            <div className="h-2.5 w-10/12 bg-neutral-50 rounded-sm" />
+                            <div className="h-2.5 w-9/12 bg-neutral-50 rounded-sm" />
+                        </div>
+                    </div>
+
+                    {/* Job 2 */}
+                    <div className="space-y-2 pt-3">
+                        <div className="flex justify-between items-center">
+                            <div className="flex gap-2 items-center">
+                                <div className="h-4 w-14 bg-neutral-200 rounded-sm" />
+                                <div className="h-3 w-24 bg-neutral-100 rounded-sm" />
+                            </div>
+                            <div className="h-3 w-24 bg-neutral-100 rounded-sm" />
+                        </div>
+                        <div className="space-y-1.5 pl-4">
+                            <div className="h-2.5 w-full bg-neutral-100 rounded-sm" />
+                            <div className="h-2.5 w-11/12 bg-neutral-50 rounded-sm" />
+                            <div className="h-2.5 w-10/12 bg-neutral-50 rounded-sm" />
+                        </div>
+                    </div>
+
+                    {/* Education */}
+                    <div className="space-y-2 pt-4">
+                        <div className="h-3 w-16 bg-neutral-200 rounded-sm" />
+                        <div className="flex justify-between items-center">
+                            <div className="h-3 w-32 bg-neutral-100 rounded-sm" />
+                            <div className="h-2.5 w-12 bg-neutral-50 rounded-sm" />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Heatmap Overlay */}
+                <HeatmapOverlay elapsed={elapsed} duration={duration} />
+
+                {/* Caption */}
+                <div className="absolute bottom-2 left-0 right-0 text-center">
+                    <span className="text-[9px] font-mono text-neutral-400 uppercase tracking-widest">
+                        What a recruiter saw in 5.8 seconds
+                    </span>
+                </div>
             </div>
         </div>
     );
 }
 
-export function HeroArtifact() {
+function HeatmapOverlay({ elapsed, duration }: { elapsed: number; duration: number }) {
+    // Calculate visibility based on elapsed time
+    const progress = Math.min(elapsed / duration, 1);
+
     return (
-        <div className="w-full max-w-md mx-auto">
-            <div className="relative group">
-                {/* Glow Effect */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-brand/20 via-premium/10 to-brand/20 rounded-2xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Hotspot 1: Name - PRIMARY FOCUS (Red/Intense) - CENTERED */}
+            <motion.div
+                className="absolute rounded-full blur-2xl"
+                style={{
+                    top: '2%',
+                    left: '10%',
+                    width: '80%',
+                    height: '18%',
+                    background: 'radial-gradient(ellipse at 50% 50%, rgba(239, 68, 68, 0.55) 0%, rgba(249, 115, 22, 0.3) 35%, rgba(251, 191, 36, 0.1) 65%, transparent 100%)',
+                }}
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: progress > 0.05 ? 1 : 0, scale: 1 }}
+                transition={{ duration: 0.8 }}
+            />
 
-                {/* Main Card */}
-                <motion.div
-                    className="relative bg-white rounded-lg border border-black/10 shadow-2xl overflow-hidden"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    {/* Timer Badge */}
-                    <TimerBadge />
+            {/* Hotspot 2: Title - Secondary (Orange) */}
+            <motion.div
+                className="absolute rounded-full blur-xl"
+                style={{
+                    top: '10%',
+                    left: '3%',
+                    width: '45%',
+                    height: '8%',
+                    background: 'radial-gradient(ellipse at 25% 50%, rgba(249, 115, 22, 0.45) 0%, rgba(251, 191, 36, 0.2) 50%, transparent 85%)',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: progress > 0.1 ? 0.9 : 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+            />
 
-                    {/* Resume Content */}
-                    <ResumeMockup />
+            {/* Hotspot 3: Job 1 Company (Orange/Yellow) */}
+            <motion.div
+                className="absolute rounded-full blur-xl"
+                style={{
+                    top: '24%',
+                    left: '3%',
+                    width: '55%',
+                    height: '10%',
+                    background: 'radial-gradient(ellipse at 20% 50%, rgba(249, 115, 22, 0.4) 0%, rgba(251, 191, 36, 0.2) 45%, transparent 80%)',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: progress > 0.2 ? 0.85 : 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+            />
 
-                    {/* Bottom Label */}
-                    <div className="px-6 py-3 border-t border-black/5 bg-black/[0.02]">
-                        <p className="text-[10px] font-medium uppercase tracking-widest text-center text-muted-foreground">
-                            What a recruiter saw in 5.8 seconds
-                        </p>
-                    </div>
-                </motion.div>
-            </div>
+            {/* Hotspot 4: Job 1 Dates (Yellow) */}
+            <motion.div
+                className="absolute rounded-full blur-lg"
+                style={{
+                    top: '24%',
+                    right: '4%',
+                    width: '25%',
+                    height: '6%',
+                    background: 'radial-gradient(ellipse at center, rgba(251, 191, 36, 0.4) 0%, transparent 75%)',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: progress > 0.25 ? 0.7 : 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+            />
+
+            {/* Hotspot 5: Job 2 Company (Yellow/Green) */}
+            <motion.div
+                className="absolute rounded-full blur-xl"
+                style={{
+                    top: '52%',
+                    left: '3%',
+                    width: '50%',
+                    height: '9%',
+                    background: 'radial-gradient(ellipse at 20% 50%, rgba(251, 191, 36, 0.35) 0%, rgba(34, 197, 94, 0.12) 55%, transparent 85%)',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: progress > 0.45 ? 0.7 : 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+            />
+
+            {/* Hotspot 6: Job 2 Dates (Yellow faint) */}
+            <motion.div
+                className="absolute rounded-full blur-lg"
+                style={{
+                    top: '53%',
+                    right: '4%',
+                    width: '22%',
+                    height: '5%',
+                    background: 'radial-gradient(ellipse at center, rgba(251, 191, 36, 0.28) 0%, transparent 70%)',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: progress > 0.5 ? 0.55 : 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+            />
+
+            {/* Hotspot 7: Education (Green/Blue - cool) */}
+            <motion.div
+                className="absolute rounded-full blur-lg"
+                style={{
+                    top: '80%',
+                    left: '3%',
+                    width: '35%',
+                    height: '8%',
+                    background: 'radial-gradient(ellipse at 25% 50%, rgba(34, 197, 94, 0.2) 0%, rgba(59, 130, 246, 0.06) 60%, transparent 90%)',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: progress > 0.75 ? 0.5 : 0 }}
+                transition={{ duration: 0.5, delay: 1.2 }}
+            />
+
+            {/* Left margin "stem" - continuous attention along left edge */}
+            <motion.div
+                className="absolute blur-md"
+                style={{
+                    top: '18%',
+                    left: '0%',
+                    width: '4%',
+                    height: '70%',
+                    background: 'linear-gradient(180deg, rgba(249, 115, 22, 0.18) 0%, rgba(251, 191, 36, 0.12) 35%, rgba(34, 197, 94, 0.08) 65%, rgba(59, 130, 246, 0.04) 100%)',
+                    transformOrigin: 'top center',
+                }}
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: progress > 0.15 ? 1 : 0, scaleY: progress > 0.15 ? 1 : 0 }}
+                transition={{ duration: 2.5, ease: "easeOut" }}
+            />
         </div>
     );
 }

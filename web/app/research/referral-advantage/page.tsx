@@ -14,7 +14,9 @@ export default function ReferralAdvantagePage() {
             header={{
                 tag: "Job search strategy",
                 title: "The Referral Advantage",
-                description: "Knowing someone at the company isn't just helpful—it's statistically one of the highest-leverage job search activities you can do."
+                description: "Knowing someone at the company isn't just helpful—it's statistically one of the highest-leverage job search activities you can do.",
+                lastUpdated: "December 2024",
+                readTime: "5 min read"
             }}
             keyFinding={{
                 icon: <Users className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function ReferralAdvantagePage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "LinkedIn vs. Resume", href: "/research/linkedin-vs-resume", tag: "Sourcing" },
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "Skills-Based Hiring", href: "/research/skills-based-hiring", tag: "Trends" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why referrals work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

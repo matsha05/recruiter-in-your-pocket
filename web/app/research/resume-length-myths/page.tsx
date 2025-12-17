@@ -14,7 +14,9 @@ export default function ResumeLengthPage() {
             header={{
                 tag: "Resume structure",
                 title: "Resume Length: What Research Actually Says",
-                description: "The 'one-page rule' is career advice passed down like folklore. Research shows the answer is more nuanced."
+                description: "The 'one-page rule' is career advice passed down like folklore. Research shows the answer is more nuanced.",
+                lastUpdated: "December 2024",
+                readTime: "4 min read"
             }}
             keyFinding={{
                 icon: <FileText className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function ResumeLengthPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "The STAR Method", href: "/research/star-method", tag: "Format" },
+                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where the one-page rule came from</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

@@ -14,7 +14,9 @@ export default function HowRecruitersReadPage() {
             header={{
                 tag: "Eye-tracking research",
                 title: "How Recruiters Actually Read Resumes",
-                description: "Most advice about resumes is based on guesswork or recycled tips. This page is based on eye tracking research that watched recruiters as they reviewed resumes in real time."
+                description: "Most advice about resumes is based on guesswork or recycled tips. This page is based on eye tracking research that watched recruiters as they reviewed resumes in real time.",
+                lastUpdated: "December 2024",
+                readTime: "4 min read"
             }}
             keyFinding={{
                 icon: <Clock className="w-4 h-4" />,
@@ -49,6 +51,11 @@ export default function HowRecruitersReadPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "How People Scan Resumes", href: "/research/how-people-scan", tag: "Psychology" },
+                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Research" },
+                { title: "The STAR Method", href: "/research/star-method", tag: "Format" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The skim pattern</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

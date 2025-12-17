@@ -4,19 +4,20 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { StudioShell } from "@/components/layout/StudioShell";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowRight, ArrowLeft, Clock, Calendar } from "lucide-react";
 
 interface ResearchArticleProps {
     header: {
         tag: string;
         title: string;
         description: string;
+        lastUpdated?: string; // e.g. "December 2024"
+        readTime?: string;    // e.g. "4 min read"
     };
     keyFinding: {
-        icon: ReactNode; // Serialized React Element, not a Component Function
-        subtitle: string; // e.g. "The Key Finding"
-        stat: string;     // e.g. "6 Seconds"
+        icon: ReactNode;
+        subtitle: string;
+        stat: string;
         statDescription: string;
         source: {
             text: string;
@@ -25,14 +26,19 @@ interface ResearchArticleProps {
         sampleSize?: string;
     };
     visualization?: ReactNode;
-    children: ReactNode; // The main article prose
+    children: ReactNode;
     productTieIn: {
-        title: string; // "How this shapes our tool"
+        title: string;
         items: Array<{
             title: string;
             description: string;
         }>;
     };
+    relatedArticles?: Array<{
+        title: string;
+        href: string;
+        tag?: string;
+    }>;
     cta?: {
         title: string;
         buttonText: string;
@@ -46,6 +52,7 @@ export function ResearchArticle({
     visualization,
     children,
     productTieIn,
+    relatedArticles,
     cta = {
         title: "See what your resume looks like",
         buttonText: "Run Free Analysis",
@@ -54,6 +61,27 @@ export function ResearchArticle({
 }: ResearchArticleProps) {
     return (
         <StudioShell showSidebar={true}>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": header.title,
+                        "description": header.description,
+                        "author": {
+                            "@type": "Organization",
+                            "name": "Recruiter in Your Pocket"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Recruiter in Your Pocket"
+                        },
+                        "datePublished": header.lastUpdated ? new Date(header.lastUpdated).toISOString() : undefined,
+                        "dateModified": header.lastUpdated ? new Date(header.lastUpdated).toISOString() : undefined,
+                    })
+                }}
+            />
             <div className="max-w-3xl mx-auto space-y-16 pb-24 px-6 md:px-0 pt-12">
 
                 {/* 1. Header & Breadcrumb */}
@@ -63,9 +91,27 @@ export function ResearchArticle({
                         Back to Research
                     </Link>
                     <div className="space-y-6">
-                        <span className="inline-block text-[10px] uppercase tracking-widest font-semibold border border-border px-2 py-1 rounded-sm bg-muted/50 text-muted-foreground">
-                            {header.tag}
-                        </span>
+                        <div className="flex flex-wrap items-center gap-3">
+                            <span className="inline-block text-[10px] uppercase tracking-widest font-semibold border border-border px-2 py-1 rounded-sm bg-muted/50 text-muted-foreground">
+                                {header.tag}
+                            </span>
+                            {(header.readTime || header.lastUpdated) && (
+                                <div className="flex items-center gap-4 text-xs text-muted-foreground/60">
+                                    {header.readTime && (
+                                        <span className="flex items-center gap-1">
+                                            <Clock className="w-3 h-3" />
+                                            {header.readTime}
+                                        </span>
+                                    )}
+                                    {header.lastUpdated && (
+                                        <span className="flex items-center gap-1">
+                                            <Calendar className="w-3 h-3" />
+                                            Updated {header.lastUpdated}
+                                        </span>
+                                    )}
+                                </div>
+                            )}
+                        </div>
                         <h1 className="text-hero text-5xl md:text-6xl text-foreground">
                             {header.title}
                         </h1>
@@ -78,7 +124,6 @@ export function ResearchArticle({
                 {/* 2. Key Finding Card */}
                 <div className="border border-gold/20 bg-gold/5 rounded-none border-l-4 border-l-gold p-8 md:p-10 space-y-6">
                     <div className="flex items-center gap-2 text-gold font-bold text-xs uppercase tracking-widest">
-                        {/* Render the passed node directly */}
                         {keyFinding.icon}
                         <span>{keyFinding.subtitle}</span>
                     </div>
@@ -92,7 +137,7 @@ export function ResearchArticle({
                         <p className="flex items-center gap-2">
                             <span className="text-gold/80 uppercase">Source:</span>
                             {keyFinding.source.href ? (
-                                <a href={keyFinding.source.href} target="_blank" className="inline-flex items-center gap-1 hover:text-foreground underline underline-offset-4 decoration-border">
+                                <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-foreground underline underline-offset-4 decoration-border">
                                     {keyFinding.source.text}
                                 </a>
                             ) : (
@@ -137,7 +182,31 @@ export function ResearchArticle({
                     </div>
                 </div>
 
-                {/* 6. Standard CTA */}
+                {/* 6. Related Articles (if provided) */}
+                {relatedArticles && relatedArticles.length > 0 && (
+                    <div className="space-y-6">
+                        <h3 className="font-serif text-xl font-medium text-foreground">Related Research</h3>
+                        <div className="grid gap-4">
+                            {relatedArticles.map((article, i) => (
+                                <Link
+                                    key={i}
+                                    href={article.href}
+                                    className="group flex items-center justify-between p-4 border border-border/20 rounded-sm hover:border-brand/40 hover:bg-secondary/20 transition-all"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand group-hover:translate-x-1 transition-all" />
+                                        <span className="text-foreground group-hover:text-brand transition-colors">{article.title}</span>
+                                    </div>
+                                    {article.tag && (
+                                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground/60">{article.tag}</span>
+                                    )}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* 7. Standard CTA */}
                 <div className="flex flex-col items-center justify-center gap-6 py-20">
                     <h3 className="font-serif text-2xl font-medium text-center">{cta.title}</h3>
                     <Link href={cta.href}>

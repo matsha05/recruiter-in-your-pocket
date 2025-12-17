@@ -14,7 +14,9 @@ export default function AutomationBiasPage() {
             header={{
                 tag: "ATS & Automation",
                 title: "Hiring algorithms: Where automation enters the funnel",
-                description: "It's not just one 'bot'. It's a chain of automated decisions. Expanding our ATS myths into screening systems education."
+                description: "It's not just one 'bot'. It's a chain of automated decisions. Expanding our ATS myths into screening systems education.",
+                lastUpdated: "December 2024",
+                readTime: "4 min read"
             }}
             keyFinding={{
                 icon: <Bot className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function AutomationBiasPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "ATS Myths", href: "/research/ats-myths", tag: "Industry" },
+                { title: "Human vs. Algorithm", href: "/research/human-vs-algorithm", tag: "Trust" },
+                { title: "Hiring Discrimination", href: "/research/hiring-discrimination-meta-analysis", tag: "Research" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Bias compounds across stages</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

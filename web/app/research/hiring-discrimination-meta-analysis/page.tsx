@@ -14,7 +14,9 @@ export default function DiscriminationMetaPage() {
             header={{
                 tag: "Industry Analysis",
                 title: "Discrimination in hiring has not magically disappeared",
-                description: "A meta-analysis gives us a principled way to talk about what resumes can and cannot control, without sounding naïve or cynical."
+                description: "A meta-analysis gives us a principled way to talk about what resumes can and cannot control, without sounding naïve or cynical.",
+                lastUpdated: "December 2024",
+                readTime: "5 min read"
             }}
             keyFinding={{
                 icon: <Users className="w-4 h-4" />,
@@ -52,6 +54,11 @@ export default function DiscriminationMetaPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "Automation and Bias", href: "/research/automation-and-bias", tag: "Systems" },
+                { title: "Human vs. Algorithm", href: "/research/human-vs-algorithm", tag: "Trust" },
+                { title: "The Referral Advantage", href: "/research/referral-advantage", tag: "Strategy" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The resume is necessary, not sufficient</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

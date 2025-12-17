@@ -14,7 +14,9 @@ export default function StarMethodPage() {
             header={{
                 tag: "Interview prep",
                 title: "The STAR Method: Structure That Works",
-                description: "Behavioral interviews dominate modern hiring. The STAR method—Situation, Task, Action, Result—is the framework that works for both interviews and resumes."
+                description: "Behavioral interviews dominate modern hiring. The STAR method—Situation, Task, Action, Result—is the framework that works for both interviews and resumes.",
+                lastUpdated: "December 2024",
+                readTime: "5 min read"
             }}
             keyFinding={{
                 icon: <MessageSquare className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function StarMethodPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "Quantifying Your Impact", href: "/research/quantifying-impact", tag: "Impact" },
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Format" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why structure matters</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

@@ -14,7 +14,9 @@ export default function HowPeopleScanPage() {
             header={{
                 tag: "Usability research",
                 title: "How People Scan Resumes",
-                description: "People don't read resumes line by line. They scan for structure, signal, and proof that it's worth their time to look closer."
+                description: "People don't read resumes line by line. They scan for structure, signal, and proof that it's worth their time to look closer.",
+                lastUpdated: "December 2024",
+                readTime: "3 min read"
             }}
             keyFinding={{
                 icon: <Eye className="w-4 h-4" />,
@@ -49,6 +51,11 @@ export default function HowPeopleScanPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "Spelling Errors Impact", href: "/research/spelling-errors-impact", tag: "Heuristics" },
+                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Structure" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Scanning vs Reading</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

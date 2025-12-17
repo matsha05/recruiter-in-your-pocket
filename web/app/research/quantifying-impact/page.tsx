@@ -14,7 +14,9 @@ export default function QuantifyingImpactPage() {
             header={{
                 tag: "Resume writing",
                 title: "Quantifying Impact: The Laszlo Bock Formula",
-                description: "Laszlo Bock, Google's former SVP of People Operations, popularized a formula for resume bullets that hiring managers love. Here's the research behind it."
+                description: "Laszlo Bock, Google's former SVP of People Operations, popularized a formula for resume bullets that hiring managers love. Here's the research behind it.",
+                lastUpdated: "December 2024",
+                readTime: "5 min read"
             }}
             keyFinding={{
                 icon: <TrendingUp className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function QuantifyingImpactPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "The STAR Method", href: "/research/star-method", tag: "Format" },
+                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Structure" },
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why numbers work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

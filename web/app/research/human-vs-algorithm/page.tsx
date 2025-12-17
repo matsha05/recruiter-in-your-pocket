@@ -14,7 +14,9 @@ export default function HumanVsAlgorithmPage() {
             header={{
                 tag: "Algorithmic aversion",
                 title: "Recruiters trust humans more than algorithms",
-                description: "But inconsistent algorithms can still mislead. Why human judgment remains the gold standard in hiring perception."
+                description: "But inconsistent algorithms can still mislead. Why human judgment remains the gold standard in hiring perception.",
+                lastUpdated: "December 2024",
+                readTime: "4 min read"
             }}
             keyFinding={{
                 icon: <User className="w-4 h-4" />,
@@ -49,6 +51,11 @@ export default function HumanVsAlgorithmPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "ATS Myths", href: "/research/ats-myths", tag: "Industry" },
+                { title: "Automation and Bias", href: "/research/automation-and-bias", tag: "Systems" },
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where automation breaks recruiter judgment</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

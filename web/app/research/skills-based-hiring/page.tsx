@@ -14,7 +14,9 @@ export default function SkillsBasedHiringPage() {
             header={{
                 tag: "Industry trends",
                 title: "The Skills-Based Hiring Shift",
-                description: "Google, Apple, IBM, and others have removed degree requirements for many roles. Here's what's actually changing—and what it means for you."
+                description: "Google, Apple, IBM, and others have removed degree requirements for many roles. Here's what's actually changing—and what it means for you.",
+                lastUpdated: "December 2024",
+                readTime: "5 min read"
             }}
             keyFinding={{
                 icon: <Briefcase className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function SkillsBasedHiringPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" },
+                { title: "LinkedIn vs. Resume", href: "/research/linkedin-vs-resume", tag: "Sourcing" },
+                { title: "The Referral Advantage", href: "/research/referral-advantage", tag: "Strategy" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What's actually changing</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

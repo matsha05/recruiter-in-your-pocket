@@ -14,7 +14,9 @@ export default function SpellingErrorsPage() {
             header={{
                 tag: "Screening heuristics",
                 title: "Spelling errors carry real weight in recruiter judgment",
-                description: "This is the kind of painfully practical research that makes your product feel like a recruiter wrote it."
+                description: "This is the kind of painfully practical research that makes your product feel like a recruiter wrote it.",
+                lastUpdated: "December 2024",
+                readTime: "3 min read"
             }}
             keyFinding={{
                 icon: <Type className="w-4 h-4" />,
@@ -48,6 +50,11 @@ export default function SpellingErrorsPage() {
                     }
                 ]
             }}
+            relatedArticles={[
+                { title: "How People Scan", href: "/research/how-people-scan", tag: "Psychology" },
+                { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
+                { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Structure" }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Credibility is lost in milliseconds</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
