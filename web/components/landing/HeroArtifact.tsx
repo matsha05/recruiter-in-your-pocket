@@ -34,22 +34,8 @@ export function HeroArtifact() {
 
     return (
         <div className="relative w-full max-w-[420px] mx-auto">
-            {/* "What they saw" Label */}
-            <div className="absolute -top-8 left-0 z-20">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-green-600 font-medium">
-                    ✓ What they saw
-                </span>
-            </div>
-
-            {/* "What they missed" Label */}
-            <div className="absolute -top-8 right-0 z-20">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-red-500/80 font-medium">
-                    ✕ What they missed
-                </span>
-            </div>
-
             {/* Timer Badge */}
-            <div className="absolute top-2 right-4 z-20">
+            <div className="absolute -top-3 right-4 z-20">
                 <div className="flex items-center gap-2 bg-neutral-900 text-white px-3 py-1.5 rounded-full text-sm font-mono shadow-lg">
                     <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
                     {elapsed.toFixed(1)}s
