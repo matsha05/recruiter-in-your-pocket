@@ -11,9 +11,9 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 export default function SettingsClient() {
     const { user, refreshUser } = useAuth();
     const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("yearly");
-    const [isLoading, setIsLoading] = useState<string | null>(null); // "single" or "monthly"
+    const [isLoading, setIsLoading] = useState<string | null>(null); // "single" or "pack"
 
-    const [showEmailInput, setShowEmailInput] = useState<"single" | "monthly" | null>(null);
+    const [showEmailInput, setShowEmailInput] = useState<"single" | "pack" | null>(null);
     const [guestEmail, setGuestEmail] = useState("");
     const [passes, setPasses] = useState<any[]>([]);
     const [loadingPasses, setLoadingPasses] = useState(false);
@@ -62,7 +62,7 @@ export default function SettingsClient() {
         }
     }, [user?.email]);
 
-    const onCheckoutClick = (tier: "single" | "monthly") => {
+    const onCheckoutClick = (tier: "single" | "pack") => {
         if (user?.email) {
             handleCheckout(tier, user.email);
         } else {
@@ -77,7 +77,7 @@ export default function SettingsClient() {
         }
     };
 
-    const handleCheckout = async (tier: "single" | "monthly", email: string) => {
+    const handleCheckout = async (tier: "single" | "pack", email: string) => {
         try {
             setIsLoading(tier);
             const res = await fetch("/api/checkout", {
@@ -164,27 +164,27 @@ export default function SettingsClient() {
                     </div>
                 </section>
 
-                {/* 2. Plans & Upgrades */}
+                {/* 2. Buy Credits */}
                 <section>
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h2 className="text-2xl font-display font-medium text-foreground">Available Plans</h2>
-                            <p className="text-sm text-muted-foreground mt-1">Unlock Principal Recruiter analysis for every application.</p>
+                            <h2 className="text-2xl font-display font-medium text-foreground">Buy Audit Credits</h2>
+                            <p className="text-sm text-muted-foreground mt-1">Your first audit is free. Need more? Buy credits below.</p>
                         </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
-                        {/* TIER 1: Quick Fix ($9) */}
+                        {/* TIER 1: Quick Fix ($9/1) */}
                         <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
                             <div className="mb-6">
                                 <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Quick Fix</div>
                                 <div className="text-4xl font-display font-bold text-foreground">$9</div>
-                                <p className="text-sm text-muted-foreground mt-2">One scan. See what recruiters see.</p>
+                                <p className="text-sm text-muted-foreground mt-2">1 additional audit</p>
                             </div>
-                            <ul className="space-y-4 mb-8 text-sm text-foreground/80 font-medium flex-1">
-                                <FeatureItem text="1 Full Audit + Rewrites" icon={Check} />
-                                <FeatureItem text="PDF Export" icon={Check} />
-                                <FeatureItem text="Lifetime access to report" icon={Check} />
+                            <ul className="space-y-3 mb-8 text-sm text-muted-foreground font-medium flex-1">
+                                <FeatureItem text="Full recruiter-grade audit" icon={Check} />
+                                <FeatureItem text="Before & after rewrites" icon={Check} />
+                                <FeatureItem text="PDF export" icon={Check} />
                             </ul>
                             <button
                                 onClick={() => onCheckoutClick("single")}
@@ -192,11 +192,11 @@ export default function SettingsClient() {
                                 className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading === "single" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Get Quick Fix
+                                Buy 1 Audit
                             </button>
                         </div>
 
-                        {/* TIER 2: Job Search Pass ($29) - HIGHLIGHTED */}
+                        {/* TIER 2: Job Search Pack ($29/5) - HIGHLIGHTED */}
                         <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] flex flex-col">
                             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
                             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-lg flex items-center gap-1.5">
@@ -204,25 +204,27 @@ export default function SettingsClient() {
                             </div>
 
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Job Search Pass</div>
-                                <div className="text-4xl font-display font-bold text-foreground">$29<span className="text-sm font-sans font-medium text-muted-foreground ml-1">/mo</span></div>
-                                <p className="text-sm text-muted-foreground mt-2">Unlimited audits for active job seekers.</p>
+                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Job Search Pack</div>
+                                <div className="flex items-baseline gap-2">
+                                    <span className="text-4xl font-display font-bold text-foreground">$29</span>
+                                    <span className="text-sm text-muted-foreground line-through">$45</span>
+                                </div>
+                                <p className="text-sm text-muted-foreground mt-2">5 audits — $5.80 each</p>
                             </div>
                             <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
-                                <FeatureItem text="Unlimited Full Audits" icon={InsightSparkleIcon} accent="gold" />
-                                <FeatureItem text="Before & After Rewrites" />
-                                <FeatureItem text="PDF Report Export" />
-                                <FeatureItem text="Saved Report History" />
-                                <FeatureItem text="Job-Specific Calibration" />
-                                <FeatureItem text="Priority Analysis Speed" />
+                                <FeatureItem text="5 full audits" icon={InsightSparkleIcon} accent="gold" />
+                                <FeatureItem text="Before & after rewrites" />
+                                <FeatureItem text="PDF export" />
+                                <FeatureItem text="Saved report history" />
+                                <FeatureItem text="Job description targeting" />
                             </ul>
                             <button
-                                onClick={() => onCheckoutClick("monthly")}
+                                onClick={() => onCheckoutClick("pack")}
                                 disabled={!!isLoading}
                                 className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20 flex items-center justify-center gap-2"
                             >
-                                {isLoading === "monthly" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Start Job Search Pass
+                                {isLoading === "pack" && <Loader2 className="w-4 h-4 animate-spin" />}
+                                Buy 5 Audits
                             </button>
                         </div>
                     </div>

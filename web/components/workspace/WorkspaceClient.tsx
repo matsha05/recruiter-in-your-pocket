@@ -343,7 +343,7 @@ export default function WorkspaceClient() {
             <PaywallModal
                 isOpen={isPaywallOpen}
                 onClose={() => setIsPaywallOpen(false)}
-                freeUsesRemaining={freeUsesRemaining}
+                creditsRemaining={freeUsesRemaining}
                 onSuccess={() => {
                     setIsPaywallOpen(false);
                     // Refresh free uses count

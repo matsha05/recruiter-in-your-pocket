@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { X } from "lucide-react";
+import { X, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Tier = "single" | "monthly";
+type Tier = "single" | "pack";
 
 interface PaywallModalProps {
     isOpen: boolean;
     onClose: () => void;
-    freeUsesRemaining?: number;
+    creditsRemaining?: number;
     hasCurrentReport?: boolean;
     onSuccess?: () => void;
 }
@@ -18,12 +18,12 @@ interface PaywallModalProps {
 export default function PaywallModal({
     isOpen,
     onClose,
-    freeUsesRemaining = 0,
+    creditsRemaining = 0,
     hasCurrentReport = false,
     onSuccess
 }: PaywallModalProps) {
     const { user } = useAuth();
-    const [selectedTier, setSelectedTier] = useState<Tier>("single");
+    const [selectedTier, setSelectedTier] = useState<Tier>("pack");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -31,16 +31,6 @@ export default function PaywallModal({
     const isLoggedIn = !!user;
 
     if (!isOpen) return null;
-
-    const getHeaderText = () => {
-        if (freeUsesRemaining === 2) {
-            return "You have 2 free reviews left";
-        } else if (freeUsesRemaining === 1) {
-            return "You have 1 free review left";
-        } else {
-            return "You've seen what recruiters see. Unlock unlimited audits.";
-        }
-    };
 
     const handleCheckout = async () => {
         setLoading(true);
@@ -89,7 +79,7 @@ export default function PaywallModal({
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
             onClick={(e) => e.target === e.currentTarget && handleClose()}
         >
-            <div className="bg-background border border-border/10 rounded-md shadow-2xl w-full max-w-[500px] p-8 relative max-h-[90vh] overflow-y-auto">
+            <div className="bg-background border border-border/10 rounded-md shadow-2xl w-full max-w-[420px] p-8 relative max-h-[90vh] overflow-y-auto">
                 <button
                     onClick={handleClose}
                     aria-label="Close"
@@ -101,80 +91,52 @@ export default function PaywallModal({
                 {/* Header */}
                 <div className="text-center mb-8">
                     <h2 className="font-display text-2xl font-medium text-foreground mb-3">
-                        {freeUsesRemaining <= 0 ? "You've seen what recruiters see." : "Ready for the full recruiter perspective?"}
+                        You've used your free audit.
                     </h2>
                     <p className="text-muted-foreground text-sm">
-                        {freeUsesRemaining <= 0
-                            ? "Unlock unlimited audits to keep improving."
-                            : "See your strengths, your gaps, your exact next steps."}
+                        Get more credits to keep improving your resume.
                     </p>
-
-                    {/* Value Summary */}
-                    <div className="mt-6 bg-secondary/20 border border-border/10 rounded-md p-5 text-left space-y-3">
-                        <p className="text-sm font-medium text-foreground">Pro Studio Access includes:</p>
-                        <ul className="text-sm text-muted-foreground space-y-2">
-                            <li className="flex items-center gap-3">
-                                <span className="text-premium">✓</span>
-                                Unlimited recruiter-grade resume reviews
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-premium">✓</span>
-                                Deep-dive feedback per line
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-premium">✓</span>
-                                "Before & After" bullet rewrites
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-premium">✓</span>
-                                PDF export of your reports
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Testimonial */}
-                    <div className="mt-6 pt-4 border-t border-white/5">
-                        <p className="text-sm text-muted-foreground italic font-display">
-                            &ldquo;Finally, feedback that sounds like a real recruiter, not a robot.&rdquo;
-                        </p>
-                        <p className="text-xs text-muted-foreground/60 mt-2 uppercase tracking-widest font-medium">— Senior PM, Google</p>
-                    </div>
                 </div>
 
-                {/* Tier Selection - 2 tiers */}
-                <div className="grid grid-cols-2 gap-3 mb-8">
-                    {/* Quick Fix */}
+                {/* Tier Selection - Credit Packs */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                    {/* Quick Fix - 1 Audit */}
                     <button
                         type="button"
                         onClick={() => setSelectedTier("single")}
-                        className={cn("p-4 rounded-md text-center transition-all border relative flex flex-col items-center justify-center",
+                        className={cn("p-4 rounded-md text-center transition-all border flex flex-col items-center justify-center",
                             selectedTier === "single" ? "bg-secondary/40 border-foreground/30" : "bg-transparent border-border/10 hover:bg-secondary/10"
                         )}
                     >
                         <span className="text-2xl font-display font-medium text-foreground">$9</span>
-                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Quick Fix</span>
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">1 Audit</span>
                     </button>
 
-                    {/* Job Search Pass - Highlighted */}
+                    {/* Job Search Pack - 5 Audits - Highlighted */}
                     <button
                         type="button"
-                        onClick={() => setSelectedTier("monthly")}
+                        onClick={() => setSelectedTier("pack")}
                         className={cn("p-4 rounded-md text-center transition-all border relative flex flex-col items-center justify-center overflow-hidden",
-                            selectedTier === "monthly" ? "bg-premium/10 border-premium shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]" : "bg-transparent border-border/10 hover:bg-secondary/10"
+                            selectedTier === "pack" ? "bg-premium/10 border-premium shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]" : "bg-transparent border-border/10 hover:bg-secondary/10"
                         )}
                     >
-                        <div className="absolute top-0 right-0 left-0 h-0.5 bg-premium/50" />
-                        <span className="text-2xl font-display font-medium text-premium">$29</span>
-                        <span className="text-[10px] uppercase tracking-wider text-premium mt-1 font-bold">Monthly</span>
+                        <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
+                            <span className="text-[8px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b-sm font-bold flex items-center gap-1">
+                                <Crown className="w-2 h-2" /> Best Value
+                            </span>
+                        </div>
+                        <span className="text-2xl font-display font-medium text-premium mt-2">$29</span>
+                        <span className="text-[10px] uppercase tracking-wider text-premium mt-1 font-bold">5 Audits</span>
+                        <span className="text-[9px] text-muted-foreground">$5.80 each</span>
                     </button>
                 </div>
 
                 {/* Checkout Section */}
-                <div className="bg-secondary/10 rounded-md p-6 border border-border/10 mb-4">
+                <div className="bg-secondary/10 rounded-md p-5 border border-border/10 mb-4">
                     {isLoggedIn ? (
                         <>
                             <p className="text-sm text-muted-foreground mb-4 text-center">
-                                Adding pass to <strong className="text-foreground">{user.email}</strong>
+                                Adding credits to <strong className="text-foreground">{user.email}</strong>
                             </p>
                             <button
                                 type="button"
@@ -182,7 +144,7 @@ export default function PaywallModal({
                                 disabled={loading}
                                 className="w-full bg-foreground text-background hover:bg-foreground/90 h-10 rounded-md font-medium text-sm transition-colors"
                             >
-                                {loading ? "Processing..." : `Get ${selectedTier === "single" ? "Quick Fix" : "Job Search Pass"} →`}
+                                {loading ? "Processing..." : `Buy ${selectedTier === "single" ? "1 Audit" : "5 Audits"} →`}
                             </button>
                         </>
                     ) : (
@@ -206,7 +168,7 @@ export default function PaywallModal({
                                 {loading ? "Processing..." : `Continue to checkout →`}
                             </button>
                             <p className="text-xs text-muted-foreground/50 text-center mt-3">
-                                We'll email you a magic link to log in.
+                                We'll email you a magic link to access your credits.
                             </p>
                         </>
                     )}
@@ -218,14 +180,8 @@ export default function PaywallModal({
                     </div>
                 )}
 
-                {hasCurrentReport && (
-                    <p className="text-center text-xs text-muted-foreground/50 mb-2">
-                        Your current report is saved and waiting for you.
-                    </p>
-                )}
-
                 <p className="text-center text-[10px] text-muted-foreground/40 uppercase tracking-widest">
-                    Secure Payment by Stripe • 100% Satisfaction Guarantee
+                    Secure Payment by Stripe • 100% Money-Back Guarantee
                 </p>
             </div>
         </div>
