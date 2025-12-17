@@ -23,7 +23,7 @@ export default function AutomationBiasPage() {
                 statDescription: "Bias isn't isolated; it amplifies as candidates move from ad targeting to screening to ranking.",
                 source: {
                     text: "Bogen & Rieke (2018), Upturn 'Help Wanted'",
-                    href: "https://www.upturn.org/reports/2018/help-wanted/"
+                    href: "https://www.upturn.org/work/help-wanted/"
                 }
             }}
             visualization={

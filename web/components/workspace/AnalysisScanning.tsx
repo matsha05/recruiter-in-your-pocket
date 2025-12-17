@@ -12,6 +12,7 @@ const ANALYSIS_STEPS = [
     { text: "Detecting passive voice...", icon: Search },
     { text: "Identifying hidden wins...", icon: InsightSparkleIcon },
     { text: "Formatting recruiter read...", icon: Brain },
+    { text: "Wrapping up your feedback...", icon: Scan, isFinal: true },
 ];
 
 export default function AnalysisScanning() {
@@ -19,9 +20,13 @@ export default function AnalysisScanning() {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Cycle through heuristics with smooth timing
+        // Cycle through heuristics, but stop on final step
         const stepInterval = setInterval(() => {
-            setStepIndex((prev) => (prev + 1) % ANALYSIS_STEPS.length);
+            setStepIndex((prev) => {
+                // If we've reached the final step, stay there
+                if (prev >= ANALYSIS_STEPS.length - 1) return prev;
+                return prev + 1;
+            });
         }, 2000);
 
         // Eased progress bar (slows at end for perceived thoroughness)
@@ -39,7 +44,8 @@ export default function AnalysisScanning() {
         };
     }, []);
 
-    const CurrentIcon = ANALYSIS_STEPS[stepIndex].icon;
+    const currentStep = ANALYSIS_STEPS[stepIndex];
+    const CurrentIcon = currentStep.icon;
 
     return (
         <div className="flex flex-col items-center justify-center h-full p-8 animate-in fade-in duration-500">
@@ -92,7 +98,9 @@ export default function AnalysisScanning() {
                     </p>
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                    Analyzing pattern {stepIndex + 1} of {ANALYSIS_STEPS.length}
+                    {currentStep.isFinal
+                        ? "Almost there..."
+                        : `Analyzing pattern ${stepIndex + 1} of ${ANALYSIS_STEPS.length - 1}`}
                 </p>
             </div>
 

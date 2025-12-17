@@ -22,8 +22,8 @@ export default function SpellingErrorsPage() {
                 stat: "Form > Content",
                 statDescription: "Process-oriented recruiters penalize spelling errors as heavily as missing experience.",
                 source: {
-                    text: "Martin-Lacroux (2017)",
-                    href: "https://www.researchgate.net/publication/313880479_The_impact_of_spelling_errors_on_recruiters'_judgment"
+                    text: "Martin-Lacroux (2017) Int. J. Selection & Assessment",
+                    href: "https://onlinelibrary.wiley.com/doi/10.1111/ijsa.12179"
                 }
             }}
             visualization={

@@ -9,6 +9,7 @@ export interface ReportData {
     summary?: string;
     subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
     first_impression?: string;
+    recruiter_note?: string; // Single-sentence recruiter judgment for RecruiterNote
     strengths?: string[];
     gaps?: string[];
     top_fixes?: Array<{ fix?: string; text?: string; why?: string; evidence?: string; impact_level?: string; effort?: string; section_ref?: string }>;

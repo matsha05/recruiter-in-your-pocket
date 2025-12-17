@@ -15,6 +15,7 @@ import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
 import { BackedByResearch } from "@/components/landing/BackedByResearch";
 import { Pricing } from "@/components/landing/Pricing";
+import { HeroArtifact } from "@/components/landing/HeroArtifact";
 
 export default function LandingClient() {
     const router = useRouter();
@@ -92,31 +93,49 @@ export default function LandingClient() {
                 </nav>
             </header>
 
-            {/* Hero Section */}
-            <main className="flex-1 flex flex-col items-center pt-24 pb-20 px-6 overflow-hidden">
-                <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
-                    <h1 className="text-hero text-6xl md:text-7xl lg:text-8xl text-primary mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        See what <br className="hidden md:block" /> they see.
-                    </h1>
-                    <p className="text-memo text-xl text-muted-foreground max-w-lg mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-                        In 7.4 seconds, a recruiter has already decided. <br />
-                        <span className="text-foreground font-medium">This is what they saw.</span>
-                    </p>
+            {/* Hero Section — Split Layout: Proof + Action */}
+            <main className="flex-1 flex flex-col overflow-hidden">
+                {/* 
+                    Layout Rationale: Proof-before-ask pattern.
+                    Left: HeroArtifact shows what recruiters actually see (evidence)
+                    Right: Headline + Dropzone enables action
+                    This layout places evidence *alongside* the CTA, not below it.
+                */}
+                <section className="flex-1 flex items-center justify-center px-6 py-16 lg:py-20">
+                    <div className="w-full max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-                    <div className="w-full max-w-xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-                        <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
-                        <div className="mt-4 flex items-center justify-center gap-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
-                            <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
-                            <span>•</span>
-                            <span>Auto-deleted in 24h</span>
+                        {/* LEFT: The Proof (HeroArtifact) */}
+                        <div className="order-2 lg:order-1 flex justify-center lg:justify-start animate-in fade-in slide-in-from-left-8 duration-1000">
+                            <HeroArtifact />
                         </div>
-                    </div>
-                </div>
 
-                {/* The Hero Artifact (Sample Preview) */}
-                <div className="w-full flex justify-center mb-32 relative z-0 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                        {/* RIGHT: The Promise + Action */}
+                        <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start text-center lg:text-left relative z-10">
+                            <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                                See what <br className="hidden md:block" /> they see.
+                            </h1>
+                            <p className="text-memo text-xl text-muted-foreground max-w-md mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                                In 6 seconds, a recruiter has already decided. <br />
+                                <span className="text-foreground font-medium">This is what they saw.</span>
+                            </p>
+
+                            <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                                <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
+                                <div className="mt-4 flex items-center justify-center lg:justify-start gap-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
+                                    <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
+                                    <span>•</span>
+                                    <span>Auto-deleted in 24h</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                {/* Sample Report Preview - Full Report Context */}
+                <section className="w-full flex justify-center pb-24 px-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
                     <SampleReportPreview />
-                </div>
+                </section>
 
                 {/* Proof Section */}
                 <BackedByResearch />

@@ -22,14 +22,14 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     <p className="text-sm text-muted-foreground font-sans">
                         Recruiter in Your Pocket © 2025
                     </p>
-                    <div className="flex items-center gap-6">
-                        <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
-                        <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
-                        <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Research</Link>
+                    <div className="flex items-center gap-2 md:gap-4">
+                        <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 -mx-3 -my-2 rounded-md">Terms</Link>
+                        <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 -mx-3 -my-2 rounded-md">Privacy</Link>
+                        <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 -mx-3 -my-2 rounded-md">Research</Link>
                     </div>
                 </div>
             </div>

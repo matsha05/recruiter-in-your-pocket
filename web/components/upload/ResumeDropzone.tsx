@@ -73,8 +73,38 @@ export function ResumeDropzone({
                 <input {...getInputProps()} />
 
                 <AnimatePresence mode="wait">
-                    {/* State: Dragging Over */}
-                    {isDragActive ? (
+                    {/* State: Processing */}
+                    {isProcessing ? (
+                        <motion.div
+                            key="processing"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            className="flex flex-col items-center gap-6"
+                        >
+                            <div className="relative">
+                                <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-brand/20 to-brand/10 flex items-center justify-center animate-pulse">
+                                    <FileText className="h-10 w-10 text-brand" strokeWidth={1.5} />
+                                </div>
+                                <div className="absolute -bottom-1 -right-1 h-8 w-8 rounded-full bg-brand flex items-center justify-center shadow-lg">
+                                    <motion.div
+                                        animate={{ rotate: 360 }}
+                                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                    >
+                                        <Upload className="h-4 w-4 text-white" />
+                                    </motion.div>
+                                </div>
+                            </div>
+                            <div className="space-y-2 text-center">
+                                <h3 className="text-xl font-serif italic font-medium text-foreground">
+                                    Reading your resume...
+                                </h3>
+                                <p className="text-sm text-muted-foreground">
+                                    This takes about 3 seconds.
+                                </p>
+                            </div>
+                        </motion.div>
+                    ) : isDragActive ? (
                         <motion.div
                             key="drag-active"
                             initial={{ opacity: 0, y: 10 }}
