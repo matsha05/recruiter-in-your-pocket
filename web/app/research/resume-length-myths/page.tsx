@@ -15,7 +15,7 @@ export default function ResumeLengthPage() {
                 tag: "Resume structure",
                 title: "Resume Length: What Research Actually Says",
                 description: "The 'one-page rule' is career advice passed down like folklore. Research shows the answer is more nuanced.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "4 min read"
             }}
             keyFinding={{

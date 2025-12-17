@@ -15,7 +15,7 @@ export default function StarMethodPage() {
                 tag: "Interview prep",
                 title: "The STAR Method: Structure That Works",
                 description: "Behavioral interviews dominate modern hiring. The STAR method—Situation, Task, Action, Result—is the framework that works for both interviews and resumes.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{

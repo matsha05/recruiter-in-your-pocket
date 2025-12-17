@@ -15,7 +15,7 @@ export default function HumanVsAlgorithmPage() {
                 tag: "Algorithmic aversion",
                 title: "Recruiters trust humans more than algorithms",
                 description: "But inconsistent algorithms can still mislead. Why human judgment remains the gold standard in hiring perception.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "4 min read"
             }}
             keyFinding={{

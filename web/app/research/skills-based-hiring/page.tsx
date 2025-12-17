@@ -15,7 +15,7 @@ export default function SkillsBasedHiringPage() {
                 tag: "Industry trends",
                 title: "The Skills-Based Hiring Shift",
                 description: "Google, Apple, IBM, and others have removed degree requirements for many roles. Here's what's actually changing—and what it means for you.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{

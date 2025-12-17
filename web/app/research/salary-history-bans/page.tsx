@@ -15,7 +15,7 @@ export default function SalaryHistoryPage() {
                 tag: "Negotiation",
                 title: "Salary history bans: Just being honest is a trap",
                 description: "Research-grade justification for our negotiation scripts. Why revealing early costs you leverage.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "4 min read"
             }}
             keyFinding={{

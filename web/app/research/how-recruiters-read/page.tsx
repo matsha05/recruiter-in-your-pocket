@@ -15,7 +15,7 @@ export default function HowRecruitersReadPage() {
                 tag: "Eye-tracking research",
                 title: "How Recruiters Actually Read Resumes",
                 description: "Most advice about resumes is based on guesswork or recycled tips. This page is based on eye tracking research that watched recruiters as they reviewed resumes in real time.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "4 min read"
             }}
             keyFinding={{

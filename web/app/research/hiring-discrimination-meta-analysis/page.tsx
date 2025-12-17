@@ -15,7 +15,7 @@ export default function DiscriminationMetaPage() {
                 tag: "Industry Analysis",
                 title: "Discrimination in hiring has not magically disappeared",
                 description: "A meta-analysis gives us a principled way to talk about what resumes can and cannot control, without sounding naïve or cynical.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{

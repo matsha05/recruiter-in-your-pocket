@@ -15,7 +15,7 @@ export default function LinkedInVsResumePage() {
                 tag: "Sourcing research",
                 title: "LinkedIn vs. Resume: What Gets Seen",
                 description: "Recruiters use LinkedIn and resumes for different purposes. Understanding when each matters helps you optimize both.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "4 min read"
             }}
             keyFinding={{

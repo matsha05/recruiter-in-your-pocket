@@ -9,8 +9,38 @@ import "@fontsource-variable/fraunces";
 
 
 export const metadata: Metadata = {
-  title: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",
-  description: "Get recruiter-grade feedback on your resume. See what hiring managers at top companies actually notice in the first 10 seconds."
+  metadataBase: new URL('https://recruiterinyourpocket.com'),
+  title: {
+    default: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",
+    template: "%s | Recruiter in Your Pocket"
+  },
+  description: "Get recruiter-grade feedback on your resume. See what hiring managers at top companies actually notice in the first 10 seconds.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Recruiter in Your Pocket',
+    images: [{
+      url: '/assets/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Recruiter in Your Pocket - See what recruiters see',
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/assets/og-image.png'],
+  },
 };
 
 export default function RootLayout({

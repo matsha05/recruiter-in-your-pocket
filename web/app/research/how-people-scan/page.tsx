@@ -15,7 +15,7 @@ export default function HowPeopleScanPage() {
                 tag: "Usability research",
                 title: "How People Scan Resumes",
                 description: "People don't read resumes line by line. They scan for structure, signal, and proof that it's worth their time to look closer.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "3 min read"
             }}
             keyFinding={{

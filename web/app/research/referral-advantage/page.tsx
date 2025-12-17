@@ -15,7 +15,7 @@ export default function ReferralAdvantagePage() {
                 tag: "Job search strategy",
                 title: "The Referral Advantage",
                 description: "Knowing someone at the company isn't just helpful—it's statistically one of the highest-leverage job search activities you can do.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{

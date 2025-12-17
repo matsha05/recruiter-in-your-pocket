@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 interface LegalNavProps {
     className?: string;
@@ -17,16 +16,18 @@ export function LegalNav({ className }: LegalNavProps) {
         { name: "Trust & Security", href: "/trust" },
         { name: "Privacy Policy", href: "/privacy" },
         { name: "Terms of Service", href: "/terms" },
+        { name: "FAQ", href: "/faq" },
     ];
 
     return (
         <div className={cn("flex flex-col items-center mb-16", className)}>
             {/* Back Link */}
-            <Link href="/" className="mb-8">
-                <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    <ArrowLeft className="w-4 h-4" />
-                    Back to Home
-                </Button>
+            <Link
+                href="/"
+                className="mb-8 inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
+            >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
             </Link>
 
             {/* Pill Navigation */}

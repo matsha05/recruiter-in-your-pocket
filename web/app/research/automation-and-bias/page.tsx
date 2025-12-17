@@ -15,7 +15,7 @@ export default function AutomationBiasPage() {
                 tag: "ATS & Automation",
                 title: "Hiring algorithms: Where automation enters the funnel",
                 description: "It's not just one 'bot'. It's a chain of automated decisions. Expanding our ATS myths into screening systems education.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "4 min read"
             }}
             keyFinding={{

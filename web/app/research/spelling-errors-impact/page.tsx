@@ -15,7 +15,7 @@ export default function SpellingErrorsPage() {
                 tag: "Screening heuristics",
                 title: "Spelling errors carry real weight in recruiter judgment",
                 description: "This is the kind of painfully practical research that makes your product feel like a recruiter wrote it.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "3 min read"
             }}
             keyFinding={{

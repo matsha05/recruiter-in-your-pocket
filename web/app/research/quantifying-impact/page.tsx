@@ -15,7 +15,7 @@ export default function QuantifyingImpactPage() {
                 tag: "Resume writing",
                 title: "Quantifying Impact: The Laszlo Bock Formula",
                 description: "Laszlo Bock, Google's former SVP of People Operations, popularized a formula for resume bullets that hiring managers love. Here's the research behind it.",
-                lastUpdated: "December 2024",
+                lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{
