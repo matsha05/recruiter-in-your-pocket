@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import mammoth from "mammoth";
 import pdfParse from "pdf-parse";
+import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
+import { rateLimit } from "@/lib/security/rateLimit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -37,19 +40,41 @@ function detectFileKind(file: File): "pdf" | "docx" | null {
 }
 
 export async function POST(request: Request) {
+  const request_id = getRequestId(request);
+  const { method, path } = routeLabel(request);
+  const route = `${method} ${path}`;
+  const startedAt = Date.now();
+  logInfo({ msg: "http.request.started", request_id, route, method, path });
+
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 30, 60_000);
+  if (!rl.ok) {
+    const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
+    res.headers.set("x-request-id", request_id);
+    res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
+    logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 429, latency_ms: Date.now() - startedAt, outcome: "rate_limited" });
+    return res;
+  }
+
   try {
     const incoming = await request.formData();
     const file = incoming.get("file");
 
     if (!file || !(file instanceof File)) {
-      return NextResponse.json({ ok: false, errorCode: "NO_FILE", message: "No file provided." }, { status: 400 });
+      const res = NextResponse.json({ ok: false, errorCode: "NO_FILE", message: "No file provided." }, { status: 400 });
+      res.headers.set("x-request-id", request_id);
+      logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+      return res;
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      return NextResponse.json(
+      const res = NextResponse.json(
         { ok: false, errorCode: "FILE_TOO_LARGE", message: "File is too large. Max 10MB." },
         { status: 400 }
       );
+      res.headers.set("x-request-id", request_id);
+      logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+      return res;
     }
 
     const kind = detectFileKind(file);
@@ -64,7 +89,7 @@ export async function POST(request: Request) {
       const docxResult = await mammoth.extractRawText({ buffer });
       extractedText = docxResult.value || "";
     } else {
-      return NextResponse.json(
+      const res = NextResponse.json(
         {
           ok: false,
           errorCode: "UNSUPPORTED_FILE_TYPE",
@@ -73,12 +98,15 @@ export async function POST(request: Request) {
         },
         { status: 400 }
       );
+      res.headers.set("x-request-id", request_id);
+      logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+      return res;
     }
 
     extractedText = cleanExtractedText(extractedText);
 
     if (!extractedText || extractedText.length < 50) {
-      return NextResponse.json(
+      const res = NextResponse.json(
         {
           ok: false,
           errorCode: "EXTRACTION_EMPTY",
@@ -86,18 +114,35 @@ export async function POST(request: Request) {
         },
         { status: 400 }
       );
+      res.headers.set("x-request-id", request_id);
+      logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+      return res;
     }
 
-    return NextResponse.json({ ok: true, text: extractedText, fileName: file.name });
+    const res = NextResponse.json({ ok: true, text: extractedText, fileName: file.name });
+    res.headers.set("x-request-id", request_id);
+    logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 200, latency_ms: Date.now() - startedAt, outcome: "success" });
+    return res;
   } catch (err: any) {
-    console.error("[parse-resume] error:", err?.message);
-    return NextResponse.json(
+    logError({
+      msg: "http.request.completed",
+      request_id,
+      route,
+      method,
+      path,
+      status: 500,
+      latency_ms: Date.now() - startedAt,
+      outcome: "internal_error",
+      err: { name: err?.name || "Error", message: err?.message || "Parse error", stack: err?.stack }
+    });
+    const res = NextResponse.json(
       { ok: false, errorCode: "PARSE_ERROR", message: "Something went wrong while processing your file." },
       { status: 500 }
     );
+    res.headers.set("x-request-id", request_id);
+    return res;
   }
 }
-
 
 
 

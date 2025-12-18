@@ -1,6 +1,9 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import pdf from "pdf-parse";
+import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
+import { rateLimit } from "@/lib/security/rateLimit";
 
 // Heuristics for the "Skim" - what a recruiter's eye catches in 6 seconds.
 // We are NOT using an LLM here for speed. We want < 500ms latency.
@@ -20,13 +23,60 @@ const PATTERNS = {
     METRICS: /\b(\d+(?:\.\d+)?%|\$\d+(?:[kK]|[mM])?|\d+\+)\b/g
 };
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
 export async function POST(req: NextRequest) {
+    const request_id = getRequestId(req);
+    const { method, path } = routeLabel(req);
+    const route = `${method} ${path}`;
+    const startedAt = Date.now();
+    logInfo({ msg: "http.request.started", request_id, route, method, path });
+
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 30, 60_000);
+    if (!rl.ok) {
+        const res = NextResponse.json({ ok: false, error: "Too many requests. Try again shortly." }, { status: 429 });
+        res.headers.set("x-request-id", request_id);
+        res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
+        logInfo({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: 429,
+            latency_ms: Date.now() - startedAt,
+            outcome: "rate_limited"
+        });
+        return res;
+    }
+
     try {
         const formData = await req.formData();
         const file = formData.get("file") as File;
 
         if (!file) {
-            return NextResponse.json({ ok: false, error: "No file provided" }, { status: 400 });
+            const res = NextResponse.json({ ok: false, error: "No file provided" }, { status: 400 });
+            res.headers.set("x-request-id", request_id);
+            logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+            return res;
+        }
+
+        if (file.size > MAX_FILE_SIZE) {
+            const res = NextResponse.json({ ok: false, error: "File is too large. Max 10MB." }, { status: 400 });
+            res.headers.set("x-request-id", request_id);
+            logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+            return res;
+        }
+
+        const type = (file.type || "").toLowerCase();
+        const name = (file.name || "").toLowerCase();
+        const isPdf = type === "application/pdf" || (!type && name.endsWith(".pdf"));
+        if (!isPdf) {
+            const res = NextResponse.json({ ok: false, error: "Only PDF files are supported for quick skim." }, { status: 400 });
+            res.headers.set("x-request-id", request_id);
+            logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+            return res;
         }
 
         // 1. Parse PDF Text
@@ -46,7 +96,7 @@ export async function POST(req: NextRequest) {
 
         // 3. Construct the "Impression"
         // We return the raw text (for blurring) and the signal indices/values
-        return NextResponse.json({
+        const res = NextResponse.json({
             ok: true,
             meta: {
                 pageCount: data.numpages,
@@ -56,10 +106,34 @@ export async function POST(req: NextRequest) {
             // We trim excessive newlines to clean up the "Blur View" rendering
             previewText: text.replace(/\n{3,}/g, "\n\n").slice(0, 3000) // Limit preview to first ~page
         });
+        res.headers.set("x-request-id", request_id);
+        logInfo({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: 200,
+            latency_ms: Date.now() - startedAt,
+            outcome: "success"
+        });
+        return res;
 
     } catch (error: any) {
-        console.error("Skim API Error:", error);
-        return NextResponse.json({ ok: false, error: "Could not parse resume" }, { status: 500 });
+        logError({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: 500,
+            latency_ms: Date.now() - startedAt,
+            outcome: "internal_error",
+            err: { name: error?.name || "Error", message: error?.message || "Could not parse resume", stack: error?.stack }
+        });
+        const res = NextResponse.json({ ok: false, error: "Could not parse resume" }, { status: 500 });
+        res.headers.set("x-request-id", request_id);
+        return res;
     }
 }
 

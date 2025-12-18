@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { runJson } from "@/lib/llm/orchestrator";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import { validateResumeIdeasPayload, validateResumeIdeasRequest } from "@/lib/backend/validation";
-import { logError, logInfo } from "@/lib/observability/logger";
+import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { rateLimit } from "@/lib/security/rateLimit";
+import { readJsonWithLimit } from "@/lib/security/requestBody";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,15 +18,29 @@ export async function POST(request: Request) {
   logInfo({ msg: "http.request.started", request_id, route, method, path });
 
   try {
-    let body: any = null;
-    try {
-      body = await request.json();
-    } catch {
-      body = null;
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
+    if (!rl.ok) {
+      const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
+      res.headers.set("x-request-id", request_id);
+      res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
+      logInfo({
+        msg: "http.request.completed",
+        request_id,
+        route,
+        method,
+        path,
+        status: 429,
+        latency_ms: Date.now() - startedAt,
+        outcome: "rate_limited"
+      });
+      return res;
     }
+
+    const body = await readJsonWithLimit<any>(request, 128 * 1024);
     const validation = validateResumeIdeasRequest(body);
     if (!validation.ok || !validation.value) {
-      return NextResponse.json(
+      const res = NextResponse.json(
         {
           ok: false,
           errorCode: "VALIDATION_ERROR",
@@ -33,6 +49,18 @@ export async function POST(request: Request) {
         },
         { status: 400 }
       );
+      res.headers.set("x-request-id", request_id);
+      logInfo({
+        msg: "http.request.completed",
+        request_id,
+        route,
+        method,
+        path,
+        status: 400,
+        latency_ms: Date.now() - startedAt,
+        outcome: "validation_error"
+      });
+      return res;
     }
 
     const { text } = validation.value;

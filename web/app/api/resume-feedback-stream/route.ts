@@ -20,9 +20,11 @@ import {
     validateCaseInterviewPayload,
     validateCaseNegotiationPayload
 } from "@/lib/backend/validation";
-import { logError, logInfo } from "@/lib/observability/logger";
+import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
+import { rateLimit } from "@/lib/security/rateLimit";
+import { readJsonWithLimit } from "@/lib/security/requestBody";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -61,6 +63,48 @@ export async function POST(request: Request) {
     const startedAt = Date.now();
     logInfo({ msg: "http.request.started", request_id, route, method, path });
 
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
+    if (!rl.ok) {
+        const res = NextResponse.json(
+            { ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." },
+            { status: 429 }
+        );
+        res.headers.set("x-request-id", request_id);
+        res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
+        logInfo({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: 429,
+            latency_ms: Date.now() - startedAt,
+            outcome: "rate_limited"
+        });
+        return res;
+    }
+
+    let body: any = null;
+    try {
+        body = await readJsonWithLimit<any>(request, 128 * 1024);
+    } catch (err: any) {
+        const status = err?.httpStatus || 400;
+        const res = NextResponse.json({ ok: false, errorCode: err?.code || "INVALID_REQUEST", message: err?.message || "Invalid request" }, { status });
+        res.headers.set("x-request-id", request_id);
+        logInfo({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status,
+            latency_ms: Date.now() - startedAt,
+            outcome: status === 413 ? "validation_error" : "validation_error"
+        });
+        return res;
+    }
+
     // Create encoder for streaming response
     const encoder = new TextEncoder();
 
@@ -70,13 +114,6 @@ export async function POST(request: Request) {
     const stream = new ReadableStream({
         async start(controller) {
             try {
-                let body: any = null;
-                try {
-                    body = await request.json();
-                } catch {
-                    body = null;
-                }
-
                 const validation = validateResumeFeedbackRequest(body);
                 if (!validation.ok || !validation.value) {
                     controller.enqueue(encoder.encode(JSON.stringify({

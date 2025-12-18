@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
-import { logError, logInfo } from "@/lib/observability/logger";
+import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { rateLimit } from "@/lib/security/rateLimit";
+import { readJsonWithLimit } from "@/lib/security/requestBody";
 
 // Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -44,6 +46,25 @@ export async function POST(request: Request) {
     const startedAt = Date.now();
     logInfo({ msg: "http.request.started", request_id, route, method, path });
 
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 10, 60_000);
+    if (!rl.ok) {
+        const res = NextResponse.json({ ok: false, message: "Too many requests. Try again shortly." }, { status: 429 });
+        res.headers.set("x-request-id", request_id);
+        res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
+        logInfo({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: 429,
+            latency_ms: Date.now() - startedAt,
+            outcome: "rate_limited"
+        });
+        return res;
+    }
+
     if (!stripe) {
         logError({
             msg: "http.request.completed",
@@ -62,7 +83,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        const body = await request.json();
+        const body = await readJsonWithLimit<any>(request, 64 * 1024);
         const requestedTier = normalizeTier(body?.tier);
         if (!requestedTier) {
             const res = NextResponse.json({ ok: false, message: "Invalid plan selection." }, { status: 400 });
