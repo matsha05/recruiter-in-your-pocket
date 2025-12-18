@@ -61,7 +61,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false }: JobAlig
                     subtitle="Your primary lane and how to position."
                 />
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    "Where you compete" is unclear from the current text. Add clearer role, level, and scope signals (titles, domain, team size, and outcomes).
+                    Where you compete is unclear from the current text. Add clearer role, level, and scope signals (titles, domain, team size, and outcomes).
                 </div>
             </section>
         );
