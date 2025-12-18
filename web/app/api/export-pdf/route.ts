@@ -79,10 +79,31 @@ export async function POST(request: NextRequest) {
     });
     return res;
   } catch (error: any) {
+    const status = Number(error?.httpStatus || 0) || 500;
+    if (status !== 500) {
+      const res = NextResponse.json(
+        { ok: false, errorCode: error?.code || "INVALID_REQUEST", message: error?.message || "Invalid request" },
+        { status }
+      );
+      res.headers.set("x-request-id", request_id);
+      logInfo({
+        msg: "http.request.completed",
+        request_id,
+        route,
+        method,
+        path,
+        status,
+        latency_ms: Date.now() - startedAt,
+        outcome: "validation_error"
+      });
+      return res;
+    }
+
     const message =
       typeof error?.message === "string" && (error.message.includes("timeout") || error.message.includes("Timeout"))
         ? "PDF took too long to generate. Try again."
         : "Failed to generate PDF";
+
     logError({
       msg: "http.request.completed",
       request_id,
