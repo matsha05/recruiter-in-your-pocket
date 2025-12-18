@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { runJson } from "@/lib/llm/orchestrator";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import { validateResumeIdeasPayload, validateResumeIdeasRequest } from "@/lib/backend/validation";
-import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
+import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { rateLimit } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
       res.headers.set("x-request-id", request_id);
       res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
-      logInfo({
+      logWarn({
         msg: "http.request.completed",
         request_id,
         route,

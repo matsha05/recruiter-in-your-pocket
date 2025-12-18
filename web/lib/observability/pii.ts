@@ -20,8 +20,8 @@ export function containsForbiddenKeys(value: unknown): boolean {
   if (Array.isArray(value)) return value.some(containsForbiddenKeys);
   for (const [key, v] of Object.entries(value as Record<string, unknown>)) {
     if (FORBIDDEN_KEYS.has(key)) return true;
+    if (key.toLowerCase().includes("email")) return true;
     if (containsForbiddenKeys(v)) return true;
   }
   return false;
 }
-

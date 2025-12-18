@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import mammoth from "mammoth";
 import pdfParse from "pdf-parse";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
-import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
+import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { rateLimit } from "@/lib/security/rateLimit";
 
 export const runtime = "nodejs";
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
     res.headers.set("x-request-id", request_id);
     res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
-    logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 429, latency_ms: Date.now() - startedAt, outcome: "rate_limited" });
+    logWarn({ msg: "http.request.completed", request_id, route, method, path, status: 429, latency_ms: Date.now() - startedAt, outcome: "rate_limited" });
     return res;
   }
 
@@ -143,7 +143,6 @@ export async function POST(request: Request) {
     return res;
   }
 }
-
 
 
 

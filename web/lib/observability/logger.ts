@@ -2,7 +2,7 @@ import crypto from "crypto";
 import type { OutcomeCategory } from "./outcomes";
 import { containsForbiddenKeys } from "./pii";
 
-export type LogLevel = "info" | "error";
+export type LogLevel = "info" | "warn" | "error";
 
 export type LogRecord = {
   ts: string;
@@ -93,11 +93,15 @@ export function log(level: LogLevel, record: Omit<LogRecord, "ts" | "level" | "s
   }
 
   // eslint-disable-next-line no-console
-  (level === "error" ? console.error : console.log)(safeJson(full));
+  (level === "error" ? console.error : level === "warn" ? console.warn : console.log)(safeJson(full));
 }
 
 export function logInfo(record: Omit<LogRecord, "ts" | "level" | "service" | "env">) {
   log("info", record);
+}
+
+export function logWarn(record: Omit<LogRecord, "ts" | "level" | "service" | "env">) {
+  log("warn", record);
 }
 
 export function logError(record: Omit<LogRecord, "ts" | "level" | "service" | "env">) {

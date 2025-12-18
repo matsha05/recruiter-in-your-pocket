@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import pdf from "pdf-parse";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
-import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
+import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { rateLimit } from "@/lib/security/rateLimit";
 
 // Heuristics for the "Skim" - what a recruiter's eye catches in 6 seconds.
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
         const res = NextResponse.json({ ok: false, error: "Too many requests. Try again shortly." }, { status: 429 });
         res.headers.set("x-request-id", request_id);
         res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
-        logInfo({
+        logWarn({
             msg: "http.request.completed",
             request_id,
             route,

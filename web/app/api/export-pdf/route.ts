@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generatePdfBuffer, validateReportForPdf } from "@/lib/backend/pdf";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
-import { hashForLogs, logError, logInfo } from "@/lib/observability/logger";
+import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { rateLimit } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     const res = NextResponse.json({ ok: false, message: "Too many requests. Try again shortly." }, { status: 429 });
     res.headers.set("x-request-id", request_id);
     res.headers.set("retry-after", String(Math.ceil(rl.resetMs / 1000)));
-    logInfo({
+    logWarn({
       msg: "http.request.completed",
       request_id,
       route,
