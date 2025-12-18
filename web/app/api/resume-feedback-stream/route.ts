@@ -9,7 +9,8 @@ import {
     makeFreeCookie,
     parseFreeCookie
 } from "@/lib/backend/freeCookie";
-import { callOpenAIChatStreaming, extractJsonFromText } from "@/lib/backend/openai";
+import { streamJson } from "@/lib/llm/orchestrator";
+import { extractJsonFromText } from "@/lib/backend/openai";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import {
     ensureLayoutAndContentFields,
@@ -19,6 +20,8 @@ import {
     validateCaseInterviewPayload,
     validateCaseNegotiationPayload
 } from "@/lib/backend/validation";
+import { logError, logInfo } from "@/lib/observability/logger";
+import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,6 +54,12 @@ function getBypassPaywall(): boolean {
 }
 
 export async function POST(request: Request) {
+    const request_id = getRequestId(request);
+    const { method, path } = routeLabel(request);
+    const route = `${method} ${path}`;
+    const startedAt = Date.now();
+    logInfo({ msg: "http.request.started", request_id, route, method, path });
+
     // Create encoder for streaming response
     const encoder = new TextEncoder();
 
@@ -75,6 +84,16 @@ export async function POST(request: Request) {
                         message: validation.message
                     }) + "\n"));
                     controller.close();
+                    logInfo({
+                        msg: "http.request.completed",
+                        request_id,
+                        route,
+                        method,
+                        path,
+                        status: 400,
+                        latency_ms: Date.now() - startedAt,
+                        outcome: "validation_error"
+                    });
                     return;
                 }
 
@@ -85,6 +104,7 @@ export async function POST(request: Request) {
                 const supabase = await maybeCreateSupabaseServerClient();
                 const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
                 const user = userData.data.user || null;
+                const user_id = user?.id;
 
                 const cookieStore = await cookies();
                 const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
@@ -105,12 +125,24 @@ export async function POST(request: Request) {
                         message: "You've used your free full reports. Upgrade to keep going."
                     }) + "\n"));
                     controller.close();
+                    logInfo({
+                        msg: "http.request.completed",
+                        request_id,
+                        route,
+                        method,
+                        path,
+                        status: 402,
+                        latency_ms: Date.now() - startedAt,
+                        outcome: "provider_error",
+                        user_id
+                    });
                     return;
                 }
 
                 // Send initial metadata
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "meta",
+                    request_id,
                     access,
                     access_tier: accessTier,
                     user: user ? { email: user.email } : null,
@@ -148,13 +180,20 @@ export async function POST(request: Request) {
                     { role: "user" as const, content: userPrompt }
                 ];
 
-                for await (const chunk of callOpenAIChatStreaming(messages, mode)) {
-                    accumulatedJson += chunk;
-                    // Send each chunk to the client
-                    controller.enqueue(encoder.encode(JSON.stringify({
-                        type: "chunk",
-                        content: chunk
-                    }) + "\n"));
+                const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+                for await (const ev of streamJson({
+                    ctx: { request_id, user_id, route },
+                    task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
+                    mode,
+                    model,
+                    prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v1",
+                    schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
+                    messages
+                })) {
+                    if (ev.type === "chunk") {
+                        accumulatedJson += ev.content;
+                        controller.enqueue(encoder.encode(JSON.stringify({ type: "chunk", content: ev.content }) + "\n"));
+                    }
                 }
 
                 // Parse and validate the complete JSON
@@ -248,6 +287,17 @@ export async function POST(request: Request) {
                 }
 
                 controller.close();
+                logInfo({
+                    msg: "http.request.completed",
+                    request_id,
+                    route,
+                    method,
+                    path,
+                    status: 200,
+                    latency_ms: Date.now() - startedAt,
+                    outcome: "success",
+                    user_id
+                });
 
             } catch (err: any) {
                 const code = err?.code || "INTERNAL_SERVER_ERROR";
@@ -263,6 +313,18 @@ export async function POST(request: Request) {
                     message
                 }) + "\n"));
                 controller.close();
+
+                logError({
+                    msg: "http.request.completed",
+                    request_id,
+                    route,
+                    method,
+                    path,
+                    status: 500,
+                    latency_ms: Date.now() - startedAt,
+                    outcome: "internal_error",
+                    err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
+                });
             }
         }
     });
@@ -271,7 +333,8 @@ export async function POST(request: Request) {
         headers: {
             "Content-Type": "text/event-stream",
             "Cache-Control": "no-cache",
-            "Connection": "keep-alive"
+            "Connection": "keep-alive",
+            "x-request-id": request_id
         }
     });
 }

@@ -10,7 +10,7 @@ import {
   makeFreeCookie,
   parseFreeCookie
 } from "@/lib/backend/freeCookie";
-import { callOpenAIChat, extractJsonFromText } from "@/lib/backend/openai";
+import { runJson } from "@/lib/llm/orchestrator";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import {
   ensureLayoutAndContentFields,
@@ -21,6 +21,8 @@ import {
   validateResumeIdeasPayload,
   validateResumeModelPayload
 } from "@/lib/backend/validation";
+import { logError, logInfo } from "@/lib/observability/logger";
+import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,6 +53,12 @@ function getBypassPaywall(): boolean {
 }
 
 export async function POST(request: Request) {
+  const request_id = getRequestId(request);
+  const { method, path } = routeLabel(request);
+  const route = `${method} ${path}`;
+  const startedAt = Date.now();
+  logInfo({ msg: "http.request.started", request_id, route, method, path });
+
   try {
     let body: any = null;
     try {
@@ -79,6 +87,7 @@ export async function POST(request: Request) {
     const supabase = await maybeCreateSupabaseServerClient();
     const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
     const user = userData.data.user || null;
+    const user_id = user?.id;
 
     // Determine access
     const cookieStore = await cookies();
@@ -156,17 +165,20 @@ ${jobDescription}`;
       }
     }
 
-    const data = await callOpenAIChat(
-      [
+    const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const { parsed: parsedJson } = await runJson<any>({
+      ctx: { request_id, user_id, route },
+      task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
+      mode,
+      model,
+      prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v1",
+      schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
+      messages: [
         { role: "system", content: JSON_INSTRUCTION },
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
-      ],
-      mode
-    );
-
-    const rawContent = data?.choices?.[0]?.message?.content;
-    const parsedJson = extractJsonFromText(rawContent);
+      ]
+    });
 
     let payload: any;
     if (mode === "resume_ideas") {
@@ -231,6 +243,7 @@ ${jobDescription}`;
     };
 
     const res = NextResponse.json(responseBody);
+    res.headers.set("x-request-id", request_id);
 
     // Persist free-run cookie if we incremented, or if cookie was missing/invalid/month-reset.
     if (!bypass && !activePass && (shouldIncrementFree || !freeParsed || freeMeta.needs_reset)) {
@@ -242,6 +255,17 @@ ${jobDescription}`;
       res.cookies.set(FREE_COOKIE, makeFreeCookie(newMeta), freeCookieOptions());
     }
 
+    logInfo({
+      msg: "http.request.completed",
+      request_id,
+      route,
+      method,
+      path,
+      status: 200,
+      latency_ms: Date.now() - startedAt,
+      outcome: "success",
+      user_id
+    });
     return res;
   } catch (err: any) {
     const status = err?.httpStatus || 500;
@@ -258,7 +282,19 @@ ${jobDescription}`;
             ? "I couldn't read the response cleanly. Try again."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
 
-    return NextResponse.json({ ok: false, errorCode: code, message }, { status });
+    logError({
+      msg: "http.request.completed",
+      request_id,
+      route,
+      method,
+      path,
+      status,
+      latency_ms: Date.now() - startedAt,
+      outcome: status === 400 ? "validation_error" : status === 402 ? "provider_error" : "internal_error",
+      err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
+    });
+    const res = NextResponse.json({ ok: false, errorCode: code, message }, { status });
+    res.headers.set("x-request-id", request_id);
+    return res;
   }
 }
-

@@ -1,12 +1,20 @@
 import { NextResponse } from "next/server";
-import { callOpenAIChat, extractJsonFromText } from "@/lib/backend/openai";
+import { runJson } from "@/lib/llm/orchestrator";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import { validateResumeIdeasPayload, validateResumeIdeasRequest } from "@/lib/backend/validation";
+import { logError, logInfo } from "@/lib/observability/logger";
+import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  const request_id = getRequestId(request);
+  const { method, path } = routeLabel(request);
+  const route = `${method} ${path}`;
+  const startedAt = Date.now();
+  logInfo({ msg: "http.request.started", request_id, route, method, path });
+
   try {
     let body: any = null;
     try {
@@ -34,20 +42,35 @@ export async function POST(request: Request) {
 USER INPUT:
 ${text}`;
 
-    const data = await callOpenAIChat(
-      [
+    const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const { parsed } = await runJson<any>({
+      ctx: { request_id, route },
+      task: "resume_ideas",
+      mode: "resume_ideas",
+      model,
+      prompt_version: "resume_ideas_v1",
+      schema_version: "ideas_v1",
+      messages: [
         { role: "system", content: JSON_INSTRUCTION },
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
-      ],
-      "resume_ideas"
-    );
+      ]
+    });
 
-    const rawContent = data?.choices?.[0]?.message?.content;
-    const parsedJson = extractJsonFromText(rawContent);
-    const payload = validateResumeIdeasPayload(parsedJson);
-
-    return NextResponse.json({ ok: true, data: payload });
+    const payload = validateResumeIdeasPayload(parsed);
+    const res = NextResponse.json({ ok: true, data: payload });
+    res.headers.set("x-request-id", request_id);
+    logInfo({
+      msg: "http.request.completed",
+      request_id,
+      route,
+      method,
+      path,
+      status: 200,
+      latency_ms: Date.now() - startedAt,
+      outcome: "success"
+    });
+    return res;
   } catch (err: any) {
     const status = err?.httpStatus || 500;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
@@ -61,8 +84,19 @@ ${text}`;
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
             : err?.message || "I had trouble pulling those questions. Try again in a moment.";
-
-    return NextResponse.json({ ok: false, errorCode: code, message }, { status });
+    logError({
+      msg: "http.request.completed",
+      request_id,
+      route,
+      method,
+      path,
+      status,
+      latency_ms: Date.now() - startedAt,
+      outcome: status === 400 ? "validation_error" : "internal_error",
+      err: { name: err?.name || "Error", message: err?.message || message, code: String(code), stack: err?.stack }
+    });
+    const res = NextResponse.json({ ok: false, errorCode: code, message }, { status });
+    res.headers.set("x-request-id", request_id);
+    return res;
   }
 }
-
