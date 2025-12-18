@@ -46,15 +46,38 @@ export default function ReportPanel({
                 <AnalysisScanning />
             )}
 
-            {/* 2. Empty State - Guidance */}
+            {/* 2. Empty State - Premium, Anxiety-Reducing */}
             {showEmptyState && (
-                <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-                    <h2 className="font-serif text-2xl text-foreground mb-2">
-                        No report yet.
-                    </h2>
-                    <p className="text-muted-foreground max-w-sm">
-                        Upload your resume to see what a recruiter sees in 6 seconds.
+                <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-8">
+                    {/* Icon - Subtle, Calm */}
+                    <div className="w-16 h-16 rounded-2xl bg-secondary/30 border border-border/20 flex items-center justify-center">
+                        <Plus className="w-6 h-6 text-muted-foreground/50" />
+                    </div>
+
+                    {/* Copy - Question Headline */}
+                    <div className="space-y-3 max-w-md">
+                        <h2 className="font-serif text-2xl md:text-3xl text-foreground">
+                            What will recruiters notice?
+                        </h2>
+                        <p className="text-muted-foreground">
+                            Drop your resume to find out. Takes 30 seconds.
+                        </p>
+                    </div>
+
+                    {/* Trust Signal */}
+                    <p className="text-xs text-muted-foreground/60 font-medium">
+                        First audit free · No login required
                     </p>
+
+                    {/* Divider + Sample Link */}
+                    <div className="pt-4 border-t border-border/30 w-full max-w-xs">
+                        <button
+                            onClick={onNewReport}
+                            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                            Want to see an example first? <span className="text-brand hover:underline">View sample →</span>
+                        </button>
+                    </div>
                 </div>
             )}
 

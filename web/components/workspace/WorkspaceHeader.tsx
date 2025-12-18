@@ -49,7 +49,6 @@ export default function WorkspaceHeader({
                 ) : (
                     <Link href="/" className="flex items-center gap-2">
                         <PocketMark className="w-5 h-5 text-brand" />
-                        <Wordmark className="h-4 text-foreground" />
                     </Link>
                 )}
             </div>
@@ -64,36 +63,37 @@ export default function WorkspaceHeader({
                 <span className="font-display text-lg text-foreground/80">Workspace</span>
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* Actions - Responsive */}
+            <div className="flex items-center gap-1 md:gap-2">
+                {/* Sample Report - Hidden on mobile (accessible via header menu or report CTA) */}
                 <button
                     onClick={onSampleReport}
-                    className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
+                    className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
                 >
                     <FileText className="w-4 h-4" />
-                    <span className="hidden sm:inline">Sample Report</span>
+                    <span>Sample Report</span>
                 </button>
 
-                {/* 
-                   "New Report" button is often in the sidebar or main CTA area, 
-                   but keeping it here as a primary action is fine.
-                */}
+                {/* New Report - Icon only on mobile */}
                 <button
                     onClick={onNewReport}
-                    className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors"
+                    className="flex items-center gap-2 px-2 md:px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted rounded-md transition-colors"
+                    aria-label="New Report"
                 >
                     <Plus className="w-4 h-4" />
-                    <span>New Report</span>
+                    <span className="hidden md:inline">New Report</span>
                 </button>
 
                 {!user ? (
                     <button
-                        className="px-3 py-1.5 text-sm font-medium hover:bg-muted rounded-md transition-colors"
+                        className="px-2 md:px-3 py-1.5 text-sm font-medium hover:bg-muted rounded-md transition-colors"
                         onClick={onSignIn}
                     >
-                        Sign In
+                        <span className="hidden sm:inline">Sign In</span>
+                        <span className="sm:hidden">Sign In</span>
                     </button>
                 ) : (
-                    <div className="ml-2">
+                    <div className="ml-1 md:ml-2">
                         <UserNav
                             user={user}
                             onSignOut={onSignOut || (() => { })}

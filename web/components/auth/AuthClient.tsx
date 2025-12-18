@@ -1,12 +1,42 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Mail, ArrowRight, Check } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 
+// Contextual messaging based on where user came from
+function getContextualCopy(from: string | null): { headline: string; subtext: string } {
+    switch (from) {
+        case "report":
+            return {
+                headline: "Sign in to save your report",
+                subtext: "Keep this report and track improvements over time."
+            };
+        case "settings":
+            return {
+                headline: "Sign in to manage your audits",
+                subtext: "Access your credits and billing history."
+            };
+        case "paywall":
+            return {
+                headline: "Sign in to use your credits",
+                subtext: "Your purchased audits are linked to your account."
+            };
+        default:
+            return {
+                headline: "Welcome Back",
+                subtext: "Sign in to access your reports and history."
+            };
+    }
+}
+
 export default function AuthClient() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const from = searchParams.get("from");
+    const contextCopy = getContextualCopy(from);
+
     const [step, setStep] = useState<"email" | "otp">("email");
     const [email, setEmail] = useState("");
     const [otp, setOtp] = useState("");
@@ -52,7 +82,8 @@ export default function AuthClient() {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) {
                 router.refresh(); // Ensure server components re-run
-                router.push("/workspace");
+                // Redirect back to origin or workspace
+                router.push(from === "settings" ? "/settings" : "/workspace");
             }
         } catch (err: any) {
             console.error(err);
@@ -70,8 +101,8 @@ export default function AuthClient() {
         <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
             <div className="w-full max-w-md space-y-8">
                 <div className="text-center space-y-2">
-                    <h1 className="text-3xl font-display font-medium text-foreground">Welcome Back</h1>
-                    <p className="text-muted-foreground">Sign in to access your reports and history.</p>
+                    <h1 className="text-3xl font-display font-medium text-foreground">{contextCopy.headline}</h1>
+                    <p className="text-muted-foreground">{contextCopy.subtext}</p>
                 </div>
 
                 <div className="bg-card border border-border/10 rounded-md p-8 shadow-sm">

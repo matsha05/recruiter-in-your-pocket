@@ -1,7 +1,7 @@
 import crypto from "crypto";
 
 export const FREE_COOKIE = "rip_free_meta";
-export const FREE_RUN_LIMIT = 2;
+export const FREE_RUN_LIMIT = 1;
 const FREE_COOKIE_DAYS = 365;
 
 type FreeMeta = {

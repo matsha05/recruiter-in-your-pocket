@@ -23,7 +23,7 @@ export interface ReportData {
     };
     ideas?: { questions?: Array<{ question: string; archetype?: string; why?: string }>; notes?: string[]; how_to_use?: string };
     next_steps?: string[];
-    skim_elements?: string[]; // Visual fragments that pop in a 6-second scan (name, companies, numbers, titles)
+
     // Skim data might be added later, it's not in the main LLM response usually but we might merge it.
     skim?: any;
 }

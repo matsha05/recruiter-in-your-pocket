@@ -43,9 +43,9 @@ export function SampleReport() {
     }
 
     return (
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-4xl mx-auto px-4 md:px-0">
             {/* Sample Report Header */}
-            <div className="flex items-center justify-between px-6 py-4 mb-6 rounded-xl border border-border/50 bg-secondary/20 backdrop-blur-md">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-6 py-3 md:py-4 mb-4 md:mb-6 rounded-xl border border-border/50 bg-secondary/20 backdrop-blur-md">
                 <div className="flex items-center gap-3">
                     <PocketMark className="w-5 h-5 text-brand" />
                     <span className="text-sm font-semibold text-foreground">Sample Report</span>

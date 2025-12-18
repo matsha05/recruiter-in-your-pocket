@@ -336,8 +336,7 @@ The JSON must match this shape exactly:
         "why": ""
       }
     ]
-  },
-  "skim_elements": []
+  }
 }
 
 FIELD RULES
@@ -554,21 +553,6 @@ FIELD RULES
   - Ground every question in the resume's companies, teams, tools, metrics, or scope.
   - Use 5 different archetypes (no repeats).
   - Aim at what's missing or unspoken, not what's already on the page.
-
-- skim_elements (IMPORTANT for 6-second scan visualization)
-  - Array of 8-12 short strings representing what a recruiter would notice in a 6-second scan.
-  - These are the elements that "pop" visually before reading any content.
-  - Extract in order of visual salience:
-    1. Full name (always first)
-    2. Current job title and company (e.g., "Member of Recruiting Staff at OpenAI")
-    3. All recognizable company names (Google, Meta, OpenAI, Amazon, etc.)
-    4. All numbers and percentages that appear (e.g., "300%", "$100M", "60 employees")
-    5. Job titles that indicate seniority (Chief People Officer, Director, VP)
-    6. First bullet point of the most recent role (truncated to ~10 words if needed)
-  - Keep each element short (under 50 characters).
-  - Do not include full sentences. These are visual fragments, not readable content.
-  - Example output:
-    ["Matt Shaw", "Member of Recruiting Staff at OpenAI", "OpenAI", "X-Team", "Meta", "Google", "Chief People Officer", "300%", "$100M", "60 employees", "19 countries", "Global hiring point-of-contact"]
 
 Important output rules:
 
