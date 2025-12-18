@@ -70,7 +70,7 @@ export function ResumeDropzone({
                     isProcessing && "opacity-50 cursor-not-allowed grayscale"
                 )}
             >
-                <input {...getInputProps()} />
+                <input {...getInputProps()} aria-label="Upload resume file (PDF only)" />
 
                 <AnimatePresence mode="wait">
                     {/* State: Processing */}
@@ -96,9 +96,9 @@ export function ResumeDropzone({
                                 </div>
                             </div>
                             <div className="space-y-2 text-center">
-                                <h3 className="text-xl font-serif italic font-medium text-foreground">
+                                <p className="text-xl font-serif italic font-medium text-foreground">
                                     Reading your resume...
-                                </h3>
+                                </p>
                                 <p className="text-sm text-muted-foreground">
                                     This takes about 3 seconds.
                                 </p>
@@ -116,7 +116,7 @@ export function ResumeDropzone({
                                 <Upload className="h-8 w-8 text-primary" />
                             </div>
                             <div>
-                                <h3 className="text-lg font-medium font-sans">Drop to analyze</h3>
+                                <p className="text-lg font-medium font-sans">Drop to analyze</p>
                                 <p className="text-sm text-muted-foreground font-sans mt-1">
                                     We'll start the skim immediately.
                                 </p>
@@ -141,9 +141,9 @@ export function ResumeDropzone({
                             </div>
 
                             <div className="space-y-3 text-center">
-                                <h3 className="text-3xl font-serif italic font-medium text-foreground tracking-tight">
+                                <p className="text-3xl font-serif italic font-medium text-foreground tracking-tight">
                                     Drop your resume.
-                                </h3>
+                                </p>
                                 <p className="text-base text-muted-foreground font-medium">
                                     PDF only.
                                 </p>

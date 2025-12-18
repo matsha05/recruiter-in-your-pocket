@@ -55,9 +55,9 @@ export function SampleReportPreview() {
                                         <PrincipalRecruiterIcon className="w-5 h-5" />
                                         <span className="text-[10px] font-bold tracking-widest uppercase text-foreground/60">First Impression</span>
                                     </div>
-                                    <h3 className="font-display text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
+                                    <p className="font-display text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
                                         "You read like a Founder, but you're burying the outcome."
-                                    </h3>
+                                    </p>
                                 </div>
 
                                 <p className="text-lg text-muted-foreground leading-relaxed">

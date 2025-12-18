@@ -15,6 +15,7 @@ import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
 import { BackedByResearch } from "@/components/landing/BackedByResearch";
 import { Pricing } from "@/components/landing/Pricing";
+import { Analytics } from "@/lib/analytics";
 
 export default function LandingClient() {
     const router = useRouter();
@@ -26,6 +27,7 @@ export default function LandingClient() {
 
     const handleFileSelect = async (file: File) => {
         setIsProcessing(true);
+        Analytics.resumeUploaded("landing");
 
         try {
             const formData = new FormData();
@@ -44,6 +46,7 @@ export default function LandingClient() {
                 setSkimData(data.skim);
                 setPreviewText(data.previewText);
                 setIsSkimOpen(true);
+                Analytics.skimViewed();
             }
         } catch (err) {
             console.error(err);
@@ -54,6 +57,7 @@ export default function LandingClient() {
     };
 
     const handleFullAnalysis = () => {
+        Analytics.skimViewed(); // Track conversion from skim to full analysis
         if (previewText) {
             sessionStorage.setItem("pending_resume_text", previewText);
         }

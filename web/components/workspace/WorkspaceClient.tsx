@@ -11,6 +11,7 @@ import PaywallModal from "@/components/workspace/PaywallModal";
 import AuthModal from "@/components/shared/AuthModal";
 import { createResumeFeedback, streamResumeFeedback, parseResume } from "@/lib/api";
 import { toast } from "sonner";
+import { Analytics } from "@/lib/analytics";
 
 export default function WorkspaceClient() {
     const searchParams = useSearchParams();
@@ -94,6 +95,7 @@ export default function WorkspaceClient() {
             console.log("[WorkspaceClient] parseResume result:", result);
             if (result.ok && result.text) {
                 setResumeText(result.text);
+                Analytics.resumeUploaded("workspace");
             } else {
                 console.error("Failed to parse resume:", result.message);
                 toast.error("Failed to parse resume", { description: result.message || "Unknown error" });
@@ -113,12 +115,14 @@ export default function WorkspaceClient() {
         // Check if free uses exhausted (and user doesn't have active pass)
         if (freeUsesRemaining <= 0) {
             setIsPaywallOpen(true);
+            Analytics.paywallViewed("free_uses_exhausted");
             return;
         }
 
         setIsLoading(true);
         setIsStreaming(true);
         setReport(null);
+        Analytics.reportStarted(!!jobDescription.trim());
 
         // REPORT BUFFERING LOGIC
         // We enforce a minimum "Theater Duration" of 10s so the user sees the scanning animation.
@@ -170,6 +174,7 @@ export default function WorkspaceClient() {
                     setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
                     setIsStreaming(false);
                     setIsLoading(false);
+                    Analytics.reportCompleted(result.report?.score || 0);
                 }, remaining);
             } else {
                 // Error case - show immediately

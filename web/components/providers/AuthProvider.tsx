@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import type { User } from "@supabase/supabase-js";
+import { identifyUser, resetAnalytics, setUserProperties } from "@/lib/analytics";
 
 export interface AuthUser {
     id: string;
@@ -89,6 +90,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             }
 
             setUser(baseUser);
+
+            // Identify user in analytics
+            if (baseUser) {
+                identifyUser(baseUser.id, {
+                    email: baseUser.email || undefined,
+                    name: baseUser.firstName || undefined,
+                    plan: baseUser.membership || "free",
+                    credits_remaining: baseUser.freeUsesLeft,
+                });
+            }
         } catch (error) {
             console.error("Error refreshing user:", error);
             setUser(null);
@@ -99,6 +110,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
             await fetch("/api/auth/sign-out", { method: "POST" });
             setUser(null);
+            resetAnalytics(); // Clear analytics state
         } catch (error) {
             console.error("Sign out error:", error);
         }

@@ -39,7 +39,11 @@ export default function WorkspaceHeader({
             {/* Brand - Mobile Only */}
             <div className="flex items-center gap-2 md:hidden">
                 {showBack && onBack ? (
-                    <button onClick={onBack} className="p-2 -ml-2 text-muted-foreground hover:text-foreground">
+                    <button
+                        onClick={onBack}
+                        className="p-2 -ml-2 text-muted-foreground hover:text-foreground"
+                        aria-label="Go back"
+                    >
                         <ArrowLeft className="w-5 h-5" />
                     </button>
                 ) : (
@@ -105,4 +109,3 @@ export default function WorkspaceHeader({
         </header>
     );
 }
-

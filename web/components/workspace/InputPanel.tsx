@@ -123,6 +123,7 @@ export default function InputPanel({
                                 accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                                 onChange={handleFileChange}
                                 onClick={(e) => e.stopPropagation()}
+                                aria-label="Upload resume file (PDF or DOCX)"
                             />
                         </div>
 
@@ -169,6 +170,7 @@ export default function InputPanel({
                             value={resumeText}
                             onChange={(e) => onResumeTextChange(e.target.value)}
                             placeholder="Paste your resume content here if you don't have a file..."
+                            aria-label="Resume content"
                             className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[150px] leading-relaxed"
                         />
 
@@ -196,6 +198,7 @@ export default function InputPanel({
                             onChange={(e) => onJobDescChange(e.target.value)}
                             className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px]"
                             placeholder="Paste the job description to see how well you align..."
+                            aria-label="Job description (optional)"
                         />
                     </div>
 
