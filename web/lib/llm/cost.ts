@@ -10,7 +10,10 @@ type ModelPrice = {
 
 const MODEL_PRICING_USD: Record<string, ModelPrice> = {
   // Best-effort estimates; keep conservative and explicit.
-  "gpt-4o-mini": { input_per_1k_usd: 0, output_per_1k_usd: 0 },
+  // Prices are expressed per-1k tokens.
+  // gpt-4o-mini: $0.15 / 1M input, $0.60 / 1M output.
+  "gpt-4o-mini": { input_per_1k_usd: 0.00015, output_per_1k_usd: 0.0006 },
+  // Unknown/variable pricing: keep at 0 until explicitly set.
   "gpt-4.1-mini": { input_per_1k_usd: 0, output_per_1k_usd: 0 }
 };
 
@@ -24,4 +27,3 @@ export function estimateCostUsd(model: string, usage: TokenUsage | null): number
   if (!Number.isFinite(total) || total < 0) return 0;
   return Math.round(total * 1e6) / 1e6;
 }
-
