@@ -22,15 +22,18 @@ function getScoreBg(score: number): string {
 export function ScoreSummarySection({ data }: { data: ReportData }) {
     const [showTooltip, setShowTooltip] = useState(false);
 
-    if (!data.subscores) return null;
-
     // Story first (most important), then others
     const subscores = [
-        { key: 'story', label: 'Story', score: data.subscores.story },
-        { key: 'impact', label: 'Impact', score: data.subscores.impact },
-        { key: 'clarity', label: 'Clarity', score: data.subscores.clarity },
-        { key: 'readability', label: 'Readability', score: data.subscores.readability },
+        { key: 'story', label: 'Story', score: data.subscores?.story },
+        { key: 'impact', label: 'Impact', score: data.subscores?.impact },
+        { key: 'clarity', label: 'Clarity', score: data.subscores?.clarity },
+        { key: 'readability', label: 'Readability', score: data.subscores?.readability },
     ];
+
+    const hasSubscores = Boolean(data.subscores);
+    const strengths = data.strengths?.slice(0, 5) || [];
+    const gaps = data.gaps?.slice(0, 5) || [];
+    const hasLists = strengths.length > 0 || gaps.length > 0;
 
     return (
         <section className="space-y-8">
@@ -72,35 +75,44 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
             </div>
 
             {/* Subscores Grid - Clean, colored numbers only */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {subscores.map((item) => item.score !== undefined && (
-                    <div
-                        key={item.key}
-                        className="bg-secondary/20 border border-border/40 p-5 rounded-lg flex flex-col items-center justify-center text-center gap-1"
-                    >
-                        <span className={cn("text-3xl font-serif font-bold tabular-nums", getScoreColor(item.score))}>
-                            {item.score}
-                        </span>
-                        <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
-                            {item.label}
-                        </span>
-                    </div>
-                ))}
-            </div>
+            {hasSubscores ? (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {subscores.map((item) => item.score !== undefined && (
+                        <div
+                            key={item.key}
+                            className="bg-secondary/20 border border-border/40 p-5 rounded-lg flex flex-col items-center justify-center text-center gap-1"
+                        >
+                            <span className={cn("text-3xl font-serif font-bold tabular-nums", getScoreColor(item.score))}>
+                                {item.score}
+                            </span>
+                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+                                {item.label}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                    Subscores weren’t available for this run. The summary below is based on the returned strengths and gaps.
+                </div>
+            )}
 
             {/* Strengths & Gaps - Clean lists, equal weight */}
-            <div className="grid md:grid-cols-2 gap-8">
+            {hasLists ? (
+                <div className="grid md:grid-cols-2 gap-8">
                 {/* Working */}
                 <div className="space-y-4">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
                         Working
                     </h3>
                     <ul className="space-y-3">
-                        {data.strengths?.slice(0, 5).map((s, i) => (
+                        {strengths.length > 0 ? strengths.map((s, i) => (
                             <li key={i} className="text-sm leading-relaxed text-muted-foreground">
                                 {s}
                             </li>
-                        ))}
+                        )) : (
+                            <li className="text-sm leading-relaxed text-muted-foreground/70">No strengths were returned.</li>
+                        )}
                     </ul>
                 </div>
 
@@ -110,14 +122,21 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                         Missing
                     </h3>
                     <ul className="space-y-3">
-                        {data.gaps?.slice(0, 5).map((s, i) => (
+                        {gaps.length > 0 ? gaps.map((s, i) => (
                             <li key={i} className="text-sm leading-relaxed text-muted-foreground">
                                 {s}
                             </li>
-                        ))}
+                        )) : (
+                            <li className="text-sm leading-relaxed text-muted-foreground/70">No gaps were returned.</li>
+                        )}
                     </ul>
                 </div>
             </div>
+            ) : (
+                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                    Signal analysis wasn’t available for this run.
+                </div>
+            )}
         </section>
     );
 }

@@ -146,6 +146,7 @@ export default function ReportPanel({
                                 onNewReport={onNewReport}
                                 freeUsesRemaining={freeUsesRemaining}
                                 onUpgrade={onUpgrade}
+                                hasJobDescription={hasJobDescription}
                             />
                         </div>
                     </div>

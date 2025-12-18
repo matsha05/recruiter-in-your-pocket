@@ -6,11 +6,28 @@ import { Target } from "lucide-react";
 
 interface JobAlignmentSectionProps {
     data: ReportData;
+    hasJobDescription?: boolean;
 }
 
-export function JobAlignmentSection({ data }: JobAlignmentSectionProps) {
+export function JobAlignmentSection({ data, hasJobDescription = false }: JobAlignmentSectionProps) {
     const alignment = data.job_alignment;
-    if (!alignment) return null;
+    if (!alignment) {
+        return (
+            <section className="space-y-6">
+                <ReportSectionHeader
+                    icon={<Target className="w-4 h-4 text-brand" />}
+                    number="05"
+                    title="Where You Compete"
+                    subtitle="Your primary lane and how to position."
+                />
+                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                    {hasJobDescription
+                        ? "Alignment was not generated for this run. Try again, or verify your job description pasted correctly."
+                        : "Add a job description to get role-specific alignment and positioning notes."}
+                </div>
+            </section>
+        );
+    }
 
     const roleFit = alignment.role_fit;
     const primaryRole = roleFit?.best_fit_roles?.[0];
@@ -34,7 +51,21 @@ export function JobAlignmentSection({ data }: JobAlignmentSectionProps) {
     if (industries.length > 0) footerParts.push(industries.join(' / '));
     const footerMeta = footerParts.join(' • ');
 
-    if (!primaryRole && !positioning) return null;
+    if (!primaryRole && !positioning) {
+        return (
+            <section className="space-y-6">
+                <ReportSectionHeader
+                    icon={<Target className="w-4 h-4 text-brand" />}
+                    number="05"
+                    title="Where You Compete"
+                    subtitle="Your primary lane and how to position."
+                />
+                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                    "Where you compete" is unclear from the current text. Add clearer role, level, and scope signals (titles, domain, team size, and outcomes).
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className="space-y-8">

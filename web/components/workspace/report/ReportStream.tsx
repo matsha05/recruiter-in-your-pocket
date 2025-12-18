@@ -16,6 +16,7 @@ interface ReportStreamProps {
     onNewReport?: () => void;
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
+    hasJobDescription?: boolean;
 }
 
 export function ReportStream({
@@ -24,7 +25,8 @@ export function ReportStream({
     isSample = false,
     onNewReport,
     freeUsesRemaining = 2,
-    onUpgrade
+    onUpgrade,
+    hasJobDescription = false
 }: ReportStreamProps) {
 
     // Determine footer state
@@ -58,7 +60,7 @@ export function ReportStream({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
             {/* 5. Where You Compete (Job Alignment) */}
-            <JobAlignmentSection data={report} />
+            <JobAlignmentSection data={report} hasJobDescription={hasJobDescription} />
 
             {/* Report Footer - "What's next?" */}
             <div className="pt-8 space-y-6">
@@ -121,6 +123,5 @@ export function ReportStream({
         </div>
     );
 }
-
 
 

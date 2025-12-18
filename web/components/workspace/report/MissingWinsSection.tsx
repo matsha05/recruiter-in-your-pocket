@@ -22,7 +22,21 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
     const [answeredIds, setAnsweredIds] = useState<Set<number>>(new Set());
     const [showGuide, setShowGuide] = useState(false);
 
-    if (questions.length === 0) return null;
+    if (questions.length === 0) {
+        return (
+            <section className="space-y-6">
+                <ReportSectionHeader
+                    icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
+                    number="04"
+                    title="Missing Wins"
+                    subtitle="What recruiters wish you'd told them."
+                />
+                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                    No “missing wins” questions were generated for this run. If your resume text is short, try pasting a fuller version and rerun.
+                </div>
+            </section>
+        );
+    }
 
     const toggleAnswered = (index: number) => {
         setAnsweredIds((prev) => {

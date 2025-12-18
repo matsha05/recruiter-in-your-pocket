@@ -12,7 +12,21 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
     const [showAll, setShowAll] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-    if (!data.rewrites || data.rewrites.length === 0) return null;
+    if (!data.rewrites || data.rewrites.length === 0) {
+        return (
+            <section className="space-y-6">
+                <ReportSectionHeader
+                    icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
+                    number="03"
+                    title="The Red Pen"
+                    subtitle="How I'd rewrite these to land harder."
+                />
+                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                    No rewrite candidates were returned. This usually means the input was too short, not bullet-based, or too hard to parse cleanly.
+                </div>
+            </section>
+        );
+    }
 
     const heroRewrite = data.rewrites[0];
     const remainingRewrites = data.rewrites.slice(1);
