@@ -4,15 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "@/components/shared/UserNav";
+import ThemeToggle from "@/components/shared/ThemeToggle";
 import Link from "next/link";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { SkimView } from "@/components/workspace/SkimView";
-import { ArrowRight, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
 import { PocketMark, Wordmark } from "@/components/icons";
 import Footer from "@/components/landing/Footer";
-import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
+import { SampleReport } from "@/components/landing/SampleReport";
 import { BackedByResearch } from "@/components/landing/BackedByResearch";
 import { Pricing } from "@/components/landing/Pricing";
 import { Analytics } from "@/lib/analytics";
@@ -21,9 +20,6 @@ export default function LandingClient() {
     const router = useRouter();
     const { user, isLoading: isAuthLoading, signOut } = useAuth();
     const [isProcessing, setIsProcessing] = useState(false);
-    const [skimData, setSkimData] = useState<any>(null);
-    const [previewText, setPreviewText] = useState<string>("");
-    const [isSkimOpen, setIsSkimOpen] = useState(false);
 
     const handleFileSelect = async (file: File) => {
         setIsProcessing(true);
@@ -33,6 +29,7 @@ export default function LandingClient() {
             const formData = new FormData();
             formData.append("file", file);
 
+            // Parse the file and store the text for the workspace
             const res = await fetch("/api/skim", {
                 method: "POST",
                 body: formData
@@ -42,26 +39,18 @@ export default function LandingClient() {
 
             const data = await res.json();
 
-            if (data.ok) {
-                setSkimData(data.skim);
-                setPreviewText(data.previewText);
-                setIsSkimOpen(true);
-                Analytics.skimViewed();
+            if (data.ok && data.previewText) {
+                // Store the parsed text and go directly to workspace
+                sessionStorage.setItem("pending_resume_text", data.previewText);
             }
+
+            router.push("/workspace");
         } catch (err) {
             console.error(err);
             router.push("/workspace");
         } finally {
             setIsProcessing(false);
         }
-    };
-
-    const handleFullAnalysis = () => {
-        Analytics.skimViewed(); // Track conversion from skim to full analysis
-        if (previewText) {
-            sessionStorage.setItem("pending_resume_text", previewText);
-        }
-        router.push("/workspace");
     };
 
     return (
@@ -77,14 +66,16 @@ export default function LandingClient() {
                     {isAuthLoading ? (
                         <div className="w-24 h-9" />
                     ) : user ? (
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
+                            <ThemeToggle />
                             <UserNav user={user} onSignOut={signOut} />
                             <Link href="/workspace">
                                 <Button variant="brand" size="sm">Open Studio</Button>
                             </Link>
                         </div>
                     ) : (
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
+                            <ThemeToggle />
                             <Link href="/auth">
                                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Log In</Button>
                             </Link>
@@ -123,9 +114,9 @@ export default function LandingClient() {
                             </div>
                         </div>
 
-                        {/* Product Preview - The Actual Output */}
+                        {/* Product Preview - The Full Sample Report */}
                         <div className="w-full animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-                            <SampleReportPreview />
+                            <SampleReport />
                         </div>
 
                     </div>
@@ -138,32 +129,6 @@ export default function LandingClient() {
                 <Pricing />
             </main>
 
-            {/* Skim Result Modal */}
-            <Dialog open={isSkimOpen} onOpenChange={setIsSkimOpen}>
-                <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col border-black/5 dark:border-white/5 shadow-2xl">
-                    <DialogHeader className="px-6 pt-6 border-b border-border/50 bg-secondary/20">
-                        <DialogTitle className="font-display text-2xl tracking-tight">What They See in 6 Seconds</DialogTitle>
-                        <DialogDescription className="text-muted-foreground font-sans">
-                            This is the moment. Before they read a single bullet, this is the impression.
-                        </DialogDescription>
-                    </DialogHeader>
-
-                    <div className="flex-1 overflow-y-auto p-6 bg-background">
-                        {skimData && (
-                            <SkimView text={previewText} skimData={skimData} />
-                        )}
-                    </div>
-
-                    <div className="p-6 flex items-center justify-between bg-background border-t border-border/50">
-                        <div className="text-sm text-muted-foreground font-medium">
-                            <p>Is this impression strong enough?</p>
-                        </div>
-                        <Button onClick={handleFullAnalysis} variant="brand" size="lg" className="gap-2">
-                            Continue to Full Report <ArrowRight className="w-4 h-4" />
-                        </Button>
-                    </div>
-                </DialogContent>
-            </Dialog>
 
             {/* Footer */}
             <Footer />

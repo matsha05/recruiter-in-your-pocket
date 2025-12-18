@@ -9,7 +9,6 @@ export interface ReportData {
     summary?: string;
     subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
     first_impression?: string;
-    recruiter_note?: string; // Single-sentence recruiter judgment for RecruiterNote
     strengths?: string[];
     gaps?: string[];
     top_fixes?: Array<{ fix?: string; text?: string; why?: string; evidence?: string; impact_level?: string; effort?: string; section_ref?: string }>;
@@ -24,6 +23,7 @@ export interface ReportData {
     };
     ideas?: { questions?: Array<{ question: string; archetype?: string; why?: string }>; notes?: string[]; how_to_use?: string };
     next_steps?: string[];
+    skim_elements?: string[]; // Visual fragments that pop in a 6-second scan (name, companies, numbers, titles)
     // Skim data might be added later, it's not in the main LLM response usually but we might merge it.
     skim?: any;
 }

@@ -15,9 +15,22 @@ const ANALYSIS_STEPS = [
     { text: "Wrapping up your feedback...", icon: Scan, isFinal: true },
 ];
 
+// Witty end-stage messages for personality
+const FINAL_STAGE_MESSAGES = [
+    "Almost there...",
+    "Polishing the advice...",
+    "Double-checking the brutal honesty...",
+    "Making sure we didn't miss any gems...",
+    "Brewing some hot takes...",
+    "Adding the finishing touches...",
+    "Worth the wait, we promise...",
+    "Just a few more seconds...",
+];
+
 export default function AnalysisScanning() {
     const [stepIndex, setStepIndex] = useState(0);
     const [progress, setProgress] = useState(0);
+    const [finalMessageIndex, setFinalMessageIndex] = useState(0);
 
     useEffect(() => {
         // Cycle through heuristics, but stop on final step
@@ -43,6 +56,17 @@ export default function AnalysisScanning() {
             clearInterval(progressInterval);
         };
     }, []);
+
+    // Cycle through final stage messages when we're at the final step
+    useEffect(() => {
+        if (stepIndex < ANALYSIS_STEPS.length - 1) return;
+
+        const finalInterval = setInterval(() => {
+            setFinalMessageIndex((prev) => (prev + 1) % FINAL_STAGE_MESSAGES.length);
+        }, 2500);
+
+        return () => clearInterval(finalInterval);
+    }, [stepIndex]);
 
     const currentStep = ANALYSIS_STEPS[stepIndex];
     const CurrentIcon = currentStep.icon;
@@ -99,7 +123,7 @@ export default function AnalysisScanning() {
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
                     {currentStep.isFinal
-                        ? "Almost there..."
+                        ? FINAL_STAGE_MESSAGES[finalMessageIndex]
                         : `Analyzing pattern ${stepIndex + 1} of ${ANALYSIS_STEPS.length - 1}`}
                 </p>
             </div>

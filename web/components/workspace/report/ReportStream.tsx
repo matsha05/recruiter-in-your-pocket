@@ -2,7 +2,6 @@
 
 import { ReportData } from "./ReportTypes";
 import { FirstImpressionSection } from "./FirstImpressionSection";
-import { RecruiterNote } from "./RecruiterNote";
 import { ScoreSummarySection } from "./ScoreSummarySection";
 import { BulletUpgradesSection } from "./BulletUpgradesSection";
 import { MissingWinsSection } from "./MissingWinsSection";
@@ -31,25 +30,11 @@ export function ReportStream({
     // Determine footer state
     const isExhausted = !isSample && freeUsesRemaining <= 0;
 
-    // Generate fallback verdict based on score if not provided
-    const getDefaultVerdict = (score?: number): string => {
-        if (!score) return "This one needs more context before I can make a call.";
-        if (score >= 85) return "This would go straight to my interview pile.";
-        if (score >= 70) return "There's something here, but I'd need to see more before reaching out.";
-        if (score >= 60) return "The foundation is there, but the story isn't landing yet.";
-        return "I'd move on to the next resume.";
-    };
-
-    const verdict = report.recruiter_note || getDefaultVerdict(report.score);
-
     return (
         <div className={cn("max-w-3xl mx-auto pb-32 space-y-16 animate-in fade-in duration-700 slide-in-from-bottom-4", className)}>
 
             {/* 1. The Hook (First Impression) */}
             <FirstImpressionSection data={report} />
-
-            {/* The Recruiter's Verdict - Singular Judgment Moment */}
-            <RecruiterNote verdict={verdict} />
 
             {/* Divider */}
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />

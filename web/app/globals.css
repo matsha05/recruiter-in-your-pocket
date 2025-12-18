@@ -285,3 +285,112 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* PRINT STYLES */
+@media print {
+  /* Hide UI chrome */
+  header:not(.report-header),
+  nav,
+  .navbar,
+  .sidebar,
+  .history-sidebar,
+  .toast,
+  [data-sonner-toaster],
+  button:not(.print-show),
+  .action-buttons,
+  .modal,
+  .dialog,
+  footer:not(.report-footer),
+  .sticky,
+  .fixed,
+  [role="dialog"],
+  .noise-texture,
+  .bg-noise {
+    display: none !important;
+  }
+
+  /* Force clean backgrounds */
+  body,
+  main,
+  .bg-body,
+  .bg-background,
+  .bg-muted\/10 {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Remove shadows and borders that don't print well */
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+
+  /* Ensure text is dark */
+  * {
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Restore specific colors for semantic elements */
+  .text-success,
+  .text-moss {
+    color: #22c55e !important;
+  }
+
+  .text-destructive,
+  .text-rose {
+    color: #e11d48 !important;
+  }
+
+  .text-premium,
+  .text-gold {
+    color: #d97706 !important;
+  }
+
+  .text-muted-foreground {
+    color: #666666 !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4;
+    margin: 25mm;
+  }
+
+  /* Prevent orphans and widows */
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Avoid page breaks inside cards */
+  .card,
+  .studio-panel,
+  .rewrite-card,
+  section {
+    page-break-inside: avoid;
+  }
+
+  /* Page breaks before major sections */
+  h2 {
+    page-break-after: avoid;
+  }
+
+  /* Links: show URL after link text */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666666 !important;
+  }
+}

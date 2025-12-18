@@ -102,7 +102,7 @@ export default function ReportPanel({
                                 )}
 
                                 {/* Secondary: PDF Export (hidden for sample) */}
-                                {onExportPdf && !isSample && (
+                                {onExportPdf && (
                                     <button
                                         onClick={onExportPdf}
                                         disabled={isExporting}

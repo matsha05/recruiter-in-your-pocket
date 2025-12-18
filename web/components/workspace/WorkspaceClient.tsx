@@ -39,23 +39,19 @@ export default function WorkspaceClient() {
         }
     }, []);
 
-    // Auto-load sample report for first-time users
-    // Conditions: No report, not skipped, no pending resume text, not opted out via ?sample=false
+    // Load sample report ONLY if explicitly requested via ?sample=true
+    // By default, show the upload state so users can run their own report
     useEffect(() => {
         const sampleParam = searchParams.get("sample");
-        const hasPendingText = resumeText.trim().length > 0;
 
-        // Skip if: already have report, user skipped, has resume text, or explicitly opted out
-        if (report || skipSample || hasPendingText || sampleParam === "false") {
-            return;
+        // Only load sample if explicitly requested
+        if (sampleParam === "true" && !report && !skipSample) {
+            fetch("/sample-report.json")
+                .then(res => res.json())
+                .then(data => setReport(data))
+                .catch(err => console.error("Failed to load sample report:", err));
         }
-
-        // Auto-load sample for first-time users (or if ?sample=true)
-        fetch("/sample-report.json")
-            .then(res => res.json())
-            .then(data => setReport(data))
-            .catch(err => console.error("Failed to load sample report:", err));
-    }, [searchParams, report, skipSample, resumeText]);
+    }, [searchParams, report, skipSample]);
 
     // Handle successful payment redirect
     useEffect(() => {
