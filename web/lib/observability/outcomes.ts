@@ -5,7 +5,7 @@ export type OutcomeCategory =
   | "not_found"
   | "rate_limited"
   | "timeout"
+  | "network_error"
   | "provider_error"
   | "schema_invalid"
   | "internal_error";
-

@@ -103,13 +103,13 @@ export async function POST(request: Request) {
 
         // Check if user is already logged in (optional). If so, bind purchase to that account email.
         let userId: string | null = null;
-        let checkoutEmail: string | null = null;
+        let checkoutEmail: string | undefined;
         try {
             const supabase = await createSupabaseServerClient();
             const { data: { session } } = await supabase.auth.getSession();
             if (session?.user) {
                 userId = session.user.id;
-                checkoutEmail = session.user.email || null;
+                checkoutEmail = session.user.email || undefined;
             }
         } catch {
             // Ignore - user will be created/linked in webhook
@@ -132,6 +132,21 @@ export async function POST(request: Request) {
                 return res;
             }
             checkoutEmail = body.email.trim();
+        }
+        if (!checkoutEmail) {
+            const res = NextResponse.json({ ok: false, message: "A valid email is required." }, { status: 400 });
+            res.headers.set("x-request-id", request_id);
+            logInfo({
+                msg: "http.request.completed",
+                request_id,
+                route,
+                method,
+                path,
+                status: 400,
+                latency_ms: Date.now() - startedAt,
+                outcome: "validation_error"
+            });
+            return res;
         }
 
         const priceId = PRICE_IDS[requestedTier as keyof typeof PRICE_IDS];
@@ -163,16 +178,16 @@ export async function POST(request: Request) {
 
         // Create Stripe checkout session
         // Name will be collected by Stripe in the checkout form
-        const checkoutSession = await stripe.checkout.sessions.create({
-            mode: "payment",
-            payment_method_types: ["card"],
-            line_items: [
-                {
+            const checkoutSession = await stripe.checkout.sessions.create({
+                mode: "payment",
+                payment_method_types: ["card"],
+                line_items: [
+                    {
                     price: priceId,
                     quantity: 1
                 }
-            ],
-            customer_email: checkoutEmail,
+                ],
+                customer_email: checkoutEmail,
             // Collect billing name in checkout
             billing_address_collection: "required",
             success_url: `${baseUrl}/workspace?payment=success&tier=${requestedTier}`,

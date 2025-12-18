@@ -78,13 +78,14 @@ export function log(level: LogLevel, record: Omit<LogRecord, "ts" | "level" | "s
     return;
   }
 
+  const { msg, ...rest } = record;
   const full: LogRecord = {
     ts: new Date().toISOString(),
     level,
-    msg: record.msg,
+    msg,
     service: "recruiter-in-your-pocket",
     env: envLabel(),
-    ...record
+    ...rest
   };
 
   if (level === "error" && full.err?.stack && !shouldIncludeStack()) {
@@ -102,4 +103,3 @@ export function logInfo(record: Omit<LogRecord, "ts" | "level" | "service" | "en
 export function logError(record: Omit<LogRecord, "ts" | "level" | "service" | "env">) {
   log("error", record);
 }
-
