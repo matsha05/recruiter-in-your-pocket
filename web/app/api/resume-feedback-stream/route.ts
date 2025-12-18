@@ -22,6 +22,7 @@ import {
 } from "@/lib/backend/validation";
 import { logError, logInfo } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -265,14 +266,10 @@ export async function POST(request: Request) {
 
                 // CONSUME SINGLE USE PASS
                 // If the user used a 'single_use' pass, we must expire it now that the report is generated.
-                if (activePass && activePass.tier === "single_use" && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+                if (activePass && activePass.tier === "single_use") {
                     try {
-                        const { createClient } = await import("@supabase/supabase-js");
-                        const admin = createClient(
-                            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-                            process.env.SUPABASE_SERVICE_ROLE_KEY,
-                            { auth: { persistSession: false } }
-                        );
+                        const admin = createSupabaseAdminClient();
+                        if (!admin) throw new Error("Supabase admin client not configured");
 
                         // Set expires_at to NOW, effectively killing the pass
                         await admin

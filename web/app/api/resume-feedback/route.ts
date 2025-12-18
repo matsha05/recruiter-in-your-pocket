@@ -23,6 +23,7 @@ import {
 } from "@/lib/backend/validation";
 import { logError, logInfo } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -241,6 +242,18 @@ ${jobDescription}`;
       report_id: reportId,
       data: payload
     };
+
+    // Consume single-use pass consistently (non-stream path).
+    if (activePass && activePass.tier === "single_use" && user) {
+      try {
+        const admin = createSupabaseAdminClient();
+        if (admin) {
+          await admin.from("passes").update({ expires_at: nowIso() }).eq("id", activePass.id);
+        }
+      } catch {
+        // Do not fail response if pass consumption fails.
+      }
+    }
 
     const res = NextResponse.json(responseBody);
     res.headers.set("x-request-id", request_id);
