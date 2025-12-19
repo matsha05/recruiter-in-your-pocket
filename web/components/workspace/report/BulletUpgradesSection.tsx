@@ -52,10 +52,10 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
             {/* Hero Rewrite - Interactive, matching landing page style */}
             <div
                 className={cn(
-                    "relative rounded-lg border bg-card overflow-hidden cursor-pointer transition-all duration-300",
+                    "relative rounded border bg-card overflow-hidden cursor-pointer transition-all duration-300",
                     heroRevealed
                         ? "border-border"
-                        : "border-border hover:border-premium/40"
+                        : "border-border hover:border-brand/40"
                 )}
                 onClick={() => !heroRevealed && setHeroRevealed(true)}
             >
@@ -66,7 +66,7 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                             <p className="text-base text-destructive line-through decoration-destructive/40">
                                 {heroRewrite.original}
                             </p>
-                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-premium">
+                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand">
                                 <span>Reveal Rewrite</span>
                                 <ArrowRight className="w-3 h-3" />
                             </div>

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { Crown } from "lucide-react";
 import {
     Dialog,
     DialogContent,
@@ -103,7 +102,7 @@ export default function PaywallModal({
                         type="button"
                         onClick={() => setSelectedTier("single")}
                         className={cn(
-                            "p-4 rounded-md text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
+                            "p-4 rounded text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
                             "hover:-translate-y-0.5 hover:shadow-sm",
                             selectedTier === "single"
                                 ? "bg-secondary/40 border-foreground/30"
@@ -111,7 +110,7 @@ export default function PaywallModal({
                         )}
                     >
                         <span className="text-2xl font-display font-medium text-foreground">$9</span>
-                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">1 Audit</span>
+                        <span className="text-label text-muted-foreground mt-1">1 Audit</span>
                     </button>
 
                     {/* Job Search Pack - 5 Audits - Highlighted */}
@@ -119,20 +118,20 @@ export default function PaywallModal({
                         type="button"
                         onClick={() => setSelectedTier("pack")}
                         className={cn(
-                            "p-4 rounded-md text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
+                            "p-4 rounded text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
                             "hover:-translate-y-0.5 hover:shadow-md",
                             selectedTier === "pack"
-                                ? "bg-premium/10 border-premium shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]"
+                                ? "bg-premium/10 border-premium"
                                 : "bg-transparent border-border/10 hover:bg-secondary/10"
                         )}
                     >
                         <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
-                            <span className="text-[8px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b-sm font-bold flex items-center gap-1">
-                                <Crown className="w-2 h-2" /> Best Value
+                            <span className="text-[8px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b-sm font-bold">
+                                Best Value
                             </span>
                         </div>
                         <span className="text-2xl font-display font-medium text-premium mt-2">$29</span>
-                        <span className="text-[10px] uppercase tracking-wider text-premium mt-1 font-bold">5 Audits</span>
+                        <span className="text-label text-premium mt-1">5 Audits</span>
                         <span className="text-[9px] text-muted-foreground">$5.80 each</span>
                     </button>
                 </div>

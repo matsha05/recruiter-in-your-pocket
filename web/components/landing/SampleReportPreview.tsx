@@ -28,19 +28,19 @@ export function SampleReportPreview() {
 
     return (
         <div className="w-full max-w-4xl mx-auto">
-            <div className="relative group perspective-1000">
+            <div className="relative group">
 
-                {/* Glow Effect behind */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-premium/20 via-brand/5 to-success/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-1000" />
+                {/* Subtle glow behind */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-brand/10 via-transparent to-success/10 rounded-lg blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
 
                 {/* Main Interface Card */}
-                <div className="relative bg-white dark:bg-background rounded-xl border border-black/10 dark:border-white/10 shadow-2xl overflow-hidden">
+                <div className="relative bg-card rounded-lg border border-border shadow-lg overflow-hidden">
 
                     {/* Header - Clean, Report-style */}
-                    <div className="flex items-center justify-between px-6 py-4 border-b border-black/5 dark:border-white/5 bg-secondary/30 backdrop-blur-md">
+                    <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-secondary/30">
                         <div className="flex items-center gap-3">
                             <span className="w-6 h-px bg-border"></span>
-                            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">01. Recruiter First Impression</span>
+                            <span className="text-label text-muted-foreground">01. Recruiter First Impression</span>
                         </div>
                         <span className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest">Sample Report</span>
                     </div>
@@ -51,9 +51,9 @@ export function SampleReportPreview() {
                         <div className="md:col-span-3 p-8 md:p-10 border-r border-black/5 dark:border-white/5 relative overflow-hidden">
                             <div className="space-y-8">
                                 <div className="space-y-3">
-                                    <div className="flex items-center gap-2 text-premium">
+                                    <div className="flex items-center gap-2 text-brand">
                                         <PrincipalRecruiterIcon className="w-5 h-5" />
-                                        <span className="text-[10px] font-bold tracking-widest uppercase text-foreground/60">First Impression</span>
+                                        <span className="text-label text-muted-foreground">First Impression</span>
                                     </div>
                                     <p className="font-display text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
                                         "You read like a Founder, but you're burying the outcome."
@@ -65,10 +65,10 @@ export function SampleReportPreview() {
                                 </p>
 
                                 {/* The Critical Miss */}
-                                <div className="p-4 bg-amber/10 border border-amber/20 rounded-md">
+                                <div className="p-4 bg-warning/10 border border-warning/20 rounded">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                                        <span className="text-[11px] font-bold uppercase tracking-wider text-amber">Critical Miss</span>
+                                        <div className="w-2 h-2 rounded-full bg-warning animate-pulse" />
+                                        <span className="text-label text-warning">Critical Miss</span>
                                     </div>
                                     <p className="text-sm text-foreground/90">
                                         Your skills section lists "Strategy" but your bullets only show "Execution." There is a mismatch between your title and your evidence.
@@ -78,7 +78,7 @@ export function SampleReportPreview() {
                         </div>
 
                         {/* RIGHT: THE SCORE & ACTION (2 cols) */}
-                        <div className="md:col-span-2 p-8 md:p-10 bg-secondary/20 flex flex-col justify-between space-y-8">
+                        <div className="md:col-span-2 p-8 md:p-10 bg-secondary/20 border-l border-border flex flex-col justify-between space-y-8">
 
                             {/* Score Dial */}
                             <div className="text-center space-y-4">
@@ -93,7 +93,7 @@ export function SampleReportPreview() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-success/10 border border-success/20 text-success text-[11px] font-bold uppercase tracking-wider">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-success/10 border border-success/20 text-success text-[11px] font-bold uppercase tracking-wider">
                                         <CheckCircle2 className="w-3 h-3" /> Competes for Senior Roles
                                     </span>
                                 </div>
@@ -108,7 +108,7 @@ export function SampleReportPreview() {
                                     </div>
 
                                     <div
-                                        className="group cursor-pointer bg-white dark:bg-black/40 border border-black/5 dark:border-white/5 rounded-md p-4 transition-all hover:border-premium/50 relative overflow-hidden"
+                                        className="group cursor-pointer bg-card border border-border rounded p-4 transition-all hover:border-brand/50 relative overflow-hidden"
                                         onClick={() => setFixed(!fixed)}
                                     >
                                         <div className={cn("transition-all duration-500", fixed ? "opacity-40 blur-[1px] grayscale" : "opacity-100")}>
@@ -122,7 +122,7 @@ export function SampleReportPreview() {
                                             </p>
                                         </div>
 
-                                        <div className={cn("mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors", fixed ? "text-success" : "text-premium")}>
+                                        <div className={cn("mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors", fixed ? "text-success" : "text-brand")}>
                                             {fixed ? "Recruiter sees: Clear ownership" : "Tap to Rewrite"}
                                             {!fixed && <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />}
                                         </div>
@@ -134,8 +134,8 @@ export function SampleReportPreview() {
                     </div>
                 </div>
 
-                {/* Decorative Grid Lines behind */}
-                <div className="absolute -z-10 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[120%] h-[120%] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-50" />
+                {/* Decorative Grid Lines - subtle */}
+                <div className="absolute -z-10 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[120%] h-[120%] bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30" />
 
             </div>
         </div>

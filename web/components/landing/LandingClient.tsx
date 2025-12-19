@@ -89,34 +89,34 @@ export default function LandingClient() {
                 </nav>
             </header>
 
-            {/* Hero Section — Product-First Design */}
+            {/* Hero Section — Verdict First */}
             <main className="flex-1 flex flex-col overflow-hidden">
-                <section className="flex-1 flex items-center justify-center px-6 py-16 lg:py-24">
-                    <div className="w-full max-w-5xl mx-auto flex flex-col items-center gap-12">
+                <section className="flex-1 flex items-center justify-center px-6 py-20 lg:py-28">
+                    <div className="w-full max-w-5xl mx-auto flex flex-col items-center gap-16">
 
                         {/* Centered Hero Header */}
                         <div className="text-center max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
-                            <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary mb-4">
+                            <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary mb-6">
                                 See what recruiters see.
                             </h1>
-                            <p className="text-memo text-xl text-muted-foreground mb-8">
-                                6 seconds. One decision.
+                            <p className="text-xl text-muted-foreground mb-10">
+                                The 6-second verdict that decides everything.
                             </p>
 
-                            {/* Single CTA */}
-                            <div className="flex flex-col items-center gap-4">
+                            {/* Dropzone — The Hero */}
+                            <div className="flex flex-col items-center gap-6">
                                 <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
-                                <div className="flex items-center gap-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
-                                    <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
-                                    <span>·</span>
+                                <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">
+                                    <span className="flex items-center gap-1.5"><Lock className="w-3 h-3" /> Encrypted</span>
+                                    <span className="text-muted-foreground/30">·</span>
                                     <span>Auto-deleted in 24h</span>
-                                    <span>·</span>
+                                    <span className="text-muted-foreground/30">·</span>
                                     <span>Never trains AI</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Product Preview - The Full Sample Report */}
+                        {/* Product Preview - Below the fold */}
                         <div className="w-full animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
                             <SampleReportPreview />
                         </div>

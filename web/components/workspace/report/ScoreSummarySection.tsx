@@ -5,14 +5,6 @@ import { cn } from "@/lib/utils";
 import { getScoreColor, getScoreBg } from "@/lib/score-utils";
 import { SignalRadarIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
-import { Button } from "@/components/ui/button";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Info } from "lucide-react";
 
 export function ScoreSummarySection({ data }: { data: ReportData }) {
     // Story first (most important), then others
@@ -30,65 +22,39 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
 
     return (
         <section className="space-y-8">
-            <div className="flex items-start justify-between">
-                <ReportSectionHeader
-                    icon={<SignalRadarIcon className="w-4 h-4 text-brand" />}
-                    number="02"
-                    title="Signal Analysis"
-                    subtitle="What made me lean in, and what made me pause."
-                />
+            <ReportSectionHeader
+                icon={<SignalRadarIcon className="w-4 h-4 text-brand" />}
+                number="02"
+                title="Signal Analysis"
+                subtitle="What made me lean in, and what made me pause."
+            />
 
-                {/* Methodology Tooltip */}
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                className="text-muted-foreground/40 hover:text-muted-foreground h-6 w-6 p-0"
-                                aria-label="How we score"
-                            >
-                                <Info className="w-4 h-4" />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="left" className="w-72 p-4 text-xs space-y-3">
-                            <p className="font-semibold text-foreground">How we score</p>
-                            <p className="text-muted-foreground">
-                                Each dimension is scored 0–100 based on how clearly your resume signals that quality.
-                            </p>
-                            <div className="space-y-1 pt-2 border-t border-border">
-                                <p><span className="font-semibold text-foreground">Story</span> — What narrative are you telling? This is the most important signal.</p>
-                                <p><span className="text-muted-foreground">Impact, Clarity, Readability</span> — Supporting dimensions that strengthen your story.</p>
-                            </div>
-                            <div className="space-y-1 pt-2 border-t border-border">
-                                <p><span className="text-success font-medium">85+</span> Strong signal</p>
-                                <p><span className="text-premium font-medium">70–84</span> Solid</p>
-                                <p><span className="text-destructive font-medium">&lt;70</span> Needs work</p>
-                            </div>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-            </div>
-
-            {/* Subscores Grid - Clean, colored numbers only */}
+            {/* Subscores Grid - Story emphasized as most important */}
             {hasSubscores ? (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {subscores.map((item) => item.score !== undefined && (
+                    {subscores.map((item, index) => item.score !== undefined && (
                         <div
                             key={item.key}
-                            className="bg-secondary/20 border border-border/40 p-5 rounded-lg flex flex-col items-center justify-center text-center gap-1"
+                            className={cn(
+                                "bg-secondary/20 border border-border/40 p-5 rounded flex flex-col items-center justify-center text-center gap-1",
+                                index === 0 && "md:ring-1 md:ring-brand/20" // Story gets subtle emphasis
+                            )}
                         >
-                            <span className={cn("text-3xl font-serif font-bold tabular-nums", getScoreColor(item.score))}>
+                            <span className={cn(
+                                "font-serif font-bold tabular-nums",
+                                index === 0 ? "text-4xl" : "text-3xl", // Story is larger
+                                getScoreColor(item.score)
+                            )}>
                                 {item.score}
                             </span>
-                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+                            <span className="text-label text-muted-foreground">
                                 {item.label}
                             </span>
                         </div>
                     ))}
                 </div>
             ) : (
-                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
                     Subscores unavailable for this run.
                 </div>
             )}
@@ -129,7 +95,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     </div>
                 </div>
             ) : (
-                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
                     Signal breakdown unavailable.
                 </div>
             )}

@@ -27,6 +27,14 @@ const categories = [
         subtitle: "How recruiters actually think and decide",
         articles: [
             {
+                id: "how-we-score",
+                title: "The 6-Second Signal Model: How We Score",
+                thesis: "Our research-backed framework: Story, Impact, Clarity, Readability — and why Story matters most.",
+                readTime: "5 min",
+                href: "/research/how-we-score",
+                featured: true
+            },
+            {
                 id: "how-recruiters-read",
                 title: "How Recruiters Skim Resumes in 6 Seconds",
                 thesis: "Recruiters make fit/no-fit decisions in seconds, focusing on titles, companies, and dates.",
@@ -180,7 +188,7 @@ export default function ResearchPage() {
                                 <Link
                                     key={article.id}
                                     href={article.href}
-                                    className="group block -mx-4 px-4 py-4 rounded-md hover:bg-secondary/30 transition-colors"
+                                    className="group block -mx-4 px-4 py-4 rounded hover:bg-secondary/30 transition-colors"
                                 >
                                     <div className="flex items-start justify-between gap-6">
                                         <div className="flex-1 min-w-0">

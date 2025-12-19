@@ -78,12 +78,14 @@
     --rose: 347 77% 40%;
     /* Rose-700 */
 
-    /* V2.1 Semantic Tokens (Use These) */
+    /* V2 Semantic Tokens (Use These) */
     --success: 142 71% 29%;
-    /* = moss */
+    /* = moss, for positive states (85+ scores, confirmations) */
+    --warning: 48 96% 53%;
+    /* = amber, for caution callouts (Critical Miss, gaps) */
     --premium: 43 96% 44%;
-    /* = gold */
-    /* --destructive already defined above */
+    /* = gold, for UNLOCK MOMENTS ONLY (upgrade CTAs, best value) */
+    /* --destructive already defined above, for errors and <70 scores */
 
     /* V2.1 TYPOGRAPHY */
     --font-fraunces: "Fraunces Variable", serif;
@@ -209,9 +211,23 @@
     scrollbar-width: none;
   }
 
-  /* V2.1 TYPOGRAPHY CLASSES */
+  /* ==========================================================================
+     V2 TYPOGRAPHY SYSTEM
+     - Fraunces (Display): verdicts, headlines, scores
+     - Geist Sans (Interface): body, labels, controls
+     - Geist Mono (Data): metrics, dates, code
+     ========================================================================== */
 
-  /* Hero Verdicts */
+  /* Display: Verdicts (largest, lightest) */
+  .text-verdict {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 3.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  /* Display: Hero (landing pages) */
   .text-hero {
     font-family: var(--font-display);
     font-weight: 400;
@@ -219,7 +235,16 @@
     line-height: 1.05;
   }
 
-  /* Section Titles */
+  /* Display: Headlines */
+  .text-headline {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  /* Display: Section Titles */
   .text-title {
     font-family: var(--font-display);
     font-weight: 500;
@@ -227,17 +252,44 @@
     line-height: 1.2;
   }
 
-  /* UI Labels */
-  .text-label {
-    @apply font-sans text-[13px] font-medium tracking-wide uppercase text-muted-foreground;
+  /* Interface: Body Copy */
+  .text-body {
+    @apply font-sans text-[0.9375rem] leading-relaxed;
   }
 
-  /* Body Copy */
+  /* Interface: Memo (slightly larger body) */
   .text-memo {
     @apply font-sans text-[15px] leading-relaxed text-foreground/90;
   }
 
-  /* V2.1 DEPTH UTILITIES */
+  /* Interface: Caption */
+  .text-caption {
+    @apply font-sans text-[0.8125rem] font-medium leading-normal;
+  }
+
+  /* Interface: UI Labels (uppercase) */
+  .text-label {
+    @apply font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.05em] leading-none;
+  }
+
+  /* Data: Large Metrics (scores) */
+  .text-metric {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 1;
+    font-feature-settings: "tnum";
+  }
+
+  /* Data: Code/Mono */
+  .text-code {
+    @apply font-mono text-[0.8125rem] leading-normal;
+  }
+
+  /* ==========================================================================
+     V2 DEPTH UTILITIES
+     ========================================================================== */
+
   .studio-panel {
     @apply bg-card border border-border/10;
     border-radius: var(--radius);
@@ -248,18 +300,32 @@
     @apply bg-white/80 dark:bg-black/80 backdrop-blur-md border border-white/20 dark:border-white/10;
   }
 
-  /* V2.1 ANIMATION */
+  /* ==========================================================================
+     V2 ANIMATION UTILITIES
+     ========================================================================== */
+
+  /* Snappy transitions (default for most UI) */
   .animate-snap {
     transition-timing-function: var(--ease);
     transition-duration: var(--duration-normal);
   }
 
+  /* Reveal transitions (for entrances, score dials) */
   .animate-reveal {
     transition-timing-function: var(--ease);
     transition-duration: var(--duration-slow);
   }
 
-  /* V2.1 FOCUS RING - Offset Slate, 2px gap */
+  /* Entrance animation (page/modal) */
+  .animate-entrance {
+    transition-timing-function: var(--ease);
+    transition-duration: 500ms;
+  }
+
+  /* ==========================================================================
+     V2 FOCUS RING - Accessible, offset
+     ========================================================================== */
+
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }

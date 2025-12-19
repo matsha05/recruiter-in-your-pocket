@@ -92,7 +92,7 @@ export function ResearchArticle({
                     </Link>
                     <div className="space-y-6">
                         <div className="flex flex-wrap items-center gap-3">
-                            <span className="inline-block text-[10px] uppercase tracking-widest font-semibold border border-border px-2 py-1 rounded-sm bg-muted/50 text-muted-foreground">
+                            <span className="text-label border border-border px-2 py-1 rounded bg-secondary/50 text-muted-foreground">
                                 {header.tag}
                             </span>
                             {(header.readTime || header.lastUpdated) && (
@@ -122,20 +122,20 @@ export function ResearchArticle({
                 </header>
 
                 {/* 2. Key Finding Card */}
-                <div className="border border-gold/20 bg-gold/5 rounded-none border-l-4 border-l-gold p-8 md:p-10 space-y-6">
-                    <div className="flex items-center gap-2 text-gold font-bold text-xs uppercase tracking-widest">
+                <div className="border border-brand/20 bg-brand/5 rounded border-l-4 border-l-brand p-8 md:p-10 space-y-6">
+                    <div className="flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest">
                         {keyFinding.icon}
                         <span>{keyFinding.subtitle}</span>
                     </div>
                     <div className="space-y-2">
-                        <h2 className="font-serif text-4xl md:text-5xl font-medium text-gold tracking-tight">{keyFinding.stat}</h2>
+                        <h2 className="font-serif text-4xl md:text-5xl font-medium text-brand tracking-tight">{keyFinding.stat}</h2>
                         <p className="text-muted-foreground text-lg leading-relaxed">
                             {keyFinding.statDescription}
                         </p>
                     </div>
-                    <div className="pt-6 border-t border-gold/10 text-xs font-mono text-muted-foreground/70 space-y-2">
+                    <div className="pt-6 border-t border-brand/10 text-xs font-mono text-muted-foreground/70 space-y-2">
                         <p className="flex items-center gap-2">
-                            <span className="text-gold/80 uppercase">Source:</span>
+                            <span className="text-brand/80 uppercase">Source:</span>
                             {keyFinding.source.href ? (
                                 <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-foreground underline underline-offset-4 decoration-border">
                                     {keyFinding.source.text}
@@ -145,7 +145,7 @@ export function ResearchArticle({
                             )}
                         </p>
                         {keyFinding.sampleSize && (
-                            <p><span className="text-gold/80 uppercase">Sample:</span> {keyFinding.sampleSize}</p>
+                            <p><span className="text-brand/80 uppercase">Sample:</span> {keyFinding.sampleSize}</p>
                         )}
                     </div>
                 </div>
@@ -165,7 +165,7 @@ export function ResearchArticle({
                 <hr className="border-black/5 dark:border-white/5 my-16" />
 
                 {/* 5. Product Tie-In */}
-                <div className="bg-secondary/20 p-8 md:p-10 rounded-sm border border-black/5 dark:border-white/5">
+                <div className="bg-secondary/20 p-8 md:p-10 rounded border border-border">
                     <h3 className="font-serif text-2xl font-medium mb-8 text-foreground">How this shapes the product</h3>
                     <div className="grid gap-8">
                         {productTieIn.items.map((item, i) => (
@@ -191,14 +191,14 @@ export function ResearchArticle({
                                 <Link
                                     key={i}
                                     href={article.href}
-                                    className="group flex items-center justify-between p-4 border border-border/20 rounded-sm hover:border-brand/40 hover:bg-secondary/20 transition-all"
+                                    className="group flex items-center justify-between p-4 border border-border rounded hover:border-brand/40 hover:bg-secondary/20 transition-all"
                                 >
                                     <div className="flex items-center gap-3">
                                         <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand group-hover:translate-x-1 transition-all" />
                                         <span className="text-foreground group-hover:text-brand transition-colors">{article.title}</span>
                                     </div>
                                     {article.tag && (
-                                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground/60">{article.tag}</span>
+                                        <span className="text-label text-muted-foreground/60">{article.tag}</span>
                                     )}
                                 </Link>
                             ))}
@@ -225,7 +225,7 @@ export function ResearchArticle({
 
 export function ArticleInsight({ icon, title, desc }: { icon: ReactNode, title: string, desc: string }) {
     return (
-        <div className="p-6 border border-black/5 dark:border-white/5 bg-background hover:bg-secondary/10 transition-colors">
+        <div className="p-6 border border-border rounded bg-background hover:bg-secondary/10 transition-colors">
             <div className="flex items-center gap-2 mb-3 text-foreground font-medium">
                 {icon}
                 <span className="font-serif text-lg tracking-tight">{title}</span>

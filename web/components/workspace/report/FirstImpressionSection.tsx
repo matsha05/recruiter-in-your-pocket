@@ -21,6 +21,8 @@ function getScoreBand(score: number): { label: string; colorClass: string } {
 
 export function FirstImpressionSection({ data }: { data: ReportData }) {
     const [animatedScore, setAnimatedScore] = useState(0);
+    const [showBadge, setShowBadge] = useState(false);
+    const [sectionVisible, setSectionVisible] = useState(false);
     const hasAnimated = useRef(false);
 
     const firstImpressionText = data.score_comment_long || data.score_comment_short || data.first_impression || data.summary;
@@ -28,21 +30,38 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
     const strokeColor = getScoreColor(targetScore);
     const scoreBand = data.score_label ? { label: data.score_label, colorClass: getScoreBand(targetScore).colorClass } : getScoreBand(targetScore);
 
+    // Section entrance animation
+    useEffect(() => {
+        const timer = setTimeout(() => setSectionVisible(true), 100);
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Score animation with badge reveal
     useEffect(() => {
         if (targetScore <= 0 || hasAnimated.current) {
-            if (!hasAnimated.current) setAnimatedScore(targetScore);
+            if (!hasAnimated.current) {
+                setAnimatedScore(targetScore);
+                setShowBadge(true);
+            }
             return;
         }
         hasAnimated.current = true;
-        const duration = 1000;
+        const duration = 1200; // Slightly longer for more impact
         const startTime = Date.now();
 
         const animate = () => {
             const elapsed = Date.now() - startTime;
             const progress = Math.min(elapsed / duration, 1);
+            // Smooth ease-out cubic for premium feel
             const eased = 1 - Math.pow(1 - progress, 3);
             setAnimatedScore(Math.round(targetScore * eased));
-            if (progress < 1) requestAnimationFrame(animate);
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                // Show badge after score animation completes
+                setTimeout(() => setShowBadge(true), 200);
+            }
         };
         requestAnimationFrame(animate);
     }, [targetScore]);
@@ -52,8 +71,11 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
     const strokeDashoffset = circumference - (circumference * animatedScore) / 100;
 
     return (
-        <section className="space-y-6">
-            {/* Section Header with horizontal line decoration (matching landing page) */}
+        <section className={cn(
+            "space-y-6 transition-all duration-500 ease-out",
+            sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+            {/* Section Header with horizontal line decoration */}
             <div className="flex items-center gap-3">
                 <div className="w-6 h-px bg-border" />
                 <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
@@ -62,14 +84,17 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                 </h2>
             </div>
 
-            {/* Main Card - Matches Landing Page SampleReportPreview */}
-            <div className="bg-card rounded-xl border border-border/60 shadow-sm overflow-hidden">
+            {/* Main Card - THE Signature Moment */}
+            <div className={cn(
+                "bg-card rounded border border-border/60 shadow-sm overflow-hidden transition-all duration-700 ease-out",
+                sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )} style={{ transitionDelay: '150ms' }}>
                 <div className="grid md:grid-cols-5">
 
                     {/* LEFT: THE VERDICT (3 cols) */}
                     <div className="md:col-span-3 p-8 md:p-10 border-r border-border/40 space-y-8">
                         <div className="space-y-3">
-                            <h3 className="font-serif text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
+                            <h3 className="text-headline text-foreground">
                                 "Here is exactly what I noticed..."
                             </h3>
                         </div>
@@ -81,12 +106,12 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             )}
                         </p>
 
-                        {/* The Critical Miss */}
+                        {/* The Critical Miss - uses warning color, not premium */}
                         {data.biggest_gap_example && (
-                            <div className="p-4 bg-amber/10 border border-amber/20 rounded-lg">
+                            <div className="p-4 bg-warning/10 border border-warning/20 rounded transition-all duration-300" style={{ transitionDelay: '400ms' }}>
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber">Critical Miss</span>
+                                    <div className="w-2 h-2 rounded-full bg-warning animate-pulse" />
+                                    <span className="text-label text-warning">Critical Miss</span>
                                 </div>
                                 <p className="text-sm text-foreground/90 leading-relaxed">
                                     {data.biggest_gap_example}
@@ -123,17 +148,22 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                         strokeDasharray={circumference}
                                         strokeDashoffset={strokeDashoffset}
                                         strokeLinecap="round"
-                                        className="transition-all duration-1000 ease-out"
+                                        style={{
+                                            transition: 'stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1)'
+                                        }}
                                     />
                                 </svg>
                                 <div className="absolute inset-0 flex items-center justify-center flex-col">
                                     <span className="text-5xl font-serif font-bold tracking-tighter tabular-nums">{animatedScore}</span>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Score</span>
+                                    <span className="text-label text-muted-foreground">Score</span>
                                 </div>
                             </div>
 
-                            {/* Score Band Badge */}
-                            <div>
+                            {/* Score Band Badge - Delayed reveal */}
+                            <div className={cn(
+                                "transition-all duration-300 ease-out",
+                                showBadge ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                            )}>
                                 <span className={cn(
                                     "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider",
                                     scoreBand.colorClass
@@ -143,10 +173,10 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             </div>
                         </div>
 
-
                     </div>
                 </div>
             </div>
         </section>
     );
 }
+

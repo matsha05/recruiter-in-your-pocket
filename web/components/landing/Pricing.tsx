@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Crown } from "lucide-react";
+import { Check } from "lucide-react";
 import { InsightSparkleIcon } from "@/components/icons";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -53,11 +53,11 @@ export function Pricing({ onSelectTier }: PricingProps) {
                 <div className="mt-8 grid md:grid-cols-2 gap-6 items-stretch">
 
                     {/* TIER 1: SINGLE AUDIT - $9 for 1 audit */}
-                    <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md flex flex-col">
+                    <div className="p-8 rounded border border-border/20 bg-card hover:bg-card/80 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md flex flex-col">
                         <div className="mb-6">
-                            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Audit</div>
+                            <div className="text-label text-muted-foreground mb-2">Single Audit</div>
                             <div className="text-4xl font-display font-bold text-foreground">$9</div>
-                            <p className="text-sm text-muted-foreground mt-2">1 additional audit</p>
+                            <p className="text-sm text-muted-foreground mt-2">One additional audit</p>
                         </div>
                         <ul className="space-y-3 mb-8 text-sm text-muted-foreground font-medium flex-1">
                             <li className="flex items-start gap-3">
@@ -83,17 +83,15 @@ export function Pricing({ onSelectTier }: PricingProps) {
                     </div>
 
                     {/* TIER 2: JOB SEARCH PACK - $29 for 5 audits - HIGHLIGHTED */}
-                    <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg flex flex-col">
-                        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
-                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-lg flex items-center gap-1.5">
-                            <Crown className="w-3 h-3 fill-white" /> Best Value
+                    <div className="relative p-8 rounded border-2 border-premium bg-card transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg flex flex-col">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm">
+                            Best Value
                         </div>
 
                         <div className="mb-6">
-                            <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Job Search Pack</div>
+                            <div className="text-label text-premium mb-2">Job Search Pack</div>
                             <div className="flex items-baseline gap-2">
                                 <span className="text-4xl font-display font-bold text-foreground">$29</span>
-                                <span className="text-sm text-muted-foreground line-through">$45</span>
                             </div>
                             <p className="text-sm text-muted-foreground mt-2">5 audits — $5.80 each</p>
                         </div>
@@ -121,7 +119,7 @@ export function Pricing({ onSelectTier }: PricingProps) {
                         </ul>
                         <Button
                             variant="premium"
-                            className="w-full shadow-lg shadow-premium/20"
+                            className="w-full"
                             onClick={() => handlePurchase("pack")}
                         >
                             Buy 5 Audits

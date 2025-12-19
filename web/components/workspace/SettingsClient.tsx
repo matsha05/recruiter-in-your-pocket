@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, CreditCard, Clock, FileText, Zap, Loader2, Crown } from "lucide-react";
+import { Check, CreditCard, Clock, FileText, Zap, Loader2 } from "lucide-react";
 import { InsightSparkleIcon, PocketMark, Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -123,7 +123,7 @@ export default function SettingsClient() {
             <main className="max-w-5xl mx-auto px-6 py-12 space-y-16">
 
                 {/* 0. Credits Summary Card - Quick Status */}
-                <section className="bg-card border border-border/20 rounded-xl p-6 md:p-8">
+                <section className="bg-card border border-border/20 rounded-lg p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div className="space-y-3">
                             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Your Audits</h2>
@@ -147,7 +147,7 @@ export default function SettingsClient() {
                         </div>
                         <a
                             href="/workspace"
-                            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors whitespace-nowrap"
+                            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors whitespace-nowrap"
                         >
                             Run an Audit →
                         </a>
@@ -229,10 +229,10 @@ export default function SettingsClient() {
                         </div>
 
                         {/* TIER 2: Job Search Pack ($29/5) - HIGHLIGHTED */}
-                        <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] flex flex-col">
+                        <div className="relative p-8 rounded border-2 border-premium bg-background flex flex-col">
                             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
-                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-lg flex items-center gap-1.5">
-                                <Crown className="w-3 h-3 fill-white" /> Best Value
+                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-sm">
+                                Best Value
                             </div>
 
                             <div className="mb-6">
