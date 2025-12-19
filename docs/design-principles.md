@@ -1,6 +1,9 @@
 # Recruiter in Your Pocket — Design Constitution V2.1
 **Fraunces Authority. Teal Expertise. Honest Clarity.**
 
+> [!NOTE]
+> This document is the **implementation spec** for [design-philosophy.md](./design-philosophy.md), which is the canonical source of truth for *why* we make design decisions. This doc covers *how* to implement them.
+
 ---
 
 ## The Constitution
