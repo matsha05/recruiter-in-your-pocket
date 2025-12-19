@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ReportData } from "./ReportTypes";
-import { Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Check } from "lucide-react";
 import { HiddenGemIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { ReportSectionHeader } from "./ReportSectionHeader";
@@ -16,11 +16,8 @@ const cardStyle = { border: "border-border", bg: "bg-secondary/5" };
 
 export function MissingWinsSection({ data }: MissingWinsSectionProps) {
     const questions = data.ideas?.questions || [];
-    const notes = data.ideas?.notes || [];
-    const howToUse = data.ideas?.how_to_use;
 
     const [answeredIds, setAnsweredIds] = useState<Set<number>>(new Set());
-    const [showGuide, setShowGuide] = useState(false);
 
     if (questions.length === 0) {
         return (
@@ -29,10 +26,10 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
                     icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
                     number="04"
                     title="Missing Wins"
-                    subtitle="What recruiters wish you'd told them."
+                    subtitle="The stories you forgot to tell."
                 />
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No “missing wins” questions were generated for this run. If your resume text is short, try pasting a fuller version and rerun.
+                    No hidden gems surfaced. Either your resume covers it all, or we couldn't find the handles.
                 </div>
             </section>
         );
@@ -58,14 +55,14 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
                 icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
                 number="04"
                 title="Missing Wins"
-                subtitle="What recruiters wish you'd told them."
+                subtitle="The stories you forgot to tell."
             />
 
             {/* Progress Indicator */}
             <div className="flex items-center gap-4">
                 <div className="flex-1 h-1 bg-secondary rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-gold transition-all duration-500 ease-out"
+                        className="h-full bg-brand transition-all duration-500 ease-out"
                         style={{ width: `${(answeredCount / questions.length) * 100}%` }}
                     />
                 </div>
@@ -73,35 +70,6 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
                     {answeredCount} / {questions.length}
                 </span>
             </div>
-
-            {/* How To Use (Collapsible) */}
-            {(howToUse || notes.length > 0) && (
-                <button
-                    onClick={() => setShowGuide(!showGuide)}
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                    {showGuide ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    <span>How to use this section</span>
-                </button>
-            )}
-
-            {showGuide && (
-                <div className="bg-secondary/20 border border-border/50 rounded-lg p-6 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                    {howToUse && (
-                        <p className="text-sm text-foreground">{howToUse}</p>
-                    )}
-                    {notes.length > 0 && (
-                        <ul className="space-y-2">
-                            {notes.map((note, i) => (
-                                <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                                    <span className="text-gold mt-0.5">•</span>
-                                    <span>{note}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            )}
 
             {/* Questions Grid */}
             <div className="space-y-4">
@@ -116,10 +84,11 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
                         <div
                             key={i}
                             className={cn(
-                                "group border rounded-lg p-6 transition-all duration-300",
+                                "group border rounded-lg p-6 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2",
                                 cardStyle.border,
                                 isAnswered ? "opacity-50" : cardStyle.bg
                             )}
+                            style={{ animationDelay: `${i * 75}ms` }}
                         >
                             <div className="flex items-start justify-between gap-4">
                                 <div className="flex-1 space-y-3">
