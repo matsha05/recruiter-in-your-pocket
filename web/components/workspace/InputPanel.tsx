@@ -76,10 +76,10 @@ export default function InputPanel({
 
                 {/* Header */}
                 <div className="text-center space-y-3">
-                    <h1 className="font-display text-3xl md:text-4xl text-foreground">See what they see.</h1>
+                    <h1 className="font-display text-3xl md:text-4xl text-foreground">This is what they see.</h1>
                     <div className="flex items-center justify-center gap-2 text-muted-foreground text-lg">
                         <SixSecondIcon className="w-5 h-5 text-brand" />
-                        <p>We'll show you what a recruiter notices in 6 seconds.</p>
+                        <p>6 seconds. That's your window.</p>
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@ export default function InputPanel({
                         >
                             <CloudUpload className={cn("w-10 h-10 transition-colors", isDragOver ? "text-brand" : "text-muted-foreground/60")} strokeWidth={1.5} />
                             <div className="text-center space-y-1">
-                                <div className="text-sm font-medium text-foreground">Drop your resume. We'll show you what a recruiter sees.</div>
+                                <div className="text-sm font-medium text-foreground">Drop it. We'll tell you what's wrong.</div>
                                 <div className="text-xs text-muted-foreground">PDF or DOCX</div>
                             </div>
                             <input
