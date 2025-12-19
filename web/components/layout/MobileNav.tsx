@@ -45,7 +45,7 @@ export function MobileNav() {
                             Research Library
                         </MobileNavLink>
                         <MobileNavLink href="/settings" icon={CreditCard} setOpen={setOpen} active={pathname === "/settings"}>
-                            Passes & Billing
+                            Settings
                         </MobileNavLink>
                     </nav>
                 </div>

@@ -128,21 +128,21 @@ export default function SettingsClient() {
                         <div className="space-y-3">
                             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Your Audits</h2>
                             <div className="flex items-center gap-3">
-                                {/* Visual dots */}
+                                {/* Visual dots - show filled for available, empty for used */}
                                 <div className="flex items-center gap-1">
                                     {[...Array(5)].map((_, i) => (
                                         <div
                                             key={i}
-                                            className={`w-3 h-3 rounded-full ${i < 2 ? 'bg-brand' : 'bg-border/30'}`}
+                                            className={`w-3 h-3 rounded-full ${i < (user?.freeUsesLeft ?? 1) ? 'bg-brand' : 'bg-border/30'}`}
                                         />
                                     ))}
                                 </div>
                                 <span className="text-lg font-semibold text-foreground">
-                                    2 available
+                                    {user?.freeUsesLeft ?? 1} available
                                 </span>
                             </div>
                             <p className="text-xs text-muted-foreground">
-                                1 free audit included
+                                Your first audit is free
                             </p>
                         </div>
                         <a

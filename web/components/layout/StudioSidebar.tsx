@@ -44,7 +44,7 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
                     Research Library
                 </StudioNavLink>
                 <StudioNavLink href="/settings" icon={CreditCard}>
-                    Passes & Billing
+                    Settings
                 </StudioNavLink>
             </div>
 
@@ -60,7 +60,7 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
                     </p>
                     <Link href="/settings" className="w-full block">
                         <Button size="sm" variant="outline" className="w-full text-xs h-7 border-dashed">
-                            Get a Pass
+                            Get Audits
                         </Button>
                     </Link>
                 </div>

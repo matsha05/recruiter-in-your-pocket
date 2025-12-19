@@ -79,7 +79,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {isLoading && (
                     <Loader2 className="h-4 w-4 animate-spin" />
                 )}
-                <span className={cn(isLoading && "opacity-70")}>{children}</span>
+                {isLoading ? <span className="opacity-70">{children}</span> : children}
             </>
         )
 
