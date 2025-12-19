@@ -29,9 +29,10 @@ Embrace "Studio energy" (Stripe, Linear, Notion).
 |---|---|---|
 | `--brand` | **Teal-600** (`#0D9488`) | Primary CTA, Score highlight, key data |
 | `--accent` | Slate-700 (`#334155`) | UI chrome, secondary buttons |
-| `--premium` | Amber-600 (`#D97706`) | Gold unlock moments ONLY |
+| `--premium` | Amber-600 (`#D97706`) | Gold unlock moments ONLY (positive: upgrades, best value, premium features) |
+| `--amber` | Amber-500 (`#F59E0B`) | Caution/warning callouts (Critical Miss, gaps, attention needed) |
 | `--success` | Green-700 | Positive states |
-| `--warning` | Yellow-600 | Caution |
+| `--warning` | Yellow-600 | Form validation, soft warnings |
 | `--error` | Rose-700 | Critical failures |
 
 ### 4. The University Anti-Pattern

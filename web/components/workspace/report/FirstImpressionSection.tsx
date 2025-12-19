@@ -83,10 +83,10 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
                         {/* The Critical Miss */}
                         {data.biggest_gap_example && (
-                            <div className="p-4 bg-premium/10 border border-premium/20 rounded-lg">
+                            <div className="p-4 bg-amber/10 border border-amber/20 rounded-lg">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2 h-2 rounded-full bg-premium animate-pulse" />
-                                    <span className="text-[11px] font-bold uppercase tracking-wider text-premium">Critical Miss</span>
+                                    <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
+                                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber">Critical Miss</span>
                                 </div>
                                 <p className="text-sm text-foreground/90 leading-relaxed">
                                     {data.biggest_gap_example}
