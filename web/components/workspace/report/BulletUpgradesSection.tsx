@@ -23,7 +23,7 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                     subtitle="How I'd rewrite these to land harder."
                 />
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    Nothing to rewrite. Your bullets are either already strong—or too vague for us to fix.
+                    No rewrites surfaced. Your bullets are either landing—or need more context to improve.
                 </div>
             </section>
         );
@@ -67,7 +67,7 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                                 {heroRewrite.original}
                             </p>
                             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-premium">
-                                <span>Tap to Rewrite</span>
+                                <span>Reveal Rewrite</span>
                                 <ArrowRight className="w-3 h-3" />
                             </div>
                         </div>

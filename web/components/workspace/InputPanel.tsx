@@ -115,7 +115,7 @@ export default function InputPanel({
                         >
                             <CloudUpload className={cn("w-10 h-10 transition-colors", isDragOver ? "text-brand" : "text-muted-foreground/60")} strokeWidth={1.5} />
                             <div className="text-center space-y-1">
-                                <div className="text-sm font-medium text-foreground">Drop it. We'll tell you what's wrong.</div>
+                                <div className="text-sm font-medium text-foreground">Drop your resume. We'll show you what they see.</div>
                                 <div className="text-xs text-muted-foreground">PDF or DOCX</div>
                             </div>
                             <input
@@ -162,7 +162,7 @@ export default function InputPanel({
                         <textarea
                             value={resumeText}
                             onChange={(e) => onResumeTextChange(e.target.value)}
-                            placeholder="Paste your resume content here if you don't have a file..."
+                            placeholder="Paste your resume here if you prefer..."
                             aria-label="Resume content"
                             className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[150px] leading-relaxed"
                         />

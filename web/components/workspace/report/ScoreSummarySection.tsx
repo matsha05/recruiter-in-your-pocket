@@ -89,7 +89,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 </div>
             ) : (
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No subscores this time—but the verdict below still holds.
+                    Subscores unavailable for this run.
                 </div>
             )}
 
@@ -114,7 +114,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
 
                     {/* Missing */}
                     <div className="space-y-4">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-premium">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-foreground/80">
                             Missing
                         </h3>
                         <ul className="space-y-3">
@@ -130,7 +130,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 </div>
             ) : (
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No signal breakdown available for this run.
+                    Signal breakdown unavailable.
                 </div>
             )}
         </section>

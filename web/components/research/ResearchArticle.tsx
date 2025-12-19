@@ -169,10 +169,10 @@ export function ResearchArticle({
                     <h3 className="font-serif text-2xl font-medium mb-8 text-foreground">How this shapes the product</h3>
                     <div className="grid gap-8">
                         {productTieIn.items.map((item, i) => (
-                            <div key={i} className="flex gap-4 items-start group">
-                                <div className="mt-1 h-5 w-5 flex items-center justify-center text-gold shrink-0">
-                                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                                </div>
+                            <div key={i} className="flex gap-4 items-start">
+                                <span className="font-mono text-[10px] text-muted-foreground/40 mt-1 shrink-0">
+                                    {String(i + 1).padStart(2, '0')}
+                                </span>
                                 <div>
                                     <h4 className="font-medium text-foreground mb-1">{item.title}</h4>
                                     <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
@@ -210,12 +210,9 @@ export function ResearchArticle({
                 <div className="flex flex-col items-center justify-center gap-6 py-20">
                     <h3 className="font-serif text-2xl font-medium text-center">{cta.title}</h3>
                     <Link href={cta.href}>
-                        <div className="relative group">
-                            <div className="absolute -inset-1 bg-gold rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-200"></div>
-                            <Button size="lg" className="relative bg-foreground text-background hover:bg-foreground/90 font-medium px-8 h-12 rounded-lg border border-white/10">
-                                {cta.buttonText}
-                            </Button>
-                        </div>
+                        <Button variant="studio" size="lg" className="px-8 h-12 shadow-sm">
+                            {cta.buttonText}
+                        </Button>
                     </Link>
                 </div>
 

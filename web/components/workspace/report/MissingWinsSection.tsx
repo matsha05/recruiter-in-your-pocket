@@ -29,7 +29,7 @@ export function MissingWinsSection({ data }: MissingWinsSectionProps) {
                     subtitle="The stories you forgot to tell."
                 />
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No hidden gems surfaced. Either your resume covers it all, or we couldn't find the handles.
+                    No missing wins this time. Either you've covered your bases, or we need more detail.
                 </div>
             </section>
         );
