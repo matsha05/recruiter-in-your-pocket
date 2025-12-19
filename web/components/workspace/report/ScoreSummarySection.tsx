@@ -89,7 +89,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 </div>
             ) : (
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    Subscores weren't available for this run. The summary below is based on the returned strengths and gaps.
+                    No subscores this time—but the verdict below still holds.
                 </div>
             )}
 
@@ -130,7 +130,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 </div>
             ) : (
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    Signal analysis wasn't available for this run.
+                    No signal breakdown available for this run.
                 </div>
             )}
         </section>

@@ -23,7 +23,7 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                     subtitle="How I'd rewrite these to land harder."
                 />
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No rewrite candidates were returned. This usually means the input was too short, not bullet-based, or too hard to parse cleanly.
+                    Nothing to rewrite. Your bullets are either already strong—or too vague for us to fix.
                 </div>
             </section>
         );
