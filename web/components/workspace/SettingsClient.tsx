@@ -343,7 +343,7 @@ export default function SettingsClient() {
                             <div className="space-y-2 text-center">
                                 <h3 className="text-xl font-display font-semibold">Where should we send your receipt?</h3>
                                 <p className="text-muted-foreground text-sm">
-                                    We'll link your pass to this email. You can create a password later.
+                                    We'll link your credits to this email. You can create a password later.
                                 </p>
                             </div>
 

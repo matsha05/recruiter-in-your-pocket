@@ -95,6 +95,11 @@ export default function PaywallModal({
                     </DialogDescription>
                 </DialogHeader>
 
+                {/* What you get - Value clarity */}
+                <div className="text-center text-xs text-muted-foreground mb-6 px-4">
+                    <span className="font-medium text-foreground">Each audit includes:</span> full recruiter analysis, score breakdown, copy-ready rewrites, and hidden wins prompts.
+                </div>
+
                 {/* Tier Selection - Credit Packs */}
                 <div className="grid grid-cols-2 gap-3 mb-6">
                     {/* Quick Fix - 1 Audit */}

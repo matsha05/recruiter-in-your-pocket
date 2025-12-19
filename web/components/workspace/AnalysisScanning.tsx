@@ -136,10 +136,10 @@ export default function AnalysisScanning() {
                 />
             </div>
 
-            {/* Subtle reassurance */}
+            {/* Subtle reassurance with time estimate */}
             <p className="text-[11px] text-muted-foreground/60 mt-4 flex items-center gap-1.5">
                 <SixSecondIcon className="w-3.5 h-3.5" />
-                Simulating a principal recruiter's 6-second scan
+                Usually takes 20-30 seconds
             </p>
         </div>
     );

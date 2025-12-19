@@ -69,13 +69,13 @@ export default function ReportPanel({
                         First audit free · No login required
                     </p>
 
-                    {/* Divider + Sample Link */}
+                    {/* Divider + Example Link */}
                     <div className="pt-4 border-t border-border/30 w-full max-w-xs">
                         <button
                             onClick={onNewReport}
                             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
-                            Want to see an example first? <span className="text-brand hover:underline">View sample →</span>
+                            Want to see an example first? <span className="text-brand hover:underline">View example →</span>
                         </button>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ export default function ReportPanel({
                                     </h1>
                                     {isSample && (
                                         <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">
-                                            Sample
+                                            Example
                                         </span>
                                     )}
                                 </div>
@@ -104,7 +104,7 @@ export default function ReportPanel({
 
                             {/* Action Buttons */}
                             <div className="flex items-center gap-2">
-                                {/* Primary: Run Another (for real reports) or Run Your Report (for sample) */}
+                                {/* Primary: Run Another (for real audits) or Run Your Audit (for example) */}
                                 {onNewReport && (
                                     <button
                                         onClick={onNewReport}
@@ -112,7 +112,7 @@ export default function ReportPanel({
                                     >
                                         {isSample ? (
                                             <>
-                                                Run Your Report
+                                                Run Your Audit
                                                 <ArrowRight className="w-4 h-4" />
                                             </>
                                         ) : (

@@ -61,7 +61,7 @@ export default function InputPanel({
         if (freeUsesRemaining >= 2) {
             return "No login required to start.";
         } else if (freeUsesRemaining === 1) {
-            return "1 free report remaining";
+            return "1 free audit remaining";
         } else {
             return "Upgrade to keep analyzing";
         }
@@ -186,6 +186,9 @@ export default function InputPanel({
                             </div>
                             <span className="text-[10px] uppercase tracking-wider font-medium text-muted-foreground/60">Optional</span>
                         </div>
+                        <p className="text-xs text-muted-foreground">
+                            Paste a job posting to see exactly how you match—or skip for a general audit.
+                        </p>
                         <textarea
                             value={jobDescription}
                             onChange={(e) => onJobDescChange(e.target.value)}
@@ -215,7 +218,7 @@ export default function InputPanel({
                             )}
                         </Button>
                         <p className="text-center text-xs text-muted-foreground mt-3">
-                            {getRunHint()}
+                            Takes about 30 seconds · {getRunHint()}
                         </p>
                     </div>
 

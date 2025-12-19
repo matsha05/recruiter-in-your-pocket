@@ -95,7 +95,7 @@ export function ReportStream({
                                     onClick={onNewReport}
                                     className="shadow-lg shadow-brand/20"
                                 >
-                                    Run Your Free Report
+                                    Run Your Free Audit
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             )}

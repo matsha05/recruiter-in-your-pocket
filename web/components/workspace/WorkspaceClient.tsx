@@ -8,6 +8,7 @@ import InputPanel from "@/components/workspace/InputPanel";
 import ReportPanel from "@/components/workspace/ReportPanel";
 import HistorySidebar from "@/components/workspace/HistorySidebar";
 import PaywallModal from "@/components/workspace/PaywallModal";
+import SaveReportPrompt from "@/components/workspace/SaveReportPrompt";
 import AuthModal from "@/components/shared/AuthModal";
 import { createResumeFeedback, streamResumeFeedback, parseResume } from "@/lib/api";
 import { toast } from "sonner";
@@ -24,10 +25,12 @@ export default function WorkspaceClient() {
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(2);
 
-    // History sidebar, paywall modal, and auth modal state
+    // History sidebar, paywall modal, auth modal, and save prompt state
     const [isHistoryOpen, setIsHistoryOpen] = useState(false);
     const [isPaywallOpen, setIsPaywallOpen] = useState(false);
     const [isAuthOpen, setIsAuthOpen] = useState(false);
+    const [isSavePromptOpen, setIsSavePromptOpen] = useState(false);
+    const [pendingReportForSave, setPendingReportForSave] = useState<any>(null);
 
     // Check for pending text from homepage upload
     useEffect(() => {
@@ -171,6 +174,13 @@ export default function WorkspaceClient() {
                     setIsStreaming(false);
                     setIsLoading(false);
                     Analytics.reportCompleted(result.report?.score || 0);
+
+                    // Show save prompt for guest users after report is generated
+                    if (!user && result.report) {
+                        setPendingReportForSave(result.report);
+                        // Small delay to let user see their report first
+                        setTimeout(() => setIsSavePromptOpen(true), 2000);
+                    }
                 }, remaining);
             } else {
                 // Error case - show immediately
@@ -358,6 +368,17 @@ export default function WorkspaceClient() {
                 onSuccess={async () => {
                     await refreshUser();
                     setIsAuthOpen(false);
+                }}
+            />
+
+            {/* Save Report Prompt for Guests */}
+            <SaveReportPrompt
+                isOpen={isSavePromptOpen}
+                onClose={() => setIsSavePromptOpen(false)}
+                report={pendingReportForSave}
+                onSuccess={(email) => {
+                    // Could refresh user or show sign-in prompt
+                    toast.success("Report saved! Check your email for access.");
                 }}
             />
         </>

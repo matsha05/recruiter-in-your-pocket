@@ -76,12 +76,22 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
             sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
             {/* Section Header with horizontal line decoration */}
-            <div className="flex items-center gap-3">
-                <div className="w-6 h-px bg-border" />
-                <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                    <PrincipalRecruiterIcon className="w-4 h-4 text-brand" />
-                    01. Recruiter First Impression
-                </h2>
+            <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    <div className="w-6 h-px bg-border" />
+                    <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                        <PrincipalRecruiterIcon className="w-4 h-4 text-brand" />
+                        01. Recruiter First Impression
+                    </h2>
+                </div>
+                <a
+                    href="/research/how-we-score"
+                    className="text-[10px] text-muted-foreground/60 hover:text-brand transition-colors font-medium"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    How we score →
+                </a>
             </div>
 
             {/* Main Card - THE Signature Moment */}
