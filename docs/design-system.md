@@ -1,6 +1,9 @@
 # Design System V2.1 — Technical Specifications
 
-*Last Updated: Dec 16, 2025*
+> [!NOTE]
+> This is the **technical implementation reference**. For design decisions, see [design-philosophy.md](./design-philosophy.md) (source of truth) and [design-principles.md](./design-principles.md) (patterns & rules).
+
+*Last Updated: Dec 19, 2025*
 
 ---
 
@@ -25,6 +28,9 @@
 | **`--brand`** | `#0D9488` | `#2DD4BF` | **Primary CTA, Score** |
 | `--accent` | `#334155` | `#94A3B8` | UI chrome |
 | `--premium` | `#D97706` | `#FBBF24` | Gold unlock only |
+| `--success` | Green-700 | Green-400 | Positive states, scores 85+ |
+| `--warning` | Yellow-600 | Yellow-400 | Caution states |
+| `--error` | Rose-700 | Rose-400 | Critical failures, scores <70 |
 
 ---
 
