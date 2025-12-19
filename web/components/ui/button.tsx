@@ -72,6 +72,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             layout: "position" as const
         }
 
+        const content = asChild ? (
+            children
+        ) : (
+            <>
+                {isLoading && (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                )}
+                <span className={cn(isLoading && "opacity-70")}>{children}</span>
+            </>
+        )
+
         return (
             // @ts-ignore - Radix Slot polymorphism vs Framer Motion types
             <Comp
@@ -81,13 +92,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 )}
                 ref={ref}
                 disabled={disabled || isLoading}
+                aria-busy={isLoading || undefined}
+                data-loading={isLoading || undefined}
                 {...motionProps}
                 {...props}
             >
-                {isLoading && (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                )}
-                <span className={cn(isLoading && "opacity-70")}>{children}</span>
+                {content}
             </Comp>
         )
     }
@@ -95,4 +105,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button"
 
 export { Button, buttonVariants }
-

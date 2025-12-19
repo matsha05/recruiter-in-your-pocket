@@ -22,6 +22,28 @@ const Card = React.forwardRef<
 ))
 Card.displayName = "Card"
 
+/**
+ * CardInteractive - Card with hover micro-animation
+ * Per "Alive, Not Static" principle
+ */
+const CardInteractive = React.forwardRef<
+    HTMLDivElement,
+    React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+    <div
+        ref={ref}
+        className={cn(
+            "rounded-md border border-border/10 bg-card text-card-foreground shadow-sm",
+            "cursor-pointer transition-all duration-200 ease-out",
+            "hover:border-brand/40 hover:shadow-md hover:-translate-y-0.5",
+            "active:translate-y-0 active:shadow-sm",
+            className
+        )}
+        {...props}
+    />
+))
+CardInteractive.displayName = "CardInteractive"
+
 const CardHeader = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
@@ -78,4 +100,4 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
+export { Card, CardInteractive, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }

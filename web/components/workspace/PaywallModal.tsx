@@ -2,7 +2,17 @@
 
 import { useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { X, Crown } from "lucide-react";
+import { Crown } from "lucide-react";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
 type Tier = "single" | "pack";
@@ -29,8 +39,6 @@ export default function PaywallModal({
     const [error, setError] = useState<string | null>(null);
 
     const isLoggedIn = !!user;
-
-    if (!isOpen) return null;
 
     const handleCheckout = async () => {
         setLoading(true);
@@ -68,35 +76,25 @@ export default function PaywallModal({
         }
     };
 
-    const handleClose = () => {
-        setEmail("");
-        setError(null);
-        onClose();
+    const handleOpenChange = (open: boolean) => {
+        if (!open) {
+            setEmail("");
+            setError(null);
+            onClose();
+        }
     };
 
     return (
-        <div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-5"
-            onClick={(e) => e.target === e.currentTarget && handleClose()}
-        >
-            <div className="bg-background border border-border/10 rounded-md shadow-2xl w-full max-w-[420px] p-8 relative max-h-[90vh] overflow-y-auto">
-                <button
-                    onClick={handleClose}
-                    aria-label="Close"
-                    className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors p-2"
-                >
-                    <X className="w-5 h-5" strokeWidth={2} />
-                </button>
-
-                {/* Header */}
-                <div className="text-center mb-8">
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-3">
+        <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+            <DialogContent className="max-w-[420px] p-8">
+                <DialogHeader className="text-center mb-6">
+                    <DialogTitle className="font-display text-2xl font-medium">
                         You've used your free audit.
-                    </h2>
-                    <p className="text-muted-foreground text-sm">
+                    </DialogTitle>
+                    <DialogDescription>
                         Get more credits to keep improving your resume.
-                    </p>
-                </div>
+                    </DialogDescription>
+                </DialogHeader>
 
                 {/* Tier Selection - Credit Packs */}
                 <div className="grid grid-cols-2 gap-3 mb-6">
@@ -104,8 +102,12 @@ export default function PaywallModal({
                     <button
                         type="button"
                         onClick={() => setSelectedTier("single")}
-                        className={cn("p-4 rounded-md text-center transition-all border flex flex-col items-center justify-center",
-                            selectedTier === "single" ? "bg-secondary/40 border-foreground/30" : "bg-transparent border-border/10 hover:bg-secondary/10"
+                        className={cn(
+                            "p-4 rounded-md text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
+                            "hover:-translate-y-0.5 hover:shadow-sm",
+                            selectedTier === "single"
+                                ? "bg-secondary/40 border-foreground/30"
+                                : "bg-transparent border-border/10 hover:bg-secondary/10"
                         )}
                     >
                         <span className="text-2xl font-display font-medium text-foreground">$9</span>
@@ -116,8 +118,12 @@ export default function PaywallModal({
                     <button
                         type="button"
                         onClick={() => setSelectedTier("pack")}
-                        className={cn("p-4 rounded-md text-center transition-all border relative flex flex-col items-center justify-center overflow-hidden",
-                            selectedTier === "pack" ? "bg-premium/10 border-premium shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]" : "bg-transparent border-border/10 hover:bg-secondary/10"
+                        className={cn(
+                            "p-4 rounded-md text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
+                            "hover:-translate-y-0.5 hover:shadow-md",
+                            selectedTier === "pack"
+                                ? "bg-premium/10 border-premium shadow-[0_0_15px_-5px_rgba(251,191,36,0.3)]"
+                                : "bg-transparent border-border/10 hover:bg-secondary/10"
                         )}
                     >
                         <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
@@ -138,35 +144,35 @@ export default function PaywallModal({
                             <p className="text-sm text-muted-foreground mb-4 text-center">
                                 Adding credits to <strong className="text-foreground">{user.email}</strong>
                             </p>
-                            <button
-                                type="button"
+                            <Button
+                                className="w-full"
                                 onClick={handleCheckout}
-                                disabled={loading}
-                                className="w-full bg-foreground text-background hover:bg-foreground/90 h-10 rounded-md font-medium text-sm transition-colors"
+                                isLoading={loading}
                             >
                                 {loading ? "Processing..." : `Buy ${selectedTier === "single" ? "1 Audit" : "5 Audits"} →`}
-                            </button>
+                            </Button>
                         </>
                     ) : (
                         <>
-                            <label className="block text-sm font-medium text-muted-foreground mb-2">
+                            <Label htmlFor="checkout-email" className="text-muted-foreground mb-2">
                                 Your email
-                            </label>
-                            <input
+                            </Label>
+                            <Input
+                                id="checkout-email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="w-full h-10 rounded-md border border-border/10 bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-ring mb-4"
+                                className="mb-4"
                             />
-                            <button
-                                type="button"
+                            <Button
+                                className="w-full"
                                 onClick={handleCheckout}
-                                disabled={loading || !email.trim()}
-                                className="w-full bg-foreground text-background hover:bg-foreground/90 h-10 rounded-md font-medium text-sm transition-colors"
+                                disabled={!email.trim()}
+                                isLoading={loading}
                             >
                                 {loading ? "Processing..." : `Continue to checkout →`}
-                            </button>
+                            </Button>
                             <p className="text-xs text-muted-foreground/50 text-center mt-3">
                                 We'll email you a magic link to access your credits.
                             </p>
@@ -183,7 +189,7 @@ export default function PaywallModal({
                 <p className="text-center text-[10px] text-muted-foreground/40 uppercase tracking-widest">
                     Secure Payment by Stripe • 100% Money-Back Guarantee
                 </p>
-            </div>
-        </div>
+            </DialogContent>
+        </Dialog>
     );
 }

@@ -3,6 +3,8 @@
 import { useState, useRef, ChangeEvent } from "react";
 import { CloudUpload, FileText, ArrowRight, Loader2, Info } from "lucide-react";
 import { SixSecondIcon } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import { TrustBadges } from "@/components/shared/TrustBadges";
 import { cn } from "@/lib/utils";
 
 interface InputPanelProps {
@@ -128,18 +130,7 @@ export default function InputPanel({
                         </div>
 
                         {/* Trust Module */}
-                        <div className="flex items-center justify-center gap-4 text-[11px] text-muted-foreground">
-                            <span className="flex items-center gap-1.5">
-                                <svg className="w-3 h-3 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                                Encrypted
-                            </span>
-                            <span>·</span>
-                            <span>Auto-deleted in 24h</span>
-                            <span>·</span>
-                            <span>Never trains AI</span>
-                        </div>
+                        <TrustBadges variant="inline" />
 
                         {/* File Tag */}
                         {fileName && (
@@ -148,12 +139,14 @@ export default function InputPanel({
                                     <FileText className="w-3.5 h-3.5" />
                                     {fileName}
                                 </span>
-                                <button
-                                    className="text-muted-foreground hover:text-destructive text-xs transition-colors px-2 py-1"
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="text-muted-foreground hover:text-destructive h-auto py-1 px-2"
                                     onClick={handleRemoveFile}
                                 >
                                     Remove
-                                </button>
+                                </Button>
                             </div>
                         )}
 
@@ -204,26 +197,23 @@ export default function InputPanel({
 
                     {/* Footer / Action */}
                     <div className="p-6 md:p-8 border-t border-border/50 bg-background">
-                        <button
+                        <Button
+                            variant="brand"
+                            size="lg"
+                            className="w-full"
                             onClick={onRun}
-                            disabled={isLoading || !resumeText.trim()}
-                            className={cn(
-                                "w-full flex items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-medium text-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-                                "bg-brand hover:bg-brand/90"
-                            )}
+                            disabled={!resumeText.trim()}
+                            isLoading={isLoading}
                         >
                             {isLoading ? (
-                                <>
-                                    <Loader2 className="w-4 h-4 animate-spin" />
-                                    Analyzing...
-                                </>
+                                "Analyzing..."
                             ) : (
                                 <>
                                     See What They See
-                                    <ArrowRight className="w-4 h-4" />
+                                    <ArrowRight className="w-4 h-4 ml-2" />
                                 </>
                             )}
-                        </button>
+                        </Button>
                         <p className="text-center text-xs text-muted-foreground mt-3">
                             {getRunHint()}
                         </p>

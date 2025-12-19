@@ -6,6 +6,7 @@ import { ScoreSummarySection } from "./ScoreSummarySection";
 import { BulletUpgradesSection } from "./BulletUpgradesSection";
 import { MissingWinsSection } from "./MissingWinsSection";
 import { JobAlignmentSection } from "./JobAlignmentSection";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Plus, Sparkles } from "lucide-react";
 
@@ -33,34 +34,44 @@ export function ReportStream({
     const isExhausted = !isSample && freeUsesRemaining <= 0;
 
     return (
-        <div className={cn("max-w-3xl mx-auto pb-32 space-y-16 animate-in fade-in duration-700 slide-in-from-bottom-4", className)}>
+        <div className={cn("max-w-3xl mx-auto pb-32 space-y-16", className)}>
 
             {/* 1. The Hook (First Impression) */}
-            <FirstImpressionSection data={report} />
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <FirstImpressionSection data={report} />
+            </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-100" />
 
             {/* 2. The Data (Score Summary) */}
-            <ScoreSummarySection data={report} />
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
+                <ScoreSummarySection data={report} />
+            </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-200" />
 
             {/* 3. The Value (Bullet Upgrades) */}
-            <BulletUpgradesSection data={report} />
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+                <BulletUpgradesSection data={report} />
+            </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-350" />
 
             {/* 4. Missing Wins (Uncover Hidden Achievements) */}
-            <MissingWinsSection data={report} />
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
+                <MissingWinsSection data={report} />
+            </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-550" />
 
             {/* 5. Where You Compete (Job Alignment) */}
-            <JobAlignmentSection data={report} hasJobDescription={hasJobDescription} />
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700">
+                <JobAlignmentSection data={report} hasJobDescription={hasJobDescription} />
+            </div>
 
             {/* Report Footer - "What's next?" */}
             <div className="pt-8 space-y-6">
@@ -78,13 +89,15 @@ export function ReportStream({
                                 This is what a recruiter sees. Ready to see yours?
                             </p>
                             {onNewReport && (
-                                <button
+                                <Button
+                                    variant="brand"
+                                    size="lg"
                                     onClick={onNewReport}
-                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold bg-brand text-white hover:bg-brand/90 transition-colors shadow-lg shadow-brand/20"
+                                    className="shadow-lg shadow-brand/20"
                                 >
                                     Run Your Free Report
-                                    <ArrowRight className="w-4 h-4" />
-                                </button>
+                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                </Button>
                             )}
                         </div>
                     ) : isExhausted && onUpgrade ? (
@@ -93,13 +106,13 @@ export function ReportStream({
                             <p className="text-sm text-muted-foreground">
                                 That was your free audit. Want to run another version?
                             </p>
-                            <button
+                            <Button
+                                variant="premium"
                                 onClick={onUpgrade}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                             >
-                                <Sparkles className="w-4 h-4" />
+                                <Sparkles className="w-4 h-4 mr-2" />
                                 Get More Audits
-                            </button>
+                            </Button>
                         </div>
                     ) : onNewReport ? (
                         // Has credits - run another
@@ -109,13 +122,13 @@ export function ReportStream({
                                     ? `You have ${freeUsesRemaining} free audit${freeUsesRemaining > 1 ? 's' : ''} remaining.`
                                     : 'Ready to analyze another version?'}
                             </p>
-                            <button
+                            <Button
+                                variant="brand"
                                 onClick={onNewReport}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                             >
-                                <Plus className="w-4 h-4" />
+                                <Plus className="w-4 h-4 mr-2" />
                                 Run Another
-                            </button>
+                            </Button>
                         </div>
                     ) : null}
                 </div>

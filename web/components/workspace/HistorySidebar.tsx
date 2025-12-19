@@ -1,7 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Clock, TrendingUp, FileText, X } from "lucide-react";
+import { Trash2, Clock, TrendingUp, FileText } from "lucide-react";
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+} from "@/components/ui/sheet";
+import { CardInteractive } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ScoreBadge } from "@/components/shared/ScoreBadge";
 
 interface HistoryReport {
     id: string;
@@ -89,52 +99,19 @@ export default function HistorySidebar({
         }
     };
 
-    const getScoreColor = (score: number) => {
-        if (score >= 85) return "text-success";
-        if (score >= 70) return "text-brand";
-        if (score >= 60) return "text-warning";
-        return "text-destructive";
-    };
-
-    const getScoreBg = (score: number) => {
-        if (score >= 85) return "bg-success/10";
-        if (score >= 70) return "bg-brand/10";
-        if (score >= 60) return "bg-warning/10";
-        return "bg-destructive/10";
-    };
-
     return (
-        <>
-            {/* Overlay */}
-            <div
-                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] transition-opacity duration-300
-                    ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                onClick={onClose}
-            />
-
-            {/* Sidebar */}
-            <aside
-                className={`fixed top-0 right-0 w-[380px] max-w-[90vw] h-screen
-                    bg-background border-l border-border/20 shadow-2xl z-[101] flex flex-col
-                    transition-transform duration-300 ease-out
-                    ${isOpen ? "translate-x-0" : "translate-x-full"}`}
-            >
-                {/* Header */}
-                <div className="flex items-center justify-between px-6 py-5 border-b border-border/10">
+        <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
+            <SheetContent side="right" className="w-[380px] max-w-[90vw] p-0 flex flex-col">
+                <SheetHeader className="px-6 py-5 border-b border-border/10">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-md bg-brand/10 flex items-center justify-center">
                             <FileText className="w-4 h-4 text-brand" />
                         </div>
-                        <span className="font-display text-lg font-semibold text-foreground">Your Reports</span>
+                        <SheetTitle className="font-display text-lg font-semibold">
+                            Your Reports
+                        </SheetTitle>
                     </div>
-                    <button
-                        onClick={onClose}
-                        aria-label="Close"
-                        className="w-8 h-8 rounded-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all"
-                    >
-                        <X className="w-5 h-5" />
-                    </button>
-                </div>
+                </SheetHeader>
 
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto">
@@ -150,18 +127,31 @@ export default function HistorySidebar({
                             <p className="text-sm text-muted-foreground mb-8 max-w-[240px]">
                                 Log in to save your analyses and watch your score improve over time.
                             </p>
-                            <button
+                            <Button
+                                variant="brand"
+                                className="w-full max-w-[200px]"
                                 onClick={onSignIn}
-                                className="w-full max-w-[200px] py-3 px-6 rounded-md bg-brand text-white font-medium text-sm hover:opacity-90 transition-opacity"
                             >
                                 Log In to Save
-                            </button>
+                            </Button>
                         </div>
                     ) : loading ? (
-                        /* Loading state */
-                        <div className="flex flex-col items-center justify-center h-full">
-                            <div className="w-8 h-8 border-2 border-brand/30 border-t-brand rounded-full animate-spin mb-4" />
-                            <p className="text-sm text-muted-foreground">Loading your reports...</p>
+                        /* Skeleton loading state */
+                        <div className="p-4 space-y-3">
+                            {[1, 2, 3].map((i) => (
+                                <div key={i} className="p-4 rounded-md border border-border/10 bg-card space-y-3">
+                                    <div className="flex items-start justify-between">
+                                        <Skeleton className="h-8 w-16 rounded-md" />
+                                        <Skeleton className="h-6 w-6 rounded" />
+                                    </div>
+                                    <Skeleton className="h-4 w-full" />
+                                    <Skeleton className="h-4 w-3/4" />
+                                    <div className="flex items-center gap-1.5">
+                                        <Skeleton className="h-3 w-3 rounded-full" />
+                                        <Skeleton className="h-3 w-20" />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     ) : reports.length === 0 ? (
                         /* Empty state */
@@ -193,30 +183,26 @@ export default function HistorySidebar({
 
                             {/* Report cards */}
                             {reports.map((report) => (
-                                <div
+                                <CardInteractive
                                     key={report.id}
                                     onClick={() => onLoadReport?.(report.id)}
-                                    className={`group relative p-4 rounded-lg border cursor-pointer transition-all duration-200
-                                        bg-card border-border/20 hover:border-brand/40 hover:shadow-md`}
+                                    className="group relative p-4"
                                 >
                                     {/* Score badge */}
                                     <div className="flex items-start justify-between mb-3">
-                                        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md ${getScoreBg(report.score)}`}>
-                                            <span className={`text-lg font-bold tabular-nums ${getScoreColor(report.score)}`}>
-                                                {report.score}
-                                            </span>
-                                            {report.scoreLabel && (
-                                                <span className={`text-xs font-medium ${getScoreColor(report.score)}`}>
-                                                    {report.scoreLabel}
-                                                </span>
-                                            )}
-                                        </div>
+                                        <ScoreBadge
+                                            score={report.score}
+                                            label={report.scoreLabel}
+                                            size="md"
+                                        />
 
                                         {/* Delete button - appears on hover */}
-                                        <button
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
                                             onClick={(e) => handleDelete(e, report.id)}
                                             disabled={deletingId === report.id}
-                                            className="opacity-0 group-hover:opacity-100 p-2 rounded-md text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all"
+                                            className="opacity-0 group-hover:opacity-100 hover:text-destructive hover:bg-destructive/10"
                                             aria-label="Delete report"
                                         >
                                             {deletingId === report.id ? (
@@ -224,7 +210,7 @@ export default function HistorySidebar({
                                             ) : (
                                                 <Trash2 className="w-4 h-4" />
                                             )}
-                                        </button>
+                                        </Button>
                                     </div>
 
                                     {/* Resume snippet */}
@@ -239,12 +225,12 @@ export default function HistorySidebar({
                                         <Clock className="w-3.5 h-3.5" />
                                         <span>{formatDate(report.createdAt)}</span>
                                     </div>
-                                </div>
+                                </CardInteractive>
                             ))}
                         </div>
                     )}
                 </div>
-            </aside>
-        </>
+            </SheetContent>
+        </Sheet>
     );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ReportData } from "./ReportTypes";
 import { TransformArrowIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRight, CheckCircle, Copy, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -87,21 +88,22 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                                 </div>
                             </div>
 
-                            <button
+                            <Button
+                                variant="ghost"
+                                size="sm"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleCopy(heroRewrite.better, -1);
                                 }}
                                 className={cn(
-                                    "flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium transition-all",
                                     copiedIndex === -1
-                                        ? "bg-success/10 text-success"
-                                        : "bg-secondary text-muted-foreground hover:text-foreground"
+                                        ? "bg-success/10 text-success hover:bg-success/20"
+                                        : ""
                                 )}
                             >
-                                {copiedIndex === -1 ? <CheckCircle className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                                {copiedIndex === -1 ? <CheckCircle className="w-3 h-3 mr-1.5" /> : <Copy className="w-3 h-3 mr-1.5" />}
                                 {copiedIndex === -1 ? "Copied" : "Copy"}
-                            </button>
+                            </Button>
                         </div>
                     )}
                 </div>
@@ -129,40 +131,43 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                                         {rewrite.enhancement_note}
                                     </p>
                                 )}
-                                <button
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
                                     onClick={() => handleCopy(rewrite.better, i)}
                                     className={cn(
-                                        "flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium transition-all flex-shrink-0",
+                                        "flex-shrink-0",
                                         copiedIndex === i
-                                            ? "bg-success/10 text-success"
-                                            : "text-muted-foreground hover:text-brand"
+                                            ? "bg-success/10 text-success hover:bg-success/20"
+                                            : ""
                                     )}
                                 >
-                                    {copiedIndex === i ? <CheckCircle className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                                    {copiedIndex === i ? <CheckCircle className="w-3 h-3 mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
                                     {copiedIndex === i ? "Copied" : "Copy"}
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     ))}
 
                     {/* Show More / Less */}
                     {hiddenCount > 0 && (
-                        <button
+                        <Button
+                            variant="ghost"
+                            className="w-full"
                             onClick={() => setShowAll(!showAll)}
-                            className="w-full flex items-center justify-center gap-2 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                         >
                             {showAll ? (
                                 <>
-                                    <ChevronUp className="w-4 h-4" />
+                                    <ChevronUp className="w-4 h-4 mr-2" />
                                     Show less
                                 </>
                             ) : (
                                 <>
-                                    <ChevronDown className="w-4 h-4" />
+                                    <ChevronDown className="w-4 h-4 mr-2" />
                                     Show {hiddenCount} more
                                 </>
                             )}
-                        </button>
+                        </Button>
                     )}
                 </div>
             )}

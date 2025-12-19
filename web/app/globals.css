@@ -99,6 +99,24 @@
     --duration-fast: 100ms;
     --duration-normal: 200ms;
     --duration-slow: 350ms;
+
+    /* V2.1 SPACING (Raycast Density) */
+    --space-card-sm: 1rem;
+    /* 16px - compact cards */
+    --space-card-md: 1.25rem;
+    /* 20px - default cards */
+    --space-card-lg: 1.5rem;
+    /* 24px - hero cards */
+    --space-section: 4rem;
+    /* 64px - between major sections */
+
+    /* V2.1 BORDER OPACITY (Restrained Premium) */
+    --border-subtle: 10%;
+    /* Default, quiet */
+    --border-default: 20%;
+    /* Interactive states */
+    --border-strong: 40%;
+    /* Emphasis, active */
   }
 
   .dark {
@@ -288,6 +306,7 @@
 
 /* PRINT STYLES */
 @media print {
+
   /* Hide UI chrome */
   header:not(.report-header),
   nav,

@@ -3,6 +3,7 @@
 import { Check, Crown } from "lucide-react";
 import { InsightSparkleIcon } from "@/components/icons";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface PricingProps {
@@ -33,12 +34,11 @@ export function Pricing({ onSelectTier }: PricingProps) {
 
                 {/* Primary Free CTA */}
                 <div className="text-center">
-                    <Link
-                        href="/workspace"
-                        className="inline-flex items-center gap-2 px-8 py-4 rounded-md bg-brand text-white font-medium text-base hover:opacity-90 transition-all shadow-lg shadow-brand/20"
-                    >
-                        Start Your Free Audit →
-                    </Link>
+                    <Button variant="brand" size="lg" className="shadow-lg shadow-brand/20" asChild>
+                        <Link href="/workspace">
+                            Start Your Free Audit →
+                        </Link>
+                    </Button>
                     <p className="mt-4 text-sm text-muted-foreground">No credit card required</p>
                 </div>
 
@@ -53,7 +53,7 @@ export function Pricing({ onSelectTier }: PricingProps) {
                 <div className="mt-8 grid md:grid-cols-2 gap-6 items-stretch">
 
                     {/* TIER 1: SINGLE AUDIT - $9 for 1 audit */}
-                    <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
+                    <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md flex flex-col">
                         <div className="mb-6">
                             <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Audit</div>
                             <div className="text-4xl font-display font-bold text-foreground">$9</div>
@@ -73,16 +73,17 @@ export function Pricing({ onSelectTier }: PricingProps) {
                                 <span>Share with your coach or mentor</span>
                             </li>
                         </ul>
-                        <button
+                        <Button
+                            variant="outline"
+                            className="w-full"
                             onClick={() => handlePurchase("single")}
-                            className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors"
                         >
                             Buy 1 Audit
-                        </button>
+                        </Button>
                     </div>
 
                     {/* TIER 2: JOB SEARCH PACK - $29 for 5 audits - HIGHLIGHTED */}
-                    <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] flex flex-col">
+                    <div className="relative p-8 rounded-md border-2 border-premium bg-background shadow-[0_0_40px_-10px_rgba(251,191,36,0.15)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg flex flex-col">
                         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-lg flex items-center gap-1.5">
                             <Crown className="w-3 h-3 fill-white" /> Best Value
@@ -118,12 +119,13 @@ export function Pricing({ onSelectTier }: PricingProps) {
                                 <span>Tailor your resume to specific roles</span>
                             </li>
                         </ul>
-                        <button
+                        <Button
+                            variant="premium"
+                            className="w-full shadow-lg shadow-premium/20"
                             onClick={() => handlePurchase("pack")}
-                            className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20"
                         >
                             Buy 5 Audits
-                        </button>
+                        </Button>
                     </div>
 
                 </div>
