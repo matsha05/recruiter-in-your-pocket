@@ -4,6 +4,7 @@ import { Download, Plus, ArrowRight } from "lucide-react";
 import AnalysisScanning from "./AnalysisScanning";
 import { ReportStream } from "./report/ReportStream";
 import { ReportData } from "./report/ReportTypes";
+import { UnlockBanner } from "./UnlockBanner";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -17,6 +18,8 @@ interface ReportPanelProps {
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
     isGated?: boolean;
+    justUnlocked?: boolean;
+    highlightSection?: string | null;
 }
 
 export default function ReportPanel({
@@ -30,7 +33,9 @@ export default function ReportPanel({
     onNewReport,
     freeUsesRemaining = 2,
     onUpgrade,
-    isGated = false
+    isGated = false,
+    justUnlocked = false,
+    highlightSection = null
 }: ReportPanelProps) {
 
     // Derived states
@@ -140,6 +145,18 @@ export default function ReportPanel({
                             </div>
                         </div>
 
+                        {/* Unlock Banner - Guidance after purchase */}
+                        {justUnlocked && report && (
+                            <UnlockBanner
+                                reportId={report.id || 'current'}
+                                onJumpToRewrites={() => {
+                                    const el = document.getElementById('section-bullet-upgrades');
+                                    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }}
+                                onDownloadPdf={onExportPdf || (() => { })}
+                            />
+                        )}
+
                         {/* The "Paper" */}
                         <div className="bg-background border border-border/50 shadow-sm rounded-xl p-8 md:p-12">
                             <ReportStream
@@ -150,6 +167,8 @@ export default function ReportPanel({
                                 onUpgrade={onUpgrade}
                                 hasJobDescription={hasJobDescription}
                                 isGated={isGated}
+                                justUnlocked={justUnlocked}
+                                highlightSection={highlightSection}
                             />
                         </div>
                     </div>

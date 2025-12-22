@@ -329,6 +329,31 @@
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
+
+  /* Post-Unlock Highlight */
+  .unlock-highlight {
+    animation: unlock-pulse 1200ms ease-out forwards;
+  }
+
+  /* Scroll offset for sticky header */
+  [id^="section-"] {
+    scroll-margin-top: 5rem;
+    /* Offset for header height */
+  }
+
+  @keyframes unlock-pulse {
+    0% {
+      background-color: hsl(var(--premium) / 0.15);
+    }
+
+    50% {
+      background-color: hsl(var(--premium) / 0.1);
+    }
+
+    100% {
+      background-color: transparent;
+    }
+  }
 }
 
 /* V2.1 REDUCED MOTION */

@@ -7,6 +7,8 @@ import { HiddenGemIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
+import { saveUnlockContext } from "@/lib/unlock/unlockContext";
+import { Analytics } from "@/lib/analytics";
 
 interface MissingWinsSectionProps {
     data: ReportData;
@@ -89,7 +91,11 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                         <Button
                             variant="premium"
                             size="sm"
-                            onClick={onUpgrade}
+                            onClick={() => {
+                                saveUnlockContext({ section: 'missing_wins' });
+                                Analytics.paywallCtaClicked('missing_wins');
+                                onUpgrade();
+                            }}
                             className="w-full shadow-md"
                         >
                             <Sparkles className="w-4 h-4 mr-2" />

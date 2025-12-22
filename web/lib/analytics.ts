@@ -259,6 +259,19 @@ export const Analytics = {
   purchaseCompleted: (amount: number, product: string, credits: number) =>
     trackRevenue(amount, { product, credits }),
 
+  // Post-purchase experience events
+  paywallCtaClicked: (section: string) =>
+    trackEvent("paywall_cta_clicked", { section }),
+
+  unlockConfirmCompleted: (status: "success" | "error", latencyMs: number) =>
+    trackEvent("unlock_confirm_completed", { status, latency_ms: latencyMs }),
+
+  unlockUiRevealed: (section: string, ttsnMs: number) =>
+    trackEvent("unlock_ui_revealed", { section, ttsn_ms: ttsnMs }),
+
+  unlockContextMissing: () =>
+    trackEvent("unlock_context_missing"),
+
   // Auth events
   signupCompleted: (method: string) =>
     trackEvent("signup_completed", { method }),

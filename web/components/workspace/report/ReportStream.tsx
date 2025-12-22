@@ -1,5 +1,5 @@
-"use client";
-
+import { ArrowRight, Plus, Sparkles, FileText } from "lucide-react";
+import { useRef } from "react";
 import { ReportData } from "./ReportTypes";
 import { FirstImpressionSection } from "./FirstImpressionSection";
 import { ScoreSummarySection } from "./ScoreSummarySection";
@@ -8,7 +8,6 @@ import { MissingWinsSection } from "./MissingWinsSection";
 import { JobAlignmentSection } from "./JobAlignmentSection";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Plus, Sparkles } from "lucide-react";
 
 interface ReportStreamProps {
     report: ReportData;
@@ -19,6 +18,8 @@ interface ReportStreamProps {
     onUpgrade?: () => void;
     hasJobDescription?: boolean;
     isGated?: boolean;
+    justUnlocked?: boolean;
+    highlightSection?: string | null;
 }
 
 export function ReportStream({
@@ -29,8 +30,13 @@ export function ReportStream({
     freeUsesRemaining = 2,
     onUpgrade,
     hasJobDescription = false,
-    isGated = false
+    isGated = false,
+    justUnlocked = false,
+    highlightSection = null
 }: ReportStreamProps) {
+    const bulletUpgradesRef = useRef<HTMLDivElement>(null);
+    const missingWinsRef = useRef<HTMLDivElement>(null);
+    const jobAlignmentRef = useRef<HTMLDivElement>(null);
 
     // Determine footer state
     const isExhausted = !isSample && freeUsesRemaining <= 0;
@@ -55,7 +61,14 @@ export function ReportStream({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-200" />
 
             {/* 3. The Value (Bullet Upgrades) */}
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+            <div
+                id="section-bullet-upgrades"
+                ref={bulletUpgradesRef}
+                className={cn(
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 rounded-lg transition-colors",
+                    highlightSection === 'bullet_upgrades' && "unlock-highlight"
+                )}
+            >
                 <BulletUpgradesSection data={report} isGated={isGated} onUpgrade={onUpgrade} />
             </div>
 
@@ -63,7 +76,14 @@ export function ReportStream({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-350" />
 
             {/* 4. Missing Wins (Uncover Hidden Achievements) */}
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
+            <div
+                id="section-missing-wins"
+                ref={missingWinsRef}
+                className={cn(
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 rounded-lg transition-colors",
+                    highlightSection === 'missing_wins' && "unlock-highlight"
+                )}
+            >
                 <MissingWinsSection data={report} isGated={isGated} onUpgrade={onUpgrade} />
             </div>
 
@@ -71,7 +91,14 @@ export function ReportStream({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-550" />
 
             {/* 5. Where You Compete (Job Alignment) */}
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700">
+            <div
+                id="section-job-alignment"
+                ref={jobAlignmentRef}
+                className={cn(
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700 rounded-lg transition-colors",
+                    highlightSection === 'job_alignment' && "unlock-highlight"
+                )}
+            >
                 <JobAlignmentSection data={report} hasJobDescription={hasJobDescription} isGated={isGated} onUpgrade={onUpgrade} />
             </div>
 

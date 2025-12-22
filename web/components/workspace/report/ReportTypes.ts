@@ -1,4 +1,5 @@
 export interface ReportData {
+    id?: string;
     score?: number;
     score_label?: string;
     score_comment_short?: string;

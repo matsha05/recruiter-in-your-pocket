@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { getUnlockContext, clearUnlockContext } from "@/lib/unlock/unlockContext";
 import WorkspaceHeader from "@/components/workspace/WorkspaceHeader";
 import InputPanel from "@/components/workspace/InputPanel";
 import ReportPanel from "@/components/workspace/ReportPanel";
@@ -32,6 +33,11 @@ export default function WorkspaceClient() {
     const [isSavePromptOpen, setIsSavePromptOpen] = useState(false);
     const [pendingReportForSave, setPendingReportForSave] = useState<any>(null);
 
+    // Unlock experience state
+    const [unlockStatus, setUnlockStatus] = useState<'pending' | 'complete' | 'error' | null>(null);
+    const [justUnlocked, setJustUnlocked] = useState(false);
+    const [highlightSection, setHighlightSection] = useState<string | null>(null);
+
     // Check for pending text from homepage upload
     useEffect(() => {
         const pendingText = sessionStorage.getItem("pending_resume_text");
@@ -59,29 +65,96 @@ export default function WorkspaceClient() {
     // Handle successful payment redirect
     useEffect(() => {
         const paymentStatus = searchParams.get("payment");
+        const sessionId = searchParams.get("session_id");
         const tier = searchParams.get("tier");
 
-        if (paymentStatus === "success") {
-            // Show success message
-            const tierLabel = tier === "30d" ? "30-Day Campaign Pass" : "24-Hour Fix Pass";
-            toast.success("Payment successful!", {
-                description: `Your ${tierLabel} is now active. You have unlimited resume reviews. Log in to access your pass!`
-            });
+        if (paymentStatus === "success" && sessionId) {
+            const confirmPurchase = async () => {
+                const startTime = Date.now();
+                setUnlockStatus("pending");
 
-            // Clean URL params
-            window.history.replaceState({}, "", "/workspace");
+                // Progressive loading: update copy after 4s to reduce anxiety
+                const progressiveTimeout = setTimeout(() => {
+                    toast.loading("Still unlocking… this can take a moment.", { id: "unlock-progress" });
+                }, 4000);
 
-            // If not logged in, prompt to sign in
-            if (!user) {
-                setTimeout(() => {
-                    setIsAuthOpen(true);
-                }, 500);
-            } else {
-                // Refresh user to get updated pass status
-                refreshUser?.();
-            }
+                try {
+                    const res = await fetch("/api/billing/confirm", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ sessionId })
+                    });
+                    const data = await res.json();
+                    clearTimeout(progressiveTimeout);
+                    toast.dismiss("unlock-progress");
+
+                    const latency = Date.now() - startTime;
+
+                    if (data.ok) {
+                        setUnlockStatus("complete");
+                        setJustUnlocked(true);
+
+                        // Track analytics
+                        Analytics.unlockConfirmCompleted("success", latency);
+
+                        // Handle auto-scroll based on context
+                        const ctx = getUnlockContext();
+                        if (ctx) {
+                            setHighlightSection(ctx.section);
+                            Analytics.unlockUiRevealed(ctx.section, latency);
+
+                            // Clear context after a delay to allow UI to react
+                            setTimeout(() => {
+                                setHighlightSection(null);
+                                clearUnlockContext();
+                            }, 3000);
+
+                            // Scroll to section after a short delay to let report render fully
+                            setTimeout(() => {
+                                const sectionId = `section-${ctx.section.replace('_', '-')}`;
+                                const el = document.getElementById(sectionId);
+                                if (el) {
+                                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
+                            }, 300);
+                        } else {
+                            // No unlock context – unexpected flow (purchased from pricing page, deep link)
+                            Analytics.unlockContextMissing();
+                        }
+
+                        // Refresh user to get latest entitlements
+                        await refreshUser?.();
+
+                        // Clean URL params
+                        window.history.replaceState({}, "", "/workspace");
+
+                        // Fire toast AFTER content is visible for psychological reinforcement
+                        setTimeout(() => {
+                            toast.success("Unlocked: Full Review", {
+                                description: "Rewrites, Missing Wins, and export are now available.",
+                                duration: 5000
+                            });
+                        }, 400);
+                    } else {
+                        setUnlockStatus("error");
+                        Analytics.unlockConfirmCompleted("error", latency);
+                        toast.error("Confirmation pending", {
+                            description: "Your payment was successful but we're still unlocking your review. Please refresh in a moment."
+                        });
+                    }
+                } catch (err) {
+                    clearTimeout(progressiveTimeout);
+                    toast.dismiss("unlock-progress");
+                    setUnlockStatus("error");
+                    const latency = Date.now() - startTime;
+                    Analytics.unlockConfirmCompleted("error", latency);
+                    console.error("Confirmation error:", err);
+                }
+            };
+
+            confirmPurchase();
         }
-    }, [searchParams, user, refreshUser]);
+    }, [searchParams, refreshUser]);
 
     const handleFileSelect = useCallback(async (file: File) => {
         console.log("[WorkspaceClient] handleFileSelect called with:", file.name, file.type);
@@ -314,6 +387,7 @@ export default function WorkspaceClient() {
                             freeUsesRemaining={freeUsesRemaining}
                             onUpgrade={() => setIsPaywallOpen(true)}
                             isGated={!(searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim()))}
+                            justUnlocked={justUnlocked}
                         />
                     )}
                 </div>

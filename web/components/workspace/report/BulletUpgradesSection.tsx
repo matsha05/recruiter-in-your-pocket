@@ -5,6 +5,7 @@ import { ReportData } from "./ReportTypes";
 import { TransformArrowIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
+import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
 import { ArrowRight, CheckCircle, Copy, ChevronDown, ChevronUp, Lock, Sparkles } from "lucide-react";
 
@@ -145,7 +146,11 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                     <Button
                                         variant="premium"
                                         size="sm"
-                                        onClick={onUpgrade}
+                                        onClick={() => {
+                                            saveUnlockContext({ section: 'bullet_upgrades' });
+                                            Analytics.paywallCtaClicked('bullet_upgrades');
+                                            onUpgrade();
+                                        }}
                                         className="shadow-md"
                                     >
                                         <Sparkles className="w-4 h-4 mr-2" />

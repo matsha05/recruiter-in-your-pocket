@@ -4,6 +4,8 @@ import { ReportData } from "./ReportTypes";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Target, Lock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { saveUnlockContext } from "@/lib/unlock/unlockContext";
+import { Analytics } from "@/lib/analytics";
 
 interface JobAlignmentSectionProps {
     data: ReportData;
@@ -107,7 +109,11 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                         <Button
                             variant="premium"
                             size="sm"
-                            onClick={onUpgrade}
+                            onClick={() => {
+                                saveUnlockContext({ section: 'job_alignment' });
+                                Analytics.paywallCtaClicked('job_alignment');
+                                onUpgrade();
+                            }}
                             className="w-full shadow-md"
                         >
                             <Sparkles className="w-4 h-4 mr-2" />
