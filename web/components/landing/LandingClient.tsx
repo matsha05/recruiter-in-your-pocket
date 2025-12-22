@@ -91,8 +91,13 @@ export default function LandingClient() {
 
             {/* Hero Section — Verdict First */}
             <main className="flex-1 flex flex-col overflow-hidden">
-                <section className="flex-1 flex items-center justify-center px-6 py-20 lg:py-28">
-                    <div className="w-full max-w-5xl mx-auto flex flex-col items-center gap-16">
+                <section className="relative flex-1 flex items-center justify-center px-6 py-12 lg:py-16">
+                    {/* Ambient glow - Linear-style */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-radial from-brand/8 via-transparent to-transparent blur-3xl" />
+                    </div>
+
+                    <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center gap-10">
 
                         {/* Centered Hero Header */}
                         <div className="text-center max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -100,7 +105,7 @@ export default function LandingClient() {
                                 See what recruiters see.
                             </h1>
                             <p className="text-xl text-muted-foreground mb-10">
-                                The 6-second verdict that decides everything.
+                                Then fix it before they do.
                             </p>
 
                             {/* Dropzone — The Hero */}

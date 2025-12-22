@@ -83,24 +83,24 @@ export function ResumeDropzone({
                             className="flex flex-col items-center gap-6"
                         >
                             <div className="relative">
-                                <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-brand/20 to-brand/10 flex items-center justify-center animate-pulse">
-                                    <FileText className="h-10 w-10 text-brand" strokeWidth={1.5} />
+                                <div className="h-16 w-16 rounded-xl bg-gradient-to-br from-brand/20 to-brand/10 flex items-center justify-center animate-pulse">
+                                    <FileText className="h-8 w-8 text-brand" strokeWidth={1.5} />
                                 </div>
-                                <div className="absolute -bottom-1 -right-1 h-8 w-8 rounded-full bg-brand flex items-center justify-center shadow-lg">
+                                <div className="absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-brand flex items-center justify-center shadow-lg">
                                     <motion.div
                                         animate={{ rotate: 360 }}
                                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                                     >
-                                        <Upload className="h-4 w-4 text-white" />
+                                        <Upload className="h-3.5 w-3.5 text-white" />
                                     </motion.div>
                                 </div>
                             </div>
                             <div className="space-y-2 text-center">
-                                <p className="text-xl font-serif italic font-medium text-foreground">
-                                    Reading your resume...
+                                <p className="text-lg font-display font-medium text-foreground">
+                                    Scanning for signals...
                                 </p>
                                 <p className="text-sm text-muted-foreground">
-                                    This takes about 3 seconds.
+                                    Verdict in ~3 seconds.
                                 </p>
                             </div>
                         </motion.div>

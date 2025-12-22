@@ -64,11 +64,11 @@ export function SampleReportPreview() {
                                     I scanned your "Leadership" section. You list 12 responsibilities, but I had to dig line-by-line to find the $5M expansion. <span className="text-foreground font-medium bg-premium/10 px-1 rounded">Lead with the win.</span>
                                 </p>
 
-                                {/* The Critical Miss */}
-                                <div className="p-4 bg-warning/10 border border-warning/20 rounded">
+                                {/* The Gap */}
+                                <div className="p-4 bg-destructive/5 border border-destructive/20 rounded">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <div className="w-2 h-2 rounded-full bg-warning animate-pulse" />
-                                        <span className="text-label text-warning">Critical Miss</span>
+                                        <div className="w-2 h-2 rounded-full bg-destructive" />
+                                        <span className="text-label text-destructive/80">The Gap</span>
                                     </div>
                                     <p className="text-sm text-foreground/90">
                                         Your skills section lists "Strategy" but your bullets only show "Execution." There is a mismatch between your title and your evidence.
@@ -83,9 +83,9 @@ export function SampleReportPreview() {
                             {/* Score Dial */}
                             <div className="text-center space-y-4">
                                 <div className="relative inline-flex items-center justify-center">
-                                    <svg className="w-32 h-32 transform -rotate-90">
-                                        <circle cx="64" cy="64" r="60" stroke="currentColor" strokeWidth="2" fill="transparent" className="text-black/5 dark:text-white/5" />
-                                        <circle cx="64" cy="64" r="60" stroke="hsl(var(--success))" strokeWidth="2" fill="transparent" strokeDasharray={377} strokeDashoffset={377 - (377 * score) / 100} className="transition-all duration-1000 ease-out" />
+                                    <svg className="w-36 h-36 transform -rotate-90">
+                                        <circle cx="72" cy="72" r="68" stroke="currentColor" strokeWidth="2" fill="transparent" className="text-black/5 dark:text-white/5" />
+                                        <circle cx="72" cy="72" r="68" stroke="hsl(var(--success))" strokeWidth="2" fill="transparent" strokeDasharray={427} strokeDashoffset={427 - (427 * score) / 100} className="transition-all duration-1000 ease-out" />
                                     </svg>
                                     <div className="absolute inset-0 flex items-center justify-center flex-col">
                                         <span className="text-5xl font-display font-medium tracking-tighter tabular-nums">{score}</span>
@@ -97,6 +97,26 @@ export function SampleReportPreview() {
                                         <CheckCircle2 className="w-3 h-3" /> Competes for Senior Roles
                                     </span>
                                 </div>
+
+                                {/* Subscore Confidence - 4 Signals */}
+                                <div className="grid grid-cols-4 gap-3 text-center mt-4 pt-4 border-t border-border/10">
+                                    <div>
+                                        <div className="text-sm font-mono font-medium text-success">92</div>
+                                        <div className="text-[10px] text-muted-foreground uppercase tracking-wide">Story</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-sm font-mono font-medium text-success">88</div>
+                                        <div className="text-[10px] text-muted-foreground uppercase tracking-wide">Impact</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-sm font-mono font-medium text-warning">74</div>
+                                        <div className="text-[10px] text-muted-foreground uppercase tracking-wide">Clarity</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-sm font-mono font-medium text-success">91</div>
+                                        <div className="text-[10px] text-muted-foreground uppercase tracking-wide">Skills</div>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Interactive Rewrite Demo */}
@@ -104,7 +124,7 @@ export function SampleReportPreview() {
                                 <div className="space-y-2">
                                     <div className="flex justify-between text-xs font-medium uppercase tracking-wider text-muted-foreground">
                                         <span>Bullet Upgrade</span>
-                                        <span className="text-premium">{fixed ? "Applied" : "Try it"}</span>
+                                        <span className={fixed ? "text-success" : "text-brand"}>{fixed ? "Fixed" : "Before / After"}</span>
                                     </div>
 
                                     <div
@@ -123,7 +143,7 @@ export function SampleReportPreview() {
                                         </div>
 
                                         <div className={cn("mt-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider transition-colors", fixed ? "text-success" : "text-brand")}>
-                                            {fixed ? "Recruiter sees: Clear ownership" : "Tap to Rewrite"}
+                                            {fixed ? "Now reads: Clear ownership" : "See the Fix"}
                                             {!fixed && <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />}
                                         </div>
                                     </div>

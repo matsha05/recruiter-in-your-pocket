@@ -45,7 +45,7 @@ function FeaturedCard({ study }: { study: typeof featuredStudies[0] }) {
             href={study.href}
             className="group block"
         >
-            <article className="h-full p-6 rounded-md bg-card border border-border/50 hover:border-brand/30 hover:shadow-sm transition-all duration-200 flex flex-col">
+            <article className="h-full p-5 rounded bg-card/50 backdrop-blur-sm border border-border/50 hover:border-brand/30 hover:shadow-sm transition-all duration-200 flex flex-col">
                 {/* Category */}
                 <div className="flex items-center gap-2 mb-3">
                     <FileText className="w-3 h-3 text-muted-foreground" />
@@ -90,12 +90,15 @@ export function BackedByResearch() {
                             The Hiring Playbook
                         </span>
                     </div>
-                    <h2 className="font-serif text-4xl md:text-5xl text-foreground leading-tight tracking-tight mb-4">
-                        The rules they <span className="text-brand italic">don't</span> teach you.
+                    <h2 className="font-display text-3xl md:text-4xl text-foreground leading-tight tracking-tight mb-4">
+                        Built on how recruiters <span className="text-brand italic">decide</span>.
                     </h2>
-                    <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                        Built on how recruiters actually make decisions. Not myths.
+                    <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-2">
+                        Not career center advice.
                     </p>
+                    <Link href="/research/how-we-score" className="text-sm text-brand hover:underline inline-flex items-center gap-1">
+                        See our scoring model <ArrowRight className="w-3 h-3" />
+                    </Link>
                 </div>
 
                 {/* Featured Cards Grid */}
