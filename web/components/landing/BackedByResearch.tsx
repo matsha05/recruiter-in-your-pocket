@@ -90,7 +90,7 @@ export function BackedByResearch() {
                             The Hiring Playbook
                         </span>
                     </div>
-                    <h2 className="font-display text-3xl md:text-4xl text-foreground leading-tight tracking-tight mb-4">
+                    <h2 className="font-display text-4xl md:text-5xl text-foreground leading-tight tracking-tight mb-4">
                         Built on how recruiters <span className="text-brand italic">decide</span>.
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-2">

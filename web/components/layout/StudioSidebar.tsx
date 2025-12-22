@@ -3,15 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
     Library,
     FileText,
     CreditCard,
-    LogOut,
-    Zap
 } from "lucide-react";
-import { InsightSparkleIcon } from "@/components/icons";
 import { PocketMark } from "@/components/icons";
 
 interface StudioSidebarProps {
@@ -46,24 +42,6 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
                 <StudioNavLink href="/settings" icon={CreditCard}>
                     Settings
                 </StudioNavLink>
-            </div>
-
-            {/* Footer / CTA */}
-            <div className="p-4 border-t border-border/50 bg-background/50">
-                <div className="rounded-md border border-border/10 bg-secondary/30 p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                        <InsightSparkleIcon className="w-4 h-4 text-premium" />
-                        <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Pro Tip</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                        Recruiters spend 6 seconds on your resume. Make them count.
-                    </p>
-                    <Link href="/settings" className="w-full block">
-                        <Button size="sm" variant="outline" className="w-full text-xs h-7 border-dashed">
-                            Get Audits
-                        </Button>
-                    </Link>
-                </div>
             </div>
         </aside>
     );
