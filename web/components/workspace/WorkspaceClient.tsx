@@ -313,6 +313,7 @@ export default function WorkspaceClient() {
                             onNewReport={handleNewReport}
                             freeUsesRemaining={freeUsesRemaining}
                             onUpgrade={() => setIsPaywallOpen(true)}
+                            isGated={!(searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim()))}
                         />
                     )}
                 </div>

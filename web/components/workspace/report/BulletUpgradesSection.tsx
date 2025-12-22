@@ -6,9 +6,15 @@ import { TransformArrowIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, CheckCircle, Copy, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, CheckCircle, Copy, ChevronDown, ChevronUp, Lock, Sparkles } from "lucide-react";
 
-export function BulletUpgradesSection({ data }: { data: ReportData }) {
+interface BulletUpgradesSectionProps {
+    data: ReportData;
+    isGated?: boolean;
+    onUpgrade?: () => void;
+}
+
+export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: BulletUpgradesSectionProps) {
     const [heroRevealed, setHeroRevealed] = useState(false);
     const [showAll, setShowAll] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
@@ -109,65 +115,106 @@ export function BulletUpgradesSection({ data }: { data: ReportData }) {
                 </div>
             </div>
 
-            {/* Remaining Rewrites - Clean compact list */}
+            {/* Remaining Rewrites - Gated or Full Access */}
             {remainingRewrites.length > 0 && (
                 <div className="space-y-3">
-                    {visibleRewrites.map((rewrite, i) => (
-                        <div key={i} className="rounded-lg border border-border bg-card p-5 space-y-4">
-                            {/* Before/After */}
-                            <div className="space-y-2">
-                                <p className="text-sm text-destructive/70 line-through decoration-destructive/30">
-                                    {rewrite.original}
-                                </p>
-                                <p className="text-sm text-foreground">
-                                    {rewrite.better}
-                                </p>
+                    {isGated ? (
+                        // GATED STATE: Show locked preview with upgrade CTA
+                        <div className="relative">
+                            {/* Blurred preview of first remaining rewrite */}
+                            <div className="rounded-lg border border-border bg-card p-5 space-y-4 blur-[2px] select-none pointer-events-none">
+                                <div className="space-y-2">
+                                    <p className="text-sm text-destructive/70 line-through decoration-destructive/30">
+                                        {remainingRewrites[0]?.original || "Original bullet point..."}
+                                    </p>
+                                    <p className="text-sm text-foreground">
+                                        {remainingRewrites[0]?.better || "Improved version..."}
+                                    </p>
+                                </div>
                             </div>
 
-                            {/* Footer: Coaching + Copy */}
-                            <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                                {rewrite.enhancement_note && (
-                                    <p className="text-xs text-muted-foreground flex-1 pr-4">
-                                        {rewrite.enhancement_note}
-                                    </p>
+                            {/* Overlay with lock and CTA */}
+                            <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-background/60 via-background/80 to-background flex flex-col items-center justify-center gap-4 p-6">
+                                <div className="flex items-center gap-2 text-muted-foreground">
+                                    <Lock className="w-4 h-4" />
+                                    <span className="text-sm font-medium">
+                                        {remainingRewrites.length} more rewrite{remainingRewrites.length > 1 ? 's' : ''} available
+                                    </span>
+                                </div>
+                                {onUpgrade && (
+                                    <Button
+                                        variant="premium"
+                                        size="sm"
+                                        onClick={onUpgrade}
+                                        className="shadow-md"
+                                    >
+                                        <Sparkles className="w-4 h-4 mr-2" />
+                                        Unlock All Fixes
+                                    </Button>
                                 )}
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    onClick={() => handleCopy(rewrite.better, i)}
-                                    className={cn(
-                                        "flex-shrink-0",
-                                        copiedIndex === i
-                                            ? "bg-success/10 text-success hover:bg-success/20"
-                                            : ""
-                                    )}
-                                >
-                                    {copiedIndex === i ? <CheckCircle className="w-3 h-3 mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
-                                    {copiedIndex === i ? "Copied" : "Copy"}
-                                </Button>
                             </div>
                         </div>
-                    ))}
+                    ) : (
+                        // FULL ACCESS: Show all rewrites with expand/collapse
+                        <>
+                            {visibleRewrites.map((rewrite, i) => (
+                                <div key={i} className="rounded-lg border border-border bg-card p-5 space-y-4">
+                                    {/* Before/After */}
+                                    <div className="space-y-2">
+                                        <p className="text-sm text-destructive/70 line-through decoration-destructive/30">
+                                            {rewrite.original}
+                                        </p>
+                                        <p className="text-sm text-foreground">
+                                            {rewrite.better}
+                                        </p>
+                                    </div>
 
-                    {/* Show More / Less */}
-                    {hiddenCount > 0 && (
-                        <Button
-                            variant="ghost"
-                            className="w-full"
-                            onClick={() => setShowAll(!showAll)}
-                        >
-                            {showAll ? (
-                                <>
-                                    <ChevronUp className="w-4 h-4 mr-2" />
-                                    Show less
-                                </>
-                            ) : (
-                                <>
-                                    <ChevronDown className="w-4 h-4 mr-2" />
-                                    Show {hiddenCount} more
-                                </>
+                                    {/* Footer: Coaching + Copy */}
+                                    <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                                        {rewrite.enhancement_note && (
+                                            <p className="text-xs text-muted-foreground flex-1 pr-4">
+                                                {rewrite.enhancement_note}
+                                            </p>
+                                        )}
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() => handleCopy(rewrite.better, i)}
+                                            className={cn(
+                                                "flex-shrink-0",
+                                                copiedIndex === i
+                                                    ? "bg-success/10 text-success hover:bg-success/20"
+                                                    : ""
+                                            )}
+                                        >
+                                            {copiedIndex === i ? <CheckCircle className="w-3 h-3 mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
+                                            {copiedIndex === i ? "Copied" : "Copy"}
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {/* Show More / Less */}
+                            {hiddenCount > 0 && (
+                                <Button
+                                    variant="ghost"
+                                    className="w-full"
+                                    onClick={() => setShowAll(!showAll)}
+                                >
+                                    {showAll ? (
+                                        <>
+                                            <ChevronUp className="w-4 h-4 mr-2" />
+                                            Show less
+                                        </>
+                                    ) : (
+                                        <>
+                                            <ChevronDown className="w-4 h-4 mr-2" />
+                                            Show {hiddenCount} more
+                                        </>
+                                    )}
+                                </Button>
                             )}
-                        </Button>
+                        </>
                     )}
                 </div>
             )}

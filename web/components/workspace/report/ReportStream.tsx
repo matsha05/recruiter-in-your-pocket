@@ -18,6 +18,7 @@ interface ReportStreamProps {
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
     hasJobDescription?: boolean;
+    isGated?: boolean;
 }
 
 export function ReportStream({
@@ -27,7 +28,8 @@ export function ReportStream({
     onNewReport,
     freeUsesRemaining = 2,
     onUpgrade,
-    hasJobDescription = false
+    hasJobDescription = false,
+    isGated = false
 }: ReportStreamProps) {
 
     // Determine footer state
@@ -54,7 +56,7 @@ export function ReportStream({
 
             {/* 3. The Value (Bullet Upgrades) */}
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
-                <BulletUpgradesSection data={report} />
+                <BulletUpgradesSection data={report} isGated={isGated} onUpgrade={onUpgrade} />
             </div>
 
             {/* Divider */}
@@ -62,7 +64,7 @@ export function ReportStream({
 
             {/* 4. Missing Wins (Uncover Hidden Achievements) */}
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
-                <MissingWinsSection data={report} />
+                <MissingWinsSection data={report} isGated={isGated} onUpgrade={onUpgrade} />
             </div>
 
             {/* Divider */}
@@ -70,7 +72,7 @@ export function ReportStream({
 
             {/* 5. Where You Compete (Job Alignment) */}
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700">
-                <JobAlignmentSection data={report} hasJobDescription={hasJobDescription} />
+                <JobAlignmentSection data={report} hasJobDescription={hasJobDescription} isGated={isGated} onUpgrade={onUpgrade} />
             </div>
 
             {/* Report Footer - "What's next?" */}
@@ -95,7 +97,7 @@ export function ReportStream({
                                     onClick={onNewReport}
                                     className="shadow-lg shadow-brand/20"
                                 >
-                                    Run Your Free Audit
+                                    Run Your Free Review
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             )}
@@ -104,14 +106,14 @@ export function ReportStream({
                         // Exhausted free reports - upgrade CTA
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
-                                That was your free audit. Want to run another version?
+                                That was your free review. Want to run another version?
                             </p>
                             <Button
                                 variant="premium"
                                 onClick={onUpgrade}
                             >
                                 <Sparkles className="w-4 h-4 mr-2" />
-                                Get More Audits
+                                Get More Reviews
                             </Button>
                         </div>
                     ) : onNewReport ? (
@@ -119,7 +121,7 @@ export function ReportStream({
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
                                 {freeUsesRemaining > 0
-                                    ? `You have ${freeUsesRemaining} free audit${freeUsesRemaining > 1 ? 's' : ''} remaining.`
+                                    ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
                                     : 'Ready to analyze another version?'}
                             </p>
                             <Button

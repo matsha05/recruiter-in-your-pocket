@@ -16,7 +16,7 @@ const faqData = [
         category: "Product",
         questions: [
             {
-                q: "What exactly does the audit analyze?",
+                q: "What exactly does the review analyze?",
                 a: "We analyze your resume through multiple lenses: recruiter first impression (what they see in 6 seconds), quantification density (are you using numbers?), action verb strength, bullet clarity, and overall structure. Each dimension is scored and explained with specific improvement suggestions."
             },
             {
@@ -58,12 +58,12 @@ const faqData = [
         category: "Pricing & Credits",
         questions: [
             {
-                q: "Is the first audit really free?",
-                a: "Yes. Your first full audit is completely free, no credit card required. We want you to see the value before you commit."
+                q: "Is the first review really free?",
+                a: "Yes. Your first full review is completely free, no credit card required. We want you to see the value before you commit."
             },
             {
-                q: "What's the difference between Single Audit and Job Search Pack?",
-                a: "Single Audit ($9) gives you one additional audit. Job Search Pack ($29) gives you 5 audits at $5.80 each—best for iterating on multiple versions or tailoring to different roles."
+                q: "What's the difference between Quick Check and Active Job Search?",
+                a: "Quick Check ($9) is best if you're just getting started—one review to diagnose what's not working. Active Job Search ($29) gives you 5 reviews so you can iterate across versions and tailor for different roles."
             },
             {
                 q: "Do credits expire?",
@@ -71,7 +71,7 @@ const faqData = [
             },
             {
                 q: "Can I get a refund?",
-                a: "Yes. If you're not satisfied with your first report, email us within 24 hours for a full refund. No questions asked."
+                a: "Yes. If you're not satisfied with your first review, email us within 24 hours for a full refund. No questions asked."
             },
         ]
     },

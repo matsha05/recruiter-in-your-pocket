@@ -68,7 +68,7 @@ export default function WorkspaceHeader({
 
             {/* Actions - Responsive */}
             <div className="flex items-center gap-1 md:gap-2">
-                {/* Example Audit - Hidden on mobile (accessible via header menu or report CTA) */}
+                {/* Example Report - Hidden on mobile (accessible via header menu or report CTA) */}
                 <Button
                     variant="ghost"
                     size="sm"
@@ -76,18 +76,18 @@ export default function WorkspaceHeader({
                     onClick={onSampleReport}
                 >
                     <FileText className="w-4 h-4 mr-2" />
-                    Example Audit
+                    Example Report
                 </Button>
 
-                {/* New Audit - Icon only on mobile */}
+                {/* New Report - Icon only on mobile */}
                 <Button
                     variant="ghost"
                     size="sm"
                     onClick={onNewReport}
-                    aria-label="New Audit"
+                    aria-label="New Report"
                 >
                     <Plus className="w-4 h-4 md:mr-2" />
-                    <span className="hidden md:inline">New Audit</span>
+                    <span className="hidden md:inline">New Report</span>
                 </Button>
 
                 {!user ? (

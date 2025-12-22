@@ -84,7 +84,7 @@ export default function SaveReportPrompt({
                         </div>
                     </div>
                     <DialogTitle className="font-display text-xl font-medium">
-                        Save this audit
+                        Save this review
                     </DialogTitle>
                     <DialogDescription className="text-sm">
                         Enter your email to save this report and access it anytime.
@@ -128,7 +128,7 @@ export default function SaveReportPrompt({
                                 Saving...
                             </>
                         ) : (
-                            "Save My Audit →"
+                            "Save My Review →"
                         )}
                     </Button>
 

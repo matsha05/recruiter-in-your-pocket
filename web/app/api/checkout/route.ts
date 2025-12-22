@@ -171,23 +171,23 @@ export async function POST(request: Request) {
 
         const tierLabel =
             requestedTier === "90d" ? "Executive Membership (Quarterly)" :
-                requestedTier === "30d" ? "Job Search Pack" :
-                    "Single Audit";
+                requestedTier === "30d" ? "Active Job Search" :
+                    "Quick Check";
 
         const baseUrl = getBaseUrl();
 
         // Create Stripe checkout session
         // Name will be collected by Stripe in the checkout form
-            const checkoutSession = await stripe.checkout.sessions.create({
-                mode: "payment",
-                payment_method_types: ["card"],
-                line_items: [
-                    {
+        const checkoutSession = await stripe.checkout.sessions.create({
+            mode: "payment",
+            payment_method_types: ["card"],
+            line_items: [
+                {
                     price: priceId,
                     quantity: 1
                 }
-                ],
-                customer_email: checkoutEmail,
+            ],
+            customer_email: checkoutEmail,
             // Collect billing name in checkout
             billing_address_collection: "required",
             success_url: `${baseUrl}/workspace?payment=success&tier=${requestedTier}`,

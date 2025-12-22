@@ -62,13 +62,13 @@ export function UserNav({
                             </span>
                         )}
                         {user.membership === "audit" && (
-                            <span className="text-success">1 Audit Available</span>
+                            <span className="text-success">1 Review Available</span>
                         )}
                         {(user.membership === "free" || !user.membership) && (
                             <div className="flex flex-col gap-1">
                                 <span className="text-muted-foreground">Free Plan</span>
                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
-                                    <span className="text-moss lowercase normal-case">• {user.freeUsesLeft} free {user.freeUsesLeft === 1 ? 'audit' : 'audits'} remaining</span>
+                                    <span className="text-moss lowercase normal-case">• {user.freeUsesLeft} free {user.freeUsesLeft === 1 ? 'review' : 'reviews'} remaining</span>
                                 )}
                             </div>
                         )}

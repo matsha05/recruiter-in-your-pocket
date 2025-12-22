@@ -16,6 +16,7 @@ interface ReportPanelProps {
     onNewReport?: () => void;
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
+    isGated?: boolean;
 }
 
 export default function ReportPanel({
@@ -28,7 +29,8 @@ export default function ReportPanel({
     isSample = false,
     onNewReport,
     freeUsesRemaining = 2,
-    onUpgrade
+    onUpgrade,
+    isGated = false
 }: ReportPanelProps) {
 
     // Derived states
@@ -66,7 +68,7 @@ export default function ReportPanel({
 
                     {/* Trust Signal */}
                     <p className="text-xs text-muted-foreground/60 font-medium">
-                        First audit free · No login required
+                        First review free · No login required
                     </p>
 
                     {/* Divider + Example Link */}
@@ -91,7 +93,7 @@ export default function ReportPanel({
                             <div className="space-y-1">
                                 <div className="flex items-center gap-3">
                                     <h1 className="text-2xl font-serif font-semibold text-foreground tracking-tight">
-                                        {report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Audit'}
+                                        {report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
                                     </h1>
                                     {isSample && (
                                         <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">
@@ -104,7 +106,7 @@ export default function ReportPanel({
 
                             {/* Action Buttons */}
                             <div className="flex items-center gap-2">
-                                {/* Primary: Run Another (for real audits) or Run Your Audit (for example) */}
+                                {/* Primary: Run Another (for real reports) or Run Your Report (for example) */}
                                 {onNewReport && (
                                     <button
                                         onClick={onNewReport}
@@ -112,7 +114,7 @@ export default function ReportPanel({
                                     >
                                         {isSample ? (
                                             <>
-                                                Run Your Audit
+                                                Run Your Review
                                                 <ArrowRight className="w-4 h-4" />
                                             </>
                                         ) : (
@@ -147,6 +149,7 @@ export default function ReportPanel({
                                 freeUsesRemaining={freeUsesRemaining}
                                 onUpgrade={onUpgrade}
                                 hasJobDescription={hasJobDescription}
+                                isGated={isGated}
                             />
                         </div>
                     </div>

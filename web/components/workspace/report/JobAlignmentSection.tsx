@@ -2,14 +2,17 @@
 
 import { ReportData } from "./ReportTypes";
 import { ReportSectionHeader } from "./ReportSectionHeader";
-import { Target } from "lucide-react";
+import { Target, Lock, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface JobAlignmentSectionProps {
     data: ReportData;
     hasJobDescription?: boolean;
+    isGated?: boolean;
+    onUpgrade?: () => void;
 }
 
-export function JobAlignmentSection({ data, hasJobDescription = false }: JobAlignmentSectionProps) {
+export function JobAlignmentSection({ data, hasJobDescription = false, isGated = false, onUpgrade }: JobAlignmentSectionProps) {
     const alignment = data.job_alignment;
     if (!alignment) {
         return (
@@ -76,43 +79,84 @@ export function JobAlignmentSection({ data, hasJobDescription = false }: JobAlig
                 subtitle="Your primary lane and how to position."
             />
 
-            {/* The Declaration */}
-            <div className="text-center py-8">
-                {primaryRole && (
-                    <h3 className="text-4xl md:text-5xl font-serif font-semibold text-foreground tracking-tight mb-6">
-                        {primaryRole}
-                    </h3>
-                )}
+            {isGated ? (
+                // GATED STATE: Show teaser with locked overlay
+                <div className="rounded-lg border border-border bg-card p-6 space-y-4">
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                        <Lock className="w-5 h-5" />
+                        <div>
+                            <p className="text-sm font-medium text-foreground">
+                                Role positioning identified
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                                Best-fit roles, stretch opportunities, and positioning notes
+                            </p>
+                        </div>
+                    </div>
 
-                {positioning && (
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto font-serif">
-                        {positioning}
-                    </p>
-                )}
-            </div>
+                    {/* Teaser: Show primary role blurred */}
+                    {primaryRole && (
+                        <div className="text-center py-4 blur-[3px] select-none">
+                            <h3 className="text-2xl font-serif font-semibold text-foreground">
+                                {primaryRole}
+                            </h3>
+                        </div>
+                    )}
 
-            {/* Supporting Roles - De-emphasized Footer */}
-            <div className="border-t border-border/40 pt-6 space-y-3 text-center">
-                {otherFitRoles.length > 0 && (
-                    <p className="text-sm text-muted-foreground">
-                        <span className="text-foreground/70 font-medium">Also fits:</span>{' '}
-                        {otherFitRoles.join(' · ')}
-                    </p>
-                )}
+                    {onUpgrade && (
+                        <Button
+                            variant="premium"
+                            size="sm"
+                            onClick={onUpgrade}
+                            className="w-full shadow-md"
+                        >
+                            <Sparkles className="w-4 h-4 mr-2" />
+                            Unlock Role Positioning
+                        </Button>
+                    )}
+                </div>
+            ) : (
+                // FULL ACCESS: Show complete role analysis
+                <>
+                    {/* The Declaration */}
+                    <div className="text-center py-8">
+                        {primaryRole && (
+                            <h3 className="text-4xl md:text-5xl font-serif font-semibold text-foreground tracking-tight mb-6">
+                                {primaryRole}
+                            </h3>
+                        )}
 
-                {stretchRoles.length > 0 && (
-                    <p className="text-sm text-muted-foreground">
-                        <span className="text-foreground/70 font-medium">Stretch:</span>{' '}
-                        {stretchRoles.join(' · ')}
-                    </p>
-                )}
+                        {positioning && (
+                            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto font-serif">
+                                {positioning}
+                            </p>
+                        )}
+                    </div>
 
-                {footerMeta && (
-                    <p className="text-xs text-muted-foreground/60 pt-2">
-                        {footerMeta}
-                    </p>
-                )}
-            </div>
+                    {/* Supporting Roles - De-emphasized Footer */}
+                    <div className="border-t border-border/40 pt-6 space-y-3 text-center">
+                        {otherFitRoles.length > 0 && (
+                            <p className="text-sm text-muted-foreground">
+                                <span className="text-foreground/70 font-medium">Also fits:</span>{' '}
+                                {otherFitRoles.join(' · ')}
+                            </p>
+                        )}
+
+                        {stretchRoles.length > 0 && (
+                            <p className="text-sm text-muted-foreground">
+                                <span className="text-foreground/70 font-medium">Stretch:</span>{' '}
+                                {stretchRoles.join(' · ')}
+                            </p>
+                        )}
+
+                        {footerMeta && (
+                            <p className="text-xs text-muted-foreground/60 pt-2">
+                                {footerMeta}
+                            </p>
+                        )}
+                    </div>
+                </>
+            )}
         </section>
     );
 }

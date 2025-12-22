@@ -67,13 +67,13 @@ export function MobileNav() {
                                             </span>
                                         )}
                                         {user.membership === "audit" && (
-                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success">1 Audit Available</span>
+                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success">1 Review Available</span>
                                         )}
                                         {(user.membership === "free" || !user.membership) && (
                                             <span className="inline-flex items-center gap-1">
                                                 <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-muted text-muted-foreground">Free Plan</span>
                                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
-                                                    <span className="text-[10px] text-moss font-medium">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Audit' : 'Audits'} remaining</span>
+                                                    <span className="text-[10px] text-moss font-medium">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Review' : 'Reviews'} remaining</span>
                                                 )}
                                             </span>
                                         )}

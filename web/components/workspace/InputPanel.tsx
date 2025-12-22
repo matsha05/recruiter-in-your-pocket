@@ -61,7 +61,7 @@ export default function InputPanel({
         if (freeUsesRemaining >= 2) {
             return "No login required to start.";
         } else if (freeUsesRemaining === 1) {
-            return "1 free audit remaining";
+            return "1 free review remaining";
         } else {
             return "Upgrade to keep analyzing";
         }
@@ -187,7 +187,7 @@ export default function InputPanel({
                             <span className="text-[10px] uppercase tracking-wider font-medium text-muted-foreground/60">Optional</span>
                         </div>
                         <p className="text-xs text-muted-foreground">
-                            Paste a job posting to see exactly how you match—or skip for a general audit.
+                            Paste a job posting to see exactly how you match—or skip for a general review.
                         </p>
                         <textarea
                             value={jobDescription}
@@ -196,6 +196,30 @@ export default function InputPanel({
                             placeholder="Paste the job description to see how well you align..."
                             aria-label="Job description (optional)"
                         />
+                    </div>
+
+                    {/* Section 3: Intent Question (Pain Priming) */}
+                    <div className="p-6 md:p-8 space-y-4 border-t border-border/50 bg-background">
+                        <div className="flex items-center justify-between">
+                            <span className="font-semibold text-sm tracking-wide text-foreground">Where are you getting stuck?</span>
+                            <span className="text-[10px] uppercase tracking-wider font-medium text-muted-foreground/60">Optional</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                            {[
+                                { id: "no-response", label: "Not hearing back" },
+                                { id: "screens", label: "Failing recruiter screens" },
+                                { id: "tailoring", label: "Unsure how to tailor" },
+                                { id: "career-switch", label: "Career switch" },
+                            ].map((option) => (
+                                <button
+                                    key={option.id}
+                                    type="button"
+                                    className="text-left px-3 py-2 rounded border border-border/50 text-sm text-muted-foreground hover:border-brand/50 hover:bg-brand/5 transition-colors"
+                                >
+                                    {option.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Footer / Action */}

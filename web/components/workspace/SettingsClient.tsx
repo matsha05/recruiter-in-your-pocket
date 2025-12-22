@@ -126,7 +126,7 @@ export default function SettingsClient() {
                 <section className="bg-card border border-border/20 rounded-lg p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div className="space-y-3">
-                            <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Your Audits</h2>
+                            <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Your Reviews</h2>
                             <div className="flex items-center gap-3">
                                 {/* Visual dots - show filled for available, empty for used */}
                                 <div className="flex items-center gap-1">
@@ -142,14 +142,14 @@ export default function SettingsClient() {
                                 </span>
                             </div>
                             <p className="text-xs text-muted-foreground">
-                                Your first audit is free
+                                Your first review is free
                             </p>
                         </div>
                         <a
                             href="/workspace"
                             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors whitespace-nowrap"
                         >
-                            Run an Audit →
+                            Run a Review →
                         </a>
                     </div>
                 </section>
@@ -196,27 +196,27 @@ export default function SettingsClient() {
                     </div>
                 </section>
 
-                {/* 2. Buy Audit Credits */}
+                {/* 2. Get More Reviews */}
                 <section>
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h2 className="text-2xl font-display font-medium text-foreground">Get More Audits</h2>
-                            <p className="text-sm text-muted-foreground mt-1">Your first audit is free. Need more? Prices start at $9.</p>
+                            <h2 className="text-2xl font-display font-medium text-foreground">How serious is your job search?</h2>
+                            <p className="text-sm text-muted-foreground mt-1">Your first review is free. Unlock more to iterate and tailor.</p>
                         </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
-                        {/* TIER 1: Single Audit ($9/1) */}
+                        {/* TIER 1: Quick Check ($9/1) */}
                         <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Single Audit</div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Quick Check</div>
                                 <div className="text-4xl font-display font-bold text-foreground">$9</div>
-                                <p className="text-sm text-muted-foreground mt-2">1 additional audit</p>
+                                <p className="text-sm text-muted-foreground mt-2">Best for first-time feedback</p>
                             </div>
                             <ul className="space-y-3 mb-8 text-sm text-muted-foreground font-medium flex-1">
-                                <FeatureItem text="See exactly what recruiters see" icon={Check} />
-                                <FeatureItem text="Copy-paste ready upgrades" icon={Check} />
-                                <FeatureItem text="Share with your coach or mentor" icon={Check} />
+                                <FeatureItem text="Understand what recruiters notice in 10 seconds" icon={Check} />
+                                <FeatureItem text="One high-impact fix you can apply today" icon={Check} />
+                                <FeatureItem text="Use it to decide what to change next" icon={Check} />
                             </ul>
                             <button
                                 onClick={() => onCheckoutClick("single")}
@@ -224,31 +224,29 @@ export default function SettingsClient() {
                                 className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading === "single" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Get My Audit
+                                Unlock 1 Full Review
                             </button>
                         </div>
 
-                        {/* TIER 2: Job Search Pack ($29/5) - HIGHLIGHTED */}
+                        {/* TIER 2: Active Job Search ($29/5) - HIGHLIGHTED */}
                         <div className="relative p-8 rounded border-2 border-premium bg-background flex flex-col">
                             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
                             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-sm">
-                                Best Value
+                                Recommended
                             </div>
 
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Job Search Pack</div>
+                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Active Job Search</div>
                                 <div className="flex items-baseline gap-2">
                                     <span className="text-4xl font-display font-bold text-foreground">$29</span>
-                                    <span className="text-sm text-muted-foreground line-through">$45</span>
                                 </div>
-                                <p className="text-sm text-muted-foreground mt-2">5 audits — $5.80 each</p>
+                                <p className="text-sm text-muted-foreground mt-2">For an active job search</p>
                             </div>
                             <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
-                                <FeatureItem text="5 audits for multiple versions" icon={InsightSparkleIcon} accent="gold" />
-                                <FeatureItem text="Copy-paste ready upgrades" />
-                                <FeatureItem text="Share with your coach or mentor" />
-                                <FeatureItem text="Track improvements across versions" />
-                                <FeatureItem text="Tailor your resume to specific roles" />
+                                <FeatureItem text="Tailor versions for different roles" icon={InsightSparkleIcon} accent="gold" />
+                                <FeatureItem text="Unlock full rewrites and missing wins" />
+                                <FeatureItem text="Compare progress across versions" />
+                                <FeatureItem text="Export a clean PDF when you're ready" />
                             </ul>
                             <button
                                 onClick={() => onCheckoutClick("pack")}
@@ -256,14 +254,14 @@ export default function SettingsClient() {
                                 className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20 flex items-center justify-center gap-2"
                             >
                                 {isLoading === "pack" && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Get the Pack
+                                Start Job Search Mode
                             </button>
                         </div>
                     </div>
 
                     <div className="mt-12 text-center border-t border-border/50 pt-8">
                         <p className="text-xs text-muted-foreground max-w-md mx-auto">
-                            <strong>100% Satisfaction Guarantee:</strong> If you don't feel more confident after your first report, email us within 24h for a full refund.
+                            <strong>100% Satisfaction Guarantee:</strong> If you don't feel more confident after your first review, email us within 24h for a full refund.
                         </p>
                     </div>
                 </section>

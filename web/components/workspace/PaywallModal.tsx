@@ -88,21 +88,21 @@ export default function PaywallModal({
             <DialogContent className="max-w-[420px] p-8">
                 <DialogHeader className="text-center mb-6">
                     <DialogTitle className="font-display text-2xl font-medium">
-                        You've used your free audit.
+                        Unlock your complete report
                     </DialogTitle>
                     <DialogDescription>
-                        Get more credits to keep improving your resume.
+                        You've seen the diagnosis. Now get the prescription.
                     </DialogDescription>
                 </DialogHeader>
 
                 {/* What you get - Value clarity */}
                 <div className="text-center text-xs text-muted-foreground mb-6 px-4">
-                    <span className="font-medium text-foreground">Each audit includes:</span> full recruiter analysis, score breakdown, copy-ready rewrites, and hidden wins prompts.
+                    <span className="font-medium text-foreground">Unlock:</span> full rewrites, missing wins, role positioning, PDF export, and version tracking.
                 </div>
 
-                {/* Tier Selection - Credit Packs */}
+                {/* Tier Selection - Intent-Based */}
                 <div className="grid grid-cols-2 gap-3 mb-6">
-                    {/* Quick Fix - 1 Audit */}
+                    {/* Quick Check - 1 Review */}
                     <button
                         type="button"
                         onClick={() => setSelectedTier("single")}
@@ -115,10 +115,11 @@ export default function PaywallModal({
                         )}
                     >
                         <span className="text-2xl font-display font-medium text-foreground">$9</span>
-                        <span className="text-label text-muted-foreground mt-1">1 Audit</span>
+                        <span className="text-label text-muted-foreground mt-1">Quick Check</span>
+                        <span className="text-[9px] text-muted-foreground">1 review</span>
                     </button>
 
-                    {/* Job Search Pack - 5 Audits - Highlighted */}
+                    {/* Active Job Search - 5 Reviews - Highlighted */}
                     <button
                         type="button"
                         onClick={() => setSelectedTier("pack")}
@@ -132,12 +133,12 @@ export default function PaywallModal({
                     >
                         <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
                             <span className="text-[8px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b-sm font-bold">
-                                Best Value
+                                Recommended
                             </span>
                         </div>
                         <span className="text-2xl font-display font-medium text-premium mt-2">$29</span>
-                        <span className="text-label text-premium mt-1">5 Audits</span>
-                        <span className="text-[9px] text-muted-foreground">$5.80 each</span>
+                        <span className="text-label text-premium mt-1">Job Search</span>
+                        <span className="text-[9px] text-muted-foreground">5 reviews</span>
                     </button>
                 </div>
 
@@ -153,7 +154,7 @@ export default function PaywallModal({
                                 onClick={handleCheckout}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `Buy ${selectedTier === "single" ? "1 Audit" : "5 Audits"} →`}
+                                {loading ? "Processing..." : `Get ${selectedTier === "single" ? "1 Review" : "5 Reviews"} →`}
                             </Button>
                         </>
                     ) : (

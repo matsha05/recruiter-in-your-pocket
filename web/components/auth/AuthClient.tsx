@@ -15,13 +15,13 @@ function getContextualCopy(from: string | null): { headline: string; subtext: st
             };
         case "settings":
             return {
-                headline: "Sign in to manage your audits",
+                headline: "Sign in to manage your reviews",
                 subtext: "Access your credits and billing history."
             };
         case "paywall":
             return {
                 headline: "Sign in to use your credits",
-                subtext: "Your purchased audits are linked to your account."
+                subtext: "Your purchased reviews are linked to your account."
             };
         default:
             return {
