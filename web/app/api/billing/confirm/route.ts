@@ -1,61 +1,59 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Stripe } from "stripe";
-import { db } from "@/lib/db"; // Assuming standard db import
+import Stripe from "stripe";
+import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: "2025-11-17.clover" as any,
-});
+const stripe = process.env.STRIPE_SECRET_KEY
+    ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
+    : null;
+
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
     try {
-        const session = await getServerSession(authOptions);
-        const { sessionId } = await req.json();
-
-        if (!sessionId) {
-            return NextResponse.json({ error: "Missing sessionId" }, { status: 400 });
+        if (!stripe) {
+            return NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
         }
 
-        // 1. Retrieve the checkout session from Stripe
+        const body = await req.json();
+        const sessionId = body?.sessionId;
+        if (!sessionId || typeof sessionId !== "string") {
+            return NextResponse.json({ ok: false, message: "Missing sessionId" }, { status: 400 });
+        }
+
         const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
+        const status = checkoutSession.status;
 
-        if (checkoutSession.status !== "complete" && checkoutSession.status !== "open") {
-            return NextResponse.json({ error: "Session not successful" }, { status: 400 });
+        if (status !== "complete" && status !== "open") {
+            return NextResponse.json({ ok: false, status, message: "Session not successful" }, { status: 400 });
         }
 
-        // 2. We don't manually update entitlements here because the webhook handles it.
-        // Instead, we just check if they ARE updated yet.
-        // This confirms the webhook processed or allows the client to poll.
-
-        if (!session?.user?.email) {
-            // Unauthenticated user - they might have just signed up during checkout
-            // We should still return OK if the session is complete
-            return NextResponse.json({
-                ok: true,
-                status: checkoutSession.status,
-                requiresAuth: true
-            });
+        const supabaseAdmin = createSupabaseAdminClient();
+        if (!supabaseAdmin) {
+            return NextResponse.json(
+                { ok: false, status, message: "Database not configured" },
+                { status: 500 }
+            );
         }
 
-        // Check DB for updated credits/membership
-        const user = await db.user.findUnique({
-            where: { email: session.user.email },
-            select: { membership: true, credits: true }
-        });
+        const { data, error } = await supabaseAdmin
+            .from("passes")
+            .select("id")
+            .eq("checkout_session_id", sessionId)
+            .limit(1)
+            .maybeSingle();
 
-        // If user is now 'audit' or has credits, confirming the purchase worked
-        const isPaid = user?.membership === 'audit' || (user?.credits ?? 0) > 0;
+        if (error) {
+            console.error("[BILLING_CONFIRM_ERROR]", error);
+            return NextResponse.json({ ok: false, status, message: "Failed to confirm purchase" }, { status: 500 });
+        }
 
         return NextResponse.json({
-            ok: true,
-            status: checkoutSession.status,
-            isPaid,
-            credits: user?.credits ?? 0
+            ok: Boolean(data?.id),
+            status,
+            passFound: Boolean(data?.id)
         });
-
     } catch (error: any) {
         console.error("[BILLING_CONFIRM_ERROR]", error);
-        return NextResponse.json({ error: "Internal error" }, { status: 500 });
+        return NextResponse.json({ ok: false, message: "Internal error" }, { status: 500 });
     }
 }
