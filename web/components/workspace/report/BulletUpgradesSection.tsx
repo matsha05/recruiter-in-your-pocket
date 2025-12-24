@@ -6,6 +6,7 @@ import { TransformArrowIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
+import { Analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { ArrowRight, CheckCircle, Copy, ChevronDown, ChevronUp, Lock, Sparkles } from "lucide-react";
 
