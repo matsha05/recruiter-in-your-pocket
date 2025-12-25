@@ -86,8 +86,8 @@ export function ResearchArticle({
 
                 {/* 1. Header & Breadcrumb */}
                 <header>
-                    <Link href="/research" className="inline-flex items-center gap-2 mb-8 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        <ArrowLeft className="w-4 h-4" />
+                    <Link href="/research" className="inline-flex items-center gap-2 mb-8 text-sm text-muted-foreground hover:text-brand transition-colors group">
+                        <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
                         Back to Research
                     </Link>
                     <div className="space-y-6">
@@ -165,16 +165,19 @@ export function ResearchArticle({
                 <hr className="border-black/5 dark:border-white/5 my-16" />
 
                 {/* 5. Product Tie-In */}
-                <div className="bg-secondary/20 p-8 md:p-10 rounded border border-border">
-                    <h3 className="font-serif text-2xl font-medium mb-8 text-foreground">How this shapes the product</h3>
+                <div className="bg-card p-8 md:p-10 rounded-lg border border-border/10 shadow-sm transition-all hover:shadow-md hover:border-brand/20">
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="h-6 w-1 bg-brand rounded-full" />
+                        <h3 className="font-serif text-2xl font-medium text-foreground">How this shapes the product</h3>
+                    </div>
                     <div className="grid gap-8">
                         {productTieIn.items.map((item, i) => (
-                            <div key={i} className="flex gap-4 items-start">
-                                <span className="font-mono text-[10px] text-muted-foreground/40 mt-1 shrink-0">
+                            <div key={i} className="flex gap-4 items-start group">
+                                <span className="font-mono text-xs text-muted-foreground/30 mt-1 shrink-0 group-hover:text-brand/50 transition-colors">
                                     {String(i + 1).padStart(2, '0')}
                                 </span>
                                 <div>
-                                    <h4 className="font-medium text-foreground mb-1">{item.title}</h4>
+                                    <h4 className="font-medium text-foreground mb-1 group-hover:text-brand transition-colors">{item.title}</h4>
                                     <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                                 </div>
                             </div>

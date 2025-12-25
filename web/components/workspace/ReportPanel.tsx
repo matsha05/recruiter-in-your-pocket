@@ -5,6 +5,8 @@ import AnalysisScanning from "./AnalysisScanning";
 import { ReportStream } from "./report/ReportStream";
 import { ReportData } from "./report/ReportTypes";
 import { UnlockBanner } from "./UnlockBanner";
+import { ReportLayout } from "@/components/layout/ReportLayout";
+import { ReportTOC } from "@/components/workspace/report/ReportTOC";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -88,12 +90,13 @@ export default function ReportPanel({
                 </div>
             )}
 
-            {/* 3. The Report Stream */}
+            {/* 3. The Report Stream (V2 Layout) */}
             {showReport && !isLoading && (
-                <div className="flex justify-center p-6 md:p-12 lg:py-16 bg-muted/10 min-h-full">
-                    <div className="w-full max-w-4xl space-y-6">
-
-                        {/* Document Meta / Actions Header */}
+                <ReportLayout
+                    toc={<ReportTOC activeId={highlightSection || undefined} score={report.score} />}
+                >
+                    {/* Document Meta / Actions Header (Inline for Mobile, handled by Layout context usually but here just content) */}
+                    <div className="space-y-6">
                         <div className="flex items-center justify-between px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
                             <div className="space-y-1">
                                 <div className="flex items-center gap-3">
@@ -111,7 +114,6 @@ export default function ReportPanel({
 
                             {/* Action Buttons */}
                             <div className="flex items-center gap-2">
-                                {/* Primary: Run Another (for real reports) or Run Your Report (for example) */}
                                 {onNewReport && (
                                     <button
                                         onClick={onNewReport}
@@ -131,7 +133,6 @@ export default function ReportPanel({
                                     </button>
                                 )}
 
-                                {/* Secondary: PDF Export (hidden for sample) */}
                                 {onExportPdf && (
                                     <button
                                         onClick={onExportPdf}
@@ -145,7 +146,7 @@ export default function ReportPanel({
                             </div>
                         </div>
 
-                        {/* Unlock Banner - Guidance after purchase */}
+                        {/* Unlock Banner */}
                         {justUnlocked && report && (
                             <UnlockBanner
                                 reportId={report.id || 'current'}
@@ -157,22 +158,20 @@ export default function ReportPanel({
                             />
                         )}
 
-                        {/* The "Paper" */}
-                        <div className="bg-background border border-border/50 shadow-sm rounded-xl p-8 md:p-12">
-                            <ReportStream
-                                report={report}
-                                isSample={isSample}
-                                onNewReport={onNewReport}
-                                freeUsesRemaining={freeUsesRemaining}
-                                onUpgrade={onUpgrade}
-                                hasJobDescription={hasJobDescription}
-                                isGated={isGated}
-                                justUnlocked={justUnlocked}
-                                highlightSection={highlightSection}
-                            />
-                        </div>
+                        <ReportStream
+                            report={report}
+                            isSample={isSample}
+                            onNewReport={onNewReport}
+                            freeUsesRemaining={freeUsesRemaining}
+                            onUpgrade={onUpgrade}
+                            hasJobDescription={hasJobDescription}
+                            isGated={isGated}
+                            justUnlocked={justUnlocked}
+                            highlightSection={highlightSection}
+                            className="max-w-none pb-0" // Reset margin constraints as Layout handles it
+                        />
                     </div>
-                </div>
+                </ReportLayout>
             )}
         </div>
     );

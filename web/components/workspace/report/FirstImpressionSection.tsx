@@ -102,14 +102,14 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                 <div className="grid md:grid-cols-5">
 
                     {/* LEFT: THE VERDICT (3 cols) */}
-                    <div className="md:col-span-3 p-8 md:p-10 border-r border-border/40 space-y-8">
+                    <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 space-y-6">
                         <div className="space-y-3">
                             <h3 className="text-headline text-foreground">
                                 "Here is exactly what I noticed..."
                             </h3>
                         </div>
 
-                        <p className="text-lg text-muted-foreground leading-relaxed font-serif">
+                        <p className="text-base text-muted-foreground leading-relaxed font-serif">
                             {firstImpressionText}
                             {data.first_impression_takeaway && (
                                 <> <span className="font-semibold text-foreground">{data.first_impression_takeaway}</span></>
@@ -131,7 +131,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     </div>
 
                     {/* RIGHT: THE SCORE DIAL (2 cols) */}
-                    <div className="md:col-span-2 p-8 md:p-10 bg-secondary/20 flex flex-col items-center justify-center space-y-6">
+                    <div className="md:col-span-2 p-6 md:p-8 bg-secondary/20 flex flex-col items-center justify-center space-y-6">
 
                         {/* Score Dial */}
                         <div className="text-center space-y-4">

@@ -17,7 +17,7 @@ interface MissingWinsSectionProps {
 }
 
 // Single neutral card style for all archetypes — let the label provide differentiation
-const cardStyle = { border: "border-border", bg: "bg-secondary/5" };
+const cardStyle = { border: "border-border/60", bg: "bg-card shadow-sm hover:border-border/80" };
 
 export function MissingWinsSection({ data, isGated = false, onUpgrade }: MissingWinsSectionProps) {
     const questions = data.ideas?.questions || [];

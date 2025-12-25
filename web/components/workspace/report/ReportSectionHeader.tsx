@@ -49,7 +49,7 @@ export function ReportSectionHeader({
             </div>
 
             {/* Subtitle: Recruiter-voice editorial hook */}
-            <p className="font-serif text-2xl text-foreground tracking-tight leading-snug">
+            <p className="font-display font-medium text-xl text-foreground tracking-tight leading-snug">
                 {subtitle}
             </p>
         </div>

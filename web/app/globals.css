@@ -175,6 +175,25 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
+  /* Global Selection Color */
+  ::selection {
+    @apply bg-brand/20 text-brand;
+  }
+
+  /* Custom Thin Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border/50 rounded-full hover:bg-border;
+  }
+
   /* V2.1 Typography Hierarchy */
   h1,
   h2,

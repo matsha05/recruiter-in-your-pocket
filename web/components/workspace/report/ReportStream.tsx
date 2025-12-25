@@ -45,7 +45,7 @@ export function ReportStream({
         <div className={cn("max-w-3xl mx-auto pb-32 space-y-16", className)}>
 
             {/* 1. The Hook (First Impression) */}
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div id="section-first-impression" className="animate-in fade-in slide-in-from-bottom-4 duration-500 scroll-mt-24">
                 <FirstImpressionSection data={report} />
             </div>
 
@@ -53,7 +53,7 @@ export function ReportStream({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-100" />
 
             {/* 2. The Data (Score Summary) */}
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
+            <div id="section-score-summary" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150 scroll-mt-24">
                 <ScoreSummarySection data={report} />
             </div>
 

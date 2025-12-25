@@ -123,7 +123,7 @@ export default function SettingsClient() {
             <main className="max-w-5xl mx-auto px-6 py-12 space-y-16">
 
                 {/* 0. Credits Summary Card - Quick Status */}
-                <section className="bg-card border border-border/20 rounded-lg p-6 md:p-8">
+                <section className="bg-card border border-border/20 rounded p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div className="space-y-3">
                             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Your Reviews</h2>
@@ -156,28 +156,28 @@ export default function SettingsClient() {
 
                 {/* 1. Account Overview */}
                 <section className="space-y-8">
-                    <div className="flex items-start gap-6">
+                    <div className="flex items-start gap-6 bg-card p-6 rounded border border-border/10 shadow-sm">
                         {/* Premium Avatar */}
-                        <div className="w-20 h-20 rounded-md bg-brand flex items-center justify-center text-white font-display font-semibold text-2xl select-none shrink-0 shadow-lg shadow-brand/20">
+                        <div className="w-16 h-16 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand font-display font-medium text-2xl select-none shrink-0">
                             {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "?"}
                         </div>
 
-                        <div className="flex-1 space-y-6 pt-1">
+                        <div className="flex-1 space-y-5 pt-1">
                             {/* Name Field */}
                             <div className="max-w-md">
-                                <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Display Name</label>
+                                <label className="text-label mb-2 block">Display Name</label>
                                 <div className="flex gap-3">
                                     <input
                                         type="text"
                                         value={displayName}
                                         onChange={(e) => setDisplayName(e.target.value)}
                                         placeholder="Enter your name"
-                                        className="flex-1 bg-background border border-border/20 rounded-md px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand/30 transition-all"
+                                        className="flex-1 bg-background border border-border/20 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-brand/20 focus:border-brand/40 transition-all placeholder:text-muted-foreground/40"
                                     />
                                     <button
                                         onClick={handleSaveProfile}
                                         disabled={isSavingProfile || !displayName.trim() || displayName === user?.firstName}
-                                        className="px-5 py-2.5 bg-brand text-white hover:opacity-90 rounded-md font-medium text-sm transition-opacity disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+                                        className="px-4 py-2 bg-secondary text-foreground hover:bg-secondary/80 rounded-md font-medium text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 border border-border/10"
                                     >
                                         {isSavingProfile && <Loader2 className="w-3 h-3 animate-spin" />}
                                         Save
@@ -187,8 +187,8 @@ export default function SettingsClient() {
 
                             {/* Email Field */}
                             <div className="max-w-md">
-                                <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2 block">Email</label>
-                                <div className="text-sm text-foreground bg-secondary/20 px-4 py-2.5 rounded-md border border-border/10">
+                                <label className="text-label mb-2 block">Email</label>
+                                <div className="text-sm text-muted-foreground bg-muted/30 px-4 py-2 rounded-md border border-border/5">
                                     {user?.email}
                                 </div>
                             </div>
@@ -207,13 +207,13 @@ export default function SettingsClient() {
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         {/* TIER 1: Quick Check ($9/1) */}
-                        <div className="p-8 rounded-md border border-border/10 bg-secondary/10 hover:bg-secondary/20 transition-colors flex flex-col">
+                        <div className="p-8 rounded border border-border/10 bg-card hover:border-border/20 transition-all shadow-sm flex flex-col group">
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Quick Check</div>
-                                <div className="text-4xl font-display font-bold text-foreground">$9</div>
-                                <p className="text-sm text-muted-foreground mt-2">Best for first-time feedback</p>
+                                <div className="text-label text-muted-foreground mb-2">Quick Check</div>
+                                <div className="text-4xl font-display font-medium text-foreground tracking-tight">$9</div>
+                                <p className="text-sm text-muted-foreground mt-2 group-hover:text-foreground transition-colors">Best for first-time feedback</p>
                             </div>
-                            <ul className="space-y-3 mb-8 text-sm text-muted-foreground font-medium flex-1">
+                            <ul className="space-y-4 mb-8 text-sm text-muted-foreground font-medium flex-1">
                                 <FeatureItem text="Understand what recruiters notice in 10 seconds" icon={Check} />
                                 <FeatureItem text="One high-impact fix you can apply today" icon={Check} />
                                 <FeatureItem text="Use it to decide what to change next" icon={Check} />
@@ -221,7 +221,7 @@ export default function SettingsClient() {
                             <button
                                 onClick={() => onCheckoutClick("single")}
                                 disabled={!!isLoading}
-                                className="w-full py-3 px-4 rounded-md border border-border/10 bg-background font-medium text-sm hover:bg-secondary transition-colors flex items-center justify-center gap-2"
+                                className="w-full py-3 px-4 rounded-md border border-border/10 bg-secondary/50 font-medium text-sm hover:bg-secondary hover:text-foreground transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading === "single" && <Loader2 className="w-4 h-4 animate-spin" />}
                                 Unlock 1 Full Review
@@ -229,20 +229,19 @@ export default function SettingsClient() {
                         </div>
 
                         {/* TIER 2: Active Job Search ($29/5) - HIGHLIGHTED */}
-                        <div className="relative p-8 rounded border-2 border-premium bg-background flex flex-col">
-                            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-premium to-transparent" />
-                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-premium text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-sm shadow-sm">
-                                Recommended
+                        <div className="relative p-8 rounded border border-brand/20 bg-brand/5 flex flex-col shadow-sm">
+                            <div className="absolute -top-3 left-8 bg-brand text-white text-[10px] font-bold uppercase tracking-widest py-0.5 px-2 rounded-sm shadow-sm ring-2 ring-background">
+                                Most Popular
                             </div>
 
                             <div className="mb-6">
-                                <div className="text-xs font-bold uppercase tracking-widest text-premium mb-2">Active Job Search</div>
+                                <div className="text-label text-brand mb-2">Active Job Search</div>
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-4xl font-display font-bold text-foreground">$29</span>
+                                    <span className="text-4xl font-display font-medium text-foreground tracking-tight">$29</span>
                                 </div>
-                                <p className="text-sm text-muted-foreground mt-2">For an active job search</p>
+                                <p className="text-sm text-foreground/80 mt-2">For an active job search</p>
                             </div>
-                            <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
+                            <ul className="space-y-4 mb-8 text-sm text-foreground font-medium flex-1">
                                 <FeatureItem text="Tailor versions for different roles" icon={InsightSparkleIcon} accent="gold" />
                                 <FeatureItem text="Unlock full rewrites and missing wins" />
                                 <FeatureItem text="Compare progress across versions" />
@@ -251,7 +250,7 @@ export default function SettingsClient() {
                             <button
                                 onClick={() => onCheckoutClick("pack")}
                                 disabled={!!isLoading}
-                                className="w-full py-3 px-4 rounded-md bg-premium text-white font-medium text-sm hover:opacity-90 transition-all shadow-lg shadow-premium/20 flex items-center justify-center gap-2"
+                                className="w-full py-3 px-4 rounded-md bg-brand text-white font-medium text-sm hover:opacity-90 transition-all shadow-md shadow-brand/10 flex items-center justify-center gap-2"
                             >
                                 {isLoading === "pack" && <Loader2 className="w-4 h-4 animate-spin" />}
                                 Start Job Search Mode
@@ -259,35 +258,38 @@ export default function SettingsClient() {
                         </div>
                     </div>
 
-                    <div className="mt-12 text-center border-t border-border/50 pt-8">
-                        <p className="text-xs text-muted-foreground max-w-md mx-auto">
+                    <div className="mt-12 text-center border-t border-border/10 pt-8">
+                        <p className="text-xs text-muted-foreground max-w-md mx-auto leading-relaxed">
                             <strong>100% Satisfaction Guarantee:</strong> If you don't feel more confident after your first review, email us within 24h for a full refund.
                         </p>
                     </div>
                 </section>
 
                 {/* 3. Billing History */}
-                <section className="space-y-6 pt-12 border-t border-border/50">
+                <section className="space-y-6 pt-12">
                     <div className="flex items-center justify-between">
                         <h2 className="text-lg font-medium text-foreground">Billing History</h2>
                     </div>
 
-                    <div className="bg-card border border-border/10 rounded-md overflow-hidden">
+                    <div className="bg-card border border-border/10 rounded overflow-hidden shadow-sm">
                         {loadingPasses ? (
-                            <div className="p-12 text-center text-muted-foreground text-sm">Loading history...</div>
+                            <div className="p-12 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                                Loading history...
+                            </div>
                         ) : passes.length === 0 ? (
-                            <div className="p-12 text-center text-muted-foreground text-sm">
+                            <div className="p-12 text-center text-muted-foreground/50 text-sm">
                                 <Clock className="w-8 h-8 mx-auto mb-3 opacity-20" />
                                 <p>No invoices found.</p>
                             </div>
                         ) : (
-                            <div className="divide-y divide-border/30">
+                            <div className="divide-y divide-border/10">
                                 {passes.map((pass) => {
                                     const isActive = new Date(pass.expires_at) > new Date();
                                     return (
-                                        <div key={pass.id} className="p-6 flex items-center justify-between hover:bg-secondary/30 transition-colors group">
+                                        <div key={pass.id} className="p-5 flex items-center justify-between hover:bg-secondary/20 transition-colors group">
                                             <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground/70 group-hover:bg-background transition-colors">
+                                                <div className="w-10 h-10 rounded-full bg-secondary/30 flex items-center justify-center text-foreground/70 group-hover:bg-background transition-colors border border-transparent group-hover:border-border/10">
                                                     {pass.tier === "30d" ? <Zap className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
                                                 </div>
                                                 <div>
@@ -301,10 +303,10 @@ export default function SettingsClient() {
                                             </div>
                                             <div className="text-right">
                                                 <span className={cn(
-                                                    "inline-flex items-center px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold",
+                                                    "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-bold border",
                                                     isActive
-                                                        ? "bg-success/10 text-success"
-                                                        : "bg-muted text-muted-foreground"
+                                                        ? "bg-emerald-50 text-emerald-600 border-emerald-100"
+                                                        : "bg-secondary text-muted-foreground border-border/10"
                                                 )}>
                                                     {isActive ? "Active" : "Expired"}
                                                 </span>
@@ -318,17 +320,17 @@ export default function SettingsClient() {
                 </section>
 
                 {/* 4. Danger Zone */}
-                <section className="pt-16 border-t border-border/50">
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <section className="pt-12 pb-8">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 rounded border border-red-100 bg-red-50/30">
                         <div>
-                            <h3 className="text-sm font-medium text-destructive mb-1">Danger Zone</h3>
-                            <p className="text-xs text-muted-foreground">
-                                Permanently delete your account and all data.
+                            <h3 className="text-sm font-medium text-red-900 mb-1">Danger Zone</h3>
+                            <p className="text-xs text-red-700/80">
+                                Permanently delete your account and all associated data.
                             </p>
                         </div>
                         <button
                             onClick={() => toast.info("Please email privacy@recruiterinyourpocket.com to process deletion requests safely.")}
-                            className="text-xs px-4 py-2 border border-border/10 rounded-md text-muted-foreground hover:bg-destructive/5 hover:text-destructive hover:border-destructive/30 transition-all font-medium"
+                            className="text-xs px-4 py-2 border border-red-200 rounded-md text-red-600 hover:bg-red-50 hover:text-red-700 transition-all font-medium bg-white"
                         >
                             Delete Account
                         </button>

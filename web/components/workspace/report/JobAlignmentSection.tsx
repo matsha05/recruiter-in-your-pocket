@@ -25,7 +25,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     title="Where You Compete"
                     subtitle="Your primary lane and how to position."
                 />
-                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                <div className="rounded-lg border border-border/60 bg-card shadow-sm p-5 text-sm text-muted-foreground">
                     {hasJobDescription
                         ? "Alignment was not generated for this run. Try again, or verify your job description pasted correctly."
                         : "Add a job description to get role-specific alignment and positioning notes."}
@@ -123,45 +123,46 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 </div>
             ) : (
                 // FULL ACCESS: Show complete role analysis
-                <>
+                // FULL ACCESS: Show complete role analysis
+                <div className="rounded-lg border border-border/60 bg-card shadow-sm p-6 md:p-8">
                     {/* The Declaration */}
-                    <div className="text-center py-8">
+                    <div className="text-center space-y-4 mb-6">
                         {primaryRole && (
-                            <h3 className="text-4xl md:text-5xl font-serif font-semibold text-foreground tracking-tight mb-6">
+                            <h3 className="text-3xl md:text-4xl font-serif font-semibold text-foreground tracking-tight">
                                 {primaryRole}
                             </h3>
                         )}
 
                         {positioning && (
-                            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto font-serif">
+                            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto font-serif">
                                 {positioning}
                             </p>
                         )}
                     </div>
 
                     {/* Supporting Roles - De-emphasized Footer */}
-                    <div className="border-t border-border/40 pt-6 space-y-3 text-center">
+                    <div className="border-t border-border/40 pt-6 space-y-2 text-center text-sm">
                         {otherFitRoles.length > 0 && (
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-muted-foreground">
                                 <span className="text-foreground/70 font-medium">Also fits:</span>{' '}
                                 {otherFitRoles.join(' · ')}
                             </p>
                         )}
 
                         {stretchRoles.length > 0 && (
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-muted-foreground">
                                 <span className="text-foreground/70 font-medium">Stretch:</span>{' '}
                                 {stretchRoles.join(' · ')}
                             </p>
                         )}
 
                         {footerMeta && (
-                            <p className="text-xs text-muted-foreground/60 pt-2">
+                            <p className="text-xs text-muted-foreground/60 pt-2 font-mono">
                                 {footerMeta}
                             </p>
                         )}
                     </div>
-                </>
+                </div>
             )}
         </section>
     );

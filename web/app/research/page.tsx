@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { StudioShell } from "@/components/layout/StudioShell";
 import Footer from "@/components/landing/Footer";
 
@@ -168,7 +169,7 @@ export default function ResearchPage() {
                 {categories.map((category, catIndex) => (
                     <section key={category.id}>
                         {/* Category Header */}
-                        <div className="flex items-baseline gap-4 mb-8 border-b border-border/20 pb-4">
+                        <div className="flex items-baseline gap-4 mb-8 border-b border-border/10 pb-4">
                             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40">
                                 {String(catIndex + 1).padStart(2, '0')}
                             </span>
@@ -183,32 +184,35 @@ export default function ResearchPage() {
                         </div>
 
                         {/* Articles Grid */}
-                        <div className="space-y-1">
+                        <div className="grid gap-3">
                             {category.articles.map((article) => (
                                 <Link
                                     key={article.id}
                                     href={article.href}
-                                    className="group block -mx-4 px-4 py-4 rounded hover:bg-secondary/30 transition-colors"
+                                    className="group block p-5 rounded-lg border border-transparent hover:border-border/10 hover:bg-card hover:shadow-sm transition-all duration-200"
                                 >
                                     <div className="flex items-start justify-between gap-6">
                                         <div className="flex-1 min-w-0">
-                                            <div className="flex items-center gap-2 mb-1">
+                                            <div className="flex items-center gap-2 mb-1.5">
                                                 <h3 className={`text-base font-medium group-hover:text-brand transition-colors ${article.featured ? 'text-foreground' : 'text-foreground/90'}`}>
                                                     {article.title}
                                                 </h3>
                                                 {article.featured && (
-                                                    <span className="inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-widest text-brand bg-brand/10 rounded">
+                                                    <span className="inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-widest text-brand bg-brand/5 border border-brand/10 rounded-sm">
                                                         Essential
                                                     </span>
                                                 )}
                                             </div>
-                                            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-1">
+                                            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 group-hover:text-muted-foreground/80 transition-colors">
                                                 {article.thesis}
                                             </p>
                                         </div>
-                                        <span className="font-mono text-[10px] text-muted-foreground/50 shrink-0 mt-1">
-                                            {article.readTime}
-                                        </span>
+                                        <div className="flex flex-col items-end gap-2 shrink-0">
+                                            <span className="font-mono text-[10px] text-muted-foreground/30 mt-1">
+                                                {article.readTime}
+                                            </span>
+                                            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover:text-brand group-hover:translate-x-1 transition-all" />
+                                        </div>
                                     </div>
                                 </Link>
                             ))}

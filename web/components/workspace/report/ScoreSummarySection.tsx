@@ -36,13 +36,12 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                         <div
                             key={item.key}
                             className={cn(
-                                "bg-secondary/20 border border-border/40 p-5 rounded flex flex-col items-center justify-center text-center gap-1",
-                                index === 0 && "md:ring-1 md:ring-brand/20" // Story gets subtle emphasis
+                                "bg-card border border-border/60 shadow-sm p-4 rounded flex flex-col items-center justify-center text-center gap-1 transition-all hover:border-brand/30",
+                                index === 0 && "ring-1 ring-brand/10 bg-brand/5" // Story gets subtle emphasis
                             )}
                         >
                             <span className={cn(
-                                "font-serif font-bold tabular-nums",
-                                index === 0 ? "text-4xl" : "text-3xl", // Story is larger
+                                "font-display font-bold tabular-nums text-3xl tracking-tight",
                                 getScoreColor(item.score)
                             )}>
                                 {item.score}
@@ -61,7 +60,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
 
             {/* Strengths & Gaps - Clean lists, equal weight */}
             {hasLists ? (
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-6">
                     {/* Working */}
                     <div className="space-y-4">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">

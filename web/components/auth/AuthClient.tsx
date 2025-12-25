@@ -98,60 +98,64 @@ export default function AuthClient() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
-            <div className="w-full max-w-md space-y-8">
+        <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 bg-dot-pattern">
+            <div className="absolute inset-0 bg-background/90 z-0 pointer-events-none" />
+
+            <div className="w-full max-w-md space-y-8 relative z-10">
                 <div className="text-center space-y-2">
-                    <h1 className="text-3xl font-display font-medium text-foreground">{contextCopy.headline}</h1>
-                    <p className="text-muted-foreground">{contextCopy.subtext}</p>
+                    <h1 className="text-4xl font-display font-medium text-foreground tracking-tight">{contextCopy.headline}</h1>
+                    <p className="text-lg text-muted-foreground/80">{contextCopy.subtext}</p>
                 </div>
 
-                <div className="bg-card border border-border/10 rounded-md p-8 shadow-sm">
+                <div className="bg-card/50 backdrop-blur-sm border border-border/10 rounded p-8 shadow-sm">
                     {step === "email" ? (
-                        <form onSubmit={handleSendCode} className="space-y-4">
+                        <form onSubmit={handleSendCode} className="space-y-5">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-foreground">Email Address</label>
-                                <div className="relative">
-                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                <label className="text-label text-foreground/70">Email Address</label>
+                                <div className="relative group">
+                                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/60 transition-colors group-focus-within:text-brand" />
                                     <input
                                         type="email"
                                         required
                                         placeholder="you@company.com"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-2 bg-secondary/50 border-0 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-ring transition-all"
+                                        className="w-full pl-10 pr-4 py-3 bg-background border border-border/10 rounded text-base focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-all shadow-sm placeholder:text-muted-foreground/30"
                                         autoFocus
                                     />
                                 </div>
                             </div>
-                            {error && <p className="text-xs text-destructive font-medium">{error}</p>}
+                            {error && <p className="text-xs text-destructive font-medium flex items-center gap-1 bg-destructive/5 p-2 rounded"><span className="w-1 h-1 bg-destructive rounded-full" />{error}</p>}
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full py-2 bg-brand text-white rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                                className="w-full py-3 bg-brand text-white rounded text-sm font-medium hover:opacity-90 transition-all shadow-md shadow-brand/10 flex items-center justify-center gap-2"
                             >
                                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Send Login Code <ArrowRight className="w-4 h-4" /></>}
                             </button>
                         </form>
                     ) : (
-                        <form onSubmit={handleVerifySubmit} className="space-y-4">
+                        <form onSubmit={handleVerifySubmit} className="space-y-5">
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
-                                    <label className="text-sm font-medium text-foreground">Login Code</label>
+                                    <label className="text-label text-foreground/70">Login Code</label>
                                     <button
                                         type="button"
                                         onClick={() => setStep("email")}
-                                        className="text-xs text-primary hover:underline"
+                                        className="text-[10px] uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         Change email
                                     </button>
                                 </div>
-                                <p className="text-xs text-muted-foreground mb-2">
-                                    We sent an 8-digit code to <span className="font-medium text-foreground">{email}</span>
-                                </p>
+                                <div className="p-3 bg-secondary/30 rounded text-center border border-border/5 mb-2">
+                                    <p className="text-xs text-muted-foreground">
+                                        Checking <span className="font-medium text-foreground">{email}</span>
+                                    </p>
+                                </div>
                                 <input
                                     type="text"
                                     required
-                                    placeholder="12345678"
+                                    placeholder="1 2 3 4 5 6 7 8"
                                     value={otp}
                                     onChange={(e) => {
                                         const val = e.target.value;
@@ -160,16 +164,16 @@ export default function AuthClient() {
                                             verifyToken(val);
                                         }
                                     }}
-                                    className="w-full px-4 py-2 bg-secondary/50 border-0 rounded-md text-center text-lg tracking-widest font-mono focus:outline-none focus:ring-1 focus:ring-ring transition-all"
+                                    className="w-full px-4 py-4 bg-background border border-border/10 rounded text-center text-2xl tracking-[0.5em] font-mono focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-all shadow-sm"
                                     autoFocus
                                     maxLength={8}
                                 />
                             </div>
-                            {error && <p className="text-xs text-destructive font-medium">{error}</p>}
+                            {error && <p className="text-xs text-destructive font-medium flex items-center gap-1 bg-destructive/5 p-2 rounded"><span className="w-1 h-1 bg-destructive rounded-full" />{error}</p>}
                             <button
                                 type="submit"
                                 disabled={loading || otp.length < 8}
-                                className="w-full py-2 bg-brand text-white rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                                className="w-full py-3 bg-brand text-white rounded text-sm font-medium hover:opacity-90 transition-all shadow-md shadow-brand/10 flex items-center justify-center gap-2"
                             >
                                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Verify & Sign In <Check className="w-4 h-4" /></>}
                             </button>
