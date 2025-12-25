@@ -82,7 +82,7 @@ export function ResearchArticle({
                     })
                 }}
             />
-            <div className="max-w-3xl mx-auto space-y-16 pb-24 px-6 md:px-0 pt-12">
+            <div className="max-w-3xl mx-auto space-y-12 pb-16 px-6 md:px-0 pt-8">
 
                 {/* 1. Header & Breadcrumb */}
                 <header>
@@ -112,7 +112,7 @@ export function ResearchArticle({
                                 </div>
                             )}
                         </div>
-                        <h1 className="text-hero text-5xl md:text-6xl text-foreground">
+                        <h1 className="text-hero text-4xl md:text-5xl text-foreground tracking-tight">
                             {header.title}
                         </h1>
                         <p className="text-reading text-xl text-muted-foreground leading-relaxed">
@@ -121,21 +121,21 @@ export function ResearchArticle({
                     </div>
                 </header>
 
-                {/* 2. Key Finding Card */}
-                <div className="border border-brand/20 bg-brand/5 rounded border-l-4 border-l-brand p-8 md:p-10 space-y-6">
+                {/* 2. Key Finding Card - Tool Aesthetic */}
+                <div className="bg-card border border-border/60 shadow-sm rounded-lg p-6 md:p-8 space-y-6">
                     <div className="flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest">
                         {keyFinding.icon}
                         <span>{keyFinding.subtitle}</span>
                     </div>
                     <div className="space-y-2">
-                        <h2 className="font-serif text-4xl md:text-5xl font-medium text-brand tracking-tight">{keyFinding.stat}</h2>
+                        <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground tracking-tight">{keyFinding.stat}</h2>
                         <p className="text-muted-foreground text-lg leading-relaxed">
                             {keyFinding.statDescription}
                         </p>
                     </div>
-                    <div className="pt-6 border-t border-brand/10 text-xs font-mono text-muted-foreground/70 space-y-2">
+                    <div className="pt-6 border-t border-border/40 text-xs font-mono text-muted-foreground/70 space-y-2">
                         <p className="flex items-center gap-2">
-                            <span className="text-brand/80 uppercase">Source:</span>
+                            <span className="text-foreground/70 uppercase">Source:</span>
                             {keyFinding.source.href ? (
                                 <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-foreground underline underline-offset-4 decoration-border">
                                     {keyFinding.source.text}
@@ -145,32 +145,32 @@ export function ResearchArticle({
                             )}
                         </p>
                         {keyFinding.sampleSize && (
-                            <p><span className="text-brand/80 uppercase">Sample:</span> {keyFinding.sampleSize}</p>
+                            <p><span className="text-foreground/70 uppercase">Sample:</span> {keyFinding.sampleSize}</p>
                         )}
                     </div>
                 </div>
 
                 {/* 3. Visualization Section (Optional) */}
                 {visualization && (
-                    <section className="my-16">
+                    <section className="my-12">
                         {visualization}
                     </section>
                 )}
 
                 {/* 4. Main Prose Content */}
-                <article className="prose prose-neutral dark:prose-invert max-w-none font-sans prose-headings:font-serif prose-headings:font-medium prose-headings:tracking-tight prose-p:text-lg prose-p:leading-relaxed prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground">
+                <article className="prose prose-neutral dark:prose-invert max-w-none font-sans prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-tight prose-p:text-base prose-p:leading-relaxed prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground">
                     {children}
                 </article>
 
-                <hr className="border-black/5 dark:border-white/5 my-16" />
+                <hr className="border-border/40 my-12" />
 
                 {/* 5. Product Tie-In */}
-                <div className="bg-card p-8 md:p-10 rounded-lg border border-border/10 shadow-sm transition-all hover:shadow-md hover:border-brand/20">
-                    <div className="flex items-center gap-3 mb-8">
+                <div className="bg-card border border-border/60 shadow-sm rounded-lg p-6 md:p-8 transition-all hover:border-brand/20">
+                    <div className="flex items-center gap-3 mb-6">
                         <div className="h-6 w-1 bg-brand rounded-full" />
-                        <h3 className="font-serif text-2xl font-medium text-foreground">How this shapes the product</h3>
+                        <h3 className="font-display text-xl font-semibold text-foreground">How this shapes the product</h3>
                     </div>
-                    <div className="grid gap-8">
+                    <div className="grid gap-6">
                         {productTieIn.items.map((item, i) => (
                             <div key={i} className="flex gap-4 items-start group">
                                 <span className="font-mono text-xs text-muted-foreground/30 mt-1 shrink-0 group-hover:text-brand/50 transition-colors">

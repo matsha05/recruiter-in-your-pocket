@@ -112,7 +112,7 @@ export default function FAQClient() {
     };
 
     return (
-        <StudioShell showSidebar={false} className="max-w-4xl mx-auto py-20">
+        <StudioShell showSidebar={false} className="max-w-3xl mx-auto py-12">
             {/* FAQ Schema.org for SEO */}
             <script
                 type="application/ld+json"
@@ -122,33 +122,33 @@ export default function FAQClient() {
             <LegalNav />
 
             {/* Hero */}
-            <header className="mb-20 text-center max-w-2xl mx-auto">
-                <h1 className="font-display text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
+            <header className="mb-12 text-center max-w-2xl mx-auto">
+                <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
                     Questions & Answers
                 </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                     Everything you need to know about how we work.
                 </p>
             </header>
 
             {/* FAQ Sections */}
-            <div className="space-y-16">
+            <div className="space-y-12">
                 {faqData.map((section) => (
                     <section key={section.category}>
-                        <h2 className="font-display text-2xl font-medium text-foreground mb-6">
+                        <h2 className="font-display text-lg font-semibold text-foreground mb-4">
                             {section.category}
                         </h2>
-                        <Accordion type="single" collapsible className="space-y-2">
+                        <Accordion type="single" collapsible className="space-y-3">
                             {section.questions.map((item, idx) => (
                                 <AccordionItem
                                     key={idx}
                                     value={`${section.category}-${idx}`}
-                                    className="border border-border/10 rounded-md bg-card/30 px-6 data-[state=open]:bg-secondary/20 transition-colors"
+                                    className="border border-border/60 rounded-lg bg-card shadow-sm px-6 data-[state=open]:ring-1 data-[state=open]:ring-brand/20 transition-all hover:border-border/80"
                                 >
-                                    <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5">
+                                    <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5 text-base">
                                         {item.q}
                                     </AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                                    <AccordionContent className="text-muted-foreground leading-relaxed pb-5 text-sm">
                                         {item.a}
                                     </AccordionContent>
                                 </AccordionItem>

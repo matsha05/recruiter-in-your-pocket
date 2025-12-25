@@ -149,35 +149,35 @@ const categories = [
 
 export default function ResearchPage() {
     return (
-        <StudioShell showSidebar={true} className="max-w-4xl mx-auto py-24 px-6 md:px-0">
+        <StudioShell showSidebar={true} className="max-w-4xl mx-auto py-12 px-6 md:px-0">
 
             {/* Editorial Header */}
-            <header className="mb-20">
+            <header className="mb-12">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 mb-4 block">
                     The Hiring Playbook
                 </span>
-                <h1 className="font-serif text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
+                <h1 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
                     The rules they<br />don't teach you.
                 </h1>
-                <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
                     Evidence-based research on how recruiters think, what they see, and how to present yourself.
                 </p>
             </header>
 
             {/* Category Sections */}
-            <div className="space-y-20 mb-24">
+            <div className="space-y-12 mb-16">
                 {categories.map((category, catIndex) => (
                     <section key={category.id}>
                         {/* Category Header */}
-                        <div className="flex items-baseline gap-4 mb-8 border-b border-border/10 pb-4">
+                        <div className="flex items-baseline gap-4 mb-6 border-b border-border/10 pb-3">
                             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40">
                                 {String(catIndex + 1).padStart(2, '0')}
                             </span>
                             <div>
-                                <h2 className="font-serif text-2xl font-medium text-foreground">
+                                <h2 className="font-display text-lg font-semibold text-foreground tracking-tight">
                                     {category.title}
                                 </h2>
-                                <p className="text-sm text-muted-foreground mt-1">
+                                <p className="text-xs text-muted-foreground mt-0.5">
                                     {category.subtitle}
                                 </p>
                             </div>
@@ -189,12 +189,12 @@ export default function ResearchPage() {
                                 <Link
                                     key={article.id}
                                     href={article.href}
-                                    className="group block p-5 rounded-lg border border-transparent hover:border-border/10 hover:bg-card hover:shadow-sm transition-all duration-200"
+                                    className="group block p-4 rounded-lg border border-border/40 bg-card hover:border-brand/30 hover:shadow-sm transition-all duration-200"
                                 >
                                     <div className="flex items-start justify-between gap-6">
                                         <div className="flex-1 min-w-0">
-                                            <div className="flex items-center gap-2 mb-1.5">
-                                                <h3 className={`text-base font-medium group-hover:text-brand transition-colors ${article.featured ? 'text-foreground' : 'text-foreground/90'}`}>
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <h3 className={`text-sm font-semibold transition-colors ${article.featured ? 'text-foreground' : 'text-foreground/80'} group-hover:text-brand`}>
                                                     {article.title}
                                                 </h3>
                                                 {article.featured && (
@@ -203,7 +203,7 @@ export default function ResearchPage() {
                                                     </span>
                                                 )}
                                             </div>
-                                            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 group-hover:text-muted-foreground/80 transition-colors">
+                                            <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 group-hover:text-muted-foreground/80 transition-colors">
                                                 {article.thesis}
                                             </p>
                                         </div>
@@ -221,14 +221,14 @@ export default function ResearchPage() {
                 ))}
             </div>
 
-            <hr className="border-border/10 mb-20" />
+            <hr className="border-border/10 mb-12" />
 
             {/* How This Shapes the Product */}
-            <section className="mb-24">
-                <h3 className="font-serif text-2xl font-medium text-foreground mb-10">
+            <section className="mb-16">
+                <h3 className="font-display text-lg font-semibold text-foreground mb-6">
                     How this shapes the product
                 </h3>
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-6">
                     {[
                         {
                             title: "First Impressions Matter",
@@ -252,10 +252,10 @@ export default function ResearchPage() {
                                 {String(i + 1).padStart(2, '0')}
                             </span>
                             <div>
-                                <strong className="block text-foreground font-medium mb-1">
+                                <strong className="block text-foreground font-medium text-sm mb-1">
                                     {principle.title}
                                 </strong>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-xs text-muted-foreground leading-relaxed">
                                     {principle.desc}
                                 </p>
                             </div>

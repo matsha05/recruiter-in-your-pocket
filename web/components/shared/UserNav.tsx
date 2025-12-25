@@ -46,7 +46,7 @@ export function UserNav({
                 </button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-56" align="end">
+            <DropdownMenuContent className="w-56 border-border/60 shadow-lg" align="end">
                 {/* User info header */}
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">

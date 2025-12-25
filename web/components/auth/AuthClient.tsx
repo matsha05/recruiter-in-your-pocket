@@ -107,7 +107,7 @@ export default function AuthClient() {
                     <p className="text-lg text-muted-foreground/80">{contextCopy.subtext}</p>
                 </div>
 
-                <div className="bg-card/50 backdrop-blur-sm border border-border/10 rounded p-8 shadow-sm">
+                <div className="bg-card border border-border/60 rounded-lg p-8 shadow-sm">
                     {step === "email" ? (
                         <form onSubmit={handleSendCode} className="space-y-5">
                             <div className="space-y-2">
@@ -120,7 +120,7 @@ export default function AuthClient() {
                                         placeholder="you@company.com"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-3 bg-background border border-border/10 rounded text-base focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-all shadow-sm placeholder:text-muted-foreground/30"
+                                        className="w-full pl-10 pr-4 py-3 bg-background border border-border/60 rounded-md text-base focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-all shadow-sm placeholder:text-muted-foreground/30"
                                         autoFocus
                                     />
                                 </div>

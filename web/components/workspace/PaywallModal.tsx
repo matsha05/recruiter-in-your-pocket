@@ -107,11 +107,11 @@ export default function PaywallModal({
                         type="button"
                         onClick={() => setSelectedTier("single")}
                         className={cn(
-                            "p-4 rounded text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
+                            "p-4 rounded-lg text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
                             "hover:-translate-y-0.5 hover:shadow-sm",
                             selectedTier === "single"
-                                ? "bg-secondary/40 border-foreground/30"
-                                : "bg-transparent border-border/10 hover:bg-secondary/10"
+                                ? "bg-card ring-2 ring-brand border-transparent shadow-sm"
+                                : "bg-transparent border-border/60 hover:bg-secondary/10"
                         )}
                     >
                         <span className="text-2xl font-display font-medium text-foreground">$9</span>
@@ -124,11 +124,11 @@ export default function PaywallModal({
                         type="button"
                         onClick={() => setSelectedTier("pack")}
                         className={cn(
-                            "p-4 rounded text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
+                            "p-4 rounded-lg text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
                             "hover:-translate-y-0.5 hover:shadow-md",
                             selectedTier === "pack"
-                                ? "bg-premium/10 border-premium"
-                                : "bg-transparent border-border/10 hover:bg-secondary/10"
+                                ? "bg-card ring-2 ring-brand border-transparent shadow-md"
+                                : "bg-transparent border-border/60 hover:bg-secondary/10"
                         )}
                     >
                         <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
@@ -143,7 +143,7 @@ export default function PaywallModal({
                 </div>
 
                 {/* Checkout Section */}
-                <div className="bg-secondary/10 rounded-md p-5 border border-border/10 mb-4">
+                <div className="bg-secondary/10 rounded-lg p-5 border border-border/60 mb-4">
                     {isLoggedIn ? (
                         <>
                             <p className="text-sm text-muted-foreground mb-4 text-center">

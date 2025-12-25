@@ -20,18 +20,18 @@ export function LegalNav({ className }: LegalNavProps) {
     ];
 
     return (
-        <div className={cn("flex flex-col items-center mb-16", className)}>
+        <div className={cn("flex flex-col items-center mb-12", className)}>
             {/* Back Link */}
             <Link
                 href="/"
-                className="mb-8 inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
+                className="mb-8 inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-md transition-colors"
             >
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-3.5 h-3.5" />
                 Back to Home
             </Link>
 
-            {/* Pill Navigation */}
-            <nav className="flex items-center space-x-1 p-1.5 bg-secondary/40 border border-border/10 rounded-md animate-in fade-in zoom-in-95 duration-500 max-w-[90vw] overflow-x-auto no-scrollbar">
+            {/* Toolbar Navigation */}
+            <nav className="flex items-center p-1 bg-card border border-border/60 rounded-lg shadow-sm animate-in fade-in zoom-in-95 duration-500 max-w-[90vw] overflow-x-auto no-scrollbar">
                 {tabs.map((tab) => {
                     const isActive = pathname === tab.href;
                     return (
@@ -39,10 +39,10 @@ export function LegalNav({ className }: LegalNavProps) {
                             key={tab.href}
                             href={tab.href}
                             className={cn(
-                                "px-4 py-1.5 text-sm font-medium rounded-sm transition-all duration-normal",
+                                "px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-200 whitespace-nowrap",
                                 isActive
-                                    ? "bg-background text-foreground shadow-sm ring-1 ring-black/5"
-                                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                    ? "bg-secondary text-foreground shadow-sm"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                             )}
                         >
                             {tab.name}

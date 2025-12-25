@@ -9,18 +9,18 @@ import { LegalNav } from "@/components/legal/LegalNav";
 
 export default function PrivacyClient() {
     return (
-        <StudioShell showSidebar={false} className="max-w-3xl mx-auto py-16">
+        <StudioShell showSidebar={false} className="max-w-3xl mx-auto py-12">
             <LegalNav />
 
             {/* Header */}
-            <header className="mb-20 text-center max-w-2xl mx-auto">
-                <h1 className="font-display text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
+            <header className="mb-12 text-center max-w-2xl mx-auto">
+                <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
                     Privacy Policy
                 </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed">
                     How we handle your data, in plain English.
                     <br />
-                    <span className="text-sm font-mono mt-2 block opacity-70">Last updated: December 2025</span>
+                    <span className="text-xs font-mono mt-2 block opacity-70">Last updated: December 2025</span>
                 </p>
             </header>
 

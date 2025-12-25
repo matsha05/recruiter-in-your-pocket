@@ -102,6 +102,7 @@ export default function SaveReportPrompt({
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="you@example.com"
+                            className="bg-background border-border/60 focus:border-brand/40"
                             onKeyDown={(e) => {
                                 if (e.key === "Enter" && email.trim()) {
                                     handleSave();

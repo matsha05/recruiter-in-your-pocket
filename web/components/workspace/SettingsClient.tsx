@@ -123,7 +123,7 @@ export default function SettingsClient() {
             <main className="max-w-5xl mx-auto px-6 py-12 space-y-16">
 
                 {/* 0. Credits Summary Card - Quick Status */}
-                <section className="bg-card border border-border/20 rounded p-6 md:p-8">
+                <section className="bg-card border border-border/60 rounded-lg p-6 md:p-8 shadow-sm">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div className="space-y-3">
                             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Your Reviews</h2>
@@ -156,7 +156,7 @@ export default function SettingsClient() {
 
                 {/* 1. Account Overview */}
                 <section className="space-y-8">
-                    <div className="flex items-start gap-6 bg-card p-6 rounded border border-border/10 shadow-sm">
+                    <div className="flex items-start gap-6 bg-card p-6 rounded-lg border border-border/60 shadow-sm">
                         {/* Premium Avatar */}
                         <div className="w-16 h-16 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand font-display font-medium text-2xl select-none shrink-0">
                             {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "?"}
@@ -207,7 +207,7 @@ export default function SettingsClient() {
 
                     <div className="grid md:grid-cols-2 gap-6 items-stretch">
                         {/* TIER 1: Quick Check ($9/1) */}
-                        <div className="p-8 rounded border border-border/10 bg-card hover:border-border/20 transition-all shadow-sm flex flex-col group">
+                        <div className="p-8 rounded-lg border border-border/60 bg-card hover:border-border/80 transition-all shadow-sm flex flex-col group">
                             <div className="mb-6">
                                 <div className="text-label text-muted-foreground mb-2">Quick Check</div>
                                 <div className="text-4xl font-display font-medium text-foreground tracking-tight">$9</div>
@@ -221,7 +221,7 @@ export default function SettingsClient() {
                             <button
                                 onClick={() => onCheckoutClick("single")}
                                 disabled={!!isLoading}
-                                className="w-full py-3 px-4 rounded-md border border-border/10 bg-secondary/50 font-medium text-sm hover:bg-secondary hover:text-foreground transition-colors flex items-center justify-center gap-2"
+                                className="w-full py-3 px-4 rounded-md border border-border/60 bg-secondary/50 font-medium text-sm hover:bg-secondary hover:text-foreground transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading === "single" && <Loader2 className="w-4 h-4 animate-spin" />}
                                 Unlock 1 Full Review
@@ -229,7 +229,7 @@ export default function SettingsClient() {
                         </div>
 
                         {/* TIER 2: Active Job Search ($29/5) - HIGHLIGHTED */}
-                        <div className="relative p-8 rounded border border-brand/20 bg-brand/5 flex flex-col shadow-sm">
+                        <div className="relative p-8 rounded-lg border border-brand/20 bg-brand/5 flex flex-col shadow-sm">
                             <div className="absolute -top-3 left-8 bg-brand text-white text-[10px] font-bold uppercase tracking-widest py-0.5 px-2 rounded-sm shadow-sm ring-2 ring-background">
                                 Most Popular
                             </div>
@@ -271,7 +271,7 @@ export default function SettingsClient() {
                         <h2 className="text-lg font-medium text-foreground">Billing History</h2>
                     </div>
 
-                    <div className="bg-card border border-border/10 rounded overflow-hidden shadow-sm">
+                    <div className="bg-card border border-border/60 rounded-lg overflow-hidden shadow-sm">
                         {loadingPasses ? (
                             <div className="p-12 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
                                 <Loader2 className="w-4 h-4 animate-spin" />
