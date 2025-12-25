@@ -50,7 +50,7 @@ export function MobileNav() {
                     </nav>
                 </div>
 
-                <div className="p-6 border-t bg-secondary/20">
+                <div className="p-6 border-t border-border/60 bg-background">
                     {user ? (
                         <div className="space-y-4">
                             <div className="flex items-center gap-3">

@@ -55,7 +55,7 @@ export default function LandingClient() {
     return (
         <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-brand/20">
             {/* Navbar: Mobile-first, responsive */}
-            <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-white/5 bg-background/80 backdrop-blur-md sticky top-0 z-50 overflow-x-hidden">
+            <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-white/10 bg-background/80 backdrop-blur-md sticky top-0 z-50 overflow-x-hidden">
                 <Link href="/" className="flex items-center gap-2 shrink-0">
                     <PocketMark className="w-6 h-6 text-brand" />
                     <Wordmark className="h-5 md:h-6 text-foreground hidden sm:block" />

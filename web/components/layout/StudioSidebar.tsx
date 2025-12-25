@@ -18,7 +18,7 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
     return (
         <aside
             className={cn(
-                "hidden md:flex fixed left-0 top-0 z-40 h-screen w-[260px] flex-col border-r bg-sidebar-glass backdrop-blur-xl transition-transform duration-300 ease-in-out",
+                "hidden md:flex fixed left-0 top-0 z-40 h-screen w-[260px] flex-col border-r border-border bg-background transition-transform duration-300 ease-in-out",
                 className
             )}
         >

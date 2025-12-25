@@ -192,9 +192,8 @@ export function ResearchArticle({
                         <div className="grid gap-4">
                             {relatedArticles.map((article, i) => (
                                 <Link
-                                    key={i}
                                     href={article.href}
-                                    className="group flex items-center justify-between p-4 border border-border rounded hover:border-brand/40 hover:bg-secondary/20 transition-all"
+                                    className="group flex items-center justify-between p-4 border border-border/60 rounded-lg hover:border-brand/40 hover:bg-secondary/20 transition-all"
                                 >
                                     <div className="flex items-center gap-3">
                                         <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand group-hover:translate-x-1 transition-all" />
@@ -228,7 +227,7 @@ export function ResearchArticle({
 
 export function ArticleInsight({ icon, title, desc }: { icon: ReactNode, title: string, desc: string }) {
     return (
-        <div className="p-6 border border-border rounded bg-background hover:bg-secondary/10 transition-colors">
+        <div className="p-6 border border-border/60 rounded-lg bg-background hover:bg-secondary/10 transition-colors">
             <div className="flex items-center gap-2 mb-3 text-foreground font-medium">
                 {icon}
                 <span className="font-serif text-lg tracking-tight">{title}</span>
