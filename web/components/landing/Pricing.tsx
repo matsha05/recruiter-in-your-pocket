@@ -24,10 +24,10 @@ export function Pricing({ onSelectTier }: PricingProps) {
             <div className="max-w-3xl mx-auto relative z-10">
 
                 <div className="text-center mb-12 max-w-2xl mx-auto">
-                    <h2 className="font-display text-4xl md:text-5xl text-primary mb-4 leading-tight tracking-tight">
+                    <h2 className="font-display text-4xl md:text-5xl text-primary mb-4 leading-tight tracking-tight animate-in slide-in-from-bottom-4 fade-in duration-700">
                         Fix it before they see it.
                     </h2>
-                    <p className="text-memo text-lg text-muted-foreground">
+                    <p className="text-memo text-lg text-muted-foreground animate-in slide-in-from-bottom-5 fade-in duration-700 delay-100">
                         Get your free recruiter-grade review in 60 seconds.
                     </p>
                 </div>

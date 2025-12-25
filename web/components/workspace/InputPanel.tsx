@@ -165,8 +165,9 @@ export default function InputPanel({
                                     <div className="text-center">
                                         <button
                                             onClick={() => setShowPaste(true)}
-                                            className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors border-b border-transparent hover:border-foreground/20 pb-0.5"
+                                            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-md border border-border/40 hover:border-brand/40 hover:bg-brand/5"
                                         >
+                                            <AlignLeft className="w-4 h-4" />
                                             Or paste text instead
                                         </button>
                                     </div>
@@ -185,12 +186,12 @@ export default function InputPanel({
                                             value={resumeText}
                                             onChange={(e) => onResumeTextChange(e.target.value)}
                                             placeholder="Paste your resume content here..."
-                                            className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 min-h-[200px] leading-relaxed resize-none"
+                                            className="flex w-full rounded-lg border border-border/60 bg-background px-4 py-3 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/40 disabled:cursor-not-allowed disabled:opacity-50 min-h-[200px] leading-relaxed resize-none"
                                             autoFocus
                                         />
                                         {isShortResume && (
-                                            <div className="flex gap-2 text-amber-600 text-xs items-center bg-amber-50 px-3 py-2 rounded">
-                                                <Info className="w-3 h-3" />
+                                            <div className="flex gap-2 text-warning text-xs items-center bg-warning/10 border border-warning/20 px-3 py-2 rounded-lg">
+                                                <Info className="w-3.5 h-3.5" />
                                                 <span>Short resume detected ({charCount} chars). Results may vary.</span>
                                             </div>
                                         )}

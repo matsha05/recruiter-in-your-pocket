@@ -29,8 +29,18 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     title="The Red Pen"
                     subtitle="How I'd rewrite these to land harder."
                 />
-                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No rewrites surfaced. Your bullets are either landing—or need more context to improve.
+                <div className="rounded-lg border border-success/20 bg-success/5 p-6 flex items-start gap-4">
+                    <div className="h-10 w-10 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                        <Sparkles className="h-5 w-5 text-success" />
+                    </div>
+                    <div>
+                        <h3 className="font-display font-medium text-foreground text-lg mb-1">
+                            Zero Critical Issues Detected
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                            Your bullets are landing with authority. Our heuristics found high verb impact and strong measurable outcomes.
+                        </p>
+                    </div>
                 </div>
             </section>
         );

@@ -27,13 +27,25 @@ export function SkimSimulator({ className }: SkimSimulatorProps) {
         <div className={cn("relative overflow-hidden rounded-lg border border-border/10 bg-white shadow-sm select-none", className)}>
 
             {/* Overlay UI (Recruiter Brain) */}
-            <div className="absolute top-4 right-4 z-20 flex items-center gap-2 rounded-full bg-black/80 px-3 py-1.5 text-xs font-medium text-white shadow-lg backdrop-blur-md">
-                <Eye className="h-3.5 w-3.5 text-brand" />
-                <span>Recruiter View</span>
-                <span className="ml-1 text-muted-foreground">|</span>
-                <Clock className="ml-1 h-3.5 w-3.5 text-muted-foreground" />
-                <span className="font-mono text-brand">0:0{(step + 1) * 1.2 > 6 ? 6 : Math.ceil((step + 1) * 1.2)}s</span>
+            {/* PRO HUD (Recruiter Brain) */}
+            <div className="absolute top-0 right-0 left-0 h-10 bg-gradient-to-b from-black/5 to-transparent z-20 pointer-events-none" />
+            <div className="absolute top-4 right-4 z-20 flex items-center gap-3 font-mono text-[10px] tracking-widest uppercase text-muted-foreground/60 select-none">
+                <div className="flex items-center gap-1.5">
+                    <div className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse" />
+                    <span className="text-brand font-bold">REC_VIEW_ACTIVE</span>
+                </div>
+                <span>::</span>
+                <span className="text-foreground font-medium">
+                    00:0{(step + 1) * 1.2 > 6 ? 6 : Math.ceil((step + 1) * 1.2)}
+                </span>
             </div>
+
+            {/* Scan Line Overlay */}
+            <motion.div
+                className="absolute left-0 right-0 h-px bg-brand/50 shadow-[0_0_8px_rgba(13,148,136,0.5)] z-10 pointer-events-none"
+                animate={{ top: ["0%", "100%"] }}
+                transition={{ duration: 2, ease: "linear", repeat: Infinity }}
+            />
 
             {/* Resume Content Mock */}
             <div className="p-8 space-y-6 opacity-90 grayscale-[0.2]">

@@ -71,8 +71,9 @@ export function RedPenCard({
                                     size="sm"
                                     variant="premium"
                                     onClick={onUnlock}
-                                    className="scale-95 transition-transform group-hover:scale-100 shadow-md"
+                                    className="relative overflow-hidden scale-95 transition-transform group-hover:scale-100 shadow-md ring-2 ring-premium/20 hover:ring-premium/50"
                                 >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite]" />
                                     <Lock className="mr-2 h-3.5 w-3.5" />
                                     Unlock Rewrite
                                 </Button>

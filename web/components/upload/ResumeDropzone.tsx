@@ -133,9 +133,13 @@ export function ResumeDropzone({
                             {/* State: Idle */}
                             {/* Icon / Brand Mark */}
                             <div className="relative">
-                                <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-white to-neutral-100 shadow-sm border border-black/5 flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-500 ease-out">
+                                <motion.div
+                                    animate={{ scale: [1, 1.03, 1] }}
+                                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                    className="h-20 w-20 rounded-2xl bg-gradient-to-br from-white to-neutral-100 shadow-sm border border-black/5 flex items-center justify-center transform group-hover:-translate-y-2 transition-transform duration-500 ease-out"
+                                >
                                     <FileText className="h-10 w-10 text-neutral-400 group-hover:text-primary transition-colors" opacity={0.5} strokeWidth={1.5} />
-                                </div>
+                                </motion.div>
                                 {/* Decorative Elements */}
                                 <InsightSparkleIcon className="absolute -right-4 -top-4 h-6 w-6 text-premium-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
                             </div>

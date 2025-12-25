@@ -102,7 +102,7 @@ export default function HistorySidebar({
     return (
         <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
             <SheetContent side="right" className="w-[380px] max-w-[90vw] p-0 flex flex-col">
-                <SheetHeader className="px-6 py-5 border-b border-border/10">
+                <SheetHeader className="px-6 py-5 border-b border-border/60">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-md bg-brand/10 flex items-center justify-center">
                             <FileText className="w-4 h-4 text-brand" />
@@ -139,7 +139,7 @@ export default function HistorySidebar({
                         /* Skeleton loading state */
                         <div className="p-4 space-y-3">
                             {[1, 2, 3].map((i) => (
-                                <div key={i} className="p-4 rounded-md border border-border/10 bg-card space-y-3">
+                                <div key={i} className="p-4 rounded-lg border border-border/60 bg-card space-y-3">
                                     <div className="flex items-start justify-between">
                                         <Skeleton className="h-8 w-16 rounded-md" />
                                         <Skeleton className="h-6 w-6 rounded" />
