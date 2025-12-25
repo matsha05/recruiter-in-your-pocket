@@ -42,7 +42,7 @@ export function SampleReportPreview() {
                             <span className="w-6 h-px bg-border"></span>
                             <span className="text-label text-muted-foreground">01. Recruiter First Impression</span>
                         </div>
-                        <span className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest">Example Review</span>
+                        <span className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest">Example Audit</span>
                     </div>
 
                     <div className="grid md:grid-cols-5 bg-background">
