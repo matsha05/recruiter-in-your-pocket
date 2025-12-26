@@ -3,7 +3,7 @@ import LandingClient from "../components/landing/LandingClient";
 
 export const metadata: Metadata = {
   title: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",
-  description: "See how recruiters actually read your resume. Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes. Built by a recruiter who's hired 1000+ at Google, Meta, and OpenAI.",
+  description: "See how recruiters actually read your resume. Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes.",
   openGraph: {
     title: "See How Recruiters Actually Read Your Resume",
     description: "Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes. Free audit, no signup required.",

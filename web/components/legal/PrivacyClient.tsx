@@ -43,7 +43,7 @@ export default function PrivacyClient() {
 
                 <Section title="3. How We Use Your Data">
                     <ul className="list-disc pl-5 space-y-2 mt-4 ml-2 marker:text-muted-foreground">
-                        <li>To provide the Feedback and Skim analysis.</li>
+                        <li>To provide the resume analysis and feedback.</li>
                         <li>To allow you to access past reports.</li>
                         <li>To improve the accuracy of our parsing heuristics.</li>
                         <li>To communicate with you about your account (e.g., login codes).</li>
@@ -51,7 +51,7 @@ export default function PrivacyClient() {
                 </Section>
 
                 <Section title="4. Resume Data Retention">
-                    We process resume uploads primarily in-memory for the &quot;Skim&quot; feature.
+                    We process resume uploads primarily in-memory for analysis.
                     If you are logged in, we store the generated Report for your history.
                     You can delete your account and data at any time.
                 </Section>

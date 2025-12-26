@@ -232,14 +232,14 @@ export async function POST(request: NextRequest) {
                 }
             }
 
-            // Calculate expiration
-            // If tier is '24h', we convert it to 'single_use' in the database with 1 year expiry
-            // Logic: It stays valid until used (enforced by the streaming endpoint)
+            // Calculate expiration and credits
+            // Credits don't expire (per FAQ), but we set a long expiry for cleanup
+            // single_use = 1 credit, 30d = 5 credits
             const dbTier = tier === "24h" ? "single_use" : tier;
+            const usesRemaining = dbTier === "30d" ? 5 : 1;
             const nowMs = Date.now();
-            const expiresAt = tier === "30d"
-                ? new Date(nowMs + 30 * 24 * 60 * 60 * 1000).toISOString()
-                : new Date(nowMs + 365 * 24 * 60 * 60 * 1000).toISOString(); // 1 Year for single use
+            // Both tiers get 1 year expiry - access is controlled by uses_remaining
+            const expiresAt = new Date(nowMs + 365 * 24 * 60 * 60 * 1000).toISOString();
 
             // Create pass in database
             const passId = crypto.randomUUID();
@@ -249,6 +249,7 @@ export async function POST(request: NextRequest) {
                     id: passId,
                     user_id: userId,
                     tier: dbTier,
+                    uses_remaining: usesRemaining,
                     purchased_at: new Date().toISOString(),
                     expires_at: expiresAt,
                     price_id: null,

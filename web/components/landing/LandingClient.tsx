@@ -30,7 +30,7 @@ export default function LandingClient() {
             formData.append("file", file);
 
             // Parse the file and store the text for the workspace
-            const res = await fetch("/api/skim", {
+            const res = await fetch("/api/parse-resume", {
                 method: "POST",
                 body: formData
             });
@@ -39,9 +39,9 @@ export default function LandingClient() {
 
             const data = await res.json();
 
-            if (data.ok && data.previewText) {
+            if (data.ok && data.text) {
                 // Store the parsed text and go directly to workspace
-                sessionStorage.setItem("pending_resume_text", data.previewText);
+                sessionStorage.setItem("pending_resume_text", data.text);
             }
 
             router.push("/workspace");

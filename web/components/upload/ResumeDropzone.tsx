@@ -118,7 +118,7 @@ export function ResumeDropzone({
                             <div>
                                 <p className="text-lg font-medium font-sans">Drop to analyze</p>
                                 <p className="text-sm text-muted-foreground font-sans mt-1">
-                                    We'll start the skim immediately.
+                                    We'll analyze it right away.
                                 </p>
                             </div>
                         </motion.div>

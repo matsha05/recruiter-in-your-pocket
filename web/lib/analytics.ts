@@ -238,9 +238,6 @@ export const Analytics = {
   resumeUploaded: (source: "landing" | "workspace") =>
     trackEvent("resume_uploaded", { source }),
 
-  skimViewed: () =>
-    trackEvent("skim_viewed"),
-
   reportStarted: (hasJobDescription: boolean) =>
     trackEvent("report_started", { has_jd: hasJobDescription }),
 

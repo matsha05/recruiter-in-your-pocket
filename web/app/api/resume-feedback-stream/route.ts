@@ -43,10 +43,11 @@ function hashResumeText(text: string) {
 async function getActivePass(supabase: any, userId: string) {
     const { data, error } = await supabase
         .from("passes")
-        .select("id, tier, expires_at, created_at")
+        .select("id, tier, expires_at, uses_remaining, created_at")
         .eq("user_id", userId)
         .gt("expires_at", nowIso())
-        .order("expires_at", { ascending: false })
+        .gt("uses_remaining", 0)
+        .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle();
     if (error) throw error;
@@ -302,22 +303,22 @@ export async function POST(request: Request) {
                     free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining
                 }) + "\n"));
 
-                // CONSUME SINGLE USE PASS
-                // If the user used a 'single_use' pass, we must expire it now that the report is generated.
-                if (activePass && activePass.tier === "single_use") {
+                // CONSUME PASS CREDIT
+                // Decrement uses_remaining for ALL pass types after successful report generation
+                if (activePass) {
                     try {
                         const admin = createSupabaseAdminClient();
                         if (!admin) throw new Error("Supabase admin client not configured");
 
-                        // Set expires_at to NOW, effectively killing the pass
+                        const newUsesRemaining = Math.max(0, (activePass.uses_remaining || 1) - 1);
                         await admin
                             .from("passes")
-                            .update({ expires_at: new Date().toISOString() })
+                            .update({ uses_remaining: newUsesRemaining })
                             .eq("id", activePass.id);
 
-                        console.log(`[stream] Consumed single_use pass: ${activePass.id}`);
+                        console.log(`[stream] Consumed 1 credit from pass ${activePass.id}. Remaining: ${newUsesRemaining}`);
                     } catch (passErr) {
-                        console.error("[stream] Failed to consume pass:", passErr);
+                        console.error("[stream] Failed to consume pass credit:", passErr);
                     }
                 }
 
