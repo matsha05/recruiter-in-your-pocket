@@ -194,11 +194,41 @@ The methodology tooltip explains:
 
 ---
 
-## DO NOT BUILD
-- **Dashboards:** We build Reports, not dashboards.
-- **Gamification:** No badges, streaks, confetti.
-- **Social Features:** Private studio, no "share to feed."
+## Bending the Rules
+
+> [!IMPORTANT]
+> **Design principles are guidelines, not prison.** They exist to prevent accidental drift into low-quality patterns, not to block competitive features.
+
+### When to Bend
+- **Competitive necessity:** If Teal, Jobscan, or Resume Worded have a feature that users expect, we may need to add it even if it doesn't perfectly fit our aesthetic.
+- **Acquisition readiness:** If a feature increases our value to potential acquirers (analytics, dashboards, data exports), we build it.
+- **User demand:** If 3+ users request the same thing post-launch, we seriously consider it.
+
+### When NOT to Bend
+- **Never sacrifice quality:** A bent rule still needs premium execution. No half-baked features.
+- **Never lose identity:** We remain the "Recruiter Lens" expert, not a generic job-search OS.
+- **Never copy blindly:** Competitors have features we won't build (auto-apply, job boards) because they're not our wedge.
+
+### The Litmus Test
+Before bending a rule, ask:
+1. Does this make us **more competitive** in our category?
+2. Does this make us **more acquisition-ready**?
+3. Can we execute this **at our quality bar**?
+
+If all three are YES, bend the rule.
 
 ---
 
-*V2.2 — Updated Dec 16, 2025*
+## Defaults (Not Absolutes)
+
+The following are **defaults**, not hard bans. Bend with justification:
+
+| Default | When to Bend |
+|:---|:---|
+| "Reports, not dashboards" | If analytics dashboard increases retention/stickiness |
+| "No gamification" | If tasteful progress visualization (not badges/confetti) improves UX |
+| "No social features" | If shareable report links or referrals drive growth |
+
+---
+
+*V2.3 — Updated Dec 26, 2025 — Added flexibility for competitive features*
