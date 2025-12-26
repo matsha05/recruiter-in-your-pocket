@@ -125,6 +125,32 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 // FULL ACCESS: Show complete role analysis
                 // FULL ACCESS: Show complete role analysis
                 <div className="rounded-lg border border-border/60 bg-card shadow-sm p-6 md:p-8">
+                    {/* JD Match Score - The Emotional Hook */}
+                    {hasJobDescription && alignment.jd_match_score !== undefined && alignment.jd_match_score > 0 && (
+                        <div className="text-center mb-8 pb-6 border-b border-border/40">
+                            <div className="inline-flex items-center gap-4">
+                                <div className={`text-6xl md:text-7xl font-display font-bold ${alignment.jd_match_score >= 75 ? 'text-green-500' :
+                                        alignment.jd_match_score >= 60 ? 'text-brand' :
+                                            alignment.jd_match_score >= 45 ? 'text-warning' :
+                                                'text-destructive'
+                                    }`}>
+                                    {alignment.jd_match_score}%
+                                </div>
+                                <div className="text-left">
+                                    <p className="text-sm font-semibold text-foreground">
+                                        {alignment.jd_match_score >= 75 ? 'Strong Match' :
+                                            alignment.jd_match_score >= 60 ? 'Moderate Match' :
+                                                alignment.jd_match_score >= 45 ? 'Weak Match' :
+                                                    'Low Match'}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground max-w-[200px]">
+                                        {alignment.jd_match_summary || 'to this job description'}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* The Declaration */}
                     <div className="text-center space-y-4 mb-6">
                         {primaryRole && (

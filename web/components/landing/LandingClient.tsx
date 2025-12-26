@@ -14,6 +14,7 @@ import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
 import { BackedByResearch } from "@/components/landing/BackedByResearch";
 import { Pricing } from "@/components/landing/Pricing";
+import { Testimonials } from "@/components/landing/Testimonials";
 import { Analytics } from "@/lib/analytics";
 
 export default function LandingClient() {
@@ -131,6 +132,9 @@ export default function LandingClient() {
 
                 {/* Proof Section */}
                 <BackedByResearch />
+
+                {/* Social Proof Section */}
+                <Testimonials />
 
                 {/* Pricing Section */}
                 <Pricing />

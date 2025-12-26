@@ -97,3 +97,57 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
     return NextResponse.json({ ok: false, message: "Failed to delete report" }, { status: 500 });
   }
 }
+
+export async function PATCH(request: NextRequest, context: { params: Promise<{ id: string }> }) {
+  try {
+    const { id: reportId } = await context.params;
+
+    if (!reportId || typeof reportId !== "string" || reportId.length < 10) {
+      return NextResponse.json(
+        { ok: false, errorCode: "INVALID_REPORT_ID", message: "Invalid report ID." },
+        { status: 400 }
+      );
+    }
+
+    const supabase = await createSupabaseServerClient();
+    const { data: userData } = await supabase.auth.getUser();
+    const user = userData.user;
+
+    if (!user) {
+      return NextResponse.json(
+        { ok: false, errorCode: "AUTH_REQUIRED", message: "Please log in to rename this report." },
+        { status: 401 }
+      );
+    }
+
+    const body = await request.json();
+    const name = body.name;
+
+    if (typeof name !== "string" || name.length > 100) {
+      return NextResponse.json(
+        { ok: false, errorCode: "INVALID_NAME", message: "Name must be a string under 100 characters." },
+        { status: 400 }
+      );
+    }
+
+    // Update only if user owns this report
+    const { error } = await supabase
+      .from("reports")
+      .update({ name: name.trim() || null })
+      .eq("id", reportId)
+      .eq("user_id", user.id);
+
+    if (error) {
+      console.error("Rename report error:", error);
+      return NextResponse.json(
+        { ok: false, errorCode: "RENAME_FAILED", message: "Could not rename this report." },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ ok: true, message: "Report renamed." });
+  } catch (error) {
+    console.error("API PATCH /reports/[id] error:", error);
+    return NextResponse.json({ ok: false, message: "Failed to rename report" }, { status: 500 });
+  }
+}

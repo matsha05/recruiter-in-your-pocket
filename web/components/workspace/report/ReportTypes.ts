@@ -16,6 +16,8 @@ export interface ReportData {
     section_review?: Record<string, { working?: string | null; missing?: string | null; fix?: string | null; grade?: string; priority?: string }>;
     rewrites?: Array<{ original: string; better: string; label?: string; enhancement_note?: string }>;
     job_alignment?: {
+        jd_match_score?: number;
+        jd_match_summary?: string;
         strongly_aligned?: string[];
         underplayed?: string[];
         missing?: string[];

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Clock, TrendingUp, FileText } from "lucide-react";
+import { Trash2, Clock, TrendingUp, FileText, Pencil } from "lucide-react";
 import {
     Sheet,
     SheetContent,
@@ -19,6 +19,7 @@ interface HistoryReport {
     score: number;
     scoreLabel?: string;
     resumeSnippet?: string;
+    name?: string;
 }
 
 interface HistorySidebarProps {
@@ -39,12 +40,39 @@ export default function HistorySidebar({
     const [reports, setReports] = useState<HistoryReport[]>([]);
     const [loading, setLoading] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
+    const [renamingId, setRenamingId] = useState<string | null>(null);
+    const [editName, setEditName] = useState("");
 
     useEffect(() => {
         if (isOpen && user?.email) {
             fetchReports();
         }
     }, [isOpen, user?.email]);
+
+    const handleRename = async (reportId: string) => {
+        if (!editName.trim() && !reports.find(r => r.id === reportId)?.name) {
+            setRenamingId(null);
+            return;
+        }
+        try {
+            const res = await fetch(`/api/reports/${reportId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: editName.trim() })
+            });
+            const data = await res.json();
+            if (data.ok) {
+                setReports(prev => prev.map(r =>
+                    r.id === reportId ? { ...r, name: editName.trim() || undefined } : r
+                ));
+            }
+        } catch (error) {
+            console.error("Failed to rename report:", error);
+        } finally {
+            setRenamingId(null);
+            setEditName("");
+        }
+    };
 
     const fetchReports = async () => {
         setLoading(true);
@@ -185,9 +213,58 @@ export default function HistorySidebar({
                             {reports.map((report) => (
                                 <CardInteractive
                                     key={report.id}
-                                    onClick={() => onLoadReport?.(report.id)}
+                                    onClick={() => renamingId !== report.id && onLoadReport?.(report.id)}
                                     className="group relative p-4"
                                 >
+                                    {/* Version name (editable) */}
+                                    {renamingId === report.id ? (
+                                        <div
+                                            className="mb-3"
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            <input
+                                                type="text"
+                                                value={editName}
+                                                onChange={(e) => setEditName(e.target.value)}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter') handleRename(report.id);
+                                                    if (e.key === 'Escape') { setRenamingId(null); setEditName(''); }
+                                                }}
+                                                onBlur={() => handleRename(report.id)}
+                                                placeholder="Name this version..."
+                                                className="w-full px-2 py-1 text-sm font-medium border border-brand rounded bg-card focus:outline-none focus:ring-1 focus:ring-brand"
+                                                autoFocus
+                                            />
+                                        </div>
+                                    ) : report.name ? (
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <span className="text-sm font-medium text-foreground truncate">
+                                                {report.name}
+                                            </span>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setEditName(report.name || '');
+                                                    setRenamingId(report.id);
+                                                }}
+                                                className="opacity-0 group-hover:opacity-100 p-1 hover:bg-muted rounded"
+                                            >
+                                                <Pencil className="w-3 h-3 text-muted-foreground" />
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setEditName('');
+                                                setRenamingId(report.id);
+                                            }}
+                                            className="mb-3 text-xs text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                                        >
+                                            + Add name
+                                        </button>
+                                    )}
+
                                     {/* Score badge */}
                                     <div className="flex items-start justify-between mb-3">
                                         <ScoreBadge

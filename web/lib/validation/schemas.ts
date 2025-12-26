@@ -124,10 +124,12 @@ export const ResumeFeedbackResponseSchema = z.object({
     content_score: z.number().optional(),
     // Job alignment (optional)
     job_alignment: z.object({
+        jd_match_score: z.number().int().min(0).max(100).optional(),
+        jd_match_summary: z.string().optional(),
         strongly_aligned: z.array(z.string()),
         underplayed: z.array(z.string()),
         missing: z.array(z.string())
-    }).optional()
+    }).passthrough().optional()
 }).passthrough();
 export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema>;
 

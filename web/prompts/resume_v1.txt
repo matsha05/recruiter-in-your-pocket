@@ -316,6 +316,8 @@ The JSON must match this shape exactly:
     }
   },
   "job_alignment": {
+    "jd_match_score": 0,
+    "jd_match_summary": "",
     "strongly_aligned": [],
     "underplayed": [],
     "missing": [],
@@ -533,6 +535,15 @@ FIELD RULES
 
 - job_alignment (ALWAYS REQUIRED - even without a job description)
   - Based on the resume content alone, infer what this person is known for and where they fit.
+  - jd_match_score: Integer from 0 to 100. When a job description is provided, this represents how well the resume matches that specific JD. When no JD is provided, set to 0 (null case).
+    JD MATCH SCORE BANDS (when JD is provided):
+    - 90-100: Exceptional match. Resume directly addresses most/all key requirements. Strong hire signal.
+    - 75-89: Strong match. Clear alignment on core requirements, minor gaps in nice-to-haves.
+    - 60-74: Moderate match. Some key requirements met, but notable gaps exist.
+    - 45-59: Weak match. Resume shows relevant experience but significant skill/level misaligns.
+    - 0-44: Poor match. Fundamentally misaligned for this role.
+    Be honest. Most real matches fall between 55-80. Don't inflate to make users feel good.
+  - jd_match_summary: One sentence (max 20 words) explaining the match. E.g., "Strong on product execution but missing the ML/data science depth this role requires."
   - strongly_aligned: 3-5 themes where this person is clearly strong (e.g., "Cross-functional coordination", "Stakeholder management", "Launch execution")
   - underplayed: 2-4 themes that are present but not emphasized enough (e.g., "Data-driven decision making", "Technical depth")
   - missing: 1-3 themes that are absent but common in their likely target roles

@@ -407,6 +407,7 @@ export default function WorkspaceClient() {
                     console.log("Load report:", reportId);
                     setIsHistoryOpen(false);
                     setIsLoading(true);
+                    setSkipSample(true); // Prevent "Example" badge on historical reports
                     try {
                         const res = await fetch(`/api/reports/${reportId}`);
                         const data = await res.json();
