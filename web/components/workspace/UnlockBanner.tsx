@@ -84,12 +84,15 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                         </div>
                     </div>
 
-                    <button
+                    <Button
+                        variant="ghost"
+                        size="sm"
                         onClick={handleDismiss}
-                        className="p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-muted-foreground"
+                        className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+                        aria-label="Dismiss banner"
                     >
                         <X className="w-4 h-4" />
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

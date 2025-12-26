@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 import { Toaster } from "@/components/ui/sonner";
 import { GeistSans } from "geist/font/sans";
@@ -57,6 +58,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <Toaster />
+          <Analytics />
         </AuthProvider>
       </body>
     </html>
