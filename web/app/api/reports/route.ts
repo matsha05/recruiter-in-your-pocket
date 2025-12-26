@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
     const { data, error } = await supabase
       .from("reports")
-      .select("id, score, score_label, resume_preview, name, created_at")
+      .select("id, score, score_label, resume_preview, name, target_role, resume_variant, created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(limit);
@@ -40,7 +40,9 @@ export async function GET(request: NextRequest) {
       score: r.score,
       scoreLabel: r.score_label || undefined,
       resumeSnippet: r.resume_preview || undefined,
-      name: r.name || undefined
+      name: r.name || undefined,
+      targetRole: r.target_role || undefined,
+      resumeVariant: r.resume_variant || undefined
     }));
 
     return NextResponse.json({ ok: true, reports });

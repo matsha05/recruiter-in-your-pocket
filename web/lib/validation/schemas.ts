@@ -126,6 +126,12 @@ export const ResumeFeedbackResponseSchema = z.object({
     job_alignment: z.object({
         jd_match_score: z.number().int().min(0).max(100).optional(),
         jd_match_summary: z.string().optional(),
+        jd_keywords: z.object({
+            matched: z.array(z.string()).optional(),
+            missing: z.array(z.string()).optional(),
+            match_count: z.number().int().optional(),
+            total_count: z.number().int().optional()
+        }).optional(),
         strongly_aligned: z.array(z.string()),
         underplayed: z.array(z.string()),
         missing: z.array(z.string())

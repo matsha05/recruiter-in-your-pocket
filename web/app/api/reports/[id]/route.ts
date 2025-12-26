@@ -28,7 +28,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     const { data, error } = await supabase
       .from("reports")
-      .select("report_json")
+      .select("report_json, job_description_text, target_role, resume_variant")
       .eq("id", reportId)
       .eq("user_id", user.id)
       .maybeSingle();
@@ -47,7 +47,13 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
       );
     }
 
-    return NextResponse.json({ ok: true, report: data.report_json });
+    return NextResponse.json({
+      ok: true,
+      report: data.report_json,
+      jdPreview: data.job_description_text?.slice(0, 200) || null,
+      targetRole: data.target_role || null,
+      resumeVariant: data.resume_variant || null
+    });
   } catch (error) {
     console.error("API /reports/[id] error:", error);
     return NextResponse.json({ ok: false, report: null, message: "Failed to fetch report" }, { status: 500 });
@@ -121,11 +127,34 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
     }
 
     const body = await request.json();
-    const name = body.name;
+    const { name, resume_variant } = body;
 
-    if (typeof name !== "string" || name.length > 100) {
+    // Build update payload
+    const updates: Record<string, any> = {};
+
+    if (name !== undefined) {
+      if (typeof name !== "string" || name.length > 100) {
+        return NextResponse.json(
+          { ok: false, errorCode: "INVALID_NAME", message: "Name must be a string under 100 characters." },
+          { status: 400 }
+        );
+      }
+      updates.name = name.trim() || null;
+    }
+
+    if (resume_variant !== undefined) {
+      if (typeof resume_variant !== "string" || resume_variant.length > 50) {
+        return NextResponse.json(
+          { ok: false, errorCode: "INVALID_VARIANT", message: "Variant must be a string under 50 characters." },
+          { status: 400 }
+        );
+      }
+      updates.resume_variant = resume_variant.trim() || null;
+    }
+
+    if (Object.keys(updates).length === 0) {
       return NextResponse.json(
-        { ok: false, errorCode: "INVALID_NAME", message: "Name must be a string under 100 characters." },
+        { ok: false, errorCode: "NO_UPDATES", message: "No valid fields to update." },
         { status: 400 }
       );
     }
@@ -133,19 +162,19 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
     // Update only if user owns this report
     const { error } = await supabase
       .from("reports")
-      .update({ name: name.trim() || null })
+      .update(updates)
       .eq("id", reportId)
       .eq("user_id", user.id);
 
     if (error) {
-      console.error("Rename report error:", error);
+      console.error("Update report error:", error);
       return NextResponse.json(
-        { ok: false, errorCode: "RENAME_FAILED", message: "Could not rename this report." },
+        { ok: false, errorCode: "UPDATE_FAILED", message: "Could not update this report." },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ ok: true, message: "Report renamed." });
+    return NextResponse.json({ ok: true, message: "Report updated." });
   } catch (error) {
     console.error("API PATCH /reports/[id] error:", error);
     return NextResponse.json({ ok: false, message: "Failed to rename report" }, { status: 500 });

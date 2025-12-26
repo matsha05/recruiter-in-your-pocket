@@ -318,6 +318,12 @@ The JSON must match this shape exactly:
   "job_alignment": {
     "jd_match_score": 0,
     "jd_match_summary": "",
+    "jd_keywords": {
+      "matched": [],
+      "missing": [],
+      "match_count": 0,
+      "total_count": 0
+    },
     "strongly_aligned": [],
     "underplayed": [],
     "missing": [],
@@ -544,6 +550,12 @@ FIELD RULES
     - 0-44: Poor match. Fundamentally misaligned for this role.
     Be honest. Most real matches fall between 55-80. Don't inflate to make users feel good.
   - jd_match_summary: One sentence (max 20 words) explaining the match. E.g., "Strong on product execution but missing the ML/data science depth this role requires."
+  - jd_keywords: Keyword-by-keyword analysis (ONLY when JD is provided):
+    - matched: Array of 5-10 key requirements/skills from the JD that ARE demonstrated in the resume. Extract specific skills, tools, and competencies, not vague themes. E.g., ["Python", "Cross-functional leadership", "A/B testing", "SQL", "Stakeholder management"]
+    - missing: Array of 3-7 key requirements from the JD that are NOT demonstrated in the resume. Be specific. E.g., ["Machine Learning", "Kubernetes", "Executive communication"]
+    - match_count: Integer count of matched keywords
+    - total_count: Sum of matched + missing (the total number of key requirements extracted from JD)
+    When no JD is provided, leave jd_keywords empty (matched: [], missing: [], match_count: 0, total_count: 0).
   - strongly_aligned: 3-5 themes where this person is clearly strong (e.g., "Cross-functional coordination", "Stakeholder management", "Launch execution")
   - underplayed: 2-4 themes that are present but not emphasized enough (e.g., "Data-driven decision making", "Technical depth")
   - missing: 1-3 themes that are absent but common in their likely target roles

@@ -286,6 +286,8 @@ export async function POST(request: Request) {
                             score_label: payload.score_label || null,
                             report_json: payload,
                             resume_preview: preview,
+                            job_description_text: jobDescription || null,
+                            target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
                             created_at: nowIso()
                         });
                     } catch {

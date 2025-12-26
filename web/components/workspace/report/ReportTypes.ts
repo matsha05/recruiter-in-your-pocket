@@ -18,6 +18,12 @@ export interface ReportData {
     job_alignment?: {
         jd_match_score?: number;
         jd_match_summary?: string;
+        jd_keywords?: {
+            matched?: string[];
+            missing?: string[];
+            match_count?: number;
+            total_count?: number;
+        };
         strongly_aligned?: string[];
         underplayed?: string[];
         missing?: string[];

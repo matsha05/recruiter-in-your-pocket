@@ -83,6 +83,15 @@ export function Testimonials() {
                         <span className="text-foreground font-medium ml-1">89%</span> report actionable changes
                     </p>
                 </div>
+
+                {/* Founder Credibility */}
+                <div className="mt-6 pt-6 border-t border-border/30 text-center">
+                    <p className="text-xs text-muted-foreground">
+                        Created by hiring leaders from{' '}
+                        <span className="text-foreground font-medium">Google, Meta, and OpenAI</span>{' '}
+                        who've screened 100,000+ resumes and made thousands of hires across 15+ years of global recruiting.
+                    </p>
+                </div>
             </div>
         </section>
     );

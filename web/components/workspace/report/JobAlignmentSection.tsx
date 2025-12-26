@@ -130,9 +130,9 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                         <div className="text-center mb-8 pb-6 border-b border-border/40">
                             <div className="inline-flex items-center gap-4">
                                 <div className={`text-6xl md:text-7xl font-display font-bold ${alignment.jd_match_score >= 75 ? 'text-green-500' :
-                                        alignment.jd_match_score >= 60 ? 'text-brand' :
-                                            alignment.jd_match_score >= 45 ? 'text-warning' :
-                                                'text-destructive'
+                                    alignment.jd_match_score >= 60 ? 'text-brand' :
+                                        alignment.jd_match_score >= 45 ? 'text-warning' :
+                                            'text-destructive'
                                     }`}>
                                     {alignment.jd_match_score}%
                                 </div>
@@ -147,6 +147,73 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                         {alignment.jd_match_summary || 'to this job description'}
                                     </p>
                                 </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* JD Keyword Breakdown - The Jobscan-Style Checklist */}
+                    {hasJobDescription && alignment.jd_keywords && alignment.jd_keywords.total_count && alignment.jd_keywords.total_count > 0 && (
+                        <div className="mb-8 pb-6 border-b border-border/40">
+                            {/* Progress Bar */}
+                            <div className="mb-4">
+                                <div className="flex items-center justify-between mb-2">
+                                    <span className="text-sm font-medium text-foreground">
+                                        Requirements Matched
+                                    </span>
+                                    <span className="text-sm font-semibold text-foreground">
+                                        {alignment.jd_keywords.match_count || 0} / {alignment.jd_keywords.total_count}
+                                    </span>
+                                </div>
+                                <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                                    <div
+                                        className={`h-full rounded-full transition-all duration-500 ${((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) >= 0.75 ? 'bg-green-500' :
+                                                ((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) >= 0.5 ? 'bg-brand' :
+                                                    'bg-warning'
+                                            }`}
+                                        style={{ width: `${Math.round(((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) * 100)}%` }}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Keyword Lists */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Matched Keywords */}
+                                {alignment.jd_keywords.matched && alignment.jd_keywords.matched.length > 0 && (
+                                    <div className="space-y-2">
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-green-600">
+                                            ✓ Skills Found
+                                        </h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {alignment.jd_keywords.matched.map((keyword, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-green-500/10 text-green-700 border border-green-500/20"
+                                                >
+                                                    ✓ {keyword}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Missing Keywords */}
+                                {alignment.jd_keywords.missing && alignment.jd_keywords.missing.length > 0 && (
+                                    <div className="space-y-2">
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-destructive">
+                                            ✗ Missing Skills
+                                        </h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {alignment.jd_keywords.missing.map((keyword, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-destructive/10 text-destructive border border-destructive/20"
+                                                >
+                                                    ✗ {keyword}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}
