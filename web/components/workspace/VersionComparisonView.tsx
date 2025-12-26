@@ -72,17 +72,11 @@ function SubscoreRow({ label, before, after }: { label: string; before?: number;
     );
 }
 
-// Smart summarization - aggressive truncation for single-line scannability
-function summarize(text: string): string {
+// Extract first sentence only - no truncation, complete thoughts
+function firstSentence(text: string): string {
     const clean = text.trim();
-    // Try to get first sentence if short enough
     const match = clean.match(/^[^.!?]+[.!?]/);
-    if (match && match[0].length <= 60) return match[0];
-    // Aggressively truncate at word boundary
-    if (clean.length <= 55) return clean;
-    const truncated = clean.slice(0, 55);
-    const lastSpace = truncated.lastIndexOf(' ');
-    return (lastSpace > 30 ? truncated.slice(0, lastSpace) : truncated) + '...';
+    return match ? match[0] : clean;
 }
 
 export function VersionComparisonView({ reportA, reportB, onClose }: VersionComparisonViewProps) {
@@ -229,12 +223,12 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                             </p>
 
                             {/* Working */}
-                            <div className="mb-4">
-                                <p className="text-xs font-medium text-foreground mb-2">Working</p>
-                                <ul className="space-y-2">
+                            <div className="mb-5">
+                                <p className="text-xs font-medium text-foreground mb-2.5">Working</p>
+                                <ul className="space-y-3">
                                     {(older.report.strengths || []).slice(0, 3).map((s, i) => (
-                                        <li key={i} className="text-xs text-muted-foreground leading-snug">
-                                            {summarize(s)}
+                                        <li key={i} className="text-[13px] text-muted-foreground leading-[1.6]">
+                                            {firstSentence(s)}
                                         </li>
                                     ))}
                                     {(!older.report.strengths?.length) && (
@@ -245,11 +239,11 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
 
                             {/* Gaps */}
                             <div>
-                                <p className="text-xs font-medium text-foreground/80 mb-2">Gaps</p>
-                                <ul className="space-y-2">
+                                <p className="text-xs font-medium text-foreground/80 mb-2.5">Gaps</p>
+                                <ul className="space-y-3">
                                     {(older.report.gaps || []).slice(0, 3).map((g, i) => (
-                                        <li key={i} className="text-xs text-muted-foreground leading-snug">
-                                            {summarize(g)}
+                                        <li key={i} className="text-[13px] text-muted-foreground leading-[1.6]">
+                                            {firstSentence(g)}
                                         </li>
                                     ))}
                                     {(!older.report.gaps?.length) && (
@@ -266,12 +260,12 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                             </p>
 
                             {/* Working */}
-                            <div className="mb-4">
-                                <p className="text-xs font-medium text-foreground mb-2">Working</p>
-                                <ul className="space-y-2">
+                            <div className="mb-5">
+                                <p className="text-xs font-medium text-foreground mb-2.5">Working</p>
+                                <ul className="space-y-3">
                                     {(newer.report.strengths || []).slice(0, 3).map((s, i) => (
-                                        <li key={i} className="text-xs text-foreground/80 leading-snug">
-                                            {summarize(s)}
+                                        <li key={i} className="text-[13px] text-foreground/80 leading-[1.6]">
+                                            {firstSentence(s)}
                                         </li>
                                     ))}
                                     {(!newer.report.strengths?.length) && (
@@ -282,11 +276,11 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
 
                             {/* Gaps */}
                             <div>
-                                <p className="text-xs font-medium text-foreground/80 mb-2">Gaps</p>
-                                <ul className="space-y-2">
+                                <p className="text-xs font-medium text-foreground/80 mb-2.5">Gaps</p>
+                                <ul className="space-y-3">
                                     {(newer.report.gaps || []).slice(0, 3).map((g, i) => (
-                                        <li key={i} className="text-xs text-foreground/70 leading-snug">
-                                            {summarize(g)}
+                                        <li key={i} className="text-[13px] text-foreground/70 leading-[1.6]">
+                                            {firstSentence(g)}
                                         </li>
                                     ))}
                                     {(!newer.report.gaps?.length) && (

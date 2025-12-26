@@ -77,7 +77,7 @@ export function InterviewCoach({ roleTitle, companyName }: { roleTitle: string; 
                 <Card className="bg-indigo-500/5 border-indigo-500/20">
                     <CardContent className="p-6">
                         <h3 className="text-sm font-bold text-indigo-600 uppercase tracking-wider mb-2">Recruiter Read</h3>
-                        <p className="text-lg font-serif text-foreground">"{result.feedback_summary}"</p>
+                        <p className="text-lg font-serif text-foreground">{"\""}{result.feedback_summary}{"\""}</p>
                     </CardContent>
                 </Card>
 

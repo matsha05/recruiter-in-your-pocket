@@ -42,7 +42,7 @@ export default function Error({
                         Something went wrong
                     </h1>
                     <p className="text-muted-foreground mb-8 leading-relaxed">
-                        We hit an unexpected error. This has been logged and we're looking into it.
+                        We hit an unexpected error. This has been logged and we&apos;re looking into it.
                         Try refreshing, or head back home.
                     </p>
 

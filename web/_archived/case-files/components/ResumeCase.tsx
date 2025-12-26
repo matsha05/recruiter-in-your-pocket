@@ -82,7 +82,7 @@ export function ResumeCase({ artifact }: ResumeCaseProps) {
                             </div>
 
                             <div className="text-left">
-                                <span className="font-serif text-muted-foreground text-sm italic">"{rung.proof}"</span>
+                                <span className="font-serif text-muted-foreground text-sm italic">{"\""}{rung.proof}{"\""}</span>
                             </div>
                         </div>
                     ))}

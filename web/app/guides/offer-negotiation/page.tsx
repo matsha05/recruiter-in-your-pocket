@@ -65,7 +65,7 @@ export default function OfferNegotiationGuidePage() {
                         <div>
                             <h3 className="font-medium text-foreground mb-2">Anchoring & Sequence</h3>
                             <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                                First offers anchor outcomes, but "pre-offer conversations" mitigate this. Information interventions (like knowing the band) significantly improve outcomes (NBER workers).
+                                First offers anchor outcomes, but {"\"pre-offer conversations\""} mitigate this. Information interventions (like knowing the band) significantly improve outcomes (NBER workers).
                             </p>
                             <ul className="text-xs text-muted-foreground space-y-1">
                                 <li>• NBER Working Paper 27054</li>
@@ -91,7 +91,7 @@ export default function OfferNegotiationGuidePage() {
                 <section>
                     <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 2: The comp stack, and why levers matter</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        When you negotiate like it is “one number,” you miss the levers that companies actually use to close.
+                        When you negotiate like it is {"\"one number,\""} you miss the levers that companies actually use to close.
                     </p>
                     <CompStack />
 
@@ -123,7 +123,7 @@ export default function OfferNegotiationGuidePage() {
                     <div className="mt-8">
                         <h3 className="font-medium text-foreground mb-2">The “Package” Principle</h3>
                         <p className="text-muted-foreground leading-relaxed">
-                            Don't just ask for a number. Ask for a package outcome. "If we can get to $X total..."
+                            Don{"'"}t just ask for a number. Ask for a package outcome. {"\"If we can get to $X total...\""}
                         </p>
                     </div>
                 </section>
@@ -215,7 +215,7 @@ function ScriptBlock({ title, doText, dontText }: { title: string, doText: React
                         <span className="text-[10px] font-bold text-success uppercase tracking-widest">Winning Approach</span>
                     </div>
                     <p className="text-base text-foreground/90 leading-relaxed font-medium font-display border-l border-success/30 pl-4">
-                        "{doText}"
+                        {"\""}{doText}{"\""}
                     </p>
                 </div>
 
@@ -226,7 +226,7 @@ function ScriptBlock({ title, doText, dontText }: { title: string, doText: React
                         <span className="text-[10px] font-bold text-destructive uppercase tracking-widest">Common Mistake</span>
                     </div>
                     <p className="text-base text-muted-foreground leading-relaxed italic font-display border-l border-destructive/20 pl-4">
-                        "{dontText}"
+                        {"\""}{dontText}{"\""}
                     </p>
                 </div>
             </div>
