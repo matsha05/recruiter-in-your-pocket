@@ -164,7 +164,7 @@ export function Pricing({ onSelectTier }: PricingProps) {
                                     <span><strong>5 full reviews included</strong></span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <Check className="w-4 h-4 text-premium mt-0.5 shrink-0" />
+                                    <Check className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
                                     <span>Tailor versions for different roles and job postings</span>
                                 </li>
                                 <li className="flex items-start gap-3">

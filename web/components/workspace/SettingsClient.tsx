@@ -267,7 +267,7 @@ export default function SettingsClient() {
                             </div>
                             <ul className="space-y-4 mb-8 text-sm text-foreground font-medium flex-1">
                                 <FeatureItem text="5 full reviews included" bold accent="gold" />
-                                <FeatureItem text="Tailor versions for different roles" accent="gold" />
+                                <FeatureItem text="Tailor versions for different roles" />
                                 <FeatureItem text="Unlock full rewrites and missing wins" />
                                 <FeatureItem text="Compare progress across versions" />
                                 <FeatureItem text="Export a clean PDF when you're ready" />
