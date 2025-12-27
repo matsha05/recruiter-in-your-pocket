@@ -33,7 +33,7 @@ export default function HowRecruitersReadPage() {
                 <>
                     <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Visualizing the 6 Seconds</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        The "Heatmap" below allows us to see exactly where attention is focused. The red areas indicate intense fixation.
+                        The &quot;Heatmap&quot; below allows us to see exactly where attention is focused. The red areas indicate intense fixation.
                     </p>
                     <ResumeHeatmap />
                 </>

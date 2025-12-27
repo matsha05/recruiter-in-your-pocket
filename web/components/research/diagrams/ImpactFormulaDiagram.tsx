@@ -79,11 +79,11 @@ export function ImpactFormulaDiagram() {
                         Example
                     </p>
                     <div className="bg-secondary/20 rounded-sm p-4 text-sm text-foreground leading-relaxed">
-                        <span className="text-brand font-medium">"Grew revenue by 40%</span>
+                        <span className="text-brand font-medium">&quot;Grew revenue by 40%</span>
                         <span className="text-muted-foreground"> as measured by </span>
                         <span className="text-foreground">quarterly MRR,</span>
                         <span className="text-muted-foreground"> by </span>
-                        <span className="text-foreground">implementing a usage-based pricing model."</span>
+                        <span className="text-foreground">implementing a usage-based pricing model.&quot;</span>
                     </div>
                 </motion.div>
 

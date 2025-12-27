@@ -27,7 +27,6 @@ interface ReportPanelProps {
 export default function ReportPanel({
     report,
     isLoading,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     hasJobDescription,
     onExportPdf,
     isExporting = false,

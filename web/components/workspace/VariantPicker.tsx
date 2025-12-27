@@ -126,7 +126,7 @@ export function VariantPicker({ value, existingVariants, onSelect, className = "
                                 className="w-full px-3 py-2 text-xs text-left flex items-center gap-2 text-brand hover:bg-brand/5 border-t border-border"
                             >
                                 <Plus className="w-3 h-3" />
-                                Create "{search.trim()}"
+                                Create &quot;{search.trim()}&quot;
                             </button>
                         )}
                     </div>

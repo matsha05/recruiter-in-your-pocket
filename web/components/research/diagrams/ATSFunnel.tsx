@@ -74,7 +74,7 @@ export function ATSFunnel() {
                         />
                         <div className="absolute inset-0 flex items-center px-4">
                             <span className="text-sm text-muted-foreground ml-6">
-                                The "Black Hole" (Recruiters ran out of time)
+                                The &quot;Black Hole&quot; (Recruiters ran out of time)
                             </span>
                         </div>
                     </div>

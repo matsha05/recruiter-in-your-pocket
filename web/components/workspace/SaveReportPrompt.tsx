@@ -142,7 +142,7 @@ export default function SaveReportPrompt({
                 </div>
 
                 <p className="text-center text-[10px] text-muted-foreground/50 mt-4">
-                    We'll only email you about this report. No spam.
+                    We&apos;ll only email you about this report. No spam.
                 </p>
             </DialogContent>
         </Dialog>

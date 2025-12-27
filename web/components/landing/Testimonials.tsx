@@ -56,7 +56,7 @@ export function Testimonials() {
                             <Quote className="w-6 h-6 text-brand/40" />
 
                             <p className="text-sm text-foreground/90 leading-relaxed">
-                                "{t.quote}"
+                                &quot;{t.quote}&quot;
                             </p>
 
                             {t.outcome && (
@@ -89,7 +89,7 @@ export function Testimonials() {
                     <p className="text-xs text-muted-foreground">
                         Created by hiring leaders from{' '}
                         <span className="text-foreground font-medium">Google, Meta, and OpenAI</span>{' '}
-                        who've screened 100,000+ resumes and made thousands of hires across 15+ years of global recruiting.
+                        who&apos;ve screened 100,000+ resumes and made thousands of hires across 15+ years of global recruiting.
                     </p>
                 </div>
             </div>

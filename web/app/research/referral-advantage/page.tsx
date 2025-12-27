@@ -46,7 +46,7 @@ export default function ReferralAdvantagePage() {
                     },
                     {
                         title: "Shareability",
-                        description: "We help you create a resume that's easy to forward and explain."
+                        description: "We help you create a resume that&apos;s easy to forward and explain."
                     }
                 ]
             }}
@@ -58,7 +58,7 @@ export default function ReferralAdvantagePage() {
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why referrals work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                Referrals work because they solve the employer's core problem: risk. Hiring is expensive
+                Referrals work because they solve the employer&apos;s core problem: risk. Hiring is expensive
                 and uncertain. A referral from a trusted employee reduces both. The referrer is
                 vouching with their own reputation.
             </p>
@@ -99,13 +99,13 @@ export default function ReferralAdvantagePage() {
                 not cold asks.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                <strong>When you're looking:</strong> Be specific about what you want. "I'm looking for
-                a Senior PM role at a growth-stage fintech" is actionable. "Let me know if you hear
-                of anything" is not.
+                <strong>When you&apos;re looking:</strong> Be specific about what you want. &quot;I&apos;m looking for
+                a Senior PM role at a growth-stage fintech&quot; is actionable. &quot;Let me know if you hear
+                of anything&quot; is not.
             </p>
             <p className="text-muted-foreground leading-relaxed">
                 <strong>Make it easy:</strong> When asking for a referral, include your resume and a
-                2-sentence pitch. Your referrer shouldn't have to write your case for you.
+                2-sentence pitch. Your referrer shouldn&apos;t have to write your case for you.
             </p>
         </ResearchArticle>
     );

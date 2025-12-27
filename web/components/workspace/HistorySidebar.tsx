@@ -228,7 +228,7 @@ export default function HistorySidebar({
                                     No reports yet
                                 </h3>
                                 <p className="text-sm text-muted-foreground max-w-[240px]">
-                                    Run your first analysis to start tracking your resume's progress.
+                                    Run your first analysis to start tracking your resume&apos;s progress.
                                 </p>
                             </div>
                         ) : (

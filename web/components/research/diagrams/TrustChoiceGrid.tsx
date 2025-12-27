@@ -54,13 +54,13 @@ export function TrustChoiceGrid() {
                         {/* Human + Inconsistent = Forgiven */}
                         <div className="bg-secondary/20 border border-border/10 rounded-md p-5 text-center flex flex-col items-center justify-center h-28">
                             <span className="font-medium text-foreground/80">Forgiven</span>
-                            <span className="text-xs text-muted-foreground mt-1 font-display italic">"Humans make mistakes"</span>
+                            <span className="text-xs text-muted-foreground mt-1 font-display italic">&quot;Humans make mistakes&quot;</span>
                         </div>
 
                         {/* Algorithm + Inconsistent = Rejected */}
                         <div className="bg-destructive/5 border border-destructive/10 rounded-md p-5 text-center flex flex-col items-center justify-center relative h-28">
                             <span className="font-medium text-destructive">Rejected</span>
-                            <span className="text-xs text-destructive/70 mt-1 uppercase tracking-wide">"Broken system"</span>
+                            <span className="text-xs text-destructive/70 mt-1 uppercase tracking-wide">&quot;Broken system&quot;</span>
                             <X className="absolute top-2 right-2 w-4 h-4 text-destructive/70" />
                         </div>
                     </div>

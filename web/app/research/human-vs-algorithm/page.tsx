@@ -33,7 +33,7 @@ export default function HumanVsAlgorithmPage() {
                 <>
                     <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The Trust/Choice Matrix</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        Recruiters generally prefer human recommendations. However, when an algorithm is consistent (predictable), it is accepted. When it errs, it is rejected immediately, whereas humans are "forgiven."
+                        Recruiters generally prefer human recommendations. However, when an algorithm is consistent (predictable), it is accepted. When it errs, it is rejected immediately, whereas humans are &quot;forgiven.&quot;
                     </p>
                     <TrustChoiceGrid />
                 </>
@@ -42,12 +42,12 @@ export default function HumanVsAlgorithmPage() {
                 title: "What this changes in RIYP",
                 items: [
                     {
-                        title: "We prioritize clarity over 'perfect scores'",
+                        title: "We prioritize clarity over &apos;perfect scores&apos;",
                         description: "Because a human is reading, clarity and signal strength matter more than gaming a specific score."
                     },
                     {
                         title: "Human-grade decision model",
-                        description: "We don't pretend to be a magic bot. We model the messy, heuristic-based decision making of real recruiters."
+                        description: "We don&apos;t pretend to be a magic bot. We model the messy, heuristic-based decision making of real recruiters."
                     }
                 ]
             }}
@@ -59,17 +59,17 @@ export default function HumanVsAlgorithmPage() {
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where automation breaks recruiter judgment</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                The study reveals a phenomenon known as "algorithm aversion." Even when algorithms perform well, people are quicker to lose trust in them after a mistake compared to a human making the same mistake.
+                The study reveals a phenomenon known as &quot;algorithm aversion.&quot; Even when algorithms perform well, people are quicker to lose trust in them after a mistake compared to a human making the same mistake.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                For job seekers, this means relying solely on "beating the ATS" is a flawed strategy. The end user is a human who values consistency, narrative, and trust signals that algorithms often miss.
+                For job seekers, this means relying solely on &quot;beating the ATS&quot; is a flawed strategy. The end user is a human who values consistency, narrative, and trust signals that algorithms often miss.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     icon={<ShieldCheck className="w-4 h-4" />}
                     title="Trust is Fragile"
-                    desc="One obvious keyword-stuffing attempt can break a recruiter's trust in your entire profile."
+                    desc="One obvious keyword-stuffing attempt can break a recruiter&apos;s trust in your entire profile."
                 />
             </div>
         </ResearchArticle>

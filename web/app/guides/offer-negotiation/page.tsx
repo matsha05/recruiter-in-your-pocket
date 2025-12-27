@@ -27,7 +27,7 @@ export default function OfferNegotiationGuidePage() {
                     </Link>
                     <div className="space-y-4">
                         <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-brand">
-                            The Recruiter's Playbook
+                            The Recruiter&apos;s Playbook
                         </span>
                         <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground">
                             Offer Negotiation Strategy
@@ -134,7 +134,7 @@ export default function OfferNegotiationGuidePage() {
                 <section>
                     <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 4: The Salary History Trap</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        Why do people volunteer their past salary even when they don't have to? Social pressure.
+                        Why do people volunteer their past salary even when they don&apos;t have to? Social pressure.
                     </p>
                     <SalaryHistoryTrap />
                 </section>
@@ -182,7 +182,7 @@ export default function OfferNegotiationGuidePage() {
                             </div>
                             <div className="p-4 bg-background rounded border border-border/50">
                                 <strong className="block text-foreground mb-1">Tone Analysis</strong>
-                                <p className="text-xs text-muted-foreground">We flag "ultimatum" language that risks blowing up the deal.</p>
+                                <p className="text-xs text-muted-foreground">We flag &quot;ultimatum&quot; language that risks blowing up the deal.</p>
                             </div>
                         </div>
 

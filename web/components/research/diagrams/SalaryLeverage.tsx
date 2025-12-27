@@ -16,7 +16,7 @@ export function SalaryLeverage() {
                     <div className="space-y-4">
                         <div className="bg-secondary/50 rounded-sm p-3 border border-border/10 text-xs font-mono text-muted-foreground">
                             <span className="block text-[10px] text-zinc-500 mb-1 font-sans">Employer asks:</span>
-                            "What is your current salary?"
+                            &quot;What is your current salary?&quot;
                         </div>
                         <div className="flex items-center gap-2 text-zinc-500 text-sm font-medium">
                             <TrendingDown className="w-4 h-4" />
@@ -40,7 +40,7 @@ export function SalaryLeverage() {
                     <div className="space-y-4">
                         <div className="bg-secondary/50 rounded-sm p-3 border border-brand/20 text-xs font-mono text-brand">
                             <span className="block text-[10px] text-brand/60 mb-1 font-sans">Employer asks:</span>
-                            "What are your expectations?"
+                            &quot;What are your expectations?&quot;
                         </div>
                         <div className="flex items-center gap-2 text-brand text-sm font-medium">
                             <TrendingUp className="w-4 h-4" />

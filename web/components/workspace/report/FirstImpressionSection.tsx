@@ -105,7 +105,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 space-y-6">
                         <div className="space-y-3">
                             <h3 className="text-headline text-foreground">
-                                "Here is exactly what I noticed..."
+                                &quot;Here is exactly what I noticed...&quot;
                             </h3>
                         </div>
 
@@ -189,4 +189,3 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
         </section>
     );
 }
-

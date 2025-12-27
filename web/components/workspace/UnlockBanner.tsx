@@ -58,7 +58,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 Your full review is unlocked
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                Start with the next rewrite below, then export when you're ready.
+                                Start with the next rewrite below, then export when you&apos;re ready.
                             </p>
                         </div>
 

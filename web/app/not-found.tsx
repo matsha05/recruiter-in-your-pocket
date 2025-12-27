@@ -26,8 +26,8 @@ export default function NotFound() {
                         Page not found
                     </h1>
                     <p className="text-muted-foreground mb-8 leading-relaxed">
-                        The page you're looking for doesn't exist or has been moved.
-                        Let's get you back on track.
+                        The page you&apos;re looking for doesn&apos;t exist or has been moved.
+                        Let&apos;s get you back on track.
                     </p>
 
                     {/* Actions */}

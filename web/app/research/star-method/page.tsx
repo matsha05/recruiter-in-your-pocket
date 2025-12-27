@@ -64,7 +64,7 @@ export default function StarMethodPage() {
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 The same logic applies to resume bullets. A bullet that describes a situation and action
-                but no result leaves the reader guessing. A complete STAR bullet answers: "So what?"
+                but no result leaves the reader guessing. A complete STAR bullet answers: &quot;So what?&quot;
             </p>
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Breaking down STAR</h2>
@@ -82,7 +82,7 @@ export default function StarMethodPage() {
                 <ArticleInsight
                     icon={<MessageSquare className="w-4 h-4" />}
                     title="Action"
-                    desc="What you actually did. Be specific about your contributions, not the team's."
+                    desc="What you actually did. Be specific about your contributions, not the team&apos;s."
                 />
                 <ArticleInsight
                     icon={<CheckCircle className="w-4 h-4" />}
@@ -93,19 +93,19 @@ export default function StarMethodPage() {
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">STAR on a resume</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                Resume bullets are compressed STAR stories. You don't have space for full narratives,
+                Resume bullets are compressed STAR stories. You don&apos;t have space for full narratives,
                 but you should hit Action and Result explicitly, with Situation/Task implied by context.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                <strong>Weak:</strong> "Worked on the customer support team handling inquiries."
+                <strong>Weak:</strong> &quot;Worked on the customer support team handling inquiries.&quot;
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                <strong>Strong:</strong> "Resolved 50+ daily customer escalations, reducing average
-                resolution time from 4 hours to 45 minutes and improving satisfaction scores by 22%."
+                <strong>Strong:</strong> &quot;Resolved 50+ daily customer escalations, reducing average
+                resolution time from 4 hours to 45 minutes and improving satisfaction scores by 22%.&quot;
             </p>
             <p className="text-muted-foreground leading-relaxed">
                 The situation (customer support) is implied. The action (resolved escalations) and
-                result (faster resolution, higher satisfaction) are explicit. That's STAR in one sentence.
+                result (faster resolution, higher satisfaction) are explicit. That&apos;s STAR in one sentence.
             </p>
         </ResearchArticle>
     );

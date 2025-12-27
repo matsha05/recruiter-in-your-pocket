@@ -11,7 +11,7 @@ export function FormContentSplit() {
                 <div className="space-y-4">
                     <div className="flex items-center gap-2 border-b border-border pb-2 opacity-70">
                         <AlertTriangle className="w-4 h-4 text-muted-foreground" />
-                        <h4 className="font-medium text-muted-foreground text-sm uppercase tracking-wider">The "Form" Penalty</h4>
+                        <h4 className="font-medium text-muted-foreground text-sm uppercase tracking-wider">The &quot;Form&quot; Penalty</h4>
                     </div>
                     <div className="bg-secondary/30 rounded-md border border-border/10 p-6 space-y-4">
                         <p className="text-sm text-foreground/80 leading-relaxed font-display">
@@ -38,7 +38,7 @@ export function FormContentSplit() {
                 <div className="space-y-4">
                     <div className="flex items-center gap-2 border-b border-brand/30 pb-2">
                         <CheckCircle2 className="w-4 h-4 text-brand" />
-                        <h4 className="font-medium text-brand text-sm uppercase tracking-wider">The "Content" Reality</h4>
+                        <h4 className="font-medium text-brand text-sm uppercase tracking-wider">The &quot;Content&quot; Reality</h4>
                     </div>
                     <div className="bg-brand/5 rounded-md border border-brand/20 p-6 space-y-4">
                         <p className="text-sm text-foreground/90 leading-relaxed font-display">

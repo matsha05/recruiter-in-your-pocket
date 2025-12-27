@@ -25,7 +25,7 @@ export function MetaTimeline() {
                     <div className="absolute -left-[41px] bg-background border-2 border-muted-foreground/30 w-5 h-5 rounded-full" />
                     <span className="text-xs font-mono text-muted-foreground mb-1 block">2004</span>
                     <h4 className="font-medium text-foreground">Bertrand & Mullainathan</h4>
-                    <p className="text-sm text-muted-foreground">"Are Emily and Greg More Employable than Lakisha and Jamal?" sets the benchmark.</p>
+                    <p className="text-sm text-muted-foreground">&quot;Are Emily and Greg More Employable than Lakisha and Jamal?&quot; sets the benchmark.</p>
                 </div>
 
                 {/* 2017 Meta - The Gold Standard */}

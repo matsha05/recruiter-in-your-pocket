@@ -32,7 +32,7 @@ export default function ATSMythsPage() {
                 <>
                     <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Visualizing the Bottleneck</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        The real reason resumes don't get seen isn't an algorithm. It's math. There are too many applicants for the number of recruiters.
+                        The real reason resumes don&apos;t get seen isn&apos;t an algorithm. It&apos;s math. There are too many applicants for the number of recruiters.
                     </p>
                     <ATSFunnel />
                 </>
@@ -75,10 +75,10 @@ export default function ATSMythsPage() {
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where the '75%' myth comes from</h2>
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where the &apos;75%&apos; myth comes from</h2>
             <p className="text-muted-foreground leading-relaxed">
-                The claim that "75% of resumes are never seen" is a misunderstanding. It's not that a robot deleted them.
-                It's that <strong>recruiters are busy</strong>. If 1,000 people apply, a human might only have time to open 50.
+                The claim that &quot;75% of resumes are never seen&quot; is a misunderstanding. It&apos;s not that a robot deleted them.
+                It&apos;s that <strong>recruiters are busy</strong>. If 1,000 people apply, a human might only have time to open 50.
                 The bottleneck is human time, not AI malice.
             </p>
         </ResearchArticle>

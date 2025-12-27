@@ -108,7 +108,7 @@ export function ReportStream({
 
                 <div className="text-center space-y-6">
                     <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                        What's next?
+                        What&apos;s next?
                     </h3>
 
                     {isSample ? (
@@ -165,5 +165,4 @@ export function ReportStream({
         </div>
     );
 }
-
 

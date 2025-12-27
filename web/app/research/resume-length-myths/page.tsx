@@ -62,7 +62,7 @@ export default function ResumeLengthPage() {
                 Recruiters managed stacks of paper. Brevity was literally easier to hold.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                Today, resumes are digital. They're scrolled, not flipped. The constraint that created
+                Today, resumes are digital. They&apos;re scrolled, not flipped. The constraint that created
                 the rule no longer exists—but the rule persists.
             </p>
 
@@ -98,7 +98,7 @@ export default function ResumeLengthPage() {
             </p>
             <p className="text-muted-foreground leading-relaxed">
                 The goal is density of relevant signal, not arbitrary page counts. Every line should pass
-                the test: "Does this make me more likely to get an interview for this role?"
+                the test: &quot;Does this make me more likely to get an interview for this role?&quot;
             </p>
         </ResearchArticle>
     );

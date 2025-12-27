@@ -67,7 +67,7 @@ export default function TrustClient() {
                     </h2>
                     <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                         <p>
-                            Most career tools use generic rules ("Don't use passive voice").
+                            Most career tools use generic rules (&quot;Don&apos;t use passive voice&quot;).
                             We rely on <Link href="/research/how-recruiters-read" className="underline underline-offset-4 decoration-muted-foreground hover:decoration-primary transition-colors font-medium">recruiter behavior research</Link> — how candidates are actually evaluated in seconds.
                         </p>
                         <ul className="space-y-4 mt-6">

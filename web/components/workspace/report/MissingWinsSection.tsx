@@ -34,7 +34,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                     subtitle="The stories you forgot to tell."
                 />
                 <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No missing wins this time. Either you've covered your bases, or we need more detail.
+                    No missing wins this time. Either you&apos;ve covered your bases, or we need more detail.
                 </div>
             </section>
         );
@@ -82,7 +82,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                     {questions[0] && (
                         <div className="rounded border border-border/50 bg-secondary/5 p-4 blur-[2px] select-none">
                             <p className="text-sm text-muted-foreground">
-                                "{questions[0].question?.slice(0, 60)}..."
+                                &quot;{questions[0].question?.slice(0, 60)}...&quot;
                             </p>
                         </div>
                     )}
@@ -185,7 +185,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                         <div className="text-center py-6 space-y-2 animate-in fade-in duration-500">
                             <p className="text-lg font-medium text-success">All questions answered.</p>
                             <p className="text-sm text-muted-foreground">
-                                Go back to your resume and add these details. They'll make a difference.
+                                Go back to your resume and add these details. They&apos;ll make a difference.
                             </p>
                         </div>
                     )}

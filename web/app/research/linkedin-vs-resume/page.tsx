@@ -33,7 +33,7 @@ export default function LinkedInVsResumePage() {
                     <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Two tools, different jobs</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         LinkedIn is your public identity. Your resume is your evidence file.
-                        They're equally important—and interviewers scan both.
+                        They&apos;re equally important—and interviewers scan both.
                     </p>
                     <LinkedInResumeFlow />
                 </>
@@ -59,8 +59,8 @@ export default function LinkedInVsResumePage() {
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why both matter equally</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                This is how recruiting works at every major company. If someone doesn't have a LinkedIn,
-                recruiters won't reach out—there's no way to verify who they are. Your profile is how they find you;
+                This is how recruiting works at every major company. If someone doesn&apos;t have a LinkedIn,
+                recruiters won&apos;t reach out—there&apos;s no way to verify who they are. Your profile is how they find you;
                 your resume is how they evaluate you. Both get scanned during interviews.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">

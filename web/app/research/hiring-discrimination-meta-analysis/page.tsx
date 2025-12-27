@@ -62,7 +62,7 @@ export default function DiscriminationMetaPage() {
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The resume is necessary, not sufficient</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                This research is sobering. It reminds us that "optimizing keywords" is a trivial concern compared to the structural barriers many candidates face.
+                This research is sobering. It reminds us that &quot;optimizing keywords&quot; is a trivial concern compared to the structural barriers many candidates face.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 However, it also clarifies our mission: to ensure that <strong>poor communication</strong> is never the reason you are rejected. We clear the noise so your merit has the best possible chance to shine through, while acknowledging the reality of the system you are navigating.

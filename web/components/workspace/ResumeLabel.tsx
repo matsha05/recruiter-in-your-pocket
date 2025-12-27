@@ -164,7 +164,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                     onClick={handleSubmit}
                                     className="w-full px-4 py-2.5 text-sm text-left text-brand hover:bg-brand/5 transition-colors font-medium"
                                 >
-                                    + Create "{inputValue.trim()}"
+                                    + Create &quot;{inputValue.trim()}&quot;
                                 </button>
                             </div>
                         )}

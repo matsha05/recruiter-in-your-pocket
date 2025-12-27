@@ -56,14 +56,14 @@ export default function SkillsBasedHiringPage() {
                 { title: "The Referral Advantage", href: "/research/referral-advantage", tag: "Strategy" }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What's actually changing</h2>
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What&apos;s actually changing</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                The shift to skills-based hiring isn't just PR. Driven by talent shortages and research showing
-                degrees don't predict job performance, major employers are removing "bachelor's required" from
+                The shift to skills-based hiring isn&apos;t just PR. Driven by talent shortages and research showing
+                degrees don&apos;t predict job performance, major employers are removing &quot;bachelor&apos;s required&quot; from
                 job postings.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                This doesn't mean credentials don't matter—it means how you communicate skills matters more.
+                This doesn&apos;t mean credentials don&apos;t matter—it means how you communicate skills matters more.
                 A degree proves you completed a program. Your resume needs to prove you can do the work.
             </p>
 
@@ -71,8 +71,8 @@ export default function SkillsBasedHiringPage() {
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     icon={<Award className="w-4 h-4" />}
-                    title="Show, Don't Tell"
-                    desc="Listing 'project management' as a skill isn't enough. Show a project you managed and the outcome."
+                    title="Show, Don&apos;t Tell"
+                    desc="Listing &apos;project management&apos; as a skill isn&apos;t enough. Show a project you managed and the outcome."
                 />
                 <ArticleInsight
                     icon={<GraduationCap className="w-4 h-4" />}
@@ -93,12 +93,12 @@ export default function SkillsBasedHiringPage() {
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Practical application</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                <strong>Lead with what you've done, not where you went.</strong> Start bullets with actions
-                and results. "Led migration to AWS, reducing infrastructure costs by 40%" beats
-                "Experienced in cloud computing."
+                <strong>Lead with what you&apos;ve done, not where you went.</strong> Start bullets with actions
+                and results. &quot;Led migration to AWS, reducing infrastructure costs by 40%&quot; beats
+                &quot;Experienced in cloud computing.&quot;
             </p>
             <p className="text-muted-foreground leading-relaxed">
-                <strong>Match the job posting's skill language.</strong> If they ask for "stakeholder management,"
+                <strong>Match the job posting&apos;s skill language.</strong> If they ask for &quot;stakeholder management,&quot;
                 use that phrase—not synonyms. Skills-based hiring often means skills-based searching.
             </p>
         </ResearchArticle>

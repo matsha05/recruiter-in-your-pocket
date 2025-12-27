@@ -192,6 +192,7 @@ export function ResearchArticle({
                         <div className="grid gap-4">
                             {relatedArticles.map((article, i) => (
                                 <Link
+                                    key={article.href ?? `related-${i}`}
                                     href={article.href}
                                     className="group flex items-center justify-between p-4 border border-border/60 rounded-lg hover:border-brand/40 hover:bg-secondary/20 transition-all"
                                 >

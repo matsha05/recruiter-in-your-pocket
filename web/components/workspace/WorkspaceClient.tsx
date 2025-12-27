@@ -269,7 +269,7 @@ export default function WorkspaceClient() {
             setIsStreaming(false);
         }
         // Note: We handle setIsLoading(false) in the success timeout above
-    }, [resumeText, jobDescription, freeUsesRemaining]);
+    }, [resumeText, jobDescription, freeUsesRemaining, user]);
 
     const handleNewReport = useCallback(() => {
         setSkipSample(true);

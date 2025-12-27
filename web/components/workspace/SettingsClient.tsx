@@ -260,7 +260,7 @@ export default function SettingsClient() {
 
                     <div className="mt-12 text-center border-t border-border/10 pt-8">
                         <p className="text-xs text-muted-foreground max-w-md mx-auto leading-relaxed">
-                            <strong>100% Satisfaction Guarantee:</strong> If you don't feel more confident after your first review, email us within 24h for a full refund.
+                            <strong>100% Satisfaction Guarantee:</strong> If you don&apos;t feel more confident after your first review, email us within 24h for a full refund.
                         </p>
                     </div>
                 </section>
@@ -343,7 +343,7 @@ export default function SettingsClient() {
                             <div className="space-y-2 text-center">
                                 <h3 className="text-xl font-display font-semibold">Where should we send your receipt?</h3>
                                 <p className="text-muted-foreground text-sm">
-                                    We'll link your credits to this email. You can create a password later.
+                                    We&apos;ll link your credits to this email. You can create a password later.
                                 </p>
                             </div>
 

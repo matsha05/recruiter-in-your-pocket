@@ -84,7 +84,7 @@ export default function InputPanel({
                     </h1>
                     <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
                         <SixSecondIcon className="w-5 h-5 text-brand" />
-                        <p className="text-lg font-medium">6 seconds. That's your window.</p>
+                        <p className="text-lg font-medium">6 seconds. That&apos;s your window.</p>
                     </div>
                 </div>
 

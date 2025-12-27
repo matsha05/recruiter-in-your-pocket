@@ -27,7 +27,7 @@ export function SalaryHistoryTrap() {
                     </div>
                     <p className="text-sm font-medium text-destructive border-b border-destructive/20 pb-1">Social Pressure Effect</p>
                     <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
-                        Candidates disclose because they believe others do, even when they don't have to.
+                        Candidates disclose because they believe others do, even when they don&apos;t have to.
                     </p>
                 </div>
 
@@ -38,10 +38,10 @@ export function SalaryHistoryTrap() {
                     </div>
                     <h4 className="text-lg font-display font-medium text-success mb-3">The Silence Strategy</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-display">
-                        Recruiters interpret silence as "senior", not "evasive", if you pivot to market data.
+                        Recruiters interpret silence as &quot;senior&quot;, not &quot;evasive&quot;, if you pivot to market data.
                     </p>
                     <div className="bg-secondary/50 px-6 py-3 rounded-sm border border-success/20 text-xs font-mono text-success">
-                        "I focus on market value, not history."
+                        &quot;I focus on market value, not history.&quot;
                     </div>
                 </div>
 

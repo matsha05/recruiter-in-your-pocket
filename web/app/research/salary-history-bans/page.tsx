@@ -46,7 +46,7 @@ export default function SalaryHistoryPage() {
                     },
                     {
                         title: "Premium Trust Wedge",
-                        description: "We protect your value by teaching you how to answer the 'what are you making now?' question."
+                        description: "We protect your value by teaching you how to answer the &apos;what are you making now?&apos; question."
                     }
                 ]
             }}
@@ -56,20 +56,20 @@ export default function SalaryHistoryPage() {
                 { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why 'just be honest' fails</h2>
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why &apos;just be honest&apos; fails</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Many candidates feel compelled to answer truthfuly about their current salary out of politeness or honesty.
                 Research shows this permanently anchors the negotiation to your <em>past</em> value, not your <em>future</em> value.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                In states with Salary History Bans, employers are forced to price the job, not the person. Our advice mimics this dynamic even in states where it isn't law yet.
+                In states with Salary History Bans, employers are forced to price the job, not the person. Our advice mimics this dynamic even in states where it isn&apos;t law yet.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     icon={<Mic className="w-4 h-4" />}
                     title="The Script"
-                    desc="Respond with: 'I'm focusing on roles in the [Market Range] range, which seems aligned with this level of responsibility.'"
+                    desc="Respond with: &apos;I&apos;m focusing on roles in the [Market Range] range, which seems aligned with this level of responsibility.&apos;"
                 />
             </div>
         </ResearchArticle>

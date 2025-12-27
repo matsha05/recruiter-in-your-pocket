@@ -61,7 +61,7 @@ export function AnchorZone() {
             <div className="mt-8 p-4 bg-secondary/20 rounded-md border border-border/10 text-center">
                 <p className="text-sm text-muted-foreground font-display">
                     Research shows you want to anchor <strong>just below</strong> the impasse point. <br />
-                    Correct for "First Offer" anchoring by responding with a <span className="text-brand font-medium">Package Ask</span>.
+                    Correct for &quot;First Offer&quot; anchoring by responding with a <span className="text-brand font-medium">Package Ask</span>.
                 </p>
             </div>
         </div>

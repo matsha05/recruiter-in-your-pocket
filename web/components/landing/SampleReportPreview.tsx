@@ -56,12 +56,12 @@ export function SampleReportPreview() {
                                         <span className="text-label text-muted-foreground">First Impression</span>
                                     </div>
                                     <p className="font-display text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
-                                        "You read like a Founder, but you're burying the outcome."
+                                        &quot;You read like a Founder, but you&apos;re burying the outcome.&quot;
                                     </p>
                                 </div>
 
                                 <p className="text-lg text-muted-foreground leading-relaxed">
-                                    I scanned your "Leadership" section. You list 12 responsibilities, but I had to dig line-by-line to find the $5M expansion. <span className="text-foreground font-medium bg-premium/10 px-1 rounded">Lead with the win.</span>
+                                    I scanned your &quot;Leadership&quot; section. You list 12 responsibilities, but I had to dig line-by-line to find the $5M expansion. <span className="text-foreground font-medium bg-premium/10 px-1 rounded">Lead with the win.</span>
                                 </p>
 
                                 {/* The Gap */}
@@ -71,7 +71,7 @@ export function SampleReportPreview() {
                                         <span className="text-label text-destructive/80">The Gap</span>
                                     </div>
                                     <p className="text-sm text-foreground/90">
-                                        Your skills section lists "Strategy" but your bullets only show "Execution." There is a mismatch between your title and your evidence.
+                                        Your skills section lists &quot;Strategy&quot; but your bullets only show &quot;Execution.&quot; There is a mismatch between your title and your evidence.
                                     </p>
                                 </div>
                             </div>

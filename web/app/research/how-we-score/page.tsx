@@ -51,11 +51,11 @@ export default function HowWeScorePage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why resumes fail</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Most resumes are lists of responsibilities disguised as accomplishments.
-                "Managed a team of 5" tells me nothing. "Scaled product org from 2 to 5 PMs while shipping 3 major releases" tells me you can build.
+                &quot;Managed a team of 5&quot; tells me nothing. &quot;Scaled product org from 2 to 5 PMs while shipping 3 major releases&quot; tells me you can build.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                The difference isn't just word choice — it's narrative structure. Good resumes answer an implicit question:
-                <em className="text-foreground"> "Why should I believe this person can do the job I'm hiring for?"</em>
+                The difference isn&apos;t just word choice — it&apos;s narrative structure. Good resumes answer an implicit question:
+                <em className="text-foreground"> &quot;Why should I believe this person can do the job I&apos;m hiring for?&quot;</em>
             </p>
 
             {/* The Framework */}
@@ -69,7 +69,7 @@ export default function HowWeScorePage() {
                 <ArticleInsight
                     icon={<BookOpen className="w-4 h-4" />}
                     title="Story (Highest Weight)"
-                    desc="Is there a coherent narrative? Can I tell where you've been, what you've done, and where you're going? This is the most important signal."
+                    desc="Is there a coherent narrative? Can I tell where you&apos;ve been, what you&apos;ve done, and where you&apos;re going? This is the most important signal."
                 />
                 <ArticleInsight
                     icon={<Target className="w-4 h-4" />}
@@ -84,24 +84,24 @@ export default function HowWeScorePage() {
                 <ArticleInsight
                     icon={<Eye className="w-4 h-4" />}
                     title="Readability"
-                    desc="Is the formatting clean? Are bullets scannable? Does the visual hierarchy guide the recruiter's eye?"
+                    desc="Is the formatting clean? Are bullets scannable? Does the visual hierarchy guide the recruiter&apos;s eye?"
                 />
             </div>
 
             {/* Story deep dive */}
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Why Story matters most</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                When a recruiter opens your resume, they're not reading — they're pattern-matching.
-                They're asking: "Does this person make sense for this role?"
+                When a recruiter opens your resume, they&apos;re not reading — they&apos;re pattern-matching.
+                They&apos;re asking: &quot;Does this person make sense for this role?&quot;
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 A strong Story score means your career progression is legible. Your job titles connect.
-                Your accomplishments build on each other. The recruiter doesn't have to work to understand who you are.
+                Your accomplishments build on each other. The recruiter doesn&apos;t have to work to understand who you are.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 A weak Story score means there are gaps, inconsistencies, or missing context.
-                You might be a great candidate, but you're making the recruiter do the mental labor of piecing it together —
-                and in 6 seconds, they won't.
+                You might be a great candidate, but you&apos;re making the recruiter do the mental labor of piecing it together —
+                and in 6 seconds, they won&apos;t.
             </p>
 
             {/* The Thresholds */}
@@ -116,7 +116,7 @@ export default function HowWeScorePage() {
                     <span className="text-3xl font-serif font-bold text-success">85+</span>
                     <div>
                         <p className="font-medium text-foreground">Strong Signal</p>
-                        <p className="text-sm text-muted-foreground">Clear narrative, quantified impact, clean presentation. You're competing at the top.</p>
+                        <p className="text-sm text-muted-foreground">Clear narrative, quantified impact, clean presentation. You&apos;re competing at the top.</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 bg-premium/10 border border-premium/20 rounded">
@@ -138,13 +138,13 @@ export default function HowWeScorePage() {
             {/* The Bottom Line */}
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">The bottom line</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                Your resume is not a document — it's a first impression compressed into a page.
+                Your resume is not a document — it&apos;s a first impression compressed into a page.
                 In those 6 seconds, a recruiter forms a hypothesis about you. Our job is to make sure that hypothesis is accurate —
                 and compelling.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-                The 6-Second Signal Model isn't about gaming algorithms or stuffing keywords.
-                It's about telling your story clearly enough that the right recruiter can recognize it instantly.
+                The 6-Second Signal Model isn&apos;t about gaming algorithms or stuffing keywords.
+                It&apos;s about telling your story clearly enough that the right recruiter can recognize it instantly.
             </p>
         </ResearchArticle>
     );

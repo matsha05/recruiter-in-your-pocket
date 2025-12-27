@@ -157,7 +157,7 @@ export default function ResearchPage() {
                     The Hiring Playbook
                 </span>
                 <h1 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
-                    The rules they<br />don't teach you.
+                    The rules they<br />don&apos;t teach you.
                 </h1>
                 <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
                     Evidence-based research on how recruiters think, what they see, and how to present yourself.

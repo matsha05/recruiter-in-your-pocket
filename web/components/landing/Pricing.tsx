@@ -173,7 +173,7 @@ export function Pricing({ onSelectTier }: PricingProps) {
                                 </li>
                                 <li className="flex items-start gap-3">
                                     <Check className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
-                                    <span>Export a clean PDF when you're ready to apply</span>
+                                    <span>Export a clean PDF when you&apos;re ready to apply</span>
                                 </li>
                             </ul>
                             <Button

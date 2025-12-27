@@ -91,7 +91,7 @@ export default function PaywallModal({
                         Unlock your complete report
                     </DialogTitle>
                     <DialogDescription>
-                        You've seen the diagnosis. Now get the prescription.
+                        You&apos;ve seen the diagnosis. Now get the prescription.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -179,7 +179,7 @@ export default function PaywallModal({
                                 {loading ? "Processing..." : `Continue to checkout →`}
                             </Button>
                             <p className="text-xs text-muted-foreground/50 text-center mt-3">
-                                We'll email you a magic link to access your credits.
+                                We&apos;ll email you a magic link to access your credits.
                             </p>
                         </>
                     )}

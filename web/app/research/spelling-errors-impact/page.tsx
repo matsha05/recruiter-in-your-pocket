@@ -32,7 +32,7 @@ export default function SpellingErrorsPage() {
                 <>
                     <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Form vs. Content</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        The study found that for many recruiters, "form" (spelling, grammar, layout) acts as a gateway. If the form is bad, the content (skills, experience) is never evaluated fully.
+                        The study found that for many recruiters, &quot;form&quot; (spelling, grammar, layout) acts as a gateway. If the form is bad, the content (skills, experience) is never evaluated fully.
                     </p>
                     <FormContentSplit />
                 </>
@@ -41,12 +41,12 @@ export default function SpellingErrorsPage() {
                 title: "What this changes in RIYP",
                 items: [
                     {
-                        title: "Dedicated 'Error Pass'",
+                        title: "Dedicated &apos;Error Pass&apos;",
                         description: "In Top Fixes, we prioritize a dedicated error check before deep content analysis."
                     },
                     {
                         title: "Visual Credibility",
-                        description: "We enforce consistent formatting because inconsistency reads as 'error' to the scanning eye."
+                        description: "We enforce consistent formatting because inconsistency reads as &apos;error&apos; to the scanning eye."
                     }
                 ]
             }}
@@ -59,7 +59,7 @@ export default function SpellingErrorsPage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Credibility is lost in milliseconds</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 It seems unfair that a typo matters more than a degree, but in a stack of 500 resumes, heuristic shortcuts rule.
-                An error signals "lack of conscientiousness" to a recruiter, providing a quick, guilt-free reason to reject and move to the next candidate.
+                An error signals &quot;lack of conscientiousness&quot; to a recruiter, providing a quick, guilt-free reason to reject and move to the next candidate.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">

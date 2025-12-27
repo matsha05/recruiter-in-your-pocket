@@ -51,7 +51,7 @@ export function SampleReport() {
                     <span className="text-sm font-semibold text-foreground">Sample Report</span>
                 </div>
                 <span className="text-xs font-mono text-muted-foreground">
-                    See what you'll get
+                    See what you&apos;ll get
                 </span>
             </div>
 

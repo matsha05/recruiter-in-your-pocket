@@ -69,7 +69,7 @@ export function AutomationPipeline() {
                 ))}
             </div>
             <p className="text-center text-xs text-muted-foreground mt-4">
-                Bias isn't just one step—it compounds at every handover between tools.
+                Bias isn&apos;t just one step—it compounds at every handover between tools.
             </p>
         </div>
     );

@@ -59,15 +59,15 @@ export default function QuantifyingImpactPage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why numbers work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Numbers do three things that words cannot: they prove scale, enable comparison, and signal
-                that you track your own performance. "Improved customer satisfaction" is a claim.
-                "Increased NPS from 42 to 67" is evidence.
+                that you track your own performance. &quot;Improved customer satisfaction&quot; is a claim.
+                &quot;Increased NPS from 42 to 67&quot; is evidence.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                Bock's insight was that most candidates undersell themselves by describing responsibilities
+                Bock&apos;s insight was that most candidates undersell themselves by describing responsibilities
                 instead of results. The formula forces you to lead with the outcome, not the activity.
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Finding numbers when you think you don't have any</h2>
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Finding numbers when you think you don&apos;t have any</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     icon={<Hash className="w-4 h-4" />}
@@ -93,15 +93,15 @@ export default function QuantifyingImpactPage() {
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">The before and after</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                <strong>Before:</strong> "Responsible for managing social media accounts and creating content."
+                <strong>Before:</strong> &quot;Responsible for managing social media accounts and creating content.&quot;
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                <strong>After:</strong> "Grew Instagram following from 5K to 45K in 8 months by creating a
-                data-driven content calendar that increased engagement rate from 2% to 8%."
+                <strong>After:</strong> &quot;Grew Instagram following from 5K to 45K in 8 months by creating a
+                data-driven content calendar that increased engagement rate from 2% to 8%.&quot;
             </p>
             <p className="text-muted-foreground leading-relaxed">
                 Same job. Completely different impression. The second version answers the question every
-                recruiter is asking: "What will this person do for us?"
+                recruiter is asking: &quot;What will this person do for us?&quot;
             </p>
         </ResearchArticle>
     );

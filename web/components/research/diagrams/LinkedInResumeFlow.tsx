@@ -52,7 +52,7 @@ export function LinkedInResumeFlow() {
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-brand mt-0.5">→</span>
-                                <span className="text-sm text-muted-foreground">Shows you're a real person</span>
+                                <span className="text-sm text-muted-foreground">Shows you&apos;re a real person</span>
                             </div>
                             <div className="flex items-start gap-2">
                                 <span className="text-brand mt-0.5">→</span>
@@ -125,8 +125,8 @@ export function LinkedInResumeFlow() {
                             You need both.
                         </p>
                         <p className="text-xs text-muted-foreground">
-                            Without a LinkedIn profile, recruiters can't find you. Without a strong resume,
-                            they can't evaluate you. They work hand-in-hand.
+                            Without a LinkedIn profile, recruiters can&apos;t find you. Without a strong resume,
+                            they can&apos;t evaluate you. They work hand-in-hand.
                         </p>
                     </div>
                 </motion.div>
