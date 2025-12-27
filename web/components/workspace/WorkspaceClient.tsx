@@ -296,6 +296,8 @@ export default function WorkspaceClient() {
                         if (statusData.ok) {
                             setFreeUsesRemaining(statusData.free_uses_left);
                         }
+                        // Also refresh the global user object so nav/settings update
+                        await refreshUser?.();
                     } catch (err) {
                         console.error("Failed to refresh free status:", err);
                         // Fallback to local decrement
@@ -323,7 +325,7 @@ export default function WorkspaceClient() {
             setIsStreaming(false);
         }
         // Note: We handle setIsLoading(false) in the success timeout above
-    }, [resumeText, jobDescription, freeUsesRemaining, user]);
+    }, [resumeText, jobDescription, freeUsesRemaining, user, refreshUser]);
 
     // Keep ref in sync with latest handleRun
     handleRunRef.current = handleRun;

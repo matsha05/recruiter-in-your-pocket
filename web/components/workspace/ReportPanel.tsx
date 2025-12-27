@@ -136,7 +136,7 @@ export default function ReportPanel({
                                         onClick={onUpgrade}
                                         className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                                     >
-                                        Unlock Full Reports
+                                        Get More Reviews
                                         <ArrowRight className="w-4 h-4" />
                                     </button>
                                 )}

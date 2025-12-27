@@ -135,16 +135,18 @@ export default function SettingsClient() {
                                             {[...Array(5)].map((_, i) => (
                                                 <div
                                                     key={i}
-                                                    className={`w-3 h-3 rounded-full ${i < (user.freeUsesLeft ?? 1) ? 'bg-brand' : 'bg-border/30'}`}
+                                                    className={`w-3 h-3 rounded-full ${i < (user.freeUsesLeft ?? 0) ? 'bg-brand' : 'bg-border/30'}`}
                                                 />
                                             ))}
                                         </div>
                                         <span className="text-lg font-semibold text-foreground">
-                                            {user.freeUsesLeft ?? 1} available
+                                            {user.freeUsesLeft ?? 0} available
                                         </span>
                                     </div>
                                     <p className="text-xs text-muted-foreground">
-                                        Your first review is free
+                                        {(user.freeUsesLeft ?? 0) > 0
+                                            ? "Your first review is free"
+                                            : "Unlock more reviews to keep improving"}
                                     </p>
                                 </>
                             ) : (
@@ -158,12 +160,21 @@ export default function SettingsClient() {
                                 </>
                             )}
                         </div>
-                        <a
-                            href="/workspace"
-                            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors whitespace-nowrap"
-                        >
-                            {user ? "Run a Review →" : "Get Started →"}
-                        </a>
+                        {user && (user.freeUsesLeft ?? 0) === 0 ? (
+                            <a
+                                href="#pricing"
+                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-medium bg-premium-accent text-white hover:bg-premium-accent/90 transition-colors whitespace-nowrap"
+                            >
+                                Get More Reviews →
+                            </a>
+                        ) : (
+                            <a
+                                href="/workspace"
+                                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors whitespace-nowrap"
+                            >
+                                {user ? "Run a Review →" : "Get Started →"}
+                            </a>
+                        )}
                     </div>
                 </section>
 
@@ -227,9 +238,9 @@ export default function SettingsClient() {
                                 <p className="text-sm text-muted-foreground mt-2 group-hover:text-foreground transition-colors">Best for first-time feedback</p>
                             </div>
                             <ul className="space-y-4 mb-8 text-sm text-muted-foreground font-medium flex-1">
-                                <FeatureItem text="Understand what recruiters notice in 10 seconds" icon={Check} />
-                                <FeatureItem text="One high-impact fix you can apply today" icon={Check} />
-                                <FeatureItem text="Use it to decide what to change next" icon={Check} />
+                                <FeatureItem text="1 full review included" bold />
+                                <FeatureItem text="See exactly what recruiters notice in 10 seconds" />
+                                <FeatureItem text="Copy-paste rewrites for your weakest bullets" />
                             </ul>
                             <button
                                 onClick={() => onCheckoutClick("single")}
@@ -255,7 +266,8 @@ export default function SettingsClient() {
                                 <p className="text-sm text-foreground/80 mt-2">For an active job search</p>
                             </div>
                             <ul className="space-y-4 mb-8 text-sm text-foreground font-medium flex-1">
-                                <FeatureItem text="Tailor versions for different roles" icon={InsightSparkleIcon} accent="gold" />
+                                <FeatureItem text="5 full reviews included" bold accent="gold" />
+                                <FeatureItem text="Tailor versions for different roles" accent="gold" />
                                 <FeatureItem text="Unlock full rewrites and missing wins" />
                                 <FeatureItem text="Compare progress across versions" />
                                 <FeatureItem text="Export a clean PDF when you're ready" />
@@ -393,7 +405,7 @@ export default function SettingsClient() {
     );
 }
 
-function FeatureItem({ text, icon: Icon = Check, highlight = false, accent }: { text: string; icon?: any; highlight?: boolean; accent?: "moss" | "gold" }) {
+function FeatureItem({ text, icon: Icon = Check, highlight = false, accent, bold = false }: { text: string; icon?: any; highlight?: boolean; accent?: "moss" | "gold"; bold?: boolean }) {
     const getIconColor = () => {
         if (accent === "moss") return "text-moss";
         if (accent === "gold" || highlight) return "text-premium-accent";
@@ -403,7 +415,7 @@ function FeatureItem({ text, icon: Icon = Check, highlight = false, accent }: { 
     return (
         <div className={cn("flex items-center gap-3 text-sm", (highlight || accent) ? "text-foreground" : "text-muted-foreground")}>
             <Icon className={cn("w-4 h-4 shrink-0", getIconColor())} />
-            <span>{text}</span>
+            <span className={bold ? "font-semibold text-foreground" : ""}>{text}</span>
         </div>
     );
 }

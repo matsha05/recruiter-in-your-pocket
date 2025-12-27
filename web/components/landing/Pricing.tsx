@@ -125,15 +125,15 @@ export function Pricing({ onSelectTier }: PricingProps) {
                             <ul className="space-y-3 mb-8 text-sm text-muted-foreground font-medium flex-1">
                                 <li className="flex items-start gap-3">
                                     <Check className="w-4 h-4 mt-0.5 shrink-0" />
-                                    <span>Understand what recruiters notice in 10 seconds</span>
+                                    <span><strong>1 full review included</strong></span>
                                 </li>
                                 <li className="flex items-start gap-3">
                                     <Check className="w-4 h-4 mt-0.5 shrink-0" />
-                                    <span>One high-impact fix you can apply today</span>
+                                    <span>See exactly what recruiters notice in 10 seconds</span>
                                 </li>
                                 <li className="flex items-start gap-3">
                                     <Check className="w-4 h-4 mt-0.5 shrink-0" />
-                                    <span>Use it to decide what to change next</span>
+                                    <span>Copy-paste rewrites for your weakest bullets</span>
                                 </li>
                             </ul>
                             <Button
@@ -160,7 +160,11 @@ export function Pricing({ onSelectTier }: PricingProps) {
                             </div>
                             <ul className="space-y-3 mb-8 text-sm text-foreground font-medium flex-1">
                                 <li className="flex items-start gap-3">
-                                    <InsightSparkleIcon className="w-4 h-4 mt-0.5 shrink-0 text-premium" />
+                                    <Check className="w-4 h-4 text-premium mt-0.5 shrink-0" />
+                                    <span><strong>5 full reviews included</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check className="w-4 h-4 text-premium mt-0.5 shrink-0" />
                                     <span>Tailor versions for different roles and job postings</span>
                                 </li>
                                 <li className="flex items-start gap-3">

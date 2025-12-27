@@ -67,8 +67,10 @@ export function UserNav({
                         {(user.membership === "free" || !user.membership) && (
                             <div className="flex flex-col gap-1">
                                 <span className="text-muted-foreground">Free Plan</span>
-                                {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
-                                    <span className="text-moss lowercase normal-case">• {user.freeUsesLeft} free {user.freeUsesLeft === 1 ? 'review' : 'reviews'} remaining</span>
+                                {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 ? (
+                                    <span className="text-moss lowercase normal-case">• {user.freeUsesLeft} {user.freeUsesLeft === 1 ? 'review' : 'reviews'} remaining</span>
+                                ) : (
+                                    <span className="text-muted-foreground/60 lowercase normal-case">• 0 reviews remaining</span>
                                 )}
                             </div>
                         )}
