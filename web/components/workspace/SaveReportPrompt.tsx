@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Bookmark, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { Analytics } from "@/lib/analytics";
 
 interface SaveReportPromptProps {
     isOpen: boolean;
@@ -28,6 +29,18 @@ export default function SaveReportPrompt({
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // Extract score for personalized messaging
+    const score = report?.score || 0;
+    const getPersonalizedMessage = () => {
+        if (score >= 85) {
+            return "Great score! Save this report to share with others or compare future versions.";
+        } else if (score >= 70) {
+            return `Your score is ${score}. Save this report to track your improvements as you refine your resume.`;
+        } else {
+            return `Your score is ${score}. Save this report and come back after making the suggested changes.`;
+        }
+    };
 
     const handleSave = async () => {
         if (!email.trim()) {
@@ -87,7 +100,7 @@ export default function SaveReportPrompt({
                         Save this review
                     </DialogTitle>
                     <DialogDescription className="text-sm">
-                        Enter your email to save this report and access it anytime.
+                        {getPersonalizedMessage()}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -134,7 +147,10 @@ export default function SaveReportPrompt({
                     </Button>
 
                     <button
-                        onClick={onClose}
+                        onClick={() => {
+                            Analytics.track('save_prompt_dismissed', { score });
+                            onClose();
+                        }}
                         className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                         Maybe later

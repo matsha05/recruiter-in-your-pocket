@@ -293,4 +293,17 @@ export const Analytics = {
     trackEvent("pdf_exported");
     incrementUserProperty("pdfs_exported");
   },
+
+  // LinkedIn events
+  linkedInReviewStarted: (source: "pdf" | "url") =>
+    trackEvent("linkedin_review_started", { source }),
+
+  linkedInReviewCompleted: (score: number) => {
+    trackEvent("linkedin_review_completed", { score });
+    incrementUserProperty("linkedin_reviews_generated");
+  },
+
+  // Generic track for one-off events
+  track: (eventName: string, props?: Record<string, any>) =>
+    trackEvent(eventName, props || {}),
 };

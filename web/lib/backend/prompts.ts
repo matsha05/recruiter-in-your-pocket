@@ -1,12 +1,13 @@
 import path from "path";
 import { readFile } from "fs/promises";
 
-type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation";
+type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
 
 const promptCache = new Map<string, string>();
 
 function promptPathForMode(mode: Mode): string {
   // Resolve from web/ directory at runtime
+  if (mode === "linkedin") return path.join(process.cwd(), "prompts", "linkedin_v1.txt");
   if (mode === "case_negotiation") return path.join(process.cwd(), "prompts", "case_negotiation_v1.txt");
   if (mode === "case_resume") return path.join(process.cwd(), "prompts", "case_resume_v1.txt");
   if (mode === "case_interview") return path.join(process.cwd(), "prompts", "case_interview_v1.txt");

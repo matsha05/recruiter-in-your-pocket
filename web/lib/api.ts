@@ -232,3 +232,140 @@ function tryParsePartialJson(json: string): any | null {
     }
   }
 }
+
+// ============================================
+// LinkedIn API Functions
+// ============================================
+
+export type LinkedInFeedbackRequest = {
+  profileUrl?: string;
+  pdfText?: string;
+  source: 'url' | 'pdf';
+};
+
+export type LinkedInStreamResult = {
+  ok: boolean;
+  report?: any;
+  profile?: any;
+  message?: string;
+  errorCode?: string;
+  fallback?: 'pdf';
+};
+
+/**
+ * Streaming LinkedIn profile feedback.
+ * Calls onChunk with accumulated JSON as it arrives.
+ * Returns the complete report when done.
+ */
+export async function streamLinkedInFeedback(
+  input: LinkedInFeedbackRequest,
+  onChunk: (partialJson: string, partialReport: any | null) => void,
+  onMeta?: (meta: { name?: string; headline?: string; source?: string }) => void
+): Promise<LinkedInStreamResult> {
+  console.log("[streamLinkedInFeedback] Starting...", input.source);
+
+  const res = await fetch("/api/linkedin-feedback-stream", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({
+      profileUrl: input.profileUrl,
+      pdfText: input.pdfText,
+      source: input.source,
+    }),
+  });
+
+  console.log("[streamLinkedInFeedback] Response status:", res.status);
+
+  if (!res.ok) {
+    return { ok: false, message: `HTTP error: ${res.status}` };
+  }
+
+  if (!res.body) {
+    return { ok: false, message: "No response body" };
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let accumulatedJson = "";
+  let finalReport: any = null;
+  let finalProfile: any = null;
+  let errorMessage: string | null = null;
+  let errorCode: string | null = null;
+  let fallback: 'pdf' | undefined = undefined;
+  let chunkCount = 0;
+
+  console.log("[streamLinkedInFeedback] Starting to read stream...");
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) {
+      console.log("[streamLinkedInFeedback] Stream done after", chunkCount, "chunks");
+      break;
+    }
+
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() || "";
+
+    for (const line of lines) {
+      if (!line.trim()) continue;
+
+      try {
+        const event = JSON.parse(line);
+        chunkCount++;
+
+        if (event.type === "chunk") {
+          accumulatedJson += event.content;
+          if (chunkCount % 10 === 0) {
+            console.log(`[streamLinkedInFeedback] Received ${chunkCount} chunks, JSON length: ${accumulatedJson.length}`);
+          }
+          const partialReport = tryParsePartialJson(accumulatedJson);
+          onChunk(accumulatedJson, partialReport);
+        } else if (event.type === "complete") {
+          console.log("[streamLinkedInFeedback] Got complete event");
+          finalReport = event.data;
+          finalProfile = event.profile;
+        } else if (event.type === "error") {
+          console.log("[streamLinkedInFeedback] Got error event:", event.message);
+          errorMessage = event.message;
+          errorCode = event.errorCode;
+          if (event.fallback) fallback = event.fallback;
+        } else if (event.type === "meta") {
+          console.log("[streamLinkedInFeedback] Got meta event:", event);
+          onMeta?.(event.profile || {});
+        }
+      } catch {
+        // Ignore malformed lines
+      }
+    }
+  }
+
+  if (errorMessage) {
+    return { ok: false, message: errorMessage, errorCode: errorCode || undefined, fallback };
+  }
+
+  if (finalReport) {
+    return { ok: true, report: finalReport, profile: finalProfile };
+  }
+
+  return { ok: false, message: "Stream ended without completion" };
+}
+
+/**
+ * Parse a LinkedIn PDF file and return the extracted text.
+ */
+export async function parseLinkedInPdf(file: File): Promise<{ ok: boolean; text?: string; message?: string }> {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("type", "linkedin");
+
+  const res = await fetch("/api/parse-resume", {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await res.json();
+  return data;
+}

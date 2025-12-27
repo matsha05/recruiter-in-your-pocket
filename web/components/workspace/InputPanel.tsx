@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, ChangeEvent } from "react";
-import { CloudUpload, FileText, ArrowRight, Info, ChevronDown, AlignLeft } from "lucide-react";
+import { CloudUpload, FileText, ArrowRight, Info, ChevronDown, AlignLeft, Target } from "lucide-react";
 import { SixSecondIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/shared/TrustBadges";
@@ -203,29 +203,60 @@ export default function InputPanel({
                         {/* Divider */}
                         <div className="border-t border-border/40" />
 
-                        {/* Additional Options */}
-                        <div className="space-y-2">
+                        {/* JD Matching - First-Class Feature */}
+                        <div className="space-y-3">
                             <button
                                 type="button"
                                 onClick={() => setShowJD(!showJD)}
-                                className="w-full flex items-center justify-between text-sm group"
+                                className={cn(
+                                    "w-full flex items-center justify-between p-4 rounded-lg border transition-all duration-200",
+                                    showJD
+                                        ? "bg-brand/5 border-brand/30 shadow-sm"
+                                        : "bg-muted/30 border-border/40 hover:border-brand/30 hover:bg-brand/5"
+                                )}
                             >
-                                <span className={cn("flex items-center gap-2 transition-colors", showJD ? "text-foreground font-medium" : "text-muted-foreground group-hover:text-foreground")}>
-                                    <AlignLeft className="w-4 h-4" />
-                                    Tailor to a job description
-                                    <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground/50 bg-secondary px-1.5 py-0.5 rounded ml-2">Optional</span>
-                                </span>
-                                <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform duration-200", showJD && "rotate-180")} />
+                                <div className="flex items-start gap-3 text-left">
+                                    <div className={cn(
+                                        "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors",
+                                        showJD ? "bg-brand/20 text-brand" : "bg-muted text-muted-foreground"
+                                    )}>
+                                        <Target className="w-4 h-4" strokeWidth={1.5} />
+                                    </div>
+                                    <div>
+                                        <span className={cn(
+                                            "block text-sm font-medium transition-colors",
+                                            showJD ? "text-brand" : "text-foreground"
+                                        )}>
+                                            Check fit for a specific job
+                                        </span>
+                                        <span className="block text-xs text-muted-foreground mt-0.5">
+                                            See your match score + missing skills
+                                        </span>
+                                    </div>
+                                </div>
+                                <ChevronDown className={cn(
+                                    "w-4 h-4 text-muted-foreground transition-transform duration-200 flex-shrink-0",
+                                    showJD && "rotate-180 text-brand"
+                                )} />
                             </button>
 
                             {showJD && (
-                                <div className="pt-2 animate-in fade-in slide-in-from-top-1">
+                                <div className="animate-in fade-in slide-in-from-top-1 space-y-2">
                                     <textarea
                                         value={jobDescription}
                                         onChange={(e) => onJobDescChange(e.target.value)}
-                                        className="flex w-full rounded-md border border-input bg-muted/30 px-3 py-3 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring min-h-[120px] resize-none"
-                                        placeholder="Paste the job posting here to see your match score..."
+                                        className="flex w-full rounded-lg border border-brand/30 bg-brand/5 px-4 py-3 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand min-h-[140px] resize-none"
+                                        placeholder="Paste the full job posting here...
+
+Example: We are looking for a Senior Product Manager with 5+ years of experience in B2B SaaS..."
+                                        autoFocus
                                     />
+                                    {jobDescription.length > 0 && (
+                                        <div className="flex items-center gap-2 text-xs text-brand">
+                                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                                            JD detected — your report will include a match score
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>

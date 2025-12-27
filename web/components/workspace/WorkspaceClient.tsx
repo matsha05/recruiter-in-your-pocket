@@ -11,9 +11,12 @@ import HistorySidebar from "@/components/workspace/HistorySidebar";
 import PaywallModal from "@/components/workspace/PaywallModal";
 import SaveReportPrompt from "@/components/workspace/SaveReportPrompt";
 import AuthModal from "@/components/shared/AuthModal";
-import { createResumeFeedback, streamResumeFeedback, parseResume } from "@/lib/api";
+import { createResumeFeedback, streamResumeFeedback, parseResume, streamLinkedInFeedback } from "@/lib/api";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
+import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
+import { LinkedInInputPanel } from "@/components/linkedin/LinkedInInputPanel";
+import { LinkedInReportPanel } from "@/components/linkedin/LinkedInReportPanel";
 
 export default function WorkspaceClient() {
     const searchParams = useSearchParams();
@@ -25,6 +28,14 @@ export default function WorkspaceClient() {
     const [report, setReport] = useState<any>(null);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(2);
+
+    // Mode switcher state (Resume vs LinkedIn)
+    const [reviewMode, setReviewMode] = useState<ReviewMode>('resume');
+
+    // LinkedIn-specific state
+    const [linkedInReport, setLinkedInReport] = useState<any>(null);
+    const [linkedInProfileName, setLinkedInProfileName] = useState<string>('');
+    const [linkedInProfileHeadline, setLinkedInProfileHeadline] = useState<string>('');
 
     // History sidebar, paywall modal, auth modal, and save prompt state
     const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -307,8 +318,11 @@ export default function WorkspaceClient() {
                     // Show save prompt for guest users after report is generated
                     if (!user && result.report) {
                         setPendingReportForSave(result.report);
-                        // Small delay to let user see their report first
-                        setTimeout(() => setIsSavePromptOpen(true), 2000);
+                        // Give user time to see their score before prompting (5 seconds)
+                        setTimeout(() => {
+                            Analytics.track('save_prompt_viewed', { score: result.report?.score || 0 });
+                            setIsSavePromptOpen(true);
+                        }, 5000);
                     }
                 }, remaining);
             } else {
@@ -335,10 +349,114 @@ export default function WorkspaceClient() {
         setResumeText("");
         setJobDescription("");
         setReport(null);
+        // Clear LinkedIn state too
+        setLinkedInReport(null);
+        setLinkedInProfileName('');
+        setLinkedInProfileHeadline('');
         // Remove sample param so it doesn't auto-load again
         if (window?.history) {
             window.history.replaceState({}, "", "/workspace");
         }
+    }, []);
+
+    // LinkedIn handlers
+    const handleLinkedInPdfSubmit = useCallback(async (pdfText: string) => {
+        // Check auth gate first
+        if (!user && !justCompletedAuthRef.current) {
+            setAuthContext("report");
+            setPendingRunAfterAuth(true);
+            setIsAuthOpen(true);
+            Analytics.authGateViewed('linkedin_review');
+            return;
+        }
+        justCompletedAuthRef.current = false;
+
+        // Check if free uses exhausted
+        if (freeUsesRemaining <= 0) {
+            setIsPaywallOpen(true);
+            Analytics.paywallViewed('linkedin_free_exhausted');
+            return;
+        }
+
+        setIsLoading(true);
+        setIsStreaming(true);
+        setLinkedInReport(null);
+        Analytics.linkedInReviewStarted('pdf');
+
+        const theaterDurationMs = 10000;
+        const startTime = Date.now();
+        let isTheaterOver = false;
+        let bufferedReport: any = null;
+
+        try {
+            setTimeout(() => {
+                isTheaterOver = true;
+                if (bufferedReport) {
+                    setLinkedInReport(bufferedReport);
+                }
+            }, theaterDurationMs);
+
+            const result = await streamLinkedInFeedback(
+                { pdfText, source: 'pdf' },
+                (partialJson, partialReport) => {
+                    if (partialReport) {
+                        if (isTheaterOver) {
+                            setLinkedInReport(partialReport);
+                        } else {
+                            bufferedReport = partialReport;
+                        }
+                    }
+                },
+                (meta) => {
+                    if (meta.name) setLinkedInProfileName(meta.name);
+                    if (meta.headline) setLinkedInProfileHeadline(meta.headline);
+                }
+            );
+
+            if (result.ok && result.report) {
+                const elapsed = Date.now() - startTime;
+                const remaining = Math.max(0, theaterDurationMs - elapsed);
+
+                setTimeout(async () => {
+                    setLinkedInReport(result.report);
+                    if (result.profile) {
+                        setLinkedInProfileName(result.profile.name || '');
+                        setLinkedInProfileHeadline(result.profile.headline || '');
+                    }
+                    setIsStreaming(false);
+                    setIsLoading(false);
+                    Analytics.linkedInReviewCompleted(result.report?.score || 0);
+
+                    // Refresh free status
+                    try {
+                        const statusRes = await fetch("/api/free-status");
+                        const statusData = await statusRes.json();
+                        if (statusData.ok) {
+                            setFreeUsesRemaining(statusData.free_uses_left);
+                        }
+                        await refreshUser?.();
+                    } catch (err) {
+                        console.error("Failed to refresh free status:", err);
+                        setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
+                    }
+                }, remaining);
+            } else {
+                console.error("Failed to generate LinkedIn report:", result.message);
+                toast.error("Failed to analyze LinkedIn profile", { description: result.message || "Unknown error" });
+                setIsLoading(false);
+                setIsStreaming(false);
+            }
+        } catch (err) {
+            console.error("LinkedIn analysis error:", err);
+            toast.error("LinkedIn analysis error", { description: "Please try again." });
+            setIsLoading(false);
+            setIsStreaming(false);
+        }
+    }, [freeUsesRemaining, user, refreshUser]);
+
+    const handleLinkedInUrlSubmit = useCallback(async (url: string) => {
+        // URL flow - currently shows "coming soon" message
+        toast.info("URL analysis coming soon", { description: "Please upload your LinkedIn PDF for now." });
     }, []);
 
     const handleSampleReport = useCallback(async () => {
@@ -415,39 +533,107 @@ export default function WorkspaceClient() {
                     onSignIn={() => setIsAuthOpen(true)}
                     onSignOut={signOut}
                     onHistory={() => setIsHistoryOpen(true)}
-                    showBack={!!report}
+                    showBack={!!report || !!linkedInReport}
                     onBack={handleNewReport}
                 />
 
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
-                    {/* View Switcher: Input vs Report */}
-                    {!report ? (
-                        <div className="h-full overflow-y-auto bg-muted/10">
-                            <InputPanel
-                                resumeText={resumeText}
-                                jobDescription={jobDescription}
-                                onResumeTextChange={setResumeText}
-                                onJobDescChange={setJobDescription}
-                                onFileSelect={handleFileSelect}
-                                onRun={handleRun}
-                                isLoading={isLoading}
-                                freeUsesRemaining={freeUsesRemaining}
+                    {/* Mode Switcher - show only when no report is displayed */}
+                    {!report && !linkedInReport && (
+                        <div className="flex justify-center py-4 bg-body border-b border-border">
+                            <ModeSwitcher
+                                mode={reviewMode}
+                                onModeChange={setReviewMode}
+                                disabled={isLoading}
                             />
                         </div>
+                    )}
+
+                    {/* Content Area - Mode-aware */}
+                    {reviewMode === 'resume' ? (
+                        // Resume Mode
+                        <>
+                            {!report ? (
+                                <div className="h-full overflow-y-auto bg-muted/10">
+                                    <InputPanel
+                                        resumeText={resumeText}
+                                        jobDescription={jobDescription}
+                                        onResumeTextChange={setResumeText}
+                                        onJobDescChange={setJobDescription}
+                                        onFileSelect={handleFileSelect}
+                                        onRun={handleRun}
+                                        isLoading={isLoading}
+                                        freeUsesRemaining={freeUsesRemaining}
+                                    />
+                                </div>
+                            ) : (
+                                <ReportPanel
+                                    report={report}
+                                    isLoading={isLoading}
+                                    hasJobDescription={!!jobDescription.trim()}
+                                    onExportPdf={handleExportPdf}
+                                    isExporting={isExporting}
+                                    isSample={searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim())}
+                                    onNewReport={handleNewReport}
+                                    freeUsesRemaining={freeUsesRemaining}
+                                    onUpgrade={() => setIsPaywallOpen(true)}
+                                    isGated={false}
+                                    justUnlocked={justUnlocked}
+                                />
+                            )}
+                        </>
                     ) : (
-                        <ReportPanel
-                            report={report}
-                            isLoading={isLoading}
-                            hasJobDescription={!!jobDescription.trim()}
-                            onExportPdf={handleExportPdf}
-                            isExporting={isExporting}
-                            isSample={searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim())}
-                            onNewReport={handleNewReport}
-                            freeUsesRemaining={freeUsesRemaining}
-                            onUpgrade={() => setIsPaywallOpen(true)}
-                            isGated={false}  // If report was generated, user had access
-                            justUnlocked={justUnlocked}
-                        />
+                        // LinkedIn Mode
+                        <>
+                            {!linkedInReport ? (
+                                <div className="h-full overflow-y-auto bg-muted/10">
+                                    <div className="max-w-2xl mx-auto px-4 py-8">
+                                        <div className="text-center mb-8">
+                                            <h2 className="text-2xl font-serif font-bold text-foreground mb-2">
+                                                LinkedIn Profile Review
+                                            </h2>
+                                            <p className="text-muted-foreground">
+                                                See your profile through a recruiter&apos;s eyes
+                                            </p>
+                                        </div>
+                                        <LinkedInInputPanel
+                                            onUrlSubmit={handleLinkedInUrlSubmit}
+                                            onPdfSubmit={handleLinkedInPdfSubmit}
+                                            isLoading={isLoading}
+                                            freeUsesRemaining={freeUsesRemaining}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="h-full overflow-y-auto">
+                                    <div className="max-w-3xl mx-auto px-4 py-8">
+                                        <div className="flex items-center justify-between mb-6">
+                                            <div>
+                                                <h2 className="text-xl font-semibold text-foreground">
+                                                    {linkedInProfileName || 'LinkedIn Report'}
+                                                </h2>
+                                                {linkedInProfileHeadline && (
+                                                    <p className="text-sm text-muted-foreground truncate max-w-md">
+                                                        {linkedInProfileHeadline}
+                                                    </p>
+                                                )}
+                                            </div>
+                                            <button
+                                                onClick={handleNewReport}
+                                                className="text-sm text-brand hover:underline"
+                                            >
+                                                New Review
+                                            </button>
+                                        </div>
+                                        <LinkedInReportPanel
+                                            report={linkedInReport}
+                                            profileName={linkedInProfileName}
+                                            profileHeadline={linkedInProfileHeadline}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
             </main>

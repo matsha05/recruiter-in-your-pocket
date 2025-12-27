@@ -145,6 +145,27 @@
     }
   },
   "job_alignment": {
+    "jd_match_score": 72,
+    "jd_match_summary": "Strong on execution and stakeholder management, but missing depth in data analytics and product strategy.",
+    "jd_keywords": {
+      "matched": [
+        "Cross-functional leadership",
+        "Stakeholder management",
+        "Program management",
+        "Launch execution",
+        "Process improvement",
+        "Roadmap planning",
+        "Risk management"
+      ],
+      "missing": [
+        "SQL",
+        "A/B testing",
+        "Product analytics",
+        "User research"
+      ],
+      "match_count": 7,
+      "total_count": 11
+    },
     "strongly_aligned": [
       "Cross-functional coordination",
       "Stakeholder management",

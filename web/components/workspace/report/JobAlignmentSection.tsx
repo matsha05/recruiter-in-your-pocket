@@ -6,6 +6,7 @@ import { Target, Lock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
+import { InsightSparkleIcon } from "@/components/icons/InsightSparkleIcon";
 
 interface JobAlignmentSectionProps {
     data: ReportData;
@@ -44,6 +45,11 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
     const seniority = roleFit?.seniority_read;
     const companyStage = roleFit?.company_stage_fit;
     const industries = roleFit?.industry_signals || [];
+
+    // Detect if JD match data exists (either from user input OR from sample data)
+    const hasJdMatchData = alignment.jd_match_score !== undefined && alignment.jd_match_score > 0;
+    const hasJdKeywords = alignment.jd_keywords && alignment.jd_keywords.total_count && alignment.jd_keywords.total_count > 0;
+    const showJdSection = hasJobDescription || hasJdMatchData;
 
     // Build footer metadata string
     const footerParts: string[] = [];
@@ -126,15 +132,20 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 // FULL ACCESS: Show complete role analysis
                 <div className="rounded-lg border border-border/60 bg-card shadow-sm p-6 md:p-8">
                     {/* JD Match Score - The Emotional Hook */}
-                    {hasJobDescription && alignment.jd_match_score !== undefined && alignment.jd_match_score > 0 && (
+                    {showJdSection && hasJdMatchData && (
                         <div className="text-center mb-8 pb-6 border-b border-border/40">
                             <div className="inline-flex items-center gap-4">
-                                <div className={`text-6xl md:text-7xl font-display font-bold ${alignment.jd_match_score >= 75 ? 'text-green-500' :
+                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${alignment.jd_match_score >= 75 ? 'text-green-500 animate-pulse-once' :
                                     alignment.jd_match_score >= 60 ? 'text-brand' :
                                         alignment.jd_match_score >= 45 ? 'text-warning' :
                                             'text-destructive'
                                     }`}>
                                     {alignment.jd_match_score}%
+                                    {alignment.jd_match_score >= 75 && (
+                                        <span className="inline-block ml-2 animate-bounce-subtle">
+                                            ✨
+                                        </span>
+                                    )}
                                 </div>
                                 <div className="text-left">
                                     <p className="text-sm font-semibold text-foreground">
@@ -152,7 +163,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     )}
 
                     {/* JD Keyword Breakdown - The Jobscan-Style Checklist */}
-                    {hasJobDescription && alignment.jd_keywords && alignment.jd_keywords.total_count && alignment.jd_keywords.total_count > 0 && (
+                    {showJdSection && hasJdKeywords && (
                         <div className="mb-8 pb-6 border-b border-border/40">
                             {/* Progress Bar */}
                             <div className="mb-4">
@@ -167,8 +178,8 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                     <div
                                         className={`h-full rounded-full transition-all duration-500 ${((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) >= 0.75 ? 'bg-green-500' :
-                                                ((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) >= 0.5 ? 'bg-brand' :
-                                                    'bg-warning'
+                                            ((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) >= 0.5 ? 'bg-brand' :
+                                                'bg-warning'
                                             }`}
                                         style={{ width: `${Math.round(((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) * 100)}%` }}
                                     />
@@ -215,6 +226,16 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                     </div>
                                 )}
                             </div>
+
+                            {/* Actionable Hint - What to do next */}
+                            {alignment.jd_keywords.missing && alignment.jd_keywords.missing.length > 0 && (
+                                <div className="mt-4 flex items-start gap-2 p-3 rounded-lg bg-brand/5 border border-brand/10">
+                                    <InsightSparkleIcon className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                                    <p className="text-xs text-muted-foreground">
+                                        <span className="font-medium text-foreground">Pro tip:</span> Look for opportunities to add these skills to your experience bullets. Section 03 (The Red Pen) has rewrite examples that can help.
+                                    </p>
+                                </div>
+                            )}
                         </div>
                     )}
 
