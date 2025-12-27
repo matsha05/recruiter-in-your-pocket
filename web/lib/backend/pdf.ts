@@ -195,7 +195,7 @@ export async function renderReportHtml(report: ReportForPdf) {
   <meta charset="utf-8" />
   <title>Resume Audit — Recruiter in Your Pocket</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Geist+Mono&display=swap');
     
     :root {
       /* Aligned with site's globals.css */
@@ -287,11 +287,12 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     .score-value {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 56pt;
-      font-weight: 500;
-      line-height: 1;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 54pt;
+      font-weight: 600;
+      line-height: 1.1;
       color: ${scoreColor};
+      letter-spacing: -0.02em;
     }
 
     .score-label {
@@ -311,13 +312,14 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     .recruiter-note {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 14pt;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 13pt;
       font-style: italic;
       color: var(--foreground);
       border-left: 3px solid ${scoreColor};
       padding-left: 16px;
       margin-bottom: 12px;
+      line-height: 1.5;
     }
 
     .summary-text {
@@ -350,9 +352,10 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     .subscore-value {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 24pt;
-      font-weight: 500;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 22pt;
+      font-weight: 600;
+      letter-spacing: -0.01em;
     }
 
     /* Sections */
@@ -362,13 +365,14 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     h2 {
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 14pt;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 13pt;
       font-weight: 500;
       color: var(--foreground);
-      margin-bottom: 12px;
-      padding-bottom: 6px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
     }
 
     /* Lists */

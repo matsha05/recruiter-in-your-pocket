@@ -57,31 +57,31 @@ export default function LandingClient() {
     return (
         <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-brand/20">
             {/* Navbar: Mobile-first, responsive */}
-            <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-white/10 bg-background/80 backdrop-blur-md sticky top-0 z-50 overflow-x-hidden">
+            <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-white/10 bg-background/80 backdrop-blur-md sticky top-0 z-50 overflow-x-hidden safe-area-inset-x">
                 <Link href="/" className="flex items-center gap-2 shrink-0">
                     <PocketMark className="w-6 h-6 text-brand" />
                     <Wordmark className="h-5 md:h-6 text-foreground hidden sm:block" />
                 </Link>
-                <nav className="flex items-center gap-2 md:gap-4">
+                <nav className="flex items-center gap-3 md:gap-4">
                     <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block">Research</Link>
                     {isAuthLoading ? (
                         <div className="w-20 h-9" />
                     ) : user ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 md:gap-3">
                             <ThemeToggle />
                             <UserNav user={user} onSignOut={signOut} />
                             <Link href="/workspace" className="hidden sm:block">
                                 <Button variant="brand" size="sm">Open Studio</Button>
                             </Link>
                             <Link href="/workspace" className="sm:hidden">
-                                <Button variant="brand" size="sm">Studio</Button>
+                                <Button variant="brand" size="sm" className="px-3">Studio</Button>
                             </Link>
                         </div>
                     ) : (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 md:gap-3">
                             <ThemeToggle />
-                            <Link href="/auth">
-                                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground px-2 md:px-3">Log In</Button>
+                            <Link href="/auth" className="hidden sm:block">
+                                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Log In</Button>
                             </Link>
                             <Link href="/workspace">
                                 <Button variant="brand" size="sm" className="px-3 md:px-4">Get Started</Button>

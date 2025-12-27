@@ -29,11 +29,12 @@ export default function Footer() {
                         <Wordmark className="h-4 text-muted-foreground" />
                         <span className="text-sm">© 2025</span>
                     </div>
-                    <div className="flex items-center gap-2 md:gap-4">
-                        <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 -mx-3 -my-2 rounded-md">Terms</Link>
-                        <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 -mx-3 -my-2 rounded-md">Privacy</Link>
-                        <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 -mx-3 -my-2 rounded-md">FAQ</Link>
-                        <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 -mx-3 -my-2 rounded-md">Research</Link>
+                    {/* Mobile: wrap links for better tap targets, Desktop: inline */}
+                    <div className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 md:gap-x-4">
+                        <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 min-h-11 flex items-center rounded-md hover:bg-muted/50">Terms</Link>
+                        <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 min-h-11 flex items-center rounded-md hover:bg-muted/50">Privacy</Link>
+                        <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 min-h-11 flex items-center rounded-md hover:bg-muted/50">FAQ</Link>
+                        <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2 min-h-11 flex items-center rounded-md hover:bg-muted/50">Research</Link>
                     </div>
                 </div>
             </div>
