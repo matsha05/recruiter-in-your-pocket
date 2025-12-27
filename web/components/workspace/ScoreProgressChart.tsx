@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { TrendingUp, TrendingDown, Minus, Check } from "lucide-react";
 
 interface ScorePoint {
     date: string;
@@ -58,10 +58,10 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                     </p>
                 </div>
                 <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold ${improvement > 0
-                        ? 'bg-green-500/10 text-green-600 border border-green-500/20'
-                        : improvement < 0
-                            ? 'bg-destructive/10 text-destructive border border-destructive/20'
-                            : 'bg-muted text-muted-foreground border border-border'
+                    ? 'bg-green-500/10 text-green-600 border border-green-500/20'
+                    : improvement < 0
+                        ? 'bg-destructive/10 text-destructive border border-destructive/20'
+                        : 'bg-muted text-muted-foreground border border-border'
                     }`}>
                     {improvement > 0 ? (
                         <TrendingUp className="w-4 h-4" />
@@ -99,9 +99,9 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                 <div
                                     className={`h-full rounded-full transition-all duration-500 ${point.score >= 75 ? 'bg-green-500' :
-                                            point.score >= 60 ? 'bg-brand' :
-                                                point.score >= 45 ? 'bg-warning' :
-                                                    'bg-destructive'
+                                        point.score >= 60 ? 'bg-brand' :
+                                            point.score >= 45 ? 'bg-warning' :
+                                                'bg-destructive'
                                         }`}
                                     style={{ width: `${widthPercent}%` }}
                                 />
@@ -116,7 +116,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                 <div className={`mt-4 text-center text-sm ${improvement > 0 ? 'text-green-600' : 'text-destructive'
                     }`}>
                     {improvement > 0 ? (
-                        `✓ Your resume improved ${improvement} points since your first review`
+                        <><Check className="inline w-4 h-4 mr-1" /> Your resume improved {improvement} points since your first review</>
                     ) : (
                         `Score decreased by ${Math.abs(improvement)} points — review recent changes`
                     )}

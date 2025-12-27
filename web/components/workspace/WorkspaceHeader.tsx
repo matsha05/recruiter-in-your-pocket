@@ -1,20 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "../shared/ThemeToggle";
-import { Plus, Files, ArrowLeft, Settings, FileText, LogOut, CreditCard } from "lucide-react";
+import { Plus, ArrowLeft, FileText, ChevronDown, Linkedin } from "lucide-react";
 import { PocketMark, Wordmark } from "@/components/icons";
 import { UserNav } from "../shared/UserNav";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { MobileNav } from "@/components/layout/MobileNav";
 import type { AuthUser } from "@/components/providers/AuthProvider";
 
 interface WorkspaceHeaderProps {
     user?: AuthUser | null;
     onNewReport?: () => void;
-    onSampleReport?: () => void;
+    onResumeSample?: () => void;
+    onLinkedInSample?: () => void;
     onSignIn?: () => void;
     onSignOut?: () => void;
     onHistory?: () => void;
@@ -25,15 +25,27 @@ interface WorkspaceHeaderProps {
 export default function WorkspaceHeader({
     user,
     onNewReport,
-    onSampleReport,
+    onResumeSample,
+    onLinkedInSample,
     onSignIn,
     onSignOut,
     onHistory,
     showBack,
-    onBack
+    onBack,
 }: WorkspaceHeaderProps) {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const userInitial = user?.firstName?.[0] || user?.email?.[0]?.toUpperCase() || "?";
+    const [isExampleOpen, setIsExampleOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsExampleOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <header className="flex h-14 items-center justify-between px-6 border-b border-border bg-background sticky top-0 z-30">
@@ -68,16 +80,47 @@ export default function WorkspaceHeader({
 
             {/* Actions - Responsive */}
             <div className="flex items-center gap-1 md:gap-2">
-                {/* Example Report - Hidden on mobile (accessible via header menu or report CTA) */}
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    className="hidden md:flex"
-                    onClick={onSampleReport}
-                >
-                    <FileText className="w-4 h-4 mr-2" />
-                    Example Report
-                </Button>
+                {/* Examples Dropdown */}
+                <div className="relative hidden md:block" ref={dropdownRef}>
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setIsExampleOpen(!isExampleOpen)}
+                        className="gap-1"
+                    >
+                        <FileText className="w-4 h-4" />
+                        Examples
+                        <ChevronDown className={cn(
+                            "w-3.5 h-3.5 transition-transform",
+                            isExampleOpen && "rotate-180"
+                        )} />
+                    </Button>
+
+                    {isExampleOpen && (
+                        <div className="absolute right-0 mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                            <button
+                                onClick={() => {
+                                    onResumeSample?.();
+                                    setIsExampleOpen(false);
+                                }}
+                                className="w-full flex items-center gap-3 px-3 py-2 text-sm hover:bg-muted transition-colors text-left"
+                            >
+                                <FileText className="w-4 h-4 text-muted-foreground" />
+                                <span>Resume Example</span>
+                            </button>
+                            <button
+                                onClick={() => {
+                                    onLinkedInSample?.();
+                                    setIsExampleOpen(false);
+                                }}
+                                className="w-full flex items-center gap-3 px-3 py-2 text-sm hover:bg-muted transition-colors text-left"
+                            >
+                                <Linkedin className="w-4 h-4 text-muted-foreground" />
+                                <span>LinkedIn Example</span>
+                            </button>
+                        </div>
+                    )}
+                </div>
 
                 {/* New Report - Icon only on mobile */}
                 <Button
@@ -87,7 +130,7 @@ export default function WorkspaceHeader({
                     aria-label="New Report"
                 >
                     <Plus className="w-4 h-4 md:mr-2" />
-                    <span className="hidden md:inline">New Report</span>
+                    <span className="hidden md:inline">New Review</span>
                 </Button>
 
                 {!user ? (

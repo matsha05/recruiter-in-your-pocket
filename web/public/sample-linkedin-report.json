@@ -1,0 +1,95 @@
+{
+    "score": 72,
+    "score_label": "Promising Foundation",
+    "score_comment_short": "Your profile has good content but isn't optimized for recruiter search. A few targeted fixes will dramatically improve visibility.",
+    "subscores": {
+        "visibility": 58,
+        "first_impression": 75,
+        "content_quality": 82,
+        "completeness": 73
+    },
+    "first_impression": {
+        "profile_card_verdict": "In the 3 seconds recruiters spend scanning your profile card, your photo communicates professionalism, but your headline doesn't differentiate you from thousands of similar titles. The banner is the default LinkedIn blue, which is a missed branding opportunity.",
+        "photo_status": "professional",
+        "banner_status": "missing",
+        "headline_verdict": "generic",
+        "visibility_estimate": "Your profile appears in roughly 40% of relevant recruiter searches — mainly because key industry keywords are missing from your headline and about section."
+    },
+    "headline_analysis": {
+        "current": "Product Manager at TechCorp | Building Great Products",
+        "verdict": "This headline tells recruiters WHAT you do but not WHY they should click. It lacks specificity (what industry? what scale? what outcomes?) and reads identically to 10,000 other Product Managers.",
+        "issues": [
+            "Missing industry context (B2B SaaS? Consumer? FinTech?)",
+            "No metrics or scale signals (team size, revenue impact)",
+            "Generic 'Building Great Products' adds no differentiation",
+            "No keywords recruiters actually search for"
+        ],
+        "rewrite": "Senior PM | B2B SaaS | 0→1 Products | $4M→$12M ARR Growth | ex-Stripe",
+        "why_better": "Specificity wins. This headline tells recruiters exactly what you do (B2B SaaS PM), your capability level (0→1 and growth), proof of impact ($4M→$12M), and pedigree (ex-Stripe). Every word is searchable."
+    },
+    "about_analysis": {
+        "hook_strength": "weak",
+        "hook_verdict": "Your opening line 'I'm a passionate product manager...' is the most overused opener on LinkedIn. Recruiters have seen it 50,000 times. They'll scroll past in under 2 seconds.",
+        "full_verdict": "The body of your About section has good content — you mention specific projects and outcomes. But it's buried after a weak hook. Most recruiters never see it.",
+        "rewrite_suggestion": "In 18 months, I took a product from 0 users to 50,000 DAU while growing ARR from $4M to $12M. Here's what I learned about building products people actually want..."
+    },
+    "search_visibility": {
+        "score": 58,
+        "keywords_present": [
+            "Product Manager",
+            "Agile",
+            "Stakeholder Management",
+            "Roadmapping"
+        ],
+        "keywords_missing": [
+            "B2B SaaS",
+            "Product-Led Growth",
+            "A/B Testing",
+            "SQL",
+            "Cross-functional"
+        ],
+        "recommendation": "Add 'B2B SaaS' and 'Product-Led Growth' to your headline. These are high-volume recruiter search terms that you're currently invisible for."
+    },
+    "top_fixes": [
+        {
+            "fix": "Rewrite your headline with specific keywords and metrics",
+            "why": "Headline is the #1 factor in recruiter search visibility",
+            "effort": "quick"
+        },
+        {
+            "fix": "Add a custom banner image related to your work",
+            "why": "Signals intentionality and stands out in search results",
+            "effort": "quick"
+        },
+        {
+            "fix": "Rewrite your About hook with a specific achievement",
+            "why": "Strong hooks increase profile read time by 3x",
+            "effort": "moderate"
+        },
+        {
+            "fix": "Add 5+ relevant skills with endorsements",
+            "why": "Skills are heavily weighted in LinkedIn's search algorithm",
+            "effort": "moderate"
+        },
+        {
+            "fix": "Request 2-3 recommendations from managers or stakeholders",
+            "why": "Recommendations provide social proof that can't be faked",
+            "effort": "involved"
+        }
+    ],
+    "experience_rewrites": [
+        {
+            "company": "TechCorp",
+            "original": "Led product development for the core platform, working with engineering and design to ship features.",
+            "better": "Owned end-to-end product strategy for a $4M ARR platform, shipping 12 features in 18 months that drove 40% user growth and reduced churn by 25%.",
+            "enhancement_note": "Added specific metrics (ARR, features shipped, growth, churn reduction) that prove impact rather than just describe activities."
+        },
+        {
+            "company": "StartupCo",
+            "original": "Managed the product roadmap and conducted user research to inform product decisions.",
+            "better": "Built the product function from scratch: established research ops, shipped MVP in 90 days, and scaled from 0 to 50K DAU through data-driven iteration.",
+            "enhancement_note": "Transformed generic responsibilities into a narrative of ownership and outcomes. '0 to 50K DAU' is memorable; 'managed roadmap' is not."
+        }
+    ],
+    "role_fit": null
+}

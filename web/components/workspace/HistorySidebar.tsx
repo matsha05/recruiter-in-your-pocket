@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Clock, TrendingUp, FileText, Pencil, AlertTriangle } from "lucide-react";
+import { Trash2, Clock, TrendingUp, FileText, Pencil, AlertTriangle, Check } from "lucide-react";
 import {
     Sheet,
     SheetContent,
@@ -408,7 +408,7 @@ export default function HistorySidebar({
                                                             ? 'bg-brand border-brand text-white'
                                                             : 'border-muted-foreground/30 bg-card'
                                                             }`}>
-                                                            {isSelected && <span className="text-xs">✓</span>}
+                                                            {isSelected && <Check className="w-3 h-3" />}
                                                         </div>
                                                     </div>
                                                 )}

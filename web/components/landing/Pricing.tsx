@@ -99,9 +99,9 @@ export function Pricing({ onSelectTier }: PricingProps) {
                             <span className="text-sm font-medium text-foreground">Built using real recruiter screening heuristics</span>
                         </div>
                         <div className="flex flex-wrap justify-center gap-6 text-xs text-muted-foreground">
-                            <span>✓ Focuses on the first 10 seconds</span>
-                            <span>✓ Turns vague bullets into measurable outcomes</span>
-                            <span>✓ Copy-paste upgrades, not generic advice</span>
+                            <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Focuses on the first 10 seconds</span>
+                            <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Turns vague bullets into measurable outcomes</span>
+                            <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Copy-paste upgrades, not generic advice</span>
                         </div>
                     </div>
 

@@ -2,7 +2,7 @@
 
 import { ReportData } from "./ReportTypes";
 import { ReportSectionHeader } from "./ReportSectionHeader";
-import { Target, Lock, Sparkles } from "lucide-react";
+import { Target, Lock, Sparkles, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
@@ -14,6 +14,13 @@ interface JobAlignmentSectionProps {
     isGated?: boolean;
     onUpgrade?: () => void;
 }
+
+// Score threshold constants for JD matching
+const SCORE_THRESHOLDS = {
+    STRONG: 75,
+    MODERATE: 60,
+    WEAK: 45
+} as const;
 
 export function JobAlignmentSection({ data, hasJobDescription = false, isGated = false, onUpgrade }: JobAlignmentSectionProps) {
     const alignment = data.job_alignment;
@@ -129,29 +136,26 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 </div>
             ) : (
                 // FULL ACCESS: Show complete role analysis
-                // FULL ACCESS: Show complete role analysis
                 <div className="rounded-lg border border-border/60 bg-card shadow-sm p-6 md:p-8">
                     {/* JD Match Score - The Emotional Hook */}
                     {showJdSection && hasJdMatchData && (
                         <div className="text-center mb-8 pb-6 border-b border-border/40">
                             <div className="inline-flex items-center gap-4">
-                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${alignment.jd_match_score >= 75 ? 'text-green-500 animate-pulse-once' :
-                                    alignment.jd_match_score >= 60 ? 'text-brand' :
-                                        alignment.jd_match_score >= 45 ? 'text-warning' :
+                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${alignment.jd_match_score >= SCORE_THRESHOLDS.STRONG ? 'text-green-500 animate-pulse-once' :
+                                    alignment.jd_match_score >= SCORE_THRESHOLDS.MODERATE ? 'text-brand' :
+                                        alignment.jd_match_score >= SCORE_THRESHOLDS.WEAK ? 'text-warning' :
                                             'text-destructive'
                                     }`}>
                                     {alignment.jd_match_score}%
-                                    {alignment.jd_match_score >= 75 && (
-                                        <span className="inline-block ml-2 animate-bounce-subtle">
-                                            ✨
-                                        </span>
+                                    {alignment.jd_match_score >= SCORE_THRESHOLDS.STRONG && (
+                                        <Sparkles className="inline-block w-6 h-6 ml-2 animate-bounce-subtle" strokeWidth={1.5} />
                                     )}
                                 </div>
                                 <div className="text-left">
                                     <p className="text-sm font-semibold text-foreground">
-                                        {alignment.jd_match_score >= 75 ? 'Strong Match' :
-                                            alignment.jd_match_score >= 60 ? 'Moderate Match' :
-                                                alignment.jd_match_score >= 45 ? 'Weak Match' :
+                                        {alignment.jd_match_score >= SCORE_THRESHOLDS.STRONG ? 'Strong Match' :
+                                            alignment.jd_match_score >= SCORE_THRESHOLDS.MODERATE ? 'Moderate Match' :
+                                                alignment.jd_match_score >= SCORE_THRESHOLDS.WEAK ? 'Weak Match' :
                                                     'Low Match'}
                                     </p>
                                     <p className="text-xs text-muted-foreground max-w-[200px]">
@@ -191,8 +195,8 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 {/* Matched Keywords */}
                                 {alignment.jd_keywords.matched && alignment.jd_keywords.matched.length > 0 && (
                                     <div className="space-y-2">
-                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-green-600">
-                                            ✓ Skills Found
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-green-600 flex items-center gap-1">
+                                            <Check className="w-3.5 h-3.5" strokeWidth={2} /> Skills Found
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {alignment.jd_keywords.matched.map((keyword, idx) => (
@@ -200,7 +204,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                                     key={idx}
                                                     className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-green-500/10 text-green-700 border border-green-500/20"
                                                 >
-                                                    ✓ {keyword}
+                                                    <Check className="w-3 h-3" strokeWidth={2} /> {keyword}
                                                 </span>
                                             ))}
                                         </div>
@@ -210,8 +214,8 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 {/* Missing Keywords */}
                                 {alignment.jd_keywords.missing && alignment.jd_keywords.missing.length > 0 && (
                                     <div className="space-y-2">
-                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-destructive">
-                                            ✗ Missing Skills
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-destructive flex items-center gap-1">
+                                            <X className="w-3.5 h-3.5" strokeWidth={2} /> Missing Skills
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                             {alignment.jd_keywords.missing.map((keyword, idx) => (
@@ -219,7 +223,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                                     key={idx}
                                                     className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-destructive/10 text-destructive border border-destructive/20"
                                                 >
-                                                    ✗ {keyword}
+                                                    <X className="w-3 h-3" strokeWidth={2} /> {keyword}
                                                 </span>
                                             ))}
                                         </div>

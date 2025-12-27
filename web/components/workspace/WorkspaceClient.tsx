@@ -13,6 +13,7 @@ import SaveReportPrompt from "@/components/workspace/SaveReportPrompt";
 import AuthModal from "@/components/shared/AuthModal";
 import { createResumeFeedback, streamResumeFeedback, parseResume, streamLinkedInFeedback } from "@/lib/api";
 import { toast } from "sonner";
+import { Linkedin } from "lucide-react";
 import { Analytics } from "@/lib/analytics";
 import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
 import { LinkedInInputPanel } from "@/components/linkedin/LinkedInInputPanel";
@@ -459,12 +460,25 @@ export default function WorkspaceClient() {
         toast.info("URL analysis coming soon", { description: "Please upload your LinkedIn PDF for now." });
     }, []);
 
-    const handleSampleReport = useCallback(async () => {
-        // Load sample report
+    const handleResumeSample = useCallback(async () => {
         try {
             const res = await fetch("/sample-report.json");
             const data = await res.json();
             setReport(data);
+            setReviewMode('resume');
+        } catch (err) {
+            console.error("Failed to load sample report:", err);
+        }
+    }, []);
+
+    const handleLinkedInSample = useCallback(async () => {
+        try {
+            const res = await fetch("/sample-linkedin-report.json");
+            const data = await res.json();
+            setLinkedInReport(data);
+            setLinkedInProfileName("Alex Thompson");
+            setLinkedInProfileHeadline("Product Manager at TechCorp | Building Great Products");
+            setReviewMode('linkedin');
         } catch (err) {
             console.error("Failed to load sample report:", err);
         }
@@ -529,7 +543,8 @@ export default function WorkspaceClient() {
                 <WorkspaceHeader
                     user={user}
                     onNewReport={handleNewReport}
-                    onSampleReport={handleSampleReport}
+                    onResumeSample={handleResumeSample}
+                    onLinkedInSample={handleLinkedInSample}
                     onSignIn={() => setIsAuthOpen(true)}
                     onSignOut={signOut}
                     onHistory={() => setIsHistoryOpen(true)}
@@ -564,6 +579,7 @@ export default function WorkspaceClient() {
                                         onRun={handleRun}
                                         isLoading={isLoading}
                                         freeUsesRemaining={freeUsesRemaining}
+                                        user={user}
                                     />
                                 </div>
                             ) : (
@@ -587,21 +603,27 @@ export default function WorkspaceClient() {
                         <>
                             {!linkedInReport ? (
                                 <div className="h-full overflow-y-auto bg-muted/10">
-                                    <div className="max-w-2xl mx-auto px-4 py-8">
-                                        <div className="text-center mb-8">
-                                            <h2 className="text-2xl font-serif font-bold text-foreground mb-2">
-                                                LinkedIn Profile Review
-                                            </h2>
-                                            <p className="text-muted-foreground">
-                                                See your profile through a recruiter&apos;s eyes
-                                            </p>
+                                    <div className="flex justify-center p-6 md:p-12 min-h-full">
+                                        <div className="w-full max-w-xl space-y-6">
+                                            {/* Hero Header - matches Resume mode */}
+                                            <div className="text-center space-y-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                                <h1 className="font-display text-4xl md:text-5xl text-foreground tracking-tight">
+                                                    This is what they see.
+                                                </h1>
+                                                <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
+                                                    <Linkedin className="w-5 h-5 text-brand" />
+                                                    <p className="text-lg font-medium">3 seconds on your LinkedIn profile.</p>
+                                                </div>
+                                            </div>
+
+                                            <LinkedInInputPanel
+                                                onUrlSubmit={handleLinkedInUrlSubmit}
+                                                onPdfSubmit={handleLinkedInPdfSubmit}
+                                                isLoading={isLoading}
+                                                freeUsesRemaining={freeUsesRemaining}
+                                                user={user}
+                                            />
                                         </div>
-                                        <LinkedInInputPanel
-                                            onUrlSubmit={handleLinkedInUrlSubmit}
-                                            onPdfSubmit={handleLinkedInPdfSubmit}
-                                            isLoading={isLoading}
-                                            freeUsesRemaining={freeUsesRemaining}
-                                        />
                                     </div>
                                 </div>
                             ) : (

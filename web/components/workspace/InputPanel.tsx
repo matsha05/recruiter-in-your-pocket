@@ -16,6 +16,7 @@ interface InputPanelProps {
     onRun: () => void;
     isLoading: boolean;
     freeUsesRemaining: number;
+    user?: any | null;
 }
 
 export default function InputPanel({
@@ -26,7 +27,8 @@ export default function InputPanel({
     onFileSelect,
     onRun,
     isLoading,
-    freeUsesRemaining
+    freeUsesRemaining,
+    user
 }: InputPanelProps) {
     const [fileName, setFileName] = useState<string | null>(null);
     const [isDragOver, setIsDragOver] = useState(false);
@@ -60,11 +62,14 @@ export default function InputPanel({
     };
 
     const getRunHint = () => {
-        if (freeUsesRemaining >= 2) {
-            return "No login required";
-        } else if (freeUsesRemaining === 1) {
-            return "Your first review is free";
+        if (!user) {
+            // Logged out / Guest logic
+            if (freeUsesRemaining >= 2) return "No login required";
+            if (freeUsesRemaining === 1) return "Your first review is free";
+            return "Upgrade to continue";
         } else {
+            // Logged in user logic
+            if (freeUsesRemaining > 0) return `${freeUsesRemaining} credit${freeUsesRemaining === 1 ? '' : 's'} remaining`;
             return "Upgrade to continue";
         }
     };
@@ -192,7 +197,7 @@ export default function InputPanel({
                                         {isShortResume && (
                                             <div className="flex gap-2 text-warning text-xs items-center bg-warning/10 border border-warning/20 px-3 py-2 rounded-lg">
                                                 <Info className="w-3.5 h-3.5" />
-                                                <span>Short resume detected ({charCount} chars). Results may vary.</span>
+                                                <span>Short resume detected ({charCount} chars). Add more detail for best results.</span>
                                             </div>
                                         )}
                                     </div>
@@ -209,7 +214,7 @@ export default function InputPanel({
                                 type="button"
                                 onClick={() => setShowJD(!showJD)}
                                 className={cn(
-                                    "w-full flex items-center justify-between p-4 rounded-lg border transition-all duration-200",
+                                    "w-full flex items-center justify-between p-4 rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
                                     showJD
                                         ? "bg-brand/5 border-brand/30 shadow-sm"
                                         : "bg-muted/30 border-border/40 hover:border-brand/30 hover:bg-brand/5"

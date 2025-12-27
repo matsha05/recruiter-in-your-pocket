@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, CheckCircle2, X } from "lucide-react";
 
 export function FormContentSplit() {
     return (
@@ -19,12 +19,12 @@ export function FormContentSplit() {
                         </p>
                         <div className="space-y-2">
                             <div className="flex gap-2 text-xs bg-secondary/50 p-2 rounded-sm border border-border/10">
-                                <span className="text-red-400 font-bold">✗</span>
+                                <X className="w-3 h-3 text-red-400" strokeWidth={2.5} />
                                 <span className="line-through text-muted-foreground">manger</span>
                                 <span className="text-foreground">Manager</span>
                             </div>
                             <div className="flex gap-2 text-xs bg-secondary/50 p-2 rounded-sm border border-border/10">
-                                <span className="text-red-400 font-bold">✗</span>
+                                <X className="w-3 h-3 text-red-400" strokeWidth={2.5} />
                                 <span className="line-through text-muted-foreground">attention too detail</span>
                             </div>
                         </div>
