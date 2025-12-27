@@ -55,10 +55,10 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                         <div className="space-y-1">
                             <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
                                 <Sparkles className="w-4 h-4 text-premium" />
-                                Your full review is unlocked
+                                Now you see what they see.
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                Start with the next rewrite below, then export when you&apos;re ready.
+                                Start with the bullets that need work, then export when you&apos;re ready.
                             </p>
                         </div>
 

@@ -127,29 +127,42 @@ export default function SettingsClient() {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                         <div className="space-y-3">
                             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Your Reviews</h2>
-                            <div className="flex items-center gap-3">
-                                {/* Visual dots - show filled for available, empty for used */}
-                                <div className="flex items-center gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <div
-                                            key={i}
-                                            className={`w-3 h-3 rounded-full ${i < (user?.freeUsesLeft ?? 1) ? 'bg-brand' : 'bg-border/30'}`}
-                                        />
-                                    ))}
-                                </div>
-                                <span className="text-lg font-semibold text-foreground">
-                                    {user?.freeUsesLeft ?? 1} available
-                                </span>
-                            </div>
-                            <p className="text-xs text-muted-foreground">
-                                Your first review is free
-                            </p>
+                            {user ? (
+                                <>
+                                    <div className="flex items-center gap-3">
+                                        {/* Visual dots - show filled for available, empty for used */}
+                                        <div className="flex items-center gap-1">
+                                            {[...Array(5)].map((_, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={`w-3 h-3 rounded-full ${i < (user.freeUsesLeft ?? 1) ? 'bg-brand' : 'bg-border/30'}`}
+                                                />
+                                            ))}
+                                        </div>
+                                        <span className="text-lg font-semibold text-foreground">
+                                            {user.freeUsesLeft ?? 1} available
+                                        </span>
+                                    </div>
+                                    <p className="text-xs text-muted-foreground">
+                                        Your first review is free
+                                    </p>
+                                </>
+                            ) : (
+                                <>
+                                    <p className="text-lg font-semibold text-foreground">
+                                        1 free review included
+                                    </p>
+                                    <p className="text-xs text-muted-foreground">
+                                        Sign in to run your first review
+                                    </p>
+                                </>
+                            )}
                         </div>
                         <a
                             href="/workspace"
                             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors whitespace-nowrap"
                         >
-                            Run a Review →
+                            {user ? "Run a Review →" : "Get Started →"}
                         </a>
                     </div>
                 </section>

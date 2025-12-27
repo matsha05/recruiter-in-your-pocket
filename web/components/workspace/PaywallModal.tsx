@@ -88,16 +88,15 @@ export default function PaywallModal({
             <DialogContent className="max-w-[420px] p-8">
                 <DialogHeader className="text-center mb-6">
                     <DialogTitle className="font-display text-2xl font-medium">
-                        Unlock your complete report
+                        In 7.4 seconds, they decided. Here&apos;s what they saw.
                     </DialogTitle>
                     <DialogDescription>
-                        You&apos;ve seen the diagnosis. Now get the prescription.
+                        The gaps in your report are why resumes like yours get passed over by recruiters.
                     </DialogDescription>
                 </DialogHeader>
 
-                {/* What you get - Value clarity */}
-                <div className="text-center text-xs text-muted-foreground mb-6 px-4">
-                    <span className="font-medium text-foreground">Unlock:</span> full rewrites, missing wins, role positioning, PDF export, and version tracking.
+                <div className="text-center text-xs text-muted-foreground mb-5 px-4">
+                    See exactly what made them pause—and how to fix it.
                 </div>
 
                 {/* Tier Selection - Intent-Based */}
@@ -107,7 +106,7 @@ export default function PaywallModal({
                         type="button"
                         onClick={() => setSelectedTier("single")}
                         className={cn(
-                            "p-4 rounded-lg text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
+                            "p-4 rounded text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
                             "hover:-translate-y-0.5 hover:shadow-sm",
                             selectedTier === "single"
                                 ? "bg-card ring-2 ring-brand border-transparent shadow-sm"
@@ -116,7 +115,7 @@ export default function PaywallModal({
                     >
                         <span className="text-2xl font-display font-medium text-foreground">$9</span>
                         <span className="text-label text-muted-foreground mt-1">Quick Check</span>
-                        <span className="text-[9px] text-muted-foreground">1 review</span>
+                        <span className="text-[10px] text-muted-foreground">1 review</span>
                     </button>
 
                     {/* Active Job Search - 5 Reviews - Highlighted */}
@@ -124,7 +123,7 @@ export default function PaywallModal({
                         type="button"
                         onClick={() => setSelectedTier("pack")}
                         className={cn(
-                            "p-4 rounded-lg text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
+                            "p-4 rounded text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
                             "hover:-translate-y-0.5 hover:shadow-md",
                             selectedTier === "pack"
                                 ? "bg-card ring-2 ring-brand border-transparent shadow-md"
@@ -132,18 +131,18 @@ export default function PaywallModal({
                         )}
                     >
                         <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
-                            <span className="text-[8px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b-sm font-bold">
+                            <span className="text-[10px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b-sm font-bold">
                                 Recommended
                             </span>
                         </div>
                         <span className="text-2xl font-display font-medium text-premium mt-2">$29</span>
                         <span className="text-label text-premium mt-1">Job Search</span>
-                        <span className="text-[9px] text-muted-foreground">5 reviews</span>
+                        <span className="text-[10px] text-muted-foreground">5 reviews</span>
                     </button>
                 </div>
 
                 {/* Checkout Section */}
-                <div className="bg-secondary/10 rounded-lg p-5 border border-border/60 mb-4">
+                <div className="bg-secondary/10 rounded p-4 border border-border/60 mb-4">
                     {isLoggedIn ? (
                         <>
                             <p className="text-sm text-muted-foreground mb-4 text-center">
@@ -154,7 +153,7 @@ export default function PaywallModal({
                                 onClick={handleCheckout}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `Get ${selectedTier === "single" ? "1 Review" : "5 Reviews"} →`}
+                                {loading ? "Processing..." : `See What They Saw — ${selectedTier === "single" ? "$9" : "$29"}`}
                             </Button>
                         </>
                     ) : (
@@ -176,7 +175,7 @@ export default function PaywallModal({
                                 disabled={!email.trim()}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `Continue to checkout →`}
+                                {loading ? "Processing..." : `See What They Saw →`}
                             </Button>
                             <p className="text-xs text-muted-foreground/50 text-center mt-3">
                                 We&apos;ll email you a magic link to access your credits.
@@ -191,6 +190,9 @@ export default function PaywallModal({
                     </div>
                 )}
 
+                <p className="text-center text-[10px] text-muted-foreground/60 mb-2">
+                    Trusted by candidates who landed at Google, Meta, and startups.
+                </p>
                 <p className="text-center text-[10px] text-muted-foreground/40 uppercase tracking-widest">
                     Secure Payment by Stripe • 100% Money-Back Guarantee
                 </p>

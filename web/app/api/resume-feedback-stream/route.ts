@@ -152,8 +152,29 @@ export async function POST(request: Request) {
 
                 const bypass = getBypassPaywall();
                 const activePass = user && supabase ? await getActivePass(supabase, user.id) : null;
-                const freeUsed = freeMeta.used || 0;
-                const freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - freeUsed);
+
+                // Determine free uses remaining
+                // For logged-in users: check database (deletion-proof)
+                // For anonymous users: check cookie (can be cleared, accepted trade-off)
+                let freeUsesRemaining = 0;
+                let userUsageRecord: { free_report_used_at: string | null } | null = null;
+
+                if (user && supabase) {
+                    // Check database for logged-in users
+                    const { data: usageData } = await supabase
+                        .from('user_usage')
+                        .select('free_report_used_at')
+                        .eq('user_id', user.id)
+                        .maybeSingle();
+
+                    userUsageRecord = usageData;
+                    // If no record or no free_report_used_at, they have 1 free remaining
+                    freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
+                } else {
+                    // Anonymous: use cookie
+                    const freeUsed = freeMeta.used || 0;
+                    freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - freeUsed);
+                }
 
                 const accessTier = bypass ? "pass_full" : activePass ? "pass_full" : freeUsesRemaining > 0 ? "free_full" : "preview";
                 const access = accessTier === "preview" ? "preview" : "full";
@@ -263,9 +284,12 @@ export async function POST(request: Request) {
                 }
 
                 // Handle free run counting and report saving
-                const shouldIncrementFree = !bypass && !activePass && freeUsed < FREE_RUN_LIMIT;
-                const newFreeUsed = shouldIncrementFree ? freeUsed + 1 : freeUsed;
-                const newFreeRemaining = Math.max(0, FREE_RUN_LIMIT - newFreeUsed);
+                // shouldIncrementFree: true if using free tier (not bypass, not pass, has free remaining)
+                const shouldIncrementFree = !bypass && !activePass && freeUsesRemaining > 0;
+                const newFreeUsed = shouldIncrementFree ? 1 : 0; // For DB-backed tracking: 1 = used, 0 = not used
+                const newFreeRemaining = shouldIncrementFree ? 0 : freeUsesRemaining;
+
+                console.log(`[stream] Free usage debug: bypass=${bypass}, activePass=${!!activePass}, freeUsesRemaining=${freeUsesRemaining}, shouldIncrementFree=${shouldIncrementFree}, user=${user?.id}`);
 
                 let reportId: string | null = null;
                 if (user && supabase && mode === "resume") {
@@ -321,6 +345,42 @@ export async function POST(request: Request) {
                         console.log(`[stream] Consumed 1 credit from pass ${activePass.id}. Remaining: ${newUsesRemaining}`);
                     } catch (passErr) {
                         console.error("[stream] Failed to consume pass credit:", passErr);
+                    }
+                }
+
+                // PERSIST FREE RUN COUNTER
+                // For logged-in users: update database (deletion-proof)
+                // For anonymous users: try cookie (best-effort, can be cleared)
+                if (shouldIncrementFree) {
+                    if (user && supabase) {
+                        // Database persistence for logged-in users
+                        try {
+                            const admin = createSupabaseAdminClient();
+                            if (admin) {
+                                await admin
+                                    .from('user_usage')
+                                    .upsert({
+                                        user_id: user.id,
+                                        free_report_used_at: nowIso()
+                                    }, { onConflict: 'user_id' });
+                                console.log(`[stream] Free run consumed for user ${user.id}`);
+                            }
+                        } catch (dbErr) {
+                            console.error("[stream] Failed to persist free usage to database:", dbErr);
+                        }
+                    } else {
+                        // Cookie persistence for anonymous users (best-effort)
+                        try {
+                            const newFreeMeta = {
+                                used: 1,
+                                last_free_ts: nowIso(),
+                                reset_month: getCurrentMonthKey()
+                            };
+                            cookieStore.set(FREE_COOKIE, makeFreeCookie(newFreeMeta), freeCookieOptions());
+                            console.log(`[stream] Free run consumed (anonymous)`);
+                        } catch (cookieErr) {
+                            console.error("[stream] Failed to update free cookie:", cookieErr);
+                        }
                     }
                 }
 

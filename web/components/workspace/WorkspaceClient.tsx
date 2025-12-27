@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { getUnlockContext, clearUnlockContext } from "@/lib/unlock/unlockContext";
@@ -30,6 +30,8 @@ export default function WorkspaceClient() {
     const [isHistoryOpen, setIsHistoryOpen] = useState(false);
     const [isPaywallOpen, setIsPaywallOpen] = useState(false);
     const [isAuthOpen, setIsAuthOpen] = useState(false);
+    const [authContext, setAuthContext] = useState<"default" | "report">("default");
+    const [pendingRunAfterAuth, setPendingRunAfterAuth] = useState(false);
     const [isSavePromptOpen, setIsSavePromptOpen] = useState(false);
     const [pendingReportForSave, setPendingReportForSave] = useState<any>(null);
 
@@ -38,15 +40,43 @@ export default function WorkspaceClient() {
     const [justUnlocked, setJustUnlocked] = useState(false);
     const [highlightSection, setHighlightSection] = useState<string | null>(null);
 
+    // Ref to track just-completed auth (prevents race condition in handleRun)
+    const justCompletedAuthRef = useRef(false);
+
+    // Ref to track pending auto-run from landing page
+    const pendingAutoRunRef = useRef(false);
+
     // Check for pending text from homepage upload
     useEffect(() => {
         const pendingText = sessionStorage.getItem("pending_resume_text");
+        const autoRun = sessionStorage.getItem("pending_auto_run");
+
         if (pendingText) {
             setResumeText(pendingText);
             sessionStorage.removeItem("pending_resume_text");
+            sessionStorage.removeItem("pending_auto_run");
             setSkipSample(true); // Don't show sample if user came with text
+
+            // Set flag for auto-run (will be triggered when resumeText state updates)
+            if (autoRun === "true") {
+                pendingAutoRunRef.current = true;
+            }
         }
     }, []);
+
+    // Ref to store latest handleRun (avoids circular dependency with resumeText)
+    const handleRunRef = useRef<() => void>(() => { });
+
+    // Auto-run when resumeText is set from landing page
+    useEffect(() => {
+        if (pendingAutoRunRef.current && resumeText.trim()) {
+            pendingAutoRunRef.current = false;
+            // Small delay to ensure component is fully mounted
+            setTimeout(() => {
+                handleRunRef.current();
+            }, 100);
+        }
+    }, [resumeText]);
 
     // Load sample report ONLY if explicitly requested via ?sample=true
     // By default, show the upload state so users can run their own report
@@ -184,6 +214,18 @@ export default function WorkspaceClient() {
         console.log("[WorkspaceClient] handleRun called, resumeText length:", resumeText.length);
         if (!resumeText.trim()) return;
 
+        // GATE: Require authentication before running report
+        // Skip if we just completed auth (ref prevents race condition with user state)
+        if (!user && !justCompletedAuthRef.current) {
+            setAuthContext("report");
+            setPendingRunAfterAuth(true);
+            setIsAuthOpen(true);
+            Analytics.authGateViewed("free_report");
+            return;
+        }
+        // Reset the ref after using it
+        justCompletedAuthRef.current = false;
+
         // Check if free uses exhausted (and user doesn't have active pass)
         if (freeUsesRemaining <= 0) {
             setIsPaywallOpen(true);
@@ -241,12 +283,24 @@ export default function WorkspaceClient() {
                 const elapsed = Date.now() - startTime;
                 const remaining = Math.max(0, theaterDurationMs - elapsed);
 
-                setTimeout(() => {
+                setTimeout(async () => {
                     setReport(result.report);
-                    setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
                     setIsStreaming(false);
                     setIsLoading(false);
                     Analytics.reportCompleted(result.report?.score || 0);
+
+                    // Refresh free status from API to sync with database
+                    try {
+                        const statusRes = await fetch("/api/free-status");
+                        const statusData = await statusRes.json();
+                        if (statusData.ok) {
+                            setFreeUsesRemaining(statusData.free_uses_left);
+                        }
+                    } catch (err) {
+                        console.error("Failed to refresh free status:", err);
+                        // Fallback to local decrement
+                        setFreeUsesRemaining((prev) => Math.max(0, prev - 1));
+                    }
 
                     // Show save prompt for guest users after report is generated
                     if (!user && result.report) {
@@ -270,6 +324,9 @@ export default function WorkspaceClient() {
         }
         // Note: We handle setIsLoading(false) in the success timeout above
     }, [resumeText, jobDescription, freeUsesRemaining, user]);
+
+    // Keep ref in sync with latest handleRun
+    handleRunRef.current = handleRun;
 
     const handleNewReport = useCallback(() => {
         setSkipSample(true);
@@ -386,7 +443,7 @@ export default function WorkspaceClient() {
                             onNewReport={handleNewReport}
                             freeUsesRemaining={freeUsesRemaining}
                             onUpgrade={() => setIsPaywallOpen(true)}
-                            isGated={!(searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim()))}
+                            isGated={false}  // If report was generated, user had access
                             justUnlocked={justUnlocked}
                         />
                     )}
@@ -440,10 +497,28 @@ export default function WorkspaceClient() {
             {/* Auth Modal */}
             <AuthModal
                 isOpen={isAuthOpen}
-                onClose={() => setIsAuthOpen(false)}
+                onClose={() => {
+                    setIsAuthOpen(false);
+                    setPendingRunAfterAuth(false);
+                    setAuthContext("default");
+                }}
+                context={authContext}
                 onSuccess={async () => {
                     await refreshUser();
                     setIsAuthOpen(false);
+
+                    // If user was trying to run a report, auto-trigger it now
+                    if (pendingRunAfterAuth) {
+                        setPendingRunAfterAuth(false);
+                        setAuthContext("default");
+                        // Set ref to skip auth check (prevents race condition with user state)
+                        justCompletedAuthRef.current = true;
+                        // Small delay to let modal close animation complete
+                        setTimeout(() => {
+                            // Use ref to get latest handleRun (avoids stale closure)
+                            handleRunRef.current();
+                        }, 100);
+                    }
                 }}
             />
 

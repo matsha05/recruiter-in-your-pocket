@@ -82,17 +82,55 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
       );
     }
 
-    // Delete only if user owns this report
-    const { error } = await supabase
+    // First verify the report exists and belongs to this user
+    const { data: existingReport, error: fetchError } = await supabase
+      .from("reports")
+      .select("id")
+      .eq("id", reportId)
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (fetchError) {
+      console.error("Delete report - fetch error:", fetchError);
+      return NextResponse.json(
+        { ok: false, errorCode: "DELETE_FAILED", message: "Could not verify report ownership." },
+        { status: 500 }
+      );
+    }
+
+    if (!existingReport) {
+      return NextResponse.json(
+        { ok: false, errorCode: "REPORT_NOT_FOUND", message: "Report not found or you don't have permission to delete it." },
+        { status: 404 }
+      );
+    }
+
+    // Now delete the report
+    const { error: deleteError } = await supabase
       .from("reports")
       .delete()
       .eq("id", reportId)
       .eq("user_id", user.id);
 
-    if (error) {
-      console.error("Delete report error:", error);
+    if (deleteError) {
+      console.error("Delete report - delete error:", deleteError);
       return NextResponse.json(
         { ok: false, errorCode: "DELETE_FAILED", message: "Could not delete this report." },
+        { status: 500 }
+      );
+    }
+
+    // Verify it's actually gone
+    const { data: stillExists } = await supabase
+      .from("reports")
+      .select("id")
+      .eq("id", reportId)
+      .maybeSingle();
+
+    if (stillExists) {
+      console.error("Delete report - report still exists after delete:", reportId);
+      return NextResponse.json(
+        { ok: false, errorCode: "DELETE_FAILED", message: "Delete appeared to succeed but report still exists. Check RLS policies." },
         { status: 500 }
       );
     }

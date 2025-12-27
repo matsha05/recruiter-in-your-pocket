@@ -59,6 +59,7 @@ export function SampleReport() {
             <ReportStream
                 report={report}
                 isSample={true}
+                isGated={false}
             />
         </div>
     );

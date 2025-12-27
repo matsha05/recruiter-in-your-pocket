@@ -19,9 +19,11 @@ interface AuthModalProps {
     isOpen: boolean;
     onClose: () => void;
     onSuccess?: () => void;
+    /** Context for copy customization. 'report' = gating free report, uses value-first copy */
+    context?: "default" | "report";
 }
 
-export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
+export default function AuthModal({ isOpen, onClose, onSuccess, context = "default" }: AuthModalProps) {
     const [email, setEmail] = useState("");
     const [code, setCode] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -153,12 +155,15 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
             <DialogContent className="sm:max-w-md bg-background border border-white/10 shadow-2xl p-8 rounded-xl sm:rounded-2xl">
                 <DialogHeader className="space-y-4">
                     <DialogTitle className="font-serif text-3xl font-medium tracking-tight text-center">
-                        {step === "email" && "Welcome to the Studio"}
+                        {step === "email" && (context === "report" ? "See What They See" : "Welcome to the Studio")}
                         {step === "code" && "Check your inbox"}
                         {step === "name" && "One last thing"}
                     </DialogTitle>
                     <DialogDescription className="text-center text-muted-foreground text-base">
-                        {step === "email" && "Sign in to access your reports and history."}
+                        {step === "email" && (context === "report"
+                            ? "Enter your email to run your free review."
+                            : "Sign in to access your reports and history."
+                        )}
                         {step === "code" && (
                             <span>
                                 We sent an 8-digit code to <span className="text-foreground font-medium">{email}</span>

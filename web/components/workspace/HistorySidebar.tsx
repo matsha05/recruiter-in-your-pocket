@@ -1,19 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Clock, TrendingUp, FileText, Pencil } from "lucide-react";
+import { Trash2, Clock, TrendingUp, FileText, Pencil, AlertTriangle } from "lucide-react";
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "@/components/ui/dialog";
 import { CardInteractive } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScoreBadge } from "@/components/shared/ScoreBadge";
 import { VersionComparisonView } from "./VersionComparisonView";
 import { ResumeLabel } from "./ResumeLabel";
+import { toast } from "sonner";
 
 interface HistoryReport {
     id: string;
@@ -44,6 +52,7 @@ export default function HistorySidebar({
     const [reports, setReports] = useState<HistoryReport[]>([]);
     const [loading, setLoading] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
+    const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null); // For confirmation dialog
     const [renamingId, setRenamingId] = useState<string | null>(null);
     const [editName, setEditName] = useState("");
 
@@ -125,23 +134,41 @@ export default function HistorySidebar({
         }
     };
 
-    const handleDelete = async (e: React.MouseEvent, reportId: string) => {
-        e.stopPropagation(); // Don't trigger card click
-        if (deletingId) return; // Prevent double-delete
+    // Opens the delete confirmation dialog
+    const handleDeleteClick = (e: React.MouseEvent, reportId: string) => {
+        e.stopPropagation();
+        if (deletingId) return;
+        setDeleteConfirmId(reportId);
+    };
 
+    // Performs the actual deletion after confirmation
+    const handleConfirmDelete = async () => {
+        if (!deleteConfirmId || deletingId) return;
+
+        const reportId = deleteConfirmId;
+        setDeleteConfirmId(null); // Close dialog
         setDeletingId(reportId);
+
         try {
             const res = await fetch(`/api/reports/${reportId}`, { method: "DELETE" });
             const data = await res.json();
             if (data.ok) {
                 setReports(prev => prev.filter(r => r.id !== reportId));
+                toast.success("Report deleted");
+            } else {
+                toast.error(data.message || "Failed to delete report");
+                console.error("Delete failed:", data);
             }
         } catch (error) {
             console.error("Failed to delete report:", error);
+            toast.error("Failed to delete report. Please try again.");
         } finally {
             setDeletingId(null);
         }
     };
+
+    // Get the report being deleted for the confirmation dialog
+    const reportToDelete = deleteConfirmId ? reports.find(r => r.id === deleteConfirmId) : null;
 
     const formatDate = (dateStr: string) => {
         try {
@@ -446,7 +473,7 @@ export default function HistorySidebar({
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
-                                                        onClick={(e) => handleDelete(e, report.id)}
+                                                        onClick={(e) => handleDeleteClick(e, report.id)}
                                                         disabled={deletingId === report.id}
                                                         className="opacity-0 group-hover:opacity-100 hover:text-destructive hover:bg-destructive/10"
                                                         aria-label="Delete report"
@@ -512,6 +539,39 @@ export default function HistorySidebar({
                     />
                 )
             }
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={!!deleteConfirmId} onOpenChange={(open) => !open && setDeleteConfirmId(null)}>
+                <DialogContent className="max-w-[360px]">
+                    <DialogHeader>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center">
+                                <AlertTriangle className="w-5 h-5 text-destructive" />
+                            </div>
+                            <DialogTitle className="font-display">Delete Report?</DialogTitle>
+                        </div>
+                        <DialogDescription>
+                            {reportToDelete?.name || `Report from ${formatDate(reportToDelete?.createdAt || '')}`} will be permanently deleted. This action cannot be undone.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex gap-3 mt-4">
+                        <Button
+                            variant="ghost"
+                            className="flex-1"
+                            onClick={() => setDeleteConfirmId(null)}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="destructive"
+                            className="flex-1"
+                            onClick={handleConfirmDelete}
+                            disabled={deletingId === deleteConfirmId}
+                        >
+                            {deletingId === deleteConfirmId ? "Deleting..." : "Delete"}
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </>
     );
 }

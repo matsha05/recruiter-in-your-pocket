@@ -75,7 +75,7 @@ export function RedPenCard({
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite]" />
                                     <Lock className="mr-2 h-3.5 w-3.5" />
-                                    Unlock Rewrite
+                                    See the Recruiter&apos;s Version
                                 </Button>
                             </div>
                         )}

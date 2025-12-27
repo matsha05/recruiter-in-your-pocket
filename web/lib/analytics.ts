@@ -276,6 +276,9 @@ export const Analytics = {
   loginCompleted: (method: string) =>
     trackEvent("login_completed", { method }),
 
+  authGateViewed: (reason: string) =>
+    trackEvent("auth_gate_viewed", { reason }),
+
   // Engagement events
   sampleReportViewed: () =>
     trackEvent("sample_report_viewed"),

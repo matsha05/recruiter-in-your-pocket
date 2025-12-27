@@ -73,7 +73,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                                 {questions.length} hidden win{questions.length > 1 ? 's' : ''} identified
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                Questions to uncover achievements you forgot to highlight
+                                Wins like these make recruiters slow down. Let&apos;s find yours.
                             </p>
                         </div>
                     </div>
@@ -99,7 +99,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                             className="w-full shadow-md"
                         >
                             <Sparkles className="w-4 h-4 mr-2" />
-                            Unlock Hidden Wins
+                            Uncover Your Hidden Wins
                         </Button>
                     )}
                 </div>

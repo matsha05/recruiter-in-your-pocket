@@ -113,22 +113,31 @@ export default function ReportPanel({
 
                             {/* Action Buttons */}
                             <div className="flex items-center gap-2">
-                                {onNewReport && (
+                                {isSample && onNewReport && (
                                     <button
                                         onClick={onNewReport}
                                         className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                                     >
-                                        {isSample ? (
-                                            <>
-                                                Run Your Review
-                                                <ArrowRight className="w-4 h-4" />
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Plus className="w-4 h-4" />
-                                                Run Another
-                                            </>
-                                        )}
+                                        Run Your Review
+                                        <ArrowRight className="w-4 h-4" />
+                                    </button>
+                                )}
+                                {!isSample && freeUsesRemaining > 0 && onNewReport && (
+                                    <button
+                                        onClick={onNewReport}
+                                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                    >
+                                        <Plus className="w-4 h-4" />
+                                        Run Another
+                                    </button>
+                                )}
+                                {!isSample && freeUsesRemaining <= 0 && onUpgrade && (
+                                    <button
+                                        onClick={onUpgrade}
+                                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
+                                    >
+                                        Unlock Full Reports
+                                        <ArrowRight className="w-4 h-4" />
                                     </button>
                                 )}
 

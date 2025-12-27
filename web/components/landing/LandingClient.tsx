@@ -41,8 +41,9 @@ export default function LandingClient() {
             const data = await res.json();
 
             if (data.ok && data.text) {
-                // Store the parsed text and go directly to workspace
+                // Store the parsed text and flag for auto-run
                 sessionStorage.setItem("pending_resume_text", data.text);
+                sessionStorage.setItem("pending_auto_run", "true");
             }
 
             router.push("/workspace");

@@ -99,10 +99,9 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                     isLocked={true}
                                     onUnlock={handleUnlock}
                                 />
-                                {/* We only show one locked card as the "teaser" */}
                                 <div className="mt-4 text-center">
                                     <p className="text-xs text-muted-foreground">
-                                        + {remainingRewrites.length} more rewrites waiting
+                                        {remainingRewrites.length} bullet{remainingRewrites.length > 1 ? 's' : ''} that made me pause. See why.
                                     </p>
                                 </div>
                             </div>
