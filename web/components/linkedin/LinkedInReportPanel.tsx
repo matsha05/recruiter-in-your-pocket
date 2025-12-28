@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { getScoreColor, getDialStrokeColor } from '@/lib/score-utils';
 import { PrincipalRecruiterIcon, SignalRadarIcon, TransformArrowIcon, HiddenGemIcon, InsightSparkleIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+import { ConfidenceBadge } from '@/components/workspace/report/ConfidenceBadge';
 import type { LinkedInReport } from '@/types/linkedin';
 
 interface LinkedInReportPanelProps {
@@ -320,7 +321,10 @@ export function LinkedInReportPanel({
                         <div key={i} className="p-4 bg-card border border-border/60 rounded-lg shadow-sm">
                             <div className="flex items-start justify-between gap-3 mb-2">
                                 <p className="text-sm font-medium text-foreground">{fix.fix}</p>
-                                <EffortBadge effort={fix.effort} />
+                                <div className="flex items-center gap-2 shrink-0">
+                                    <ConfidenceBadge level={fix.confidence as 'high' | 'medium' | 'low'} />
+                                    <EffortBadge effort={fix.effort} />
+                                </div>
                             </div>
                             <p className="text-xs text-muted-foreground">{fix.why}</p>
                         </div>

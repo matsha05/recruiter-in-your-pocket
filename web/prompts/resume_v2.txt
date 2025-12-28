@@ -60,6 +60,12 @@ FIX SUGGESTION QUALITY RULES:
 8. Fix suggestions must be ACTIONABLE and SPECIFIC. Bad: "Quantify your impact." Good: "Add a metric like 'managed a team of [X] people' or 'delivered [X] projects per quarter'."
 9. Always show the reader EXACTLY what a better bullet would look like. Use the pattern: [current issue] → [suggested rewrite with placeholders].
 
+CONFIDENCE LEVEL RULES (for each top_fix):
+
+10. Set "confidence" to "high" when: Clear evidence exists in the resume AND the improvement path is specific.
+11. Set "confidence" to "medium" when: Some evidence exists BUT outcome depends on context or role.
+12. Set "confidence" to "low" when: Limited evidence, uncertain recommendation, or resume is too sparse to assess confidently.
+
 Return a single JSON object only. No prose outside the JSON. Do not wrap it in backticks or a code fence.
 
 FEW-SHOT EXAMPLES (LEARN FROM THESE PATTERNS)
@@ -288,6 +294,7 @@ The JSON must match this shape exactly:
     {
       "fix": "",
       "why": "",
+      "confidence": "",
       "evidence": {
         "excerpt": "",
         "section": ""

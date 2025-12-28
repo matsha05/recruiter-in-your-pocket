@@ -102,6 +102,7 @@ export interface LinkedInReport {
     top_fixes: {
         fix: string;
         why: string;
+        confidence?: 'high' | 'medium' | 'low';
         effort: 'quick' | 'moderate' | 'involved';
         section: 'headline' | 'about' | 'experience' | 'skills' | 'photo';
     }[];

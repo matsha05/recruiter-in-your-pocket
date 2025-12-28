@@ -31,6 +31,7 @@
     {
       "fix": "Add scope numbers to your top 2 bullets (e.g., '8 teams, 50K users')",
       "why": "Right now your bullets sound real, but the size of the work is invisible. Recruiters can't tell if this was 5 people or 500.",
+      "confidence": "high",
       "evidence": {
         "excerpt": "Drove program improvements across multiple teams.",
         "section": "Work Experience"
@@ -42,6 +43,7 @@
     {
       "fix": "State one before/after metric in your headline bullet (e.g., 'from 6 weeks to 3 weeks')",
       "why": "Your strongest bullet describes what you did, but not what changed because of it. That's the difference between 'did work' and 'drove results.'",
+      "confidence": "high",
       "evidence": {
         "excerpt": "Ran a cross-team launch with clear owners and checkpoints.",
         "section": "Work Experience"
@@ -53,6 +55,7 @@
     {
       "fix": "Add a summary that positions your Program Manager style upfront",
       "why": "Without a summary, recruiters have to read 3 bullets before they understand who you are. That's too long.",
+      "confidence": "medium",
       "evidence": {
         "excerpt": "(No summary section present)",
         "section": "Summary"
@@ -64,6 +67,7 @@
     {
       "fix": "Split bullets that mix decisions and outcomes into separate lines",
       "why": "When you combine what you decided with what happened, neither lands clearly. Recruiters skim, and blended bullets get skipped.",
+      "confidence": "medium",
       "evidence": {
         "excerpt": "Managed stakeholder alignment and delivered quarterly roadmap on time.",
         "section": "Work Experience"
@@ -75,6 +79,7 @@
     {
       "fix": "List 2-3 specific tools or frameworks you use (e.g., 'Jira, Asana, Linear')",
       "why": "Generic skills like 'project management' don't help. Recruiters search for specific tools. If you use Jira, Asana, or Linear, say so.",
+      "confidence": "low",
       "evidence": {
         "excerpt": "Skilled in project management and cross-functional collaboration.",
         "section": "Skills"
