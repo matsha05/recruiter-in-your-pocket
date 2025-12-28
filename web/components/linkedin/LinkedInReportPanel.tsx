@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, CheckCircle2, AlertCircle, Plus, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronUp, CheckCircle2, AlertCircle, Plus, ArrowRight, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { getScoreColor } from '@/lib/score-utils';
+import { getScoreColor, getDialStrokeColor } from '@/lib/score-utils';
 import { PrincipalRecruiterIcon, SignalRadarIcon, TransformArrowIcon, HiddenGemIcon, InsightSparkleIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import type { LinkedInReport } from '@/types/linkedin';
@@ -59,12 +59,6 @@ export function LinkedInReportPanel({
         });
     };
 
-    const getSubscoreColor = (score: number) => {
-        if (score >= 85) return 'text-success';
-        if (score >= 70) return 'text-brand';
-        return 'text-amber-500';
-    };
-
     const isExhausted = !isSample && freeUsesRemaining <= 0;
 
     return (
@@ -85,7 +79,7 @@ export function LinkedInReportPanel({
                             />
                             <circle
                                 cx="72" cy="72" r="68"
-                                stroke="hsl(var(--brand))"
+                                stroke={getDialStrokeColor(report.score || 0)}
                                 strokeWidth="3"
                                 fill="transparent"
                                 strokeDasharray={427}
@@ -126,7 +120,7 @@ export function LinkedInReportPanel({
                             >
                                 <span className={cn(
                                     "font-display font-bold tabular-nums text-3xl tracking-tight",
-                                    getSubscoreColor(item.score)
+                                    getScoreColor(item.score)
                                 )}>
                                     {item.score}
                                 </span>
@@ -153,7 +147,7 @@ export function LinkedInReportPanel({
 
                 <div className="mt-6 space-y-6">
                     <p className="font-serif text-xl text-foreground leading-relaxed">
-                        "{report.first_impression?.profile_card_verdict}"
+                        &quot;{report.first_impression?.profile_card_verdict}&quot;
                     </p>
 
                     <div className="grid grid-cols-3 gap-4 p-4 bg-secondary/20 rounded-lg border border-border/40">
@@ -214,13 +208,11 @@ export function LinkedInReportPanel({
 
                     {/* Suggested Rewrite */}
                     {report.headline_analysis?.rewrite && (
-                        <div className="p-4 bg-success/5 rounded-lg border border-success/20">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-success block mb-2">Suggested</span>
-                            <p className="text-foreground font-medium">{report.headline_analysis.rewrite}</p>
-                            {report.headline_analysis.why_better && (
-                                <p className="text-xs text-muted-foreground mt-2">{report.headline_analysis.why_better}</p>
-                            )}
-                        </div>
+                        <CopyableSuggestionCard
+                            label="Suggested"
+                            content={report.headline_analysis.rewrite}
+                            note={report.headline_analysis.why_better}
+                        />
                     )}
                 </div>
             </section>
@@ -252,10 +244,10 @@ export function LinkedInReportPanel({
                     )}
 
                     {report.about_analysis?.rewrite_suggestion && (
-                        <div className="p-4 bg-success/5 rounded-lg border border-success/20">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-success block mb-2">Suggested Opening</span>
-                            <p className="text-foreground text-sm">{report.about_analysis.rewrite_suggestion}</p>
-                        </div>
+                        <CopyableSuggestionCard
+                            label="Suggested Opening"
+                            content={report.about_analysis.rewrite_suggestion}
+                        />
                     )}
                 </div>
             </section>
@@ -506,5 +498,52 @@ function EffortBadge({ effort }: { effort: string }) {
         <span className={cn("text-xs px-2.5 py-1 rounded border shrink-0", config.bg, config.text)}>
             {config.label}
         </span>
+    );
+}
+
+function CopyableSuggestionCard({ label, content, note }: { label: string; content: string; note?: string }) {
+    const [copied, setCopied] = React.useState(false);
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(content);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
+
+    return (
+        <div className="group p-4 bg-success/5 rounded-lg border border-success/20">
+            <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-success">{label}</span>
+                <button
+                    onClick={handleCopy}
+                    className={cn(
+                        "flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider transition-all",
+                        copied
+                            ? "bg-success/10 text-success"
+                            : "bg-muted/50 text-muted-foreground hover:bg-success/10 hover:text-success opacity-0 group-hover:opacity-100"
+                    )}
+                >
+                    {copied ? (
+                        <>
+                            <Check className="h-3 w-3" />
+                            Copied
+                        </>
+                    ) : (
+                        <>
+                            <Copy className="h-3 w-3" />
+                            Copy
+                        </>
+                    )}
+                </button>
+            </div>
+            <p className="text-foreground font-medium">{content}</p>
+            {note && (
+                <p className="text-xs text-muted-foreground mt-2">{note}</p>
+            )}
+        </div>
     );
 }

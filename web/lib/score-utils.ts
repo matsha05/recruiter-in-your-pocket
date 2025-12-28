@@ -43,3 +43,13 @@ export function getScoreLabel(score: number): string {
     if (score >= 70) return "Strong";
     return "Needs Work";
 }
+
+/**
+ * Returns the HSL stroke color for score dials (SVG inline stroke)
+ */
+export function getDialStrokeColor(score: number): string {
+    if (score >= 85) return 'hsl(var(--success))';
+    if (score >= 70) return 'hsl(var(--premium))';
+    return 'hsl(var(--destructive))';
+}
+

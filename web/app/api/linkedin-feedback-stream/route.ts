@@ -300,22 +300,34 @@ export async function POST(request: Request) {
 
                 // Load LinkedIn prompt
                 const systemPrompt = await loadPromptForMode("linkedin");
-                const fullPrompt = `${systemPrompt}\n\n${baseTone}\n\n${JSON_INSTRUCTION}`;
+                const fullPrompt = `${systemPrompt}\n\n${baseTone}`;
 
                 // Stream LLM response
                 logInfo({ msg: "linkedin.analysis.started", request_id, user_id, source: profile.source });
 
-                for await (const chunk of streamJson({
-                    systemPrompt: fullPrompt,
-                    userContent: profileText,
-                    model: "gpt-4o",
-                    temperature: 0.3,
+                const messages = [
+                    { role: "system" as const, content: JSON_INSTRUCTION },
+                    { role: "system" as const, content: fullPrompt },
+                    { role: "user" as const, content: profileText }
+                ];
+
+                const model = process.env.OPENAI_MODEL || "gpt-4o";
+                for await (const ev of streamJson({
+                    ctx: { request_id, user_id, route },
+                    task: "resume_feedback",
+                    mode: "resume",
+                    model,
+                    prompt_version: "linkedin_v1",
+                    schema_version: "linkedin_v1",
+                    messages
                 })) {
-                    accumulatedJson += chunk;
-                    controller.enqueue(encoder.encode(JSON.stringify({
-                        type: "chunk",
-                        content: chunk
-                    }) + "\n"));
+                    if (ev.type === "chunk") {
+                        accumulatedJson += ev.content;
+                        controller.enqueue(encoder.encode(JSON.stringify({
+                            type: "chunk",
+                            content: ev.content
+                        }) + "\n"));
+                    }
                 }
 
                 // Parse final JSON
@@ -357,25 +369,49 @@ export async function POST(request: Request) {
                 if (shouldIncrementFree && user && supabase) {
                     // Update database for logged-in users
                     const adminSupabase = createSupabaseAdminClient();
-                    await adminSupabase
-                        .from('user_usage')
-                        .upsert({
-                            user_id: user.id,
-                            free_report_used_at: nowIso(),
-                            updated_at: nowIso(),
-                        }, { onConflict: 'user_id' });
+                    if (!adminSupabase) {
+                        logWarn({
+                            msg: "supabase.admin_client_missing",
+                            request_id,
+                            route,
+                            user_id,
+                            feature: "linkedin"
+                        });
+                    } else {
+                        await adminSupabase
+                            .from('user_usage')
+                            .upsert({
+                                user_id: user.id,
+                                free_report_used_at: nowIso(),
+                                updated_at: nowIso(),
+                            }, { onConflict: 'user_id' });
+                    }
                 } else if (shouldIncrementFree && !user) {
                     // Update cookie for anonymous users
-                    const newCookie = makeFreeCookie(newFreeUsed, Date.now());
-                    cookieStore.set(FREE_COOKIE, newCookie, freeCookieOptions);
+                    const newFreeMeta = {
+                        used: newFreeUsed,
+                        last_free_ts: nowIso(),
+                        reset_month: getCurrentMonthKey()
+                    };
+                    cookieStore.set(FREE_COOKIE, makeFreeCookie(newFreeMeta), freeCookieOptions());
                 }
 
                 if (shouldDecrementPass && activePass) {
                     const adminSupabase = createSupabaseAdminClient();
-                    await adminSupabase
-                        .from('passes')
-                        .update({ uses_remaining: activePass.uses_remaining - 1 })
-                        .eq('id', activePass.id);
+                    if (!adminSupabase) {
+                        logWarn({
+                            msg: "supabase.admin_client_missing",
+                            request_id,
+                            route,
+                            user_id,
+                            feature: "linkedin"
+                        });
+                    } else {
+                        await adminSupabase
+                            .from('passes')
+                            .update({ uses_remaining: activePass.uses_remaining - 1 })
+                            .eq('id', activePass.id);
+                    }
                 }
 
                 logInfo({
@@ -393,7 +429,7 @@ export async function POST(request: Request) {
                 logError({
                     msg: "linkedin.analysis.error",
                     request_id,
-                    error: error?.message || "Unknown error",
+                    err: { name: error?.name || "Error", message: error?.message || "Unknown error" },
                 });
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "error",

@@ -21,6 +21,9 @@ export type LogRecord = {
 
   user_id?: string;
   outcome?: OutcomeCategory;
+  feature?: string;
+  source?: string;
+  score?: number;
 
   http?: { body_bytes?: number; query_keys?: string[] };
   supabase?: { table?: string; op?: string; rows?: number; error_code?: string };

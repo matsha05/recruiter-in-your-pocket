@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Lock, ArrowRight, Wand2 } from "lucide-react"
+import { Lock, ArrowRight, Wand2, Copy, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface RedPenCardProps {
@@ -18,6 +18,7 @@ interface RedPenCardProps {
  * - Uses "Paper" metaphor (white card, subtle border)
  * - "After" state can be locked (blurred) to drive conversion
  * - Highlights the "Transformation" moment
+ * - Copy button for instant clipboard access
  */
 export function RedPenCard({
     title,
@@ -27,6 +28,18 @@ export function RedPenCard({
     isLocked = false,
     className
 }: RedPenCardProps) {
+    const [copied, setCopied] = React.useState(false);
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(after);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
+
     return (
         <div className={cn(
             "group relative overflow-hidden rounded-lg border border-border/60 bg-card shadow-sm transition-all hover:border-brand/30",
@@ -49,9 +62,34 @@ export function RedPenCard({
 
                 {/* AFTER Panel */}
                 <div className="relative p-5 bg-brand/5">
-                    <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand flex items-center gap-2">
-                        <ArrowRight className="h-3 w-3" />
-                        Recruiter Version
+                    <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand flex items-center justify-between">
+                        <span className="flex items-center gap-2">
+                            <ArrowRight className="h-3 w-3" />
+                            Recruiter Version
+                        </span>
+                        {!isLocked && (
+                            <button
+                                onClick={handleCopy}
+                                className={cn(
+                                    "flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider transition-all",
+                                    copied
+                                        ? "bg-success/10 text-success"
+                                        : "bg-muted/50 text-muted-foreground hover:bg-brand/10 hover:text-brand opacity-0 group-hover:opacity-100"
+                                )}
+                            >
+                                {copied ? (
+                                    <>
+                                        <Check className="h-3 w-3" />
+                                        Copied
+                                    </>
+                                ) : (
+                                    <>
+                                        <Copy className="h-3 w-3" />
+                                        Copy
+                                    </>
+                                )}
+                            </button>
+                        )}
                     </div>
 
                     <div className={cn("relative", isLocked && "select-none")}>
@@ -85,3 +123,4 @@ export function RedPenCard({
         </div>
     )
 }
+

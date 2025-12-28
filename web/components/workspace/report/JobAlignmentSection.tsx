@@ -54,8 +54,10 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
     const industries = roleFit?.industry_signals || [];
 
     // Detect if JD match data exists (either from user input OR from sample data)
-    const hasJdMatchData = alignment.jd_match_score !== undefined && alignment.jd_match_score > 0;
-    const hasJdKeywords = alignment.jd_keywords && alignment.jd_keywords.total_count && alignment.jd_keywords.total_count > 0;
+    const jdMatchScore = alignment.jd_match_score ?? 0;
+    const hasJdMatchData = jdMatchScore > 0;
+    const jdKeywords = alignment.jd_keywords;
+    const hasJdKeywords = jdKeywords && jdKeywords.total_count && jdKeywords.total_count > 0;
     const showJdSection = hasJobDescription || hasJdMatchData;
 
     // Build footer metadata string
@@ -141,21 +143,21 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     {showJdSection && hasJdMatchData && (
                         <div className="text-center mb-8 pb-6 border-b border-border/40">
                             <div className="inline-flex items-center gap-4">
-                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${alignment.jd_match_score >= SCORE_THRESHOLDS.STRONG ? 'text-green-500 animate-pulse-once' :
-                                    alignment.jd_match_score >= SCORE_THRESHOLDS.MODERATE ? 'text-brand' :
-                                        alignment.jd_match_score >= SCORE_THRESHOLDS.WEAK ? 'text-warning' :
+                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'text-green-500 animate-pulse-once' :
+                                    jdMatchScore >= SCORE_THRESHOLDS.MODERATE ? 'text-brand' :
+                                        jdMatchScore >= SCORE_THRESHOLDS.WEAK ? 'text-warning' :
                                             'text-destructive'
                                     }`}>
-                                    {alignment.jd_match_score}%
-                                    {alignment.jd_match_score >= SCORE_THRESHOLDS.STRONG && (
+                                    {jdMatchScore}%
+                                    {jdMatchScore >= SCORE_THRESHOLDS.STRONG && (
                                         <Sparkles className="inline-block w-6 h-6 ml-2 animate-bounce-subtle" strokeWidth={1.5} />
                                     )}
                                 </div>
                                 <div className="text-left">
                                     <p className="text-sm font-semibold text-foreground">
-                                        {alignment.jd_match_score >= SCORE_THRESHOLDS.STRONG ? 'Strong Match' :
-                                            alignment.jd_match_score >= SCORE_THRESHOLDS.MODERATE ? 'Moderate Match' :
-                                                alignment.jd_match_score >= SCORE_THRESHOLDS.WEAK ? 'Weak Match' :
+                                        {jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'Strong Match' :
+                                            jdMatchScore >= SCORE_THRESHOLDS.MODERATE ? 'Moderate Match' :
+                                                jdMatchScore >= SCORE_THRESHOLDS.WEAK ? 'Weak Match' :
                                                     'Low Match'}
                                     </p>
                                     <p className="text-xs text-muted-foreground max-w-[200px]">
@@ -176,16 +178,16 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                         Requirements Matched
                                     </span>
                                     <span className="text-sm font-semibold text-foreground">
-                                        {alignment.jd_keywords.match_count || 0} / {alignment.jd_keywords.total_count}
+                                        {jdKeywords?.match_count || 0} / {jdKeywords?.total_count || 0}
                                     </span>
                                 </div>
                                 <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                     <div
-                                        className={`h-full rounded-full transition-all duration-500 ${((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) >= 0.75 ? 'bg-green-500' :
-                                            ((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) >= 0.5 ? 'bg-brand' :
+                                        className={`h-full rounded-full transition-all duration-500 ${((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.75 ? 'bg-green-500' :
+                                            ((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.5 ? 'bg-brand' :
                                                 'bg-warning'
                                             }`}
-                                        style={{ width: `${Math.round(((alignment.jd_keywords.match_count || 0) / alignment.jd_keywords.total_count) * 100)}%` }}
+                                        style={{ width: `${Math.round(((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) * 100)}%` }}
                                     />
                                 </div>
                             </div>
@@ -193,13 +195,13 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             {/* Keyword Lists */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Matched Keywords */}
-                                {alignment.jd_keywords.matched && alignment.jd_keywords.matched.length > 0 && (
+                                {jdKeywords?.matched && jdKeywords.matched.length > 0 && (
                                     <div className="space-y-2">
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-green-600 flex items-center gap-1">
                                             <Check className="w-3.5 h-3.5" strokeWidth={2} /> Skills Found
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
-                                            {alignment.jd_keywords.matched.map((keyword, idx) => (
+                                            {jdKeywords.matched.map((keyword, idx) => (
                                                 <span
                                                     key={idx}
                                                     className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-green-500/10 text-green-700 border border-green-500/20"
@@ -212,13 +214,13 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 )}
 
                                 {/* Missing Keywords */}
-                                {alignment.jd_keywords.missing && alignment.jd_keywords.missing.length > 0 && (
+                                {jdKeywords?.missing && jdKeywords.missing.length > 0 && (
                                     <div className="space-y-2">
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-destructive flex items-center gap-1">
                                             <X className="w-3.5 h-3.5" strokeWidth={2} /> Missing Skills
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
-                                            {alignment.jd_keywords.missing.map((keyword, idx) => (
+                                            {jdKeywords.missing.map((keyword, idx) => (
                                                 <span
                                                     key={idx}
                                                     className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-destructive/10 text-destructive border border-destructive/20"
@@ -232,7 +234,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             </div>
 
                             {/* Actionable Hint - What to do next */}
-                            {alignment.jd_keywords.missing && alignment.jd_keywords.missing.length > 0 && (
+                            {jdKeywords?.missing && jdKeywords.missing.length > 0 && (
                                 <div className="mt-4 flex items-start gap-2 p-3 rounded-lg bg-brand/5 border border-brand/10">
                                     <InsightSparkleIcon className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
                                     <p className="text-xs text-muted-foreground">

@@ -5,13 +5,9 @@ import { CheckCircle2 } from "lucide-react";
 import { PrincipalRecruiterIcon } from "@/components/icons";
 import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
+import { getDialStrokeColor } from "@/lib/score-utils";
 
-function getScoreColor(score: number): string {
-    // Return hsl color string for inline SVG stroke
-    if (score >= 85) return 'hsl(var(--success))';
-    if (score >= 70) return 'hsl(var(--premium))';
-    return 'hsl(var(--destructive))';
-}
+
 
 function getScoreBand(score: number): { label: string; colorClass: string } {
     if (score >= 85) return { label: 'Competes for Senior Roles', colorClass: 'bg-success/10 border-success/20 text-success' };
@@ -27,7 +23,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
     const firstImpressionText = data.score_comment_long || data.score_comment_short || data.first_impression || data.summary;
     const targetScore = data.score || 0;
-    const strokeColor = getScoreColor(targetScore);
+    const strokeColor = getDialStrokeColor(targetScore);
     const scoreBand = data.score_label ? { label: data.score_label, colorClass: getScoreBand(targetScore).colorClass } : getScoreBand(targetScore);
 
     // Section entrance animation
