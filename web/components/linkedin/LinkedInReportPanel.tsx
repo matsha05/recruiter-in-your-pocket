@@ -1,18 +1,51 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, Eye, Sparkles, Target, CheckCircle2, AlertCircle, Search, Lightbulb } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronDown, ChevronUp, CheckCircle2, AlertCircle, Plus, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { getScoreColor } from '@/lib/score-utils';
+import { PrincipalRecruiterIcon, SignalRadarIcon, TransformArrowIcon, HiddenGemIcon, InsightSparkleIcon } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 import type { LinkedInReport } from '@/types/linkedin';
 
 interface LinkedInReportPanelProps {
     report: LinkedInReport;
     profileName?: string;
     profileHeadline?: string;
+    isSample?: boolean;
+    onNewReport?: () => void;
+    freeUsesRemaining?: number;
+    onUpgrade?: () => void;
 }
 
-export function LinkedInReportPanel({ report, profileName, profileHeadline }: LinkedInReportPanelProps) {
+export function LinkedInReportPanel({
+    report,
+    profileName,
+    profileHeadline,
+    isSample = false,
+    onNewReport,
+    freeUsesRemaining = 2,
+    onUpgrade
+}: LinkedInReportPanelProps) {
     const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['first-impression', 'headline', 'top-fixes']));
+    const [animatedScore, setAnimatedScore] = useState(0);
+
+    // Animate score on mount
+    useEffect(() => {
+        const duration = 1500;
+        const start = 0;
+        const end = report.score || 0;
+        const startTime = Date.now();
+
+        const animate = () => {
+            const now = Date.now();
+            const progress = Math.min((now - startTime) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            setAnimatedScore(Math.round(start + (end - start) * ease));
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+    }, [report.score]);
 
     const toggleSection = (section: string) => {
         setExpandedSections(prev => {
@@ -26,148 +59,186 @@ export function LinkedInReportPanel({ report, profileName, profileHeadline }: Li
         });
     };
 
-    const getScoreColor = (score: number) => {
+    const getSubscoreColor = (score: number) => {
         if (score >= 85) return 'text-success';
         if (score >= 70) return 'text-brand';
-        if (score >= 55) return 'text-amber-500';
-        return 'text-destructive';
+        return 'text-amber-500';
     };
 
-    const getSubscoreColor = (score: number) => {
-        if (score >= 80) return 'bg-success';
-        if (score >= 60) return 'bg-brand';
-        if (score >= 40) return 'bg-amber-500';
-        return 'bg-destructive';
-    };
+    const isExhausted = !isSample && freeUsesRemaining <= 0;
 
     return (
-        <div className="space-y-6">
-            {/* Score Hero */}
-            <div className="text-center space-y-4 py-6">
-                <div className={cn("text-6xl font-serif font-bold", getScoreColor(report.score))}>
-                    {report.score}
-                </div>
-                <div className="space-y-2">
-                    <p className="text-lg font-medium text-foreground">{report.score_label}</p>
-                    <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                        {report.score_comment_short}
-                    </p>
-                </div>
-            </div>
+        <div className="max-w-3xl mx-auto pb-32 space-y-16">
 
-            {/* Subscores */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {[
-                    { key: 'visibility', label: 'Visibility', icon: Search },
-                    { key: 'first_impression', label: 'First Impression', icon: Eye },
-                    { key: 'content_quality', label: 'Content', icon: Sparkles },
-                    { key: 'completeness', label: 'Completeness', icon: CheckCircle2 },
-                ].map(({ key, label, icon: Icon }) => {
-                    const score = report.subscores?.[key as keyof typeof report.subscores] || 0;
-                    return (
-                        <div key={key} className="p-3 bg-muted/30 rounded-lg border border-border">
-                            <div className="flex items-center gap-2 mb-2">
-                                <Icon className="w-4 h-4 text-muted-foreground" />
-                                <span className="text-xs text-muted-foreground">{label}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-lg font-semibold">{score}</span>
-                                <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
-                                    <div
-                                        className={cn("h-full rounded-full transition-all", getSubscoreColor(score))}
-                                        style={{ width: `${score}%` }}
-                                    />
-                                </div>
-                            </div>
+            {/* Score Hero with Dial */}
+            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="text-center space-y-6">
+                    {/* Score Dial */}
+                    <div className="relative inline-flex items-center justify-center">
+                        <svg className="w-36 h-36 transform -rotate-90">
+                            <circle
+                                cx="72" cy="72" r="68"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                fill="transparent"
+                                className="text-border/30"
+                            />
+                            <circle
+                                cx="72" cy="72" r="68"
+                                stroke="hsl(var(--brand))"
+                                strokeWidth="3"
+                                fill="transparent"
+                                strokeDasharray={427}
+                                strokeDashoffset={427 - (427 * animatedScore) / 100}
+                                className="transition-all duration-1000 ease-out"
+                                strokeLinecap="round"
+                            />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center flex-col">
+                            <span className="text-5xl font-display font-medium tracking-tighter tabular-nums">
+                                {animatedScore}
+                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                                LinkedIn Score
+                            </span>
                         </div>
-                    );
-                })}
-            </div>
+                    </div>
 
-            {/* First Impression Section */}
-            <CollapsibleSection
-                id="first-impression"
-                title="01. Profile First Impression"
-                icon={<Eye className="w-4 h-4" />}
-                isExpanded={expandedSections.has('first-impression')}
-                onToggle={() => toggleSection('first-impression')}
-            >
-                <div className="space-y-4">
-                    <p className="text-foreground font-serif text-lg leading-relaxed">
-                        {report.first_impression?.profile_card_verdict}
+                    {/* Score Label & Comment */}
+                    <div className="space-y-2">
+                        <p className="text-lg font-medium text-foreground">{report.score_label}</p>
+                        <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                            {report.score_comment_short}
+                        </p>
+                    </div>
+
+                    {/* Subscores Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                        {[
+                            { key: 'visibility', label: 'Visibility', score: report.subscores?.visibility },
+                            { key: 'first_impression', label: 'First Impression', score: report.subscores?.first_impression },
+                            { key: 'content_quality', label: 'Content', score: report.subscores?.content_quality },
+                            { key: 'completeness', label: 'Completeness', score: report.subscores?.completeness },
+                        ].map((item) => item.score !== undefined && (
+                            <div
+                                key={item.key}
+                                className="bg-card border border-border/60 shadow-sm p-4 rounded-lg flex flex-col items-center justify-center text-center gap-1 transition-all hover:border-brand/30"
+                            >
+                                <span className={cn(
+                                    "font-display font-bold tabular-nums text-3xl tracking-tight",
+                                    getSubscoreColor(item.score)
+                                )}>
+                                    {item.score}
+                                </span>
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                                    {item.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700" />
+
+            {/* 01. Profile First Impression */}
+            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
+                <ReportSectionHeader
+                    icon={<PrincipalRecruiterIcon className="w-4 h-4 text-brand" />}
+                    number="01"
+                    title="Profile First Impression"
+                    subtitle="What I noticed in 3 seconds on your profile card."
+                />
+
+                <div className="mt-6 space-y-6">
+                    <p className="font-serif text-xl text-foreground leading-relaxed">
+                        "{report.first_impression?.profile_card_verdict}"
                     </p>
 
-                    <div className="grid grid-cols-3 gap-4 p-4 bg-muted/20 rounded-lg">
-                        <div>
-                            <span className="text-xs text-muted-foreground block mb-1">Photo</span>
+                    <div className="grid grid-cols-3 gap-4 p-4 bg-secondary/20 rounded-lg border border-border/40">
+                        <div className="text-center">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-2">Photo</span>
                             <StatusBadge status={report.first_impression?.photo_status || 'unknown'} />
                         </div>
-                        <div>
-                            <span className="text-xs text-muted-foreground block mb-1">Banner</span>
+                        <div className="text-center">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-2">Banner</span>
                             <StatusBadge status={report.first_impression?.banner_status || 'unknown'} />
                         </div>
-                        <div>
-                            <span className="text-xs text-muted-foreground block mb-1">Headline</span>
+                        <div className="text-center">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-2">Headline</span>
                             <StatusBadge status={report.first_impression?.headline_verdict || 'generic'} />
                         </div>
                     </div>
 
-                    <p className="text-sm text-muted-foreground">
-                        <strong>Visibility:</strong> {report.first_impression?.visibility_estimate}
-                    </p>
+                    {report.first_impression?.visibility_estimate && (
+                        <p className="text-sm text-muted-foreground">
+                            <span className="font-medium text-foreground">Visibility:</span> {report.first_impression.visibility_estimate}
+                        </p>
+                    )}
                 </div>
-            </CollapsibleSection>
+            </section>
 
-            {/* Headline Analysis */}
-            <CollapsibleSection
-                id="headline"
-                title="02. Headline Analysis"
-                icon={<Target className="w-4 h-4" />}
-                isExpanded={expandedSections.has('headline')}
-                onToggle={() => toggleSection('headline')}
-            >
-                <div className="space-y-4">
-                    <div className="p-3 bg-muted/30 rounded-lg border border-border">
-                        <span className="text-xs text-muted-foreground block mb-1">Current Headline</span>
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+            {/* 02. Headline Analysis */}
+            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
+                <ReportSectionHeader
+                    icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
+                    number="02"
+                    title="Headline Analysis"
+                    subtitle="The 120 characters that decide if recruiters click."
+                />
+
+                <div className="mt-6 space-y-6">
+                    {/* Current Headline */}
+                    <div className="p-4 bg-muted/30 rounded-lg border border-border/40">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-2">Current</span>
                         <p className="text-foreground font-medium">{report.headline_analysis?.current}</p>
                     </div>
 
                     <p className="text-sm text-foreground">{report.headline_analysis?.verdict}</p>
 
+                    {/* Issues */}
                     {report.headline_analysis?.issues?.length > 0 && (
-                        <div className="space-y-2">
-                            <span className="text-xs text-muted-foreground">Issues:</span>
-                            <ul className="space-y-1">
-                                {report.headline_analysis.issues.map((issue, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                        <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                                        {issue}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        <ul className="space-y-2">
+                            {report.headline_analysis.issues.map((issue, i) => (
+                                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                    <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                                    {issue}
+                                </li>
+                            ))}
+                        </ul>
                     )}
 
+                    {/* Suggested Rewrite */}
                     {report.headline_analysis?.rewrite && (
-                        <div className="p-3 bg-success/10 rounded-lg border border-success/30">
-                            <span className="text-xs text-success block mb-1">Suggested Rewrite</span>
+                        <div className="p-4 bg-success/5 rounded-lg border border-success/20">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-success block mb-2">Suggested</span>
                             <p className="text-foreground font-medium">{report.headline_analysis.rewrite}</p>
-                            <p className="text-xs text-muted-foreground mt-2">{report.headline_analysis.why_better}</p>
+                            {report.headline_analysis.why_better && (
+                                <p className="text-xs text-muted-foreground mt-2">{report.headline_analysis.why_better}</p>
+                            )}
                         </div>
                     )}
                 </div>
-            </CollapsibleSection>
+            </section>
 
-            {/* About Analysis */}
-            <CollapsibleSection
-                id="about"
-                title="03. About Section"
-                icon={<Sparkles className="w-4 h-4" />}
-                isExpanded={expandedSections.has('about')}
-                onToggle={() => toggleSection('about')}
-            >
-                <div className="space-y-4">
-                    <div className="flex items-center gap-2">
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+            {/* 03. About Section */}
+            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+                <ReportSectionHeader
+                    icon={<InsightSparkleIcon className="w-4 h-4 text-brand" />}
+                    number="03"
+                    title="About Section"
+                    subtitle="Your opening hook — the 2 seconds that matter."
+                />
+
+                <div className="mt-6 space-y-6">
+                    <div className="flex items-center gap-3">
                         <span className="text-sm text-muted-foreground">Hook Strength:</span>
                         <HookStrengthBadge strength={report.about_analysis?.hook_strength || 'missing'} />
                     </div>
@@ -181,72 +252,81 @@ export function LinkedInReportPanel({ report, profileName, profileHeadline }: Li
                     )}
 
                     {report.about_analysis?.rewrite_suggestion && (
-                        <div className="p-3 bg-success/10 rounded-lg border border-success/30">
-                            <span className="text-xs text-success block mb-1">Suggested Opening</span>
+                        <div className="p-4 bg-success/5 rounded-lg border border-success/20">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-success block mb-2">Suggested Opening</span>
                             <p className="text-foreground text-sm">{report.about_analysis.rewrite_suggestion}</p>
                         </div>
                     )}
                 </div>
-            </CollapsibleSection>
+            </section>
 
-            {/* Search Visibility */}
-            <CollapsibleSection
-                id="visibility"
-                title="04. Search Visibility"
-                icon={<Search className="w-4 h-4" />}
-                isExpanded={expandedSections.has('visibility')}
-                onToggle={() => toggleSection('visibility')}
-            >
-                <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                        <div className="text-2xl font-semibold">{report.search_visibility?.score || 0}</div>
-                        <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                            <div
-                                className={cn("h-full rounded-full transition-all", getSubscoreColor(report.search_visibility?.score || 0))}
-                                style={{ width: `${report.search_visibility?.score || 0}%` }}
-                            />
-                        </div>
-                    </div>
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <span className="text-xs text-muted-foreground mb-2 block">Keywords Present</span>
-                            <div className="flex flex-wrap gap-1">
+            {/* 04. Search Visibility */}
+            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
+                <ReportSectionHeader
+                    icon={<SignalRadarIcon className="w-4 h-4 text-brand" />}
+                    number="04"
+                    title="Search Visibility"
+                    subtitle="Keywords that help recruiters find you."
+                />
+
+                <div className="mt-6 space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {/* Keywords Present */}
+                        <div className="space-y-3">
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">Present</h4>
+                            <div className="flex flex-wrap gap-2">
                                 {report.search_visibility?.keywords_present?.map((kw, i) => (
-                                    <span key={i} className="text-xs px-2 py-0.5 bg-success/10 text-success rounded">
+                                    <span key={i} className="text-xs px-2.5 py-1 bg-success/10 text-success rounded border border-success/20">
                                         {kw}
                                     </span>
                                 ))}
+                                {(!report.search_visibility?.keywords_present || report.search_visibility.keywords_present.length === 0) && (
+                                    <span className="text-xs text-muted-foreground">None detected</span>
+                                )}
                             </div>
                         </div>
-                        <div>
-                            <span className="text-xs text-muted-foreground mb-2 block">Keywords Missing</span>
-                            <div className="flex flex-wrap gap-1">
+
+                        {/* Keywords Missing */}
+                        <div className="space-y-3">
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground/80">Missing</h4>
+                            <div className="flex flex-wrap gap-2">
                                 {report.search_visibility?.keywords_missing?.map((kw, i) => (
-                                    <span key={i} className="text-xs px-2 py-0.5 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded">
+                                    <span key={i} className="text-xs px-2.5 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded border border-amber-500/20">
                                         {kw}
                                     </span>
                                 ))}
+                                {(!report.search_visibility?.keywords_missing || report.search_visibility.keywords_missing.length === 0) && (
+                                    <span className="text-xs text-muted-foreground">None identified</span>
+                                )}
                             </div>
                         </div>
                     </div>
 
-                    <p className="text-sm text-muted-foreground">{report.search_visibility?.recommendation}</p>
+                    {report.search_visibility?.recommendation && (
+                        <p className="text-sm text-muted-foreground">{report.search_visibility.recommendation}</p>
+                    )}
                 </div>
-            </CollapsibleSection>
+            </section>
 
-            {/* Top Fixes */}
-            <CollapsibleSection
-                id="top-fixes"
-                title="05. Quick Wins"
-                icon={<Lightbulb className="w-4 h-4" />}
-                isExpanded={expandedSections.has('top-fixes')}
-                onToggle={() => toggleSection('top-fixes')}
-            >
-                <div className="space-y-3">
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+            {/* 05. Quick Wins */}
+            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
+                <ReportSectionHeader
+                    icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
+                    number="05"
+                    title="Quick Wins"
+                    subtitle="High-impact changes you can make today."
+                />
+
+                <div className="mt-6 space-y-4">
                     {report.top_fixes?.map((fix, i) => (
-                        <div key={i} className="p-3 bg-muted/20 rounded-lg border border-border">
-                            <div className="flex items-start justify-between gap-2 mb-1">
+                        <div key={i} className="p-4 bg-card border border-border/60 rounded-lg shadow-sm">
+                            <div className="flex items-start justify-between gap-3 mb-2">
                                 <p className="text-sm font-medium text-foreground">{fix.fix}</p>
                                 <EffortBadge effort={fix.effort} />
                             </div>
@@ -254,76 +334,123 @@ export function LinkedInReportPanel({ report, profileName, profileHeadline }: Li
                         </div>
                     ))}
                 </div>
-            </CollapsibleSection>
+            </section>
 
-            {/* Experience Rewrites */}
+            {/* Experience Rewrites (if present) */}
             {report.experience_rewrites?.length > 0 && (
-                <CollapsibleSection
-                    id="rewrites"
-                    title="06. Experience Red Pen"
-                    icon={<Sparkles className="w-4 h-4" />}
-                    isExpanded={expandedSections.has('rewrites')}
-                    onToggle={() => toggleSection('rewrites')}
-                >
-                    <div className="space-y-4">
-                        {report.experience_rewrites.map((rewrite, i) => (
-                            <div key={i} className="space-y-2 border-b border-border pb-4 last:border-0 last:pb-0">
-                                <span className="text-xs text-muted-foreground">{rewrite.company}</span>
-                                <div className="p-2 bg-destructive/5 rounded border-l-2 border-destructive/50">
-                                    <p className="text-sm text-muted-foreground line-through">{rewrite.original}</p>
+                <>
+                    <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+                    <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-600">
+                        <ReportSectionHeader
+                            icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
+                            number="06"
+                            title="Experience Red Pen"
+                            subtitle="Copy-paste upgrades for your experience bullets."
+                        />
+
+                        <div className="mt-6 space-y-6">
+                            {report.experience_rewrites.map((rewrite, i) => (
+                                <div key={i} className="space-y-3 pb-6 border-b border-border/40 last:border-0 last:pb-0">
+                                    <span className="text-xs font-medium text-muted-foreground">{rewrite.company}</span>
+                                    <div className="p-3 bg-destructive/5 rounded border-l-2 border-destructive/40">
+                                        <p className="text-sm text-muted-foreground line-through">{rewrite.original}</p>
+                                    </div>
+                                    <div className="p-3 bg-success/5 rounded border-l-2 border-success/40">
+                                        <p className="text-sm text-foreground">{rewrite.better}</p>
+                                    </div>
+                                    {rewrite.enhancement_note && (
+                                        <p className="text-xs text-muted-foreground italic">{rewrite.enhancement_note}</p>
+                                    )}
                                 </div>
-                                <div className="p-2 bg-success/5 rounded border-l-2 border-success/50">
-                                    <p className="text-sm text-foreground">{rewrite.better}</p>
-                                </div>
-                                <p className="text-xs text-muted-foreground italic">{rewrite.enhancement_note}</p>
-                            </div>
-                        ))}
-                    </div>
-                </CollapsibleSection>
+                            ))}
+                        </div>
+                    </section>
+                </>
             )}
+
+            {/* Report Footer - "What's next?" */}
+            <div className="pt-8 space-y-6">
+                <div className="h-px bg-gradient-to-r from-brand/20 via-brand/40 to-brand/20" />
+
+                <div className="text-center space-y-6">
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                        What&apos;s next?
+                    </h3>
+
+                    {isSample ? (
+                        <div className="space-y-3">
+                            <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                                This is what a recruiter sees. Ready to see yours?
+                            </p>
+                            {onNewReport && (
+                                <Button
+                                    variant="brand"
+                                    size="lg"
+                                    onClick={onNewReport}
+                                    className="shadow-lg shadow-brand/20"
+                                >
+                                    Run Your Free Review
+                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                </Button>
+                            )}
+                        </div>
+                    ) : isExhausted && onUpgrade ? (
+                        <div className="space-y-3">
+                            <p className="text-sm text-muted-foreground">
+                                That was your free review. Want to run another version?
+                            </p>
+                            <Button
+                                variant="premium"
+                                onClick={onUpgrade}
+                            >
+                                <InsightSparkleIcon className="w-4 h-4 mr-2" />
+                                Get More Reviews
+                            </Button>
+                        </div>
+                    ) : onNewReport ? (
+                        <div className="space-y-3">
+                            <p className="text-sm text-muted-foreground">
+                                {freeUsesRemaining > 0
+                                    ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
+                                    : 'Ready to analyze another version?'}
+                            </p>
+                            <Button
+                                variant="brand"
+                                onClick={onNewReport}
+                            >
+                                <Plus className="w-4 h-4 mr-2" />
+                                Run Another
+                            </Button>
+                        </div>
+                    ) : null}
+                </div>
+            </div>
         </div>
     );
 }
 
 // --- Helper Components ---
 
-function CollapsibleSection({
-    id,
-    title,
+function ReportSectionHeader({
     icon,
-    children,
-    isExpanded,
-    onToggle,
+    number,
+    title,
+    subtitle
 }: {
-    id: string;
-    title: string;
     icon: React.ReactNode;
-    children: React.ReactNode;
-    isExpanded: boolean;
-    onToggle: () => void;
+    number: string;
+    title: string;
+    subtitle: string;
 }) {
     return (
-        <section className="border border-border rounded-lg overflow-hidden">
-            <button
-                onClick={onToggle}
-                className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/30 transition-colors"
-            >
-                <div className="flex items-center gap-2">
-                    <span className="text-brand">{icon}</span>
-                    <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">{title}</h3>
-                </div>
-                {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-muted-foreground" />
-                ) : (
-                    <ChevronDown className="w-4 h-4 text-muted-foreground" />
-                )}
-            </button>
-            {isExpanded && (
-                <div className="p-4 pt-0 border-t border-border">
-                    {children}
-                </div>
-            )}
-        </section>
+        <div className="space-y-2">
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                {icon}
+                {number}. {title}
+            </h2>
+            <p className="text-sm text-muted-foreground">{subtitle}</p>
+        </div>
     );
 }
 
@@ -343,7 +470,7 @@ function StatusBadge({ status }: { status: string }) {
     const config = configs[status] || configs.unknown;
 
     return (
-        <span className={cn("text-xs px-2 py-0.5 rounded", config.bg, config.text)}>
+        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text, `border-${config.text.replace('text-', '')}/20`)}>
             {config.label}
         </span>
     );
@@ -360,7 +487,7 @@ function HookStrengthBadge({ strength }: { strength: string }) {
     const config = configs[strength] || configs.missing;
 
     return (
-        <span className={cn("text-xs px-2 py-0.5 rounded", config.bg, config.text)}>
+        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text)}>
             {config.label}
         </span>
     );
@@ -368,15 +495,15 @@ function HookStrengthBadge({ strength }: { strength: string }) {
 
 function EffortBadge({ effort }: { effort: string }) {
     const configs: Record<string, { bg: string; text: string; label: string }> = {
-        quick: { bg: 'bg-success/10', text: 'text-success', label: '⚡ Quick' },
-        moderate: { bg: 'bg-brand/10', text: 'text-brand', label: '🔧 Moderate' },
-        involved: { bg: 'bg-amber-500/10', text: 'text-amber-600 dark:text-amber-400', label: '📝 Involved' },
+        quick: { bg: 'bg-success/10 border-success/20', text: 'text-success', label: '⚡ Quick' },
+        moderate: { bg: 'bg-brand/10 border-brand/20', text: 'text-brand', label: '🔧 Moderate' },
+        involved: { bg: 'bg-amber-500/10 border-amber-500/20', text: 'text-amber-600 dark:text-amber-400', label: '📝 Involved' },
     };
 
     const config = configs[effort] || configs.moderate;
 
     return (
-        <span className={cn("text-xs px-2 py-0.5 rounded shrink-0", config.bg, config.text)}>
+        <span className={cn("text-xs px-2.5 py-1 rounded border shrink-0", config.bg, config.text)}>
             {config.label}
         </span>
     );

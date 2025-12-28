@@ -74,7 +74,13 @@ export default function WorkspaceClient() {
                 pendingAutoRunRef.current = true;
             }
         }
-    }, []);
+
+        // Check for mode query param (e.g., ?mode=linkedin)
+        const modeParam = searchParams.get("mode");
+        if (modeParam === "linkedin") {
+            setReviewMode("linkedin");
+        }
+    }, [searchParams]);
 
     // Ref to store latest handleRun (avoids circular dependency with resumeText)
     const handleRunRef = useRef<() => void>(() => { });
@@ -651,6 +657,10 @@ export default function WorkspaceClient() {
                                             report={linkedInReport}
                                             profileName={linkedInProfileName}
                                             profileHeadline={linkedInProfileHeadline}
+                                            isSample={false}
+                                            onNewReport={handleNewReport}
+                                            freeUsesRemaining={freeUsesRemaining}
+                                            onUpgrade={() => setIsPaywallOpen(true)}
                                         />
                                     </div>
                                 </div>

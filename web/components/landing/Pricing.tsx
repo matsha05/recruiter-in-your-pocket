@@ -78,7 +78,7 @@ export function Pricing({ onSelectTier }: PricingProps) {
                             Fix it before they see it.
                         </h2>
                         <p className="text-memo text-lg text-muted-foreground animate-in slide-in-from-bottom-5 fade-in duration-700 delay-100">
-                            Get your free recruiter-grade review in 60 seconds.
+                            Resume or LinkedIn — get recruiter-grade feedback in 60 seconds.
                         </p>
                     </div>
 
