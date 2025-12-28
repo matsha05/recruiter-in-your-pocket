@@ -1,0 +1,45 @@
+Emily R. Johnson  
+emily.r.johnson@email.com | 555-742-1983 | LinkedIn: linkedin.com/in/emilyrjohnson | Boston, MA  
+
+Professional Summary  
+Detail-oriented and proactive Product Manager with 1.5 years of experience in digital healthcare solutions, transitioning to SaaS product management. Proven ability to lead cross-functional teams and deliver measurable impact through data-driven decision-making and iterative product improvements. Adept at stakeholder communication, driving user engagement, and optimizing product features to meet evolving customer needs.
+
+Work Experience  
+
+Product Manager | MedTech Solutions, Boston, MA  
+July 2022 - December 2023  
+- Led a team of 4 engineers and 2 designers to deliver a patient engagement platform serving 120,000 active users, increasing monthly active users by 25% within 6 months through feature prioritization and user feedback integration.  
+- Managed product backlog and roadmap with a $450K budget, delivering 3 major releases on time that contributed to a 15% revenue increase year-over-year.  
+- Implemented data analytics dashboards and ran A/B tests to optimize the user onboarding flow, improving user retention by 18% over 4 months.  
+
+Associate Product Manager | HealthWave Inc., Cambridge, MA  
+January 2021 - June 2022  
+- Collaborated with marketing and engineering teams to launch a symptom tracking mobile app used by 50,000+ users, contributing to a 40% growth in app downloads within 9 months.  
+- Conducted qualitative user interviews and synthesized insights to develop feature requirements, reducing user-reported issues by 30%.  
+- Coordinated sprint planning and facilitated daily scrums for a 5-person team in an Agile environment, improving sprint velocity by 20%.  
+
+Product Marketing Intern | EduGrowth Technologies, Boston, MA  
+June 2020 - December 2020  
+- Supported go-to-market strategy for an online learning platform reaching 10,000+ students by analyzing competitors and customer feedback, leading to a 12% boost in trial-to-subscription conversion rate.  
+- Created detailed product feature guides and demo presentations that enhanced the onboarding experience for sales teams, reducing ramp-up time by 25%.  
+
+Education  
+
+Bachelor of Science in Business Administration (Concentration: Marketing)  
+Boston University, Boston, MA  
+Graduated May 2020  
+
+Skills  
+- Product lifecycle management  
+- Agile & Scrum methodologies  
+- Data analysis & A/B testing (Google Analytics, Mixpanel)  
+- User research & customer interviews  
+- Roadmap planning & backlog prioritization  
+- Cross-functional team leadership  
+- Communication & stakeholder management  
+- Budget management ($400K+)  
+- Tools: Jira, Confluence, Trello, Figma  
+
+Certifications  
+- Certified Scrum Product Owner (CSPO), Scrum Alliance, 2022  
+- Google Analytics Individual Qualification, 2021

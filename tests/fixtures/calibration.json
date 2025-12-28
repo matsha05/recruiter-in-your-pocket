@@ -1,0 +1,182 @@
+{
+    "schema_version": "2.0",
+    "contract_version": "v2",
+    "global_banned_phrases": [
+        "proven track record",
+        "leveraging expertise",
+        "strategic initiatives",
+        "driving results",
+        "operational excellence"
+    ],
+    "global_discouraged_phrases": [
+        "strong experience",
+        "seasoned professional",
+        "solid experience",
+        "high-impact",
+        "effective communicator"
+    ],
+    "fixtures": [
+        {
+            "id": "talent_leader_high_bar_matt_shaw_current_1",
+            "path": "smoke/talent_leader_high_bar_matt_shaw_current_1.txt",
+            "tier": "smoke",
+            "expected_score": {
+                "min": 84,
+                "max": 92
+            },
+            "expected_band": "high_bar",
+            "tags": [
+                "hr",
+                "leader",
+                "anchor",
+                "smoke"
+            ]
+        },
+        {
+            "id": "finance_controller_strong_foundation_1",
+            "path": "smoke/finance_controller_strong_foundation_suzanne_allman_1.txt",
+            "tier": "smoke",
+            "expected_score": {
+                "min": 80,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "finance",
+                "controller",
+                "anchor",
+                "smoke"
+            ]
+        },
+        {
+            "id": "sales_strong_foundation_mark_sherrod_1",
+            "path": "smoke/sales_strong_foundation_mark_sherrod_1.txt",
+            "tier": "smoke",
+            "expected_score": {
+                "min": 80,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "sales",
+                "ae",
+                "anchor",
+                "smoke"
+            ]
+        },
+        {
+            "id": "anchor_elite_ml_staff_1",
+            "path": "golden/anchor_elite_ml_staff_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 90,
+                "max": 98
+            },
+            "expected_band": "rare_air",
+            "tags": [
+                "ml",
+                "staff",
+                "tech",
+                "anchor",
+                "elite"
+            ]
+        },
+        {
+            "id": "anchor_elite_pm_ai_1",
+            "path": "golden/anchor_elite_pm_ai_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 90,
+                "max": 98
+            },
+            "expected_band": "rare_air",
+            "tags": [
+                "pm",
+                "senior",
+                "ai",
+                "anchor",
+                "elite"
+            ]
+        },
+        {
+            "id": "anchor_elite_vp_talent_1",
+            "path": "golden/anchor_elite_vp_talent_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 90,
+                "max": 98
+            },
+            "expected_band": "rare_air",
+            "tags": [
+                "hr",
+                "vp",
+                "leadership",
+                "anchor",
+                "elite"
+            ]
+        },
+        {
+            "id": "recruiter_palantir_strong_foundation_1",
+            "path": "golden/recruiter_palantir_strong_foundation_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 82,
+                "max": 88
+            },
+            "expected_band": "high_bar",
+            "tags": [
+                "recruiter",
+                "senior",
+                "tech",
+                "anchor"
+            ]
+        },
+        {
+            "id": "devops_senior_high_bar_1",
+            "path": "golden/devops_senior_high_bar_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 84,
+                "max": 92
+            },
+            "expected_band": "high_bar",
+            "tags": [
+                "devops",
+                "senior",
+                "tech",
+                "anchor"
+            ]
+        },
+        {
+            "id": "law_inhouse_thin_signal_1",
+            "path": "golden/law_inhouse_thin_signal_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 68,
+                "max": 78
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "legal",
+                "mid",
+                "anchor"
+            ]
+        },
+        {
+            "id": "finance_not_ready_sam_helmuth_1",
+            "path": "golden/finance_not_ready_sam_helmuth_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 58,
+                "max": 68
+            },
+            "expected_band": "not_ready",
+            "tags": [
+                "finance",
+                "sparse",
+                "anchor",
+                "bottom"
+            ]
+        }
+    ]
+}

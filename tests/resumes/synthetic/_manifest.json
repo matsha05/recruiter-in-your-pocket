@@ -1,0 +1,977 @@
+[
+  {
+    "id": "synth_product_manager_entry_elite_1766960213959",
+    "spec": {
+      "role": "product_manager",
+      "seniority": "entry",
+      "quality": "elite",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_product_manager_entry_elite_1766960213959.txt",
+    "expectedScoreRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "synth_software_engineer_mid_strong_1766960214520",
+    "spec": {
+      "role": "software_engineer",
+      "seniority": "mid",
+      "quality": "strong",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_software_engineer_mid_strong_1766960214520.txt",
+    "expectedScoreRange": [
+      78,
+      88
+    ]
+  },
+  {
+    "id": "synth_data_scientist_senior_foundation_1766960213700",
+    "spec": {
+      "role": "data_scientist",
+      "seniority": "senior",
+      "quality": "foundation",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_data_scientist_senior_foundation_1766960213700.txt",
+    "expectedScoreRange": [
+      68,
+      78
+    ]
+  },
+  {
+    "id": "synth_ux_designer_director_weak_1766960211983",
+    "spec": {
+      "role": "ux_designer",
+      "seniority": "director",
+      "quality": "weak",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_ux_designer_director_weak_1766960211983.txt",
+    "expectedScoreRange": [
+      45,
+      68
+    ]
+  },
+  {
+    "id": "synth_marketing_manager_vp_elite_1766960221358",
+    "spec": {
+      "role": "marketing_manager",
+      "seniority": "vp",
+      "quality": "elite",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_marketing_manager_vp_elite_1766960221358.txt",
+    "expectedScoreRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "synth_operations_manager_entry_strong_1766960228842",
+    "spec": {
+      "role": "operations_manager",
+      "seniority": "entry",
+      "quality": "strong",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_operations_manager_entry_strong_1766960228842.txt",
+    "expectedScoreRange": [
+      78,
+      88
+    ]
+  },
+  {
+    "id": "synth_sales_executive_mid_foundation_1766960226693",
+    "spec": {
+      "role": "sales_executive",
+      "seniority": "mid",
+      "quality": "foundation",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_sales_executive_mid_foundation_1766960226693.txt",
+    "expectedScoreRange": [
+      68,
+      78
+    ]
+  },
+  {
+    "id": "synth_finance_analyst_senior_weak_1766960226810",
+    "spec": {
+      "role": "finance_analyst",
+      "seniority": "senior",
+      "quality": "weak",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_finance_analyst_senior_weak_1766960226810.txt",
+    "expectedScoreRange": [
+      45,
+      68
+    ]
+  },
+  {
+    "id": "synth_hr_manager_director_elite_1766960229845",
+    "spec": {
+      "role": "hr_manager",
+      "seniority": "director",
+      "quality": "elite",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_hr_manager_director_elite_1766960229845.txt",
+    "expectedScoreRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "synth_project_manager_vp_strong_1766960228680",
+    "spec": {
+      "role": "project_manager",
+      "seniority": "vp",
+      "quality": "strong",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "abbreviated_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_project_manager_vp_strong_1766960228680.txt",
+    "expectedScoreRange": [
+      78,
+      88
+    ]
+  },
+  {
+    "id": "synth_product_manager_entry_foundation_1766960233921",
+    "spec": {
+      "role": "product_manager",
+      "seniority": "entry",
+      "quality": "foundation",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_product_manager_entry_foundation_1766960233921.txt",
+    "expectedScoreRange": [
+      68,
+      78
+    ]
+  },
+  {
+    "id": "synth_software_engineer_mid_weak_1766960233928",
+    "spec": {
+      "role": "software_engineer",
+      "seniority": "mid",
+      "quality": "weak",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "month_year_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_software_engineer_mid_weak_1766960233928.txt",
+    "expectedScoreRange": [
+      45,
+      68
+    ]
+  },
+  {
+    "id": "synth_data_scientist_senior_elite_1766960238522",
+    "spec": {
+      "role": "data_scientist",
+      "seniority": "senior",
+      "quality": "elite",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "year_only_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_data_scientist_senior_elite_1766960238522.txt",
+    "expectedScoreRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "synth_ux_designer_director_strong_1766960238902",
+    "spec": {
+      "role": "ux_designer",
+      "seniority": "director",
+      "quality": "strong",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_ux_designer_director_strong_1766960238902.txt",
+    "expectedScoreRange": [
+      78,
+      88
+    ]
+  },
+  {
+    "id": "synth_marketing_manager_vp_foundation_1766960235984",
+    "spec": {
+      "role": "marketing_manager",
+      "seniority": "vp",
+      "quality": "foundation",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_marketing_manager_vp_foundation_1766960235984.txt",
+    "expectedScoreRange": [
+      68,
+      78
+    ]
+  },
+  {
+    "id": "synth_operations_manager_entry_weak_1766960246467",
+    "spec": {
+      "role": "operations_manager",
+      "seniority": "entry",
+      "quality": "weak",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_operations_manager_entry_weak_1766960246467.txt",
+    "expectedScoreRange": [
+      45,
+      68
+    ]
+  },
+  {
+    "id": "synth_sales_executive_mid_elite_1766960246179",
+    "spec": {
+      "role": "sales_executive",
+      "seniority": "mid",
+      "quality": "elite",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_sales_executive_mid_elite_1766960246179.txt",
+    "expectedScoreRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "synth_finance_analyst_senior_strong_1766960243337",
+    "spec": {
+      "role": "finance_analyst",
+      "seniority": "senior",
+      "quality": "strong",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "month_year_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_finance_analyst_senior_strong_1766960243337.txt",
+    "expectedScoreRange": [
+      78,
+      88
+    ]
+  },
+  {
+    "id": "synth_hr_manager_director_foundation_1766960245321",
+    "spec": {
+      "role": "hr_manager",
+      "seniority": "director",
+      "quality": "foundation",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_hr_manager_director_foundation_1766960245321.txt",
+    "expectedScoreRange": [
+      68,
+      78
+    ]
+  },
+  {
+    "id": "synth_project_manager_vp_weak_1766960242760",
+    "spec": {
+      "role": "project_manager",
+      "seniority": "vp",
+      "quality": "weak",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_project_manager_vp_weak_1766960242760.txt",
+    "expectedScoreRange": [
+      45,
+      68
+    ]
+  },
+  {
+    "id": "synth_product_manager_entry_elite_1766960255028",
+    "spec": {
+      "role": "product_manager",
+      "seniority": "entry",
+      "quality": "elite",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_product_manager_entry_elite_1766960255028.txt",
+    "expectedScoreRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "synth_software_engineer_mid_strong_1766960253617",
+    "spec": {
+      "role": "software_engineer",
+      "seniority": "mid",
+      "quality": "strong",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_software_engineer_mid_strong_1766960253617.txt",
+    "expectedScoreRange": [
+      78,
+      88
+    ]
+  },
+  {
+    "id": "synth_data_scientist_senior_foundation_1766960251810",
+    "spec": {
+      "role": "data_scientist",
+      "seniority": "senior",
+      "quality": "foundation",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_data_scientist_senior_foundation_1766960251810.txt",
+    "expectedScoreRange": [
+      68,
+      78
+    ]
+  },
+  {
+    "id": "synth_ux_designer_director_weak_1766960254328",
+    "spec": {
+      "role": "ux_designer",
+      "seniority": "director",
+      "quality": "weak",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_ux_designer_director_weak_1766960254328.txt",
+    "expectedScoreRange": [
+      45,
+      68
+    ]
+  },
+  {
+    "id": "synth_marketing_manager_vp_elite_1766960259324",
+    "spec": {
+      "role": "marketing_manager",
+      "seniority": "vp",
+      "quality": "elite",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_marketing_manager_vp_elite_1766960259324.txt",
+    "expectedScoreRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "synth_product_manager_entry_elite_1766960269281",
+    "spec": {
+      "role": "product_manager",
+      "seniority": "entry",
+      "quality": "elite",
+      "edgeCase": "career_changer",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_product_manager_entry_elite_1766960269281.txt",
+    "expectedScoreRange": [
+      83,
+      95
+    ]
+  },
+  {
+    "id": "synth_software_engineer_mid_strong_1766960267437",
+    "spec": {
+      "role": "software_engineer",
+      "seniority": "mid",
+      "quality": "strong",
+      "edgeCase": "lateral_move",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_software_engineer_mid_strong_1766960267437.txt",
+    "expectedScoreRange": [
+      73,
+      85
+    ]
+  },
+  {
+    "id": "synth_data_scientist_senior_foundation_1766960267149",
+    "spec": {
+      "role": "data_scientist",
+      "seniority": "senior",
+      "quality": "foundation",
+      "edgeCase": "employment_gap",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_data_scientist_senior_foundation_1766960267149.txt",
+    "expectedScoreRange": [
+      63,
+      75
+    ]
+  },
+  {
+    "id": "synth_ux_designer_director_weak_1766960265630",
+    "spec": {
+      "role": "ux_designer",
+      "seniority": "director",
+      "quality": "weak",
+      "edgeCase": "returning_parent",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_ux_designer_director_weak_1766960265630.txt",
+    "expectedScoreRange": [
+      40,
+      65
+    ]
+  },
+  {
+    "id": "synth_marketing_manager_vp_elite_1766960281070",
+    "spec": {
+      "role": "marketing_manager",
+      "seniority": "vp",
+      "quality": "elite",
+      "edgeCase": "sabbatical",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_marketing_manager_vp_elite_1766960281070.txt",
+    "expectedScoreRange": [
+      83,
+      95
+    ]
+  },
+  {
+    "id": "synth_operations_manager_entry_strong_1766960286953",
+    "spec": {
+      "role": "operations_manager",
+      "seniority": "entry",
+      "quality": "strong",
+      "edgeCase": "layoff_recovery",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "abbreviated_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_operations_manager_entry_strong_1766960286953.txt",
+    "expectedScoreRange": [
+      73,
+      85
+    ]
+  },
+  {
+    "id": "synth_sales_executive_mid_foundation_1766960289460",
+    "spec": {
+      "role": "sales_executive",
+      "seniority": "mid",
+      "quality": "foundation",
+      "edgeCase": "non_traditional",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_sales_executive_mid_foundation_1766960289460.txt",
+    "expectedScoreRange": [
+      63,
+      75
+    ]
+  },
+  {
+    "id": "synth_finance_analyst_senior_weak_1766960287359",
+    "spec": {
+      "role": "finance_analyst",
+      "seniority": "senior",
+      "quality": "weak",
+      "edgeCase": "new_grad",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_finance_analyst_senior_weak_1766960287359.txt",
+    "expectedScoreRange": [
+      40,
+      65
+    ]
+  },
+  {
+    "id": "synth_hr_manager_director_elite_1766960289528",
+    "spec": {
+      "role": "hr_manager",
+      "seniority": "director",
+      "quality": "elite",
+      "edgeCase": "phd_to_industry",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "month_year_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_hr_manager_director_elite_1766960289528.txt",
+    "expectedScoreRange": [
+      83,
+      95
+    ]
+  },
+  {
+    "id": "synth_project_manager_vp_strong_1766960287714",
+    "spec": {
+      "role": "project_manager",
+      "seniority": "vp",
+      "quality": "strong",
+      "edgeCase": "military_veteran",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "year_only_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_project_manager_vp_strong_1766960287714.txt",
+    "expectedScoreRange": [
+      73,
+      85
+    ]
+  },
+  {
+    "id": "synth_product_manager_entry_foundation_1766960295108",
+    "spec": {
+      "role": "product_manager",
+      "seniority": "entry",
+      "quality": "foundation",
+      "edgeCase": "overqualified",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_product_manager_entry_foundation_1766960295108.txt",
+    "expectedScoreRange": [
+      63,
+      75
+    ]
+  },
+  {
+    "id": "synth_software_engineer_mid_weak_1766960296800",
+    "spec": {
+      "role": "software_engineer",
+      "seniority": "mid",
+      "quality": "weak",
+      "edgeCase": "underqualified",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_software_engineer_mid_weak_1766960296800.txt",
+    "expectedScoreRange": [
+      40,
+      65
+    ]
+  },
+  {
+    "id": "synth_data_scientist_senior_elite_1766960301191",
+    "spec": {
+      "role": "data_scientist",
+      "seniority": "senior",
+      "quality": "elite",
+      "edgeCase": "freelancer",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_data_scientist_senior_elite_1766960301191.txt",
+    "expectedScoreRange": [
+      83,
+      95
+    ]
+  },
+  {
+    "id": "synth_ux_designer_director_strong_1766960296221",
+    "spec": {
+      "role": "ux_designer",
+      "seniority": "director",
+      "quality": "strong",
+      "edgeCase": "consultant",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_ux_designer_director_strong_1766960296221.txt",
+    "expectedScoreRange": [
+      73,
+      85
+    ]
+  },
+  {
+    "id": "synth_marketing_manager_vp_foundation_1766960297618",
+    "spec": {
+      "role": "marketing_manager",
+      "seniority": "vp",
+      "quality": "foundation",
+      "edgeCase": "international",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_marketing_manager_vp_foundation_1766960297618.txt",
+    "expectedScoreRange": [
+      63,
+      75
+    ]
+  },
+  {
+    "id": "synth_operations_manager_entry_weak_1766960327232",
+    "spec": {
+      "role": "operations_manager",
+      "seniority": "entry",
+      "quality": "weak",
+      "edgeCase": "remote_only",
+      "formatHints": [
+        "no_summary",
+        "skills_inline",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_operations_manager_entry_weak_1766960327232.txt",
+    "expectedScoreRange": [
+      40,
+      65
+    ]
+  },
+  {
+    "id": "synth_sales_executive_mid_elite_1766960309605",
+    "spec": {
+      "role": "sales_executive",
+      "seniority": "mid",
+      "quality": "elite",
+      "edgeCase": "industry_decline",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_sales_executive_mid_elite_1766960309605.txt",
+    "expectedScoreRange": [
+      83,
+      95
+    ]
+  },
+  {
+    "id": "synth_finance_analyst_senior_strong_1766960308965",
+    "spec": {
+      "role": "finance_analyst",
+      "seniority": "senior",
+      "quality": "strong",
+      "edgeCase": "startup_refugee",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_finance_analyst_senior_strong_1766960308965.txt",
+    "expectedScoreRange": [
+      73,
+      85
+    ]
+  },
+  {
+    "id": "synth_hr_manager_director_foundation_1766960320331",
+    "spec": {
+      "role": "hr_manager",
+      "seniority": "director",
+      "quality": "foundation",
+      "edgeCase": "career_changer",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_hr_manager_director_foundation_1766960320331.txt",
+    "expectedScoreRange": [
+      63,
+      75
+    ]
+  },
+  {
+    "id": "synth_project_manager_vp_weak_1766960308109",
+    "spec": {
+      "role": "project_manager",
+      "seniority": "vp",
+      "quality": "weak",
+      "edgeCase": "lateral_move",
+      "formatHints": [
+        "with_summary",
+        "skills_inline",
+        "month_year_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_project_manager_vp_weak_1766960308109.txt",
+    "expectedScoreRange": [
+      40,
+      65
+    ]
+  },
+  {
+    "id": "synth_product_manager_entry_elite_1766960337704",
+    "spec": {
+      "role": "product_manager",
+      "seniority": "entry",
+      "quality": "elite",
+      "edgeCase": "employment_gap",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_light"
+      ]
+    },
+    "path": "synthetic/synth_product_manager_entry_elite_1766960337704.txt",
+    "expectedScoreRange": [
+      83,
+      95
+    ]
+  },
+  {
+    "id": "synth_software_engineer_mid_strong_1766960342929",
+    "spec": {
+      "role": "software_engineer",
+      "seniority": "mid",
+      "quality": "strong",
+      "edgeCase": "returning_parent",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_software_engineer_mid_strong_1766960342929.txt",
+    "expectedScoreRange": [
+      73,
+      85
+    ]
+  },
+  {
+    "id": "synth_data_scientist_senior_foundation_1766960345537",
+    "spec": {
+      "role": "data_scientist",
+      "seniority": "senior",
+      "quality": "foundation",
+      "edgeCase": "sabbatical",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "abbreviated_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_data_scientist_senior_foundation_1766960345537.txt",
+    "expectedScoreRange": [
+      63,
+      75
+    ]
+  },
+  {
+    "id": "synth_ux_designer_director_weak_1766960342928",
+    "spec": {
+      "role": "ux_designer",
+      "seniority": "director",
+      "quality": "weak",
+      "edgeCase": "layoff_recovery",
+      "formatHints": [
+        "with_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_ux_designer_director_weak_1766960342928.txt",
+    "expectedScoreRange": [
+      40,
+      65
+    ]
+  },
+  {
+    "id": "synth_marketing_manager_vp_elite_1766960345478",
+    "spec": {
+      "role": "marketing_manager",
+      "seniority": "vp",
+      "quality": "elite",
+      "edgeCase": "non_traditional",
+      "formatHints": [
+        "no_summary",
+        "with_skills",
+        "year_only_dates",
+        "bullets_heavy"
+      ]
+    },
+    "path": "synthetic/synth_marketing_manager_vp_elite_1766960345478.txt",
+    "expectedScoreRange": [
+      83,
+      95
+    ]
+  }
+]

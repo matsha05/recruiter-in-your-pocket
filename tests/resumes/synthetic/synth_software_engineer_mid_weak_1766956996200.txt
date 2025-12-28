@@ -1,0 +1,45 @@
+Michael J. Turner
+michael.turner@email.com | 555-789-4321 | 1234 Oak Street, Springfield, IL 62704
+
+Professional Summary
+Results-driven software engineer with over 4 years of experience in software development and maintenance. A reliable team player with a focus on delivering quality code and supporting project objectives. Seeking opportunities to contribute to software projects and grow technical skills.
+
+Work Experience
+
+SoftSolutions Inc., Chicago, IL
+Software Engineer
+Jan 2021 - Feb 2024
+- Was responsible for writing code based on project requirements
+- Duties included fixing bugs reported by QA teams
+- Participated in team meetings and contributed ideas
+- Assisted in documentation updates for software releases
+- Worked under senior developers to complete assigned tasks
+- Collaborated with team members to troubleshoot technical issues
+
+BrightTech Corp., Springfield, IL
+Junior Software Developer
+Jun 2019 - Dec 2020
+- Developed software features as assigned by the project lead
+- Maintained existing codebases and performed code reviews
+- Helped in testing software modules before release
+- Assisted in deployment activities and environment setup
+- Followed coding standards and best practices
+- Supported team in daily development activities
+
+Innovatech Solutions, Springfield, IL
+Intern Software Engineer
+Jun 2018 - May 2019
+- Shadowed experienced developers during software development
+- Participated in coding and debugging sessions
+- Updated project documents with relevant information
+- Attended training sessions on software tools and technologies
+- Assisted in routine maintenance tasks
+- Collaborated with team members on small projects
+
+Skills
+- Java, Python, C#
+- RESTful APIs
+- SQL and Database Management
+- Git Version Control
+- Agile and Scrum methodologies
+- Problem Solving and Debugging

@@ -11,7 +11,7 @@ function promptPathForMode(mode: Mode): string {
   if (mode === "case_negotiation") return path.join(process.cwd(), "prompts", "case_negotiation_v1.txt");
   if (mode === "case_resume") return path.join(process.cwd(), "prompts", "case_resume_v1.txt");
   if (mode === "case_interview") return path.join(process.cwd(), "prompts", "case_interview_v1.txt");
-  return path.join(process.cwd(), "prompts", mode === "resume" ? "resume_v1.txt" : "resume_ideas_v1.txt");
+  return path.join(process.cwd(), "prompts", mode === "resume" ? "resume_v2.txt" : "resume_ideas_v1.txt");
 }
 
 export async function loadPromptForMode(mode: Mode): Promise<string> {

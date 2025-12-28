@@ -1,0 +1,35 @@
+Evelyn Carter  
+evelyn.carter@email.com | 555-987-6543 | LinkedIn: linkedin.com/in/evelyncarter | Seattle, WA
+
+Software Engineer  
+
+Experience  
+
+BrightWave Technologies, Seattle, WA  
+Software Engineer  
+June 2021 - Present  
+- Independently developed new features and maintained core modules of a cloud-based analytics platform serving over 10,000 users monthly.  
+- Led redesign of data ingestion pipeline that improved processing speed by approximately 30%, contributing to faster insights delivery.  
+- Collaborated with cross-functional teams to troubleshoot and resolve critical production issues, reducing downtime by about 15%.  
+
+Nexa Solutions, Bellevue, WA  
+Software Engineer  
+August 2018 - May 2021  
+- Owned the implementation and testing of API endpoints for an internal microservices architecture, supporting multiple business units.  
+- Worked with team members to refactor legacy code base, resulting in improved maintainability and a modest reduction in bugs reported post-release.  
+- Participated in sprint planning and code reviews, helping foster better code quality and adherence to best practices.  
+
+StrideTech Inc., Redmond, WA  
+Junior Software Engineer  
+July 2017 - July 2018  
+- Contributed to the development of client-facing web applications, focusing on bug fixes and small feature enhancements.  
+- Assisted in writing unit and integration tests, improving overall test coverage.  
+- Supported senior developers in documentation and deployment activities for quarterly releases.  
+
+Skills  
+Languages: Java, Python, JavaScript  
+Frameworks & Tools: Spring Boot, React, Docker, Kubernetes, REST APIs  
+Databases: MySQL, MongoDB  
+Version Control: Git, GitHub  
+Methodologies: Agile Scrum, Test-Driven Development (TDD)  
+Cloud Platforms: AWS (EC2, S3, Lambda)

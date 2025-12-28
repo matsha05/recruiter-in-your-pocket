@@ -1,0 +1,43 @@
+Samantha L. Reyes  
+samantha.reyes@email.com | 555-789-4321 | LinkedIn: linkedin.com/in/samanthareyes | San Diego, CA
+
+Professional Summary  
+Motivated and detail-oriented Product Manager with 1.5 years of experience leading cross-functional teams to deliver user-centric digital solutions in fast-paced tech environments. Proven ability to manage the full product lifecycle from ideation to launch, optimize user engagement, and drive business growth. Passionate about leveraging data-driven insights and agile methodologies to solve complex problems and enhance product value.
+
+Experience
+
+Product Manager | BrightWave Technologies, San Diego, CA  
+June 2022 - Present  
+- Led a team of 4 engineers and 2 designers to develop and launch a subscription-based SaaS analytics tool, achieving 25,000 active users within the first 6 months and increasing monthly recurring revenue by 40%.  
+- Owned the product roadmap and backlog prioritization, coordinating bi-weekly sprints and stakeholder communication to reduce feature delivery time by 15%.  
+- Utilized user feedback and A/B testing to optimize onboarding flows, resulting in a 30% improvement in user retention at 90 days post-signup.
+
+Associate Product Manager | Nova Apps Inc., Remote  
+January 2021 - May 2022  
+- Supported the product team in the end-to-end development of a mobile health app for managing chronic conditions, contributing to a release shipped to over 150,000 users.  
+- Coordinated with UX researchers and data analysts to identify pain points, leading to a redesign that reduced user drop-off rates by 18%.  
+- Managed requirements gathering and wrote detailed user stories, accelerating development cycles by 10%.
+
+Product Management Intern | Lumina Digital, San Diego, CA  
+June 2020 - December 2020  
+- Collaborated on the launch of a CRM integration feature, helping streamline sales workflows and increasing adoption by 20% among enterprise clients during the first quarter.  
+- Conducted competitive analysis and market research to support go-to-market strategy, contributing to a 12% revenue uplift in the new vertical.  
+- Assisted in tracking product KPIs and prepared reports for senior management to inform strategic decisions.
+
+Education
+
+Bachelor of Science in Business Administration, Concentration in Marketing  
+University of California, San Diego  
+Graduated June 2020  
+- Relevant coursework: Product Development, Data Analytics, Agile Project Management
+
+Skills  
+- Product Lifecycle Management  
+- Agile & Scrum Methodologies  
+- User Story & Requirement Writing  
+- Data Analysis & A/B Testing (SQL, Google Analytics)  
+- Roadmap Planning & Prioritization  
+- Stakeholder Communication  
+- JIRA, Confluence, Trello  
+- UX Collaboration & User Research  
+- SaaS & Mobile Applications

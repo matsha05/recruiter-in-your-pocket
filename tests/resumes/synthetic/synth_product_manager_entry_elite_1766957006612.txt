@@ -1,0 +1,39 @@
+Evelyn Harper  
+evelyn.harper@email.com | 555-482-1197 | LinkedIn: linkedin.com/in/evelynharperpm | Seattle, WA
+
+Experience
+
+Product Manager, StrataHealth Technologies, Seattle, WA  
+June 2022 - Present  
+- Spearheaded the launch of a patient engagement mobile app targeting mental health users, coordinating a cross-functional team of 5 engineers and 2 designers over a 6-month timeline, resulting in 100,000 downloads and a 25% increase in active weekly users within the first quarter post-launch.  
+- Instituted data-driven prioritization frameworks using customer feedback and usage analytics, which improved feature delivery velocity by 30% and elevated user satisfaction scores from 3.8 to 4.5 out of 5 in six months.  
+- Collaborated with clinical advisors to translate complex healthcare compliance requirements into clear product specifications, reducing regulatory feedback cycles by 40%.
+
+Associate Product Manager, Vertex Consumer Electronics, Bellevue, WA  
+August 2020 - May 2022  
+- Led the redesign of the onboarding experience for a smart home device with a team of 3, driving a 15% reduction in setup time and increasing first-week retention by 12%, contributing to an overall revenue uplift of $1.2M in the first year.  
+- Partnered closely with UX researchers and engineers to define MVP scope for features aimed at non-technical users, successfully shipping updates on bi-weekly sprint cycles and improving customer support tickets related to usability by 35%.  
+- Worked with sales and marketing teams to develop go-to-market materials, effectively communicating product benefits despite limited domain knowledge of IoT technologies.
+
+Product Management Intern, Nexa Software Solutions, Redmond, WA  
+May 2019 - August 2019  
+- Owned a feature backlog for an internal SaaS analytics dashboard used by over 200 employees, prioritizing high-impact tasks that decreased report generation time by 20%.  
+- Facilitated weekly stakeholder meetings to gather requirements and align on deliverables, gaining early experience in cross-departmental communication and agile methodologies.  
+- Conducted competitor analysis and presented findings that influenced the product roadmap, supporting a strategic pivot that targeted enterprise clients rather than SMBs.
+
+Education
+
+Bachelor of Science in Business Administration, University of Washington, Seattle, WA  
+September 2016 - June 2020  
+- Concentration in Marketing and Information Systems.  
+- Led a capstone project focused on digital product lifecycle management, including user persona development, MVP scoping, and go-to-market planning.  
+- Member of the Product Management Club, organized workshops on agile frameworks and user-centric design.
+
+Technical Proficiencies  
+- Tools: Jira, Confluence, Tableau, Figma, Google Analytics  
+- Methodologies: Agile Scrum, Lean Startup, User Story Mapping  
+- Analytics: SQL basics, A/B testing, customer segmentation analysis  
+
+Domain Knowledge  
+- Experienced in navigating regulated industries through early roles in healthcare tech and consumer electronics, with strong aptitude for rapidly assimilating complex technical material and compliance standards.  
+- Skilled at translating customer feedback into prioritized product features and actionable requirements, improving user engagement and achieving measurable business results.

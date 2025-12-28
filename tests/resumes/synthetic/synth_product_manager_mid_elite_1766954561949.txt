@@ -1,0 +1,39 @@
+Emma J. Crawford  
+emma.crawford@email.com | (555) 789-4321 | Seattle, WA | linkedin.com/in/emmacrawfordpm  
+
+Product Manager  
+
+Experience  
+
+LuminaTech Solutions, Seattle, WA  
+Product Manager | Apr 2021 - Present  
+- Led end-to-end product development of a SaaS analytics platform, managing a cross-functional team of 7 engineers and designers over an 8-month timeline, resulting in a 35% increase in customer retention within the first year of launch.  
+- Owned roadmap prioritization and coordinated stakeholder alignment across sales, marketing, and engineering, improving delivery predictability by 25%.  
+- Spearheaded the integration of machine learning capabilities that increased feature adoption by 40%, contributing to a 22% revenue growth, equating to $4.5M incremental revenue annually.  
+- Implemented data-driven decision frameworks and A/B testing strategies that reduced churn by 15% and enhanced user engagement metrics by 30%.  
+- Collaborated with UX leads to revamp onboarding experience, cutting time-to-value by 50% and increasing trial-to-paid conversion rates by 18%.  
+
+Nexa Interactive, Bellevue, WA  
+Associate Product Manager | Jan 2019 - Mar 2021  
+- Drove product improvements for a mobile engagement platform used by over 250K monthly active users, achieving a 20% increase in daily active user rate over 12 months.  
+- Led feature scoping, user story creation, and backlog grooming for a team of 5 developers, ensuring timely delivery within 2-week sprint cycles.  
+- Partnered with marketing and analytics teams to launch new customization features, boosting upsell revenue by $1.2M in the first six months post-launch.  
+- Conducted market research and competitive analysis to identify growth opportunities, which informed 3 new product initiatives that expanded market share by 8%.  
+- Monitored product KPIs and user feedback to iterate and optimize feature sets, improving Net Promoter Score from 55 to 68.  
+
+BrightWave Media, Portland, OR  
+Product Coordinator | Jul 2017 - Dec 2018  
+- Supported product managers in coordinating project timelines and deliverables for a digital advertising platform serving over 100 enterprise clients.  
+- Facilitated communication between design, engineering, and QA teams to resolve blockers and accelerate feature releases by 15%.  
+- Analyzed user behavior and campaign data to generate insights that informed prioritization, contributing to a 10% improvement in campaign ROI.  
+- Maintained product documentation and release notes used by over 200 internal stakeholders, enhancing transparency and knowledge sharing.  
+
+Skills  
+- Product Lifecycle Management  
+- Agile & Scrum Methodologies  
+- Data Analytics & A/B Testing  
+- Roadmap Development & Prioritization  
+- User Experience (UX) Collaboration  
+- Stakeholder Management  
+- Market Research & Competitive Analysis  
+- SQL, Tableau, JIRA, Confluence

@@ -1,0 +1,42 @@
+Daniel R. Mitchell  
+daniel.mitchell@email.com | 555-789-4321 | LinkedIn: linkedin.com/in/danielrmitchell | Seattle, WA  
+
+Experience  
+
+Software Engineer  
+HorizonTech Solutions, Seattle, WA  
+March 2020 - May 2024  
+- Led development on a customer analytics dashboard that improved data processing speed by 30%, enabling real-time insights for marketing teams.  
+- Independently designed and implemented RESTful APIs that integrated with third-party services, supporting a 15% increase in client onboarding efficiency.  
+- Collaborated with cross-functional teams to migrate legacy codebase to a microservices architecture, enhancing system scalability and maintainability.  
+- Participated in code reviews and established best practices for automated testing, reducing production bugs by 20%.  
+- Contributed to project planning and estimation, helping deliver three major product releases on schedule.  
+- Mentored junior developers, facilitating knowledge sharing and improving overall team productivity.  
+
+Software Engineer  
+BrightWave Interactive, Bellevue, WA  
+June 2018 - February 2020  
+- Developed frontend features using React and Redux for a SaaS platform serving over 10,000 users.  
+- Implemented performance optimizations that decreased page load times by up to 25% across core user workflows.  
+- Worked closely with UX designers to translate wireframes into functional components, improving user engagement metrics.  
+- Assisted in maintaining backend Node.js services that processed millions of API requests monthly.  
+- Helped establish CI/CD pipelines, reducing deployment times and increasing release frequency.  
+- Contributed to sprint planning and backlog grooming to ensure timely delivery in an Agile environment.  
+
+Junior Software Engineer  
+Innovatech Systems, Redmond, WA  
+August 2016 - May 2018  
+- Supported development and maintenance of internal tools used for data validation and reporting.  
+- Wrote unit and integration tests to increase code coverage and reliability.  
+- Collaborated with senior engineers to troubleshoot and resolve production issues.  
+- Assisted in documenting software functionality and deployment processes.  
+- Participated in daily standups and sprint retrospectives to improve team workflow.  
+
+Skills  
+Languages: JavaScript (ES6+), Python, Java  
+Frameworks & Libraries: React, Node.js, Express, Redux  
+Databases: MongoDB, PostgreSQL  
+Tools: Git, Docker, Jenkins, JIRA, Postman  
+Methodologies: Agile, Scrum, Test-Driven Development (TDD)  
+APIs: RESTful services, Third-party Integrations  
+Cloud: AWS (EC2, S3)

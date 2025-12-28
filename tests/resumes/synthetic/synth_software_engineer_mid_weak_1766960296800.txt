@@ -1,0 +1,47 @@
+Michael T. Sanders
+michael.sanders@email.com | 555-321-7890 | 123 Maple Ave, Springfield, IL
+
+Experience
+
+Software Engineer
+BrightTech Solutions, Chicago, IL
+June 2020 - August 2023
+- Was responsible for developing software modules using Java and Python
+- Duties included debugging issues reported by QA teams and implementing fixes
+- Collaborated with team members to deliver software projects on scheduled timelines
+- Participated in code reviews and suggested improvements for code quality
+- Worked with cross-functional teams to gather requirements and clarify specifications
+- Assisted in maintaining documentation related to software features and updates
+
+Junior Software Developer
+Innovate Labs, Springfield, IL
+January 2018 - May 2020
+- Tasks included writing code in JavaScript for web applications under supervision
+- Supported the development team in bug tracking and resolution procedures
+- Was responsible for performing unit testing and helping with integration testing
+- Engaged in team meetings to discuss project status and identify potential issues
+- Helped with updating legacy code to improve performance and maintainability
+- Contributed to software design discussions and provided input on technical decisions
+
+Intern Software Developer
+NextGen Tech, Bloomington, IL
+June 2017 - December 2017
+- Assisted in coding basic features for internal tools using C# and SQL
+- Supported senior developers by preparing test cases and documentation
+- Participated in daily stand-ups and team collaboration activities
+- Helped maintain project tracking boards and status reports
+- Was responsible for completing assigned tasks within set deadlines
+- Observed best practices in software development and tried to apply them
+
+Education
+
+Bachelor of Science in Computer Science
+Midwest State University, Springfield, IL
+September 2013 - May 2017
+
+Additional Information
+
+- Results-driven and team player committed to continuous learning
+- Familiar with Agile and Scrum methodologies through project experience
+- Exposure to version control systems such as Git and SVN
+- Basic understanding of database management and web technologies

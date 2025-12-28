@@ -1,0 +1,46 @@
+Ethan M. Carlisle  
+ethan.carlisle@email.com | 555-482-9073 | Seattle, WA | linkedin.com/in/ethanmcarlisle
+
+Professional Summary  
+Results-oriented software engineer with over 4 years of experience designing and delivering scalable web applications and internal tooling. Skilled in backend development, API design, and cloud infrastructure with a proven track record of independently driving end-to-end project delivery. Seeking to leverage deep technical expertise and collaborative approach to transition into a product engineering role focused on shaping user-centric solutions.
+
+Work Experience  
+
+NovaSoft Technologies, Seattle, WA  
+Software Engineer  
+April 2020 - May 2023  
+- Led the design and implementation of a microservices-based system for order processing, improving throughput by approximately 30% and reducing latency by 15%.  
+- Owned API integrations with third-party payment providers, ensuring 99.9% uptime and securing sensitive transactions through OAuth2 and JWT standards.  
+- Collaborated with cross-functional teams including QA and product management to clarify requirements and translate business needs into technical specifications.  
+- Mentored junior engineers on best practices in code quality, testing using Jest and integration with CI/CD pipelines in Jenkins.  
+- Participated in sprint planning and code reviews, contributing to a shared codebase of over 200,000 lines with a focus on maintainability and scalability.  
+- Worked closely with DevOps to troubleshoot and optimize AWS deployments, leading to a 20% cost reduction on cloud resources.  
+
+Lumina Cloud Solutions, Bellevue, WA  
+Software Developer  
+June 2018 - March 2020  
+- Developed features in a SaaS platform for enterprise customer relationship management, utilizing Java, Spring Boot, and PostgreSQL.  
+- Implemented authentication modules supporting Single Sign-On (SSO) that enhanced user onboarding speed by 25%.  
+- Contributed to front-end enhancements using React, collaborating directly with UX designers to improve usability metrics.  
+- Assisted in writing automated tests with Selenium, increasing code coverage from 60% to 80%.  
+- Supported data migration efforts during a major platform upgrade that affected over 500,000 users.  
+- Coordinated with support teams to quickly resolve production incidents, often within SLA targets.  
+
+BrightWave Media, Seattle, WA  
+Junior Software Engineer  
+August 2017 - May 2018  
+- Participated in feature development of video streaming web application using Node.js and MongoDB.  
+- Helped refactor legacy code to improve page load times and responsiveness on mobile devices.  
+- Worked in an Agile environment, attending daily standups and sprint retrospectives to promote continuous improvement.  
+- Assisted with unit and integration testing, reducing bugs reported in QA by 15%.  
+- Supported deployment and monitoring processes, gaining foundational exposure to Docker and Kubernetes.  
+
+Education  
+
+University of Washington, Seattle, WA  
+Bachelor of Science in Computer Science  
+Graduated June 2017  
+
+Certifications  
+- AWS Certified Developer – Associate (2021)  
+- Certified Scrum Developer (2022)

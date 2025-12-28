@@ -1,0 +1,43 @@
+Thomas J. Kendrick  
+thomas.kendrick@email.com | 555-742-1983 | Seattle, WA | linkedin.com/in/thomaskendrick
+
+Experience
+
+Senior Data Scientist  
+Nexora Tech Solutions, Seattle, WA  
+Feb 2018 - Apr 2024  
+- Supported data science initiatives across multiple teams, contributing to model development and data analysis.  
+- Helped mentor junior data scientists and collaborated on improving project workflows.  
+- Assisted in designing predictive models using machine learning techniques for various business units.  
+- Participated in cross-functional meetings to define data requirements and deliverables.  
+- Contributed to data cleaning and feature engineering processes for ongoing projects.  
+- Helped document methodologies and promote best practices within the team.
+
+Data Scientist  
+Altura Analytics, Bellevue, WA  
+Jun 2014 - Jan 2018  
+- Contributed to development and deployment of analytics models to support business decisions.  
+- Supported data collection and preprocessing activities for different clients.  
+- Helped implement algorithms and analyze large datasets to extract insights.  
+- Collaborated with multiple stakeholders to align data outputs with project goals.  
+- Provided technical guidance to peers on analytical tools and techniques.  
+- Assisted in reporting findings through presentations and written summaries.
+
+Data Analyst  
+EcoData Insights, Redmond, WA  
+Jan 2012 - May 2014  
+- Supported data analysis projects across various domains including marketing and operations.  
+- Helped prepare datasets and performed exploratory data analysis.  
+- Assisted in building basic forecasting models and evaluating their performance.  
+- Collaborated with different teams to interpret data and identify trends.  
+- Contributed to maintaining data quality and integrity within internal databases.  
+- Participated in team meetings and shared learnings to improve overall data processes.
+
+Skills
+
+- Programming: Python, R, SQL  
+- Machine Learning: Regression, Classification, Clustering  
+- Data Visualization: Tableau, Matplotlib, Seaborn  
+- Tools: Jupyter, Git, Hadoop basics  
+- Strong communication skills with experience mentoring and collaborating across teams  
+- Familiar with cloud platforms such as AWS (basic experience)

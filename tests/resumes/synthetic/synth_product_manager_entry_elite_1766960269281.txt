@@ -1,0 +1,41 @@
+Samantha J. Reynolds  
+samantha.reynolds@email.com | 555-321-9876 | LinkedIn: linkedin.com/in/sjreynolds | Boston, MA
+
+Product Manager  
+January 2022 - Present  
+BrightPath Software, Boston, MA
+
+- Led a cross-functional team of 5 engineers and 2 designers to deliver a SaaS workflow tool that increased client onboarding speed by 35%, resulting in a 20% boost in recurring revenue within the first 6 months post-launch.  
+- Owned the product roadmap and prioritized feature backlog using customer interviews and data analysis, which improved product adoption rates by 25% over a 9-month period.  
+- Collaborated directly with sales and customer success teams to gather feedback and identify pain points, driving a 15% reduction in churn through targeted feature enhancements.  
+- Defined MVP scope and coordinated agile delivery cycles over 4 quarters, ensuring on-time releases that met business goals and stayed within a $150K budget.  
+- Introduced user behavior tracking and A/B testing processes, which led to a 10% increase in user retention by iterating on onboarding flows.  
+- Transitioned from an academic background in education technology to software product management by quickly mastering industry-standard tools such as JIRA, Confluence, and Mixpanel.
+
+Product Management Intern  
+May 2021 - December 2021  
+NexusConnect, Cambridge, MA
+
+- Supported the lead product manager in launching a B2B marketplace platform by conducting competitor analysis, which influenced prioritization of three key features that accelerated early customer acquisition by 18%.  
+- Created detailed product requirement documents (PRDs) and user stories for a development team of 6, streamlining communication and reducing revision cycles by 30%.  
+- Engaged with 50+ pilot customers to collect qualitative feedback and synthesized findings into actionable insights presented to senior leadership, leading to a pivot that increased platform engagement by 22%.  
+- Assisted in coordinating a project timeline spanning 6 months with a $100K budget, ensuring deliverables aligned with strategic goals and stakeholder expectations.  
+- Gained familiarity with product metrics tracking and dashboard creation, laying groundwork for data-driven iterations post-launch.  
+
+Teaching Assistant, Product Design Bootcamp  
+September 2020 - May 2021  
+InnovateX Academy, Boston, MA
+
+- Mentored 30+ students in product design and user research methods, fostering skills in user journey mapping and prototyping that improved project outcomes by 40%.  
+- Facilitated workshops on MVP development and agile principles, helping students grasp iterative product development within tight deadlines.  
+- Collaborated with instructors to refine curriculum based on student feedback and industry trends, increasing course satisfaction ratings from 4.2 to 4.7 out of 5.  
+- Applied project management tools like Trello and Slack to coordinate group activities and promote effective communication.
+
+Project Coordinator  
+June 2019 - August 2020  
+GreenWave Nonprofit, Boston, MA
+
+- Managed logistics for environmental outreach campaigns, coordinating activities across 4 city districts and a volunteer team of 15, improving event attendance by 35% year-over-year.  
+- Developed stakeholder communication plans and timelines that reduced project delays by 25%, demonstrating transferable skills in project ownership and cross-team collaboration.  
+- Analyzed budget expenditures and negotiated vendor contracts, achieving $10K cost savings while maintaining program quality.  
+- Leveraged feedback loops with community members to refine program content, leading to higher engagement and positive impact despite operating outside a tech domain.

@@ -1,0 +1,42 @@
+Elena M. Foster  
+elena.foster@email.com | 555-482-9273 | San Francisco, CA | www.linkedin.com/in/elena-foster  
+
+Data Scientist | Technical Leader | Mentor  
+
+EXPERIENCE  
+
+Freelance Data Scientist & Consultant  
+Remote | Jan 2017 - Apr 2024  
+- Led end-to-end data science projects for 15+ clients primarily in fintech, e-commerce, and healthcare, improving decision-making by designing tailored predictive models with average revenue impact of 30%+  
+- Mentored and managed a subcontractor team of 4 data scientists and analysts, overseeing deliverables, code quality, and model validation that reduced time-to-deployment by 35%  
+- Built a scalable customer segmentation platform for a major fintech startup resulting in a 25% increase in customer retention within 6 months by leveraging unsupervised learning and advanced feature engineering  
+- Developed real-time fraud detection algorithms deployed to production within 3 months, decreasing fraudulent transactions by $2.5M annually for a digital payments client  
+- Conducted hands-on workshops on time series forecasting and explainable AI for client teams of 8-12, enhancing their internal capabilities and speeding up adoption of ML-driven insights  
+- Instituted best practices for data governance, version control, and reproducible workflows vital for compliance and audit requirements in regulated sectors  
+
+Silverstream Technologies  
+San Francisco, CA | Jul 2013 - Dec 2016  
+Senior Data Scientist / Team Lead (6 people) | Budget: $1.2M  
+- Led a team delivering advanced analytics and machine learning solutions to optimize supply chain operations, achieving a 40% reduction in inventory carrying costs and saving $2M annually  
+- Owned the design and deployment of a demand forecasting system using LSTM neural networks, improving forecast accuracy by 45% and decreasing stockouts by 30% across 3 product lines  
+- Collaborated closely with product managers, software engineers, and business stakeholders to align analytical solutions with business goals, accelerating project timelines by an average of 20%  
+- Instituted code review and mentoring programs that raised codebase quality and improved junior data scientists’ productivity, resulting in 3 promotions within the team  
+- Presented analytic insights and strategic recommendations quarterly to executive leadership, influencing product strategy with data-driven evidence and securing continued funding  
+- Piloted the integration of cloud-based ML workflows on AWS, reducing model training and deployment cycle times from weeks to days  
+
+Blue Horizon Analytics  
+New York, NY | Jun 2010 - Jun 2013  
+Data Scientist  
+- Developed customer lifetime value (CLV) models that guided targeted marketing campaigns, increasing campaign ROI by 35% and contributing to a $5M revenue uplift  
+- Automated data cleaning and pipeline processes for large-scale, multi-terabyte datasets, cutting manual data preparation time by 60% and enabling more frequent model updates  
+- Designed and implemented anomaly detection systems for telecommunications network data, identifying 95% of critical outages before customer complaints  
+- Collaborated with cross-functional teams to translate ambiguous business problems into quantifiable metrics and actionable insights, improving product feature prioritization  
+- Prepared detailed technical documentation and communicated complex statistical concepts to non-technical team members and stakeholders to foster collaborative problem solving  
+
+EDUCATION  
+
+Master of Science in Computer Science, specialization in Machine Learning  
+University of California, Berkeley | 2008 - 2010  
+
+Bachelor of Science in Statistics  
+University of Michigan | 2004 - 2008

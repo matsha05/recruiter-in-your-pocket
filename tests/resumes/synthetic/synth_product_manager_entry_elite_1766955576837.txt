@@ -1,0 +1,52 @@
+Olivia Turner  
+olivia.turner@email.com | (555) 321-8765 | LinkedIn: linkedin.com/in/oliviaturnerpm | Seattle, WA
+
+Experience
+
+Associate Product Manager  
+BrightWave Technologies, Seattle, WA  
+June 2022 - Present  
+- Led the end-to-end development and launch of a new B2B SaaS feature that increased monthly active users by 35% within 4 months, impacting 50,000+ customers.  
+- Partnered with a cross-functional team of 6 engineers and 2 designers to deliver product enhancements on a 3-month release cycle, improving user retention by 18%.  
+- Owned the product backlog and prioritized features based on user research and analytics, reducing support tickets by 22% through improved usability.  
+- Analyzed competitor offerings and market trends to define product positioning, contributing to a 12% growth in new customer acquisition in Q1 2023.  
+- Coordinated user acceptance testing and gathered feedback from 100+ beta users, accelerating product iteration speed and improving satisfaction scores by 15%.  
+- Managed communication and status updates with stakeholders across sales, marketing, and customer success teams, ensuring alignment and timely execution.
+
+Product Management Intern  
+Nova Health Solutions, Bellevue, WA  
+May 2021 - August 2021  
+- Supported the product team in refining the roadmap for a patient engagement mobile app used by 20,000+ users, driving a 10% increase in daily active users post-internship.  
+- Conducted user interviews and surveys with 75+ healthcare professionals and patients to identify pain points and prioritize feature development.  
+- Created detailed product requirement documents (PRDs) and user stories that reduced development ambiguity and improved sprint planning efficiency by 25%.  
+- Collaborated with data analysts to track key performance indicators (KPIs), presenting findings that influenced feature prioritization decisions.  
+- Assisted in preparing competitive analysis reports highlighting gaps and opportunities in telehealth software, informing go-to-market strategies.
+
+Research Assistant – Human-Computer Interaction Lab  
+University of Washington, Seattle, WA  
+September 2020 - May 2022  
+- Designed and tested prototype tools aimed at improving patient-doctor communication, impacting usability scores by 30% over baseline in laboratory studies.  
+- Led recruitment and scheduling for 60+ user study participants, ensuring diverse representation and rigorous data collection protocols.  
+- Coordinated with a team of 4 researchers to analyze qualitative and quantitative data, contributing to a peer-reviewed publication presented at CHI 2022.  
+- Developed and maintained project documentation, timelines, and presentation materials for weekly stakeholder updates.  
+- Facilitated brainstorming sessions that generated 8 new feature ideas, 3 of which were adopted for further development by industry partners.
+
+Skills  
+- Product Roadmap Planning & Prioritization  
+- Agile & Scrum Methodologies  
+- User Research & Usability Testing  
+- Data-Driven Decision Making (SQL, Google Analytics)  
+- Cross-Functional Team Collaboration  
+- Competitive Market Analysis  
+- Product Requirement Documentation  
+- Communication & Stakeholder Management  
+- Tools: Jira, Confluence, Figma, Tableau  
+
+Education
+
+Bachelor of Science in Information Science  
+University of Washington, Seattle, WA  
+Graduated June 2022  
+- Relevant coursework: Product Management, UX Design, Data Analytics, Human-Computer Interaction  
+- Dean’s List (2020-2022)  
+- Product Management Club member and volunteer coordinator for tech mentorship programs

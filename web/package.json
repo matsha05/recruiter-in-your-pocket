@@ -8,7 +8,19 @@
     "dev:webpack": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint . --max-warnings=0"
+    "lint": "eslint . --max-warnings=0",
+    "test:injection": "npx tsx tests/injection.test.ts",
+    "test:pii": "npx tsx tests/pii.test.ts",
+    "test:security": "npm run test:injection && npm run test:pii",
+    "eval": "npx tsx scripts/run-eval.ts",
+    "eval:dry-run": "npx tsx scripts/run-eval.ts --dry-run",
+    "eval:smoke": "npx tsx scripts/run-eval.ts --tier smoke --budget-usd 0.25",
+    "eval:golden": "npx tsx scripts/run-eval.ts --tier golden --budget-usd 2",
+    "eval:bulk": "npx tsx scripts/run-eval.ts --tier bulk --budget-usd 10",
+    "eval:generate": "npx tsx scripts/generate-corpus.ts",
+    "eval:import-hf": "npx tsx scripts/import-huggingface.ts",
+    "eval:import-opensporks": "npx tsx scripts/import-opensporks.ts",
+    "eval:bulk-analyze": "npx tsx scripts/bulk-analyze.ts"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.2.9",

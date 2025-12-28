@@ -1,0 +1,45 @@
+Samantha J. Reynolds  
+samantha.reynolds@email.com | 555-321-9876 | LinkedIn: linkedin.com/in/samanthajreynolds | Boston, MA
+
+Experience
+
+Product Manager  
+BlueScale Technologies, Boston, MA  
+July 2022 - Present  
+- Led cross-functional team of 6 engineers and designers to launch a SaaS analytics dashboard, delivering the MVP within a 5-month timeline and under $200K budget. Achieved 125% of target user engagement within first quarter, serving over 35,000 active users.  
+- Owned product roadmap prioritization using customer feedback and data analysis, increasing feature adoption by 40% and reducing churn rate by 12%.  
+- Coordinated A/B tests and user interviews, driving iterative improvements that boosted average session duration by 25%.
+
+Associate Product Manager Intern  
+Nexus Health Solutions, Cambridge, MA  
+June 2021 - August 2021  
+- Collaborated with product and engineering teams on a mobile app feature to enable appointment scheduling, resulting in a 30% growth in user bookings and 15% increase in overall app retention over three months.  
+- Managed backlog prioritization for a 3-person product team, streamlined sprint planning, and tracked KPIs to align product releases with business goals.  
+- Presented data-driven insights to stakeholders, supporting roadmap decisions that improved patient engagement metrics.
+
+Gap in Employment  
+August 2020 - May 2021  
+Focused on personal development and completed certified courses in Agile Product Management and Data Analytics. Used this period to build foundational skills and deepen understanding of user-centric design and product lifecycle management.
+
+Product Management Fellow  
+Innovatech Startup Accelerator, Boston, MA  
+January 2020 - July 2020  
+- Supported a startup team of 4 in refining their MVP for a B2B logistics platform, contributing to a 20% reduction in operational bottlenecks through feature enhancements.  
+- Led competitive analysis and customer segmentation efforts, informing go-to-market strategies that expanded potential user base by 30%.  
+- Facilitated weekly stakeholder meetings, improved communication flow, and documented product decisions to align team efforts.
+
+Education
+
+Bachelor of Science in Business Administration, Concentration in Marketing  
+Northeastern University, Boston, MA  
+Graduated May 2019
+
+Skills  
+- Product lifecycle management  
+- Agile & Scrum methodologies  
+- User research & data analysis (SQL, Tableau)  
+- Roadmap development and prioritization  
+- Cross-functional team leadership (4-6 members)  
+- A/B testing & metrics tracking  
+- Strong communication and stakeholder management  
+- Tools: Jira, Confluence, Asana, Google Analytics

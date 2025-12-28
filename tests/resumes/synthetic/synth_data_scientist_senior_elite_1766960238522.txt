@@ -1,0 +1,34 @@
+Meredith K. Lawson  
+meredith.lawson@email.com | (555) 321-9876 | San Francisco, CA | linkedin.com/in/meredithklawson  
+
+Data Scientist | Technical Lead | AI & Predictive Analytics Expert  
+
+Experience  
+
+Senior Data Scientist & Team Lead  
+OptiMed Analytics, San Francisco, CA  
+Feb 2018 - Present  
+- I led a cross-functional team of 8 data scientists and engineers to develop a predictive analytics platform for hospital readmission rates, reducing patient readmissions by 15% and saving partner hospitals over $3.2M annually.  
+- I architected and deployed machine learning models using Python (scikit-learn, TensorFlow) and Spark on AWS, improving model training time by 40% and enabling real-time decision support for 150K patients monthly.  
+- I mentored 5 junior data scientists, establishing best practices in data preprocessing, model validation, and production deployment that decreased model errors by 22% across projects within the first year.  
+
+Lead Data Scientist  
+FinEdge Technologies, New York, NY  
+July 2014 - Jan 2018  
+- I built and led a team of 4 data scientists in developing fraud detection algorithms that reduced transaction fraud by 35%, protecting $120M in annual client revenue.  
+- I decided to integrate GPU-accelerated deep learning models into the fraud pipeline using PyTorch, cutting false positives by 18% while maintaining a 98% detection rate.  
+- I collaborated closely with product and engineering teams to ship analytics dashboards used by 500+ compliance officers, improving fraud response times by 50%.  
+
+Data Scientist III  
+Greenway Retail Solutions, Chicago, IL  
+Aug 2012 - June 2014  
+- I designed and implemented customer segmentation models using clustering and decision trees that increased targeted marketing campaign ROI by 40%, driving $5M incremental revenue in 18 months.  
+- I led feature engineering initiatives on large retail datasets (10M+ transaction records) using SQL and R, reducing data processing times from hours to minutes and enabling faster insights.  
+- I partnered with marketing and sales leadership to deploy A/B testing frameworks, guiding product strategy that improved customer retention rates by 12%.  
+
+Data Scientist II  
+TechNova Software, Austin, TX  
+Jan 2010 - July 2012  
+- I developed predictive maintenance models for industrial IoT sensors, decreasing machine downtime by 25% and saving $2M annually through early fault detection.  
+- I implemented anomaly detection systems using time-series analysis and unsupervised learning techniques, contributing to a 30% reduction in unexpected equipment failures.  
+- I collaborated on Agile teams to integrate analytics solutions into customer-facing applications with a user base of 50K+, improving client satisfaction ratings by 15%.

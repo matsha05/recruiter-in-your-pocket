@@ -1,0 +1,48 @@
+Emily R. Thompson  
+emily.r.thompson@email.com | 555-321-9876 | LinkedIn: linkedin.com/in/emilyrthompson | Boston, MA
+
+Experience
+
+Data Scientist | BrightSky Analytics, Boston, MA  
+March 2021 - April 2023  
+- Supported multiple teams with developing predictive models for various business needs using Python and R  
+- Helped implement data preprocessing pipelines and assisted in troubleshooting model performance issues  
+- Contributed to mentoring junior data scientists by conducting code reviews and occasional training sessions  
+- Collaborated with stakeholders to gather requirements and translate them into data solutions  
+- Participated in cross-team meetings to share insights and improve project workflows  
+- Assisted in automating reporting tasks to improve data accessibility for non-technical team members  
+
+Senior Data Scientist | NovaTech Solutions, Cambridge, MA  
+July 2017 - February 2021  
+- Led technical efforts on several projects involving time series forecasting and classification models  
+- Helped design and maintain scalable data pipelines for handling customer and operational data  
+- Provided guidance and support to data science team members on best practices and model development  
+- Worked with engineering teams to integrate machine learning models into product features  
+- Contributed to data exploration and feature engineering activities for improving model inputs  
+- Assisted in preparing documentation and presentations for internal stakeholders and clients  
+
+Data Scientist II | HorizonSoft, Boston, MA  
+June 2014 - May 2016  
+- Supported analytics projects focused on customer segmentation and marketing campaign analysis  
+- Assisted with building and validating machine learning models using supervised learning techniques  
+- Participated in data cleaning and EDA efforts alongside more senior team members  
+- Collaborated with data engineers to improve data quality and availability  
+- Helped create visualizations and reports to communicate findings to business teams  
+- Engaged in team knowledge sharing and skill-building sessions  
+
+[Employment Gap]  
+June 2016 - June 2017  
+
+Data Scientist | ClearPath Technologies, Boston, MA  
+August 2010 - May 2014  
+- Contributed to various data analysis and predictive modeling initiatives in the financial services domain  
+- Supported the development of recommendation systems and risk assessment models  
+- Assisted in data gathering and feature selection efforts across multiple projects  
+- Helped troubleshoot model deployment and monitoring issues in collaboration with engineering  
+- Worked with project managers to prioritize data science tasks according to business goals  
+- Maintained clear communication with team members and stakeholders to ensure alignment  
+
+Education  
+Bachelor of Science in Computer Science  
+Northeastern University, Boston, MA  
+Graduated May 2010

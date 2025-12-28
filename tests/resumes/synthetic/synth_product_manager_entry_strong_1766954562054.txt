@@ -1,0 +1,51 @@
+Emma L. Carter  
+emma.carter@email.com | 555-214-6789 | LinkedIn: linkedin.com/in/emmacarterpm | Boston, MA  
+
+Experience  
+
+Product Manager  
+BrightWave Technologies, Boston, MA  
+June 2022 - Present  
+- Managed feature development for a SaaS platform aimed at small businesses, coordinating cross-functional teams to deliver three major releases within the first year.  
+- Conducted user research sessions and gathered feedback that helped prioritize the product backlog, improving user engagement metrics by an estimated 10%.  
+- Worked closely with engineering and design teams to define user stories and acceptance criteria, ensuring clarity and feasibility of deliverables.  
+- Collaborated with marketing for go-to-market planning, contributing to launch strategies and content creation.  
+- Monitored product usage data to identify trends and propose enhancements that aligned with company goals.  
+- Participated in sprint planning and retrospectives to continuously improve development processes.  
+
+Associate Product Manager Intern  
+NovaSoft Solutions, Cambridge, MA  
+May 2021 - August 2021  
+- Supported the product team in managing a customer support tool by assisting in roadmap planning and feature prioritization.  
+- Helped define KPIs and created dashboard reports that provided early insights into feature adoption rates.  
+- Coordinated with QA and development teams during the testing phase to ensure timely issue resolution.  
+- Assisted in drafting product requirement documents and user manuals.  
+- Conducted competitive analysis to identify market gaps and potential enhancements.  
+
+Product Analyst (Intern)  
+GreenLeaf Innovations, Boston, MA  
+January 2020 - May 2020  
+- Collaborated with the product manager on analyzing usage data and user feedback for a health monitoring app.  
+- Created presentations that summarized findings for stakeholders, influencing minor product adjustments.  
+- Helped maintain the product backlog and updated user stories based on ongoing feedback and performance metrics.  
+- Supported sprint planning by preparing documentation and tracking progress against goals.  
+
+Campus Project: Mobile App Product Lead  
+Boston University, Boston, MA  
+September 2019 - December 2019  
+- Led a team of five in designing a mobile app prototype aimed at improving campus safety communication.  
+- Conducted initial user interviews and incorporated key insights into feature prioritization.  
+- Defined project milestones and delegated tasks to ensure on-time delivery of prototype for presentation.  
+- Coordinated closely with developers and designers to iterate on user interface elements.  
+- Presented final prototype to faculty and peers, receiving positive feedback on usability and design.  
+
+Skills  
+- Product Lifecycle Management  
+- Agile & Scrum Methodologies  
+- User Story Writing & Backlog Grooming  
+- Data Analysis & Reporting (Excel, Google Analytics)  
+- User Research & Competitive Analysis  
+- Roadmap Development  
+- Jira, Confluence, Trello  
+- Cross-functional Team Collaboration  
+- Strong Communication & Presentation Skills

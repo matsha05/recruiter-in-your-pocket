@@ -1,0 +1,33 @@
+Evan M. Richards  
+evan.richards@email.com | (555) 321-9876 | Seattle, WA | linkedin.com/in/evanmrichards
+
+Professional Summary  
+Software engineer with over 4 years of experience building scalable web applications and backend services. Proven track record of independently owning key features and contributing to full product lifecycles in agile environments. Skilled at collaborating cross-functionally to deliver impactful solutions and improve system reliability.
+
+Experience  
+ClearPath Technologies, Seattle, WA  
+Software Engineer  
+Jan 2021 - Present  
+- Led the redesign of the user authentication module, improving login speed by 30% and reducing related support tickets by 15%.  
+- Collaborated with product and QA teams to ship multiple releases for a SaaS analytics platform used by over 10,000 customers.  
+- Improved backend API response times through code optimization and database indexing, contributing to a 20% reduction in latency.  
+
+Pinebrook Solutions, Bellevue, WA  
+Software Developer  
+Jun 2018 - Dec 2020  
+- Developed and maintained internal tools for data processing pipelines supporting daily batch jobs handling millions of records.  
+- Owned the integration of third-party APIs which expanded platform functionality and was directly used by the client success team.  
+- Worked closely with senior engineers to refactor legacy code, improving maintainability and reducing bug counts in production.  
+
+LuminaSoft, Redmond, WA  
+Junior Software Engineer  
+Jul 2017 - May 2018  
+- Assisted in building front-end modules using React and Redux for a customer portal.  
+- Contributed bug fixes and unit tests to improve overall product stability.  
+- Participated in sprint planning and code reviews, gaining exposure to agile practices and cross-team collaboration.  
+
+Skills  
+Languages: JavaScript (ES6+), Python, Java  
+Frameworks & Tools: React, Node.js, Express, RESTful APIs, SQL, Git, Docker, Jenkins  
+Development: Agile methodologies, TDD, CI/CD pipelines, Performance tuning  
+Other: Cloud services (AWS), Microservices architecture, Unit & integration testing

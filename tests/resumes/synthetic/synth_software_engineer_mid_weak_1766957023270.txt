@@ -1,0 +1,43 @@
+William T. Hanley
+william.hanley@email.com | 555-345-6789 | 1287 Maple Drive, Springfield, IL
+
+Experience
+
+Software Engineer
+Brighton Tech Solutions
+January 2021 - April 2024
+- Was responsible for developing software applications using Java and Python
+- Duties included writing code based on project requirements and fixing bugs
+- Participated in team meetings and collaborated with other developers
+- Assisted in testing software modules and documenting procedures
+- Worked on implementing features assigned by project leads
+- Used version control tools to manage code changes
+
+Junior Software Developer
+Greenfield Software Inc.
+July 2019 - December 2020
+- Involved in coding and maintaining software components
+- Supported senior developers with debugging and troubleshooting
+- Followed coding standards and guidelines during development
+- Took part in code reviews and team discussions
+- Helped with preparing technical documentation
+- Engaged in learning new programming techniques as directed
+
+Quality Assurance Tester
+Nova Systems
+September 2017 - June 2019
+- Executed software test cases based on quality guidelines
+- Reported issues and bugs found during testing to the development team
+- Assisted in maintaining test documentation and test plans
+- Coordinated with developers to ensure fixes were applied
+- Participated in regression testing cycles
+- Worked under supervision to understand testing processes
+
+Skills
+
+- Programming: Java, Python, SQL
+- Tools: Git, JIRA, Eclipse IDE
+- Testing: Manual testing, basic automation concepts
+- Familiar with Agile methodologies
+- Strong communication and teamwork abilities
+- Detail-oriented and results-driven team player

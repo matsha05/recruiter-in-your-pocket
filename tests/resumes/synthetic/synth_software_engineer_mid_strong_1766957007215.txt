@@ -1,0 +1,31 @@
+Emily R. Dawson  
+emily.dawson@email.com | 555-321-9876 | LinkedIn: linkedin.com/in/emilyrdawson | Seattle, WA  
+
+Professional Summary  
+Detail-oriented software engineer with over 4 years of experience developing scalable web applications and improving software quality. Proven ability to independently lead projects through full development lifecycle while collaborating closely with cross-functional teams. Seeking to leverage strong coding and problem-solving skills to contribute to innovative software solutions.
+
+Experience  
+
+TechVanta Solutions, Seattle, WA  
+Software Engineer | March 2020 - Present  
+- Owned development and maintenance of customer-facing portal features, improving user engagement by streamlining workflows and reducing load times by 25%.  
+- Collaborated with QA and product teams to implement automated unit and integration tests, increasing release stability and reducing post-launch bugs by 15%.  
+- Participated in code reviews and provided mentorship to junior developers, enhancing overall code quality and team productivity.  
+
+BlueStream Digital, Bellevue, WA  
+Software Engineer | June 2018 - February 2020  
+- Developed back-end APIs supporting mobile and web apps, contributing to a 20% growth in active users through improved service reliability and response times.  
+- We worked on migrating legacy authentication systems to OAuth2, enhancing user security and compliance with updated standards.  
+- Assisted with performance tuning and bug fixes on existing systems, ensuring smooth operations during peak usage periods.  
+
+Blink Interactive, Redmond, WA  
+Junior Software Engineer | January 2017 - May 2018  
+- Implemented new UI components and fixed bugs in a SaaS platform used by small businesses, gaining early experience in front-end development and agile practices.  
+- Collaborated with designers and QA to triage and resolve client-reported issues, improving customer satisfaction.  
+
+Skills  
+- Languages: Java, JavaScript (React, Node.js), Python  
+- Tools & Frameworks: REST APIs, Git, Jenkins, Docker, AWS  
+- Testing: JUnit, Selenium, Mockito  
+- Agile methodologies, Continuous Integration/Continuous Deployment (CI/CD)  
+- Strong problem-solving, collaboration, and effective communication skills

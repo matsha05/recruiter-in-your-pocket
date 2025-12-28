@@ -1,0 +1,40 @@
+Lucas M. Harding  
+lucas.harding@email.com | 555-914-3782 | linkedin.com/in/lucasharding | Seattle, WA  
+
+Experience  
+
+Innovatech Solutions, Seattle, WA  
+Software Engineer  
+Feb 2021 - Present  
+- Led development of a scalable RESTful API for the company’s flagship B2B SaaS platform, improving data retrieval speeds by approximately 30%.  
+- Independently designed and implemented a new microservice handling payment processing, reducing errors by 25% during peak periods.  
+- Collaborated with cross-functional teams to migrate legacy systems to cloud-based architecture, contributing to a system uptime increase from 95% to 99.8%.  
+- Participated in sprint planning and code reviews, mentoring junior developers and advocating for best coding practices.  
+- Worked closely with product managers to define feature requirements and translate business needs into technical designs.  
+- Utilized monitoring tools to identify and resolve critical bugs, minimizing downtime and enhancing user experience.  
+
+BlueSky Interactive, Portland, OR  
+Software Engineer  
+Jan 2018 - Jan 2021  
+- Developed and maintained web applications using JavaScript and Node.js, supporting a user base of over 50,000 monthly active users.  
+- Took ownership of the customer notification subsystem, increasing delivery rates by refining message queue handling and retry logic.  
+- Collaborated in a team of 6 engineers following Agile methodologies; contributed to sprint demos and retrospectives.  
+- Implemented unit and integration tests, improving code coverage and reducing production incidents.  
+- Assisted in the rollout of a new front-end framework, helping the team transition with minimal disruption.  
+- Gathered user feedback and incorporated it into iterative feature improvements.  
+
+TechEdge Solutions, Bellevue, WA  
+Junior Software Developer  
+Jun 2016 - Dec 2017  
+- Supported development of internal tools for data processing and reporting using Python and SQL.  
+- Worked under senior developers to resolve bugs and implement minor feature enhancements across multiple projects.  
+- Documented code and wrote technical guides for non-engineering stakeholders.  
+- Participated in daily standups and contributed ideas during team design discussions.  
+- Contributed to automation scripts that reduced manual testing time by about 15%.  
+
+Skills  
+Programming Languages: Java, JavaScript (Node.js, React), Python, SQL  
+Technologies & Frameworks: REST APIs, Microservices, AWS, Docker, Kubernetes, Git, Agile/Scrum  
+Testing: Unit Testing, Integration Testing, Test-Driven Development (TDD)  
+Tools: Jenkins, Jira, Postman, New Relic, Grafana  
+Methodologies: Agile, Continuous Integration/Continuous Deployment (CI/CD)

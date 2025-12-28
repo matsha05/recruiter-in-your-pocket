@@ -1,0 +1,49 @@
+Evelyn R. Harper  
+evelyn.harper@email.com | 555-321-8765 | LinkedIn: linkedin.com/in/evelynrharper | Seattle, WA
+
+Professional Summary  
+Results-driven software engineer with over 4 years of experience designing and delivering scalable web applications and services. Skilled at independently managing components of complex projects and collaborating with cross-functional teams to improve system reliability and performance. Recently returned to the workforce following a dedicated family caregiving break and eager to apply strong technical and problem-solving skills in a dynamic engineering team.
+
+Experience  
+
+Software Engineer  
+NovaTech Solutions, Seattle, WA  
+June 2019 - August 2022  
+- Led the development and deployment of a customer analytics dashboard that improved user engagement insights, contributing to a 10% increase in client retention.  
+- Independently owned several backend microservices, ensuring 99.9% uptime and improving API response times by approximately 20%.  
+- Collaborated with frontend developers and product managers to define and implement new features, streamlining workflows and reducing manual data entry by 30%.  
+- Conducted code reviews and mentored junior developers, elevating team coding standards and reducing bugs in production releases.  
+- Participated in sprint planning and retrospectives, helping the team to improve delivery predictability.  
+- Contributed to migration efforts from legacy monolithic architecture to a cloud-native environment using AWS.
+
+Software Developer  
+BrightWave Technologies, Bellevue, WA  
+January 2018 - May 2019  
+- Worked on a team developing web-based tools for enterprise clients, focusing on backend development with Java and Spring Boot.  
+- Implemented RESTful API endpoints and database queries that supported user management and reporting features.  
+- Assisted in writing automated test cases, boosting test coverage by roughly 15%.  
+- Helped troubleshoot and fix production issues, regularly collaborating with customer support to resolve client problems efficiently.  
+- Participated in daily standups and sprint planning, contributing to better estimation and prioritization of tasks.  
+- Supported deployment pipelines, occasionally managing staging environments.
+
+Career Break for Family Caregiving  
+September 2022 - April 2024  
+- Took a planned career pause to provide full-time care and support for family members.  
+- Maintained technical skills through online coursework and personal projects, preparing for a return to software engineering.
+
+Junior Software Developer  
+ClearPath Innovations, Redmond, WA  
+July 2016 - December 2017  
+- Assisted in developing internal tools for data processing and reporting using Python and JavaScript.  
+- Collaborated with senior engineers to build features that optimized business workflows.  
+- Supported QA efforts by creating and executing manual test cases.  
+- Engaged in code reviews and team knowledge-sharing sessions.  
+- Helped maintain documentation for application APIs and user guides.  
+
+Skills  
+- Programming Languages: Java, Python, JavaScript, SQL  
+- Frameworks & Tools: Spring Boot, React, AWS (EC2, Lambda), Docker, Jenkins  
+- Databases: MySQL, PostgreSQL  
+- Practices: RESTful API design, Agile/Scrum, TDD, Continuous Integration/Delivery  
+- Version Control: Git, GitHub  
+- Strong problem-solving, communication, and project ownership abilities

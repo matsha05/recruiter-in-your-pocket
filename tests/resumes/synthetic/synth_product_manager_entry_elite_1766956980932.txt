@@ -1,0 +1,42 @@
+Olivia Bennett  
+olivia.bennett@email.com | 555-214-7890 | LinkedIn: linkedin.com/in/oliviabennettpm | Boston, MA
+
+Product Manager  
+January 2022 - Present  
+BrightWave Technologies, Boston, MA
+
+- Led the end-to-end product development for BrightWave’s flagship B2B analytics dashboard, managing a cross-functional team of 5 engineers and 2 designers over a 9-month timeline; launched to 250,000 users, resulting in a 30% increase in user engagement within the first quarter.  
+- Owned the product backlog and prioritized features based on client feedback and competitive analysis, which improved customer retention by 18% year-over-year.  
+- Collaborated with sales and marketing to define go-to-market strategies that contributed to a 25% revenue growth for the analytics product line in 2022.  
+- Established KPIs and utilized data analytics tools (Mixpanel, Tableau) to track feature adoption and identify opportunities that reduced customer churn by 10%.  
+- Drove stakeholder alignment through weekly demos and progress reports, enhancing transparency and reducing scope creep by 15%.  
+
+Associate Product Manager Intern  
+June 2021 - December 2021  
+EcoDrive Solutions, Cambridge, MA
+
+- Participated in the launch of a mobile app targeting eco-conscious drivers, contributing to product requirement documentation and user story mapping for a team of 3 PMs and 6 developers under an Agile framework.  
+- Conducted user interviews and synthesized feedback from over 100 participants, which informed a redesign of the trip summary page, leading to a 22% increase in feature usage post-launch.  
+- Coordinated with data science to integrate real-time fuel efficiency metrics, speeding up data refresh rates by 40%, which enhanced user satisfaction scores.  
+- Supported sprint planning and backlog grooming sessions, learning prioritization trade-offs and iterative delivery on a bi-weekly cadence.  
+- Assisted in designing A/B tests that improved sign-up conversion rates by 12% over a 3-month period.  
+
+Product Management Intern  
+May 2020 - August 2020  
+Verve Health, Boston, MA
+
+- Supported the product team during the COVID-19 pandemic by researching telehealth market trends and competitor offerings, helping shape a new virtual care feature roadmap.  
+- Created detailed product requirement documents (PRDs) and functional specs for a symptom tracking module, translating clinical requirements for the engineering team of 4 developers.  
+- Conducted usability testing sessions with 30+ users and compiled reports that led to UI improvements, reducing user errors by 25%.  
+- Collaborated with QA teams on test case development, resulting in a 15% decrease in post-release bugs.  
+- Presented weekly progress and findings to senior leadership, sharpening communication skills in technical and business contexts.  
+
+Undergraduate Research Assistant — Human-Computer Interaction Group  
+September 2018 - December 2019  
+Northeastern University, Boston, MA
+
+- Assisted in designing and testing a gesture-based mobile interface for elderly users, conducting data collection with 50 participants and analyzing results with SPSS.  
+- Contributed to a published paper highlighting usability improvements, gaining skills in user-centered design and research methodologies.  
+- Coordinated project timelines and team meetings, supporting efficient work output for a 4-person research group.  
+- Developed wireframes and low-fidelity prototypes to test concepts before software development.  
+- Presented findings at the university’s annual research symposium, enhancing public speaking and presentation skills.

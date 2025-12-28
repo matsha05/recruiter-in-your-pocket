@@ -1,0 +1,41 @@
+Emily Harper
+emily.harper@email.com | (555) 321-9876 | linkedin.com/in/emily-harper | Boston, MA
+
+Product Manager
+
+Experience
+
+Junior Product Manager | ClearWave Technologies, Boston, MA
+June 2022 - Present
+- Led a cross-functional team of 5 engineers and designers to launch the ClearWave Mobile App within a 6-month timeline, resulting in 150,000 downloads and a 4.5-star average rating.
+- Owned backlog prioritization and user story definition for a new feature that increased user engagement by 25%, contributing to a 12% growth in subscription revenue in the first quarter post-launch.
+- Collaborated with data analytics and marketing teams to analyze user behavior, resulting in a product roadmap adjustment that reduced churn by 10% over 3 months.
+
+Product Management Intern | NexaHealth, Cambridge, MA
+June 2021 - August 2021
+- Supported the product team on a $500K budget digital health platform project aimed at improving patient-provider communication, which increased appointment adherence rates by 15%.
+- Conducted competitive analysis and user interviews with 30+ participants, delivering insights that influenced prioritization of three key features in the platform’s MVP.
+- Assisted in coordinating sprint planning and release schedules, improving overall development cycle efficiency by 20%.
+
+Project Coordinator | Boston University Innovation Lab, Boston, MA
+September 2020 - May 2022
+- Managed timeline and stakeholder communications for an 8-person student team developing a prototype SaaS product for campus services, presenting biweekly progress to faculty advisors.
+- Implemented a feature tracking system that improved team workflow transparency and resulted in on-time delivery of the MVP with 90% of planned features.
+- Facilitated user testing sessions with 50+ students and iteratively refined product requirements based on feedback, increasing user satisfaction scores from 3.2 to 4.1 out of 5.
+
+Skills
+- Product Roadmapping & Prioritization
+- Agile & Scrum Methodologies
+- Data-Driven Decision Making (SQL, Google Analytics)
+- User Research & Persona Development
+- Cross-functional Team Leadership (5-8 members)
+- Competitive Market Analysis
+- JIRA, Confluence, Trello
+- UX/UI Collaboration
+- Communication & Stakeholder Management
+
+Education
+
+Bachelor of Science in Business Administration, Concentration in Technology Management
+Boston University, Boston, MA
+Graduated May 2022

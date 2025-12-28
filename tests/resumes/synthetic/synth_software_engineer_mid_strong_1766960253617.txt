@@ -1,0 +1,32 @@
+Liam K. Foster  
+liam.foster@email.com | 555-782-0194 | linkedin.com/in/liamkfoster | Seattle, WA
+
+Software Engineer  
+Jan 2020 - Present  
+Nexera Solutions, Seattle, WA
+
+- Led development of a customer analytics dashboard using React and Node.js, improving user engagement by approximately 15% within the first quarter post-launch.  
+- Owned backend API design and implementation for a new product feature supporting data ingestion from multiple sources, reducing processing time by 30%.  
+- Collaborated with cross-functional teams to refactor legacy codebase, improving system maintainability and cutting average bug resolution time by 25%.  
+- Participated in sprint planning and code reviews, providing technical mentorship to junior engineers on best practices and design patterns.  
+- Implemented automated testing pipelines using Jest and Cypress, increasing test coverage from 55% to nearly 80%, which helped catch critical defects earlier.  
+
+Software Engineer  
+Jun 2017 - Dec 2019  
+VerdaTech Inc., Bellevue, WA
+
+- Developed key modules of an IoT device management platform in Java and Spring Boot, supporting scalability for thousands of concurrent devices.  
+- Collaborated with QA and product teams to design integration tests and improve CI/CD workflows, reducing deployment downtime by 20%.  
+- Provided support for production issues and contributed bug fixes with an average turnaround of 24 hours, improving system reliability.  
+- Enhanced data processing routines using Kafka streams, contributing to a more resilient and real-time data pipeline.  
+- Worked within an agile team environment, actively contributing to sprint retrospectives and backlog grooming sessions.  
+
+Software Developer  
+Aug 2015 - May 2017  
+Brightwave Technologies, Redmond, WA
+
+- Contributed to the development of a cloud-based financial reporting tool with Python and Django, enhancing data export features used by over 500 corporate clients.  
+- Implemented RESTful APIs to integrate external services, improving customer workflow automation and reducing manual entry errors.  
+- Collaborated on UI improvements using AngularJS, leading to a more intuitive user interface and better customer feedback scores.  
+- Assisted in migrating portions of the application to AWS infrastructure, enabling smoother scalability during peak usage.  
+- Participated in pair programming sessions to share knowledge and reduce onboarding time for new hires.

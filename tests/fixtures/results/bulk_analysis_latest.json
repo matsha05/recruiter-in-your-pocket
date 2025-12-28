@@ -1,0 +1,2666 @@
+{
+  "timestamp": "2025-12-28T22:54:28.924Z",
+  "source": "synthetic",
+  "count": 50,
+  "results": [
+    {
+      "resumeId": "synth_product_manager_entry_elite_1766960213959",
+      "score": 82,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references and excerpts.",
+          "Actionable rewrites and top fixes provide concrete wording and specific metrics to add or clarify.",
+          "Tone is professional, direct, and aligned with recruiter expectations for early-career product managers.",
+          "Feedback focuses on clarity, impact, and first-impression signal improvements consistent with the 6-second model."
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of prioritizing the most impactful fixes first to better align with recruiter time constraints.",
+          "Some suggestions could be slightly more concise to mirror the brevity recruiters prefer."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_software_engineer_mid_strong_1766960214520",
+      "score": 82,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9.3,
+        "issues": [],
+        "strengths": [
+          "Feedback cites multiple exact phrases from the resume with section references.",
+          "Suggestions include concrete tokens such as team sizes, user base numbers, and specific metrics to add.",
+          "Tone is professional, direct, and clearly from a recruiter perspective with actionable rewrite examples.",
+          "Feedback aligns well with the 6-second signal model by focusing on clarity, scale, and impact to improve first impressions."
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of prioritizing the most impactful fixes first to better reflect recruiter triage.",
+          "Minor improvement in explicitly calling out noise reduction in some verbose bullets would enhance methodology alignment."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_data_scientist_senior_foundation_1766960213700",
+      "score": 68,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites multiple exact phrases from the resume with section references.",
+          "Suggestions include concrete examples with placeholders for metrics and specific numbers.",
+          "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
+          "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+          "Includes a top fixes section and next steps, enhancing usability."
+        ],
+        "improvement_areas": [
+          "Could add even more explicit line references for each bullet suggestion to maximize evidence clarity.",
+          "Some rewrite suggestions use placeholders like [X%] which require user input; adding example ranges might improve actionability.",
+          "Minor opportunity to emphasize prioritization of fixes by recruiter signal impact more explicitly."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_ux_designer_director_weak_1766960211983",
+      "score": 68,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9.3,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume phrases with section references",
+          "Provides concrete rewrite examples with placeholders for metrics",
+          "Clear top fixes section with evidence and impact explanations",
+          "Focuses on clarity, impact, and ownership aligned with recruiter perspective",
+          "Professional tone with direct, actionable advice"
+        ],
+        "improvement_areas": [
+          "Could include more explicit mention of 6-second scan methodology",
+          "Minor opportunity to emphasize prioritization of fixes by recruiter signal impact"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_marketing_manager_vp_elite_1766960221358",
+      "score": 90,
+      "judgeResult": {
+        "evidence_score": 10,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9.5,
+        "issues": [],
+        "strengths": [
+          "Every suggestion is grounded in specific resume excerpts with clear line references.",
+          "Suggestions include concrete, implementable changes such as adding baseline metrics, time frames, and clarifying personal ownership.",
+          "The tone is professional, detailed, and reads like feedback from an experienced recruiter.",
+          "The feedback focuses on improving first impressions by clarifying impact and reducing noise, aligning well with the 6-second signal model."
+        ],
+        "improvement_areas": [
+          "Tone could be slightly more direct and concise in some places to fully emulate a senior recruiter voice.",
+          "The methodology alignment is strong but could explicitly mention the importance of signal vs noise in the summary section."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_operations_manager_entry_strong_1766960228842",
+      "score": 75,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9.3,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume phrases and sections, e.g., 'Assisted in implementing a new warehouse management system' and 'reducing errors by approximately 15%'",
+          "Provides concrete rewrite examples with exact original and improved bullet points",
+          "Includes a clear top fixes section with evidence excerpts and rationale",
+          "Tone is professional, direct, and recruiter-focused with actionable advice",
+          "Focuses on clarifying personal ownership, measurable impact, and first impression clarity aligning with 6-second signal model"
+        ],
+        "improvement_areas": [
+          "Could slightly increase emphasis on prioritizing fixes from a recruiter's first-glance perspective",
+          "Minor formatting truncation in the last section review text could be improved for completeness"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_sales_executive_mid_foundation_1766960226693",
+      "score": 62,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts for each suggestion",
+          "Provides concrete rewrite examples with placeholders for numbers",
+          "Includes a clear top fixes section with evidence and impact levels",
+          "Focuses on measurable outcomes and personal ownership to improve signal",
+          "Tone is professional, direct, and aligned with recruiter perspective",
+          "Feedback emphasizes first impression and clarity of impact"
+        ],
+        "improvement_areas": [
+          "Could add a brief note on prioritizing the summary rewrite first for better 6-second impact",
+          "Some rewrite suggestions could include example numeric ranges to further aid actionability"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_finance_analyst_senior_weak_1766960226810",
+      "score": 65,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references",
+          "Provides concrete rewrite examples with specific improvements",
+          "Feedback is professional, direct, and recruiter-focused",
+          "Focuses on clarifying impact, ownership, and measurable outcomes aligned with 6-second signal model"
+        ],
+        "improvement_areas": [
+          "Could include line numbers or more precise location references for evidence",
+          "Some suggestions could be even more quantified (e.g., exact metrics to add)",
+          "Tone is strong but could be slightly more concise in places"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_hr_manager_director_elite_1766960229845",
+      "score": 87,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume phrases and lines, e.g., HRIS implementation bullet and team sizes.",
+          "Suggestions include concrete rewrites with exact wording improvements and timeline additions.",
+          "Tone is professional, direct, and aligned with recruiter expectations for senior HR roles.",
+          "Focuses on clarity, impact, and first impression signals such as adding a summary headline.",
+          "Includes a top fixes section with prioritized, evidence-backed recommendations."
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment.",
+          "Some suggestions could be slightly more concise to enhance quick recruiter readability."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_project_manager_vp_strong_1766960228680",
+      "score": 78,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume lines with excerpts and line references",
+          "Provides concrete rewrite examples with exact wording improvements",
+          "Clear top fixes section with evidence and impact levels",
+          "Focuses on metrics, clarity, ownership, and scope which align with recruiter priorities",
+          "Tone is professional, direct, and recruiter-aware without buzzwords"
+        ],
+        "improvement_areas": [
+          "Could include slightly more explicit mention of 6-second scan impact",
+          "Some suggestions could be even more granular on how to split complex bullets"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_product_manager_entry_foundation_1766960233921",
+      "score": 68,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references.",
+          "Provides concrete rewrite examples with specific numbers and clearer roles.",
+          "Tone is professional, direct, and aligned with recruiter expectations.",
+          "Focuses on clarifying ownership, adding metrics, and improving first impressions per 6-second signal model.",
+          "Includes a top fixes section with prioritized, actionable recommendations."
+        ],
+        "improvement_areas": [
+          "Could include line numbers for even clearer evidence referencing.",
+          "Some suggestions could be slightly more concise to enhance readability."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_software_engineer_mid_weak_1766960233928",
+      "score": 62,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references.",
+          "Provides concrete rewrite examples with specific improvements.",
+          "Clear top fixes section with prioritized, evidence-backed recommendations.",
+          "Tone is professional, direct, and recruiter-focused.",
+          "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions."
+        ],
+        "improvement_areas": [
+          "Could include more explicit mention of passive language as a red flag.",
+          "Some suggestions could add even more precise numeric targets (e.g., exact team sizes or metrics)."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_data_scientist_senior_elite_1766960238522",
+      "score": 89,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite specific resume excerpts with line references",
+          "Provides concrete, actionable rewrites with specific tokens like time frames and scope",
+          "Tone is professional, direct, and recruiter-like with clear prioritization",
+          "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions"
+        ],
+        "improvement_areas": [
+          "Could include more explicit mention of prioritizing signal over noise in the summary",
+          "Some suggestions could be slightly more concise to match recruiter quick-scan preferences"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_ux_designer_director_strong_1766960238902",
+      "score": 83,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references",
+          "Provides concrete rewrite examples with specific numbers and scope details",
+          "Tone is professional, direct, and aligned with recruiter expectations",
+          "Focuses on clarifying impact and leadership signals to improve first impressions",
+          "Includes a clear top fixes section and next steps for actionable improvements"
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+          "Some suggestions could add even more precise numeric targets (e.g., exact budget amounts)",
+          "Summary fix advice could be more concise to model the recommended style"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_marketing_manager_vp_foundation_1766960235984",
+      "score": 65,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 10,
+        "penalty_points": 0,
+        "final_score": 9.5,
+        "issues": [],
+        "strengths": [
+          "Feedback cites multiple exact phrases from the resume with section references",
+          "Provides concrete rewrite examples with specific numbers and clarifications",
+          "Top fixes and next steps are actionable and clearly prioritized",
+          "Tone is professional, direct, and recruiter-focused",
+          "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and measurable results"
+        ],
+        "improvement_areas": [
+          "Could include slightly more explicit mention of prioritizing first impression impact in summary",
+          "Minor opportunity to emphasize removing vague or generic phrases explicitly"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_operations_manager_entry_weak_1766960246467",
+      "score": 58,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume lines such as 'Was responsible for assisting with daily operational tasks.'",
+          "Provides concrete rewrite examples with clear improvements.",
+          "Includes a top fixes section with prioritized, actionable advice.",
+          "Focuses on measurable impact, active language, and clarity aligned with recruiter expectations.",
+          "Tone is professional, direct, and recruiter-focused without generic buzzwords."
+        ],
+        "improvement_areas": [
+          "Could include line numbers or more precise references for evidence to reach a perfect evidence score.",
+          "Some suggestions could be even more quantified with exact numeric targets (e.g., 'Add numbers like team size or project counts')."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_sales_executive_mid_elite_1766960246179",
+      "score": 87,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite specific resume lines with excerpts and section references.",
+          "Provides concrete rewrite examples with exact wording improvements and rationale.",
+          "Feedback is professional, direct, and aligned with recruiter expectations.",
+          "Focuses on clarity, impact, and signal-to-noise improvements consistent with 6-second scan methodology.",
+          "Includes a prioritized top fixes section and clear next steps for implementation."
+        ],
+        "improvement_areas": [
+          "Could include more explicit line references for every suggestion to maximize evidence grounding.",
+          "Some suggestions could add even more precise numeric targets for time frames or team sizes if known.",
+          "Tone is strong but could be slightly more concise in some explanations to mimic recruiter brevity."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_finance_analyst_senior_strong_1766960243337",
+      "score": 78,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with line references",
+          "Provides concrete rewrite examples with specific tokens to improve clarity and impact",
+          "Tone is professional, direct, and aligned with recruiter expectations",
+          "Feedback focuses on improving first impressions by clarifying scope, ownership, and measurable impact"
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of the 6-second scan methodology to strengthen methodology alignment",
+          "Some suggestions could be even more granular with exact numbers to add (e.g., 'X departments' or '% improvements')",
+          "Minor repetition in rewrite suggestions could be consolidated for brevity"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_hr_manager_director_foundation_1766960245321",
+      "score": 72,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with line references or excerpts.",
+          "Provides concrete rewrite examples with specific tokens to improve clarity and impact.",
+          "Tone is professional, direct, and aligned with recruiter expectations.",
+          "Feedback focuses on first impressions and signal vs noise by emphasizing measurable outcomes and clarity.",
+          "Includes a top fixes section and next steps that are actionable and prioritized."
+        ],
+        "improvement_areas": [
+          "Could include more explicit mention of the 6-second scan methodology to strengthen methodology alignment.",
+          "Some suggestions could add even more precise numeric examples (e.g., ranges) to boost actionability further."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_project_manager_vp_weak_1766960242760",
+      "score": 55,
+      "judgeResult": {
+        "evidence_score": 10,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 10,
+        "penalty_points": 0,
+        "final_score": 9.75,
+        "issues": [],
+        "strengths": [
+          "Every suggestion is grounded in specific resume excerpts with clear line references.",
+          "Feedback includes concrete rewrite examples with specific numbers and clarifications.",
+          "Tone is professional, direct, and aligned with recruiter expectations.",
+          "Feedback focuses on first impressions, signal vs noise, and recruiter decision-making.",
+          "Includes a top fixes section and prioritized next steps for immediate improvements."
+        ],
+        "improvement_areas": [
+          "Tone could be slightly more conversational to feel less formal and more human.",
+          "Could include a brief note on formatting or visual hierarchy to further improve first impression."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_product_manager_entry_elite_1766960255028",
+      "score": 82,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with line references or excerpts.",
+          "Suggestions are concrete and actionable, including specific metrics and wording improvements.",
+          "Tone is professional, detailed, and reads like feedback from an experienced recruiter.",
+          "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions."
+        ],
+        "improvement_areas": [
+          "Could include a brief explicit mention of prioritizing signal over noise in the summary feedback.",
+          "Minor opportunity to make some rewrite suggestions even more concise for quick recruiter scanning."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_software_engineer_mid_strong_1766960253617",
+      "score": 82,
+      "judgeResult": {
+        "evidence_score": 10,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 10,
+        "penalty_points": 0,
+        "final_score": 9.75,
+        "issues": [],
+        "strengths": [
+          "Every suggestion is grounded in exact resume excerpts with line references.",
+          "Feedback includes very specific, actionable rewrite examples with concrete metrics and scope improvements.",
+          "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
+          "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+          "Includes a top fixes section and next steps that are practical and prioritized."
+        ],
+        "improvement_areas": [
+          "Tone could be slightly more conversational to feel less formal and more human, but still very strong.",
+          "Could explicitly call out the importance of removing any ambiguous or blended achievement phrasing to sharpen signal further."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_data_scientist_senior_foundation_1766960251810",
+      "score": 72,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite specific resume excerpts with line references",
+          "Provides concrete rewrite examples with placeholders for metrics and scope",
+          "Feedback is professional, direct, and aligned with recruiter expectations",
+          "Focuses on improving signal by clarifying impact, ownership, and measurable outcomes",
+          "Includes a clear top fixes section with evidence and impact levels"
+        ],
+        "improvement_areas": [
+          "Could include even more explicit line references for every suggestion",
+          "Some suggestions could specify exact numbers or ranges to try",
+          "Tone is strong but could be slightly more concise in places"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_ux_designer_director_weak_1766960254328",
+      "score": 65,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume phrases with section references, e.g., 'Duties included managing a small team of designers.'",
+          "Provides concrete rewrite examples with suggested metrics and active language.",
+          "Tone is professional, direct, and recruiter-focused, emphasizing clarity and impact.",
+          "Focuses on first impression issues like vague language, passive voice, and missing metrics aligned with 6-second signal model."
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of prioritizing the most impactful bullets for immediate recruiter scanning.",
+          "Minor improvement could be made by explicitly referencing the 6-second rule in the feedback text."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_marketing_manager_vp_elite_1766960259324",
+      "score": 88,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references.",
+          "Provides concrete rewrite examples with specific improvements.",
+          "Top fixes are clearly linked to resume excerpts and explain recruiter rationale.",
+          "Tone is professional, direct, and reflects recruiter perspective.",
+          "Feedback focuses on clarity, impact, and first impression signals."
+        ],
+        "improvement_areas": [
+          "Could include line numbers or more precise location references for evidence.",
+          "Some suggestions could be even more granular on how to split complex bullets.",
+          "Minor truncation in the 'next_steps' section reduces completeness."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_product_manager_entry_elite_1766960269281",
+      "score": 85,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references.",
+          "Actionable advice includes specific tokens like adding time frames, splitting bullets, and adding a summary.",
+          "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
+          "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impressions."
+        ],
+        "improvement_areas": [
+          "Could include more explicit mention of prioritizing the strongest 6-second signals in the summary advice.",
+          "Some rewrite suggestions could be slightly more concise to better model ideal bullet style."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_software_engineer_mid_strong_1766960267437",
+      "score": 82,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references",
+          "Provides concrete rewrite examples with measurable metrics and scope",
+          "Tone is professional, direct, and recruiter-focused",
+          "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions",
+          "Includes a top fixes section with prioritized, actionable recommendations"
+        ],
+        "improvement_areas": [
+          "Could include line numbers for even more precise evidence grounding",
+          "Some suggestions could be slightly more concise to enhance quick recruiter scanning"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_data_scientist_senior_foundation_1766960267149",
+      "score": 72,
+      "judgeResult": {
+        "evidence_score": 10,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 10,
+        "penalty_points": 0,
+        "final_score": 9.75,
+        "issues": [],
+        "strengths": [
+          "Every suggestion is grounded in specific resume excerpts with clear line references.",
+          "Actionable rewrites and top fixes provide concrete, implementable advice with examples.",
+          "Tone is professional, direct, and aligned with recruiter expectations.",
+          "Feedback focuses on first impressions, signal clarity, and reducing noise per the 6-second model."
+        ],
+        "improvement_areas": [
+          "Tone could be slightly more concise in some sections to mimic recruiter brevity.",
+          "Could include a brief note on formatting or visual hierarchy to further improve first impressions."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_ux_designer_director_weak_1766960265630",
+      "score": 68,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts to support suggestions, e.g., 'Was responsible for overseeing UX design projects and managing design teams'.",
+          "Provides concrete rewrite examples with exact original phrases and improved versions.",
+          "Includes a clear 'top fixes' section with evidence and impact levels.",
+          "Tone is professional, direct, and aligned with recruiter expectations.",
+          "Focuses on improving signal by emphasizing measurable outcomes, scope, and ownership.",
+          "Addresses the caregiving gap explanation and missing skills section explicitly."
+        ],
+        "improvement_areas": [
+          "Could include line or bullet number references for even clearer evidence grounding.",
+          "Some suggestions could add even more precise numeric targets (e.g., suggest exact team sizes or metric ranges).",
+          "Minor opportunity to explicitly mention 6-second resume scan methodology in the rationale."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_marketing_manager_vp_elite_1766960281070",
+      "score": 88,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references.",
+          "Provides concrete rewrite examples with specific tokens like team sizes, time frames, and measurable outcomes.",
+          "Tone is professional, direct, and aligned with recruiter expectations for senior marketing roles.",
+          "Feedback clearly focuses on improving signal clarity and impact for quick recruiter scanning.",
+          "Includes a top fixes section prioritizing high-impact, moderate-effort changes."
+        ],
+        "improvement_areas": [
+          "Could include line numbers or more precise location references for evidence excerpts.",
+          "Some suggestions could add even more specificity on how to quantify partnership impact (e.g., suggesting possible metrics).",
+          "The feedback could explicitly mention the 6-second scan model terminology to strengthen methodology alignment."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_operations_manager_entry_strong_1766960286953",
+      "score": 72,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume lines and phrases, e.g., 'Supported senior managers by generating weekly KPI reports...'",
+          "Provides concrete rewrite examples with exact original and improved text",
+          "Clear top fixes section with evidence excerpts and impact/effort ratings",
+          "Tone is professional, direct, and recruiter-focused",
+          "Focuses on clarifying personal impact, metrics, and scope to improve 6-second signal"
+        ],
+        "improvement_areas": [
+          "Could include line references or bullet numbers for even clearer evidence grounding",
+          "Some suggestions could add even more precise numeric targets (e.g., replace [X%] placeholders)",
+          "Minor repetition in phrasing could be tightened for brevity"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_sales_executive_mid_foundation_1766960289460",
+      "score": 62,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts for each suggestion",
+          "Provides concrete rewrite examples with placeholders for numbers",
+          "Clear top fixes section with evidence and impact levels",
+          "Focuses on clarifying personal ownership and adding measurable outcomes",
+          "Tone is professional, direct, and recruiter-focused",
+          "Aligns well with 6-second signal model by emphasizing clarity and impact"
+        ],
+        "improvement_areas": [
+          "Could include more explicit mention of prioritizing the summary rewrite first",
+          "Some suggestions could add example metrics ranges to further aid actionability"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_finance_analyst_senior_weak_1766960287359",
+      "score": 62,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts for each suggestion",
+          "Provides concrete rewrite examples with clear improvement notes",
+          "Includes a prioritized top fixes section with evidence and impact levels",
+          "Focuses on measurable outcomes and clarifying ownership, aligned with recruiter expectations",
+          "Tone is professional, direct, and recruiter-focused without generic buzzwords",
+          "Addresses first impression and signal vs noise by emphasizing clarity and impact"
+        ],
+        "improvement_areas": [
+          "Could include line references for exact bullet points to further improve evidence grounding",
+          "Some suggestions could add even more precise numeric examples (e.g., suggest specific % improvements)",
+          "Minor formatting improvements could enhance readability of feedback sections"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_hr_manager_director_elite_1766960289528",
+      "score": 88,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume phrases and sections, e.g., compensation redesign bullet and leadership development program.",
+          "Suggestions include concrete rewrites with exact wording improvements and scope clarifications.",
+          "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
+          "Feedback aligns well with 6-second signal model by emphasizing first impressions, clarity, and key metrics.",
+          "Includes a top fixes section and next steps that are actionable and prioritized."
+        ],
+        "improvement_areas": [
+          "Could include more explicit line references for evidence to further strengthen grounding.",
+          "Some suggestions could be slightly more concise to enhance quick recruiter scanning.",
+          "Minor enhancement could be made to explicitly call out noise reduction in the methodology alignment."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_project_manager_vp_strong_1766960287714",
+      "score": 85,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references.",
+          "Feedback includes concrete rewrite examples with specific metrics to add.",
+          "Tone is professional, detailed, and reads like experienced recruiter advice.",
+          "Focuses on clarifying impact, scope, and personal ownership to improve first impression signals.",
+          "Includes a top fixes section prioritizing high-impact, moderate-effort changes."
+        ],
+        "improvement_areas": [
+          "Could add line numbers or more precise location references for evidence.",
+          "Some suggestions could specify exact metric ranges or examples to further increase actionability."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_product_manager_entry_foundation_1766960295108",
+      "score": 65,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9.3,
+        "issues": [],
+        "strengths": [
+          "Feedback cites multiple exact phrases from the resume with section references",
+          "Suggestions include concrete examples with numbers and specific wording changes",
+          "Tone is professional, direct, and clearly from a recruiter perspective",
+          "Focuses on first impression issues like clarity, impact, and scope consistent with 6-second signal model",
+          "Includes a top fixes section and next steps for easy implementation"
+        ],
+        "improvement_areas": [
+          "Could slightly increase emphasis on prioritizing the most impactful fixes for a 6-second scan",
+          "Minor repetition in some rewrite suggestions could be streamlined for brevity"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_software_engineer_mid_weak_1766960296800",
+      "score": 65,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts to support suggestions",
+          "Provides concrete rewrite examples with clear enhancement notes",
+          "Includes a top fixes section with prioritized, actionable recommendations",
+          "Tone is professional, direct, and recruiter-focused",
+          "Focuses on clarifying impact, scope, and ownership to improve first impression"
+        ],
+        "improvement_areas": [
+          "Could include line references for exact bullet points to further improve evidence grounding",
+          "Some suggestions could be even more quantified with example metrics",
+          "Minor opportunity to emphasize 6-second scan impact explicitly in summary"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_data_scientist_senior_elite_1766960301191",
+      "score": 89,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites multiple exact phrases from the resume with section references.",
+          "Suggestions include concrete improvements with specific examples and rewrites.",
+          "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
+          "Feedback aligns well with the 6-second signal model by emphasizing clarity, metrics, and first impressions."
+        ],
+        "improvement_areas": [
+          "Could include a brief explicit mention of prioritizing signal over noise in the summary to strengthen methodology alignment.",
+          "Some suggestions could be slightly more concise to enhance directness."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_ux_designer_director_strong_1766960296221",
+      "score": 83,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9.3,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts for each suggestion, grounding advice in actual text.",
+          "Provides concrete rewrite examples with exact phrases to improve clarity and impact.",
+          "Includes a prioritized 'top fixes' section with evidence and rationale, aligning with recruiter priorities.",
+          "Tone is professional, direct, and reflects an experienced recruiter's perspective on signal vs noise.",
+          "Focuses on improving first impressions by clarifying metrics, simplifying bullets, and sharpening the summary."
+        ],
+        "improvement_areas": [
+          "Could slightly increase emphasis on the 6-second scan by suggesting formatting or visual hierarchy improvements.",
+          "Minor opportunity to call out any redundant or less relevant skills explicitly for removal to reduce noise."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_marketing_manager_vp_foundation_1766960297618",
+      "score": 68,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 10,
+        "penalty_points": 0,
+        "final_score": 9.5,
+        "issues": [],
+        "strengths": [
+          "Strong evidence grounding with multiple exact excerpts cited from the resume",
+          "Highly actionable suggestions with specific rewrite examples and measurable metrics to add",
+          "Professional and recruiter-like tone with direct, clear, and industry-aware feedback",
+          "Clear alignment with 6-second signal model focusing on impact, clarity, and first impressions",
+          "Includes a top fixes section and next steps for prioritized improvements"
+        ],
+        "improvement_areas": [
+          "Could include line references for excerpts to further improve evidence precision",
+          "Minor repetition in some rewrite suggestions could be consolidated for brevity"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_operations_manager_entry_weak_1766960327232",
+      "score": 62,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite specific resume excerpts with line references",
+          "Provides concrete rewrite examples with specific tokens to improve clarity and impact",
+          "Feedback is professional, direct, and aligned with recruiter expectations",
+          "Focuses on first impression issues like passive language, lack of metrics, and unclear ownership",
+          "Includes a top fixes section with prioritized, evidence-backed recommendations"
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+          "Some suggestions could add even more precise numeric examples (e.g., exact team sizes)",
+          "Tone is strong but could be slightly more concise in places to mimic recruiter brevity"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_sales_executive_mid_elite_1766960309605",
+      "score": 85,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite specific resume excerpts with line references.",
+          "Suggestions are concrete and include specific tokens like numbers, time frames, and wording improvements.",
+          "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
+          "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions.",
+          "Includes a top fixes section and actionable next steps."
+        ],
+        "improvement_areas": [
+          "Could include even more explicit line references for each suggestion to reach a perfect evidence score.",
+          "Some rewrite suggestions could be slightly more detailed about how to quantify vague terms (e.g., suggesting how to estimate contract sizes)."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_finance_analyst_senior_strong_1766960308965",
+      "score": 78,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume lines and excerpts to support suggestions",
+          "Provides concrete rewrite examples with measurable improvements",
+          "Highlights clear strengths and gaps grounded in resume content",
+          "Tone is professional, recruiter-like, and focused on impact and clarity",
+          "Aligns well with 6-second signal model by focusing on first impressions and clarity"
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of prioritizing most impactful fixes first",
+          "Some suggestions could be even more granular with exact numbers or time frames",
+          "Minor truncation in section review at the end reduces completeness"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_hr_manager_director_foundation_1766960320331",
+      "score": 65,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite specific resume excerpts with line references",
+          "Provides concrete rewrite examples with measurable outcomes",
+          "Clear top fixes section with evidence and impact explanations",
+          "Professional, recruiter-style tone with direct and specific advice",
+          "Focuses on improving first impression by adding metrics and clarity"
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+          "Some suggestions could be even more quantified with example numbers",
+          "Minor formatting issues in JSON (truncated job_alignment) but does not affect feedback quality"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_project_manager_vp_weak_1766960308109",
+      "score": 62,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts to support suggestions",
+          "Provides concrete rewrite examples with exact phrases to improve impact and clarity",
+          "Includes a prioritized 'top fixes' section with evidence and impact levels",
+          "Tone is professional, direct, and aligned with recruiter expectations",
+          "Focuses on first impression issues like lack of measurable outcomes and unclear ownership"
+        ],
+        "improvement_areas": [
+          "Could include line references for exact bullet points to further ground evidence",
+          "Some suggestions could be even more quantified with example numbers",
+          "Minor repetition in phrasing could be tightened for brevity"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_product_manager_entry_elite_1766960337704",
+      "score": 82,
+      "judgeResult": {
+        "evidence_score": 10,
+        "actionability_score": 10,
+        "tone_score": 9,
+        "methodology_score": 10,
+        "penalty_points": 0,
+        "final_score": 9.75,
+        "issues": [],
+        "strengths": [
+          "Every suggestion is grounded in specific resume excerpts with line references.",
+          "Suggestions are highly actionable with concrete examples and rewrite tokens.",
+          "Tone is professional, direct, and clearly from an experienced recruiter perspective.",
+          "Feedback aligns well with the 6-second signal model focusing on clarity, impact, and first impressions."
+        ],
+        "improvement_areas": [
+          "Tone could be slightly more conversational to feel less formal in places.",
+          "Could include a brief note on prioritizing the top fixes for immediate impact."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_software_engineer_mid_strong_1766960342929",
+      "score": 78,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite specific resume excerpts with section references.",
+          "Provides concrete rewrite examples and detailed top fixes with evidence.",
+          "Tone is professional, direct, and recruiter-focused with clear prioritization.",
+          "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions."
+        ],
+        "improvement_areas": [
+          "Could include line numbers for even more precise evidence grounding.",
+          "Some suggestions could be slightly more quantified (e.g., exact course names)."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_data_scientist_senior_foundation_1766960345537",
+      "score": 75,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Most suggestions cite exact phrases from the resume with section references",
+          "Provides concrete rewrite examples with specific tokens to add (e.g., number of teams, measurable outcomes)",
+          "Tone is professional, direct, and recruiter-focused with clear prioritization of fixes",
+          "Feedback aligns well with 6-second signal model by emphasizing impact metrics, clarity, and first impression improvements",
+          "Includes a top fixes section and next steps for immediate implementation"
+        ],
+        "improvement_areas": [
+          "Could include line numbers or bullet numbers for even more precise evidence grounding",
+          "Some suggestions could be slightly more quantified (e.g., specify ideal metric types or ranges)",
+          "Minor repetition in rewrite examples could be consolidated for brevity"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_ux_designer_director_weak_1766960342928",
+      "score": 68,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts such as 'Was responsible for managing a team of UX designers' and 'Participated in user research activities and usability testing' to ground suggestions.",
+          "Provides concrete rewrite examples with placeholders for team size, project names, and measurable outcomes, enabling immediate implementation.",
+          "Tone is professional, direct, and recruiter-focused, emphasizing what a hiring manager would look for in leadership impact and measurable results.",
+          "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impression takeaways like adding team size and metrics."
+        ],
+        "improvement_areas": [
+          "Could include explicit line references or bullet numbers for even clearer evidence grounding.",
+          "Some suggestions could be slightly more concise to enhance quick recruiter readability.",
+          "Minor opportunity to emphasize prioritization of fixes in the top fixes section for even clearer recruiter lens."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "resumeId": "synth_marketing_manager_vp_elite_1766960345478",
+      "score": 90,
+      "judgeResult": {
+        "evidence_score": 9,
+        "actionability_score": 9,
+        "tone_score": 9,
+        "methodology_score": 9,
+        "penalty_points": 0,
+        "final_score": 9,
+        "issues": [],
+        "strengths": [
+          "Feedback cites specific resume excerpts for each suggestion, grounding advice in concrete examples.",
+          "Suggestions are actionable with clear instructions such as removing personal pronouns, adding a summary, clarifying ownership, and splitting complex bullets.",
+          "Tone is professional, direct, and aligned with recruiter expectations, avoiding generic AI buzzwords.",
+          "Feedback focuses on clarity, impact, and first impressions, consistent with the 6-second signal model and recruiter lens."
+        ],
+        "improvement_areas": [
+          "Could include explicit mention of prioritizing the top fixes to better align with recruiter quick-scan needs.",
+          "Minor truncation in subscores section suggests incomplete output; ensuring full output would improve completeness."
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "topFixTitles": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ],
+  "judgeResults": [
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references and excerpts.",
+        "Actionable rewrites and top fixes provide concrete wording and specific metrics to add or clarify.",
+        "Tone is professional, direct, and aligned with recruiter expectations for early-career product managers.",
+        "Feedback focuses on clarity, impact, and first-impression signal improvements consistent with the 6-second model."
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of prioritizing the most impactful fixes first to better align with recruiter time constraints.",
+        "Some suggestions could be slightly more concise to mirror the brevity recruiters prefer."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9.3,
+      "issues": [],
+      "strengths": [
+        "Feedback cites multiple exact phrases from the resume with section references.",
+        "Suggestions include concrete tokens such as team sizes, user base numbers, and specific metrics to add.",
+        "Tone is professional, direct, and clearly from a recruiter perspective with actionable rewrite examples.",
+        "Feedback aligns well with the 6-second signal model by focusing on clarity, scale, and impact to improve first impressions."
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of prioritizing the most impactful fixes first to better reflect recruiter triage.",
+        "Minor improvement in explicitly calling out noise reduction in some verbose bullets would enhance methodology alignment."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites multiple exact phrases from the resume with section references.",
+        "Suggestions include concrete examples with placeholders for metrics and specific numbers.",
+        "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
+        "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+        "Includes a top fixes section and next steps, enhancing usability."
+      ],
+      "improvement_areas": [
+        "Could add even more explicit line references for each bullet suggestion to maximize evidence clarity.",
+        "Some rewrite suggestions use placeholders like [X%] which require user input; adding example ranges might improve actionability.",
+        "Minor opportunity to emphasize prioritization of fixes by recruiter signal impact more explicitly."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9.3,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume phrases with section references",
+        "Provides concrete rewrite examples with placeholders for metrics",
+        "Clear top fixes section with evidence and impact explanations",
+        "Focuses on clarity, impact, and ownership aligned with recruiter perspective",
+        "Professional tone with direct, actionable advice"
+      ],
+      "improvement_areas": [
+        "Could include more explicit mention of 6-second scan methodology",
+        "Minor opportunity to emphasize prioritization of fixes by recruiter signal impact"
+      ]
+    },
+    {
+      "evidence_score": 10,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9.5,
+      "issues": [],
+      "strengths": [
+        "Every suggestion is grounded in specific resume excerpts with clear line references.",
+        "Suggestions include concrete, implementable changes such as adding baseline metrics, time frames, and clarifying personal ownership.",
+        "The tone is professional, detailed, and reads like feedback from an experienced recruiter.",
+        "The feedback focuses on improving first impressions by clarifying impact and reducing noise, aligning well with the 6-second signal model."
+      ],
+      "improvement_areas": [
+        "Tone could be slightly more direct and concise in some places to fully emulate a senior recruiter voice.",
+        "The methodology alignment is strong but could explicitly mention the importance of signal vs noise in the summary section."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9.3,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume phrases and sections, e.g., 'Assisted in implementing a new warehouse management system' and 'reducing errors by approximately 15%'",
+        "Provides concrete rewrite examples with exact original and improved bullet points",
+        "Includes a clear top fixes section with evidence excerpts and rationale",
+        "Tone is professional, direct, and recruiter-focused with actionable advice",
+        "Focuses on clarifying personal ownership, measurable impact, and first impression clarity aligning with 6-second signal model"
+      ],
+      "improvement_areas": [
+        "Could slightly increase emphasis on prioritizing fixes from a recruiter's first-glance perspective",
+        "Minor formatting truncation in the last section review text could be improved for completeness"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts for each suggestion",
+        "Provides concrete rewrite examples with placeholders for numbers",
+        "Includes a clear top fixes section with evidence and impact levels",
+        "Focuses on measurable outcomes and personal ownership to improve signal",
+        "Tone is professional, direct, and aligned with recruiter perspective",
+        "Feedback emphasizes first impression and clarity of impact"
+      ],
+      "improvement_areas": [
+        "Could add a brief note on prioritizing the summary rewrite first for better 6-second impact",
+        "Some rewrite suggestions could include example numeric ranges to further aid actionability"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references",
+        "Provides concrete rewrite examples with specific improvements",
+        "Feedback is professional, direct, and recruiter-focused",
+        "Focuses on clarifying impact, ownership, and measurable outcomes aligned with 6-second signal model"
+      ],
+      "improvement_areas": [
+        "Could include line numbers or more precise location references for evidence",
+        "Some suggestions could be even more quantified (e.g., exact metrics to add)",
+        "Tone is strong but could be slightly more concise in places"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume phrases and lines, e.g., HRIS implementation bullet and team sizes.",
+        "Suggestions include concrete rewrites with exact wording improvements and timeline additions.",
+        "Tone is professional, direct, and aligned with recruiter expectations for senior HR roles.",
+        "Focuses on clarity, impact, and first impression signals such as adding a summary headline.",
+        "Includes a top fixes section with prioritized, evidence-backed recommendations."
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment.",
+        "Some suggestions could be slightly more concise to enhance quick recruiter readability."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume lines with excerpts and line references",
+        "Provides concrete rewrite examples with exact wording improvements",
+        "Clear top fixes section with evidence and impact levels",
+        "Focuses on metrics, clarity, ownership, and scope which align with recruiter priorities",
+        "Tone is professional, direct, and recruiter-aware without buzzwords"
+      ],
+      "improvement_areas": [
+        "Could include slightly more explicit mention of 6-second scan impact",
+        "Some suggestions could be even more granular on how to split complex bullets"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references.",
+        "Provides concrete rewrite examples with specific numbers and clearer roles.",
+        "Tone is professional, direct, and aligned with recruiter expectations.",
+        "Focuses on clarifying ownership, adding metrics, and improving first impressions per 6-second signal model.",
+        "Includes a top fixes section with prioritized, actionable recommendations."
+      ],
+      "improvement_areas": [
+        "Could include line numbers for even clearer evidence referencing.",
+        "Some suggestions could be slightly more concise to enhance readability."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references.",
+        "Provides concrete rewrite examples with specific improvements.",
+        "Clear top fixes section with prioritized, evidence-backed recommendations.",
+        "Tone is professional, direct, and recruiter-focused.",
+        "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions."
+      ],
+      "improvement_areas": [
+        "Could include more explicit mention of passive language as a red flag.",
+        "Some suggestions could add even more precise numeric targets (e.g., exact team sizes or metrics)."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite specific resume excerpts with line references",
+        "Provides concrete, actionable rewrites with specific tokens like time frames and scope",
+        "Tone is professional, direct, and recruiter-like with clear prioritization",
+        "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions"
+      ],
+      "improvement_areas": [
+        "Could include more explicit mention of prioritizing signal over noise in the summary",
+        "Some suggestions could be slightly more concise to match recruiter quick-scan preferences"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references",
+        "Provides concrete rewrite examples with specific numbers and scope details",
+        "Tone is professional, direct, and aligned with recruiter expectations",
+        "Focuses on clarifying impact and leadership signals to improve first impressions",
+        "Includes a clear top fixes section and next steps for actionable improvements"
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+        "Some suggestions could add even more precise numeric targets (e.g., exact budget amounts)",
+        "Summary fix advice could be more concise to model the recommended style"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 10,
+      "penalty_points": 0,
+      "final_score": 9.5,
+      "issues": [],
+      "strengths": [
+        "Feedback cites multiple exact phrases from the resume with section references",
+        "Provides concrete rewrite examples with specific numbers and clarifications",
+        "Top fixes and next steps are actionable and clearly prioritized",
+        "Tone is professional, direct, and recruiter-focused",
+        "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and measurable results"
+      ],
+      "improvement_areas": [
+        "Could include slightly more explicit mention of prioritizing first impression impact in summary",
+        "Minor opportunity to emphasize removing vague or generic phrases explicitly"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume lines such as 'Was responsible for assisting with daily operational tasks.'",
+        "Provides concrete rewrite examples with clear improvements.",
+        "Includes a top fixes section with prioritized, actionable advice.",
+        "Focuses on measurable impact, active language, and clarity aligned with recruiter expectations.",
+        "Tone is professional, direct, and recruiter-focused without generic buzzwords."
+      ],
+      "improvement_areas": [
+        "Could include line numbers or more precise references for evidence to reach a perfect evidence score.",
+        "Some suggestions could be even more quantified with exact numeric targets (e.g., 'Add numbers like team size or project counts')."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite specific resume lines with excerpts and section references.",
+        "Provides concrete rewrite examples with exact wording improvements and rationale.",
+        "Feedback is professional, direct, and aligned with recruiter expectations.",
+        "Focuses on clarity, impact, and signal-to-noise improvements consistent with 6-second scan methodology.",
+        "Includes a prioritized top fixes section and clear next steps for implementation."
+      ],
+      "improvement_areas": [
+        "Could include more explicit line references for every suggestion to maximize evidence grounding.",
+        "Some suggestions could add even more precise numeric targets for time frames or team sizes if known.",
+        "Tone is strong but could be slightly more concise in some explanations to mimic recruiter brevity."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with line references",
+        "Provides concrete rewrite examples with specific tokens to improve clarity and impact",
+        "Tone is professional, direct, and aligned with recruiter expectations",
+        "Feedback focuses on improving first impressions by clarifying scope, ownership, and measurable impact"
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of the 6-second scan methodology to strengthen methodology alignment",
+        "Some suggestions could be even more granular with exact numbers to add (e.g., 'X departments' or '% improvements')",
+        "Minor repetition in rewrite suggestions could be consolidated for brevity"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with line references or excerpts.",
+        "Provides concrete rewrite examples with specific tokens to improve clarity and impact.",
+        "Tone is professional, direct, and aligned with recruiter expectations.",
+        "Feedback focuses on first impressions and signal vs noise by emphasizing measurable outcomes and clarity.",
+        "Includes a top fixes section and next steps that are actionable and prioritized."
+      ],
+      "improvement_areas": [
+        "Could include more explicit mention of the 6-second scan methodology to strengthen methodology alignment.",
+        "Some suggestions could add even more precise numeric examples (e.g., ranges) to boost actionability further."
+      ]
+    },
+    {
+      "evidence_score": 10,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 10,
+      "penalty_points": 0,
+      "final_score": 9.75,
+      "issues": [],
+      "strengths": [
+        "Every suggestion is grounded in specific resume excerpts with clear line references.",
+        "Feedback includes concrete rewrite examples with specific numbers and clarifications.",
+        "Tone is professional, direct, and aligned with recruiter expectations.",
+        "Feedback focuses on first impressions, signal vs noise, and recruiter decision-making.",
+        "Includes a top fixes section and prioritized next steps for immediate improvements."
+      ],
+      "improvement_areas": [
+        "Tone could be slightly more conversational to feel less formal and more human.",
+        "Could include a brief note on formatting or visual hierarchy to further improve first impression."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with line references or excerpts.",
+        "Suggestions are concrete and actionable, including specific metrics and wording improvements.",
+        "Tone is professional, detailed, and reads like feedback from an experienced recruiter.",
+        "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions."
+      ],
+      "improvement_areas": [
+        "Could include a brief explicit mention of prioritizing signal over noise in the summary feedback.",
+        "Minor opportunity to make some rewrite suggestions even more concise for quick recruiter scanning."
+      ]
+    },
+    {
+      "evidence_score": 10,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 10,
+      "penalty_points": 0,
+      "final_score": 9.75,
+      "issues": [],
+      "strengths": [
+        "Every suggestion is grounded in exact resume excerpts with line references.",
+        "Feedback includes very specific, actionable rewrite examples with concrete metrics and scope improvements.",
+        "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
+        "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+        "Includes a top fixes section and next steps that are practical and prioritized."
+      ],
+      "improvement_areas": [
+        "Tone could be slightly more conversational to feel less formal and more human, but still very strong.",
+        "Could explicitly call out the importance of removing any ambiguous or blended achievement phrasing to sharpen signal further."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite specific resume excerpts with line references",
+        "Provides concrete rewrite examples with placeholders for metrics and scope",
+        "Feedback is professional, direct, and aligned with recruiter expectations",
+        "Focuses on improving signal by clarifying impact, ownership, and measurable outcomes",
+        "Includes a clear top fixes section with evidence and impact levels"
+      ],
+      "improvement_areas": [
+        "Could include even more explicit line references for every suggestion",
+        "Some suggestions could specify exact numbers or ranges to try",
+        "Tone is strong but could be slightly more concise in places"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume phrases with section references, e.g., 'Duties included managing a small team of designers.'",
+        "Provides concrete rewrite examples with suggested metrics and active language.",
+        "Tone is professional, direct, and recruiter-focused, emphasizing clarity and impact.",
+        "Focuses on first impression issues like vague language, passive voice, and missing metrics aligned with 6-second signal model."
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of prioritizing the most impactful bullets for immediate recruiter scanning.",
+        "Minor improvement could be made by explicitly referencing the 6-second rule in the feedback text."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references.",
+        "Provides concrete rewrite examples with specific improvements.",
+        "Top fixes are clearly linked to resume excerpts and explain recruiter rationale.",
+        "Tone is professional, direct, and reflects recruiter perspective.",
+        "Feedback focuses on clarity, impact, and first impression signals."
+      ],
+      "improvement_areas": [
+        "Could include line numbers or more precise location references for evidence.",
+        "Some suggestions could be even more granular on how to split complex bullets.",
+        "Minor truncation in the 'next_steps' section reduces completeness."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references.",
+        "Actionable advice includes specific tokens like adding time frames, splitting bullets, and adding a summary.",
+        "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
+        "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impressions."
+      ],
+      "improvement_areas": [
+        "Could include more explicit mention of prioritizing the strongest 6-second signals in the summary advice.",
+        "Some rewrite suggestions could be slightly more concise to better model ideal bullet style."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references",
+        "Provides concrete rewrite examples with measurable metrics and scope",
+        "Tone is professional, direct, and recruiter-focused",
+        "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions",
+        "Includes a top fixes section with prioritized, actionable recommendations"
+      ],
+      "improvement_areas": [
+        "Could include line numbers for even more precise evidence grounding",
+        "Some suggestions could be slightly more concise to enhance quick recruiter scanning"
+      ]
+    },
+    {
+      "evidence_score": 10,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 10,
+      "penalty_points": 0,
+      "final_score": 9.75,
+      "issues": [],
+      "strengths": [
+        "Every suggestion is grounded in specific resume excerpts with clear line references.",
+        "Actionable rewrites and top fixes provide concrete, implementable advice with examples.",
+        "Tone is professional, direct, and aligned with recruiter expectations.",
+        "Feedback focuses on first impressions, signal clarity, and reducing noise per the 6-second model."
+      ],
+      "improvement_areas": [
+        "Tone could be slightly more concise in some sections to mimic recruiter brevity.",
+        "Could include a brief note on formatting or visual hierarchy to further improve first impressions."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts to support suggestions, e.g., 'Was responsible for overseeing UX design projects and managing design teams'.",
+        "Provides concrete rewrite examples with exact original phrases and improved versions.",
+        "Includes a clear 'top fixes' section with evidence and impact levels.",
+        "Tone is professional, direct, and aligned with recruiter expectations.",
+        "Focuses on improving signal by emphasizing measurable outcomes, scope, and ownership.",
+        "Addresses the caregiving gap explanation and missing skills section explicitly."
+      ],
+      "improvement_areas": [
+        "Could include line or bullet number references for even clearer evidence grounding.",
+        "Some suggestions could add even more precise numeric targets (e.g., suggest exact team sizes or metric ranges).",
+        "Minor opportunity to explicitly mention 6-second resume scan methodology in the rationale."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references.",
+        "Provides concrete rewrite examples with specific tokens like team sizes, time frames, and measurable outcomes.",
+        "Tone is professional, direct, and aligned with recruiter expectations for senior marketing roles.",
+        "Feedback clearly focuses on improving signal clarity and impact for quick recruiter scanning.",
+        "Includes a top fixes section prioritizing high-impact, moderate-effort changes."
+      ],
+      "improvement_areas": [
+        "Could include line numbers or more precise location references for evidence excerpts.",
+        "Some suggestions could add even more specificity on how to quantify partnership impact (e.g., suggesting possible metrics).",
+        "The feedback could explicitly mention the 6-second scan model terminology to strengthen methodology alignment."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume lines and phrases, e.g., 'Supported senior managers by generating weekly KPI reports...'",
+        "Provides concrete rewrite examples with exact original and improved text",
+        "Clear top fixes section with evidence excerpts and impact/effort ratings",
+        "Tone is professional, direct, and recruiter-focused",
+        "Focuses on clarifying personal impact, metrics, and scope to improve 6-second signal"
+      ],
+      "improvement_areas": [
+        "Could include line references or bullet numbers for even clearer evidence grounding",
+        "Some suggestions could add even more precise numeric targets (e.g., replace [X%] placeholders)",
+        "Minor repetition in phrasing could be tightened for brevity"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts for each suggestion",
+        "Provides concrete rewrite examples with placeholders for numbers",
+        "Clear top fixes section with evidence and impact levels",
+        "Focuses on clarifying personal ownership and adding measurable outcomes",
+        "Tone is professional, direct, and recruiter-focused",
+        "Aligns well with 6-second signal model by emphasizing clarity and impact"
+      ],
+      "improvement_areas": [
+        "Could include more explicit mention of prioritizing the summary rewrite first",
+        "Some suggestions could add example metrics ranges to further aid actionability"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts for each suggestion",
+        "Provides concrete rewrite examples with clear improvement notes",
+        "Includes a prioritized top fixes section with evidence and impact levels",
+        "Focuses on measurable outcomes and clarifying ownership, aligned with recruiter expectations",
+        "Tone is professional, direct, and recruiter-focused without generic buzzwords",
+        "Addresses first impression and signal vs noise by emphasizing clarity and impact"
+      ],
+      "improvement_areas": [
+        "Could include line references for exact bullet points to further improve evidence grounding",
+        "Some suggestions could add even more precise numeric examples (e.g., suggest specific % improvements)",
+        "Minor formatting improvements could enhance readability of feedback sections"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume phrases and sections, e.g., compensation redesign bullet and leadership development program.",
+        "Suggestions include concrete rewrites with exact wording improvements and scope clarifications.",
+        "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
+        "Feedback aligns well with 6-second signal model by emphasizing first impressions, clarity, and key metrics.",
+        "Includes a top fixes section and next steps that are actionable and prioritized."
+      ],
+      "improvement_areas": [
+        "Could include more explicit line references for evidence to further strengthen grounding.",
+        "Some suggestions could be slightly more concise to enhance quick recruiter scanning.",
+        "Minor enhancement could be made to explicitly call out noise reduction in the methodology alignment."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references.",
+        "Feedback includes concrete rewrite examples with specific metrics to add.",
+        "Tone is professional, detailed, and reads like experienced recruiter advice.",
+        "Focuses on clarifying impact, scope, and personal ownership to improve first impression signals.",
+        "Includes a top fixes section prioritizing high-impact, moderate-effort changes."
+      ],
+      "improvement_areas": [
+        "Could add line numbers or more precise location references for evidence.",
+        "Some suggestions could specify exact metric ranges or examples to further increase actionability."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9.3,
+      "issues": [],
+      "strengths": [
+        "Feedback cites multiple exact phrases from the resume with section references",
+        "Suggestions include concrete examples with numbers and specific wording changes",
+        "Tone is professional, direct, and clearly from a recruiter perspective",
+        "Focuses on first impression issues like clarity, impact, and scope consistent with 6-second signal model",
+        "Includes a top fixes section and next steps for easy implementation"
+      ],
+      "improvement_areas": [
+        "Could slightly increase emphasis on prioritizing the most impactful fixes for a 6-second scan",
+        "Minor repetition in some rewrite suggestions could be streamlined for brevity"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts to support suggestions",
+        "Provides concrete rewrite examples with clear enhancement notes",
+        "Includes a top fixes section with prioritized, actionable recommendations",
+        "Tone is professional, direct, and recruiter-focused",
+        "Focuses on clarifying impact, scope, and ownership to improve first impression"
+      ],
+      "improvement_areas": [
+        "Could include line references for exact bullet points to further improve evidence grounding",
+        "Some suggestions could be even more quantified with example metrics",
+        "Minor opportunity to emphasize 6-second scan impact explicitly in summary"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites multiple exact phrases from the resume with section references.",
+        "Suggestions include concrete improvements with specific examples and rewrites.",
+        "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
+        "Feedback aligns well with the 6-second signal model by emphasizing clarity, metrics, and first impressions."
+      ],
+      "improvement_areas": [
+        "Could include a brief explicit mention of prioritizing signal over noise in the summary to strengthen methodology alignment.",
+        "Some suggestions could be slightly more concise to enhance directness."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9.3,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts for each suggestion, grounding advice in actual text.",
+        "Provides concrete rewrite examples with exact phrases to improve clarity and impact.",
+        "Includes a prioritized 'top fixes' section with evidence and rationale, aligning with recruiter priorities.",
+        "Tone is professional, direct, and reflects an experienced recruiter's perspective on signal vs noise.",
+        "Focuses on improving first impressions by clarifying metrics, simplifying bullets, and sharpening the summary."
+      ],
+      "improvement_areas": [
+        "Could slightly increase emphasis on the 6-second scan by suggesting formatting or visual hierarchy improvements.",
+        "Minor opportunity to call out any redundant or less relevant skills explicitly for removal to reduce noise."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 10,
+      "penalty_points": 0,
+      "final_score": 9.5,
+      "issues": [],
+      "strengths": [
+        "Strong evidence grounding with multiple exact excerpts cited from the resume",
+        "Highly actionable suggestions with specific rewrite examples and measurable metrics to add",
+        "Professional and recruiter-like tone with direct, clear, and industry-aware feedback",
+        "Clear alignment with 6-second signal model focusing on impact, clarity, and first impressions",
+        "Includes a top fixes section and next steps for prioritized improvements"
+      ],
+      "improvement_areas": [
+        "Could include line references for excerpts to further improve evidence precision",
+        "Minor repetition in some rewrite suggestions could be consolidated for brevity"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite specific resume excerpts with line references",
+        "Provides concrete rewrite examples with specific tokens to improve clarity and impact",
+        "Feedback is professional, direct, and aligned with recruiter expectations",
+        "Focuses on first impression issues like passive language, lack of metrics, and unclear ownership",
+        "Includes a top fixes section with prioritized, evidence-backed recommendations"
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+        "Some suggestions could add even more precise numeric examples (e.g., exact team sizes)",
+        "Tone is strong but could be slightly more concise in places to mimic recruiter brevity"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite specific resume excerpts with line references.",
+        "Suggestions are concrete and include specific tokens like numbers, time frames, and wording improvements.",
+        "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
+        "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions.",
+        "Includes a top fixes section and actionable next steps."
+      ],
+      "improvement_areas": [
+        "Could include even more explicit line references for each suggestion to reach a perfect evidence score.",
+        "Some rewrite suggestions could be slightly more detailed about how to quantify vague terms (e.g., suggesting how to estimate contract sizes)."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume lines and excerpts to support suggestions",
+        "Provides concrete rewrite examples with measurable improvements",
+        "Highlights clear strengths and gaps grounded in resume content",
+        "Tone is professional, recruiter-like, and focused on impact and clarity",
+        "Aligns well with 6-second signal model by focusing on first impressions and clarity"
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of prioritizing most impactful fixes first",
+        "Some suggestions could be even more granular with exact numbers or time frames",
+        "Minor truncation in section review at the end reduces completeness"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite specific resume excerpts with line references",
+        "Provides concrete rewrite examples with measurable outcomes",
+        "Clear top fixes section with evidence and impact explanations",
+        "Professional, recruiter-style tone with direct and specific advice",
+        "Focuses on improving first impression by adding metrics and clarity"
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+        "Some suggestions could be even more quantified with example numbers",
+        "Minor formatting issues in JSON (truncated job_alignment) but does not affect feedback quality"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts to support suggestions",
+        "Provides concrete rewrite examples with exact phrases to improve impact and clarity",
+        "Includes a prioritized 'top fixes' section with evidence and impact levels",
+        "Tone is professional, direct, and aligned with recruiter expectations",
+        "Focuses on first impression issues like lack of measurable outcomes and unclear ownership"
+      ],
+      "improvement_areas": [
+        "Could include line references for exact bullet points to further ground evidence",
+        "Some suggestions could be even more quantified with example numbers",
+        "Minor repetition in phrasing could be tightened for brevity"
+      ]
+    },
+    {
+      "evidence_score": 10,
+      "actionability_score": 10,
+      "tone_score": 9,
+      "methodology_score": 10,
+      "penalty_points": 0,
+      "final_score": 9.75,
+      "issues": [],
+      "strengths": [
+        "Every suggestion is grounded in specific resume excerpts with line references.",
+        "Suggestions are highly actionable with concrete examples and rewrite tokens.",
+        "Tone is professional, direct, and clearly from an experienced recruiter perspective.",
+        "Feedback aligns well with the 6-second signal model focusing on clarity, impact, and first impressions."
+      ],
+      "improvement_areas": [
+        "Tone could be slightly more conversational to feel less formal in places.",
+        "Could include a brief note on prioritizing the top fixes for immediate impact."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite specific resume excerpts with section references.",
+        "Provides concrete rewrite examples and detailed top fixes with evidence.",
+        "Tone is professional, direct, and recruiter-focused with clear prioritization.",
+        "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions."
+      ],
+      "improvement_areas": [
+        "Could include line numbers for even more precise evidence grounding.",
+        "Some suggestions could be slightly more quantified (e.g., exact course names)."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Most suggestions cite exact phrases from the resume with section references",
+        "Provides concrete rewrite examples with specific tokens to add (e.g., number of teams, measurable outcomes)",
+        "Tone is professional, direct, and recruiter-focused with clear prioritization of fixes",
+        "Feedback aligns well with 6-second signal model by emphasizing impact metrics, clarity, and first impression improvements",
+        "Includes a top fixes section and next steps for immediate implementation"
+      ],
+      "improvement_areas": [
+        "Could include line numbers or bullet numbers for even more precise evidence grounding",
+        "Some suggestions could be slightly more quantified (e.g., specify ideal metric types or ranges)",
+        "Minor repetition in rewrite examples could be consolidated for brevity"
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts such as 'Was responsible for managing a team of UX designers' and 'Participated in user research activities and usability testing' to ground suggestions.",
+        "Provides concrete rewrite examples with placeholders for team size, project names, and measurable outcomes, enabling immediate implementation.",
+        "Tone is professional, direct, and recruiter-focused, emphasizing what a hiring manager would look for in leadership impact and measurable results.",
+        "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impression takeaways like adding team size and metrics."
+      ],
+      "improvement_areas": [
+        "Could include explicit line references or bullet numbers for even clearer evidence grounding.",
+        "Some suggestions could be slightly more concise to enhance quick recruiter readability.",
+        "Minor opportunity to emphasize prioritization of fixes in the top fixes section for even clearer recruiter lens."
+      ]
+    },
+    {
+      "evidence_score": 9,
+      "actionability_score": 9,
+      "tone_score": 9,
+      "methodology_score": 9,
+      "penalty_points": 0,
+      "final_score": 9,
+      "issues": [],
+      "strengths": [
+        "Feedback cites specific resume excerpts for each suggestion, grounding advice in concrete examples.",
+        "Suggestions are actionable with clear instructions such as removing personal pronouns, adding a summary, clarifying ownership, and splitting complex bullets.",
+        "Tone is professional, direct, and aligned with recruiter expectations, avoiding generic AI buzzwords.",
+        "Feedback focuses on clarity, impact, and first impressions, consistent with the 6-second signal model and recruiter lens."
+      ],
+      "improvement_areas": [
+        "Could include explicit mention of prioritizing the top fixes to better align with recruiter quick-scan needs.",
+        "Minor truncation in subscores section suggests incomplete output; ensuring full output would improve completeness."
+      ]
+    }
+  ],
+  "issuesByType": {}
+}

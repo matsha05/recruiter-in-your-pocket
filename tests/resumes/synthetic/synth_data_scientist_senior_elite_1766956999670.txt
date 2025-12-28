@@ -1,0 +1,39 @@
+Evelyn M. Carter  
+evelyn.carter@email.com | (555) 842-9173 | LinkedIn: linkedin.com/in/evelyncarterds | San Francisco, CA
+
+EXPERIENCE
+
+Lead Data Scientist | Novanta Analytics | San Francisco, CA  
+January 2018 - Present  
+- Led a cross-functional data science team of 8 engineers and analysts to design and deploy machine learning models that increased client revenue by 40% through targeted customer segmentation and personalized marketing campaigns.  
+- Architected an end-to-end predictive analytics pipeline, reducing model deployment time from 4 weeks to 4 days, enabling faster business decision-making.  
+- Mentored 5 junior data scientists, establishing a technical training program that improved team model accuracy by 15% within one year.  
+- Owned a $2.5M annual budget for cloud infrastructure and data acquisition, optimizing costs by 18% through strategic vendor negotiations and workload management.  
+- Pioneered real-time anomaly detection systems in retail banking datasets, reducing fraud-related losses by $2M annually.  
+- Collaborated with product and engineering teams to integrate AI-driven features into customer-facing platforms, resulting in a 25% increase in user engagement across 500K+ users.
+
+Senior Data Scientist | NovaTech Solutions | Seattle, WA  
+June 2014 - December 2017  
+- Built and deployed scalable machine learning models for demand forecasting that improved inventory management accuracy by 30%, cutting overstock costs by $1.1M annually.  
+- Led data quality assurance initiatives that decreased data pipeline failures by 65%, improving overall system reliability for the e-commerce client base.  
+- Spearheaded adoption of new NLP techniques to analyze over 2 million customer support tickets, driving a 20% reduction in average resolution time.  
+- Directed a team of 4 data scientists on a 9-month project to develop dynamic pricing algorithms, contributing to a revenue uplift of $3.5M in the first year post-launch.  
+- Presented quarterly analytical insights to C-level stakeholders, influencing strategic decisions that expanded market share in the North American sector.  
+- Championed migration from on-premise to cloud-based analytics, reducing data processing latency by 50% and operational costs by 22%.
+
+Data Scientist | BrightEdge Technologies | Austin, TX  
+July 2012 - May 2014  
+- Designed customer lifetime value prediction models that enabled targeted retention campaigns, improving customer retention rates by 12% within the first 6 months.  
+- Automated data ingestion and cleaning processes, cutting manual data preparation time from 20 hours/week to under 5 hours/week.  
+- Collaborated closely with software engineers to deploy scalable APIs for real-time data scoring, enhancing product recommendation accuracy by 18%.  
+- Conducted A/B testing frameworks that informed UX improvements, leading to a 10% lift in conversion rates on the flagship SaaS platform.  
+- Analyzed large public datasets to identify emerging market trends, contributing to the launch of two new product lines generating $750K additional revenue.  
+- Facilitated weekly knowledge-sharing sessions across data and engineering teams to foster continuous learning and innovation.
+
+SKILLS  
+- Programming: Python (pandas, scikit-learn, TensorFlow, PyTorch), R, SQL, Spark  
+- Machine Learning: Supervised/Unsupervised Learning, Deep Learning, NLP, Time Series Forecasting, Anomaly Detection  
+- Data Infrastructure: AWS (S3, EC2, SageMaker), Azure ML, Hadoop, Kafka  
+- Tools: Tableau, Power BI, Git, Docker, Kubernetes, Jenkins  
+- Leadership: Team Leadership & Mentoring, Budget Management, Cross-functional Collaboration, Agile Methodologies  
+- Domain Expertise: Retail & E-commerce Analytics, Financial Services Fraud Detection, Customer Behavior Modeling, Demand Forecasting

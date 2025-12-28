@@ -1,0 +1,47 @@
+Laura M. Jenkins  
+laura.jenkins@email.com | 555-214-7890 | Seattle, WA
+
+Experience
+
+Senior Data Scientist  
+BrightWave Analytics, Seattle, WA  
+Feb 2018 - Jun 2023  
+- Led technical initiatives for multiple teams working on customer behavior modeling and forecasting projects  
+- Mentored junior data scientists and analysts, helping to improve analytical methodologies and coding standards  
+- Supported cross-functional collaboration between product, engineering, and marketing teams to integrate data science solutions  
+- Contributed to the development and maintenance of machine learning pipelines for various predictive analytics models  
+- Assisted in troubleshooting data quality issues and refining data preprocessing workflows  
+- Facilitated knowledge sharing sessions to enhance understanding of advanced analytics techniques across teams  
+
+Data Scientist  
+Nova Insights, Bellevue, WA  
+Jul 2014 - Jan 2018  
+- Helped develop machine learning models for sales and marketing optimization across several product lines  
+- Supported data collection and feature engineering efforts for multiple projects involving large customer datasets  
+- Collaborated with engineering teams to deploy models into production and monitor performance  
+- Contributed to exploratory data analysis and presented findings to stakeholders from different departments  
+- Assisted in defining data requirements and improving data validation processes  
+- Maintained documentation for data science workflows and best practices  
+
+Data Analyst  
+InnoTech Solutions, Redmond, WA  
+Aug 2012 - Jun 2014  
+- Provided analytics support for various projects focusing on user engagement and retention metrics  
+- Helped generate reports and dashboards to track key performance indicators across product teams  
+- Assisted in data cleaning and transformation tasks for multiple data sources  
+- Supported senior analysts in developing statistical models and A/B testing frameworks  
+- Participated in team meetings and contributed ideas to improve data-driven decision making  
+- Communicated results and insights in a clear manner to non-technical audiences  
+
+Personal Development Break  
+Jul 2023 - Dec 2023  
+- Took time off for personal projects, travel, and self-directed learning in advanced machine learning and AI ethics  
+- Completed online courses focusing on deep learning frameworks and big data technologies  
+
+Skills  
+- Programming: Python, R, SQL  
+- Machine Learning: Regression, Classification, Clustering, Time Series Analysis  
+- Tools: TensorFlow, Scikit-learn, Jupyter, Tableau  
+- Data Processing: ETL pipelines, Data Wrangling, Feature Engineering  
+- Strong communication and mentoring skills  
+- Collaborative problem solver with experience across multiple teams and projects

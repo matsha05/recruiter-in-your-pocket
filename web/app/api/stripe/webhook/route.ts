@@ -107,6 +107,40 @@ export async function POST(request: NextRequest) {
             stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
         });
 
+        // Log event to stripe_events table for audit trail
+        // This also serves as idempotency check by event_id
+        const { data: existingEvent } = await supabaseAdmin
+            .from("stripe_events")
+            .select("id")
+            .eq("event_id", event.id)
+            .maybeSingle();
+
+        if (existingEvent) {
+            logInfo({
+                msg: "stripe.webhook.event_already_processed",
+                request_id,
+                route,
+                outcome: "success",
+                stripe: { event_id: event.id, event_type: event.type }
+            });
+            return NextResponse.json({ received: true }, { headers: { "x-request-id": request_id } });
+        }
+
+        // Insert event log entry (ignore errors if table doesn't exist)
+        try {
+            await supabaseAdmin
+                .from("stripe_events")
+                .insert({
+                    event_id: event.id,
+                    event_type: event.type,
+                    processed_at: new Date().toISOString(),
+                    payload: JSON.stringify(event.data.object),
+                    request_id
+                });
+        } catch {
+            // Table may not exist yet - that's OK
+        }
+
         if (!email) {
             logError({
                 msg: "stripe.webhook.missing_email",
@@ -122,6 +156,7 @@ export async function POST(request: NextRequest) {
 
         try {
             // Idempotency: if we've already created a pass for this checkout session, exit cleanly.
+            // This is a second layer of protection (first is event_id check above)
             const { data: existing } = await supabaseAdmin
                 .from("passes")
                 .select("id")

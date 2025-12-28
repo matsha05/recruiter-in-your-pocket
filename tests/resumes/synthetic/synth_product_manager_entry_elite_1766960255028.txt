@@ -1,0 +1,38 @@
+Eric T. Langston  
+eric.langston@email.com | 555-782-4910 | San Francisco, CA | linkedin.com/in/eric-t-langston  
+
+Product Manager with a strong foundation in data-driven decision-making and agile product development. Recently transitioned from a technical background with internship experience leading cross-functional teams to deliver impactful features for SaaS platforms. Passionate about building user-centric products that drive growth and streamline workflows.  
+
+Product Manager Intern  
+NovaSense Technologies, San Francisco, CA  
+June 2023 - August 2023  
+- Led a team of 4 engineers and designers during an 8-week internship to develop a new onboarding feature for NovaSense’s cloud analytics platform, resulting in a 25% increase in user activation within the first month of launch.  
+- Owned the product roadmap for the onboarding feature, prioritizing user feedback and analytics data collected from over 150 beta users to iterate on flows weekly.  
+- Collaborated with marketing and customer success teams to craft messaging that decreased onboarding time by 30%, improving customer satisfaction scores from 78% to 85%.  
+- Defined and tracked key performance indicators such as activation rate, time-to-value, and churn reduction to measure feature effectiveness post-launch.  
+- Presented findings and outcomes to senior leadership, influencing the decision to expand onboarding personalization to additional product modules.  
+
+Associate Product Manager  
+BrightLeaf Software, Remote  
+January 2022 - May 2023  
+- Owned the release cycle for BrightLeaf's resource management module within their project management SaaS, overseeing delivery timelines and cross-team dependencies for a feature used by 10,000+ customers.  
+- Developed user stories and acceptance criteria in collaboration with UX research, increasing feature adoption by 40% after launch by simplifying task delegation workflows.  
+- Implemented A/B testing strategies that identified a 15% improvement in task completion rates by introducing deadline reminder functionality.  
+- Worked alongside a customer insights team to conduct user interviews, integrating qualitative data into product backlog prioritization and roadmap planning.  
+- Managed weekly sprint planning and backlog grooming sessions with a Scrum team of 6 engineers, ensuring alignment on scope and release goals.  
+
+Product Management Intern  
+Pivotal Edge Inc., Seattle, WA  
+June 2021 - December 2021  
+- Supported the product team in managing a $150K budget allocated for usability research projects targeting the mobile version of Pivotal Edge’s B2B ordering platform.  
+- Coordinated cross-functional efforts between engineering, design, and QA for a 3-month feature update that improved mobile checkout speed by 20%, enhancing user retention.  
+- Analyzed competitor offerings and market trends, presenting a product opportunity report that contributed to the roadmap prioritization for the next two quarters.  
+- Drafted product requirement documents and user journey maps that clarified feature goals for the development team and reduced rework by 18%.  
+- Assisted in launching a customer feedback portal, which increased actionable user feedback submissions by 35% within the first 2 months.  
+
+Education  
+Bachelor of Science in Business Administration, Concentration in Technology Management  
+University of Washington, Seattle, WA  
+September 2018 - June 2022  
+- Graduated with Honors, GPA: 3.8/4.0  
+- Led a capstone project to design and prototype a mobile app aimed at improving campus sustainability initiatives, which was awarded for innovation by the College of Business.

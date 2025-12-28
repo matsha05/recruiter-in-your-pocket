@@ -1,0 +1,4 @@
+# Ignore per-run outputs (keep baseline and summaries)
+*_run.json
+!baseline_*.json
+!summary_*.md

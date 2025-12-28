@@ -1,0 +1,57 @@
+David M. Langston  
+david.langston@email.com | 555-234-9876 | Seattle, WA | linkedin.com/in/davidmlangston  
+
+Data Scientist with over 7 years of experience applying analytical techniques across multiple industries. Adept at supporting and guiding teams through data-driven projects, contributing to the design and implementation of predictive models. Strong communication skills with a focus on collaborative problem-solving and mentoring junior team members.  
+
+Professional Experience  
+
+Data Scientist Lead  
+Stratify Analytics, Seattle, WA  
+Jan 2020 - Present  
+- Helped lead technical initiatives for various projects across multiple teams, contributing to data strategy and model development  
+- Supported the integration of machine learning techniques into existing workflows to improve data insights  
+- Collaborated with cross-functional teams to identify business needs and translate them into analytic solutions  
+- Mentored junior data scientists and provided guidance on data modeling and best practices  
+- Participated in code reviews and contributed to improving the overall quality of the data science pipeline  
+- Assisted in presenting findings and technical concepts to stakeholders, supporting decision-making processes  
+
+Senior Data Scientist  
+BrightWave Technologies, Bellevue, WA  
+Jun 2016 - Dec 2019  
+- Contributed to the development and deployment of predictive models supporting marketing and sales teams  
+- Supported data cleaning and feature engineering efforts across projects involving large datasets  
+- Helped create dashboards and visualizations for different business units to monitor key metrics  
+- Worked with multiple teams to identify opportunities for data-driven improvements in products  
+- Assisted in training sessions for new data science hires and interns  
+- Engaged in research to explore new tools and methodologies for enhancing analytical capabilities  
+
+Data Scientist  
+Innovatech Solutions, Redmond, WA  
+Aug 2014 - May 2016  
+- Supported data analysis projects in various domains including customer insights and operational efficiency  
+- Collaborated with engineers and analysts to collect and process data from diverse sources  
+- Contributed to statistical modeling efforts to predict user behavior patterns  
+- Assisted in documentation and communicated technical details within the team  
+- Participated in the evaluation of new data science tools and frameworks  
+- Helped troubleshoot data quality issues and improved pipeline robustness  
+
+Education  
+
+Master of Science in Data Science  
+Pacific Northwest University, Seattle, WA  
+2012 - 2014  
+
+Bachelor of Science in Computer Science  
+Western State College, Tacoma, WA  
+2008 - 2012  
+
+Skills  
+
+- Programming: Python, R, SQL  
+- Machine Learning: Regression, Classification, Clustering  
+- Data Visualization: Tableau, Matplotlib, Seaborn  
+- Big Data Tools: Hadoop, Spark (basic experience)  
+- Cloud Platforms: AWS (S3, EC2)  
+- Version Control: Git  
+- Strong communication and mentoring abilities  
+- Experience with Agile methodologies and collaborative environments

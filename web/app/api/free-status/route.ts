@@ -15,6 +15,16 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
+    // Dev bypass for testing
+    if (String(process.env.BYPASS_PAYWALL || "").toLowerCase() === "true") {
+      return NextResponse.json({
+        ok: true,
+        free_uses_left: 99,
+        free_uses_remaining: 99,
+        source: "bypass"
+      });
+    }
+
     // Check if user is logged in
     const supabase = await maybeCreateSupabaseServerClient();
     const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };

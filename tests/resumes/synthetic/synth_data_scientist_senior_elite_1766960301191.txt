@@ -1,0 +1,42 @@
+Alex R. Whitman
+alex.whitman@email.com | 555-123-9876 | LinkedIn: linkedin.com/in/alexrwhitman | San Francisco, CA
+
+Data Scientist | Technical Leader | Mentor
+
+EXPERIENCE
+
+Freelance Data Science Consultant
+Remote | Jan 2017 - Present
+- Led end-to-end data science initiatives for 12+ clients across fintech, e-commerce, and healthcare domains, managing project scopes and delivering within budgets averaging $250K each.
+- Built and deployed scalable machine learning models predicting customer churn with 85% accuracy, leading to an average 15% increase in client retention rates.
+- Designed real-time anomaly detection systems that reduced fraudulent transaction losses by $1.8M annually for a mid-sized payment processor.
+- Mentored 8 junior data scientists and analysts over multiple projects, improving team productivity by 30% through code reviews, workshops, and pair programming.
+- Spearheaded migration from legacy SQL-based analytics to automated Python and Spark pipelines, reducing data processing time from 6 hours to 45 minutes.
+- Collaborated with cross-functional teams to define KPIs and data strategy, resulting in a 40% revenue growth for a retail client within 18 months.
+
+Data Science Lead | NexaTech Solutions
+San Francisco, CA | Jul 2013 - Dec 2016
+- Managed a team of 6 data scientists and engineers with a $1.2M annual budget, delivering actionable insights for a SaaS platform serving 800K+ users.
+- Architected predictive customer segmentation models that increased upsell conversions by 25% and improved personalized marketing ROI by 35%.
+- Instituted best practices for model versioning, testing, and deployment, reducing production bugs by 60% and accelerating release cycles by 20%.
+- Championed adoption of deep learning techniques for text analytics, improving sentiment classification accuracy from 72% to 89%.
+- Presented quarterly progress reports to executive leadership, influencing strategic decisions that expanded market share by 5% annually.
+- Directed cross-team collaborations with product and engineering, decreasing data pipeline errors by 40% through enhanced monitoring and alerting.
+
+Senior Data Scientist | VectorGen Analytics
+New York, NY | Sep 2010 - Jun 2013
+- Developed forecasting models for supply chain optimization that cut inventory costs by $2 million per year for global retail clients.
+- Led a 4-person team implementing recommendation systems that raised average customer order value by 18%.
+- Automated data collection and cleaning processes, reducing manual workload by 50% and freeing analysts for higher-level analysis.
+- Conducted root cause analysis for client churn, informing product improvements that decreased churn rates by 12% within 6 months.
+- Facilitated knowledge sharing sessions and technical trainings, fostering a collaborative culture within the analytics department.
+- Collaborated with data engineers to optimize databases, improving query performance by 3x.
+
+SKILLS
+- Programming: Python (pandas, scikit-learn, TensorFlow), R, SQL, Spark
+- Machine Learning: Classification, Regression, Clustering, NLP, Deep Learning
+- Data Engineering: ETL pipelines, Data warehousing, Airflow
+- Cloud Platforms: AWS (S3, SageMaker, EC2), GCP
+- Tools: Docker, Git, JIRA, Tableau, Looker
+- Leadership: Technical mentorship, Team management, Agile methodologies
+- Domain Expertise: Fintech risk modeling, E-commerce personalization, Healthcare analytics

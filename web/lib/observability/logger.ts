@@ -41,6 +41,12 @@ export type LogRecord = {
     idempotency_key_hash?: string;
   };
 
+  security?: {
+    injection_detected?: boolean;
+    patterns_matched?: string[];
+    json_injection?: boolean;
+  };
+
   err?: { name: string; message: string; code?: string; stack?: string };
 };
 
