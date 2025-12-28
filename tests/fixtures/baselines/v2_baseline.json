@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "run_id": "eval_1766950968520",
+    "timestamp": "2025-12-28T19:42:48.521Z",
+    "model": "gpt-4o-mini",
+    "temperature": 0,
+    "top_p": 1,
+    "prompt_version_hash": "v1",
+    "contract_version": "v1",
+    "tier": "golden",
+    "budget_usd": 5,
+    "actual_cost_usd": 0,
+    "calls_made": 0,
+    "max_calls": 100,
+    "concurrency": 3
+  },
+  "summary": {
+    "total": 7,
+    "passed": 0,
+    "warned": 0,
+    "failed": 7
+  },
+  "results": [
+    {
+      "fixture_id": "anchor_elite_ml_staff_1",
+      "status": "FAIL",
+      "errors": [
+        {
+          "code": "E_SCHEMA",
+          "message": "Resume file not found: golden/anchor_elite_ml_staff_1.txt"
+        }
+      ],
+      "warnings": [],
+      "actual_score": 0,
+      "expected_range": [
+        90,
+        98
+      ]
+    },
+    {
+      "fixture_id": "anchor_elite_pm_ai_1",
+      "status": "FAIL",
+      "errors": [
+        {
+          "code": "E_SCHEMA",
+          "message": "Resume file not found: golden/anchor_elite_pm_ai_1.txt"
+        }
+      ],
+      "warnings": [],
+      "actual_score": 0,
+      "expected_range": [
+        90,
+        98
+      ]
+    },
+    {
+      "fixture_id": "anchor_elite_vp_talent_1",
+      "status": "FAIL",
+      "errors": [
+        {
+          "code": "E_SCHEMA",
+          "message": "Resume file not found: golden/anchor_elite_vp_talent_1.txt"
+        }
+      ],
+      "warnings": [],
+      "actual_score": 0,
+      "expected_range": [
+        90,
+        98
+      ]
+    },
+    {
+      "fixture_id": "recruiter_palantir_strong_foundation_1",
+      "status": "FAIL",
+      "errors": [
+        {
+          "code": "E_SCHEMA",
+          "message": "Resume file not found: golden/recruiter_palantir_strong_foundation_1.txt"
+        }
+      ],
+      "warnings": [],
+      "actual_score": 0,
+      "expected_range": [
+        82,
+        88
+      ]
+    },
+    {
+      "fixture_id": "devops_senior_high_bar_1",
+      "status": "FAIL",
+      "errors": [
+        {
+          "code": "E_SCHEMA",
+          "message": "Resume file not found: golden/devops_senior_high_bar_1.txt"
+        }
+      ],
+      "warnings": [],
+      "actual_score": 0,
+      "expected_range": [
+        84,
+        92
+      ]
+    },
+    {
+      "fixture_id": "law_inhouse_thin_signal_1",
+      "status": "FAIL",
+      "errors": [
+        {
+          "code": "E_SCHEMA",
+          "message": "Resume file not found: golden/law_inhouse_thin_signal_1.txt"
+        }
+      ],
+      "warnings": [],
+      "actual_score": 0,
+      "expected_range": [
+        68,
+        78
+      ]
+    },
+    {
+      "fixture_id": "finance_not_ready_sam_helmuth_1",
+      "status": "FAIL",
+      "errors": [
+        {
+          "code": "E_SCHEMA",
+          "message": "Resume file not found: golden/finance_not_ready_sam_helmuth_1.txt"
+        }
+      ],
+      "warnings": [],
+      "actual_score": 0,
+      "expected_range": [
+        58,
+        68
+      ]
+    }
+  ]
+}

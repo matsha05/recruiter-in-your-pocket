@@ -179,4 +179,5 @@ export const CONCRETE_PATTERNS = [
     /%/,                                            // Percentages
     /\b(team|users|revenue|pipeline|budget|ARR|MRR|NPS)\b/i,  // Measurable nouns
     /\b(Q[1-4]|20\d{2}|weekly|monthly|annually)\b/i,          // Time bounds
+    /\[[^\]]+\]/,                                               // Bracket placeholders like [X%], [specific metric]
 ];

@@ -307,7 +307,7 @@ export async function POST(request: Request) {
                         payload = ensureLayoutAndContentFields(payload);
                     }
                 } catch (err: any) {
-                    console.error("[stream] Validation error:", err.message, "Payload keys:", Object.keys(parsedJson || {}));
+                    console.error("[stream] Validation error:", err.message, "Raw JSON length:", accumulatedJson?.length || 0);
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "OPENAI_RESPONSE_PARSE_ERROR",

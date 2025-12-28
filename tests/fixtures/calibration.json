@@ -177,6 +177,166 @@
                 "anchor",
                 "bottom"
             ]
+        },
+        {
+            "id": "synth_data_scientist_senior_elite_1",
+            "path": "golden/synth_data_scientist_senior_elite_1766960238522.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 85,
+                "max": 95
+            },
+            "expected_band": "elite",
+            "tags": [
+                "data_science",
+                "senior",
+                "elite",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_marketing_manager_vp_elite_1",
+            "path": "golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 85,
+                "max": 95
+            },
+            "expected_band": "elite",
+            "tags": [
+                "marketing",
+                "vp",
+                "elite",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_software_engineer_mid_strong_1",
+            "path": "golden/synth_software_engineer_mid_strong_1766960342929.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 78,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "engineering",
+                "mid",
+                "strong",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_ux_designer_director_strong_1",
+            "path": "golden/synth_ux_designer_director_strong_1766960238902.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 78,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "design",
+                "director",
+                "strong",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_sales_executive_mid_foundation_1",
+            "path": "golden/synth_sales_executive_mid_foundation_1766960226693.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 68,
+                "max": 78
+            },
+            "expected_band": "foundation",
+            "tags": [
+                "sales",
+                "mid",
+                "foundation",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_hr_manager_director_foundation_1",
+            "path": "golden/synth_hr_manager_director_foundation_1766960245321.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 68,
+                "max": 78
+            },
+            "expected_band": "foundation",
+            "tags": [
+                "hr",
+                "director",
+                "foundation",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_finance_analyst_senior_weak_1",
+            "path": "golden/synth_finance_analyst_senior_weak_1766960287359.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 55,
+                "max": 68
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "finance",
+                "senior",
+                "weak",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_operations_manager_entry_weak_1",
+            "path": "golden/synth_operations_manager_entry_weak_1766960246467.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 55,
+                "max": 68
+            },
+            "expected_band": "thin_signal",
+            "tags": [
+                "operations",
+                "entry",
+                "weak",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_project_manager_vp_strong_1",
+            "path": "golden/synth_project_manager_vp_strong_1766957014608.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 75,
+                "max": 85
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "project_management",
+                "vp",
+                "strong",
+                "synthetic"
+            ]
+        },
+        {
+            "id": "synth_product_manager_entry_elite_1",
+            "path": "golden/synth_product_manager_entry_elite_1766960255028.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 82,
+                "max": 92
+            },
+            "expected_band": "elite",
+            "tags": [
+                "product",
+                "entry",
+                "elite",
+                "synthetic"
+            ]
         }
     ]
 }
