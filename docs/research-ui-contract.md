@@ -176,35 +176,67 @@ Fig. 1 — Aggregated gaze duration across 30 recruiter sessions.
 
 ### 7.1 Source Tiers
 
-| Tier | Source Type | Examples | Usage |
-|------|-------------|----------|-------|
-| **Tier 1 (Primary)** | Academic journals, official platform data | LinkedIn Talent Solutions, peer-reviewed papers, DOI-linked research | Preferred for key findings |
-| **Tier 2 (Industry)** | Established industry publications | Kinsta, TeamStage, Forbes, HBR | Acceptable with verification |
-| **Tier 3 (Prohibited)** | Low-authority blogs, marketing tools, unknown sites | DottyPost, random Medium posts, AI content farms | **Never use** |
+| Tier | Source Type | Verified Examples | Usage |
+|------|-------------|-------------------|-------|
+| **Tier 1 (Primary)** | Official platform data, academic journals, government surveys | See list below | **Required for key findings** |
+| **Tier 2 (Industry)** | Established publications that cite primary sources | See list below | Acceptable if citing Tier 1 |
+| **Tier 3 (Prohibited)** | Low-authority blogs, marketing tools, unknown sites | DottyPost, ContentIn.io, random Medium posts | **Never use** |
+
+#### Tier 1 Sources for LinkedIn/Recruiting Research
+
+| Source | URL | What It Contains |
+|--------|-----|------------------|
+| **LinkedIn Economic Graph** | `economicgraph.linkedin.com/blog` | Official hiring data, workforce reports, AI impact studies |
+| **LinkedIn Newsroom** | `news.linkedin.com/about-us#Statistics` | Official member counts, hiring stats (7 hires/minute), company data |
+| **Pew Research Center** | `pewresearch.org/internet/fact-sheet/social-media` | 32% of US adults use LinkedIn, demographic breakdowns |
+| **Hootsuite Blog** | `blog.hootsuite.com/linkedin-statistics-business/` | 51 stats with primary LinkedIn citations |
+| **SHRM.org** | `shrm.org` (search for survey reports) | HR professional surveys on recruiting practices |
+| **Jobvite Recruiter Nation** | `jobvite.com` (annual reports) | Recruiter behavior surveys |
+| **Academic papers** | Google Scholar, DOI links | Peer-reviewed research on resume screening |
+
+#### Tier 2 Sources (Acceptable with Verification)
+
+| Source | Why Acceptable | Verify Before Using |
+|--------|----------------|---------------------|
+| **Kinsta** | Tech-focused, cites primary sources | Check their citations go to Tier 1 |
+| **TeamStage** | HR analytics, cites surveys | Check their methodology section |
+| **Forbes** | Editorial standards, fact-checked | Check article date and author credentials |
+| **HBR** | Research-grade editorial | Check study citations |
+
+#### Tier 3 Sources (PROHIBITED)
+
+| Source Type | Examples | Why Prohibited |
+|-------------|----------|----------------|
+| Small marketing tool blogs | DottyPost, ContentIn.io, Elev-AI | Fabricate stats to sell product |
+| AI content farms | Generic "LinkedIn Statistics 2024" sites | No primary research, circular citations |
+| Unattributed Medium posts | Random career advice articles | No editorial oversight |
+| Generic landing pages | business.linkedin.com/talent-solutions (no stats) | Marketing copy, not data |
+| 404s and broken links | Any URL that doesn't load | Obviously unverifiable |
 
 ### 7.2 Link Requirements
 
-- [ ] **Every source URL must be verified BEFORE merge** — actually click it
+- [ ] **Every source URL must be verified BEFORE merge** — actually click it and find the stat
 - [ ] **Links must go to the specific stat**, not a generic landing page
 - [ ] **Links must be accessible** — no 404s, no login walls, no paywalls without archive link
 - [ ] **Citations must match content** — the stat you cite must exist on the linked page
+- [ ] **Check the source's source** — if they claim "87% of recruiters," where did THEY get it?
 
-### 7.3 Prohibited Source Patterns
+### 7.3 Search Strategies for Finding Tier 1 Sources
 
-| ❌ Prohibited | Reason |
-|---|---|
-| Generic company homepages | Not verifiable evidence |
-| Small marketing tool blogs (< 10k followers) | Likely fabricated stats to sell product |
-| AI-generated content farms | Data integrity unknown |
-| Outdated sources (> 5 years) without noting age | May misrepresent current reality |
-| "Statistics" pages that don't cite primary sources | Circular citation problem |
+When researching a stat like "X% of recruiters use LinkedIn":
+
+1. **Start with official sources**: `site:linkedin.com "hiring" statistics`
+2. **Check academic sources**: Google Scholar + topic keywords
+3. **Find primary surveys**: `site:shrm.org survey recruiting` or `site:jobvite.com recruiter nation`
+4. **Verify aggregators**: If Hootsuite says "7 hires/minute" check their citation → `news.linkedin.com`
+5. **Avoid circular citations**: If 3 sites all cite each other with no primary source, the stat is likely fabricated
 
 ### 7.4 When Evidence is Weak
 
 If you cannot find a credible primary source for a claim:
 1. **Remove the claim entirely** — restraint is better than bullshit
-2. **Soften the language** — "Generally, profiles with..." instead of "87% of..."
-3. **Add explicit limitation** — "This stat appears widely but we could not verify the primary source"
+2. **Soften the language** — "LinkedIn is the primary professional network" instead of "93% of recruiters..."
+3. **Add explicit limitation** — "Exact figures vary by source; the key insight is..."
 
 **If in doubt, delete. Credibility > Completeness.**
 

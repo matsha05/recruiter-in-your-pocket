@@ -20,13 +20,13 @@ export default function LinkedInVisibilityPage() {
             keyFinding={{
                 icon: <Search className="w-4 h-4" />,
                 subtitle: "The Key Finding",
-                stat: "87% of Recruiters",
-                statDescription: "87% of recruiters in the US rely on LinkedIn when sourcing candidates. An unoptimized profile means you're invisible to most of them.",
+                stat: "7 Hires Every Minute",
+                statDescription: "LinkedIn sees 7 people hired every minute, with over 9,000 members applying for jobs every minute. An unoptimized profile means you're invisible in this massive talent marketplace.",
                 source: {
-                    text: "TeamStage LinkedIn Statistics (2024)",
-                    href: "https://teamstage.io/linkedin-statistics/"
+                    text: "LinkedIn Newsroom (Official, 2024)",
+                    href: "https://news.linkedin.com/about-us#Statistics"
                 },
-                sampleSize: "Industry analysis based on recruiter surveys"
+                sampleSize: "Based on LinkedIn's official platform data"
             }}
             visualization={
                 <>
@@ -69,7 +69,7 @@ export default function LinkedInVisibilityPage() {
                             </div>
                         </div>
                         <p className="text-xs text-muted-foreground mt-4">
-                            Sources: <a href="https://teamstage.io/linkedin-statistics/" target="_blank" rel="noopener" className="underline hover:text-foreground">TeamStage</a>, <a href="https://kinsta.com/blog/linkedin-statistics/" target="_blank" rel="noopener" className="underline hover:text-foreground">Kinsta</a> (2024)
+                            Sources: <a href="https://news.linkedin.com/about-us#Statistics" target="_blank" rel="noopener" className="underline hover:text-foreground">LinkedIn Newsroom</a>, <a href="https://blog.hootsuite.com/linkedin-statistics-business/" target="_blank" rel="noopener" className="underline hover:text-foreground">Hootsuite</a>, <a href="https://www.pewresearch.org/internet/fact-sheet/social-media/" target="_blank" rel="noopener" className="underline hover:text-foreground">Pew Research</a>
                         </p>
                     </div>
                 </>
@@ -105,27 +105,27 @@ export default function LinkedInVisibilityPage() {
             </p>
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Key Research Findings</h2>
-            <p className="text-xs text-muted-foreground mb-4">Statistics from <a href="https://teamstage.io/linkedin-statistics/" target="_blank" rel="noopener" className="underline hover:text-brand">TeamStage</a> and <a href="https://kinsta.com/blog/linkedin-statistics/" target="_blank" rel="noopener" className="underline hover:text-brand">Kinsta</a> industry research.</p>
+            <p className="text-xs text-muted-foreground mb-4">Statistics from <a href="https://news.linkedin.com/about-us#Statistics" target="_blank" rel="noopener" className="underline hover:text-brand">LinkedIn Newsroom</a>, <a href="https://blog.hootsuite.com/linkedin-statistics-business/" target="_blank" rel="noopener" className="underline hover:text-brand">Hootsuite</a>, and <a href="https://www.pewresearch.org/internet/fact-sheet/social-media/" target="_blank" rel="noopener" className="underline hover:text-brand">Pew Research</a>.</p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     icon={<Search className="w-4 h-4" />}
-                    title="87% of Recruiters Use LinkedIn"
-                    desc="LinkedIn is the primary sourcing platform for recruiters in the US."
+                    title="1 Billion Members"
+                    desc="LinkedIn has 1 billion members worldwide—the world's largest professional network."
                 />
                 <ArticleInsight
                     icon={<Eye className="w-4 h-4" />}
-                    title="Profile Photos = 21x More Views"
-                    desc="Profiles with professional photos receive dramatically more views."
+                    title="32% of US Adults Use LinkedIn"
+                    desc="Per Pew Research, nearly a third of American adults are on the platform."
                 />
                 <ArticleInsight
                     icon={<Zap className="w-4 h-4" />}
-                    title="Keywords in Headlines Matter Most"
-                    desc="LinkedIn's algorithm weighs headline keywords 3-4x more than other sections."
+                    title="9,000+ Job Applications/Minute"
+                    desc="Over 9,000 LinkedIn members apply for jobs every minute."
                 />
                 <ArticleInsight
                     icon={<Users className="w-4 h-4" />}
-                    title="7 People Hired Every Minute"
-                    desc="LinkedIn sees 7 hires per minute, with 35 million job fillings via connections."
+                    title="67 Million Companies"
+                    desc="More than 67 million companies have LinkedIn presence."
                 />
             </div>
 
