@@ -63,73 +63,114 @@ export function LinkedInReportPanel({
     const isExhausted = !isSample && freeUsesRemaining <= 0;
 
     return (
-        <div className="max-w-3xl mx-auto pb-32 space-y-16">
+        <div className="space-y-12">
 
-            {/* Score Hero with Dial */}
+            {/* Hero Card - Matches Resume FirstImpressionSection */}
             <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <div className="text-center space-y-6">
-                    {/* Score Dial */}
-                    <div className="relative inline-flex items-center justify-center">
-                        <svg className="w-36 h-36 transform -rotate-90">
-                            <circle
-                                cx="72" cy="72" r="68"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                fill="transparent"
-                                className="text-border/30"
-                            />
-                            <circle
-                                cx="72" cy="72" r="68"
-                                stroke={getDialStrokeColor(report.score || 0)}
-                                strokeWidth="3"
-                                fill="transparent"
-                                strokeDasharray={427}
-                                strokeDashoffset={427 - (427 * animatedScore) / 100}
-                                className="transition-all duration-1000 ease-out"
-                                strokeLinecap="round"
-                            />
-                        </svg>
-                        <div className="absolute inset-0 flex items-center justify-center flex-col">
-                            <span className="text-5xl font-display font-medium tracking-tighter tabular-nums">
-                                {animatedScore}
-                            </span>
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                                LinkedIn Score
-                            </span>
-                        </div>
+                {/* Section Header with horizontal line decoration */}
+                <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                        <div className="w-6 h-px bg-border" />
+                        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                            <PrincipalRecruiterIcon className="w-4 h-4 text-brand" />
+                            LinkedIn First Impression
+                        </h2>
                     </div>
+                    <a
+                        href="/research/linkedin-visibility"
+                        className="text-[10px] text-muted-foreground/60 hover:text-brand transition-colors font-medium"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        How we score →
+                    </a>
+                </div>
 
-                    {/* Score Label & Comment */}
-                    <div className="space-y-2">
-                        <p className="text-lg font-medium text-foreground">{report.score_label}</p>
-                        <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                            {report.score_comment_short}
-                        </p>
-                    </div>
+                {/* Main Card - THE Signature Moment */}
+                <div className="bg-card rounded border border-border/60 shadow-sm overflow-hidden">
+                    <div className="grid md:grid-cols-5">
 
-                    {/* Subscores Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                        {[
-                            { key: 'visibility', label: 'Visibility', score: report.subscores?.visibility },
-                            { key: 'first_impression', label: 'First Impression', score: report.subscores?.first_impression },
-                            { key: 'content_quality', label: 'Content', score: report.subscores?.content_quality },
-                            { key: 'completeness', label: 'Completeness', score: report.subscores?.completeness },
-                        ].map((item) => item.score !== undefined && (
-                            <div
-                                key={item.key}
-                                className="bg-card border border-border/60 shadow-sm p-4 rounded-lg flex flex-col items-center justify-center text-center gap-1 transition-all hover:border-brand/30"
-                            >
-                                <span className={cn(
-                                    "font-display font-bold tabular-nums text-3xl tracking-tight",
-                                    getScoreColor(item.score)
-                                )}>
-                                    {item.score}
-                                </span>
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                                    {item.label}
-                                </span>
+                        {/* LEFT: THE VERDICT (3 cols) */}
+                        <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 space-y-6">
+                            <div className="space-y-3">
+                                <h3 className="text-headline text-foreground">
+                                    &quot;Here is what I noticed...&quot;
+                                </h3>
                             </div>
-                        ))}
+
+                            <p className="text-base text-muted-foreground leading-relaxed font-serif">
+                                {report.score_comment_long || report.score_comment_short || report.first_impression?.profile_card_verdict}
+                            </p>
+
+                            {/* Subscores Grid */}
+                            <div className="grid grid-cols-2 gap-3 pt-4">
+                                {[
+                                    { key: 'visibility', label: 'Visibility', score: report.subscores?.visibility },
+                                    { key: 'first_impression', label: 'First Impression', score: report.subscores?.first_impression },
+                                    { key: 'content_quality', label: 'Content', score: report.subscores?.content_quality },
+                                    { key: 'completeness', label: 'Completeness', score: report.subscores?.completeness },
+                                ].map((item) => item.score !== undefined && (
+                                    <div
+                                        key={item.key}
+                                        className="bg-secondary/20 border border-border/40 p-3 rounded flex flex-col items-center justify-center text-center gap-0.5"
+                                    >
+                                        <span className={cn(
+                                            "font-display font-bold tabular-nums text-2xl tracking-tight",
+                                            getScoreColor(item.score)
+                                        )}>
+                                            {item.score}
+                                        </span>
+                                        <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+                                            {item.label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* RIGHT: THE SCORE DIAL (2 cols) */}
+                        <div className="md:col-span-2 p-6 md:p-8 bg-secondary/20 flex flex-col items-center justify-center space-y-6">
+                            {/* Score Dial */}
+                            <div className="text-center space-y-4">
+                                <div className="relative inline-flex items-center justify-center">
+                                    <svg className="w-36 h-36 transform -rotate-90">
+                                        <circle
+                                            cx="72" cy="72" r="60"
+                                            stroke="currentColor"
+                                            strokeWidth="3"
+                                            fill="transparent"
+                                            className="text-black/5 dark:text-white/5"
+                                        />
+                                        <circle
+                                            cx="72" cy="72" r="60"
+                                            stroke={getDialStrokeColor(report.score || 0)}
+                                            strokeWidth="3"
+                                            fill="transparent"
+                                            strokeDasharray={377}
+                                            strokeDashoffset={377 - (377 * animatedScore) / 100}
+                                            strokeLinecap="round"
+                                            className="transition-all duration-1000 ease-out"
+                                        />
+                                    </svg>
+                                    <div className="absolute inset-0 flex items-center justify-center flex-col">
+                                        <span className="text-5xl font-serif font-bold tracking-tighter tabular-nums">{animatedScore}</span>
+                                        <span className="text-label text-muted-foreground">Score</span>
+                                    </div>
+                                </div>
+
+                                {/* Score Band Badge */}
+                                <div className="transition-all duration-300 ease-out">
+                                    <span className={cn(
+                                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider",
+                                        (report.score || 0) >= 85 ? "bg-success/10 border-success/20 text-success" :
+                                            (report.score || 0) >= 70 ? "bg-premium/10 border-premium/20 text-premium" :
+                                                "bg-destructive/10 border-destructive/20 text-destructive"
+                                    )}>
+                                        <CheckCircle2 className="w-3 h-3" /> {report.score_label || 'Needs Work'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -138,7 +179,7 @@ export function LinkedInReportPanel({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700" />
 
             {/* 01. Profile First Impression */}
-            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
+            <section id="linkedin-first-impression" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
                 <ReportSectionHeader
                     icon={<PrincipalRecruiterIcon className="w-4 h-4 text-brand" />}
                     number="01"
@@ -178,7 +219,7 @@ export function LinkedInReportPanel({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
             {/* 02. Headline Analysis */}
-            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
+            <section id="linkedin-headline" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
                 <ReportSectionHeader
                     icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
                     number="02"
@@ -222,7 +263,7 @@ export function LinkedInReportPanel({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
             {/* 03. About Section */}
-            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+            <section id="linkedin-about" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
                 <ReportSectionHeader
                     icon={<InsightSparkleIcon className="w-4 h-4 text-brand" />}
                     number="03"
@@ -257,7 +298,7 @@ export function LinkedInReportPanel({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
             {/* 04. Search Visibility */}
-            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
+            <section id="linkedin-visibility" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
                 <ReportSectionHeader
                     icon={<SignalRadarIcon className="w-4 h-4 text-brand" />}
                     number="04"
@@ -308,7 +349,7 @@ export function LinkedInReportPanel({
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
             {/* 05. Quick Wins */}
-            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
+            <section id="linkedin-quick-wins" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
                 <ReportSectionHeader
                     icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
                     number="05"

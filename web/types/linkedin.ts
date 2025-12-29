@@ -53,13 +53,16 @@ export interface LinkedInReport {
     score_label: string;
     score_comment_short: string;
     score_comment_long: string;
+    source_note?: string; // V2: Notes about PDF vs URL analysis
 
     // The 3-Second Verdict (Hero Section)
     first_impression: {
         profile_card_verdict: string;
         headline_verdict: 'generic' | 'differentiated' | 'keyword_rich';
         photo_status: 'professional' | 'adequate' | 'missing' | 'needs_work' | 'unknown';
+        photo_note?: string; // V2: Explanation for photo status
         banner_status: 'branded' | 'generic' | 'missing' | 'unknown';
+        banner_note?: string; // V2: Explanation for banner status
         visibility_estimate: string;
     };
 
@@ -120,6 +123,13 @@ export interface LinkedInReport {
         best_fit_roles: string[];
         current_positioning: string;
         positioning_suggestion: string;
+    };
+
+    // V2: Benchmark insights for comparative context
+    benchmark_insights?: {
+        headline_percentile?: string;
+        about_percentile?: string;
+        overall_assessment?: string;
     };
 }
 

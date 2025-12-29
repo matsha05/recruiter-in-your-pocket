@@ -170,7 +170,47 @@ Fig. 1 — Aggregated gaze duration across 30 recruiter sessions.
 
 ---
 
-## 7. Enforcement Checklist
+## 7. Source Quality Standards (MANDATORY)
+
+> **All citations must link to verifiable, accessible content. Broken links or unverifiable claims are acquisition blockers.**
+
+### 7.1 Source Tiers
+
+| Tier | Source Type | Examples | Usage |
+|------|-------------|----------|-------|
+| **Tier 1 (Primary)** | Academic journals, official platform data | LinkedIn Talent Solutions, peer-reviewed papers, DOI-linked research | Preferred for key findings |
+| **Tier 2 (Industry)** | Established industry publications | Kinsta, TeamStage, Forbes, HBR | Acceptable with verification |
+| **Tier 3 (Prohibited)** | Low-authority blogs, marketing tools, unknown sites | DottyPost, random Medium posts, AI content farms | **Never use** |
+
+### 7.2 Link Requirements
+
+- [ ] **Every source URL must be verified BEFORE merge** — actually click it
+- [ ] **Links must go to the specific stat**, not a generic landing page
+- [ ] **Links must be accessible** — no 404s, no login walls, no paywalls without archive link
+- [ ] **Citations must match content** — the stat you cite must exist on the linked page
+
+### 7.3 Prohibited Source Patterns
+
+| ❌ Prohibited | Reason |
+|---|---|
+| Generic company homepages | Not verifiable evidence |
+| Small marketing tool blogs (< 10k followers) | Likely fabricated stats to sell product |
+| AI-generated content farms | Data integrity unknown |
+| Outdated sources (> 5 years) without noting age | May misrepresent current reality |
+| "Statistics" pages that don't cite primary sources | Circular citation problem |
+
+### 7.4 When Evidence is Weak
+
+If you cannot find a credible primary source for a claim:
+1. **Remove the claim entirely** — restraint is better than bullshit
+2. **Soften the language** — "Generally, profiles with..." instead of "87% of..."
+3. **Add explicit limitation** — "This stat appears widely but we could not verify the primary source"
+
+**If in doubt, delete. Credibility > Completeness.**
+
+---
+
+## 8. Enforcement Checklist
 
 Before merge, every research page must pass:
 
@@ -186,7 +226,7 @@ Before merge, every research page must pass:
 
 ---
 
-## 8. Design Philosophy
+## 9. Design Philosophy
 
 > If a UI element exists, it must justify itself.
 > If removing an element improves reading, it should be removed.

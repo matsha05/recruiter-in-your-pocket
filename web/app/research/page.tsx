@@ -123,6 +123,14 @@ const categories = [
                 href: "/research/linkedin-vs-resume"
             },
             {
+                id: "linkedin-visibility",
+                title: "LinkedIn Profile Visibility: What Research Shows",
+                thesis: "Optimized profiles get up to 14x more views. Headlines with keywords are the single biggest factor.",
+                readTime: "5 min",
+                href: "/research/linkedin-visibility",
+                featured: true
+            },
+            {
                 id: "skills-based-hiring",
                 title: "The Skills-Based Hiring Shift",
                 thesis: "Major employers are dropping degree requirements. Skills demonstration matters more.",

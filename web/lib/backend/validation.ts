@@ -1,7 +1,7 @@
 import { createAppError } from "./openai";
 
 const MAX_TEXT_LENGTH = 30000;
-const ALLOWED_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation"] as const;
+const ALLOWED_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
 
 export type Mode = (typeof ALLOWED_MODES)[number];
 

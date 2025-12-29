@@ -3,7 +3,7 @@ import { estimateCostUsd } from "./cost";
 import type { LlmRunContext, LlmTask, LlmTelemetry } from "./types";
 import { callOpenAIChat, callOpenAIChatStreamingWithUsage, extractJsonFromText } from "@/lib/backend/openai";
 
-type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation";
+type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
 
 type Messages = Array<{ role: "system" | "user" | "assistant"; content: string }>;
 

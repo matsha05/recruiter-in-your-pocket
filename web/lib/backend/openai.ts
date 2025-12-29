@@ -1,4 +1,4 @@
-type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation";
+type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
 
 export type AppError = Error & {
   code?: string;

@@ -13,11 +13,13 @@ import SaveReportPrompt from "@/components/workspace/SaveReportPrompt";
 import AuthModal from "@/components/shared/AuthModal";
 import { createResumeFeedback, streamResumeFeedback, parseResume, streamLinkedInFeedback } from "@/lib/api";
 import { toast } from "sonner";
-import { Linkedin } from "lucide-react";
+import { Linkedin, Plus, ArrowRight } from "lucide-react";
 import { Analytics } from "@/lib/analytics";
 import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
 import { LinkedInInputPanel } from "@/components/linkedin/LinkedInInputPanel";
 import { LinkedInReportPanel } from "@/components/linkedin/LinkedInReportPanel";
+import { LinkedInReportTOC } from "@/components/linkedin/LinkedInReportTOC";
+import { ReportLayout } from "@/components/layout/ReportLayout";
 
 export default function WorkspaceClient() {
     const searchParams = useSearchParams();
@@ -633,36 +635,61 @@ export default function WorkspaceClient() {
                                     </div>
                                 </div>
                             ) : (
-                                <div className="h-full overflow-y-auto">
-                                    <div className="max-w-3xl mx-auto px-4 py-8">
-                                        <div className="flex items-center justify-between mb-6">
-                                            <div>
-                                                <h2 className="text-xl font-semibold text-foreground">
-                                                    {linkedInProfileName || 'LinkedIn Report'}
-                                                </h2>
-                                                {linkedInProfileHeadline && (
-                                                    <p className="text-sm text-muted-foreground truncate max-w-md">
-                                                        {linkedInProfileHeadline}
-                                                    </p>
-                                                )}
+                                <div className="h-full overflow-y-auto bg-body relative group">
+                                    {/* Background texture to match Resume report */}
+                                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.015] pointer-events-none mix-blend-overlay" />
+
+                                    <ReportLayout
+                                        toc={<LinkedInReportTOC score={linkedInReport.score} />}
+                                    >
+                                        {/* Header matching Resume report structure */}
+                                        <div className="space-y-6">
+                                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                                <div className="space-y-1 min-w-0">
+                                                    <div className="flex items-center gap-3 flex-wrap">
+                                                        <h1 className="text-xl sm:text-2xl font-serif font-semibold text-foreground tracking-tight truncate">
+                                                            {linkedInProfileName || 'LinkedIn Report'}
+                                                        </h1>
+                                                    </div>
+                                                    <p className="text-sm text-muted-foreground">This is what a recruiter sees on your LinkedIn profile.</p>
+                                                </div>
+
+                                                {/* Action Buttons matching Resume */}
+                                                <div className="flex items-center gap-2 shrink-0">
+                                                    {freeUsesRemaining > 0 && (
+                                                        <button
+                                                            onClick={handleNewReport}
+                                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                                        >
+                                                            <Plus className="w-4 h-4" />
+                                                            <span className="hidden sm:inline">Run Another</span>
+                                                            <span className="sm:hidden">New</span>
+                                                        </button>
+                                                    )}
+                                                    {freeUsesRemaining <= 0 && (
+                                                        <button
+                                                            onClick={() => setIsPaywallOpen(true)}
+                                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
+                                                        >
+                                                            <span className="hidden sm:inline">Get More Reviews</span>
+                                                            <span className="sm:hidden">Upgrade</span>
+                                                            <ArrowRight className="w-4 h-4" />
+                                                        </button>
+                                                    )}
+                                                </div>
                                             </div>
-                                            <button
-                                                onClick={handleNewReport}
-                                                className="text-sm text-brand hover:underline"
-                                            >
-                                                New Review
-                                            </button>
+
+                                            <LinkedInReportPanel
+                                                report={linkedInReport}
+                                                profileName={linkedInProfileName}
+                                                profileHeadline={linkedInProfileHeadline}
+                                                isSample={false}
+                                                onNewReport={handleNewReport}
+                                                freeUsesRemaining={freeUsesRemaining}
+                                                onUpgrade={() => setIsPaywallOpen(true)}
+                                            />
                                         </div>
-                                        <LinkedInReportPanel
-                                            report={linkedInReport}
-                                            profileName={linkedInProfileName}
-                                            profileHeadline={linkedInProfileHeadline}
-                                            isSample={false}
-                                            onNewReport={handleNewReport}
-                                            freeUsesRemaining={freeUsesRemaining}
-                                            onUpgrade={() => setIsPaywallOpen(true)}
-                                        />
-                                    </div>
+                                    </ReportLayout>
                                 </div>
                             )}
                         </>

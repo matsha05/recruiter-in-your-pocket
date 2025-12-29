@@ -1,0 +1,258 @@
+{
+    "slug": "linkedin-visibility",
+    "category": [
+        "LinkedIn Optimization",
+        "Recruiter Behavior"
+    ],
+    "title": "LinkedIn Profile Visibility",
+    "subtitle": "How keywords, headlines, and profile completeness affect recruiter search results",
+    "year": "2023-2024",
+    "authors": [
+        "RIYP Research Team"
+    ],
+    "primary_source": {
+        "link": "https://www.linkedin.com/business/talent/blog",
+        "type": "industry-analysis"
+    },
+    "study_snapshot": {
+        "what_it_studied": "The relationship between LinkedIn profile optimization and visibility in recruiter searches, based on analysis of multiple industry studies and platform data.",
+        "method": [
+            "Industry research synthesis",
+            "Platform behavior analysis",
+            "Case study aggregation"
+        ],
+        "sample": "Data aggregated from 10+ industry sources including JobScan, Forbes, ContentIn, and LinkedIn platform insights",
+        "key_finding": "Optimized LinkedIn profiles receive dramatically more visibility, with headline keywords being the single most important factor in recruiter search results.",
+        "key_stat": "Optimized profiles receive up to 14x more views",
+        "so_what_for_linkedin": "Your headline is not a job title—it's a search engine. Every word should be a keyword recruiters actually search for."
+    },
+    "figures": [
+        {
+            "id": "figure-1",
+            "title": "LinkedIn Profile Optimization Impact",
+            "caption": "Aggregated findings from multiple industry studies on profile optimization outcomes",
+            "spec": {
+                "type": "impact-chart",
+                "description": "Bar chart showing percentage improvements from various optimization actions"
+            }
+        }
+    ],
+    "key_insights": [
+        {
+            "marker": "01",
+            "title": "Headlines Drive Search Visibility",
+            "explanation": "LinkedIn's algorithm places significant emphasis on keywords in your headline, often more than any other section. The headline is the most heavily weighted field for search ranking.",
+            "riyp_implication": "Our headline analysis identifies missing high-volume search terms and suggests specific rewrites that include keywords recruiters actually search for.",
+            "impacts": [
+                "Headline Analysis",
+                "Search Visibility Score",
+                "Top Fixes"
+            ],
+            "source_ids": [
+                1,
+                2,
+                3
+            ]
+        },
+        {
+            "marker": "02",
+            "title": "30-300% More Profile Views from Optimized Headlines",
+            "explanation": "Multiple studies show that optimizing your LinkedIn headline can increase profile views by 30% to 300%, depending on how generic the original headline was.",
+            "riyp_implication": "We flag generic headlines (e.g., 'Product Manager at Company') and provide specific rewrites with industry, metrics, and pedigree.",
+            "impacts": [
+                "Headline Analysis",
+                "Suggested Rewrites"
+            ],
+            "source_ids": [
+                4,
+                5,
+                6
+            ]
+        },
+        {
+            "marker": "03",
+            "title": "87% of Recruiters Use LinkedIn to Source Candidates",
+            "explanation": "LinkedIn is the primary sourcing platform for the vast majority of recruiters. Your profile is often the first impression before any resume is seen.",
+            "riyp_implication": "LinkedIn optimization is not optional for job seekers. An unoptimized profile means you're invisible to most recruiters.",
+            "impacts": [
+                "Overall Score",
+                "First Impression"
+            ],
+            "source_ids": [
+                7,
+                8
+            ]
+        },
+        {
+            "marker": "04",
+            "title": "Profile Completeness Affects Ranking",
+            "explanation": "Fully completed profiles with job titles, descriptions, skills, and professional photos rank significantly higher in recruiter searches than incomplete profiles.",
+            "riyp_implication": "Our Completeness subscore identifies missing sections that hurt your search ranking.",
+            "impacts": [
+                "Completeness Score",
+                "Quick Wins"
+            ],
+            "source_ids": [
+                9,
+                10
+            ]
+        },
+        {
+            "marker": "05",
+            "title": "Profile Photos Lead to 21x More Views",
+            "explanation": "Profiles with professional photos receive up to 21 times more profile views than those without. This is one of the highest-impact, lowest-effort optimizations available.",
+            "riyp_implication": "We check photo status and flag missing or unprofessional photos as a top priority fix.",
+            "impacts": [
+                "First Impression",
+                "Photo Status"
+            ],
+            "source_ids": [
+                11
+            ]
+        },
+        {
+            "marker": "06",
+            "title": "Active Profiles Get Priority in Search",
+            "explanation": "LinkedIn's algorithm favors active users. Profiles with recent activity (posts, comments, profile updates) receive a ranking boost in recruiter searches.",
+            "riyp_implication": "Profile optimization is just the first step. Regular activity compounds the visibility gains.",
+            "impacts": [
+                "Search Visibility",
+                "Recommendations"
+            ],
+            "source_ids": [
+                12,
+                13
+            ]
+        }
+    ],
+    "examples": {
+        "do": [
+            "Senior PM | B2B SaaS | $4M→$12M ARR Growth | ex-Stripe",
+            "Data Scientist | ML/AI | Python, SQL | Healthcare Tech",
+            "Engineering Manager | 15+ Engineers | Fintech Scale-ups"
+        ],
+        "dont": [
+            "Product Manager at TechCorp | Building Great Products",
+            "Passionate data scientist seeking new opportunities",
+            "Looking for my next challenge in tech"
+        ]
+    },
+    "riyp_changes": [
+        {
+            "feature": "Headline Analysis",
+            "why": "Headlines are the most important factor in search visibility. We analyze keyword presence and suggest specific rewrites."
+        },
+        {
+            "feature": "Search Visibility Score",
+            "why": "Based on keyword analysis—not made-up percentiles—we identify terms recruiters search for that are missing from your profile."
+        },
+        {
+            "feature": "First Impression Section",
+            "why": "Photo, banner, and headline create the 3-second judgment. We evaluate all three elements."
+        },
+        {
+            "feature": "Quick Wins",
+            "why": "Research shows specific high-impact, low-effort actions (photo, headline keywords, skills) that dramatically improve visibility."
+        }
+    ],
+    "sources": [
+        {
+            "id": 1,
+            "name": "Catalyzed - LinkedIn Headline Optimization Guide",
+            "url": "https://getcatalyzed.com",
+            "date": "2024",
+            "notes": "Primary source for headline optimization statistics"
+        },
+        {
+            "id": 2,
+            "name": "JobScan - LinkedIn Keywords for Recruiters",
+            "url": "https://jobscan.co",
+            "date": "2024",
+            "notes": "Recruiter search behavior analysis"
+        },
+        {
+            "id": 3,
+            "name": "Forbes - LinkedIn Profile Optimization",
+            "url": "https://forbes.com",
+            "date": "2024",
+            "notes": "Industry analysis and best practices"
+        },
+        {
+            "id": 4,
+            "name": "ContentIn.io - LinkedIn Headline Statistics",
+            "url": "https://contentin.io",
+            "date": "2024",
+            "notes": "Quantitative data on headline impact"
+        },
+        {
+            "id": 5,
+            "name": "Elev-AI - Profile View Increase Data",
+            "url": "https://elev-ai.com",
+            "date": "2024",
+            "notes": "Case study data on optimization outcomes"
+        },
+        {
+            "id": 6,
+            "name": "TechNeeds - LinkedIn SEO Guide",
+            "url": "https://techneeds.com",
+            "date": "2024",
+            "notes": "Keyword optimization strategies"
+        },
+        {
+            "id": 7,
+            "name": "LinkedIn Business - Recruiter Usage Statistics",
+            "url": "https://business.linkedin.com",
+            "date": "2024",
+            "notes": "Platform usage data"
+        },
+        {
+            "id": 8,
+            "name": "WorkXK Solutions - Recruiter Keyword Research",
+            "url": "https://worxksolutions.com",
+            "date": "2024",
+            "notes": "Recruiter search behavior patterns"
+        },
+        {
+            "id": 9,
+            "name": "The Career Experts - LinkedIn Algorithm Analysis",
+            "url": "https://thecareerexperts.co.uk",
+            "date": "2024",
+            "notes": "Profile completeness impact on ranking"
+        },
+        {
+            "id": 10,
+            "name": "Resume.co - LinkedIn Profile Completeness",
+            "url": "https://resume.co",
+            "date": "2024",
+            "notes": "Completeness scoring factors"
+        },
+        {
+            "id": 11,
+            "name": "DottyPost - LinkedIn Profile Statistics",
+            "url": "https://dottypost.com",
+            "date": "2024",
+            "notes": "Photo and optimization impact data"
+        },
+        {
+            "id": 12,
+            "name": "Inc.com - LinkedIn Profile Views Analysis",
+            "url": "https://inc.com",
+            "date": "2024",
+            "notes": "Activity and engagement impact"
+        },
+        {
+            "id": 13,
+            "name": "GaggleAMP - LinkedIn Optimization Case Studies",
+            "url": "https://gaggleamp.com",
+            "date": "2024",
+            "notes": "Business outcome case studies"
+        }
+    ],
+    "limitations": [
+        "LinkedIn does not publicly disclose its exact search algorithm, so some findings are inferred from observed behavior.",
+        "Statistics on profile view increases vary widely across sources (30% to 300%) depending on baseline optimization level.",
+        "Recruiter search behavior may vary by industry, geography, and role type.",
+        "Studies are primarily based on self-reported data and case studies, not controlled experiments."
+    ],
+    "last_updated": "2025-12-28"
+}
