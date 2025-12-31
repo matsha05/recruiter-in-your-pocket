@@ -24,8 +24,8 @@ export default function LinkedInVsResumePage() {
                 stat: "77%",
                 statDescription: "of recruiters use LinkedIn to find candidates; 87% use it to vet them before reaching out.",
                 source: {
-                    text: "Jobvite Recruiter Nation Survey (2023)",
-                    href: "https://www.jobvite.com/lp/recruiter-nation-report/"
+                    text: "Jobvite Recruiter Nation Report (2023)",
+                    href: "https://web.jobvite.com/rs/328-BQS-080/images/2023-Employ-Recruiter-Nation-Report-Moving-Forward-in-Uncertainty.pdf"
                 }
             }}
             visualization={

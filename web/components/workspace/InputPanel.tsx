@@ -17,6 +17,7 @@ interface InputPanelProps {
     isLoading: boolean;
     freeUsesRemaining: number;
     user?: any | null;
+    onSampleReport?: () => void;
 }
 
 export default function InputPanel({
@@ -28,7 +29,8 @@ export default function InputPanel({
     onRun,
     isLoading,
     freeUsesRemaining,
-    user
+    user,
+    onSampleReport
 }: InputPanelProps) {
     const [fileName, setFileName] = useState<string | null>(null);
     const [isDragOver, setIsDragOver] = useState(false);
@@ -175,6 +177,15 @@ export default function InputPanel({
                                             <AlignLeft className="w-4 h-4" />
                                             Or paste text instead
                                         </button>
+                                        {onSampleReport && (
+                                            <button
+                                                onClick={onSampleReport}
+                                                className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-brand/80 transition-colors px-3 py-1.5"
+                                            >
+                                                <FileText className="w-4 h-4" />
+                                                See example report
+                                            </button>
+                                        )}
                                     </div>
                                 ) : (
                                     <div className="animate-in fade-in slide-in-from-top-2 space-y-2">

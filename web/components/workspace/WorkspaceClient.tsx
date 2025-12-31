@@ -337,13 +337,13 @@ export default function WorkspaceClient() {
             } else {
                 // Error case - show immediately
                 console.error("Failed to generate report:", result.message);
-                toast.error("Failed to generate report", { description: result.message || "Unknown error" });
+                toast.error("Failed to generate report", { description: `${result.message || "Unknown error"} · No credits consumed` });
                 setIsLoading(false);
                 setIsStreaming(false);
             }
         } catch (err) {
             console.error("Report generation error:", err);
-            toast.error("Report generation error", { description: "Please try again." });
+            toast.error("Report generation error", { description: "Please try again. No credits consumed." });
             setIsLoading(false);
             setIsStreaming(false);
         }
@@ -451,13 +451,13 @@ export default function WorkspaceClient() {
                 }, remaining);
             } else {
                 console.error("Failed to generate LinkedIn report:", result.message);
-                toast.error("Failed to analyze LinkedIn profile", { description: result.message || "Unknown error" });
+                toast.error("Failed to analyze LinkedIn profile", { description: `${result.message || "Unknown error"} · No credits consumed` });
                 setIsLoading(false);
                 setIsStreaming(false);
             }
         } catch (err) {
             console.error("LinkedIn analysis error:", err);
-            toast.error("LinkedIn analysis error", { description: "Please try again." });
+            toast.error("LinkedIn analysis error", { description: "Please try again. No credits consumed." });
             setIsLoading(false);
             setIsStreaming(false);
         }
@@ -588,6 +588,7 @@ export default function WorkspaceClient() {
                                         isLoading={isLoading}
                                         freeUsesRemaining={freeUsesRemaining}
                                         user={user}
+                                        onSampleReport={handleResumeSample}
                                     />
                                 </div>
                             ) : (
@@ -630,6 +631,7 @@ export default function WorkspaceClient() {
                                                 isLoading={isLoading}
                                                 freeUsesRemaining={freeUsesRemaining}
                                                 user={user}
+                                                onSampleReport={handleLinkedInSample}
                                             />
                                         </div>
                                     </div>

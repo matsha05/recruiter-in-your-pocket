@@ -25,7 +25,7 @@ export default function ResumeLengthPage() {
                 statDescription: "Recruiters in one study rated two-page resumes higher than one-page for experienced candidates.",
                 source: {
                     text: "ResumeGo Hiring Manager Study (2019)",
-                    href: "https://www.resumego.net/research/resume-length/"
+                    href: "https://www.resumego.net/research/how-long-should-a-resume-be/"
                 }
             }}
             visualization={

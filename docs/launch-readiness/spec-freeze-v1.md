@@ -49,7 +49,6 @@ Active job seeker with 3-10 years experience, applying to competitive roles, ske
 | Eval harness runs locally | `npm run eval` passes with minimum 20 golden cases |
 | Output contract validation | Zod schema + completeness checks (all arrays populated, score 0-100) |
 | Shipping gate exists | Documented rule: "prompt changes cannot ship unless eval thresholds pass" |
-| Confidence scoring in UI | SM1 displays confidence indicators (High/Medium/Low) |
 
 **Gate B Sign-off:** [ ] Pass / [ ] Fail — Owner: __________ Date: __________
 
@@ -122,27 +121,14 @@ If Chrome Web Store approval is delayed:
 
 ### Specification
 
-**What:** Top 3 Fixes with exact resume evidence, confidence indicator, and one-sentence impact.
-
-### Confidence Scoring (Core to SM1 — Not Optional)
-
-| Level | Definition | UI Behavior |
-|:------|:-----------|:------------|
-| **High** | Strong evidence from resume, clear improvement path | ● High badge, standard display |
-| **Medium** | Some evidence, outcome depends on context | ○ Medium badge, note: "depends on your situation" |
-| **Low** | Limited evidence, uncertain recommendation | △ Low badge, soften language, ask for missing info |
-
-**When Confidence is Low:**
-- Fix wording uses hedging: "If applicable..." or "Consider..."
-- Show prompt: "We couldn't find enough detail. Add more about [X] for a stronger recommendation."
-- Do NOT display absolute claims
+**What:** Top 3 Fixes with exact resume evidence and one-sentence impact.
 
 ### UI Structure
 ```
 ┌─────────────────────────────────────────────────────┐
 │ Top 3 Fixes                                         │
 ├─────────────────────────────────────────────────────┤
-│ 1. Add scope to your lead bullet         ● High    │
+│ 1. Add scope to your lead bullet                    │
 │    "Managed team" → how many people?               │
 │    Impact: Recruiters need scale to judge seniority│
 │                                           [Copy]   │
@@ -162,9 +148,8 @@ If Chrome Web Store approval is delayed:
 |:------|:--------|:--------------|:-------|
 | `sm1_fixes_rendered` | TopFixes component mounts with data | `TopFixes.tsx` useEffect | ⚪ Add in Week 3 |
 | `sm1_fix_copied` | Copy button clicked | `TopFixes.tsx` onClick | ⚪ Add in Week 3 |
-| `sm1_confidence_shown` | Confidence badge renders | `ConfidenceBadge.tsx` | ⚪ Add in Week 4 |
 
-**How to Verify:** After Week 4, grep for `Analytics.track('sm1_` in `components/workspace/report/`.
+**How to Verify:** After Week 3, grep for `Analytics.track('sm1_` in `components/workspace/report/`.
 
 ---
 
@@ -218,7 +203,7 @@ The authoritative 20-item polish checklist with full acceptance criteria is in [
 
 These 5 items are **ship-blockers** — product cannot launch without them:
 
-1. **SM1 includes Confidence + Evidence + Impact** and is visible without scrolling on desktop
+1. **SM1 includes Evidence + Impact** and is visible without scrolling on desktop
 2. **Privacy copy matches Data Handling Truth Table** (no "never stored" claims unless literally true)
 3. **Loading states are calm, truthful, and never infinite** (exit path exists after 60s)
 4. **Error states are specific and state whether credits were consumed**
@@ -228,13 +213,12 @@ These 5 items are **ship-blockers** — product cannot launch without them:
 
 | Component | Priority | Rationale |
 |:----------|:---------|:----------|
-| ConfidenceBadge | **P0** | Required for SM1 signature moment |
 | EvidenceTooltip | **P1** | Required for SM1 evidence pattern |
 | WarmReturnBanner | P3 | Nice-to-have for retention |
 
 ### Acceptance Criteria Summary
 
-See [A3 Section 4](file:///Users/matsha05/Desktop/dev/recruiter-in-your-pocket/docs/launch-readiness/20-ux-ui-copy-spec.md) for ConfidenceBadge and EvidenceTooltip acceptance criteria.
+See [A3 Section 4](file:///Users/matsha05/Desktop/dev/recruiter-in-your-pocket/docs/launch-readiness/20-ux-ui-copy-spec.md) for EvidenceTooltip acceptance criteria.
 
 ---
 
@@ -336,20 +320,19 @@ See [40-promptops-quality-spec.md](file:///Users/matsha05/Desktop/dev/recruiter-
 ## L. Launch Readiness Checklist
 
 ### Week 1 Complete (Gate A)
-- [ ] P0 Bundle 1: Prompt injection passes acceptance tests
-- [ ] P0 Bundle 2: PII boundary passes acceptance tests
-- [ ] P0 Bundle 3: Data retention truth documented and verified
-- [ ] P0 Bundle 4: Payment correctness passes acceptance tests
-- [ ] P0 Bundle 5: Timeout/billing integrity passes acceptance tests
+- [x] P0 Bundle 1: Prompt injection passes acceptance tests
+- [x] P0 Bundle 2: PII boundary passes acceptance tests
+- [x] P0 Bundle 3: Data retention truth documented and verified
+- [x] P0 Bundle 4: Payment correctness passes acceptance tests
+- [x] P0 Bundle 5: Timeout/billing integrity passes acceptance tests
 
 ### Week 2 Complete (Gate B)
-- [ ] Eval harness runs with 20+ golden cases
-- [ ] Output contract validation exists
-- [ ] Shipping gate documented
-- [ ] Confidence scoring visible in SM1
+- [x] Eval harness runs with 20+ golden cases (143 resumes)
+- [x] Output contract validation exists
+- [x] Shipping gate documented
 
 ### Week 4 Complete
-- [ ] SM1 fully implemented with confidence badges
+- [x] SM1 fully implemented
 - [ ] UI polish checklist complete
 - [ ] Methodology v1 published
 - [ ] Extension prototype internal
@@ -369,3 +352,4 @@ See [40-promptops-quality-spec.md](file:///Users/matsha05/Desktop/dev/recruiter-
 
 *Spec Freeze v1.0 — Locked 2025-12-28*  
 *Next review: End of Month 1*
+

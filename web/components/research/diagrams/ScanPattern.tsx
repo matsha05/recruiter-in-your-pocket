@@ -169,32 +169,7 @@ export function ScanPattern() {
                 />
             </div>
 
-            {/* ANIMATED GAZE DOT - Traces the F-pattern path */}
-            <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                viewBox="0 0 100 135"
-                preserveAspectRatio="xMidYMid slice"
-            >
-                <motion.circle
-                    r="3"
-                    fill="hsl(var(--brand))"
-                    style={{
-                        filter: 'drop-shadow(0 0 8px hsla(var(--brand), 0.6))',
-                        offsetPath: `path("${gazePath.replace(/\s+/g, ' ').trim()}")`
-                    }}
-                    initial={{ offsetDistance: "0%", opacity: 0 }}
-                    whileInView={{
-                        offsetDistance: "100%",
-                        opacity: [0, 1, 1, 1, 1, 1, 1, 1, 0.7]
-                    }}
-                    transition={{
-                        duration: 4,
-                        ease: "easeInOut",
-                        times: [0, 0.05, 0.2, 0.3, 0.5, 0.6, 0.75, 0.9, 1]
-                    }}
-                    viewport={{ once: true }}
-                />
-            </svg>
+
 
             {/* Legend Badge */}
             <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm border border-brand/20 rounded-sm px-3 py-1.5 shadow-sm z-10">

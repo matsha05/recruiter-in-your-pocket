@@ -12,6 +12,7 @@ interface LinkedInInputPanelProps {
     isLoading: boolean;
     freeUsesRemaining: number;
     user?: any | null;
+    onSampleReport?: () => void;
 }
 
 export function LinkedInInputPanel({
@@ -20,6 +21,7 @@ export function LinkedInInputPanel({
     isLoading,
     freeUsesRemaining,
     user,
+    onSampleReport,
 }: LinkedInInputPanelProps) {
     const [pdfFile, setPdfFile] = useState<File | null>(null);
     const [pdfText, setPdfText] = useState('');
@@ -190,16 +192,25 @@ export function LinkedInInputPanel({
 
                 {/* How to Export - Contextual Help */}
                 {!pdfFile && (
-                    <div className="text-center">
+                    <div className="text-center flex items-center justify-center gap-4 flex-wrap">
                         <a
                             href="https://www.linkedin.com/in/me"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-brand transition-colors"
+                            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-md border border-border/40 hover:border-brand/40 hover:bg-brand/5"
                         >
                             Open your LinkedIn profile
                             <ExternalLink className="w-3.5 h-3.5" />
                         </a>
+                        {onSampleReport && (
+                            <button
+                                onClick={onSampleReport}
+                                className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-brand/80 transition-colors px-3 py-1.5"
+                            >
+                                <FileText className="w-4 h-4" />
+                                See example report
+                            </button>
+                        )}
                     </div>
                 )}
             </div>

@@ -25,7 +25,7 @@ export default function DiscriminationMetaPage() {
                 statDescription: "Hiring discrimination against African Americans has not declined in 25 years of field experiments.",
                 source: {
                     text: "Quillian, Pager, Hexel, Midtbøen (2017)",
-                    href: "https://www.pnas.org/doi/10.1073/pnas.1706255114"
+                    href: "https://pubmed.ncbi.nlm.nih.gov/28696300/"
                 }
             }}
             visualization={

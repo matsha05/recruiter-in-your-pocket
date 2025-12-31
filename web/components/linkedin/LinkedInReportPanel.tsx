@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 import { getScoreColor, getDialStrokeColor } from '@/lib/score-utils';
 import { PrincipalRecruiterIcon, SignalRadarIcon, TransformArrowIcon, HiddenGemIcon, InsightSparkleIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
-import { ConfidenceBadge } from '@/components/workspace/report/ConfidenceBadge';
 import type { LinkedInReport } from '@/types/linkedin';
 
 interface LinkedInReportPanelProps {
@@ -360,13 +359,7 @@ export function LinkedInReportPanel({
                 <div className="mt-6 space-y-4">
                     {report.top_fixes?.map((fix, i) => (
                         <div key={i} className="p-4 bg-card border border-border/60 rounded-lg shadow-sm">
-                            <div className="flex items-start justify-between gap-3 mb-2">
-                                <p className="text-sm font-medium text-foreground">{fix.fix}</p>
-                                <div className="flex items-center gap-2 shrink-0">
-                                    <ConfidenceBadge level={fix.confidence as 'high' | 'medium' | 'low'} />
-                                    <EffortBadge effort={fix.effort} />
-                                </div>
-                            </div>
+                            <p className="text-sm font-medium text-foreground mb-2">{fix.fix}</p>
                             <p className="text-xs text-muted-foreground">{fix.why}</p>
                         </div>
                     ))}
@@ -530,21 +523,7 @@ function HookStrengthBadge({ strength }: { strength: string }) {
     );
 }
 
-function EffortBadge({ effort }: { effort: string }) {
-    const configs: Record<string, { bg: string; text: string; label: string }> = {
-        quick: { bg: 'bg-success/10 border-success/20', text: 'text-success', label: '⚡ Quick' },
-        moderate: { bg: 'bg-brand/10 border-brand/20', text: 'text-brand', label: '🔧 Moderate' },
-        involved: { bg: 'bg-amber-500/10 border-amber-500/20', text: 'text-amber-600 dark:text-amber-400', label: '📝 Involved' },
-    };
 
-    const config = configs[effort] || configs.moderate;
-
-    return (
-        <span className={cn("text-xs px-2.5 py-1 rounded border shrink-0", config.bg, config.text)}>
-            {config.label}
-        </span>
-    );
-}
 
 function CopyableSuggestionCard({ label, content, note }: { label: string; content: string; note?: string }) {
     const [copied, setCopied] = React.useState(false);

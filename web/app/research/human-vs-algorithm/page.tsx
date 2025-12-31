@@ -26,7 +26,7 @@ export default function HumanVsAlgorithmPage() {
                 sampleSize: "N=694 recruiters",
                 source: {
                     text: "Lacroux & Martin-Lacroux (2022)",
-                    href: "https://www.frontiersin.org/articles/10.3389/fpsyg.2022.955462/full"
+                    href: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.895997/full"
                 }
             }}
             visualization={
