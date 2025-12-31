@@ -36,58 +36,486 @@ const LEMMA_MAP: Record<string, string> = {
     'engineered': 'engineering', 'engineer': 'engineering', 'engineers': 'engineering',
 };
 
-// ----- SKILL EQUIVALENTS LAYER -----
-// Skills that should be considered equivalent when matching
-// Format: skill → array of equivalent skills (bidirectional matching)
-const SKILL_EQUIVALENTS: Record<string, string[]> = {
-    // HR/Recruiting equivalents
-    "Account Management": ["Client Management", "Client Relationships", "Customer Management", "Relationship Management", "Key Accounts"],
-    "Lead Generation": ["Pipeline Development", "Prospecting", "Business Development", "Outbound", "Cold Outreach"],
-    "Passive Candidate Sourcing": ["Candidate Sourcing", "Talent Sourcing", "Sourcing", "Candidate Referrals", "Pipeline Building"],
-    "Project Management": ["Program Management", "Initiative Management", "Cross-Functional Leadership", "Stakeholder Management"],
-    "Presentation Skills": ["Executive Presentations", "Stakeholder Presentations", "Client Presentations", "Leadership Presentations"],
-    "Executive Recruiting": ["Executive Search", "VP Hiring", "C-Suite Hiring", "Senior Leadership Hiring", "Director Recruiting"],
-    "Stakeholder Management": ["Executive Partnership", "C-Suite Partnership", "Cross-Functional", "Stakeholder Engagement"],
+// ----- SKILL ONTOLOGY LAYER (Oracle Phase 2) -----
+// Replaces flat "equivalents" with structured relationships:
+// - Aliases: Same skill, different name → full credit (1.0)
+// - Parents: Broader skill satisfies specific → full credit (1.0)
+// - Children: Specific satisfies broader → partial credit (0.6)
+// - Related: Adjacent skills → small credit (0.7)
 
-    // Engineering equivalents
-    "Python": ["Python Development", "Python Programming", "Python 3"],
-    "JavaScript": ["JS", "ECMAScript", "ES6", "TypeScript"],
-    "React": ["React.js", "ReactJS", "React Native"],
-    "Node.js": ["Node", "NodeJS", "Express.js"],
-    "Machine Learning": ["ML", "Deep Learning", "AI/ML", "Neural Networks"],
-    "Data Analysis": ["Data Analytics", "Business Analytics", "Statistical Analysis"],
+export interface SkillOntologyNode {
+    id: string;
+    aliases: string[];  // Same skill, full credit (1.0)
+    parents: Array<{ id: string; credit: number }>;  // Having parent satisfies this
+    children: Array<{ id: string; credit: number }>; // Having child partially satisfies this
+    related: Array<{ id: string; credit: number }>;  // Adjacent skills
+}
 
-    // Sales equivalents
-    "Sales": ["Revenue Generation", "Business Development", "Account Executive", "Closing"],
-    "CRM": ["Salesforce", "HubSpot", "Pipeline Management"],
-
-    // Operations equivalents
-    "Process Improvement": ["Operational Excellence", "Continuous Improvement", "Lean", "Six Sigma"],
-    "Team Management": ["People Management", "Team Leadership", "Direct Reports", "Staff Management"],
-    "Leadership": ["Management", "Supervision", "Team Lead", "Head of"],
-
-    // Soft skills equivalents
-    "Communication": ["Written Communication", "Verbal Communication", "Storytelling"],
-    "Collaboration": ["Teamwork", "Cross-Functional Collaboration", "Partnership"],
-};
-
-// Build reverse lookup for bidirectional matching
-const SKILL_SYNONYM_LOOKUP: Map<string, Set<string>> = new Map();
-for (const [primary, equivalents] of Object.entries(SKILL_EQUIVALENTS)) {
-    // Add primary → equivalents
-    if (!SKILL_SYNONYM_LOOKUP.has(primary)) {
-        SKILL_SYNONYM_LOOKUP.set(primary, new Set());
+// Skill ontology with proper credit values
+const SKILL_ONTOLOGY: SkillOntologyNode[] = [
+    // HR/Recruiting
+    {
+        id: "Sourcing",
+        aliases: ["Talent Sourcing", "Candidate Sourcing"],
+        parents: [],
+        children: [
+            { id: "Passive Candidate Sourcing", credit: 0.6 },
+            { id: "Boolean Search", credit: 0.6 },
+            { id: "LinkedIn Recruiter", credit: 0.6 }
+        ],
+        related: [{ id: "Recruiting", credit: 0.7 }]
+    },
+    {
+        id: "Passive Candidate Sourcing",
+        aliases: ["Candidate Referrals", "Pipeline Building"],
+        parents: [{ id: "Sourcing", credit: 1.0 }],
+        children: [],
+        related: []
+    },
+    {
+        id: "Recruiting",
+        aliases: ["Talent Acquisition", "TA"],
+        parents: [],
+        children: [
+            { id: "Full-Cycle Recruiting", credit: 0.6 },
+            { id: "Technical Recruiting", credit: 0.6 },
+            { id: "Executive Recruiting", credit: 0.6 }
+        ],
+        related: [{ id: "Sourcing", credit: 0.7 }]
+    },
+    {
+        id: "Executive Recruiting",
+        aliases: ["Executive Search", "VP Hiring", "C-Suite Hiring", "Senior Leadership Hiring"],
+        parents: [{ id: "Recruiting", credit: 1.0 }],
+        children: [],
+        related: [{ id: "Executive Partnership", credit: 0.5 }]
+    },
+    {
+        id: "Account Management",
+        aliases: ["Client Management", "Customer Management", "Key Accounts"],
+        parents: [],
+        children: [],
+        related: [
+            { id: "Client Relationships", credit: 0.8 },
+            { id: "Relationship Management", credit: 0.8 },
+            { id: "Sales", credit: 0.6 }
+        ]
+    },
+    {
+        id: "Lead Generation",
+        aliases: ["Prospecting", "Outbound"],
+        parents: [],
+        children: [],
+        related: [
+            { id: "Pipeline Development", credit: 0.8 },
+            { id: "Business Development", credit: 0.7 },
+            { id: "Cold Outreach", credit: 0.7 }
+        ]
+    },
+    {
+        id: "Project Management",
+        aliases: ["Program Management", "Initiative Management"],
+        parents: [],
+        children: [],
+        related: [
+            { id: "Cross-Functional Leadership", credit: 0.7 },
+            { id: "Stakeholder Management", credit: 0.6 }
+        ]
+    },
+    {
+        id: "Presentation Skills",
+        aliases: ["Presentations"],
+        parents: [],
+        children: [],
+        related: [
+            { id: "Executive Presentations", credit: 0.9 },
+            { id: "Stakeholder Presentations", credit: 0.9 },
+            { id: "Client Presentations", credit: 0.9 }
+        ]
+    },
+    {
+        id: "Stakeholder Management",
+        aliases: ["Stakeholder Engagement"],
+        parents: [],
+        children: [],
+        related: [
+            { id: "Executive Partnership", credit: 0.8 },
+            { id: "C-Suite Partnership", credit: 0.8 },
+            { id: "Cross-Functional", credit: 0.7 }
+        ]
+    },
+    // Engineering
+    {
+        id: "Machine Learning",
+        aliases: ["ML", "AI/ML"],
+        parents: [],
+        children: [
+            { id: "Deep Learning", credit: 0.6 },
+            { id: "Neural Networks", credit: 0.6 },
+            { id: "NLP", credit: 0.6 }
+        ],
+        related: [{ id: "Data Science", credit: 0.7 }]
+    },
+    {
+        id: "Deep Learning",
+        aliases: ["DL"],
+        parents: [{ id: "Machine Learning", credit: 1.0 }],
+        children: [],
+        related: [{ id: "Neural Networks", credit: 0.8 }]
+    },
+    {
+        id: "JavaScript",
+        aliases: ["JS", "ECMAScript", "ES6"],
+        parents: [],
+        children: [],
+        related: [{ id: "TypeScript", credit: 0.8 }]
+    },
+    {
+        id: "TypeScript",
+        aliases: ["TS"],
+        parents: [],
+        children: [],
+        related: [{ id: "JavaScript", credit: 0.9 }]
+    },
+    {
+        id: "React",
+        aliases: ["React.js", "ReactJS"],
+        parents: [],
+        children: [{ id: "React Native", credit: 0.6 }],
+        related: [{ id: "JavaScript", credit: 0.5 }]
+    },
+    {
+        id: "Node.js",
+        aliases: ["Node", "NodeJS"],
+        parents: [],
+        children: [{ id: "Express.js", credit: 0.6 }],
+        related: [{ id: "JavaScript", credit: 0.6 }]
+    },
+    {
+        id: "Python",
+        aliases: ["Python 3", "Python Development"],
+        parents: [],
+        children: [],
+        related: [{ id: "Data Science", credit: 0.5 }]
+    },
+    // Sales
+    {
+        id: "Sales",
+        aliases: ["Revenue Generation", "Closing"],
+        parents: [],
+        children: [
+            { id: "Account Executive", credit: 0.6 },
+            { id: "Enterprise Sales", credit: 0.6 }
+        ],
+        related: [
+            { id: "Business Development", credit: 0.7 },
+            { id: "Account Management", credit: 0.6 }
+        ]
+    },
+    {
+        id: "CRM",
+        aliases: [],
+        parents: [],
+        children: [
+            { id: "Salesforce", credit: 0.6 },
+            { id: "HubSpot", credit: 0.6 }
+        ],
+        related: [{ id: "Pipeline Management", credit: 0.7 }]
+    },
+    // Operations
+    {
+        id: "Process Improvement",
+        aliases: ["Operational Excellence", "Continuous Improvement"],
+        parents: [],
+        children: [
+            { id: "Lean", credit: 0.6 },
+            { id: "Six Sigma", credit: 0.6 }
+        ],
+        related: []
+    },
+    {
+        id: "Team Management",
+        aliases: ["People Management", "Staff Management"],
+        parents: [],
+        children: [{ id: "Direct Reports", credit: 0.6 }],
+        related: [{ id: "Team Leadership", credit: 0.9 }]
+    },
+    {
+        id: "Leadership",
+        aliases: ["Management"],
+        parents: [],
+        children: [
+            { id: "Team Lead", credit: 0.6 },
+            { id: "Head of", credit: 0.6 }
+        ],
+        related: [{ id: "Supervision", credit: 0.7 }]
+    },
+    // Soft skills
+    {
+        id: "Communication",
+        aliases: [],
+        parents: [],
+        children: [
+            { id: "Written Communication", credit: 0.6 },
+            { id: "Verbal Communication", credit: 0.6 }
+        ],
+        related: [{ id: "Storytelling", credit: 0.6 }]
+    },
+    {
+        id: "Collaboration",
+        aliases: ["Teamwork"],
+        parents: [],
+        children: [],
+        related: [
+            { id: "Cross-Functional Collaboration", credit: 0.9 },
+            { id: "Partnership", credit: 0.7 }
+        ]
     }
-    for (const eq of equivalents) {
-        SKILL_SYNONYM_LOOKUP.get(primary)!.add(eq);
+];
+
+// Build lookup maps for efficient matching
+const SKILL_ONTOLOGY_MAP: Map<string, SkillOntologyNode> = new Map();
+const SKILL_ALIAS_MAP: Map<string, string> = new Map(); // alias → canonical id
+
+for (const node of SKILL_ONTOLOGY) {
+    SKILL_ONTOLOGY_MAP.set(node.id, node);
+    for (const alias of node.aliases) {
+        SKILL_ALIAS_MAP.set(alias.toLowerCase(), node.id);
     }
-    // Add equivalents → primary (bidirectional)
-    for (const eq of equivalents) {
-        if (!SKILL_SYNONYM_LOOKUP.has(eq)) {
-            SKILL_SYNONYM_LOOKUP.set(eq, new Set());
+    // Also map the id itself (lowercase)
+    SKILL_ALIAS_MAP.set(node.id.toLowerCase(), node.id);
+}
+
+/**
+ * Get the credit for matching a resume skill against a JD skill.
+ * Returns 0-1 where 1 = perfect match, 0 = no match.
+ */
+export function getMatchCredit(jdSkill: string, resumeSkill: string): { credit: number; matchType: string } {
+    // Normalize to lowercase for comparison
+    const jdLower = jdSkill.toLowerCase();
+    const resumeLower = resumeSkill.toLowerCase();
+
+    // Direct match
+    if (jdLower === resumeLower) {
+        return { credit: 1.0, matchType: "exact" };
+    }
+
+    // Get canonical IDs
+    const jdCanonical = SKILL_ALIAS_MAP.get(jdLower);
+    const resumeCanonical = SKILL_ALIAS_MAP.get(resumeLower);
+
+    // If both map to same canonical skill, it's an alias match
+    if (jdCanonical && resumeCanonical && jdCanonical === resumeCanonical) {
+        return { credit: 1.0, matchType: "alias" };
+    }
+
+    // Look up ontology relationships
+    const jdNode = jdCanonical ? SKILL_ONTOLOGY_MAP.get(jdCanonical) : null;
+    const resumeNode = resumeCanonical ? SKILL_ONTOLOGY_MAP.get(resumeCanonical) : null;
+
+    if (jdNode && resumeCanonical) {
+        // Check if resume skill is a parent of JD skill (parent satisfies child fully)
+        for (const parent of jdNode.parents) {
+            if (parent.id === resumeCanonical) {
+                return { credit: parent.credit, matchType: "parent" };
+            }
         }
-        SKILL_SYNONYM_LOOKUP.get(eq)!.add(primary);
+
+        // Check if resume skill is a child of JD skill (child partially satisfies parent)
+        for (const child of jdNode.children) {
+            if (child.id === resumeCanonical) {
+                return { credit: child.credit, matchType: "child" };
+            }
+        }
+
+        // Check related skills
+        for (const rel of jdNode.related) {
+            if (rel.id === resumeCanonical) {
+                return { credit: rel.credit, matchType: "related" };
+            }
+        }
     }
+
+    // Check reverse relationships (resume node's relationships to JD skill)
+    if (resumeNode && jdCanonical) {
+        for (const parent of resumeNode.parents) {
+            if (parent.id === jdCanonical) {
+                // Resume has child, JD wants parent → partial credit
+                return { credit: 0.6, matchType: "child" };
+            }
+        }
+
+        for (const child of resumeNode.children) {
+            if (child.id === jdCanonical) {
+                // Resume has parent, JD wants child → full credit
+                return { credit: 1.0, matchType: "parent" };
+            }
+        }
+
+        for (const rel of resumeNode.related) {
+            if (rel.id === jdCanonical) {
+                return { credit: rel.credit, matchType: "related" };
+            }
+        }
+    }
+
+    return { credit: 0, matchType: "none" };
+}
+
+// ----- JD REQUIREMENT PARSING (Oracle Phase 3) -----
+// Detects required vs preferred qualification sections in job descriptions
+
+export type RequirementTier = "required" | "preferred" | "unlabeled";
+
+export interface JDRequirement {
+    skillId: string;
+    tier: RequirementTier;
+    baseWeight: number;
+    evidence: {
+        section: string | null;
+        marker: string | null;
+        occurrences: number;
+    };
+}
+
+// Patterns to detect required qualifications
+const REQUIRED_SECTION_PATTERNS = [
+    /minimum\s*qualifications?/i,
+    /required\s*(?:qualifications?|skills?|experience)/i,
+    /must\s*have/i,
+    /requirements?/i,
+    /what\s*you['']?ll?\s*need/i,
+    /you\s*(?:must|should)\s*have/i,
+    /essential\s*(?:qualifications?|skills?)/i,
+];
+
+const REQUIRED_MARKER_PATTERNS = [
+    /\brequired\b/i,
+    /\bmust\s*have\b/i,
+    /\bmandatory\b/i,
+    /\bessential\b/i,
+    /\bminimum\b/i,
+];
+
+// Patterns to detect preferred qualifications
+const PREFERRED_SECTION_PATTERNS = [
+    /preferred\s*qualifications?/i,
+    /nice\s*to\s*have/i,
+    /bonus\s*(?:qualifications?|skills?)?/i,
+    /desired\s*(?:qualifications?|skills?)/i,
+    /plus\s*(?:points?|skills?)/i,
+    /additional\s*(?:qualifications?|skills?)/i,
+];
+
+const PREFERRED_MARKER_PATTERNS = [
+    /\bpreferred\b/i,
+    /\bnice\s*to\s*have\b/i,
+    /\bbonus\b/i,
+    /\bdesired\b/i,
+    /\bplus\b/i,
+    /\bideal(?:ly)?\b/i,
+];
+
+/**
+ * Parse JD text to identify which skills are required vs preferred.
+ * Returns requirements grouped by tier for tiered scoring.
+ */
+export function parseJDRequirements(
+    jdText: string,
+    extractedSkills: Map<string, { weight: number; category: string }>
+): Map<string, JDRequirement> {
+    const requirements = new Map<string, JDRequirement>();
+    const jdLower = jdText.toLowerCase();
+
+    // Split JD into sections based on headers/line breaks
+    const sections = jdText.split(/\n\n+|\n(?=[A-Z][^a-z]*:)/);
+
+    // Identify section tiers
+    let currentTier: RequirementTier = "unlabeled";
+    const skillTierMap = new Map<string, RequirementTier>();
+
+    for (const section of sections) {
+        const sectionLower = section.toLowerCase();
+
+        // Check if this section starts a required block
+        for (const pattern of REQUIRED_SECTION_PATTERNS) {
+            if (pattern.test(sectionLower)) {
+                currentTier = "required";
+                break;
+            }
+        }
+
+        // Check if this section starts a preferred block
+        for (const pattern of PREFERRED_SECTION_PATTERNS) {
+            if (pattern.test(sectionLower)) {
+                currentTier = "preferred";
+                break;
+            }
+        }
+
+        // For each extracted skill, check if it appears in this section
+        for (const [skillId] of extractedSkills) {
+            const skillLower = skillId.toLowerCase();
+            if (sectionLower.includes(skillLower)) {
+                // Only update if not already set or if we're more specific
+                if (!skillTierMap.has(skillId) ||
+                    (skillTierMap.get(skillId) === "unlabeled" && currentTier !== "unlabeled")) {
+                    skillTierMap.set(skillId, currentTier);
+                }
+            }
+        }
+    }
+
+    // Also check for inline markers (e.g., "Python (required)")
+    for (const [skillId, { weight }] of extractedSkills) {
+        const skillLower = skillId.toLowerCase();
+        const skillIndex = jdLower.indexOf(skillLower);
+
+        let detectedTier: RequirementTier = skillTierMap.get(skillId) || "unlabeled";
+        let marker: string | null = null;
+
+        // Only look for inline markers if skill is found in text
+        if (skillIndex !== -1) {
+            // Look at surrounding context (50 chars before/after)
+            const contextStart = Math.max(0, skillIndex - 50);
+            const contextEnd = Math.min(jdLower.length, skillIndex + skillId.length + 50);
+            const context = jdLower.slice(contextStart, contextEnd);
+
+            // Check for required markers in context
+            for (const pattern of REQUIRED_MARKER_PATTERNS) {
+                if (pattern.test(context)) {
+                    detectedTier = "required";
+                    marker = "required";
+                    break;
+                }
+            }
+
+            // Check for preferred markers in context (only if not already required)
+            if (detectedTier !== "required") {
+                for (const pattern of PREFERRED_MARKER_PATTERNS) {
+                    if (pattern.test(context)) {
+                        detectedTier = "preferred";
+                        marker = "preferred";
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Always add the skill to requirements (even if not found literally)
+        requirements.set(skillId, {
+            skillId,
+            tier: detectedTier,
+            baseWeight: weight,
+            evidence: {
+                section: null,
+                marker,
+                occurrences: 1
+            }
+        });
+    }
+
+    return requirements;
 }
 
 export function normalizeText(text: string): string {
@@ -795,6 +1223,8 @@ export interface SenioritySignals {
 
 export interface MatchResult {
     score: number;
+    requiredCoverage: number;   // 0-100: coverage of required skills
+    preferredCoverage: number;  // 0-100: coverage of preferred skills
     keywordScore: number;
     semanticScore: number | null;
     seniorityPenalty: number;
@@ -802,6 +1232,13 @@ export interface MatchResult {
     missingSkills: string[];
     topGaps: string[];
     seniorityFlag: string | null;
+    matchDetails: Array<{
+        skill: string;
+        tier: RequirementTier;
+        credit: number;
+        matchType: string;
+        matchedBy: string | null;
+    }>;
 }
 
 // ================= EXTRACTION FUNCTIONS =================
@@ -819,7 +1256,8 @@ export function extractSkillsFromText(text: string): Map<string, { weight: numbe
         // Also try normalized text (catch variations)
         const normalizedMatches = normalizedText.match(pattern);
 
-        const totalMatches = (originalMatches?.length || 0) + (normalizedMatches?.length || 0);
+        // Use Math.max to avoid double-counting same skill in both texts (Oracle fix)
+        const totalMatches = Math.max(originalMatches?.length || 0, normalizedMatches?.length || 0);
 
         if (totalMatches > 0) {
             // Boost weight for multiple mentions (capped at +4)
@@ -863,50 +1301,68 @@ export function extractSeniority(text: string): SenioritySignals {
 export function calculateKeywordScore(
     resumeSkills: Map<string, { weight: number; category: string }>,
     jdSkills: Map<string, { weight: number; category: string }>
-): { score: number; matchedSkills: string[]; missingSkills: string[] } {
+): {
+    score: number;
+    matchedSkills: string[];
+    missingSkills: string[];
+    matchDetails: Array<{ skill: string; credit: number; matchType: string; matchedBy: string | null }>;
+} {
     if (jdSkills.size === 0) {
-        return { score: 50, matchedSkills: [], missingSkills: [] }; // Neutral if no skills detected
+        return { score: 50, matchedSkills: [], missingSkills: [], matchDetails: [] };
     }
 
-    let matchedWeight = 0;
+    let totalCredit = 0;
     let totalWeight = 0;
     const matchedSkills: string[] = [];
     const missingSkills: string[] = [];
+    const matchDetails: Array<{ skill: string; credit: number; matchType: string; matchedBy: string | null }> = [];
 
-    // Helper function to check if resume has skill or any of its synonyms
-    const hasSkillOrSynonym = (skill: string): boolean => {
-        // Direct match
-        if (resumeSkills.has(skill)) return true;
+    for (const [jdSkill, { weight }] of jdSkills) {
+        totalWeight += weight;
 
-        // Check synonyms bidirectionally
-        const synonyms = SKILL_SYNONYM_LOOKUP.get(skill);
-        if (synonyms) {
-            for (const syn of synonyms) {
-                if (resumeSkills.has(syn)) return true;
+        // Find best match across all resume skills using ontology
+        let bestCredit = 0;
+        let bestMatchType = "none";
+        let bestMatchedBy: string | null = null;
+
+        // First check direct match
+        if (resumeSkills.has(jdSkill)) {
+            bestCredit = 1.0;
+            bestMatchType = "exact";
+            bestMatchedBy = jdSkill;
+        } else {
+            // Check ontology relationships for each resume skill
+            for (const [resumeSkill] of resumeSkills) {
+                const { credit, matchType } = getMatchCredit(jdSkill, resumeSkill);
+                if (credit > bestCredit) {
+                    bestCredit = credit;
+                    bestMatchType = matchType;
+                    bestMatchedBy = resumeSkill;
+                }
             }
         }
 
-        // Check if any resume skill lists this as a synonym
-        for (const [resumeSkill] of resumeSkills) {
-            const resumeSynonyms = SKILL_SYNONYM_LOOKUP.get(resumeSkill);
-            if (resumeSynonyms?.has(skill)) return true;
-        }
+        // Add weighted credit
+        totalCredit += weight * bestCredit;
 
-        return false;
-    };
+        // Track match details
+        matchDetails.push({
+            skill: jdSkill,
+            credit: bestCredit,
+            matchType: bestMatchType,
+            matchedBy: bestMatchedBy
+        });
 
-    for (const [skill, { weight }] of jdSkills) {
-        totalWeight += weight;
-        if (hasSkillOrSynonym(skill)) {
-            matchedWeight += weight;
-            matchedSkills.push(skill);
+        // Categorize as matched (>= 0.5 credit) or missing
+        if (bestCredit >= 0.5) {
+            matchedSkills.push(jdSkill);
         } else {
-            missingSkills.push(skill);
+            missingSkills.push(jdSkill);
         }
     }
 
-    const score = Math.round((matchedWeight / totalWeight) * 100);
-    return { score, matchedSkills, missingSkills };
+    const score = Math.round((totalCredit / totalWeight) * 100);
+    return { score, matchedSkills, missingSkills, matchDetails };
 }
 
 export function calculateSeniorityPenalty(
@@ -999,25 +1455,112 @@ export function quickMatch(
     const jdSkills = extractSkillsFromText(jdText);
 
     // Apply inference rules to resume (Oracle Phase 2)
-    // This adds skills that are implied by tools/systems mentioned
     for (const rule of INFERENCE_RULES) {
+        rule.trigger.lastIndex = 0;
         if (rule.trigger.test(resumeText)) {
-            // Only add if not already present (don't override explicit matches)
             if (!resumeSkills.has(rule.implies)) {
-                // Weight is reduced based on confidence (inferred skills worth less than explicit)
                 const inferredWeight = Math.round(8 * rule.confidence);
                 resumeSkills.set(rule.implies, { weight: inferredWeight, category: 'inferred' });
             }
         }
     }
 
+    // Parse JD requirements into tiers (Oracle Phase 3)
+    const jdRequirements = parseJDRequirements(jdText, jdSkills);
+
     // Extract seniority signals
     const resumeSeniority = extractSeniority(resumeText);
     const jdSeniority = extractSeniority(jdText);
 
-    // Calculate keyword score
-    const { score: keywordScore, matchedSkills, missingSkills } =
-        calculateKeywordScore(resumeSkills, jdSkills);
+    // Calculate tiered keyword scores (Oracle Phase 4)
+    let requiredTotalWeight = 0;
+    let requiredMatchedCredit = 0;
+    let preferredTotalWeight = 0;
+    let preferredMatchedCredit = 0;
+    let unlabeledTotalWeight = 0;
+    let unlabeledMatchedCredit = 0;
+
+    const matchedSkills: string[] = [];
+    const missingSkills: string[] = [];
+    const matchDetails: MatchResult['matchDetails'] = [];
+
+    for (const [skillId, requirement] of jdRequirements) {
+        const weight = requirement.baseWeight;
+
+        // Find best match across resume skills
+        let bestCredit = 0;
+        let bestMatchType = "none";
+        let bestMatchedBy: string | null = null;
+
+        if (resumeSkills.has(skillId)) {
+            bestCredit = 1.0;
+            bestMatchType = "exact";
+            bestMatchedBy = skillId;
+        } else {
+            for (const [resumeSkill] of resumeSkills) {
+                const { credit, matchType } = getMatchCredit(skillId, resumeSkill);
+                if (credit > bestCredit) {
+                    bestCredit = credit;
+                    bestMatchType = matchType;
+                    bestMatchedBy = resumeSkill;
+                }
+            }
+        }
+
+        // Add to appropriate tier totals
+        switch (requirement.tier) {
+            case "required":
+                requiredTotalWeight += weight;
+                requiredMatchedCredit += weight * bestCredit;
+                break;
+            case "preferred":
+                preferredTotalWeight += weight;
+                preferredMatchedCredit += weight * bestCredit;
+                break;
+            default:
+                unlabeledTotalWeight += weight;
+                unlabeledMatchedCredit += weight * bestCredit;
+        }
+
+        matchDetails.push({
+            skill: skillId,
+            tier: requirement.tier,
+            credit: bestCredit,
+            matchType: bestMatchType,
+            matchedBy: bestMatchedBy
+        });
+
+        if (bestCredit >= 0.5) {
+            matchedSkills.push(skillId);
+        } else {
+            missingSkills.push(skillId);
+        }
+    }
+
+    // Calculate tier coverage scores (0-100)
+    const requiredCoverage = requiredTotalWeight > 0
+        ? Math.round((requiredMatchedCredit / requiredTotalWeight) * 100)
+        : 100; // No required skills = 100% coverage
+
+    const preferredCoverage = preferredTotalWeight > 0
+        ? Math.round((preferredMatchedCredit / preferredTotalWeight) * 100)
+        : 100; // No preferred skills = 100% coverage
+
+    const unlabeledCoverage = unlabeledTotalWeight > 0
+        ? Math.round((unlabeledMatchedCredit / unlabeledTotalWeight) * 100)
+        : 50; // No unlabeled = neutral
+
+    // Calculate keyword score using tiered formula (Oracle Phase 4)
+    // If we have required/preferred separation: 85% required + 15% preferred
+    // If all unlabeled: use unlabeled score directly
+    let keywordScore: number;
+    if (requiredTotalWeight > 0 || preferredTotalWeight > 0) {
+        // Tiered scoring: 85% required + 15% preferred
+        keywordScore = Math.round(0.85 * requiredCoverage + 0.15 * preferredCoverage);
+    } else {
+        // Fallback to unlabeled coverage
+        keywordScore = unlabeledCoverage;
+    }
 
     // Calculate semantic score (if embeddings provided)
     let semanticScore: number | null = null;
@@ -1030,14 +1573,33 @@ export function quickMatch(
     const { penalty: seniorityPenalty, flag: seniorityFlag } =
         calculateSeniorityPenalty(resumeSeniority, jdSeniority);
 
-    // Calculate hybrid score
-    const score = calculateHybridScore(keywordScore, semanticScore, seniorityPenalty);
+    // Calculate hybrid score with bounded semantic adjustment (Oracle Phase 4)
+    // Semantic can add at most +8 points, and only if requiredCoverage >= 50%
+    let score = keywordScore;
+
+    if (semanticScore !== null && requiredCoverage >= 50) {
+        // Semantic adjustment: bounded to +8 max, proportional to semantic score
+        const semanticAdjustment = Math.min(8, Math.round((semanticScore - 50) * 0.16));
+        if (semanticAdjustment > 0) {
+            score += semanticAdjustment;
+        }
+    }
+
+    // Apply seniority penalty
+    score = Math.max(0, score - seniorityPenalty);
+
+    // Cap rule: if requiredCoverage < 50%, cap final score at requiredCoverage
+    if (requiredTotalWeight > 0 && requiredCoverage < 50) {
+        score = Math.min(score, requiredCoverage);
+    }
 
     // Generate top gaps
     const topGaps = generateTopGaps(missingSkills, seniorityFlag, jdSkills);
 
     return {
         score,
+        requiredCoverage,
+        preferredCoverage,
         keywordScore,
         semanticScore,
         seniorityPenalty,
@@ -1045,6 +1607,7 @@ export function quickMatch(
         missingSkills,
         topGaps,
         seniorityFlag,
+        matchDetails,
     };
 }
 

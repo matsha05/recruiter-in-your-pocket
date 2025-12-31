@@ -72,46 +72,34 @@
 </production-safety>
 
 <oracle>
-  Oracle bundles a prompt plus relevant files so GPT-5 Pro can answer.
-  Run `npx -y @steipete/oracle --help` once per session before first use.
+  Oracle bundles prompts + files so GPT-5 Pro can answer complex questions.
   
-  Engine Modes:
-  - API mode: Uses OPENAI_API_KEY (costs money per run)
-  - Browser mode: Automates ChatGPT in your browser (uses Pro subscription, FREE)
+  CRITICAL: Always include file context with --file flag. Oracle has NO repo access otherwise.
   
-  IMPORTANT: To use your ChatGPT Pro subscription instead of paying for API:
+  For detailed usage, prompt templates, and troubleshooting:
+  See .agent/workflows/oracle.md
+  
+  Quick reference:
   ```bash
-  oracle -e browser -p "your prompt here" --file "src/**/*.ts"
-  ```
+  # Browser mode with manual login (recommended)
+  oracle -e browser --browser-manual-login \
+    --file "web/lib/matching/*.ts" \
+    -p "## PRODUCT CONTEXT
+  [Include RIYP context - see workflows/oracle.md]
   
-  Engine auto-picks API when OPENAI_API_KEY is set, otherwise browser.
-  To force browser mode even with API key set, always use `-e browser`.
+  ## PROBLEM
+  [Detailed problem description]
   
-  Common patterns:
-  ```bash
-  # Browser mode (uses ChatGPT Pro subscription - free)
-  oracle -e browser -p "Review the data layer for issues" --file "src/**/*.ts"
-  
-  # Copy bundle for manual paste into ChatGPT
-  oracle --render --copy -p "Review for schema drift" --file "src/**/*.ts"
-  
-  # Preview without spending tokens
-  oracle --dry-run summary -p "Check code" --file "src/**/*.ts"
-  
-  # Check session status
-  oracle status --hours 72
-  
-  # Replay a session
-  oracle session <id> --render
+  ## QUESTIONS
+  1. [Specific question]"
   ```
   
   When to invoke Oracle:
   - Stuck on a bug after 2-3 failed attempts
-  - Need deep research across many sources
-  - Complex architectural decisions needing reasoning
+  - Need deep research or architectural decisions
   - Reviewing critical code before shipping
   
-  Sessions live in ~/.oracle/sessions. GPT-5 Pro runs can take 10min to 1hr+.
+  Sessions: ~/.oracle/sessions | Runs take 10min to 1hr+
 </oracle>
 
 <design-constitution>

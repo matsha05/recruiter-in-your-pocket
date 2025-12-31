@@ -77,6 +77,15 @@ console.log(JSON.stringify(jdSkillsArray, null, 2));
 console.log('\n=== QUICK MATCH RESULT ===');
 const result = quickMatch(resume, jd);
 console.log('Score:', result.score);
+console.log('Required Coverage:', result.requiredCoverage);
+console.log('Preferred Coverage:', result.preferredCoverage);
+console.log('Keyword Score:', result.keywordScore);
 console.log('\nMatched Skills:', result.matchedSkills);
 console.log('\nMissing Skills:', result.missingSkills);
 console.log('\nTop Gaps:', result.topGaps);
+console.log('\n=== MATCH DETAILS ===');
+for (const detail of result.matchDetails) {
+    const status = detail.credit >= 0.5 ? '✓' : '✗';
+    const matchInfo = detail.matchedBy ? `(matched by "${detail.matchedBy}" via ${detail.matchType})` : '';
+    console.log(`  ${status} ${detail.skill} [${detail.tier}]: ${Math.round(detail.credit * 100)}% ${matchInfo}`);
+}
