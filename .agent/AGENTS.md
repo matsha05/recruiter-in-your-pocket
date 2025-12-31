@@ -75,14 +75,43 @@
   Oracle bundles a prompt plus relevant files so GPT-5 Pro can answer.
   Run `npx -y @steipete/oracle --help` once per session before first use.
   
+  Engine Modes:
+  - API mode: Uses OPENAI_API_KEY (costs money per run)
+  - Browser mode: Automates ChatGPT in your browser (uses Pro subscription, FREE)
+  
+  IMPORTANT: To use your ChatGPT Pro subscription instead of paying for API:
+  ```bash
+  oracle -e browser -p "your prompt here" --file "src/**/*.ts"
+  ```
+  
+  Engine auto-picks API when OPENAI_API_KEY is set, otherwise browser.
+  To force browser mode even with API key set, always use `-e browser`.
+  
+  Common patterns:
+  ```bash
+  # Browser mode (uses ChatGPT Pro subscription - free)
+  oracle -e browser -p "Review the data layer for issues" --file "src/**/*.ts"
+  
+  # Copy bundle for manual paste into ChatGPT
+  oracle --render --copy -p "Review for schema drift" --file "src/**/*.ts"
+  
+  # Preview without spending tokens
+  oracle --dry-run summary -p "Check code" --file "src/**/*.ts"
+  
+  # Check session status
+  oracle status --hours 72
+  
+  # Replay a session
+  oracle session <id> --render
+  ```
+  
   When to invoke Oracle:
   - Stuck on a bug after 2-3 failed attempts
   - Need deep research across many sources
   - Complex architectural decisions needing reasoning
   - Reviewing critical code before shipping
   
-  Pattern: Write the problem + context to a markdown file, then invoke Oracle with it.
-  Oracle runs can take 10min to 1hr+ - it thinks hard.
+  Sessions live in ~/.oracle/sessions. GPT-5 Pro runs can take 10min to 1hr+.
 </oracle>
 
 <design-constitution>
