@@ -111,13 +111,20 @@
         },
         {
             "id": 4,
+            "name": "TheLadders Eye-Tracking Study Update (2018)",
+            "url": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html",
+            "date": "2018",
+            "notes": "primary"
+        },
+        {
+            "id": 5,
             "name": "Greenhouse: Candidate Filters",
             "url": "https://support.greenhouse.io/hc/en-us/articles/360043184152-Candidate-and-prospect-filters",
             "date": "2024",
             "notes": "supporting"
         },
         {
-            "id": 5,
+            "id": 6,
             "name": "Lever: Searching the Database",
             "url": "https://help.lever.co/hc/en-us/articles/20087317030685-Searching-the-Database-for-Candidates",
             "date": "2024",
@@ -145,11 +152,11 @@
         },
         {
             "id": 3,
-            "title": "Eye Tracking Study",
+            "title": "Eye-Tracking Study Update",
             "author": "TheLadders",
-            "year": 2012,
-            "evidence": "Eye-tracking data showed recruiters spend approximately 6 seconds on initial resume review.",
-            "sourceUrl": "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
+            "year": 2018,
+            "evidence": "The 2018 update reported an average of 7.4 seconds for initial resume review.",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html",
             "position": "why-feels-like-filter"
         }
     ],

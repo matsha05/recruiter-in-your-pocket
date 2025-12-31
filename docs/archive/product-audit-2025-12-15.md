@@ -121,7 +121,7 @@ The **"Recruiter First Impression"** card. It’s the wedge. It must be the hero
 
 ### Recruiter Skim Simulation
 - **Visual**: A "heatmap" overlay on the resume preview shows where the eye went (Titles, Dates, Education).
-- **Timing**: 6-second timer counts down during the "Skim" loading phase.
+- **Timing**: 7.4-second timer counts down during the "Skim" loading phase.
 
 ## 6. TRUST & PAYMENT UX
 

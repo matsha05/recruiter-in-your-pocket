@@ -17,7 +17,7 @@ const faqData = [
         questions: [
             {
                 q: "What exactly does the review analyze?",
-                a: "We analyze your resume through multiple lenses: recruiter first impression (what they see in 6 seconds), quantification density (are you using numbers?), action verb strength, bullet clarity, and overall structure. Each dimension is scored and explained with specific improvement suggestions."
+                a: "We analyze your resume through multiple lenses: recruiter first impression (what they see in 7.4 seconds), quantification density (are you using numbers?), action verb strength, bullet clarity, and overall structure. Each dimension is scored and explained with specific improvement suggestions."
             },
             {
                 q: "How is this different from other resume tools?",

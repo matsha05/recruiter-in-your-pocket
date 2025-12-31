@@ -1,4 +1,4 @@
-const JD_SELECTORS = [
+(function(){const JD_SELECTORS = [
   // Primary: Modern job view page
   ".jobs-description__content .jobs-box__html-content",
   ".jobs-description-content__text",
@@ -60,7 +60,7 @@ function init() {
   setTimeout(injectCaptureButton, 1500);
   observeNavigationChanges();
 }
-function injectCaptureButton() {
+async function injectCaptureButton() {
   if (captureButton) {
     captureButton.remove();
     captureButton = null;
@@ -75,6 +75,21 @@ function injectCaptureButton() {
     console.log("[RIYP] No JD element found, skipping button injection");
     return;
   }
+  let alreadyCaptured = false;
+  let capturedScore = null;
+  try {
+    const response = await chrome.runtime.sendMessage({
+      type: "CHECK_JOB_STATUS",
+      payload: { url: window.location.href }
+    });
+    if (response?.success && response.data?.captured) {
+      alreadyCaptured = true;
+      capturedScore = response.data.score;
+      console.log("[RIYP] Job already captured with score:", capturedScore);
+    }
+  } catch (error) {
+    console.warn("[RIYP] Failed to check job status:", error);
+  }
   const container = document.createElement("div");
   container.id = "riyp-capture-container";
   container.style.cssText = `
@@ -84,16 +99,30 @@ function injectCaptureButton() {
     z-index: 9999;
   `;
   const shadow = container.attachShadow({ mode: "open" });
-  shadow.innerHTML = getCaptureButtonHTML();
+  shadow.innerHTML = getCaptureButtonHTML(alreadyCaptured, capturedScore);
   const button = shadow.querySelector(".riyp-capture-btn");
   if (button) {
-    button.addEventListener("click", handleCapture);
+    if (alreadyCaptured) {
+      button.addEventListener("click", () => {
+        chrome.runtime.sendMessage({
+          type: "OPEN_WEBAPP",
+          payload: { path: "/jobs" }
+        });
+      });
+    } else {
+      button.addEventListener("click", handleCapture);
+    }
   }
   document.body.appendChild(container);
   captureButton = container;
-  console.log("[RIYP] Capture button injected");
+  console.log("[RIYP] Capture button injected", alreadyCaptured ? "(already captured)" : "");
 }
-function getCaptureButtonHTML() {
+function getCaptureButtonHTML(alreadyCaptured = false, score = null) {
+  const isCaptured = alreadyCaptured;
+  const hasScore = score !== null && score > 0;
+  const buttonText = isCaptured ? hasScore ? `${score}% Match` : "Saved ✓" : "Capture JD";
+  const buttonClass = isCaptured ? "riyp-capture-btn captured" : "riyp-capture-btn";
+  const buttonTitle = isCaptured ? "View saved jobs" : "Capture JD for RIYP";
   return `
     <style>
       .riyp-capture-btn {
@@ -132,6 +161,10 @@ function getCaptureButtonHTML() {
         background: #166534;
       }
       
+      .riyp-capture-btn.captured {
+        background: #166534;
+      }
+      
       .riyp-capture-btn.error {
         background: #DC2626;
       }
@@ -155,14 +188,20 @@ function getCaptureButtonHTML() {
       }
     </style>
     
-    <button class="riyp-capture-btn" title="Capture JD for RIYP">
-      <svg class="riyp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14 2 14 8 20 8"/>
-        <line x1="12" y1="18" x2="12" y2="12"/>
-        <line x1="9" y1="15" x2="15" y2="15"/>
-      </svg>
-      <span class="riyp-text">Capture JD</span>
+    <button class="${buttonClass}" title="${buttonTitle}">
+      ${isCaptured ? `
+        <svg class="riyp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      ` : `
+        <svg class="riyp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="18" x2="12" y2="12"/>
+          <line x1="9" y1="15" x2="15" y2="15"/>
+        </svg>
+      `}
+      <span class="riyp-text">${buttonText}</span>
     </button>
   `;
 }
@@ -258,4 +297,5 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
-//# sourceMappingURL=content-script-linkedin.js.map
+//# sourceMappingURL=linkedin.ts-DnDT8zYu.js.map
+})()

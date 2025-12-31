@@ -79,7 +79,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            data: savedJobs,
+            jobs: savedJobs,
         }, { headers: corsHeaders });
 
     } catch (error) {

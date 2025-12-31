@@ -27,14 +27,14 @@
 ```
 # How We Analyze Your Resume
 
-## The 6-Second Scan
-Recruiters spend 6-7 seconds on their first pass. We simulate that scan 
+## The 7-Second Scan
+Recruiters spend 7.4 seconds on their first pass. We simulate that scan 
 and show you what stands out — and what gets missed.
 
 ## What We Look For
 
 **Impact** — Did you move metrics? Build something? Change outcomes?
-**Clarity** — Can a recruiter understand your role in 6 seconds?
+**Clarity** — Can a recruiter understand your role in 7.4 seconds?
 **Story** — Does your career make sense? Is there a clear trajectory?
 **Readability** — Is your resume easy to scan, or a wall of text?
 
@@ -131,7 +131,7 @@ you've managed and the hard trade-offs you've navigated."
 ├─────────────────────────────────────────────────────────────┤
 │ 2. Quantify your top launch                      ● High     │
 │    "Launched feature" → what was the result?                │
-│    Impact: Numbers stand out in a 6-second scan.            │
+│    Impact: Numbers stand out in a ~7.4-second scan.           │
 │                                               [Copy]        │
 ├─────────────────────────────────────────────────────────────┤
 │ 3. Clarify your current role level               ○ Medium   │

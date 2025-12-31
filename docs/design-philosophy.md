@@ -84,11 +84,14 @@ Micro-animations on hover. Presentation-quality transitions. The interface respo
 - Animation teaches (shows what happened, where things went)
 - No motion for motion's sake
 
-### 4. Restrained Premium
+### 4. Quiet Power
 **Reference: Superhuman, Craft, Bear Notes**
 
-Dark mode first. Warm paper textures. Premium through restraint, not flash. We look expensive because we're quiet, not loud.
+Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 percent dramatic, always tied to verdict, value, or conversion.
 
+- Light editorial base by default, dark mode is fully supported
+- Warm paper texture allowed only on marketing surfaces and kept subtle
+- One signature moment per screen is required, everything else is restrained
 - Teal brand accent (action)
 - Gold for premium moments only
 - Muted slate for UI chrome
@@ -110,7 +113,7 @@ A writer's tool with a designer's eye. Complexity is hidden. The surface is simp
 
 These are the experiences that define RIYP:
 
-1. **The 6-Second Verdict** — The first thing you see is how a recruiter sees you. Not a score, a *judgment*.
+1. **The 7.4-Second Verdict** — The first thing you see is how a recruiter sees you. Not a score, a *judgment*.
 
 2. **The Red Pen Reveal** — Tap to see the before/after. Interactive, satisfying, actionable.
 

@@ -6,7 +6,7 @@
  * - Evidence quality (are fixes grounded in actual resume text?)
  * - Actionability (are suggestions specific and doable?)
  * - Tone (does it sound like a real recruiter?)
- * - Methodology alignment (follows 6-second signal model?)
+ * - Methodology alignment (follows 7.4-second signal model?)
  */
 
 // ============================================
@@ -42,7 +42,7 @@ Does it sound like expert recruiter feedback, not generic AI advice?
 - 1-3: Obviously AI-generated, uses buzzwords, sounds like a template
 
 ### 4. Methodology Alignment (1-10)
-Does the feedback follow the 6-second signal model and recruiter lens?
+Does the feedback follow the 7.4-second signal model and recruiter lens?
 
 - 10: Clearly evaluates from signal vs noise perspective, focuses on first impressions
 - 7-9: Mostly aligned with methodology, minor deviations

@@ -18,7 +18,7 @@
           "Most suggestions cite exact phrases from the resume with section references and excerpts.",
           "Actionable rewrites and top fixes provide concrete wording and specific metrics to add or clarify.",
           "Tone is professional, direct, and aligned with recruiter expectations for early-career product managers.",
-          "Feedback focuses on clarity, impact, and first-impression signal improvements consistent with the 6-second model."
+          "Feedback focuses on clarity, impact, and first-impression signal improvements consistent with the 7.4-second model."
         ],
         "improvement_areas": [
           "Could include explicit mention of prioritizing the most impactful fixes first to better align with recruiter time constraints.",
@@ -50,7 +50,7 @@
           "Feedback cites multiple exact phrases from the resume with section references.",
           "Suggestions include concrete tokens such as team sizes, user base numbers, and specific metrics to add.",
           "Tone is professional, direct, and clearly from a recruiter perspective with actionable rewrite examples.",
-          "Feedback aligns well with the 6-second signal model by focusing on clarity, scale, and impact to improve first impressions."
+          "Feedback aligns well with the 7.4-second signal model by focusing on clarity, scale, and impact to improve first impressions."
         ],
         "improvement_areas": [
           "Could include explicit mention of prioritizing the most impactful fixes first to better reflect recruiter triage.",
@@ -82,7 +82,7 @@
           "Feedback cites multiple exact phrases from the resume with section references.",
           "Suggestions include concrete examples with placeholders for metrics and specific numbers.",
           "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
-          "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+          "Feedback aligns well with the 7.4-second signal model by emphasizing first impressions, clarity, and measurable impact.",
           "Includes a top fixes section and next steps, enhancing usability."
         ],
         "improvement_areas": [
@@ -119,7 +119,7 @@
           "Professional tone with direct, actionable advice"
         ],
         "improvement_areas": [
-          "Could include more explicit mention of 6-second scan methodology",
+          "Could include more explicit mention of 7.4-second scan methodology",
           "Minor opportunity to emphasize prioritization of fixes by recruiter signal impact"
         ]
       },
@@ -148,7 +148,7 @@
           "Every suggestion is grounded in specific resume excerpts with clear line references.",
           "Suggestions include concrete, implementable changes such as adding baseline metrics, time frames, and clarifying personal ownership.",
           "The tone is professional, detailed, and reads like feedback from an experienced recruiter.",
-          "The feedback focuses on improving first impressions by clarifying impact and reducing noise, aligning well with the 6-second signal model."
+          "The feedback focuses on improving first impressions by clarifying impact and reducing noise, aligning well with the 7.4-second signal model."
         ],
         "improvement_areas": [
           "Tone could be slightly more direct and concise in some places to fully emulate a senior recruiter voice.",
@@ -181,7 +181,7 @@
           "Provides concrete rewrite examples with exact original and improved bullet points",
           "Includes a clear top fixes section with evidence excerpts and rationale",
           "Tone is professional, direct, and recruiter-focused with actionable advice",
-          "Focuses on clarifying personal ownership, measurable impact, and first impression clarity aligning with 6-second signal model"
+          "Focuses on clarifying personal ownership, measurable impact, and first impression clarity aligning with 7.4-second signal model"
         ],
         "improvement_areas": [
           "Could slightly increase emphasis on prioritizing fixes from a recruiter's first-glance perspective",
@@ -218,7 +218,7 @@
           "Feedback emphasizes first impression and clarity of impact"
         ],
         "improvement_areas": [
-          "Could add a brief note on prioritizing the summary rewrite first for better 6-second impact",
+          "Could add a brief note on prioritizing the summary rewrite first for better 7.4-second impact",
           "Some rewrite suggestions could include example numeric ranges to further aid actionability"
         ]
       },
@@ -247,7 +247,7 @@
           "Most suggestions cite exact phrases from the resume with section references",
           "Provides concrete rewrite examples with specific improvements",
           "Feedback is professional, direct, and recruiter-focused",
-          "Focuses on clarifying impact, ownership, and measurable outcomes aligned with 6-second signal model"
+          "Focuses on clarifying impact, ownership, and measurable outcomes aligned with 7.4-second signal model"
         ],
         "improvement_areas": [
           "Could include line numbers or more precise location references for evidence",
@@ -284,7 +284,7 @@
           "Includes a top fixes section with prioritized, evidence-backed recommendations."
         ],
         "improvement_areas": [
-          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment.",
+          "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment.",
           "Some suggestions could be slightly more concise to enhance quick recruiter readability."
         ]
       },
@@ -317,7 +317,7 @@
           "Tone is professional, direct, and recruiter-aware without buzzwords"
         ],
         "improvement_areas": [
-          "Could include slightly more explicit mention of 6-second scan impact",
+          "Could include slightly more explicit mention of 7.4-second scan impact",
           "Some suggestions could be even more granular on how to split complex bullets"
         ]
       },
@@ -346,7 +346,7 @@
           "Most suggestions cite exact phrases from the resume with section references.",
           "Provides concrete rewrite examples with specific numbers and clearer roles.",
           "Tone is professional, direct, and aligned with recruiter expectations.",
-          "Focuses on clarifying ownership, adding metrics, and improving first impressions per 6-second signal model.",
+          "Focuses on clarifying ownership, adding metrics, and improving first impressions per 7.4-second signal model.",
           "Includes a top fixes section with prioritized, actionable recommendations."
         ],
         "improvement_areas": [
@@ -380,7 +380,7 @@
           "Provides concrete rewrite examples with specific improvements.",
           "Clear top fixes section with prioritized, evidence-backed recommendations.",
           "Tone is professional, direct, and recruiter-focused.",
-          "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions."
+          "Feedback aligns well with 7.4-second signal model emphasizing clarity, impact, and first impressions."
         ],
         "improvement_areas": [
           "Could include more explicit mention of passive language as a red flag.",
@@ -412,7 +412,7 @@
           "Most suggestions cite specific resume excerpts with line references",
           "Provides concrete, actionable rewrites with specific tokens like time frames and scope",
           "Tone is professional, direct, and recruiter-like with clear prioritization",
-          "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions"
+          "Feedback aligns well with 7.4-second signal model focusing on clarity, impact, and first impressions"
         ],
         "improvement_areas": [
           "Could include more explicit mention of prioritizing signal over noise in the summary",
@@ -447,7 +447,7 @@
           "Includes a clear top fixes section and next steps for actionable improvements"
         ],
         "improvement_areas": [
-          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+          "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment",
           "Some suggestions could add even more precise numeric targets (e.g., exact budget amounts)",
           "Summary fix advice could be more concise to model the recommended style"
         ]
@@ -478,7 +478,7 @@
           "Provides concrete rewrite examples with specific numbers and clarifications",
           "Top fixes and next steps are actionable and clearly prioritized",
           "Tone is professional, direct, and recruiter-focused",
-          "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and measurable results"
+          "Feedback aligns well with 7.4-second signal model emphasizing clarity, impact, and measurable results"
         ],
         "improvement_areas": [
           "Could include slightly more explicit mention of prioritizing first impression impact in summary",
@@ -542,7 +542,7 @@
           "Most suggestions cite specific resume lines with excerpts and section references.",
           "Provides concrete rewrite examples with exact wording improvements and rationale.",
           "Feedback is professional, direct, and aligned with recruiter expectations.",
-          "Focuses on clarity, impact, and signal-to-noise improvements consistent with 6-second scan methodology.",
+          "Focuses on clarity, impact, and signal-to-noise improvements consistent with 7.4-second scan methodology.",
           "Includes a prioritized top fixes section and clear next steps for implementation."
         ],
         "improvement_areas": [
@@ -578,7 +578,7 @@
           "Feedback focuses on improving first impressions by clarifying scope, ownership, and measurable impact"
         ],
         "improvement_areas": [
-          "Could include explicit mention of the 6-second scan methodology to strengthen methodology alignment",
+          "Could include explicit mention of the 7.4-second scan methodology to strengthen methodology alignment",
           "Some suggestions could be even more granular with exact numbers to add (e.g., 'X departments' or '% improvements')",
           "Minor repetition in rewrite suggestions could be consolidated for brevity"
         ]
@@ -612,7 +612,7 @@
           "Includes a top fixes section and next steps that are actionable and prioritized."
         ],
         "improvement_areas": [
-          "Could include more explicit mention of the 6-second scan methodology to strengthen methodology alignment.",
+          "Could include more explicit mention of the 7.4-second scan methodology to strengthen methodology alignment.",
           "Some suggestions could add even more precise numeric examples (e.g., ranges) to boost actionability further."
         ]
       },
@@ -673,7 +673,7 @@
           "Most suggestions cite exact phrases from the resume with line references or excerpts.",
           "Suggestions are concrete and actionable, including specific metrics and wording improvements.",
           "Tone is professional, detailed, and reads like feedback from an experienced recruiter.",
-          "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions."
+          "Feedback aligns well with the 7.4-second signal model, focusing on clarity, impact, and first impressions."
         ],
         "improvement_areas": [
           "Could include a brief explicit mention of prioritizing signal over noise in the summary feedback.",
@@ -705,7 +705,7 @@
           "Every suggestion is grounded in exact resume excerpts with line references.",
           "Feedback includes very specific, actionable rewrite examples with concrete metrics and scope improvements.",
           "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
-          "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+          "Feedback aligns well with the 7.4-second signal model by emphasizing first impressions, clarity, and measurable impact.",
           "Includes a top fixes section and next steps that are practical and prioritized."
         ],
         "improvement_areas": [
@@ -772,11 +772,11 @@
           "Feedback cites specific resume phrases with section references, e.g., 'Duties included managing a small team of designers.'",
           "Provides concrete rewrite examples with suggested metrics and active language.",
           "Tone is professional, direct, and recruiter-focused, emphasizing clarity and impact.",
-          "Focuses on first impression issues like vague language, passive voice, and missing metrics aligned with 6-second signal model."
+          "Focuses on first impression issues like vague language, passive voice, and missing metrics aligned with 7.4-second signal model."
         ],
         "improvement_areas": [
           "Could include explicit mention of prioritizing the most impactful bullets for immediate recruiter scanning.",
-          "Minor improvement could be made by explicitly referencing the 6-second rule in the feedback text."
+          "Minor improvement could be made by explicitly referencing the 7.4-second rule in the feedback text."
         ]
       },
       "errors": [],
@@ -838,10 +838,10 @@
           "Most suggestions cite exact phrases from the resume with section references.",
           "Actionable advice includes specific tokens like adding time frames, splitting bullets, and adding a summary.",
           "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
-          "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impressions."
+          "Feedback aligns well with the 7.4-second signal model by focusing on clarity, impact, and first impressions."
         ],
         "improvement_areas": [
-          "Could include more explicit mention of prioritizing the strongest 6-second signals in the summary advice.",
+          "Could include more explicit mention of prioritizing the strongest 7.4-second signals in the summary advice.",
           "Some rewrite suggestions could be slightly more concise to better model ideal bullet style."
         ]
       },
@@ -870,7 +870,7 @@
           "Most suggestions cite exact phrases from the resume with section references",
           "Provides concrete rewrite examples with measurable metrics and scope",
           "Tone is professional, direct, and recruiter-focused",
-          "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions",
+          "Feedback aligns well with 7.4-second signal model emphasizing clarity, impact, and first impressions",
           "Includes a top fixes section with prioritized, actionable recommendations"
         ],
         "improvement_areas": [
@@ -903,7 +903,7 @@
           "Every suggestion is grounded in specific resume excerpts with clear line references.",
           "Actionable rewrites and top fixes provide concrete, implementable advice with examples.",
           "Tone is professional, direct, and aligned with recruiter expectations.",
-          "Feedback focuses on first impressions, signal clarity, and reducing noise per the 6-second model."
+          "Feedback focuses on first impressions, signal clarity, and reducing noise per the 7.4-second model."
         ],
         "improvement_areas": [
           "Tone could be slightly more concise in some sections to mimic recruiter brevity.",
@@ -942,7 +942,7 @@
         "improvement_areas": [
           "Could include line or bullet number references for even clearer evidence grounding.",
           "Some suggestions could add even more precise numeric targets (e.g., suggest exact team sizes or metric ranges).",
-          "Minor opportunity to explicitly mention 6-second resume scan methodology in the rationale."
+          "Minor opportunity to explicitly mention 7.4-second resume scan methodology in the rationale."
         ]
       },
       "errors": [],
@@ -976,7 +976,7 @@
         "improvement_areas": [
           "Could include line numbers or more precise location references for evidence excerpts.",
           "Some suggestions could add even more specificity on how to quantify partnership impact (e.g., suggesting possible metrics).",
-          "The feedback could explicitly mention the 6-second scan model terminology to strengthen methodology alignment."
+          "The feedback could explicitly mention the 7.4-second scan model terminology to strengthen methodology alignment."
         ]
       },
       "errors": [],
@@ -1005,7 +1005,7 @@
           "Provides concrete rewrite examples with exact original and improved text",
           "Clear top fixes section with evidence excerpts and impact/effort ratings",
           "Tone is professional, direct, and recruiter-focused",
-          "Focuses on clarifying personal impact, metrics, and scope to improve 6-second signal"
+          "Focuses on clarifying personal impact, metrics, and scope to improve 7.4-second signal"
         ],
         "improvement_areas": [
           "Could include line references or bullet numbers for even clearer evidence grounding",
@@ -1039,7 +1039,7 @@
           "Clear top fixes section with evidence and impact levels",
           "Focuses on clarifying personal ownership and adding measurable outcomes",
           "Tone is professional, direct, and recruiter-focused",
-          "Aligns well with 6-second signal model by emphasizing clarity and impact"
+          "Aligns well with 7.4-second signal model by emphasizing clarity and impact"
         ],
         "improvement_areas": [
           "Could include more explicit mention of prioritizing the summary rewrite first",
@@ -1106,7 +1106,7 @@
           "Feedback cites specific resume phrases and sections, e.g., compensation redesign bullet and leadership development program.",
           "Suggestions include concrete rewrites with exact wording improvements and scope clarifications.",
           "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
-          "Feedback aligns well with 6-second signal model by emphasizing first impressions, clarity, and key metrics.",
+          "Feedback aligns well with 7.4-second signal model by emphasizing first impressions, clarity, and key metrics.",
           "Includes a top fixes section and next steps that are actionable and prioritized."
         ],
         "improvement_areas": [
@@ -1172,11 +1172,11 @@
           "Feedback cites multiple exact phrases from the resume with section references",
           "Suggestions include concrete examples with numbers and specific wording changes",
           "Tone is professional, direct, and clearly from a recruiter perspective",
-          "Focuses on first impression issues like clarity, impact, and scope consistent with 6-second signal model",
+          "Focuses on first impression issues like clarity, impact, and scope consistent with 7.4-second signal model",
           "Includes a top fixes section and next steps for easy implementation"
         ],
         "improvement_areas": [
-          "Could slightly increase emphasis on prioritizing the most impactful fixes for a 6-second scan",
+          "Could slightly increase emphasis on prioritizing the most impactful fixes for a 7.4-second scan",
           "Minor repetition in some rewrite suggestions could be streamlined for brevity"
         ]
       },
@@ -1211,7 +1211,7 @@
         "improvement_areas": [
           "Could include line references for exact bullet points to further improve evidence grounding",
           "Some suggestions could be even more quantified with example metrics",
-          "Minor opportunity to emphasize 6-second scan impact explicitly in summary"
+          "Minor opportunity to emphasize 7.4-second scan impact explicitly in summary"
         ]
       },
       "errors": [],
@@ -1238,7 +1238,7 @@
           "Feedback cites multiple exact phrases from the resume with section references.",
           "Suggestions include concrete improvements with specific examples and rewrites.",
           "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
-          "Feedback aligns well with the 6-second signal model by emphasizing clarity, metrics, and first impressions."
+          "Feedback aligns well with the 7.4-second signal model by emphasizing clarity, metrics, and first impressions."
         ],
         "improvement_areas": [
           "Could include a brief explicit mention of prioritizing signal over noise in the summary to strengthen methodology alignment.",
@@ -1274,7 +1274,7 @@
           "Focuses on improving first impressions by clarifying metrics, simplifying bullets, and sharpening the summary."
         ],
         "improvement_areas": [
-          "Could slightly increase emphasis on the 6-second scan by suggesting formatting or visual hierarchy improvements.",
+          "Could slightly increase emphasis on the 7.4-second scan by suggesting formatting or visual hierarchy improvements.",
           "Minor opportunity to call out any redundant or less relevant skills explicitly for removal to reduce noise."
         ]
       },
@@ -1303,7 +1303,7 @@
           "Strong evidence grounding with multiple exact excerpts cited from the resume",
           "Highly actionable suggestions with specific rewrite examples and measurable metrics to add",
           "Professional and recruiter-like tone with direct, clear, and industry-aware feedback",
-          "Clear alignment with 6-second signal model focusing on impact, clarity, and first impressions",
+          "Clear alignment with 7.4-second signal model focusing on impact, clarity, and first impressions",
           "Includes a top fixes section and next steps for prioritized improvements"
         ],
         "improvement_areas": [
@@ -1340,7 +1340,7 @@
           "Includes a top fixes section with prioritized, evidence-backed recommendations"
         ],
         "improvement_areas": [
-          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+          "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment",
           "Some suggestions could add even more precise numeric examples (e.g., exact team sizes)",
           "Tone is strong but could be slightly more concise in places to mimic recruiter brevity"
         ]
@@ -1369,7 +1369,7 @@
           "Most suggestions cite specific resume excerpts with line references.",
           "Suggestions are concrete and include specific tokens like numbers, time frames, and wording improvements.",
           "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
-          "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions.",
+          "Feedback aligns well with the 7.4-second signal model, focusing on clarity, impact, and first impressions.",
           "Includes a top fixes section and actionable next steps."
         ],
         "improvement_areas": [
@@ -1403,7 +1403,7 @@
           "Provides concrete rewrite examples with measurable improvements",
           "Highlights clear strengths and gaps grounded in resume content",
           "Tone is professional, recruiter-like, and focused on impact and clarity",
-          "Aligns well with 6-second signal model by focusing on first impressions and clarity"
+          "Aligns well with 7.4-second signal model by focusing on first impressions and clarity"
         ],
         "improvement_areas": [
           "Could include explicit mention of prioritizing most impactful fixes first",
@@ -1440,7 +1440,7 @@
           "Focuses on improving first impression by adding metrics and clarity"
         ],
         "improvement_areas": [
-          "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+          "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment",
           "Some suggestions could be even more quantified with example numbers",
           "Minor formatting issues in JSON (truncated job_alignment) but does not affect feedback quality"
         ]
@@ -1503,7 +1503,7 @@
           "Every suggestion is grounded in specific resume excerpts with line references.",
           "Suggestions are highly actionable with concrete examples and rewrite tokens.",
           "Tone is professional, direct, and clearly from an experienced recruiter perspective.",
-          "Feedback aligns well with the 6-second signal model focusing on clarity, impact, and first impressions."
+          "Feedback aligns well with the 7.4-second signal model focusing on clarity, impact, and first impressions."
         ],
         "improvement_areas": [
           "Tone could be slightly more conversational to feel less formal in places.",
@@ -1535,7 +1535,7 @@
           "Most suggestions cite specific resume excerpts with section references.",
           "Provides concrete rewrite examples and detailed top fixes with evidence.",
           "Tone is professional, direct, and recruiter-focused with clear prioritization.",
-          "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions."
+          "Feedback aligns well with 7.4-second signal model focusing on clarity, impact, and first impressions."
         ],
         "improvement_areas": [
           "Could include line numbers for even more precise evidence grounding.",
@@ -1567,7 +1567,7 @@
           "Most suggestions cite exact phrases from the resume with section references",
           "Provides concrete rewrite examples with specific tokens to add (e.g., number of teams, measurable outcomes)",
           "Tone is professional, direct, and recruiter-focused with clear prioritization of fixes",
-          "Feedback aligns well with 6-second signal model by emphasizing impact metrics, clarity, and first impression improvements",
+          "Feedback aligns well with 7.4-second signal model by emphasizing impact metrics, clarity, and first impression improvements",
           "Includes a top fixes section and next steps for immediate implementation"
         ],
         "improvement_areas": [
@@ -1601,7 +1601,7 @@
           "Feedback cites specific resume excerpts such as 'Was responsible for managing a team of UX designers' and 'Participated in user research activities and usability testing' to ground suggestions.",
           "Provides concrete rewrite examples with placeholders for team size, project names, and measurable outcomes, enabling immediate implementation.",
           "Tone is professional, direct, and recruiter-focused, emphasizing what a hiring manager would look for in leadership impact and measurable results.",
-          "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impression takeaways like adding team size and metrics."
+          "Feedback aligns well with the 7.4-second signal model by focusing on clarity, impact, and first impression takeaways like adding team size and metrics."
         ],
         "improvement_areas": [
           "Could include explicit line references or bullet numbers for even clearer evidence grounding.",
@@ -1634,7 +1634,7 @@
           "Feedback cites specific resume excerpts for each suggestion, grounding advice in concrete examples.",
           "Suggestions are actionable with clear instructions such as removing personal pronouns, adding a summary, clarifying ownership, and splitting complex bullets.",
           "Tone is professional, direct, and aligned with recruiter expectations, avoiding generic AI buzzwords.",
-          "Feedback focuses on clarity, impact, and first impressions, consistent with the 6-second signal model and recruiter lens."
+          "Feedback focuses on clarity, impact, and first impressions, consistent with the 7.4-second signal model and recruiter lens."
         ],
         "improvement_areas": [
           "Could include explicit mention of prioritizing the top fixes to better align with recruiter quick-scan needs.",
@@ -1665,7 +1665,7 @@
         "Most suggestions cite exact phrases from the resume with section references and excerpts.",
         "Actionable rewrites and top fixes provide concrete wording and specific metrics to add or clarify.",
         "Tone is professional, direct, and aligned with recruiter expectations for early-career product managers.",
-        "Feedback focuses on clarity, impact, and first-impression signal improvements consistent with the 6-second model."
+        "Feedback focuses on clarity, impact, and first-impression signal improvements consistent with the 7.4-second model."
       ],
       "improvement_areas": [
         "Could include explicit mention of prioritizing the most impactful fixes first to better align with recruiter time constraints.",
@@ -1684,7 +1684,7 @@
         "Feedback cites multiple exact phrases from the resume with section references.",
         "Suggestions include concrete tokens such as team sizes, user base numbers, and specific metrics to add.",
         "Tone is professional, direct, and clearly from a recruiter perspective with actionable rewrite examples.",
-        "Feedback aligns well with the 6-second signal model by focusing on clarity, scale, and impact to improve first impressions."
+        "Feedback aligns well with the 7.4-second signal model by focusing on clarity, scale, and impact to improve first impressions."
       ],
       "improvement_areas": [
         "Could include explicit mention of prioritizing the most impactful fixes first to better reflect recruiter triage.",
@@ -1703,7 +1703,7 @@
         "Feedback cites multiple exact phrases from the resume with section references.",
         "Suggestions include concrete examples with placeholders for metrics and specific numbers.",
         "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
-        "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+        "Feedback aligns well with the 7.4-second signal model by emphasizing first impressions, clarity, and measurable impact.",
         "Includes a top fixes section and next steps, enhancing usability."
       ],
       "improvement_areas": [
@@ -1728,7 +1728,7 @@
         "Professional tone with direct, actionable advice"
       ],
       "improvement_areas": [
-        "Could include more explicit mention of 6-second scan methodology",
+        "Could include more explicit mention of 7.4-second scan methodology",
         "Minor opportunity to emphasize prioritization of fixes by recruiter signal impact"
       ]
     },
@@ -1744,7 +1744,7 @@
         "Every suggestion is grounded in specific resume excerpts with clear line references.",
         "Suggestions include concrete, implementable changes such as adding baseline metrics, time frames, and clarifying personal ownership.",
         "The tone is professional, detailed, and reads like feedback from an experienced recruiter.",
-        "The feedback focuses on improving first impressions by clarifying impact and reducing noise, aligning well with the 6-second signal model."
+        "The feedback focuses on improving first impressions by clarifying impact and reducing noise, aligning well with the 7.4-second signal model."
       ],
       "improvement_areas": [
         "Tone could be slightly more direct and concise in some places to fully emulate a senior recruiter voice.",
@@ -1764,7 +1764,7 @@
         "Provides concrete rewrite examples with exact original and improved bullet points",
         "Includes a clear top fixes section with evidence excerpts and rationale",
         "Tone is professional, direct, and recruiter-focused with actionable advice",
-        "Focuses on clarifying personal ownership, measurable impact, and first impression clarity aligning with 6-second signal model"
+        "Focuses on clarifying personal ownership, measurable impact, and first impression clarity aligning with 7.4-second signal model"
       ],
       "improvement_areas": [
         "Could slightly increase emphasis on prioritizing fixes from a recruiter's first-glance perspective",
@@ -1788,7 +1788,7 @@
         "Feedback emphasizes first impression and clarity of impact"
       ],
       "improvement_areas": [
-        "Could add a brief note on prioritizing the summary rewrite first for better 6-second impact",
+        "Could add a brief note on prioritizing the summary rewrite first for better 7.4-second impact",
         "Some rewrite suggestions could include example numeric ranges to further aid actionability"
       ]
     },
@@ -1804,7 +1804,7 @@
         "Most suggestions cite exact phrases from the resume with section references",
         "Provides concrete rewrite examples with specific improvements",
         "Feedback is professional, direct, and recruiter-focused",
-        "Focuses on clarifying impact, ownership, and measurable outcomes aligned with 6-second signal model"
+        "Focuses on clarifying impact, ownership, and measurable outcomes aligned with 7.4-second signal model"
       ],
       "improvement_areas": [
         "Could include line numbers or more precise location references for evidence",
@@ -1828,7 +1828,7 @@
         "Includes a top fixes section with prioritized, evidence-backed recommendations."
       ],
       "improvement_areas": [
-        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment.",
+        "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment.",
         "Some suggestions could be slightly more concise to enhance quick recruiter readability."
       ]
     },
@@ -1848,7 +1848,7 @@
         "Tone is professional, direct, and recruiter-aware without buzzwords"
       ],
       "improvement_areas": [
-        "Could include slightly more explicit mention of 6-second scan impact",
+        "Could include slightly more explicit mention of 7.4-second scan impact",
         "Some suggestions could be even more granular on how to split complex bullets"
       ]
     },
@@ -1864,7 +1864,7 @@
         "Most suggestions cite exact phrases from the resume with section references.",
         "Provides concrete rewrite examples with specific numbers and clearer roles.",
         "Tone is professional, direct, and aligned with recruiter expectations.",
-        "Focuses on clarifying ownership, adding metrics, and improving first impressions per 6-second signal model.",
+        "Focuses on clarifying ownership, adding metrics, and improving first impressions per 7.4-second signal model.",
         "Includes a top fixes section with prioritized, actionable recommendations."
       ],
       "improvement_areas": [
@@ -1885,7 +1885,7 @@
         "Provides concrete rewrite examples with specific improvements.",
         "Clear top fixes section with prioritized, evidence-backed recommendations.",
         "Tone is professional, direct, and recruiter-focused.",
-        "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions."
+        "Feedback aligns well with 7.4-second signal model emphasizing clarity, impact, and first impressions."
       ],
       "improvement_areas": [
         "Could include more explicit mention of passive language as a red flag.",
@@ -1904,7 +1904,7 @@
         "Most suggestions cite specific resume excerpts with line references",
         "Provides concrete, actionable rewrites with specific tokens like time frames and scope",
         "Tone is professional, direct, and recruiter-like with clear prioritization",
-        "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions"
+        "Feedback aligns well with 7.4-second signal model focusing on clarity, impact, and first impressions"
       ],
       "improvement_areas": [
         "Could include more explicit mention of prioritizing signal over noise in the summary",
@@ -1927,7 +1927,7 @@
         "Includes a clear top fixes section and next steps for actionable improvements"
       ],
       "improvement_areas": [
-        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+        "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment",
         "Some suggestions could add even more precise numeric targets (e.g., exact budget amounts)",
         "Summary fix advice could be more concise to model the recommended style"
       ]
@@ -1945,7 +1945,7 @@
         "Provides concrete rewrite examples with specific numbers and clarifications",
         "Top fixes and next steps are actionable and clearly prioritized",
         "Tone is professional, direct, and recruiter-focused",
-        "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and measurable results"
+        "Feedback aligns well with 7.4-second signal model emphasizing clarity, impact, and measurable results"
       ],
       "improvement_areas": [
         "Could include slightly more explicit mention of prioritizing first impression impact in summary",
@@ -1984,7 +1984,7 @@
         "Most suggestions cite specific resume lines with excerpts and section references.",
         "Provides concrete rewrite examples with exact wording improvements and rationale.",
         "Feedback is professional, direct, and aligned with recruiter expectations.",
-        "Focuses on clarity, impact, and signal-to-noise improvements consistent with 6-second scan methodology.",
+        "Focuses on clarity, impact, and signal-to-noise improvements consistent with 7.4-second scan methodology.",
         "Includes a prioritized top fixes section and clear next steps for implementation."
       ],
       "improvement_areas": [
@@ -2008,7 +2008,7 @@
         "Feedback focuses on improving first impressions by clarifying scope, ownership, and measurable impact"
       ],
       "improvement_areas": [
-        "Could include explicit mention of the 6-second scan methodology to strengthen methodology alignment",
+        "Could include explicit mention of the 7.4-second scan methodology to strengthen methodology alignment",
         "Some suggestions could be even more granular with exact numbers to add (e.g., 'X departments' or '% improvements')",
         "Minor repetition in rewrite suggestions could be consolidated for brevity"
       ]
@@ -2029,7 +2029,7 @@
         "Includes a top fixes section and next steps that are actionable and prioritized."
       ],
       "improvement_areas": [
-        "Could include more explicit mention of the 6-second scan methodology to strengthen methodology alignment.",
+        "Could include more explicit mention of the 7.4-second scan methodology to strengthen methodology alignment.",
         "Some suggestions could add even more precise numeric examples (e.g., ranges) to boost actionability further."
       ]
     },
@@ -2065,7 +2065,7 @@
         "Most suggestions cite exact phrases from the resume with line references or excerpts.",
         "Suggestions are concrete and actionable, including specific metrics and wording improvements.",
         "Tone is professional, detailed, and reads like feedback from an experienced recruiter.",
-        "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions."
+        "Feedback aligns well with the 7.4-second signal model, focusing on clarity, impact, and first impressions."
       ],
       "improvement_areas": [
         "Could include a brief explicit mention of prioritizing signal over noise in the summary feedback.",
@@ -2084,7 +2084,7 @@
         "Every suggestion is grounded in exact resume excerpts with line references.",
         "Feedback includes very specific, actionable rewrite examples with concrete metrics and scope improvements.",
         "Tone is professional, direct, and clearly from a recruiter perspective focusing on impact and clarity.",
-        "Feedback aligns well with the 6-second signal model by emphasizing first impressions, clarity, and measurable impact.",
+        "Feedback aligns well with the 7.4-second signal model by emphasizing first impressions, clarity, and measurable impact.",
         "Includes a top fixes section and next steps that are practical and prioritized."
       ],
       "improvement_areas": [
@@ -2125,11 +2125,11 @@
         "Feedback cites specific resume phrases with section references, e.g., 'Duties included managing a small team of designers.'",
         "Provides concrete rewrite examples with suggested metrics and active language.",
         "Tone is professional, direct, and recruiter-focused, emphasizing clarity and impact.",
-        "Focuses on first impression issues like vague language, passive voice, and missing metrics aligned with 6-second signal model."
+        "Focuses on first impression issues like vague language, passive voice, and missing metrics aligned with 7.4-second signal model."
       ],
       "improvement_areas": [
         "Could include explicit mention of prioritizing the most impactful bullets for immediate recruiter scanning.",
-        "Minor improvement could be made by explicitly referencing the 6-second rule in the feedback text."
+        "Minor improvement could be made by explicitly referencing the 7.4-second rule in the feedback text."
       ]
     },
     {
@@ -2165,10 +2165,10 @@
         "Most suggestions cite exact phrases from the resume with section references.",
         "Actionable advice includes specific tokens like adding time frames, splitting bullets, and adding a summary.",
         "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
-        "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impressions."
+        "Feedback aligns well with the 7.4-second signal model by focusing on clarity, impact, and first impressions."
       ],
       "improvement_areas": [
-        "Could include more explicit mention of prioritizing the strongest 6-second signals in the summary advice.",
+        "Could include more explicit mention of prioritizing the strongest 7.4-second signals in the summary advice.",
         "Some rewrite suggestions could be slightly more concise to better model ideal bullet style."
       ]
     },
@@ -2184,7 +2184,7 @@
         "Most suggestions cite exact phrases from the resume with section references",
         "Provides concrete rewrite examples with measurable metrics and scope",
         "Tone is professional, direct, and recruiter-focused",
-        "Feedback aligns well with 6-second signal model emphasizing clarity, impact, and first impressions",
+        "Feedback aligns well with 7.4-second signal model emphasizing clarity, impact, and first impressions",
         "Includes a top fixes section with prioritized, actionable recommendations"
       ],
       "improvement_areas": [
@@ -2204,7 +2204,7 @@
         "Every suggestion is grounded in specific resume excerpts with clear line references.",
         "Actionable rewrites and top fixes provide concrete, implementable advice with examples.",
         "Tone is professional, direct, and aligned with recruiter expectations.",
-        "Feedback focuses on first impressions, signal clarity, and reducing noise per the 6-second model."
+        "Feedback focuses on first impressions, signal clarity, and reducing noise per the 7.4-second model."
       ],
       "improvement_areas": [
         "Tone could be slightly more concise in some sections to mimic recruiter brevity.",
@@ -2230,7 +2230,7 @@
       "improvement_areas": [
         "Could include line or bullet number references for even clearer evidence grounding.",
         "Some suggestions could add even more precise numeric targets (e.g., suggest exact team sizes or metric ranges).",
-        "Minor opportunity to explicitly mention 6-second resume scan methodology in the rationale."
+        "Minor opportunity to explicitly mention 7.4-second resume scan methodology in the rationale."
       ]
     },
     {
@@ -2251,7 +2251,7 @@
       "improvement_areas": [
         "Could include line numbers or more precise location references for evidence excerpts.",
         "Some suggestions could add even more specificity on how to quantify partnership impact (e.g., suggesting possible metrics).",
-        "The feedback could explicitly mention the 6-second scan model terminology to strengthen methodology alignment."
+        "The feedback could explicitly mention the 7.4-second scan model terminology to strengthen methodology alignment."
       ]
     },
     {
@@ -2267,7 +2267,7 @@
         "Provides concrete rewrite examples with exact original and improved text",
         "Clear top fixes section with evidence excerpts and impact/effort ratings",
         "Tone is professional, direct, and recruiter-focused",
-        "Focuses on clarifying personal impact, metrics, and scope to improve 6-second signal"
+        "Focuses on clarifying personal impact, metrics, and scope to improve 7.4-second signal"
       ],
       "improvement_areas": [
         "Could include line references or bullet numbers for even clearer evidence grounding",
@@ -2289,7 +2289,7 @@
         "Clear top fixes section with evidence and impact levels",
         "Focuses on clarifying personal ownership and adding measurable outcomes",
         "Tone is professional, direct, and recruiter-focused",
-        "Aligns well with 6-second signal model by emphasizing clarity and impact"
+        "Aligns well with 7.4-second signal model by emphasizing clarity and impact"
       ],
       "improvement_areas": [
         "Could include more explicit mention of prioritizing the summary rewrite first",
@@ -2330,7 +2330,7 @@
         "Feedback cites specific resume phrases and sections, e.g., compensation redesign bullet and leadership development program.",
         "Suggestions include concrete rewrites with exact wording improvements and scope clarifications.",
         "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
-        "Feedback aligns well with 6-second signal model by emphasizing first impressions, clarity, and key metrics.",
+        "Feedback aligns well with 7.4-second signal model by emphasizing first impressions, clarity, and key metrics.",
         "Includes a top fixes section and next steps that are actionable and prioritized."
       ],
       "improvement_areas": [
@@ -2371,11 +2371,11 @@
         "Feedback cites multiple exact phrases from the resume with section references",
         "Suggestions include concrete examples with numbers and specific wording changes",
         "Tone is professional, direct, and clearly from a recruiter perspective",
-        "Focuses on first impression issues like clarity, impact, and scope consistent with 6-second signal model",
+        "Focuses on first impression issues like clarity, impact, and scope consistent with 7.4-second signal model",
         "Includes a top fixes section and next steps for easy implementation"
       ],
       "improvement_areas": [
-        "Could slightly increase emphasis on prioritizing the most impactful fixes for a 6-second scan",
+        "Could slightly increase emphasis on prioritizing the most impactful fixes for a 7.4-second scan",
         "Minor repetition in some rewrite suggestions could be streamlined for brevity"
       ]
     },
@@ -2397,7 +2397,7 @@
       "improvement_areas": [
         "Could include line references for exact bullet points to further improve evidence grounding",
         "Some suggestions could be even more quantified with example metrics",
-        "Minor opportunity to emphasize 6-second scan impact explicitly in summary"
+        "Minor opportunity to emphasize 7.4-second scan impact explicitly in summary"
       ]
     },
     {
@@ -2412,7 +2412,7 @@
         "Feedback cites multiple exact phrases from the resume with section references.",
         "Suggestions include concrete improvements with specific examples and rewrites.",
         "Tone is professional, recruiter-like, and focused on measurable impact and clarity.",
-        "Feedback aligns well with the 6-second signal model by emphasizing clarity, metrics, and first impressions."
+        "Feedback aligns well with the 7.4-second signal model by emphasizing clarity, metrics, and first impressions."
       ],
       "improvement_areas": [
         "Could include a brief explicit mention of prioritizing signal over noise in the summary to strengthen methodology alignment.",
@@ -2435,7 +2435,7 @@
         "Focuses on improving first impressions by clarifying metrics, simplifying bullets, and sharpening the summary."
       ],
       "improvement_areas": [
-        "Could slightly increase emphasis on the 6-second scan by suggesting formatting or visual hierarchy improvements.",
+        "Could slightly increase emphasis on the 7.4-second scan by suggesting formatting or visual hierarchy improvements.",
         "Minor opportunity to call out any redundant or less relevant skills explicitly for removal to reduce noise."
       ]
     },
@@ -2451,7 +2451,7 @@
         "Strong evidence grounding with multiple exact excerpts cited from the resume",
         "Highly actionable suggestions with specific rewrite examples and measurable metrics to add",
         "Professional and recruiter-like tone with direct, clear, and industry-aware feedback",
-        "Clear alignment with 6-second signal model focusing on impact, clarity, and first impressions",
+        "Clear alignment with 7.4-second signal model focusing on impact, clarity, and first impressions",
         "Includes a top fixes section and next steps for prioritized improvements"
       ],
       "improvement_areas": [
@@ -2475,7 +2475,7 @@
         "Includes a top fixes section with prioritized, evidence-backed recommendations"
       ],
       "improvement_areas": [
-        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+        "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment",
         "Some suggestions could add even more precise numeric examples (e.g., exact team sizes)",
         "Tone is strong but could be slightly more concise in places to mimic recruiter brevity"
       ]
@@ -2492,7 +2492,7 @@
         "Most suggestions cite specific resume excerpts with line references.",
         "Suggestions are concrete and include specific tokens like numbers, time frames, and wording improvements.",
         "Tone is professional, direct, and sounds like feedback from an experienced recruiter.",
-        "Feedback aligns well with the 6-second signal model, focusing on clarity, impact, and first impressions.",
+        "Feedback aligns well with the 7.4-second signal model, focusing on clarity, impact, and first impressions.",
         "Includes a top fixes section and actionable next steps."
       ],
       "improvement_areas": [
@@ -2513,7 +2513,7 @@
         "Provides concrete rewrite examples with measurable improvements",
         "Highlights clear strengths and gaps grounded in resume content",
         "Tone is professional, recruiter-like, and focused on impact and clarity",
-        "Aligns well with 6-second signal model by focusing on first impressions and clarity"
+        "Aligns well with 7.4-second signal model by focusing on first impressions and clarity"
       ],
       "improvement_areas": [
         "Could include explicit mention of prioritizing most impactful fixes first",
@@ -2537,7 +2537,7 @@
         "Focuses on improving first impression by adding metrics and clarity"
       ],
       "improvement_areas": [
-        "Could include explicit mention of 6-second scan methodology to strengthen methodology alignment",
+        "Could include explicit mention of 7.4-second scan methodology to strengthen methodology alignment",
         "Some suggestions could be even more quantified with example numbers",
         "Minor formatting issues in JSON (truncated job_alignment) but does not affect feedback quality"
       ]
@@ -2575,7 +2575,7 @@
         "Every suggestion is grounded in specific resume excerpts with line references.",
         "Suggestions are highly actionable with concrete examples and rewrite tokens.",
         "Tone is professional, direct, and clearly from an experienced recruiter perspective.",
-        "Feedback aligns well with the 6-second signal model focusing on clarity, impact, and first impressions."
+        "Feedback aligns well with the 7.4-second signal model focusing on clarity, impact, and first impressions."
       ],
       "improvement_areas": [
         "Tone could be slightly more conversational to feel less formal in places.",
@@ -2594,7 +2594,7 @@
         "Most suggestions cite specific resume excerpts with section references.",
         "Provides concrete rewrite examples and detailed top fixes with evidence.",
         "Tone is professional, direct, and recruiter-focused with clear prioritization.",
-        "Feedback aligns well with 6-second signal model focusing on clarity, impact, and first impressions."
+        "Feedback aligns well with 7.4-second signal model focusing on clarity, impact, and first impressions."
       ],
       "improvement_areas": [
         "Could include line numbers for even more precise evidence grounding.",
@@ -2613,7 +2613,7 @@
         "Most suggestions cite exact phrases from the resume with section references",
         "Provides concrete rewrite examples with specific tokens to add (e.g., number of teams, measurable outcomes)",
         "Tone is professional, direct, and recruiter-focused with clear prioritization of fixes",
-        "Feedback aligns well with 6-second signal model by emphasizing impact metrics, clarity, and first impression improvements",
+        "Feedback aligns well with 7.4-second signal model by emphasizing impact metrics, clarity, and first impression improvements",
         "Includes a top fixes section and next steps for immediate implementation"
       ],
       "improvement_areas": [
@@ -2634,7 +2634,7 @@
         "Feedback cites specific resume excerpts such as 'Was responsible for managing a team of UX designers' and 'Participated in user research activities and usability testing' to ground suggestions.",
         "Provides concrete rewrite examples with placeholders for team size, project names, and measurable outcomes, enabling immediate implementation.",
         "Tone is professional, direct, and recruiter-focused, emphasizing what a hiring manager would look for in leadership impact and measurable results.",
-        "Feedback aligns well with the 6-second signal model by focusing on clarity, impact, and first impression takeaways like adding team size and metrics."
+        "Feedback aligns well with the 7.4-second signal model by focusing on clarity, impact, and first impression takeaways like adding team size and metrics."
       ],
       "improvement_areas": [
         "Could include explicit line references or bullet numbers for even clearer evidence grounding.",
@@ -2654,7 +2654,7 @@
         "Feedback cites specific resume excerpts for each suggestion, grounding advice in concrete examples.",
         "Suggestions are actionable with clear instructions such as removing personal pronouns, adding a summary, clarifying ownership, and splitting complex bullets.",
         "Tone is professional, direct, and aligned with recruiter expectations, avoiding generic AI buzzwords.",
-        "Feedback focuses on clarity, impact, and first impressions, consistent with the 6-second signal model and recruiter lens."
+        "Feedback focuses on clarity, impact, and first impressions, consistent with the 7.4-second signal model and recruiter lens."
       ],
       "improvement_areas": [
         "Could include explicit mention of prioritizing the top fixes to better align with recruiter quick-scan needs.",

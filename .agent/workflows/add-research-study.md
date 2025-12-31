@@ -296,7 +296,7 @@ Use when a number is central and defensible.
 **Format:** `~X units + context`
 
 **Examples:**
-- `~6 seconds for initial screening`
+- `~7.4 seconds for initial screening`
 - `~80% of users scan, not read`
 - `~30 recruiters reviewed 300+ resumes`
 
@@ -360,7 +360,7 @@ If not, rewrite it.
 
 | Page | Headline |
 |------|----------|
-| Eye-tracking | `~6 seconds for initial screening` |
+| Eye-tracking | `~7.4 seconds for initial screening` |
 | Scanning | `~80% of users scan, not read` |
 | ATS | `Human review is the primary bottleneck` |
 

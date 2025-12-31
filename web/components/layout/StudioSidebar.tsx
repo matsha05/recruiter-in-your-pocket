@@ -7,6 +7,7 @@ import {
     Library,
     FileText,
     CreditCard,
+    Briefcase,
 } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
@@ -35,6 +36,9 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
             <div className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
                 <StudioNavLink href="/workspace" icon={FileText}>
                     The Studio
+                </StudioNavLink>
+                <StudioNavLink href="/jobs" icon={Briefcase}>
+                    Jobs
                 </StudioNavLink>
                 <StudioNavLink href="/research" icon={Library}>
                     Research Library

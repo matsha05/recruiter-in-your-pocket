@@ -1,4 +1,4 @@
-const JD_SELECTORS = [
+(function(){const JD_SELECTORS = [
   "#jobDescriptionText",
   ".jobsearch-jobDescriptionText",
   '[data-testid="jobDescriptionText"]',
@@ -205,4 +205,5 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
-//# sourceMappingURL=content-script-indeed.js.map
+//# sourceMappingURL=indeed.ts-BP89kePZ.js.map
+})()

@@ -264,7 +264,7 @@ The remaining risk—**non-deterministic scoring**—has been accepted for launc
 
 | Day | Post Type | Hook |
 |:----|:----------|:-----|
-| **D-3** | Teaser | "I've reviewed 2,000+ resumes. Here's why most fail in 7 seconds." |
+| **D-3** | Teaser | "I've reviewed 2,000+ resumes. Here's why most fail in 7.4 seconds." |
 | **D-1** | Preview GIF | "The Red Pen is alive. Watch what happens." |
 | **Launch** | Announcement | "Recruiter in Your Pocket is live. [PH link]" |
 | **D+1** | Education | "3 things your recruiter sees in 10 seconds (that you don't)." |
@@ -501,7 +501,7 @@ Content that triggers moral outrage spreads 2× faster than positive content.
 ```
 Thread: I reviewed 2,400 resumes last year. 
 
-Here are the 5 things that make recruiters hit "reject" in less than 7 seconds:
+Here are the 5 things that make recruiters hit "reject" in the first ~7.4 seconds:
 
 (Thread 🧵)
 ```

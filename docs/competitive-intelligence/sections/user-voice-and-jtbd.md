@@ -155,7 +155,7 @@ Users of AI resume tools consistently voice frustration with **generic AI conten
 - "Tell me straight" (not "comprehensive analysis")
 - "Fix it" (not "optimize")
 - "Land interviews" (not "increase success rate")
-- "6-second skim" (resonates with recruiter reality)
+- "7.4-second skim" (resonates with recruiter reality)
 
 ### Words to AVOID (cause distrust or eye-rolls)
 - "AI-powered" (overused, low trust)
@@ -181,7 +181,7 @@ Users of AI resume tools consistently voice frustration with **generic AI conten
 ### Value Proposition Testing
 | Angle | Test Copy | User Pain Point |
 |:------|:----------|:----------------|
-| Human judgment | "What a real recruiter sees in 6 seconds" | AI-vs-human paradox |
+| Human judgment | "What a real recruiter sees in 7.4 seconds" | AI-vs-human paradox |
 | No subscription | "Pay once. Use when you need it." | Subscription fatigue |
 | Specificity | "The exact 3 things to fix right now" | Overwhelm |
 | Anti-generic | "Your story, not robot writing" | Generic AI output |

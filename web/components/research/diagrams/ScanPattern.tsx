@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
  * ScanPattern - F-Pattern Eye-Tracking Visualization
  * 
  * Design rationale from first principles:
- * - The F-pattern shows how recruiters scan resumes in 6 seconds
+ * - The F-pattern shows how recruiters scan resumes in 7.4 seconds
  * - Top horizontal bar: Eyes scan across the NAME and contact info
  * - Second horizontal bar: Eyes scan the FIRST JOB title and dates
  * - Third (shorter) bar: Brief scan of SECOND JOB

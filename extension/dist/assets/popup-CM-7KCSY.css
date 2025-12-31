@@ -624,7 +624,8 @@ body {
     gap: 4px;
 }
 
-.job-delete-btn {
+/* Base action button style */
+.job-action-btn {
     width: 28px;
     height: 28px;
     display: flex;
@@ -639,15 +640,22 @@ body {
     color: hsl(var(--muted-foreground));
 }
 
-.job-delete-btn svg {
+.job-action-btn svg {
     width: 14px;
     height: 14px;
 }
 
-.job-card:hover .job-delete-btn {
+.job-card:hover .job-action-btn {
     opacity: 1;
 }
 
+/* External link button - secondary action */
+.job-external-btn:hover {
+    background: hsl(var(--brand-light));
+    color: hsl(var(--brand));
+}
+
+/* Delete button - destructive action */
 .job-delete-btn:hover {
     background: hsl(var(--destructive-light));
     color: hsl(var(--destructive));
@@ -663,6 +671,17 @@ body {
 
 .job-card:hover .job-arrow {
     opacity: 1;
+}
+
+/* ============= JOB STATUS (MICROCOPY) ============= */
+.job-status {
+    margin-top: 3px;
+}
+
+.job-status-text {
+    font-size: 10px;
+    color: hsl(var(--muted-foreground));
+    opacity: 0.7;
 }
 
 /* ============= JOB META ============= */

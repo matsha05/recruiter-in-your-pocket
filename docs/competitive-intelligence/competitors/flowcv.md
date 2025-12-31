@@ -92,7 +92,7 @@
 2. **Recruiter perspective**: What matters in screening
 3. **Depth of feedback**: Expert analysis vs template filling
 4. **Interactive improvements**: "Red Pen" corrections
-5. **Methodology transparency**: "6-Second Signal Model"
+5. **Methodology transparency**: "7.4-Second Signal Model"
 
 ## Source Notes
 

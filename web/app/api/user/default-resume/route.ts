@@ -58,11 +58,12 @@ export async function POST(request: NextRequest) {
             .digest("hex");
         const resumePreview = resumeText.slice(0, 200).replace(/\s+/g, " ").trim();
 
-        // 5. Upsert user profile
+        // 5. Upsert user profile (including full resume text for matching)
         const { data, error } = await supabase
             .from("user_profiles")
             .upsert({
                 user_id: user.id,
+                resume_text: resumeText,  // CRITICAL: Save full text for matching
                 skills_index: skillsIndex,
                 seniority_signals: senioritySignals,
                 resume_embedding: embedding,
@@ -77,8 +78,14 @@ export async function POST(request: NextRequest) {
 
         if (error) {
             console.error("[DefaultResume] Upsert error:", error);
+            // Provide more detail to help diagnose the issue
+            const errorMessage = error.code === '42P01'
+                ? "Database table 'user_profiles' doesn't exist. Run the migration in database/migrations/003_user_resume_profiles.sql"
+                : error.code === '42501'
+                    ? "Database permission denied. Check RLS policies on user_profiles table."
+                    : `Failed to save resume profile: ${error.message}`;
             return NextResponse.json(
-                { success: false, error: "Failed to save resume profile" },
+                { success: false, error: errorMessage, code: error.code },
                 { status: 500 }
             );
         }

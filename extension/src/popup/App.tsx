@@ -67,7 +67,7 @@ export default function App() {
     }
 
     function handleOpenStudio() {
-        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/saved-jobs' } });
+        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/jobs' } });
     }
 
     function handleLogin() {
@@ -75,7 +75,15 @@ export default function App() {
     }
 
     function handleJobClick(job: SavedJob) {
-        // Open the original job URL
+        // Primary action: Open job detail page with Match Insights
+        chrome.runtime.sendMessage({
+            type: 'OPEN_WEBAPP',
+            payload: { path: `/jobs/${job.id}` }
+        });
+    }
+
+    function handleOpenOriginal(job: SavedJob) {
+        // Secondary action: Open original job posting
         chrome.tabs.create({ url: job.url });
     }
 
@@ -147,6 +155,7 @@ export default function App() {
                     <RecentJobsList
                         jobs={jobs}
                         onJobClick={handleJobClick}
+                        onOpenOriginal={handleOpenOriginal}
                         onDeleteJob={handleDeleteJob}
                     />
                 )}

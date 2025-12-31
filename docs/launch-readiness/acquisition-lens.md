@@ -20,7 +20,7 @@ RIYP is NOT a feature because:
 
 | Dimension | Feature Mentality | RIYP Reality |
 |:----------|:------------------|:-------------|
-| **Positioning** | "AI-powered resume help" | "See what recruiters see in 6 seconds" |
+| **Positioning** | "AI-powered resume help" | "See what recruiters see in 7.4 seconds" |
 | **Methodology** | Black box scoring | Visible recruiter-grade rubric with evidence |
 | **Pricing** | Subscription commodity | Credit-based + lifetime credits = unique model |
 | **Quality system** | Ad-hoc prompts | Calibrated eval harness + regression gates |
@@ -143,7 +143,7 @@ RIYP is NOT a feature because:
 
 ### The Pitch (60 seconds)
 
-> RIYP is not another AI resume tool. We simulate what recruiters see in 6 seconds, not what ATS bots parse.
+> RIYP is not another AI resume tool. We simulate what recruiters see in 7.4 seconds, not what ATS bots parse.
 >
 > Our quality system includes calibrated scoring with regression gates—we cannot ship a prompt change unless it passes our eval harness. This creates IP that goes beyond prompts.
 >

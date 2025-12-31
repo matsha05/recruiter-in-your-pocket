@@ -558,7 +558,7 @@ export async function renderReportHtml(report: ReportForPdf) {
   </header>
 
   <div class="intro">
-    <strong>How to use this document:</strong> This is what a recruiter sees in the first 6 seconds. 
+    <strong>How to use this document:</strong> This is what a recruiter sees in the first 7.4 seconds. 
     Use the checkboxes to track your fixes. Share with a mentor for feedback.
   </div>
 

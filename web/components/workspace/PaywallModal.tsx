@@ -12,9 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
-
-type Tier = "single" | "pack";
+import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -27,12 +25,10 @@ interface PaywallModalProps {
 export default function PaywallModal({
     isOpen,
     onClose,
-    creditsRemaining = 0,
-    hasCurrentReport = false,
     onSuccess
 }: PaywallModalProps) {
     const { user } = useAuth();
-    const [selectedTier, setSelectedTier] = useState<Tier>("pack");
+    const [selectedTier, setSelectedTier] = useState<PricingTier>("pack");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -85,67 +81,37 @@ export default function PaywallModal({
 
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-            <DialogContent className="max-w-[420px] p-8">
-                <DialogHeader className="text-center mb-6">
-                    <DialogTitle className="font-display text-2xl font-medium">
-                        In 7.4 seconds, they decided. Here&apos;s what they saw.
+            <DialogContent className="max-w-[400px] p-6">
+                <DialogHeader className="text-center mb-4">
+                    <DialogTitle className="font-display text-xl font-medium">
+                        In 7.4 seconds, they decided.
                     </DialogTitle>
-                    <DialogDescription>
-                        The gaps in your report are why resumes like yours get passed over by recruiters.
+                    <DialogDescription className="text-sm">
+                        See exactly what made them pause - and how to fix it.
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="text-center text-xs text-muted-foreground mb-5 px-4">
-                    See exactly what made them pause—and how to fix it.
-                </div>
-
-                {/* Tier Selection - Intent-Based */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                    {/* Quick Check - 1 Review */}
-                    <button
-                        type="button"
-                        onClick={() => setSelectedTier("single")}
-                        className={cn(
-                            "p-4 rounded text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center",
-                            "hover:-translate-y-0.5 hover:shadow-sm",
-                            selectedTier === "single"
-                                ? "bg-card ring-2 ring-brand border-transparent shadow-sm"
-                                : "bg-transparent border-border/60 hover:bg-secondary/10"
-                        )}
-                    >
-                        <span className="text-2xl font-display font-medium text-foreground">$9</span>
-                        <span className="text-label text-muted-foreground mt-1">Quick Check</span>
-                        <span className="text-[10px] text-muted-foreground">1 review</span>
-                    </button>
-
-                    {/* Active Job Search - 5 Reviews - Highlighted */}
-                    <button
-                        type="button"
-                        onClick={() => setSelectedTier("pack")}
-                        className={cn(
-                            "p-4 rounded text-center transition-all duration-200 ease-out border relative flex flex-col items-center justify-center overflow-hidden",
-                            "hover:-translate-y-0.5 hover:shadow-md",
-                            selectedTier === "pack"
-                                ? "bg-card ring-2 ring-brand border-transparent shadow-md"
-                                : "bg-transparent border-border/60 hover:bg-secondary/10"
-                        )}
-                    >
-                        <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
-                            <span className="text-[10px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b-sm font-bold">
-                                Recommended
-                            </span>
-                        </div>
-                        <span className="text-2xl font-display font-medium text-premium mt-2">$29</span>
-                        <span className="text-label text-premium mt-1">Job Search</span>
-                        <span className="text-[10px] text-muted-foreground">5 reviews</span>
-                    </button>
+                {/* Tier Selection - Compact Cards */}
+                <div className="grid grid-cols-2 gap-3 mb-5">
+                    <PricingCard
+                        tier="single"
+                        variant="compact"
+                        selected={selectedTier === "single"}
+                        onSelect={() => setSelectedTier("single")}
+                    />
+                    <PricingCard
+                        tier="pack"
+                        variant="compact"
+                        selected={selectedTier === "pack"}
+                        onSelect={() => setSelectedTier("pack")}
+                    />
                 </div>
 
                 {/* Checkout Section */}
-                <div className="bg-secondary/10 rounded p-4 border border-border/60 mb-4">
+                <div className="bg-secondary/10 rounded-lg p-4 border border-border/40 mb-3">
                     {isLoggedIn ? (
                         <>
-                            <p className="text-sm text-muted-foreground mb-4 text-center">
+                            <p className="text-sm text-muted-foreground mb-3 text-center">
                                 Adding credits to <strong className="text-foreground">{user.email}</strong>
                             </p>
                             <Button
@@ -158,7 +124,7 @@ export default function PaywallModal({
                         </>
                     ) : (
                         <>
-                            <Label htmlFor="checkout-email" className="text-muted-foreground mb-2">
+                            <Label htmlFor="checkout-email" className="text-muted-foreground text-xs mb-2 block">
                                 Your email
                             </Label>
                             <Input
@@ -167,7 +133,7 @@ export default function PaywallModal({
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="mb-4"
+                                className="mb-3"
                             />
                             <Button
                                 className="w-full"
@@ -177,24 +143,18 @@ export default function PaywallModal({
                             >
                                 {loading ? "Processing..." : `See What They Saw →`}
                             </Button>
-                            <p className="text-xs text-muted-foreground/50 text-center mt-3">
-                                We&apos;ll email you a magic link to access your credits.
-                            </p>
                         </>
                     )}
                 </div>
 
                 {error && (
-                    <div className="text-destructive text-sm text-center mb-4 bg-destructive/10 p-2 rounded">
+                    <div className="text-destructive text-sm text-center mb-3 bg-destructive/10 p-2 rounded-lg">
                         {error}
                     </div>
                 )}
 
-                <p className="text-center text-[10px] text-muted-foreground/60 mb-2">
-                    Trusted by candidates who landed at Google, Meta, and startups.
-                </p>
-                <p className="text-center text-[10px] text-muted-foreground/40 uppercase tracking-widest">
-                    Secure Payment by Stripe • 100% Money-Back Guarantee
+                <p className="text-center text-[10px] text-muted-foreground/50 uppercase tracking-widest">
+                    Secure Payment by Stripe · 100% Money-Back Guarantee
                 </p>
             </DialogContent>
         </Dialog>

@@ -1,7 +1,7 @@
 /**
  * Six Second Icon
  * 
- * A custom stopwatch/timer glyph representing the "6 seconds" scanning concept.
+ * A custom stopwatch/timer glyph representing the first-scan window.
  * Not a generic clock - this conveys urgency and precision.
  * 
  * Design: Minimal stopwatch with emphasized "6" or tick marks suggesting
@@ -41,7 +41,7 @@ export function SixSecondIcon({ className = "", size = 24 }: IconProps) {
                 strokeLinecap="round"
             />
 
-            {/* The "6 Seconds" Segment - 10% Pie Slice (0 to 36 degrees) */}
+            {/* The scan segment - 10% pie slice (0 to 36 degrees) */}
             {/* Center (12,13) -> Top (12,4) -> Arc to approx (17.3, 5.8) */}
             <path
                 d="M12 13 L12 4 A 9 9 0 0 1 17.29 5.76 L12 13 Z"

@@ -89,14 +89,14 @@ export async function checkAuth(): Promise<{ authenticated: boolean; user: AuthU
  * Get the full analysis URL for a job.
  */
 export function getFullAnalysisUrl(jobId: string): string {
-    return `${API_BASE}/saved-jobs/${jobId}`;
+    return `${API_BASE}/jobs/${jobId}`;
 }
 
 /**
- * Get the saved jobs page URL.
+ * Get the jobs page URL.
  */
-export function getSavedJobsUrl(): string {
-    return `${API_BASE}/saved-jobs`;
+export function getJobsUrl(): string {
+    return `${API_BASE}/jobs`;
 }
 
 /**

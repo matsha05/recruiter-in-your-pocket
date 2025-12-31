@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 const featuredArticles = [
     {
         id: "how-recruiters-read",
-        title: "How Recruiters Skim in 6 Seconds",
+        title: "How Recruiters Skim in 7.4 Seconds",
         thesis: "Eye-tracking research reveals exactly where recruiters look and how fast they decide.",
         readTime: "4 min",
         href: "/research/how-recruiters-read",
@@ -218,7 +218,7 @@ function MethodologyCallout() {
                         </span>
                     </div>
                     <h3 className="font-display text-xl font-medium text-foreground mb-2">
-                        The 6-Second Signal Model
+                        The 7.4-Second Signal Model
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                         How we score resumes: Story, Impact, Clarity, Readability — and why Story matters most.
@@ -389,7 +389,7 @@ export default function ResearchClient() {
                     {[
                         {
                             title: "First Impressions Matter",
-                            desc: "Recruiter First Impression models the 6-second window where fit decisions happen."
+                            desc: "Recruiter First Impression models the 7.4-second window where fit decisions happen."
                         },
                         {
                             title: "Clarity over Keywords",
@@ -430,4 +430,3 @@ export default function ResearchClient() {
         </StudioShell>
     );
 }
-

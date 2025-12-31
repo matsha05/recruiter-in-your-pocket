@@ -19,6 +19,12 @@ interface InputPanelProps {
     freeUsesRemaining: number;
     user?: any | null;
     onSampleReport?: () => void;
+    loadedJobContext?: {
+        id: string;
+        title: string;
+        company: string;
+        score?: number | null;
+    } | null;
 }
 
 export default function InputPanel({
@@ -31,10 +37,11 @@ export default function InputPanel({
     isLoading,
     freeUsesRemaining,
     user,
-    onSampleReport
+    onSampleReport,
+    loadedJobContext
 }: InputPanelProps) {
     const [fileName, setFileName] = useState<string | null>(null);
-    const [showJD, setShowJD] = useState(false);
+    const [showJD, setShowJD] = useState(!!loadedJobContext);
     const [showPaste, setShowPaste] = useState(false);
 
     const handleFileSelect = (file: File) => {
@@ -74,9 +81,35 @@ export default function InputPanel({
                     </h1>
                     <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
                         <SixSecondIcon className="w-5 h-5 text-brand" />
-                        <p className="text-lg font-medium">6 seconds. That&apos;s your window.</p>
+                        <p className="text-lg font-medium">7.4 seconds. That&apos;s your window.</p>
                     </div>
                 </div>
+
+                {/* Job Context Banner - from Extension */}
+                {loadedJobContext && (
+                    <div className="animate-in fade-in slide-in-from-top-2 bg-brand/5 border border-brand/20 rounded-xl p-4 mb-4">
+                        <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center shrink-0">
+                                <Target className="w-5 h-5 text-brand" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="text-sm font-medium text-foreground truncate">
+                                        {loadedJobContext.title}
+                                    </span>
+                                    {loadedJobContext.score != null && loadedJobContext.score > 0 && (
+                                        <span className="text-xs font-bold text-brand bg-brand/10 px-2 py-0.5 rounded-full">
+                                            {loadedJobContext.score}% match
+                                        </span>
+                                    )}
+                                </div>
+                                <p className="text-xs text-muted-foreground truncate">
+                                    {loadedJobContext.company}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Main Card */}
                 <div className="bg-card border border-border/60 shadow-lg shadow-black/5 rounded-xl overflow-hidden transition-all hover:border-border/80">

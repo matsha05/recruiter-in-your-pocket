@@ -54,6 +54,15 @@ export default function WorkspaceClient() {
     const [justUnlocked, setJustUnlocked] = useState(false);
     const [highlightSection, setHighlightSection] = useState<string | null>(null);
 
+    // Job context from extension capture (when accessing via ?job=id)
+    const [loadedJobContext, setLoadedJobContext] = useState<{
+        id: string;
+        title: string;
+        company: string;
+        score?: number | null;
+        jdPreview?: string;
+    } | null>(null);
+
     // Ref to track just-completed auth (prevents race condition in handleRun)
     const justCompletedAuthRef = useRef(false);
 
@@ -82,6 +91,41 @@ export default function WorkspaceClient() {
         if (modeParam === "linkedin") {
             setReviewMode("linkedin");
         }
+    }, [searchParams]);
+
+    // Handle ?job=<id> param from extension - fetch saved job and pre-fill JD
+    useEffect(() => {
+        const jobId = searchParams.get("job");
+        if (!jobId) return;
+
+        const fetchJob = async () => {
+            try {
+                const res = await fetch(`/api/extension/saved-jobs/${jobId}`);
+                const data = await res.json();
+
+                if (data.success && data.data) {
+                    const job = data.data;
+                    // Pre-fill job description
+                    if (job.jobDescription) {
+                        setJobDescription(job.jobDescription);
+                    }
+                    // Set context for banner
+                    setLoadedJobContext({
+                        id: job.id,
+                        title: job.title,
+                        company: job.company,
+                        score: job.score,
+                        jdPreview: job.jdPreview,
+                    });
+                    setSkipSample(true);
+                    console.log('[Workspace] Loaded job from extension:', job.title);
+                }
+            } catch (error) {
+                console.error('[Workspace] Failed to load job:', error);
+            }
+        };
+
+        fetchJob();
     }, [searchParams]);
 
     // Ref to store latest handleRun (avoids circular dependency with resumeText)
@@ -589,6 +633,7 @@ export default function WorkspaceClient() {
                                         freeUsesRemaining={freeUsesRemaining}
                                         user={user}
                                         onSampleReport={handleResumeSample}
+                                        loadedJobContext={loadedJobContext}
                                     />
                                 </div>
                             ) : (

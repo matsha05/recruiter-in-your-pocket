@@ -19,7 +19,7 @@ import { SCROLL_REVEAL_VARIANTS, STAGGER_CONTAINER, STAGGER_ITEM, ARROW_SLIDE, D
 
 const featuredStudies = [
     {
-        title: "How Recruiters Skim in 6 Seconds",
+        title: "How Recruiters Skim in 7.4 Seconds",
         category: "Eye-tracking research",
         description: "Recruiters make fit/no-fit decisions in seconds, focusing on titles, companies, and dates.",
         href: "/research/how-recruiters-read",

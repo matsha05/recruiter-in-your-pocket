@@ -1,7 +1,9 @@
 /**
  * RecentJobsList Component — Premium Edition
  * 
- * List of recently captured jobs with match scores and delete functionality.
+ * List of recently captured jobs with match scores.
+ * Primary click: Opens workspace for analysis
+ * Secondary action: Opens original job posting
  */
 
 import type { SavedJob } from '../../background/messages';
@@ -10,12 +12,13 @@ import QuickMatchCard from './QuickMatchCard';
 interface RecentJobsListProps {
     jobs: SavedJob[];
     onJobClick: (job: SavedJob) => void;
+    onOpenOriginal: (job: SavedJob) => void;
     onDeleteJob: (job: SavedJob) => void;
 }
 
-export default function RecentJobsList({ jobs, onJobClick, onDeleteJob }: RecentJobsListProps) {
+export default function RecentJobsList({ jobs, onJobClick, onOpenOriginal, onDeleteJob }: RecentJobsListProps) {
     function handleViewAll() {
-        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/saved-jobs' } });
+        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/jobs' } });
     }
 
     return (
@@ -35,6 +38,7 @@ export default function RecentJobsList({ jobs, onJobClick, onDeleteJob }: Recent
                         key={job.id}
                         job={job}
                         onClick={() => onJobClick(job)}
+                        onOpenOriginal={() => onOpenOriginal(job)}
                         onDelete={() => onDeleteJob(job)}
                     />
                 ))}

@@ -1,75 +1,92 @@
 {
-    "manifest_version": 3,
-    "name": "Recruiter in Your Pocket",
-    "description": "Get recruiter-grade insights on LinkedIn and Indeed jobs. Capture job descriptions and see your match score instantly.",
-    "version": "0.2.1",
-    "icons": {
-        "16": "icons/icon-16.png",
-        "32": "icons/icon-32.png",
-        "48": "icons/icon-48.png",
-        "128": "icons/icon-128.png"
+  "manifest_version": 3,
+  "name": "Recruiter in Your Pocket",
+  "description": "Get recruiter-grade insights on LinkedIn and Indeed jobs. Capture job descriptions and see your match score instantly.",
+  "version": "0.2.1",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
     },
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "icons/icon-16.png",
-            "32": "icons/icon-32.png",
-            "48": "icons/icon-48.png"
-        },
-        "default_title": "Recruiter in Your Pocket"
+    "default_title": "Recruiter in Your Pocket"
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/linkedin.ts-DnDT8zYu.js"
+      ],
+      "matches": [
+        "https://www.linkedin.com/jobs/*"
+      ],
+      "run_at": "document_idle"
     },
-    "permissions": [
-        "storage",
-        "activeTab"
-    ],
-    "background": {
-        "service_worker": "service-worker.js",
-        "type": "module"
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "https://www.linkedin.com/jobs/*"
-            ],
-            "js": [
-                "content-script-linkedin.js"
-            ],
-            "css": [
-                "content-styles.css"
-            ],
-            "run_at": "document_idle"
-        },
-        {
-            "matches": [
-                "https://www.indeed.com/viewjob*",
-                "https://www.indeed.com/jobs*",
-                "https://*.indeed.com/viewjob*"
-            ],
-            "js": [
-                "content-script-indeed.js"
-            ],
-            "css": [
-                "content-styles.css"
-            ],
-            "run_at": "document_idle"
-        }
-    ],
-    "host_permissions": [
-        "https://www.linkedin.com/*",
+    {
+      "js": [
+        "assets/indeed.ts-BP89kePZ.js"
+      ],
+      "matches": [
+        "https://www.indeed.com/viewjob*",
+        "https://www.indeed.com/jobs*",
+        "https://*.indeed.com/viewjob*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://www.indeed.com/*",
+    "https://*.indeed.com/*",
+    "https://recruiterinyourpocket.com/*",
+    "http://localhost:3000/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
         "https://www.indeed.com/*",
+        "https://www.linkedin.com/*"
+      ],
+      "resources": [
+        "icons/*"
+      ],
+      "use_dynamic_url": false
+    },
+    {
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "resources": [
+        "assets/linkedin.ts-DnDT8zYu.js",
+        "assets/linkedin.ts-DnDT8zYu.js.map"
+      ],
+      "use_dynamic_url": false
+    },
+    {
+      "matches": [
         "https://*.indeed.com/*",
-        "https://recruiterinyourpocket.com/*",
-        "http://localhost:3000/*"
-    ],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "icons/*"
-            ],
-            "matches": [
-                "https://www.linkedin.com/*",
-                "https://www.indeed.com/*"
-            ]
-        }
-    ]
+        "https://www.indeed.com/*",
+        "https://www.indeed.com/*"
+      ],
+      "resources": [
+        "assets/indeed.ts-BP89kePZ.js",
+        "assets/indeed.ts-BP89kePZ.js.map"
+      ],
+      "use_dynamic_url": false
+    }
+  ]
 }

@@ -4,8 +4,8 @@
         "Eye-tracking research"
     ],
     "title": "How Recruiters Actually Read Resumes",
-    "subtitle": "Eye-tracking research reveals recruiters spend an average of 6 seconds on initial resume screening. Here is what they look at, and what your resume needs to survive the skim.",
-    "year": 2012,
+    "subtitle": "Eye-tracking research shows recruiters spend an average of 7.4 seconds on initial resume screening in the 2018 update, up from about 6 seconds in 2012. Here is what they look at, and what your resume needs to survive the skim.",
+    "year": "2012 (updated 2018)",
     "authors": [
         "TheLadders Research Team"
     ],
@@ -20,9 +20,9 @@
             "Heat mapping",
             "Time analysis"
         ],
-        "sample": "30 professional recruiters reviewing 300+ resumes",
-        "keyFinding": "~6 seconds for the initial fit/no-fit decision",
-        "keyStat": "~6 seconds for initial screening",
+        "sample": "2012 study: 30 professional recruiters reviewing 300+ resumes",
+        "keyFinding": "2018 update reported ~7.4 seconds for the initial fit/no-fit decision, up from ~6 seconds in 2012",
+        "keyStat": "~7.4 seconds in 2018 update",
         "soWhatForResumes": "The top of your resume carries more weight than the rest of the page combined"
     },
     "figures": [
@@ -96,6 +96,13 @@
         },
         {
             "id": 2,
+            "name": "TheLadders Eye-Tracking Study Update (2018)",
+            "url": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html",
+            "date": "2018",
+            "notes": "primary"
+        },
+        {
+            "id": 3,
             "name": "Nielsen Norman Group: F-Pattern Research",
             "url": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/",
             "date": "2006",
@@ -105,16 +112,25 @@
     "footnotes": [
         {
             "id": 1,
-            "title": "Eye Tracking Study",
+            "title": "Eye-Tracking Study Update",
+            "author": "TheLadders",
+            "year": 2018,
+            "evidence": "The 2018 update reported an average of 7.4 seconds for initial resume review.",
+            "sourceUrl": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html",
+            "position": "hero-section"
+        },
+        {
+            "id": 2,
+            "title": "Eye-Tracking Study",
             "author": "TheLadders",
             "year": 2012,
-            "evidence": "Eye-tracking data showed recruiters spend approximately 6 seconds on initial resume review.",
+            "evidence": "The 2012 study reported about 6 seconds for the initial resume screen.",
             "sourceUrl": "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
-            "position": "hero-section"
+            "position": "methodology"
         }
     ],
     "limitations": [
-        "Study conducted in 2012; digital reading patterns may have evolved",
+        "Original study conducted in 2012; update published in 2018 as a public summary",
         "Sample of 30 recruiters may not represent all industries",
         "Study focused on US professional recruiting context"
     ],

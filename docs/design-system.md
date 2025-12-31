@@ -15,6 +15,24 @@
 | **Body** | Geist Sans | `var(--font-body)` | 400, 500 |
 | **Mono** | Geist Mono | `var(--font-mono)` | 400 |
 
+### Type Scale (V2 Utilities)
+These map to the typography utilities in `web/app/globals.css`.
+
+| Utility | Size | Line Height | Usage |
+|---|---|---|---|
+| `text-label` | `0.6875rem` (11px) | `leading-none` | Uppercase labels, tags |
+| `text-caption` | `0.8125rem` (13px) | `leading-normal` | Captions, helper text |
+| `text-body` | `0.9375rem` (15px) | `leading-relaxed` | Default body copy |
+| `text-memo` | `15px` | `leading-relaxed` | Long-form analysis, emphasis blocks |
+| `text-headline` | `2rem` (32px) | `1.2` | Section titles |
+| `text-metric` | `2.5rem` (40px) | `1` | Scores and metrics |
+| `text-verdict` | `3.5rem` (56px) | `1.05` | Verdicts only |
+
+### Density Targets
+- App surfaces default to 13-15px body and metadata. Use `text-body`, `text-caption`, and `text-label` for dense UI.
+- Avoid `text-lg` and above inside dense app surfaces. Reserve larger sizes for hero statements and report verdicts.
+- If a screen feels airy, step down one type size before adding extra spacing.
+
 ---
 
 ## 2. Colors

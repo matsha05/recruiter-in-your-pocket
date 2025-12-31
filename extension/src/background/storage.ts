@@ -93,6 +93,15 @@ export async function getSavedJobs(): Promise<SavedJob[]> {
 }
 
 /**
+ * Check if a job URL was already captured
+ */
+export async function isJobCaptured(url: string): Promise<{ captured: boolean; job?: SavedJob }> {
+    const storage = await getStorage();
+    const job = storage.savedJobs.find((j) => j.url === url);
+    return { captured: !!job, job };
+}
+
+/**
  * Update badge with unreviewed job count
  */
 export async function updateBadge(): Promise<void> {

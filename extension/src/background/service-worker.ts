@@ -13,7 +13,8 @@ import {
     addSavedJob,
     getSavedJobs as getLocalJobs,
     deleteSavedJob,
-    updateBadge
+    updateBadge,
+    isJobCaptured
 } from './storage';
 import {
     captureJob,
@@ -21,7 +22,7 @@ import {
     deleteJob,
     checkAuth,
     getLoginUrl,
-    getSavedJobsUrl
+    getJobsUrl
 } from './api';
 
 // Message handler
@@ -120,8 +121,21 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
             return { success: true, data: { score: job.score ?? 0 } };
         }
 
+        case 'CHECK_JOB_STATUS': {
+            const { url } = message.payload;
+            const result = await isJobCaptured(url);
+            return {
+                success: true,
+                data: {
+                    captured: result.captured,
+                    score: result.job?.score ?? null,
+                    jobId: result.job?.id
+                }
+            };
+        }
+
         case 'OPEN_WEBAPP': {
-            const path = message.payload?.path ?? '/saved-jobs';
+            const path = message.payload?.path ?? '/jobs';
             const baseUrl = 'http://localhost:3000'; // TODO: Switch to production
             await chrome.tabs.create({
                 url: `${baseUrl}${path}`,
@@ -173,6 +187,6 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 
 // Export for use in popup
-export { checkAuth, getLoginUrl, getSavedJobsUrl };
+export { checkAuth, getLoginUrl, getJobsUrl };
 
 console.log('[RIYP] Service worker initialized');

@@ -121,6 +121,7 @@
   
   Protect the Constitution at all costs. Do not let the app drift into generic territory.
   When editing UI, reference the docs and ask: "Does this feel like Stripe/Linear/Notion?"
+  SaaS patterns are allowed when they materially improve clarity, conversion, or growth.
 </design-constitution>
 
 <self-improvement>

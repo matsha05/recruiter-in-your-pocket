@@ -282,7 +282,7 @@ See full analysis: `/docs/competitive-intelligence/sections/wedge-and-acquisitio
 
 ### What to Emphasize in Positioning
 
-1. **"See what recruiters see in 6 seconds"** — unique value prop
+1. **"See what recruiters see in 7.4 seconds"** — unique value prop
 2. **"No subscription. Pay once."** — addresses fatigue
 3. **"Recruiter-grade, not bot-grade"** — anti-ATS-optimizer positioning
 4. **"$9 is less than lunch"** — price anchoring

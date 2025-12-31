@@ -10,7 +10,7 @@
 ### Wedge 1: "Recruiter Lens" (PRIMARY—ACTIVE)
 
 **What it is:**
-Simulate human recruiter judgment in 6-7 seconds, not ATS bot parsing. Show users what HUMANS see, not what machines parse.
+Simulate human recruiter judgment in 7.4 seconds, not ATS bot parsing. Show users what HUMANS see, not what machines parse.
 
 **Why it wins:**
 | Advantage | Evidence |

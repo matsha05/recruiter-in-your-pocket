@@ -39,6 +39,7 @@ export type ExtensionMessage =
     | { type: 'GET_CURRENT_TAB_JOB' }
     | { type: 'JD_DETECTED'; payload: JobMeta }
     | { type: 'CHECK_AUTH' }
+    | { type: 'CHECK_JOB_STATUS'; payload: { url: string } }
     | { type: 'OPEN_WEBAPP'; payload?: { path?: string } };
 
 // Response types
@@ -47,6 +48,7 @@ export type ExtensionResponse =
     | { success: true; data: SavedJob }
     | { success: true; data: { score: number } }
     | { success: true; data: { authenticated: boolean; user: AuthUser | null } }
+    | { success: true; data: { captured: boolean; score: number | null; jobId?: string } }
     | { success: true; deleted: string }
     | { success: true }
     | { success: false; error: string };

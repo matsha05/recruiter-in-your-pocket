@@ -10,31 +10,35 @@ export const EASE_SNAP = [0.16, 1, 0.3, 1] as const;
 
 // =============================================================================
 // SPRING CONFIGURATIONS
-// Per motion-primitives.md: Springs for interactive elements, not linear motion
+// Structural UI uses tight, controlled springs. Signature moments may use a
+// single low-amplitude overshoot spring (one per screen).
 // =============================================================================
 
-/** Standard spring for card reveals and general UI */
-export const SPRING_BOUNCE = {
+/** Signature moment spring - use only for verdict/value/conversion moments */
+export const SPRING_SIGNATURE = {
     type: "spring",
     stiffness: 400,
     damping: 30,
 } as const;
 
-/** Tight spring for micro-interactions and quick feedback */
+/** @deprecated Use SPRING_SIGNATURE instead */
+export const SPRING_BOUNCE = SPRING_SIGNATURE;
+
+/** Tight spring for structural micro-interactions and quick feedback */
 export const SPRING_TIGHT = {
     type: "spring",
     stiffness: 500,
     damping: 30,
 } as const;
 
-/** Modal/dialog spring - snappy with no bounce (per "No playful wobbles" rule) */
+/** Modal/dialog spring - snappy with no overshoot */
 export const SPRING_MODAL = {
     type: "spring",
     stiffness: 500,
     damping: 35,
 } as const;
 
-/** Subtle spring for hover states - responsive but not distracting */
+/** Subtle spring for structural hover states - responsive but not distracting */
 export const SPRING_SUBTLE = {
     type: "spring",
     stiffness: 300,
@@ -188,12 +192,11 @@ export const MODAL_CONTENT_VARIANTS: Variants = {
     hidden: {
         opacity: 0,
         scale: 0.95,
-        y: 10
+        // Note: No y offset - we rely on CSS translate-y-[-50%] for centering
     },
     visible: {
         opacity: 1,
         scale: 1,
-        y: 0,
         transition: SPRING_MODAL
     },
     exit: {
@@ -286,4 +289,3 @@ export const reducedMotionVariants = <T extends Variants>(variants: T): T => {
     // using useReducedMotion() from framer-motion
     return variants;
 };
-

@@ -88,7 +88,7 @@ export default function LinkedInVsResumePage() {
                 <ArticleInsight
                     icon={<CheckCircle className="w-4 h-4" />}
                     title="Resume: Scannable"
-                    desc="Six seconds to make an impression. Structure and formatting win here."
+                    desc="7.4 seconds to make an impression. Structure and formatting win here."
                 />
             </div>
 

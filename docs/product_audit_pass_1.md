@@ -25,7 +25,7 @@
 
 ## 5) UX & IA FAILURE POINTS
 1.  **The "Hidden Expert":** You are hiding your unfair advantage (the Research) in the footer. This is like owning a Ferrari engine and putting it in a Corolla.
-2.  **The "Tool" vs "Session" Conflict:** You frame this as a dashboard. It should be a *Consultation*. The 6-second scan isn't a "feature," it's the *entire point*.
+2.  **The "Tool" vs "Session" Conflict:** You frame this as a dashboard. It should be a *Consultation*. The 7.4-second scan isn't a "feature," it's the *entire point*.
 3.  **Upload Friction:** The "Skim Modal" is the right direction, but it's hidden behind an interaction. The "Recruiter View" should be the *default state* of the application, not a modal you unlock.
 
 ## 6) DESIGN SYSTEM TRUTH
@@ -47,4 +47,4 @@ Your content (Research) is World-Class. Your Persona (Ex-Google) is World-Class.
 To hit the "VC-backed" trajectory:
 1.  **Density & Typography:** Tighten everything. Use `14px` as your workhorse.
 2.  **Theatrical Physics:** Use motion to explain value (e.g., scanning animations that actually *scan*).
-3.  **Unapologetic Authority:** Stop hiding the evidence. Frame the experience around the *Heatmap* and the *6-Second Timer*. Make the user feel the pressure of the recruiter's clock.
+3.  **Unapologetic Authority:** Stop hiding the evidence. Frame the experience around the *Heatmap* and the *7.4-Second Timer*. Make the user feel the pressure of the recruiter's clock.

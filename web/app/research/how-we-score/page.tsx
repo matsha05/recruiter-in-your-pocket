@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchA
 import { BookOpen, Target, Lightbulb, Eye, BarChart3, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "The 6-Second Signal Model | How We Score Resumes",
+    title: "The 7.4-Second Signal Model | How We Score Resumes",
     description: "The research-backed framework we use to evaluate resumes: Story, Impact, Clarity, and Readability — and why Story matters most.",
 };
 
@@ -12,8 +12,8 @@ export default function HowWeScorePage() {
         <ResearchArticle
             header={{
                 tag: "Methodology",
-                title: "The 6-Second Signal Model",
-                description: "Every resume tells a story. In 6 seconds, a recruiter decides whether yours is worth hearing. Here's exactly how we measure that signal — and what you can do about it.",
+                title: "The 7.4-Second Signal Model",
+                description: "Every resume tells a story. In 7.4 seconds, a recruiter decides whether yours is worth hearing. Here's exactly how we measure that signal — and what you can do about it.",
                 lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
@@ -32,7 +32,7 @@ export default function HowWeScorePage() {
                 title: "How Recruiter in Your Pocket applies this",
                 items: [
                     {
-                        title: "The 6-Second Verdict",
+                        title: "The 7.4-Second Verdict",
                         description: "Your overall score reflects the signal strength a recruiter perceives in those crucial first moments."
                     },
                     {
@@ -101,7 +101,7 @@ export default function HowWeScorePage() {
             <p className="text-muted-foreground leading-relaxed mb-6">
                 A weak Story score means there are gaps, inconsistencies, or missing context.
                 You might be a great candidate, but you&apos;re making the recruiter do the mental labor of piecing it together —
-                and in 6 seconds, they won&apos;t.
+                and in 7.4 seconds, they won&apos;t.
             </p>
 
             {/* The Thresholds */}
@@ -139,11 +139,11 @@ export default function HowWeScorePage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">The bottom line</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Your resume is not a document — it&apos;s a first impression compressed into a page.
-                In those 6 seconds, a recruiter forms a hypothesis about you. Our job is to make sure that hypothesis is accurate —
+                In those 7.4 seconds, a recruiter forms a hypothesis about you. Our job is to make sure that hypothesis is accurate —
                 and compelling.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-                The 6-Second Signal Model isn&apos;t about gaming algorithms or stuffing keywords.
+                The 7.4-Second Signal Model isn&apos;t about gaming algorithms or stuffing keywords.
                 It&apos;s about telling your story clearly enough that the right recruiter can recognize it instantly.
             </p>
         </ResearchArticle>

@@ -223,7 +223,7 @@ confidence?: {
 | **Impact** | Measurable outcomes, meaningful results |
 | **Clarity** | Direct language, jargon-free, recruiter can understand |
 | **Story** | Coherent career narrative, clear professional identity |
-| **Readability** | Scannable in 6 seconds, value visible |
+| **Readability** | Scannable in 7.4 seconds, value visible |
 
 ### 3.2 Calibration Process
 

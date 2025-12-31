@@ -5,7 +5,7 @@ import { Eye, FileText, List, AlertCircle, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "How Recruiters Actually Read Resumes | Hiring Research",
-    description: "Eye tracking research reveals recruiters spend about 6 seconds on their initial decision.",
+    description: "Eye tracking research reveals recruiters spend 7.4 seconds on their initial decision.",
 };
 
 export default function HowRecruitersReadPage() {
@@ -21,17 +21,17 @@ export default function HowRecruitersReadPage() {
             keyFinding={{
                 icon: <Clock className="w-4 h-4" />,
                 subtitle: "The Key Finding",
-                stat: "6 Seconds",
-                statDescription: "The average time spent on the initial \"fit/no-fit\" decision. While this study is from 2012, the finding has been consistently replicated in subsequent research.",
+                stat: "7.4 Seconds",
+                statDescription: "The 2018 update reported a 7.4 second initial fit or no fit decision.",
                 source: {
-                    text: "TheLadders Eye-Tracking Study (2012)",
-                    href: "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf"
+                    text: "TheLadders Eye-Tracking Update (2018)",
+                    href: "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html"
                 },
-                sampleSize: "30 professional recruiters reviewing 300+ resumes"
+                sampleSize: "2012 study: 30 professional recruiters reviewing 300+ resumes"
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Visualizing the 6 Seconds</h2>
+                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Visualizing the 7.4 Seconds</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         The &quot;Heatmap&quot; below allows us to see exactly where attention is focused. The red areas indicate intense fixation.
                     </p>
@@ -43,7 +43,7 @@ export default function HowRecruitersReadPage() {
                 items: [
                     {
                         title: "Recruiter First Impression",
-                        description: "We explicitly model this \"First 6 Seconds\" to show you what stands out."
+                        description: "We explicitly model this \"First 7.4 Seconds\" to show you what stands out."
                     },
                     {
                         title: "Bullet Upgrades",
@@ -57,6 +57,29 @@ export default function HowRecruitersReadPage() {
                 { title: "The STAR Method", href: "/research/star-method", tag: "Format" }
             ]}
         >
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                TheLadders published its original eye tracking study in 2012 and reported about 6 seconds for the initial screen.
+                The 2018 update reported 7.4 seconds. We use the 7.4-second figure for timing and keep the 2012 report as the best source for heatmap detail.
+                Read the{" "}
+                <a
+                    href="https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 decoration-border hover:text-foreground"
+                >
+                    2018 update
+                </a>{" "}
+                and the{" "}
+                <a
+                    href="https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 decoration-border hover:text-foreground"
+                >
+                    2012 report
+                </a>
+                .
+            </p>
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The skim pattern</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Recruiters are not reading every bullet point. They are scanning for fast answers:

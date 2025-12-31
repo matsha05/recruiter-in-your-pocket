@@ -155,7 +155,7 @@
 | "No subscription" | Low commitment | High (fatigue) |
 | "Pay when you need it" | Episodic use | High (reality) |
 | "Recruiter-grade feedback" | Premium value | High (trust) |
-| "6-second insight" | Clear deliverable | High (concrete) |
+| "7.4-second insight" | Clear deliverable | High (concrete) |
 
 ---
 

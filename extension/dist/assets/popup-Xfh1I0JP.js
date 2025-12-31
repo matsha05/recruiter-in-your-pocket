@@ -494,26 +494,50 @@ function PopupHeader({ user }) {
   ] });
 }
 
-function QuickMatchCard({ job, onClick, onDelete }) {
+function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete }) {
   const score = job.score ?? 0;
   function handleDelete(e) {
     e.stopPropagation();
     onDelete?.();
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-card", onClick, children: [
+  function handleOpenOriginal(e) {
+    e.stopPropagation();
+    onOpenOriginal?.();
+  }
+  const capturedAgo = getTimeAgo(job.capturedAt);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-card", onClick, title: "Open analysis", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(ScoreDial, { score }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-info", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "job-title", children: job.title }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-meta", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "job-company", children: job.company }),
         job.source && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "job-source", children: job.source === "linkedin" ? "LI" : "IN" })
-      ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "job-status", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "job-status-text", children: [
+        "Captured ",
+        capturedAgo,
+        " • ",
+        score > 0 ? `Match: ${score}%` : "Ready to analyze"
+      ] }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-actions", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
-          className: "job-delete-btn",
+          className: "job-action-btn job-external-btn",
+          onClick: handleOpenOriginal,
+          title: "Open original posting",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("polyline", { points: "15 3 21 3 21 9" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "10", y1: "14", x2: "21", y2: "3" })
+          ] })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          className: "job-action-btn job-delete-btn",
           onClick: handleDelete,
           title: "Remove job",
           children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", children: [
@@ -563,10 +587,24 @@ function getScoreClass(score) {
   if (score >= 70) return "premium";
   return "destructive";
 }
+function getTimeAgo(timestamp) {
+  if (!timestamp) return "recently";
+  const ts = typeof timestamp === "string" ? new Date(timestamp).getTime() : timestamp;
+  if (isNaN(ts) || ts <= 0) return "recently";
+  const seconds = Math.floor((Date.now() - ts) / 1e3);
+  if (seconds < 0 || isNaN(seconds)) return "recently";
+  if (seconds < 60) return "just now";
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+}
 
-function RecentJobsList({ jobs, onJobClick, onDeleteJob }) {
+function RecentJobsList({ jobs, onJobClick, onOpenOriginal, onDeleteJob }) {
   function handleViewAll() {
-    chrome.runtime.sendMessage({ type: "OPEN_WEBAPP", payload: { path: "/saved-jobs" } });
+    chrome.runtime.sendMessage({ type: "OPEN_WEBAPP", payload: { path: "/jobs" } });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "animate-in", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "section-header", children: [
@@ -582,6 +620,7 @@ function RecentJobsList({ jobs, onJobClick, onDeleteJob }) {
       {
         job,
         onClick: () => onJobClick(job),
+        onOpenOriginal: () => onOpenOriginal(job),
         onDelete: () => onDeleteJob(job)
       },
       job.id
@@ -808,12 +847,18 @@ function App() {
     }
   }
   function handleOpenStudio() {
-    chrome.runtime.sendMessage({ type: "OPEN_WEBAPP", payload: { path: "/saved-jobs" } });
+    chrome.runtime.sendMessage({ type: "OPEN_WEBAPP", payload: { path: "/jobs" } });
   }
   function handleLogin() {
     chrome.runtime.sendMessage({ type: "OPEN_WEBAPP", payload: { path: "/login?from=extension" } });
   }
   function handleJobClick(job) {
+    chrome.runtime.sendMessage({
+      type: "OPEN_WEBAPP",
+      payload: { path: `/jobs/${job.id}` }
+    });
+  }
+  function handleOpenOriginal(job) {
     chrome.tabs.create({ url: job.url });
   }
   const handleDeleteJob = reactExports.useCallback(async (job) => {
@@ -860,6 +905,7 @@ function App() {
         {
           jobs,
           onJobClick: handleJobClick,
+          onOpenOriginal: handleOpenOriginal,
           onDeleteJob: handleDeleteJob
         }
       ),
@@ -904,4 +950,4 @@ function LoadingSkeleton() {
 client.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=popup.js.map
+//# sourceMappingURL=popup-Xfh1I0JP.js.map

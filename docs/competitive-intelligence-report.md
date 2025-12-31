@@ -121,7 +121,7 @@ The premium "sweet spot" is generally **$20 to $50/month**, with quarterly/annua
 "Scores" are not obviously causal, and users have been burned by tools that feel like paywalls wrapped around generic advice. Users also encounter conflicting advice about ATS formatting (Jobscan warns against columns/tables; design tools encourage them).
 
 ### 3.2 The "10-Second" Reality
-Recruiters do not read resumes like essays. Studies (Ladders 2018) show an average **7.4 seconds** for an initial screen.
+Recruiters do not read resumes like essays. The Ladders eye-tracking work reported about **6 seconds** in 2012 and **7.4 seconds** in its 2018 update for the initial screen.
 
 **The Trust Challenge**: It is not "give more tips." It is: "Prove you understand what happens in those first 10 seconds, and prove your advice is grounded."
 

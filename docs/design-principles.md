@@ -16,6 +16,7 @@ Embrace "Studio energy" (Stripe, Linear, Notion).
 - **Vibe:** Serious, premium, capable.
 - **Visuals:** Depth through borders and spacing, not shadows.
 - **Restraint:** Only use color for meaning.
+- **Patterns:** Use proven UX patterns when they increase clarity, conversion, or growth. Style them with RIYP typography, density, and tone.
 
 ### 2. Typography Creates Authority
 | Role | Font | Usage |
@@ -35,19 +36,31 @@ Embrace "Studio energy" (Stripe, Linear, Notion).
 | `--warning` | Yellow-600 | Form validation, soft warnings |
 | `--error` | Rose-700 | Critical failures |
 
-### 4. The University Anti-Pattern
+### 4. Quiet Power
+Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 percent dramatic, always tied to verdict, value, or conversion.
+- Light editorial base by default, dark mode is fully supported
+- Warm paper texture allowed only on marketing surfaces and kept subtle
+- One signature moment per screen is required, everything else is restrained
+- Teal brand accent (action)
+- Gold for premium moments only
+- Muted slate for UI chrome
+- Shadows are subtle, not dramatic
+
+### 5. The University Anti-Pattern
 We are NOT a friendly university career center. We are a high-stakes partner.
 - **Banned:** Flat vector illustrations, "Hi there!" voice, gamification badges.
 - **Approved:** Data-driven visuals, precision microcopy, editorial tone.
 
-### 5. Interaction Physics
+### 6. Interaction Physics
 | Type | Rule |
 |---|---|
-| Easing | `cubic-bezier(0.16, 1, 0.3, 1)` — snappy |
+| Easing | `cubic-bezier(0.16, 1, 0.3, 1)`: snappy |
 | Fast | `100ms` (micro) |
 | Normal | `200ms` (UI) |
 | Slow | `350ms` (reveals) |
-| No bounce | No playful wobbles |
+| No bounce | No playful wobbles for structural UI |
+
+Exception: Signature moments may use a single, low-amplitude overshoot spring. Only one per screen, tied to verdict, value, or conversion. Never use bounce on modals, sheets, navigation, or form controls.
 
 ---
 
@@ -198,11 +211,13 @@ The methodology tooltip explains:
 
 > [!IMPORTANT]
 > **Design principles are guidelines, not prison.** They exist to prevent accidental drift into low-quality patterns, not to block competitive features.
+> If a rule blocks clarity, conversion, or growth, bend it and document the reason in the change description.
 
 ### When to Bend
 - **Competitive necessity:** If Teal, Jobscan, or Resume Worded have a feature that users expect, we may need to add it even if it doesn't perfectly fit our aesthetic.
 - **Acquisition readiness:** If a feature increases our value to potential acquirers (analytics, dashboards, data exports), we build it.
 - **User demand:** If 3+ users request the same thing post-launch, we seriously consider it.
+- **Clarity or conversion:** If it makes the next action obvious or materially improves activation, we bend.
 
 ### When NOT to Bend
 - **Never sacrifice quality:** A bent rule still needs premium execution. No half-baked features.
@@ -213,9 +228,10 @@ The methodology tooltip explains:
 Before bending a rule, ask:
 1. Does this make us **more competitive** in our category?
 2. Does this make us **more acquisition-ready**?
-3. Can we execute this **at our quality bar**?
+3. Does this improve **clarity or conversion** for the target user?
+4. Can we execute this **at our quality bar**?
 
-If all three are YES, bend the rule.
+If all four are YES, bend the rule.
 
 ---
 
@@ -225,9 +241,29 @@ The following are **defaults**, not hard bans. Bend with justification:
 
 | Default | When to Bend |
 |:---|:---|
-| "Reports, not dashboards" | If analytics dashboard increases retention/stickiness |
+| "Reports by default, dashboards when they prove progress" | If a dashboard increases retention, clarity, or trust |
 | "No gamification" | If tasteful progress visualization (not badges/confetti) improves UX |
 | "No social features" | If shareable report links or referrals drive growth |
+
+---
+
+## Allowed Patterns (Non-Exhaustive)
+
+These are allowed when they improve clarity or conversion and are styled with RIYP density and tone. Research pages still follow `docs/research-ui-contract.md`.
+
+| Pattern | Purpose | Constraints |
+|:---|:---|:---|
+| Primary and secondary CTAs | Action hierarchy | One primary per view, no gimmick copy |
+| Pricing cards | Decision clarity | One highlighted tier, no visual noise |
+| Modals and sheets | Focused tasks | Tight motion, no bounce on entry |
+| Tabs and segmented controls | Mode switching | 3-5 options max, clear labels |
+| Tables and lists | History and tracking | Dense, scannable, no decorative chrome |
+| Cards as containers | Group related content | Border and spacing only, no heavy shadow |
+| Filters and chips | Scoping and search | Factual labels, no playful badges |
+| Progress indicators | Show real state | Only real progress, no fake momentum |
+| Empty states | Onboarding clarity | Text-first, single CTA |
+| Toasts and inline alerts | Error and success feedback | Actionable, honest, no fluff |
+| Dashboards | Progress and trust | Only when they prove improvement over time |
 
 ---
 

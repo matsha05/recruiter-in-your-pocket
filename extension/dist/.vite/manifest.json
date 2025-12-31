@@ -1,0 +1,35 @@
+{
+  "../../../../../../@crx/manifest": {
+    "file": "assets/crx-manifest.js-kFtuxxQW.js",
+    "name": "crx-manifest.js",
+    "src": "../../../../../../@crx/manifest",
+    "isEntry": true
+  },
+  "src/background/service-worker.ts": {
+    "file": "assets/service-worker.ts-AP_MmOyy.js",
+    "name": "service-worker.ts",
+    "src": "src/background/service-worker.ts",
+    "isEntry": true
+  },
+  "src/content/indeed.ts": {
+    "file": "assets/indeed.ts-BP89kePZ.js",
+    "name": "indeed.ts",
+    "src": "src/content/indeed.ts",
+    "isEntry": true
+  },
+  "src/content/linkedin.ts": {
+    "file": "assets/linkedin.ts-DnDT8zYu.js",
+    "name": "linkedin.ts",
+    "src": "src/content/linkedin.ts",
+    "isEntry": true
+  },
+  "src/popup/index.html": {
+    "file": "assets/popup-Xfh1I0JP.js",
+    "name": "popup",
+    "src": "src/popup/index.html",
+    "isEntry": true,
+    "css": [
+      "assets/popup-CM-7KCSY.css"
+    ]
+  }
+}

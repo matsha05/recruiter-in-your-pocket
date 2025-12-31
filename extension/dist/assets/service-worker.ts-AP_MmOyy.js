@@ -44,6 +44,11 @@ async function getSavedJobs$1() {
   const storage = await getStorage();
   return storage.savedJobs;
 }
+async function isJobCaptured(url) {
+  const storage = await getStorage();
+  const job = storage.savedJobs.find((j) => j.url === url);
+  return { captured: !!job, job };
+}
 async function updateBadge() {
   const jobs = await getSavedJobs$1();
   const count = jobs.length;
@@ -104,6 +109,12 @@ async function checkAuth() {
   } catch {
     return { authenticated: false, user: null };
   }
+}
+function getJobsUrl() {
+  return `${API_BASE}/jobs`;
+}
+function getLoginUrl() {
+  return `${API_BASE}/login?from=extension`;
 }
 
 chrome.runtime.onMessage.addListener(
@@ -170,8 +181,20 @@ async function handleMessage(message) {
       }
       return { success: true, data: { score: job.score ?? 0 } };
     }
+    case "CHECK_JOB_STATUS": {
+      const { url } = message.payload;
+      const result = await isJobCaptured(url);
+      return {
+        success: true,
+        data: {
+          captured: result.captured,
+          score: result.job?.score ?? null,
+          jobId: result.job?.id
+        }
+      };
+    }
     case "OPEN_WEBAPP": {
-      const path = message.payload?.path ?? "/saved-jobs";
+      const path = message.payload?.path ?? "/jobs";
       const baseUrl = "http://localhost:3000";
       await chrome.tabs.create({
         url: `${baseUrl}${path}`
@@ -204,4 +227,6 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   }
 });
 console.log("[RIYP] Service worker initialized");
-//# sourceMappingURL=service-worker.js.map
+
+export { checkAuth, getJobsUrl, getLoginUrl };
+//# sourceMappingURL=service-worker.ts-AP_MmOyy.js.map

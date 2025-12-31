@@ -65,7 +65,7 @@ export default function ReferralAdvantagePage() {
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 For the candidate, a referral means your resume gets read. In a stack of 500 applications,
-                most get 6 seconds. A referred resume gets attention, context, and usually a fast track
+                most get 7.4 seconds. A referred resume gets attention, context, and usually a fast track
                 to the hiring manager.
             </p>
 

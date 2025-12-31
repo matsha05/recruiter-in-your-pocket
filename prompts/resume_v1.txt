@@ -431,7 +431,7 @@ FIELD RULES
     - impact: How well do bullets show measurable outcomes and meaningful results?
     - clarity: Is language direct and jargon-free? Can a recruiter quickly understand what the person did?
     - story: Does the resume tell a coherent career narrative? Is the professional identity clear?
-    - readability: Is the resume scannable? Can a recruiter get value in 6 seconds?
+    - readability: Is the resume scannable? Can a recruiter get value in 7.4 seconds?
   - Use the same scoring rigor as the main score. Do not inflate.
 
 - section_review

@@ -98,7 +98,7 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 
 **Recommended:** First-view enhancement:
 - Subtle confetti or glow on first score reveal
-- Message: "Here's what recruiters see in 6 seconds"
+- Message: "Here's what recruiters see in 7.4 seconds"
 - Clear "Start with your #1 fix" prompt
 
 ---

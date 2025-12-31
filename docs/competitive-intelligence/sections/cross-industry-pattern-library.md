@@ -105,7 +105,7 @@ This library extracts transferable product patterns from world-class apps outsid
 **RIYP Implementation (already strong, can enhance):**
 - Current: First impression shows immediately what recruiter sees
 - Enhancement: Add "This is what 10,000 recruiters have told us they notice" framing
-- Enhancement: Show "Recruiters spend 6-7 seconds here" with heatmap-style attention visualization
+- Enhancement: Show "Recruiters spend 7.4 seconds here" with heatmap-style attention visualization
 
 ---
 
@@ -130,7 +130,7 @@ Current: "Oh shit, my resume was burying the lead" (when summary critique lands)
 
 **Enhancement opportunity:**
 - Make this moment MORE dramatic
-- Add: "This is the first thing recruiters see. In 6 seconds, they decide. Here's what they're seeing..."
+- Add: "This is the first thing recruiters see. In 7.4 seconds, they decide. Here's what they're seeing..."
 - Consider: Animated "recruiter eye scan" showing attention flow on resume
 
 ---

@@ -93,7 +93,7 @@
 1. **Recruiter perspective**: Human judgment vs ATS parsing
 2. **Editorial authority**: Expert voice vs AI generation
 3. **Review depth**: Detailed analysis vs score + suggestions
-4. **Established methodology**: "6-Second Signal Model" differentiation
+4. **Established methodology**: "7.4-Second Signal Model" differentiation
 5. **Premium craft**: Design excellence vs functional SaaS
 
 ## Source Notes

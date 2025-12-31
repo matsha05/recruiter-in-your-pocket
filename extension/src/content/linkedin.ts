@@ -38,7 +38,7 @@ function init() {
 /**
  * Inject the floating capture button
  */
-function injectCaptureButton() {
+async function injectCaptureButton() {
   // Remove existing button if present
   if (captureButton) {
     captureButton.remove();
@@ -59,6 +59,24 @@ function injectCaptureButton() {
     return;
   }
 
+  // Check if this job was already captured
+  let alreadyCaptured = false;
+  let capturedScore: number | null = null;
+
+  try {
+    const response = await chrome.runtime.sendMessage({
+      type: 'CHECK_JOB_STATUS',
+      payload: { url: window.location.href }
+    });
+    if (response?.success && response.data?.captured) {
+      alreadyCaptured = true;
+      capturedScore = response.data.score;
+      console.log('[RIYP] Job already captured with score:', capturedScore);
+    }
+  } catch (error) {
+    console.warn('[RIYP] Failed to check job status:', error);
+  }
+
   // Create button using Shadow DOM for style isolation
   const container = document.createElement('div');
   container.id = 'riyp-capture-container';
@@ -70,24 +88,51 @@ function injectCaptureButton() {
   `;
 
   const shadow = container.attachShadow({ mode: 'open' });
-  shadow.innerHTML = getCaptureButtonHTML();
+  shadow.innerHTML = getCaptureButtonHTML(alreadyCaptured, capturedScore);
 
-  // Attach event listener
+  // Attach event listener (only if not already captured, or for "View Match" action)
   const button = shadow.querySelector('.riyp-capture-btn');
   if (button) {
-    button.addEventListener('click', handleCapture);
+    if (alreadyCaptured) {
+      // Already captured - click opens the workspace
+      button.addEventListener('click', () => {
+        chrome.runtime.sendMessage({
+          type: 'OPEN_WEBAPP',
+          payload: { path: '/jobs' }
+        });
+      });
+    } else {
+      button.addEventListener('click', handleCapture);
+    }
   }
 
   document.body.appendChild(container);
   captureButton = container;
 
-  console.log('[RIYP] Capture button injected');
+  console.log('[RIYP] Capture button injected', alreadyCaptured ? '(already captured)' : '');
 }
 
 /**
  * Get the capture button HTML (rendered in Shadow DOM)
  */
-function getCaptureButtonHTML(): string {
+function getCaptureButtonHTML(alreadyCaptured: boolean = false, score: number | null = null): string {
+  // Determine button state and content
+  const isCaptured = alreadyCaptured;
+  const hasScore = score !== null && score > 0;
+
+  // Button text based on state
+  const buttonText = isCaptured
+    ? (hasScore ? `${score}% Match` : 'Saved ✓')
+    : 'Capture JD';
+
+  // Button class based on state
+  const buttonClass = isCaptured ? 'riyp-capture-btn captured' : 'riyp-capture-btn';
+
+  // Title for accessibility
+  const buttonTitle = isCaptured
+    ? 'View saved jobs'
+    : 'Capture JD for RIYP';
+
   return `
     <style>
       .riyp-capture-btn {
@@ -126,6 +171,10 @@ function getCaptureButtonHTML(): string {
         background: #166534;
       }
       
+      .riyp-capture-btn.captured {
+        background: #166534;
+      }
+      
       .riyp-capture-btn.error {
         background: #DC2626;
       }
@@ -149,14 +198,20 @@ function getCaptureButtonHTML(): string {
       }
     </style>
     
-    <button class="riyp-capture-btn" title="Capture JD for RIYP">
-      <svg class="riyp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14 2 14 8 20 8"/>
-        <line x1="12" y1="18" x2="12" y2="12"/>
-        <line x1="9" y1="15" x2="15" y2="15"/>
-      </svg>
-      <span class="riyp-text">Capture JD</span>
+    <button class="${buttonClass}" title="${buttonTitle}">
+      ${isCaptured ? `
+        <svg class="riyp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      ` : `
+        <svg class="riyp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="18" x2="12" y2="12"/>
+          <line x1="9" y1="15" x2="15" y2="15"/>
+        </svg>
+      `}
+      <span class="riyp-text">${buttonText}</span>
     </button>
   `;
 }
