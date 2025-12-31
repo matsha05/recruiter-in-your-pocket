@@ -8,7 +8,7 @@ import ThemeToggle from "@/components/shared/ThemeToggle";
 import Link from "next/link";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { Button } from "@/components/ui/button";
-import { Lock } from "lucide-react";
+import { Lock, Check } from "lucide-react";
 import { PocketMark, Wordmark } from "@/components/icons";
 import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
@@ -106,9 +106,16 @@ export default function LandingClient() {
                             <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary mb-6">
                                 See what recruiters see.
                             </h1>
-                            <p className="text-xl text-muted-foreground mb-10">
-                                Then fix it before they do.
+                            <p className="text-xl text-muted-foreground mb-6">
+                                6 seconds. That's how long recruiters spend on your resume. Make it count.
                             </p>
+
+                            {/* Trust Badges Above Fold */}
+                            <div className="flex items-center justify-center gap-4 mb-8 text-xs text-muted-foreground/70">
+                                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success" /> 500+ resumes reviewed</span>
+                                <span className="hidden sm:flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success" /> Recruiter-grade feedback</span>
+                                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success" /> Free instant review</span>
+                            </div>
 
                             {/* Dropzone — The Hero */}
                             <div className="flex flex-col items-center gap-6">

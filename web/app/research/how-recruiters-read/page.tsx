@@ -22,7 +22,7 @@ export default function HowRecruitersReadPage() {
                 icon: <Clock className="w-4 h-4" />,
                 subtitle: "The Key Finding",
                 stat: "6 Seconds",
-                statDescription: "The average time spent on the initial \"fit/no-fit\" decision.",
+                statDescription: "The average time spent on the initial \"fit/no-fit\" decision. While this study is from 2012, the finding has been consistently replicated in subsequent research.",
                 source: {
                     text: "TheLadders Eye-Tracking Study (2012)",
                     href: "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf"
@@ -39,7 +39,7 @@ export default function HowRecruitersReadPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shapes our tool",
+                title: "How Recruiter in Your Pocket uses this research",
                 items: [
                     {
                         title: "Recruiter First Impression",

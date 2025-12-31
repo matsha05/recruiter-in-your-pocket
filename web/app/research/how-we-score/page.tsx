@@ -21,15 +21,15 @@ export default function HowWeScorePage() {
                 icon: <BookOpen className="w-4 h-4" />,
                 subtitle: "The Core Principle",
                 stat: "Story First",
-                statDescription: "The single most predictive signal of interview callbacks is narrative coherence — not keywords, not formatting.",
+                statDescription: "According to Recruiter in Your Pocket's analysis, the single most predictive signal of interview callbacks is narrative coherence — not keywords, not formatting.",
                 source: {
-                    text: "Based on recruiter behavior research",
+                    text: "RIYP methodology based on recruiter behavior research",
                     href: "/research/how-recruiters-read"
                 },
                 sampleSize: "Synthesized from 10+ studies on recruiter decision-making"
             }}
             productTieIn={{
-                title: "How this shows up in your report",
+                title: "How Recruiter in Your Pocket applies this",
                 items: [
                     {
                         title: "The 6-Second Verdict",

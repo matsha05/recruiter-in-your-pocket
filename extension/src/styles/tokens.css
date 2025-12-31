@@ -1,0 +1,198 @@
+/**
+ * RIYP Extension Design Tokens — Premium Edition
+ * 
+ * References: Superhuman, Notion, Linear, Arc Browser
+ * Uses Fraunces for display (authority), Geist for UI (precision)
+ */
+
+/* Import fonts from CDN for consistent rendering */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&display=swap');
+
+:root {
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+
+  /* Base Tones */
+  --background: 0 0% 99%;
+  --background-subtle: 220 14% 96%;
+  --foreground: 220 13% 14%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 13% 14%;
+  --muted: 220 9% 94%;
+  --muted-foreground: 220 9% 46%;
+  --border: 220 13% 91%;
+  --border-subtle: 220 13% 86%;
+
+  /* Brand Palette */
+  --brand: 173 80% 30%;
+  --brand-light: 173 70% 94%;
+  --premium: 43 96% 44%;
+  --premium-light: 43 92% 95%;
+
+  /* Semantic Colors */
+  --success: 142 71% 29%;
+  --success-light: 142 76% 94%;
+  --warning: 48 96% 53%;
+  --destructive: 0 84% 60%;
+  --destructive-light: 0 86% 97%;
+
+  /* Radius — slightly larger for premium feel */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  /* Motion — snappy but elegant */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 350ms;
+
+  /* Shadows — subtle, layered */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+  --shadow-md: 0 2px 8px 0 rgb(0 0 0 / 0.04), 0 1px 2px 0 rgb(0 0 0 / 0.02);
+  --shadow-lg: 0 4px 16px 0 rgb(0 0 0 / 0.06), 0 2px 4px 0 rgb(0 0 0 / 0.02);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 220 13% 9%;
+    --background-subtle: 220 13% 12%;
+    --foreground: 220 9% 93%;
+    --card: 220 13% 11%;
+    --card-foreground: 220 9% 93%;
+    --muted: 220 10% 16%;
+    --muted-foreground: 220 9% 60%;
+    --border: 220 13% 18%;
+    --border-subtle: 220 13% 22%;
+    --brand: 168 76% 50%;
+    --brand-light: 168 76% 12%;
+    --premium: 45 93% 55%;
+    --premium-light: 45 93% 12%;
+  }
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Typography Classes */
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  font-feature-settings: 'tnum';
+}
+
+/* Color Utilities */
+.text-brand {
+  color: hsl(var(--brand));
+}
+
+.text-success {
+  color: hsl(var(--success));
+}
+
+.text-premium {
+  color: hsl(var(--premium));
+}
+
+.text-destructive {
+  color: hsl(var(--destructive));
+}
+
+.text-muted {
+  color: hsl(var(--muted-foreground));
+}
+
+.bg-brand {
+  background: hsl(var(--brand));
+}
+
+.bg-brand-light {
+  background: hsl(var(--brand-light));
+}
+
+.bg-success {
+  background: hsl(var(--success));
+}
+
+.bg-premium {
+  background: hsl(var(--premium));
+}
+
+.bg-muted {
+  background: hsl(var(--muted));
+}
+
+.bg-card {
+  background: hsl(var(--card));
+}
+
+/* Animations */
+.animate-in {
+  animation: fadeIn var(--duration-slow) var(--ease);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Focus Ring */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--brand) / 0.4);
+}

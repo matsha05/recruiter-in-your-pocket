@@ -38,7 +38,7 @@ export default function StarMethodPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shapes our tool",
+                title: "How Recruiter in Your Pocket uses this",
                 items: [
                     {
                         title: "Structure Detection",

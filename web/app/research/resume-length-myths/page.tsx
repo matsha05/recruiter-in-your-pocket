@@ -38,7 +38,7 @@ export default function ResumeLengthPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shapes our tool",
+                title: "How Recruiter in Your Pocket uses this",
                 items: [
                     {
                         title: "Content Over Counting",

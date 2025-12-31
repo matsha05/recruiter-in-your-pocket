@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { ArrowRight, BookOpen, Clock, FileText } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { SCROLL_REVEAL_VARIANTS, STAGGER_CONTAINER, STAGGER_ITEM, ARROW_SLIDE, DURATION, EASE_SNAP } from "@/lib/animation";
 
 /**
  * BackedByResearch - Landing Page Research Section (v2)
@@ -40,10 +43,12 @@ const featuredStudies = [
 ];
 
 function FeaturedCard({ study }: { study: typeof featuredStudies[0] }) {
+    const prefersReducedMotion = useReducedMotion();
+
     return (
         <Link
             href={study.href}
-            className="group block"
+            className="group block h-full"
         >
             <article className="h-full p-5 rounded bg-card/50 backdrop-blur-sm border border-border/50 hover:border-brand/30 hover:shadow-sm transition-all duration-200 flex flex-col">
                 {/* Category */}
@@ -70,7 +75,14 @@ function FeaturedCard({ study }: { study: typeof featuredStudies[0] }) {
                         <Clock className="w-3 h-3" /> {study.readTime}
                     </span>
                     <span className="text-brand font-medium opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                        Read <ArrowRight className="w-3 h-3" />
+                        Read
+                        <motion.span
+                            initial={{ x: 0 }}
+                            whileHover={prefersReducedMotion ? undefined : { x: 4 }}
+                            transition={{ duration: DURATION.normal, ease: EASE_SNAP }}
+                        >
+                            <ArrowRight className="w-3 h-3" />
+                        </motion.span>
                     </span>
                 </div>
             </article>
@@ -79,11 +91,20 @@ function FeaturedCard({ study }: { study: typeof featuredStudies[0] }) {
 }
 
 export function BackedByResearch() {
+    const { ref: sectionRef, isVisible } = useScrollReveal();
+    const prefersReducedMotion = useReducedMotion();
+
     return (
         <section className="w-full py-20 border-t border-border/30 bg-background">
             <div className="max-w-5xl mx-auto px-6">
-                {/* Header */}
-                <div className="text-center mb-12">
+                {/* Header with scroll reveal */}
+                <motion.div
+                    ref={sectionRef as React.RefObject<HTMLDivElement>}
+                    className="text-center mb-12"
+                    variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                >
                     <div className="flex items-center justify-center gap-2 mb-4">
                         <BookOpen className="w-4 h-4 text-brand" />
                         <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
@@ -99,25 +120,48 @@ export function BackedByResearch() {
                     <Link href="/research/how-we-score" className="text-sm text-brand hover:underline inline-flex items-center gap-1">
                         See our scoring model <ArrowRight className="w-3 h-3" />
                     </Link>
-                </div>
+                </motion.div>
 
-                {/* Featured Cards Grid */}
-                <div className="grid md:grid-cols-3 gap-6 mb-10">
+                {/* Staggered Featured Cards Grid */}
+                <motion.div
+                    className="grid md:grid-cols-3 gap-6 mb-10"
+                    variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                >
                     {featuredStudies.map((study) => (
-                        <FeaturedCard key={study.href} study={study} />
+                        <motion.div
+                            key={study.href}
+                            variants={prefersReducedMotion ? {} : STAGGER_ITEM}
+                            className="h-full"
+                        >
+                            <FeaturedCard study={study} />
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
-                {/* CTA */}
-                <div className="text-center">
+                {/* CTA with animated arrow */}
+                <motion.div
+                    className="text-center"
+                    variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                >
                     <Link href="/research">
                         <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand transition-colors group">
                             Explore all 15 studies
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            <motion.span
+                                initial={{ x: 0 }}
+                                whileHover={prefersReducedMotion ? undefined : { x: 4 }}
+                                transition={{ duration: DURATION.normal, ease: EASE_SNAP }}
+                            >
+                                <ArrowRight className="w-4 h-4" />
+                            </motion.span>
                         </span>
                     </Link>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
 }
+

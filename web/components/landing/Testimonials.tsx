@@ -1,6 +1,9 @@
 "use client";
 
 import { Quote } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { SCROLL_REVEAL_VARIANTS, STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/animation";
 
 interface Testimonial {
     name: string;
@@ -35,37 +38,54 @@ const testimonials: Testimonial[] = [
 ];
 
 export function Testimonials() {
+    const { ref: sectionRef, isVisible } = useScrollReveal();
+    const prefersReducedMotion = useReducedMotion();
+
     return (
         <section className="py-16 px-6 bg-muted/30">
             <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-12">
+                {/* Header with scroll reveal */}
+                <motion.div
+                    ref={sectionRef as React.RefObject<HTMLDivElement>}
+                    className="text-center mb-12"
+                    variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                >
                     <h2 className="font-display text-3xl md:text-4xl text-primary mb-3 tracking-tight">
                         Real feedback. Real results.
                     </h2>
                     <p className="text-muted-foreground">
                         From job seekers who fixed it before recruiters saw it.
                     </p>
-                </div>
+                </motion.div>
 
-                <div className="grid md:grid-cols-3 gap-6">
+                {/* Staggered testimonial cards */}
+                <motion.div
+                    className="grid md:grid-cols-3 gap-6"
+                    variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                >
                     {testimonials.map((t, i) => (
-                        <div
+                        <motion.div
                             key={i}
-                            className="bg-card border border-border/40 rounded-lg p-6 space-y-4 hover:border-border/60 transition-colors"
+                            variants={prefersReducedMotion ? {} : STAGGER_ITEM}
+                            className="bg-card border border-border/40 rounded-lg p-6 flex flex-col hover:border-border/60 transition-colors"
                         >
-                            <Quote className="w-6 h-6 text-brand/40" />
+                            <Quote className="w-6 h-6 text-brand/40 mb-4" />
 
-                            <p className="text-sm text-foreground/90 leading-relaxed">
+                            <p className="text-sm text-foreground/90 leading-relaxed flex-1 mb-4">
                                 &quot;{t.quote}&quot;
                             </p>
 
                             {t.outcome && (
-                                <div className="inline-block text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded">
+                                <div className="inline-block text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded mb-4">
                                     {t.outcome}
                                 </div>
                             )}
 
-                            <div className="pt-2 border-t border-border/30">
+                            <div className="pt-2 border-t border-border/30 mt-auto">
                                 <p className="text-sm font-medium text-foreground">
                                     {t.name}
                                 </p>
@@ -73,26 +93,37 @@ export function Testimonials() {
                                     {t.role} · {t.company}
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
-                <div className="mt-8 text-center">
+                <motion.div
+                    className="mt-8 text-center"
+                    variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                >
                     <p className="text-sm text-muted-foreground">
                         <span className="text-foreground font-medium">2,400+</span> resumes reviewed ·
                         <span className="text-foreground font-medium ml-1">89%</span> report actionable changes
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Founder Credibility */}
-                <div className="mt-6 pt-6 border-t border-border/30 text-center">
+                <motion.div
+                    className="mt-6 pt-6 border-t border-border/30 text-center"
+                    variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
+                >
                     <p className="text-xs text-muted-foreground">
                         Created by hiring leaders from{' '}
                         <span className="text-foreground font-medium">Google, Meta, and OpenAI</span>{' '}
                         who&apos;ve screened 100,000+ resumes and made thousands of hires across 15+ years of global recruiting.
                     </p>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
 }
+

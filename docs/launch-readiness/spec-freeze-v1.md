@@ -335,7 +335,7 @@ See [40-promptops-quality-spec.md](file:///Users/matsha05/Desktop/dev/recruiter-
 - [x] SM1 fully implemented
 - [ ] UI polish checklist complete
 - [ ] Methodology v1 published
-- [ ] Extension prototype internal
+- [x] Extension prototype internal
 
 ### Week 8 Complete (Gate C)
 - [ ] Extension permissions justified

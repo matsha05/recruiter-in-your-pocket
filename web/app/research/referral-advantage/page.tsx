@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
 import { ReferralFunnelDiagram } from "@/components/research/diagrams/ReferralFunnelDiagram";
+import { ReferralCalculator } from "@/components/research/diagrams/ReferralCalculator";
 import { Users, UserPlus, TrendingUp, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -24,8 +25,8 @@ export default function ReferralAdvantagePage() {
                 stat: "5–10x",
                 statDescription: "Referred candidates are 5-10x more likely to be hired than applicants from job boards.",
                 source: {
-                    text: "LinkedIn Talent Solutions Research",
-                    href: "https://business.linkedin.com/talent-solutions/resources/talent-acquisition"
+                    text: "NBER: Why the Referential Treatment (Pallais & Glass)",
+                    href: "https://www.nber.org/papers/w21357"
                 }
             }}
             visualization={
@@ -38,7 +39,7 @@ export default function ReferralAdvantagePage() {
                 </>
             }
             productTieIn={{
-                title: "How this shapes our tool",
+                title: "How Recruiter in Your Pocket uses this",
                 items: [
                     {
                         title: "Resume as Conversation Starter",
@@ -91,6 +92,10 @@ export default function ReferralAdvantagePage() {
                     desc="Referrals account for only 7% of applicants but 40% of hires at many companies."
                 />
             </div>
+
+            {/* Interactive Calculator */}
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">See the math</h2>
+            <ReferralCalculator />
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">How to build referral opportunities</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">

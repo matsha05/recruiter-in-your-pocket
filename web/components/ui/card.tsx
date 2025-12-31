@@ -1,5 +1,9 @@
+"use client"
+
 import * as React from "react"
+import { motion, useReducedMotion, HTMLMotionProps } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { CARD_HOVER, CARD_TAP } from "@/lib/animation"
 
 /**
  * V2.1 Card Component
@@ -23,25 +27,35 @@ const Card = React.forwardRef<
 Card.displayName = "Card"
 
 /**
- * CardInteractive - Card with hover micro-animation
- * Per "Alive, Not Static" principle
+ * CardInteractive - Card with Framer Motion hover/tap micro-animation
+ * Per "Alive, Not Static" principle and motion-primitives.md
  */
-const CardInteractive = React.forwardRef<
-    HTMLDivElement,
-    React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-    <div
-        ref={ref}
-        className={cn(
-            "rounded-lg border border-border/60 bg-card text-card-foreground shadow-sm",
-            "cursor-pointer transition-all duration-200 ease-out",
-            "hover:border-brand/40 hover:shadow-md hover:-translate-y-0.5",
-            "active:translate-y-0 active:shadow-sm",
-            className
-        )}
-        {...props}
-    />
-))
+interface CardInteractiveProps extends Omit<HTMLMotionProps<"div">, "ref"> {
+    className?: string;
+    children?: React.ReactNode;
+}
+
+const CardInteractive = React.forwardRef<HTMLDivElement, CardInteractiveProps>(
+    ({ className, children, ...props }, ref) => {
+        const prefersReducedMotion = useReducedMotion();
+
+        return (
+            <motion.div
+                ref={ref}
+                className={cn(
+                    "rounded-lg border border-border/60 bg-card text-card-foreground shadow-sm",
+                    "cursor-pointer",
+                    className
+                )}
+                whileHover={prefersReducedMotion ? undefined : CARD_HOVER}
+                whileTap={prefersReducedMotion ? undefined : CARD_TAP}
+                {...props}
+            >
+                {children}
+            </motion.div>
+        );
+    }
+);
 CardInteractive.displayName = "CardInteractive"
 
 const CardHeader = React.forwardRef<
@@ -101,3 +115,4 @@ const CardFooter = React.forwardRef<
 CardFooter.displayName = "CardFooter"
 
 export { Card, CardInteractive, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
+

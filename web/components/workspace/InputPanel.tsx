@@ -191,12 +191,22 @@ export default function InputPanel({
                                     <div className="animate-in fade-in slide-in-from-top-2 space-y-2">
                                         <div className="flex items-center justify-between">
                                             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Paste Text</span>
-                                            <button
-                                                onClick={() => setShowPaste(false)}
-                                                className="text-xs text-muted-foreground hover:text-foreground"
-                                            >
-                                                Upload file instead
-                                            </button>
+                                            <div className="flex items-center gap-3">
+                                                {onSampleReport && (
+                                                    <button
+                                                        onClick={onSampleReport}
+                                                        className="text-xs font-medium text-brand hover:text-brand/80 transition-colors"
+                                                    >
+                                                        See example
+                                                    </button>
+                                                )}
+                                                <button
+                                                    onClick={() => setShowPaste(false)}
+                                                    className="text-xs text-muted-foreground hover:text-foreground"
+                                                >
+                                                    Upload file instead
+                                                </button>
+                                            </div>
                                         </div>
                                         <textarea
                                             value={resumeText}

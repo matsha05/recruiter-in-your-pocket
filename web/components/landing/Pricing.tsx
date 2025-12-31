@@ -99,17 +99,22 @@ export function Pricing({ onSelectTier }: PricingProps) {
                             <span className="text-sm font-medium text-foreground">Built using real recruiter screening heuristics</span>
                         </div>
                         <div className="flex flex-wrap justify-center gap-6 text-xs text-muted-foreground">
-                            <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Focuses on the first 10 seconds</span>
+                            <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Focuses on the first 6 seconds</span>
                             <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Turns vague bullets into measurable outcomes</span>
                             <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Copy-paste upgrades, not generic advice</span>
                         </div>
                     </div>
 
-                    {/* Intent-Framed Divider */}
-                    <div className="mt-12 flex items-center gap-4">
-                        <div className="flex-1 h-px bg-border/30" />
-                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-widest">How serious is your job search?</span>
-                        <div className="flex-1 h-px bg-border/30" />
+                    {/* Intent-Framed Divider with Value Summary */}
+                    <div className="mt-12">
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="flex-1 h-px bg-border/30" />
+                            <span className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Ready for more?</span>
+                            <div className="flex-1 h-px bg-border/30" />
+                        </div>
+                        <p className="text-center text-sm text-muted-foreground">
+                            Unlock version tracking, role-tailored reviews, and export tools. <span className="text-foreground font-medium">Credits never expire.</span>
+                        </p>
                     </div>
 
                     {/* Paid Tiers - Intent-Based */}
@@ -129,7 +134,7 @@ export function Pricing({ onSelectTier }: PricingProps) {
                                 </li>
                                 <li className="flex items-start gap-3">
                                     <Check className="w-4 h-4 mt-0.5 shrink-0" />
-                                    <span>See exactly what recruiters notice in 10 seconds</span>
+                                    <span>See exactly what recruiters notice in 6 seconds</span>
                                 </li>
                                 <li className="flex items-start gap-3">
                                     <Check className="w-4 h-4 mt-0.5 shrink-0" />
@@ -185,7 +190,7 @@ export function Pricing({ onSelectTier }: PricingProps) {
                                 className="w-full"
                                 onClick={() => handlePurchase("pack")}
                             >
-                                Start Job Search Mode
+                                Unlock 5 Full Reviews
                             </Button>
                         </div>
 

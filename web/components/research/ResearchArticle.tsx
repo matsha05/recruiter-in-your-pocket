@@ -2,9 +2,19 @@
 
 import Link from "next/link";
 import { ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { StudioShell } from "@/components/layout/StudioShell";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, Clock, Calendar } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import {
+    SCROLL_REVEAL_VARIANTS,
+    STAGGER_CONTAINER,
+    STAGGER_ITEM,
+    DURATION,
+    EASE_SNAP,
+    SPRING_SUBTLE
+} from "@/lib/animation";
 
 interface ResearchArticleProps {
     header: {
@@ -46,6 +56,24 @@ interface ResearchArticleProps {
     }
 }
 
+// Animation variants for key finding card
+const KEY_FINDING_VARIANTS = {
+    hidden: {
+        opacity: 0,
+        scale: 0.96,
+        y: 12
+    },
+    visible: {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        transition: {
+            ...SPRING_SUBTLE,
+            delay: 0.15
+        }
+    }
+};
+
 export function ResearchArticle({
     header,
     keyFinding,
@@ -59,6 +87,10 @@ export function ResearchArticle({
         href: "/workspace"
     }
 }: ResearchArticleProps) {
+    const { ref: relatedRef, isVisible: relatedVisible } = useScrollReveal();
+    const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal();
+    const prefersReducedMotion = useReducedMotion();
+
     return (
         <StudioShell showSidebar={true}>
             <script
@@ -84,15 +116,19 @@ export function ResearchArticle({
             />
             <div className="max-w-3xl mx-auto space-y-12 pb-16 px-6 md:px-0 pt-8">
 
-                {/* 1. Header & Breadcrumb */}
-                <header>
+                {/* 1. Header & Breadcrumb - Animated entrance */}
+                <motion.header
+                    initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: DURATION.slow, ease: EASE_SNAP }}
+                >
                     <Link href="/research" className="inline-flex items-center gap-2 mb-8 text-sm text-muted-foreground hover:text-brand transition-colors group">
                         <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
                         Back to Research
                     </Link>
                     <div className="space-y-6">
                         <div className="flex flex-wrap items-center gap-3">
-                            <span className="text-label border border-border px-2 py-1 rounded bg-secondary/50 text-muted-foreground">
+                            <span className="text-[10px] font-mono uppercase tracking-widest border border-border px-2 py-1 rounded bg-secondary/50 text-muted-foreground">
                                 {header.tag}
                             </span>
                             {(header.readTime || header.lastUpdated) && (
@@ -112,30 +148,35 @@ export function ResearchArticle({
                                 </div>
                             )}
                         </div>
-                        <h1 className="text-hero text-4xl md:text-5xl text-foreground tracking-tight">
+                        <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground tracking-tight">
                             {header.title}
                         </h1>
-                        <p className="text-reading text-xl text-muted-foreground leading-relaxed">
+                        <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
                             {header.description}
                         </p>
                     </div>
-                </header>
+                </motion.header>
 
-                {/* 2. Key Finding Card - Tool Aesthetic */}
-                <div className="bg-card border border-border/60 shadow-sm rounded-lg p-6 md:p-8 space-y-6">
-                    <div className="flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-widest">
+                {/* 2. Key Finding Card - Scale-up entrance */}
+                <motion.div
+                    className="bg-card border border-border/60 shadow-sm rounded-lg p-6 md:p-8 space-y-6"
+                    initial={prefersReducedMotion ? {} : "hidden"}
+                    animate="visible"
+                    variants={prefersReducedMotion ? {} : KEY_FINDING_VARIANTS}
+                >
+                    <div className="flex items-center gap-2 text-brand font-semibold text-xs uppercase tracking-widest">
                         {keyFinding.icon}
                         <span>{keyFinding.subtitle}</span>
                     </div>
                     <div className="space-y-2">
-                        <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground tracking-tight">{keyFinding.stat}</h2>
+                        <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground tracking-tight">{keyFinding.stat}</h2>
                         <p className="text-muted-foreground text-lg leading-relaxed">
                             {keyFinding.statDescription}
                         </p>
                     </div>
                     <div className="pt-6 border-t border-border/40 text-xs font-mono text-muted-foreground/70 space-y-2">
                         <p className="flex items-center gap-2">
-                            <span className="text-foreground/70 uppercase">Source:</span>
+                            <span className="text-muted-foreground uppercase">Source:</span>
                             {keyFinding.source.href ? (
                                 <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-foreground underline underline-offset-4 decoration-border">
                                     {keyFinding.source.text}
@@ -145,10 +186,10 @@ export function ResearchArticle({
                             )}
                         </p>
                         {keyFinding.sampleSize && (
-                            <p><span className="text-foreground/70 uppercase">Sample:</span> {keyFinding.sampleSize}</p>
+                            <p><span className="text-muted-foreground uppercase">Sample:</span> {keyFinding.sampleSize}</p>
                         )}
                     </div>
-                </div>
+                </motion.div>
 
                 {/* 3. Visualization Section (Optional) */}
                 {visualization && (
@@ -158,7 +199,7 @@ export function ResearchArticle({
                 )}
 
                 {/* 4. Main Prose Content */}
-                <article className="prose prose-neutral dark:prose-invert max-w-none font-sans prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-tight prose-p:text-base prose-p:leading-relaxed prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground">
+                <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-medium prose-headings:tracking-tight prose-p:text-base prose-p:leading-relaxed prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4">
                     {children}
                 </article>
 
@@ -168,7 +209,7 @@ export function ResearchArticle({
                 <div className="bg-card border border-border/60 shadow-sm rounded-lg p-6 md:p-8 transition-all hover:border-brand/20">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="h-6 w-1 bg-brand rounded-full" />
-                        <h3 className="font-display text-xl font-semibold text-foreground">How this shapes the product</h3>
+                        <h3 className="font-display text-xl font-medium text-foreground">How this shapes the product</h3>
                     </div>
                     <div className="grid gap-6">
                         {productTieIn.items.map((item, i) => (
@@ -185,39 +226,66 @@ export function ResearchArticle({
                     </div>
                 </div>
 
-                {/* 6. Related Articles (if provided) */}
+                {/* 6. Related Articles - Staggered entrance on scroll */}
                 {relatedArticles && relatedArticles.length > 0 && (
-                    <div className="space-y-6">
-                        <h3 className="font-serif text-xl font-medium text-foreground">Related Research</h3>
-                        <div className="grid gap-4">
+                    <motion.div
+                        ref={relatedRef as React.RefObject<HTMLDivElement>}
+                        className="space-y-6"
+                        initial="hidden"
+                        animate={relatedVisible ? "visible" : "hidden"}
+                        variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
+                    >
+                        <h3 className="font-display text-xl font-medium text-foreground">Related Research</h3>
+                        <motion.div
+                            className="grid gap-4"
+                            variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
+                            initial="hidden"
+                            animate={relatedVisible ? "visible" : "hidden"}
+                        >
                             {relatedArticles.map((article, i) => (
-                                <Link
+                                <motion.div
                                     key={article.href ?? `related-${i}`}
-                                    href={article.href}
-                                    className="group flex items-center justify-between p-4 border border-border/60 rounded-lg hover:border-brand/40 hover:bg-secondary/20 transition-all"
+                                    variants={prefersReducedMotion ? {} : STAGGER_ITEM}
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand group-hover:translate-x-1 transition-all" />
-                                        <span className="text-foreground group-hover:text-brand transition-colors">{article.title}</span>
-                                    </div>
-                                    {article.tag && (
-                                        <span className="text-label text-muted-foreground/60">{article.tag}</span>
-                                    )}
-                                </Link>
+                                    <Link
+                                        href={article.href}
+                                        className="group flex items-center justify-between p-4 border border-border/60 rounded-lg hover:border-brand/40 hover:bg-secondary/20 transition-all"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <motion.span
+                                                initial={{ x: 0 }}
+                                                whileHover={prefersReducedMotion ? undefined : { x: 4 }}
+                                                transition={{ duration: DURATION.normal, ease: EASE_SNAP }}
+                                            >
+                                                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand transition-colors" />
+                                            </motion.span>
+                                            <span className="text-foreground group-hover:text-brand transition-colors">{article.title}</span>
+                                        </div>
+                                        {article.tag && (
+                                            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">{article.tag}</span>
+                                        )}
+                                    </Link>
+                                </motion.div>
                             ))}
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 )}
 
-                {/* 7. Standard CTA */}
-                <div className="flex flex-col items-center justify-center gap-6 py-20">
-                    <h3 className="font-serif text-2xl font-medium text-center">{cta.title}</h3>
+                {/* 7. Standard CTA - Scroll reveal */}
+                <motion.div
+                    ref={ctaRef as React.RefObject<HTMLDivElement>}
+                    className="flex flex-col items-center justify-center gap-6 py-20"
+                    initial="hidden"
+                    animate={ctaVisible ? "visible" : "hidden"}
+                    variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
+                >
+                    <h3 className="font-display text-2xl font-medium text-center">{cta.title}</h3>
                     <Link href={cta.href}>
                         <Button variant="studio" size="lg" className="px-8 h-12 shadow-sm">
                             {cta.buttonText}
                         </Button>
                     </Link>
-                </div>
+                </motion.div>
 
             </div>
         </StudioShell>
@@ -231,9 +299,10 @@ export function ArticleInsight({ icon, title, desc }: { icon: ReactNode, title: 
         <div className="p-6 border border-border/60 rounded-lg bg-background hover:bg-secondary/10 transition-colors">
             <div className="flex items-center gap-2 mb-3 text-foreground font-medium">
                 {icon}
-                <span className="font-serif text-lg tracking-tight">{title}</span>
+                <span className="font-display text-lg tracking-tight">{title}</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
         </div>
     )
 }
+

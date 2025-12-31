@@ -24,8 +24,8 @@ export default function SkillsBasedHiringPage() {
                 stat: "45%",
                 statDescription: "of companies surveyed by LinkedIn plan to prioritize skills over degrees by 2025.",
                 source: {
-                    text: "LinkedIn Future of Recruiting Report (2023)",
-                    href: "https://business.linkedin.com/talent-solutions/global-talent-trends"
+                    text: "LinkedIn Economic Graph Skills-Based Hiring Report (2024)",
+                    href: "https://economicgraph.linkedin.com/research/skills-based-hiring"
                 }
             }}
             visualization={
@@ -38,7 +38,7 @@ export default function SkillsBasedHiringPage() {
                 </>
             }
             productTieIn={{
-                title: "How this shapes our tool",
+                title: "How Recruiter in Your Pocket uses this",
                 items: [
                     {
                         title: "Skills Extraction",
