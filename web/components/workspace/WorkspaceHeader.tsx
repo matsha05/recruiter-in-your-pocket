@@ -75,7 +75,7 @@ export default function WorkspaceHeader({
                     <Wordmark className="h-5 text-foreground group-hover:opacity-80 transition-opacity" />
                 </Link>
                 <span className="text-muted-foreground/30 text-xl font-light">/</span>
-                <span className="font-display text-lg text-foreground/80">Workspace</span>
+                <span className="font-display text-lg text-foreground/80">The Studio</span>
             </div>
 
             {/* Actions - Responsive */}

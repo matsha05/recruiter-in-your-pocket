@@ -740,3 +740,137 @@ body {
     flex-direction: column;
     gap: 0;
 }
+
+/* ============= AUTH PROMPT ============= */
+.auth-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 16px;
+    gap: 8px;
+}
+
+.auth-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsl(var(--brand) / 0.1);
+    border-radius: 50%;
+    color: hsl(var(--brand));
+    margin-bottom: 4px;
+}
+
+.auth-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.auth-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.auth-description {
+    font-size: 13px;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.5;
+    max-width: 260px;
+    margin: 0;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 16px;
+    background: white;
+    color: #3c4043;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease);
+}
+
+.btn-google:hover {
+    background: hsl(0 0% 98%);
+    border-color: hsl(var(--border-subtle));
+    box-shadow: var(--shadow-sm);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: hsl(var(--border));
+}
+
+.auth-divider span {
+    font-size: 11px;
+    color: hsl(var(--muted-foreground));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.auth-footer {
+    font-size: 11px;
+    color: hsl(var(--muted-foreground));
+    margin-top: 8px;
+}
+
+.auth-footer a {
+    color: hsl(var(--brand));
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============= ANIMATIONS ============= */
+.animate-in {
+    animation: fadeIn var(--duration-normal) var(--ease);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

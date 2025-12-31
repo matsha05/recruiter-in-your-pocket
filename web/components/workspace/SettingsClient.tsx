@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
+import DefaultResumeSection from "@/components/settings/DefaultResumeSection";
 
 export default function SettingsClient() {
     const { user, refreshUser } = useAuth();
@@ -219,6 +220,9 @@ export default function SettingsClient() {
                         </div>
                     </div>
                 </section>
+
+                {/* 1.5 Default Resume for Extension Matching */}
+                {user && <DefaultResumeSection className="mt-8" />}
 
                 {/* 2. Get More Reviews */}
                 <section>

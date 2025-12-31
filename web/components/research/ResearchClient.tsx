@@ -1,146 +1,151 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen, Sparkles, Target, Users } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SCROLL_REVEAL_VARIANTS, STAGGER_CONTAINER, STAGGER_ITEM, DURATION, EASE_SNAP } from "@/lib/animation";
 import { StudioShell } from "@/components/layout/StudioShell";
 import Footer from "@/components/landing/Footer";
+import { Button } from "@/components/ui/button";
 
 /**
- * RESEARCH PAGE CLIENT COMPONENT
- * Handles animations for the research hub
+ * RESEARCH HUB - PREMIUM IA REDESIGN
+ * 
+ * Structure:
+ * 1. Editorial Header
+ * 2. Featured "Start Here" Hero (3 essential reads)
+ * 3. Methodology Callout (How We Score - special treatment)
+ * 4. Categorized Articles (3 balanced sections)
+ * 5. Product Philosophy
  */
 
-// Reorganized by user intent/journey stage
+// Featured articles for the hero section
+const featuredArticles = [
+    {
+        id: "how-recruiters-read",
+        title: "How Recruiters Skim in 6 Seconds",
+        thesis: "Eye-tracking research reveals exactly where recruiters look and how fast they decide.",
+        readTime: "4 min",
+        href: "/research/how-recruiters-read",
+        icon: Target,
+        badge: "Start Here"
+    },
+    {
+        id: "quantifying-impact",
+        title: "The Laszlo Bock Formula",
+        thesis: "Google's former HR head on why numbers matter—and how to find them.",
+        readTime: "5 min",
+        href: "/research/quantifying-impact",
+        icon: Sparkles,
+        badge: "Most Actionable"
+    },
+    {
+        id: "referral-advantage",
+        title: "The Referral Advantage",
+        thesis: "Referred candidates are 5-10x more likely to be hired. The data is overwhelming.",
+        readTime: "4 min",
+        href: "/research/referral-advantage",
+        icon: Users,
+        badge: "Highest Impact"
+    }
+];
+
+// Reorganized categories with better balance
 const categories = [
     {
-        id: "understand",
-        title: "Understand the System",
-        subtitle: "How recruiters actually think and decide",
+        id: "recruiter-psychology",
+        title: "Inside the Recruiter's Mind",
+        subtitle: "How hiring decisions actually get made",
         articles: [
-            {
-                id: "how-we-score",
-                title: "The 6-Second Signal Model: How We Score",
-                thesis: "Our research-backed framework: Story, Impact, Clarity, Readability — and why Story matters most.",
-                readTime: "5 min",
-                href: "/research/how-we-score",
-                featured: true
-            },
-            {
-                id: "how-recruiters-read",
-                title: "How Recruiters Skim Resumes in 6 Seconds",
-                thesis: "Recruiters make fit/no-fit decisions in seconds, focusing on titles, companies, and dates.",
-                readTime: "4 min",
-                href: "/research/how-recruiters-read",
-                featured: true
-            },
             {
                 id: "how-people-scan",
                 title: "How People Scan Text and Bullets",
-                thesis: "People scan pages in F-patterns, latching onto headings, numbers, and the start of lines.",
+                thesis: "F-patterns, first-word scanning, and why structure beats substance.",
                 readTime: "5 min",
                 href: "/research/how-people-scan"
             },
             {
                 id: "ats-myths",
-                title: "ATS: How Applicant Tracking Systems Actually Work",
-                thesis: "ATS systems rank and filter candidates. Human review, not algorithms, is the primary bottleneck.",
+                title: "ATS: What Actually Happens",
+                thesis: "Human review—not algorithms—is the real bottleneck.",
                 readTime: "4 min",
                 href: "/research/ats-myths"
             },
             {
                 id: "human-vs-algorithm",
-                title: "Recruiters trust humans more than algorithms",
+                title: "Humans vs. Algorithms",
                 thesis: "Recruiters punish algorithmic errors but forgive human inconsistency.",
                 readTime: "5 min",
                 href: "/research/human-vs-algorithm"
-            }
-        ]
-    },
-    {
-        id: "craft",
-        title: "Craft Your Resume",
-        subtitle: "Evidence-based writing and formatting",
-        articles: [
-            {
-                id: "quantifying-impact",
-                title: "Quantifying Impact: The Laszlo Bock Formula",
-                thesis: "Google's former HR head on why numbers matter—and how to find them.",
-                readTime: "5 min",
-                href: "/research/quantifying-impact",
-                featured: true
-            },
-            {
-                id: "star-method",
-                title: "The STAR Method: Structure That Works",
-                thesis: "The Situation-Task-Action-Result framework for interviews and resume bullets.",
-                readTime: "4 min",
-                href: "/research/star-method"
-            },
-            {
-                id: "resume-length-myths",
-                title: "Resume Length: What Research Actually Says",
-                thesis: "The one-page rule is outdated. Two pages often score higher for experienced candidates.",
-                readTime: "4 min",
-                href: "/research/resume-length-myths"
             },
             {
                 id: "spelling-errors-impact",
-                title: "Spelling Errors Carry Real Weight",
-                thesis: "For many recruiters, 'form' is a gateway. Bad spelling can override strong experience.",
+                title: "Why Typos Kill Applications",
+                thesis: "Form is a gateway. Bad spelling overrides strong experience.",
                 readTime: "3 min",
                 href: "/research/spelling-errors-impact"
             }
         ]
     },
     {
-        id: "strategy",
-        title: "Win the Job",
-        subtitle: "Job search, networking, and negotiation",
+        id: "resume-craft",
+        title: "Resume Craft",
+        subtitle: "Evidence-based writing and structure",
         articles: [
             {
-                id: "referral-advantage",
-                title: "The Referral Advantage",
-                thesis: "Referred candidates are 5-10x more likely to be hired.",
+                id: "star-method",
+                title: "The STAR Method",
+                thesis: "Situation-Task-Action-Result: the framework that works.",
                 readTime: "4 min",
-                href: "/research/referral-advantage",
-                featured: true
+                href: "/research/star-method"
             },
             {
+                id: "resume-length-myths",
+                title: "The One-Page Myth",
+                thesis: "Two pages often score higher for experienced candidates.",
+                readTime: "4 min",
+                href: "/research/resume-length-myths"
+            }
+        ]
+    },
+    {
+        id: "job-search-strategy",
+        title: "Job Search Strategy",
+        subtitle: "LinkedIn, networking, and negotiation",
+        articles: [
+            {
                 id: "linkedin-vs-resume",
-                title: "LinkedIn vs. Resume: What Gets Seen",
-                thesis: "Recruiters use LinkedIn to find candidates and resumes to evaluate them.",
+                title: "LinkedIn vs. Resume",
+                thesis: "Recruiters find on LinkedIn, evaluate on resumes.",
                 readTime: "4 min",
                 href: "/research/linkedin-vs-resume"
             },
             {
                 id: "linkedin-visibility",
-                title: "LinkedIn Profile Visibility: What Research Shows",
-                thesis: "Optimized profiles get up to 14x more views. Headlines with keywords are the single biggest factor.",
+                title: "LinkedIn Visibility",
+                thesis: "Optimized profiles get 14x more views. Headlines are everything.",
                 readTime: "5 min",
-                href: "/research/linkedin-visibility",
-                featured: true
+                href: "/research/linkedin-visibility"
             },
             {
                 id: "skills-based-hiring",
-                title: "The Skills-Based Hiring Shift",
-                thesis: "Major employers are dropping degree requirements. Skills demonstration matters more.",
+                title: "The Skills-Based Shift",
+                thesis: "Major employers are dropping degree requirements.",
                 readTime: "5 min",
                 href: "/research/skills-based-hiring"
             },
             {
                 id: "offer-negotiation",
-                title: "Offer Negotiation Strategy",
-                thesis: "Negotiation is coordination, not combat. Treating it like a taboo reduces your leverage.",
+                title: "Offer Negotiation",
+                thesis: "Negotiation is coordination, not combat.",
                 readTime: "12 min",
                 href: "/guides/offer-negotiation"
             },
             {
                 id: "salary-history-bans",
-                title: "Salary History Bans: Why 'Just Being Honest' is a Trap",
-                thesis: "Revealing salary history anchors offers to your past, not the market.",
+                title: "Salary History Traps",
+                thesis: "Revealing history anchors offers to your past.",
                 readTime: "4 min",
                 href: "/research/salary-history-bans"
             }
@@ -148,44 +153,44 @@ const categories = [
     }
 ];
 
-function ArticleCard({ article, index }: { article: typeof categories[0]["articles"][0]; index: number }) {
+// Featured Hero Card Component
+function FeaturedCard({ article, index }: { article: typeof featuredArticles[0]; index: number }) {
     const prefersReducedMotion = useReducedMotion();
+    const Icon = article.icon;
 
     return (
         <motion.div
             variants={prefersReducedMotion ? {} : STAGGER_ITEM}
+            className="h-full"
         >
             <Link
                 href={article.href}
-                className="group block p-4 rounded-lg border border-border/40 bg-card hover:border-brand/30 hover:shadow-sm transition-all duration-200"
+                className="group block h-full p-6 rounded-lg border border-brand/20 bg-gradient-to-br from-brand/5 via-transparent to-transparent hover:border-brand/40 hover:shadow-lg transition-all duration-300"
             >
-                <div className="flex items-start justify-between gap-6">
-                    <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                            <h3 className={`text-sm font-semibold transition-colors ${article.featured ? 'text-foreground' : 'text-foreground/80'} group-hover:text-brand`}>
-                                {article.title}
-                            </h3>
-                            {article.featured && (
-                                <span className="inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-widest text-brand bg-brand/5 border border-brand/10 rounded-sm">
-                                    Essential
-                                </span>
-                            )}
-                        </div>
-                        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 group-hover:text-muted-foreground/80 transition-colors">
-                            {article.thesis}
-                        </p>
-                    </div>
-                    <div className="flex flex-col items-end gap-2 shrink-0">
-                        <span className="font-mono text-[10px] text-muted-foreground/30 mt-1">
+                <div className="flex flex-col h-full">
+                    {/* Badge */}
+                    <div className="flex items-center justify-between mb-4">
+                        <span className="inline-flex items-center gap-1.5 px-2 py-1 text-[10px] font-mono uppercase tracking-widest text-brand bg-brand/10 rounded">
+                            <Icon className="w-3 h-3" />
+                            {article.badge}
+                        </span>
+                        <span className="font-mono text-[10px] text-muted-foreground/50">
                             {article.readTime}
                         </span>
-                        <motion.span
-                            initial={{ x: 0 }}
-                            whileHover={prefersReducedMotion ? undefined : { x: 4 }}
-                            transition={{ duration: DURATION.normal, ease: EASE_SNAP }}
-                        >
-                            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover:text-brand transition-colors" />
-                        </motion.span>
+                    </div>
+
+                    {/* Content */}
+                    <h3 className="font-display text-lg font-medium text-foreground group-hover:text-brand transition-colors mb-2">
+                        {article.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                        {article.thesis}
+                    </p>
+
+                    {/* Arrow */}
+                    <div className="mt-4 flex items-center gap-2 text-brand text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        Read article
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                 </div>
             </Link>
@@ -193,6 +198,76 @@ function ArticleCard({ article, index }: { article: typeof categories[0]["articl
     );
 }
 
+// Methodology Callout Component
+function MethodologyCallout() {
+    const prefersReducedMotion = useReducedMotion();
+
+    return (
+        <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: DURATION.slow, ease: EASE_SNAP, delay: 0.3 }}
+            className="relative overflow-hidden rounded-lg border border-border/60 bg-card p-6 md:p-8"
+        >
+            <div className="flex flex-col md:flex-row md:items-center gap-6">
+                <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-3">
+                        <BookOpen className="w-4 h-4 text-brand" />
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-brand">
+                            Our Methodology
+                        </span>
+                    </div>
+                    <h3 className="font-display text-xl font-medium text-foreground mb-2">
+                        The 6-Second Signal Model
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                        How we score resumes: Story, Impact, Clarity, Readability — and why Story matters most.
+                        This is the research framework behind every analysis.
+                    </p>
+                </div>
+                <Link href="/research/how-we-score">
+                    <Button variant="studio" className="whitespace-nowrap">
+                        See How We Score
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                </Link>
+            </div>
+            {/* Decorative gradient */}
+            <div className="absolute -right-20 -top-20 w-40 h-40 bg-brand/5 rounded-full blur-3xl" />
+        </motion.div>
+    );
+}
+
+// Article Card Component
+function ArticleCard({ article }: { article: typeof categories[0]["articles"][0] }) {
+    const prefersReducedMotion = useReducedMotion();
+
+    return (
+        <motion.div variants={prefersReducedMotion ? {} : STAGGER_ITEM}>
+            <Link
+                href={article.href}
+                className="group flex items-center justify-between p-4 rounded-lg border border-border/40 bg-card hover:border-brand/30 hover:shadow-sm transition-all duration-200"
+            >
+                <div className="flex-1 min-w-0 mr-4">
+                    <h4 className="text-sm font-medium text-foreground group-hover:text-brand transition-colors mb-0.5">
+                        {article.title}
+                    </h4>
+                    <p className="text-xs text-muted-foreground line-clamp-1">
+                        {article.thesis}
+                    </p>
+                </div>
+                <div className="flex items-center gap-3 shrink-0">
+                    <span className="font-mono text-[10px] text-muted-foreground/40">
+                        {article.readTime}
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/0 group-hover:text-brand transition-colors" />
+                </div>
+            </Link>
+        </motion.div>
+    );
+}
+
+// Category Section Component
 function CategorySection({ category, index }: { category: typeof categories[0]; index: number }) {
     const { ref, isVisible } = useScrollReveal();
     const prefersReducedMotion = useReducedMotion();
@@ -204,30 +279,28 @@ function CategorySection({ category, index }: { category: typeof categories[0]; 
             animate={isVisible ? "visible" : "hidden"}
             variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
         >
-            {/* Category Header */}
-            <div className="flex items-baseline gap-4 mb-6 border-b border-border/10 pb-3">
+            <div className="flex items-baseline gap-4 mb-4 border-b border-border/10 pb-3">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40">
                     {String(index + 1).padStart(2, '0')}
                 </span>
                 <div>
-                    <h2 className="font-display text-lg font-semibold text-foreground tracking-tight">
+                    <h3 className="font-display text-base font-semibold text-foreground tracking-tight">
                         {category.title}
-                    </h2>
+                    </h3>
                     <p className="text-xs text-muted-foreground mt-0.5">
                         {category.subtitle}
                     </p>
                 </div>
             </div>
 
-            {/* Articles Grid with stagger */}
             <motion.div
-                className="grid gap-3"
+                className="grid gap-2"
                 variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
                 initial="hidden"
                 animate={isVisible ? "visible" : "hidden"}
             >
-                {category.articles.map((article, artIndex) => (
-                    <ArticleCard key={article.id} article={article} index={artIndex} />
+                {category.articles.map((article) => (
+                    <ArticleCard key={article.id} article={article} />
                 ))}
             </motion.div>
         </motion.section>
@@ -235,7 +308,7 @@ function CategorySection({ category, index }: { category: typeof categories[0]; 
 }
 
 export default function ResearchClient() {
-    const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+    const { ref: heroRef, isVisible: heroVisible } = useScrollReveal();
     const { ref: principlesRef, isVisible: principlesVisible } = useScrollReveal();
     const prefersReducedMotion = useReducedMotion();
 
@@ -244,16 +317,15 @@ export default function ResearchClient() {
 
             {/* Editorial Header */}
             <motion.header
-                ref={headerRef as React.RefObject<HTMLElement>}
-                className="mb-12"
-                variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
-                initial="hidden"
-                animate={headerVisible ? "visible" : "hidden"}
+                className="mb-10"
+                initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: DURATION.slow, ease: EASE_SNAP }}
             >
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 mb-4 block">
                     The Hiring Playbook
                 </span>
-                <h1 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
+                <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
                     The rules they<br />don&apos;t teach you.
                 </h1>
                 <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
@@ -261,16 +333,43 @@ export default function ResearchClient() {
                 </p>
             </motion.header>
 
+            {/* Featured Hero Section */}
+            <motion.section
+                ref={heroRef as React.RefObject<HTMLElement>}
+                className="mb-12"
+                variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
+                initial="hidden"
+                animate={heroVisible ? "visible" : "hidden"}
+            >
+                <div className="flex items-center gap-2 mb-6">
+                    <div className="h-px flex-1 bg-border/40" />
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 px-3">
+                        Essential Reading
+                    </span>
+                    <div className="h-px flex-1 bg-border/40" />
+                </div>
+                <div className="grid md:grid-cols-3 gap-4">
+                    {featuredArticles.map((article, i) => (
+                        <FeaturedCard key={article.id} article={article} index={i} />
+                    ))}
+                </div>
+            </motion.section>
+
+            {/* Methodology Callout */}
+            <div className="mb-12">
+                <MethodologyCallout />
+            </div>
+
             {/* Category Sections */}
-            <div className="space-y-12 mb-16">
-                {categories.map((category, catIndex) => (
-                    <CategorySection key={category.id} category={category} index={catIndex} />
+            <div className="space-y-10 mb-16">
+                {categories.map((category, i) => (
+                    <CategorySection key={category.id} category={category} index={i} />
                 ))}
             </div>
 
             <hr className="border-border/10 mb-12" />
 
-            {/* How This Shapes the Product */}
+            {/* Product Philosophy */}
             <motion.section
                 ref={principlesRef as React.RefObject<HTMLElement>}
                 className="mb-16"
@@ -278,7 +377,7 @@ export default function ResearchClient() {
                 initial="hidden"
                 animate={principlesVisible ? "visible" : "hidden"}
             >
-                <h3 className="font-display text-lg font-semibold text-foreground mb-6">
+                <h3 className="font-display text-base font-semibold text-foreground mb-6">
                     How this shapes the product
                 </h3>
                 <motion.div
@@ -290,19 +389,19 @@ export default function ResearchClient() {
                     {[
                         {
                             title: "First Impressions Matter",
-                            desc: "Recruiter First Impression models the first 6 seconds where fit decisions happen."
+                            desc: "Recruiter First Impression models the 6-second window where fit decisions happen."
                         },
                         {
                             title: "Clarity over Keywords",
-                            desc: "Our scoring engine rewards clarity, scope, and story—penalizing keyword stuffing."
+                            desc: "Our engine rewards clarity and story—penalizing keyword stuffing."
                         },
                         {
                             title: "Eye-Flow Optimization",
-                            desc: "Bullet Upgrades are designed to catch the eye's F-pattern scan."
+                            desc: "Bullet Upgrades are designed for F-pattern scanning."
                         },
                         {
                             title: "Honest ATS Education",
-                            desc: "We teach how parsers actually work instead of selling 'beat the bot' fear."
+                            desc: "We teach how parsers work instead of selling fear."
                         }
                     ].map((principle, i) => (
                         <motion.div
@@ -331,3 +430,4 @@ export default function ResearchClient() {
         </StudioShell>
     );
 }
+

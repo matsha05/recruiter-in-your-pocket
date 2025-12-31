@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef, ChangeEvent } from "react";
-import { CloudUpload, FileText, ArrowRight, Info, ChevronDown, AlignLeft, Target } from "lucide-react";
+import { useState } from "react";
+import { FileText, ArrowRight, Info, ChevronDown, AlignLeft, Target } from "lucide-react";
 import { SixSecondIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/shared/TrustBadges";
+import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { cn } from "@/lib/utils";
 
 interface InputPanelProps {
@@ -33,34 +34,16 @@ export default function InputPanel({
     onSampleReport
 }: InputPanelProps) {
     const [fileName, setFileName] = useState<string | null>(null);
-    const [isDragOver, setIsDragOver] = useState(false);
     const [showJD, setShowJD] = useState(false);
     const [showPaste, setShowPaste] = useState(false);
-    const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setFileName(file.name);
-            onFileSelect(file);
-        }
-    };
-
-    const handleDrop = (e: React.DragEvent) => {
-        e.preventDefault();
-        setIsDragOver(false);
-        const file = e.dataTransfer.files?.[0];
-        if (file) {
-            setFileName(file.name);
-            onFileSelect(file);
-        }
+    const handleFileSelect = (file: File) => {
+        setFileName(file.name);
+        onFileSelect(file);
     };
 
     const handleRemoveFile = () => {
         setFileName(null);
-        if (fileInputRef.current) {
-            fileInputRef.current.value = "";
-        }
     };
 
     const getRunHint = () => {
@@ -101,69 +84,13 @@ export default function InputPanel({
                     {/* Section 1: The Input (Hero) */}
                     <div className="p-6 md:p-8 space-y-6">
 
-                        {/* Dropzone - The Primary Action */}
-                        <div
-                            className={cn(
-                                "relative flex flex-col items-center justify-center gap-4 p-10 border-2 border-dashed rounded-lg cursor-pointer transition-all duration-300 group",
-                                isDragOver
-                                    ? "border-brand bg-brand/5 scale-[1.01]"
-                                    : "border-border/30 hover:border-brand/40 hover:bg-muted/20"
-                            )}
-                            onClick={(e) => {
-                                if (e.target === e.currentTarget || !(e.target as HTMLElement).closest('input')) {
-                                    fileInputRef.current?.click();
-                                }
-                            }}
-                            onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
-                            onDragLeave={() => setIsDragOver(false)}
-                            onDrop={handleDrop}
-                        >
-                            <div className={cn(
-                                "w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-300",
-                                isDragOver ? "bg-brand/10 text-brand" : "bg-muted text-muted-foreground group-hover:bg-brand/5 group-hover:text-brand"
-                            )}>
-                                <CloudUpload className="w-8 h-8" strokeWidth={1.5} />
-                            </div>
-
-                            <div className="text-center space-y-1.5">
-                                <div className="text-lg font-medium text-foreground group-hover:text-brand transition-colors">
-                                    Drop your resume here
-                                </div>
-                                <div className="text-sm text-muted-foreground/80">
-                                    Supports PDF or DOCX
-                                </div>
-                            </div>
-
-                            <input
-                                type="file"
-                                ref={fileInputRef}
-                                className="hidden"
-                                accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                onChange={handleFileChange}
-                                onClick={(e) => e.stopPropagation()}
-                                aria-label="Upload resume file (PDF or DOCX)"
-                            />
-                        </div>
-
-                        {/* File Success State */}
-                        {fileName && (
-                            <div className="flex items-center justify-between p-3 bg-brand/5 border border-brand/10 rounded-lg animate-in fade-in slide-in-from-top-2">
-                                <span className="text-sm font-medium text-brand flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded bg-brand/10 flex items-center justify-center">
-                                        <FileText className="w-4 h-4" />
-                                    </div>
-                                    {fileName}
-                                </span>
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="text-muted-foreground hover:text-destructive h-auto py-1 px-2 hover:bg-destructive/10"
-                                    onClick={handleRemoveFile}
-                                >
-                                    Remove
-                                </Button>
-                            </div>
-                        )}
+                        {/* Dropzone - Unified Component */}
+                        <ResumeDropzone
+                            variant="compact"
+                            onFileSelect={handleFileSelect}
+                            fileName={fileName}
+                            onRemoveFile={handleRemoveFile}
+                        />
 
                         {/* Paste Text Toggle */}
                         {!fileName && (
