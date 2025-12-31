@@ -74,7 +74,10 @@
 <oracle>
   Oracle bundles prompts + files so GPT-5 Pro can answer complex questions.
   
-  CRITICAL: Always include file context with --file flag. Oracle has NO repo access otherwise.
+  CRITICAL RULES:
+  1. ALWAYS use --engine browser (NEVER use --engine api)
+  2. If browser mode fails, STOP and ask user - do NOT retry with api
+  3. Always include file context with --file flag. Oracle has NO repo access otherwise.
   
   For detailed usage, prompt templates, and troubleshooting:
   See .agent/workflows/oracle.md

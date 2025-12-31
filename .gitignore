@@ -21,3 +21,6 @@ yarn-error.log*
 
 # Local logs
 *.log
+
+# O*NET skill embeddings (162MB, regenerate with: node scripts/generate-skill-embeddings.js)
+web/lib/matching/onet-skill-embeddings.json

@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const { resumeText } = await request.json();
+        const { resumeText, filename } = await request.json();
 
         if (!resumeText || typeof resumeText !== "string") {
             return NextResponse.json(
@@ -64,6 +64,7 @@ export async function POST(request: NextRequest) {
             .upsert({
                 user_id: user.id,
                 resume_text: resumeText,  // CRITICAL: Save full text for matching
+                resume_filename: filename || null,  // Store filename for display
                 skills_index: skillsIndex,
                 seniority_signals: senioritySignals,
                 resume_embedding: embedding,
@@ -94,6 +95,7 @@ export async function POST(request: NextRequest) {
             success: true,
             data: {
                 resumePreview: data.resume_preview,
+                resumeFilename: data.resume_filename,
                 updatedAt: data.resume_updated_at,
                 skillsCount: skillsIndex.length,
                 hasEmbedding: embedding !== null,
@@ -123,7 +125,7 @@ export async function GET() {
 
         const { data: profile, error } = await supabase
             .from("user_profiles")
-            .select("resume_preview, resume_updated_at, skills_index, resume_embedding")
+            .select("resume_preview, resume_filename, resume_updated_at, skills_index, resume_embedding")
             .eq("user_id", user.id)
             .single();
 
@@ -148,6 +150,7 @@ export async function GET() {
             data: {
                 hasResume: true,
                 resumePreview: profile.resume_preview,
+                resumeFilename: profile.resume_filename,
                 updatedAt: profile.resume_updated_at,
                 skillsCount: Array.isArray(profile.skills_index)
                     ? profile.skills_index.length
@@ -155,6 +158,51 @@ export async function GET() {
                 hasEmbedding: profile.resume_embedding !== null,
             },
         });
+    } catch (error) {
+        console.error("[DefaultResume] Error:", error);
+        return NextResponse.json(
+            { success: false, error: "Internal server error" },
+            { status: 500 }
+        );
+    }
+}
+
+// PATCH: Update resume filename
+export async function PATCH(request: NextRequest) {
+    try {
+        const supabase = await createSupabaseServerClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
+            return NextResponse.json(
+                { success: false, error: "Unauthorized" },
+                { status: 401 }
+            );
+        }
+
+        const { filename } = await request.json();
+
+        if (!filename || typeof filename !== "string") {
+            return NextResponse.json(
+                { success: false, error: "Filename is required" },
+                { status: 400 }
+            );
+        }
+
+        const { error } = await supabase
+            .from("user_profiles")
+            .update({ resume_filename: filename.trim() })
+            .eq("user_id", user.id);
+
+        if (error) {
+            console.error("[DefaultResume] Update error:", error);
+            return NextResponse.json(
+                { success: false, error: "Failed to update filename" },
+                { status: 500 }
+            );
+        }
+
+        return NextResponse.json({ success: true });
     } catch (error) {
         console.error("[DefaultResume] Error:", error);
         return NextResponse.json(

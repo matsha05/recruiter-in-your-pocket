@@ -15,8 +15,11 @@ import {
     Sparkles,
     Building2,
     MapPin,
-    Calendar
+    Calendar,
+    ChevronDown,
+    Check
 } from 'lucide-react';
+import { toast } from 'sonner';
 
 // =============================================================================
 // TYPES
@@ -67,6 +70,8 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
     const [job, setJob] = useState<JobDetail | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [statusMenuOpen, setStatusMenuOpen] = useState(false);
+    const [updatingStatus, setUpdatingStatus] = useState(false);
 
     useEffect(() => {
         async function fetchJob() {
@@ -157,13 +162,68 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
                         <h1 className="text-2xl font-display font-semibold tracking-tight text-foreground">
                             {job.title}
                         </h1>
-                        <span className={cn(
-                            "px-2 py-0.5 text-xs font-medium rounded-full",
-                            statusConfig.bgColor,
-                            statusConfig.color
-                        )}>
-                            {statusConfig.label}
-                        </span>
+                        {/* Interactive Status Selector */}
+                        <div className="relative">
+                            <button
+                                onClick={() => setStatusMenuOpen(!statusMenuOpen)}
+                                disabled={updatingStatus}
+                                className={cn(
+                                    "inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full transition-colors",
+                                    statusConfig.bgColor,
+                                    statusConfig.color,
+                                    "hover:opacity-80 cursor-pointer"
+                                )}
+                            >
+                                {statusConfig.label}
+                                <ChevronDown className="h-3 w-3" />
+                            </button>
+                            {statusMenuOpen && (
+                                <div className="absolute top-full left-0 mt-1 w-40 bg-card border border-border rounded-md shadow-lg z-50">
+                                    {(Object.keys(STATUS_CONFIG) as JobStatus[]).map((statusKey) => {
+                                        const config = STATUS_CONFIG[statusKey];
+                                        const isSelected = job.status === statusKey;
+                                        return (
+                                            <button
+                                                key={statusKey}
+                                                onClick={async () => {
+                                                    if (statusKey === job.status) {
+                                                        setStatusMenuOpen(false);
+                                                        return;
+                                                    }
+                                                    setUpdatingStatus(true);
+                                                    try {
+                                                        const res = await fetch(`/api/extension/saved-jobs/${jobId}`, {
+                                                            method: 'PATCH',
+                                                            headers: { 'Content-Type': 'application/json' },
+                                                            body: JSON.stringify({ status: statusKey })
+                                                        });
+                                                        if (res.ok) {
+                                                            setJob(prev => prev ? { ...prev, status: statusKey } : prev);
+                                                            toast.success(`Status updated to ${config.label}`);
+                                                        } else {
+                                                            toast.error('Failed to update status');
+                                                        }
+                                                    } catch {
+                                                        toast.error('Failed to update status');
+                                                    } finally {
+                                                        setUpdatingStatus(false);
+                                                        setStatusMenuOpen(false);
+                                                    }
+                                                }}
+                                                className={cn(
+                                                    "w-full px-3 py-2 text-left text-sm flex items-center justify-between",
+                                                    "hover:bg-muted transition-colors",
+                                                    isSelected && "bg-muted/50"
+                                                )}
+                                            >
+                                                <span className={config.color}>{config.label}</span>
+                                                {isSelected && <Check className="h-4 w-4 text-success" />}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1.5">
@@ -275,11 +335,7 @@ function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                         </div>
                         <div className="p-6 max-h-[600px] overflow-y-auto">
                             {job.job_description_text ? (
-                                <div className="prose prose-sm max-w-none text-foreground/90">
-                                    <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed">
-                                        {job.job_description_text}
-                                    </pre>
-                                </div>
+                                <FormattedJobDescription text={job.job_description_text} />
                             ) : (
                                 <p className="text-muted-foreground text-center py-8">
                                     No job description available.
@@ -388,6 +444,7 @@ function RecruiterFitSummary({
     missingSkills,
     topGaps
 }: RecruiterFitSummaryProps) {
+    const [expanded, setExpanded] = useState(false);
     const scoreClass = getScoreClass(score);
     const scoreColors = {
         success: 'text-success border-success/20 bg-success/5',
@@ -444,15 +501,20 @@ function RecruiterFitSummary({
                     </h4>
                     {matchedSkills.length > 0 ? (
                         <ul className="space-y-2">
-                            {matchedSkills.slice(0, 5).map((skill, i) => (
+                            {(expanded ? matchedSkills : matchedSkills.slice(0, 5)).map((skill, i) => (
                                 <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
                                     <span className="text-success mt-1">•</span>
                                     {skill}
                                 </li>
                             ))}
                             {matchedSkills.length > 5 && (
-                                <li className="text-xs text-muted-foreground/70">
-                                    +{matchedSkills.length - 5} more skills matched
+                                <li>
+                                    <button
+                                        onClick={() => setExpanded(!expanded)}
+                                        className="text-xs text-brand hover:underline font-medium"
+                                    >
+                                        {expanded ? 'Show less' : `+${matchedSkills.length - 5} more skills matched`}
+                                    </button>
                                 </li>
                             )}
                         </ul>
@@ -581,4 +643,78 @@ function getScoreClass(score: number): 'success' | 'premium' | 'destructive' {
     if (score >= 85) return 'success';
     if (score >= 70) return 'premium';
     return 'destructive';
+}
+
+// =============================================================================
+// FORMATTED JOB DESCRIPTION
+// =============================================================================
+
+// Section header patterns for JD parsing
+const SECTION_PATTERNS = [
+    /^(About|About Us|About the (Company|Team|Role|Position))/i,
+    /^(What You['']ll Do|Responsibilities|Key Responsibilities|Your Role)/i,
+    /^(What We['']re Looking For|Requirements|Qualifications|What You Need|Minimum Qualifications)/i,
+    /^(Preferred Qualifications|Nice to Have|Bonus Points|Preferred)/i,
+    /^(Benefits|Perks|What We Offer|Compensation)/i,
+    /^(How to Apply|Application|Next Steps)/i,
+];
+
+function FormattedJobDescription({ text }: { text: string }) {
+    // Split text into lines and parse sections
+    const lines = text.split('\n');
+    const sections: Array<{ header: string | null; content: string[] }> = [];
+    let currentSection: { header: string | null; content: string[] } = { header: null, content: [] };
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+
+        // Check if this line is a section header
+        const isHeader = SECTION_PATTERNS.some(pattern => pattern.test(trimmed)) ||
+            (trimmed.length < 60 && trimmed.endsWith(':')) ||
+            (trimmed.length < 60 && /^[A-Z][^a-z]*$/.test(trimmed.replace(/[:\s]/g, '')));
+
+        if (isHeader && trimmed.length > 0) {
+            // Save current section if it has content
+            if (currentSection.content.length > 0 || currentSection.header) {
+                sections.push(currentSection);
+            }
+            currentSection = { header: trimmed.replace(/:$/, ''), content: [] };
+        } else if (trimmed.length > 0) {
+            currentSection.content.push(trimmed);
+        }
+    }
+
+    // Don't forget the last section
+    if (currentSection.content.length > 0 || currentSection.header) {
+        sections.push(currentSection);
+    }
+
+    return (
+        <div className="space-y-6">
+            {sections.map((section, idx) => (
+                <div key={idx} className="space-y-2">
+                    {section.header && (
+                        <h4 className="text-sm font-semibold text-foreground">
+                            {section.header}
+                        </h4>
+                    )}
+                    <div className="text-sm text-muted-foreground leading-relaxed space-y-2">
+                        {section.content.map((line, lineIdx) => {
+                            // Check if it's a bullet point
+                            const isBullet = /^[•\-*]\s/.test(line) || /^\d+[.)]\s/.test(line);
+                            if (isBullet) {
+                                return (
+                                    <div key={lineIdx} className="flex gap-2 pl-2">
+                                        <span className="text-brand">•</span>
+                                        <span>{line.replace(/^[•\-*\d.)]+\s*/, '')}</span>
+                                    </div>
+                                );
+                            }
+                            return <p key={lineIdx}>{line}</p>;
+                        })}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
 }

@@ -53,6 +53,21 @@ function extractJobId() {
   return params.get("currentJobId") || null;
 }
 
+async function safeMessage(message) {
+  try {
+    if (!chrome.runtime?.id) {
+      console.warn("[RIYP] Extension context invalidated, please reload the page");
+      return { success: false, error: "Extension reloaded - please refresh the page" };
+    }
+    return await chrome.runtime.sendMessage(message);
+  } catch (error) {
+    if (error?.message?.includes("Extension context invalidated")) {
+      console.warn("[RIYP] Extension context invalidated, please reload the page");
+      return { success: false, error: "Extension reloaded - please refresh the page" };
+    }
+    throw error;
+  }
+}
 let captureButton = null;
 let isCapturing = false;
 function init() {
@@ -78,7 +93,7 @@ async function injectCaptureButton() {
   let alreadyCaptured = false;
   let capturedScore = null;
   try {
-    const response = await chrome.runtime.sendMessage({
+    const response = await safeMessage({
       type: "CHECK_JOB_STATUS",
       payload: { url: window.location.href }
     });
@@ -104,7 +119,7 @@ async function injectCaptureButton() {
   if (button) {
     if (alreadyCaptured) {
       button.addEventListener("click", () => {
-        chrome.runtime.sendMessage({
+        safeMessage({
           type: "OPEN_WEBAPP",
           payload: { path: "/jobs" }
         });
@@ -225,7 +240,7 @@ async function handleCapture() {
       type: "CAPTURE_JD",
       payload: { jd, meta }
     };
-    const response = await chrome.runtime.sendMessage(message);
+    const response = await safeMessage(message);
     if (!response.success) {
       throw new Error(response.error || "Failed to save job");
     }
@@ -297,5 +312,5 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
-//# sourceMappingURL=linkedin.ts-DnDT8zYu.js.map
+//# sourceMappingURL=linkedin.ts-YjCxIMxD.js.map
 })()

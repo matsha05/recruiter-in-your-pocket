@@ -29,7 +29,7 @@
   "content_scripts": [
     {
       "js": [
-        "assets/linkedin.ts-DnDT8zYu.js"
+        "assets/linkedin.ts-YjCxIMxD.js"
       ],
       "matches": [
         "https://www.linkedin.com/jobs/*"
@@ -38,7 +38,7 @@
     },
     {
       "js": [
-        "assets/indeed.ts-BP89kePZ.js"
+        "assets/indeed.ts-CgFjPFUV.js"
       ],
       "matches": [
         "https://www.indeed.com/viewjob*",
@@ -71,8 +71,8 @@
         "https://www.linkedin.com/*"
       ],
       "resources": [
-        "assets/linkedin.ts-DnDT8zYu.js",
-        "assets/linkedin.ts-DnDT8zYu.js.map"
+        "assets/linkedin.ts-YjCxIMxD.js",
+        "assets/linkedin.ts-YjCxIMxD.js.map"
       ],
       "use_dynamic_url": false
     },
@@ -83,8 +83,8 @@
         "https://www.indeed.com/*"
       ],
       "resources": [
-        "assets/indeed.ts-BP89kePZ.js",
-        "assets/indeed.ts-BP89kePZ.js.map"
+        "assets/indeed.ts-CgFjPFUV.js",
+        "assets/indeed.ts-CgFjPFUV.js.map"
       ],
       "use_dynamic_url": false
     }

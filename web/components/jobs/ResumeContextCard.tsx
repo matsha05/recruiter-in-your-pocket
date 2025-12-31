@@ -10,7 +10,9 @@ import {
     Target,
     Sparkles,
     RefreshCw,
-    AlertCircle
+    AlertCircle,
+    Pencil,
+    X
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -21,6 +23,7 @@ import { toast } from 'sonner';
 interface ResumeProfile {
     hasResume: boolean;
     resumePreview?: string;
+    resumeFilename?: string;
     updatedAt?: string;
     skillsCount?: number;
     hasEmbedding?: boolean;
@@ -41,6 +44,8 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     const [isSaving, setIsSaving] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
     const [fileName, setFileName] = useState<string | null>(null);
+    const [isRenaming, setIsRenaming] = useState(false);
+    const [renameValue, setRenameValue] = useState('');
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const fetchProfile = useCallback(async () => {
@@ -116,11 +121,11 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                 return;
             }
 
-            // Save to profile
+            // Save to profile (include filename)
             const saveRes = await fetch("/api/user/default-resume", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ resumeText: text }),
+                body: JSON.stringify({ resumeText: text, filename: file.name }),
             });
 
             const saveData = await saveRes.json();
@@ -129,6 +134,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                 setProfile({
                     hasResume: true,
                     resumePreview: saveData.data.resumePreview,
+                    resumeFilename: saveData.data.resumeFilename,
                     updatedAt: saveData.data.updatedAt,
                     skillsCount: saveData.data.skillsCount,
                     hasEmbedding: saveData.data.hasEmbedding,
@@ -154,14 +160,40 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     };
 
     const formatDate = (dateStr: string) => {
+        if (!dateStr) return '';
         const date = new Date(dateStr);
-        const now = new Date();
-        const diffMs = now.getTime() - date.getTime();
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        if (diffDays === 0) return "Today";
-        if (diffDays === 1) return "Yesterday";
-        if (diffDays < 7) return `${diffDays} days ago`;
-        return date.toLocaleDateString();
+        const dateOptions: Intl.DateTimeFormatOptions = {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        };
+        const timeOptions: Intl.DateTimeFormatOptions = {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        };
+        return `${date.toLocaleDateString('en-US', dateOptions)} at ${date.toLocaleTimeString('en-US', timeOptions)}`;
+    };
+
+    const handleRename = async () => {
+        if (!renameValue.trim() || !profile) return;
+        setIsSaving(true);
+        try {
+            const res = await fetch('/api/user/default-resume', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ filename: renameValue.trim() })
+            });
+            if (res.ok) {
+                setProfile(prev => prev ? { ...prev, resumeFilename: renameValue.trim() } : prev);
+                toast.success('Resume renamed');
+            }
+        } catch {
+            toast.error('Failed to rename');
+        } finally {
+            setIsSaving(false);
+            setIsRenaming(false);
+        }
     };
 
     // Loading state
@@ -187,7 +219,50 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                         </div>
                         <div>
                             <div className="flex items-center gap-2">
-                                <span className="font-medium text-foreground text-sm">Resume Locked In</span>
+                                {isRenaming ? (
+                                    <div className="flex items-center gap-1">
+                                        <input
+                                            type="text"
+                                            value={renameValue}
+                                            onChange={(e) => setRenameValue(e.target.value)}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') handleRename();
+                                                if (e.key === 'Escape') setIsRenaming(false);
+                                            }}
+                                            className="h-6 px-1.5 text-sm font-medium border border-border rounded bg-background focus:outline-none focus:ring-1 focus:ring-brand"
+                                            autoFocus
+                                        />
+                                        <button
+                                            onClick={handleRename}
+                                            disabled={isSaving}
+                                            className="p-1 text-success hover:bg-success/10 rounded"
+                                        >
+                                            <Check className="w-3 h-3" />
+                                        </button>
+                                        <button
+                                            onClick={() => setIsRenaming(false)}
+                                            className="p-1 text-muted-foreground hover:bg-muted rounded"
+                                        >
+                                            <X className="w-3 h-3" />
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <span className="font-medium text-foreground text-sm">
+                                            {profile.resumeFilename || 'Resume Locked In'}
+                                        </span>
+                                        <button
+                                            onClick={() => {
+                                                setRenameValue(profile.resumeFilename || '');
+                                                setIsRenaming(true);
+                                            }}
+                                            className="p-1 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors"
+                                            title="Rename"
+                                        >
+                                            <Pencil className="w-3 h-3" />
+                                        </button>
+                                    </>
+                                )}
                                 <span className="text-xs text-success bg-success/10 px-1.5 py-0.5 rounded-full">
                                     Active
                                 </span>

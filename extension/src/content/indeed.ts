@@ -7,6 +7,23 @@
 
 import type { JobMeta, ExtensionMessage } from '../background/messages';
 
+// Safe wrapper for messaging that handles extension context invalidation
+async function safeMessage(message: ExtensionMessage): Promise<any> {
+    try {
+        if (!chrome.runtime?.id) {
+            console.warn('[RIYP] Extension context invalidated, please reload the page');
+            return { success: false, error: 'Extension reloaded - please refresh the page' };
+        }
+        return await chrome.runtime.sendMessage(message);
+    } catch (error: any) {
+        if (error?.message?.includes('Extension context invalidated')) {
+            console.warn('[RIYP] Extension context invalidated, please reload the page');
+            return { success: false, error: 'Extension reloaded - please refresh the page' };
+        }
+        throw error;
+    }
+}
+
 // Indeed-specific selectors
 const JD_SELECTORS = [
     '#jobDescriptionText',
@@ -168,7 +185,7 @@ async function handleCapture() {
             payload: { jd, meta },
         };
 
-        const response = await chrome.runtime.sendMessage(message);
+        const response = await safeMessage(message);
 
         if (!response.success) {
             throw new Error(response.error || 'Failed to save job');

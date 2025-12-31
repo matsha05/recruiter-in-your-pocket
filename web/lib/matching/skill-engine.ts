@@ -565,6 +565,17 @@ export const SKILL_ALIASES: Record<string, string[]> = {
         'cross-functional', 'c-suite', 'senior leadership',
         'executive leadership', 'leadership team', 'partner with'],
 
+    // Recruiting Specialties
+    'Engineering Recruiting': ['engineering recruiting', 'software recruiting', 'swe recruiting',
+        'technical hiring', 'engineering hiring', 'software engineer hiring', 'engineering talent',
+        'ai/ml recruiting', 'ml recruiting', 'ai recruiting', 'engineering org', 'software engineering hiring'],
+    'Volume Hiring': ['volume hiring', 'high-volume recruiting', 'high volume hiring', 'mass hiring',
+        'volume recruiting', 'scaled hiring', 'high-volume', 'volume recruitment'],
+    'High-Volume Recruiting': ['high-volume', 'high volume', 'volume hiring', 'mass hiring',
+        'scaled recruiting', 'volume recruitment', '100+ hires', '1000+ hires', 'rapid hiring'],
+    'Candidate Experience': ['candidate experience', 'candidate journey', 'candidate satisfaction',
+        'nps', 'offer acceptance', 'candidate engagement', 'interview experience'],
+
     // ===== FINANCE =====
     'Financial Modeling': ['financial models', 'dcf', 'dcf model', 'lbo model', 'merger model',
         '3-statement model', 'financial projections', 'valuation model'],
@@ -629,6 +640,96 @@ export const SKILL_ALIASES: Record<string, string[]> = {
         'strategic vision', 'roadmap development'],
     'Change Management': ['organizational change', 'transformation', 'change initiatives',
         'adoption', 'stakeholder buy-in'],
+
+    // ===== COMPREHENSIVE SOFT SKILLS =====
+    // These patterns detect soft skills from explicit mentions or implied evidence
+
+    // Teamwork & Collaboration
+    'Teamwork': ['team player', 'team environment', 'team-oriented', 'teamwork',
+        'worked with teams', 'team collaboration', 'team dynamics', 'team success'],
+    'Collaboration': ['collaborated', 'partnered with', 'cross-team', 'joint efforts',
+        'stakeholder collaboration', 'working together', 'cooperative'],
+    'Cross-Functional': ['cross-functional', 'cross functional', 'multi-functional',
+        'across departments', 'across teams', 'cross-team', 'matrix organization'],
+
+    // Communication
+    'Communication': ['communication skills', 'communicating', 'presentations',
+        'written communication', 'verbal communication', 'public speaking'],
+    'Presentation Skills': ['presented', 'presenting', 'presentations', 'public speaking',
+        'executive presentations', 'boardroom presentations'],
+    'Written Communication': ['written communication', 'documentation', 'reports',
+        'technical writing', 'proposal writing', 'business writing'],
+
+    // Leadership & Management
+    'Leadership': ['leadership', 'led', 'leading', 'leader', 'leadership skills',
+        'thought leadership', 'executive leadership'],
+    'People Management': ['people management', 'managed a team', 'direct reports',
+        'team management', 'staff management', 'employee management'],
+    'Mentoring': ['mentored', 'mentoring', 'coaching', 'developed talent',
+        'career development', 'training others'],
+    'Delegation': ['delegated', 'delegating', 'task assignment', 'workload distribution'],
+
+    // Problem Solving & Critical Thinking
+    'Problem Solving': ['problem solving', 'problem-solving', 'troubleshooting',
+        'root cause analysis', 'issue resolution', 'solution-oriented'],
+    'Analytical Thinking': ['analytical', 'analysis', 'data-driven', 'critical thinking',
+        'analytical skills', 'analytical approach'],
+    'Decision Making': ['decision making', 'decision-making', 'strategic decisions',
+        'sound judgment', 'executive decisions'],
+    'Critical Thinking': ['critical thinking', 'evaluate', 'assess', 'judgment',
+        'logical reasoning', 'rational analysis'],
+
+    // Adaptability & Flexibility
+    'Adaptability': ['adaptable', 'adaptability', 'flexible', 'agile', 'pivot',
+        'change-ready', 'versatile', 'dynamic environment'],
+    'Flexibility': ['flexible', 'flexibility', 'multi-tasking', 'juggling priorities',
+        'wearing multiple hats', 'versatile'],
+    'Learning Agility': ['fast learner', 'quick learner', 'continuous learning',
+        'self-taught', 'ramp-up quickly', 'learning new technologies'],
+
+    // Time Management & Organization
+    'Time Management': ['time management', 'deadline-driven', 'meeting deadlines',
+        'prioritization', 'time-sensitive', 'efficient'],
+    'Prioritization': ['prioritization', 'prioritize', 'priority management',
+        'competing priorities', 'triage', 'urgent vs important'],
+    'Organization': ['organized', 'organizational skills', 'organization',
+        'systematic', 'structured approach', 'attention to detail'],
+
+    // Interpersonal & Emotional Intelligence
+    'Interpersonal Skills': ['interpersonal skills', 'relationship building',
+        'rapport building', 'stakeholder relationships', 'client relationships'],
+    'Emotional Intelligence': ['emotional intelligence', 'eq', 'empathy',
+        'self-awareness', 'social awareness', 'emotional awareness'],
+    'Conflict Resolution': ['conflict resolution', 'mediation', 'negotiation',
+        'resolving disputes', 'de-escalation', 'difficult conversations'],
+
+    // Work Style & Attitude
+    'Self-Motivated': ['self-motivated', 'self-starter', 'initiative', 'proactive',
+        'driven', 'self-directed', 'autonomous'],
+    'Attention to Detail': ['attention to detail', 'detail-oriented', 'meticulous',
+        'thorough', 'accuracy', 'quality-focused'],
+    'Reliability': ['reliable', 'dependable', 'consistent', 'accountable',
+        'trustworthy', 'committed'],
+    'Work Ethic': ['work ethic', 'hard-working', 'dedicated', 'committed',
+        'results-oriented', 'performance-driven'],
+
+    // Customer & Client Focus
+    'Customer Focus': ['customer focus', 'customer-centric', 'client focus',
+        'customer satisfaction', 'user experience', 'customer success'],
+    'Client Relationship Management': ['client relationships', 'client management',
+        'account management', 'relationship management', 'customer relations'],
+
+    // Innovation & Creativity
+    'Creativity': ['creative', 'creativity', 'innovative thinking', 'ideation',
+        'brainstorming', 'creative solutions'],
+    'Innovation': ['innovation', 'innovative', 'new ideas', 'continuous improvement',
+        'process improvement', 'forward-thinking'],
+
+    // Stress Management & Resilience
+    'Stress Management': ['high-pressure', 'fast-paced', 'handling stress',
+        'pressure situations', 'demanding environment'],
+    'Resilience': ['resilient', 'resilience', 'perseverance', 'grit',
+        'overcoming challenges', 'bouncing back'],
 };
 
 // ----- INFERENCE RULES -----
@@ -665,9 +766,109 @@ export const INFERENCE_RULES: Array<{
             trigger: /\b(executive|c-suite|vp|director)\s*(search|recruit|hiring)/gi,
             implies: 'Executive Search', confidence: 0.85
         },
+        // Engineering Recruiting signals
+        {
+            trigger: /\b(ai|ml|ai\/ml|machine\s+learning)\s*(swe|software|recruiting|hiring|engineer)/gi,
+            implies: 'Engineering Recruiting', confidence: 0.95
+        },
+        {
+            trigger: /\b(software|swe)\s*(engineering|engineer)\s*(recruiting|hiring|talent)/gi,
+            implies: 'Engineering Recruiting', confidence: 0.9
+        },
+        {
+            trigger: /\bengineering\s*(org|organization|team|hiring|talent)/gi,
+            implies: 'Engineering Recruiting', confidence: 0.85
+        },
+        {
+            trigger: /\brecruit(ing|er)?\s*(for\s+)?(ai|ml|software|swe|engineering)/gi,
+            implies: 'Engineering Recruiting', confidence: 0.9
+        },
+        // Volume Hiring signals
+        {
+            trigger: /\b\d{3,}\+?\s*(hires?|offers?|candidates?)/gi,
+            implies: 'Volume Hiring', confidence: 0.9
+        },
+        {
+            trigger: /\b(scaled|scaling)\s*(team|org|hiring)\s*(from\s+)?\d+\s*(to\s+)?\d+/gi,
+            implies: 'Volume Hiring', confidence: 0.9
+        },
+        {
+            trigger: /\b(high-volume|high\s+volume|mass|rapid)\s*(hiring|recruiting|recruitment)/gi,
+            implies: 'Volume Hiring', confidence: 0.95
+        },
+        {
+            trigger: /\b(volume|scaled)\s*(hiring|recruiting|recruitment)/gi,
+            implies: 'Volume Hiring', confidence: 0.9
+        },
+        // Candidate Experience signals
+        {
+            trigger: /\b(candidate|applicant)\s*(experience|satisfaction|nps|journey)/gi,
+            implies: 'Candidate Experience', confidence: 0.9
+        },
+        {
+            trigger: /\b(offer\s+accept(ance)?|interview\s+experience|hiring\s+process)/gi,
+            implies: 'Candidate Experience', confidence: 0.85
+        },
+        {
+            trigger: /\bmanager\s+(pulse|satisfaction|rating|survey)/gi,
+            implies: 'Candidate Experience', confidence: 0.8
+        },
         {
             trigger: /\b(managed|led|directed)\s*(a\s+)?(team|org|department|group)\s+of\s+\d+/gi,
             implies: 'Team Leadership', confidence: 0.9
+        },
+        // ===== SOFT SKILLS (INFERRED FROM EVIDENCE) =====
+        // Teamwork signals
+        {
+            trigger: /\b(managed|led|directed)\s*(a\s+)?(team|org|department|group)/gi,
+            implies: 'Teamwork', confidence: 0.95
+        },
+        {
+            trigger: /\b(collaborated|partnered|worked)\s+(with|alongside|closely)/gi,
+            implies: 'Teamwork', confidence: 0.9
+        },
+        {
+            trigger: /\b(team\s+(player|member|environment)|cross-team|inter-team)/gi,
+            implies: 'Teamwork', confidence: 0.85
+        },
+        // Cross-Functional signals
+        {
+            trigger: /\b(cross-functional|cross\s+functional|cross-team|multi-team)/gi,
+            implies: 'Cross-Functional', confidence: 0.95
+        },
+        {
+            trigger: /\bacross\s+(teams?|departments?|orgs?|regions?|functions?)/gi,
+            implies: 'Cross-Functional', confidence: 0.9
+        },
+        {
+            trigger: /\b(coordinated|coordinating)\s+(staffing\s+)?efforts?\s+across/gi,
+            implies: 'Cross-Functional', confidence: 0.9
+        },
+        {
+            trigger: /\bmultiple\s+(teams?|departments?|regions?|stakeholders?)/gi,
+            implies: 'Cross-Functional', confidence: 0.85
+        },
+        // Collaboration signals
+        {
+            trigger: /\b(collaborated|partnered|coordinated)\s+with\s+(\w+\s+)*(leadership|executives?|stakeholders?|teams?)/gi,
+            implies: 'Collaboration', confidence: 0.9
+        },
+        {
+            trigger: /\b(stakeholder\s+(management|engagement|alignment)|executive\s+alignment)/gi,
+            implies: 'Collaboration', confidence: 0.85
+        },
+        // Communication signals
+        {
+            trigger: /\b(presented|presenting)\s+to\s+(\w+\s+)*(leadership|executives?|c-suite|board)/gi,
+            implies: 'Communication', confidence: 0.9
+        },
+        {
+            trigger: /\b(executive|leadership)\s+(presentations?|briefings?|updates?)/gi,
+            implies: 'Communication', confidence: 0.85
+        },
+        {
+            trigger: /\bfacilitated\s+(\w+\s+)*(training|sessions?|meetings?|workshops?)/gi,
+            implies: 'Communication', confidence: 0.85
         },
         {
             trigger: /\bchief\s*(people|hr|talent)\s*officer\b/gi,
@@ -676,6 +877,140 @@ export const INFERENCE_RULES: Array<{
         {
             trigger: /\bhead\s+of\s+(hr|people|talent|recruiting)\b/gi,
             implies: 'Stakeholder Management', confidence: 0.8
+        },
+
+        // Problem Solving & Analytical signals
+        {
+            trigger: /\b(solved|solving|resolved|resolving)\s+(\w+\s+)*(problems?|issues?|challenges?)/gi,
+            implies: 'Problem Solving', confidence: 0.9
+        },
+        {
+            trigger: /\b(troubleshoot|debug|diagnos|root\s+cause)/gi,
+            implies: 'Problem Solving', confidence: 0.85
+        },
+        {
+            trigger: /\b(analyzed|analyzing|analysis)\s+(\w+\s+)*(data|metrics|trends|performance)/gi,
+            implies: 'Analytical Thinking', confidence: 0.9
+        },
+        {
+            trigger: /\bdata-driven\s+(decisions?|insights?|approach)/gi,
+            implies: 'Analytical Thinking', confidence: 0.85
+        },
+
+        // Leadership signals
+        {
+            trigger: /\b(spearheaded|championed|pioneered|drove|driving)\s+/gi,
+            implies: 'Leadership', confidence: 0.9
+        },
+        {
+            trigger: /\b(executive|senior|c-suite|c-level)\s+(leadership|experience)/gi,
+            implies: 'Leadership', confidence: 0.9
+        },
+        {
+            trigger: /\b(built|scaling|scaled)\s+(a\s+)?(team|org|department|function)/gi,
+            implies: 'Leadership', confidence: 0.85
+        },
+
+        // Mentoring & Coaching signals
+        {
+            trigger: /\b(mentored|coached|developed)\s+(\w+\s+)*(talent|employees?|team\s+members?|staff)/gi,
+            implies: 'Mentoring', confidence: 0.9
+        },
+        {
+            trigger: /\b(onboarding|training)\s+(\w+\s+)*(program|new\s+hires?|employees?)/gi,
+            implies: 'Mentoring', confidence: 0.85
+        },
+        {
+            trigger: /\bcareer\s+(development|growth|coaching)/gi,
+            implies: 'Mentoring', confidence: 0.85
+        },
+
+        // Adaptability & Change signals
+        {
+            trigger: /\b(navigated|pivoted|adapted)\s+(\w+\s+)*(change|transition|transformation)/gi,
+            implies: 'Adaptability', confidence: 0.9
+        },
+        {
+            trigger: /\b(fast-paced|rapidly\s+changing|dynamic)\s+(environment|organization)/gi,
+            implies: 'Adaptability', confidence: 0.85
+        },
+        {
+            trigger: /\b(ambiguity|uncertainty|evolving\s+priorities)/gi,
+            implies: 'Adaptability', confidence: 0.85
+        },
+
+        // Time Management & Prioritization signals
+        {
+            trigger: /\b(managed|managing)\s+(\w+\s+)*(multiple|competing)\s+(projects?|priorities|deadlines?)/gi,
+            implies: 'Time Management', confidence: 0.9
+        },
+        {
+            trigger: /\b(deadline|time-sensitive|urgent)\s+(driven|delivery|projects?)/gi,
+            implies: 'Time Management', confidence: 0.85
+        },
+        {
+            trigger: /\b(prioritized|prioritizing|triage)\s+/gi,
+            implies: 'Prioritization', confidence: 0.85
+        },
+
+        // Customer/Client Focus signals
+        {
+            trigger: /\b(client|customer)\s+(facing|success|satisfaction|relationships?)/gi,
+            implies: 'Customer Focus', confidence: 0.9
+        },
+        {
+            trigger: /\b(account\s+management|client\s+management)/gi,
+            implies: 'Client Relationship Management', confidence: 0.9
+        },
+
+        // Innovation signals
+        {
+            trigger: /\b(implemented|introduced|launched)\s+(\w+\s+)*(first|new|innovative)/gi,
+            implies: 'Innovation', confidence: 0.85
+        },
+        {
+            trigger: /\b(process\s+improvement|continuous\s+improvement|optimization)/gi,
+            implies: 'Innovation', confidence: 0.85
+        },
+
+        // Resilience & High-Pressure signals
+        {
+            trigger: /\b(high-pressure|demanding|challenging)\s+(environment|situations?|roles?)/gi,
+            implies: 'Resilience', confidence: 0.85
+        },
+        {
+            trigger: /\b(overcame|overcoming)\s+(\w+\s+)*(challenges?|obstacles?|setbacks?)/gi,
+            implies: 'Resilience', confidence: 0.85
+        },
+
+        // Decision Making signals
+        {
+            trigger: /\b(strategic|executive)\s+(decisions?|decision-making)/gi,
+            implies: 'Decision Making', confidence: 0.9
+        },
+        {
+            trigger: /\b(informed|data-driven|sound)\s+(judgment|decisions?)/gi,
+            implies: 'Decision Making', confidence: 0.85
+        },
+
+        // Conflict Resolution signals
+        {
+            trigger: /\b(resolved|resolving|mediated)\s+(\w+\s+)*(conflicts?|disputes?|issues?)/gi,
+            implies: 'Conflict Resolution', confidence: 0.9
+        },
+        {
+            trigger: /\b(difficult\s+conversations?|performance\s+(issues?|management))/gi,
+            implies: 'Conflict Resolution', confidence: 0.85
+        },
+
+        // Interpersonal signals  
+        {
+            trigger: /\b(build|built|building)\s+(\w+\s+)*(relationships?|rapport|trust)/gi,
+            implies: 'Interpersonal Skills', confidence: 0.9
+        },
+        {
+            trigger: /\b(stakeholder|executive|client)\s+(relationships?|engagement)/gi,
+            implies: 'Interpersonal Skills', confidence: 0.85
         },
 
         // ===== TECHNOLOGY =====
@@ -1415,6 +1750,42 @@ export function calculateHybridScore(
     return Math.max(0, Math.min(100, finalScore));
 }
 
+// Skills that are too generic/obvious to show as meaningful gaps
+// These are typically implied skills that almost everyone has
+const LOW_VALUE_GAPS = new Set([
+    'teamwork',
+    'team player',
+    'cross-functional',
+    'cross functional',
+    'collaboration',
+    'collaborative',
+    'communication',
+    'communication skills',
+    'interpersonal skills',
+    'interpersonal',
+    'problem solving',
+    'problem-solving',
+    'attention to detail',
+    'detail oriented',
+    'detail-oriented',
+    'time management',
+    'self-motivated',
+    'motivated',
+    'work ethic',
+    'positive attitude',
+    'reliable',
+    'dependable',
+    'flexible',
+    'adaptable',
+    'multitasking',
+    'multi-tasking',
+    'organized',
+    'organizational skills',
+    'fast learner',
+    'quick learner',
+    'team-oriented',
+]);
+
 export function generateTopGaps(
     missingSkills: string[],
     seniorityFlag: string | null,
@@ -1422,12 +1793,13 @@ export function generateTopGaps(
 ): string[] {
     const gaps: string[] = [];
 
-    // Sort missing skills by weight (most important first)
+    // Filter out low-value gaps and sort by weight (most important first)
     const sortedMissing = missingSkills
+        .filter(skill => !LOW_VALUE_GAPS.has(skill.toLowerCase()))
         .map(skill => ({ skill, weight: jdSkills.get(skill)?.weight ?? 0 }))
         .sort((a, b) => b.weight - a.weight);
 
-    // Top 3 missing skills
+    // Top 3 missing skills (meaningful gaps only)
     for (const { skill } of sortedMissing.slice(0, 3)) {
         gaps.push(`Missing: ${skill}`);
     }
@@ -1628,4 +2000,158 @@ function cosineSimilarity(a: number[], b: number[]): number {
 
     const denominator = Math.sqrt(normA) * Math.sqrt(normB);
     return denominator === 0 ? 0 : dotProduct / denominator;
+}
+
+// ================= ENHANCED MATCHING WITH CLAIM EXTRACTION =================
+
+import type { ParsedResume, ParsedJD, MatchResult as ClaimMatchResult } from './claim-extractor';
+import { parseResume, parseJobDescription, matchClaimsToRequirements } from './claim-extractor';
+
+export interface EnhancedMatchResult {
+    // Combined scores
+    finalScore: number;
+    keywordScore: number;
+    claimScore: number;
+    semanticScore: number | null;
+
+    // Skill analysis
+    matchedSkills: string[];
+    missingSkills: string[];
+
+    // Claim-based evidence
+    claimMatches: ClaimMatchResult[];
+    parsedResume: ParsedResume;
+    parsedJD: ParsedJD;
+
+    // Metadata
+    seniorityPenalty: number;
+    confidence: number;
+}
+
+/**
+ * Enhanced job matching that combines:
+ * - Keyword matching (existing skill patterns)
+ * - Claim extraction (LLM-parsed structured data)
+ * - Semantic similarity (embeddings)
+ * 
+ * Weights: 50% keyword + 30% claims + 20% semantic
+ * 
+ * Cost: ~$0.002 for first match (LLM parsing), $0 for subsequent with cached claims
+ */
+export async function calculateEnhancedMatch(
+    resumeText: string,
+    jdText: string,
+    resumeEmbedding?: number[],
+    jdEmbedding?: number[],
+    cachedResumeClaims?: ParsedResume,
+    cachedJDClaims?: ParsedJD
+): Promise<EnhancedMatchResult> {
+    // 1. Parse claims (or use cached)
+    const parsedResume = cachedResumeClaims || await parseResume(resumeText);
+    const parsedJD = cachedJDClaims || await parseJobDescription(jdText);
+
+    // 2. Get claim-based match
+    const claimResult = matchClaimsToRequirements(parsedResume, parsedJD);
+
+    // 3. Get keyword-based match (existing system)
+    const resumeSkills = extractSkillsFromText(resumeText);
+    const jdSkills = extractSkillsFromText(jdText);
+    const keywordResult = calculateKeywordScore(resumeSkills, jdSkills);
+
+    // 4. Get semantic score if embeddings provided
+    let semanticScore: number | null = null;
+    if (resumeEmbedding && jdEmbedding) {
+        semanticScore = Math.round(cosineSimilarity(resumeEmbedding, jdEmbedding) * 100);
+    }
+
+    // 5. Get seniority signals
+    const resumeSeniority = extractSeniority(resumeText);
+    const jdSeniority = extractSeniority(jdText);
+    const seniorityResult = calculateSeniorityPenalty(resumeSeniority, jdSeniority);
+    const seniorityPenalty = seniorityResult.penalty;
+
+    // 6. Calculate combined score
+    // Weights: 50% keyword, 30% claims, 20% semantic
+    let combinedScore: number;
+    if (semanticScore !== null) {
+        combinedScore = 0.50 * keywordResult.score +
+            0.30 * claimResult.score +
+            0.20 * semanticScore;
+    } else {
+        // No semantic score: 60% keyword, 40% claims
+        combinedScore = 0.60 * keywordResult.score +
+            0.40 * claimResult.score;
+    }
+
+    // Apply seniority penalty
+    const finalScore = Math.max(0, Math.min(100, Math.round(combinedScore - seniorityPenalty)));
+
+    // Calculate confidence based on evidence quality
+    const hasScaleClaims = parsedResume.scale_claims.length > 0;
+    const hasGrowthClaims = parsedResume.growth_claims.length > 0;
+    const claimEvidenceBonus = (hasScaleClaims ? 0.05 : 0) + (hasGrowthClaims ? 0.05 : 0);
+    const confidence = Math.min(0.95, 0.75 + claimEvidenceBonus + (semanticScore ? 0.05 : 0));
+
+    return {
+        finalScore,
+        keywordScore: keywordResult.score,
+        claimScore: claimResult.score,
+        semanticScore,
+        matchedSkills: keywordResult.matchedSkills,
+        missingSkills: keywordResult.missingSkills,
+        claimMatches: claimResult.matches,
+        parsedResume,
+        parsedJD,
+        seniorityPenalty,
+        confidence
+    };
+}
+
+/**
+ * Get evidence-based explanations for a match
+ * Returns human-readable strings for each matched requirement
+ */
+export function getMatchEvidence(result: EnhancedMatchResult): string[] {
+    const evidence: string[] = [];
+
+    for (const match of result.claimMatches) {
+        if (match.status === 'met' && match.evidence) {
+            evidence.push(`✓ ${match.requirement.text}: ${match.evidence}`);
+        }
+    }
+
+    return evidence;
+}
+
+/**
+ * Get actionable gaps with suggestions
+ */
+export function getActionableGaps(result: EnhancedMatchResult): Array<{
+    requirement: string;
+    status: 'gap' | 'partial';
+    suggestion: string;
+}> {
+    const gaps: Array<{ requirement: string; status: 'gap' | 'partial'; suggestion: string }> = [];
+
+    for (const match of result.claimMatches) {
+        if (match.status === 'gap' || match.status === 'partial') {
+            let suggestion = 'Consider adding relevant experience';
+
+            if (match.requirement.category === 'scale') {
+                suggestion = 'Add quantitative achievements (numbers, metrics)';
+            } else if (match.requirement.category === 'skill') {
+                suggestion = `Add "${match.requirement.extracted_skill}" to your resume`;
+            } else if (match.requirement.category === 'tool') {
+                suggestion = 'Highlight specific tools you\'ve used';
+            }
+
+            gaps.push({
+                requirement: match.requirement.text,
+                status: match.status,
+                suggestion
+            });
+        }
+    }
+
+    return gaps;
 }

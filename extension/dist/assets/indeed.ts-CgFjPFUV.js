@@ -1,4 +1,19 @@
-(function(){const JD_SELECTORS = [
+(function(){async function safeMessage(message) {
+  try {
+    if (!chrome.runtime?.id) {
+      console.warn("[RIYP] Extension context invalidated, please reload the page");
+      return { success: false, error: "Extension reloaded - please refresh the page" };
+    }
+    return await chrome.runtime.sendMessage(message);
+  } catch (error) {
+    if (error?.message?.includes("Extension context invalidated")) {
+      console.warn("[RIYP] Extension context invalidated, please reload the page");
+      return { success: false, error: "Extension reloaded - please refresh the page" };
+    }
+    throw error;
+  }
+}
+const JD_SELECTORS = [
   "#jobDescriptionText",
   ".jobsearch-jobDescriptionText",
   '[data-testid="jobDescriptionText"]',
@@ -123,7 +138,7 @@ async function handleCapture() {
       type: "CAPTURE_JD",
       payload: { jd, meta }
     };
-    const response = await chrome.runtime.sendMessage(message);
+    const response = await safeMessage(message);
     if (!response.success) {
       throw new Error(response.error || "Failed to save job");
     }
@@ -205,5 +220,5 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
-//# sourceMappingURL=indeed.ts-BP89kePZ.js.map
+//# sourceMappingURL=indeed.ts-CgFjPFUV.js.map
 })()
