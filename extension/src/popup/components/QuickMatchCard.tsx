@@ -42,6 +42,13 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
                         <span className="job-source">{job.source === 'linkedin' ? 'LI' : 'IN'}</span>
                     )}
                 </div>
+                {score > 0 && (
+                    <div className="job-alignment">
+                        <span className={`alignment-badge ${getRoleAlignmentClass(score)}`}>
+                            {getRoleAlignmentLabel(score)}
+                        </span>
+                    </div>
+                )}
                 <div className="job-status">
                     <span className="job-status-text">
                         Captured {capturedAgo} • {score > 0 ? `${getScoreBandLabel(score)}: ${score}%` : 'Ready to analyze'}
@@ -124,6 +131,19 @@ function getScoreBandLabel(score: number): string {
     if (score >= 41) return 'Plausible Fit';
     if (score >= 16) return 'Career Stretch';
     return 'Not a Match';
+}
+
+function getRoleAlignmentLabel(score: number): string {
+    if (score >= 71) return 'Role Match';
+    if (score >= 41) return 'Adjacent Role';
+    if (score >= 16) return 'Different Field';
+    return 'Mismatch';
+}
+
+function getRoleAlignmentClass(score: number): string {
+    if (score >= 71) return 'alignment-match';
+    if (score >= 41) return 'alignment-adjacent';
+    return 'alignment-mismatch';
 }
 
 function getTimeAgo(timestamp: number | string | undefined): string {

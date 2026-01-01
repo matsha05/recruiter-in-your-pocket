@@ -703,6 +703,35 @@ body {
     color: hsl(var(--muted-foreground));
 }
 
+/* ============= JOB ALIGNMENT BADGE ============= */
+.job-alignment {
+    margin-top: 4px;
+}
+
+.alignment-badge {
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.alignment-match {
+    background: hsl(var(--success) / 0.15);
+    color: hsl(var(--success));
+}
+
+.alignment-adjacent {
+    background: hsl(var(--premium) / 0.15);
+    color: hsl(var(--premium));
+}
+
+.alignment-mismatch {
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+}
+
 /* ============= UNDO TOAST ============= */
 .undo-toast {
     position: fixed;

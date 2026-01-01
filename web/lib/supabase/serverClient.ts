@@ -12,10 +12,13 @@ export async function createSupabaseServerClient() {
 
   return createServerClient(getSupabaseUrl(), getSupabaseAnonKey(), {
     cookies: {
-      get(name: string) {
-        return cookieStore.get(name)?.value;
+      getAll() {
+        return cookieStore.getAll();
+      },
+      // Read-only in Server Components - setAll is a no-op but required to avoid warning
+      setAll() {
+        // No-op: read-only context
       }
-      // No set/remove: read-only in Server Components
     }
   });
 }
@@ -32,8 +35,11 @@ export async function maybeCreateSupabaseServerClient() {
   const cookieStore = await cookies();
   return createServerClient(url, anonKey, {
     cookies: {
-      get(name: string) {
-        return cookieStore.get(name)?.value;
+      getAll() {
+        return cookieStore.getAll();
+      },
+      setAll() {
+        // No-op: read-only context
       }
     }
   });
@@ -49,15 +55,20 @@ export async function createSupabaseServerAction() {
 
   return createServerClient(getSupabaseUrl(), getSupabaseAnonKey(), {
     cookies: {
-      get(name: string) {
-        return cookieStore.get(name)?.value;
+      getAll() {
+        return cookieStore.getAll();
       },
-      set(name: string, value: string, options: any) {
-        cookieStore.set({ name, value, ...options });
-      },
-      remove(name: string, options: any) {
-        cookieStore.set({ name, value: "", ...options });
+      setAll(cookiesToSet) {
+        try {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            cookieStore.set(name, value, options);
+          });
+        } catch {
+          // The `setAll` method was called from a Server Component.
+          // This can be ignored if you have middleware refreshing user sessions.
+        }
       }
     }
   });
 }
+

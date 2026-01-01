@@ -1633,8 +1633,6 @@ export function extractSeniority(text: string): SenioritySignals {
 
 // ================= MATCHING FUNCTIONS =================
 
-import { getSkillWeight } from './skill-idf';
-
 export function calculateKeywordScore(
     resumeSkills: Map<string, { weight: number; category: string }>,
     jdSkills: Map<string, { weight: number; category: string }>

@@ -513,6 +513,7 @@ function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete }) {
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "job-company", children: job.company }),
         job.source && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "job-source", children: job.source === "linkedin" ? "LI" : "IN" })
       ] }),
+      score > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "job-alignment", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `alignment-badge ${getRoleAlignmentClass(score)}`, children: getRoleAlignmentLabel(score) }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "job-status", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "job-status-text", children: [
         "Captured ",
         capturedAgo,
@@ -593,6 +594,17 @@ function getScoreBandLabel(score) {
   if (score >= 41) return "Plausible Fit";
   if (score >= 16) return "Career Stretch";
   return "Not a Match";
+}
+function getRoleAlignmentLabel(score) {
+  if (score >= 71) return "Role Match";
+  if (score >= 41) return "Adjacent Role";
+  if (score >= 16) return "Different Field";
+  return "Mismatch";
+}
+function getRoleAlignmentClass(score) {
+  if (score >= 71) return "alignment-match";
+  if (score >= 41) return "alignment-adjacent";
+  return "alignment-mismatch";
 }
 function getTimeAgo(timestamp) {
   if (!timestamp) return "recently";
@@ -957,4 +969,4 @@ function LoadingSkeleton() {
 client.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=popup-D2wyz8EX.js.map
+//# sourceMappingURL=popup-D0IfqbQB.js.map
