@@ -279,7 +279,7 @@ export default function SettingsClient() {
                     <div className="bg-card border border-border/20 shadow-xl rounded-xl w-full max-w-sm p-6 space-y-4">
                         <div className="text-center">
                             <h3 className="text-lg font-display font-semibold">Where should we send your receipt?</h3>
-                            <p className="text-muted-foreground text-sm mt-1">We'll link your credits to this email.</p>
+                            <p className="text-muted-foreground text-sm mt-1">We&apos;ll link your credits to this email.</p>
                         </div>
                         <form onSubmit={handleGuestSubmit} className="space-y-3">
                             <input

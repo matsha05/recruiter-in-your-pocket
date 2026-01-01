@@ -111,7 +111,7 @@ export default function LandingClient() {
                                 See what recruiters see.
                             </h1>
                             <p className="text-xl text-muted-foreground mb-6">
-                                7.4 seconds. That's how long recruiters spend on your resume. Make it count.
+                                7.4 seconds. That&apos;s how long recruiters spend on your resume. Make it count.
                             </p>
 
                             {/* Trust Badges Above Fold */}
