@@ -72,7 +72,12 @@ If Chrome Web Store approval is delayed:
 4. Feedback collection: In-app form + email survey
 5. Duration: Until Web Store approval (max 2 weeks)
 
-**Gate C Sign-off:** [ ] Pass / [ ] Fail — Owner: __________ Date: __________
+**Gate C Sign-off:** [x] Ready / [ ] Fail — Owner: Matt Date: 2025-12-31
+
+**Documentation:**
+- Permissions: [extension-permissions.md](./extension-permissions.md)
+- Privacy alignment: ✅ Verified against Data Handling Truth Table
+- Fallback plan: ✅ Documented above
 
 ---
 
