@@ -2,6 +2,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Lock, ArrowRight, Wand2, Copy, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Analytics } from "@/lib/analytics"
 
 interface RedPenCardProps {
     title: string
@@ -34,6 +35,7 @@ export function RedPenCard({
         try {
             await navigator.clipboard.writeText(after);
             setCopied(true);
+            Analytics.track('sm1_fix_copied', { title });
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
             console.error('Failed to copy:', err);

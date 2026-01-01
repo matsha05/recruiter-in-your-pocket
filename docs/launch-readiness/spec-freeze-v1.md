@@ -36,7 +36,7 @@ Active job seeker with 3-10 years experience, applying to competitive roles, ske
 | **P0 Bundle 4: Payment Correctness** | RT-013, RT-014 | Webhook replay does not double-credit or double-charge. Unlock state is consistent under retries. Event log proves idempotency. |
 | **P0 Bundle 5: Timeout and Billing Integrity** | RT-017, RT-023 | Timeouts degrade gracefully with clear UI states. Credits are not consumed on timeout or schema-failing completion. Streaming never leaves UI stuck. |
 
-**Gate A Sign-off:** [ ] Pass / [ ] Fail — Owner: __________ Date: __________
+**Gate A Sign-off:** [x] Pass / [ ] Fail — Owner: Matt Date: 2025-12-31
 
 ---
 
@@ -50,7 +50,7 @@ Active job seeker with 3-10 years experience, applying to competitive roles, ske
 | Output contract validation | Zod schema + completeness checks (all arrays populated, score 0-100) |
 | Shipping gate exists | Documented rule: "prompt changes cannot ship unless eval thresholds pass" |
 
-**Gate B Sign-off:** [ ] Pass / [ ] Fail — Owner: __________ Date: __________
+**Gate B Sign-off:** [x] Pass / [ ] Fail — Owner: Matt Date: 2025-12-31
 
 ---
 
@@ -146,8 +146,8 @@ If Chrome Web Store approval is delayed:
 
 | Event | Trigger | Code Location | Status |
 |:------|:--------|:--------------|:-------|
-| `sm1_fixes_rendered` | TopFixes component mounts with data | `TopFixes.tsx` useEffect | ⚪ Add in Week 3 |
-| `sm1_fix_copied` | Copy button clicked | `TopFixes.tsx` onClick | ⚪ Add in Week 3 |
+| `sm1_fixes_rendered` | BulletUpgradesSection mounts with data | `BulletUpgradesSection.tsx` useEffect | ✅ Done 2025-12-31 |
+| `sm1_fix_copied` | Copy button clicked | `RedPenCard.tsx` handleCopy | ✅ Done 2025-12-31 |
 
 **How to Verify:** After Week 3, grep for `Analytics.track('sm1_` in `components/workspace/report/`.
 

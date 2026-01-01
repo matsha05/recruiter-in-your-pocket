@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReportData } from "./ReportTypes";
 import { TransformArrowIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
@@ -19,6 +19,13 @@ interface BulletUpgradesSectionProps {
 
 export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: BulletUpgradesSectionProps) {
     const [showAll, setShowAll] = useState(false);
+
+    // SM1: Track when fixes are rendered
+    useEffect(() => {
+        if (data.rewrites && data.rewrites.length > 0) {
+            Analytics.track('sm1_fixes_rendered', { count: data.rewrites.length });
+        }
+    }, [data.rewrites]);
 
     if (!data.rewrites || data.rewrites.length === 0) {
         return (
