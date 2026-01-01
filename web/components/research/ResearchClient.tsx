@@ -163,21 +163,21 @@ function FeaturedCard({ article }: { article: typeof featuredArticles[0] }) {
         >
             <Link
                 href={article.href}
-                className="group block py-4 border-b border-border/40 last:border-b-0"
+                className="group block py-4"
             >
                 <div className="flex items-start justify-between gap-6">
                     <div className="flex-1 min-w-0">
-                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50 mb-2">
+                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70 mb-2">
                             {article.label}
                         </div>
-                        <h3 className="font-display text-xl md:text-2xl font-medium text-foreground group-hover:text-brand transition-colors mb-2">
+                        <h3 className="font-display text-lg md:text-xl font-medium text-foreground group-hover:text-brand transition-colors mb-2">
                             {article.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                             {article.thesis}
                         </p>
                     </div>
-                    <span className="font-mono text-[10px] text-muted-foreground/50 shrink-0">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 shrink-0">
                         {article.readTime}
                     </span>
                 </div>
@@ -193,28 +193,31 @@ function MethodologyCallout() {
     return (
         <motion.div
             initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: DURATION.slow, ease: EASE_SNAP, delay: 0.3 }}
-            className="border-l-2 border-brand pl-4"
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: DURATION.slow, ease: EASE_SNAP }}
+            className="border-l-2 border-brand pl-4 space-y-4"
         >
-            <div className="space-y-3">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
-                    Our Methodology
-                </div>
+            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
+                Methodology note
+            </div>
+            <div className="space-y-2">
                 <h3 className="font-display text-xl font-medium text-foreground">
                     First-Impression Signal Model
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                    How we score resumes: Story, Impact, Clarity, Readability — and why Story matters most.
-                    This framework anchors every analysis.
+                    We translate early attention patterns into four scoring dimensions and map them to product decisions.
                 </p>
-                <Link
-                    href="/research/how-we-score"
-                    className="text-sm text-brand hover:underline underline-offset-4"
-                >
-                    See how we score
-                </Link>
             </div>
+            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
+                Story · Impact · Clarity · Readability
+            </div>
+            <Link
+                href="/research/how-we-score"
+                className="text-sm text-brand hover:underline underline-offset-4"
+            >
+                See how we score
+            </Link>
         </motion.div>
     );
 }
@@ -227,18 +230,18 @@ function ArticleCard({ article }: { article: typeof categories[0]["articles"][0]
         <motion.div variants={prefersReducedMotion ? {} : STAGGER_ITEM}>
             <Link
                 href={article.href}
-                className="group flex items-center justify-between py-3"
+                className="group flex items-center justify-between py-4 transition-colors"
             >
                 <div className="flex-1 min-w-0 mr-4">
-                    <h4 className="text-sm font-medium text-foreground group-hover:text-brand transition-colors mb-0.5">
+                    <h4 className="text-sm font-medium text-foreground group-hover:text-brand transition-colors">
                         {article.title}
                     </h4>
-                    <p className="text-xs text-muted-foreground line-clamp-1">
+                    <p className="text-xs text-muted-foreground line-clamp-2 sm:line-clamp-1">
                         {article.thesis}
                     </p>
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
-                    <span className="font-mono text-[10px] text-muted-foreground/40">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
                         {article.readTime}
                     </span>
                 </div>
@@ -262,7 +265,7 @@ function CategorySection({ category, index }: { category: typeof categories[0]; 
         >
             <div className="grid md:grid-cols-[200px_1fr] gap-6 items-start">
                 <div className="space-y-3">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/40">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
                         {String(index + 1).padStart(2, "0")}
                     </span>
                     <div>
@@ -273,7 +276,7 @@ function CategorySection({ category, index }: { category: typeof categories[0]; 
                             {category.subtitle}
                         </p>
                     </div>
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
                         {String(category.articles.length).padStart(2, "0")} pieces
                     </span>
                 </div>
@@ -302,46 +305,53 @@ export default function ResearchClient() {
 
             {/* Editorial Header */}
             <motion.header
-                className="mb-10"
+                className="mb-12 space-y-5 md:space-y-6"
                 initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: DURATION.slow, ease: EASE_SNAP }}
             >
-                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 mb-4 block">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                     The Hiring Playbook
                 </span>
-                <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
+                <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground tracking-tight">
                     The rules they<br />don&apos;t teach you.
                 </h1>
                 <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
                     A curated library on how recruiters think, what they notice first, and how to present yourself.
                 </p>
-                <div className="mt-6 text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">
-                    {String(featuredCount).padStart(2, "0")} essentials · {String(categoryCount).padStart(2, "0")} sections · {String(totalEntries).padStart(2, "0")} pieces
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">
+                    <span>{String(featuredCount).padStart(2, "0")} essentials</span>
+                    <span className="h-px w-6 bg-border/40" />
+                    <span>{String(categoryCount).padStart(2, "0")} sections</span>
+                    <span className="h-px w-6 bg-border/40" />
+                    <span>{String(totalEntries).padStart(2, "0")} pieces</span>
                 </div>
+                <p className="text-xs text-muted-foreground max-w-xl">
+                    Sources and citations live inside each article. The index stays descriptive.
+                </p>
             </motion.header>
 
             {/* Featured Hero Section */}
             <motion.section
                 ref={heroRef as React.RefObject<HTMLElement>}
-                className="border-t border-border/20 pt-8 mb-14"
+                className="border-t border-border/20 pt-8 md:pt-10 mb-12 md:mb-16"
                 variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
                 initial="hidden"
                 animate={heroVisible ? "visible" : "hidden"}
             >
                 <div className="grid md:grid-cols-[200px_1fr] gap-8 items-start">
                     <div className="space-y-3">
-                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">
+                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
                             01 / Start here
                         </div>
                         <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight">
                             Essential Reading
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                            Three reads that frame how recruiters evaluate resumes and how we score the signal.
+                            Three essentials that frame how recruiters evaluate resumes and how we score the signal.
                         </p>
                     </div>
-                    <div className="border-t border-border/40">
+                    <div className="border-t border-border/30 divide-y divide-border/30">
                         {featuredArticles.map((article) => (
                             <FeaturedCard key={article.id} article={article} />
                         ))}
@@ -350,17 +360,17 @@ export default function ResearchClient() {
             </motion.section>
 
             {/* Methodology Callout */}
-            <section className="border-t border-border/20 pt-8 mb-14">
+            <section className="border-t border-border/20 pt-8 mb-12 md:mb-14">
                 <div className="grid md:grid-cols-[200px_1fr] gap-8 items-start">
                     <div className="space-y-3">
-                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">
-                            02 / How we score
+                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
+                            02 / Methodology
                         </div>
                         <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight">
                             Methodology
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                            How we translate findings into scoring logic and product decisions.
+                            How we translate attention research into scoring logic and product decisions.
                         </p>
                     </div>
                     <MethodologyCallout />
@@ -368,20 +378,20 @@ export default function ResearchClient() {
             </section>
 
             {/* Category Sections */}
-            <section className="border-t border-border/20 pt-8 mb-16">
+            <section className="border-t border-border/20 pt-8 mb-12 md:mb-16">
                 <div className="grid md:grid-cols-[200px_1fr] gap-8 items-start">
                     <div className="space-y-3">
-                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">
+                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
                             03 / Browse research
                         </div>
                         <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight">
                             Research Library
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                            Browse by theme. Each section groups the sources and implications we cite inside the product.
+                            Browse by theme. Each section groups the sources and the product implications.
                         </p>
                     </div>
-                    <div className="space-y-10">
+                    <div className="space-y-6 md:space-y-8">
                         {categories.map((category, i) => (
                             <CategorySection key={category.id} category={category} index={i} />
                         ))}
@@ -394,14 +404,14 @@ export default function ResearchClient() {
             {/* Product Philosophy */}
             <motion.section
                 ref={principlesRef as React.RefObject<HTMLElement>}
-                className="border-t border-border/20 pt-8 mb-16"
+                className="border-t border-border/20 pt-8 mb-12 md:mb-16"
                 variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
                 initial="hidden"
                 animate={principlesVisible ? "visible" : "hidden"}
             >
                 <div className="grid md:grid-cols-[200px_1fr] gap-8 items-start">
                     <div className="space-y-3">
-                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">
+                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
                             04 / Product translation
                         </div>
                         <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight">
@@ -412,7 +422,7 @@ export default function ResearchClient() {
                         </p>
                     </div>
                     <motion.div
-                        className="border-t border-border/20 divide-y divide-border/20"
+                        className="border-t border-border/30 divide-y divide-border/30"
                         variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
                         initial="hidden"
                         animate={principlesVisible ? "visible" : "hidden"}
@@ -440,14 +450,14 @@ export default function ResearchClient() {
                                 className="flex gap-4 py-4"
                                 variants={prefersReducedMotion ? {} : STAGGER_ITEM}
                             >
-                                <span className="font-mono text-[10px] text-muted-foreground/30 mt-1">
+                                <span className="font-mono text-[10px] text-muted-foreground/40 mt-1">
                                     {String(i + 1).padStart(2, "0")}
                                 </span>
                                 <div>
                                     <strong className="block text-foreground font-medium text-sm mb-1">
                                         {principle.title}
                                     </strong>
-                                    <p className="text-xs text-muted-foreground leading-relaxed">
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
                                         {principle.desc}
                                     </p>
                                 </div>
