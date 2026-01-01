@@ -8,7 +8,7 @@ import ThemeToggle from "@/components/shared/ThemeToggle";
 import Link from "next/link";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { Button } from "@/components/ui/button";
-import { Lock, Check } from "lucide-react";
+import { Lock } from "lucide-react";
 import { PocketMark, Wordmark } from "@/components/icons";
 import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
@@ -97,59 +97,45 @@ export default function LandingClient() {
 
             {/* Hero Section — Verdict First */}
             <main className="flex-1 flex flex-col overflow-hidden">
-                <section className="relative flex-1 flex items-center justify-center px-6 py-12 lg:py-16">
-                    {/* Ambient glow - Linear-style */}
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-radial from-brand/8 via-transparent to-transparent blur-3xl" />
-                    </div>
-
-                    <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center gap-10">
-
-                        {/* Centered Hero Header */}
-                        <div className="text-center max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
-                            <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary mb-6">
+                <section className="relative px-6 py-12 lg:py-20">
+                    <div className="relative w-full max-w-6xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-start">
+                        <div className="space-y-6">
+                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                Recruiter First Impression
+                            </div>
+                            <h1 className="text-hero text-5xl md:text-6xl lg:text-7xl text-primary">
                                 See what recruiters see.
                             </h1>
-                            <p className="text-xl text-muted-foreground mb-6">
-                                7.4 seconds. That&apos;s how long recruiters spend on your resume. Make it count.
+                            <p className="text-xl text-muted-foreground">
+                                7.4 seconds. That&apos;s your window. We show what they notice first, then how to fix it.
                             </p>
-
-                            {/* Trust Badges Above Fold */}
-                            <div className="flex items-center justify-center gap-4 mb-8 text-xs text-muted-foreground/70">
-                                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success" /> 500+ resumes reviewed</span>
-                                <span className="hidden sm:flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success" /> Recruiter-grade feedback</span>
-                                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-success" /> Free instant review</span>
-                            </div>
-
-                            {/* Dropzone — The Hero */}
-                            <div className="flex flex-col items-center gap-6">
-                                <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
-                                <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/50">
-                                    <span className="flex items-center gap-1.5"><Lock className="w-3 h-3" /> Encrypted</span>
-                                    <span className="text-muted-foreground/30">·</span>
-                                    <span>Auto-deleted in 24h</span>
-                                    <span className="text-muted-foreground/30">·</span>
-                                    <span>Never trains AI</span>
-                                </div>
-                                <Link
-                                    href="/workspace?mode=linkedin"
-                                    className="group inline-flex items-center gap-2 px-3 py-1.5 rounded bg-muted/30 border border-border/30 hover:border-brand/30 hover:bg-brand/5 transition-all duration-200"
-                                >
-                                    <svg className="w-3.5 h-3.5 text-brand" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                                    </svg>
-                                    <span className="text-xs text-muted-foreground/80 group-hover:text-foreground transition-colors">
-                                        LinkedIn profiles
-                                    </span>
+                            <div className="text-xs text-muted-foreground">
+                                <Link href="/research/how-recruiters-read" className="underline underline-offset-4 decoration-border hover:decoration-foreground">
+                                    See the research behind the 7.4-second scan
                                 </Link>
                             </div>
+                            <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">
+                                <span className="flex items-center gap-1.5"><Lock className="w-3 h-3" /> Encrypted</span>
+                                <span className="text-muted-foreground/30">·</span>
+                                <span>Auto-deleted in 24h</span>
+                                <span className="text-muted-foreground/30">·</span>
+                                <span>Never trains AI</span>
+                            </div>
                         </div>
 
-                        {/* Product Preview - Below the fold */}
-                        <div className="w-full animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                        <div className="space-y-6">
                             <SampleReportPreview />
+                            <ResumeDropzone onFileSelect={handleFileSelect} isProcessing={isProcessing} />
+                            <Link
+                                href="/workspace?mode=linkedin"
+                                className="group inline-flex items-center gap-2 px-3 py-1.5 rounded border border-border/40 text-xs text-muted-foreground hover:text-foreground hover:border-brand/30 transition-colors"
+                            >
+                                <svg className="w-3.5 h-3.5 text-brand" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                                LinkedIn profiles
+                            </Link>
                         </div>
-
                     </div>
                 </section>
 

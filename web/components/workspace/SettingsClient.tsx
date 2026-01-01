@@ -133,7 +133,7 @@ export default function SettingsClient() {
                     {/* ACCOUNT TAB */}
                     {activeTab === "account" && (
                         <div className="space-y-8 animate-in fade-in duration-200">
-                            <section className="bg-card border border-border/60 rounded-xl p-6 shadow-sm">
+                            <section className="bg-card border border-border/60 rounded p-6">
                                 <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-6">Profile</h2>
                                 <div className="flex items-start gap-6">
                                     <div className="w-14 h-14 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand font-display font-medium text-xl select-none shrink-0">
@@ -148,12 +148,12 @@ export default function SettingsClient() {
                                                     value={displayName}
                                                     onChange={(e) => setDisplayName(e.target.value)}
                                                     placeholder="Your name"
-                                                    className="flex-1 bg-background border border-border/40 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20"
+                                                    className="flex-1 bg-background border border-border/40 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/20"
                                                 />
                                                 <button
                                                     onClick={handleSaveProfile}
                                                     disabled={isSavingProfile || !displayName.trim() || displayName === user?.firstName}
-                                                    className="px-3 py-2 bg-secondary hover:bg-secondary/80 rounded-lg font-medium text-sm transition-all disabled:opacity-40 flex items-center gap-1.5"
+                                                    className="px-3 py-2 bg-secondary hover:bg-secondary/80 rounded font-medium text-sm transition-all disabled:opacity-40 flex items-center gap-1.5"
                                                 >
                                                     {isSavingProfile && <Loader2 className="w-3 h-3 animate-spin" />}
                                                     Save
@@ -162,21 +162,21 @@ export default function SettingsClient() {
                                         </div>
                                         <div className="max-w-sm">
                                             <label className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2 block">Email</label>
-                                            <div className="text-sm text-muted-foreground bg-muted/30 px-3 py-2 rounded-lg">{user?.email}</div>
+                                            <div className="text-sm text-muted-foreground bg-muted/30 px-3 py-2 rounded">{user?.email}</div>
                                         </div>
                                     </div>
                                 </div>
                             </section>
 
-                            <section className="p-4 rounded-xl border border-red-200/50 bg-red-50/30">
+                            <section className="p-4 rounded border border-destructive/20 bg-destructive/5">
                                 <div className="flex items-center justify-between gap-4">
                                     <div>
-                                        <h3 className="text-sm font-medium text-red-900 mb-0.5">Delete Account</h3>
-                                        <p className="text-xs text-red-700/70">Permanently delete your account and all data.</p>
+                                        <h3 className="text-sm font-medium text-destructive mb-0.5">Delete Account</h3>
+                                        <p className="text-xs text-destructive/70">Permanently delete your account and all data.</p>
                                     </div>
                                     <button
                                         onClick={() => toast.info("Email privacy@recruiterinyourpocket.com")}
-                                        className="text-xs px-3 py-1.5 border border-red-200 rounded-lg text-red-600 hover:bg-red-50 font-medium bg-white shrink-0"
+                                        className="text-xs px-3 py-1.5 border border-destructive/30 rounded text-destructive hover:bg-destructive/10 font-medium bg-background shrink-0"
                                     >
                                         Delete
                                     </button>
@@ -202,7 +202,7 @@ export default function SettingsClient() {
                     {activeTab === "billing" && (
                         <div className="space-y-10 animate-in fade-in duration-200">
                             {/* Credits */}
-                            <section className="bg-card border border-border/60 rounded-xl p-5 shadow-sm">
+                            <section className="bg-card border border-border/60 rounded p-5">
                                 <div className="flex items-center justify-between">
                                     <div>
                                         <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Your Reviews</h2>
@@ -215,7 +215,7 @@ export default function SettingsClient() {
                                             <span className="font-semibold text-sm">{user?.freeUsesLeft ?? 0} available</span>
                                         </div>
                                     </div>
-                                    <a href="/workspace" className="px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors">
+                                    <a href="/workspace" className="px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors">
                                         Run a Review
                                     </a>
                                 </div>
@@ -234,7 +234,7 @@ export default function SettingsClient() {
                             {/* History */}
                             <section>
                                 <h2 className="text-base font-medium text-foreground mb-3">History</h2>
-                                <div className="bg-card border border-border/60 rounded-xl overflow-hidden">
+                                <div className="bg-card border border-border/60 rounded overflow-hidden">
                                     {loadingPasses ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
                                             <Loader2 className="w-4 h-4 animate-spin" /> Loading...
@@ -276,7 +276,7 @@ export default function SettingsClient() {
             {/* Email Modal */}
             {showEmailInput && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
-                    <div className="bg-card border border-border/20 shadow-xl rounded-xl w-full max-w-sm p-6 space-y-4">
+                    <div className="bg-card border border-border/20 rounded w-full max-w-sm p-6 space-y-4">
                         <div className="text-center">
                             <h3 className="text-lg font-display font-semibold">Where should we send your receipt?</h3>
                             <p className="text-muted-foreground text-sm mt-1">We&apos;ll link your credits to this email.</p>
@@ -288,13 +288,13 @@ export default function SettingsClient() {
                                 placeholder="you@example.com"
                                 value={guestEmail}
                                 onChange={(e) => setGuestEmail(e.target.value)}
-                                className="w-full px-4 py-2.5 rounded-lg border border-border/30 bg-background focus:outline-none focus:ring-2 focus:ring-brand/20"
+                                className="w-full px-4 py-2.5 rounded border border-border/30 bg-background focus:outline-none focus:ring-2 focus:ring-brand/20"
                                 autoFocus
                             />
                             <button
                                 type="submit"
                                 disabled={!guestEmail || !!isLoading}
-                                className="w-full py-2.5 rounded-lg bg-brand text-white font-medium hover:bg-brand/90 transition-colors flex items-center justify-center gap-2"
+                                className="w-full py-2.5 rounded bg-brand text-white font-medium hover:bg-brand/90 transition-colors flex items-center justify-center gap-2"
                             >
                                 {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
                                 Continue to Checkout

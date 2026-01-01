@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 /**
  * Referral Funnel Diagram
  * Compares application source success rates
@@ -15,24 +13,16 @@ export function ReferralFunnelDiagram() {
     ];
 
     return (
-        <div className="w-full max-w-md mx-auto my-8">
-            <div className="relative bg-card border border-border/20 rounded-md p-4 md:p-6 shadow-sm">
-                {/* Header */}
+        <figure className="w-full max-w-md mx-auto my-8">
+            <div className="border border-border/30 bg-background p-4 md:p-6">
                 <div className="flex justify-between text-[9px] font-mono uppercase tracking-widest text-muted-foreground mb-4 md:mb-6">
                     <span>Source</span>
-                    <span>Interview Rate</span>
+                    <span>Interview rate</span>
                 </div>
 
-                {/* Bars */}
                 <div className="space-y-4">
-                    {sources.map((source, i) => (
-                        <motion.div
-                            key={source.label}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, delay: 0.15 * i }}
-                            className="space-y-1"
-                        >
+                    {sources.map((source) => (
+                        <div key={source.label} className="space-y-1">
                             <div className="flex justify-between items-center">
                                 <span className={`text-xs ${source.highlight ? "text-foreground font-medium" : "text-muted-foreground"}`}>
                                     {source.label}
@@ -41,48 +31,34 @@ export function ReferralFunnelDiagram() {
                                     {source.interviews}
                                 </span>
                             </div>
-                            <div className="h-4 bg-secondary/30 rounded-sm overflow-hidden">
-                                <motion.div
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${source.width}%` }}
-                                    transition={{ duration: 0.5, delay: 0.3 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                                    className={`h-full rounded-sm ${source.highlight ? "bg-brand" : "bg-muted-foreground/30"}`}
+                            <div className="h-2 bg-foreground/5 border border-border/30">
+                                <div
+                                    className={`h-full ${source.highlight ? "bg-brand/40" : "bg-foreground/20"}`}
+                                    style={{ width: `${source.width}%` }}
                                 />
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
-                {/* Callout */}
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.9 }}
-                    className="mt-8 pt-4 border-t border-border/20 text-center"
-                >
+                <div className="mt-8 pt-4 border-t border-border/20 text-center">
                     <div className="inline-flex items-baseline gap-2">
-                        <span className="font-serif text-4xl font-medium text-brand">5-10×</span>
+                        <span className="font-display text-3xl font-medium text-brand">5-10×</span>
                         <span className="text-xs text-muted-foreground">more likely to be hired</span>
                     </div>
-                </motion.div>
+                </div>
 
-                {/* Key insight */}
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 1.1 }}
-                    className="text-center text-[10px] text-muted-foreground mt-4"
-                >
+                <p className="text-center text-[10px] text-muted-foreground mt-4">
                     Referrals are 7% of applicants but 40% of hires
-                </motion.p>
+                </p>
             </div>
 
-            {/* Figure Caption */}
-            <p className="text-center mt-4">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    Fig. 1 — Interview success rate by application source
+            <figcaption className="mt-3 text-center">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+                <span className="block text-xs text-muted-foreground">
+                    Interview success rate by application source.
                 </span>
-            </p>
-        </div>
+            </figcaption>
+        </figure>
     );
 }

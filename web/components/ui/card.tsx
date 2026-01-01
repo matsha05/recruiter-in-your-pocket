@@ -7,8 +7,8 @@ import { CARD_HOVER, CARD_TAP } from "@/lib/animation"
 
 /**
  * V2.1 Card Component
- * - 4px radius (rounded-md = --radius)
- * - No heavy shadows, only shadow-sm
+ * - 4px radius (rounded = --radius)
+ * - No heavy shadows
  * - Border uses --border with opacity
  */
 const Card = React.forwardRef<
@@ -18,7 +18,7 @@ const Card = React.forwardRef<
     <div
         ref={ref}
         className={cn(
-            "rounded-lg border border-border/60 bg-card text-card-foreground shadow-sm",
+            "rounded border border-border/60 bg-card text-card-foreground",
             className
         )}
         {...props}
@@ -43,7 +43,7 @@ const CardInteractive = React.forwardRef<HTMLDivElement, CardInteractiveProps>(
             <motion.div
                 ref={ref}
                 className={cn(
-                    "rounded-lg border border-border/60 bg-card text-card-foreground shadow-sm",
+                    "rounded border border-border/60 bg-card text-card-foreground",
                     "cursor-pointer",
                     className
                 )}
@@ -115,4 +115,3 @@ const CardFooter = React.forwardRef<
 CardFooter.displayName = "CardFooter"
 
 export { Card, CardInteractive, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
-

@@ -86,7 +86,7 @@ export function LinkedInReportPanel({
                 </div>
 
                 {/* Main Card - THE Signature Moment */}
-                <div className="bg-card rounded border border-border/60 shadow-sm overflow-hidden">
+                <div className="bg-card rounded border border-border/60 overflow-hidden">
                     <div className="grid md:grid-cols-5">
 
                         {/* LEFT: THE VERDICT (3 cols) */}
@@ -97,7 +97,7 @@ export function LinkedInReportPanel({
                                 </h3>
                             </div>
 
-                            <p className="text-base text-muted-foreground leading-relaxed font-serif">
+                            <p className="text-base text-muted-foreground leading-relaxed">
                                 {report.score_comment_long || report.score_comment_short || report.first_impression?.profile_card_verdict}
                             </p>
 
@@ -152,7 +152,7 @@ export function LinkedInReportPanel({
                                         />
                                     </svg>
                                     <div className="absolute inset-0 flex items-center justify-center flex-col">
-                                        <span className="text-5xl font-serif font-bold tracking-tighter tabular-nums">{animatedScore}</span>
+                                        <span className="text-5xl font-display font-bold tracking-tighter tabular-nums">{animatedScore}</span>
                                         <span className="text-label text-muted-foreground">Score</span>
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@ export function LinkedInReportPanel({
                                 {/* Score Band Badge */}
                                 <div className="transition-all duration-300 ease-out">
                                     <span className={cn(
-                                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider",
+                                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-sm border text-[11px] font-bold uppercase tracking-wider",
                                         (report.score || 0) >= 85 ? "bg-success/10 border-success/20 text-success" :
                                             (report.score || 0) >= 70 ? "bg-premium/10 border-premium/20 text-premium" :
                                                 "bg-destructive/10 border-destructive/20 text-destructive"
@@ -187,11 +187,11 @@ export function LinkedInReportPanel({
                 />
 
                 <div className="mt-6 space-y-6">
-                    <p className="font-serif text-xl text-foreground leading-relaxed">
+                    <p className="font-display text-xl text-foreground leading-relaxed">
                         &quot;{report.first_impression?.profile_card_verdict}&quot;
                     </p>
 
-                    <div className="grid grid-cols-3 gap-4 p-4 bg-secondary/20 rounded-lg border border-border/40">
+                    <div className="grid grid-cols-3 gap-4 p-4 bg-secondary/20 rounded border border-border/40">
                         <div className="text-center">
                             <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-2">Photo</span>
                             <StatusBadge status={report.first_impression?.photo_status || 'unknown'} />
@@ -228,7 +228,7 @@ export function LinkedInReportPanel({
 
                 <div className="mt-6 space-y-6">
                     {/* Current Headline */}
-                    <div className="p-4 bg-muted/30 rounded-lg border border-border/40">
+                    <div className="p-4 bg-muted/30 rounded border border-border/40">
                         <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-2">Current</span>
                         <p className="text-foreground font-medium">{report.headline_analysis?.current}</p>
                     </div>
@@ -240,7 +240,7 @@ export function LinkedInReportPanel({
                         <ul className="space-y-2">
                             {report.headline_analysis.issues.map((issue, i) => (
                                 <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                    <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                                    <AlertCircle className="w-4 h-4 text-warning shrink-0 mt-0.5" />
                                     {issue}
                                 </li>
                             ))}
@@ -324,10 +324,10 @@ export function LinkedInReportPanel({
 
                         {/* Keywords Missing */}
                         <div className="space-y-3">
-                            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground/80">Missing</h4>
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-warning">Missing</h4>
                             <div className="flex flex-wrap gap-2">
                                 {report.search_visibility?.keywords_missing?.map((kw, i) => (
-                                    <span key={i} className="text-xs px-2.5 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded border border-amber-500/20">
+                                    <span key={i} className="text-xs px-2.5 py-1 bg-warning/10 text-warning rounded border border-warning/20">
                                         {kw}
                                     </span>
                                 ))}
@@ -358,7 +358,7 @@ export function LinkedInReportPanel({
 
                 <div className="mt-6 space-y-4">
                     {report.top_fixes?.map((fix, i) => (
-                        <div key={i} className="p-4 bg-card border border-border/60 rounded-lg shadow-sm">
+                        <div key={i} className="p-4 bg-card border border-border/60 rounded">
                             <p className="text-sm font-medium text-foreground mb-2">{fix.fix}</p>
                             <p className="text-xs text-muted-foreground">{fix.why}</p>
                         </div>
@@ -418,7 +418,6 @@ export function LinkedInReportPanel({
                                     variant="brand"
                                     size="lg"
                                     onClick={onNewReport}
-                                    className="shadow-lg shadow-brand/20"
                                 >
                                     Run Your Free Review
                                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -479,45 +478,45 @@ function ReportSectionHeader({
                 {icon}
                 {number}. {title}
             </h2>
-            <p className="text-sm text-muted-foreground">{subtitle}</p>
+            <p className="font-display font-medium text-xl text-foreground tracking-tight leading-snug">{subtitle}</p>
         </div>
     );
 }
 
 function StatusBadge({ status }: { status: string }) {
-    const configs: Record<string, { bg: string; text: string; label: string }> = {
-        professional: { bg: 'bg-success/10', text: 'text-success', label: 'Professional' },
-        adequate: { bg: 'bg-brand/10', text: 'text-brand', label: 'Adequate' },
-        needs_work: { bg: 'bg-amber-500/10', text: 'text-amber-600 dark:text-amber-400', label: 'Needs Work' },
-        missing: { bg: 'bg-destructive/10', text: 'text-destructive', label: 'Missing' },
-        branded: { bg: 'bg-success/10', text: 'text-success', label: 'Branded' },
-        generic: { bg: 'bg-amber-500/10', text: 'text-amber-600 dark:text-amber-400', label: 'Generic' },
-        differentiated: { bg: 'bg-success/10', text: 'text-success', label: 'Differentiated' },
-        keyword_rich: { bg: 'bg-success/10', text: 'text-success', label: 'Keyword Rich' },
-        unknown: { bg: 'bg-muted', text: 'text-muted-foreground', label: 'Unknown' },
+    const configs: Record<string, { bg: string; text: string; border: string; label: string }> = {
+        professional: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Professional" },
+        adequate: { bg: "bg-brand/10", text: "text-brand", border: "border-brand/20", label: "Adequate" },
+        needs_work: { bg: "bg-warning/10", text: "text-warning", border: "border-warning/20", label: "Needs Work" },
+        missing: { bg: "bg-destructive/10", text: "text-destructive", border: "border-destructive/20", label: "Missing" },
+        branded: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Branded" },
+        generic: { bg: "bg-warning/10", text: "text-warning", border: "border-warning/20", label: "Generic" },
+        differentiated: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Differentiated" },
+        keyword_rich: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Keyword Rich" },
+        unknown: { bg: "bg-muted", text: "text-muted-foreground", border: "border-border/40", label: "Unknown" },
     };
 
     const config = configs[status] || configs.unknown;
 
     return (
-        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text, `border-${config.text.replace('text-', '')}/20`)}>
+        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text, config.border)}>
             {config.label}
         </span>
     );
 }
 
 function HookStrengthBadge({ strength }: { strength: string }) {
-    const configs: Record<string, { bg: string; text: string; label: string }> = {
-        strong: { bg: 'bg-success/10', text: 'text-success', label: 'Strong Hook' },
-        adequate: { bg: 'bg-brand/10', text: 'text-brand', label: 'Adequate' },
-        weak: { bg: 'bg-amber-500/10', text: 'text-amber-600 dark:text-amber-400', label: 'Weak' },
-        missing: { bg: 'bg-destructive/10', text: 'text-destructive', label: 'Missing' },
+    const configs: Record<string, { bg: string; text: string; border: string; label: string }> = {
+        strong: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Strong Hook" },
+        adequate: { bg: "bg-brand/10", text: "text-brand", border: "border-brand/20", label: "Adequate" },
+        weak: { bg: "bg-warning/10", text: "text-warning", border: "border-warning/20", label: "Weak" },
+        missing: { bg: "bg-destructive/10", text: "text-destructive", border: "border-destructive/20", label: "Missing" },
     };
 
     const config = configs[strength] || configs.missing;
 
     return (
-        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text)}>
+        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text, config.border)}>
             {config.label}
         </span>
     );
@@ -539,7 +538,7 @@ function CopyableSuggestionCard({ label, content, note }: { label: string; conte
     };
 
     return (
-        <div className="group p-4 bg-success/5 rounded-lg border border-success/20">
+        <div className="group p-4 bg-success/5 rounded border border-success/20">
             <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-success">{label}</span>
                 <button

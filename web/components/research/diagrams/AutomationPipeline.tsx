@@ -1,76 +1,59 @@
 "use client";
 
-import { Megaphone, Search, Filter, BarChart3, ArrowRight } from "lucide-react";
-
 export function AutomationPipeline() {
     const steps = [
         {
-            icon: Megaphone,
             stage: "Sourcing",
             automation: "Ad Delivery",
             risk: "Old ads only shown to certain demographics",
-            color: "text-sky-400",
-            bg: "bg-sky-500/10",
-            border: "border-sky-500/20"
         },
         {
-            icon: Search,
             stage: "Screening",
             automation: "Resume Parsing",
             risk: "Non-standard formats parsed incorrectly",
-            color: "text-indigo-400",
-            bg: "bg-indigo-500/10",
-            border: "border-indigo-500/20"
         },
         {
-            icon: Filter,
             stage: "Selection",
             automation: "Ranking Algo",
             risk: "Bias against gaps or 'non-target' schools",
-            color: "text-violet-400",
-            bg: "bg-violet-500/10",
-            border: "border-violet-500/20"
         },
         {
-            icon: BarChart3,
             stage: "Interview",
             automation: "Scoring",
             risk: "Standardized questions with biased grading",
-            color: "text-brand",
-            bg: "bg-brand/10",
-            border: "border-brand/30"
+            highlight: true,
         }
     ];
 
     return (
-        <div className="w-full overflow-x-auto py-8 font-sans">
-            <div className="min-w-[600px] flex items-stretch gap-2">
+        <figure className="w-full overflow-x-auto py-8">
+            <div className="min-w-[620px] flex items-stretch gap-4">
                 {steps.map((s, i) => (
                     <div key={i} className="flex-1 flex items-center">
-                        <div className={`flex-1 flex flex-col h-full rounded-md border ${s.border} ${s.bg} p-4`}>
-                            <div className="flex items-center gap-2 mb-3">
-                                <s.icon className={`w-4 h-4 ${s.color}`} />
-                                <span className={`text-xs font-bold uppercase tracking-wider ${s.color}`}>{s.stage}</span>
+                        <div className={`flex-1 flex flex-col h-full border border-border/40 p-4 ${s.highlight ? "bg-brand/5 border-brand/30" : "bg-background"}`}>
+                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                {s.stage}
                             </div>
-                            <div className="mb-4">
-                                <span className="text-sm font-medium text-foreground block">{s.automation}</span>
+                            <div className="mt-2 text-sm font-medium text-foreground">
+                                {s.automation}
                             </div>
-                            <div className="mt-auto pt-3 border-t border-border/10">
-                                <p className="text-[10px] text-muted-foreground leading-snug">
-                                    <strong className="block mb-0.5 text-foreground/70">Risk:</strong>
-                                    {s.risk}
-                                </p>
+                            <div className="mt-3 text-[11px] text-muted-foreground">
+                                Risk: {s.risk}
                             </div>
                         </div>
                         {i < steps.length - 1 && (
-                            <ArrowRight className="w-4 h-4 text-muted-foreground/30 mx-2 shrink-0" />
+                            <div className="mx-2 h-px w-6 bg-border/60" />
                         )}
                     </div>
                 ))}
             </div>
-            <p className="text-center text-xs text-muted-foreground mt-4">
-                Bias isn&apos;t just one step—it compounds at every handover between tools.
-            </p>
-        </div>
+
+            <figcaption className="mt-3 text-center">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+                <span className="block text-xs text-muted-foreground">
+                    Automation handoffs where bias can compound.
+                </span>
+            </figcaption>
+        </figure>
     );
 }

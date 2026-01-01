@@ -36,17 +36,17 @@ export function UserNav({
             <DropdownMenuTrigger asChild>
                 <button
                     className={cn(
-                        "flex items-center gap-2 px-2 py-1.5 rounded-full hover:bg-muted transition-colors border border-transparent hover:border-border group focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                        "flex items-center gap-2 px-2 py-1.5 rounded hover:bg-muted transition-colors border border-transparent hover:border-border group focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                         className
                     )}
                 >
-                    <span className="w-8 h-8 flex items-center justify-center bg-primary text-primary-foreground rounded-full text-xs font-bold shadow-sm group-hover:shadow-md transition-shadow">
+                    <span className="w-8 h-8 flex items-center justify-center bg-brand text-white rounded text-xs font-bold">
                         {userInitial}
                     </span>
                 </button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-56 border-border/60 shadow-lg" align="end">
+            <DropdownMenuContent className="w-56 border-border/60 shadow-sm" align="end">
                 {/* User info header */}
                 <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
@@ -57,7 +57,7 @@ export function UserNav({
                     {/* Membership Status Badge */}
                     <div className="mt-2 text-[10px] font-medium uppercase tracking-wider flex flex-col gap-1">
                         {user.membership === "pro" && (
-                            <span className="text-primary flex items-center gap-1">
+                            <span className="text-brand flex items-center gap-1">
                                 Pro Member • <span className="text-muted-foreground lowercase normal-case">{user.daysLeft} days left</span>
                             </span>
                         )}
@@ -68,7 +68,7 @@ export function UserNav({
                             <div className="flex flex-col gap-1">
                                 <span className="text-muted-foreground">Free Plan</span>
                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 ? (
-                                    <span className="text-moss lowercase normal-case">• {user.freeUsesLeft} {user.freeUsesLeft === 1 ? 'review' : 'reviews'} remaining</span>
+                                    <span className="text-success lowercase normal-case">• {user.freeUsesLeft} {user.freeUsesLeft === 1 ? 'review' : 'reviews'} remaining</span>
                                 ) : (
                                     <span className="text-muted-foreground/60 lowercase normal-case">• 0 reviews remaining</span>
                                 )}

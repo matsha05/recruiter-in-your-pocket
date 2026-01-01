@@ -102,7 +102,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
             className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4"
             onClick={(e) => e.target === e.currentTarget && onClose()}
         >
-            <div className="bg-background border border-border rounded-lg w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col shadow-sm">
+            <div className="bg-background border border-border rounded w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col">
 
                 {/* Header */}
                 <div className="flex items-center justify-between px-5 py-3 border-b border-border shrink-0">

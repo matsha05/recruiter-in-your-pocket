@@ -112,7 +112,7 @@ export function SelectableList<T extends SelectableListItem>({
                                 className={cn(
                                     // Base
                                     "relative rounded-md px-3 py-2 cursor-pointer select-none",
-                                    "transition-colors duration-[90ms]",
+                                    "transition-colors duration-micro",
                                     // Hover: bg-muted/40
                                     "hover:bg-muted/40",
                                     // Selected: bg-muted/60 + left hairline

@@ -86,7 +86,7 @@ export function Peek({
                             sideOffset={8}
                             className={cn(
                                 // Base
-                                "z-50 w-full max-w-[420px] rounded-lg border border-border/60 bg-background p-4",
+                                "z-50 w-full max-w-[420px] rounded border border-border/60 bg-background p-4",
                                 // Shadow per design-system.md
                                 "shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
                                 // Responsive: bottom sheet on mobile could be added later

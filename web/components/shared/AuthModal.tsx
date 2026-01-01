@@ -152,9 +152,9 @@ export default function AuthModal({ isOpen, onClose, onSuccess, context = "defau
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-            <DialogContent className="sm:max-w-md bg-background border border-white/10 shadow-2xl p-8 rounded-xl sm:rounded-2xl">
+            <DialogContent className="sm:max-w-md bg-background border border-border/60 shadow-sm p-8 rounded-lg">
                 <DialogHeader className="space-y-4">
-                    <DialogTitle className="font-serif text-3xl font-medium tracking-tight text-center">
+                    <DialogTitle className="font-display text-3xl font-medium tracking-tight text-center">
                         {step === "email" && (context === "report" ? "See What They See" : "Welcome to the Studio")}
                         {step === "code" && "Check your inbox"}
                         {step === "name" && "One last thing"}
@@ -175,7 +175,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, context = "defau
 
                 <div className="space-y-6 py-4">
                     {error && (
-                        <div className="p-3 text-sm text-center text-destructive bg-destructive/10 rounded-md border border-destructive/20">
+                        <div className="p-3 text-sm text-center text-destructive bg-destructive/10 rounded border border-destructive/20">
                             {error}
                         </div>
                     )}
@@ -192,10 +192,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess, context = "defau
                                     onChange={(e) => setEmail(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSendCode()}
                                     autoFocus
-                                    className="h-12 text-base bg-secondary/10 border-white/10 focus:ring-gold/20 focus:border-gold/50 placeholder:text-muted-foreground/40"
+                                    className="h-12 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/40"
                                 />
                             </div>
-                            <Button onClick={handleSendCode} disabled={loading} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-all rounded-lg">
+                            <Button onClick={handleSendCode} disabled={loading} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-colors rounded">
                                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Send Login Code
                             </Button>
@@ -210,14 +210,14 @@ export default function AuthModal({ isOpen, onClose, onSuccess, context = "defau
                                     id="code"
                                     type="text"
                                     placeholder="00000000"
-                                    className="h-14 font-mono tracking-[0.5em] text-center text-2xl bg-secondary/10 border-white/10 focus:ring-gold/20 focus:border-gold/50 placeholder:text-muted-foreground/20"
+                                    className="h-14 font-mono tracking-[0.5em] text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
                                     value={code}
                                     onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 8))}
                                     onKeyDown={(e) => e.key === "Enter" && verifyCode()}
                                     autoFocus
                                 />
                             </div>
-                            <Button onClick={verifyCode} disabled={loading || code.length !== 8} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-all rounded-lg">
+                            <Button onClick={verifyCode} disabled={loading || code.length !== 8} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-colors rounded">
                                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Verify Code
                             </Button>
@@ -248,10 +248,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess, context = "defau
                                     onChange={(e) => setFirstName(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSaveName()}
                                     autoFocus
-                                    className="h-12 text-base bg-secondary/10 border-white/10 focus:ring-gold/20 focus:border-gold/50"
+                                    className="h-12 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40"
                                 />
                             </div>
-                            <Button onClick={handleSaveName} disabled={loading || !firstName.trim()} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-all rounded-lg">
+                            <Button onClick={handleSaveName} disabled={loading || !firstName.trim()} className="w-full h-12 text-base font-medium bg-foreground text-background hover:bg-foreground/90 transition-colors rounded">
                                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Continue to Studio
                             </Button>

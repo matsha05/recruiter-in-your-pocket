@@ -1,26 +1,18 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
-import { Calculator, ArrowRight, Briefcase } from "lucide-react";
+import { useMemo } from "react";
 
 export function ReferralCalculator() {
-    const [salary, setSalary] = useState(100000);
+    const salary = 100000;
 
-    // Research-backed rates
-    const coldCallbackRate = 0.04; // 4% callback rate from cold applications
-    const referralCallbackRate = 0.50; // 50% callback rate from referrals
+    const coldCallbackRate = 0.04;
+    const referralCallbackRate = 0.5;
 
     const results = useMemo(() => {
-        // Applications needed to get 1 interview
         const coldAppsNeeded = Math.round(1 / coldCallbackRate);
         const referralAppsNeeded = Math.round(1 / referralCallbackRate);
         const appsSaved = coldAppsNeeded - referralAppsNeeded;
-
-        // Time saved (assuming 30 min per tailored application)
         const hoursSaved = Math.round((appsSaved * 30) / 60);
-
-        // Value of time (assuming hourly = salary / 2080)
         const hourlyRate = salary / 2080;
         const timeSavingsValue = Math.round(hoursSaved * hourlyRate);
 
@@ -34,113 +26,51 @@ export function ReferralCalculator() {
     }, [salary]);
 
     const formatSalary = (value: number) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
             maximumFractionDigits: 0
         }).format(value);
     };
 
-    const formatNumber = (value: number) => {
-        return new Intl.NumberFormat('en-US').format(value);
-    };
-
     return (
-        <div className="bg-card border border-border rounded-lg overflow-hidden">
-            {/* Header */}
-            <div className="px-6 py-4 border-b border-border/50 bg-muted/30">
-                <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                    <Calculator className="w-4 h-4" />
-                    <span>Referral ROI Calculator</span>
+        <figure className="w-full max-w-lg mx-auto my-8">
+            <div className="border border-border/30 bg-background p-6">
+                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-4">
+                    Referral ROI example
                 </div>
-            </div>
 
-            {/* Input Section */}
-            <div className="p-6 space-y-6">
-                <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                        <label className="text-sm font-medium text-foreground">
-                            Target Salary
-                        </label>
-                        <span className="text-lg font-serif font-semibold text-brand">
-                            {formatSalary(salary)}
-                        </span>
+                <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-1">
+                        <div className="text-xs text-muted-foreground uppercase tracking-wide">Cold applications</div>
+                        <div className="text-2xl font-display font-medium text-muted-foreground">
+                            {results.coldAppsNeeded}
+                        </div>
+                        <div className="text-xs text-muted-foreground">Apps per interview</div>
                     </div>
-                    <input
-                        type="range"
-                        min={50000}
-                        max={300000}
-                        step={5000}
-                        value={salary}
-                        onChange={(e) => setSalary(Number(e.target.value))}
-                        className="w-full h-2 bg-secondary rounded-full appearance-none cursor-pointer accent-brand [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
-                    />
-                    <div className="flex justify-between text-xs text-muted-foreground">
-                        <span>$50K</span>
-                        <span>$300K</span>
+
+                    <div className="space-y-1">
+                        <div className="text-xs text-muted-foreground uppercase tracking-wide">With referrals</div>
+                        <div className="text-2xl font-display font-medium text-brand">
+                            {results.referralAppsNeeded}
+                        </div>
+                        <div className="text-xs text-muted-foreground">Apps per interview</div>
                     </div>
                 </div>
 
-                {/* Results */}
-                <div className="pt-4 border-t border-border/50">
-                    <div className="grid grid-cols-2 gap-4">
-                        {/* Cold Applications */}
-                        <div className="space-y-1">
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                                Cold Applications
-                            </div>
-                            <div className="text-2xl font-serif font-bold text-muted-foreground">
-                                {results.coldAppsNeeded}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                                apps per interview
-                            </div>
-                        </div>
-
-                        {/* Referral Applications */}
-                        <div className="space-y-1">
-                            <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                                With Referrals
-                            </div>
-                            <motion.div
-                                key={results.referralAppsNeeded}
-                                initial={{ scale: 1.1, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                className="text-2xl font-serif font-bold text-brand"
-                            >
-                                {results.referralAppsNeeded}
-                            </motion.div>
-                            <div className="text-xs text-muted-foreground">
-                                apps per interview
-                            </div>
-                        </div>
+                <div className="mt-5 border-t border-border/20 pt-4 space-y-2">
+                    <div className="text-sm text-foreground">
+                        One referral saves about {results.appsSaved} applications.
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                        That is roughly {results.hoursSaved} hours, worth {formatSalary(results.timeSavingsValue)} of time.
+                    </div>
+                    <div className="text-[10px] text-muted-foreground/70">
+                        Example assumes a {formatSalary(salary)} salary and published callback rates.
                     </div>
                 </div>
 
-                {/* Key Insight */}
-                <motion.div
-                    key={salary}
-                    initial={{ opacity: 0.8 }}
-                    animate={{ opacity: 1 }}
-                    className="p-4 bg-brand/5 border border-brand/10 rounded-lg"
-                >
-                    <div className="flex items-start gap-3">
-                        <div className="mt-0.5">
-                            <Briefcase className="w-4 h-4 text-brand" />
-                        </div>
-                        <div className="space-y-1">
-                            <p className="text-sm font-medium text-foreground">
-                                One referral saves you {results.appsSaved} applications
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                                That&apos;s roughly {results.hoursSaved} hours of application time,
-                                worth {formatSalary(results.timeSavingsValue)} of your time.
-                            </p>
-                        </div>
-                    </div>
-                </motion.div>
-
-                <p className="text-xs text-muted-foreground/70">
+                <p className="text-[10px] text-muted-foreground/70 mt-4">
                     Based on callback rates from{" "}
                     <a
                         href="https://www.nber.org/papers/w21357"
@@ -160,6 +90,13 @@ export function ReferralCalculator() {
                     </a>
                 </p>
             </div>
-        </div>
+
+            <figcaption className="mt-3 text-center">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 2</span>
+                <span className="block text-xs text-muted-foreground">
+                    Referral efficiency compared to cold applications.
+                </span>
+            </figcaption>
+        </figure>
     );
 }

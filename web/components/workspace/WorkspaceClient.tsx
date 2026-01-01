@@ -681,7 +681,7 @@ export default function WorkspaceClient() {
                         // LinkedIn Mode
                         <>
                             {!linkedInReport ? (
-                                <div className="h-full overflow-y-auto bg-muted/10">
+                                <div className="h-full overflow-y-auto bg-background">
                                     <div className="flex justify-center p-6 md:p-12 min-h-full">
                                         <div className="w-full max-w-xl space-y-6">
                                             {/* Hero Header - matches Resume mode */}
@@ -708,18 +708,15 @@ export default function WorkspaceClient() {
                                 </div>
                             ) : (
                                 <div className="h-full overflow-y-auto bg-body relative group">
-                                    {/* Background texture to match Resume report */}
-                                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.015] pointer-events-none mix-blend-overlay" />
-
                                     <ReportLayout
-                                        toc={<LinkedInReportTOC score={linkedInReport.score} />}
+                                        toc={<LinkedInReportTOC />}
                                     >
                                         {/* Header matching Resume report structure */}
                                         <div className="space-y-6">
                                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
                                                 <div className="space-y-1 min-w-0">
                                                     <div className="flex items-center gap-3 flex-wrap">
-                                                        <h1 className="text-xl sm:text-2xl font-serif font-semibold text-foreground tracking-tight truncate">
+                                                        <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">
                                                             {linkedInProfileName || 'LinkedIn Report'}
                                                         </h1>
                                                     </div>
@@ -731,7 +728,7 @@ export default function WorkspaceClient() {
                                                     {freeUsesRemaining > 0 && (
                                                         <button
                                                             onClick={handleNewReport}
-                                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                                                         >
                                                             <Plus className="w-4 h-4" />
                                                             <span className="hidden sm:inline">Run Another</span>
@@ -741,7 +738,7 @@ export default function WorkspaceClient() {
                                                     {freeUsesRemaining <= 0 && (
                                                         <button
                                                             onClick={() => setIsPaywallOpen(true)}
-                                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
+                                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                                                         >
                                                             <span className="hidden sm:inline">Get More Reviews</span>
                                                             <span className="sm:hidden">Upgrade</span>

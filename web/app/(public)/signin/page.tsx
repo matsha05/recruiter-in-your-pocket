@@ -33,41 +33,39 @@ export default function SignInPage() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col gap-6 px-6 py-16">
+    <main className="mx-auto flex min-h-screen max-w-md flex-col gap-6 px-6 py-16 text-foreground">
       <div className="space-y-2">
-        <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">Auth</p>
-        <h1 className="text-3xl font-bold">Sign in</h1>
-        <p className="text-slate-700">
-          Magic link via Supabase Auth. Configure your Supabase URL and anon key in environment
-          variables to enable this form.
+        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Studio</p>
+        <h1 className="text-3xl font-display font-medium">Sign in</h1>
+        <p className="text-muted-foreground">
+          We send a secure login link to your email. No password required.
         </p>
       </div>
-      <form onSubmit={handleSignIn} className="space-y-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <form onSubmit={handleSignIn} className="space-y-4 rounded bg-card p-6 border border-border/60">
         <label className="block space-y-1">
-          <span className="text-sm font-medium text-slate-800">Email</span>
+          <span className="text-sm font-medium text-foreground">Email</span>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-slate-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+            className="w-full rounded border border-border/60 bg-background px-3 py-2 text-foreground placeholder:text-muted-foreground/60 focus:border-brand/40 focus:outline-none focus:ring-2 focus:ring-brand/20"
             placeholder="you@example.com"
           />
         </label>
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white shadow hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
+          className="w-full rounded bg-brand px-4 py-2 font-semibold text-white hover:bg-brand/90 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? "Sending link…" : "Send magic link"}
         </button>
-        {message && <p className="text-sm text-green-700">{message}</p>}
-        {error && <p className="text-sm text-red-700">{error}</p>}
-        <p className="text-xs text-slate-500">
-          Next step: add Supabase env vars, then replace this stub with your full workspace onboarding.
+        {message && <p className="text-sm text-success">{message}</p>}
+        {error && <p className="text-sm text-destructive">{error}</p>}
+        <p className="text-xs text-muted-foreground">
+          Configure Supabase env vars to enable sign-in for this page.
         </p>
       </form>
     </main>
   );
 }
-

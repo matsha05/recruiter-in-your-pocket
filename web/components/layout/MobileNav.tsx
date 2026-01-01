@@ -54,7 +54,7 @@ export function MobileNav() {
                     {user ? (
                         <div className="space-y-4">
                             <div className="flex items-center gap-3">
-                                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-serif font-bold">
+                                <div className="h-10 w-10 rounded bg-brand/10 flex items-center justify-center text-brand font-semibold">
                                     {user.email?.[0].toUpperCase()}
                                 </div>
                                 <div className="flex-1 overflow-hidden">
@@ -62,18 +62,18 @@ export function MobileNav() {
                                     <p className="text-xs text-muted-foreground capitalize flex items-center gap-1.5 mt-0.5">
                                         {user.membership === "pro" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">Pro Member</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-brand/10 text-brand">Pro Member</span>
                                                 <span className="text-[10px] text-muted-foreground font-medium">• {user.daysLeft} days left</span>
                                             </span>
                                         )}
                                         {user.membership === "audit" && (
-                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success">1 Review Available</span>
+                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success">1 Review Available</span>
                                         )}
                                         {(user.membership === "free" || !user.membership) && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-muted text-muted-foreground">Free Plan</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-muted text-muted-foreground">Free Plan</span>
                                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 && (
-                                                    <span className="text-[10px] text-moss font-medium">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Review' : 'Reviews'} remaining</span>
+                                                    <span className="text-[10px] text-success font-medium">• {user.freeUsesLeft} Free {user.freeUsesLeft === 1 ? 'Review' : 'Reviews'} remaining</span>
                                                 )}
                                             </span>
                                         )}
@@ -104,13 +104,13 @@ function MobileNavLink({ href, icon: Icon, children, setOpen, active }: any) {
             href={href}
             onClick={() => setOpen(false)}
             className={cn(
-                "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors",
+                "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded transition-colors",
                 active
-                    ? "bg-primary/5 text-primary"
+                    ? "bg-brand/5 text-brand"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
             )}
         >
-            <Icon className={cn("h-5 w-5", active ? "text-primary" : "text-muted-foreground")} />
+            <Icon className={cn("h-5 w-5", active ? "text-brand" : "text-muted-foreground")} />
             {children}
         </Link>
     );

@@ -66,7 +66,7 @@ export function ReportStream({
                 id="section-bullet-upgrades"
                 ref={bulletUpgradesRef}
                 className={cn(
-                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 rounded-lg transition-colors",
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 rounded transition-colors",
                     highlightSection === 'bullet_upgrades' && "unlock-highlight"
                 )}
             >
@@ -81,7 +81,7 @@ export function ReportStream({
                 id="section-missing-wins"
                 ref={missingWinsRef}
                 className={cn(
-                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 rounded-lg transition-colors",
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 rounded transition-colors",
                     highlightSection === 'missing_wins' && "unlock-highlight"
                 )}
             >
@@ -96,7 +96,7 @@ export function ReportStream({
                 id="section-job-alignment"
                 ref={jobAlignmentRef}
                 className={cn(
-                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700 rounded-lg transition-colors",
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700 rounded transition-colors",
                     highlightSection === 'job_alignment' && "unlock-highlight"
                 )}
             >
@@ -123,7 +123,6 @@ export function ReportStream({
                                     variant="brand"
                                     size="lg"
                                     onClick={onNewReport}
-                                    className="shadow-lg shadow-brand/20"
                                 >
                                     Run Your Free Review
                                     <ArrowRight className="w-4 h-4 ml-2" />

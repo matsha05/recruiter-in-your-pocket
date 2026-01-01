@@ -87,9 +87,9 @@ export default function InputPanel({
 
                 {/* Job Context Banner - from Extension */}
                 {loadedJobContext && (
-                    <div className="animate-in fade-in slide-in-from-top-2 bg-brand/5 border border-brand/20 rounded-xl p-4 mb-4">
+                    <div className="animate-in fade-in slide-in-from-top-2 bg-brand/5 border border-brand/20 rounded p-4 mb-4">
                         <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center shrink-0">
+                            <div className="w-10 h-10 rounded bg-brand/10 flex items-center justify-center shrink-0">
                                 <Target className="w-5 h-5 text-brand" />
                             </div>
                             <div className="min-w-0 flex-1">
@@ -98,7 +98,7 @@ export default function InputPanel({
                                         {loadedJobContext.title}
                                     </span>
                                     {loadedJobContext.score != null && loadedJobContext.score > 0 && (
-                                        <span className="text-xs font-bold text-brand bg-brand/10 px-2 py-0.5 rounded-full">
+                                        <span className="text-xs font-bold text-brand bg-brand/10 px-2 py-0.5 rounded">
                                             {loadedJobContext.score}% match
                                         </span>
                                     )}
@@ -112,7 +112,7 @@ export default function InputPanel({
                 )}
 
                 {/* Main Card */}
-                <div className="bg-card border border-border/60 shadow-lg shadow-black/5 rounded-xl overflow-hidden transition-all hover:border-border/80">
+                <div className="bg-card border border-border/60 rounded overflow-hidden transition-colors hover:border-border/80">
 
                     {/* Section 1: The Input (Hero) */}
                     <div className="p-6 md:p-8 space-y-6">
@@ -132,7 +132,7 @@ export default function InputPanel({
                                     <div className="text-center">
                                         <button
                                             onClick={() => setShowPaste(true)}
-                                            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-md border border-border/40 hover:border-brand/40 hover:bg-brand/5"
+                                            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded border border-border/40 hover:border-brand/40 hover:bg-brand/5"
                                         >
                                             <AlignLeft className="w-4 h-4" />
                                             Or paste text instead
@@ -172,11 +172,11 @@ export default function InputPanel({
                                             value={resumeText}
                                             onChange={(e) => onResumeTextChange(e.target.value)}
                                             placeholder="Paste your resume content here..."
-                                            className="flex w-full rounded-lg border border-border/60 bg-background px-4 py-3 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/40 disabled:cursor-not-allowed disabled:opacity-50 min-h-[200px] leading-relaxed resize-none"
+                                            className="flex w-full rounded border border-border/60 bg-background px-4 py-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand focus-visible:border-brand/40 disabled:cursor-not-allowed disabled:opacity-50 min-h-[200px] leading-relaxed resize-none"
                                             autoFocus
                                         />
                                         {isShortResume && (
-                                            <div className="flex gap-2 text-warning text-xs items-center bg-warning/10 border border-warning/20 px-3 py-2 rounded-lg">
+                                            <div className="flex gap-2 text-warning text-xs items-center bg-warning/10 border border-warning/20 px-3 py-2 rounded">
                                                 <Info className="w-3.5 h-3.5" />
                                                 <span>Short resume detected ({charCount} chars). Add more detail for best results.</span>
                                             </div>
@@ -195,15 +195,15 @@ export default function InputPanel({
                                 type="button"
                                 onClick={() => setShowJD(!showJD)}
                                 className={cn(
-                                    "w-full flex items-center justify-between p-4 rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
+                                    "w-full flex items-center justify-between p-4 rounded border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
                                     showJD
-                                        ? "bg-brand/5 border-brand/30 shadow-sm"
+                                        ? "bg-brand/5 border-brand/30"
                                         : "bg-muted/30 border-border/40 hover:border-brand/30 hover:bg-brand/5"
                                 )}
                             >
                                 <div className="flex items-start gap-3 text-left">
                                     <div className={cn(
-                                        "w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors",
+                                        "w-8 h-8 rounded flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors",
                                         showJD ? "bg-brand/20 text-brand" : "bg-muted text-muted-foreground"
                                     )}>
                                         <Target className="w-4 h-4" strokeWidth={1.5} />
@@ -231,7 +231,7 @@ export default function InputPanel({
                                     <textarea
                                         value={jobDescription}
                                         onChange={(e) => onJobDescChange(e.target.value)}
-                                        className="flex w-full rounded-lg border border-brand/30 bg-brand/5 px-4 py-3 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand min-h-[140px] resize-none"
+                                        className="flex w-full rounded border border-brand/30 bg-brand/5 px-4 py-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand min-h-[140px] resize-none"
                                         placeholder="Paste the full job posting here...
 
 Example: We are looking for a Senior Product Manager with 5+ years of experience in B2B SaaS..."
@@ -239,7 +239,7 @@ Example: We are looking for a Senior Product Manager with 5+ years of experience
                                     />
                                     {jobDescription.length > 0 && (
                                         <div className="flex items-center gap-2 text-xs text-brand">
-                                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand" />
                                             JD detected — your report will include a match score
                                         </div>
                                     )}
@@ -253,7 +253,7 @@ Example: We are looking for a Senior Product Manager with 5+ years of experience
                         <Button
                             variant="brand"
                             size="lg"
-                            className="w-full shadow-lg shadow-brand/20 h-12 text-base font-medium transition-transform active:scale-[0.99]"
+                            className="w-full h-12 text-base font-medium transition-transform active:scale-[0.99]"
                             onClick={onRun}
                             disabled={!hasContent}
                             isLoading={isLoading}

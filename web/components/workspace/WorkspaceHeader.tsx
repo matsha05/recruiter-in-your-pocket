@@ -97,7 +97,7 @@ export default function WorkspaceHeader({
                     </Button>
 
                     {isExampleOpen && (
-                        <div className="absolute right-0 mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                        <div className="absolute right-0 mt-1 w-48 bg-popover border border-border rounded shadow-sm py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                             <button
                                 onClick={() => {
                                     onResumeSample?.();

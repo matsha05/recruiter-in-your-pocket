@@ -17,7 +17,7 @@ interface MissingWinsSectionProps {
 }
 
 // Single neutral card style for all archetypes — let the label provide differentiation
-const cardStyle = { border: "border-border/60", bg: "bg-card shadow-sm hover:border-border/80" };
+const cardStyle = { border: "border-border/60", bg: "bg-card hover:border-border/80" };
 
 export function MissingWinsSection({ data, isGated = false, onUpgrade }: MissingWinsSectionProps) {
     const questions = data.ideas?.questions || [];
@@ -33,7 +33,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                     title="Missing Wins"
                     subtitle="The stories you forgot to tell."
                 />
-                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
                     No missing wins this time. Either you&apos;ve covered your bases, or we need more detail.
                 </div>
             </section>
@@ -65,7 +65,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
             {isGated ? (
                 // GATED STATE: Show locked preview with teaser
-                <div className="rounded-lg border border-border bg-card p-6 space-y-4">
+                <div className="rounded border border-border bg-card p-6 space-y-4">
                     <div className="flex items-center gap-3 text-muted-foreground">
                         <Lock className="w-5 h-5" />
                         <div>
@@ -96,7 +96,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                                 Analytics.paywallCtaClicked('missing_wins');
                                 onUpgrade();
                             }}
-                            className="w-full shadow-md"
+                            className="w-full"
                         >
                             <InsightSparkleIcon className="w-4 h-4 mr-2" />
                             Uncover Your Hidden Wins
@@ -132,7 +132,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                                 <div
                                     key={i}
                                     className={cn(
-                                        "group border rounded-lg p-6 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2",
+                                        "group border rounded p-6 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2",
                                         cardStyle.border,
                                         isAnswered ? "opacity-50" : cardStyle.bg
                                     )}

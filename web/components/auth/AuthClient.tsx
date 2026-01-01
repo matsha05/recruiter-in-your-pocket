@@ -98,8 +98,7 @@ export default function AuthClient() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 bg-dot-pattern">
-            <div className="absolute inset-0 bg-background/90 z-0 pointer-events-none" />
+        <div className="flex flex-col items-center justify-center min-h-[85vh] px-4 bg-background">
 
             <div className="w-full max-w-md space-y-8 relative z-10">
                 <div className="text-center space-y-2">
@@ -107,7 +106,7 @@ export default function AuthClient() {
                     <p className="text-lg text-muted-foreground/80">{contextCopy.subtext}</p>
                 </div>
 
-                <div className="bg-card border border-border/60 rounded-lg p-8 shadow-sm">
+                <div className="bg-card border border-border/60 rounded p-8">
                     {step === "email" ? (
                         <form onSubmit={handleSendCode} className="space-y-5">
                             <div className="space-y-2">
@@ -120,7 +119,7 @@ export default function AuthClient() {
                                         placeholder="you@company.com"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-3 bg-background border border-border/60 rounded-md text-base focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-all shadow-sm placeholder:text-muted-foreground/30"
+                                        className="w-full pl-10 pr-4 py-3 bg-background border border-border/60 rounded text-base focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-all placeholder:text-muted-foreground/30"
                                         autoFocus
                                     />
                                 </div>
@@ -129,7 +128,7 @@ export default function AuthClient() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full py-3 bg-brand text-white rounded text-sm font-medium hover:opacity-90 transition-all shadow-md shadow-brand/10 flex items-center justify-center gap-2"
+                                className="w-full py-3 bg-brand text-white rounded text-sm font-medium hover:opacity-90 transition-colors flex items-center justify-center gap-2"
                             >
                                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Send Login Code <ArrowRight className="w-4 h-4" /></>}
                             </button>
@@ -164,7 +163,7 @@ export default function AuthClient() {
                                             verifyToken(val);
                                         }
                                     }}
-                                    className="w-full px-4 py-4 bg-background border border-border/10 rounded text-center text-2xl tracking-[0.5em] font-mono focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-all shadow-sm"
+                                className="w-full px-4 py-4 bg-background border border-border/10 rounded text-center text-2xl tracking-[0.5em] font-mono focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand/40 transition-colors"
                                     autoFocus
                                     maxLength={8}
                                 />
@@ -173,7 +172,7 @@ export default function AuthClient() {
                             <button
                                 type="submit"
                                 disabled={loading || otp.length < 8}
-                                className="w-full py-3 bg-brand text-white rounded text-sm font-medium hover:opacity-90 transition-all shadow-md shadow-brand/10 flex items-center justify-center gap-2"
+                                className="w-full py-3 bg-brand text-white rounded text-sm font-medium hover:opacity-90 transition-colors flex items-center justify-center gap-2"
                             >
                                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Verify & Sign In <Check className="w-4 h-4" /></>}
                             </button>

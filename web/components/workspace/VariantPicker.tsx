@@ -80,7 +80,7 @@ export function VariantPicker({ value, existingVariants, onSelect, className = "
 
             {/* Dropdown */}
             {isOpen && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-card border border-border rounded shadow-sm z-50 overflow-hidden">
                     {/* Search input */}
                     <div className="p-2 border-b border-border">
                         <input

@@ -115,7 +115,7 @@ export function BottomActionRail({
                                 })
                                 document.dispatchEvent(event)
                             }}
-                            className="flex items-center gap-1.5 px-2 py-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors duration-[90ms]"
+                            className="flex items-center gap-1.5 px-2 py-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors duration-micro"
                         >
                             <Command className="h-3.5 w-3.5" />
                             <span className="font-mono text-[11px] tracking-wider">K</span>
@@ -154,7 +154,7 @@ export function BottomActionRail({
                         className="h-8"
                     >
                         {isPrimaryLoading ? (
-                            <span className="animate-pulse">...</span>
+                            <span>...</span>
                         ) : (
                             <>
                                 {primaryActionLabel}

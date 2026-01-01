@@ -2,7 +2,7 @@
 
 import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
-import { getScoreColor, getScoreBg } from "@/lib/score-utils";
+import { getScoreColor } from "@/lib/score-utils";
 import { SignalRadarIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 
@@ -36,7 +36,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                         <div
                             key={item.key}
                             className={cn(
-                                "bg-card border border-border/60 shadow-sm p-4 rounded-lg flex flex-col items-center justify-center text-center gap-1 transition-all hover:border-brand/30",
+                                "bg-card border border-border/60 p-4 rounded flex flex-col items-center justify-center text-center gap-1 transition-all hover:border-brand/30",
                                 index === 0 && "ring-1 ring-brand/10 bg-brand/5" // Story gets subtle emphasis
                             )}
                         >
@@ -53,7 +53,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     ))}
                 </div>
             ) : (
-                <div className="rounded-lg border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
+                <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
                     Subscores unavailable for this run.
                 </div>
             )}
@@ -79,7 +79,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
 
                     {/* Missing */}
                     <div className="space-y-4">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-foreground/80">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-premium">
                             Missing
                         </h3>
                         <ul className="space-y-3">
@@ -94,7 +94,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     </div>
                 </div>
             ) : (
-                <div className="rounded-lg border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
+                <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
                     Signal breakdown unavailable.
                 </div>
             )}

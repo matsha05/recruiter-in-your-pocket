@@ -41,9 +41,9 @@ interface Job {
 
 const STATUS_CONFIG: Record<JobStatus, { label: string; color: string }> = {
     saved: { label: 'Saved', color: 'bg-muted text-muted-foreground' },
-    interested: { label: 'Interested', color: 'bg-blue-500/10 text-blue-600' },
-    applying: { label: 'Applying', color: 'bg-amber-500/10 text-amber-600' },
-    interviewing: { label: 'Interviewing', color: 'bg-purple-500/10 text-purple-600' },
+    interested: { label: 'Interested', color: 'bg-brand/10 text-brand' },
+    applying: { label: 'Applying', color: 'bg-warning/10 text-warning' },
+    interviewing: { label: 'Interviewing', color: 'bg-success/10 text-success' },
     archived: { label: 'Archived', color: 'bg-muted/50 text-muted-foreground' },
 };
 
@@ -173,7 +173,7 @@ export default function JobsClient() {
                         placeholder="Search jobs..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full h-9 pl-9 pr-4 rounded-md border border-border bg-background text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
+                        className="w-full h-9 pl-9 pr-4 rounded border border-border bg-background text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
                     />
                 </div>
 
@@ -181,7 +181,7 @@ export default function JobsClient() {
                 <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value as JobStatus | 'all')}
-                    className="h-9 px-3 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
+                    className="h-9 px-3 rounded border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
                 >
                     <option value="all">All Status</option>
                     <option value="saved">Saved</option>
@@ -193,7 +193,7 @@ export default function JobsClient() {
             </div>
 
             {/* Jobs List */}
-            <div className="border border-border rounded-lg overflow-hidden bg-card">
+            <div className="border border-border rounded overflow-hidden bg-card">
                 {loading ? (
                     <div className="p-8 text-center text-muted-foreground">
                         Loading jobs...
@@ -289,14 +289,14 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
             <div className="flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
                 <button
                     onClick={onOpenOriginal}
-                    className="p-2 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                    className="p-2 rounded hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
                     title="Open original posting"
                 >
                     <ExternalLink className="h-4 w-4" />
                 </button>
                 <button
                     onClick={onDelete}
-                    className="p-2 rounded-md hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
+                    className="p-2 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
                     title="Delete job"
                 >
                     <Trash2 className="h-4 w-4" />

@@ -31,7 +31,7 @@ export function LegalNav({ className }: LegalNavProps) {
             </Link>
 
             {/* Toolbar Navigation */}
-            <nav className="flex items-center p-1 bg-card border border-border/60 rounded-lg shadow-sm animate-in fade-in zoom-in-95 duration-500 max-w-[90vw] overflow-x-auto no-scrollbar">
+            <nav className="flex items-center p-1 bg-card border border-border/60 rounded animate-in fade-in zoom-in-95 duration-500 max-w-[90vw] overflow-x-auto no-scrollbar">
                 {tabs.map((tab) => {
                     const isActive = pathname === tab.href;
                     return (
@@ -41,7 +41,7 @@ export function LegalNav({ className }: LegalNavProps) {
                             className={cn(
                                 "px-4 py-1.5 text-xs font-medium rounded-md transition-all duration-200 whitespace-nowrap",
                                 isActive
-                                    ? "bg-secondary text-foreground shadow-sm"
+                                    ? "bg-secondary text-foreground"
                                     : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                             )}
                         >

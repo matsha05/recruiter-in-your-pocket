@@ -20,10 +20,9 @@ interface TOCItem {
 
 interface ReportTOCProps {
     activeId?: string
-    score?: number
 }
 
-export function ReportTOC({ activeId, score }: ReportTOCProps) {
+export function ReportTOC({ activeId }: ReportTOCProps) {
     const items: TOCItem[] = [
         { id: "section-first-impression", label: "The Verdict", icon: PrincipalRecruiterIcon },
         { id: "section-score-summary", label: "Signal Check", icon: SignalRadarIcon },
@@ -41,16 +40,6 @@ export function ReportTOC({ activeId, score }: ReportTOCProps) {
 
     return (
         <nav className="space-y-4">
-            {/* Score Mini-Card */}
-            <div className="rounded-lg border border-border bg-card p-4 shadow-sm text-center mb-6">
-                <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
-                    Resume Score
-                </div>
-                <div className="text-3xl font-display font-bold text-foreground">
-                    {score || 0}
-                </div>
-            </div>
-
             <div className="space-y-1">
                 <div className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/50">
                     Navigation
@@ -62,7 +51,7 @@ export function ReportTOC({ activeId, score }: ReportTOCProps) {
                             key={item.id}
                             onClick={() => handleScroll(item.id)}
                             className={cn(
-                                "flex items-center gap-3 w-full px-3 py-2 text-sm font-medium rounded-md transition-all",
+                                "flex items-center gap-3 w-full px-3 py-2 text-sm font-medium rounded transition-all",
                                 isActive
                                     ? "bg-brand/10 text-brand"
                                     : "text-muted-foreground hover:bg-muted hover:text-foreground"

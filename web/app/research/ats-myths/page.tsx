@@ -22,7 +22,7 @@ export default function ATSMythsPage() {
                 stat: "It's a Database, not a Guard",
                 statDescription: (
                     <>
-                        "Auto-reject" typically only triggers on knockout questions (Visa, License), not keywords.
+                        Auto-reject typically only triggers on knockout questions (Visa, License), not keywords.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),

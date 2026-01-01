@@ -309,6 +309,11 @@
      V2 DEPTH UTILITIES
      ========================================================================== */
 
+  .bg-body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
   .studio-panel {
     @apply bg-card border border-border/10;
     border-radius: var(--radius);

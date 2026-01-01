@@ -47,9 +47,6 @@ export default function ReportPanel({
     return (
         <div className="flex flex-col h-full overflow-y-auto bg-body relative group">
 
-            {/* BACKGROUND NOISE/TEXTURE (Subtle Studio Feel) */}
-            <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.015] pointer-events-none mix-blend-overlay" />
-
             {/* 1. Loading State - Analysis Theater */}
             {isLoading && (
                 <AnalysisScanning />
@@ -59,13 +56,13 @@ export default function ReportPanel({
             {showEmptyState && (
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-8">
                     {/* Icon - Subtle, Calm */}
-                    <div className="w-16 h-16 rounded-2xl bg-secondary/30 border border-border/20 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded bg-secondary/30 border border-border/20 flex items-center justify-center">
                         <Plus className="w-6 h-6 text-muted-foreground/50" />
                     </div>
 
                     {/* Copy - Question Headline */}
                     <div className="space-y-3 max-w-md">
-                        <h2 className="font-serif text-2xl md:text-3xl text-foreground">
+                        <h2 className="font-display text-2xl md:text-3xl text-foreground">
                             What will recruiters notice?
                         </h2>
                         <p className="text-muted-foreground">
@@ -94,18 +91,18 @@ export default function ReportPanel({
             {showReport && !isLoading && (
                 <>
                     <ReportLayout
-                        toc={<ReportTOC activeId={highlightSection || undefined} score={report.score} />}
+                        toc={<ReportTOC activeId={highlightSection || undefined} />}
                     >
                         {/* Document Meta / Actions Header (Inline for Mobile, handled by Layout context usually but here just content) */}
                         <div className="space-y-6">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
                                 <div className="space-y-1 min-w-0">
                                     <div className="flex items-center gap-3 flex-wrap">
-                                        <h1 className="text-xl sm:text-2xl font-serif font-semibold text-foreground tracking-tight truncate">
+                                        <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">
                                             {report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
                                         </h1>
                                         {isSample && (
-                                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border shrink-0">
+                                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-muted text-muted-foreground border border-border shrink-0">
                                                 Example
                                             </span>
                                         )}
@@ -118,7 +115,7 @@ export default function ReportPanel({
                                     {isSample && onNewReport && (
                                         <button
                                             onClick={onNewReport}
-                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                                         >
                                             <span className="hidden sm:inline">Run Your Review</span>
                                             <span className="sm:hidden">Run</span>
@@ -128,7 +125,7 @@ export default function ReportPanel({
                                     {!isSample && freeUsesRemaining > 0 && onNewReport && (
                                         <button
                                             onClick={onNewReport}
-                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                                         >
                                             <Plus className="w-4 h-4" />
                                             <span className="hidden sm:inline">Run Another</span>
@@ -138,7 +135,7 @@ export default function ReportPanel({
                                     {!isSample && freeUsesRemaining <= 0 && onUpgrade && (
                                         <button
                                             onClick={onUpgrade}
-                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
+                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                                         >
                                             <span className="hidden sm:inline">Get More Reviews</span>
                                             <span className="sm:hidden">Upgrade</span>
@@ -150,7 +147,7 @@ export default function ReportPanel({
                                         <button
                                             onClick={onExportPdf}
                                             disabled={isExporting}
-                                            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50 min-h-10"
+                                            className="flex items-center gap-2 px-3 py-2 rounded text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50 min-h-10"
                                         >
                                             <Download className="w-4 h-4" />
                                             <span className="hidden sm:inline">{isExporting ? "Exporting..." : "PDF"}</span>

@@ -132,7 +132,7 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
                     <ArrowLeft className="h-4 w-4" />
                     Back to Jobs
                 </Link>
-                <div className="p-8 text-center border border-border rounded-lg bg-card">
+                <div className="p-8 text-center border border-border rounded bg-card">
                     <AlertCircle className="h-8 w-8 mx-auto text-destructive mb-3" />
                     <p className="text-muted-foreground">{error || 'Job not found'}</p>
                 </div>
@@ -178,7 +178,7 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
                                 <ChevronDown className="h-3 w-3" />
                             </button>
                             {statusMenuOpen && (
-                                <div className="absolute top-full left-0 mt-1 w-40 bg-card border border-border rounded-md shadow-lg z-50">
+                                <div className="absolute top-full left-0 mt-1 w-40 bg-card border border-border rounded shadow-sm z-50">
                                     {(Object.keys(STATUS_CONFIG) as JobStatus[]).map((statusKey) => {
                                         const config = STATUS_CONFIG[statusKey];
                                         const isSelected = job.status === statusKey;
@@ -248,7 +248,7 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
                     href={job.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-border hover:bg-muted transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded border border-border hover:bg-muted transition-colors"
                 >
                     <ExternalLink className="h-4 w-4" />
                     View Original
@@ -326,7 +326,7 @@ function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                 )}
 
                 {activeTab === 'job-description' && (
-                    <div className="border border-border rounded-lg bg-card overflow-hidden">
+                    <div className="border border-border rounded bg-card overflow-hidden">
                         <div className="px-6 py-4 border-b border-border bg-muted/30">
                             <h3 className="font-medium text-foreground">Full Job Description</h3>
                             <p className="text-sm text-muted-foreground mt-1">
@@ -353,7 +353,7 @@ function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                         {/* Full Skills Breakdown */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* All Matched Skills */}
-                            <div className="border border-border rounded-lg bg-card p-6">
+                            <div className="border border-border rounded bg-card p-6">
                                 <div className="flex items-center gap-2 mb-4">
                                     <CheckCircle2 className="h-5 w-5 text-success" />
                                     <h3 className="font-medium text-foreground">
@@ -377,7 +377,7 @@ function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                             </div>
 
                             {/* All Missing Skills */}
-                            <div className="border border-border rounded-lg bg-card p-6">
+                            <div className="border border-border rounded bg-card p-6">
                                 <div className="flex items-center gap-2 mb-4">
                                     <AlertCircle className="h-5 w-5 text-destructive" />
                                     <h3 className="font-medium text-foreground">
@@ -403,7 +403,7 @@ function JobDetailTabs({ score, job }: JobDetailTabsProps) {
 
                         {/* Gap Analysis */}
                         {job.topGaps.length > 0 && (
-                            <div className="border border-border rounded-lg bg-card p-6">
+                            <div className="border border-border rounded bg-card p-6">
                                 <h3 className="font-medium text-foreground mb-4">Priority Gaps to Address</h3>
                                 <ul className="space-y-3">
                                     {job.topGaps.map((gap, i) => (
@@ -458,7 +458,7 @@ function RecruiterFitSummary({
     const coveragePercent = totalSkills > 0 ? (requirementsMet / totalSkills) * 100 : 0;
 
     return (
-        <div className="border border-border rounded-lg p-6 bg-card space-y-6">
+        <div className="border border-border rounded p-6 bg-card space-y-6">
             {/* Score Header */}
             <div className="flex items-center justify-between">
                 <div>
@@ -563,7 +563,7 @@ function RecruiterFitSummary({
 
 function NextBestActions({ jobId }: { jobId: string }) {
     return (
-        <div className="border border-border rounded-lg p-6 bg-card space-y-4">
+        <div className="border border-border rounded p-6 bg-card space-y-4">
             <h3 className="font-medium text-foreground">Next Best Actions</h3>
 
             <div className="space-y-2">
@@ -618,7 +618,7 @@ function ActionButton({ icon: Icon, label, description, href, comingSoon }: Acti
         return (
             <Link
                 href={href}
-                className="flex items-center gap-3 p-3 rounded-md border border-border hover:bg-muted/50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded border border-border hover:bg-muted/50 transition-colors"
             >
                 {content}
             </Link>
@@ -627,7 +627,7 @@ function ActionButton({ icon: Icon, label, description, href, comingSoon }: Acti
 
     return (
         <div className={cn(
-            "flex items-center gap-3 p-3 rounded-md border border-border",
+            "flex items-center gap-3 p-3 rounded border border-border",
             comingSoon ? "opacity-60 cursor-not-allowed" : "hover:bg-muted/50 cursor-pointer transition-colors"
         )}>
             {content}

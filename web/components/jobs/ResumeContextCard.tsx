@@ -199,7 +199,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     // Loading state
     if (isLoading) {
         return (
-            <div className={cn("rounded-lg border border-border bg-card p-4 animate-pulse", className)}>
+            <div className={cn("rounded border border-border bg-card p-4 animate-pulse", className)}>
                 <div className="h-4 bg-muted rounded w-1/3"></div>
             </div>
         );
@@ -209,12 +209,12 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     if (profile?.hasResume) {
         return (
             <div className={cn(
-                "rounded-lg border border-success/30 bg-gradient-to-r from-success/5 to-transparent p-4",
+                "rounded border border-success/30 bg-success/5 p-4",
                 className
             )}>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded bg-success/10 flex items-center justify-center">
                             <Check className="w-4 h-4 text-success" />
                         </div>
                         <div>
@@ -263,7 +263,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                         </button>
                                     </>
                                 )}
-                                <span className="text-xs text-success bg-success/10 px-1.5 py-0.5 rounded-full">
+                                <span className="text-xs text-success bg-success/10 px-1.5 py-0.5 rounded-sm">
                                     Active
                                 </span>
                             </div>
@@ -273,7 +273,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                     {profile.skillsCount} skills
                                 </span>
                                 {profile.hasEmbedding && (
-                                    <span className="flex items-center gap-1 text-amber-600">
+                                    <span className="flex items-center gap-1 text-warning">
                                         <InsightSparkleIcon className="w-3 h-3" />
                                         Semantic matching
                                     </span>
@@ -311,7 +311,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     return (
         <div
             className={cn(
-                "relative rounded-lg border-2 border-dashed transition-all duration-200 cursor-pointer p-4",
+                "relative rounded border-2 border-dashed transition-all duration-200 cursor-pointer p-4",
                 isDragOver
                     ? "border-brand bg-brand/5"
                     : "border-border/50 hover:border-brand/50 hover:bg-muted/30",
@@ -332,7 +332,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                 </div>
             ) : (
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded bg-muted/50 flex items-center justify-center">
                         <Upload className="w-4 h-4 text-muted-foreground" />
                     </div>
                     <div>

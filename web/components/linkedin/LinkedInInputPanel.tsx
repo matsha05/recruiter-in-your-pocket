@@ -110,7 +110,7 @@ export function LinkedInInputPanel({
     };
 
     return (
-        <div className="bg-card border border-border/60 shadow-lg shadow-black/5 rounded-xl overflow-hidden transition-all hover:border-border/80">
+        <div className="bg-card border border-border/60 rounded overflow-hidden transition-colors hover:border-border/80">
             {/* Main Content Area */}
             <div className="p-6 md:p-8 space-y-6">
 
@@ -122,7 +122,7 @@ export function LinkedInInputPanel({
                         onDrop={handleDrop}
                         onClick={() => fileInputRef.current?.click()}
                         className={cn(
-                            "relative flex flex-col items-center justify-center gap-4 p-10 border-2 border-dashed rounded-lg cursor-pointer transition-all duration-300 group",
+                            "relative flex flex-col items-center justify-center gap-4 p-10 border-2 border-dashed rounded cursor-pointer transition-all duration-300 group",
                             isDragging
                                 ? "border-brand bg-brand/5 scale-[1.01]"
                                 : "border-border/30 hover:border-brand/40 hover:bg-muted/20",
@@ -139,7 +139,7 @@ export function LinkedInInputPanel({
                         />
 
                         <div className={cn(
-                            "w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-300",
+                            "w-16 h-16 rounded flex items-center justify-center transition-colors duration-300",
                             isDragging ? "bg-brand/10 text-brand" : "bg-muted text-muted-foreground group-hover:bg-brand/5 group-hover:text-brand"
                         )}>
                             <Linkedin className="w-8 h-8" strokeWidth={1.5} />
@@ -156,7 +156,7 @@ export function LinkedInInputPanel({
                     </div>
                 ) : (
                     /* File Success State */
-                    <div className="flex items-center justify-between p-3 bg-brand/5 border border-brand/10 rounded-lg animate-in fade-in slide-in-from-top-2">
+                    <div className="flex items-center justify-between p-3 bg-brand/5 border border-brand/10 rounded animate-in fade-in slide-in-from-top-2">
                         <span className="text-sm font-medium text-brand flex items-center gap-3">
                             <div className="w-8 h-8 rounded bg-brand/10 flex items-center justify-center">
                                 <FileText className="w-4 h-4" />
@@ -197,8 +197,8 @@ export function LinkedInInputPanel({
                             href="https://www.linkedin.com/in/me"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-md border border-border/40 hover:border-brand/40 hover:bg-brand/5"
-                        >
+                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded border border-border/40 hover:border-brand/40 hover:bg-brand/5"
+                    >
                             Open your LinkedIn profile
                             <ExternalLink className="w-3.5 h-3.5" />
                         </a>
@@ -220,7 +220,7 @@ export function LinkedInInputPanel({
                 <Button
                     variant="brand"
                     size="lg"
-                    className="w-full shadow-lg shadow-brand/20 h-12 text-base font-medium transition-transform active:scale-[0.99]"
+                    className="w-full h-12 text-base font-medium transition-transform active:scale-[0.99]"
                     onClick={handlePdfRun}
                     disabled={!canSubmitPdf}
                     isLoading={isLoading}

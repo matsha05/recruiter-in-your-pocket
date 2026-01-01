@@ -81,7 +81,7 @@ export default function DashboardPage() {
                     </p>
                     <Link
                         href="/workspace"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand text-white hover:bg-brand/90 transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded bg-brand text-white hover:bg-brand/90 transition-colors"
                     >
                         Go to Workspace
                     </Link>
@@ -124,7 +124,7 @@ export default function DashboardPage() {
                     </p>
                     <Link
                         href="/workspace"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand text-white hover:bg-brand/90 transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded bg-brand text-white hover:bg-brand/90 transition-colors"
                     >
                         Run Your Review
                     </Link>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
                     <div className="flex flex-wrap gap-2">
                         <button
                             onClick={() => setFilterVariant(null)}
-                            className={`text-sm px-4 py-2 rounded-lg transition-colors ${filterVariant === null
+                            className={`text-sm px-4 py-2 rounded transition-colors ${filterVariant === null
                                 ? 'bg-foreground text-background'
                                 : 'bg-muted text-muted-foreground hover:bg-muted/80'
                                 }`}
@@ -164,7 +164,7 @@ export default function DashboardPage() {
                             <button
                                 key={v}
                                 onClick={() => setFilterVariant(v)}
-                                className={`text-sm px-4 py-2 rounded-lg transition-colors ${filterVariant === v
+                                className={`text-sm px-4 py-2 rounded transition-colors ${filterVariant === v
                                     ? 'bg-foreground text-background'
                                     : 'bg-muted text-muted-foreground hover:bg-muted/80'
                                     }`}
@@ -177,7 +177,7 @@ export default function DashboardPage() {
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {/* Total Reviews */}
-                    <div className="bg-card border border-border rounded-lg p-6">
+                    <div className="bg-card border border-border rounded p-6">
                         <div className="flex items-center gap-3 mb-2">
                             <BarChart3 className="w-5 h-5 text-brand" />
                             <span className="text-sm text-muted-foreground">
@@ -190,7 +190,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Average Score */}
-                    <div className="bg-card border border-border rounded-lg p-6">
+                    <div className="bg-card border border-border rounded p-6">
                         <div className="flex items-center gap-3 mb-2">
                             <Target className="w-5 h-5 text-brand" />
                             <span className="text-sm text-muted-foreground">Average Score</span>
@@ -201,7 +201,7 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Improvement */}
-                    <div className="bg-card border border-border rounded-lg p-6">
+                    <div className="bg-card border border-border rounded p-6">
                         <div className="flex items-center gap-3 mb-2">
                             <TrendingUp className="w-5 h-5 text-brand" />
                             <span className="text-sm text-muted-foreground">Score Change</span>
@@ -217,7 +217,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Score Progress Chart */}
-                <div className="bg-card border border-border rounded-lg p-6">
+                <div className="bg-card border border-border rounded p-6">
                     <ScoreProgressChart scores={filteredScoreHistory} />
                 </div>
 
@@ -225,7 +225,7 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Common Gaps */}
                     {analytics.commonGaps.length > 0 && (
-                        <div className="bg-card border border-border rounded-lg p-6">
+                        <div className="bg-card border border-border rounded p-6">
                             <div className="flex items-center gap-2 mb-4">
                                 <AlertTriangle className="w-5 h-5 text-warning" />
                                 <h2 className="font-semibold text-foreground">Recurring Gaps</h2>
@@ -246,7 +246,7 @@ export default function DashboardPage() {
 
                     {/* Top Strengths */}
                     {analytics.topStrengths.length > 0 && (
-                        <div className="bg-card border border-border rounded-lg p-6">
+                        <div className="bg-card border border-border rounded p-6">
                             <div className="flex items-center gap-2 mb-4">
                                 <Star className="w-5 h-5 text-green-500" />
                                 <h2 className="font-semibold text-foreground">Consistent Strengths</h2>

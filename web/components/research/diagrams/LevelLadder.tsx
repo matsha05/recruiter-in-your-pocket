@@ -1,7 +1,5 @@
 "use client";
 
-import { TrendingUp, ArrowUp } from "lucide-react";
-
 export function LevelLadder() {
     const levels = [
         { name: "L3", title: "Junior", scope: "Tasks", comp: "1.0x", h: 16 },
@@ -11,45 +9,29 @@ export function LevelLadder() {
     ];
 
     return (
-        <div className="w-full max-w-2xl mx-auto my-12 font-sans">
+        <figure className="w-full max-w-2xl mx-auto my-10">
             <div className="flex items-end justify-center gap-4 h-64 border-b border-border pb-4 relative">
-
-                {levels.map((lvl, i) => (
-                    <div key={i} className="flex flex-col items-center group relative w-1/4">
-                        {/* Bar */}
+                {levels.map((lvl) => (
+                    <div key={lvl.name} className="flex flex-col items-center w-1/4">
                         <div
-                            className="w-full bg-secondary/30 border border-border/10 rounded-t-sm group-hover:bg-brand/5 group-hover:border-brand/30 transition-all duration-normal relative overflow-hidden"
+                            className="w-full bg-foreground/5 border border-border/30"
                             style={{ height: `${lvl.h * 4}px` }}
-                        >
-                            <div className="absolute bottom-0 w-full h-px bg-border/20 group-hover:bg-brand/50 transition-colors" />
-                        </div>
-
-                        {/* Label */}
-                        <div className="mt-4 text-center">
-                            <span className="block text-sm font-bold text-foreground font-display">{lvl.name}</span>
-                            <span className="block text-xs text-muted-foreground uppercase tracking-wider scale-90">{lvl.title}</span>
-                        </div>
-
-                        {/* Hover Detail */}
-                        <div className="absolute bottom-full mb-2 opacity-0 group-hover:opacity-100 transition-all duration-normal translate-y-2 group-hover:translate-y-0 bg-card border border-brand/20 text-foreground text-[10px] px-3 py-1.5 rounded-sm whitespace-nowrap z-10 font-mono">
-                            <span className="text-brand">Scope:</span> {lvl.scope} • <span className="text-brand">Comp:</span> {lvl.comp}
+                        />
+                        <div className="mt-3 text-center">
+                            <span className="block text-sm font-medium text-foreground">{lvl.name}</span>
+                            <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{lvl.title}</span>
+                            <span className="block text-[10px] text-muted-foreground">{lvl.scope} • {lvl.comp}</span>
                         </div>
                     </div>
                 ))}
-
-                {/* The "Hidden Lever" Arrow */}
-                <div className="absolute top-10 right-[15%] flex flex-col items-center text-brand">
-                    <span className="text-[10px] font-bold uppercase tracking-widest mb-2 font-mono">The Big Jump</span>
-                    <TrendingUp className="w-8 h-8" />
-                </div>
             </div>
 
-            <div className="text-center mt-8 max-w-md mx-auto">
-                <p className="text-sm text-muted-foreground font-medium font-display">
-                    Negotiating base salary gets you +5%. <br />
-                    Negotiating <span className="text-brand border-b border-brand/30 pb-0.5">Level</span> gets you +30% to +50%.
-                </p>
-            </div>
-        </div>
+            <figcaption className="mt-4 text-center">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+                <span className="block text-xs text-muted-foreground">
+                    Compensation increases step with role scope and level.
+                </span>
+            </figcaption>
+        </figure>
     );
 }

@@ -1,86 +1,54 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { User, Server, Eye, Ban } from "lucide-react";
-
 export function ATSFunnel() {
     return (
-        <div className="w-full max-w-[500px] mx-auto my-12 font-sans">
+        <figure className="w-full max-w-[520px] mx-auto my-10">
             <div className="space-y-6">
-
-                {/* Stage 1: Applied */}
-                <div className="relative">
-                    <div className="flex justify-between text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                        <span className="flex items-center gap-2"><User className="w-3 h-3" /> 1. Applicants</span>
-                        <span>1,000 Candidates</span>
+                <div className="space-y-2">
+                    <div className="flex justify-between text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                        <span>1. Applicants</span>
+                        <span>1,000 candidates</span>
                     </div>
-                    <div className="h-12 w-full bg-secondary rounded-md border border-border flex items-center px-4 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-neutral-200/50 dark:bg-neutral-800/50" />
-                        <span className="relative z-10 text-sm font-medium">The Applicant Pool</span>
+                    <div className="h-2 border border-border/40 bg-foreground/5">
+                        <div className="h-full bg-foreground/30" style={{ width: "100%" }} />
                     </div>
                 </div>
 
-                {/* Arrow */}
-                <div className="flex justify-center -my-2 opacity-20">
-                    <div className="h-4 w-px bg-foreground" />
-                </div>
-
-                {/* Stage 2: ATS Automated Filter */}
-                <div className="relative">
-                    <div className="flex justify-between text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                        <span className="flex items-center gap-2"><Server className="w-3 h-3" /> 2. ATS Screening</span>
-                        <span>800 Pass (80%)</span>
+                <div className="space-y-2">
+                    <div className="flex justify-between text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                        <span>2. ATS screening</span>
+                        <span>800 pass (80%)</span>
                     </div>
-                    <div className="relative h-12 w-full bg-transparent rounded-md flex">
-                        {/* The Passers */}
-                        <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "80%" }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="h-full bg-brand/10 border border-brand/20 rounded-l-md flex items-center px-4"
-                        >
-                            <span className="text-sm font-medium text-brand">Qualified</span>
-                        </motion.div>
-                        {/* The Knockouts */}
-                        <div className="flex-1 h-full bg-white/5 border-y border-r border-white/10 rounded-r-md flex items-center justify-center">
-                            <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
-                                <Ban className="w-3 h-3" /> Knockout Qs
-                            </span>
-                        </div>
+                    <div className="flex h-2 border border-border/40 bg-background">
+                        <div className="h-full bg-brand/30" style={{ width: "80%" }} />
+                        <div className="h-full bg-foreground/10" style={{ width: "20%" }} />
                     </div>
-                    <p className="text-[10px] text-muted-foreground mt-1 text-right w-full">
-                        *Only ~20% are auto-rejected (Visa, Missing License, etc.)
-                    </p>
-                </div>
-
-                {/* Arrow */}
-                <div className="flex justify-center -my-2 opacity-20">
-                    <div className="h-4 w-px bg-foreground" />
-                </div>
-
-                {/* Stage 3: Human Review (The Bottleneck) */}
-                <div className="relative">
-                    <div className="flex justify-between text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                        <span className="flex items-center gap-2 text-foreground"><Eye className="w-3 h-3" /> 3. Human Review</span>
-                        <span className="text-brand font-bold">50 Seen (5%)</span>
-                    </div>
-                    <div className="h-12 w-full bg-secondary/30 rounded-md border border-border border-dashed flex relative overflow-hidden">
-                        {/* The actual processed volume */}
-                        <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "5%" }}
-                            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                            className="h-full bg-brand absolute left-0 top-0"
-                        />
-                        <div className="absolute inset-0 flex items-center px-4">
-                            <span className="text-sm text-muted-foreground ml-6">
-                                The &quot;Black Hole&quot; (Recruiters ran out of time)
-                            </span>
-                        </div>
+                    <div className="text-[11px] text-muted-foreground">
+                        Auto-rejections are typically knockout criteria.
                     </div>
                 </div>
 
+                <div className="space-y-2">
+                    <div className="flex justify-between text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                        <span>3. Human review</span>
+                        <span>50 seen (5%)</span>
+                    </div>
+                    <div className="flex h-2 border border-border/40 bg-background">
+                        <div className="h-full bg-brand" style={{ width: "5%" }} />
+                        <div className="h-full bg-foreground/10" style={{ width: "95%" }} />
+                    </div>
+                    <div className="text-[11px] text-muted-foreground">
+                        The bottleneck is human attention, not ATS filters.
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <figcaption className="mt-3 text-center">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+                <span className="block text-xs text-muted-foreground">
+                    Applicant flow through ATS screening and human review.
+                </span>
+            </figcaption>
+        </figure>
     );
 }

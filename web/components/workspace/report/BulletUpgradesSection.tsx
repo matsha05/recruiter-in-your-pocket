@@ -36,8 +36,8 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     title="The Red Pen"
                     subtitle="How I'd rewrite these to land harder."
                 />
-                <div className="rounded-lg border border-success/20 bg-success/5 p-6 flex items-start gap-4">
-                    <div className="h-10 w-10 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                <div className="rounded border border-success/20 bg-success/5 p-6 flex items-start gap-4">
+                    <div className="h-10 w-10 rounded bg-success/10 flex items-center justify-center shrink-0">
                         <InsightSparkleIcon className="h-5 w-5 text-success" />
                     </div>
                     <div>
@@ -78,7 +78,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
             <div className="space-y-4">
                 {/* System Status Line */}
                 <div className="flex items-center gap-2 px-1">
-                    <div className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse" />
+                    <div className="h-1.5 w-1.5 rounded-full bg-brand" />
                     <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                         {data.rewrites.length} Opportunities Identified
                     </span>
@@ -89,7 +89,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     title="High-Priority Rewrite"
                     before={heroRewrite.original}
                     after={heroRewrite.better}
-                    className="border-brand/20 shadow-md"
+                    className="border-brand/20"
                 />
 
                 {/* Remaining Rewrites */}

@@ -108,7 +108,7 @@ export default function PaywallModal({
                 </div>
 
                 {/* Checkout Section */}
-                <div className="bg-secondary/10 rounded-lg p-4 border border-border/40 mb-3">
+                <div className="bg-secondary/10 rounded p-4 border border-border/40 mb-3">
                     {isLoggedIn ? (
                         <>
                             <p className="text-sm text-muted-foreground mb-3 text-center">
@@ -148,7 +148,7 @@ export default function PaywallModal({
                 </div>
 
                 {error && (
-                    <div className="text-destructive text-sm text-center mb-3 bg-destructive/10 p-2 rounded-lg">
+                    <div className="text-destructive text-sm text-center mb-3 bg-destructive/10 p-2 rounded">
                         {error}
                     </div>
                 )}

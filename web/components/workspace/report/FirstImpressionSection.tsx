@@ -95,7 +95,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
             {/* Main Card - THE Signature Moment */}
             <div className={cn(
-                "bg-card rounded border border-border/60 shadow-sm overflow-hidden transition-all duration-700 ease-out",
+                "bg-card rounded border border-border/60 overflow-hidden transition-all duration-700 ease-out",
                 sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )} style={{ transitionDelay: '150ms' }}>
                 <div className="grid md:grid-cols-5">
@@ -108,7 +108,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             </h3>
                         </div>
 
-                        <p className="text-base text-muted-foreground leading-relaxed font-serif">
+                        <p className="text-base text-muted-foreground leading-relaxed">
                             {firstImpressionText}
                             {data.first_impression_takeaway && (
                                 <> <span className="font-semibold text-foreground">{data.first_impression_takeaway}</span></>
@@ -120,7 +120,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             <div className="p-4 bg-warning/10 border border-warning/20 rounded transition-all duration-300" style={{ transitionDelay: '400ms' }}>
                                 <div className="flex items-center justify-between gap-2 mb-2">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-warning animate-pulse" />
+                                        <div className="w-2 h-2 rounded-full bg-warning" />
                                         <span className="text-label text-warning">Critical Miss</span>
                                     </div>
                                     <Peek
@@ -193,8 +193,8 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                     />
                                 </svg>
                                 <div className="absolute inset-0 flex items-center justify-center flex-col">
-                                    <span className="text-5xl font-serif font-bold tracking-tighter tabular-nums">{animatedScore}</span>
-                                    <span className="text-label text-muted-foreground">Score</span>
+                                    <span className="text-5xl font-display font-semibold tracking-tighter tabular-nums">{animatedScore}</span>
+                                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Score</span>
                                 </div>
                             </div>
 

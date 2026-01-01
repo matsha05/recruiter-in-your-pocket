@@ -143,7 +143,7 @@ export default function FAQClient() {
                                 <AccordionItem
                                     key={idx}
                                     value={`${section.category}-${idx}`}
-                                    className="border border-border/60 rounded-lg bg-card shadow-sm px-6 data-[state=open]:ring-1 data-[state=open]:ring-brand/20 transition-all hover:border-border/80"
+                                    className="border border-border/60 rounded bg-card px-6 data-[state=open]:ring-1 data-[state=open]:ring-brand/20 transition-all hover:border-border/80"
                                 >
                                     <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5 text-base">
                                         {item.q}

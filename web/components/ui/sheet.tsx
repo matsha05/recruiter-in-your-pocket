@@ -48,7 +48,7 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-background p-6 shadow-lg",
+  "fixed z-50 gap-4 bg-background p-6 shadow-sm",
   {
     variants: {
       side: {
@@ -170,4 +170,3 @@ export {
   SheetTitle,
   SheetDescription,
 }
-

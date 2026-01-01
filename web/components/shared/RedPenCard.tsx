@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Lock, ArrowRight, Wand2, Copy, Check } from "lucide-react"
+import { Lock, ArrowRight, Copy, Check } from "lucide-react"
+import { TransformArrowIcon } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { Analytics } from "@/lib/analytics"
 
@@ -44,20 +45,20 @@ export function RedPenCard({
 
     return (
         <div className={cn(
-            "group relative overflow-hidden rounded-lg border border-border/60 bg-card shadow-sm transition-all hover:border-brand/30",
+            "group relative overflow-hidden rounded border border-border/60 bg-card transition-all hover:border-brand/30",
             className
         )}>
             {/* Header */}
-            <div className="flex items-center gap-2 border-b border-border/10 bg-muted/30 px-4 py-3">
-                <Wand2 className="h-4 w-4 text-brand" />
+            <div className="flex items-center gap-2 border-b border-border/10 bg-muted/20 px-4 py-3">
+                <TransformArrowIcon className="h-4 w-4 text-brand" />
                 <h3 className="font-display font-medium text-sm text-foreground">{title}</h3>
             </div>
 
             <div className="grid gap-0 md:grid-cols-2">
                 {/* BEFORE Panel */}
-                <div className="md:border-r border-border/10 p-5 bg-red-50/10">
+                <div className="md:border-r border-border/10 p-5 bg-secondary/10">
                     <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Original</div>
-                    <p className="text-sm leading-relaxed text-muted-foreground line-through decoration-red-300 decoration-wavy decoration-from-font opacity-80">
+                    <p className="text-sm leading-relaxed text-muted-foreground line-through decoration-muted-foreground/40 opacity-80">
                         {before}
                     </p>
                 </div>
@@ -111,9 +112,8 @@ export function RedPenCard({
                                     size="sm"
                                     variant="premium"
                                     onClick={onUnlock}
-                                    className="relative overflow-hidden scale-95 transition-transform group-hover:scale-100 shadow-md ring-2 ring-premium/20 hover:ring-premium/50"
+                                    className="relative overflow-hidden scale-95 transition-transform group-hover:scale-100"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite]" />
                                     <Lock className="mr-2 h-3.5 w-3.5" />
                                     See the Recruiter&apos;s Version
                                 </Button>
@@ -125,4 +125,3 @@ export function RedPenCard({
         </div>
     )
 }
-

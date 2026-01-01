@@ -163,6 +163,7 @@ module.exports = {
 				snap: 'cubic-bezier(0.16, 1, 0.3, 1)'
 			},
 			transitionDuration: {
+				micro: '90ms',
 				fast: '100ms',
 				normal: '200ms',
 				slow: '350ms'

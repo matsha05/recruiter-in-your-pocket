@@ -167,7 +167,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
     if (isLoading) {
         return (
-            <section className={cn("bg-card border border-border/60 rounded-xl p-6 shadow-sm", className)}>
+            <section className={cn("bg-card border border-border/60 rounded p-6", className)}>
                 <div className="flex items-center gap-3 text-muted-foreground">
                     <Loader2 className="w-4 h-4 animate-spin" />
                     <span className="text-sm">Loading...</span>
@@ -179,17 +179,17 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     // ===== ACTIVE STATE: Resume saved =====
     if (profile?.hasResume) {
         return (
-            <section className={cn("relative overflow-hidden bg-gradient-to-br from-emerald-50/50 to-teal-50/30 dark:from-emerald-950/20 dark:to-teal-950/10 border border-emerald-200/60 dark:border-emerald-800/40 rounded-xl p-6 shadow-sm", className)}>
+            <section className={cn("relative overflow-hidden bg-success/5 border border-success/20 rounded p-6", className)}>
                 <div className="flex items-start gap-4">
                     {/* Icon */}
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/20">
-                        <Check className="w-5 h-5 text-white" />
+                    <div className="w-12 h-12 rounded bg-success/10 flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-success" />
                     </div>
 
                     <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                             <h3 className="font-semibold text-foreground">Resume Locked In</h3>
-                            <span className="text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded-full font-medium">
+                            <span className="text-xs text-success bg-success/10 px-2 py-0.5 rounded-sm font-medium">
                                 Active
                             </span>
                         </div>
@@ -201,11 +201,11 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                         {/* Stats */}
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm mb-3">
                             <span className="flex items-center gap-1.5">
-                                <Target className="w-3.5 h-3.5 text-emerald-600" />
+                                <Target className="w-3.5 h-3.5 text-success" />
                                 <strong>{profile.skillsCount}</strong> skills
                             </span>
                             {profile.hasEmbedding && (
-                                <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
+                                <span className="flex items-center gap-1.5 text-warning">
                                     <InsightSparkleIcon className="w-3.5 h-3.5" />
                                     Semantic matching on
                                 </span>
@@ -216,11 +216,11 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                         </div>
 
                         {/* Change button */}
-                        <button
-                            onClick={() => fileInputRef.current?.click()}
-                            disabled={isSaving}
-                            className="text-sm text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 font-medium inline-flex items-center gap-1.5 transition-colors"
-                        >
+                            <button
+                                onClick={() => fileInputRef.current?.click()}
+                                disabled={isSaving}
+                                className="text-sm text-success hover:text-success/80 font-medium inline-flex items-center gap-1.5 transition-colors"
+                            >
                             <RefreshCw className={cn("w-3.5 h-3.5", isSaving && "animate-spin")} />
                             {isSaving ? "Updating..." : "Change Resume"}
                         </button>
@@ -243,9 +243,9 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
     // ===== EMPTY STATE: Upload prompt =====
     return (
-        <section className={cn("bg-card border border-border/60 rounded-xl p-6 shadow-sm", className)}>
+        <section className={cn("bg-card border border-border/60 rounded p-6", className)}>
             <div className="flex items-start gap-4 mb-5">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand/10 to-brand/5 border border-brand/20 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0">
                     <FileText className="w-5 h-5 text-brand" />
                 </div>
                 <div>
@@ -259,7 +259,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             {/* Drop zone */}
             <div
                 className={cn(
-                    "relative rounded-lg border-2 border-dashed transition-all duration-200 cursor-pointer",
+                    "relative rounded border-2 border-dashed transition-all duration-200 cursor-pointer",
                     isDragOver
                         ? "border-brand bg-brand/5"
                         : "border-border/50 hover:border-brand/50 hover:bg-muted/30"

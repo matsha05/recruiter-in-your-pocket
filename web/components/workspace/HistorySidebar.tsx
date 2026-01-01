@@ -231,7 +231,7 @@ export default function HistorySidebar({
                             /* Skeleton loading state */
                             <div className="p-4 space-y-3">
                                 {[1, 2, 3].map((i) => (
-                                    <div key={i} className="p-4 rounded-lg border border-border/60 bg-card space-y-3">
+                                    <div key={i} className="p-4 rounded border border-border/60 bg-card space-y-3">
                                         <div className="flex items-start justify-between">
                                             <Skeleton className="h-8 w-16 rounded-md" />
                                             <Skeleton className="h-6 w-6 rounded" />
@@ -311,7 +311,7 @@ export default function HistorySidebar({
 
                                 {/* Compare action bar */}
                                 {isCompareMode && (
-                                    <div className="px-2 py-2 bg-muted/50 rounded-lg flex items-center justify-between">
+                                    <div className="px-2 py-2 bg-muted/50 rounded flex items-center justify-between">
                                         <span className="text-xs text-muted-foreground">
                                             Select 2 reports to compare ({selectedForCompare.length}/2)
                                         </span>

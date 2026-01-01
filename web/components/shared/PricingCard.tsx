@@ -65,17 +65,16 @@ export function PricingCard({
                 onClick={onSelect}
                 disabled={loading}
                 className={cn(
-                    "p-4 rounded-lg text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center relative overflow-hidden",
-                    "hover:-translate-y-0.5",
+                    "p-4 rounded text-center transition-colors duration-200 ease-out border flex flex-col items-center justify-center relative overflow-hidden",
                     selected
-                        ? "bg-card ring-2 ring-brand border-transparent shadow-md"
-                        : "bg-transparent border-border/60 hover:bg-secondary/10 hover:shadow-sm",
+                        ? "bg-card ring-2 ring-brand border-transparent"
+                        : "bg-transparent border-border/60 hover:bg-secondary/10 hover:border-brand/30",
                     className
                 )}
             >
                 {isPack && data.badge && (
                     <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
-                        <span className="text-[9px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded-b font-bold">
+                        <span className="text-[9px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded font-bold">
                             {data.badge}
                         </span>
                     </div>
@@ -101,11 +100,10 @@ export function PricingCard({
     return (
         <div
             className={cn(
-                "p-6 rounded-xl border transition-all duration-200 ease-out flex flex-col relative",
-                "hover:-translate-y-0.5",
+                "p-6 rounded border transition-colors duration-200 ease-out flex flex-col relative",
                 isPack
-                    ? "border-2 border-brand/30 bg-brand/5 hover:shadow-lg"
-                    : "border-border/60 bg-card hover:border-border hover:shadow-md",
+                    ? "border-2 border-brand/30 bg-brand/5"
+                    : "border-border/60 bg-card hover:border-border",
                 className
             )}
         >

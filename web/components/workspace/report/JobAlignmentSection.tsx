@@ -2,7 +2,7 @@
 
 import { ReportData } from "./ReportTypes";
 import { ReportSectionHeader } from "./ReportSectionHeader";
-import { Lock, Check, X } from "lucide-react";
+import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
@@ -33,7 +33,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     title="Where You Compete"
                     subtitle="Your primary lane and how to position."
                 />
-                <div className="rounded-lg border border-border/60 bg-card shadow-sm p-5 text-sm text-muted-foreground">
+                <div className="rounded border border-border/60 bg-card p-5 text-sm text-muted-foreground">
                     {hasJobDescription
                         ? "Alignment was not generated for this run. Try again, or verify your job description pasted correctly."
                         : "Add a job description to get role-specific alignment and positioning notes."}
@@ -80,7 +80,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     title="Where You Compete"
                     subtitle="Your primary lane and how to position."
                 />
-                <div className="rounded-lg border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
+                <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
                     Where you compete is unclear from the current text. Add clearer role, level, and scope signals (titles, domain, team size, and outcomes).
                 </div>
             </section>
@@ -98,7 +98,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
 
             {isGated ? (
                 // GATED STATE: Show teaser with locked overlay
-                <div className="rounded-lg border border-border bg-card p-6 space-y-4">
+                <div className="rounded border border-border bg-card p-6 space-y-4">
                     <div className="flex items-center gap-3 text-muted-foreground">
                         <Lock className="w-5 h-5" />
                         <div>
@@ -114,7 +114,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     {/* Teaser: Show primary role blurred */}
                     {primaryRole && (
                         <div className="text-center py-4 blur-[3px] select-none">
-                            <h3 className="text-2xl font-serif font-semibold text-foreground">
+                            <h3 className="text-2xl font-display font-semibold text-foreground">
                                 {primaryRole}
                             </h3>
                         </div>
@@ -129,7 +129,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 Analytics.paywallCtaClicked('job_alignment');
                                 onUpgrade();
                             }}
-                            className="w-full shadow-md"
+                            className="w-full"
                         >
                             <InsightSparkleIcon className="w-4 h-4 mr-2" />
                             Unlock Role Positioning
@@ -138,12 +138,12 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 </div>
             ) : (
                 // FULL ACCESS: Show complete role analysis
-                <div className="rounded-lg border border-border/60 bg-card shadow-sm p-6 md:p-8">
+                <div className="rounded border border-border/60 bg-card p-6 md:p-8">
                     {/* JD Match Score - The Emotional Hook */}
                     {showJdSection && hasJdMatchData && (
                         <div className="text-center mb-8 pb-6 border-b border-border/40">
                             <div className="inline-flex items-center gap-4">
-                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'text-green-500 animate-pulse-once' :
+                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'text-success' :
                                     jdMatchScore >= SCORE_THRESHOLDS.MODERATE ? 'text-brand' :
                                         jdMatchScore >= SCORE_THRESHOLDS.WEAK ? 'text-warning' :
                                             'text-destructive'
@@ -183,7 +183,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 </div>
                                 <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                     <div
-                                        className={`h-full rounded-full transition-all duration-500 ${((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.75 ? 'bg-green-500' :
+                                        className={`h-full rounded-full transition-all duration-500 ${((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.75 ? 'bg-success' :
                                             ((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.5 ? 'bg-brand' :
                                                 'bg-warning'
                                             }`}
@@ -193,49 +193,51 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             </div>
 
                             {/* Keyword Lists */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Matched Keywords */}
                                 {jdKeywords?.matched && jdKeywords.matched.length > 0 && (
-                                    <div className="space-y-2">
-                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-green-600 flex items-center gap-1">
-                                            <Check className="w-3.5 h-3.5" strokeWidth={2} /> Skills Found
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-success">
+                                            Skills Found
                                         </h4>
-                                        <div className="flex flex-wrap gap-2">
+                                        <ul className="space-y-1">
                                             {jdKeywords.matched.map((keyword, idx) => (
-                                                <span
+                                                <li
                                                     key={idx}
-                                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-green-500/10 text-green-700 border border-green-500/20"
+                                                    className="flex items-start gap-2 text-sm text-muted-foreground"
                                                 >
-                                                    <Check className="w-3 h-3" strokeWidth={2} /> {keyword}
-                                                </span>
+                                                    <span className="mt-2 h-1 w-1 rounded-full bg-success" />
+                                                    <span>{keyword}</span>
+                                                </li>
                                             ))}
-                                        </div>
+                                        </ul>
                                     </div>
                                 )}
 
                                 {/* Missing Keywords */}
                                 {jdKeywords?.missing && jdKeywords.missing.length > 0 && (
-                                    <div className="space-y-2">
-                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-destructive flex items-center gap-1">
-                                            <X className="w-3.5 h-3.5" strokeWidth={2} /> Missing Skills
+                                    <div className="space-y-3">
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-destructive">
+                                            Missing Skills
                                         </h4>
-                                        <div className="flex flex-wrap gap-2">
+                                        <ul className="space-y-1">
                                             {jdKeywords.missing.map((keyword, idx) => (
-                                                <span
+                                                <li
                                                     key={idx}
-                                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-destructive/10 text-destructive border border-destructive/20"
+                                                    className="flex items-start gap-2 text-sm text-muted-foreground"
                                                 >
-                                                    <X className="w-3 h-3" strokeWidth={2} /> {keyword}
-                                                </span>
+                                                    <span className="mt-2 h-1 w-1 rounded-full bg-destructive" />
+                                                    <span>{keyword}</span>
+                                                </li>
                                             ))}
-                                        </div>
+                                        </ul>
                                     </div>
                                 )}
                             </div>
 
                             {/* Actionable Hint - What to do next */}
                             {jdKeywords?.missing && jdKeywords.missing.length > 0 && (
-                                <div className="mt-4 flex items-start gap-2 p-3 rounded-lg bg-brand/5 border border-brand/10">
+                                <div className="mt-4 flex items-start gap-2 p-3 rounded bg-brand/5 border border-brand/10">
                                     <InsightSparkleIcon className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
                                     <p className="text-xs text-muted-foreground">
                                         <span className="font-medium text-foreground">Pro tip:</span> Look for opportunities to add these skills to your experience bullets. Section 03 (The Red Pen) has rewrite examples that can help.
@@ -248,13 +250,13 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     {/* The Declaration */}
                     <div className="text-center space-y-4 mb-6">
                         {primaryRole && (
-                            <h3 className="text-3xl md:text-4xl font-serif font-semibold text-foreground tracking-tight">
+                            <h3 className="text-3xl md:text-4xl font-display font-semibold text-foreground tracking-tight">
                                 {primaryRole}
                             </h3>
                         )}
 
                         {positioning && (
-                            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto font-serif">
+                            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                                 {positioning}
                             </p>
                         )}

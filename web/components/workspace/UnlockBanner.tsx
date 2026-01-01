@@ -45,7 +45,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                 isVisible ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
             )}
         >
-            <div className="relative rounded-lg border border-premium/20 bg-premium/5 p-4 md:p-6 overflow-hidden">
+            <div className="relative rounded border border-premium/20 bg-premium/5 p-4 md:p-6 overflow-hidden">
                 {/* Background Sparkle Decoration */}
                 <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
                     <InsightSparkleIcon className="w-16 h-16 text-premium" />
