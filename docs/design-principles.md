@@ -40,18 +40,25 @@ Embrace "Studio energy" (Stripe, Linear, Notion).
 Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 percent dramatic, always tied to verdict, value, or conversion.
 - Light editorial base by default, dark mode is fully supported
 - Warm paper texture allowed only on marketing surfaces and kept subtle
-- One signature moment per screen is required, everything else is restrained
+- One signature moment per screen is preferred, not required. Utility screens can have none. Never more than one per screen.
 - Teal brand accent (action)
 - Gold for premium moments only
 - Muted slate for UI chrome
 - Shadows are subtle, not dramatic
 
-### 5. The University Anti-Pattern
+### 5. Crafted Delight
+We are premium and intentional, not templated. This is where we allow taste.
+- Composition can be bold. Asymmetry and editorial layout are welcome when they improve clarity.
+- Delight must be earned by the content. No gimmicks, no mascots, no confetti.
+- Consistency comes from type, tokens, spacing, and voice. Layout can vary.
+- If a screen feels generic, change the structure first, not the decoration.
+
+### 6. The University Anti-Pattern
 We are NOT a friendly university career center. We are a high-stakes partner.
 - **Banned:** Flat vector illustrations, "Hi there!" voice, gamification badges.
 - **Approved:** Data-driven visuals, precision microcopy, editorial tone.
 
-### 6. Interaction Physics
+### 7. Interaction Physics
 | Type | Rule |
 |---|---|
 | Easing | `cubic-bezier(0.16, 1, 0.3, 1)`: snappy |
@@ -199,6 +206,16 @@ The methodology tooltip explains:
 
 ---
 
+## Evidence and Citations
+
+We do not assert facts without a source.
+- Factual or research claims require a citation marker and a source entry.
+- Recruiter judgment and heuristics must be labeled as such, not disguised as research.
+- Use the citation pattern in `docs/design-system.md`. Avoid badges and decorative chips.
+- Source quality follows `docs/source-quality.md` for research content and should be Tier 1 or Tier 2 for product copy.
+
+---
+
 ## Messaging: "See What They See"
 
 **One-Liner:** `See what they see.`
@@ -264,6 +281,16 @@ These are allowed when they improve clarity or conversion and are styled with RI
 | Empty states | Onboarding clarity | Text-first, single CTA |
 | Toasts and inline alerts | Error and success feedback | Actionable, honest, no fluff |
 | Dashboards | Progress and trust | Only when they prove improvement over time |
+
+---
+
+## Accessibility (Required)
+
+- Text contrast meets WCAG 2.1 AA. Do not rely on color alone to convey meaning.
+- Every interactive element is keyboard accessible and has a visible focus state.
+- Respect `prefers-reduced-motion` and avoid continuous motion or parallax.
+- Touch targets are at least 44px.
+- Errors are explicit, actionable, and do not disappear on blur.
 
 ---
 

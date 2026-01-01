@@ -1,42 +1,57 @@
 # Recruiter in Your Pocket
 
-**High-stakes resume feedback from the perspective of an elite recruiter.**
+Elite resume studio that shows candidates how recruiters read them in the first seconds.
 
-Most resume tools are generic. They tell you to "add action verbs."
-**Recruiter in Your Pocket** is different. It reads your resume like a Partner at a top firm—someone who has hired 1000+ people at Google, OpenAI, and startups. It tells you the truth about how you land, what's buried, and how to fix it to get the interview.
+## Product Wedge
+- Recruiter First Impression: score, verdict, critical miss
+- Red Pen rewrites with before and after
+- Signal analysis with subscores and gaps
 
----
-
-## The Promise
-1.  **Recruiter Read:** A clear narrative of who you are (and aren't) in 60 seconds.
-2.  **Critical Miss:** The one thing holding you back from the "Yes" pile.
-3.  **Elite Rewrites:** "Before/After" bullet transformations that increase impact, not just word count.
-
-## Core Identity: "Luminous Authority"
-This project follows a strict design constitution known as the **10x Perception Jump**.
-- **No SaaS Vibes:** No distinct illustrations, no "hi there", no gamification.
-- **Studio Energy:** Serious, premium, authoritative. Think Linear, Stripe, Zed.
-- **Documentation:** See `docs/design-principles.md` for the full constitution.
+## Monorepo Layout
+- `web/` - Next.js App Router web app and API routes
+- `extension/` - Chrome extension for LinkedIn and Indeed capture
+- `scripts/` - scoring, matching, calibration, eval utilities
+- `tests/` - contract tests and fixtures
+- `docs/` - design constitution, research, audits
 
 ## Tech Stack
-- **Framework:** Next.js 14 (App Router)
-- **Styling:** TailwindCSS + Custom "Luminous" Utilities
-- **Motion:** Framer Motion (Snap Physics)
-- **Fonts:** Newsreader (Display), Geist Sans (UI), Geist Mono (Data)
-- **AI:** OpenAI (Custom Reasoning Models)
-
-## Pricing
-- **$0 First Look:** 2 reports. Try the studio.
-- **$19 Single Pass:** One-time deep dive.
-- **$39 Career Move:** Full monthly access. The default for serious candidates.
-
----
+- Next.js 16 App Router, React 19, TypeScript
+- TailwindCSS, Framer Motion, Radix UI
+- Supabase (auth and data), Upstash Redis, Inngest
+- Stripe billing, Sentry, Mixpanel, Vercel Analytics
+- Puppeteer or Sparticuz Chromium for PDF export and parsing
+- Chrome extension: Vite + CRXJS
 
 ## Local Development
+Prereqs: Node 20, npm
 
+1) Install deps
+`npm install`
+
+2) Configure env
+- Copy `web/env.example` to `web/.env.local`
+- Copy `.env.example` to `.env` if you run root scripts or tests
+
+3) Run the web app
+`npm run dev`
+
+### Extension Development
 ```bash
-npm install
-npm run dev
+npm install --prefix extension
+npm run dev --prefix extension
 ```
+Load `extension/dist` in `chrome://extensions` (Developer Mode).
 
-*Built with care in Boulder, CO.*
+## Useful Scripts
+- `npm run dev` - web app
+- `npm run build` - web build
+- `npm run lint` - web lint
+- `npm run test` - contract tests and smoke checks
+- `npm run eval:smoke` - evaluation harness (run inside `web`)
+- `npm run calibrate` - score calibration
+
+## Design and Research
+- `docs/design-philosophy.md`
+- `docs/design-principles.md`
+- `docs/design-system.md`
+- `docs/research-ui-contract.md`

@@ -91,7 +91,7 @@ Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 p
 
 - Light editorial base by default, dark mode is fully supported
 - Warm paper texture allowed only on marketing surfaces and kept subtle
-- One signature moment per screen is required, everything else is restrained
+- One signature moment per screen is preferred, not required. Utility screens can have none. Never more than one per screen.
 - Teal brand accent (action)
 - Gold for premium moments only
 - Muted slate for UI chrome
@@ -119,7 +119,7 @@ These are the experiences that define RIYP:
 
 3. **The Subscore Confidence** — Four dimensions, color-coded. You know exactly where to focus.
 
-4. **The Research Backing** — Every claim cites a study. We earn our authority.
+4. **The Evidence Trace** — When we cite facts or research, we show sources. When we apply recruiter judgment, we label it.
 
 ---
 

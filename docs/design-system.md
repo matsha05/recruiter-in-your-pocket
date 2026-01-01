@@ -159,4 +159,41 @@ Location: `/web/components/icons/`
 
 ---
 
+## 10. Evidence and Citations
+
+Evidence should feel editorial, not UI chrome.
+
+### Citation Marker
+- Inline superscript link after the claim.
+- Font: Geist Mono, `text-[10px]`, `text-muted-foreground`, `align-super`.
+- Interaction: hover or focus shows a popover with title, source, year, and link. On mobile, tap scrolls to Sources.
+
+Example:
+```tsx
+<p>
+  Recruiters decide in seconds.<sup><a href="#source-1">1</a></sup>
+</p>
+```
+
+### Sources List
+- Ordered list at the end of the report or research surface.
+- Format: `1. Title - Publisher (Year).`
+- Links point to the exact evidence. Follow `docs/source-quality.md`.
+
+### Evidence Labels
+If the claim is recruiter judgment or an internal heuristic:
+- Label inline as `Recruiter Lens` or `Internal signal`
+- Do not attach a citation marker
+
+---
+
+## 11. Accessibility
+
+- Use the `focus-ring` utility for custom interactive components.
+- Icon-only buttons require `aria-label`.
+- Popovers and tooltips must be keyboard accessible and dismissible.
+- Do not remove outlines unless replaced with an equivalent focus style.
+
+---
+
 *See also: `design-principles.md` for brand guidelines, `research-ui-contract.md` for diagram specs.*
