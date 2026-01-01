@@ -7,8 +7,11 @@
 import type { JobMeta, SavedJob, AuthUser } from './messages';
 
 // Base URL for API calls
-// TODO: Switch to production after deploying CORS fix to Vercel
-const API_BASE = 'http://localhost:3000';
+// Production: https://recruiterinyourpocket.com
+// Development: Set VITE_DEV_MODE=true in .env to use localhost
+const API_BASE = import.meta.env.VITE_DEV_MODE === 'true'
+    ? 'http://localhost:3000'
+    : 'https://recruiterinyourpocket.com';
 
 /**
  * Capture a job description and get quick match score.

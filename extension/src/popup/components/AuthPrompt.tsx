@@ -4,6 +4,8 @@
  * Elegant auth prompt with Google OAuth button matching web app's auth flow.
  */
 
+import { getGoogleAuthUrl, getLoginUrl } from '../../background/api';
+
 interface AuthPromptProps {
     onLogin: () => void;
 }
@@ -17,7 +19,7 @@ export default function AuthPrompt({ onLogin }: AuthPromptProps) {
         const top = (screen.height - height) / 2;
 
         const popup = window.open(
-            'http://localhost:3000/auth/google?from=extension',
+            getGoogleAuthUrl(),
             'riyp-auth',
             `width=${width},height=${height},left=${left},top=${top}`
         );
@@ -38,6 +40,9 @@ export default function AuthPrompt({ onLogin }: AuthPromptProps) {
             }
         }, 500);
     }
+
+    // Derive signup URL from login URL
+    const signupUrl = getLoginUrl().replace('/login', '/signup').replace('?from=extension', '');
 
     return (
         <div className="auth-prompt">
@@ -82,7 +87,7 @@ export default function AuthPrompt({ onLogin }: AuthPromptProps) {
             </div>
 
             <p className="auth-footer">
-                Don&apos;t have an account? <a href="http://localhost:3000/signup" target="_blank" rel="noopener noreferrer">Sign up free</a>
+                Don&apos;t have an account? <a href={signupUrl} target="_blank" rel="noopener noreferrer">Sign up free</a>
             </p>
         </div>
     );

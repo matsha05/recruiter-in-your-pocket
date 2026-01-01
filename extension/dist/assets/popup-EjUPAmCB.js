@@ -1,3 +1,5 @@
+import { g as getLoginUrl, a as getGoogleAuthUrl } from './api-ByDkDWyF.js';
+
 true&&(function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -678,7 +680,7 @@ function AuthPrompt({ onLogin }) {
     const left = (screen.width - width) / 2;
     const top = (screen.height - height) / 2;
     const popup = window.open(
-      "http://localhost:3000/auth/google?from=extension",
+      getGoogleAuthUrl(),
       "riyp-auth",
       `width=${width},height=${height},left=${left},top=${top}`
     );
@@ -695,6 +697,7 @@ function AuthPrompt({ onLogin }) {
       }
     }, 500);
   }
+  const signupUrl = getLoginUrl().replace("/login", "/signup").replace("?from=extension", "");
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "auth-prompt", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "auth-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "svg",
@@ -729,7 +732,7 @@ function AuthPrompt({ onLogin }) {
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "auth-footer", children: [
       "Don't have an account? ",
-      /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "http://localhost:3000/signup", target: "_blank", rel: "noopener noreferrer", children: "Sign up free" })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: signupUrl, target: "_blank", rel: "noopener noreferrer", children: "Sign up free" })
     ] })
   ] });
 }
@@ -969,4 +972,4 @@ function LoadingSkeleton() {
 client.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=popup-D0IfqbQB.js.map
+//# sourceMappingURL=popup-EjUPAmCB.js.map

@@ -5,11 +5,18 @@
     "src": "../../../../../../@crx/manifest",
     "isEntry": true
   },
+  "_api-ByDkDWyF.js": {
+    "file": "assets/api-ByDkDWyF.js",
+    "name": "api"
+  },
   "src/background/service-worker.ts": {
-    "file": "assets/service-worker.ts-AP_MmOyy.js",
+    "file": "assets/service-worker.ts-u6TBUugQ.js",
     "name": "service-worker.ts",
     "src": "src/background/service-worker.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_api-ByDkDWyF.js"
+    ]
   },
   "src/content/indeed.ts": {
     "file": "assets/indeed.ts-CgFjPFUV.js",
@@ -24,10 +31,13 @@
     "isEntry": true
   },
   "src/popup/index.html": {
-    "file": "assets/popup-D0IfqbQB.js",
+    "file": "assets/popup-EjUPAmCB.js",
     "name": "popup",
     "src": "src/popup/index.html",
     "isEntry": true,
+    "imports": [
+      "_api-ByDkDWyF.js"
+    ],
     "css": [
       "assets/popup-C97nJwJ0.css"
     ]

@@ -1,3 +1,6 @@
+import { b as getJobsUrl, c as checkAuth, d as deleteJob, e as getSavedJobs$1, f as captureJob } from './api-ByDkDWyF.js';
+export { g as getLoginUrl } from './api-ByDkDWyF.js';
+
 const STORAGE_KEY = "riyp_extension_data";
 const DEFAULT_STORAGE = {
   savedJobs: [],
@@ -40,7 +43,7 @@ async function deleteSavedJob(jobIdOrUrl) {
   await setStorage({ savedJobs: storage.savedJobs });
   return deleted;
 }
-async function getSavedJobs$1() {
+async function getSavedJobs() {
   const storage = await getStorage();
   return storage.savedJobs;
 }
@@ -50,7 +53,7 @@ async function isJobCaptured(url) {
   return { captured: !!job, job };
 }
 async function updateBadge() {
-  const jobs = await getSavedJobs$1();
+  const jobs = await getSavedJobs();
   const count = jobs.length;
   if (count > 0) {
     await chrome.action.setBadgeText({ text: String(count) });
@@ -58,63 +61,6 @@ async function updateBadge() {
   } else {
     await chrome.action.setBadgeText({ text: "" });
   }
-}
-
-const API_BASE = "http://localhost:3000";
-async function captureJob(jd, meta) {
-  const response = await fetch(`${API_BASE}/api/extension/capture-jd`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ jd, meta })
-  });
-  const data = await response.json();
-  if (!data.success) {
-    throw new Error(data.error || "Failed to capture job");
-  }
-  return data.data;
-}
-async function getSavedJobs() {
-  const response = await fetch(`${API_BASE}/api/extension/saved-jobs`, {
-    method: "GET",
-    credentials: "include"
-  });
-  const data = await response.json();
-  if (!data.success) {
-    throw new Error(data.error || "Failed to fetch jobs");
-  }
-  return data.data;
-}
-async function deleteJob(jobId) {
-  const response = await fetch(`${API_BASE}/api/extension/delete-job?id=${encodeURIComponent(jobId)}`, {
-    method: "DELETE",
-    credentials: "include"
-  });
-  const data = await response.json();
-  if (!data.success) {
-    throw new Error(data.error || "Failed to delete job");
-  }
-}
-async function checkAuth() {
-  try {
-    const response = await fetch(`${API_BASE}/api/extension/auth-status`, {
-      method: "GET",
-      credentials: "include"
-    });
-    const data = await response.json();
-    return {
-      authenticated: data.authenticated ?? false,
-      user: data.user ?? null
-    };
-  } catch {
-    return { authenticated: false, user: null };
-  }
-}
-function getJobsUrl() {
-  return `${API_BASE}/jobs`;
-}
-function getLoginUrl() {
-  return `${API_BASE}/login?from=extension`;
 }
 
 chrome.runtime.onMessage.addListener(
@@ -149,12 +95,12 @@ async function handleMessage(message) {
     }
     case "GET_JOBS": {
       try {
-        const apiJobs = await getSavedJobs();
-        const localJobs = await getSavedJobs$1();
+        const apiJobs = await getSavedJobs$1();
+        const localJobs = await getSavedJobs();
         const mergedJobs = mergeJobs(apiJobs, localJobs);
         return { success: true, data: mergedJobs };
       } catch {
-        const localJobs = await getSavedJobs$1();
+        const localJobs = await getSavedJobs();
         return { success: true, data: localJobs };
       }
     }
@@ -174,7 +120,7 @@ async function handleMessage(message) {
       return { success: true, data: result };
     }
     case "GET_QUICK_MATCH": {
-      const jobs = await getSavedJobs$1();
+      const jobs = await getSavedJobs();
       const job = jobs.find((j) => j.id === message.payload.jobId);
       if (!job) {
         return { success: false, error: "Job not found" };
@@ -195,7 +141,7 @@ async function handleMessage(message) {
     }
     case "OPEN_WEBAPP": {
       const path = message.payload?.path ?? "/jobs";
-      const baseUrl = "http://localhost:3000";
+      const baseUrl = getJobsUrl().replace("/jobs", "");
       await chrome.tabs.create({
         url: `${baseUrl}${path}`
       });
@@ -228,5 +174,5 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 console.log("[RIYP] Service worker initialized");
 
-export { checkAuth, getJobsUrl, getLoginUrl };
-//# sourceMappingURL=service-worker.ts-AP_MmOyy.js.map
+export { checkAuth, getJobsUrl };
+//# sourceMappingURL=service-worker.ts-u6TBUugQ.js.map

@@ -136,7 +136,7 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
 
         case 'OPEN_WEBAPP': {
             const path = message.payload?.path ?? '/jobs';
-            const baseUrl = 'http://localhost:3000'; // TODO: Switch to production
+            const baseUrl = getJobsUrl().replace('/jobs', ''); // Get base from api.ts
             await chrome.tabs.create({
                 url: `${baseUrl}${path}`,
             });
