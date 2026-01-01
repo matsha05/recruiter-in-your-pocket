@@ -33,9 +33,10 @@ export default function AutomationBiasPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The Automated Funnel</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The Automated Funnel</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         Automation isn&apos;t just &quot;scanning keywords&quot; at the end. It starts before you even see the job ad.
+                        <Citation id="source-1">1</Citation>
                     </p>
                     <AutomationPipeline />
                 </>
@@ -68,20 +69,20 @@ export default function AutomationBiasPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Bias compounds across stages</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Bias compounds across stages</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Most advice focuses on the &quot;Resume Parsing&quot; stage. But predictive ranking algorithms and ad delivery algorithms also play a huge role.
                 If an ad platform decides you aren&apos;t the &quot;target demographic,&quot; you might never see the role.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                We can&apos;t fix the ad servers, but we can ensure that once you *are* in the pipeline, your data is structured so clearly that no parser can misunderstand your qualifications.
+                We can&apos;t fix the ad servers, but we can ensure that once you <em className="text-foreground">are</em> in the pipeline, your data is structured so clearly that no parser can misunderstand your qualifications.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     title="The &apos;Hidden&apos; Funnel"
-                    desc="Understanding that you are navigating a complex machine helps you write with more structure and less fluff."
+                    desc="Recruiter lens: understanding the machine helps you write with more structure and less fluff."
                 />
             </div>
         </ResearchArticle>

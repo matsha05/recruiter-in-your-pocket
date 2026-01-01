@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { SavedJob, AuthUser } from '../background/messages';
 import PopupHeader from './components/PopupHeader';
+import ResumeContextCard from './components/ResumeContextCard';
 import RecentJobsList from './components/RecentJobsList';
 import EmptyState from './components/EmptyState';
 import AuthPrompt from './components/AuthPrompt';
@@ -149,15 +150,23 @@ export default function App() {
                     <AuthPrompt onLogin={handleLogin} />
                 )}
 
-                {state === 'empty' && <EmptyState />}
+                {state === 'empty' && (
+                    <>
+                        <ResumeContextCard />
+                        <EmptyState />
+                    </>
+                )}
 
                 {state === 'jobs' && (
-                    <RecentJobsList
-                        jobs={jobs}
-                        onJobClick={handleJobClick}
-                        onOpenOriginal={handleOpenOriginal}
-                        onDeleteJob={handleDeleteJob}
-                    />
+                    <>
+                        <ResumeContextCard />
+                        <RecentJobsList
+                            jobs={jobs}
+                            onJobClick={handleJobClick}
+                            onOpenOriginal={handleOpenOriginal}
+                            onDeleteJob={handleDeleteJob}
+                        />
+                    </>
                 )}
 
                 {state === 'error' && (

@@ -1,4 +1,4 @@
-const API_BASE = "https://recruiterinyourpocket.com";
+const API_BASE = "http://localhost:3000" ;
 async function captureJob(jd, meta) {
   const response = await fetch(`${API_BASE}/api/extension/capture-jd`, {
     method: "POST",
@@ -58,5 +58,5 @@ function getGoogleAuthUrl() {
   return `${API_BASE}/auth/google?from=extension`;
 }
 
-export { getGoogleAuthUrl as a, getJobsUrl as b, checkAuth as c, deleteJob as d, getSavedJobs as e, captureJob as f, getLoginUrl as g };
-//# sourceMappingURL=api-ByDkDWyF.js.map
+export { API_BASE as A, getGoogleAuthUrl as a, getJobsUrl as b, checkAuth as c, deleteJob as d, getSavedJobs as e, captureJob as f, getLoginUrl as g };
+//# sourceMappingURL=api-C29iMCNa.js.map

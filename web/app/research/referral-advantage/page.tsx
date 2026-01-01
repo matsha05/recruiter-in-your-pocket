@@ -34,9 +34,10 @@ export default function ReferralAdvantagePage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The referral advantage, quantified</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The referral advantage, compared</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        Interview success rates vary dramatically by application source.
+                        Interview success rates vary by application source.
+                        <Citation id="source-1">1</Citation>
                     </p>
                     <ReferralFunnelDiagram />
                 </>
@@ -69,7 +70,7 @@ export default function ReferralAdvantagePage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why referrals work</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why referrals work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Referrals work because they solve the employer&apos;s core problem: risk. Hiring is expensive
                 and uncertain. A referral from a trusted employee reduces both. The referrer is
@@ -82,10 +83,10 @@ export default function ReferralAdvantagePage() {
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">The research</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Key findings</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    title="Interview Rate"
+                    title="Higher Interview Rates"
                     desc={
                         <>
                             Referred candidates interview at higher rates than cold applicants.
@@ -94,39 +95,28 @@ export default function ReferralAdvantagePage() {
                     }
                 />
                 <ArticleInsight
-                    title="Hiring Speed"
+                    title="Higher Hire Rates"
                     desc={
                         <>
-                            Referral hires move faster because trust is established earlier.
+                            Referred candidates are more likely to be hired than cold applicants.
                             <Citation id="source-1">1</Citation>
                         </>
                     }
                 />
                 <ArticleInsight
-                    title="Retention"
-                    desc={
-                        <>
-                            Referred employees tend to stay longer because expectations are clearer.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    title="Lower Uncertainty"
+                    desc="Recruiter lens: referrals reduce ambiguity because someone vouches for fit."
                 />
                 <ArticleInsight
-                    title="Volume Impact"
-                    desc={
-                        <>
-                            Referrals produce a disproportionate share of hires relative to their volume.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    title="Context Travels"
+                    desc="Recruiter lens: context from the referrer helps interpret a resume faster."
                 />
             </div>
 
-            {/* Interactive Calculator */}
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">See the math</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">See the math</h2>
             <ReferralCalculator />
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">How to build referral opportunities</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">How to build referral opportunities</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 <strong>Before you need a job:</strong> Build relationships with people in your industry.
                 Attend events. Be helpful on LinkedIn. The best referrals come from genuine relationships,

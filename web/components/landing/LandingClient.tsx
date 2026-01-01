@@ -2,14 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/components/providers/AuthProvider";
-import { UserNav } from "@/components/shared/UserNav";
-import ThemeToggle from "@/components/shared/ThemeToggle";
 import Link from "next/link";
-import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
-import { Button } from "@/components/ui/button";
 import { Lock } from "lucide-react";
-import { PocketMark, Wordmark } from "@/components/icons";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
 import { BackedByResearch } from "@/components/landing/BackedByResearch";
@@ -19,7 +15,6 @@ import { Analytics } from "@/lib/analytics";
 
 export default function LandingClient() {
     const router = useRouter();
-    const { user, isLoading: isAuthLoading, signOut } = useAuth();
     const [isProcessing, setIsProcessing] = useState(false);
 
     const handleFileSelect = async (file: File) => {
@@ -56,44 +51,7 @@ export default function LandingClient() {
     };
     return (
         <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-brand/20">
-            {/* Navbar: Mobile-first, responsive */}
-            <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-white/10 bg-background/80 backdrop-blur-md sticky top-0 z-50 overflow-x-hidden safe-area-inset-x">
-                <Link href="/" className="flex items-center gap-2 shrink-0">
-                    <PocketMark className="w-6 h-6 text-brand" />
-                    <Wordmark className="h-5 md:h-6 text-foreground hidden sm:block" />
-                </Link>
-                <nav className="flex items-center gap-3 md:gap-4">
-                    {!user && <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block">Research</Link>}
-                    {isAuthLoading ? (
-                        <div className="w-20 h-9" />
-                    ) : user ? (
-                        <div className="flex items-center gap-2 md:gap-3">
-                            {/* Nav hints matching sidebar structure */}
-                            <Link href="/workspace" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block">The Studio</Link>
-                            <Link href="/research" className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block">Research</Link>
-                            <div className="hidden md:block w-px h-4 bg-border/50" />
-                            <UserNav user={user} onSignOut={signOut} />
-                            <Link href="/workspace" className="hidden sm:block md:hidden">
-                                <Button variant="brand" size="sm">Open Studio</Button>
-                            </Link>
-                            <Link href="/workspace" className="sm:hidden">
-                                <Button variant="brand" size="sm" className="px-3">Studio</Button>
-                            </Link>
-                            <ThemeToggle />
-                        </div>
-                    ) : (
-                        <div className="flex items-center gap-2 md:gap-3">
-                            <Link href="/auth" className="hidden sm:block">
-                                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Log In</Button>
-                            </Link>
-                            <Link href="/workspace">
-                                <Button variant="brand" size="sm" className="px-3 md:px-4">Get Started</Button>
-                            </Link>
-                            <ThemeToggle />
-                        </div>
-                    )}
-                </nav>
-            </header>
+            <SiteHeader />
 
             {/* Hero Section — Verdict First */}
             <main className="flex-1 flex flex-col overflow-hidden">

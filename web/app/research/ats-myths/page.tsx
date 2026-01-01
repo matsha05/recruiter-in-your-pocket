@@ -19,11 +19,13 @@ export default function ATSMythsPage() {
             }}
             keyFinding={{
                 subtitle: "The Reality",
-                stat: "It's a Database, not a Guard",
+                stat: "Workflow, not Autonomy",
                 statDescription: (
                     <>
-                        Auto-reject typically only triggers on knockout questions (Visa, License), not keywords.
+                        ATS platforms primarily store, filter, and surface candidates. Automated rejection is usually limited to explicit eligibility rules,
+                        with humans making final decisions.
                         <Citation id="source-1">1</Citation>
+                        <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
@@ -33,9 +35,11 @@ export default function ATSMythsPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Visualizing the Bottleneck</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Visualizing the Bottleneck</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        The real reason resumes don&apos;t get seen isn&apos;t an algorithm. It&apos;s math. There are too many applicants for the number of recruiters.
+                        The funnel shows where eligibility rules and recruiter capacity narrow review. The ATS organizes candidates; humans decide what gets read.
+                        <Citation id="source-1">1</Citation>
+                        <Citation id="source-2">2</Citation>
                     </p>
                     <ATSFunnel />
                 </>
@@ -65,23 +69,32 @@ export default function ATSMythsPage() {
                     publisher: "Journal of Business Ethics",
                     year: "2022",
                     href: "https://link.springer.com/article/10.1007/s10551-022-05049-6"
+                },
+                {
+                    id: "source-2",
+                    title: "An Auditing Imperative for Automated Hiring Systems",
+                    publisher: "Harvard Journal of Law & Technology",
+                    year: "2021",
+                    href: "https://jolt.law.harvard.edu/assets/articlePDFs/v34/5.-Ajunwa-An-Auditing-Imperative-for-Automated-Hiring-Systems.pdf"
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What an ATS actually does</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What an ATS actually does</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Most ATS systems function as workflow engines. They store candidate data, support filtering, and enable recruiters to search.
                 They are fundamentally different from the popular image of a robot auto-deleting resumes.
                 <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose not-prose my-8">
                 <ArticleInsight
-                    title="Knockout Questions"
+                    title="Eligibility Filters"
                     desc={
                         <>
-                            Filters for work authorization or required degrees. This is where auto-rejection happens.
+                            Explicit eligibility rules like work authorization or required credentials can filter candidates before review.
                             <Citation id="source-1">1</Citation>
+                            <Citation id="source-2">2</Citation>
                         </>
                     }
                 />
@@ -89,18 +102,20 @@ export default function ATSMythsPage() {
                     title="Search & Discovery"
                     desc={
                         <>
-                            Recruiters use keywords to find people in the database. If you are not found, you are not seen.
+                            Recruiters use filters and keyword search to surface candidates from the database.
                             <Citation id="source-1">1</Citation>
+                            <Citation id="source-2">2</Citation>
                         </>
                     }
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where the &apos;75%&apos; myth comes from</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why the auto-reject myth persists</h2>
             <p className="text-muted-foreground leading-relaxed">
-                The claim that &quot;75% of resumes are never seen&quot; is a misunderstanding. It&apos;s not that a robot deleted them.
-                It&apos;s that <strong>recruiters are busy</strong>. When applicant volume spikes, a human might only have time to open a fraction.
-                The bottleneck is human time, not AI malice.
+                ATS workflows can feel opaque, so candidates assume resumes are automatically rejected. The evidence we have shows ATS platforms
+                are primarily workflow systems with varying levels of automation. Human review still matters.
+                <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
         </ResearchArticle>
     );

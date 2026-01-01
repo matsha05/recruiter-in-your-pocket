@@ -76,7 +76,7 @@ export function ResumeDropzone({
         maxFiles: 1,
         disabled: isProcessing,
         multiple: false,
-        noClick: true,
+        noClick: false,
         noKeyboard: true,
     });
 
@@ -106,7 +106,7 @@ export function ResumeDropzone({
                     <div
                         {...getRootProps()}
                         className={cn(
-                            "rounded border border-dashed px-4 py-8 text-center transition-colors",
+                            "rounded border border-dashed px-4 py-8 text-center transition-colors cursor-pointer hover:border-brand/40 hover:bg-brand/5",
                             isDragActive ? "border-brand/60 bg-brand/5 text-foreground" : "border-border/40 text-muted-foreground",
                             isDragReject && "border-destructive/50 bg-destructive/5 text-destructive"
                         )}
@@ -164,10 +164,27 @@ export function ResumeDropzone({
                 </div>
             ) : (
                 <div className="space-y-3">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                Upload resume
+                            </div>
+                            <div className="text-xs text-muted-foreground">PDF or DOCX</div>
+                        </div>
+                        <Button
+                            variant="brand"
+                            size="sm"
+                            onClick={open}
+                            disabled={isProcessing}
+                            className="px-3"
+                        >
+                            Select file
+                        </Button>
+                    </div>
                     <div
                         {...getRootProps()}
                         className={cn(
-                            "relative flex flex-col items-center justify-center gap-3 p-6 border border-dashed rounded cursor-pointer transition-colors",
+                            "relative flex flex-col items-center justify-center gap-3 px-4 py-6 border border-dashed rounded cursor-pointer transition-colors text-center",
                             isDragActive
                                 ? "border-brand bg-brand/5"
                                 : "border-border/40 hover:border-brand/40 hover:bg-brand/5",
@@ -181,12 +198,12 @@ export function ResumeDropzone({
                             <CloudUpload className="w-5 h-5" strokeWidth={1.5} />
                         </div>
 
-                        <div className="text-center space-y-1">
+                        <div className="space-y-1">
                             <div className="text-sm font-medium text-foreground">
                                 Drop your resume here
                             </div>
                             <div className="text-xs text-muted-foreground">
-                                PDF or DOCX
+                                No login required
                             </div>
                         </div>
 

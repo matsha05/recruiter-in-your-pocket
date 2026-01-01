@@ -33,10 +33,10 @@ export default function LinkedInVsResumePage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Two tools, different jobs</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Two tools, different jobs</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        LinkedIn is your public identity. Your resume is your evidence file.
-                        They&apos;re equally important—and interviewers scan both.
+                        Recruiter lens: LinkedIn is your public identity. Your resume is your evidence file.
+                        They are both used, but at different moments.
                     </p>
                     <LinkedInResumeFlow />
                 </>
@@ -69,59 +69,37 @@ export default function LinkedInVsResumePage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why both matter equally</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why both matter equally</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                This is how recruiting works at many companies. If someone doesn&apos;t have a LinkedIn,
-                recruiters may hesitate to reach out—there&apos;s no quick way to verify who they are. Your profile is how they find you;
-                your resume is how they evaluate you. Both get scanned during interviews.
+                Jobvite reports that recruiters use LinkedIn to source and vet candidates before outreach.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                LinkedIn increases the likelihood of being contacted. Your resume gets you through the evaluation.
+                Recruiter lens: LinkedIn affects discoverability and validation, while the resume carries evidence for evaluation.
                 One without the other leaves gaps.
-                <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">What each does best</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">What each does best</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="LinkedIn: Identity"
-                    desc={
-                        <>
-                            Verifies you exist, shows your network, lets recruiters find and reach you.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    desc="Recruiter lens: verifies identity, shows network context, and makes you reachable."
                 />
                 <ArticleInsight
                     title="Resume: Substance"
-                    desc={
-                        <>
-                            Shows depth of experience, specific accomplishments, tailored per role.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    desc="Recruiter lens: shows depth of experience, accomplishments, and role fit."
                 />
                 <ArticleInsight
                     title="LinkedIn: Searchable"
-                    desc={
-                        <>
-                            Keywords, skills, headline — what makes you show up in recruiter searches.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    desc="Recruiter lens: keywords, skills, and headline are what surface you in searches."
                 />
                 <ArticleInsight
                     title="Resume: Scannable"
-                    desc={
-                        <>
-                            Seconds to make an impression. Structure and formatting win here.
-                        </>
-                    }
+                    desc="Recruiter lens: you have seconds to make an impression, so structure and formatting win."
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Practical takeaways</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Practical takeaways</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 <strong>Keep them aligned.</strong> Interviewers check both. Mismatched dates,
                 titles, or company names raise questions.

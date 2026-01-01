@@ -262,6 +262,95 @@ body {
     animation: fadeIn var(--duration-slow) var(--ease);
 }
 
+/* Premium empty state */
+.empty-state-premium {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 32px 20px;
+    gap: 16px;
+    animation: fadeIn var(--duration-slow) var(--ease);
+}
+
+.empty-illustration {
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.empty-illustration-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(135deg, hsl(var(--brand) / 0.12) 0%, hsl(var(--brand) / 0.05) 100%);
+    animation: pulse 2.5s ease-in-out infinite;
+}
+
+.empty-illustration-inner {
+    position: absolute;
+    inset: 6px;
+    border-radius: 12px;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border) / 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--brand) / 0.65);
+}
+
+.empty-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.empty-features {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.empty-feature {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: hsl(var(--muted-foreground) / 0.7);
+}
+
+.empty-feature-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.empty-feature-success {
+    background: hsl(var(--success) / 0.5);
+}
+
+.empty-feature-brand {
+    background: hsl(var(--brand) / 0.5);
+}
+
+.empty-feature-premium {
+    background: hsl(var(--premium) / 0.5);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
 .empty-state-icon {
     width: 56px;
     height: 56px;
@@ -283,17 +372,16 @@ body {
 .empty-state-title {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
     color: hsl(var(--foreground));
     letter-spacing: -0.02em;
-    margin-top: 4px;
 }
 
 .empty-state-description {
-    font-size: 13px;
+    font-size: 12px;
     color: hsl(var(--muted-foreground));
-    line-height: 1.55;
-    max-width: 260px;
+    line-height: 1.5;
+    max-width: 240px;
 }
 
 /* ============= JOB CARD ============= */
@@ -365,6 +453,12 @@ body {
 .job-info {
     flex: 1;
     min-width: 0;
+}
+
+.job-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .job-title {
@@ -920,5 +1014,190 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ============= RESUME CONTEXT CARD ============= */
+.resume-context-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    transition: all var(--duration-fast) var(--ease);
+}
+
+.resume-context-loading {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+}
+
+.resume-context-empty {
+    background: hsl(var(--muted) / 0.3);
+    border: 1px dashed hsl(var(--border));
+    cursor: pointer;
+}
+
+.resume-context-empty:hover {
+    border-color: hsl(var(--brand));
+    background: hsl(var(--brand) / 0.05);
+}
+
+.resume-context-active {
+    background: hsl(var(--success) / 0.08);
+    border: 1px solid hsl(var(--success) / 0.25);
+}
+
+.resume-context-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.resume-context-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.resume-context-icon-empty {
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+}
+
+.resume-context-icon-active {
+    background: hsl(var(--success) / 0.15);
+    color: hsl(var(--success));
+}
+
+.resume-context-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.resume-context-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.resume-context-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resume-context-subtitle {
+    font-size: 11px;
+    color: hsl(var(--muted-foreground));
+}
+
+.resume-context-badge {
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: hsl(var(--success) / 0.15);
+    color: hsl(var(--success));
+}
+
+.resume-context-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.resume-context-skills,
+.resume-context-semantic {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: hsl(var(--muted-foreground));
+}
+
+.resume-context-skills-icon,
+.resume-context-semantic-icon {
+    width: 10px;
+    height: 10px;
+}
+
+.resume-context-semantic {
+    color: hsl(var(--premium));
+}
+
+.resume-context-arrow {
+    color: hsl(var(--muted-foreground));
+    font-size: 12px;
+}
+
+.resume-context-change {
+    font-size: 11px;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    transition: all var(--duration-fast) var(--ease);
+}
+
+.resume-context-change:hover {
+    color: hsl(var(--foreground));
+    background: hsl(var(--muted));
+}
+
+/* ============= JOB STATUS PILL ============= */
+.job-status-pill {
+    font-size: 9px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+.job-status-pill.status-saved {
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+}
+
+.job-status-pill.status-interested {
+    background: hsl(var(--brand) / 0.12);
+    color: hsl(var(--brand));
+}
+
+.job-status-pill.status-applying {
+    background: hsl(var(--premium) / 0.12);
+    color: hsl(var(--premium));
+}
+
+.job-status-pill.status-interviewing {
+    background: hsl(var(--success) / 0.12);
+    color: hsl(var(--success));
+}
+
+.job-status-pill.status-archived {
+    background: hsl(var(--muted) / 0.5);
+    color: hsl(var(--muted-foreground) / 0.7);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
     }
 }

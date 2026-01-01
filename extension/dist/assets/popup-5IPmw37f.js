@@ -1,4 +1,4 @@
-import { g as getLoginUrl, a as getGoogleAuthUrl } from './api-ByDkDWyF.js';
+import { A as API_BASE, g as getLoginUrl, a as getGoogleAuthUrl } from './api-C29iMCNa.js';
 
 true&&(function polyfill() {
   const relList = document.createElement("link").relList;
@@ -496,6 +496,104 @@ function PopupHeader({ user }) {
   ] });
 }
 
+function ResumeContextCard({ className }) {
+  const [profile, setProfile] = reactExports.useState(null);
+  const [isLoading, setIsLoading] = reactExports.useState(true);
+  reactExports.useEffect(() => {
+    fetchProfile();
+  }, []);
+  async function fetchProfile() {
+    try {
+      const res = await fetch(`${API_BASE}/api/user/default-resume`, {
+        method: "GET",
+        credentials: "include"
+      });
+      if (!res.ok) {
+        if (res.status === 401) {
+          setProfile({ hasResume: false });
+          return;
+        }
+        throw new Error("Failed to fetch");
+      }
+      const data = await res.json();
+      if (data.success) {
+        setProfile(data.data);
+      } else {
+        setProfile({ hasResume: false });
+      }
+    } catch (error) {
+      console.error("[RIYP] Resume fetch error:", error);
+      setProfile({ hasResume: false });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  function handleChangeResume() {
+    chrome.runtime.sendMessage({
+      type: "OPEN_WEBAPP",
+      payload: { path: "/jobs" }
+    });
+  }
+  if (isLoading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `resume-context-card resume-context-loading ${className || ""}`, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "skeleton", style: { width: 24, height: 24, borderRadius: "50%" } }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "skeleton", style: { width: 120, height: 12 } })
+    ] });
+  }
+  if (!profile?.hasResume) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: `resume-context-card resume-context-empty ${className || ""}`,
+        onClick: handleChangeResume,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "resume-context-icon resume-context-icon-empty", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("polyline", { points: "17 8 12 3 7 8" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "12", y1: "3", x2: "12", y2: "15" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "resume-context-info", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "resume-context-title", children: "Upload resume for matching" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "resume-context-subtitle", children: "Get instant match scores" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "resume-context-arrow", children: "→" })
+        ]
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `resume-context-card resume-context-active ${className || ""}`, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "resume-context-icon resume-context-icon-active", children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: /* @__PURE__ */ jsxRuntimeExports.jsx("polyline", { points: "20 6 9 17 4 12" }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "resume-context-info", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "resume-context-header", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "resume-context-title", children: profile.resumeFilename || "Resume Active" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "resume-context-badge", children: "Active" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "resume-context-meta", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "resume-context-skills", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "resume-context-skills-icon", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "12", cy: "12", r: "10" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "12", cy: "12", r: "3" })
+          ] }),
+          profile.skillsCount,
+          " skills"
+        ] }),
+        profile.hasEmbedding && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "resume-context-semantic", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "resume-context-semantic-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" }) }),
+          "AI matching"
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "button",
+      {
+        className: "resume-context-change",
+        onClick: handleChangeResume,
+        children: "Change"
+      }
+    )
+  ] });
+}
+
 function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete }) {
   const score = job.score ?? 0;
   function handleDelete(e) {
@@ -510,7 +608,10 @@ function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-card", onClick, title: "Open analysis", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(ScoreDial, { score }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-info", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "job-title", children: job.title }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-title-row", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "job-title", children: job.title }),
+        job.status && job.status !== "saved" && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `job-status-pill status-${job.status}`, children: getStatusLabel(job.status) })
+      ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-meta", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "job-company", children: job.company }),
         job.source && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "job-source", children: job.source === "linkedin" ? "LI" : "IN" })
@@ -608,6 +709,16 @@ function getRoleAlignmentClass(score) {
   if (score >= 41) return "alignment-adjacent";
   return "alignment-mismatch";
 }
+function getStatusLabel(status) {
+  const labels = {
+    saved: "Saved",
+    interested: "Interested",
+    applying: "Applying",
+    interviewing: "Interviewing",
+    archived: "Archived"
+  };
+  return labels[status] || status;
+}
 function getTimeAgo(timestamp) {
   if (!timestamp) return "recently";
   const ts = typeof timestamp === "string" ? new Date(timestamp).getTime() : timestamp;
@@ -650,26 +761,44 @@ function RecentJobsList({ jobs, onJobClick, onOpenOriginal, onDeleteJob }) {
 }
 
 function EmptyState() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-state", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-state-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "svg",
-      {
-        viewBox: "0 0 24 24",
-        fill: "none",
-        stroke: "currentColor",
-        strokeWidth: "1.5",
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
-        className: "empty-icon-svg",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "12", y1: "8", x2: "12", y2: "16" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "8", y1: "12", x2: "16", y2: "12" })
-        ]
-      }
-    ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-state-title", children: "No jobs captured yet" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-state-description", children: "Browse to a LinkedIn or Indeed job posting, then click the floating capture button to get your match score." })
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-state-premium", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-illustration", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-illustration-bg" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-illustration-inner", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "svg",
+        {
+          viewBox: "0 0 24 24",
+          fill: "none",
+          stroke: "currentColor",
+          strokeWidth: "1.5",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          className: "empty-icon-svg",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { x: "2", y: "7", width: "20", height: "14", rx: "2", ry: "2" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" })
+          ]
+        }
+      ) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-content", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-state-title", children: "No jobs captured yet" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-state-description", children: "Browse to a LinkedIn or Indeed job posting, then click the capture button to see how your resume stacks up." })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-features", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-feature", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "empty-feature-dot empty-feature-success" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Match scoring" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-feature", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "empty-feature-dot empty-feature-brand" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Gap analysis" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-feature", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "empty-feature-dot empty-feature-premium" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Suggestions" })
+      ] })
+    ] })
   ] });
 }
 
@@ -921,16 +1050,22 @@ function App() {
       state === "loading" && /* @__PURE__ */ jsxRuntimeExports.jsx(LoadingSkeleton, {}),
       state === "onboarding" && /* @__PURE__ */ jsxRuntimeExports.jsx(Onboarding, { onComplete: handleOnboardingComplete }),
       state === "unauthenticated" && /* @__PURE__ */ jsxRuntimeExports.jsx(AuthPrompt, { onLogin: handleLogin }),
-      state === "empty" && /* @__PURE__ */ jsxRuntimeExports.jsx(EmptyState, {}),
-      state === "jobs" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        RecentJobsList,
-        {
-          jobs,
-          onJobClick: handleJobClick,
-          onOpenOriginal: handleOpenOriginal,
-          onDeleteJob: handleDeleteJob
-        }
-      ),
+      state === "empty" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ResumeContextCard, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(EmptyState, {})
+      ] }),
+      state === "jobs" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ResumeContextCard, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          RecentJobsList,
+          {
+            jobs,
+            onJobClick: handleJobClick,
+            onOpenOriginal: handleOpenOriginal,
+            onDeleteJob: handleDeleteJob
+          }
+        )
+      ] }),
       state === "error" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-state", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "empty-state-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round", className: "empty-icon-svg", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "12", cy: "12", r: "10" }),
@@ -972,4 +1107,4 @@ function LoadingSkeleton() {
 client.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=popup-EjUPAmCB.js.map
+//# sourceMappingURL=popup-5IPmw37f.js.map

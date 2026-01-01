@@ -39,12 +39,12 @@ interface Job {
 // STATUS CONFIG
 // =============================================================================
 
-const STATUS_CONFIG: Record<JobStatus, { label: string; color: string }> = {
-    saved: { label: 'Saved', color: 'bg-muted text-muted-foreground' },
-    interested: { label: 'Interested', color: 'bg-brand/10 text-brand' },
-    applying: { label: 'Applying', color: 'bg-warning/10 text-warning' },
-    interviewing: { label: 'Interviewing', color: 'bg-success/10 text-success' },
-    archived: { label: 'Archived', color: 'bg-muted/50 text-muted-foreground' },
+const STATUS_CONFIG: Record<JobStatus, { label: string; color: string; bgColor: string }> = {
+    saved: { label: 'Saved', color: 'text-muted-foreground', bgColor: 'bg-muted' },
+    interested: { label: 'Interested', color: 'text-brand', bgColor: 'bg-brand/10' },
+    applying: { label: 'Applying', color: 'text-premium', bgColor: 'bg-premium/10' },
+    interviewing: { label: 'Interviewing', color: 'text-success', bgColor: 'bg-success/10' },
+    archived: { label: 'Archived', color: 'text-muted-foreground/70', bgColor: 'bg-muted/30' },
 };
 
 // =============================================================================
@@ -266,7 +266,8 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
                         {job.title}
                     </h3>
                     <span className={cn(
-                        "px-2 py-0.5 text-xs font-medium rounded-full shrink-0",
+                        "px-2.5 py-0.5 text-xs font-medium rounded shrink-0",
+                        statusConfig.bgColor,
                         statusConfig.color
                     )}>
                         {statusConfig.label}
@@ -311,7 +312,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
 // =============================================================================
 
 function ScoreDial({ score }: { score: number }) {
-    const radius = 16;
+    const radius = 18;
     const circumference = 2 * Math.PI * radius;
     const progress = (score / 100) * circumference;
     const offset = circumference - progress;
@@ -324,20 +325,20 @@ function ScoreDial({ score }: { score: number }) {
     };
 
     return (
-        <div className="relative w-10 h-10 shrink-0">
-            <svg className="w-full h-full -rotate-90" viewBox="0 0 40 40">
+        <div className="relative w-12 h-12 shrink-0">
+            <svg className="w-full h-full -rotate-90" viewBox="0 0 48 48">
                 <circle
-                    cx="20"
-                    cy="20"
+                    cx="24"
+                    cy="24"
                     r={radius}
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="3"
-                    className="text-muted/30"
+                    className="text-muted/20"
                 />
                 <circle
-                    cx="20"
-                    cy="20"
+                    cx="24"
+                    cy="24"
                     r={radius}
                     fill="none"
                     strokeWidth="3"
@@ -348,7 +349,7 @@ function ScoreDial({ score }: { score: number }) {
                 />
             </svg>
             <div className={cn(
-                "absolute inset-0 flex items-center justify-center text-xs font-semibold",
+                "absolute inset-0 flex items-center justify-center text-sm font-semibold",
                 colors[scoreClass].text
             )}>
                 {score > 0 ? score : '—'}
@@ -371,15 +372,33 @@ function EmptyState({ hasJobs }: { hasJobs: boolean }) {
     }
 
     return (
-        <div className="p-12 text-center space-y-4">
-            <div className="w-12 h-12 mx-auto rounded-full bg-muted/50 flex items-center justify-center">
-                <Briefcase className="h-6 w-6 text-muted-foreground" />
+        <div className="p-16 text-center space-y-6">
+            {/* Visual illustration */}
+            <div className="relative w-20 h-20 mx-auto">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/10 to-brand/5 animate-pulse" />
+                <div className="absolute inset-2 rounded-xl bg-card border border-border/40 flex items-center justify-center">
+                    <Briefcase className="h-8 w-8 text-brand/60" />
+                </div>
             </div>
-            <div className="space-y-2">
-                <h3 className="font-medium text-foreground">No jobs captured yet</h3>
-                <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                    Save your first job from LinkedIn or Indeed using the RIYP extension to start comparing matches.
+            <div className="space-y-3">
+                <h3 className="font-display text-lg font-medium text-foreground">No jobs captured yet</h3>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+                    Save your first job from LinkedIn or Indeed using the RIYP extension, and we'll show you how your resume stacks up.
                 </p>
+            </div>
+            <div className="flex items-center justify-center gap-8 pt-2">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+                    <div className="w-2 h-2 rounded-full bg-success/40" />
+                    <span>Match scoring</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+                    <div className="w-2 h-2 rounded-full bg-brand/40" />
+                    <span>Gap analysis</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
+                    <div className="w-2 h-2 rounded-full bg-premium/40" />
+                    <span>Tailored suggestions</span>
+                </div>
             </div>
         </div>
     );

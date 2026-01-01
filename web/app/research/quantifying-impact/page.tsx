@@ -4,7 +4,7 @@ import { ImpactFormulaDiagram } from "@/components/research/diagrams/ImpactFormu
 
 export const metadata: Metadata = {
     title: "Quantifying Impact: The Laszlo Bock Formula | Hiring Research",
-    description: "Google's former SVP of People Operations on why numbers matter—and how to find them when you think you don't have any.",
+    description: "Google's former SVP of People Operations on why numbers matter and how to find them when you think you don't have any.",
 };
 
 export default function QuantifyingImpactPage() {
@@ -33,9 +33,10 @@ export default function QuantifyingImpactPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The formula visualized</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The formula visualized</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         Lead with the result, prove it with a metric, then explain your method.
+                        <Citation id="source-1">1</Citation>
                     </p>
                     <ImpactFormulaDiagram />
                 </>
@@ -68,7 +69,7 @@ export default function QuantifyingImpactPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why numbers work</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why numbers work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Numbers do three things that words cannot: they prove scale, enable comparison, and signal
                 that you track your own performance. &quot;Improved customer satisfaction&quot; is a claim.
@@ -80,7 +81,10 @@ export default function QuantifyingImpactPage() {
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Finding numbers when you think you don&apos;t have any</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Finding numbers when you think you don&apos;t have any</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+                Illustrative examples, not benchmarks.
+            </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="Time"
@@ -100,7 +104,7 @@ export default function QuantifyingImpactPage() {
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">The before and after</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">The before and after</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 <strong>Before:</strong> &quot;Responsible for managing social media accounts and creating content.&quot;
             </p>

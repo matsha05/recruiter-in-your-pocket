@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import Footer from "@/components/landing/Footer";
 
 /**
@@ -211,6 +212,8 @@ function CategorySection({ category, index }: { category: typeof categories[0]; 
 export default function ResearchClient() {
     return (
         <div className="min-h-screen bg-background">
+            <SiteHeader showResearchLink={false} />
+
             <main className="max-w-4xl mx-auto px-6 pt-12 pb-20 space-y-12">
                 <header className="space-y-6">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">

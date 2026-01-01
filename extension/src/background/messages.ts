@@ -17,10 +17,14 @@ export interface JobMeta {
     capturedAt: number;
 }
 
+// Job status workflow
+export type JobStatus = 'saved' | 'interested' | 'applying' | 'interviewing' | 'archived';
+
 // Saved job with match score
 export interface SavedJob extends JobMeta {
     score: number | null;
     jdPreview: string; // First 200 chars
+    status?: JobStatus;
 }
 
 // User auth info

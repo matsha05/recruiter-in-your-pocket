@@ -35,7 +35,14 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
         <div className="job-card" onClick={onClick} title="Open analysis">
             <ScoreDial score={score} />
             <div className="job-info">
-                <div className="job-title">{job.title}</div>
+                <div className="job-title-row">
+                    <span className="job-title">{job.title}</span>
+                    {job.status && job.status !== 'saved' && (
+                        <span className={`job-status-pill status-${job.status}`}>
+                            {getStatusLabel(job.status)}
+                        </span>
+                    )}
+                </div>
                 <div className="job-meta">
                     <span className="job-company">{job.company}</span>
                     {job.source && (
@@ -144,6 +151,17 @@ function getRoleAlignmentClass(score: number): string {
     if (score >= 71) return 'alignment-match';
     if (score >= 41) return 'alignment-adjacent';
     return 'alignment-mismatch';
+}
+
+function getStatusLabel(status: string): string {
+    const labels: Record<string, string> = {
+        saved: 'Saved',
+        interested: 'Interested',
+        applying: 'Applying',
+        interviewing: 'Interviewing',
+        archived: 'Archived',
+    };
+    return labels[status] || status;
 }
 
 function getTimeAgo(timestamp: number | string | undefined): string {

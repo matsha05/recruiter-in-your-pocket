@@ -681,7 +681,7 @@ export default function WorkspaceClient() {
                         // LinkedIn Mode
                         <>
                             {!linkedInReport ? (
-                                <div className="h-full overflow-y-auto bg-background">
+                                <div className="h-full overflow-y-auto bg-muted/10">
                                     <div className="flex justify-center p-6 md:p-12 min-h-full">
                                         <div className="w-full max-w-xl space-y-6">
                                             {/* Hero Header - matches Resume mode */}

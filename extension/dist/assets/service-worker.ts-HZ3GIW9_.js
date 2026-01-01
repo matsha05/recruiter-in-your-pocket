@@ -1,5 +1,5 @@
-import { b as getJobsUrl, c as checkAuth, d as deleteJob, e as getSavedJobs$1, f as captureJob } from './api-ByDkDWyF.js';
-export { g as getLoginUrl } from './api-ByDkDWyF.js';
+import { b as getJobsUrl, c as checkAuth, d as deleteJob, e as getSavedJobs$1, f as captureJob } from './api-C29iMCNa.js';
+export { g as getLoginUrl } from './api-C29iMCNa.js';
 
 const STORAGE_KEY = "riyp_extension_data";
 const DEFAULT_STORAGE = {
@@ -175,4 +175,4 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 console.log("[RIYP] Service worker initialized");
 
 export { checkAuth, getJobsUrl };
-//# sourceMappingURL=service-worker.ts-u6TBUugQ.js.map
+//# sourceMappingURL=service-worker.ts-HZ3GIW9_.js.map

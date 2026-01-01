@@ -39,9 +39,10 @@ export default function HumanVsAlgorithmPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The Trust/Choice Matrix</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The Trust/Choice Matrix</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         Recruiters generally prefer human recommendations. However, when an algorithm is consistent (predictable), it is accepted. When it errs, it is rejected immediately, whereas humans are &quot;forgiven.&quot;
+                        <Citation id="source-1">1</Citation>
                     </p>
                     <TrustChoiceGrid />
                 </>
@@ -74,24 +75,19 @@ export default function HumanVsAlgorithmPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where automation breaks recruiter judgment</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Where automation breaks recruiter judgment</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 The study reveals a phenomenon known as &quot;algorithm aversion.&quot; Even when algorithms perform well, people are quicker to lose trust in them after a mistake compared to a human making the same mistake.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                For job seekers, this means relying solely on &quot;beating the ATS&quot; is a flawed strategy. The end user is a human who values consistency, narrative, and trust signals that algorithms often miss.
+                Recruiter lens: optimizing only for a score can miss the trust signals that humans look for. The end user is a person who values consistency, narrative, and credibility.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     title="Trust is Fragile"
-                    desc={
-                        <>
-                            One obvious keyword-stuffing attempt can break a recruiter&apos;s trust in your entire profile.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
+                    desc="Recruiter lens: manipulation signals are hard to recover from once trust is lost."
                 />
             </div>
         </ResearchArticle>

@@ -1,92 +1,152 @@
 "use client";
 
-/**
- * ScanPattern - F-Pattern Eye-Tracking Visualization
- * Research UI Contract compliant: no motion, no gradients, no glows.
- */
+import { motion } from "framer-motion";
+
 export function ScanPattern() {
+    // Saccade path: More realistic eye movement with slight vertical adjustments
+    // The "F" pattern: Top horizontal, lower horizontal, then vertical scan down left
+    const pathSegments = [
+        "M 40 50 L 280 50",   // Top scan
+        "M 40 50 L 40 120",   // Down left
+        "M 40 120 L 220 120", // Second horizontal scan
+        "M 40 120 L 40 500"   // Vertical scan down the side
+    ];
+
+    // Combined for the trail
+    const fullPath = "M 40 50 L 280 50 L 40 50 L 40 120 L 220 120 L 40 120 L 40 500";
+
     return (
-        <figure className="w-full max-w-[420px] mx-auto my-8">
-            <div className="relative aspect-[1/1.35] border border-border/30 bg-background overflow-hidden">
-                {/* Resume skeleton */}
-                <div className="absolute inset-0 p-5 space-y-3">
-                    <div className="flex justify-between items-start">
-                        <div className="space-y-1.5">
-                            <div className="h-5 w-32 bg-foreground/15" />
-                            <div className="h-2.5 w-24 bg-foreground/8" />
+        <figure className="w-full max-w-[420px] mx-auto my-12 group select-none">
+            <div className="relative w-full aspect-[1/1.4] bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none transition-all duration-500 hover:shadow-xl">
+
+                {/* Premium Resume Skeleton */}
+                <div className="absolute inset-0 p-8 space-y-6 opacity-80">
+                    {/* Header */}
+                    <div className="space-y-3 mb-8">
+                        <div className="h-8 w-2/3 bg-slate-200 dark:bg-slate-800/80 rounded-md" />
+                        <div className="h-4 w-1/3 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
+                    </div>
+
+                    {/* Divider */}
+                    <div className="h-px w-full bg-slate-100 dark:bg-slate-800" />
+
+                    {/* Experience Block 1 */}
+                    <div className="space-y-3 pt-2">
+                        <div className="flex justify-between items-start">
+                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
+                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="space-y-1 text-right">
-                            <div className="h-2 w-20 bg-foreground/6" />
-                            <div className="h-2 w-16 bg-foreground/6" />
+                        <div className="h-4 w-1/4 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
+                        <div className="space-y-2 pt-2">
+                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[92%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[98%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
                     </div>
 
-                    <div className="h-px w-full bg-border/30 my-2" />
-
-                    <div className="space-y-1.5">
-                        <div className="flex justify-between items-center">
-                            <div className="h-3.5 w-28 bg-foreground/12" />
-                            <div className="h-2 w-14 bg-foreground/6" />
+                    {/* Experience Block 2 */}
+                    <div className="space-y-3 pt-4 opacity-90">
+                        <div className="flex justify-between items-start">
+                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm hover:ring-2 hover:ring-indigo-500/10 transition-all" />
+                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="h-2.5 w-20 bg-foreground/8" />
-                        <div className="space-y-1 pt-1">
-                            <div className="h-1.5 w-full bg-foreground/4" />
-                            <div className="h-1.5 w-[92%] bg-foreground/4" />
-                            <div className="h-1.5 w-[85%] bg-foreground/4" />
+                        <div className="space-y-2 pt-2">
+                            <div className="h-2.5 w-[88%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[75%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
                     </div>
 
-                    <div className="space-y-1.5 pt-2">
-                        <div className="flex justify-between items-center">
-                            <div className="h-3.5 w-24 bg-foreground/10" />
-                            <div className="h-2 w-14 bg-foreground/6" />
+                    {/* Experience Block 3 */}
+                    <div className="space-y-3 pt-4 opacity-75">
+                        <div className="flex justify-between items-start">
+                            <div className="h-5 w-1/4 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
+                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="h-2.5 w-18 bg-foreground/6" />
-                        <div className="space-y-1 pt-1">
-                            <div className="h-1.5 w-full bg-foreground/4" />
-                            <div className="h-1.5 w-[78%] bg-foreground/4" />
-                        </div>
-                    </div>
-
-                    <div className="space-y-1.5 pt-2">
-                        <div className="flex justify-between items-center">
-                            <div className="h-3.5 w-26 bg-foreground/10" />
-                            <div className="h-2 w-14 bg-foreground/6" />
-                        </div>
-                        <div className="space-y-1 pt-1">
-                            <div className="h-1.5 w-full bg-foreground/4" />
-                            <div className="h-1.5 w-[82%] bg-foreground/4" />
+                        <div className="space-y-2 pt-2">
+                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[65%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
                     </div>
 
-                    <div className="space-y-1.5 pt-3">
-                        <div className="h-3 w-20 bg-foreground/8" />
-                        <div className="h-2 w-32 bg-foreground/5" />
-                    </div>
-
-                    <div className="space-y-1.5 pt-2">
-                        <div className="h-3 w-14 bg-foreground/8" />
-                        <div className="flex flex-wrap gap-1.5">
-                            <div className="h-3 w-10 bg-foreground/4" />
-                            <div className="h-3 w-8 bg-foreground/4" />
-                            <div className="h-3 w-12 bg-foreground/4" />
-                            <div className="h-3 w-9 bg-foreground/4" />
+                    {/* Skills Section */}
+                    <div className="pt-6 opacity-60">
+                        <div className="h-4 w-1/6 bg-slate-200 dark:bg-slate-800/80 rounded-sm mb-3" />
+                        <div className="flex flex-wrap gap-2">
+                            {[1, 2, 3, 4, 5].map((i) => (
+                                <div key={i} className="h-6 w-16 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
+                            ))}
                         </div>
                     </div>
                 </div>
 
-                {/* F-pattern emphasis */}
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute left-4 right-4 h-2 bg-brand/25" style={{ top: "20px" }} />
-                    <div className="absolute left-4 h-2 w-[70%] bg-brand/20" style={{ top: "88px" }} />
-                    <div className="absolute left-4 h-2 w-[45%] bg-brand/15" style={{ top: "152px" }} />
-                    <div className="absolute left-4 w-2 bg-brand/15" style={{ top: "60px", bottom: "40px" }} />
+                {/* SVG Overlay */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 420 588" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="scanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="hsl(var(--brand))" stopOpacity="1" />
+                            <stop offset="100%" stopColor="hsl(var(--premium))" stopOpacity="0.8" />
+                        </linearGradient>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    {/* The Path Trace */}
+                    <motion.path
+                        d={fullPath}
+                        stroke="url(#scanGradient)"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        filter="url(#glow)"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        whileInView={{ pathLength: 1, opacity: 1 }}
+                        transition={{ duration: 2.5, ease: "easeInOut", delay: 0.5 }}
+                        viewport={{ once: true }}
+                    />
+                </svg>
+
+                {/* The "Eye" Tracker Dot */}
+                <motion.div
+                    className="absolute w-8 h-8 -ml-4 -mt-4 rounded-full z-20 flex items-center justify-center"
+                    style={{
+                        offsetPath: `path("${fullPath}")`,
+                    }}
+                    initial={{ offsetDistance: "0%", opacity: 0, scale: 0 }}
+                    whileInView={{
+                        offsetDistance: "100%",
+                        opacity: [0, 1, 1, 1, 0],
+                        scale: [0.5, 1, 1, 1, 0.5]
+                    }}
+                    transition={{
+                        duration: 2.5,
+                        ease: "easeInOut",
+                        delay: 0.5,
+                        times: [0, 0.1, 0.8, 0.95, 1]
+                    }}
+                    viewport={{ once: true }}
+                >
+                    <div className="w-3 h-3 bg-white rounded-full shadow-[0_0_10px_rgba(13,148,136,0.8)] z-20" />
+                    <div className="absolute w-full h-full bg-brand/30 rounded-full animate-ping" />
+                </motion.div>
+
+                {/* Meta Labels */}
+                <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-brand/20 rounded-full px-3 py-1 shadow-sm flex items-center gap-2 z-10">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                    <span className="text-[10px] font-mono font-medium text-brand uppercase tracking-wider">
+                        Eye Tracking
+                    </span>
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
-                <span className="block text-xs text-muted-foreground">Eye-tracking F-pattern across a resume page.</span>
+            <figcaption className="mt-4 text-center space-y-1">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Fig. 1 — Gaze Plot</span>
+                <span className="block text-sm text-foreground/80 font-medium">Typical 'F-Pattern' Scanning Behavior</span>
             </figcaption>
         </figure>
     );

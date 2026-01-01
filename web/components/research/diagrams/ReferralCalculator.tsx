@@ -1,29 +1,16 @@
 "use client";
 
-import { useMemo } from "react";
-
 export function ReferralCalculator() {
     const salary = 100000;
-
     const coldCallbackRate = 0.04;
     const referralCallbackRate = 0.5;
 
-    const results = useMemo(() => {
-        const coldAppsNeeded = Math.round(1 / coldCallbackRate);
-        const referralAppsNeeded = Math.round(1 / referralCallbackRate);
-        const appsSaved = coldAppsNeeded - referralAppsNeeded;
-        const hoursSaved = Math.round((appsSaved * 30) / 60);
-        const hourlyRate = salary / 2080;
-        const timeSavingsValue = Math.round(hoursSaved * hourlyRate);
-
-        return {
-            coldAppsNeeded,
-            referralAppsNeeded,
-            appsSaved,
-            hoursSaved,
-            timeSavingsValue
-        };
-    }, [salary]);
+    const coldAppsNeeded = Math.round(1 / coldCallbackRate);
+    const referralAppsNeeded = Math.round(1 / referralCallbackRate);
+    const appsSaved = coldAppsNeeded - referralAppsNeeded;
+    const hoursSaved = Math.round((appsSaved * 30) / 60);
+    const hourlyRate = salary / 2080;
+    const timeSavingsValue = Math.round(hoursSaved * hourlyRate);
 
     const formatSalary = (value: number) => {
         return new Intl.NumberFormat("en-US", {
@@ -44,7 +31,7 @@ export function ReferralCalculator() {
                     <div className="space-y-1">
                         <div className="text-xs text-muted-foreground uppercase tracking-wide">Cold applications</div>
                         <div className="text-2xl font-display font-medium text-muted-foreground">
-                            {results.coldAppsNeeded}
+                            {coldAppsNeeded}
                         </div>
                         <div className="text-xs text-muted-foreground">Apps per interview</div>
                     </div>
@@ -52,7 +39,7 @@ export function ReferralCalculator() {
                     <div className="space-y-1">
                         <div className="text-xs text-muted-foreground uppercase tracking-wide">With referrals</div>
                         <div className="text-2xl font-display font-medium text-brand">
-                            {results.referralAppsNeeded}
+                            {referralAppsNeeded}
                         </div>
                         <div className="text-xs text-muted-foreground">Apps per interview</div>
                     </div>
@@ -60,10 +47,10 @@ export function ReferralCalculator() {
 
                 <div className="mt-5 border-t border-border/20 pt-4 space-y-2">
                     <div className="text-sm text-foreground">
-                        One referral saves about {results.appsSaved} applications.
+                        One referral saves about {appsSaved} applications.
                     </div>
                     <div className="text-xs text-muted-foreground">
-                        That is roughly {results.hoursSaved} hours, worth {formatSalary(results.timeSavingsValue)} of time.
+                        That is roughly {hoursSaved} hours, worth {formatSalary(timeSavingsValue)} of time.
                     </div>
                     <div className="text-[10px] text-muted-foreground/70">
                         Example assumes a {formatSalary(salary)} salary and published callback rates.

@@ -39,9 +39,10 @@ export default function HowRecruitersReadPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Visualizing the 7.4 Seconds</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Visualizing the 7.4 Seconds</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         The &quot;Heatmap&quot; below allows us to see exactly where attention is focused. The red areas indicate intense fixation.
+                        <Citation id="source-2">2</Citation>
                     </p>
                     <ResumeHeatmap />
                 </>
@@ -106,13 +107,14 @@ export default function HowRecruitersReadPage() {
                 </a>
                 .
             </p>
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The skim pattern</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">The skim pattern</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Recruiters are not reading every bullet point. They are scanning for fast answers:
                 Who is this person now? Where do they work? What is their title? How long have they been doing it?
+                <Citation id="source-2">2</Citation>
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Where eyes actually look</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Where eyes actually look</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="1. Name & Title"
@@ -127,7 +129,7 @@ export default function HowRecruitersReadPage() {
                     title="2. Current Role"
                     desc={
                         <>
-                            After the header, eyes move to the most recent job—title, company, and dates.
+                            After the header, eyes move to the most recent job, title, company, and dates.
                             <Citation id="source-2">2</Citation>
                         </>
                     }

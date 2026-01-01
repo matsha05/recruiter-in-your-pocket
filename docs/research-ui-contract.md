@@ -1,303 +1,196 @@
-# Research UI Contract (v2.1)
+# Research UI Contract (v3.0)
 
-**Applies to:** Research hub and all Hiring Research Library articles.
+Applies to: Research hub and all Hiring Research Library articles.
 
-**Purpose:** Ensure every research page feels calm, editorial, credible, and research-grade. Prevent drift toward marketing UI, dashboards, or decorative patterns.
+Purpose: Research pages are proof engines. They should feel like premium editorial instruments built by a product design team. Calm, credible, and visually intentional.
+
+Design intent:
+- Quiet authority, not academic stiffness.
+- Illustration and motion are encouraged when they explain.
+- Every visual move must increase clarity, recall, or trust.
 
 ---
 
 ## 1. Surface Types
 
 ### Research Hub (Index)
-- Purpose: navigation and orientation, not persuasion
-- Form: typographic lists, dividers, and minimal grouping
-- Allowed: short callout for methodology (border-left, no card chrome)
-- Not allowed: cards, badges, iconography, gradients, or UI theatrics
+- Purpose: orientation and navigation, not persuasion.
+- Form: typographic lists, dividers, and minimal grouping.
+- Allowed: one lead figure or illustration if it explains the library or methodology.
+- Not allowed: card grids, badge stacks, or marketing hero theatrics.
 
 ### Research Articles (Documents)
-- Purpose: credibility and clarity
-- Form: editorial prose with one key finding excerpt, figures, and sources
-- Allowed: key finding excerpt, figures, subtle brand accent
-- Not allowed: marketing UI patterns, dashboards, or decorative chrome
+- Purpose: credibility and clarity.
+- Form: editorial prose with a key finding, figures, and sources.
+- Allowed: lead figure, inline diagrams, and short motion moments tied to the insight.
+- Not allowed: feature marketing layouts or dashboard UI.
 
 ---
 
 ## 2. Core Principle
 
-> Research articles are documents, not interfaces. The hub is an index, not a marketing page.
+Research pages are editorial instruments. The content leads, design supports it. If a visual element does not increase understanding, it is wrong.
 
-**They should feel like:**
-- Internal research memos
-- Technical documentation from The Economist or academic journals
-- Editorial analysis
+They should feel like:
+- A premium research memo
+- A designed, high craft editorial
+- An expert explainability layer for the product
 
-**They should NOT feel like:**
-- Marketing landing pages
-- Feature explainers
-- Dashboard cards
-
-**If an element draws attention to itself rather than the content, it is wrong.**
+They should not feel like:
+- A sales landing page
+- A marketing infographic dump
+- A SaaS dashboard
 
 ---
 
-## 3. Color Contract (V2.1 Alignment)
+## 3. Visual Language
 
-### Primary Palette
-| Token | Light | Dark | Usage |
-|---|---|---|---|
-| `--foreground` | `#111111` | `#EEEEEE` | Headings, body text |
-| `--muted` | `#6B7280` | `#9CA3AF` | Secondary text, labels, captions |
-| `--border` | `rgba(0,0,0,0.08)` | `rgba(255,255,255,0.10)` | Dividers, figure borders |
-| **`--brand`** | **`#0D9488` (Teal-600)** | **`#2DD4BF`** | Key finding highlights, data emphasis |
-| `--premium` | `#D97706` | `#FBBF24` | **Reserved for product CTAs only. Never in research content.** |
+### Typography and Layout
+- Headers use Fraunces, body uses Geist Sans, data uses Geist Mono.
+- Favor whitespace, clear sectioning, and tight editorial hierarchy.
+- Use lists and rules to structure reading flow.
 
-### Usage Rules
-- **Teal (`--brand`)** may be used for: key finding borders, data visualization highlights, subtle background tones (`bg-brand/5`).
-- **Gold (`--premium`)** is **prohibited** in research content. It signals "premium unlock" which is wrong for credibility.
-- Research content should be **90% neutral** (Ink & Paper) with Teal as the sole accent.
+### Color Contract
+Primary palette:
+- `--foreground` for text and primary strokes
+- `--muted` for supporting text and labels
+- `--border` for dividers and figure frames
+- `--brand` (Teal-600) for emphasis and key findings
+- `--premium` is reserved for product CTAs only, never for research content
 
----
+Allowable accent usage:
+- Teal for emphasis, highlights, and data focus.
+- Warm heat scales (red to orange) are allowed inside heatmaps only and must be labeled as intensity, not brand.
+- Subtle gradients are allowed inside figures only, never as page backgrounds.
 
-## 4. Allowed Visual Primitives (Hard Limit)
-
-Research pages may ONLY use:
-
-- Typography
-- Whitespace
-- Dividers
-- Figures (diagrams, data visualizations)
-- Inline links
-- One brand accent color (Teal), used sparingly
-- Minimal grouping (border-left, section rules, or subtle `bg-brand/5` on a single excerpt)
-
-**Anything outside this list requires explicit approval.**
+Research content should remain 85 to 90 percent neutral.
 
 ---
 
-## 5. Prohibited UI Patterns
+## 4. Illustrations and Motion
 
-| ❌ Prohibited | Reason |
-|---|---|
-| Decorative icons | Draws attention to UI, not content |
-| Emoji-style icons | Undermines credibility |
-| Chips, Pills, Badges | Marketing patterns |
-| Card grids | Dashboard pattern |
-| Glows, Blurs, Drop shadows | Decorative noise |
-| Infinite animations | Distracting; undermines seriousness |
+Illustrations are encouraged when they clarify an idea, reduce cognitive load, or make a research concept tangible.
 
-**Do not restyle these. Remove them.**
+Rules:
+- Illustrations must encode meaning, not decoration.
+- One signature motion moment per article is allowed.
+- Motion must resolve to a static, readable state.
+- No infinite loops, no ambient shimmer, no attention traps.
 
----
-
-## 6. Diagram Specification (NEW — V2.0)
-
-Diagrams are the **only** place where visual emphasis is encouraged. They must feel like data visualizations from a research paper or The Economist, not SaaS marketing.
-
-### 5.1 Visual Style
-
-| Attribute | Rule |
-|---|---|
-| **Strokes** | 1px, solid. No dashed lines unless semantically meaningful (e.g., "projected"). |
-| **Corners** | Sharp (`stroke-linejoin: miter`). No rounded corners on data paths. |
-| **Fills** | Flat colors only. No gradients. |
-| **Colors** | Monochrome base (`--foreground`, `--muted`). `--brand` (Teal) for primary data emphasis. ONE highlight per diagram max. |
-| **Shadows/Glows** | **Prohibited.** No `blur()`, no `box-shadow`, no `drop-shadow`. |
-| **Backgrounds** | Transparent or `--background`. No decorative fills. |
-
-### 5.2 Typography in Diagrams
-
-| Element | Font | Size | Style |
-|---|---|---|---|
-| Axis labels | Geist Mono | 10px | Uppercase, `--muted` |
-| Data labels | Geist Mono | 11px | `--foreground` |
-| Figure caption | Geist Sans | 12px | `--muted`, italic allowed |
-| Key stat callout | Fraunces | 24-32px | `--brand` or `--foreground` |
-
-### 5.3 Animation Rules
-
-| Rule | Reason |
-|---|---|
-| **Draw-in once on scroll** | Creates "reveal" moment. |
-| **No loops** | Loops are distracting and undermine seriousness. |
-| **End in static state** | The final frame must be fully legible. |
-| **Duration: 350-500ms** | Slow enough to perceive, fast enough to not feel sluggish. |
-| **Easing: `--ease`** | `cubic-bezier(0.16, 1, 0.3, 1)` — snappy. |
-
-### 5.4 Figure Labeling
-
-Every diagram must include:
-- **Figure number:** "Fig. 1", "Fig. 2", etc. (Geist Mono, 10px, uppercase, `--muted`)
-- **Caption:** One sentence explaining what the figure shows. (Geist Sans, 12px, `--muted`)
-
-Example:
-```
-Fig. 1 — Aggregated gaze duration across 30 recruiter sessions.
-```
-
-### 5.5 Diagram Anatomy Examples
-
-**Bar/Funnel Chart:**
-- Bars: `--muted` fill for secondary data, `--brand` fill for highlighted bar.
-- Axis: 1px `--border` stroke.
-- Labels: Geist Mono, right-aligned for Y-axis, centered for X-axis.
-
-**Heatmap:**
-- Gradient: Monochrome (white → `--foreground`) or Teal gradient (`--brand/10` → `--brand`).
-- No "glow" overlays. Use opacity steps for intensity.
-
-**Path/Flowchart:**
-- Lines: 1px `--foreground` or `--muted`.
-- Nodes: 4px radius, 1px border, no fill (or subtle `--muted/10`).
-- Arrows: Simple, not decorative.
+Motion budget:
+- Micro transitions: 150 to 250ms
+- Figure reveals: 350 to 700ms
+- Line draw or heatmap fade: up to 1.2s if it teaches
 
 ---
 
-## 7. Evidence and Citations
+## 5. Figures and Diagrams
 
-> Research credibility is a product feature. If it cannot be cited, it does not ship.
+Figures are the primary place where visual expression is encouraged.
 
-- All factual claims in research articles and figures must have a citation marker and a sources entry.
-- The hub is an index. Keep copy descriptive and avoid numeric or statistical claims. If a claim is necessary, move it into the article and cite it there.
-- Recruiter judgment must be labeled as such (e.g., "Recruiter Lens").
-- Follow the citation pattern in `docs/design-system.md`.
-- Source quality follows `docs/source-quality.md`.
+### Visual Style
+- Strokes: 1px or 1.5px.
+- Corners: 2 to 4 radius max for nodes and containers. No pills.
+- Fills: flat or subtle gradients inside figures only.
+- Shadows: avoid, or use a single soft shadow only inside a figure if needed for separation.
+- Backgrounds: transparent or `--background`.
+
+### Typography in Figures
+- Axis labels: Geist Mono, 10px, uppercase, `--muted`.
+- Data labels: Geist Mono, 11px, `--foreground`.
+- Figure caption: Geist Sans, 12px, `--muted`.
+- Key stat callout: Fraunces, 24 to 32px.
+
+### Figure Labeling
+Every figure must include:
+- Figure number: "Fig. 1" (Geist Mono, 10px, uppercase, muted)
+- Caption: one sentence explaining what the figure shows
+
+Captions can live under the figure or inside the figure if the layout demands it.
 
 ---
 
-## 8. Page Anatomy (Canonical Structure)
+## 6. Evidence and Citations
 
-### 8.0 Research Hub (Index)
+Research credibility is a product feature. If it cannot be cited, it does not ship.
+
+Rules:
+- All factual claims in research articles and figures must have citation markers and sources.
+- The hub must stay descriptive and avoid numeric claims.
+- Recruiter judgement can be used, but must be labeled as "Recruiter lens".
+
+### Anecdotal and Field Notes
+Anecdotes are allowed when clearly labeled. They must be qualitative, not quantitative.
+- Label: "Recruiter lens" or "Field note".
+- No numbers unless backed by a Tier-1 or Tier-2 source.
+
+Citation format follows `docs/design-system.md`.
+Source quality follows `docs/source-quality.md`.
+
+---
+
+## 7. Page Anatomy
+
+### Research Hub
 - Editorial header: tag, title, short description
-- Essential reading list (no cards, list with dividers)
-- Methodology note (border-left, no icon)
-- Category sections (numbered, list rows)
-- Product philosophy (text-only list)
+- Essential reading list
+- Methodology note
+- Category sections
+- Product translation
 
-### 8.1 Page Header
-- Back to Research: text-only label, Geist Mono, uppercase, no icon
-- Category label (text-only, Geist Mono, uppercase, `--muted`)
-- Title (Fraunces, `--foreground`)
-- Subtitle (Geist Sans, `--muted`)
-
-**No icons. No pills. No background container.**
-
-### 8.2 Study Snapshot
-- Border-left: 4px `--brand`
-- Optional subtle background: `bg-brand/5` for one excerpt only
-- Key statistic: Fraunces, 32-40px
-- Metadata: Geist Sans, label-value pairs (no icons)
-
-### 8.3 Figures
-- Labeled: "Fig. X"
-- Captioned: One-sentence explanation
-- May be visually expressive (within rules above)
-
-### 8.4 Narrative Sections
-- Plain text. No containers, no icons, no background fills.
-- Whitespace and typography only.
-
-### 8.5 Product Tie-In ("How this shapes RIYP")
-- Use a simple rule or border-left, not a card
-- No pills or badges
-- Editorial sentences, not UI labels
-
-### 8.6 Sources & Notes
-- Numbered footnotes or endnotes
-- Quiet and unobtrusive
+### Research Articles
+- Back to Research
+- Category label, title, subtitle, metadata
+- Key finding excerpt
+- Figures and narrative sections
+- Product tie-in
+- Sources and notes
 
 ---
 
-## 7. Source Quality Standards (MANDATORY)
+## 8. Prohibited UI Patterns
 
-> **All citations must link to verifiable, accessible content. Broken links or unverifiable claims are acquisition blockers.**
-
-### 7.1 Source Tiers
-
-| Tier | Source Type | Verified Examples | Usage |
-|------|-------------|-------------------|-------|
-| **Tier 1 (Primary)** | Official platform data, academic journals, government surveys | See list below | **Required for key findings** |
-| **Tier 2 (Industry)** | Established publications that cite primary sources | See list below | Acceptable if citing Tier 1 |
-| **Tier 3 (Prohibited)** | Low-authority blogs, marketing tools, unknown sites | DottyPost, ContentIn.io, random Medium posts | **Never use** |
-
-#### Tier 1 Sources for LinkedIn/Recruiting Research
-
-| Source | URL | What It Contains |
-|--------|-----|------------------|
-| **LinkedIn Economic Graph** | `economicgraph.linkedin.com/blog` | Official hiring data, workforce reports, AI impact studies |
-| **LinkedIn Newsroom** | `news.linkedin.com/about-us#Statistics` | Official member counts, hiring stats (7 hires/minute), company data |
-| **Pew Research Center** | `pewresearch.org/internet/fact-sheet/social-media` | 32% of US adults use LinkedIn, demographic breakdowns |
-| **Hootsuite Blog** | `blog.hootsuite.com/linkedin-statistics-business/` | 51 stats with primary LinkedIn citations |
-| **SHRM.org** | `shrm.org` (search for survey reports) | HR professional surveys on recruiting practices |
-| **Jobvite Recruiter Nation** | `jobvite.com` (annual reports) | Recruiter behavior surveys |
-| **Academic papers** | Google Scholar, DOI links | Peer-reviewed research on resume screening |
-
-#### Tier 2 Sources (Acceptable with Verification)
-
-| Source | Why Acceptable | Verify Before Using |
-|--------|----------------|---------------------|
-| **Kinsta** | Tech-focused, cites primary sources | Check their citations go to Tier 1 |
-| **TeamStage** | HR analytics, cites surveys | Check their methodology section |
-| **Forbes** | Editorial standards, fact-checked | Check article date and author credentials |
-| **HBR** | Research-grade editorial | Check study citations |
-
-#### Tier 3 Sources (PROHIBITED)
-
-| Source Type | Examples | Why Prohibited |
-|-------------|----------|----------------|
-| Small marketing tool blogs | DottyPost, ContentIn.io, Elev-AI | Fabricate stats to sell product |
-| AI content farms | Generic "LinkedIn Statistics 2024" sites | No primary research, circular citations |
-| Unattributed Medium posts | Random career advice articles | No editorial oversight |
-| Generic landing pages | business.linkedin.com/talent-solutions (no stats) | Marketing copy, not data |
-| 404s and broken links | Any URL that doesn't load | Obviously unverifiable |
-
-### 7.2 Link Requirements
-
-- [ ] **Every source URL must be verified BEFORE merge** — actually click it and find the stat
-- [ ] **Links must go to the specific stat**, not a generic landing page
-- [ ] **Links must be accessible** — no 404s, no login walls, no paywalls without archive link
-- [ ] **Citations must match content** — the stat you cite must exist on the linked page
-- [ ] **Check the source's source** — if they claim "87% of recruiters," where did THEY get it?
-
-### 7.3 Search Strategies for Finding Tier 1 Sources
-
-When researching a stat like "X% of recruiters use LinkedIn":
-
-1. **Start with official sources**: `site:linkedin.com "hiring" statistics`
-2. **Check academic sources**: Google Scholar + topic keywords
-3. **Find primary surveys**: `site:shrm.org survey recruiting` or `site:jobvite.com recruiter nation`
-4. **Verify aggregators**: If Hootsuite says "7 hires/minute" check their citation → `news.linkedin.com`
-5. **Avoid circular citations**: If 3 sites all cite each other with no primary source, the stat is likely fabricated
-
-### 7.4 When Evidence is Weak
-
-If you cannot find a credible primary source for a claim:
-1. **Remove the claim entirely** — restraint is better than bullshit
-2. **Soften the language** — "LinkedIn is the primary professional network" instead of "93% of recruiters..."
-3. **Add explicit limitation** — "Exact figures vary by source; the key insight is..."
-
-**If in doubt, delete. Credibility > Completeness.**
+Avoid anything that reads as marketing chrome:
+- Decorative icons or mascots with no informational role
+- Badge stacks and pill chips used as adornment
+- Card grids for navigation
+- Glassmorphism, glows, or ambient blur at the page level
+- Infinite animations
 
 ---
 
-## 8. Enforcement Checklist
+## 9. Source Quality Standards (Mandatory)
+
+All citations must link to verifiable, accessible content. Broken links or unverifiable claims are blockers.
+
+### Tier-1 Sources
+- Peer-reviewed journals, DOI links
+- Government or academic institution reports
+- Official platform data (LinkedIn Newsroom, Economic Graph)
+- Primary research from recognized orgs (Nielsen Norman Group, TheLadders)
+
+### Tier-2 Sources
+- Reputable industry reports with clear methodology
+- Top-tier consultancies with primary data
+
+### Prohibited
+- Marketing blogs
+- Aggregators without primary citations
+- Generic landing pages
+- Broken links or paywalled stats without mirrors
+
+If a strong source does not exist, soften or remove the claim.
+
+---
+
+## 10. Enforcement Checklist
 
 Before merge, every research page must pass:
+- No marketing layout patterns
+- Figures are labeled and captioned
+- Motion is purposeful and non-looping
+- All claims are cited
+- No premium color usage
+- Any anecdotal callout is labeled and qualitative
 
-- [ ] No decorative icons
-- [ ] No chips, pills, or badges
-- [ ] No Gold (`--premium`) anywhere
-- [ ] Teal (`--brand`) used only in allowed roles
-- [ ] All diagrams have figure numbers and captions
-- [ ] No infinite animations
-- [ ] No glows or blurs
-
-**If any fail, the page is non-compliant.**
-
----
-
-## 9. Design Philosophy
-
-> If a UI element exists, it must justify itself.
-> If removing an element improves reading, it should be removed.
-
-**Restraint is not a lack of design. Restraint is the design.**
+Restraint is still the baseline. Use visual craft to deepen understanding, not to decorate.

@@ -1,84 +1,115 @@
 "use client";
 
-/**
- * ResumeHeatmap - Aggregate gaze focus by section.
- * Research UI Contract compliant: no gradients, no blur, no motion.
- */
+import { motion } from "framer-motion";
+
 export function ResumeHeatmap() {
     return (
-        <figure className="w-full max-w-[400px] mx-auto my-8">
-            <div className="relative aspect-[1/1.4] border border-border/30 bg-background overflow-hidden">
-                <div className="absolute inset-0 p-6 space-y-4">
-                    <div className="space-y-2">
-                        <div className="h-6 w-1/2 bg-foreground/15" />
-                        <div className="h-3 w-1/3 bg-foreground/8" />
+        <figure className="w-full max-w-[420px] mx-auto my-12 group select-none">
+            <div className="relative w-full aspect-[1/1.4] bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none transition-all duration-500 hover:shadow-xl">
+
+                {/* Premium Resume Skeleton (Matching ScanPattern) */}
+                <div className="absolute inset-0 p-8 space-y-6 opacity-60">
+                    {/* Header */}
+                    <div className="space-y-3 mb-8">
+                        <div className="h-8 w-2/3 bg-slate-200 dark:bg-slate-800/80 rounded-md" />
+                        <div className="h-4 w-1/3 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
                     </div>
 
-                    <div className="h-px w-full bg-border/30 my-4" />
+                    {/* Divider */}
+                    <div className="h-px w-full bg-slate-100 dark:bg-slate-800" />
 
-                    <div className="space-y-2">
-                        <div className="flex justify-between">
-                            <div className="h-4 w-1/3 bg-foreground/10" />
-                            <div className="h-3 w-16 bg-foreground/5" />
+                    {/* Experience Block 1 */}
+                    <div className="space-y-3 pt-2">
+                        <div className="flex justify-between items-start">
+                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
+                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="h-3 w-1/4 bg-foreground/5" />
-                        <div className="space-y-1 pt-1">
-                            <div className="h-2 w-full bg-foreground/5" />
-                            <div className="h-2 w-11/12 bg-foreground/5" />
-                            <div className="h-2 w-10/12 bg-foreground/5" />
-                        </div>
-                    </div>
-
-                    <div className="space-y-2 pt-2">
-                        <div className="flex justify-between">
-                            <div className="h-4 w-1/3 bg-foreground/10" />
-                            <div className="h-3 w-16 bg-foreground/5" />
-                        </div>
-                        <div className="h-3 w-1/4 bg-foreground/5" />
-                        <div className="space-y-1 pt-1">
-                            <div className="h-2 w-full bg-foreground/5" />
-                            <div className="h-2 w-11/12 bg-foreground/5" />
+                        <div className="h-4 w-1/4 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
+                        <div className="space-y-2 pt-2">
+                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[92%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[98%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
                     </div>
 
-                    <div className="space-y-2 pt-4">
-                        <div className="h-3 w-20 bg-foreground/10" />
-                        <div className="h-2 w-1/2 bg-foreground/5" />
-                    </div>
-
-                    <div className="space-y-2 pt-4">
-                        <div className="flex justify-between">
-                            <div className="h-4 w-1/3 bg-foreground/10" />
-                            <div className="h-3 w-16 bg-foreground/5" />
+                    {/* Experience Block 2 */}
+                    <div className="space-y-3 pt-4">
+                        <div className="flex justify-between items-start">
+                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
+                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="space-y-1 pt-1">
-                            <div className="h-2 w-full bg-foreground/5" />
-                            <div className="h-2 w-4/5 bg-foreground/5" />
+                        <div className="space-y-2 pt-2">
+                            <div className="h-2.5 w-[88%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[75%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
                     </div>
 
-                    <div className="space-y-2 pt-6 pb-4">
-                        <div className="h-4 w-1/5 bg-foreground/10" />
-                        <div className="h-2 w-full bg-foreground/5" />
-                        <div className="h-2 w-4/5 bg-foreground/5" />
+                    {/* Experience Block 3 */}
+                    <div className="space-y-3 pt-4">
+                        <div className="flex justify-between items-start">
+                            <div className="h-5 w-1/4 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
+                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
+                        </div>
+                        <div className="space-y-2 pt-2">
+                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                            <div className="h-2.5 w-[65%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
+                        </div>
                     </div>
                 </div>
 
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-3 left-3 w-40 h-20 bg-brand/20" />
-                    <div className="absolute top-24 left-3 w-32 h-14 bg-brand/15" />
-                    <div className="absolute top-24 right-4 w-20 h-12 bg-brand/10" />
-                    <div className="absolute top-44 left-3 w-28 h-12 bg-brand/10" />
-                    <div className="absolute top-60 left-3 w-24 h-10 bg-brand/10" />
-                    <div className="absolute bottom-16 left-3 w-24 h-12 bg-brand/10" />
+                {/* Heatmap Layer */}
+                <div className="absolute inset-0 mix-blend-multiply dark:mix-blend-screen opacity-90 pointer-events-none">
+
+                    {/* Hotspot 1: Name/Title (Intense Focus) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="absolute top-6 left-6 w-64 h-32 rounded-[100%] blur-3xl bg-[radial-gradient(circle,rgba(225,29,72,0.8)_0%,rgba(245,158,11,0.5)_40%,transparent_70%)]"
+                    />
+
+                    {/* Hotspot 2: Recent Role (Strong Focus) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                        className="absolute top-48 left-6 w-56 h-24 rounded-[100%] blur-2xl bg-[radial-gradient(circle,rgba(245,158,11,0.7)_0%,rgba(13,148,136,0.4)_50%,transparent_70%)]"
+                    />
+
+                    {/* Hotspot 3: Scattered Scanning (Lower Focus) */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 2, delay: 0.8 }}
+                        className="absolute top-72 left-8 w-48 h-20 rounded-[100%] blur-2xl bg-[radial-gradient(circle,rgba(13,148,136,0.4)_0%,transparent_70%)]"
+                    />
+
+                    {/* Hotspot 4: Skills (Quick Check) */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 2, delay: 1 }}
+                        className="absolute bottom-12 left-6 w-64 h-16 rounded-[100%] blur-xl bg-[radial-gradient(circle,rgba(13,148,136,0.3)_0%,transparent_60%)]"
+                    />
                 </div>
+
+                {/* Legend/Label */}
+                <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-rose-500/20 rounded-full px-3 py-1 shadow-sm flex items-center gap-2 z-10">
+                    <div className="flex space-x-0.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
+                    </div>
+                    <span className="text-[10px] font-mono font-medium text-rose-600 uppercase tracking-wider">
+                        Heatmap
+                    </span>
+                </div>
+
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
-                <span className="block text-xs text-muted-foreground">
-                    Aggregated gaze duration across recruiter scans.
-                </span>
+            <figcaption className="mt-4 text-center space-y-1">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Fig. 2 — Attention Density</span>
+                <span className="block text-sm text-foreground/80 font-medium">Aggregated Recruiter Fixation Points</span>
             </figcaption>
         </figure>
     );

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { ResumeLengthChart } from "@/components/research/diagrams/ResumeLengthChart";
+import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
 
 export const metadata: Metadata = {
     title: "Resume Length: What Research Says | Hiring Research",

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { StudioShell } from "@/components/layout/StudioShell";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
 import {
@@ -112,66 +112,68 @@ export default function FAQClient() {
     };
 
     return (
-        <StudioShell showSidebar={false} className="max-w-3xl mx-auto py-12">
+        <div className="min-h-screen bg-background">
+            <SiteHeader />
+
             {/* FAQ Schema.org for SEO */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
 
-            <LegalNav />
+            <main className="max-w-3xl mx-auto px-6 py-12">
+                <LegalNav />
 
-            {/* Hero */}
-            <header className="mb-12 text-center max-w-2xl mx-auto">
-                <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
-                    Questions & Answers
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                    Everything you need to know about how we work.
-                </p>
-            </header>
+                {/* Hero */}
+                <header className="mb-12 text-center max-w-2xl mx-auto">
+                    <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
+                        Questions & Answers
+                    </h1>
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                        Everything you need to know about how we work.
+                    </p>
+                </header>
 
-            {/* FAQ Sections */}
-            <div className="space-y-12">
-                {faqData.map((section) => (
-                    <section key={section.category}>
-                        <h2 className="font-display text-lg font-semibold text-foreground mb-4">
-                            {section.category}
-                        </h2>
-                        <Accordion type="single" collapsible className="space-y-3">
-                            {section.questions.map((item, idx) => (
-                                <AccordionItem
-                                    key={idx}
-                                    value={`${section.category}-${idx}`}
-                                    className="border border-border/60 rounded bg-card px-6 data-[state=open]:ring-1 data-[state=open]:ring-brand/20 transition-all hover:border-border/80"
-                                >
-                                    <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5 text-base">
-                                        {item.q}
-                                    </AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground leading-relaxed pb-5 text-sm">
-                                        {item.a}
-                                    </AccordionContent>
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
-                    </section>
-                ))}
-            </div>
+                {/* FAQ Sections */}
+                <div className="space-y-12">
+                    {faqData.map((section) => (
+                        <section key={section.category}>
+                            <h2 className="font-display text-lg font-semibold text-foreground mb-4">
+                                {section.category}
+                            </h2>
+                            <Accordion type="single" collapsible className="space-y-3">
+                                {section.questions.map((item, idx) => (
+                                    <AccordionItem
+                                        key={idx}
+                                        value={`${section.category}-${idx}`}
+                                        className="border border-border/60 rounded bg-card px-6 data-[state=open]:ring-1 data-[state=open]:ring-brand/20 transition-all hover:border-border/80"
+                                    >
+                                        <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5 text-base">
+                                            {item.q}
+                                        </AccordionTrigger>
+                                        <AccordionContent className="text-muted-foreground leading-relaxed pb-5 text-sm">
+                                            {item.a}
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
+                        </section>
+                    ))}
+                </div>
 
-            {/* CTA */}
-            <div className="mt-24 text-center">
-                <p className="text-muted-foreground mb-6">Still have questions?</p>
-                <Link
-                    href="mailto:support@recruiterinyourpocket.com"
-                    className="text-brand hover:text-brand/80 font-medium underline underline-offset-4 transition-colors"
-                >
-                    Email us at support@recruiterinyourpocket.com
-                </Link>
-            </div>
+                {/* CTA */}
+                <div className="mt-24 text-center">
+                    <p className="text-muted-foreground mb-6">Still have questions?</p>
+                    <Link
+                        href="mailto:support@recruiterinyourpocket.com"
+                        className="text-brand hover:text-brand/80 font-medium underline underline-offset-4 transition-colors"
+                    >
+                        Email us at support@recruiterinyourpocket.com
+                    </Link>
+                </div>
+            </main>
 
-            <div className="mt-32">
-                <Footer />
-            </div>
-        </StudioShell>
+            <Footer />
+        </div>
     );
 }

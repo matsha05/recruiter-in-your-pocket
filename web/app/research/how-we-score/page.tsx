@@ -3,7 +3,7 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 
 export const metadata: Metadata = {
     title: "The 7.4-Second Signal Model | How We Score Resumes",
-    description: "The framework we use to evaluate resumes: Story, Impact, Clarity, and Readability — and why Story matters most.",
+    description: "The framework we use to evaluate resumes: Story, Impact, Clarity, and Readability, and why Story matters most.",
 };
 
 export default function HowWeScorePage() {
@@ -19,7 +19,7 @@ export default function HowWeScorePage() {
             keyFinding={{
                 subtitle: "The Core Principle",
                 stat: "Story First",
-                statDescription: "Internal signal: narrative coherence is the primary dimension we emphasize in scoring — above keywords or formatting.",
+                statDescription: "Internal rubric: narrative coherence is the primary dimension we emphasize in scoring, above keywords or formatting.",
                 source: {
                     text: "RIYP methodology based on recruiter behavior research",
                     href: "/research/how-recruiters-read"
@@ -62,21 +62,21 @@ export default function HowWeScorePage() {
             ]}
         >
             {/* The Why */}
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why resumes fail</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why resumes fail</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Most resumes are lists of responsibilities disguised as accomplishments.
                 &quot;Managed a team of 5&quot; tells me nothing. &quot;Scaled product org from 2 to 5 PMs while shipping 3 major releases&quot; tells me you can build.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                The difference isn&apos;t just word choice — it&apos;s narrative structure. Good resumes answer an implicit question:
+                The difference is not just word choice. It is narrative structure. Good resumes answer an implicit question:
                 <em className="text-foreground"> &quot;Why should I believe this person can do the job I&apos;m hiring for?&quot;</em>
             </p>
 
             {/* The Framework */}
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">The four dimensions</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">The four dimensions</h2>
             <p className="text-muted-foreground leading-relaxed mb-8">
                 We score resumes across four dimensions, weighted by how strongly they shape recruiter impressions.
-                Each dimension is scored 0–100 based on how clearly your resume signals that quality.
+                Each dimension is scored 0-100 based on how clearly your resume signals that quality.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose mb-12">
@@ -86,7 +86,7 @@ export default function HowWeScorePage() {
                 />
                 <ArticleInsight
                     title="Impact"
-                    desc="Do you quantify outcomes? Numbers, percentages, revenue, users — concrete evidence that you moved needle."
+                    desc="Do you quantify outcomes? Numbers, percentages, revenue, users: concrete evidence that you moved the needle."
                 />
                 <ArticleInsight
                     title="Clarity"
@@ -99,9 +99,9 @@ export default function HowWeScorePage() {
             </div>
 
             {/* Story deep dive */}
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Why Story matters most</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Why Story matters most</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                When a recruiter opens your resume, they&apos;re not reading — they&apos;re pattern-matching.
+                When a recruiter opens your resume, they are not reading. They are pattern-matching.
                 They&apos;re asking: &quot;Does this person make sense for this role?&quot;
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
@@ -110,34 +110,34 @@ export default function HowWeScorePage() {
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 A weak Story score means there are gaps, inconsistencies, or missing context.
-                You might be a great candidate, but you&apos;re making the recruiter do the mental labor of piecing it together —
-                and in 7.4 seconds, they won&apos;t.
+                You might be a great candidate, but you are making the recruiter do the mental labor of piecing it together.
+                In 7.4 seconds, they will not.
                 <Citation id="source-1">1</Citation>
             </p>
 
             {/* The Thresholds */}
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">What the scores mean</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">What the scores mean</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                We calibrated our thresholds internally based on recruiter feedback patterns and review discussions.
+                These thresholds are internal heuristics based on recruiter feedback patterns and review discussions.
             </p>
 
             <div className="not-prose border-t border-border/30 divide-y divide-border/30 mb-8">
                 <div className="flex items-start gap-5 py-4">
-                    <span className="text-2xl font-serif font-semibold text-foreground">85+</span>
+                    <span className="text-2xl font-display font-semibold text-foreground">85+</span>
                     <div>
                         <p className="text-sm font-medium text-foreground">Strong Signal</p>
                         <p className="text-sm text-muted-foreground">Clear narrative, quantified impact, clean presentation. You&apos;re competing at the top.</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-5 py-4">
-                    <span className="text-2xl font-serif font-semibold text-foreground">70–84</span>
+                    <span className="text-2xl font-display font-semibold text-foreground">70-84</span>
                     <div>
                         <p className="text-sm font-medium text-foreground">Solid</p>
                         <p className="text-sm text-muted-foreground">Good foundation, but opportunities to sharpen. Usually 1-2 key improvements will push you up.</p>
                     </div>
                 </div>
                 <div className="flex items-start gap-5 py-4">
-                    <span className="text-2xl font-serif font-semibold text-foreground">&lt;70</span>
+                    <span className="text-2xl font-display font-semibold text-foreground">&lt;70</span>
                     <div>
                         <p className="text-sm font-medium text-foreground">Needs Work</p>
                         <p className="text-sm text-muted-foreground">Significant friction points that may cause quick rejections. Focus on the highest-leverage fixes first.</p>
@@ -146,10 +146,10 @@ export default function HowWeScorePage() {
             </div>
 
             {/* The Bottom Line */}
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">The bottom line</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">The bottom line</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                Your resume is not a document — it&apos;s a first impression compressed into a page.
-                In those 7.4 seconds, a recruiter forms a hypothesis about you. Our job is to make sure that hypothesis is accurate —
+                Your resume is not a document. It is a first impression compressed into a page.
+                In those 7.4 seconds, a recruiter forms a hypothesis about you. Our job is to make sure that hypothesis is accurate
                 and compelling.
                 <Citation id="source-1">1</Citation>
             </p>

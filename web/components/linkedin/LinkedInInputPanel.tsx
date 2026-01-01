@@ -90,6 +90,10 @@ export function LinkedInInputPanel({
         }
     };
 
+    const openFileDialog = () => {
+        fileInputRef.current?.click();
+    };
+
     const handlePdfRun = () => {
         if (canSubmitPdf) {
             onPdfSubmit(pdfText);
@@ -116,41 +120,61 @@ export function LinkedInInputPanel({
 
                 {/* Dropzone */}
                 {!pdfFile ? (
-                    <div
-                        onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
-                        onDragLeave={() => setIsDragging(false)}
-                        onDrop={handleDrop}
-                        onClick={() => fileInputRef.current?.click()}
-                        className={cn(
-                            "relative flex flex-col items-center justify-center gap-4 p-10 border-2 border-dashed rounded cursor-pointer transition-all duration-300 group",
-                            isDragging
-                                ? "border-brand bg-brand/5 scale-[1.01]"
-                                : "border-border/30 hover:border-brand/40 hover:bg-muted/20",
-                            isLoading && "opacity-50 cursor-not-allowed"
-                        )}
-                    >
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            accept=".pdf"
-                            onChange={handleFileChange}
-                            className="hidden"
-                            disabled={isLoading}
-                        />
-
-                        <div className={cn(
-                            "w-16 h-16 rounded flex items-center justify-center transition-colors duration-300",
-                            isDragging ? "bg-brand/10 text-brand" : "bg-muted text-muted-foreground group-hover:bg-brand/5 group-hover:text-brand"
-                        )}>
-                            <Linkedin className="w-8 h-8" strokeWidth={1.5} />
+                    <div className="space-y-4">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <div>
+                                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                    Upload LinkedIn PDF
+                                </div>
+                                <div className="text-xs text-muted-foreground">PDF only</div>
+                            </div>
+                            <Button
+                                variant="brand"
+                                size="sm"
+                                onClick={openFileDialog}
+                                disabled={isLoading}
+                                className="px-3"
+                            >
+                                Select file
+                            </Button>
                         </div>
 
-                        <div className="text-center space-y-1.5">
-                            <div className="text-lg font-medium text-foreground group-hover:text-brand transition-colors">
-                                Drop your LinkedIn PDF here
+                        <div
+                            onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                            onDragLeave={() => setIsDragging(false)}
+                            onDrop={handleDrop}
+                            onClick={openFileDialog}
+                            className={cn(
+                                "relative flex flex-col items-center justify-center gap-3 px-4 py-8 border border-dashed rounded cursor-pointer transition-all duration-300 group text-center",
+                                isDragging
+                                    ? "border-brand bg-brand/5"
+                                    : "border-border/40 hover:border-brand/40 hover:bg-brand/5",
+                                isLoading && "opacity-50 cursor-not-allowed"
+                            )}
+                        >
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept=".pdf"
+                                onChange={handleFileChange}
+                                className="hidden"
+                                disabled={isLoading}
+                            />
+
+                            <div className={cn(
+                                "w-12 h-12 rounded border border-border/60 flex items-center justify-center text-muted-foreground transition-colors",
+                                isDragging && "border-brand/40 text-brand"
+                            )}>
+                                <Linkedin className="w-6 h-6" strokeWidth={1.5} />
                             </div>
-                            <div className="text-sm text-muted-foreground/80">
-                                Exports from LinkedIn → Resources → Save to PDF
+
+                            <div className="space-y-1">
+                                <div className="text-sm font-medium text-foreground">
+                                    Drop your LinkedIn PDF here
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                    Exports from LinkedIn - Resources - Save to PDF
+                                </div>
                             </div>
                         </div>
                     </div>

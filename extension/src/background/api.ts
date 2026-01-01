@@ -9,7 +9,10 @@ import type { JobMeta, SavedJob, AuthUser } from './messages';
 // Base URL for API calls
 // Production: https://recruiterinyourpocket.com
 // Development: Set VITE_DEV_MODE=true in .env to use localhost
-const API_BASE = import.meta.env.VITE_DEV_MODE === 'true'
+// Base URL for API calls
+// Production: https://recruiterinyourpocket.com
+// Development: Set VITE_DEV_MODE=true in .env to use localhost
+export const API_BASE = import.meta.env.VITE_DEV_MODE === 'true'
     ? 'http://localhost:3000'
     : 'https://recruiterinyourpocket.com';
 

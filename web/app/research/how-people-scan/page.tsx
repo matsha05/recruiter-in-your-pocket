@@ -32,16 +32,17 @@ export default function HowPeopleScanPage() {
                 },
                 sampleSize: (
                     <>
-                        ~80% of users scan rather than read
+                        Observed across multiple usability studies
                         <Citation id="source-1">1</Citation>
                     </>
                 )
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The F-Pattern Visualized</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The F-Pattern Visualized</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         Our gaze naturally hugs the left margin, looking for keywords and headers.
+                        <Citation id="source-1">1</Citation>
                     </p>
                     <ScanPattern />
                 </>
@@ -74,10 +75,10 @@ export default function HowPeopleScanPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Scanning vs Reading</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Scanning vs Reading</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Readers skim under pressure. They look for anchors: headers, numbers, company names.
-                If your resume is a wall of text, it fails the scan test.
+                Dense paragraphs often fail the scan test.
                 <Citation id="source-1">1</Citation>
             </p>
 

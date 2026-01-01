@@ -51,10 +51,10 @@ interface JobDetail {
 
 const STATUS_CONFIG: Record<JobStatus, { label: string; color: string; bgColor: string }> = {
     saved: { label: 'Saved', color: 'text-muted-foreground', bgColor: 'bg-muted' },
-    interested: { label: 'Interested', color: 'text-blue-600', bgColor: 'bg-blue-500/10' },
-    applying: { label: 'Applying', color: 'text-amber-600', bgColor: 'bg-amber-500/10' },
-    interviewing: { label: 'Interviewing', color: 'text-purple-600', bgColor: 'bg-purple-500/10' },
-    archived: { label: 'Archived', color: 'text-muted-foreground', bgColor: 'bg-muted/50' },
+    interested: { label: 'Interested', color: 'text-brand', bgColor: 'bg-brand/10' },
+    applying: { label: 'Applying', color: 'text-premium', bgColor: 'bg-premium/10' },
+    interviewing: { label: 'Interviewing', color: 'text-success', bgColor: 'bg-success/10' },
+    archived: { label: 'Archived', color: 'text-muted-foreground/70', bgColor: 'bg-muted/30' },
 };
 
 // =============================================================================
