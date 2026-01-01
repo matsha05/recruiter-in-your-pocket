@@ -45,6 +45,10 @@ interface ResearchArticleProps {
         tag?: string;
     }>;
     sources?: ResearchSource[];
+    faq?: Array<{
+        question: string;
+        answer: string;
+    }>;
     cta?: {
         title: string;
         buttonText: string;
@@ -60,6 +64,7 @@ export function ResearchArticle({
     productTieIn,
     relatedArticles,
     sources,
+    faq,
     cta = {
         title: "See what your resume looks like",
         buttonText: "Run Free Analysis",
@@ -91,6 +96,25 @@ export function ResearchArticle({
                     })
                 }}
             />
+            {faq && faq.length > 0 && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": faq.map((item) => ({
+                                "@type": "Question",
+                                "name": item.question,
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": item.answer
+                                }
+                            }))
+                        })
+                    }}
+                />
+            )}
             <div className="max-w-3xl mx-auto space-y-12 pb-16 px-6 md:px-0 pt-8">
                 <header className="space-y-6">
                     <Link
@@ -184,6 +208,20 @@ export function ResearchArticle({
                 <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-medium prose-headings:tracking-tight prose-p:text-base prose-p:leading-relaxed prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4">
                     {children}
                 </article>
+
+                {faq && faq.length > 0 && (
+                    <section className="space-y-6">
+                        <h2 className="font-display text-2xl font-medium text-foreground">FAQ</h2>
+                        <div className="border-t border-border/30 divide-y divide-border/30">
+                            {faq.map((item) => (
+                                <div key={item.question} className="py-4">
+                                    <h3 className="text-sm font-medium text-foreground mb-2">{item.question}</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{item.answer}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 <hr className="border-border/40 my-12" />
 

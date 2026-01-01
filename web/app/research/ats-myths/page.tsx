@@ -19,25 +19,27 @@ export default function ATSMythsPage() {
             }}
             keyFinding={{
                 subtitle: "The Reality",
-                stat: "Workflow, not Autonomy",
+                stat: "Selection Procedure",
                 statDescription: (
                     <>
-                        ATS platforms primarily store, filter, and surface candidates. Automated rejection is usually limited to explicit eligibility rules,
-                        with humans making final decisions.
+                        Automated hiring tools are treated as selection procedures, which triggers requirements around job-relatedness and adverse impact.
+                        Automation varies widely and often complements human review rather than replacing it.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
+                        <Citation id="source-3">3</Citation>
                     </>
                 ),
                 source: {
-                    text: "Hunkenschroer & Luetge (2022) Ethics of AI Recruiting",
-                    href: "https://link.springer.com/article/10.1007/s10551-022-05049-6"
+                    text: "EEOC guidance on software, algorithms, and AI",
+                    href: "https://data.aclum.org/storage/2025/01/EOCC_www_eeoc_gov_laws_guidance_select-issues-assessing-adverse-impact-software-algorithms-and-artificial.pdf"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Visualizing the Bottleneck</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Decision Rights Map</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        The funnel shows where eligibility rules and recruiter capacity narrow review. The ATS organizes candidates; humans decide what gets read.
+                        ATS platforms store and route information, while screening logic and human review can both shape outcomes.
+                        This map shows where automation is possible, not guaranteed.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
@@ -65,10 +67,10 @@ export default function ATSMythsPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "The Ethics of AI in Recruiting",
-                    publisher: "Journal of Business Ethics",
-                    year: "2022",
-                    href: "https://link.springer.com/article/10.1007/s10551-022-05049-6"
+                    title: "Select Issues: Assessing Adverse Impact in Software, Algorithms, and AI Used in Employment Selection Procedures",
+                    publisher: "EEOC",
+                    year: "2023",
+                    href: "https://data.aclum.org/storage/2025/01/EOCC_www_eeoc_gov_laws_guidance_select-issues-assessing-adverse-impact-software-algorithms-and-artificial.pdf"
                 },
                 {
                     id: "source-2",
@@ -76,15 +78,44 @@ export default function ATSMythsPage() {
                     publisher: "Harvard Journal of Law & Technology",
                     year: "2021",
                     href: "https://jolt.law.harvard.edu/assets/articlePDFs/v34/5.-Ajunwa-An-Auditing-Imperative-for-Automated-Hiring-Systems.pdf"
+                },
+                {
+                    id: "source-3",
+                    title: "Data-Driven Discrimination at Work",
+                    publisher: "North Carolina Journal of Law & Technology",
+                    year: "2017",
+                    href: "https://scholarship.law.unc.edu/cgi/viewcontent.cgi?article=1001&context=aidr_collection"
+                },
+                {
+                    id: "source-4",
+                    title: "The Ethics of AI in Recruiting",
+                    publisher: "Journal of Business Ethics",
+                    year: "2022",
+                    href: "https://d-nb.info/125914027X/34"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Do ATS systems automatically reject resumes?",
+                    answer: "Automation varies. Some tools apply eligibility rules, but many systems are primarily workflow engines with humans making final choices."
+                },
+                {
+                    question: "Is keyword stuffing useful?",
+                    answer: "No. Over-optimized keyword blocks can reduce clarity for humans and can be flagged by screening logic."
+                },
+                {
+                    question: "What is the best ATS-safe format?",
+                    answer: "A single-column layout with clear headings, consistent dates, and standard section names is the safest baseline."
                 }
             ]}
         >
             <h2 className="font-display text-2xl font-medium text-foreground mb-4">What an ATS actually does</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Most ATS systems function as workflow engines. They store candidate data, support filtering, and enable recruiters to search.
-                They are fundamentally different from the popular image of a robot auto-deleting resumes.
+                Automation can sit on top of this workflow, but it is not uniform across employers or tools.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
+                <Citation id="source-4">4</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose not-prose my-8">
@@ -113,10 +144,26 @@ export default function ATSMythsPage() {
             <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why the auto-reject myth persists</h2>
             <p className="text-muted-foreground leading-relaxed">
                 ATS workflows can feel opaque, so candidates assume resumes are automatically rejected. The evidence we have shows ATS platforms
-                are primarily workflow systems with varying levels of automation. Human review still matters.
+                are primarily workflow systems with varying levels of automation. Human review still matters, but the rules and models used can
+                shape who gets seen first.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
+                <Citation id="source-3">3</Citation>
             </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: selection procedures</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                A selection procedure is any tool or process that influences who advances in hiring. Under EEOC guidance, software and algorithms can
+                fall under this definition, which raises obligations around job-relatedness and adverse impact.
+                <Citation id="source-1">1</Citation>
+            </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Practical takeaways</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use standard section headers so both parsers and humans can navigate quickly.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Write role titles and core skills in plain language, not internal jargon.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Avoid graphics or tables that disrupt parsing and readability.</li>
+            </ul>
         </ResearchArticle>
     );
 }

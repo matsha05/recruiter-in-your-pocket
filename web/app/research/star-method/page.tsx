@@ -19,16 +19,17 @@ export default function StarMethodPage() {
             }}
             keyFinding={{
                 subtitle: "The Structure",
-                stat: "S → T → A → R",
+                stat: "Structured > Unstructured",
                 statDescription: (
                     <>
-                        Situation, Task, Action, Result. A structured interview framework used in behavioral hiring.
+                        Structured interviews consistently outperform unstructured interviews in validity and reliability.
                         <Citation id="source-1">1</Citation>
+                        <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "Amazon Leadership Principles Interview Guide",
-                    href: "https://www.amazon.jobs/en/landing_pages/in-person-interview"
+                    text: "Levashina et al. (2014) structured interview review",
+                    href: "https://www.morgeson.com/downloads/levashina_hartwell_morgeson_campion_2014.pdf"
                 }
             }}
             visualization={
@@ -61,10 +62,38 @@ export default function StarMethodPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "In-Person Interview Tips",
-                    publisher: "Amazon.jobs",
-                    year: "2024",
-                    href: "https://www.amazon.jobs/en/landing_pages/in-person-interview"
+                    title: "The Structured Employment Interview: Narrative and Quantitative Review",
+                    publisher: "Psychology of Personnel Assessment",
+                    year: "2014",
+                    href: "https://www.morgeson.com/downloads/levashina_hartwell_morgeson_campion_2014.pdf"
+                },
+                {
+                    id: "source-2",
+                    title: "Meta-analytic evidence on interview validity (100 years of research)",
+                    publisher: "University of Baltimore",
+                    year: "2016",
+                    href: "https://home.ubalt.edu/tmitch/645/session%204/Schmidt%20%26%20Oh%20validity%20and%20util%20100%20yrs%20of%20research%20Wk%20PPR%202016.pdf"
+                },
+                {
+                    id: "source-3",
+                    title: "Structured Interviews and Behavioral Consistency",
+                    publisher: "PLOS ONE (via PMC)",
+                    year: "2016",
+                    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4803420/"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Is STAR only for interviews?",
+                    answer: "No. STAR is a structure for evidence. It works in resumes because it compresses a complete story into a single bullet."
+                },
+                {
+                    question: "Do I need all four parts in every bullet?",
+                    answer: "The action and result should be explicit. Situation and task can be implied by context."
+                },
+                {
+                    question: "What if the result is small?",
+                    answer: "Use scope or quality improvements when a hard metric is not available."
                 }
             ]}
         >
@@ -73,6 +102,8 @@ export default function StarMethodPage() {
                 Unstructured answers ramble. Structured answers communicate competence. The STAR method
                 forces you to tell a complete story with a clear outcome—exactly what interviewers
                 are trained to listen for.
+                <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 The same logic applies to resume bullets. A bullet that describes a situation and action
@@ -114,6 +145,12 @@ export default function StarMethodPage() {
             <p className="text-muted-foreground leading-relaxed">
                 The situation (customer support) is implied. The action (resolved escalations) and
                 result (faster resolution, higher satisfaction) are explicit. That&apos;s STAR in one sentence.
+            </p>
+
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Definition: structured interviews</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Structured interviews use consistent questions and scoring criteria to reduce bias and improve reliability. STAR is a candidate-facing version of that structure.
+                <Citation id="source-1">1</Citation>
             </p>
         </ResearchArticle>
     );

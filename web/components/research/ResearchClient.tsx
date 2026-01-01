@@ -46,7 +46,7 @@ const categories = [
                 id: "how-people-scan",
                 title: "How People Scan Text and Bullets",
                 thesis: "F-patterns, first-word scanning, and structure for faster comprehension.",
-                readTime: "5 min",
+                readTime: "4 min",
                 href: "/research/how-people-scan"
             },
             {
@@ -57,10 +57,24 @@ const categories = [
                 href: "/research/ats-myths"
             },
             {
+                id: "automation-filter-points",
+                title: "Where Automation Filters You Out",
+                thesis: "Exposure, eligibility, and ranking touchpoints.",
+                readTime: "4 min",
+                href: "/research/automation-filter-points"
+            },
+            {
+                id: "automation-and-bias",
+                title: "Hiring Algorithms and Bias",
+                thesis: "How automated systems compound bias across stages.",
+                readTime: "4 min",
+                href: "/research/automation-and-bias"
+            },
+            {
                 id: "human-vs-algorithm",
                 title: "Humans vs. Algorithms",
                 thesis: "How recruiters interpret machine scores versus human signals.",
-                readTime: "5 min",
+                readTime: "4 min",
                 href: "/research/human-vs-algorithm"
             },
             {
@@ -69,6 +83,27 @@ const categories = [
                 thesis: "How small errors affect perceived rigor and clarity.",
                 readTime: "3 min",
                 href: "/research/spelling-errors-impact"
+            },
+            {
+                id: "resume-error-tax",
+                title: "The Resume Error Tax",
+                thesis: "Why typos are treated as risk signals.",
+                readTime: "4 min",
+                href: "/research/resume-error-tax"
+            },
+            {
+                id: "hiring-discrimination-meta-analysis",
+                title: "Discrimination in Hiring",
+                thesis: "What resumes can and cannot control.",
+                readTime: "5 min",
+                href: "/research/hiring-discrimination-meta-analysis"
+            },
+            {
+                id: "bias-limits-optimization",
+                title: "Limits of Resume Optimization",
+                thesis: "A bounded-control view of bias and signal.",
+                readTime: "4 min",
+                href: "/research/bias-limits-optimization"
             }
         ]
     },
@@ -78,6 +113,13 @@ const categories = [
         subtitle: "Writing and structure fundamentals",
         articles: [
             {
+                id: "how-we-score",
+                title: "The 7.4-Second Signal Model",
+                thesis: "How we score story, impact, clarity, and readability.",
+                readTime: "5 min",
+                href: "/research/how-we-score"
+            },
+            {
                 id: "star-method",
                 title: "The STAR Method",
                 thesis: "Structure for behavioral narratives and resume bullets.",
@@ -85,11 +127,46 @@ const categories = [
                 href: "/research/star-method"
             },
             {
+                id: "structured-interviews-why-star",
+                title: "Structured Interviews Beat Vibes",
+                thesis: "Why STAR exists and why structure wins.",
+                readTime: "4 min",
+                href: "/research/structured-interviews-why-star"
+            },
+            {
+                id: "quantifying-impact",
+                title: "The Laszlo Bock Formula",
+                thesis: "How measurable outcomes shape perceived impact.",
+                readTime: "5 min",
+                href: "/research/quantifying-impact"
+            },
+            {
+                id: "writing-quality-hire-probability",
+                title: "Writing Quality Changes Hiring",
+                thesis: "Clarity increases hiring outcomes in field evidence.",
+                readTime: "4 min",
+                href: "/research/writing-quality-hire-probability"
+            },
+            {
+                id: "signal-vs-clarity",
+                title: "Signal vs. Clarity",
+                thesis: "Two explanations for why good resumes work.",
+                readTime: "4 min",
+                href: "/research/signal-vs-clarity"
+            },
+            {
                 id: "resume-length-myths",
                 title: "The One-Page Myth",
                 thesis: "What length signals for experienced candidates.",
                 readTime: "4 min",
                 href: "/research/resume-length-myths"
+            },
+            {
+                id: "page-two-gate",
+                title: "The Page-2 Gate",
+                thesis: "Why page 2 is earned by page 1.",
+                readTime: "3 min",
+                href: "/research/page-two-gate"
             }
         ]
     },
@@ -113,11 +190,32 @@ const categories = [
                 href: "/research/linkedin-visibility"
             },
             {
+                id: "recruiter-search-behavior",
+                title: "Recruiter Search Behavior",
+                thesis: "What LinkedIn discloses and what remains unknown.",
+                readTime: "4 min",
+                href: "/research/recruiter-search-behavior"
+            },
+            {
+                id: "social-screening",
+                title: "Social Screening",
+                thesis: "What recruiters look for online across platforms.",
+                readTime: "4 min",
+                href: "/research/social-screening"
+            },
+            {
                 id: "skills-based-hiring",
                 title: "The Skills-Based Shift",
                 thesis: "How skills-first hiring changes screening.",
                 readTime: "5 min",
                 href: "/research/skills-based-hiring"
+            },
+            {
+                id: "skills-first-promise-reality",
+                title: "Skills-First: Promise vs Reality",
+                thesis: "Where skills-first expands pools and where adoption lags.",
+                readTime: "4 min",
+                href: "/research/skills-first-promise-reality"
             },
             {
                 id: "offer-negotiation",
@@ -132,6 +230,27 @@ const categories = [
                 thesis: "How disclosure shapes the first anchor.",
                 readTime: "4 min",
                 href: "/research/salary-history-bans"
+            },
+            {
+                id: "salary-anchors",
+                title: "Salary Anchors",
+                thesis: "Avoid self-discounting early in negotiations.",
+                readTime: "4 min",
+                href: "/research/salary-anchors"
+            },
+            {
+                id: "referral-advantage",
+                title: "The Referral Advantage",
+                thesis: "How referrals shift movement through hiring funnels.",
+                readTime: "4 min",
+                href: "/research/referral-advantage"
+            },
+            {
+                id: "referral-advantage-quantified",
+                title: "Referral Advantage, Quantified",
+                thesis: "How referrals reduce uncertainty in field evidence.",
+                readTime: "4 min",
+                href: "/research/referral-advantage-quantified"
             }
         ]
     }

@@ -7,11 +7,11 @@
  */
 export function ImpactFormulaDiagram() {
     return (
-        <figure className="w-full max-w-lg mx-auto my-8">
-            <div className="border border-border/30 bg-background p-6">
+        <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
+            <div className="riyp-figure-frame p-6">
                 <div className="flex items-center justify-center gap-3 md:gap-4 mb-6">
                     <div className="text-center">
-                        <div className="w-12 h-12 border border-brand/30 bg-brand/5 flex items-center justify-center">
+                        <div className="w-12 h-12 border border-brand/30 bg-brand/5 rounded-md flex items-center justify-center">
                             <span className="font-display text-xl font-medium text-brand">X</span>
                         </div>
                         <p className="text-[9px] font-mono uppercase text-muted-foreground mt-2">Result</p>
@@ -20,7 +20,7 @@ export function ImpactFormulaDiagram() {
                     <span className="text-muted-foreground">→</span>
 
                     <div className="text-center">
-                        <div className="w-12 h-12 border border-border/30 bg-foreground/5 flex items-center justify-center">
+                        <div className="w-12 h-12 border border-border/30 bg-foreground/5 rounded-md flex items-center justify-center">
                             <span className="font-display text-xl font-medium text-foreground">Y</span>
                         </div>
                         <p className="text-[9px] font-mono uppercase text-muted-foreground mt-2">Metric</p>
@@ -29,7 +29,7 @@ export function ImpactFormulaDiagram() {
                     <span className="text-muted-foreground">→</span>
 
                     <div className="text-center">
-                        <div className="w-12 h-12 border border-border/30 bg-foreground/5 flex items-center justify-center">
+                        <div className="w-12 h-12 border border-border/30 bg-foreground/5 rounded-md flex items-center justify-center">
                             <span className="font-display text-xl font-medium text-foreground">Z</span>
                         </div>
                         <p className="text-[9px] font-mono uppercase text-muted-foreground mt-2">Method</p>

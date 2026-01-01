@@ -1,38 +1,35 @@
 "use client";
 
 export function ATSFunnel() {
-    const stages = [
+    const layers = [
         {
-            label: "Applicants",
-            note: "Large volume enters the system",
-            width: "100%",
-            barClass: "bg-foreground/30"
+            label: "Data capture and storage (ATS)",
+            note: "Parsing, profile storage, search, workflow routing",
+            barClass: "bg-foreground/20"
         },
         {
-            label: "Eligibility screening",
-            note: "Explicit requirements can filter candidates",
-            width: "70%",
-            barClass: "bg-brand/30"
+            label: "Screening logic",
+            note: "Eligibility rules, assessments, ranking, filters",
+            barClass: "bg-brand/20"
         },
         {
-            label: "Human review",
-            note: "A smaller subset receives close review",
-            width: "35%",
+            label: "Human decision points",
+            note: "Shortlist, interview selection, final hire",
             barClass: "bg-brand"
         }
     ];
 
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-10">
-            <div className="space-y-6">
-                {stages.map((stage, index) => (
-                    <div key={stage.label} className="space-y-2">
+        <figure className="riyp-figure w-full max-w-[520px] mx-auto my-10">
+            <div className="riyp-figure-frame p-6 space-y-6">
+                {layers.map((layer, index) => (
+                    <div key={layer.label} className="space-y-2">
                         <div className="flex flex-wrap justify-between gap-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                            <span>{String(index + 1).padStart(2, "0")}. {stage.label}</span>
-                            <span className="text-muted-foreground/70">{stage.note}</span>
+                            <span>{String(index + 1).padStart(2, "0")}. {layer.label}</span>
+                            <span className="text-muted-foreground/70">{layer.note}</span>
                         </div>
-                        <div className="h-2 border border-border/40 bg-foreground/5">
-                            <div className={`h-full ${stage.barClass}`} style={{ width: stage.width }} />
+                        <div className="h-2 border border-border/40 bg-foreground/5 rounded">
+                            <div className={`h-full ${layer.barClass}`} />
                         </div>
                     </div>
                 ))}
@@ -41,7 +38,7 @@ export function ATSFunnel() {
             <figcaption className="mt-3 text-center">
                 <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
-                    Illustrative funnel showing how candidates move from intake to human review. Not to scale.
+                    Decision rights map showing where automation can operate and where humans decide. Not to scale.
                 </span>
             </figcaption>
         </figure>

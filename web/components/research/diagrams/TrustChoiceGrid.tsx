@@ -2,53 +2,41 @@
 
 export function TrustChoiceGrid() {
     return (
-        <figure className="w-full max-w-xl mx-auto my-10">
+        <figure className="riyp-figure w-full max-w-xl mx-auto my-10">
             <div className="text-center text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
-                Recruiter trust matrix
+                Error penalty curve
             </div>
 
-            <div className="relative">
-                <div className="flex justify-center mb-4">
-                    <div className="grid grid-cols-2 gap-4 w-full max-w-md pl-20">
-                        <div className="text-center text-xs font-mono uppercase tracking-widest text-muted-foreground">Human</div>
-                        <div className="text-center text-xs font-mono uppercase tracking-widest text-muted-foreground">Algorithm</div>
-                    </div>
-                </div>
-
-                <div className="flex">
-                    <div className="flex flex-col justify-around pr-4 w-20 shrink-0">
-                        <div className="text-[10px] font-mono uppercase text-muted-foreground text-right py-8">Consistent</div>
-                        <div className="text-[10px] font-mono uppercase text-muted-foreground text-right py-8">Inconsistent</div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3 flex-1">
-                        <div className="border border-brand/30 bg-brand/5 p-5 text-center flex flex-col items-center justify-center h-28">
-                            <span className="text-lg font-display text-brand">High Trust</span>
-                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Most preferred</span>
-                        </div>
-
-                        <div className="border border-border/30 bg-background p-5 text-center flex flex-col items-center justify-center h-28">
-                            <span className="font-medium text-muted-foreground">Accepted</span>
-                            <span className="text-xs text-muted-foreground">Utility function</span>
-                        </div>
-
-                        <div className="border border-border/30 bg-background p-5 text-center flex flex-col items-center justify-center h-28">
-                            <span className="font-medium text-muted-foreground">Forgiven</span>
-                            <span className="text-xs text-muted-foreground">Humans make mistakes</span>
-                        </div>
-
-                        <div className="border border-border/30 bg-background p-5 text-center flex flex-col items-center justify-center h-28">
-                            <span className="font-medium text-muted-foreground">Rejected</span>
-                            <span className="text-xs text-muted-foreground">Broken system</span>
-                        </div>
-                    </div>
-                </div>
+            <div className="riyp-figure-frame p-6">
+                <svg viewBox="0 0 240 160" className="w-full h-44">
+                    <defs>
+                        <linearGradient id="humanLine" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stopColor="hsl(var(--foreground))" stopOpacity="0.7" />
+                            <stop offset="100%" stopColor="hsl(var(--foreground))" stopOpacity="0.4" />
+                        </linearGradient>
+                        <linearGradient id="algoLine" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stopColor="hsl(var(--brand))" stopOpacity="0.8" />
+                            <stop offset="100%" stopColor="hsl(var(--brand))" stopOpacity="0.5" />
+                        </linearGradient>
+                    </defs>
+                    <line x1="20" y1="140" x2="220" y2="140" stroke="hsl(var(--border))" strokeWidth="1" />
+                    <line x1="20" y1="140" x2="20" y2="20" stroke="hsl(var(--border))" strokeWidth="1" />
+                    <path d="M20 40 L120 40 L220 90" fill="none" stroke="url(#humanLine)" strokeWidth="3" />
+                    <path d="M20 50 L120 50 L220 120" fill="none" stroke="url(#algoLine)" strokeWidth="3" />
+                    <text x="24" y="155" fontSize="8" fill="hsl(var(--muted-foreground))">Before error</text>
+                    <text x="155" y="155" fontSize="8" fill="hsl(var(--muted-foreground))">After error</text>
+                    <text x="0" y="60" fontSize="8" fill="hsl(var(--muted-foreground))" transform="rotate(-90 8 60)">
+                        Trust
+                    </text>
+                    <text x="30" y="30" fontSize="8" fill="hsl(var(--muted-foreground))">Human</text>
+                    <text x="30" y="70" fontSize="8" fill="hsl(var(--muted-foreground))">Algorithm</text>
+                </svg>
             </div>
 
             <figcaption className="mt-4 text-center">
                 <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
-                    Recruiters trust consistent human judgment more than automated decisions.
+                    Trust declines more sharply after algorithm errors than human errors in the study.
                 </span>
             </figcaption>
         </figure>

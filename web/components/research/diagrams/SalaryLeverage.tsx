@@ -2,8 +2,8 @@
 
 export function SalaryLeverage() {
     return (
-        <figure className="w-full max-w-lg mx-auto my-10">
-            <div className="grid grid-cols-2 gap-4">
+        <figure className="riyp-figure w-full max-w-lg mx-auto my-10">
+            <div className="riyp-figure-frame p-6 grid grid-cols-2 gap-4">
                 <div className="p-5 border border-border/30 bg-background">
                     <h4 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">Before ban</h4>
                     <div className="space-y-3">

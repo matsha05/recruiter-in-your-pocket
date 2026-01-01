@@ -7,8 +7,8 @@
  */
 export function SkillsShiftDiagram() {
     return (
-        <figure className="w-full max-w-lg mx-auto my-8">
-            <div className="border border-border/30 bg-background p-4 md:p-6">
+        <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
+            <div className="riyp-figure-frame p-4 md:p-6">
                 <div className="flex justify-between mb-4 md:mb-6 text-[9px] md:text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                     <span>Traditional</span>
                     <span>Emerging</span>
@@ -33,9 +33,9 @@ export function SkillsShiftDiagram() {
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-border/20 text-center">
-                    <span className="font-display text-3xl font-medium text-brand">45%</span>
+                    <span className="font-display text-base font-medium text-foreground">Talent pools expand</span>
                     <p className="text-[10px] text-muted-foreground mt-1">
-                        of companies plan to prioritize skills over degrees by 2025
+                        Skills-first filters broaden the candidate set compared to degree-only screens.
                     </p>
                 </div>
             </div>

@@ -14,12 +14,12 @@ export function StarStructureDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-lg mx-auto my-8">
-            <div className="border border-border/30 bg-background p-4 md:p-6">
+        <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
+            <div className="riyp-figure-frame p-4 md:p-6">
                 <div className="flex items-start justify-between gap-1 md:gap-4">
                     {steps.map((step) => (
                         <div key={step.letter} className="flex flex-col items-center flex-1">
-                            <div className={`w-10 h-10 md:w-14 md:h-14 border ${step.highlight ? "border-brand/30 bg-brand/5" : "border-border/30 bg-foreground/5"} flex items-center justify-center`}>
+                            <div className={`w-10 h-10 md:w-14 md:h-14 border rounded-md ${step.highlight ? "border-brand/30 bg-brand/5" : "border-border/30 bg-foreground/5"} flex items-center justify-center`}>
                                 <span className={`font-display text-lg md:text-2xl font-medium ${step.highlight ? "text-brand" : "text-foreground"}`}>
                                     {step.letter}
                                 </span>

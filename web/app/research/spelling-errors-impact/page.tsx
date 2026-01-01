@@ -19,25 +19,27 @@ export default function SpellingErrorsPage() {
             }}
             keyFinding={{
                 subtitle: "The Penalty",
-                stat: "Form > Content",
+                stat: "Error Penalty",
                 statDescription: (
                     <>
-                        Process-oriented recruiters penalize spelling errors as heavily as missing experience.
+                        Spelling and grammar errors measurably reduce interview chances and trigger negative inferences.
                         <Citation id="source-1">1</Citation>
+                        <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "Martin-Lacroux (2017) Int. J. Selection & Assessment",
-                    href: "https://onlinelibrary.wiley.com/doi/10.1111/ijsa.12179"
+                    text: "Sterkens et al. (2023) PLOS ONE synthesis",
+                    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10075394/"
                 }
             }}
             visualization={
                 <>
                     <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Form vs. Content</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-                The study found that for many recruiters, &quot;form&quot; (spelling, grammar, layout) acts as a gateway. If the form is bad, the content (skills, experience) is never evaluated fully.
-                <Citation id="source-1">1</Citation>
-            </p>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                        Evidence suggests errors are interpreted as signals of lower conscientiousness and weaker written communication, which affects screening outcomes.
+                        <Citation id="source-1">1</Citation>
+                        <Citation id="source-2">2</Citation>
+                    </p>
                     <FormContentSplit />
                 </>
             }
@@ -62,18 +64,47 @@ export default function SpellingErrorsPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "Do Recruiters Infer Applicant Personality from Résumés?",
+                    title: "Costly mistakes: Evidence on spelling errors in résumés",
+                    publisher: "PLOS ONE (via PMC)",
+                    year: "2023",
+                    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10075394/"
+                },
+                {
+                    id: "source-2",
+                    title: "Costly mistakes: Evidence on spelling errors in résumés (working paper)",
+                    publisher: "EconStor",
+                    year: "2021",
+                    href: "https://www.econstor.eu/bitstream/10419/235907/1/GLO-DP-0899.pdf"
+                },
+                {
+                    id: "source-3",
+                    title: "Do Recruiters Infer Applicant Personality from Resumes?",
                     publisher: "International Journal of Selection and Assessment",
                     year: "2017",
                     href: "https://onlinelibrary.wiley.com/doi/10.1111/ijsa.12179"
                 }
             ]}
+            faq={[
+                {
+                    question: "Do a few typos really matter?",
+                    answer: "The research suggests that even small errors can create negative trait inferences that reduce interview chances."
+                },
+                {
+                    question: "Is grammar more important than content?",
+                    answer: "Content still matters, but form errors can block the content from being evaluated at all."
+                },
+                {
+                    question: "What is the fastest fix?",
+                    answer: "Run a dedicated error pass, then fix spacing, punctuation, and tense consistency."
+                }
+            ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Credibility is lost in milliseconds</h2>
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Errors act as a gate</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                It seems unfair that a typo matters more than a degree, but in large resume stacks, heuristic shortcuts rule.
-                An error signals &quot;lack of conscientiousness&quot; to a recruiter, providing a quick, guilt-free reason to reject and move to the next candidate.
+                In large resume stacks, screening shortcuts rule. Errors are interpreted as signals, not as isolated mistakes.
+                The evidence links them to lower interview probabilities and to negative trait inferences.
                 <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
@@ -83,10 +114,25 @@ export default function SpellingErrorsPage() {
                         <>
                             Recruiters view spelling not as a literacy test, but as a proxy for attention to detail and professional care.
                             <Citation id="source-1">1</Citation>
+                            <Citation id="source-2">2</Citation>
                         </>
                     }
                 />
             </div>
+
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Definition: form errors</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Form errors include spelling mistakes, grammar mistakes, inconsistent formatting, and layout artifacts that signal carelessness.
+                These errors are processed quickly and often shape the initial decision.
+                <Citation id="source-1">1</Citation>
+            </p>
+
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What to fix first</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Spelling and grammar consistency.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Date alignment and spacing.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Repeated tense shifts inside a single role.</li>
+            </ul>
         </ResearchArticle>
     );
 }

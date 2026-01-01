@@ -19,16 +19,16 @@ export default function SkillsBasedHiringPage() {
             }}
             keyFinding={{
                 subtitle: "The Trend",
-                stat: "45%",
+                stat: "Talent Pool Expansion",
                 statDescription: (
                     <>
-                        of companies surveyed by LinkedIn plan to prioritize skills over degrees by 2025.
+                        LinkedIn reports that skills-first hiring expands talent pools compared to degree filters.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
                 source: {
-                    text: "LinkedIn Economic Graph Skills-Based Hiring Report (2024)",
-                    href: "https://economicgraph.linkedin.com/research/skills-based-hiring"
+                    text: "LinkedIn Economic Graph (2025)",
+                    href: "https://economicgraph.linkedin.com/content/dam/me/economicgraph/en-us/PDF/skills-based-hiring-march-2025.pdf"
                 }
             }}
             visualization={
@@ -63,8 +63,36 @@ export default function SkillsBasedHiringPage() {
                     id: "source-1",
                     title: "Skills-Based Hiring: The Big Picture",
                     publisher: "LinkedIn Economic Graph",
+                    year: "2025",
+                    href: "https://economicgraph.linkedin.com/content/dam/me/economicgraph/en-us/PDF/skills-based-hiring-march-2025.pdf"
+                },
+                {
+                    id: "source-2",
+                    title: "Future of Recruiting 2024",
+                    publisher: "LinkedIn Talent Solutions",
                     year: "2024",
-                    href: "https://economicgraph.linkedin.com/research/skills-based-hiring"
+                    href: "https://business.linkedin.com/content/dam/me/business/en-us/talent-solutions/resources/pdfs/future-of-recruiting-2024.pdf"
+                },
+                {
+                    id: "source-3",
+                    title: "Companies aren't keeping commitments to hire non-college grads, study suggests",
+                    publisher: "Business Insider",
+                    year: "2024",
+                    href: "https://www.businessinsider.com/companies-arent-keeping-commitment-hiring-non-college-graduates-study-2024-2"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Is skills-first hiring replacing degrees?",
+                    answer: "Not fully. Skills-first expands pools, but many employers still rely on credentials in practice."
+                },
+                {
+                    question: "How should candidates adapt?",
+                    answer: "Use the employer’s skill language and show outcomes that prove the skill."
+                },
+                {
+                    question: "Does this apply to all roles?",
+                    answer: "No. Some regulated roles still require specific credentials."
                 }
             ]}
         >
@@ -73,10 +101,15 @@ export default function SkillsBasedHiringPage() {
                 The shift to skills-based hiring reflects a growing focus on demonstrated capability over credentials.
                 Employers are rewriting job requirements to emphasize skills and outcomes.
                 <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 This doesn&apos;t mean credentials don&apos;t matter—it means how you communicate skills matters more.
                 A degree proves you completed a program. Your resume needs to prove you can do the work.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                There is also a gap between policy and practice. Some employers remove degree requirements but do not fully shift hiring behavior.
+                <Citation id="source-3">3</Citation>
             </p>
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">What this means for resumes</h2>
@@ -108,6 +141,12 @@ export default function SkillsBasedHiringPage() {
             <p className="text-muted-foreground leading-relaxed">
                 <strong>Match the job posting&apos;s skill language.</strong> If they ask for &quot;stakeholder management,&quot;
                 use that phrase—not synonyms. Skills-based hiring often means skills-based searching.
+            </p>
+
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Definition: skills-first</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Skills-first hiring prioritizes demonstrated capability over credential filters, often by expanding the candidate pool and searching by skills.
+                <Citation id="source-1">1</Citation>
             </p>
         </ResearchArticle>
     );

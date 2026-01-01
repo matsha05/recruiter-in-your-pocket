@@ -10,32 +10,34 @@ export function CompStack() {
     ];
 
     return (
-        <figure className="w-full max-w-sm mx-auto my-10">
-            <div className="text-center text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
-                The compensation stack
-            </div>
+        <figure className="riyp-figure w-full max-w-sm mx-auto my-10">
+            <div className="riyp-figure-frame p-6">
+                <div className="text-center text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
+                    The compensation stack
+                </div>
 
-            <div className="flex flex-col">
-                {stack.map((item, i) => (
-                    <div
-                        key={item.label}
-                        className={`border border-border/30 px-4 py-3 ${i === 0 ? "border-t" : "-mt-px"} ${item.highlight ? "bg-brand/5 border-brand/30" : "bg-background"}`}
-                    >
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <div className={`text-sm font-medium ${item.highlight ? "text-brand" : "text-foreground"}`}>
-                                    {item.label}
+                <div className="flex flex-col">
+                    {stack.map((item, i) => (
+                        <div
+                            key={item.label}
+                            className={`border border-border/30 px-4 py-3 ${i === 0 ? "border-t" : "-mt-px"} ${item.highlight ? "bg-brand/5 border-brand/30" : "bg-background"}`}
+                        >
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <div className={`text-sm font-medium ${item.highlight ? "text-brand" : "text-foreground"}`}>
+                                        {item.label}
+                                    </div>
+                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                        {item.sub}
+                                    </div>
                                 </div>
-                                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                                    {item.sub}
+                                <div className={`text-xs font-mono ${item.highlight ? "text-brand" : "text-muted-foreground"}`}>
+                                    {item.value}
                                 </div>
-                            </div>
-                            <div className={`text-xs font-mono ${item.highlight ? "text-brand" : "text-muted-foreground"}`}>
-                                {item.value}
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
             <figcaption className="mt-4 text-center">

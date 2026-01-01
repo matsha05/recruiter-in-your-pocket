@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
+import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { ResumeLengthChart } from "@/components/research/diagrams/ResumeLengthChart";
 
 export const metadata: Metadata = {
     title: "Resume Length: What Research Says | Hiring Research",
@@ -18,16 +19,16 @@ export default function ResumeLengthPage() {
             }}
             keyFinding={{
                 subtitle: "The Reality",
-                stat: "2 Pages",
+                stat: "Page-1 Gate",
                 statDescription: (
                     <>
-                        Recruiters in one study rated two-page resumes higher than one-page for experienced candidates.
+                        TheLadders reports that attention on page 2 depends on how compelling page 1 is.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
                 source: {
-                    text: "ResumeGo Hiring Manager Study (2019)",
-                    href: "https://www.resumego.net/research/how-long-should-a-resume-be/"
+                    text: "TheLadders Eye-Tracking Study (2018)",
+                    href: "https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf"
                 }
             }}
             visualization={
@@ -60,10 +61,38 @@ export default function ResumeLengthPage() {
             sources={[
                 {
                     id: "source-1",
+                    title: "TheLadders Eye-Tracking Study (2018 Update)",
+                    publisher: "TheLadders",
+                    year: "2018",
+                    href: "https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf"
+                },
+                {
+                    id: "source-2",
+                    title: "TheLadders Eye-Tracking Study",
+                    publisher: "TheLadders",
+                    year: "2012",
+                    href: "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf"
+                },
+                {
+                    id: "source-3",
                     title: "How Long Should a Resume Be? (Hiring Manager Study)",
                     publisher: "ResumeGo",
                     year: "2019",
                     href: "https://www.resumego.net/research/how-long-should-a-resume-be/"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Is one page still the safest option?",
+                    answer: "One page is often enough for early-career candidates. The more important rule is signal density and scanability."
+                },
+                {
+                    question: "When is two pages acceptable?",
+                    answer: "When page 1 is clear and page 2 adds relevant, non-repetitive evidence."
+                },
+                {
+                    question: "Are multi-column resumes risky?",
+                    answer: "Yes. They can reduce scanability and confuse parsers. A single column is the safest baseline."
                 }
             ]}
         >
@@ -80,10 +109,10 @@ export default function ResumeLengthPage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">What research shows</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    title="Experience Matters"
+                    title="Page 2 Is Earned"
                     desc={
                         <>
-                            Entry-level: one page is ideal. 10+ years experience: two pages is often rated higher by recruiters.
+                            TheLadders found that page 2 attention is driven by how compelling page 1 is.
                             <Citation id="source-1">1</Citation>
                         </>
                     }
@@ -92,17 +121,7 @@ export default function ResumeLengthPage() {
                     title="Relevance Over Length"
                     desc={
                         <>
-                            A focused one-page resume beats a padded two-page resume. Extra space must earn its place.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
-                />
-                <ArticleInsight
-                    title="The Real Limit"
-                    desc={
-                        <>
-                            Two pages is the practical max. Three-page resumes are consistently rated lower in studies.
-                            <Citation id="source-1">1</Citation>
+                            Recruiter lens: a focused one-page resume beats a padded two-page resume. Extra space must earn its place.
                         </>
                     }
                 />
@@ -110,8 +129,18 @@ export default function ResumeLengthPage() {
                     title="Scanability"
                     desc={
                         <>
-                            Length matters less than structure. Clear sections and visual hierarchy beat cramped formatting.
+                            Length matters less than structure. Clear sections and visual hierarchy reduce scan cost.
                             <Citation id="source-1">1</Citation>
+                            <Citation id="source-2">2</Citation>
+                        </>
+                    }
+                />
+                <ArticleInsight
+                    title="Field Note"
+                    desc={
+                        <>
+                            ResumeGo suggests some hiring managers prefer two pages for experienced candidates. Treat this as a vendor study, not a universal rule.
+                            <Citation id="source-3">3</Citation>
                         </>
                     }
                 />
@@ -126,6 +155,13 @@ export default function ResumeLengthPage() {
             <p className="text-muted-foreground leading-relaxed">
                 The goal is density of relevant signal, not arbitrary page counts. Every line should pass
                 the test: &quot;Does this make me more likely to get an interview for this role?&quot;
+            </p>
+
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Definition: scan cost</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Scan cost is the effort required to extract signal from a resume. Longer does not always mean worse,
+                but dense formatting increases scan cost and reduces attention.
+                <Citation id="source-1">1</Citation>
             </p>
         </ResearchArticle>
     );

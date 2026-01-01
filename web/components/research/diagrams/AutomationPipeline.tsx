@@ -26,26 +26,28 @@ export function AutomationPipeline() {
     ];
 
     return (
-        <figure className="w-full overflow-x-auto py-8">
-            <div className="min-w-[620px] flex items-stretch gap-4">
-                {steps.map((s, i) => (
-                    <div key={i} className="flex-1 flex items-center">
-                        <div className={`flex-1 flex flex-col h-full border border-border/40 p-4 ${s.highlight ? "bg-brand/5 border-brand/30" : "bg-background"}`}>
-                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                                {s.stage}
+        <figure className="riyp-figure w-full overflow-x-auto py-8">
+            <div className="riyp-figure-frame p-6 min-w-[640px]">
+                <div className="flex items-stretch gap-4">
+                    {steps.map((s, i) => (
+                        <div key={i} className="flex-1 flex items-center">
+                            <div className={`flex-1 flex flex-col h-full border border-border/40 p-4 rounded-md ${s.highlight ? "bg-brand/5 border-brand/30" : "bg-background"}`}>
+                                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                    {s.stage}
+                                </div>
+                                <div className="mt-2 text-sm font-medium text-foreground">
+                                    {s.automation}
+                                </div>
+                                <div className="mt-3 text-[11px] text-muted-foreground">
+                                    Risk: {s.risk}
+                                </div>
                             </div>
-                            <div className="mt-2 text-sm font-medium text-foreground">
-                                {s.automation}
-                            </div>
-                            <div className="mt-3 text-[11px] text-muted-foreground">
-                                Risk: {s.risk}
-                            </div>
+                            {i < steps.length - 1 && (
+                                <div className="mx-2 h-px w-6 bg-border/60" />
+                            )}
                         </div>
-                        {i < steps.length - 1 && (
-                            <div className="mx-2 h-px w-6 bg-border/60" />
-                        )}
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
             <figcaption className="mt-3 text-center">

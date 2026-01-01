@@ -19,21 +19,21 @@ export default function SalaryHistoryPage() {
             }}
             keyFinding={{
                 subtitle: "The Leverage Shift",
-                stat: "+8% Pay Increase",
+                stat: "Anchor Shift",
                 statDescription: (
                     <>
-                        Candidates who do not disclose salary history (in ban states) see higher wage growth.
+                        Salary history bans measurably change wage outcomes by weakening past-pay anchors.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
                 source: {
-                    text: "Hansen & McNichols (2020), NBER",
-                    href: "https://www.nber.org/papers/w27054"
+                    text: "Hansen & McNichols (NBER working paper)",
+                    href: "https://www.nber.org/system/files/working_papers/w27054/w27054.pdf"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Information Asymmetry</h2>
+                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Information asymmetry</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
                         When employers cannot anchor to your past pay, they must anchor to the <strong>market value</strong> of the role.
                     </p>
@@ -64,11 +64,25 @@ export default function SalaryHistoryPage() {
                     title: "Salary History Bans and Wage Outcomes",
                     publisher: "National Bureau of Economic Research",
                     year: "2020",
-                    href: "https://www.nber.org/papers/w27054"
+                    href: "https://www.nber.org/system/files/working_papers/w27054/w27054.pdf"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Do salary history bans help everyone equally?",
+                    answer: "The evidence shows wage effects, but the magnitude can vary by role, market, and demographic group."
+                },
+                {
+                    question: "Should I disclose salary history if asked?",
+                    answer: "If it is legal to refuse, it is usually better to anchor to market range and role scope."
+                },
+                {
+                    question: "What should I say instead?",
+                    answer: "Use a role-based range and explain the scope and market data that support it."
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why early disclosure weakens leverage</h2>
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why early disclosure weakens leverage</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Many candidates feel compelled to answer truthfully about their current salary out of politeness or honesty.
                 Evidence suggests this anchors the negotiation to your <em>past</em> value, not your <em>future</em> value.
@@ -85,6 +99,24 @@ export default function SalaryHistoryPage() {
                     desc="Respond with: &apos;I&apos;m focusing on roles in the [Market Range] range, which seems aligned with this level of responsibility.&apos;"
                 />
             </div>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">When to share numbers</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Recruiter lens: share numbers only when you can anchor to role scope or market data, not past pay.
+                If asked early, redirect to the responsibilities and the range for similar roles.
+            </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: salary anchoring</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Salary anchoring happens when early numbers frame the negotiation and pull outcomes toward the initial figure. Salary history bans weaken this effect.
+                <Citation id="source-1">1</Citation>
+            </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Legal requirements vary by jurisdiction. This is not legal advice.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The cited evidence focuses on wage effects, not every negotiation context.</li>
+            </ul>
         </ResearchArticle>
     );
 }

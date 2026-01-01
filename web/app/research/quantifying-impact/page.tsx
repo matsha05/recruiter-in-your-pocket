@@ -27,8 +27,8 @@ export default function QuantifyingImpactPage() {
                     </>
                 ),
                 source: {
-                    text: "Laszlo Bock, Work Rules! (2015)",
-                    href: "https://www.amazon.com/Work-Rules-Insights-Inside-Transform/dp/1455554790"
+                    text: "Laszlo Bock (Google) resume formula",
+                    href: "https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume"
                 }
             }}
             visualization={
@@ -62,10 +62,38 @@ export default function QuantifyingImpactPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "Work Rules!: Insights from Inside Google That Will Transform How You Live and Lead",
-                    publisher: "Twelve",
-                    year: "2015",
-                    href: "https://www.amazon.com/Work-Rules-Insights-Inside-Transform/dp/1455554790"
+                    title: "My personal formula for a better resume",
+                    publisher: "LinkedIn (Laszlo Bock)",
+                    year: "2014",
+                    href: "https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume"
+                },
+                {
+                    id: "source-2",
+                    title: "Algorithmic Writing Assistance Increases Hiring",
+                    publisher: "NBER Working Paper",
+                    year: "2023",
+                    href: "https://www.nber.org/system/files/working_papers/w30886/w30886.pdf"
+                },
+                {
+                    id: "source-3",
+                    title: "TheLadders Eye-Tracking Study (2018 Update)",
+                    publisher: "TheLadders",
+                    year: "2018",
+                    href: "https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf"
+                }
+            ]}
+            faq={[
+                {
+                    question: "What if I do not have numbers?",
+                    answer: "Use counts, time saved, or scope. If you cannot quantify, describe the outcome in terms of scale or impact."
+                },
+                {
+                    question: "Is the XYZ formula the only format?",
+                    answer: "No. It is a high-signal template that forces clarity, but other formats can work if they surface results early."
+                },
+                {
+                    question: "Does this matter for every role?",
+                    answer: "Yes. Every role produces outcomes. The form of the metric changes, but the principle stays the same."
                 }
             ]}
         >
@@ -79,6 +107,10 @@ export default function QuantifyingImpactPage() {
                 Bock&apos;s insight was that most candidates undersell themselves by describing responsibilities
                 instead of results. The formula forces you to lead with the outcome, not the activity.
                 <Citation id="source-1">1</Citation>
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Evidence from a large field experiment shows that improving writing quality can increase hiring outcomes without reducing employer satisfaction.
+                <Citation id="source-2">2</Citation>
             </p>
 
             <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Finding numbers when you think you don&apos;t have any</h2>
@@ -115,6 +147,12 @@ export default function QuantifyingImpactPage() {
             <p className="text-muted-foreground leading-relaxed">
                 Same job. Completely different impression. The second version answers the question every
                 recruiter is asking: &quot;What will this person do for us?&quot;
+            </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: evidence density</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Evidence density is the amount of measurable proof packed into a line. Higher density reduces scan time and increases credibility.
+                <Citation id="source-3">3</Citation>
             </p>
         </ResearchArticle>
     );

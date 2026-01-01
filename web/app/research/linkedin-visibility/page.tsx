@@ -18,23 +18,17 @@ export default function LinkedInVisibilityPage() {
             }}
             keyFinding={{
                 subtitle: "The Key Finding",
-                stat: "7 Hires Every Minute",
+                stat: "Skills-First Search",
                 statDescription: (
                     <>
-                        LinkedIn sees 7 people hired every minute, with over 9,000 members applying for jobs every minute.
-                        <Citation id="source-1">1</Citation>
+                        LinkedIn reports that skills-first sourcing leads to higher InMail acceptance rates.
+                        <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "LinkedIn Newsroom (Official, 2024)",
-                    href: "https://news.linkedin.com/about-us#Statistics"
-                },
-                sampleSize: (
-                    <>
-                        Based on LinkedIn&apos;s official platform data
-                        <Citation id="source-1">1</Citation>
-                    </>
-                )
+                    text: "LinkedIn Talent Blog",
+                    href: "https://www.linkedin.com/business/talent/blog/talent-acquisition/recruiters-who-focus-on-skills-see-better-inmail-rates"
+                }
             }}
             visualization={
                 <>
@@ -44,47 +38,36 @@ export default function LinkedInVisibilityPage() {
                         so we treat this as an ordinal model rather than a quantitative one.
                     </p>
 
-                    <figure className="border-t border-border/40 pt-6 space-y-4">
-                        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
-                            Visibility drivers (ordinal)
-                        </div>
-                        <ol className="space-y-4">
-                            {[
-                                {
-                                    title: "Headline keywords",
-                                    description: "Highest-visibility field for titles and core skills.",
-                                    rank: "Primary"
-                                },
-                                {
-                                    title: "Profile photo",
-                                    description: "Visual trust signal that shapes first impressions.",
-                                    rank: "High"
-                                },
-                                {
-                                    title: "Keywords in experience",
-                                    description: "Supporting terms that help search and matching.",
-                                    rank: "Supporting"
-                                },
-                                {
-                                    title: "Completeness",
-                                    description: "Foundational hygiene that prevents filtering friction.",
-                                    rank: "Foundational"
-                                }
-                            ].map((item) => (
-                                <li key={item.title} className="flex items-start justify-between gap-6">
-                                    <div className="space-y-1">
-                                        <div className="text-sm font-medium text-foreground">{item.title}</div>
-                                        <div className="text-xs text-muted-foreground">{item.description}</div>
+                    <figure className="riyp-figure">
+                        <div className="riyp-figure-frame p-6 space-y-4">
+                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
+                                Inputs vs measurable outputs
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-6 text-sm">
+                                <div className="space-y-3">
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                                        Inputs you control
                                     </div>
-                                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                                        {item.rank}
-                                    </span>
-                                </li>
-                            ))}
-                        </ol>
-                        <figcaption className="text-xs text-muted-foreground">
-                            Fig. 1 - Recruiter lens ordering of profile fields based on field prominence and published guidance. Not a quantitative weighting.
-                        </figcaption>
+                                    <ul className="space-y-2 text-muted-foreground">
+                                        <li>Headline keywords and role titles</li>
+                                        <li>Skills and endorsements</li>
+                                        <li>Experience keywords and role alignment</li>
+                                    </ul>
+                                </div>
+                                <div className="space-y-3">
+                                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                                        Outputs LinkedIn reports
+                                    </div>
+                                    <ul className="space-y-2 text-muted-foreground">
+                                        <li>Higher InMail acceptance with skills-first sourcing</li>
+                                        <li>Recruiter search behavior centered on skills and titles</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <figcaption className="text-xs text-muted-foreground">
+                                Fig. 1 - Visibility inputs versus LinkedIn-reported sourcing outcomes. Not a ranking model.
+                            </figcaption>
+                        </div>
                     </figure>
                 </>
             }
@@ -120,17 +103,38 @@ export default function LinkedInVisibilityPage() {
                 },
                 {
                     id: "source-2",
-                    title: "LinkedIn Statistics for Business",
-                    publisher: "Hootsuite",
+                    title: "Recruiters Who Focus on Skills See Better InMail Rates",
+                    publisher: "LinkedIn Talent Blog",
                     year: "2024",
-                    href: "https://blog.hootsuite.com/linkedin-statistics-business/"
+                    href: "https://www.linkedin.com/business/talent/blog/talent-acquisition/recruiters-who-focus-on-skills-see-better-inmail-rates"
                 },
                 {
                     id: "source-3",
+                    title: "Future of Recruiting 2024",
+                    publisher: "LinkedIn Talent Solutions",
+                    year: "2024",
+                    href: "https://business.linkedin.com/content/dam/me/business/en-us/talent-solutions/resources/pdfs/future-of-recruiting-2024.pdf"
+                },
+                {
+                    id: "source-4",
                     title: "Social Media Fact Sheet",
                     publisher: "Pew Research Center",
                     year: "2024",
                     href: "https://www.pewresearch.org/internet/fact-sheet/social-media/"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Does LinkedIn publish its ranking algorithm?",
+                    answer: "No. LinkedIn does not disclose exact ranking weights. This page focuses on published behaviors and outcomes."
+                },
+                {
+                    question: "What part of my profile matters most for search?",
+                    answer: "Recruiter lens: headline keywords and skills are the most consistent search inputs."
+                },
+                {
+                    question: "Should I optimize for InMail response?",
+                    answer: "Yes. Skills-first sourcing is linked to higher InMail acceptance, which makes skills and titles critical."
                 }
             ]}
         >
@@ -142,10 +146,11 @@ export default function LinkedInVisibilityPage() {
 
             <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Key Research Findings</h2>
             <p className="text-xs text-muted-foreground mb-4">
-                Statistics sourced from LinkedIn Newsroom, Hootsuite, and Pew Research.
+                Statistics sourced from LinkedIn Newsroom, LinkedIn Talent Solutions, and Pew Research.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
                 <Citation id="source-3">3</Citation>
+                <Citation id="source-4">4</Citation>
             </p>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
@@ -162,7 +167,7 @@ export default function LinkedInVisibilityPage() {
                     desc={
                         <>
                             Per Pew Research, nearly a third of American adults are on the platform.
-                            <Citation id="source-3">3</Citation>
+                            <Citation id="source-4">4</Citation>
                         </>
                     }
                 />
@@ -181,6 +186,15 @@ export default function LinkedInVisibilityPage() {
                         <>
                             LinkedIn reports more than 67 million companies on the platform.
                             <Citation id="source-1">1</Citation>
+                        </>
+                    }
+                />
+                <ArticleInsight
+                    title="Skills-First InMail Lift"
+                    desc={
+                        <>
+                            LinkedIn reports higher InMail acceptance for skills-first sourcing approaches.
+                            <Citation id="source-2">2</Citation>
                         </>
                     }
                 />
@@ -228,6 +242,13 @@ export default function LinkedInVisibilityPage() {
                     Studies are primarily based on self-reported data, not controlled experiments.
                 </li>
             </ul>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: visibility inputs</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Visibility inputs are the fields recruiters can search and filter by. LinkedIn reports outcomes tied to skills-first searches,
+                but not the weighting of each field.
+                <Citation id="source-2">2</Citation>
+            </p>
         </ResearchArticle>
     );
 }

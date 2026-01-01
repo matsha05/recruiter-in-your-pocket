@@ -2,37 +2,44 @@
 
 export function FormContentSplit() {
     return (
-        <figure className="w-full max-w-2xl mx-auto my-10">
-            <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-3 border-t border-border/40 pt-3">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Form penalty</div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                        1-2 errors can cost as much as missing a year of experience.
-                    </p>
-                    <div className="text-[11px] text-muted-foreground">
-                        Example: manger -&gt; manager, attention too detail
-                    </div>
-                    <p className="text-xs text-muted-foreground">Result: credibility drops immediately.</p>
+        <figure className="riyp-figure w-full max-w-2xl mx-auto my-10">
+            <div className="riyp-figure-frame p-6">
+                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-4">
+                    Penalty decomposition (illustrative)
                 </div>
-
-                <div className="space-y-3 border-t border-brand/30 pt-3 bg-brand/5 p-4">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Content reality</div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                        Strong content cannot compensate for weak form in the initial skim.
-                    </p>
-                    <div className="space-y-2 pt-2">
-                        <div className="h-1 w-3/4 bg-brand/30" />
-                        <div className="h-1 w-full bg-brand/40" />
-                        <div className="h-1 w-5/6 bg-brand/30" />
+                <div className="space-y-4">
+                    <div className="h-4 w-full border border-border/40 bg-foreground/5 flex overflow-hidden">
+                        <div className="flex-1 bg-brand/30" />
+                        <div className="flex-1 bg-brand/20" />
+                        <div className="flex-1 bg-foreground/20" />
                     </div>
-                    <p className="text-xs text-muted-foreground">Result: good candidates are filtered out early.</p>
+                    <div className="grid grid-cols-3 gap-4 text-[11px] text-muted-foreground">
+                        <div>
+                            <div className="font-mono uppercase tracking-widest text-muted-foreground/70 text-[9px]">
+                                Conscientiousness
+                            </div>
+                            <div>Signals attention to detail and care.</div>
+                        </div>
+                        <div>
+                            <div className="font-mono uppercase tracking-widest text-muted-foreground/70 text-[9px]">
+                                Interpersonal
+                            </div>
+                            <div>Raises doubts about professionalism.</div>
+                        </div>
+                        <div>
+                            <div className="font-mono uppercase tracking-widest text-muted-foreground/70 text-[9px]">
+                                Cognitive ability
+                            </div>
+                            <div>Suggests weaker written communication.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <figcaption className="mt-3 text-center">
                 <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
-                    Form errors dominate the initial impression even when content is strong.
+                    Illustrative breakdown of how evaluators may attribute error penalties.
                 </span>
             </figcaption>
         </figure>

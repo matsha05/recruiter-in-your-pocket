@@ -1,4 +1,4 @@
-# Research UI Contract (v3.0)
+# Research UI Contract (v3.1)
 
 Applies to: Research hub and all Hiring Research Library articles.
 
@@ -6,8 +6,9 @@ Purpose: Research pages are proof engines. They should feel like premium editori
 
 Design intent:
 - Quiet authority, not academic stiffness.
-- Illustration and motion are encouraged when they explain.
+- Illustration, diagrams, and motion are encouraged when they explain.
 - Every visual move must increase clarity, recall, or trust.
+- The page should feel designed, not templated.
 
 ---
 
@@ -49,6 +50,7 @@ They should not feel like:
 - Headers use Fraunces, body uses Geist Sans, data uses Geist Mono.
 - Favor whitespace, clear sectioning, and tight editorial hierarchy.
 - Use lists and rules to structure reading flow.
+- Embrace layout rhythm. A research page can feel designed without feeling busy.
 
 ### Color Contract
 Primary palette:
@@ -62,6 +64,7 @@ Allowable accent usage:
 - Teal for emphasis, highlights, and data focus.
 - Warm heat scales (red to orange) are allowed inside heatmaps only and must be labeled as intensity, not brand.
 - Subtle gradients are allowed inside figures only, never as page backgrounds.
+- Tiny accent colors are allowed for annotation callouts if they map to meaning.
 
 Research content should remain 85 to 90 percent neutral.
 
@@ -70,6 +73,7 @@ Research content should remain 85 to 90 percent neutral.
 ## 4. Illustrations and Motion
 
 Illustrations are encouraged when they clarify an idea, reduce cognitive load, or make a research concept tangible.
+Diagrammatic illustrations are first class. They should look like product design artifacts, not blog graphics.
 
 Rules:
 - Illustrations must encode meaning, not decoration.
@@ -90,10 +94,11 @@ Figures are the primary place where visual expression is encouraged.
 
 ### Visual Style
 - Strokes: 1px or 1.5px.
-- Corners: 2 to 4 radius max for nodes and containers. No pills.
+- Corners: 4 radius for UI elements, up to 12 radius inside figures when it improves legibility.
 - Fills: flat or subtle gradients inside figures only.
-- Shadows: avoid, or use a single soft shadow only inside a figure if needed for separation.
+- Shadows: a single soft shadow is allowed inside a figure to create depth or separation.
 - Backgrounds: transparent or `--background`.
+- Annotations: callout chips, underlines, and highlighter bars are allowed if they map to the insight.
 
 ### Typography in Figures
 - Axis labels: Geist Mono, 10px, uppercase, `--muted`.

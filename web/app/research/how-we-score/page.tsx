@@ -47,10 +47,10 @@ export default function HowWeScorePage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "TheLadders Updates Popular Recruiter Eye-Tracking Study",
-                    publisher: "TheLadders via PR Newswire",
+                    title: "TheLadders Eye-Tracking Study (2018 Update)",
+                    publisher: "TheLadders",
                     year: "2018",
-                    href: "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html"
+                    href: "https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf"
                 },
                 {
                     id: "source-2",
@@ -58,6 +58,20 @@ export default function HowWeScorePage() {
                     publisher: "TheLadders",
                     year: "2012",
                     href: "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Is the score a guarantee?",
+                    answer: "No. The score is a structured signal model, not a promise of outcomes."
+                },
+                {
+                    question: "Why weight story highest?",
+                    answer: "Recruiters pattern-match fast. A coherent story reduces ambiguity in the initial screen."
+                },
+                {
+                    question: "Can I game the score?",
+                    answer: "You can improve clarity and evidence, but gaming language without proof usually backfires."
                 }
             ]}
         >
@@ -111,7 +125,7 @@ export default function HowWeScorePage() {
             <p className="text-muted-foreground leading-relaxed mb-6">
                 A weak Story score means there are gaps, inconsistencies, or missing context.
                 You might be a great candidate, but you are making the recruiter do the mental labor of piecing it together.
-                In 7.4 seconds, they will not.
+                In the initial screen window, they will not.
                 <Citation id="source-1">1</Citation>
             </p>
 
@@ -157,6 +171,13 @@ export default function HowWeScorePage() {
                 The 7.4-Second Signal Model isn&apos;t about gaming algorithms or stuffing keywords.
                 It&apos;s about telling your story clearly enough that the right recruiter can recognize it instantly.
             </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Limitations</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Scores are heuristic and should be read alongside the narrative feedback.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Industry and role context can change what matters most.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Systemic factors are outside the scope of a resume score.</li>
+            </ul>
         </ResearchArticle>
     );
 }

@@ -23,20 +23,20 @@ export default function ReferralAdvantagePage() {
                 stat: "Referral Lift",
                 statDescription: (
                     <>
-                        Referred candidates are significantly more likely to be hired than applicants from job boards.
+                        Referrals increase hiring likelihood in field experiments compared with cold applicants.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
                 source: {
-                    text: "NBER: Why the Referential Treatment (Pallais & Glass)",
-                    href: "https://www.nber.org/papers/w21357"
+                    text: "Pallais & Sandler (NBER working paper)",
+                    href: "https://www.nber.org/system/files/working_papers/w21357/w21357.pdf"
                 }
             }}
             visualization={
                 <>
                     <h2 className="font-display text-2xl font-medium text-foreground mb-4">The referral advantage, compared</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        Interview success rates vary by application source.
+                        Referrals carry extra information into screening and can change how a resume is interpreted.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <ReferralFunnelDiagram />
@@ -66,7 +66,28 @@ export default function ReferralAdvantagePage() {
                     title: "Why the Referential Treatment? Evidence from Field Experiments in Hiring",
                     publisher: "National Bureau of Economic Research",
                     year: "2015",
-                    href: "https://www.nber.org/papers/w21357"
+                    href: "https://www.nber.org/system/files/working_papers/w21357/w21357.pdf"
+                },
+                {
+                    id: "source-2",
+                    title: "Why the Referential Treatment? Evidence from Field Experiments in Hiring",
+                    publisher: "Journal of Political Economy",
+                    year: "2018",
+                    href: "https://www.journals.uchicago.edu/doi/10.1086/688850"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Do referrals guarantee an interview?",
+                    answer: "No. Referrals improve odds by reducing uncertainty, but they do not override fit or role requirements."
+                },
+                {
+                    question: "Should I ask for a referral before applying?",
+                    answer: "Yes, when possible. A referral carries more context than a cold application and can change how your resume is read."
+                },
+                {
+                    question: "What should I send with a referral request?",
+                    answer: "A clear resume and a short, role-specific pitch that makes it easy for the referrer to vouch for you."
                 }
             ]}
         >
@@ -130,6 +151,12 @@ export default function ReferralAdvantagePage() {
             <p className="text-muted-foreground leading-relaxed">
                 <strong>Make it easy:</strong> When asking for a referral, include your resume and a
                 2-sentence pitch. Your referrer shouldn&apos;t have to write your case for you.
+            </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: referral signal</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                A referral signal is information that reduces uncertainty for the employer. The referrer adds context that the resume alone cannot provide.
+                <Citation id="source-1">1</Citation>
             </p>
         </ResearchArticle>
     );

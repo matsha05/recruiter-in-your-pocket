@@ -2,8 +2,8 @@
 
 export function AnchorZone() {
     return (
-        <figure className="w-full max-w-3xl mx-auto my-10">
-            <div className="border border-border/30 bg-background p-6">
+        <figure className="riyp-figure w-full max-w-3xl mx-auto my-10">
+            <div className="riyp-figure-frame p-6">
                 <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-4">
                     Negotiation anchor zones
                 </div>

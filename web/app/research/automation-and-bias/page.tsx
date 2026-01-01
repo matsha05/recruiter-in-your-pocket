@@ -68,6 +68,20 @@ export default function AutomationBiasPage() {
                     href: "https://www.upturn.org/work/help-wanted/"
                 }
             ]}
+            faq={[
+                {
+                    question: "Where does bias enter the hiring funnel?",
+                    answer: "Bias can enter at ad delivery, eligibility screening, ranking, and human review. The earlier it enters, the more it compounds."
+                },
+                {
+                    question: "Can a resume fix algorithmic bias?",
+                    answer: "No. A resume can only reduce avoidable noise, not systemic bias."
+                },
+                {
+                    question: "What should candidates do?",
+                    answer: "Use clear structure and keywords so automated systems and humans can read the resume without friction."
+                }
+            ]}
         >
             <h2 className="font-display text-2xl font-medium text-foreground mb-4">Bias compounds across stages</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
@@ -85,6 +99,12 @@ export default function AutomationBiasPage() {
                     desc="Recruiter lens: understanding the machine helps you write with more structure and less fluff."
                 />
             </div>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: exposure bias</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Exposure bias happens when the system decides who sees a job or who is surfaced first. Candidates who are not surfaced never get evaluated.
+                <Citation id="source-1">1</Citation>
+            </p>
         </ResearchArticle>
     );
 }

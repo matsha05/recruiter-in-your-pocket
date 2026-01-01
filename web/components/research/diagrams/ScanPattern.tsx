@@ -146,7 +146,7 @@ export function ScanPattern() {
 
             <figcaption className="mt-4 text-center space-y-1">
                 <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Fig. 1 — Gaze Plot</span>
-                <span className="block text-sm text-foreground/80 font-medium">Typical 'F-Pattern' Scanning Behavior</span>
+                <span className="block text-sm text-foreground/80 font-medium">Typical &apos;F-Pattern&apos; Scanning Behavior</span>
             </figcaption>
         </figure>
     );

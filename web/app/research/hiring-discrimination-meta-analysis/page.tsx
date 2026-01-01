@@ -19,10 +19,10 @@ export default function DiscriminationMetaPage() {
             }}
             keyFinding={{
                 subtitle: "The Trend",
-                stat: "No Change",
+                stat: "No Clear Decline",
                 statDescription: (
                     <>
-                        Hiring discrimination against African Americans has not declined in 25 years of field experiments.
+                        Meta-analytic evidence finds little indication that hiring discrimination has declined across decades of field experiments.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -33,9 +33,9 @@ export default function DiscriminationMetaPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The Persistence of Bias</h2>
+                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The Limits of Optimization</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        This chart aggregates data from 24 field experiments containing 54,000+ applications submitted to real jobs.
+                        The research emphasizes structural bias that individual resume quality cannot fully offset.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <MetaTimeline />
@@ -70,6 +70,27 @@ export default function DiscriminationMetaPage() {
                     publisher: "American Sociological Review",
                     year: "2017",
                     href: "https://pubmed.ncbi.nlm.nih.gov/28696300/"
+                },
+                {
+                    id: "source-2",
+                    title: "Help Wanted: An Examination of Hiring Algorithms, Equity, and Bias",
+                    publisher: "Upturn",
+                    year: "2018",
+                    href: "https://www.upturn.org/work/help-wanted/"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Does a better resume eliminate discrimination?",
+                    answer: "No. A stronger resume reduces avoidable noise, but it cannot remove systemic bias."
+                },
+                {
+                    question: "Why include this in a resume product?",
+                    answer: "Premium guidance is honest about limitations. It builds trust and helps candidates focus on controllables."
+                },
+                {
+                    question: "What can I control?",
+                    answer: "Clarity, consistency, proof, and narrative cohesion."
                 }
             ]}
         >
@@ -79,6 +100,15 @@ export default function DiscriminationMetaPage() {
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 However, it also clarifies our mission: to ensure that <strong>poor communication</strong> is never the reason you are rejected. We clear the noise so your merit has the best possible chance to shine through, while acknowledging the reality of the system you are navigating.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Automation can compound inequities when exposure and ranking systems are opaque. That makes clarity and documentation even more important at the individual level.
+                <Citation id="source-2">2</Citation>
+            </p>
+
+            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Definition: bounded control</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Bounded control means separating factors you can influence from systemic factors you cannot. The resume is in the first category, bias is not.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">

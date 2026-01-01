@@ -2,8 +2,8 @@
 
 export function SalaryHistoryTrap() {
     return (
-        <figure className="w-full max-w-2xl mx-auto my-10">
-            <div className="grid md:grid-cols-2 gap-8">
+        <figure className="riyp-figure w-full max-w-2xl mx-auto my-10">
+            <div className="riyp-figure-frame p-6 grid md:grid-cols-2 gap-8">
                 <div className="border border-border/30 bg-background p-6 text-center">
                     <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">Social pressure</div>
                     <div className="text-3xl font-display text-foreground font-medium">47%</div>

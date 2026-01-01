@@ -11,8 +11,8 @@
  */
 export function LinkedInResumeFlow() {
     return (
-        <figure className="w-full max-w-lg mx-auto my-8">
-            <div className="border border-border/30 bg-background p-6">
+        <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
+            <div className="riyp-figure-frame p-6">
                 <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground text-center mb-6">
                     Better together
                 </div>

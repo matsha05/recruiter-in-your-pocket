@@ -19,15 +19,16 @@ export default function LinkedInVsResumePage() {
             }}
             keyFinding={{
                 subtitle: "The Pattern",
-                stat: "77%",
+                stat: "Two Artifacts",
                 statDescription: (
                     <>
-                        of recruiters use LinkedIn to find candidates; 87% use it to vet them before reaching out.
+                        Recruiter surveys consistently report LinkedIn as the dominant sourcing and vetting channel, while resumes remain the evaluation artifact.
                         <Citation id="source-1">1</Citation>
+                        <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "Jobvite Recruiter Nation Report (2023)",
+                    text: "Recruiter Nation Report (2023)",
                     href: "https://web.jobvite.com/rs/328-BQS-080/images/2023-Employ-Recruiter-Nation-Report-Moving-Forward-in-Uncertainty.pdf"
                 }
             }}
@@ -66,13 +67,42 @@ export default function LinkedInVsResumePage() {
                     publisher: "Jobvite",
                     year: "2023",
                     href: "https://web.jobvite.com/rs/328-BQS-080/images/2023-Employ-Recruiter-Nation-Report-Moving-Forward-in-Uncertainty.pdf"
+                },
+                {
+                    id: "source-2",
+                    title: "Future of Recruiting 2024",
+                    publisher: "LinkedIn Talent Solutions",
+                    year: "2024",
+                    href: "https://business.linkedin.com/content/dam/me/business/en-us/talent-solutions/resources/pdfs/future-of-recruiting-2024.pdf"
+                },
+                {
+                    id: "source-3",
+                    title: "Global Talent Trends 2020",
+                    publisher: "LinkedIn",
+                    year: "2020",
+                    href: "https://englishbulletin.adapt.it/wp-content/uploads/2020/01/linkedin-2020-global-talent-trends-report.pdf"
+                }
+            ]}
+            faq={[
+                {
+                    question: "Can I skip LinkedIn if my resume is strong?",
+                    answer: "No. LinkedIn is the discovery layer for many recruiters. Without it, you are harder to find and validate."
+                },
+                {
+                    question: "Should my resume match my LinkedIn exactly?",
+                    answer: "Dates and titles should match. The resume can be more tailored to a role, but it should not contradict your profile."
+                },
+                {
+                    question: "Which one gets me the interview?",
+                    answer: "Recruiter lens: LinkedIn gets you found, the resume gets you selected."
                 }
             ]}
         >
             <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why both matter equally</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                Jobvite reports that recruiters use LinkedIn to source and vet candidates before outreach.
+                Recruiter surveys report heavy LinkedIn use for sourcing and validation, while resumes remain the document of record for evaluation.
                 <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Recruiter lens: LinkedIn affects discoverability and validation, while the resume carries evidence for evaluation.
@@ -107,6 +137,12 @@ export default function LinkedInVsResumePage() {
             <p className="text-muted-foreground leading-relaxed">
                 <strong>Different purposes, same story.</strong> Your LinkedIn can be broader (career overview).
                 Your resume should be sharper (specific role fit). But they should tell the same story.
+            </p>
+
+            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: discovery vs evaluation</h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+                Discovery is how recruiters find candidates. Evaluation is how they decide who to interview. LinkedIn dominates discovery; resumes dominate evaluation.
+                <Citation id="source-1">1</Citation>
             </p>
         </ResearchArticle>
     );
