@@ -1,14 +1,30 @@
-# Research UI Contract (v2.0)
+# Research UI Contract (v2.1)
 
-**Applies to:** All Hiring Research Library pages and future research deep dives.
+**Applies to:** Research hub and all Hiring Research Library articles.
 
 **Purpose:** Ensure every research page feels calm, editorial, credible, and research-grade. Prevent drift toward marketing UI, dashboards, or decorative patterns.
 
 ---
 
-## 1. Core Principle
+## 1. Surface Types
 
-> Research pages are documents, not interfaces.
+### Research Hub (Index)
+- Purpose: navigation and orientation, not persuasion
+- Form: typographic lists, dividers, and minimal grouping
+- Allowed: short callout for methodology (border-left, no card chrome)
+- Not allowed: cards, badges, iconography, gradients, or UI theatrics
+
+### Research Articles (Documents)
+- Purpose: credibility and clarity
+- Form: editorial prose with one key finding excerpt, figures, and sources
+- Allowed: key finding excerpt, figures, subtle brand accent
+- Not allowed: marketing UI patterns, dashboards, or decorative chrome
+
+---
+
+## 2. Core Principle
+
+> Research articles are documents, not interfaces. The hub is an index, not a marketing page.
 
 **They should feel like:**
 - Internal research memos
@@ -24,7 +40,7 @@
 
 ---
 
-## 2. Color Contract (V2.1 Alignment)
+## 3. Color Contract (V2.1 Alignment)
 
 ### Primary Palette
 | Token | Light | Dark | Usage |
@@ -42,7 +58,7 @@
 
 ---
 
-## 3. Allowed Visual Primitives (Hard Limit)
+## 4. Allowed Visual Primitives (Hard Limit)
 
 Research pages may ONLY use:
 
@@ -52,12 +68,13 @@ Research pages may ONLY use:
 - Figures (diagrams, data visualizations)
 - Inline links
 - One brand accent color (Teal), used sparingly
+- Minimal grouping (border-left, section rules, or subtle `bg-brand/5` on a single excerpt)
 
 **Anything outside this list requires explicit approval.**
 
 ---
 
-## 4. Prohibited UI Patterns
+## 5. Prohibited UI Patterns
 
 | ❌ Prohibited | Reason |
 |---|---|
@@ -72,7 +89,7 @@ Research pages may ONLY use:
 
 ---
 
-## 5. Diagram Specification (NEW — V2.0)
+## 6. Diagram Specification (NEW — V2.0)
 
 Diagrams are the **only** place where visual emphasis is encouraged. They must feel like data visualizations from a research paper or The Economist, not SaaS marketing.
 
@@ -135,36 +152,56 @@ Fig. 1 — Aggregated gaze duration across 30 recruiter sessions.
 
 ---
 
-## 6. Page Anatomy (Canonical Structure)
+## 7. Evidence and Citations
 
-### 6.1 Page Header
+> Research credibility is a product feature. If it cannot be cited, it does not ship.
+
+- All factual claims in research articles and figures must have a citation marker and a sources entry.
+- The hub is an index. Keep copy descriptive and avoid numeric or statistical claims. If a claim is necessary, move it into the article and cite it there.
+- Recruiter judgment must be labeled as such (e.g., "Recruiter Lens").
+- Follow the citation pattern in `docs/design-system.md`.
+- Source quality follows `docs/source-quality.md`.
+
+---
+
+## 8. Page Anatomy (Canonical Structure)
+
+### 8.0 Research Hub (Index)
+- Editorial header: tag, title, short description
+- Essential reading list (no cards, list with dividers)
+- Methodology note (border-left, no icon)
+- Category sections (numbered, list rows)
+- Product philosophy (text-only list)
+
+### 8.1 Page Header
+- Back to Research: text-only label, Geist Mono, uppercase, no icon
 - Category label (text-only, Geist Mono, uppercase, `--muted`)
 - Title (Fraunces, `--foreground`)
 - Subtitle (Geist Sans, `--muted`)
 
 **No icons. No pills. No background container.**
 
-### 6.2 Study Snapshot
-- Background: `bg-brand/5` (subtle Teal tint) or `bg-secondary/20`
+### 8.2 Study Snapshot
 - Border-left: 4px `--brand`
+- Optional subtle background: `bg-brand/5` for one excerpt only
 - Key statistic: Fraunces, 32-40px
-- Metadata: Geist Sans, label-value pairs
+- Metadata: Geist Sans, label-value pairs (no icons)
 
-### 6.3 Figures
+### 8.3 Figures
 - Labeled: "Fig. X"
 - Captioned: One-sentence explanation
 - May be visually expressive (within rules above)
 
-### 6.4 Narrative Sections
+### 8.4 Narrative Sections
 - Plain text. No containers, no icons, no background fills.
 - Whitespace and typography only.
 
-### 6.5 Product Tie-In ("How this shapes RIYP")
-- Background container allowed
+### 8.5 Product Tie-In ("How this shapes RIYP")
+- Use a simple rule or border-left, not a card
 - No pills or badges
 - Editorial sentences, not UI labels
 
-### 6.6 Sources & Notes
+### 8.6 Sources & Notes
 - Numbered footnotes or endnotes
 - Quiet and unobtrusive
 
@@ -264,4 +301,3 @@ Before merge, every research page must pass:
 > If removing an element improves reading, it should be removed.
 
 **Restraint is not a lack of design. Restraint is the design.**
-

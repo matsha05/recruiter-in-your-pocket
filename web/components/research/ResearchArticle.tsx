@@ -4,17 +4,22 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { StudioShell } from "@/components/layout/StudioShell";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Clock, Calendar } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
     SCROLL_REVEAL_VARIANTS,
     STAGGER_CONTAINER,
     STAGGER_ITEM,
     DURATION,
-    EASE_SNAP,
-    SPRING_SUBTLE
+    EASE_SNAP
 } from "@/lib/animation";
+
+interface ResearchSource {
+    id?: string;
+    title: string;
+    publisher?: string;
+    year?: string | number;
+    href?: string;
+}
 
 interface ResearchArticleProps {
     header: {
@@ -25,15 +30,14 @@ interface ResearchArticleProps {
         readTime?: string;    // e.g. "4 min read"
     };
     keyFinding: {
-        icon: ReactNode;
         subtitle: string;
         stat: string;
-        statDescription: string;
+        statDescription: ReactNode;
         source: {
             text: string;
             href?: string;
         };
-        sampleSize?: string;
+        sampleSize?: ReactNode;
     };
     visualization?: ReactNode;
     children: ReactNode;
@@ -49,30 +53,13 @@ interface ResearchArticleProps {
         href: string;
         tag?: string;
     }>;
+    sources?: ResearchSource[];
     cta?: {
         title: string;
         buttonText: string;
         href: string;
     }
 }
-
-// Animation variants for key finding card
-const KEY_FINDING_VARIANTS = {
-    hidden: {
-        opacity: 0,
-        scale: 0.96,
-        y: 12
-    },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        transition: {
-            ...SPRING_SUBTLE,
-            delay: 0.15
-        }
-    }
-};
 
 export function ResearchArticle({
     header,
@@ -81,6 +68,7 @@ export function ResearchArticle({
     children,
     productTieIn,
     relatedArticles,
+    sources,
     cta = {
         title: "See what your resume looks like",
         buttonText: "Run Free Analysis",
@@ -122,27 +110,33 @@ export function ResearchArticle({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: DURATION.slow, ease: EASE_SNAP }}
                 >
-                    <Link href="/research" className="inline-flex items-center gap-2 mb-8 text-sm text-muted-foreground hover:text-brand transition-colors group">
-                        <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                    <Link
+                        href="/research"
+                        className="inline-flex items-center mb-8 text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70 hover:text-brand transition-colors"
+                    >
                         Back to Research
                     </Link>
                     <div className="space-y-6">
                         <div className="flex flex-wrap items-center gap-3">
-                            <span className="text-[10px] font-mono uppercase tracking-widest border border-border px-2 py-1 rounded bg-secondary/50 text-muted-foreground">
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
                                 {header.tag}
                             </span>
                             {(header.readTime || header.lastUpdated) && (
-                                <div className="flex items-center gap-4 text-xs text-muted-foreground/60">
+                                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground/60">
                                     {header.readTime && (
-                                        <span className="flex items-center gap-1">
-                                            <Clock className="w-3 h-3" />
-                                            {header.readTime}
+                                        <span className="flex items-baseline gap-2">
+                                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">
+                                                Read time
+                                            </span>
+                                            <span>{header.readTime}</span>
                                         </span>
                                     )}
                                     {header.lastUpdated && (
-                                        <span className="flex items-center gap-1">
-                                            <Calendar className="w-3 h-3" />
-                                            Updated {header.lastUpdated}
+                                        <span className="flex items-baseline gap-2">
+                                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">
+                                                Updated
+                                            </span>
+                                            <span>{header.lastUpdated}</span>
                                         </span>
                                     )}
                                 </div>
@@ -157,16 +151,15 @@ export function ResearchArticle({
                     </div>
                 </motion.header>
 
-                {/* 2. Key Finding Card - Scale-up entrance */}
+                {/* 2. Study Snapshot - Scale-up entrance */}
                 <motion.div
-                    className="bg-card border border-border/60 shadow-sm rounded-lg p-6 md:p-8 space-y-6"
-                    initial={prefersReducedMotion ? {} : "hidden"}
-                    animate="visible"
-                    variants={prefersReducedMotion ? {} : KEY_FINDING_VARIANTS}
+                    className="border-l-4 border-brand bg-brand/5 pl-5 py-5 space-y-4"
+                    initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: DURATION.slow, ease: EASE_SNAP, delay: 0.1 }}
                 >
-                    <div className="flex items-center gap-2 text-brand font-semibold text-xs uppercase tracking-widest">
-                        {keyFinding.icon}
-                        <span>{keyFinding.subtitle}</span>
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-brand/80">
+                        {keyFinding.subtitle}
                     </div>
                     <div className="space-y-2">
                         <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground tracking-tight">{keyFinding.stat}</h2>
@@ -174,21 +167,35 @@ export function ResearchArticle({
                             {keyFinding.statDescription}
                         </p>
                     </div>
-                    <div className="pt-6 border-t border-border/40 text-xs font-mono text-muted-foreground/70 space-y-2">
-                        <p className="flex items-center gap-2">
-                            <span className="text-muted-foreground uppercase">Source:</span>
-                            {keyFinding.source.href ? (
-                                <a href={keyFinding.source.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-foreground underline underline-offset-4 decoration-border">
-                                    {keyFinding.source.text}
-                                </a>
-                            ) : (
-                                <span>{keyFinding.source.text}</span>
-                            )}
-                        </p>
+                    <dl className="pt-4 border-t border-border/40 text-xs text-muted-foreground/70 space-y-2">
+                        <div className="flex flex-wrap items-baseline gap-x-2">
+                            <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                                Source
+                            </dt>
+                            <dd>
+                                {keyFinding.source.href ? (
+                                    <a
+                                        href={keyFinding.source.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-foreground underline underline-offset-4 decoration-border"
+                                    >
+                                        {keyFinding.source.text}
+                                    </a>
+                                ) : (
+                                    <span>{keyFinding.source.text}</span>
+                                )}
+                            </dd>
+                        </div>
                         {keyFinding.sampleSize && (
-                            <p><span className="text-muted-foreground uppercase">Sample:</span> {keyFinding.sampleSize}</p>
+                            <div className="flex flex-wrap items-baseline gap-x-2">
+                                <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                                    Sample
+                                </dt>
+                                <dd>{keyFinding.sampleSize}</dd>
+                            </div>
                         )}
-                    </div>
+                    </dl>
                 </motion.div>
 
                 {/* 3. Visualization Section (Optional) */}
@@ -206,19 +213,18 @@ export function ResearchArticle({
                 <hr className="border-border/40 my-12" />
 
                 {/* 5. Product Tie-In */}
-                <div className="bg-card border border-border/60 shadow-sm rounded-lg p-6 md:p-8 transition-all hover:border-brand/20">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="h-6 w-1 bg-brand rounded-full" />
-                        <h3 className="font-display text-xl font-medium text-foreground">How this shapes the product</h3>
-                    </div>
-                    <div className="grid gap-6">
+                <div className="border-l-2 border-border/60 pl-4 space-y-4">
+                    <h3 className="font-display text-lg font-medium text-foreground">
+                        {productTieIn.title}
+                    </h3>
+                    <div className="space-y-4">
                         {productTieIn.items.map((item, i) => (
-                            <div key={i} className="flex gap-4 items-start group">
-                                <span className="font-mono text-xs text-muted-foreground/30 mt-1 shrink-0 group-hover:text-brand/50 transition-colors">
+                            <div key={i} className="flex gap-4 items-start">
+                                <span className="font-mono text-[10px] text-muted-foreground/40 mt-1 shrink-0">
                                     {String(i + 1).padStart(2, '0')}
                                 </span>
                                 <div>
-                                    <h4 className="font-medium text-foreground mb-1 group-hover:text-brand transition-colors">{item.title}</h4>
+                                    <h4 className="font-medium text-foreground text-sm mb-1">{item.title}</h4>
                                     <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                                 </div>
                             </div>
@@ -230,14 +236,14 @@ export function ResearchArticle({
                 {relatedArticles && relatedArticles.length > 0 && (
                     <motion.div
                         ref={relatedRef as React.RefObject<HTMLDivElement>}
-                        className="space-y-6"
+                        className="space-y-4"
                         initial="hidden"
                         animate={relatedVisible ? "visible" : "hidden"}
                         variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
                     >
-                        <h3 className="font-display text-xl font-medium text-foreground">Related Research</h3>
+                        <h3 className="font-display text-lg font-medium text-foreground">Related Research</h3>
                         <motion.div
-                            className="grid gap-4"
+                            className="border-t border-border/30 divide-y divide-border/30"
                             variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
                             initial="hidden"
                             animate={relatedVisible ? "visible" : "hidden"}
@@ -249,18 +255,11 @@ export function ResearchArticle({
                                 >
                                     <Link
                                         href={article.href}
-                                        className="group flex items-center justify-between p-4 border border-border/60 rounded-lg hover:border-brand/40 hover:bg-secondary/20 transition-all"
+                                        className="group flex items-baseline justify-between py-3"
                                     >
-                                        <div className="flex items-center gap-3">
-                                            <motion.span
-                                                initial={{ x: 0 }}
-                                                whileHover={prefersReducedMotion ? undefined : { x: 4 }}
-                                                transition={{ duration: DURATION.normal, ease: EASE_SNAP }}
-                                            >
-                                                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-brand transition-colors" />
-                                            </motion.span>
-                                            <span className="text-foreground group-hover:text-brand transition-colors">{article.title}</span>
-                                        </div>
+                                        <span className="text-sm text-foreground group-hover:text-brand transition-colors">
+                                            {article.title}
+                                        </span>
                                         {article.tag && (
                                             <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">{article.tag}</span>
                                         )}
@@ -271,19 +270,57 @@ export function ResearchArticle({
                     </motion.div>
                 )}
 
+                {sources && sources.length > 0 && (
+                    <section className="border-t border-border/40 pt-10 space-y-4">
+                        <h3 className="font-display text-lg font-medium text-foreground">Sources</h3>
+                        <ol className="list-decimal pl-5 space-y-2 text-xs text-muted-foreground leading-relaxed">
+                            {sources.map((source, index) => {
+                                const sourceId = source.id ?? `source-${index + 1}`;
+                                const sourceLabel = [
+                                    source.title,
+                                    source.publisher ? `- ${source.publisher}` : null,
+                                    source.year ? `(${source.year})` : null
+                                ]
+                                    .filter(Boolean)
+                                    .join(" ")
+                                    .trim()
+                                    .concat(".");
+
+                                return (
+                                    <li key={sourceId} id={sourceId}>
+                                        {source.href ? (
+                                            <a
+                                                href={source.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="hover:text-foreground underline underline-offset-4 decoration-border"
+                                            >
+                                                {sourceLabel}
+                                            </a>
+                                        ) : (
+                                            <span>{sourceLabel}</span>
+                                        )}
+                                    </li>
+                                );
+                            })}
+                        </ol>
+                    </section>
+                )}
+
                 {/* 7. Standard CTA - Scroll reveal */}
                 <motion.div
                     ref={ctaRef as React.RefObject<HTMLDivElement>}
-                    className="flex flex-col items-center justify-center gap-6 py-20"
+                    className="border-t border-border/40 pt-12 flex flex-col items-center justify-center gap-3 text-center"
                     initial="hidden"
                     animate={ctaVisible ? "visible" : "hidden"}
                     variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
                 >
-                    <h3 className="font-display text-2xl font-medium text-center">{cta.title}</h3>
-                    <Link href={cta.href}>
-                        <Button variant="studio" size="lg" className="px-8 h-12 shadow-sm">
-                            {cta.buttonText}
-                        </Button>
+                    <h3 className="font-display text-xl font-medium">{cta.title}</h3>
+                    <Link
+                        href={cta.href}
+                        className="text-sm font-medium text-premium hover:underline underline-offset-4"
+                    >
+                        {cta.buttonText}
                     </Link>
                 </motion.div>
 
@@ -294,15 +331,24 @@ export function ResearchArticle({
 
 // Re-export common insights for use inside the article body
 
-export function ArticleInsight({ icon, title, desc }: { icon: ReactNode, title: string, desc: string }) {
+export function ArticleInsight({ title, desc }: { title: string, desc: ReactNode }) {
     return (
-        <div className="p-6 border border-border/60 rounded-lg bg-background hover:bg-secondary/10 transition-colors">
-            <div className="flex items-center gap-2 mb-3 text-foreground font-medium">
-                {icon}
-                <span className="font-display text-lg tracking-tight">{title}</span>
-            </div>
+        <div className="border-l-2 border-border/60 pl-4 py-2">
+            <div className="text-foreground font-medium text-sm mb-1">{title}</div>
             <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
         </div>
     )
 }
 
+export function Citation({ id, children }: { id: string; children: ReactNode }) {
+    return (
+        <sup className="align-super">
+            <a
+                href={`#${id}`}
+                className="text-[10px] font-mono text-muted-foreground hover:text-foreground"
+            >
+                {children}
+            </a>
+        </sup>
+    );
+}

@@ -153,6 +153,7 @@ All report sections use identical chrome:
 - Text follows icon with `gap-2` spacing
 - **Sentence case** (not uppercase)
 - Color: `text-muted-foreground hover:text-foreground`
+- Exception: Research hub and research articles use a text-only back label to preserve editorial tone. Follow `docs/research-ui-contract.md`.
 
 ### Article Tags (Category Pills)
 

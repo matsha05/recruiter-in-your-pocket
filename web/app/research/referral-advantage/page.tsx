@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
+import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ReferralFunnelDiagram } from "@/components/research/diagrams/ReferralFunnelDiagram";
 import { ReferralCalculator } from "@/components/research/diagrams/ReferralCalculator";
-import { Users, UserPlus, TrendingUp, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "The Referral Advantage | Hiring Research",
-    description: "Research shows referred candidates get interviewed more, hired faster, and stay longer. Here's what the data says.",
+    description: "How referrals change hiring outcomes and where they create leverage.",
 };
 
 export default function ReferralAdvantagePage() {
@@ -15,15 +14,19 @@ export default function ReferralAdvantagePage() {
             header={{
                 tag: "Job search strategy",
                 title: "The Referral Advantage",
-                description: "Knowing someone at the company isn't just helpful—it's statistically one of the highest-leverage job search activities you can do.",
+                description: "How referrals change hiring outcomes and where they create leverage.",
                 lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{
-                icon: <Users className="w-4 h-4" />,
                 subtitle: "The Numbers",
-                stat: "5–10x",
-                statDescription: "Referred candidates are 5-10x more likely to be hired than applicants from job boards.",
+                stat: "Referral Lift",
+                statDescription: (
+                    <>
+                        Referred candidates are significantly more likely to be hired than applicants from job boards.
+                        <Citation id="source-1">1</Citation>
+                    </>
+                ),
                 source: {
                     text: "NBER: Why the Referential Treatment (Pallais & Glass)",
                     href: "https://www.nber.org/papers/w21357"
@@ -56,40 +59,66 @@ export default function ReferralAdvantagePage() {
                 { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
                 { title: "Skills-Based Hiring", href: "/research/skills-based-hiring", tag: "Trends" }
             ]}
+            sources={[
+                {
+                    id: "source-1",
+                    title: "Why the Referential Treatment? Evidence from Field Experiments in Hiring",
+                    publisher: "National Bureau of Economic Research",
+                    year: "2015",
+                    href: "https://www.nber.org/papers/w21357"
+                }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why referrals work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Referrals work because they solve the employer&apos;s core problem: risk. Hiring is expensive
                 and uncertain. A referral from a trusted employee reduces both. The referrer is
                 vouching with their own reputation.
+                <Citation id="source-1">1</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                For the candidate, a referral means your resume gets read. In a stack of 500 applications,
-                most get 7.4 seconds. A referred resume gets attention, context, and usually a fast track
-                to the hiring manager.
+                For the candidate, a referral increases the chance your resume is read with context and intent.
+                It changes the starting position in the funnel.
+                <Citation id="source-1">1</Citation>
             </p>
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">The research</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    icon={<TrendingUp className="w-4 h-4" />}
                     title="Interview Rate"
-                    desc="Referred candidates have a 40-60% interview rate vs. 3-5% for cold applications."
+                    desc={
+                        <>
+                            Referred candidates interview at higher rates than cold applicants.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
                 <ArticleInsight
-                    icon={<Zap className="w-4 h-4" />}
                     title="Hiring Speed"
-                    desc="Referral hires happen 55% faster on average. Less screening, more trust."
+                    desc={
+                        <>
+                            Referral hires move faster because trust is established earlier.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
                 <ArticleInsight
-                    icon={<Users className="w-4 h-4" />}
                     title="Retention"
-                    desc="Referred employees stay 25% longer. Alignment of expectations from day one."
+                    desc={
+                        <>
+                            Referred employees tend to stay longer because expectations are clearer.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
                 <ArticleInsight
-                    icon={<UserPlus className="w-4 h-4" />}
                     title="Volume Impact"
-                    desc="Referrals account for only 7% of applicants but 40% of hires at many companies."
+                    desc={
+                        <>
+                            Referrals produce a disproportionate share of hires relative to their volume.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
             </div>
 

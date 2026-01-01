@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
+import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
-import { MessageSquare, Target, Zap, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "The STAR Method: Structure That Works | Hiring Research",
@@ -14,15 +13,19 @@ export default function StarMethodPage() {
             header={{
                 tag: "Interview prep",
                 title: "The STAR Method: Structure That Works",
-                description: "Behavioral interviews dominate modern hiring. The STAR method—Situation, Task, Action, Result—is the framework that works for both interviews and resumes.",
+                description: "The STAR method—Situation, Task, Action, Result—structures behavioral answers for interviews and resumes.",
                 lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{
-                icon: <MessageSquare className="w-4 h-4" />,
                 subtitle: "The Structure",
                 stat: "S → T → A → R",
-                statDescription: "Situation, Task, Action, Result. A framework used by Amazon, Google, and most Fortune 500 companies.",
+                statDescription: (
+                    <>
+                        Situation, Task, Action, Result. A structured interview framework used in behavioral hiring.
+                        <Citation id="source-1">1</Citation>
+                    </>
+                ),
                 source: {
                     text: "Amazon Leadership Principles Interview Guide",
                     href: "https://www.amazon.jobs/en/landing_pages/in-person-interview"
@@ -55,6 +58,15 @@ export default function StarMethodPage() {
                 { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
                 { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Format" }
             ]}
+            sources={[
+                {
+                    id: "source-1",
+                    title: "In-Person Interview Tips",
+                    publisher: "Amazon.jobs",
+                    year: "2024",
+                    href: "https://www.amazon.jobs/en/landing_pages/in-person-interview"
+                }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why structure matters</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
@@ -70,22 +82,18 @@ export default function StarMethodPage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Breaking down STAR</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    icon={<Target className="w-4 h-4" />}
                     title="Situation"
                     desc="The context. What was happening? What was the problem or opportunity? Keep it brief."
                 />
                 <ArticleInsight
-                    icon={<Zap className="w-4 h-4" />}
                     title="Task"
                     desc="Your specific responsibility. What were you asked to do? What was your role?"
                 />
                 <ArticleInsight
-                    icon={<MessageSquare className="w-4 h-4" />}
                     title="Action"
                     desc="What you actually did. Be specific about your contributions, not the team&apos;s."
                 />
                 <ArticleInsight
-                    icon={<CheckCircle className="w-4 h-4" />}
                     title="Result"
                     desc="The outcome. Quantify when possible. This is where most people undersell themselves."
                 />

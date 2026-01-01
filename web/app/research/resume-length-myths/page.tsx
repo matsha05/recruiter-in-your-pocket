@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
+import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ResumeLengthChart } from "@/components/research/diagrams/ResumeLengthChart";
-import { FileText, Clock, Target, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Resume Length: What Research Says | Hiring Research",
-    description: "The one-page resume rule is oversimplified. Here's what research actually shows about optimal resume length.",
+    description: "A closer look at resume length, experience level, and clarity.",
 };
 
 export default function ResumeLengthPage() {
@@ -14,15 +13,19 @@ export default function ResumeLengthPage() {
             header={{
                 tag: "Resume structure",
                 title: "Resume Length: What Research Actually Says",
-                description: "The 'one-page rule' is career advice passed down like folklore. Research shows the answer is more nuanced.",
+                description: "Why resume length depends on experience, relevance, and clarity.",
                 lastUpdated: "December 2025",
                 readTime: "4 min read"
             }}
             keyFinding={{
-                icon: <FileText className="w-4 h-4" />,
                 subtitle: "The Reality",
                 stat: "2 Pages",
-                statDescription: "Recruiters in one study rated two-page resumes higher than one-page for experienced candidates.",
+                statDescription: (
+                    <>
+                        Recruiters in one study rated two-page resumes higher than one-page for experienced candidates.
+                        <Citation id="source-1">1</Citation>
+                    </>
+                ),
                 source: {
                     text: "ResumeGo Hiring Manager Study (2019)",
                     href: "https://www.resumego.net/research/how-long-should-a-resume-be/"
@@ -55,11 +58,20 @@ export default function ResumeLengthPage() {
                 { title: "The STAR Method", href: "/research/star-method", tag: "Format" },
                 { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
             ]}
+            sources={[
+                {
+                    id: "source-1",
+                    title: "How Long Should a Resume Be? (Hiring Manager Study)",
+                    publisher: "ResumeGo",
+                    year: "2019",
+                    href: "https://www.resumego.net/research/how-long-should-a-resume-be/"
+                }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where the one-page rule came from</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                The one-page resume rule originated when resumes were physically printed and sorted by hand.
-                Recruiters managed stacks of paper. Brevity was literally easier to hold.
+                The one-page rule is a legacy heuristic from a different hiring era.
+                Brevity was favored when format and handling mattered more than clarity.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Today, resumes are digital. They&apos;re scrolled, not flipped. The constraint that created
@@ -69,24 +81,40 @@ export default function ResumeLengthPage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">What research shows</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    icon={<Clock className="w-4 h-4" />}
                     title="Experience Matters"
-                    desc="Entry-level: one page is ideal. 10+ years experience: two pages is often rated higher by recruiters."
+                    desc={
+                        <>
+                            Entry-level: one page is ideal. 10+ years experience: two pages is often rated higher by recruiters.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
                 <ArticleInsight
-                    icon={<Target className="w-4 h-4" />}
                     title="Relevance Over Length"
-                    desc="A focused one-page resume beats a padded two-page resume. Extra space must earn its place."
+                    desc={
+                        <>
+                            A focused one-page resume beats a padded two-page resume. Extra space must earn its place.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
                 <ArticleInsight
-                    icon={<FileText className="w-4 h-4" />}
                     title="The Real Limit"
-                    desc="Two pages is the practical max. Three-page resumes are consistently rated lower in studies."
+                    desc={
+                        <>
+                            Two pages is the practical max. Three-page resumes are consistently rated lower in studies.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
                 <ArticleInsight
-                    icon={<TrendingUp className="w-4 h-4" />}
                     title="Scanability"
-                    desc="Length matters less than structure. Clear sections and visual hierarchy beat cramped formatting."
+                    desc={
+                        <>
+                            Length matters less than structure. Clear sections and visual hierarchy beat cramped formatting.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
             </div>
 

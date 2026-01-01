@@ -8,8 +8,6 @@ import { CompStack } from "@/components/research/diagrams/CompStack";
 import { AnchorZone } from "@/components/research/diagrams/AnchorZone";
 import { SalaryHistoryTrap } from "@/components/research/diagrams/SalaryHistoryTrap";
 import { LevelLadder } from "@/components/research/diagrams/LevelLadder";
-// Re-using ArticleInsight for consistency in "insight" blocks
-import { ArticleInsight } from "@/components/research/ResearchArticle";
 import { AlertCircle, Quote, TrendingUp, Handshake, ListCheck, Lock, Anchor, MousePointer2, CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function OfferNegotiationGuidePage() {

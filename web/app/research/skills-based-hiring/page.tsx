@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
+import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { SkillsShiftDiagram } from "@/components/research/diagrams/SkillsShiftDiagram";
-import { Briefcase, Award, GraduationCap, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "The Skills-Based Hiring Shift | Hiring Research",
-    description: "Major employers are dropping degree requirements and hiring for skills. What this means for your resume.",
+    description: "The shift toward skills-first hiring and what it means for resumes.",
 };
 
 export default function SkillsBasedHiringPage() {
@@ -14,15 +13,19 @@ export default function SkillsBasedHiringPage() {
             header={{
                 tag: "Industry trends",
                 title: "The Skills-Based Hiring Shift",
-                description: "Google, Apple, IBM, and others have removed degree requirements for many roles. Here's what's actually changing—and what it means for you.",
+                description: "How skills-first hiring changes what employers look for and how you should signal capability.",
                 lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{
-                icon: <Briefcase className="w-4 h-4" />,
                 subtitle: "The Trend",
                 stat: "45%",
-                statDescription: "of companies surveyed by LinkedIn plan to prioritize skills over degrees by 2025.",
+                statDescription: (
+                    <>
+                        of companies surveyed by LinkedIn plan to prioritize skills over degrees by 2025.
+                        <Citation id="source-1">1</Citation>
+                    </>
+                ),
                 source: {
                     text: "LinkedIn Economic Graph Skills-Based Hiring Report (2024)",
                     href: "https://economicgraph.linkedin.com/research/skills-based-hiring"
@@ -32,7 +35,7 @@ export default function SkillsBasedHiringPage() {
                 <>
                     <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The paradigm shift</h2>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                        Traditional hiring filters are giving way to evidence-based assessment.
+                        Traditional hiring filters are giving way to skills-based assessment.
                     </p>
                     <SkillsShiftDiagram />
                 </>
@@ -55,12 +58,21 @@ export default function SkillsBasedHiringPage() {
                 { title: "LinkedIn vs. Resume", href: "/research/linkedin-vs-resume", tag: "Sourcing" },
                 { title: "The Referral Advantage", href: "/research/referral-advantage", tag: "Strategy" }
             ]}
+            sources={[
+                {
+                    id: "source-1",
+                    title: "Skills-Based Hiring: The Big Picture",
+                    publisher: "LinkedIn Economic Graph",
+                    year: "2024",
+                    href: "https://economicgraph.linkedin.com/research/skills-based-hiring"
+                }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What&apos;s actually changing</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-                The shift to skills-based hiring isn&apos;t just PR. Driven by talent shortages and research showing
-                degrees don&apos;t predict job performance, major employers are removing &quot;bachelor&apos;s required&quot; from
-                job postings.
+                The shift to skills-based hiring reflects a growing focus on demonstrated capability over credentials.
+                Employers are rewriting job requirements to emphasize skills and outcomes.
+                <Citation id="source-1">1</Citation>
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
                 This doesn&apos;t mean credentials don&apos;t matter—it means how you communicate skills matters more.
@@ -70,22 +82,18 @@ export default function SkillsBasedHiringPage() {
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">What this means for resumes</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    icon={<Award className="w-4 h-4" />}
                     title="Show, Don&apos;t Tell"
                     desc="Listing &apos;project management&apos; as a skill isn&apos;t enough. Show a project you managed and the outcome."
                 />
                 <ArticleInsight
-                    icon={<GraduationCap className="w-4 h-4" />}
                     title="Education Moves Down"
                     desc="For experienced candidates, education should be at the bottom. Experience proves capability."
                 />
                 <ArticleInsight
-                    icon={<Briefcase className="w-4 h-4" />}
                     title="Portfolio Signals"
                     desc="Links to work samples, GitHub repos, or case studies provide evidence that degrees cannot."
                 />
                 <ArticleInsight
-                    icon={<TrendingUp className="w-4 h-4" />}
                     title="Certifications Rise"
                     desc="Industry certifications (AWS, PMP, Google Analytics) are increasingly valued as skill proof."
                 />

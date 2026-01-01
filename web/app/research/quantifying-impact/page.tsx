@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { ResearchArticle, ArticleInsight } from "@/components/research/ResearchArticle";
+import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ImpactFormulaDiagram } from "@/components/research/diagrams/ImpactFormulaDiagram";
-import { TrendingUp, Hash, Target, Lightbulb } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Quantifying Impact: The Laszlo Bock Formula | Hiring Research",
@@ -14,15 +13,19 @@ export default function QuantifyingImpactPage() {
             header={{
                 tag: "Resume writing",
                 title: "Quantifying Impact: The Laszlo Bock Formula",
-                description: "Laszlo Bock, Google's former SVP of People Operations, popularized a formula for resume bullets that hiring managers love. Here's the research behind it.",
+                description: "A structured formula for turning responsibilities into quantified impact.",
                 lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
             keyFinding={{
-                icon: <TrendingUp className="w-4 h-4" />,
                 subtitle: "The Formula",
                 stat: "X → Y → Z",
-                statDescription: "Accomplished [X] as measured by [Y], by doing [Z]. Start with impact, prove it, then explain how.",
+                statDescription: (
+                    <>
+                        Accomplished [X] as measured by [Y], by doing [Z]. Start with impact, prove it, then explain how.
+                        <Citation id="source-1">1</Citation>
+                    </>
+                ),
                 source: {
                     text: "Laszlo Bock, Work Rules! (2015)",
                     href: "https://www.amazon.com/Work-Rules-Insights-Inside-Transform/dp/1455554790"
@@ -55,6 +58,15 @@ export default function QuantifyingImpactPage() {
                 { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Structure" },
                 { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" }
             ]}
+            sources={[
+                {
+                    id: "source-1",
+                    title: "Work Rules!: Insights from Inside Google That Will Transform How You Live and Lead",
+                    publisher: "Twelve",
+                    year: "2015",
+                    href: "https://www.amazon.com/Work-Rules-Insights-Inside-Transform/dp/1455554790"
+                }
+            ]}
         >
             <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why numbers work</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
@@ -65,27 +77,24 @@ export default function QuantifyingImpactPage() {
             <p className="text-muted-foreground leading-relaxed mb-6">
                 Bock&apos;s insight was that most candidates undersell themselves by describing responsibilities
                 instead of results. The formula forces you to lead with the outcome, not the activity.
+                <Citation id="source-1">1</Citation>
             </p>
 
             <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Finding numbers when you think you don&apos;t have any</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    icon={<Hash className="w-4 h-4" />}
                     title="Time"
                     desc="Reduced processing time by 30%. Cut onboarding from 2 weeks to 3 days."
                 />
                 <ArticleInsight
-                    icon={<TrendingUp className="w-4 h-4" />}
                     title="Money"
                     desc="Saved $50K annually. Generated $200K in new revenue. Reduced costs by 15%."
                 />
                 <ArticleInsight
-                    icon={<Target className="w-4 h-4" />}
                     title="Scale"
                     desc="Managed a team of 12. Handled 500+ customer tickets monthly. Launched in 8 markets."
                 />
                 <ArticleInsight
-                    icon={<Lightbulb className="w-4 h-4" />}
                     title="Frequency"
                     desc="First time in company history. Implemented process used by 200+ employees."
                 />

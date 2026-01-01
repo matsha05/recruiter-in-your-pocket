@@ -163,11 +163,13 @@ Location: `/web/components/icons/`
 ## 10. Evidence and Citations
 
 Evidence should feel editorial, not UI chrome.
+Scope: citations are required on research articles, reports, and study detail pages. Index or navigation surfaces should avoid factual claims; do not add citation markers or sources lists to hubs.
 
 ### Citation Marker
 - Inline superscript link after the claim.
 - Font: Geist Mono, `text-[10px]`, `text-muted-foreground`, `align-super`.
 - Interaction: hover or focus shows a popover with title, source, year, and link. On mobile, tap scrolls to Sources.
+- Do not use citation markers on index surfaces.
 
 Example:
 ```tsx
