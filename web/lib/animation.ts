@@ -47,14 +47,24 @@ export const SPRING_SUBTLE = {
 
 // =============================================================================
 // DURATION TOKENS
-// Per design-principles.md: Fast 100ms, Normal 200ms, Slow 350ms
+// Per design-system.md: Semantic motion roles for consistent interaction feel
 // =============================================================================
 
 export const DURATION = {
-    fast: 0.1,      // 100ms - micro interactions
-    normal: 0.2,    // 200ms - UI transitions
-    slow: 0.35,     // 350ms - reveals, entrances
-    editorial: 0.6, // 600ms - smooth editorial reveals
+    // Semantic roles (preferred - use these)
+    press: 0.08,     // 80ms - input acknowledgement
+    hoverIn: 0.09,   // 90ms - hover on
+    hoverOut: 0.16,  // 160ms - hover off (slower = calm)
+    select: 0.14,    // 140ms - selection highlight
+    swap: 0.2,       // 200ms - tabs, accordions, content changes
+    reveal: 0.32,    // 320ms - panels, section reveals
+    hero: 0.42,      // 420ms - verdict only (signature moment)
+
+    // Legacy aliases (for existing code)
+    fast: 0.1,       // 100ms - micro interactions
+    normal: 0.2,     // 200ms - UI transitions
+    slow: 0.35,      // 350ms - reveals, entrances
+    editorial: 0.6,  // 600ms - smooth editorial reveals
 } as const;
 
 // =============================================================================

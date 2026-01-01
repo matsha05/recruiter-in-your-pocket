@@ -59,16 +59,191 @@ We are NOT a friendly university career center. We are a high-stakes partner.
 - **Banned:** Flat vector illustrations, "Hi there!" voice, gamification badges.
 - **Approved:** Data-driven visuals, precision microcopy, editorial tone.
 
-### 7. Interaction Physics
+### 7. Interaction Grammar
+
+Every component maps to one of 6 canonical interaction verbs. This creates a cohesive "language" across the app.
+
+| Verb | Motion | States | RIYP Examples |
+|------|--------|--------|---------------|
+| **Reveal** | 320ms reveal | hidden → visible | Section expand, score dial animation |
+| **Select** | 140ms select | default → selected | List row, checkbox, radio |
+| **Commit** | 80ms press → 200ms swap | idle → pending → done | Apply rewrite, save job, mark addressed |
+| **Navigate** | 200ms swap | current → next | Tab switch, route change |
+| **Preview** | 320ms in / 140ms out | closed → peek | Evidence trace, Recruiter Lens definitions |
+| **Reorder** | 200ms swap | idle → dragging → dropped | Action plan items |
+
+If a component can't be described with these verbs, it's probably unnecessary chrome.
+
+### 8. Interaction Physics
+
 | Type | Rule |
 |---|---|
 | Easing | `cubic-bezier(0.16, 1, 0.3, 1)`: snappy |
-| Fast | `100ms` (micro) |
-| Normal | `200ms` (UI) |
-| Slow | `350ms` (reveals) |
+| Press | `80ms` — input acknowledgement |
+| Hover | `90ms in / 160ms out` — asymmetric for calm |
+| Select | `140ms` — selection highlight |
+| Swap | `200ms` — tabs, accordions, content changes |
+| Reveal | `320ms` — panels, section reveals |
+| Hero | `420ms` — verdict only (signature moment) |
 | No bounce | No playful wobbles for structural UI |
 
 Exception: Signature moments may use a single, low-amplitude overshoot spring. Only one per screen, tied to verdict, value, or conversion. Never use bounce on modals, sheets, navigation, or form controls.
+
+### 9. Layer Model
+
+Every overlay belongs to exactly one layer type with consistent behavior.
+
+| Layer | Focus | Dismiss | Scroll | Examples |
+|-------|-------|---------|--------|----------|
+| **Tooltip** | None | Auto on mouse leave | Closes | Hint text, abbreviation definitions |
+| **Popover** | Trapped | Outside click, Esc | Blocks | Dropdown menus, color pickers |
+| **Peek** | None | Outside click, Esc | Preserves page | Evidence panel, Recruiter Lens |
+| **Sheet/Modal** | Trapped | Outside click (optional), Esc | Blocks | Settings, upload, confirmation |
+| **Critical** | Trapped | Explicit action only | Blocks | Delete confirm, cancel subscription |
+
+**Rules:**
+- Esc always closes topmost layer
+- Focus always returns to invoker on close
+- Single portal root for z-index management
+
+### 10. The 12-State Rule
+
+Every interactive component must define these states. Missing states = perceived cheapness.
+
+| # | State | Required For |
+|---|-------|--------------|
+| 1 | `default` | All |
+| 2 | `hover` | All |
+| 3 | `active` (pressed) | All |
+| 4 | `focus-visible` | All |
+| 5 | `disabled` | All |
+| 6 | `loading` | Buttons, forms |
+| 7 | `selected` | Lists, toggles, checkboxes |
+| 8 | `selected+hover` | Selectable elements |
+| 9 | `selected+focus` | Selectable elements |
+| 10 | `error` | Inputs, forms |
+| 11 | `read-only` | Inputs |
+| 12 | `pending` | Optimistic UI (before server confirms) |
+
+**Component Finish Pass Gate:** No component ships without states 1-6 defined. States 7-12 as applicable.
+
+### 11. Craft Laws
+
+These patterns separate 9/10 from 10/10. They are what makes users say "this feels expensive."
+
+#### Motion Presets (RIYP Craft Library)
+
+**Easing Curves:**
+```ts
+export const ease = {
+  snappy:   [0.16, 1, 0.3, 1],    // Default (current)
+  micro:    [0.2, 0.9, 0.2, 1],   // Ultra fast micro feedback
+  outCubic: [0.33, 1, 0.68, 1],   // Crisp out for panels/peeks
+  inOut:    [0.65, 0, 0.35, 1],   // Calm for layout shifts
+};
+
+export const dur = {
+  micro:  90,   // hover + press feedback
+  fast:   140,  // selection highlight, small toggles
+  normal: 200,  // tabs, accordions, list expansion
+  reveal: 320,  // section reveals, peek panel open
+  hero:   420,  // verdict reveal only (signature moment)
+};
+```
+
+**Spring Physics (signature moments only):**
+```ts
+export const spring = {
+  verdict: { type: "spring", stiffness: 520, damping: 48, mass: 0.9 },
+  snap:    { type: "spring", stiffness: 700, damping: 55, mass: 0.7 },
+};
+```
+
+#### Latency Staging Contract
+
+All interactions follow a staged timing model. Never animate more than 2 layers at once.
+
+| Stage | Timing | Purpose |
+|-------|--------|---------|
+| **Layer 1: Confirm** | 0-90ms | Input registered (pressed/selected state) |
+| **Layer 2: Content** | 140-200ms | Swap, expand, collapse |
+| **Layer 3: Detail** | 280-320ms | Secondary text, helper, metadata |
+
+**Rule:** Never make the user wait to see that the click "worked."
+
+#### Peek Panel (Arc Pattern)
+
+Non-destructive overlay for evidence, citations, definitions. Opens anchored to clicked element.
+
+**Behavior:**
+- Dismiss: click outside, Esc
+- No global page dim unless destructive action
+- Never steals scroll position
+
+**Motion:**
+```ts
+const peekVariants = {
+  initial: { opacity: 0, scale: 0.985, y: 8 },
+  animate: { opacity: 1, scale: 1, y: 0 },
+  exit:    { opacity: 0, scale: 0.99, y: 4 },
+};
+// Entry: 320ms ease.snappy | Exit: 140ms ease.outCubic
+```
+
+**Layout:** Max 420px desktop, 100vw bottom sheet mobile. Border: 1px var(--border). Shadow: `0 10px 30px rgba(0,0,0,0.08)`.
+
+#### Command Palette (Cmd+K)
+
+Central command surface for pro users. This is the highest-leverage craft pattern.
+
+- Opens with Cmd+K globally
+- Shows: action name, description (optional), shortcut hint (Geist Mono 11px)
+- Supports: section jumps, quick actions, recent commands
+- Context-aware: actions change based on current surface
+
+**Minimum scope:**
+- "Run 6-second scan"
+- "Jump to: Red Pen"
+- "Toggle: show only critical misses"
+- "Export: ATS version"
+
+#### Submenu Safe Area (Linear Pattern)
+
+Nested menus must include a triangular "safe zone" so cursor movement from parent to child doesn't accidentally close the menu.
+
+**Parameters:**
+- Sample rate: 16ms
+- Close delay: 250ms
+- Max buffer: 5 mouse positions
+
+#### Three-State List Selection (Raycast Pattern)
+
+Every list row has 3 distinct states. Hover timing is asymmetric (slower out = calm).
+
+| State | Visual | Timing |
+|-------|--------|--------|
+| **Hover** | `bg-muted/40` | In: 90ms, Out: 140ms |
+| **Active (keyboard)** | `bg-muted/60` + 2px left brand hairline | 90ms |
+| **Pressed** | `bg-muted/70` (no scale) | 90ms |
+
+#### Optimistic UI + Undo (Superhuman Pattern)
+
+For actions like "Apply rewrite":
+1. Immediately apply visually
+2. Show inline "Applied" state
+3. On failure: rollback with inline error + Undo option
+
+#### Pixel-Jitter Audit
+
+No element should move on hover except opacity and background. No reflow on load. Skeletons must match final layout exactly.
+
+#### Bottom Action Rail (Raycast Pattern)
+
+Persistent bar at bottom of report pages:
+- Left: current section name (dense)
+- Center: "Cmd+K" shortcut hint
+- Right: primary next action ("Apply fixes," "Export")
+- Toasts appear inside this bar, not floating
 
 ---
 

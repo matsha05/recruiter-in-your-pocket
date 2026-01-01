@@ -54,17 +54,32 @@ These map to the typography utilities in `web/app/globals.css`.
 
 ## 3. Radius & Shadows
 
-| Token | Value |
-|---|---|
-| `--radius` | `4px` |
-| `--radius-sm` | `2px` |
-| `--radius-lg` | `8px` |
-| `shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.04)` |
+| Token | Value | Usage |
+|---|---|---|
+| `--radius` | `4px` | Default (cards, buttons, inputs) |
+| `--radius-sm` | `2px` | Badges, small chips |
+| `--radius-lg` | `8px` | Modals, hero cards |
+| `shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.04)` | Subtle lift (optional) |
+| `shadow-overlay` | `0 10px 30px rgba(0,0,0,0.08)` | Overlays only (peek, popover, modal) |
+
+**Rule:** Base surfaces use borders only, not shadows. Overlay surfaces get `shadow-overlay`.
 
 ---
 
 ## 4. Motion
 
+### Semantic Duration Roles
+| Role | Value | Usage |
+|---|---|---|
+| `press` | `80ms` | Input acknowledgement |
+| `hoverIn` | `90ms` | Hover on |
+| `hoverOut` | `160ms` | Hover off (slower = calm) |
+| `select` | `140ms` | Selection highlight |
+| `swap` | `200ms` | Tabs, accordions, content changes |
+| `reveal` | `320ms` | Panels, section reveals |
+| `hero` | `420ms` | Verdict reveal only |
+
+### CSS Tokens (globals.css)
 | Token | Value |
 |---|---|
 | `--ease` | `cubic-bezier(0.16, 1, 0.3, 1)` |
@@ -74,6 +89,39 @@ These map to the typography utilities in `web/app/globals.css`.
 
 **Animatable properties:** `opacity`, `transform`, `background-color` only.
 **Reduced motion:** Respects `prefers-reduced-motion` globally.
+
+---
+
+## 4a. Skeleton Policy
+
+Skeletons prevent layout shift and signal quality.
+
+**Rules:**
+- Skeleton must match final layout dimensions 1:1
+- No spinners except inside tiny buttons
+- If you know the shape, skeleton. If you don't, staged reveal.
+
+**Staged Reveal Choreography:**
+| Time | Action |
+|------|--------|
+| 0ms | Show scanning state + step counter |
+| 200ms | Show skeleton blocks |
+| 320ms | Fade in first real block (opacity only) |
+| +80ms | Fade next block, continue |
+
+---
+
+## 4b. Performance Budgets
+
+These are hard requirements, not goals.
+
+| Interaction | Budget |
+|-------------|--------|
+| Press feedback (visual) | <80ms |
+| Hover response | <90ms |
+| Route shell visible | <200ms |
+| Analysis progress indicator | <200ms from start |
+| Reflow on hover | **Never** |
 
 ---
 

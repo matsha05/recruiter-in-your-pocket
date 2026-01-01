@@ -1,0 +1,100 @@
+{
+  "id": "product-context-recruiter-in-your",
+  "createdAt": "2026-01-01T18:12:11.515Z",
+  "status": "running",
+  "promptPreview": "## PRODUCT CONTEXT\nRecruiter in Your Pocket (RIYP) is an acquisition-grade career platform.\n\nCORE PROMISE: \"See what they see\" - Show job seekers exactly how re",
+  "model": "gpt-5.2-pro",
+  "models": [
+    {
+      "model": "gpt-5.2-pro",
+      "status": "running",
+      "log": {
+        "path": "models/gpt-5.2-pro.log"
+      },
+      "startedAt": "2026-01-01T18:12:11.518Z"
+    }
+  ],
+  "cwd": "/Users/matsha05/Desktop/dev/recruiter-in-your-pocket",
+  "mode": "browser",
+  "browser": {
+    "config": {
+      "chromeProfile": "Default",
+      "chromePath": null,
+      "chromeCookiePath": null,
+      "debugPort": null,
+      "inlineCookiesSource": null,
+      "keepBrowser": true,
+      "manualLogin": true,
+      "desiredModel": "GPT-5.2 Pro",
+      "allowCookieErrors": true
+    },
+    "runtime": {
+      "chromePid": 37284,
+      "chromePort": 51134,
+      "chromeHost": "127.0.0.1",
+      "userDataDir": "/Users/matsha05/.oracle/browser-profile",
+      "chromeTargetId": "3BE9D1A0AC98AF04B3109742AB2C882C",
+      "tabUrl": "https://chatgpt.com/",
+      "controllerPid": 38952
+    }
+  },
+  "notifications": {
+    "enabled": true,
+    "sound": false
+  },
+  "options": {
+    "prompt": "## PRODUCT CONTEXT\nRecruiter in Your Pocket (RIYP) is an acquisition-grade career platform.\n\nCORE PROMISE: \"See what they see\" - Show job seekers exactly how recruiters perceive their resume/LinkedIn.\n\nTHREE PILLARS:\n1. Resume Review - AI analysis simulating 7.4-second recruiter scan\n2. LinkedIn Review - Profile optimization for recruiter search visibility\n3. Match Intelligence - Job-resume skill matching with \"Recruiter Fit Score\"\n\nWEDGE: The \"Recruiter First Impression\" - Score + Verdict + Critical Miss.\nWe simulate what a real recruiter sees in their first 7.4 seconds.\n\nQUALITY STANDARDS:\n- \"Absolute Verifiability\" - No hallucinated statistics, all claims must be grounded\n- \"Acquisition-Grade\" - Every UI element should feel like Stripe/Linear/Notion\n- Fair and accurate scoring - A 50 percent match should mean 50 percent qualified, not inflated\n\nBUSINESS MODEL: One-time purchase (9 dollars single, 29 dollars 5-pack), not subscription.\n\n## CONTEXT\nWe are mid-polish on a UI overhaul. We want RIYP to feel elite and characterful. It should read like a refined editorial instrument, not a generic SaaS template.\nWe are targeting an Awwwards-level landing page and premium in-app surfaces.\n\nDesign constraints come from these files:\n- docs/design-philosophy.md\n- docs/design-principles.md\n- docs/design-system.md\n- docs/research-ui-contract.md\n\nLanding and dropzone components are in:\n- web/components/landing/LandingClient.tsx\n- web/components/upload/ResumeDropzone.tsx\n\n## CURRENT STATE\nThe landing page currently uses a centered hero with a large glassmorphism dropzone and a standard trust and pricing stack. The dropzone is tall, high-radius, and uses continuous animations. The page feels premium-adjacent but still template-like.\n\n## GOAL\nRun deep research on Awwwards and competitor pages so we can outclass them. Provide a large volume of high-quality references, patterns, and actionable guidance to inform a full landing page redesign, dropzone redesign, and overall design system polish.\n\n## SPEC DIRECTION (SUMMARY)\n- Elite, editorial authority, quiet power\n- One signature moment per screen, no excessive animations\n- 4px radius system, subtle borders, low shadow\n- Teal is the action color, gold only for premium moments\n- Fraunces for display, Geist Sans for body, Geist Mono for data\n- Research pages must feel like credible documents, not marketing pages\n\n## QUESTIONS\n1. Identify 12 to 20 Awwwards winners or nominees that are relevant to premium SaaS, editorial tools, or product storytelling. Provide direct URLs, the award context, and what to borrow: typography, layout, motion, and information hierarchy.\n2. Identify 8 to 12 direct competitors in resume or career tools. Provide their landing page URLs and a concise breakdown: their strengths, their weaknesses, and how RIYP can outclass them visually and experientially.\n3. Propose 3 to 5 distinct landing page concept directions for RIYP. For each: describe the hero composition, type hierarchy, color strategy, signature moment, motion approach, and how it aligns with RIYP principles.\n4. Provide a component inspiration map for hero, dropzone, sample report preview, pricing, testimonials, and research sections. Include actionable patterns and references.\n5. List cliches or patterns to avoid that would make the product feel generic or non-elite.\n6. Provide a prioritized checklist of the top 10 design moves that would most increase perceived quality and differentiation.\n\n## CONSTRAINTS\n- Do not invent statistics or claims. If you reference numbers, provide sources and links.\n- Respect RIYP design rules and the research UI contract.\n- Optimize for high-fidelity craft and specificity. Avoid generic advice.\n- Make output usable as a working design brief.",
+    "file": [
+      "docs/design-philosophy.md",
+      "docs/design-principles.md",
+      "docs/design-system.md",
+      "docs/research-ui-contract.md",
+      "docs/competitive-intelligence-report.md",
+      "docs/competitive-intelligence/competitive-intelligence-report.md",
+      "docs/final-prelaunch-competitive-audit.md",
+      "docs/oracle-elite-craft-research.md",
+      "docs/competitive-intelligence/competitors/*.md",
+      "docs/competitive-intelligence/sections/*.md",
+      "docs/competitive-intelligence/snapshots/*.md",
+      "web/components/landing/LandingClient.tsx",
+      "web/components/upload/ResumeDropzone.tsx",
+      "web/components/landing/SampleReportPreview.tsx",
+      "web/components/landing/SampleReport.tsx",
+      "web/components/landing/BackedByResearch.tsx",
+      "web/components/landing/Testimonials.tsx",
+      "web/components/landing/Pricing.tsx",
+      "web/app/globals.css",
+      "web/tailwind.config.js"
+    ],
+    "model": "gpt-5.2-pro",
+    "models": [
+      "gpt-5.2-pro"
+    ],
+    "effectiveModelId": "gpt-5.2-pro",
+    "filesReport": false,
+    "slug": "product-context-recruiter-in-your",
+    "mode": "browser",
+    "browserConfig": {
+      "chromeProfile": "Default",
+      "chromePath": null,
+      "chromeCookiePath": null,
+      "debugPort": null,
+      "inlineCookiesSource": null,
+      "keepBrowser": true,
+      "manualLogin": true,
+      "desiredModel": "GPT-5.2 Pro",
+      "allowCookieErrors": true
+    },
+    "verbose": false,
+    "heartbeatIntervalMs": 30000,
+    "browserAttachments": "always",
+    "browserInlineFiles": false,
+    "browserBundleFiles": false
+  },
+  "startedAt": "2026-01-01T18:12:11.518Z",
+  "errorMessage": "Chrome window closed before oracle finished. Please keep it open until completion.",
+  "response": {
+    "status": "running",
+    "incompleteReason": "chrome-disconnected"
+  }
+}

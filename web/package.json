@@ -9,6 +9,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
+    "test:ui": "playwright test",
     "test:injection": "npx tsx tests/injection.test.ts",
     "test:pii": "npx tsx tests/pii.test.ts",
     "test:security": "npm run test:injection && npm run test:pii",
@@ -45,6 +46,7 @@
     "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "framer-motion": "^12.23.26",
     "geist": "^1.5.1",
     "inngest": "^3.48.1",
@@ -66,6 +68,7 @@
     "zod": "^4.2.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@types/node": "20.16.11",
     "@types/pdf-parse": "^1.1.5",
     "@types/react": "18.3.11",

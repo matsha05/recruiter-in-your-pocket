@@ -4,6 +4,7 @@ import { AuthProvider } from "@/components/providers/AuthProvider";
 import { Analytics } from "@vercel/analytics/next";
 
 import { Toaster } from "@/components/ui/sonner";
+import { CommandPalette } from "@/components/CommandPalette";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "@fontsource-variable/fraunces";
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           {children}
+          <CommandPalette />
           <Toaster />
           <Analytics />
         </AuthProvider>
@@ -64,4 +66,3 @@ export default function RootLayout({
     </html>
   );
 }
-

@@ -124,6 +124,36 @@ These are the experiences that define RIYP:
 
 ---
 
+## Permissible Delight
+
+Delight in RIYP is **competence made visible**:
+
+- A Peek preview that opens instantly and closes cleanly
+- A verdict reveal that counts up once, with restrained spring
+- A submenu that never collapses accidentally
+- A command palette that learns intent (recent commands, role-aware)
+- An optimistic "Applied" state with Undo, instead of a spinner
+
+**The Rule:** No confetti. No playful bounce. Delight is "I feel in control."
+
+---
+
+## Sterile vs Memorable
+
+**Sterile happens when:**
+- Everything is evenly weighted
+- Nothing has a point of view
+- Motion is absent or generic
+- Copy is polite instead of decisive
+
+**Memorable comes from:**
+- **Editorial hierarchy** — Fraunces used decisively, not everywhere
+- **Verdict-driven structure** — Strong judgment moment, then evidence
+- **Microcopy with spine** — "This bullet is weak because..."
+- **Interaction certainty** — The UI never hesitates or surprises
+
+---
+
 ## Design System Summary
 
 | Token | Value | Usage |

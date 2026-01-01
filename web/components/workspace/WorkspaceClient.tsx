@@ -15,6 +15,7 @@ import { createResumeFeedback, streamResumeFeedback, parseResume, streamLinkedIn
 import { toast } from "sonner";
 import { Linkedin, Plus, ArrowRight } from "lucide-react";
 import { Analytics } from "@/lib/analytics";
+import { useCommandAction, CommandAction } from "@/components/CommandPalette";
 import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
 import { LinkedInInputPanel } from "@/components/linkedin/LinkedInInputPanel";
 import { LinkedInReportPanel } from "@/components/linkedin/LinkedInReportPanel";
@@ -585,6 +586,30 @@ export default function WorkspaceClient() {
             })
             .catch(err => console.error("Failed to fetch free status:", err));
     }, []);
+
+    // Handle Command Palette actions
+    useCommandAction((action: CommandAction) => {
+        switch (action) {
+            case 'export-pdf':
+                if (report) handleExportPdf();
+                break;
+            case 'copy-link':
+                // Copy current URL to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                toast.success('Link copied to clipboard');
+                break;
+            case 'upload':
+                // Focus on file input or trigger file dialog
+                toast.info('Drop your resume file to upload');
+                break;
+            case 'run-analysis':
+                handleRun();
+                break;
+            case 'keyboard-shortcuts':
+                toast.info('Keyboard shortcuts: Cmd+K to open commands');
+                break;
+        }
+    });
 
 
     return (

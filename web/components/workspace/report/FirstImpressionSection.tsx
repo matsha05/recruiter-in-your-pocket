@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Info } from "lucide-react";
 import { PrincipalRecruiterIcon } from "@/components/icons";
 import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
 import { getDialStrokeColor } from "@/lib/score-utils";
+import { Peek, PeekHeader, PeekTitle, PeekDescription, PeekContent } from "@/components/ui/peek";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -19,6 +21,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
     const [animatedScore, setAnimatedScore] = useState(0);
     const [showBadge, setShowBadge] = useState(false);
     const [sectionVisible, setSectionVisible] = useState(false);
+    const [peekOpen, setPeekOpen] = useState(false);
     const hasAnimated = useRef(false);
 
     const firstImpressionText = data.score_comment_long || data.score_comment_short || data.first_impression || data.summary;
@@ -112,12 +115,42 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             )}
                         </p>
 
-                        {/* The Critical Miss - uses warning color, not premium */}
+                        {/* The Critical Miss - with Peek for evidence expansion */}
                         {data.biggest_gap_example && (
                             <div className="p-4 bg-warning/10 border border-warning/20 rounded transition-all duration-300" style={{ transitionDelay: '400ms' }}>
-                                <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2 h-2 rounded-full bg-warning animate-pulse" />
-                                    <span className="text-label text-warning">Critical Miss</span>
+                                <div className="flex items-center justify-between gap-2 mb-2">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-warning animate-pulse" />
+                                        <span className="text-label text-warning">Critical Miss</span>
+                                    </div>
+                                    <Peek
+                                        open={peekOpen}
+                                        onOpenChange={setPeekOpen}
+                                        trigger={
+                                            <Button variant="ghost" size="sm" className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground">
+                                                <Info className="w-3 h-3 mr-1" />
+                                                Why this matters
+                                            </Button>
+                                        }
+                                        side="right"
+                                        title="Why Critical Misses Matter"
+                                    >
+                                        <PeekHeader>
+                                            <PeekTitle>Recruiter Perspective</PeekTitle>
+                                            <PeekDescription>
+                                                Why this stood out during the 6-second scan
+                                            </PeekDescription>
+                                        </PeekHeader>
+                                        <PeekContent>
+                                            <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                                                Critical misses are the moments where a recruiter&apos;s eye pauses—and then moves on.
+                                                These gaps often represent the difference between a callback and a pass.
+                                            </p>
+                                            <p className="text-sm text-foreground/80 leading-relaxed">
+                                                <strong>This specific miss:</strong> {data.biggest_gap_example}
+                                            </p>
+                                        </PeekContent>
+                                    </Peek>
                                 </div>
                                 <p className="text-sm text-foreground/90 leading-relaxed">
                                     {data.biggest_gap_example}

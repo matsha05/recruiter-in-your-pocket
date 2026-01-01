@@ -7,6 +7,7 @@ import { ReportData } from "./report/ReportTypes";
 import { UnlockBanner } from "./UnlockBanner";
 import { ReportLayout } from "@/components/layout/ReportLayout";
 import { ReportTOC } from "@/components/workspace/report/ReportTOC";
+import { BottomActionRail } from "@/components/ui/bottom-action-rail";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -91,99 +92,113 @@ export default function ReportPanel({
 
             {/* 3. The Report Stream (V2 Layout) */}
             {showReport && !isLoading && (
-                <ReportLayout
-                    toc={<ReportTOC activeId={highlightSection || undefined} score={report.score} />}
-                >
-                    {/* Document Meta / Actions Header (Inline for Mobile, handled by Layout context usually but here just content) */}
-                    <div className="space-y-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                            <div className="space-y-1 min-w-0">
-                                <div className="flex items-center gap-3 flex-wrap">
-                                    <h1 className="text-xl sm:text-2xl font-serif font-semibold text-foreground tracking-tight truncate">
-                                        {report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
-                                    </h1>
-                                    {isSample && (
-                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border shrink-0">
-                                            Example
-                                        </span>
+                <>
+                    <ReportLayout
+                        toc={<ReportTOC activeId={highlightSection || undefined} score={report.score} />}
+                    >
+                        {/* Document Meta / Actions Header (Inline for Mobile, handled by Layout context usually but here just content) */}
+                        <div className="space-y-6">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                                <div className="space-y-1 min-w-0">
+                                    <div className="flex items-center gap-3 flex-wrap">
+                                        <h1 className="text-xl sm:text-2xl font-serif font-semibold text-foreground tracking-tight truncate">
+                                            {report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
+                                        </h1>
+                                        {isSample && (
+                                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border shrink-0">
+                                                Example
+                                            </span>
+                                        )}
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">This is what a recruiter sees.</p>
+                                </div>
+
+                                {/* Action Buttons */}
+                                <div className="flex items-center gap-2 shrink-0">
+                                    {isSample && onNewReport && (
+                                        <button
+                                            onClick={onNewReport}
+                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                        >
+                                            <span className="hidden sm:inline">Run Your Review</span>
+                                            <span className="sm:hidden">Run</span>
+                                            <ArrowRight className="w-4 h-4" />
+                                        </button>
+                                    )}
+                                    {!isSample && freeUsesRemaining > 0 && onNewReport && (
+                                        <button
+                                            onClick={onNewReport}
+                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                        >
+                                            <Plus className="w-4 h-4" />
+                                            <span className="hidden sm:inline">Run Another</span>
+                                            <span className="sm:hidden">New</span>
+                                        </button>
+                                    )}
+                                    {!isSample && freeUsesRemaining <= 0 && onUpgrade && (
+                                        <button
+                                            onClick={onUpgrade}
+                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
+                                        >
+                                            <span className="hidden sm:inline">Get More Reviews</span>
+                                            <span className="sm:hidden">Upgrade</span>
+                                            <ArrowRight className="w-4 h-4" />
+                                        </button>
+                                    )}
+
+                                    {onExportPdf && (
+                                        <button
+                                            onClick={onExportPdf}
+                                            disabled={isExporting}
+                                            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50 min-h-10"
+                                        >
+                                            <Download className="w-4 h-4" />
+                                            <span className="hidden sm:inline">{isExporting ? "Exporting..." : "PDF"}</span>
+                                        </button>
                                     )}
                                 </div>
-                                <p className="text-sm text-muted-foreground">This is what a recruiter sees.</p>
                             </div>
 
-                            {/* Action Buttons */}
-                            <div className="flex items-center gap-2 shrink-0">
-                                {isSample && onNewReport && (
-                                    <button
-                                        onClick={onNewReport}
-                                        className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
-                                    >
-                                        <span className="hidden sm:inline">Run Your Review</span>
-                                        <span className="sm:hidden">Run</span>
-                                        <ArrowRight className="w-4 h-4" />
-                                    </button>
-                                )}
-                                {!isSample && freeUsesRemaining > 0 && onNewReport && (
-                                    <button
-                                        onClick={onNewReport}
-                                        className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
-                                    >
-                                        <Plus className="w-4 h-4" />
-                                        <span className="hidden sm:inline">Run Another</span>
-                                        <span className="sm:hidden">New</span>
-                                    </button>
-                                )}
-                                {!isSample && freeUsesRemaining <= 0 && onUpgrade && (
-                                    <button
-                                        onClick={onUpgrade}
-                                        className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
-                                    >
-                                        <span className="hidden sm:inline">Get More Reviews</span>
-                                        <span className="sm:hidden">Upgrade</span>
-                                        <ArrowRight className="w-4 h-4" />
-                                    </button>
-                                )}
+                            {/* Unlock Banner */}
+                            {justUnlocked && report && (
+                                <UnlockBanner
+                                    reportId={report.id || 'current'}
+                                    onJumpToRewrites={() => {
+                                        const el = document.getElementById('section-bullet-upgrades');
+                                        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }}
+                                    onDownloadPdf={onExportPdf || (() => { })}
+                                />
+                            )}
 
-                                {onExportPdf && (
-                                    <button
-                                        onClick={onExportPdf}
-                                        disabled={isExporting}
-                                        className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50 min-h-10"
-                                    >
-                                        <Download className="w-4 h-4" />
-                                        <span className="hidden sm:inline">{isExporting ? "Exporting..." : "PDF"}</span>
-                                    </button>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Unlock Banner */}
-                        {justUnlocked && report && (
-                            <UnlockBanner
-                                reportId={report.id || 'current'}
-                                onJumpToRewrites={() => {
-                                    const el = document.getElementById('section-bullet-upgrades');
-                                    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }}
-                                onDownloadPdf={onExportPdf || (() => { })}
+                            <ReportStream
+                                report={report}
+                                isSample={isSample}
+                                onNewReport={onNewReport}
+                                freeUsesRemaining={freeUsesRemaining}
+                                onUpgrade={onUpgrade}
+                                hasJobDescription={hasJobDescription}
+                                isGated={isGated}
+                                justUnlocked={justUnlocked}
+                                highlightSection={highlightSection}
+                                className="max-w-none pb-16" // Extra padding for BottomActionRail
                             />
-                        )}
+                        </div>
+                    </ReportLayout>
 
-                        <ReportStream
-                            report={report}
-                            isSample={isSample}
-                            onNewReport={onNewReport}
-                            freeUsesRemaining={freeUsesRemaining}
-                            onUpgrade={onUpgrade}
-                            hasJobDescription={hasJobDescription}
-                            isGated={isGated}
-                            justUnlocked={justUnlocked}
-                            highlightSection={highlightSection}
-                            className="max-w-none pb-0" // Reset margin constraints as Layout handles it
-                        />
-                    </div>
-                </ReportLayout>
-            )}
-        </div>
+                    {/* Bottom Action Rail - Raycast Pattern */}
+                    <BottomActionRail
+                        sectionName={report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
+                        primaryActionLabel={isSample ? "Run Your Review" : freeUsesRemaining > 0 ? "Run Another" : "Upgrade"}
+                        onPrimaryAction={isSample || freeUsesRemaining > 0 ? onNewReport : onUpgrade}
+                        onExport={onExportPdf}
+                        onShare={() => {
+                            navigator.clipboard.writeText(window.location.href);
+                        }}
+                    />
+                </>
+            )
+            }
+        </div >
     );
 }
