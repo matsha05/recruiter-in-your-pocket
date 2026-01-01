@@ -30,8 +30,8 @@ export default function BiasLimitsOptimizationPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Bounded control view</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Bounded control view</h2>
+                    <p className="research-body mb-6">
                         Optimization can reduce noise, but it cannot erase systemic bias.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -87,8 +87,8 @@ export default function BiasLimitsOptimizationPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What this means</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What this means</h2>
+            <p className="research-body mb-6">
                 A resume cannot fix systemic bias, but it can prevent avoidable loss by making evidence legible and credible.
             </p>
 
@@ -103,8 +103,8 @@ export default function BiasLimitsOptimizationPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Noise vs bias</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Noise vs bias</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: noise is avoidable friction, bias is systemic. A strong resume can remove noise, but it cannot erase bias.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -114,14 +114,14 @@ export default function BiasLimitsOptimizationPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Automation can compound bias when systems are not audited. <Citation id="source-2">2</Citation></li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: bounded optimization</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: bounded optimization</h2>
+            <p className="research-body mb-6">
                 Bounded optimization is the idea that resume improvements can maximize clarity and evidence, but they cannot control systemic factors.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Practical focus areas</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Practical focus areas</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: make it impossible to be rejected for avoidable reasons. That is the controllable upside.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -130,7 +130,7 @@ export default function BiasLimitsOptimizationPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use consistent formatting to reduce parser errors.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Meta-analytic evidence reflects long-term patterns, not single-company behavior.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Automation practices vary widely and are not consistently disclosed.</li>

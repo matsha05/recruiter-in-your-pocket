@@ -37,7 +37,7 @@ export function NegotiationTimeline() {
 
                 <div className="grid grid-cols-5 gap-4">
                     {steps.map((step) => (
-                        <div key={step.title} className="flex flex-col items-center text-center">
+                        <div key={step.title} className="flex flex-col items-center">
                             <div className={`w-3 h-3 border border-border/60 rounded-full ${step.highlight ? "bg-brand/40" : "bg-foreground/20"}`} />
                             <h4 className="font-medium text-foreground mt-3 text-sm">{step.title}</h4>
                             <p className="text-[11px] text-muted-foreground mb-3 h-8 leading-snug px-2 max-w-[140px] mx-auto">
@@ -51,8 +51,8 @@ export function NegotiationTimeline() {
                 </div>
             </div>
 
-            <figcaption className="mt-4 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-4">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     A five-step negotiation cadence from offer to close.
                 </span>

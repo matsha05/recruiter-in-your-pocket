@@ -29,8 +29,8 @@ export default function RecruiterSearchBehaviorPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Evidence boundary</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Evidence boundary</h2>
+                    <p className="research-body mb-6">
                         We separate what is published from what is inferred.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
@@ -118,8 +118,8 @@ export default function RecruiterSearchBehaviorPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What you should optimize</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What you should optimize</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: optimize what recruiters search - role titles, skills, and keywords that match the job description.
             </p>
 
@@ -134,8 +134,8 @@ export default function RecruiterSearchBehaviorPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: search inputs</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: search inputs</h2>
+            <p className="research-body mb-6">
                 Search inputs are the fields recruiters can query and filter by. These include titles, skills, and role keywords.
                 <Citation id="source-3">3</Citation>
             </p>

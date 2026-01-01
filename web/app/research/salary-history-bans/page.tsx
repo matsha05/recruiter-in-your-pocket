@@ -33,8 +33,8 @@ export default function SalaryHistoryPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Information asymmetry</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Information asymmetry</h2>
+                    <p className="research-body mb-6">
                         When employers cannot anchor to your past pay, they must anchor to the <strong>market value</strong> of the role.
                     </p>
                     <SalaryLeverage />
@@ -82,13 +82,13 @@ export default function SalaryHistoryPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why early disclosure weakens leverage</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why early disclosure weakens leverage</h2>
+            <p className="research-body mb-6">
                 Many candidates feel compelled to answer truthfully about their current salary out of politeness or honesty.
                 Evidence suggests this anchors the negotiation to your <em>past</em> value, not your <em>future</em> value.
                 <Citation id="source-1">1</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 In states with Salary History Bans, employers are forced to price the job, not the person. Our advice mimics this dynamic even in states where it isn&apos;t law yet.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -100,19 +100,19 @@ export default function SalaryHistoryPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">When to share numbers</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">When to share numbers</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: share numbers only when you can anchor to role scope or market data, not past pay.
                 If asked early, redirect to the responsibilities and the range for similar roles.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: salary anchoring</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: salary anchoring</h2>
+            <p className="research-body mb-6">
                 Salary anchoring happens when early numbers frame the negotiation and pull outcomes toward the initial figure. Salary history bans weaken this effect.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Legal requirements vary by jurisdiction. This is not legal advice.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The cited evidence focuses on wage effects, not every negotiation context.</li>

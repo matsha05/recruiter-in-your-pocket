@@ -1,47 +1,47 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export function ReferralCalculator() {
-    const [salary, setSalary] = useState("");
-    const [coldRate, setColdRate] = useState("");
-    const [referralRate, setReferralRate] = useState("");
-    const [minutesPerApp, setMinutesPerApp] = useState("");
+    // Default values for better initial state
+    const [salary, setSalary] = useState(120000);
+    const [coldRate, setColdRate] = useState(2);
+    const [referralRate, setReferralRate] = useState(40);
+    const [minutesPerApp, setMinutesPerApp] = useState(45);
 
-    const parsed = useMemo(() => {
-        const salaryNum = Number(salary);
-        const coldRateNum = Number(coldRate);
-        const referralRateNum = Number(referralRate);
-        const minutesNum = Number(minutesPerApp);
+    const stats = useMemo(() => {
+        // Avoid division by zero
+        const safeColdRate = Math.max(coldRate, 0.1) / 100;
+        const safeReferralRate = Math.max(referralRate, 0.1) / 100;
 
-        if (!salaryNum || !coldRateNum || !referralRateNum || !minutesNum) {
-            return null;
-        }
+        const coldAppsNeeded = Math.round(1 / safeColdRate);
+        const referralAppsNeeded = Math.round(1 / safeReferralRate);
 
-        if (coldRateNum <= 0 || referralRateNum <= 0 || minutesNum <= 0) {
-            return null;
-        }
-
-        const coldCallbackRate = coldRateNum / 100;
-        const referralCallbackRate = referralRateNum / 100;
-        const coldAppsNeeded = Math.round(1 / coldCallbackRate);
-        const referralAppsNeeded = Math.round(1 / referralCallbackRate);
         const appsSaved = Math.max(coldAppsNeeded - referralAppsNeeded, 0);
-        const hoursSaved = Math.round((appsSaved * minutesNum) / 60);
-        const hourlyRate = salaryNum / 2080;
+        const hoursSaved = Math.round((appsSaved * minutesPerApp) / 60);
+
+        const hourlyRate = salary / 2080;
         const timeSavingsValue = Math.round(hoursSaved * hourlyRate);
 
+        // Calculate ratios for the bar chart
+        const maxApps = Math.max(coldAppsNeeded, referralAppsNeeded);
+        const coldBarPercent = (coldAppsNeeded / maxApps) * 100;
+        const referralBarPercent = (referralAppsNeeded / maxApps) * 100;
+
         return {
-            salaryNum,
             coldAppsNeeded,
             referralAppsNeeded,
             appsSaved,
             hoursSaved,
-            timeSavingsValue
+            timeSavingsValue,
+            coldBarPercent,
+            referralBarPercent
         };
     }, [salary, coldRate, referralRate, minutesPerApp]);
 
-    const formatSalary = (value: number) => {
+    const formatCurrency = (value: number) => {
         return new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD",
@@ -50,76 +50,169 @@ export function ReferralCalculator() {
     };
 
     return (
-        <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
-            <div className="riyp-figure-frame p-6">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-4">
-                    Referral ROI calculator
+        <figure className="my-12 w-full max-w-2xl mx-auto font-sans">
+            <div className="rounded-xl border border-border/40 bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500">
+                {/* Header */}
+                <div className="bg-muted/30 px-6 py-4 border-b border-border/40 flex items-center justify-between">
+                    <span className="font-display font-medium text-foreground tracking-tight">Referral ROI Calculator</span>
+                    <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground bg-background px-2 py-1 rounded border border-border/40">Interactive</span>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6 text-sm text-muted-foreground">
-                    <label className="space-y-2">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Annual salary (USD)</span>
-                        <input
+                <div className="p-6 md:p-8 space-y-8">
+                    {/* Controls */}
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <InputGroup
+                            label="Annual Salary"
                             value={salary}
-                            onChange={(event) => setSalary(event.target.value)}
-                            placeholder="100000"
-                            className="w-full rounded-md border border-border/40 bg-background px-3 py-2 text-sm text-foreground"
+                            setValue={setSalary}
+                            min={30000}
+                            max={500000}
+                            step={5000}
+                            format={(v) => formatCurrency(v)}
                         />
-                    </label>
-                    <label className="space-y-2">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Minutes per application</span>
-                        <input
+                        <InputGroup
+                            label="Minutes per App"
                             value={minutesPerApp}
-                            onChange={(event) => setMinutesPerApp(event.target.value)}
-                            placeholder="30"
-                            className="w-full rounded-md border border-border/40 bg-background px-3 py-2 text-sm text-foreground"
+                            setValue={setMinutesPerApp}
+                            min={5}
+                            max={120}
+                            step={5}
+                            suffix="min"
                         />
-                    </label>
-                    <label className="space-y-2">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Cold callback rate (%)</span>
-                        <input
+                        <InputGroup
+                            label="Cold Callback Rate"
                             value={coldRate}
-                            onChange={(event) => setColdRate(event.target.value)}
-                            placeholder="4"
-                            className="w-full rounded-md border border-border/40 bg-background px-3 py-2 text-sm text-foreground"
+                            setValue={setColdRate}
+                            min={0.5}
+                            max={20}
+                            step={0.5}
+                            suffix="%"
+                            color="bg-muted-foreground"
                         />
-                    </label>
-                    <label className="space-y-2">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Referral callback rate (%)</span>
-                        <input
+                        <InputGroup
+                            label="Referral Callback Rate"
                             value={referralRate}
-                            onChange={(event) => setReferralRate(event.target.value)}
-                            placeholder="50"
-                            className="w-full rounded-md border border-border/40 bg-background px-3 py-2 text-sm text-foreground"
+                            setValue={setReferralRate}
+                            min={10}
+                            max={90}
+                            step={5}
+                            suffix="%"
+                            color="bg-brand"
                         />
-                    </label>
-                </div>
+                    </div>
 
-                {!parsed ? (
-                    <div className="mt-5 border-t border-border/20 pt-4 text-xs text-muted-foreground">
-                        Enter your own rates or a published benchmark to see the savings. We do not assume numbers here.
+                    {/* Visualization */}
+                    <div className="space-y-6 pt-4 border-t border-border/40">
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                                <span>Applications Needed for 1 Interview</span>
+                            </div>
+
+                            {/* Cold Bar */}
+                            <div className="space-y-1.5">
+                                <div className="flex justify-between text-xs">
+                                    <span className="text-muted-foreground">Cold Apply ({coldRate}%)</span>
+                                    <span className="font-mono text-foreground">{stats.coldAppsNeeded} apps</span>
+                                </div>
+                                <div className="h-3 w-full bg-muted/20 rounded-full overflow-hidden">
+                                    <motion.div
+                                        className="h-full bg-muted-foreground/40"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${stats.coldBarPercent}%` }}
+                                        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Referral Bar */}
+                            <div className="space-y-1.5">
+                                <div className="flex justify-between text-xs">
+                                    <span className="text-brand font-medium">Referral ({referralRate}%)</span>
+                                    <span className="font-mono text-brand font-medium">{stats.referralAppsNeeded} apps</span>
+                                </div>
+                                <div className="h-3 w-full bg-muted/20 rounded-full overflow-hidden">
+                                    <motion.div
+                                        className="h-full bg-brand"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${stats.referralBarPercent}%` }}
+                                        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Summary Box */}
+                        <div className="bg-brand/5 border border-brand/10 rounded-lg p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                            <div className="space-y-1">
+                                <span className="block text-xs uppercase tracking-wide text-brand/80 font-medium">Time Saved</span>
+                                <span className="block font-display text-2xl font-medium text-foreground">
+                                    {stats.hoursSaved} hours
+                                </span>
+                            </div>
+
+                            <div className="hidden md:block w-px h-10 bg-brand/10" />
+
+                            <div className="space-y-1">
+                                <span className="block text-xs uppercase tracking-wide text-brand/80 font-medium">Value Created</span>
+                                <span className="block font-display text-2xl font-medium text-foreground">
+                                    {formatCurrency(stats.timeSavingsValue)}
+                                </span>
+                            </div>
+
+                            <div className="md:text-right text-xs text-muted-foreground max-w-[150px] leading-relaxed">
+                                Avoids sending <strong className="text-foreground">{stats.appsSaved}</strong> unnecessary applications.
+                            </div>
+                        </div>
                     </div>
-                ) : (
-                    <div className="mt-5 border-t border-border/20 pt-4 space-y-2">
-                        <div className="text-sm text-foreground">
-                            One referral saves about {parsed.appsSaved} applications.
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                            That is roughly {parsed.hoursSaved} hours, worth {formatSalary(parsed.timeSavingsValue)} of time.
-                        </div>
-                        <div className="text-[10px] text-muted-foreground/70">
-                            Based on a {formatSalary(parsed.salaryNum)} salary and your entered callback rates.
-                        </div>
-                    </div>
-                )}
+                </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 2</span>
-                <span className="block text-xs text-muted-foreground">
-                    Referral efficiency compared to cold applications.
-                </span>
+            <figcaption className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
+                <span className="font-medium text-foreground">Fig. 2</span>
+                <span>Referral efficiency model.</span>
             </figcaption>
         </figure>
+    );
+}
+
+function InputGroup({
+    label,
+    value,
+    setValue,
+    min,
+    max,
+    step,
+    format,
+    suffix,
+    color = "bg-primary"
+}: {
+    label: string,
+    value: number,
+    setValue: (v: number) => void,
+    min: number,
+    max: number,
+    step: number,
+    format?: (v: number) => string,
+    suffix?: string,
+    color?: string
+}) {
+    return (
+        <div className="space-y-3">
+            <div className="flex justify-between items-center">
+                <label className="text-sm font-medium text-muted-foreground">{label}</label>
+                <span className="font-mono text-sm text-foreground bg-muted/30 px-2 py-0.5 rounded">
+                    {format ? format(value) : value}{suffix && <span className="text-muted-foreground ml-0.5">{suffix}</span>}
+                </span>
+            </div>
+            <input
+                type="range"
+                min={min}
+                max={max}
+                step={step}
+                value={value}
+                onChange={(e) => setValue(Number(e.target.value))}
+                className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-brand"
+            />
+        </div>
     );
 }

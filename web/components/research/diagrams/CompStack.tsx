@@ -12,7 +12,7 @@ export function CompStack() {
     return (
         <figure className="riyp-figure w-full max-w-sm mx-auto my-10">
             <div className="riyp-figure-frame p-6">
-                <div className="text-center text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
+                <div className="riyp-figure-kicker mb-6">
                     The compensation stack
                 </div>
 
@@ -27,7 +27,7 @@ export function CompStack() {
                                     <div className={`text-sm font-medium ${item.highlight ? "text-brand" : "text-foreground"}`}>
                                         {item.label}
                                     </div>
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                    <div className="riyp-figure-kicker">
                                         {item.sub}
                                     </div>
                                 </div>
@@ -40,8 +40,8 @@ export function CompStack() {
                 </div>
             </div>
 
-            <figcaption className="mt-4 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-4">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     Trade up the stack rather than negotiating base downward.
                 </span>

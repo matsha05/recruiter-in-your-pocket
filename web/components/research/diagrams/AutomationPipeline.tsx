@@ -32,7 +32,7 @@ export function AutomationPipeline() {
                     {steps.map((s, i) => (
                         <div key={i} className="flex-1 flex items-center">
                             <div className={`flex-1 flex flex-col h-full border border-border/40 p-4 rounded-md ${s.highlight ? "bg-brand/5 border-brand/30" : "bg-background"}`}>
-                                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                <div className="riyp-figure-kicker">
                                     {s.stage}
                                 </div>
                                 <div className="mt-2 text-sm font-medium text-foreground">
@@ -50,8 +50,8 @@ export function AutomationPipeline() {
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     Automation handoffs where bias can compound.
                 </span>

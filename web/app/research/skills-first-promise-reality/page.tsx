@@ -34,8 +34,8 @@ export default function SkillsFirstPromiseRealityPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Policy vs practice</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Policy vs practice</h2>
+                    <p className="research-body mb-6">
                         Skills-first is a direction, not a guarantee. The gap between stated policy and actual hiring shows why evidence still matters.
                         <Citation id="source-3">3</Citation>
                     </p>
@@ -98,8 +98,8 @@ export default function SkillsFirstPromiseRealityPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What this means for candidates</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What this means for candidates</h2>
+            <p className="research-body mb-6">
                 Skills-first does not remove competition. It raises the bar for evidence. Your resume must show measurable proof that you have those skills.
                 <Citation id="source-2">2</Citation>
             </p>
@@ -115,14 +115,14 @@ export default function SkillsFirstPromiseRealityPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Where skills-first is strongest</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Where skills-first is strongest</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: skills-first is more common in roles where output is measurable and skills map clearly to outcomes.
                 It is weaker in roles where signal is subjective or seniority is hard to compare.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">How to translate skills into proof</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">How to translate skills into proof</h2>
+            <p className="research-body mb-6">
                 Skills-first does not mean skills-only. The strongest resumes connect each skill to a concrete outcome.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -132,13 +132,13 @@ export default function SkillsFirstPromiseRealityPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use the same wording as the job description when possible.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: promise vs reality</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: promise vs reality</h2>
+            <p className="research-body mb-6">
                 The promise is a broader talent pool. The reality is that many teams still hire with old filters. Candidates need both skills evidence and clear role alignment.
                 <Citation id="source-3">3</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Employer adoption varies by industry, size, and role level.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Surveys capture intent and policy, not every hiring decision.</li>

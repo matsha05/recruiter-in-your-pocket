@@ -34,8 +34,8 @@ export default function ReferralAdvantagePage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The referral advantage, compared</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The referral advantage, compared</h2>
+                    <p className="research-body mb-6">
                         Referrals carry extra information into screening and can change how a resume is interpreted.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -91,20 +91,20 @@ export default function ReferralAdvantagePage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why referrals work</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why referrals work</h2>
+            <p className="research-body mb-6">
                 Referrals work because they solve the employer&apos;s core problem: risk. Hiring is expensive
                 and uncertain. A referral from a trusted employee reduces both. The referrer is
                 vouching with their own reputation.
                 <Citation id="source-1">1</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 For the candidate, a referral increases the chance your resume is read with context and intent.
                 It changes the starting position in the funnel.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Key findings</h2>
+            <h2 className="research-h2">Key findings</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="Higher Interview Rates"
@@ -134,27 +134,27 @@ export default function ReferralAdvantagePage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">See the math</h2>
+            <h2 className="research-h2">See the math</h2>
             <ReferralCalculator />
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">How to build referral opportunities</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">How to build referral opportunities</h2>
+            <p className="research-body mb-6">
                 <strong>Before you need a job:</strong> Build relationships with people in your industry.
                 Attend events. Be helpful on LinkedIn. The best referrals come from genuine relationships,
                 not cold asks.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 <strong>When you&apos;re looking:</strong> Be specific about what you want. &quot;I&apos;m looking for
                 a Senior PM role at a growth-stage fintech&quot; is actionable. &quot;Let me know if you hear
                 of anything&quot; is not.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="research-body">
                 <strong>Make it easy:</strong> When asking for a referral, include your resume and a
                 2-sentence pitch. Your referrer shouldn&apos;t have to write your case for you.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: referral signal</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: referral signal</h2>
+            <p className="research-body mb-6">
                 A referral signal is information that reduces uncertainty for the employer. The referrer adds context that the resume alone cannot provide.
                 <Citation id="source-1">1</Citation>
             </p>

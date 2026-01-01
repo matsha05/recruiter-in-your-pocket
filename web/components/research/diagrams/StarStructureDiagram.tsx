@@ -33,7 +33,7 @@ export function StarStructureDiagram() {
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-border/20">
-                    <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3 text-center">
+                    <p className="riyp-figure-kicker mb-3">
                         On a resume
                     </p>
                     <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
@@ -46,8 +46,8 @@ export function StarStructureDiagram() {
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     The STAR framework for behavioral responses.
                 </span>

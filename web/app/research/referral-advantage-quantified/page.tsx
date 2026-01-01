@@ -31,8 +31,8 @@ export default function ReferralAdvantageQuantifiedPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Information channel</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Information channel</h2>
+                    <p className="research-body mb-6">
                         Referrals add context, which changes how screening is interpreted.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -81,7 +81,7 @@ export default function ReferralAdvantageQuantifiedPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">See the math</h2>
+            <h2 className="research-h2">See the math</h2>
             <ReferralCalculator />
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
@@ -95,14 +95,14 @@ export default function ReferralAdvantageQuantifiedPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: uncertainty reduction</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: uncertainty reduction</h2>
+            <p className="research-body mb-6">
                 Referrals reduce uncertainty by adding a trusted signal that the resume cannot provide on its own.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What makes a referral credible</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What makes a referral credible</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: referrals work when they add information the resume does not carry, not when they repeat it.
                 The field evidence suggests the mechanism is information advantage.
                 <Citation id="source-1">1</Citation>
@@ -113,8 +113,8 @@ export default function ReferralAdvantageQuantifiedPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>A relationship that signals credibility, not a weak connection.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Where referrals do not help</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Where referrals do not help</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: referrals do not fix missing evidence. They only increase the chance your evidence is seen.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -123,7 +123,7 @@ export default function ReferralAdvantageQuantifiedPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>High bar teams still apply rigorous screens after referral.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Field experiments cover specific settings and may not generalize to every industry.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Referral quality varies widely and is not captured by a single metric.</li>

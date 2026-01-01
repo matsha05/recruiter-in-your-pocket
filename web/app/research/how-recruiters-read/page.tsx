@@ -39,8 +39,8 @@ export default function HowRecruitersReadPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Visualizing the 7.4 Seconds</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Visualizing the 7.4 Seconds</h2>
+                    <p className="research-body mb-6">
                         The composite view below blends the 2012 heatmap detail with the 2018 timing update. The red zones show the most intense fixation.
                         <Citation id="source-2">2</Citation>
                     </p>
@@ -103,7 +103,7 @@ export default function HowRecruitersReadPage() {
                 }
             ]}
         >
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 TheLadders published its original eye tracking study in 2012 and reported roughly 6 seconds for the initial screen.
                 The 2018 update reported 7.4 seconds. We use the 7.4-second figure for timing and keep the 2012 report as the best source for heatmap detail.
                 <Citation id="source-1">1</Citation>
@@ -128,18 +128,18 @@ export default function HowRecruitersReadPage() {
                 </a>
                 .
             </p>
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">The skim pattern</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">The skim pattern</h2>
+            <p className="research-body mb-6">
                 Recruiters are not reading every bullet point. They are scanning for fast answers:
                 Who is this person now? Where do they work? What is their title? How long have they been doing it?
                 <Citation id="source-2">2</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 More recent research shows that time spent on specific sections can predict approval outcomes in controlled settings.
                 <Citation id="source-3">3</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Where eyes actually look</h2>
+            <h2 className="research-h2">Where eyes actually look</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="1. Name & Title"
@@ -178,20 +178,20 @@ export default function HowRecruitersReadPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: the initial screen</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: the initial screen</h2>
+            <p className="research-body mb-6">
                 The initial screen is the first pass where a recruiter decides whether a resume is worth deeper time.
                 It is a fast filter, not a final verdict. The goal is to make the right signals visible in the first moments.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What this means for resume design</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What this means for resume design</h2>
+            <p className="research-body mb-6">
                 Put the most important evidence where the eye naturally goes: the header and the first role block.
                 Make role titles, companies, and measurable outcomes easy to pick up without reading full sentences.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Eye-tracking samples are limited and do not represent every industry.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Scanning behavior varies by role, seniority, and volume of applicants.</li>

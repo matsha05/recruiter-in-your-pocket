@@ -10,7 +10,7 @@ export function ImpactFormulaDiagram() {
         <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
             <div className="riyp-figure-frame p-6">
                 <div className="flex items-center justify-center gap-3 md:gap-4 mb-6">
-                    <div className="text-center">
+                    <div className="">
                         <div className="w-12 h-12 border border-brand/30 bg-brand/5 rounded-md flex items-center justify-center">
                             <span className="font-display text-xl font-medium text-brand">X</span>
                         </div>
@@ -19,7 +19,7 @@ export function ImpactFormulaDiagram() {
 
                     <span className="text-muted-foreground">→</span>
 
-                    <div className="text-center">
+                    <div className="">
                         <div className="w-12 h-12 border border-border/30 bg-foreground/5 rounded-md flex items-center justify-center">
                             <span className="font-display text-xl font-medium text-foreground">Y</span>
                         </div>
@@ -28,7 +28,7 @@ export function ImpactFormulaDiagram() {
 
                     <span className="text-muted-foreground">→</span>
 
-                    <div className="text-center">
+                    <div className="">
                         <div className="w-12 h-12 border border-border/30 bg-foreground/5 rounded-md flex items-center justify-center">
                             <span className="font-display text-xl font-medium text-foreground">Z</span>
                         </div>
@@ -37,7 +37,7 @@ export function ImpactFormulaDiagram() {
                 </div>
 
                 <div className="border-t border-border/20 pt-5">
-                    <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2 text-center">
+                    <p className="riyp-figure-kicker mb-2">
                         Example
                     </p>
                     <div className="border border-border/20 p-4 text-sm text-foreground leading-relaxed">
@@ -56,8 +56,8 @@ export function ImpactFormulaDiagram() {
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     The Laszlo Bock formula for high-impact resume bullets.
                 </span>

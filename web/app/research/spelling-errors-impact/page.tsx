@@ -34,8 +34,8 @@ export default function SpellingErrorsPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Form vs. Content</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Form vs. Content</h2>
+                    <p className="research-body mb-6">
                         Evidence suggests errors are interpreted as signals of lower conscientiousness and weaker written communication, which affects screening outcomes.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
@@ -99,8 +99,8 @@ export default function SpellingErrorsPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Errors act as a gate</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Errors act as a gate</h2>
+            <p className="research-body mb-6">
                 In large resume stacks, screening shortcuts rule. Errors are interpreted as signals, not as isolated mistakes.
                 The evidence links them to lower interview probabilities and to negative trait inferences.
                 <Citation id="source-1">1</Citation>
@@ -120,14 +120,14 @@ export default function SpellingErrorsPage() {
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Definition: form errors</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: form errors</h2>
+            <p className="research-body mb-6">
                 Form errors include spelling mistakes, grammar mistakes, inconsistent formatting, and layout artifacts that signal carelessness.
                 These errors are processed quickly and often shape the initial decision.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What to fix first</h2>
+            <h2 className="research-h2">What to fix first</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Spelling and grammar consistency.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Date alignment and spacing.</li>

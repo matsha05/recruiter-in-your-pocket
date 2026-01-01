@@ -8,7 +8,7 @@ export function ResumeLengthChart() {
     return (
         <figure className="riyp-figure w-full max-w-md mx-auto my-8">
             <div className="riyp-figure-frame relative p-6">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-4 text-center">
+                <div className="riyp-figure-kicker mb-4">
                     Signal density vs scan cost
                 </div>
                 <svg viewBox="0 0 240 160" className="w-full h-40">
@@ -38,8 +38,8 @@ export function ResumeLengthChart() {
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     Conceptual curve showing how scan cost can outpace signal.
                 </span>

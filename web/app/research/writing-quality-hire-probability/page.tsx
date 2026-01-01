@@ -32,8 +32,8 @@ export default function WritingQualityHireProbabilityPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Clarity vs. Signaling</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Clarity vs. Signaling</h2>
+                    <p className="research-body mb-6">
                         Clarity improves how fast a recruiter can extract signal during the initial skim.
                         <Citation id="source-2">2</Citation>
                     </p>
@@ -105,8 +105,8 @@ export default function WritingQualityHireProbabilityPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why clarity beats polish</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why clarity beats polish</h2>
+            <p className="research-body mb-6">
                 The first screen is short. If the reader cannot parse your impact quickly, the resume never gets the deeper read.
                 Clarity is not aesthetic. It is access to the decision window.
                 <Citation id="source-2">2</Citation>
@@ -128,13 +128,13 @@ export default function WritingQualityHireProbabilityPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: clarity lift</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: clarity lift</h2>
+            <p className="research-body mb-6">
                 Clarity lift is the measurable improvement in outcomes that comes from making information easier to read and verify.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Writing quality helps, but it cannot replace missing experience.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Results come from a specific experimental setting.</li>

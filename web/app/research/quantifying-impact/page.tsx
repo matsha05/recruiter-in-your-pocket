@@ -33,8 +33,8 @@ export default function QuantifyingImpactPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The formula visualized</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The formula visualized</h2>
+                    <p className="research-body mb-6">
                         Lead with the result, prove it with a metric, then explain your method.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -97,23 +97,23 @@ export default function QuantifyingImpactPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why numbers work</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why numbers work</h2>
+            <p className="research-body mb-6">
                 Numbers do three things that words cannot: they prove scale, enable comparison, and signal
                 that you track your own performance. &quot;Improved customer satisfaction&quot; is a claim.
                 &quot;Increased NPS from 42 to 67&quot; is evidence.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Bock&apos;s insight was that most candidates undersell themselves by describing responsibilities
                 instead of results. The formula forces you to lead with the outcome, not the activity.
                 <Citation id="source-1">1</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Evidence from a large field experiment shows that improving writing quality can increase hiring outcomes without reducing employer satisfaction.
                 <Citation id="source-2">2</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Finding numbers when you think you don&apos;t have any</h2>
+            <h2 className="research-h2">Finding numbers when you think you don&apos;t have any</h2>
             <p className="text-sm text-muted-foreground mb-4">
                 Illustrative examples, not benchmarks.
             </p>
@@ -136,21 +136,21 @@ export default function QuantifyingImpactPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">The before and after</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">The before and after</h2>
+            <p className="research-body mb-6">
                 <strong>Before:</strong> &quot;Responsible for managing social media accounts and creating content.&quot;
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 <strong>After:</strong> &quot;Grew Instagram following from 5K to 45K in 8 months by creating a
                 data-driven content calendar that increased engagement rate from 2% to 8%.&quot;
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="research-body">
                 Same job. Completely different impression. The second version answers the question every
                 recruiter is asking: &quot;What will this person do for us?&quot;
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: evidence density</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: evidence density</h2>
+            <p className="research-body mb-6">
                 Evidence density is the amount of measurable proof packed into a line. Higher density reduces scan time and increases credibility.
                 <Citation id="source-3">3</Citation>
             </p>

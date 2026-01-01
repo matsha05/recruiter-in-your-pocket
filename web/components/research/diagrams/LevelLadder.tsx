@@ -18,9 +18,9 @@ export function LevelLadder() {
                                 className="w-full bg-foreground/5 border border-border/30 rounded-sm"
                                 style={{ height: `${lvl.h * 4}px` }}
                             />
-                            <div className="mt-3 text-center">
+                            <div className="mt-3">
                                 <span className="block text-sm font-medium text-foreground">{lvl.name}</span>
-                                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{lvl.title}</span>
+                                <span className="block riyp-figure-kicker">{lvl.title}</span>
                                 <span className="block text-[10px] text-muted-foreground">{lvl.scope} • {lvl.comp}</span>
                             </div>
                         </div>
@@ -28,8 +28,8 @@ export function LevelLadder() {
                 </div>
             </div>
 
-            <figcaption className="mt-4 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-4">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     Compensation increases step with role scope and level.
                 </span>

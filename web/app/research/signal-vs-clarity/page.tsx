@@ -32,8 +32,8 @@ export default function SignalVsClarityPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Two paths</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Two paths</h2>
+                    <p className="research-body mb-6">
                         One view treats the resume as a signal. The other treats it as a clarity device.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -98,8 +98,8 @@ export default function SignalVsClarityPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why this matters</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why this matters</h2>
+            <p className="research-body mb-6">
                 If the clarity view is correct, then better writing is not just polish - it is a hiring lever.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -115,8 +115,8 @@ export default function SignalVsClarityPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">A fast clarity test</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">A fast clarity test</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: if a reader cannot extract the outcome in a quick skim, the bullet does not work.
                 The field evidence on writing quality supports this idea of clarity as an access point.
                 <Citation id="source-1">1</Citation>
@@ -127,19 +127,19 @@ export default function SignalVsClarityPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Make the metric or impact visible before line wrap.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Signal and clarity work together</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Signal and clarity work together</h2>
+            <p className="research-body mb-6">
                 Clarity does not replace proof. It makes proof visible. The strongest resumes use clarity to deliver the signal and then
                 back it with evidence, not adjectives.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: clarity device</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: clarity device</h2>
+            <p className="research-body mb-6">
                 A clarity device reduces the effort needed to understand ability. The resume is that device when written well.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Clarity improves access to evidence but cannot create missing outcomes.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The cited field evidence is context-specific and may not generalize to every role.</li>

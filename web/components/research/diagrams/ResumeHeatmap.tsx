@@ -107,8 +107,8 @@ export function ResumeHeatmap() {
 
             </div>
 
-            <figcaption className="mt-4 text-center space-y-1">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">Fig. 2 — Attention Density</span>
+            <figcaption className="mt-4 space-y-1">
+                <span className="block riyp-figure-kicker">Fig. 2 — Attention Density</span>
                 <span className="block text-sm text-foreground/80 font-medium">Aggregated Recruiter Fixation Points</span>
             </figcaption>
         </figure>

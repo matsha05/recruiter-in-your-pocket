@@ -33,8 +33,8 @@ export default function SkillsBasedHiringPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The paradigm shift</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The paradigm shift</h2>
+                    <p className="research-body mb-6">
                         Traditional hiring filters are giving way to skills-based assessment.
                     </p>
                     <SkillsShiftDiagram />
@@ -96,23 +96,23 @@ export default function SkillsBasedHiringPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">What&apos;s actually changing</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What&apos;s actually changing</h2>
+            <p className="research-body mb-6">
                 The shift to skills-based hiring reflects a growing focus on demonstrated capability over credentials.
                 Employers are rewriting job requirements to emphasize skills and outcomes.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 This doesn&apos;t mean credentials don&apos;t matter—it means how you communicate skills matters more.
                 A degree proves you completed a program. Your resume needs to prove you can do the work.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 There is also a gap between policy and practice. Some employers remove degree requirements but do not fully shift hiring behavior.
                 <Citation id="source-3">3</Citation>
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">What this means for resumes</h2>
+            <h2 className="research-h2">What this means for resumes</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="Show, Don&apos;t Tell"
@@ -132,19 +132,19 @@ export default function SkillsBasedHiringPage() {
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Practical application</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Practical application</h2>
+            <p className="research-body mb-6">
                 <strong>Lead with what you&apos;ve done, not where you went.</strong> Start bullets with actions
                 and results. &quot;Led migration to AWS, reducing infrastructure costs by 40%&quot; beats
                 &quot;Experienced in cloud computing.&quot;
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="research-body">
                 <strong>Match the job posting&apos;s skill language.</strong> If they ask for &quot;stakeholder management,&quot;
                 use that phrase—not synonyms. Skills-based hiring often means skills-based searching.
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Definition: skills-first</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: skills-first</h2>
+            <p className="research-body mb-6">
                 Skills-first hiring prioritizes demonstrated capability over credential filters, often by expanding the candidate pool and searching by skills.
                 <Citation id="source-1">1</Citation>
             </p>

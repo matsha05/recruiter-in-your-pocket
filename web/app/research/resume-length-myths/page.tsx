@@ -33,8 +33,8 @@ export default function ResumeLengthPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Experience dictates length</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Experience dictates length</h2>
+                    <p className="research-body mb-6">
                         Optimal resume length depends on how much relevant experience you have to communicate.
                     </p>
                     <ResumeLengthChart />
@@ -96,17 +96,17 @@ export default function ResumeLengthPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Where the one-page rule came from</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Where the one-page rule came from</h2>
+            <p className="research-body mb-6">
                 The one-page rule is a legacy heuristic from a different hiring era.
                 Brevity was favored when format and handling mattered more than clarity.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Today, resumes are digital. They&apos;re scrolled, not flipped. The constraint that created
                 the rule no longer exists—but the rule persists.
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">What research shows</h2>
+            <h2 className="research-h2">What research shows</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="Page 2 Is Earned"
@@ -146,19 +146,19 @@ export default function ResumeLengthPage() {
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">The right answer</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">The right answer</h2>
+            <p className="research-body mb-6">
                 <strong>Use the space you need—but not more.</strong> If you have 15 years of relevant experience,
                 cramming it into one page sacrifices readability. If you have 2 years of experience, padding
                 to two pages signals weak content.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="research-body">
                 The goal is density of relevant signal, not arbitrary page counts. Every line should pass
                 the test: &quot;Does this make me more likely to get an interview for this role?&quot;
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Definition: scan cost</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: scan cost</h2>
+            <p className="research-body mb-6">
                 Scan cost is the effort required to extract signal from a resume. Longer does not always mean worse,
                 but dense formatting increases scan cost and reduces attention.
                 <Citation id="source-1">1</Citation>

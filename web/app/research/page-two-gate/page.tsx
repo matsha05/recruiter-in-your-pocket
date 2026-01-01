@@ -33,8 +33,8 @@ export default function PageTwoGatePage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Signal density vs scan cost</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Signal density vs scan cost</h2>
+                    <p className="research-body mb-6">
                         If the first page is dense but clear, the reader continues. If it is dense and noisy, they do not.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -90,8 +90,8 @@ export default function PageTwoGatePage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">When two pages make sense</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">When two pages make sense</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: two pages is acceptable when the first page is clear and the second page continues a coherent signal.
                 <Citation id="source-2">2</Citation>
             </p>
@@ -107,8 +107,8 @@ export default function PageTwoGatePage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">How to earn page 2</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">How to earn page 2</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: page 2 is earned by strong signal density on page 1. The reader needs proof quickly.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -118,8 +118,8 @@ export default function PageTwoGatePage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Cut duplication before adding new sections.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What to cut from page 1</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What to cut from page 1</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: the gate fails when page 1 is crowded with low-signal content.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -128,13 +128,13 @@ export default function PageTwoGatePage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Long lists of tools without evidence of impact.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: page-1 gate</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: page-1 gate</h2>
+            <p className="research-body mb-6">
                 The page-1 gate is the idea that page 2 is only read if page 1 proves the resume is worth more time.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Some roles require lists of publications, patents, or certifications.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Executive or academic resumes can legitimately run longer.</li>

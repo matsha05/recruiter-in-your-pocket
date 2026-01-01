@@ -30,8 +30,8 @@ export default function SalaryAnchorsPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Anchor shift</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Anchor shift</h2>
+                    <p className="research-body mb-6">
                         When history is removed, employers anchor to the role, not the person.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -80,8 +80,8 @@ export default function SalaryAnchorsPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What to say instead</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What to say instead</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: the best answer is to anchor to market range and role scope, not your current pay.
             </p>
 
@@ -96,12 +96,12 @@ export default function SalaryAnchorsPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">How anchors form</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">How anchors form</h2>
+            <p className="research-body mb-6">
                 The first concrete number tends to frame the negotiation. Salary history bans reduce this effect by removing the first anchor.
                 <Citation id="source-1">1</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Recruiter lens: these are the anchor behaviors we see most often in early screens.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -110,19 +110,19 @@ export default function SalaryAnchorsPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The cleanest move is to anchor to scope and market value.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Handling forms and screens</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Handling forms and screens</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: if a form requires a number, use a range tied to the role level rather than your current pay.
                 If the form allows a blank or a note, state that you are open to market-aligned ranges.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: salary anchoring</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: salary anchoring</h2>
+            <p className="research-body mb-6">
                 Anchoring is the tendency for early numbers to shape final outcomes. Salary history bans reduce this effect by removing early anchors.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Legal requirements vary by location. This is not legal advice.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Role level, market conditions, and company policy still shape outcomes.</li>

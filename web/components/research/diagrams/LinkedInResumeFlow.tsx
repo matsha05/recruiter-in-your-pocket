@@ -13,14 +13,14 @@ export function LinkedInResumeFlow() {
     return (
         <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
             <div className="riyp-figure-frame p-6">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground text-center mb-6">
+                <div className="riyp-figure-kicker mb-6">
                     Better together
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">
                     <div className="space-y-3">
                         <h3 className="font-display text-lg font-medium text-foreground">LinkedIn</h3>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                        <p className="riyp-figure-kicker">
                             How they find you
                         </p>
                         <div className="space-y-2">
@@ -40,7 +40,7 @@ export function LinkedInResumeFlow() {
 
                     <div className="space-y-3">
                         <h3 className="font-display text-lg font-medium text-foreground">Resume</h3>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                        <p className="riyp-figure-kicker">
                             How they evaluate you
                         </p>
                         <div className="space-y-2">
@@ -60,7 +60,7 @@ export function LinkedInResumeFlow() {
                 </div>
 
                 <div className="mt-8 pt-5 border-t border-border/20">
-                    <div className="bg-brand/5 p-4 text-center">
+                    <div className="bg-brand/5 p-4">
                         <p className="text-sm text-foreground font-medium mb-1">You need both.</p>
                         <p className="text-xs text-muted-foreground">
                             Without LinkedIn, recruiters cannot find you. Without a strong resume, they cannot evaluate you.
@@ -69,8 +69,8 @@ export function LinkedInResumeFlow() {
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     LinkedIn drives discovery, resumes drive evaluation.
                 </span>

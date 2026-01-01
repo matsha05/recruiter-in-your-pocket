@@ -34,8 +34,8 @@ export default function StarMethodPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The STAR framework</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The STAR framework</h2>
+                    <p className="research-body mb-6">
                         A complete answer structure that works for behavioral interviews—and adapts to resume bullets.
                     </p>
                     <StarStructureDiagram />
@@ -97,20 +97,20 @@ export default function StarMethodPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Why structure matters</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why structure matters</h2>
+            <p className="research-body mb-6">
                 Unstructured answers ramble. Structured answers communicate competence. The STAR method
                 forces you to tell a complete story with a clear outcome—exactly what interviewers
                 are trained to listen for.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 The same logic applies to resume bullets. A bullet that describes a situation and action
                 but no result leaves the reader guessing. A complete STAR bullet answers: &quot;So what?&quot;
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-6 mt-12">Breaking down STAR</h2>
+            <h2 className="research-h2">Breaking down STAR</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="Situation"
@@ -130,25 +130,25 @@ export default function StarMethodPage() {
                 />
             </div>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">STAR on a resume</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">STAR on a resume</h2>
+            <p className="research-body mb-6">
                 Resume bullets are compressed STAR stories. You don&apos;t have space for full narratives,
                 but you should hit Action and Result explicitly, with Situation/Task implied by context.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 <strong>Weak:</strong> &quot;Worked on the customer support team handling inquiries.&quot;
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 <strong>Strong:</strong> &quot;Resolved 50+ daily customer escalations, reducing average
                 resolution time from 4 hours to 45 minutes and improving satisfaction scores by 22%.&quot;
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="research-body">
                 The situation (customer support) is implied. The action (resolved escalations) and
                 result (faster resolution, higher satisfaction) are explicit. That&apos;s STAR in one sentence.
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4 mt-12">Definition: structured interviews</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: structured interviews</h2>
+            <p className="research-body mb-6">
                 Structured interviews use consistent questions and scoring criteria to reduce bias and improve reliability. STAR is a candidate-facing version of that structure.
                 <Citation id="source-1">1</Citation>
             </p>

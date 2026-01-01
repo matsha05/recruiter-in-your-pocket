@@ -33,8 +33,8 @@ export default function AutomationBiasPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The Automated Funnel</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The Automated Funnel</h2>
+                    <p className="research-body mb-6">
                         Automation isn&apos;t just &quot;scanning keywords&quot; at the end. It starts before you even see the job ad.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -83,13 +83,13 @@ export default function AutomationBiasPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Bias compounds across stages</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Bias compounds across stages</h2>
+            <p className="research-body mb-6">
                 Most advice focuses on the &quot;Resume Parsing&quot; stage. But predictive ranking algorithms and ad delivery algorithms also play a huge role.
                 If an ad platform decides you aren&apos;t the &quot;target demographic,&quot; you might never see the role.
                 <Citation id="source-1">1</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 We can&apos;t fix the ad servers, but we can ensure that once you <em className="text-foreground">are</em> in the pipeline, your data is structured so clearly that no parser can misunderstand your qualifications.
             </p>
 
@@ -100,8 +100,8 @@ export default function AutomationBiasPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: exposure bias</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: exposure bias</h2>
+            <p className="research-body mb-6">
                 Exposure bias happens when the system decides who sees a job or who is surfaced first. Candidates who are not surfaced never get evaluated.
                 <Citation id="source-1">1</Citation>
             </p>

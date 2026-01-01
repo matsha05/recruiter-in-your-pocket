@@ -33,8 +33,8 @@ export default function DiscriminationMetaPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The Limits of Optimization</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The Limits of Optimization</h2>
+                    <p className="research-body mb-6">
                         The research emphasizes structural bias that individual resume quality cannot fully offset.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -94,20 +94,20 @@ export default function DiscriminationMetaPage() {
                 }
             ]}
         >
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">The resume is necessary, not sufficient</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">The resume is necessary, not sufficient</h2>
+            <p className="research-body mb-6">
                 This research is sobering. It reminds us that &quot;optimizing keywords&quot; is a trivial concern compared to the structural barriers many candidates face.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 However, it also clarifies our mission: to ensure that <strong>poor communication</strong> is never the reason you are rejected. We clear the noise so your merit has the best possible chance to shine through, while acknowledging the reality of the system you are navigating.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Automation can compound inequities when exposure and ranking systems are opaque. That makes clarity and documentation even more important at the individual level.
                 <Citation id="source-2">2</Citation>
             </p>
 
-            <h2 className="font-serif text-2xl font-medium text-foreground mb-4">Definition: bounded control</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: bounded control</h2>
+            <p className="research-body mb-6">
                 Bounded control means separating factors you can influence from systemic factors you cannot. The resume is in the first category, bias is not.
             </p>
 

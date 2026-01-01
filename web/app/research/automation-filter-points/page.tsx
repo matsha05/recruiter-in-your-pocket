@@ -33,8 +33,8 @@ export default function AutomationFilterPointsPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Automation touchpoints</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Automation touchpoints</h2>
+                    <p className="research-body mb-6">
                         Automation starts before the application. Exposure and ranking shape who gets reviewed at all.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -90,8 +90,8 @@ export default function AutomationFilterPointsPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why this matters</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why this matters</h2>
+            <p className="research-body mb-6">
                 If automation controls exposure and ranking, then the job is to make sure your resume is legible to both systems and humans.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -107,8 +107,8 @@ export default function AutomationFilterPointsPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Where automation shows up</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Where automation shows up</h2>
+            <p className="research-body mb-6">
                 Automation affects the funnel before you are reviewed. These touchpoints shape who gets seen first.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -118,8 +118,8 @@ export default function AutomationFilterPointsPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Ranking: ordering of candidates for recruiter review.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Practical checks</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Practical checks</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: the goal is to remove parser friction and present readable evidence.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -128,13 +128,13 @@ export default function AutomationFilterPointsPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Avoid layout tricks that break parsing.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: automation touchpoints</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: automation touchpoints</h2>
+            <p className="research-body mb-6">
                 Automation touchpoints are the stages where systems filter, rank, or route candidates. Each touchpoint can amplify bias or noise.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Automation practices vary widely and are often undisclosed.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Some teams rely heavily on humans, while others automate early screens.</li>

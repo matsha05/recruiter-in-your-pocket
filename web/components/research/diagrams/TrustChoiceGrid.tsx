@@ -3,7 +3,7 @@
 export function TrustChoiceGrid() {
     return (
         <figure className="riyp-figure w-full max-w-xl mx-auto my-10">
-            <div className="text-center text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
+            <div className="riyp-figure-kicker mb-6">
                 Error penalty curve
             </div>
 
@@ -33,8 +33,8 @@ export function TrustChoiceGrid() {
                 </svg>
             </div>
 
-            <figcaption className="mt-4 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-4">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     Trust declines more sharply after algorithm errors than human errors in the study.
                 </span>

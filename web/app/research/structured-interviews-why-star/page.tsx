@@ -34,8 +34,8 @@ export default function StructuredInterviewsWhyStarPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">From rubric to STAR</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">From rubric to STAR</h2>
+                    <p className="research-body mb-6">
                         STAR is a candidate-facing compression of structured interview evidence.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -91,8 +91,8 @@ export default function StructuredInterviewsWhyStarPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why STAR works on resumes</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why STAR works on resumes</h2>
+            <p className="research-body mb-6">
                 STAR ensures the reader sees context, action, and result. That is the same structure structured interviews aim to elicit.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -108,8 +108,8 @@ export default function StructuredInterviewsWhyStarPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What structured interviews measure</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What structured interviews measure</h2>
+            <p className="research-body mb-6">
                 Structured interviews improve reliability by asking consistent questions and scoring against a rubric.
                 That same structure is what makes STAR readable on a resume.
                 <Citation id="source-1">1</Citation>
@@ -121,8 +121,8 @@ export default function StructuredInterviewsWhyStarPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Result shows measurable impact and scope.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Resume translation</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Resume translation</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: you only need to make action and result explicit. Situation and task are implied by the role title.
             </p>
             <div className="border border-border/40 rounded-md p-4 text-sm text-muted-foreground not-prose mb-6">
@@ -132,13 +132,13 @@ export default function StructuredInterviewsWhyStarPage() {
                 </p>
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: structured interviewing</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: structured interviewing</h2>
+            <p className="research-body mb-6">
                 Structured interviewing uses consistent questions and scoring criteria to improve reliability and reduce bias. STAR is a candidate-facing version of that approach.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Common pitfalls</h2>
+            <h2 className="research-h2">Common pitfalls</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Listing tasks without outcomes.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Overloading a single bullet with multiple situations.</li>

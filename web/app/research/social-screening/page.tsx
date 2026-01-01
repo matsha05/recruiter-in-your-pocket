@@ -33,8 +33,8 @@ export default function SocialScreeningPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Platform by purpose</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Platform by purpose</h2>
+                    <p className="research-body mb-6">
                         Different platforms serve different stages of evaluation.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -120,8 +120,8 @@ export default function SocialScreeningPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What to prioritize</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What to prioritize</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: LinkedIn must match your resume. The fastest way to lose trust is inconsistent titles or dates.
             </p>
 
@@ -136,8 +136,8 @@ export default function SocialScreeningPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What recruiters look for</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What recruiters look for</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: social screening is about credibility and consistency, not personality.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -146,8 +146,8 @@ export default function SocialScreeningPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Signals of professionalism in public content.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">How to harden your online footprint</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">How to harden your online footprint</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: every surface should tell the same story about role level and impact.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
@@ -156,13 +156,13 @@ export default function SocialScreeningPage() {
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Link to a portfolio or work samples when relevant.</li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: social screening</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: social screening</h2>
+            <p className="research-body mb-6">
                 Social screening is the use of online profiles to validate identity, evaluate professionalism, and confirm role fit.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Survey data reflects recruiter self-reporting, not controlled experiments.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Platforms used can vary by geography and industry.</li>

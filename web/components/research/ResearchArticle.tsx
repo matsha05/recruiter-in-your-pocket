@@ -152,7 +152,7 @@ export function ResearchArticle({
                         <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground tracking-tight">
                             {header.title}
                         </h1>
-                        <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                        <p className="research-lede max-w-2xl">
                             {header.description}
                         </p>
                     </div>
@@ -164,7 +164,7 @@ export function ResearchArticle({
                     </div>
                     <div className="space-y-2">
                         <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground tracking-tight">{keyFinding.stat}</h2>
-                        <p className="text-muted-foreground text-lg leading-relaxed">
+                        <p className="research-body text-lg">
                             {keyFinding.statDescription}
                         </p>
                     </div>
@@ -200,12 +200,12 @@ export function ResearchArticle({
                 </div>
 
                 {visualization && (
-                    <section className="my-12">
+                    <section className="my-10">
                         {visualization}
                     </section>
                 )}
 
-                <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-medium prose-headings:tracking-tight prose-p:text-base prose-p:leading-relaxed prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4">
+                <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-medium prose-headings:tracking-tight prose-p:text-base prose-p:leading-[1.7] prose-p:text-muted-foreground prose-strong:font-medium prose-strong:text-foreground prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-3 prose-li:my-1">
                     {children}
                 </article>
 

@@ -24,19 +24,21 @@ export function ATSFunnel() {
             <div className="riyp-figure-frame p-6 space-y-6">
                 {layers.map((layer, index) => (
                     <div key={layer.label} className="space-y-2">
-                        <div className="flex flex-wrap justify-between gap-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                            <span>{String(index + 1).padStart(2, "0")}. {layer.label}</span>
-                            <span className="text-muted-foreground/70">{layer.note}</span>
+                        <div className="flex flex-wrap justify-between gap-3">
+                            <span className="riyp-figure-kicker">
+                                {String(index + 1).padStart(2, "0")}. {layer.label}
+                            </span>
+                            <span className="text-[11px] text-muted-foreground">{layer.note}</span>
                         </div>
-                        <div className="h-2 border border-border/40 bg-foreground/5 rounded">
-                            <div className={`h-full ${layer.barClass}`} />
+                        <div className="h-2 border border-border/40 bg-foreground/5 rounded-sm">
+                            <div className={`h-full rounded-sm ${layer.barClass}`} />
                         </div>
                     </div>
                 ))}
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     Decision rights map showing where automation can operate and where humans decide. Not to scale.
                 </span>

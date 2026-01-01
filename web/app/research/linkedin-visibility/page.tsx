@@ -32,8 +32,8 @@ export default function LinkedInVisibilityPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">What Drives LinkedIn Visibility</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">What Drives LinkedIn Visibility</h2>
+                    <p className="research-body mb-6">
                         Recruiter lens: visibility starts with the fields recruiters see first and search against most often. LinkedIn does not publish exact weights,
                         so we treat this as an ordinal model rather than a quantitative one.
                     </p>
@@ -138,13 +138,13 @@ export default function LinkedInVisibilityPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why Headlines Matter Most</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why Headlines Matter Most</h2>
+            <p className="research-body mb-6">
                 Recruiter lens: the headline is the most visible field in search results, so it is the cleanest place to align role titles and skill keywords.
                 Recruiter searches often start with job titles and skill terms, which makes headline phrasing a practical match point.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">Key Research Findings</h2>
+            <h2 className="research-h2">Key Research Findings</h2>
             <p className="text-xs text-muted-foreground mb-4">
                 Statistics sourced from LinkedIn Newsroom, LinkedIn Talent Solutions, and Pew Research.
                 <Citation id="source-1">1</Citation>
@@ -200,7 +200,7 @@ export default function LinkedInVisibilityPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">What Good Headlines Look Like</h2>
+            <h2 className="research-h2">What Good Headlines Look Like</h2>
             <div className="grid md:grid-cols-2 gap-8 not-prose mt-6">
                 <div className="space-y-3">
                     <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Do This</div>
@@ -220,8 +220,8 @@ export default function LinkedInVisibilityPage() {
                 </div>
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Important Limitations</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <h2 className="research-h2">Important Limitations</h2>
+            <p className="research-body mb-4">
                 Be aware of what we know and don&apos;t know:
             </p>
             <ul className="space-y-2 text-muted-foreground text-sm mb-6">
@@ -243,8 +243,8 @@ export default function LinkedInVisibilityPage() {
                 </li>
             </ul>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: visibility inputs</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: visibility inputs</h2>
+            <p className="research-body mb-6">
                 Visibility inputs are the fields recruiters can search and filter by. LinkedIn reports outcomes tied to skills-first searches,
                 but not the weighting of each field.
                 <Citation id="source-2">2</Citation>

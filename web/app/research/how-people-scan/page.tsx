@@ -41,8 +41,8 @@ export default function HowPeopleScanPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The Scan Pattern Transfer</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The Scan Pattern Transfer</h2>
+                    <p className="research-body mb-6">
                         General web reading patterns transfer when resumes are structured with clear left-edge anchors.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
@@ -106,8 +106,8 @@ export default function HowPeopleScanPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Scanning vs Reading</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Scanning vs Reading</h2>
+            <p className="research-body mb-6">
                 Readers skim under pressure. They look for anchors: headers, numbers, company names.
                 Dense paragraphs often fail the scan test.
                 <Citation id="source-1">1</Citation>
@@ -134,20 +134,20 @@ export default function HowPeopleScanPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: scan anchors</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: scan anchors</h2>
+            <p className="research-body mb-6">
                 Scan anchors are the small pieces of text that let a reader orient quickly: role titles, company names,
                 dates, and measurable outcomes. Without anchors, the page reads as a blur.
                 <Citation id="source-2">2</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What this means for bullet writing</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What this means for bullet writing</h2>
+            <p className="research-body mb-6">
                 Make each bullet scannable. Lead with the result or the action, then add context.
                 If the first three words are vague, the rest will not be read.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Limitations</h2>
+            <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Eye-tracking is a proxy for attention, not for final decisions.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Different roles create different scanning priorities.</li>

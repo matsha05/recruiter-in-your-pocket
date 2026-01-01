@@ -33,8 +33,8 @@ export default function HumanVsAlgorithmPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The Error Penalty Curve</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The Error Penalty Curve</h2>
+                    <p className="research-body mb-6">
                         Recruiters generally prefer human recommendations. When an algorithm makes a mistake, trust drops faster than when a human makes the same mistake.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -90,16 +90,16 @@ export default function HumanVsAlgorithmPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Where automation breaks recruiter judgment</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Where automation breaks recruiter judgment</h2>
+            <p className="research-body mb-6">
                 The study reveals a phenomenon known as &quot;algorithm aversion.&quot; Even when algorithms perform well, people are quicker to lose trust in them after a mistake compared to a human making the same mistake.
                 <Citation id="source-1">1</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Governance pressures around auditing and explainability further reinforce why human judgment remains central in high-stakes decisions.
                 <Citation id="source-2">2</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Recruiter lens: optimizing only for a score can miss the trust signals that humans look for. The end user is a person who values consistency, narrative, and credibility.
             </p>
 
@@ -110,8 +110,8 @@ export default function HumanVsAlgorithmPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: algorithm aversion</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: algorithm aversion</h2>
+            <p className="research-body mb-6">
                 Algorithm aversion is the tendency to reject algorithmic recommendations after observing errors, even when the algorithm performs well on average.
                 <Citation id="source-1">1</Citation>
             </p>

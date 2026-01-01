@@ -9,7 +9,7 @@ export function SkillsShiftDiagram() {
     return (
         <figure className="riyp-figure w-full max-w-lg mx-auto my-8">
             <div className="riyp-figure-frame p-4 md:p-6">
-                <div className="flex justify-between mb-4 md:mb-6 text-[9px] md:text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                <div className="flex justify-between mb-4 md:mb-6 riyp-figure-kicker">
                     <span>Traditional</span>
                     <span>Emerging</span>
                 </div>
@@ -32,7 +32,7 @@ export function SkillsShiftDiagram() {
                     ))}
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-border/20 text-center">
+                <div className="mt-8 pt-4 border-t border-border/20">
                     <span className="font-display text-base font-medium text-foreground">Talent pools expand</span>
                     <p className="text-[10px] text-muted-foreground mt-1">
                         Skills-first filters broaden the candidate set compared to degree-only screens.
@@ -40,8 +40,8 @@ export function SkillsShiftDiagram() {
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     The shift from credentials to skills-based signals.
                 </span>

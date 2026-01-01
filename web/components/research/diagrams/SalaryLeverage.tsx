@@ -5,7 +5,7 @@ export function SalaryLeverage() {
         <figure className="riyp-figure w-full max-w-lg mx-auto my-10">
             <div className="riyp-figure-frame p-6 grid grid-cols-2 gap-4">
                 <div className="p-5 border border-border/30 bg-background">
-                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">Before ban</h4>
+                    <h4 className="riyp-figure-kicker mb-3">Before ban</h4>
                     <div className="space-y-3">
                         <div className="border border-border/30 p-3 text-xs text-muted-foreground">
                             Employer asks: &quot;What is your current salary?&quot;
@@ -18,7 +18,7 @@ export function SalaryLeverage() {
                 </div>
 
                 <div className="p-5 border border-brand/30 bg-brand/5">
-                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">After ban</h4>
+                    <h4 className="riyp-figure-kicker mb-3">After ban</h4>
                     <div className="space-y-3">
                         <div className="border border-brand/30 p-3 text-xs text-muted-foreground">
                             Employer asks: &quot;What are your expectations?&quot;
@@ -31,8 +31,8 @@ export function SalaryLeverage() {
                 </div>
             </div>
 
-            <figcaption className="mt-3 text-center">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Fig. 1</span>
+            <figcaption className="mt-3">
+                <span className="block riyp-figure-kicker">Fig. 1</span>
                 <span className="block text-xs text-muted-foreground">
                     Salary history bans shift the negotiation anchor.
                 </span>

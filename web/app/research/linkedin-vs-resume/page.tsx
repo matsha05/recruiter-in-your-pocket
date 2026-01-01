@@ -34,8 +34,8 @@ export default function LinkedInVsResumePage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Two tools, different jobs</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Two tools, different jobs</h2>
+                    <p className="research-body mb-6">
                         Recruiter lens: LinkedIn is your public identity. Your resume is your evidence file.
                         They are both used, but at different moments.
                     </p>
@@ -98,18 +98,18 @@ export default function LinkedInVsResumePage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why both matter equally</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why both matter equally</h2>
+            <p className="research-body mb-6">
                 Recruiter surveys report heavy LinkedIn use for sourcing and validation, while resumes remain the document of record for evaluation.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="research-body mb-6">
                 Recruiter lens: LinkedIn affects discoverability and validation, while the resume carries evidence for evaluation.
                 One without the other leaves gaps.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-6 mt-12">What each does best</h2>
+            <h2 className="research-h2">What each does best</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
                     title="LinkedIn: Identity"
@@ -129,18 +129,18 @@ export default function LinkedInVsResumePage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Practical takeaways</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Practical takeaways</h2>
+            <p className="research-body mb-6">
                 <strong>Keep them aligned.</strong> Interviewers check both. Mismatched dates,
                 titles, or company names raise questions.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="research-body">
                 <strong>Different purposes, same story.</strong> Your LinkedIn can be broader (career overview).
                 Your resume should be sharper (specific role fit). But they should tell the same story.
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: discovery vs evaluation</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: discovery vs evaluation</h2>
+            <p className="research-body mb-6">
                 Discovery is how recruiters find candidates. Evaluation is how they decide who to interview. LinkedIn dominates discovery; resumes dominate evaluation.
                 <Citation id="source-1">1</Citation>
             </p>

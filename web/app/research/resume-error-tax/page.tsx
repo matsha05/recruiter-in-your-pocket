@@ -33,8 +33,8 @@ export default function ResumeErrorTaxPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The inference ladder</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">The inference ladder</h2>
+                    <p className="research-body mb-6">
                         Errors are translated into traits, which become hiring risk.
                         <Citation id="source-1">1</Citation>
                     </p>
@@ -102,8 +102,8 @@ export default function ResumeErrorTaxPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why the penalty feels harsh</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Why the penalty feels harsh</h2>
+            <p className="research-body mb-6">
                 In large resume stacks, recruiters use heuristics. Errors offer a quick justification to move on, even when experience is strong.
                 <Citation id="source-1">1</Citation>
             </p>
@@ -124,13 +124,13 @@ export default function ResumeErrorTaxPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Definition: error tax</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: error tax</h2>
+            <p className="research-body mb-6">
                 The error tax is the hiring penalty that results from avoidable mistakes. It is not just about spelling, it is about perceived care and reliability.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Practical fixes</h2>
+            <h2 className="research-h2">Practical fixes</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Run a spelling and grammar pass before any rewrite work.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Standardize dates, dashes, and punctuation.</li>

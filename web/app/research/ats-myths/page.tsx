@@ -36,8 +36,8 @@ export default function ATSMythsPage() {
             }}
             visualization={
                 <>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Decision Rights Map</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <h2 className="research-h2">Decision Rights Map</h2>
+                    <p className="research-body mb-6">
                         ATS platforms store and route information, while screening logic and human review can both shape outcomes.
                         This map shows where automation is possible, not guaranteed.
                         <Citation id="source-1">1</Citation>
@@ -109,8 +109,8 @@ export default function ATSMythsPage() {
                 }
             ]}
         >
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">What an ATS actually does</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">What an ATS actually does</h2>
+            <p className="research-body mb-6">
                 Most ATS systems function as workflow engines. They store candidate data, support filtering, and enable recruiters to search.
                 Automation can sit on top of this workflow, but it is not uniform across employers or tools.
                 <Citation id="source-1">1</Citation>
@@ -141,8 +141,8 @@ export default function ATSMythsPage() {
                 />
             </div>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Why the auto-reject myth persists</h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <h2 className="research-h2">Why the auto-reject myth persists</h2>
+            <p className="research-body">
                 ATS workflows can feel opaque, so candidates assume resumes are automatically rejected. The evidence we have shows ATS platforms
                 are primarily workflow systems with varying levels of automation. Human review still matters, but the rules and models used can
                 shape who gets seen first.
@@ -151,14 +151,14 @@ export default function ATSMythsPage() {
                 <Citation id="source-3">3</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4 mt-12">Definition: selection procedures</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <h2 className="research-h2">Definition: selection procedures</h2>
+            <p className="research-body mb-6">
                 A selection procedure is any tool or process that influences who advances in hiring. Under EEOC guidance, software and algorithms can
                 fall under this definition, which raises obligations around job-relatedness and adverse impact.
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="font-display text-2xl font-medium text-foreground mb-4">Practical takeaways</h2>
+            <h2 className="research-h2">Practical takeaways</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use standard section headers so both parsers and humans can navigate quickly.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Write role titles and core skills in plain language, not internal jargon.</li>
