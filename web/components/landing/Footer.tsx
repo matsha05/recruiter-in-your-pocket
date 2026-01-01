@@ -27,7 +27,7 @@ export default function Footer() {
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <PocketMark className="w-5 h-5 text-brand" />
                         <Wordmark className="h-4 text-muted-foreground" />
-                        <span className="text-sm">© 2025</span>
+                        <span className="text-sm">© 2026</span>
                     </div>
                     {/* Mobile: wrap links for better tap targets, Desktop: inline */}
                     <div className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 md:gap-x-4">
