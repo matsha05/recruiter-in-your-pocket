@@ -1633,6 +1633,8 @@ export function extractSeniority(text: string): SenioritySignals {
 
 // ================= MATCHING FUNCTIONS =================
 
+import { getSkillWeight } from './skill-idf';
+
 export function calculateKeywordScore(
     resumeSkills: Map<string, { weight: number; category: string }>,
     jdSkills: Map<string, { weight: number; category: string }>
@@ -1640,7 +1642,7 @@ export function calculateKeywordScore(
     score: number;
     matchedSkills: string[];
     missingSkills: string[];
-    matchDetails: Array<{ skill: string; credit: number; matchType: string; matchedBy: string | null }>;
+    matchDetails: Array<{ skill: string; credit: number; matchType: string; matchedBy: string | null; idfWeight: number }>;
 } {
     if (jdSkills.size === 0) {
         return { score: 50, matchedSkills: [], missingSkills: [], matchDetails: [] };
@@ -1650,10 +1652,13 @@ export function calculateKeywordScore(
     let totalWeight = 0;
     const matchedSkills: string[] = [];
     const missingSkills: string[] = [];
-    const matchDetails: Array<{ skill: string; credit: number; matchType: string; matchedBy: string | null }> = [];
+    const matchDetails: Array<{ skill: string; credit: number; matchType: string; matchedBy: string | null; idfWeight: number }> = [];
 
     for (const [jdSkill, { weight }] of jdSkills) {
-        totalWeight += weight;
+        // Apply IDF weighting: generic skills (teamwork) get low weight, rare skills (kubernetes) get high weight
+        const idfWeight = getSkillWeight(jdSkill);
+        const adjustedWeight = weight * idfWeight;
+        totalWeight += adjustedWeight;
 
         // Find best match across all resume skills using ontology
         let bestCredit = 0;
@@ -1677,15 +1682,16 @@ export function calculateKeywordScore(
             }
         }
 
-        // Add weighted credit
-        totalCredit += weight * bestCredit;
+        // Add IDF-weighted credit
+        totalCredit += adjustedWeight * bestCredit;
 
-        // Track match details
+        // Track match details (now includes IDF weight for debugging)
         matchDetails.push({
             skill: jdSkill,
             credit: bestCredit,
             matchType: bestMatchType,
-            matchedBy: bestMatchedBy
+            matchedBy: bestMatchedBy,
+            idfWeight,
         });
 
         // Categorize as matched (>= 0.5 credit) or missing
@@ -2006,10 +2012,13 @@ function cosineSimilarity(a: number[], b: number[]): number {
 
 import type { ParsedResume, ParsedJD, MatchResult as ClaimMatchResult } from './claim-extractor';
 import { parseResume, parseJobDescription, matchClaimsToRequirements } from './claim-extractor';
+import { computeDomainGate, applyDomainGate, getScoreBand, type DomainGateResult, type ScoreBandInfo } from './domain-gate';
+import { getSkillWeight, type IDFStore } from './skill-idf';
 
 export interface EnhancedMatchResult {
     // Combined scores
     finalScore: number;
+    rawScore: number;  // Before gating
     keywordScore: number;
     claimScore: number;
     semanticScore: number | null;
@@ -2023,9 +2032,13 @@ export interface EnhancedMatchResult {
     parsedResume: ParsedResume;
     parsedJD: ParsedJD;
 
+    // Domain gating (Oracle Phase 1)
+    domainGate: DomainGateResult;
+    scoreBand: ScoreBandInfo;
+
     // Metadata
     seniorityPenalty: number;
-    confidence: number;
+    confidence: 'high' | 'low';
 }
 
 /**
@@ -2070,30 +2083,43 @@ export async function calculateEnhancedMatch(
     const seniorityResult = calculateSeniorityPenalty(resumeSeniority, jdSeniority);
     const seniorityPenalty = seniorityResult.penalty;
 
-    // 6. Calculate combined score
+    // 6. Calculate raw combined score (before gating)
     // Weights: 50% keyword, 30% claims, 20% semantic
-    let combinedScore: number;
+    let rawScore: number;
     if (semanticScore !== null) {
-        combinedScore = 0.50 * keywordResult.score +
+        rawScore = 0.50 * keywordResult.score +
             0.30 * claimResult.score +
             0.20 * semanticScore;
     } else {
         // No semantic score: 60% keyword, 40% claims
-        combinedScore = 0.60 * keywordResult.score +
+        rawScore = 0.60 * keywordResult.score +
             0.40 * claimResult.score;
     }
 
-    // Apply seniority penalty
-    const finalScore = Math.max(0, Math.min(100, Math.round(combinedScore - seniorityPenalty)));
+    // Apply seniority penalty to raw score
+    rawScore = Math.max(0, Math.min(100, Math.round(rawScore - seniorityPenalty)));
 
-    // Calculate confidence based on evidence quality
-    const hasScaleClaims = parsedResume.scale_claims.length > 0;
-    const hasGrowthClaims = parsedResume.growth_claims.length > 0;
-    const claimEvidenceBonus = (hasScaleClaims ? 0.05 : 0) + (hasGrowthClaims ? 0.05 : 0);
-    const confidence = Math.min(0.95, 0.75 + claimEvidenceBonus + (semanticScore ? 0.05 : 0));
+    // 7. ORACLE PHASE 1: Compute domain gate
+    // Maps claim matches to the format expected by computeDomainGate
+    const claimMatchesForGate = claimResult.matches.map(m => ({
+        requirement: m.requirement,
+        status: m.status as 'met' | 'partial' | 'gap',
+    }));
+
+    const domainGate = computeDomainGate(parsedResume, parsedJD, claimMatchesForGate);
+
+    // 8. Apply domain gate to get final score
+    const finalScore = applyDomainGate(rawScore, domainGate);
+
+    // 9. Get score band for UI
+    const scoreBand = getScoreBand(finalScore);
+
+    // 10. Determine confidence
+    const confidence = domainGate.coverageConfidence;
 
     return {
         finalScore,
+        rawScore,
         keywordScore: keywordResult.score,
         claimScore: claimResult.score,
         semanticScore,
@@ -2102,8 +2128,10 @@ export async function calculateEnhancedMatch(
         claimMatches: claimResult.matches,
         parsedResume,
         parsedJD,
+        domainGate,
+        scoreBand,
         seniorityPenalty,
-        confidence
+        confidence,
     };
 }
 
