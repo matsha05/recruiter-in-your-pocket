@@ -78,6 +78,14 @@
   1. ALWAYS use --engine browser (NEVER use --engine api)
   2. If browser mode fails, STOP and ask user - do NOT retry with api
   3. Always include file context with --file flag. Oracle has NO repo access otherwise.
+  4. ALWAYS create a NEW terminal session for each Oracle query - do NOT conflate with existing Oracle sessions
+  5. Oracle browser sessions run independently and may take 5-30+ minutes
+  
+  TERMINAL SESSION MANAGEMENT:
+  - Each Oracle browser query should run in its own terminal
+  - Do NOT check command_status on a different Oracle session
+  - Use descriptive session names if available
+  - Monitor the correct session ID for your specific query
   
   For detailed usage, prompt templates, and troubleshooting:
   See .agent/workflows/oracle.md
@@ -85,6 +93,7 @@
   Quick reference:
   ```bash
   # Browser mode with manual login (recommended)
+  # This will open Chrome and may require manual login
   oracle -e browser --browser-manual-login \
     --file "web/lib/matching/*.ts" \
     -p "## PRODUCT CONTEXT

@@ -38,6 +38,8 @@ async function safeMessage(message: ExtensionMessage): Promise<any> {
 // State
 let captureButton: HTMLElement | null = null;
 let isCapturing = false;
+let injectionAttempts = 0;
+const MAX_INJECTION_ATTEMPTS = 5;
 
 /**
  * Initialize content script
@@ -46,11 +48,31 @@ function init() {
   console.log('[RIYP] Content script initialized on:', window.location.href);
 
   // Wait for page to stabilize, then inject button
-  setTimeout(injectCaptureButton, 1500);
+  // Use longer delay for collections pages which load slower
+  const isCollectionsPage = window.location.pathname.includes('/collections/');
+  const initialDelay = isCollectionsPage ? 2500 : 1500;
+
+  injectionAttempts = 0;
+  setTimeout(injectCaptureButtonWithRetry, initialDelay);
 
   // Re-inject on dynamic navigation (LinkedIn is a SPA)
   observeNavigationChanges();
 }
+
+/**
+ * Inject button with retry logic for slow-loading pages
+ */
+async function injectCaptureButtonWithRetry() {
+  await injectCaptureButton();
+
+  // If no button was injected and we have a job ID, retry
+  if (!captureButton && extractJobId() && injectionAttempts < MAX_INJECTION_ATTEMPTS) {
+    injectionAttempts++;
+    console.log('[RIYP] JD not found yet, retrying in 1s (attempt', injectionAttempts, ')');
+    setTimeout(injectCaptureButtonWithRetry, 1000);
+  }
+}
+
 
 /**
  * Inject the floating capture button

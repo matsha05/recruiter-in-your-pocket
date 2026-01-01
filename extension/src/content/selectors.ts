@@ -17,13 +17,21 @@ export const JD_SELECTORS = [
     '.jobs-search__job-details .jobs-box__html-content',
     '.jobs-details__main-content .jobs-box__html-content',
 
-    // Tertiary: Older layouts
+    // Tertiary: Collections and recommendation pages
+    '.jobs-details .jobs-box__html-content',
+    '.jobs-details-top-card ~ div .jobs-box__html-content',
+    '.scaffold-layout__detail .jobs-box__html-content',
+
+    // Quaternary: Older layouts
     '.job-view-layout .jobs-description',
     '.jobs-unified-top-card + section .jobs-box__html-content',
 
     // Fallback: Any job description container
     '[data-job-id] .jobs-description',
     '.description__text--rich',
+
+    // Last resort: find "About the job" section content
+    'article .jobs-box__html-content',
 ];
 
 export const JOB_TITLE_SELECTORS = [

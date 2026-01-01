@@ -29,7 +29,7 @@
   "content_scripts": [
     {
       "js": [
-        "assets/linkedin.ts-YjCxIMxD.js"
+        "assets/linkedin.ts-HmmqcRtO.js"
       ],
       "matches": [
         "https://www.linkedin.com/jobs/*"
@@ -71,8 +71,8 @@
         "https://www.linkedin.com/*"
       ],
       "resources": [
-        "assets/linkedin.ts-YjCxIMxD.js",
-        "assets/linkedin.ts-YjCxIMxD.js.map"
+        "assets/linkedin.ts-HmmqcRtO.js",
+        "assets/linkedin.ts-HmmqcRtO.js.map"
       ],
       "use_dynamic_url": false
     },

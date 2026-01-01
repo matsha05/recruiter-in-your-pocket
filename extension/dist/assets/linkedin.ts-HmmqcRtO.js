@@ -6,12 +6,18 @@
   // Secondary: Search results sidebar
   ".jobs-search__job-details .jobs-box__html-content",
   ".jobs-details__main-content .jobs-box__html-content",
-  // Tertiary: Older layouts
+  // Tertiary: Collections and recommendation pages
+  ".jobs-details .jobs-box__html-content",
+  ".jobs-details-top-card ~ div .jobs-box__html-content",
+  ".scaffold-layout__detail .jobs-box__html-content",
+  // Quaternary: Older layouts
   ".job-view-layout .jobs-description",
   ".jobs-unified-top-card + section .jobs-box__html-content",
   // Fallback: Any job description container
   "[data-job-id] .jobs-description",
-  ".description__text--rich"
+  ".description__text--rich",
+  // Last resort: find "About the job" section content
+  "article .jobs-box__html-content"
 ];
 const JOB_TITLE_SELECTORS = [
   ".job-details-jobs-unified-top-card__job-title",
@@ -70,10 +76,23 @@ async function safeMessage(message) {
 }
 let captureButton = null;
 let isCapturing = false;
+let injectionAttempts = 0;
+const MAX_INJECTION_ATTEMPTS = 5;
 function init() {
   console.log("[RIYP] Content script initialized on:", window.location.href);
-  setTimeout(injectCaptureButton, 1500);
+  const isCollectionsPage = window.location.pathname.includes("/collections/");
+  const initialDelay = isCollectionsPage ? 2500 : 1500;
+  injectionAttempts = 0;
+  setTimeout(injectCaptureButtonWithRetry, initialDelay);
   observeNavigationChanges();
+}
+async function injectCaptureButtonWithRetry() {
+  await injectCaptureButton();
+  if (!captureButton && extractJobId() && injectionAttempts < MAX_INJECTION_ATTEMPTS) {
+    injectionAttempts++;
+    console.log("[RIYP] JD not found yet, retrying in 1s (attempt", injectionAttempts, ")");
+    setTimeout(injectCaptureButtonWithRetry, 1e3);
+  }
 }
 async function injectCaptureButton() {
   if (captureButton) {
@@ -312,5 +331,5 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
-//# sourceMappingURL=linkedin.ts-YjCxIMxD.js.map
+//# sourceMappingURL=linkedin.ts-HmmqcRtO.js.map
 })()

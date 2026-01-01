@@ -6,6 +6,23 @@ description:
 
 Oracle bundles prompts + files to query GPT-5.2 Pro. This doc codifies how agents should invoke Oracle for maximum effectiveness.
 
+## CRITICAL: Terminal Session Management
+
+**Each Oracle browser query MUST run in its own terminal session.**
+
+- DO NOT conflate Oracle queries with existing Oracle sessions
+- DO NOT check command_status on a different session ID
+- Oracle browser sessions run independently and take 5-30+ minutes
+- If an existing Oracle session is running, create a NEW one for your query
+- Monitor YOUR session ID, not a random previous session
+
+```bash
+# Check existing Oracle sessions
+ls -lt ~/.oracle/sessions/ | head -5
+
+# Each new query creates a new session in ~/.oracle/sessions/
+```
+
 ## Critical Rule: Always Include File Context
 
 **Oracle does NOT have access to your repo by default.** You MUST use `--file` to include relevant source files:
