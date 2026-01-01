@@ -3,7 +3,8 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import { Eye, PenLine, Sparkles, Search, Lightbulb, Target } from "lucide-react"
+import { Eye, PenLine, Search, Lightbulb, Target } from "lucide-react"
+import { InsightSparkleIcon } from "@/components/icons"
 
 interface TOCItem {
     id: string
@@ -20,7 +21,7 @@ export function LinkedInReportTOC({ activeId, score }: LinkedInReportTOCProps) {
     const items: TOCItem[] = [
         { id: "linkedin-first-impression", label: "First Impression", icon: Eye },
         { id: "linkedin-headline", label: "Headline Analysis", icon: PenLine },
-        { id: "linkedin-about", label: "About Section", icon: Sparkles },
+        { id: "linkedin-about", label: "About Section", icon: InsightSparkleIcon },
         { id: "linkedin-visibility", label: "Search Visibility", icon: Search },
         { id: "linkedin-quick-wins", label: "Quick Wins", icon: Lightbulb },
     ]

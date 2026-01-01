@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { ReportData } from "./ReportTypes";
-import { Check, Lock, Sparkles } from "lucide-react";
-import { HiddenGemIcon } from "@/components/icons";
+import { Check, Lock } from "lucide-react";
+import { HiddenGemIcon, InsightSparkleIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
@@ -98,7 +98,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                             }}
                             className="w-full shadow-md"
                         >
-                            <Sparkles className="w-4 h-4 mr-2" />
+                            <InsightSparkleIcon className="w-4 h-4 mr-2" />
                             Uncover Your Hidden Wins
                         </Button>
                     )}

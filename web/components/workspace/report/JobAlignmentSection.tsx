@@ -2,11 +2,11 @@
 
 import { ReportData } from "./ReportTypes";
 import { ReportSectionHeader } from "./ReportSectionHeader";
-import { Target, Lock, Sparkles, Check, X } from "lucide-react";
+import { Lock, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
-import { InsightSparkleIcon } from "@/components/icons/InsightSparkleIcon";
+import { InsightSparkleIcon, RoleTargetIcon } from "@/components/icons";
 
 interface JobAlignmentSectionProps {
     data: ReportData;
@@ -28,7 +28,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
         return (
             <section className="space-y-6">
                 <ReportSectionHeader
-                    icon={<Target className="w-4 h-4 text-brand" />}
+                    icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
                     number="05"
                     title="Where You Compete"
                     subtitle="Your primary lane and how to position."
@@ -75,7 +75,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
         return (
             <section className="space-y-6">
                 <ReportSectionHeader
-                    icon={<Target className="w-4 h-4 text-brand" />}
+                    icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
                     number="05"
                     title="Where You Compete"
                     subtitle="Your primary lane and how to position."
@@ -90,7 +90,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
     return (
         <section className="space-y-8">
             <ReportSectionHeader
-                icon={<Target className="w-4 h-4 text-brand" />}
+                icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
                 number="05"
                 title="Where You Compete"
                 subtitle="Your primary lane and how to position."
@@ -131,7 +131,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             }}
                             className="w-full shadow-md"
                         >
-                            <Sparkles className="w-4 h-4 mr-2" />
+                            <InsightSparkleIcon className="w-4 h-4 mr-2" />
                             Unlock Role Positioning
                         </Button>
                     )}
@@ -150,7 +150,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                     }`}>
                                     {jdMatchScore}%
                                     {jdMatchScore >= SCORE_THRESHOLDS.STRONG && (
-                                        <Sparkles className="inline-block w-6 h-6 ml-2 animate-bounce-subtle" strokeWidth={1.5} />
+                                        <InsightSparkleIcon className="inline-block w-5 h-5 ml-2 text-success" />
                                     )}
                                 </div>
                                 <div className="text-left">

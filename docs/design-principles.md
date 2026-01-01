@@ -46,10 +46,11 @@ Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 p
 - Muted slate for UI chrome
 - Shadows are subtle, not dramatic
 
-### 5. Crafted Delight
-We are premium and intentional, not templated. This is where we allow taste.
+### 5. Crafted Modernity
+We are premium and intentional, not templated. This is where we allow advanced craft.
 - Composition can be bold. Asymmetry and editorial layout are welcome when they improve clarity.
-- Delight must be earned by the content. No gimmicks, no mascots, no confetti.
+- Use modern techniques with restraint: variable font axes, layered grids, bespoke data viz, and micro-interaction choreography.
+- Surprise comes from clarity and craft, not theatrics. No gimmicks, no mascots, no confetti.
 - Consistency comes from type, tokens, spacing, and voice. Layout can vary.
 - If a screen feels generic, change the structure first, not the decoration.
 
@@ -105,6 +106,7 @@ Location: `/web/components/icons/`
 | **SignalRadarIcon** | `SignalRadarIcon.tsx` | Data Visualization | 02. Signal Analysis header |
 | **TransformArrowIcon** | `TransformArrowIcon.tsx` | Editorial Quill | 03. The Red Pen header |
 | **HiddenGemIcon** | `HiddenGemIcon.tsx` | Discovery/Treasure | 04. Missing Wins header |
+| **RoleTargetIcon** | `RoleTargetIcon.tsx` | Role Fit Target | 05. Where You Compete header |
 | **SixSecondIcon** | `SixSecondIcon.tsx` | Timer Segment | Scanning state, InputPanel |
 | **EmptyReportIcon** | `EmptyReportIcon.tsx` | Empty states | Reserved (text-first preferred) |
 | **InsightSparkleIcon** | `InsightSparkleIcon.tsx` | North Star/Value | Pro Tip, Pricing, Coach notes |
@@ -114,6 +116,7 @@ Location: `/web/components/icons/`
 - ViewBox: `0 0 24 24` (standard)
 - Fill: `none` (stroke-based)
 - Custom icons support `className` and `size` props
+- Signature moments use custom icons. Do not use Lucide in report headers or TOCs.
 - **Never use** Lucide `Sparkles` — use `InsightSparkleIcon` instead
 - **Never use** generic User/Eye icons for recruiter persona — use `PrincipalRecruiterIcon`
 

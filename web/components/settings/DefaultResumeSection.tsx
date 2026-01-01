@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { FileText, Upload, Check, Loader2, Sparkles, Target, RefreshCw, ShieldCheck, X } from "lucide-react";
+import { FileText, Upload, Check, Loader2, Target, RefreshCw, ShieldCheck, X } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { InsightSparkleIcon } from "@/components/icons";
 
 interface DefaultResumeSectionProps {
     className?: string;
@@ -205,7 +206,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                             </span>
                             {profile.hasEmbedding && (
                                 <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
-                                    <Sparkles className="w-3.5 h-3.5" />
+                                    <InsightSparkleIcon className="w-3.5 h-3.5" />
                                     Semantic matching on
                                 </span>
                             )}

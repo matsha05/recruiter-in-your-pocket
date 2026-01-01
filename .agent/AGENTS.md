@@ -69,6 +69,18 @@
     Ask yourself: "What will the user SEE differently after this session?"
     If the answer is "nothing yet, but the architecture is better" - you're doing it wrong.
   </inference-speed>
+
+  <debugging>
+    BUILD/CI FAILURES - ROOT CAUSE ONLY (learned 2025-01-01):
+    
+    When a build fails due to missing env vars or configuration:
+    1. NEVER add defensive null-checks or optional fallbacks to "work around" the issue
+    2. The fix is ALWAYS to add the missing config to the environment (CI secrets, Vercel, etc.)
+    3. Code should assume its dependencies exist - that's a deployment concern, not a code concern
+    
+    If you catch yourself writing "if (!envVar) return null" to fix a CI error - STOP.
+    That's a band-aid. The distinguished engineer fix is configuring the environment properly.
+  </debugging>
 </principles>
 
 <quality>

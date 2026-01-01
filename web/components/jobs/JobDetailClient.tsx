@@ -12,7 +12,6 @@ import {
     XCircle,
     FileText,
     MessageSquare,
-    Sparkles,
     Building2,
     MapPin,
     Calendar,
@@ -20,6 +19,7 @@ import {
     Check
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { InsightSparkleIcon } from "@/components/icons";
 
 // =============================================================================
 // TYPES
@@ -279,7 +279,7 @@ function JobDetailTabs({ score, job }: JobDetailTabsProps) {
     const [activeTab, setActiveTab] = useState<TabId>('overview');
 
     const tabs: { id: TabId; label: string; icon: React.ElementType }[] = [
-        { id: 'overview', label: 'Overview', icon: Sparkles },
+        { id: 'overview', label: 'Overview', icon: InsightSparkleIcon },
         { id: 'job-description', label: 'Job Description', icon: FileText },
         { id: 'analysis', label: 'Full Analysis', icon: CheckCircle2 },
     ];
@@ -574,7 +574,7 @@ function NextBestActions({ jobId }: { jobId: string }) {
                     href={`/workspace?job=${jobId}`}
                 />
                 <ActionButton
-                    icon={Sparkles}
+                    icon={InsightSparkleIcon}
                     label="Generate Bullets"
                     description="Fill evidence gaps"
                     comingSoon

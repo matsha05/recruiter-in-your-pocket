@@ -1,7 +1,7 @@
 /**
  * Custom Signature Icons — V2.1
  * 
- * 9 brand-defining icons. Use for signature moments, NOT utility chrome.
+ * 10 brand-defining icons. Use for signature moments, NOT utility chrome.
  * 
  * RULES:
  * - Lucide OK for: Navigation, actions, feedback
@@ -20,3 +20,4 @@ export { InsightSparkleIcon } from './InsightSparkleIcon';
 export { Wordmark } from './Wordmark';
 export { SignalRadarIcon } from './SignalRadarIcon';
 export { HiddenGemIcon } from './HiddenGemIcon';
+export { RoleTargetIcon } from './RoleTargetIcon';

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, Sparkles, ArrowRight, Download } from "lucide-react";
+import { X, ArrowRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { InsightSparkleIcon } from "@/components/icons";
 
 interface UnlockBannerProps {
     reportId: string;
@@ -47,14 +48,14 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
             <div className="relative rounded-lg border border-premium/20 bg-premium/5 p-4 md:p-6 overflow-hidden">
                 {/* Background Sparkle Decoration */}
                 <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                    <Sparkles className="w-16 h-16 text-premium" />
+                    <InsightSparkleIcon className="w-16 h-16 text-premium" />
                 </div>
 
                 <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 space-y-4">
                         <div className="space-y-1">
                             <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                                <Sparkles className="w-4 h-4 text-premium" />
+                                <InsightSparkleIcon className="w-4 h-4 text-premium" />
                                 Now you see what they see.
                             </h3>
                             <p className="text-sm text-muted-foreground">

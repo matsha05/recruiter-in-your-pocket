@@ -8,13 +8,13 @@ import {
     Check,
     Loader2,
     Target,
-    Sparkles,
     RefreshCw,
     AlertCircle,
     Pencil,
     X
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { InsightSparkleIcon } from "@/components/icons";
 
 // =============================================================================
 // TYPES
@@ -274,7 +274,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                 </span>
                                 {profile.hasEmbedding && (
                                     <span className="flex items-center gap-1 text-amber-600">
-                                        <Sparkles className="w-3 h-3" />
+                                        <InsightSparkleIcon className="w-3 h-3" />
                                         Semantic matching
                                     </span>
                                 )}

@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { ReportData } from "./ReportTypes";
-import { TransformArrowIcon } from "@/components/icons";
+import { InsightSparkleIcon, TransformArrowIcon } from "@/components/icons";
 import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
-import { Sparkles, Lock, ChevronDown, ChevronUp } from "lucide-react";
+import { Lock, ChevronDown, ChevronUp } from "lucide-react";
 import { RedPenCard } from "@/components/shared/RedPenCard";
 
 interface BulletUpgradesSectionProps {
@@ -38,7 +38,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                 />
                 <div className="rounded-lg border border-success/20 bg-success/5 p-6 flex items-start gap-4">
                     <div className="h-10 w-10 rounded-full bg-success/10 flex items-center justify-center shrink-0">
-                        <Sparkles className="h-5 w-5 text-success" />
+                        <InsightSparkleIcon className="h-5 w-5 text-success" />
                     </div>
                     <div>
                         <h3 className="font-display font-medium text-foreground text-lg mb-1">

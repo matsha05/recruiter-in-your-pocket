@@ -1,4 +1,4 @@
-import { ArrowRight, Plus, Sparkles, FileText } from "lucide-react";
+import { ArrowRight, Plus, FileText } from "lucide-react";
 import { useRef } from "react";
 import { ReportData } from "./ReportTypes";
 import { FirstImpressionSection } from "./FirstImpressionSection";
@@ -8,6 +8,7 @@ import { MissingWinsSection } from "./MissingWinsSection";
 import { JobAlignmentSection } from "./JobAlignmentSection";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { InsightSparkleIcon } from "@/components/icons";
 
 interface ReportStreamProps {
     report: ReportData;
@@ -139,7 +140,7 @@ export function ReportStream({
                                 variant="premium"
                                 onClick={onUpgrade}
                             >
-                                <Sparkles className="w-4 h-4 mr-2" />
+                                <InsightSparkleIcon className="w-4 h-4 mr-2" />
                                 Get More Reviews
                             </Button>
                         </div>
@@ -165,4 +166,3 @@ export function ReportStream({
         </div>
     );
 }
-

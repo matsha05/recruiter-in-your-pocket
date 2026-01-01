@@ -110,6 +110,7 @@ Location: `/web/components/icons/`
 | `SignalRadarIcon` | Data Visualization | 02. Signal Analysis header |
 | `TransformArrowIcon` | Editorial Quill | 03. The Red Pen header |
 | `HiddenGemIcon` | Discovery/Treasure | 04. Missing Wins header |
+| `RoleTargetIcon` | Role Fit Target | 05. Where You Compete header |
 | `SixSecondIcon` | Timer Segment | Scanning state, InputPanel |
 | `EmptyReportIcon` | Empty states (reserved) | Text-first preferred |
 | `InsightSparkleIcon` | North Star/Value | Premium features, Coach notes |
@@ -193,6 +194,17 @@ If the claim is recruiter judgment or an internal heuristic:
 - Icon-only buttons require `aria-label`.
 - Popovers and tooltips must be keyboard accessible and dismissible.
 - Do not remove outlines unless replaced with an equivalent focus style.
+
+---
+
+## 12. Finish Pass (Required)
+
+- Hierarchy: one primary and one secondary per screen. Everything else is supporting.
+- Spacing rhythm: align to a 4px grid and keep consistent vertical cadence.
+- Type: display for headlines, mono only for data. Avoid oversized body text in dense UI.
+- States: hover, focus, active, disabled, loading are all defined.
+- Motion: use `--ease` and duration tokens. No infinite motion.
+- Pixel: align baselines, icons, and borders to avoid jitter.
 
 ---
 

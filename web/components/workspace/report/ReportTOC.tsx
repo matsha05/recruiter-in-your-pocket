@@ -3,7 +3,13 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import { CheckCircle2, AlertCircle, Wand2, Target, Trophy } from "lucide-react"
+import {
+    HiddenGemIcon,
+    PrincipalRecruiterIcon,
+    RoleTargetIcon,
+    SignalRadarIcon,
+    TransformArrowIcon
+} from "@/components/icons"
 
 interface TOCItem {
     id: string
@@ -19,11 +25,11 @@ interface ReportTOCProps {
 
 export function ReportTOC({ activeId, score }: ReportTOCProps) {
     const items: TOCItem[] = [
-        { id: "section-first-impression", label: "The Verdict", icon: CheckCircle2 },
-        { id: "section-score-summary", label: "Signal Check", icon: Target },
-        { id: "section-bullet-upgrades", label: "Red Pen Rewrites", icon: Wand2 },
-        { id: "section-missing-wins", label: "Missing Wins", icon: Trophy },
-        { id: "section-job-alignment", label: "Job Fit", icon: AlertCircle },
+        { id: "section-first-impression", label: "The Verdict", icon: PrincipalRecruiterIcon },
+        { id: "section-score-summary", label: "Signal Check", icon: SignalRadarIcon },
+        { id: "section-bullet-upgrades", label: "Red Pen Rewrites", icon: TransformArrowIcon },
+        { id: "section-missing-wins", label: "Missing Wins", icon: HiddenGemIcon },
+        { id: "section-job-alignment", label: "Job Fit", icon: RoleTargetIcon },
     ]
 
     const handleScroll = (id: string) => {

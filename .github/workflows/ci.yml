@@ -38,3 +38,6 @@ jobs:
         env:
           # Skip Sentry source map upload in CI (no auth token in env)
           SENTRY_AUTH_TOKEN: ""
+          # Supabase env vars needed for static generation
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}

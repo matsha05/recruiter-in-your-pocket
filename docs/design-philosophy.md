@@ -96,6 +96,7 @@ Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 p
 - Gold for premium moments only
 - Muted slate for UI chrome
 - Shadows are subtle, not dramatic
+- Surprise comes from clarity and craft, not theatrics
 
 ### 5. Invisible Perfection
 **Reference: Bear Notes, Things 3**
