@@ -23,55 +23,136 @@ export interface IDFStore {
     lastUpdated: Date;
 }
 
-// ================== BOOTSTRAP DATA ==================
-// Pre-seeded frequency data based on common JD patterns
-// This gives us a head start before we accumulate real data
+// ================== RESEARCH-BACKED DATA ==================
+// Skill posting frequency data from authoritative sources:
+// - America Succeeds "Durable by Design" (Lightcast, ~76M postings, 2023-2024)
+// - America Succeeds Durable Skills National Fact Sheet
+// - National Skills Coalition "Closing the Digital Skill Divide" (43M postings, 2021)
+// - O*NET Hot Technologies (Lightcast posting counts)
+//
+// Values = percentage of job postings mentioning this skill (out of 100)
 
 const BOOTSTRAP_SKILL_FREQUENCIES: Record<string, number> = {
-    // Extremely common (appears in 80%+ of JDs) → low weight
-    'communication': 90,
-    'teamwork': 85,
-    'leadership': 75,
-    'problem solving': 70,
-    'collaboration': 70,
-    'time management': 65,
-    'attention to detail': 65,
-    'organization': 60,
-    'microsoft office': 60,
-    'excel': 55,
+    // --------------------------
+    // SOFT SKILLS (market-wide research from Lightcast/America Succeeds)
+    // --------------------------
+    'communication': 35,        // Durable by Design: top skill
+    'customer service': 26,     // Durable by Design
+    'critical thinking': 19,    // Durable Skills Fact Sheet
+    'teamwork': 18,             // Proxied via "collaboration" competency
+    'collaboration': 18,        // Durable Skills Fact Sheet
+    'leadership': 15,           // Durable by Design
+    'problem solving': 12,      // Durable by Design
+    'attention to detail': 12,  // Durable by Design "detail-oriented"
+    'time management': 10,      // Proxied via "planning"
+    'organization': 10,         // Proxied via "planning"
+    'interpersonal skills': 8,  // Durable by Design "interpersonal communications"
+    'creativity': 7,            // Durable Skills Fact Sheet
+    'presentation skills': 6,   // Proxied via PowerPoint mention rate
+    'analytical skills': 5,     // Estimated from data analysis patterns
 
-    // Very common (50-80%) → moderate-low weight
-    'project management': 45,
-    'customer service': 40,
-    'presentation skills': 35,
-    'analytical skills': 35,
-    'data analysis': 30,
+    // --------------------------
+    // TECHNICAL / TOOLS (O*NET Hot Technologies + NSC Digital Divide)
+    // --------------------------
+    'microsoft office': 12,     // O*NET + NSC baseline
+    'excel': 11,                // NSC: 4.9M/43M postings = 11%
+    'project management': 8,    // Estimated from PM tool mentions
+    'data analysis': 6,         // Estimated
 
-    // Moderately common (20-50%) → normal weight
-    'sql': 25,
-    'python': 22,
-    'salesforce': 20,
-    'jira': 18,
-    'recruiting': 15,
-    'talent acquisition': 12,
+    'microsoft outlook': 6,     // O*NET Hot Technologies
+    'microsoft powerpoint': 6,  // O*NET Hot Technologies
+    'microsoft word': 4,        // O*NET Hot Technologies
 
-    // Rare (5-20%) → higher weight
-    'greenhouse': 8,
-    'lever': 7,
-    'workday': 10,
-    'machine learning': 8,
-    'kubernetes': 6,
-    'terraform': 5,
-    'executive recruiting': 5,
+    'python': 3,                // O*NET Hot Technologies
+    'sql': 3,                   // O*NET Hot Technologies
+    'jira': 3,                  // O*NET (6% in tech occupations, ~3% market-wide)
 
-    // Very rare (<5%) → highest weight
-    'osha': 3,
-    'drywall': 2,
-    'blueprint': 3,
-    'hvac': 2,
+    'salesforce': 2,            // O*NET Hot Technologies
+    'aws': 2,                   // O*NET Hot Technologies
+    'sap': 2,                   // O*NET Hot Technologies
+
+    'azure': 1,                 // O*NET Hot Technologies
+    'java': 1,                  // O*NET Hot Technologies
+    'power bi': 1,              // O*NET Hot Technologies
+    'kubernetes': 1,            // Rare infrastructure skill
+    'terraform': 1,             // Rare infrastructure skill
+    'machine learning': 1,      // Rare ML skill
+
+    // --------------------------
+    // INDUSTRY-SPECIFIC (rare in market-wide, higher in domain)
+    // --------------------------
+    // HR Tools
+    'workday': 2,               // O*NET: 5-8% in HR, ~2% market-wide
+    'recruiting': 3,            // Estimated from TA role postings
+    'talent acquisition': 2,
+    'greenhouse': 1,            // Rare ATS
+    'lever': 1,                 // Rare ATS
+
+    // Construction
+    'osha': 1,                  // Very rare market-wide
+    'drywall': 1,
+    'blueprint': 1,
+    'hvac': 1,
+
+    // Benefits/Comp
     'fertility benefits': 1,
-    'tpa': 2,
-    'actuary': 2,
+    'tpa': 1,
+    'actuary': 1,
+};
+
+// ================== SOC-SPECIFIC FREQUENCIES ==================
+// Skills that are common in specific domains but rare globally
+// Use these when the JD's SOC group is known for more accurate weighting
+// Source: O*NET Hot Technologies occupation-level posting percentages
+
+const SOC_SKILL_FREQUENCIES: Record<string, Record<string, number>> = {
+    // SOC 13: Business and Financial Operations (HR, Recruiting, Finance)
+    '13': {
+        'workday': 6,           // O*NET: 5-8% in HR/payroll occupations
+        'greenhouse': 5,        // Common in recruiting roles
+        'lever': 5,             // Common in recruiting roles
+        'recruiting': 15,       // Core HR function
+        'talent acquisition': 12,
+        'salesforce': 8,        // Used in business ops
+        'excel': 25,            // Higher in business roles
+    },
+
+    // SOC 15: Computer and Mathematical (Tech, Software, Data)
+    '15': {
+        'python': 15,           // Much higher in tech roles
+        'sql': 18,              // Core data skill
+        'aws': 12,              // Common in cloud roles
+        'kubernetes': 8,        // Common in DevOps/SRE
+        'terraform': 6,         // Common in infrastructure
+        'docker': 10,           // Common in backend/devops
+        'jira': 12,             // Standard project tracking
+        'machine learning': 8,  // Common in ML roles
+        'java': 10,             // Common backend language
+        'react': 8,             // Common frontend
+        'typescript': 8,
+    },
+
+    // SOC 41: Sales and Related
+    '41': {
+        'salesforce': 15,       // O*NET: 9-15% in sales roles
+        'hubspot': 8,
+        'linkedin sales navigator': 6,
+    },
+
+    // SOC 47: Construction and Extraction
+    '47': {
+        'osha': 25,             // Required for most construction roles
+        'blueprint': 15,
+        'autocad': 10,
+        'hvac': 12,
+    },
+
+    // SOC 29: Healthcare Practitioners
+    '29': {
+        'epic': 15,             // Common EHR
+        'cerner': 10,
+        'meditech': 6,
+    },
 };
 
 // Assumed bootstrap corpus size
@@ -109,18 +190,32 @@ export function idfToWeight(idf: number): number {
 
 /**
  * Get skill weight from bootstrap data or default
+ * 
+ * @param skill - The skill to get weight for
+ * @param store - Optional learned IDF store
+ * @param socCode - Optional SOC major group code for domain-aware weighting
  */
-export function getSkillWeight(skill: string, store?: IDFStore): number {
+export function getSkillWeight(skill: string, store?: IDFStore, socCode?: string): number {
     const normalizedSkill = skill.toLowerCase().trim();
 
-    // Use provided store if available
+    // Use provided store if available (learned data takes priority)
     if (store && store.totalDocuments > 0) {
         const docFreq = store.skillCounts[normalizedSkill] || 1;
         const idf = calculateIDF(docFreq, store.totalDocuments);
         return idfToWeight(idf);
     }
 
-    // Fall back to bootstrap data
+    // Check SOC-specific frequencies first (domain-aware IDF)
+    if (socCode && SOC_SKILL_FREQUENCIES[socCode]) {
+        const socFreqs = SOC_SKILL_FREQUENCIES[socCode];
+        if (socFreqs[normalizedSkill] !== undefined) {
+            const docFreq = socFreqs[normalizedSkill];
+            const idf = calculateIDF(docFreq, BOOTSTRAP_CORPUS_SIZE);
+            return idfToWeight(idf);
+        }
+    }
+
+    // Fall back to global bootstrap data
     if (BOOTSTRAP_SKILL_FREQUENCIES[normalizedSkill] !== undefined) {
         const docFreq = BOOTSTRAP_SKILL_FREQUENCIES[normalizedSkill];
         const idf = calculateIDF(docFreq, BOOTSTRAP_CORPUS_SIZE);

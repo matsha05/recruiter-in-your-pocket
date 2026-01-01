@@ -517,7 +517,7 @@ function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete }) {
         "Captured ",
         capturedAgo,
         " • ",
-        score > 0 ? `Match: ${score}%` : "Ready to analyze"
+        score > 0 ? `${getScoreBandLabel(score)}: ${score}%` : "Ready to analyze"
       ] }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "job-actions", children: [
@@ -586,6 +586,13 @@ function getScoreClass(score) {
   if (score >= 85) return "success";
   if (score >= 70) return "premium";
   return "destructive";
+}
+function getScoreBandLabel(score) {
+  if (score >= 86) return "Excellent Fit";
+  if (score >= 71) return "Strong Match";
+  if (score >= 41) return "Plausible Fit";
+  if (score >= 16) return "Career Stretch";
+  return "Not a Match";
 }
 function getTimeAgo(timestamp) {
   if (!timestamp) return "recently";
@@ -950,4 +957,4 @@ function LoadingSkeleton() {
 client.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
 );
-//# sourceMappingURL=popup-Xfh1I0JP.js.map
+//# sourceMappingURL=popup-D2wyz8EX.js.map

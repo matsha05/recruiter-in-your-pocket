@@ -24,10 +24,39 @@ export interface GrowthClaim {
     context?: string;
 }
 
+// ================== EVIDENCE STRENGTH LEVELS ==================
+// Level 2: Demonstrated in experience bullets = 1.0 credit
+// Level 1: Listed in skills section = 0.6 credit
+// Level 0: Inferred from context = 0.2 credit
+
+export type EvidenceLevel = 2 | 1 | 0;
+
+export interface SkillWithEvidence {
+    skill: string;
+    level: EvidenceLevel;
+    source?: string;  // "experience", "skills_section", "inferred"
+}
+
+/**
+ * Get the credit multiplier for an evidence level
+ */
+export function getEvidenceCredit(level: EvidenceLevel): number {
+    switch (level) {
+        case 2: return 1.0;   // Full credit: demonstrated in experience
+        case 1: return 0.6;   // Partial credit: listed but not demonstrated
+        case 0: return 0.2;   // Minimal credit: inferred only
+        default: return 0.2;
+    }
+}
+
+
 export interface ParsedResume {
     // Core fields
     skills: string[];
     tools: string[];  // Specific technologies: Greenhouse, Lever, Rippling
+
+    // Enhanced: skills with evidence levels (optional for backward compatibility)
+    skills_with_evidence?: SkillWithEvidence[];
 
     // Numeric achievements
     scale_claims: ScaleClaim[];

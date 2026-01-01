@@ -48,6 +48,27 @@
     When user defines constraints ("never X", "always Y", "from now on"), immediately persist
     to this AGENTS.md. Acknowledge, write, confirm.
   </constraint-persistence>
+
+  <inference-speed>
+    Shipping at Inference Speed (learned 2024-12-31):
+    
+    BUILD LESS, SHIP MORE. Every session should produce something visible and usable.
+    
+    1. Start with the smallest shippable change. Wire to UI before building more plumbing.
+    2. "Touch it, feel it, see it" - internal infrastructure without visible output = wasted session.
+    3. If you build a new function, wire it to the UI in the same session.
+    4. Prefer linear evolution over complete upfront design.
+    5. When stuck on tooling/debugging > 15 min, stop and reassess.
+    
+    ANTIPATTERNS (things we learned not to do):
+    - Building 4 internal functions that nothing calls yet
+    - 30+ min debugging Oracle cookies when --copy mode was available
+    - Researching skill frequencies for 2 hours before wiring any scoring
+    - Creating "evidence levels" infrastructure without integrating it
+    
+    Ask yourself: "What will the user SEE differently after this session?"
+    If the answer is "nothing yet, but the architecture is better" - you're doing it wrong.
+  </inference-speed>
 </principles>
 
 <quality>
@@ -86,6 +107,13 @@
   - Do NOT check command_status on a different Oracle session
   - Use descriptive session names if available
   - Monitor the correct session ID for your specific query
+  
+  TROUBLESHOOTING (learned 2024-12-31):
+  - If you see "No ChatGPT cookies" or cookie errors, use --browser-manual-login flag
+  - First-time setup: Run with both --browser-manual-login AND --browser-keep-browser to log in
+  - The Chrome window will stay open for you to authenticate, then Oracle proceeds
+  - Subsequent runs can omit --browser-keep-browser (profile persists at ~/.oracle/browser-profile)
+  - If stuck on Oracle issues, consult: https://github.com/steipete/oracle/blob/main/docs/browser-mode.md
   
   For detailed usage, prompt templates, and troubleshooting:
   See .agent/workflows/oracle.md

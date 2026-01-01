@@ -54,8 +54,8 @@ const SOC_GROUPS: SOCGroupInfo[] = [
     { code: '11', name: 'Management', keywords: ['manager', 'director', 'chief', 'vp', 'vice president', 'ceo', 'cfo', 'cto', 'head of', 'executive'] },
     // Removed generic 'analyst' - too ambiguous (data analyst vs business analyst vs financial analyst)
     { code: '13', name: 'Business and Financial Operations', keywords: ['hr', 'human resources', 'recruiting', 'recruiter', 'talent acquisition', 'staffing', 'hris', 'benefits', 'compensation', 'financial analyst', 'business analyst', 'finance', 'accountant', 'compliance', 'operations', 'project manager', 'business development'] },
-    // Added data analyst, security engineer, infosec - these are tech roles
-    { code: '15', name: 'Computer and Mathematical', keywords: ['software', 'developer', 'programmer', 'data scientist', 'machine learning', 'ai', 'devops', 'cloud', 'database', 'frontend', 'backend', 'fullstack', 'web developer', 'swe', 'software engineer', 'data analyst', 'data engineer', 'security engineer', 'cybersecurity', 'infosec', 'appsec', 'soc analyst', 'penetration tester'] },
+    // Added data analyst, security engineer, ml engineer, infosec - these are tech roles
+    { code: '15', name: 'Computer and Mathematical', keywords: ['software', 'developer', 'programmer', 'data scientist', 'machine learning', 'ml engineer', 'ml', 'ai', 'devops', 'cloud', 'database', 'frontend', 'backend', 'fullstack', 'web developer', 'swe', 'software engineer', 'data analyst', 'data engineer', 'security engineer', 'cybersecurity', 'infosec', 'appsec', 'soc analyst', 'penetration tester'] },
     { code: '17', name: 'Architecture and Engineering', keywords: ['architect', 'civil engineer', 'mechanical engineer', 'electrical engineer', 'structural engineer', 'cad', 'autocad'] },
     { code: '19', name: 'Life Physical and Social Science', keywords: ['scientist', 'research', 'biologist', 'chemist', 'physicist', 'lab'] },
     { code: '21', name: 'Community and Social Service', keywords: ['social worker', 'counselor', 'nonprofit', 'community'] },
@@ -194,7 +194,8 @@ const SOC_SPECIALTIES: Record<SOCMajorGroup, SpecialtyInfo[]> = {
         { name: 'Tech/Engineering Management', keywords: ['engineering manager', 'vp engineering', 'cto', 'technical director', 'software manager'] },
         { name: 'Sales/Revenue Management', keywords: ['sales manager', 'vp sales', 'revenue', 'cro', 'business development director'] },
         { name: 'Operations Management', keywords: ['operations manager', 'coo', 'plant manager', 'facilities'] },
-        { name: 'HR/People Management', keywords: ['hr director', 'chief people', 'vp people', 'vp hr', 'talent director'] },
+        { name: 'HR/TA Management', keywords: ['hr director', 'chief people', 'vp people', 'vp hr', 'talent director', 'recruiting manager', 'ta manager', 'head of recruiting'] },
+        { name: 'Benefits/Comp Management', keywords: ['benefits manager', 'compensation manager', 'total rewards manager', 'benefits director'] },
         { name: 'Finance Management', keywords: ['cfo', 'finance director', 'controller', 'vp finance'] },
         { name: 'Marketing Management', keywords: ['cmo', 'marketing director', 'vp marketing', 'brand director'] },
     ],
@@ -374,13 +375,66 @@ const SOC_SPECIALTIES: Record<SOCMajorGroup, SpecialtyInfo[]> = {
 };
 
 /**
+ * Extract likely domain keywords from text when domains array is empty
+ * This is a fallback for when LLM parsing doesn't return domains
+ */
+function extractDomainsFromText(text: string): string[] {
+    const lowerText = text.toLowerCase();
+    const foundDomains: string[] = [];
+
+    // Check for common domain indicators
+    const domainPatterns = [
+        // Tech - fixed patterns to match full words like "data analyst", "machine learning"
+        { pattern: /\b(backend|back-end|server-side)\b/i, domain: 'backend' },
+        { pattern: /\b(frontend|front-end|react|vue|angular)\b/i, domain: 'frontend' },
+        { pattern: /\b(mobile|ios|android)\b/i, domain: 'mobile' },
+        { pattern: /\b(machine learning|ml engineer|ml\b|ai engineer|data scien)/i, domain: 'ml' },
+        { pattern: /\b(devops|sre|kubernetes|k8s|docker)\b/i, domain: 'devops' },
+        { pattern: /\b(security|infosec|cybersecurity|penetration)\b/i, domain: 'security' },
+        { pattern: /\b(data analyst|data analysis|analytics|bi analyst|tableau|looker)\b/i, domain: 'analytics' },
+        { pattern: /\b(qa\b|quality assurance|test engineer|sdet)\b/i, domain: 'qa' },
+
+        // HR/Business
+        { pattern: /\b(recruiting|recruiter|talent acquisition|sourcing)\b/i, domain: 'recruiting' },
+        { pattern: /\b(benefits|compensation|total rewards)\b/i, domain: 'benefits' },
+        { pattern: /\b(hr generalist|hrbp|employee relations)\b/i, domain: 'hr generalist' },
+        { pattern: /\b(finance|accounting|audit)\b/i, domain: 'finance' },
+
+        // Healthcare
+        { pattern: /\b(nursing|nurse|rn\b|lpn\b)\b/i, domain: 'nursing' },
+        { pattern: /\b(pharmacy|pharmacist)\b/i, domain: 'pharmacy' },
+        { pattern: /\b(physical therap|occupational therap)/i, domain: 'therapy' },
+
+        // Sales
+        { pattern: /\b(enterprise|b2b|account executive)\b/i, domain: 'enterprise' },
+        { pattern: /\b(sdr\b|bdr\b|sales development)\b/i, domain: 'sdr' },
+
+        // Construction
+        { pattern: /\b(preconstruction|estimat)/i, domain: 'preconstruction' },
+        { pattern: /\b(superintendent|foreman)\b/i, domain: 'superintendent' },
+        { pattern: /\b(drywall|framing|carpentry)\b/i, domain: 'trades' },
+    ];
+
+    for (const { pattern, domain } of domainPatterns) {
+        if (pattern.test(lowerText)) {
+            foundDomains.push(domain);
+        }
+    }
+
+    return foundDomains;
+}
+
+/**
  * Detect specialty within a SOC group
+ * Falls back to text extraction if domains array is empty
  */
 function detectSpecialty(text: string, domains: string[], forSOC: SOCMajorGroup): string | null {
     const specialties = SOC_SPECIALTIES[forSOC];
     if (!specialties || specialties.length === 0) return null;
 
-    const combined = `${text} ${domains.join(' ')}`.toLowerCase();
+    // Fallback: extract domains from text if none provided
+    const effectiveDomains = domains.length > 0 ? domains : extractDomainsFromText(text);
+    const combined = `${text} ${effectiveDomains.join(' ')}`.toLowerCase();
 
     for (const specialty of specialties) {
         for (const keyword of specialty.keywords) {
@@ -398,6 +452,17 @@ function detectSpecialty(text: string, domains: string[], forSOC: SOCMajorGroup)
 // Adjacent specialties get 80% alignment vs 60% for unrelated
 
 const SPECIALTY_ADJACENCY: Record<string, Record<string, string[]>> = {
+    // SOC 11: Management - different functions
+    '11': {
+        'Tech/Engineering Management': ['Operations Management'],  // Tech ↔ Ops
+        'Sales/Revenue Management': ['Marketing Management', 'Operations Management'],  // Sales ↔ Marketing, Ops
+        'Operations Management': ['Tech/Engineering Management', 'Sales/Revenue Management'],  // Ops is central
+        'HR/TA Management': ['Benefits/Comp Management'],  // HR/TA ↔ Benefits
+        'Benefits/Comp Management': ['HR/TA Management', 'Finance Management'],  // Benefits ↔ HR, Finance
+        'Finance Management': ['Benefits/Comp Management', 'Operations Management'],  // Finance ↔ Benefits
+        'Marketing Management': ['Sales/Revenue Management'],  // Marketing ↔ Sales
+    },
+
     // SOC 15: Computer and Mathematical
     '15': {
         'Backend/Infrastructure': ['Fullstack', 'DevOps/SRE', 'Data/ML'],  // Backend → Fullstack, DevOps, or ML is reasonable
@@ -494,7 +559,9 @@ export function calculateRoleAlignment(
     resumeSOC: SOCMajorGroup | null,
     jdSOC: SOCMajorGroup | null,
     resumeDomains?: string[],
-    jdDomains?: string[]
+    jdDomains?: string[],
+    resumeTitle?: string,  // For fallback domain extraction
+    jdTitle?: string       // For fallback domain extraction
 ): { alignment: number; band: 'match' | 'adjacent' | 'mismatch'; specialtyMatch?: boolean; specialtyAdjacent?: boolean } {
     // If we can't classify either, be neutral
     if (!resumeSOC || !jdSOC) {
@@ -504,8 +571,9 @@ export function calculateRoleAlignment(
     // Same group = check for specialty mismatch
     if (resumeSOC === jdSOC) {
         // Check specialty within the same SOC group
-        const resumeSpecialty = detectSpecialty('', resumeDomains || [], resumeSOC);
-        const jdSpecialty = detectSpecialty('', jdDomains || [], jdSOC);
+        // Pass title as fallback text when domains are empty
+        const resumeSpecialty = detectSpecialty(resumeTitle || '', resumeDomains || [], resumeSOC);
+        const jdSpecialty = detectSpecialty(jdTitle || '', jdDomains || [], jdSOC);
 
         // If both have detectable specialties and they don't match
         if (resumeSpecialty && jdSpecialty && resumeSpecialty !== jdSpecialty) {
