@@ -1,4 +1,4 @@
-import { ArrowRight, Plus, FileText } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import { useRef } from "react";
 import { ReportData } from "./ReportTypes";
 import { FirstImpressionSection } from "./FirstImpressionSection";
