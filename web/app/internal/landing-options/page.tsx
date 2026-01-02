@@ -1,60 +1,155 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
-// Landing page variations
+// Landing page variations - Original
 import { LandingBoldAuthority } from "@/components/landing-showcase/LandingBoldAuthority";
 import { LandingUrgencyImpact } from "@/components/landing-showcase/LandingUrgencyImpact";
 import { LandingDataDriven } from "@/components/landing-showcase/LandingDataDriven";
-import { LandingMassiveImpact } from "@/components/landing-showcase/LandingEditorialClarity";
-import { LandingAsymmetricConfidence } from "@/components/landing-showcase/LandingHybridConfidence";
-import { LandingNarrativeScroll } from "@/components/landing-showcase/LandingProductFirst";
+
+// Luxury/Fashion inspired (new)
+import { LandingRolexNarrative } from "@/components/landing-showcase/LandingRolexNarrative";
+import { LandingPorschePrecision } from "@/components/landing-showcase/LandingPorschePrecision";
+import { LandingAppleDramatic } from "@/components/landing-showcase/LandingAppleDramatic";
+import { LandingFashionEditorial } from "@/components/landing-showcase/LandingFashionEditorial";
+import { LandingCartierImmersion } from "@/components/landing-showcase/LandingCartierImmersion";
+import { LandingNikeConfidence } from "@/components/landing-showcase/LandingNikeConfidence";
+import { LandingEconomistAuthority } from "@/components/landing-showcase/LandingEconomistAuthority";
+
+// SaaS inspired (new)
+import { LandingStripeGradient } from "@/components/landing-showcase/LandingStripeGradient";
+import { LandingLinearFocus } from "@/components/landing-showcase/LandingLinearFocus";
+import { LandingVercelMinimal } from "@/components/landing-showcase/LandingVercelMinimal";
+import { LandingNotionPlayful } from "@/components/landing-showcase/LandingNotionPlayful";
+import { LandingArcSidebar } from "@/components/landing-showcase/LandingArcSidebar";
+import { LandingRaycastDark } from "@/components/landing-showcase/LandingRaycastDark";
+import { LandingFigmaCollaborative } from "@/components/landing-showcase/LandingFigmaCollaborative";
 
 const landingPages = [
+    // === ORIGINAL (3) ===
     {
         id: "bold-authority",
-        name: "Bold Authority",
-        description: "Professional & sophisticated. Stripe/Linear inspired with confident typography and clean hierarchy.",
-        tags: ["Professional", "Clean", "Editorial"],
+        name: "1. Bold Authority",
+        description: "Professional & sophisticated. Stripe/Linear inspired.",
+        tags: ["Professional", "Clean"],
         component: LandingBoldAuthority,
     },
     {
         id: "urgency-impact",
-        name: "Urgency & Impact",
-        description: "Arc/Notion inspired. Emphasizes the 7.4-second countdown with dramatic contrast and bold statements.",
-        tags: ["Bold", "Dramatic", "Time-focused"],
+        name: "2. Urgency & Impact",
+        description: "Dramatic 7.4-second countdown. Dark, bold.",
+        tags: ["Bold", "Dramatic"],
         component: LandingUrgencyImpact,
     },
     {
         id: "data-driven",
-        name: "Data-Driven Trust",
-        description: "Research-heavy approach. Stats prominent, recruiter credibility front and center, structured density.",
-        tags: ["Research", "Stats", "Authority"],
+        name: "3. Data-Driven Trust ⭐",
+        description: "YOUR FAVORITE. Research-heavy, stats prominent.",
+        tags: ["Research", "Stats", "Recommended"],
         component: LandingDataDriven,
     },
+    // === LUXURY/FASHION INSPIRED (7) ===
     {
-        id: "massive-impact",
-        name: "Massive Impact",
-        description: "Oversized 100px+ typography, dramatic whitespace, product-as-hero. Stripe-style purposeful animations.",
-        tags: ["Oversized", "Dramatic", "Light"],
-        component: LandingMassiveImpact,
+        id: "rolex-narrative",
+        name: "4. Rolex Narrative",
+        description: "Dark emerald, storytelling, heritage feel.",
+        tags: ["Luxury", "Dark", "Serif"],
+        component: LandingRolexNarrative,
     },
     {
-        id: "asymmetric-confidence",
-        name: "Asymmetric Confidence",
-        description: "Bold dark hero with asymmetric grid, offset floating cards. High contrast alternating sections.",
-        tags: ["Dark", "Asymmetric", "Bold"],
-        component: LandingAsymmetricConfidence,
+        id: "porsche-precision",
+        name: "5. Porsche Precision",
+        description: "Cinematic hero, black/red, engineered excellence.",
+        tags: ["Automotive", "Bold"],
+        component: LandingPorschePrecision,
     },
     {
-        id: "narrative-scroll",
-        name: "Narrative Scroll",
-        description: "Story-driven full-height chapters, dramatic reveals on scroll. Clean light with bold dark chapters.",
-        tags: ["Story", "Scroll", "Chapters"],
-        component: LandingNarrativeScroll,
+        id: "apple-dramatic",
+        name: "6. Apple Dramatic",
+        description: "Massive whitespace, scroll reveals, minimal.",
+        tags: ["Minimal", "Light", "Scroll"],
+        component: LandingAppleDramatic,
+    },
+    {
+        id: "fashion-editorial",
+        name: "7. Fashion Editorial",
+        description: "Louis Vuitton inspired. Magazine grid, pull quotes.",
+        tags: ["Fashion", "Editorial"],
+        component: LandingFashionEditorial,
+    },
+    {
+        id: "cartier-immersion",
+        name: "8. Cartier Immersion",
+        description: "Dark + gold/teal. Floating 3D cards, premium.",
+        tags: ["Luxury", "Dark", "Premium"],
+        component: LandingCartierImmersion,
+    },
+    {
+        id: "nike-confidence",
+        name: "9. Nike Confidence",
+        description: "Black/orange, bold 'Just Do It' energy.",
+        tags: ["Athletic", "Bold", "Comparison"],
+        component: LandingNikeConfidence,
+    },
+    {
+        id: "economist-authority",
+        name: "10. Economist Authority",
+        description: "Editorial, red accent, research-paper credibility.",
+        tags: ["Editorial", "Research", "Light"],
+        component: LandingEconomistAuthority,
+    },
+    // === SAAS INSPIRED (7) ===
+    {
+        id: "stripe-gradient",
+        name: "11. Stripe Gradient",
+        description: "Animated purple/teal gradients, modern polish.",
+        tags: ["SaaS", "Gradient", "Dark"],
+        component: LandingStripeGradient,
+    },
+    {
+        id: "linear-focus",
+        name: "12. Linear Focus",
+        description: "Dark mode, translucent panels, indigo accent.",
+        tags: ["SaaS", "Dark", "Clean"],
+        component: LandingLinearFocus,
+    },
+    {
+        id: "vercel-minimal",
+        name: "13. Vercel Minimal",
+        description: "Bold black/white, subtle mesh, developer vibe.",
+        tags: ["SaaS", "Minimal", "Dark"],
+        component: LandingVercelMinimal,
+    },
+    {
+        id: "notion-playful",
+        name: "14. Notion Playful",
+        description: "Warm cream, emojis, friendly and approachable.",
+        tags: ["SaaS", "Light", "Playful"],
+        component: LandingNotionPlayful,
+    },
+    {
+        id: "arc-sidebar",
+        name: "15. Arc Sidebar",
+        description: "Command palette UI, gradient purple/pink.",
+        tags: ["SaaS", "Gradient", "Command"],
+        component: LandingArcSidebar,
+    },
+    {
+        id: "raycast-dark",
+        name: "16. Raycast Dark",
+        description: "Terminal aesthetic, monospace, orange/pink.",
+        tags: ["SaaS", "Terminal", "Dark"],
+        component: LandingRaycastDark,
+    },
+    {
+        id: "figma-collaborative",
+        name: "17. Figma Collaborative",
+        description: "Colorful blobs, product-as-hero, green CTA.",
+        tags: ["SaaS", "Colorful", "Dark"],
+        component: LandingFigmaCollaborative,
     },
 ];
 
@@ -63,6 +158,32 @@ export default function LandingOptionsPage() {
     const [selectedPage, setSelectedPage] = useState<string | null>(null);
 
     const selectedLanding = landingPages.find((p) => p.id === selectedPage);
+
+    // Keyboard navigation
+    const goToPrev = useCallback(() => {
+        if (!selectedPage) return;
+        const currentIndex = landingPages.findIndex((p) => p.id === selectedPage);
+        const prevIndex = (currentIndex - 1 + landingPages.length) % landingPages.length;
+        setSelectedPage(landingPages[prevIndex].id);
+    }, [selectedPage]);
+
+    const goToNext = useCallback(() => {
+        if (!selectedPage) return;
+        const currentIndex = landingPages.findIndex((p) => p.id === selectedPage);
+        const nextIndex = (currentIndex + 1) % landingPages.length;
+        setSelectedPage(landingPages[nextIndex].id);
+    }, [selectedPage]);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!selectedPage) return;
+            if (e.key === "ArrowLeft") goToPrev();
+            if (e.key === "ArrowRight") goToNext();
+            if (e.key === "Escape") setSelectedPage(null);
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [selectedPage, goToPrev, goToNext]);
 
     return (
         <div className="min-h-screen text-white">

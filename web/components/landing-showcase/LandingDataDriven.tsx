@@ -302,32 +302,32 @@ export function LandingDataDriven() {
             </section>
 
             {/* Social Proof with Data */}
-            <section className="px-6 py-20 bg-slate-900 text-white">
+            <section className="px-6 py-20 bg-slate-900">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Measured results from 10,000+ analyses
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-white">
+                            Built on real hiring research
                         </h2>
-                        <p className="text-slate-300">Based on user-reported outcomes within 30 days of using our recommendations</p>
+                        <p className="text-lg text-slate-200">Our methodology is grounded in peer-reviewed studies, not guesswork.</p>
                     </div>
 
                     {/* Stats grid */}
                     <div className="grid md:grid-cols-3 gap-8 mb-16">
                         {[
-                            { value: "3.2x", label: "Average increase in interview callbacks" },
-                            { value: "67%", label: "Users improved score by 15+ points" },
-                            { value: "94%", label: "Found at least one 'Critical Miss'" },
+                            { value: "14", label: "Peer-reviewed studies" },
+                            { value: "7.4s", label: "Avg. recruiter scan time" },
+                            { value: "75%", label: "Rejected in first 10 seconds" },
                         ].map((stat, i) => (
                             <motion.div
                                 key={stat.label}
-                                className="text-center p-6 rounded-xl border border-white/10 bg-white/5"
+                                className="text-center p-6 rounded-xl border border-white/20 bg-white/10"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                             >
                                 <div className="text-4xl font-bold text-teal-400 mb-2">{stat.value}</div>
-                                <div className="text-sm text-slate-300">{stat.label}</div>
+                                <div className="text-base text-white">{stat.label}</div>
                             </motion.div>
                         ))}
                     </div>
@@ -350,23 +350,23 @@ export function LandingDataDriven() {
                         ].map((testimonial, i) => (
                             <motion.div
                                 key={testimonial.name}
-                                className="p-6 rounded-xl border border-white/10 bg-white/5"
+                                className="p-6 rounded-xl border border-white/20 bg-white/10"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                             >
-                                <Quote className="w-8 h-8 text-teal-400/40 mb-4" />
-                                <p className="text-lg text-white leading-relaxed mb-6">
+                                <Quote className="w-8 h-8 text-teal-400 mb-4" />
+                                <p className="text-xl text-white leading-relaxed mb-6">
                                     "{testimonial.quote}"
                                 </p>
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400 font-medium">
+                                    <div className="w-10 h-10 rounded-full bg-teal-500/30 flex items-center justify-center text-teal-400 font-bold">
                                         {testimonial.name.charAt(0)}
                                     </div>
                                     <div>
-                                        <div className="font-medium text-white">{testimonial.name}</div>
-                                        <div className="text-sm text-slate-300">{testimonial.role} · {testimonial.company}</div>
+                                        <div className="font-bold text-white">{testimonial.name}</div>
+                                        <div className="text-base text-slate-200">{testimonial.role} · {testimonial.company}</div>
                                     </div>
                                 </div>
                             </motion.div>

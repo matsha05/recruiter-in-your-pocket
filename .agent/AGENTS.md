@@ -1,4 +1,10 @@
-# Agent Instructions – Recruiter in Your Pocket
+# Agent Instructions - Recruiter in Your Pocket
+
+READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
+
+---
+
+# RIYP-Specific Rules
 
 <riyp-instructions>
 
@@ -16,142 +22,24 @@
   Package manager: npm (not yarn, not pnpm).
 </stack>
 
-<persona>
-  Address the user as Matt.
-  Optimize for correctness and long-term leverage, not agreement.
-  Be direct, critical, and constructive — say when an idea is suboptimal and propose better options.
-  Assume staff-level technical context unless told otherwise.
-</persona>
-
-<principles>
-  <style>No emojis. No em dashes - use hyphens or colons instead.</style>
-
-  <epistemology>
-    Assumptions are the enemy. Never guess numerical values - benchmark instead of estimating.
-    When uncertain, measure. Say "this needs to be measured" rather than inventing statistics.
-    Protect "Absolute Verifiability" - no hallucinated authority in career analysis.
-  </epistemology>
-
-  <scaling>
-    Validate at small scale before scaling up. Run a sub-minute version first to verify the
-    full pipeline works. When scaling, only the scale parameter should change.
-  </scaling>
-
-  <interaction>
-    Simple tasks: execute immediately.
-    Complex tasks (refactors, new features, ambiguous requirements): research codebase first,
-    ask targeted questions, confirm understanding, persist the plan, then execute autonomously.
-    Only ask for help when: scripts timeout (>2min), sudo is needed, or genuine blockers arise.
-  </interaction>
-
-  <constraint-persistence>
-    When user defines constraints ("never X", "always Y", "from now on"), immediately persist
-    to this AGENTS.md. Acknowledge, write, confirm.
-  </constraint-persistence>
-
-  <inference-speed>
-    Shipping at Inference Speed (learned 2024-12-31):
-    
-    BUILD LESS, SHIP MORE. Every session should produce something visible and usable.
-    
-    1. Start with the smallest shippable change. Wire to UI before building more plumbing.
-    2. "Touch it, feel it, see it" - internal infrastructure without visible output = wasted session.
-    3. If you build a new function, wire it to the UI in the same session.
-    4. Prefer linear evolution over complete upfront design.
-    5. When stuck on tooling/debugging > 15 min, stop and reassess.
-    
-    ANTIPATTERNS (things we learned not to do):
-    - Building 4 internal functions that nothing calls yet
-    - 30+ min debugging Oracle cookies when --copy mode was available
-    - Researching skill frequencies for 2 hours before wiring any scoring
-    - Creating "evidence levels" infrastructure without integrating it
-    
-    Ask yourself: "What will the user SEE differently after this session?"
-    If the answer is "nothing yet, but the architecture is better" - you're doing it wrong.
-  </inference-speed>
-
-  <debugging>
-    BUILD/CI FAILURES - ROOT CAUSE ONLY (learned 2025-01-01):
-    
-    When a build fails due to missing env vars or configuration:
-    1. NEVER add defensive null-checks or optional fallbacks to "work around" the issue
-    2. The fix is ALWAYS to add the missing config to the environment (CI secrets, Vercel, etc.)
-    3. Code should assume its dependencies exist - that's a deployment concern, not a code concern
-    
-    If you catch yourself writing "if (!envVar) return null" to fix a CI error - STOP.
-    That's a band-aid. The distinguished engineer fix is configuring the environment properly.
-  </debugging>
-</principles>
-
-<quality>
-  Inspect project config (package.json, etc.) for available scripts.
-  Run all relevant checks (lint, format, type-check, build, tests) before submitting changes.
-  Never claim checks passed unless they were actually run.
-  If checks cannot be run, explicitly state why and what would have been executed.
-</quality>
-
-<scm>
-  Never use git reset --hard or force-push without explicit permission.
-  Prefer safe alternatives (git revert, new commits, temp branches).
-  If history rewrite seems necessary, explain and ask first.
-</scm>
-
-<production-safety>
-  Assume production impact unless stated otherwise.
-  Call out risk when touching auth, billing, data, APIs, or build systems.
-  Prefer small, reversible changes; avoid silent breaking behavior.
-  Never expose .env values in client code.
-  Always protect the JSON schema and API contracts.
-</production-safety>
+<epistemology>
+  Assumptions are the enemy. Never guess numerical values - benchmark instead of estimating.
+  When uncertain, measure. Say "this needs to be measured" rather than inventing statistics.
+  Protect "Absolute Verifiability" - no hallucinated authority in career analysis.
+</epistemology>
 
 <oracle>
-  Oracle bundles prompts + files so GPT-5 Pro can answer complex questions.
+  Oracle bundles prompts + files for GPT-5 Pro to answer complex questions.
   
-  CRITICAL RULES:
-  1. ALWAYS use --engine browser (NEVER use --engine api)
-  2. If browser mode fails, STOP and ask user - do NOT retry with api
-  3. Always include file context with --file flag. Oracle has NO repo access otherwise.
-  4. ALWAYS create a NEW terminal session for each Oracle query - do NOT conflate with existing Oracle sessions
-  5. Oracle browser sessions run independently and may take 5-30+ minutes
+  Rules:
+  - ALWAYS use --engine browser (never api)
+  - If browser mode fails, STOP and ask user
+  - Include file context with --file flag
+  - Each query needs its own terminal session
   
-  TERMINAL SESSION MANAGEMENT:
-  - Each Oracle browser query should run in its own terminal
-  - Do NOT check command_status on a different Oracle session
-  - Use descriptive session names if available
-  - Monitor the correct session ID for your specific query
+  When to use: stuck after 2-3 attempts, need architectural decisions, reviewing critical code.
   
-  TROUBLESHOOTING (learned 2024-12-31):
-  - If you see "No ChatGPT cookies" or cookie errors, use --browser-manual-login flag
-  - First-time setup: Run with both --browser-manual-login AND --browser-keep-browser to log in
-  - The Chrome window will stay open for you to authenticate, then Oracle proceeds
-  - Subsequent runs can omit --browser-keep-browser (profile persists at ~/.oracle/browser-profile)
-  - If stuck on Oracle issues, consult: https://github.com/steipete/oracle/blob/main/docs/browser-mode.md
-  
-  For detailed usage, prompt templates, and troubleshooting:
-  See .agent/workflows/oracle.md
-  
-  Quick reference:
-  ```bash
-  # Browser mode with manual login (recommended)
-  # This will open Chrome and may require manual login
-  oracle -e browser --browser-manual-login \
-    --file "web/lib/matching/*.ts" \
-    -p "## PRODUCT CONTEXT
-  [Include RIYP context - see workflows/oracle.md]
-  
-  ## PROBLEM
-  [Detailed problem description]
-  
-  ## QUESTIONS
-  1. [Specific question]"
-  ```
-  
-  When to invoke Oracle:
-  - Stuck on a bug after 2-3 failed attempts
-  - Need deep research or architectural decisions
-  - Reviewing critical code before shipping
-  
-  Sessions: ~/.oracle/sessions | Runs take 10min to 1hr+
+  For detailed usage and troubleshooting: See .agent/workflows/oracle.md
 </oracle>
 
 <design-constitution>
@@ -163,14 +51,5 @@
   When editing UI, reference the docs and ask: "Does this feel like Stripe/Linear/Notion?"
   SaaS patterns are allowed when they materially improve clarity, conversion, or growth.
 </design-constitution>
-
-<self-improvement>
-  Continuously improve agent workflows.
-  When a repeated correction or better approach is found you're encouraged to codify your
-  new found knowledge and learnings by modifying this AGENTS.md.
-  You can modify this file without prior approval as long as edits stay under riyp-instructions.
-  If you utilise any of your codified instructions in future coding sessions call that out
-  and let the user know that you performed the action because of that specific rule in this file.
-</self-improvement>
 
 </riyp-instructions>

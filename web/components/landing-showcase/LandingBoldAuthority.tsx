@@ -334,7 +334,7 @@ export function LandingBoldAuthority() {
                             <PocketMark className="w-5 h-5 text-teal-400" />
                             <span className="text-sm text-white/60">© 2026 Recruiter in Your Pocket</span>
                         </div>
-                        <div className="flex items-center gap-6 text-sm text-white/50">
+                        <div className="flex items-center gap-6 text-sm text-white/80">
                             <a href="#" className="hover:text-white transition-colors">Privacy</a>
                             <a href="#" className="hover:text-white transition-colors">Terms</a>
                             <a href="#" className="hover:text-white transition-colors">Trust</a>

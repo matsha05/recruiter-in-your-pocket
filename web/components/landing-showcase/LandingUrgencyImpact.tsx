@@ -31,7 +31,7 @@ function CountdownDisplay() {
 
     return (
         <div className="font-mono text-8xl md:text-9xl font-bold tracking-tighter tabular-nums">
-            {current.toFixed(1)}<span className="text-5xl md:text-6xl text-white/40">s</span>
+            {current.toFixed(1)}<span className="text-5xl md:text-6xl text-white/60">s</span>
         </div>
     );
 }
@@ -68,7 +68,7 @@ export function LandingUrgencyImpact() {
                         <span className="font-medium text-sm tracking-tight text-white/90">RIYP</span>
                     </div>
                     <div className="flex items-center gap-6">
-                        <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">Research</a>
+                        <a href="#" className="text-sm text-white/80 hover:text-white transition-colors">Research</a>
                         <button className="text-sm font-medium px-4 py-2 rounded-md bg-white text-black hover:bg-white/90 transition-colors">
                             Start Free
                         </button>
@@ -115,7 +115,7 @@ export function LandingUrgencyImpact() {
                         </div>
 
                         {/* Trust badges */}
-                        <div className="flex items-center justify-center gap-6 text-xs text-white/50">
+                        <div className="flex items-center justify-center gap-6 text-xs text-white/80">
                             <span className="flex items-center gap-1.5">
                                 <Lock className="w-3.5 h-3.5" />
                                 End-to-end encrypted
@@ -240,11 +240,11 @@ export function LandingUrgencyImpact() {
                         <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
                             <div className="flex items-center gap-3">
                                 <div className="w-3 h-3 rounded-full bg-rose-500" />
-                                <span className="text-xs font-mono uppercase tracking-widest text-white/40">
+                                <span className="text-xs font-mono uppercase tracking-widest text-white/70">
                                     Live Example
                                 </span>
                             </div>
-                            <span className="text-xs text-white/30">Score: 87</span>
+                            <span className="text-xs text-white/60">Score: 87</span>
                         </div>
 
                         {/* Content */}
@@ -338,7 +338,7 @@ export function LandingUrgencyImpact() {
                     <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                         {/* Free */}
                         <div className="p-8 rounded-2xl border border-white/10 bg-white/[0.02] text-left">
-                            <div className="text-sm text-white/40 mb-2">Free</div>
+                            <div className="text-sm text-white/70 mb-2">Free</div>
                             <div className="text-4xl font-bold mb-6">$0</div>
                             <ul className="space-y-3 mb-8">
                                 {["3 resume scans", "Full recruiter verdict", "Red Pen rewrites", "Critical Miss detection"].map((f) => (
@@ -359,7 +359,7 @@ export function LandingUrgencyImpact() {
                                 Best Value
                             </div>
                             <div className="text-sm text-teal-400 mb-2">Pro</div>
-                            <div className="text-4xl font-bold mb-6">$12<span className="text-lg text-white/40">/mo</span></div>
+                            <div className="text-4xl font-bold mb-6">$12<span className="text-lg text-white/70">/mo</span></div>
                             <ul className="space-y-3 mb-8">
                                 {["Unlimited scans", "LinkedIn reviews", "Job-matched analysis", "Chrome extension", "Priority support"].map((f) => (
                                     <li key={f} className="flex items-center gap-2 text-sm text-white/70">
@@ -397,9 +397,9 @@ export function LandingUrgencyImpact() {
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
                         <PocketMark className="w-4 h-4 text-teal-400" />
-                        <span className="text-sm text-white/40">© 2026 Recruiter in Your Pocket</span>
+                        <span className="text-sm text-white/60">© 2026 Recruiter in Your Pocket</span>
                     </div>
-                    <div className="flex items-center gap-6 text-sm text-white/40">
+                    <div className="flex items-center gap-6 text-sm text-white/60">
                         <a href="#" className="hover:text-white transition-colors">Privacy</a>
                         <a href="#" className="hover:text-white transition-colors">Terms</a>
                         <a href="#" className="hover:text-white transition-colors">Research</a>
