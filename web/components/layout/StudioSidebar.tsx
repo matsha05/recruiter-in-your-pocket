@@ -3,13 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-    Library,
-    FileText,
-    CreditCard,
-    Briefcase,
-} from "lucide-react";
 import { PocketMark } from "@/components/icons";
+import { STUDIO_NAV, type NavItem } from "@/lib/navigation";
 
 interface StudioSidebarProps {
     className?: string;
@@ -34,38 +29,22 @@ export function StudioSidebar({ className }: StudioSidebarProps) {
             </div>
             {/* Navigation */}
             <div className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
-                <StudioNavLink href="/workspace" icon={FileText}>
-                    The Studio
-                </StudioNavLink>
-                <StudioNavLink href="/jobs" icon={Briefcase}>
-                    Jobs
-                </StudioNavLink>
-                <StudioNavLink href="/research" icon={Library}>
-                    Research Library
-                </StudioNavLink>
-                <StudioNavLink href="/settings" icon={CreditCard}>
-                    Settings
-                </StudioNavLink>
+                {STUDIO_NAV.map((item) => (
+                    <StudioNavLink key={item.href} item={item} />
+                ))}
             </div>
         </aside>
     );
 }
 
-function StudioNavLink({
-    href,
-    icon: Icon,
-    children
-}: {
-    href: string;
-    icon: React.ElementType;
-    children: React.ReactNode
-}) {
+function StudioNavLink({ item }: { item: NavItem }) {
     const pathname = usePathname();
-    const isActive = pathname === href || pathname?.startsWith(`${href}/`);
+    const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+    const Icon = item.icon;
 
     return (
         <Link
-            href={href}
+            href={item.href}
             className={cn(
                 "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors",
                 isActive
@@ -74,7 +53,7 @@ function StudioNavLink({
             )}
         >
             <Icon className={cn("h-4 w-4", isActive ? "text-brand" : "text-muted-foreground")} />
-            {children}
+            {item.label}
         </Link>
     );
 }

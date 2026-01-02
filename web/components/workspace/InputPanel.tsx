@@ -71,8 +71,10 @@ export default function InputPanel({
     const hasContent = fileName || resumeText.length > 0;
 
     return (
-        <div className="flex justify-center p-6 md:p-12 min-h-full">
-            <div className="w-full max-w-xl space-y-6">
+        <div className="flex justify-center p-6 md:p-12 min-h-full relative">
+            {/* Subtle gradient background like landing hero */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand/5 via-transparent to-transparent pointer-events-none" />
+            <div className="w-full max-w-xl space-y-6 relative z-10">
 
                 {/* Hero Header */}
                 <div className="text-center space-y-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -112,7 +114,7 @@ export default function InputPanel({
                 )}
 
                 {/* Main Card */}
-                <div className="bg-card border border-border/60 rounded overflow-hidden transition-colors hover:border-border/80">
+                <div className="bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden transition-all hover:shadow-sm">
 
                     {/* Section 1: The Input (Hero) */}
                     <div className="p-6 md:p-8 space-y-6">

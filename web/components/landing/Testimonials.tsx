@@ -3,6 +3,11 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SCROLL_REVEAL_VARIANTS, STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/animation";
+import { Quote } from "lucide-react";
+
+/**
+ * Testimonials v2 - Premium card layout matching Research Hub
+ */
 
 interface Testimonial {
     name: string;
@@ -37,27 +42,30 @@ export function Testimonials() {
     const prefersReducedMotion = useReducedMotion();
 
     return (
-        <section className="py-16 px-6 bg-background border-t border-border/30">
+        <section className="py-20 px-6 bg-background border-t border-border/30">
             <div className="max-w-5xl mx-auto">
-                {/* Header with scroll reveal */}
+                {/* Header */}
                 <motion.div
                     ref={sectionRef as React.RefObject<HTMLDivElement>}
-                    className="text-center mb-12"
+                    className="text-center mb-10 max-w-xl mx-auto"
                     variants={prefersReducedMotion ? {} : SCROLL_REVEAL_VARIANTS}
                     initial="hidden"
                     animate={isVisible ? "visible" : "hidden"}
                 >
-                    <h2 className="font-display text-3xl md:text-4xl text-primary mb-3 tracking-tight">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">
+                        From Job Seekers
+                    </div>
+                    <h2 className="font-display text-3xl md:text-4xl text-foreground mb-3 tracking-tight">
                         Real feedback. Real results.
                     </h2>
                     <p className="text-muted-foreground">
-                        From job seekers who fixed it before recruiters saw it.
+                        From people who fixed it before recruiters saw it.
                     </p>
                 </motion.div>
 
-                {/* Staggered testimonial cards */}
+                {/* Testimonial Cards */}
                 <motion.div
-                    className="grid md:grid-cols-3 gap-6"
+                    className="grid md:grid-cols-3 gap-4"
                     variants={prefersReducedMotion ? {} : STAGGER_CONTAINER}
                     initial="hidden"
                     animate={isVisible ? "visible" : "hidden"}
@@ -66,18 +74,21 @@ export function Testimonials() {
                         <motion.div
                             key={i}
                             variants={prefersReducedMotion ? {} : STAGGER_ITEM}
-                            className="border-t border-border/40 pt-6"
+                            className="group p-5 rounded-xl border border-border/40 bg-white dark:bg-card transition-all duration-300 hover:border-brand/30 hover:shadow-lg hover:shadow-brand/5"
                         >
+                            <Quote className="w-5 h-5 text-muted-foreground/30 mb-3" />
                             <blockquote className="text-sm text-foreground/90 leading-relaxed mb-4">
-                                &quot;{t.quote}&quot;
+                                "{t.quote}"
                             </blockquote>
-                            <div className="text-xs text-muted-foreground">
-                                <span className="text-foreground font-medium">{t.name}</span> · {t.role} · {t.company}
+                            <div className="pt-3 border-t border-border/20">
+                                <div className="text-sm font-medium text-foreground">{t.name}</div>
+                                <div className="text-xs text-muted-foreground">
+                                    {t.role} · {t.company}
+                                </div>
                             </div>
                         </motion.div>
                     ))}
                 </motion.div>
-
             </div>
         </section>
     );

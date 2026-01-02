@@ -8,17 +8,19 @@ import { Button } from "@/components/ui/button";
 import { PocketMark, Wordmark } from "@/components/icons";
 
 interface SiteHeaderProps {
-    /** Show "Research" nav link (hide on research hub itself to avoid redundancy) */
+    /** Show "Research" nav link (hide on research hub itself) */
     showResearchLink?: boolean;
+    /** Show "Resources" nav link (hide on resources hub itself) */
+    showResourcesLink?: boolean;
 }
 
 /**
- * SiteHeader
+ * SiteHeader v2
  * 
  * Single source of truth for site-wide navigation.
- * Apple-grade: clean, purposeful, responsive, consistent everywhere.
+ * Improved visual separation between nav groups.
  */
-export function SiteHeader({ showResearchLink = true }: SiteHeaderProps) {
+export function SiteHeader({ showResearchLink = true, showResourcesLink = true }: SiteHeaderProps) {
     const { user, isLoading: isAuthLoading, signOut } = useAuth();
 
     return (
@@ -30,28 +32,43 @@ export function SiteHeader({ showResearchLink = true }: SiteHeaderProps) {
             </Link>
 
             {/* Navigation */}
-            <nav className="flex items-center gap-3 md:gap-4">
-                {/* Contextual nav links */}
-                {showResearchLink && (
-                    <Link
-                        href="/research"
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block"
-                    >
-                        Research
-                    </Link>
+            <nav className="flex items-center gap-1 md:gap-2">
+                {/* Content Nav Group */}
+                {(showResearchLink || showResourcesLink) && (
+                    <div className="hidden md:flex items-center gap-1 bg-muted/30 rounded-full px-1 py-0.5">
+                        {showResearchLink && (
+                            <Link
+                                href="/research"
+                                className="text-sm text-muted-foreground hover:text-foreground hover:bg-background/80 transition-colors font-medium px-3 py-1.5 rounded-full"
+                            >
+                                Research
+                            </Link>
+                        )}
+                        {showResourcesLink && (
+                            <Link
+                                href="/guides"
+                                className="text-sm text-muted-foreground hover:text-foreground hover:bg-background/80 transition-colors font-medium px-3 py-1.5 rounded-full"
+                            >
+                                Resources
+                            </Link>
+                        )}
+                    </div>
                 )}
+
+                {/* Separator */}
+                <div className="hidden md:block w-px h-5 bg-border/30 mx-2" />
 
                 {isAuthLoading ? (
                     <div className="w-20 h-9" />
                 ) : user ? (
-                    <div className="flex items-center gap-2 md:gap-3">
+                    <div className="flex items-center gap-2">
                         <Link
                             href="/workspace"
-                            className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block"
+                            className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block px-3 py-1.5"
                         >
                             The Studio
                         </Link>
-                        <div className="hidden md:block w-px h-4 bg-border/50" />
+                        <div className="hidden md:block w-px h-4 bg-border/30" />
                         <UserNav user={user} onSignOut={signOut} />
                         {/* Tablet: full button */}
                         <Link href="/workspace" className="hidden sm:block md:hidden">
@@ -64,7 +81,7 @@ export function SiteHeader({ showResearchLink = true }: SiteHeaderProps) {
                         <ThemeToggle />
                     </div>
                 ) : (
-                    <div className="flex items-center gap-2 md:gap-3">
+                    <div className="flex items-center gap-2">
                         <Link href="/auth" className="hidden sm:block">
                             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
                                 Log In

@@ -107,25 +107,24 @@ export default function SettingsClient() {
             </header>
 
             <main className="max-w-4xl mx-auto px-6 pt-8">
-                {/* Tab Navigation */}
-                <nav className="flex gap-1 mb-8 relative">
+                {/* Tab Navigation - Premium Pill Style */}
+                <nav className="inline-flex items-center gap-0.5 p-1 rounded-lg bg-muted/60 border border-border/80 mb-8">
                     {TABS.map(({ id, label, icon: Icon }) => (
                         <button
                             key={id}
                             onClick={() => setActiveTab(id)}
                             className={cn(
-                                "flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors relative rounded-t",
+                                "relative flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium transition-all duration-200",
                                 activeTab === id
-                                    ? "text-foreground bg-background border-t border-x border-border/60"
-                                    : "text-muted-foreground hover:text-foreground/80"
+                                    ? "bg-background text-foreground shadow-sm"
+                                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                             )}
-                            style={{ marginBottom: activeTab === id ? "-1px" : "0" }}
+                            aria-pressed={activeTab === id}
                         >
                             <Icon className="w-4 h-4" />
                             {label}
                         </button>
                     ))}
-                    <div className="absolute bottom-0 left-0 right-0 h-px bg-border/60" />
                 </nav>
 
                 {/* Tab Content */}
@@ -133,7 +132,7 @@ export default function SettingsClient() {
                     {/* ACCOUNT TAB */}
                     {activeTab === "account" && (
                         <div className="space-y-8 animate-in fade-in duration-200">
-                            <section className="bg-card border border-border/60 rounded p-6">
+                            <section className="bg-white dark:bg-card border border-border/40 rounded-xl p-6 transition-all hover:shadow-sm">
                                 <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-6">Profile</h2>
                                 <div className="flex items-start gap-6">
                                     <div className="w-14 h-14 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand font-display font-medium text-xl select-none shrink-0">
@@ -168,7 +167,7 @@ export default function SettingsClient() {
                                 </div>
                             </section>
 
-                            <section className="p-4 rounded border border-destructive/20 bg-destructive/5">
+                            <section className="p-4 rounded-xl border border-destructive/20 bg-destructive/5">
                                 <div className="flex items-center justify-between gap-4">
                                     <div>
                                         <h3 className="text-sm font-medium text-destructive mb-0.5">Delete Account</h3>
@@ -202,7 +201,7 @@ export default function SettingsClient() {
                     {activeTab === "billing" && (
                         <div className="space-y-10 animate-in fade-in duration-200">
                             {/* Credits */}
-                            <section className="bg-card border border-border/60 rounded p-5">
+                            <section className="bg-white dark:bg-card border border-border/40 rounded-xl p-5 transition-all hover:shadow-sm">
                                 <div className="flex items-center justify-between">
                                     <div>
                                         <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Your Reviews</h2>
@@ -234,7 +233,7 @@ export default function SettingsClient() {
                             {/* History */}
                             <section>
                                 <h2 className="text-base font-medium text-foreground mb-3">History</h2>
-                                <div className="bg-card border border-border/60 rounded overflow-hidden">
+                                <div className="bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden">
                                     {loadingPasses ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
                                             <Loader2 className="w-4 h-4 animate-spin" /> Loading...

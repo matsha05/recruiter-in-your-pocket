@@ -233,3 +233,118 @@ export function LeverComparisonDiagram() {
         </figure>
     );
 }
+
+/**
+ * Equity Truth Table
+ * 
+ * RSU vs Options comparison for tech offers
+ */
+export function EquityTruthTable() {
+    const rows = [
+        {
+            factor: "What you get",
+            rsu: "Actual shares of stock",
+            options: "Right to buy shares at a frozen price"
+        },
+        {
+            factor: "Value on grant",
+            rsu: "Known (stock price × shares)",
+            options: "Unknown (depends on future price minus strike)"
+        },
+        {
+            factor: "If you leave",
+            rsu: "Keep all vested shares",
+            options: "Must exercise within 90 days or lose them"
+        },
+        {
+            factor: "Tax timing",
+            rsu: "Taxed when shares vest (as income)",
+            options: "Taxed when you exercise (can be complex)"
+        },
+        {
+            factor: "Best for",
+            rsu: "Public companies, lower risk",
+            options: "Early startups, high risk tolerance"
+        }
+    ];
+
+    const redFlags = [
+        "5-year vesting (vs 4-year standard)",
+        "\"We're growing 10x so your options are worth millions\" (BS — investors already priced in growth)",
+        "No info on total shares outstanding (impossible to value your %)",
+        "Options with a high strike price close to current valuation"
+    ];
+
+    return (
+        <figure className="w-full max-w-3xl mx-auto my-10 select-none">
+            <motion.div
+                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true }}
+            >
+                <div className="px-6 py-4 border-b border-border/30">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                        RSUs vs Stock Options
+                    </span>
+                </div>
+
+                <div className="p-6 md:p-8">
+                    {/* Comparison table */}
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                            <thead>
+                                <tr className="border-b border-border/30">
+                                    <th className="text-left py-3 pr-4 font-medium text-muted-foreground"></th>
+                                    <th className="text-left py-3 px-4 font-semibold text-emerald-600 bg-emerald-500/5 rounded-tl-lg">RSUs</th>
+                                    <th className="text-left py-3 px-4 font-semibold text-violet-600 bg-violet-500/5 rounded-tr-lg">Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rows.map((row, i) => (
+                                    <motion.tr
+                                        key={row.factor}
+                                        className="border-b border-border/20"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        <td className="py-3 pr-4 text-foreground font-medium">{row.factor}</td>
+                                        <td className="py-3 px-4 text-muted-foreground bg-emerald-500/5">{row.rsu}</td>
+                                        <td className="py-3 px-4 text-muted-foreground bg-violet-500/5">{row.options}</td>
+                                    </motion.tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* Red flags */}
+                    <div className="mt-8 p-4 rounded-lg bg-rose-500/5 border border-rose-500/20">
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-rose-600 mb-3">
+                            🚩 Red Flags in Equity Offers
+                        </div>
+                        <ul className="space-y-2">
+                            {redFlags.map((flag, i) => (
+                                <motion.li
+                                    key={i}
+                                    className="text-sm text-muted-foreground leading-relaxed"
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
+                                    viewport={{ once: true }}
+                                >
+                                    • {flag}
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </motion.div>
+            <figcaption className="mt-4 text-sm text-muted-foreground text-center">
+                Public companies typically offer RSUs. Private companies offer options.
+            </figcaption>
+        </figure>
+    );
+}

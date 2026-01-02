@@ -114,7 +114,7 @@ export function LinkedInInputPanel({
     };
 
     return (
-        <div className="bg-card border border-border/60 rounded overflow-hidden transition-colors hover:border-border/80">
+        <div className="bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden transition-all hover:shadow-sm">
             {/* Main Content Area */}
             <div className="p-6 md:p-8 space-y-6">
 
@@ -221,8 +221,8 @@ export function LinkedInInputPanel({
                             href="https://www.linkedin.com/in/me"
                             target="_blank"
                             rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded border border-border/40 hover:border-brand/40 hover:bg-brand/5"
-                    >
+                            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded border border-border/40 hover:border-brand/40 hover:bg-brand/5"
+                        >
                             Open your LinkedIn profile
                             <ExternalLink className="w-3.5 h-3.5" />
                         </a>

@@ -6,9 +6,10 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, FileText, Library, CreditCard, LogOut, Settings, Home } from "lucide-react";
+import { Menu, LogOut, Home } from "lucide-react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { PocketMark, Wordmark } from "@/components/icons";
+import { STUDIO_NAV, type NavItem } from "@/lib/navigation";
 
 export function MobileNav() {
     const [open, setOpen] = useState(false);
@@ -35,18 +36,23 @@ export function MobileNav() {
 
                 <div className="flex-1 overflow-y-auto py-6 px-4">
                     <nav className="space-y-2">
-                        <MobileNavLink href="/" icon={Home} setOpen={setOpen} active={pathname === "/"}>
-                            Home
-                        </MobileNavLink>
-                        <MobileNavLink href="/workspace" icon={FileText} setOpen={setOpen} active={pathname === "/workspace"}>
-                            The Studio
-                        </MobileNavLink>
-                        <MobileNavLink href="/research" icon={Library} setOpen={setOpen} active={pathname?.startsWith("/research")}>
-                            Research Library
-                        </MobileNavLink>
-                        <MobileNavLink href="/settings" icon={CreditCard} setOpen={setOpen} active={pathname === "/settings"}>
-                            Settings
-                        </MobileNavLink>
+                        <MobileNavLink
+                            href="/"
+                            icon={Home}
+                            label="Home"
+                            setOpen={setOpen}
+                            active={pathname === "/"}
+                        />
+                        {STUDIO_NAV.map((item) => (
+                            <MobileNavLink
+                                key={item.href}
+                                href={item.href}
+                                icon={item.icon}
+                                label={item.label}
+                                setOpen={setOpen}
+                                active={pathname === item.href || pathname?.startsWith(`${item.href}/`)}
+                            />
+                        ))}
                     </nav>
                 </div>
 
@@ -98,7 +104,19 @@ export function MobileNav() {
     );
 }
 
-function MobileNavLink({ href, icon: Icon, children, setOpen, active }: any) {
+function MobileNavLink({
+    href,
+    icon: Icon,
+    label,
+    setOpen,
+    active
+}: {
+    href: string;
+    icon: React.ComponentType<{ className?: string }>;
+    label: string;
+    setOpen: (open: boolean) => void;
+    active: boolean;
+}) {
     return (
         <Link
             href={href}
@@ -111,7 +129,7 @@ function MobileNavLink({ href, icon: Icon, children, setOpen, active }: any) {
             )}
         >
             <Icon className={cn("h-5 w-5", active ? "text-brand" : "text-muted-foreground")} />
-            {children}
+            {label}
         </Link>
     );
 }

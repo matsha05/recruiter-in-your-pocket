@@ -193,7 +193,7 @@ export default function JobsClient() {
             </div>
 
             {/* Jobs List */}
-            <div className="border border-border rounded overflow-hidden bg-card">
+            <div className="rounded-xl border border-border/40 overflow-hidden bg-white dark:bg-card">
                 {loading ? (
                     <div className="p-8 text-center text-muted-foreground">
                         Loading jobs...
@@ -253,7 +253,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
 
     return (
         <div
-            className="group flex items-center gap-4 px-4 py-3 hover:bg-muted/50 cursor-pointer transition-colors"
+            className="group flex items-center gap-4 px-4 py-3.5 hover:bg-muted/30 cursor-pointer transition-all"
             onClick={onClick}
         >
             {/* Score Dial */}

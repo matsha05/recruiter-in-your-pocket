@@ -3,16 +3,19 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import {
     GuideSection,
     GuideAccordion,
     GuideChatUI,
     GuideNumberedSection,
     GuideHighlight,
-    GuideQuickWin
+    GuideQuickWin,
+    EmployerMathCallout,
+    ScriptLibrary
 } from "@/components/guides/GuideComponents";
-import { CompStackDiagram } from "@/components/guides/GuideDiagrams";
-import { ArrowRight, ArrowLeft, DollarSign, TrendingUp, Clock, Target, Lock, MessageSquare, Users } from "lucide-react";
+import { CompStackDiagram, EquityTruthTable } from "@/components/guides/GuideDiagrams";
+import { ArrowRight, ArrowLeft, DollarSign, TrendingUp, Clock, Target, Lock, MessageSquare, Users, ChevronRight } from "lucide-react";
 
 /**
  * Tech Offer Negotiation Guide
@@ -28,18 +31,18 @@ import { ArrowRight, ArrowLeft, DollarSign, TrendingUp, Clock, Target, Lock, Mes
 export default function TechOfferNegotiationGuidePage() {
     return (
         <div className="min-h-screen bg-background">
-            {/* Simple header - no sidebar */}
-            <header className="border-b border-border/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-                <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-                    <Link href="/guides" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        <ArrowLeft className="w-4 h-4" />
-                        All Guides
+            <SiteHeader showResourcesLink={false} />
+
+            {/* Breadcrumb */}
+            <div className="border-b border-border/20 bg-muted/30">
+                <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-2 text-sm">
+                    <Link href="/guides" className="text-muted-foreground hover:text-foreground transition-colors">
+                        Resources
                     </Link>
-                    <Link href="/workspace">
-                        <Button variant="brand" size="sm">Get Your Review</Button>
-                    </Link>
+                    <ChevronRight className="w-3 h-3 text-muted-foreground/50" />
+                    <span className="text-foreground font-medium">Tech Salary Negotiation</span>
                 </div>
-            </header>
+            </div>
 
             <main className="max-w-5xl mx-auto px-6 py-16">
 
@@ -65,6 +68,9 @@ export default function TechOfferNegotiationGuidePage() {
                         </p>
                     </div>
                 </header>
+
+                {/* Employer Math Callout */}
+                <EmployerMathCallout />
 
                 {/* Table of Contents */}
                 <div className="mb-20 p-8 rounded-xl border border-border/30 bg-muted/10 max-w-3xl">
@@ -156,9 +162,12 @@ export default function TechOfferNegotiationGuidePage() {
                             <CompStackDiagram />
                         </GuideSection>
 
-                        {/* Equity Deep Dive Accordion */}
+                        {/* Equity Deep Dive */}
                         <div className="space-y-4 mt-12">
                             <h3 className="font-display text-xl font-medium text-foreground mb-4">Understanding & valuing equity</h3>
+
+                            {/* RSU vs Options Comparison */}
+                            <EquityTruthTable />
 
                             <GuideAccordion title="RSUs (Restricted Stock Units)" badge="Common at public companies">
                                 <div className="space-y-4">
@@ -446,11 +455,23 @@ export default function TechOfferNegotiationGuidePage() {
                             </ol>
                         </GuideSection>
 
+                        {/* Counter-Script Library */}
+                        <div className="mt-10">
+                            <h3 className="font-display text-xl font-medium text-foreground mb-4 flex items-center gap-2">
+                                <MessageSquare className="w-5 h-5" />
+                                Counter-Scripts for Common Situations
+                            </h3>
+                            <p className="text-muted-foreground mb-4">
+                                Click any situation to see what to say — and what the recruiter hears when you say it.
+                            </p>
+                            <ScriptLibrary />
+                        </div>
+
                         {/* Sample Negotiation Conversation */}
                         <div className="mt-10">
                             <h3 className="font-display text-xl font-medium text-foreground mb-4 flex items-center gap-2">
                                 <MessageSquare className="w-5 h-5" />
-                                Sample: The counter
+                                Example: The counter
                             </h3>
                             <GuideChatUI
                                 title="Negotiation call"

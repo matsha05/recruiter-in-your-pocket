@@ -65,7 +65,7 @@ export function PricingCard({
                 onClick={onSelect}
                 disabled={loading}
                 className={cn(
-                    "p-4 rounded text-center transition-colors duration-200 ease-out border flex flex-col items-center justify-center relative overflow-hidden",
+                    "p-4 rounded-xl text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center relative overflow-hidden",
                     selected
                         ? "bg-card ring-2 ring-brand border-transparent"
                         : "bg-transparent border-border/60 hover:bg-secondary/10 hover:border-brand/30",
@@ -100,10 +100,10 @@ export function PricingCard({
     return (
         <div
             className={cn(
-                "p-6 rounded border transition-colors duration-200 ease-out flex flex-col relative",
+                "p-6 rounded-xl border transition-all duration-200 ease-out flex flex-col relative hover:shadow-md",
                 isPack
-                    ? "border-2 border-brand/30 bg-brand/5"
-                    : "border-border/60 bg-card hover:border-border",
+                    ? "border-2 border-brand/30 bg-brand/5 hover:shadow-brand/10"
+                    : "border-border/40 bg-white dark:bg-card hover:border-border",
                 className
             )}
         >
