@@ -1,6 +1,7 @@
 "use client";
 
-import { Download, Plus, ArrowRight } from "lucide-react";
+import { Plus, ArrowRight } from "lucide-react";
+import { DownloadIcon } from "@/components/ui/download";
 import AnalysisScanning from "./AnalysisScanning";
 import { ReportStream } from "./report/ReportStream";
 import { ReportData } from "./report/ReportTypes";
@@ -149,7 +150,7 @@ export default function ReportPanel({
                                             disabled={isExporting}
                                             className="flex items-center gap-2 px-3 py-2 rounded text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50 min-h-10"
                                         >
-                                            <Download className="w-4 h-4" />
+                                            <DownloadIcon size={16} />
                                             <span className="hidden sm:inline">{isExporting ? "Exporting..." : "PDF"}</span>
                                         </button>
                                     )}

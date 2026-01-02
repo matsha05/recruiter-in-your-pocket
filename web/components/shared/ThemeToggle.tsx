@@ -1,4 +1,5 @@
-import { Moon, Sun } from "lucide-react";
+import { SunIcon } from "@/components/ui/sun";
+import { MoonIcon } from "@/components/ui/moon";
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
@@ -46,10 +47,11 @@ export default function ThemeToggle() {
             aria-label="Toggle theme"
         >
             {isDark ? (
-                <Sun className="w-4 h-4" />
+                <SunIcon size={16} />
             ) : (
-                <Moon className="w-4 h-4" />
+                <MoonIcon size={16} />
             )}
         </button>
     );
 }
+

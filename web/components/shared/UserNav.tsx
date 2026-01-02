@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { LogOut, Files, Settings } from "lucide-react";
+import { LogOut, Files } from "lucide-react";
+import { SettingsIcon } from "@/components/ui/settings";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -96,13 +97,13 @@ export function UserNav({
 
                     {onSettingsClick ? (
                         <DropdownMenuItem onClick={onSettingsClick}>
-                            <Settings className="mr-2 h-4 w-4" />
+                            <SettingsIcon size={16} className="mr-2" />
                             Settings
                         </DropdownMenuItem>
                     ) : (
                         <DropdownMenuItem asChild>
                             <Link href="/settings" className="w-full">
-                                <Settings className="mr-2 h-4 w-4" />
+                                <SettingsIcon size={16} className="mr-2" />
                                 Settings
                             </Link>
                         </DropdownMenuItem>

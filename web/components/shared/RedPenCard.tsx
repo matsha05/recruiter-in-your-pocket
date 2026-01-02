@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Lock, ArrowRight, Copy, Check } from "lucide-react"
+import { Lock, ArrowRight, Copy } from "lucide-react"
+import { CheckIcon } from "@/components/ui/check"
 import { TransformArrowIcon } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { Analytics } from "@/lib/analytics"
@@ -82,7 +83,7 @@ export function RedPenCard({
                             >
                                 {copied ? (
                                     <>
-                                        <Check className="h-3 w-3" />
+                                        <CheckIcon size={12} />
                                         Copied
                                     </>
                                 ) : (
