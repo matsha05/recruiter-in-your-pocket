@@ -1,233 +1,390 @@
 "use client";
 
 import Link from "next/link";
-import { StudioShell } from "@/components/layout/StudioShell";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { NegotiationTimeline } from "@/components/research/diagrams/NegotiationTimeline";
-import { CompStack } from "@/components/research/diagrams/CompStack";
-import { AnchorZone } from "@/components/research/diagrams/AnchorZone";
-import { SalaryHistoryTrap } from "@/components/research/diagrams/SalaryHistoryTrap";
-import { LevelLadder } from "@/components/research/diagrams/LevelLadder";
-import { AlertCircle, Quote, TrendingUp, Handshake, ListCheck, Lock, Anchor, MousePointer2, CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react";
+import {
+    GuideSection,
+    GuideAccordion,
+    GuideChatUI,
+    GuideNumberedSection,
+    GuideHighlight,
+    GuideQuickWin
+} from "@/components/guides/GuideComponents";
+import { NegotiationTimelineDiagram, LeverComparisonDiagram } from "@/components/guides/GuideDiagrams";
+import { ArrowRight, ArrowLeft, Lock, MessageSquare, Users, Briefcase, Heart, Building2 } from "lucide-react";
+
+/**
+ * Universal Offer Negotiation Guide
+ * 
+ * Industry-agnostic principles with sections for different sectors
+ * Standalone layout (same as tech guide) with marginalia, chat UI, accordions
+ */
 
 export default function OfferNegotiationGuidePage() {
     return (
-        <StudioShell showSidebar={true}>
-            <div className="max-w-3xl mx-auto space-y-12 pb-20">
+        <div className="min-h-screen bg-background">
+            {/* Simple header - no sidebar */}
+            <header className="border-b border-border/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+                <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+                    <Link href="/guides" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        <ArrowLeft className="w-4 h-4" />
+                        All Guides
+                    </Link>
+                    <Link href="/workspace">
+                        <Button variant="brand" size="sm">Get Your Review</Button>
+                    </Link>
+                </div>
+            </header>
 
-                {/* 1. Header */}
-                <header>
+            <main className="max-w-5xl mx-auto px-6 py-16">
+
+                {/* Header */}
+                <header className="mb-16">
                     <Link href="/research" className="inline-block mb-6">
                         <Button variant="ghost" size="sm" className="-ml-3 gap-2 text-muted-foreground">
                             <ArrowLeft className="w-4 h-4" />
                             Back to Library
                         </Button>
                     </Link>
-                    <div className="space-y-4">
-                        <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-brand">
-                            The Recruiter&apos;s Playbook
-                        </span>
-                        <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground">
-                            Offer Negotiation Strategy
+
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-3">
+                            <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-brand">
+                                All Industries
+                            </span>
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                                12 min read
+                            </span>
+                        </div>
+
+                        <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground leading-tight">
+                            Offer Negotiation:<br />
+                            <span className="text-muted-foreground">The universal playbook</span>
                         </h1>
-                        <p className="text-xl text-muted-foreground font-sans leading-relaxed">
-                            Negotiation works when you treat it like coordination, not combat. Your job is to make it easy for the recruiter to say yes, while avoiding the unforced errors that shrink your leverage.
+
+                        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                            Everyone negotiates. The psychology is the same whether you&apos;re in tech, healthcare, finance, or retail. The only thing that changes is which levers you pull.
                         </p>
 
-                        <div className="flex items-center gap-4 text-xs font-medium text-muted-foreground pt-2">
-                            <span>Reading time: 12 min</span>
-                            <span className="w-1 h-1 rounded-full bg-border" />
-                            <span>Last updated: Dec 2025</span>
+                        {/* Link to tech-specific */}
+                        <div className="flex items-center gap-4 pt-2">
+                            <Link href="/guides/tech-offer-negotiation" className="text-sm text-brand hover:underline underline-offset-4">
+                                Looking for the tech-specific equity guide? →
+                            </Link>
                         </div>
                     </div>
                 </header>
 
-                {/* 2. Research Foundation (Custom Card for Guide) */}
-                <div className="bg-secondary/30 border border-border/10 rounded-md p-8 space-y-6">
-                    <div className="flex items-center gap-2 text-brand font-medium text-sm uppercase tracking-wider">
-                        <Handshake className="w-4 h-4" />
-                        <span>Research Foundation</span>
-                    </div>
+                {/* Kill the stigma callout */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="mb-16 bg-gradient-to-r from-brand/10 to-violet-500/10 border border-brand/20 rounded-xl p-6"
+                >
+                    <h3 className="font-medium text-foreground mb-2">Let&apos;s kill the stigma</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                        <GuideHighlight>Negotiating is not greedy. It&apos;s expected.</GuideHighlight> The other side has a budget. They made an offer below that budget. They expect you to negotiate. When you don&apos;t, you leave money on the table — and they know it.
+                    </p>
+                </motion.div>
 
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 className="font-medium text-foreground mb-2">The Ambiguity Penalty</h3>
-                            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                                When negotiability is not explicit, men negotiate more than women. When explicit, the difference disappears (Leibbrandt & List).
+                {/* Table of Contents */}
+                <div className="mb-16 p-6 rounded-xl border border-border/30 bg-muted/10">
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-4">In this guide</h3>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="flex items-start gap-3">
+                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">1</span>
+                            <div>
+                                <a href="#universal" className="text-sm font-medium text-foreground hover:text-brand">Universal principles</a>
+                                <p className="text-xs text-muted-foreground mt-0.5">The psychology that works everywhere</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">2</span>
+                            <div>
+                                <a href="#timeline" className="text-sm font-medium text-foreground hover:text-brand">The timeline</a>
+                                <p className="text-xs text-muted-foreground mt-0.5">Sequence wins over cleverness</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">3</span>
+                            <div>
+                                <a href="#levers" className="text-sm font-medium text-foreground hover:text-brand">Know your levers</a>
+                                <p className="text-xs text-muted-foreground mt-0.5">What you can actually negotiate</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">4</span>
+                            <div>
+                                <a href="#scripts" className="text-sm font-medium text-foreground hover:text-brand">The scripts</a>
+                                <p className="text-xs text-muted-foreground mt-0.5">Copy/paste conversations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="space-y-20">
+
+                    {/* Section 1: Universal Principles */}
+                    <GuideNumberedSection number={1} title="Universal principles" id="universal">
+                        <GuideSection
+                            tip={
+                                <>
+                                    Research shows that when negotiation is explicitly allowed, everyone negotiates equally. The gap only appears when people assume they shouldn&apos;t ask.
+                                </>
+                            }
+                        >
+                            <p className="text-muted-foreground leading-relaxed mb-6">
+                                These principles work whether you&apos;re negotiating $50K or $500K, in tech or teaching. Master these first.
                             </p>
-                            <div className="p-3 bg-background rounded border border-border/50">
-                                <span className="block text-xs font-bold uppercase tracking-wide text-foreground/70 mb-1">Key Takeaway</span>
-                                <p className="text-sm text-foreground">Treat negotiation as a professional coordination step, not a taboo conflict.</p>
+
+                            <div className="space-y-4">
+                                <div className="p-5 border border-border/30 rounded-lg">
+                                    <h4 className="font-medium text-foreground mb-2">1. Never share your current salary</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        In many states, it&apos;s illegal for employers to ask. Even where legal, deflect: <GuideHighlight>&quot;I&apos;m focused on the scope of this role—can you share the band?&quot;</GuideHighlight> Your past salary anchors you to your past. Your new salary should reflect your new role.
+                                    </p>
+                                </div>
+                                <div className="p-5 border border-border/30 rounded-lg">
+                                    <h4 className="font-medium text-foreground mb-2">2. Let them make the first offer</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        When asked for salary expectations, defer: &quot;I&apos;m flexible within your range for this level—can you share it?&quot; This prevents you from anchoring low. Once they name a number, that becomes the floor.
+                                    </p>
+                                </div>
+                                <div className="p-5 border border-border/30 rounded-lg">
+                                    <h4 className="font-medium text-foreground mb-2">3. Always ask for time</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        &quot;Thank you, I&apos;m excited. Can I take 48 hours to review the full package?&quot; <GuideHighlight>Never negotiate in the moment.</GuideHighlight> You need time to research, compare, and counter calmly.
+                                    </p>
+                                </div>
+                                <div className="p-5 border border-border/30 rounded-lg">
+                                    <h4 className="font-medium text-foreground mb-2">4. Negotiate total compensation</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        If base is capped, shift the conversation: &quot;If we can get to $X total in year one through some mix of base and signing...&quot; Different levers have different flexibility.
+                                    </p>
+                                </div>
+                                <div className="p-5 border border-border/30 rounded-lg">
+                                    <h4 className="font-medium text-foreground mb-2">5. Be specific and committal</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        <GuideHighlight>&quot;If you can get to $X, I&apos;m ready to sign.&quot;</GuideHighlight> This gives the recruiter a story to take to compensation. Vague asks get vague responses.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <h3 className="font-medium text-foreground mb-2">Anchoring & Sequence</h3>
-                            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                                First offers anchor outcomes, but {"\"pre-offer conversations\""} mitigate this. Information interventions (like knowing the band) significantly improve outcomes (NBER workers).
+                        </GuideSection>
+                    </GuideNumberedSection>
+
+                    <hr className="border-border/30" />
+
+                    {/* Section 2: The Timeline */}
+                    <GuideNumberedSection number={2} title="The timeline" id="timeline">
+                        <GuideSection
+                            tip={
+                                <>
+                                    Exploding offers (&quot;sign by Friday&quot;) are a pressure tactic. Push back politely. If they won&apos;t give you time, that tells you something about the company.
+                                </>
+                            }
+                            tipType="warning"
+                        >
+                            <p className="text-muted-foreground leading-relaxed mb-6">
+                                Most outcomes are decided by <GuideHighlight>sequence</GuideHighlight>, not cleverness. You win by moving in a calm, professional order.
                             </p>
-                            <ul className="text-xs text-muted-foreground space-y-1">
-                                <li>• NBER Working Paper 27054</li>
-                                <li>• NBER Working Paper 32154</li>
-                                <li>• Management Science (2015)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                {/* 3. Main Content - Timeline */}
-                <section>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 1: The negotiation timeline</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                        Most outcomes are decided by sequence, not cleverness. You win by moving in a calm, professional order.
-                    </p>
-                    <NegotiationTimeline />
-                </section>
+                            <NegotiationTimelineDiagram />
 
-                <hr className="border-border/50" />
-
-                {/* 4. Comp Stack */}
-                <section>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 2: The comp stack, and why levers matter</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                        When you negotiate like it is {"\"one number,\""} you miss the levers that companies actually use to close.
-                    </p>
-                    <CompStack />
-
-                    <h3 className="font-medium text-lg text-foreground mt-12 mb-4">Understand the offer before you negotiate it</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                        Negotiation is not “ask for more.” It is “find the lever.” Before you counter, be able to answer plain questions:
-                    </p>
-                    <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-6">
-                        <li>What is the compensation mix?</li>
-                        <li>What is the company optimizing for (budget vs start date)?</li>
-                        <li>What is your actual priority?</li>
-                    </ul>
-                    <div className="bg-brand/5 border border-brand/10 p-6 rounded-md">
-                        <strong className="block text-brand mb-2 font-medium">A Recruiter Truth</strong>
-                        <p className="text-sm text-muted-foreground">Recruiters want the deal to happen. They need a story to take to comp. Give them that story.</p>
-                    </div>
-                </section>
-
-                <hr className="border-border/50" />
-
-                {/* 5. Anchor Zone */}
-                <section>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">The counter: anchor confidently</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                        First offers anchor outcomes. But extremely aggressive openings can increase impasse risk.
-                    </p>
-                    <AnchorZone />
-
-                    <div className="mt-8">
-                        <h3 className="font-medium text-foreground mb-2">The “Package” Principle</h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                            Don{"'"}t just ask for a number. Ask for a package outcome. {"\"If we can get to $X total...\""}
-                        </p>
-                    </div>
-                </section>
-
-                <hr className="border-border/50" />
-
-                {/* 6. Salary History */}
-                <section>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 4: The Salary History Trap</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                        Why do people volunteer their past salary even when they don&apos;t have to? Social pressure.
-                    </p>
-                    <SalaryHistoryTrap />
-                </section>
-
-                <hr className="border-border/50" />
-
-                {/* 7. Level Ladder */}
-                <section>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-4">Figure 5: Level is the Hidden Lever</h2>
-                    <LevelLadder />
-                </section>
-
-                {/* 8. Scripts */}
-                <section>
-                    <h2 className="font-display text-2xl font-medium text-foreground mb-8">The Scripts (Copy/Paste)</h2>
-                    <div className="space-y-8">
-                        <ScriptBlock
-                            title="Asking for time"
-                            doText={<>Thanks again. I’m genuinely excited about the role.<br />I’d love to take 48 hours to review the full package carefully.<br />Could we schedule a quick call on Thursday?</>}
-                            dontText="I need more money."
-                        />
-                        <ScriptBlock
-                            title="Countering with a package ask"
-                            doText={<>If we can get to <strong>$X total in year one</strong> through some mix of base and sign-on, I’m ready to sign quickly.<br />Does that feel workable?</>}
-                            dontText="I deserve $X."
-                        />
-                        <ScriptBlock
-                            title="Deflecting salary history"
-                            doText={<>I’d prefer to focus on the scope and leveling for this role.<br />If you can share the range for this level, I can tell you where I’d need to land to sign.</>}
-                            dontText="I’m not telling you my salary."
-                        />
-                    </div>
-                </section>
-
-                {/* 9. Product Tie In */}
-                <div className="bg-secondary/10 border border-border/10 rounded-md p-8 md:p-12">
-                    <div className="max-w-xl mx-auto text-center space-y-6">
-                        <h2 className="font-display text-3xl font-medium">How we built this into the product</h2>
-                        <p className="text-muted-foreground">Every analysis tool in Recruiter In Your Pocket is built on this playbook.</p>
-
-                        <div className="grid gap-4 text-left">
-                            <div className="p-4 bg-background rounded border border-border/50">
-                                <strong className="block text-foreground mb-1">Offer Intake</strong>
-                                <p className="text-xs text-muted-foreground">We capture your leverage signals before you ever see a resume score.</p>
+                            <div className="space-y-4 mt-8">
+                                <div className="flex items-start gap-4">
+                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">1</span>
+                                    <div>
+                                        <p className="font-medium text-foreground">Get the offer</p>
+                                        <p className="text-sm text-muted-foreground">This is a fact-finding call. Ask questions, collect information, express excitement. Do not negotiate.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">2</span>
+                                    <div>
+                                        <p className="font-medium text-foreground">Ask for time</p>
+                                        <p className="text-sm text-muted-foreground">48 hours minimum. &quot;I&apos;d love to review the full package carefully.&quot;</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">3</span>
+                                    <div>
+                                        <p className="font-medium text-foreground">Research</p>
+                                        <p className="text-sm text-muted-foreground">Know the band for your level/role. Use Levels.fyi, Glassdoor, or ask your network.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">4</span>
+                                    <div>
+                                        <p className="font-medium text-foreground">Counter</p>
+                                        <p className="text-sm text-muted-foreground">Target total comp, not just base. Be specific. &quot;If we can get to $X total...&quot;</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">5</span>
+                                    <div>
+                                        <p className="font-medium text-foreground">Close</p>
+                                        <p className="text-sm text-muted-foreground">Be committal. &quot;If you can get to $X, I&apos;m ready to sign.&quot;</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="p-4 bg-background rounded border border-border/50">
-                                <strong className="block text-foreground mb-1">Tone Analysis</strong>
-                                <p className="text-xs text-muted-foreground">We flag &quot;ultimatum&quot; language that risks blowing up the deal.</p>
+                        </GuideSection>
+                    </GuideNumberedSection>
+
+                    <hr className="border-border/30" />
+
+                    {/* Section 3: Know Your Levers */}
+                    <GuideNumberedSection number={3} title="Know your levers" id="levers">
+                        <GuideSection
+                            tip={
+                                <>
+                                    The recruiter wants the deal to happen. They&apos;ve spent weeks finding you. Their job is to close. Help them help you.
+                                </>
+                            }
+                        >
+                            <p className="text-muted-foreground leading-relaxed mb-6">
+                                Different industries have different comp structures. The psychology is the same — <GuideHighlight>the levers change</GuideHighlight>.
+                            </p>
+
+                            <LeverComparisonDiagram />
+                        </GuideSection>
+
+                        {/* Industry Accordions */}
+                        <div className="space-y-4 mt-8">
+                            <GuideAccordion title="Finance & Consulting" badge="Bonus-Heavy">
+                                <div className="space-y-4">
+                                    <p className="text-sm text-muted-foreground">
+                                        Bonus structures dominate compensation. Your leverage depends on whether you&apos;re a standard hire or experienced lateral.
+                                    </p>
+                                    <ul className="space-y-2">
+                                        <GuideQuickWin><strong>Signing bonus:</strong> Often $10K-$100K+ for lateral moves. Highly negotiable.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Guaranteed year-one bonus:</strong> If joining mid-cycle, negotiate a guaranteed bonus.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Level/title:</strong> Your &quot;tenure credit&quot; affects starting salary and bonus targets.</GuideQuickWin>
+                                    </ul>
+                                </div>
+                            </GuideAccordion>
+
+                            <GuideAccordion title="Healthcare" badge="Benefits-Heavy">
+                                <div className="space-y-4">
+                                    <p className="text-sm text-muted-foreground">
+                                        Healthcare has unique levers that often matter more than base salary.
+                                    </p>
+                                    <ul className="space-y-2">
+                                        <GuideQuickWin><strong>PTO:</strong> 25-35 days common for physicians; negotiate CME days separately.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Loan repayment:</strong> Some employers offer $10K-$50K+/year toward student loans.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Malpractice (tail coverage):</strong> Get tail coverage in writing.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Signing bonus:</strong> Can range $10K-$100K+ depending on specialty.</GuideQuickWin>
+                                    </ul>
+                                </div>
+                            </GuideAccordion>
+
+                            <GuideAccordion title="Retail & Hospitality" badge="Flexibility-Heavy">
+                                <div className="space-y-4">
+                                    <p className="text-sm text-muted-foreground">
+                                        Flexibility is often the most valuable lever. Schedule control and performance bonuses are negotiable.
+                                    </p>
+                                    <ul className="space-y-2">
+                                        <GuideQuickWin><strong>Schedule flexibility:</strong> Fixed days off, no clopens, shift preferences.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Performance bonus:</strong> Sales targets, customer satisfaction metrics.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Title:</strong> Senior/Lead roles come with faster paths.</GuideQuickWin>
+                                        <GuideQuickWin><strong>Trial period review:</strong> Agree to a salary review after 3-6 months.</GuideQuickWin>
+                                    </ul>
+                                </div>
+                            </GuideAccordion>
+                        </div>
+                    </GuideNumberedSection>
+
+                    <hr className="border-border/30" />
+
+                    {/* Section 4: Scripts */}
+                    <GuideNumberedSection number={4} title="The scripts" id="scripts">
+                        <GuideSection
+                            tip={
+                                <>
+                                    Good negotiation is coordination, not combat. You&apos;re a team working together to find a solution.
+                                </>
+                            }
+                        >
+                            <p className="text-muted-foreground leading-relaxed mb-8">
+                                Copy these. Modify for your situation. The key is to be <GuideHighlight>warm, specific, and committal</GuideHighlight>.
+                            </p>
+
+                            <div className="space-y-8">
+                                <div>
+                                    <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
+                                        <MessageSquare className="w-4 h-4" />
+                                        Asking for time
+                                    </h4>
+                                    <GuideChatUI
+                                        title="After receiving the offer"
+                                        messages={[
+                                            { role: "recruiter", message: "We'd like to extend you an offer! Base is $95K with full benefits and 3 weeks PTO.", delay: 500 },
+                                            { role: "you", message: "Thank you so much — I'm really excited about this opportunity.", delay: 2000 },
+                                            { role: "you", message: "I'd love to take a couple days to review everything carefully. Could we connect Thursday?", delay: 3500 },
+                                        ]}
+                                    />
+                                </div>
+
+                                <div>
+                                    <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
+                                        <MessageSquare className="w-4 h-4" />
+                                        Countering with a package ask
+                                    </h4>
+                                    <GuideChatUI
+                                        title="The negotiation call"
+                                        messages={[
+                                            { role: "you", message: "Thanks for connecting. I'm genuinely excited about the role and the team.", delay: 500 },
+                                            { role: "you", message: "I've done some research and I'd love to make this work. If we can get to $105K — whether through base or a signing bonus — I'm ready to commit.", delay: 2000 },
+                                            { role: "recruiter", message: "I appreciate that. Let me see what I can do on the signing bonus side.", delay: 4000 },
+                                        ]}
+                                    />
+                                </div>
+
+                                <div>
+                                    <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
+                                        <Lock className="w-4 h-4" />
+                                        Deflecting salary history
+                                    </h4>
+                                    <GuideChatUI
+                                        title="When asked about current salary"
+                                        messages={[
+                                            { role: "recruiter", message: "What are you currently making?", delay: 500 },
+                                            { role: "you", message: "I'd prefer to focus on the scope and expectations for this role specifically.", delay: 1800 },
+                                            { role: "you", message: "If you can share the range for this level, I can tell you whether we're aligned.", delay: 3200 },
+                                        ]}
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        </GuideSection>
+                    </GuideNumberedSection>
 
-                        <div className="pt-4">
-                            <Link href="/workspace">
-                                <Button variant="brand" size="lg" className="w-full md:w-auto">
-                                    Start Your Analysis
-                                    <ArrowRight className="w-4 h-4 ml-2" />
-                                </Button>
-                            </Link>
-                        </div>
-                    </div>
                 </div>
 
-            </div>
-        </StudioShell>
-    );
-}
-
-function ScriptBlock({ title, doText, dontText }: { title: string, doText: React.ReactNode, dontText: string }) {
-    return (
-        <div className="group relative">
-            <h3 className="font-display text-lg font-medium text-foreground mb-4">{title}</h3>
-
-            <div className="grid md:grid-cols-2 gap-4">
-                {/* DO THIS - Success (Growth) */}
-                <div className="relative p-6 rounded-md border border-success/20 bg-success/5 overflow-hidden">
-                    <div className="flex items-center gap-2 mb-3">
-                        <CheckCircle2 className="w-4 h-4 text-success" />
-                        <span className="text-[10px] font-bold text-success uppercase tracking-widest">Winning Approach</span>
-                    </div>
-                    <p className="text-base text-foreground/90 leading-relaxed font-medium font-display border-l border-success/30 pl-4">
-                        {"\""}{doText}{"\""}
+                {/* CTA */}
+                <div className="mt-20 bg-secondary/10 border border-border/10 rounded-xl p-8 md:p-12 text-center">
+                    <h2 className="font-display text-2xl font-medium mb-4">Ready to negotiate?</h2>
+                    <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                        Get your resume reviewed by a recruiter&apos;s eye before your next interview.
                     </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link href="/workspace">
+                            <Button variant="brand" size="lg" className="gap-2 w-full sm:w-auto">
+                                Start Your Review
+                                <ArrowRight className="w-4 h-4" />
+                            </Button>
+                        </Link>
+                        <Link href="/guides/tech-offer-negotiation">
+                            <Button variant="outline" size="lg" className="gap-2 w-full sm:w-auto">
+                                Tech Equity Guide
+                                <ArrowRight className="w-4 h-4" />
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
 
-                {/* NOT THIS - Destructive (Risk/Mistake) */}
-                <div className="relative p-6 rounded-md border border-destructive/10 bg-destructive/5 opacity-80 hover:opacity-100 transition-opacity">
-                    <div className="flex items-center gap-2 mb-3">
-                        <AlertCircle className="w-4 h-4 text-destructive" />
-                        <span className="text-[10px] font-bold text-destructive uppercase tracking-widest">Common Mistake</span>
-                    </div>
-                    <p className="text-base text-muted-foreground leading-relaxed italic font-display border-l border-destructive/20 pl-4">
-                        {"\""}{dontText}{"\""}
-                    </p>
-                </div>
-            </div>
+            </main>
         </div>
-    )
+    );
 }

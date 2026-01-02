@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
 export const metadata: Metadata = {
     title: "Recruiter Search Behavior: What We Can Cite | Hiring Research",
@@ -35,31 +36,7 @@ export default function RecruiterSearchBehaviorPage() {
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
-                    <figure className="riyp-figure">
-                        <div className="riyp-figure-frame p-6">
-                            <div className="grid md:grid-cols-2 gap-6 text-sm">
-                                <div>
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">Published</div>
-                                    <ul className="space-y-2 text-muted-foreground">
-                                        <li>Platform scale and activity</li>
-                                        <li>Recruiter usage surveys</li>
-                                        <li>Skills-first sourcing outcomes</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">Not disclosed</div>
-                                    <ul className="space-y-2 text-muted-foreground">
-                                        <li>Exact ranking weights</li>
-                                        <li>Search scoring algorithm</li>
-                                        <li>Full visibility model</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <figcaption className="mt-4 text-xs text-muted-foreground">
-                                Fig. 1 - Evidence boundary for LinkedIn search behavior.
-                            </figcaption>
-                        </div>
-                    </figure>
+                    <RecruiterSearchDiagram />
                 </>
             }
             productTieIn={{
@@ -126,7 +103,7 @@ export default function RecruiterSearchBehaviorPage() {
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     title="Stay evidence-based"
-                    desc="If a claim cannot be cited, we label it as Recruiter lens." 
+                    desc="If a claim cannot be cited, we label it as Recruiter lens."
                 />
                 <ArticleInsight
                     title="Focus on search inputs"

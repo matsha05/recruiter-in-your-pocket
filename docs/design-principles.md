@@ -342,6 +342,8 @@ All report sections use identical chrome:
 - Font size: `text-[10px]`
 - **Never use Gold** for content tags (reserved for unlock moments)
 
+> **Note:** Guides use a different layout than Research (full-width, no sidebar). See `diagram-visual-spec.md` § "Guide-Specific Patterns".
+
 ---
 
 ## Report Section Patterns

@@ -126,10 +126,10 @@ export default function FAQClient() {
 
                 {/* Hero */}
                 <header className="mb-12 text-center max-w-2xl mx-auto">
-                    <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
+                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-4 tracking-tight">
                         Questions & Answers
                     </h1>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                         Everything you need to know about how we work.
                     </p>
                 </header>

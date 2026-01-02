@@ -14,10 +14,10 @@ export default function PrivacyClient() {
 
                 {/* Header */}
                 <header className="mb-12 text-center max-w-2xl mx-auto">
-                    <h1 className="font-display text-4xl md:text-5xl font-medium text-foreground mb-4 tracking-tight">
+                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-4 tracking-tight">
                         Privacy Policy
                     </h1>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                         How we handle your data, in plain English.
                         <br />
                         <span className="text-xs font-mono mt-2 block opacity-70">Last updated: December 2025</span>

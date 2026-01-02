@@ -330,6 +330,29 @@ export default function ResearchClient() {
                     </div>
                 </section>
 
+                {/* Guides Callout */}
+                <section>
+                    <Link href="/guides" className="group block rounded-xl border border-brand/20 bg-brand/5 p-6 hover:bg-brand/10 transition-colors">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 rounded-lg bg-brand/20 flex items-center justify-center text-brand">
+                                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span className="font-mono text-[10px] uppercase tracking-widest text-brand/70">Actionable Playbooks</span>
+                                    <h3 className="font-display text-lg font-medium text-foreground">Offer Negotiation Guides</h3>
+                                    <p className="text-sm text-muted-foreground">Step-by-step playbooks for tech and universal negotiation.</p>
+                                </div>
+                            </div>
+                            <svg className="w-5 h-5 text-brand group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </Link>
+                </section>
+
                 {/* Research Library */}
                 <section className="space-y-8">
                     <div className="text-center">
@@ -365,10 +388,47 @@ export default function ResearchClient() {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                         {[
-                            { title: "First Impressions Matter", desc: "Recruiter First Impression focuses on the early window where fit signals form.", icon: "👁️" },
-                            { title: "Clarity over Keywords", desc: "Our engine rewards clarity and story and penalizes keyword stuffing.", icon: "✨" },
-                            { title: "Eye-Flow Optimization", desc: "Bullet Upgrades are designed for scan-first reading patterns.", icon: "📖" },
-                            { title: "Honest ATS Education", desc: "We teach how parsers work instead of selling fear.", icon: "🔍" }
+                            {
+                                title: "First Impressions Matter",
+                                desc: "Recruiter First Impression focuses on the early window where fit signals form.",
+                                icon: (
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                        <circle cx="12" cy="12" r="3" />
+                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                    </svg>
+                                )
+                            },
+                            {
+                                title: "Clarity over Keywords",
+                                desc: "Our engine rewards clarity and story and penalizes keyword stuffing.",
+                                icon: (
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .963L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                                    </svg>
+                                )
+                            },
+                            {
+                                title: "Eye-Flow Optimization",
+                                desc: "Bullet Upgrades are designed for scan-first reading patterns.",
+                                icon: (
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                                    </svg>
+                                )
+                            },
+                            {
+                                title: "Honest ATS Education",
+                                desc: "We teach how parsers work instead of selling fear.",
+                                icon: (
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <path d="m21 21-4.3-4.3" />
+                                    </svg>
+                                )
+                            }
                         ].map((principle, i) => (
                             <motion.div
                                 key={i}
@@ -379,7 +439,9 @@ export default function ResearchClient() {
                                 className="rounded-xl border border-border/40 bg-white dark:bg-card p-5"
                             >
                                 <div className="flex items-start gap-4">
-                                    <span className="text-2xl">{principle.icon}</span>
+                                    <div className="w-10 h-10 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground shrink-0">
+                                        {principle.icon}
+                                    </div>
                                     <div>
                                         <strong className="block text-foreground font-medium text-sm mb-1">
                                             {principle.title}

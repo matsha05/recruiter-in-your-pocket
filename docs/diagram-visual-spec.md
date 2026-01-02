@@ -90,10 +90,46 @@ We're competing visually with **Linear**, **Stripe**, **Vercel**, and **Figma** 
 - Wireframe-quality layouts in production
 - Labels without visual relationship to the data
 - Animations without purpose
+- **"ANIMATED" or status badges on diagrams** — they cheapen the design
+
+---
+
+## Lessons Learned (v2.1)
+
+> Patterns discovered during implementation that should be codified.
+
+### Horizontal > Vertical for Process Flows
+
+Vertical step flows (arrow → arrow → arrow) feel like PowerPoint. Horizontal card grids with subtle connectors feel premium and scannable.
+
+```
+❌ Vertical: Step 1 → Step 2 → Step 3 (feels like a flowchart)
+✅ Horizontal: [Card 1] → [Card 2] → [Card 3] (feels like a product)
+```
+
+### Side-by-Side > Arrow Transitions
+
+When showing "before/after" or "promise/reality" comparisons, use two distinct colored panels instead of a single arrow transition.
+
+```tsx
+<div className="grid md:grid-cols-2 gap-4">
+    <div className="bg-emerald-50 border-emerald-500/30">What They Say</div>
+    <div className="bg-amber-50 border-amber-500/30">What Research Shows</div>
+</div>
+```
+
+### Color Coding for Meaning
+
+Use distinct semantic colors for comparison panels:
+- **Emerald** for positive/claimed/ideal
+- **Amber** for cautionary/reality/actual
+- **Rose** for risk/error/penalty
+- **Violet** for tech/equity-specific content
 
 ---
 
 ## Container Standards
+
 
 ### Premium Figure Wrapper
 
@@ -116,9 +152,13 @@ We're competing visually with **Linear**, **Stripe**, **Vercel**, and **Figma** 
 
 | Type | Max Width | Use Case |
 |------|-----------|----------|
-| Document overlay | `420px` | Heatmaps, scan patterns |
-| Wide comparison | `520px` | Before/after, flows |
-| Interactive calculator | `640px` | Sliders, inputs |
+| Document overlay | `max-w-md` (448px) | Heatmaps, scan patterns |
+| Wide comparison | `max-w-lg` (512px) | Before/after, flows |
+| Interactive calculator | `max-w-xl` (576px) | Sliders, inputs |
+| Guide diagrams | `max-w-2xl` (672px) | Comp stacks, charts |
+| Timeline/process | `max-w-3xl` (768px) | Multi-step sequences |
+
+> **Note**: Use Tailwind width classes (`max-w-*`) for consistency rather than arbitrary pixel values.
 
 ---
 
@@ -195,6 +235,20 @@ Requirements: Smooth input controls, animated output visualization.
 
 Requirements: Connected cards/steps, flow arrows, staggered reveal.
 
+### Type F: Guide Diagrams
+*Offer negotiation visuals, comp breakdowns, industry comparisons*
+
+Guide diagrams are simpler than research diagrams. They prioritize:
+- **Clarity over depth** — no heatmaps or complex layering
+- **Generous sizing** — larger circles, thicker bars, more padding
+- **Responsive layouts** — horizontal on desktop, vertical on mobile
+- **Premium feel** — shadows, gradients on connection lines
+
+Common patterns:
+- **Timeline**: Numbered circles with connection line, staggered reveal
+- **Stacked bar**: Horizontal segments with legend below
+- **Comparison grid**: Colored cards with bulleted lists
+
 ---
 
 ## Quality Checklist
@@ -212,4 +266,31 @@ Before shipping any diagram:
 
 ---
 
-*v2.0 — Jan 2026*
+## Guide-Specific Patterns
+
+> Guides use a different layout philosophy than research articles.
+
+### Layout
+- **No sidebar** — full-width content column for readability
+- **Standalone header** — simple back link + CTA, no studio shell
+- **Max-width: 5xl** for main content area
+
+### "Recruiter's Take" Component
+Marginalia tips appear alongside guide content:
+
+| Type | Label | Color |
+|------|-------|-------|
+| `insight` | Recruiter's Take | Brand teal |
+| `warning` | Watch Out | Rose red |
+| `info` | Good to Know | Blue |
+
+### Chat UI Component
+Conversation scripts appear in a dark-themed message interface with:
+- Play/Replay button
+- Staggered message reveals
+- Role labels (You / Recruiter)
+
+---
+
+*v2.1 — Jan 2026 (Added Guide Diagrams, revised widths)*
+```
