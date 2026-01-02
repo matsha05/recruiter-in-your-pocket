@@ -93,20 +93,11 @@ export default function SettingsClient() {
     };
 
     return (
-        <div className="min-h-screen bg-muted/10 pb-20">
-            {/* Header */}
-            <header className="bg-background/80 backdrop-blur-xl border-b border-border sticky top-0 z-20">
-                <div className="max-w-4xl mx-auto px-6 h-16 flex items-center">
-                    <div className="flex items-center gap-2">
-                        <PocketMark className="w-5 h-5 text-brand" />
-                        <Wordmark className="h-5 text-foreground" />
-                        <span className="text-muted-foreground/30 text-xl font-light">/</span>
-                        <span className="font-display text-lg text-foreground/80">Settings</span>
-                    </div>
-                </div>
-            </header>
+        <div className="min-h-full pb-20">
+            <div className="max-w-4xl mx-auto px-6 pt-8">
+                {/* Page Title */}
+                <h1 className="font-display text-2xl font-medium text-foreground mb-8">Settings</h1>
 
-            <main className="max-w-4xl mx-auto px-6 pt-8">
                 {/* Tab Navigation - Premium Pill Style */}
                 <nav className="inline-flex items-center gap-0.5 p-1 rounded-lg bg-muted/60 border border-border/80 mb-8">
                     {TABS.map(({ id, label, icon: Icon }) => (
@@ -270,41 +261,41 @@ export default function SettingsClient() {
                         </div>
                     )}
                 </div>
-            </main>
 
-            {/* Email Modal */}
-            {showEmailInput && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
-                    <div className="bg-card border border-border/20 rounded w-full max-w-sm p-6 space-y-4">
-                        <div className="text-center">
-                            <h3 className="text-lg font-display font-semibold">Where should we send your receipt?</h3>
-                            <p className="text-muted-foreground text-sm mt-1">We&apos;ll link your credits to this email.</p>
-                        </div>
-                        <form onSubmit={handleGuestSubmit} className="space-y-3">
-                            <input
-                                type="email"
-                                required
-                                placeholder="you@example.com"
-                                value={guestEmail}
-                                onChange={(e) => setGuestEmail(e.target.value)}
-                                className="w-full px-4 py-2.5 rounded border border-border/30 bg-background focus:outline-none focus:ring-2 focus:ring-brand/20"
-                                autoFocus
-                            />
-                            <button
-                                type="submit"
-                                disabled={!guestEmail || !!isLoading}
-                                className="w-full py-2.5 rounded bg-brand text-white font-medium hover:bg-brand/90 transition-colors flex items-center justify-center gap-2"
-                            >
-                                {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-                                Continue to Checkout
+                {/* Email Modal */}
+                {showEmailInput && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+                        <div className="bg-card border border-border/20 rounded w-full max-w-sm p-6 space-y-4">
+                            <div className="text-center">
+                                <h3 className="text-lg font-display font-semibold">Where should we send your receipt?</h3>
+                                <p className="text-muted-foreground text-sm mt-1">We&apos;ll link your credits to this email.</p>
+                            </div>
+                            <form onSubmit={handleGuestSubmit} className="space-y-3">
+                                <input
+                                    type="email"
+                                    required
+                                    placeholder="you@example.com"
+                                    value={guestEmail}
+                                    onChange={(e) => setGuestEmail(e.target.value)}
+                                    className="w-full px-4 py-2.5 rounded border border-border/30 bg-background focus:outline-none focus:ring-2 focus:ring-brand/20"
+                                    autoFocus
+                                />
+                                <button
+                                    type="submit"
+                                    disabled={!guestEmail || !!isLoading}
+                                    className="w-full py-2.5 rounded bg-brand text-white font-medium hover:bg-brand/90 transition-colors flex items-center justify-center gap-2"
+                                >
+                                    {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+                                    Continue to Checkout
+                                </button>
+                            </form>
+                            <button onClick={() => setShowEmailInput(null)} className="w-full text-sm text-muted-foreground hover:text-foreground">
+                                Cancel
                             </button>
-                        </form>
-                        <button onClick={() => setShowEmailInput(null)} className="w-full text-sm text-muted-foreground hover:text-foreground">
-                            Cancel
-                        </button>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }

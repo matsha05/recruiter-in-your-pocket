@@ -1,4 +1,4 @@
-import { StudioShell } from "@/components/layout/StudioShell";
+import { AppShell } from "@/components/layout/AppShell";
 
 export default function WorkspaceLayout({
     children,
@@ -6,8 +6,8 @@ export default function WorkspaceLayout({
     children: React.ReactNode;
 }) {
     return (
-        <StudioShell disableScroll={true}>
+        <AppShell fullHeight>
             {children}
-        </StudioShell>
+        </AppShell>
     );
 }

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import SettingsClient from '@/components/workspace/SettingsClient';
-import { StudioShell } from '@/components/layout/StudioShell';
+import { AppShell } from '@/components/layout/AppShell';
 
 export const metadata: Metadata = {
     title: 'Settings — Recruiter in Your Pocket',
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function SettingsPage() {
     return (
-        <StudioShell>
+        <AppShell noPadding>
             <SettingsClient />
-        </StudioShell>
+        </AppShell>
     );
 }

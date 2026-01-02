@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import JobsClient from '@/components/jobs/JobsClient';
-import { StudioShell } from '@/components/layout/StudioShell';
+import { AppShell } from '@/components/layout/AppShell';
 
 export const metadata: Metadata = {
     title: 'Jobs — Recruiter in Your Pocket',
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function JobsPage() {
     return (
-        <StudioShell>
+        <AppShell maxWidth="6xl">
             <JobsClient />
-        </StudioShell>
+        </AppShell>
     );
 }
