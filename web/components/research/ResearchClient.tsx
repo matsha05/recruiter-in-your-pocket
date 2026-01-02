@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 
 /**
@@ -256,9 +256,7 @@ function MethodologyDiagram() {
 
 export default function ResearchClient() {
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader showResearchLink={false} />
-
+        <>
             <main className="max-w-5xl mx-auto px-6 pt-12 pb-20 space-y-16">
                 {/* Hero Section */}
                 <motion.header
@@ -457,6 +455,6 @@ export default function ResearchClient() {
                 </section>
             </main>
             <Footer />
-        </div>
+        </>
     );
 }

@@ -51,12 +51,7 @@ export const STUDIO_NAV: NavItem[] = [
         icon: BookOpen,
         description: "Negotiation guides & tools",
     },
-    {
-        label: "Settings",
-        href: "/settings",
-        icon: CreditCard,
-        description: "Account & billing",
-    },
+    // Settings is now accessed via UserNav dropdown (premium pattern)
 ];
 
 // ============================================================================

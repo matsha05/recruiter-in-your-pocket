@@ -6,6 +6,7 @@ import { UserNav } from "@/components/shared/UserNav";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { PocketMark, Wordmark } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */
@@ -15,73 +16,60 @@ interface SiteHeaderProps {
 }
 
 /**
- * SiteHeader v2
+ * SiteHeader — Premium navigation for guests/marketing pages
  * 
- * Single source of truth for site-wide navigation.
- * Improved visual separation between nav groups.
+ * Design: "Editorial Authority" Pattern (right-aligned)
+ * - Logo left with generous breathing room
+ * - Navigation links right-aligned
+ * - Underline hover effect (Stripe-inspired)
+ * - CTA + user actions far right
+ * 
+ * Consistent with AppHeader — no jarring transition when user logs in.
  */
 export function SiteHeader({ showResearchLink = true, showResourcesLink = true }: SiteHeaderProps) {
     const { user, isLoading: isAuthLoading, signOut } = useAuth();
 
     return (
-        <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-border/10 bg-background/80 backdrop-blur-md sticky top-0 z-50 overflow-x-hidden safe-area-inset-x">
-            {/* Logo — always links home */}
-            <Link href="/" className="flex items-center gap-2 shrink-0 group">
+        <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-border/20 bg-background/95 backdrop-blur-lg sticky top-0 z-50">
+            {/* Logo — Left side with breathing room */}
+            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
                 <PocketMark className="w-6 h-6 text-brand transition-transform group-hover:scale-105" />
-                <Wordmark className="h-5 md:h-6 text-foreground hidden sm:block" />
+                <Wordmark className="h-5 md:h-[22px] text-foreground hidden sm:block" />
             </Link>
 
-            {/* Navigation */}
+            {/* Navigation — Right aligned */}
             <nav className="flex items-center gap-1 md:gap-2">
-                {/* Content Nav Group */}
+                {/* Content Nav Links */}
                 {(showResearchLink || showResourcesLink) && (
-                    <div className="hidden md:flex items-center gap-1 bg-muted/30 rounded-full px-1 py-0.5">
+                    <div className="hidden md:flex items-center gap-1">
                         {showResearchLink && (
-                            <Link
-                                href="/research"
-                                className="text-sm text-muted-foreground hover:text-foreground hover:bg-background/80 transition-colors font-medium px-3 py-1.5 rounded-full"
-                            >
-                                Research
-                            </Link>
+                            <NavLink href="/research">Research</NavLink>
                         )}
                         {showResourcesLink && (
-                            <Link
-                                href="/guides"
-                                className="text-sm text-muted-foreground hover:text-foreground hover:bg-background/80 transition-colors font-medium px-3 py-1.5 rounded-full"
-                            >
-                                Resources
-                            </Link>
+                            <NavLink href="/guides">Resources</NavLink>
                         )}
                     </div>
                 )}
 
                 {/* Separator */}
-                <div className="hidden md:block w-px h-5 bg-border/30 mx-2" />
+                <div className="hidden md:block w-px h-5 bg-border/40 mx-2" />
 
+                {/* Auth Section */}
                 {isAuthLoading ? (
                     <div className="w-20 h-9" />
                 ) : user ? (
-                    <div className="flex items-center gap-2">
-                        <Link
-                            href="/workspace"
-                            className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium hidden md:block px-3 py-1.5"
-                        >
-                            The Studio
-                        </Link>
-                        <div className="hidden md:block w-px h-4 bg-border/30" />
+                    <div className="flex items-center gap-1.5">
+                        {/* Desktop: Show Studio link */}
+                        <NavLink href="/workspace">Studio</NavLink>
+                        <ThemeToggle />
                         <UserNav user={user} onSignOut={signOut} />
-                        {/* Tablet: full button */}
-                        <Link href="/workspace" className="hidden sm:block md:hidden">
-                            <Button variant="brand" size="sm">Open Studio</Button>
-                        </Link>
-                        {/* Mobile: compact */}
-                        <Link href="/workspace" className="sm:hidden">
+                        {/* Mobile: Studio button */}
+                        <Link href="/workspace" className="md:hidden">
                             <Button variant="brand" size="sm" className="px-3">Studio</Button>
                         </Link>
-                        <ThemeToggle />
                     </div>
                 ) : (
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                         <Link href="/auth" className="hidden sm:block">
                             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
                                 Log In
@@ -97,5 +85,20 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                 )}
             </nav>
         </header>
+    );
+}
+
+/**
+ * NavLink — Text link with underline hover effect
+ */
+function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+    return (
+        <Link href={href} className="group relative px-3 py-1.5 hidden md:block">
+            <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                {children}
+            </span>
+            {/* Underline that grows on hover */}
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-brand rounded-full transition-all duration-200 group-hover:w-4" />
+        </Link>
     );
 }

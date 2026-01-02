@@ -36,11 +36,11 @@ export function UserNav({
             <DropdownMenuTrigger asChild>
                 <button
                     className={cn(
-                        "flex items-center gap-2 px-2 py-1.5 rounded hover:bg-muted transition-colors border border-transparent hover:border-border group focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                        "flex items-center justify-center rounded-full hover:ring-2 hover:ring-border/50 transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                         className
                     )}
                 >
-                    <span className="w-8 h-8 flex items-center justify-center bg-brand text-white rounded text-xs font-bold">
+                    <span className="w-8 h-8 flex items-center justify-center bg-brand text-white rounded-full text-xs font-semibold ring-1 ring-border/20">
                         {userInitial}
                     </span>
                 </button>

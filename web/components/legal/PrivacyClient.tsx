@@ -1,14 +1,12 @@
 "use client";
 
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
 
 export default function PrivacyClient() {
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader />
-
+        <>
             <main className="max-w-3xl mx-auto px-6 py-12">
                 <LegalNav />
 
@@ -76,10 +74,10 @@ export default function PrivacyClient() {
                         or at support@recruiterinyourpocket.com.
                     </Section>
                 </article>
-            </main>
+            </main >
 
             <Footer />
-        </div>
+        </>
     );
 }
 

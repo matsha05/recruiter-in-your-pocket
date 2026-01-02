@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, LogOut, Home } from "lucide-react";
+import { Menu, LogOut, Home, Settings } from "lucide-react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { PocketMark, Wordmark } from "@/components/icons";
 import { STUDIO_NAV, type NavItem } from "@/lib/navigation";
@@ -53,6 +53,18 @@ export function MobileNav() {
                                 active={pathname === item.href || pathname?.startsWith(`${item.href}/`)}
                             />
                         ))}
+
+                        {/* Divider */}
+                        <div className="h-px bg-border/40 my-4" />
+
+                        {/* Settings - separate from primary nav */}
+                        <MobileNavLink
+                            href="/settings"
+                            icon={Settings}
+                            label="Settings"
+                            setOpen={setOpen}
+                            active={pathname === "/settings"}
+                        />
                     </nav>
                 </div>
 

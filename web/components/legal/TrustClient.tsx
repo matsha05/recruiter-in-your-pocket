@@ -1,16 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 import { ShieldCheck, Lock, Trash2, FileText, CheckCircle2 } from "lucide-react";
 import { LegalNav } from "@/components/legal/LegalNav";
 
 export default function TrustClient() {
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader />
-
+        <>
             <main className="max-w-4xl mx-auto px-6 py-20">
                 <LegalNav />
 
@@ -91,7 +89,7 @@ export default function TrustClient() {
             </main>
 
             <Footer />
-        </div>
+        </>
     );
 }
 

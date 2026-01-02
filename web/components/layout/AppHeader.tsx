@@ -7,66 +7,86 @@ import { UserNav } from "@/components/shared/UserNav";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import { PocketMark, Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { STUDIO_NAV } from "@/lib/navigation";
 import { MobileNav } from "./MobileNav";
 
 /**
- * AppHeader - Top navigation for the authenticated app experience
+ * AppHeader — Premium top navigation for authenticated users
  * 
- * Replaces the sidebar with a streamlined top nav.
- * Design rationale: "Quiet Power" + "Raycast Density" from design-philosophy.md
- * - Every pixel earns its place
- * - Calm by default
- * - Content gets full width
+ * Design: "Editorial Authority" Pattern (right-aligned)
+ * - Logo left with generous breathing room
+ * - Navigation links right-aligned
+ * - Underline hover effect (Stripe-inspired)
+ * - User actions far right
  */
+
+// Primary navigation for authenticated users
+// Order: Core product → Tools → Educational content
+const APP_NAV = [
+    { label: "Studio", href: "/workspace" },
+    { label: "Jobs", href: "/jobs" },
+    { label: "Research", href: "/research" },
+    { label: "Resources", href: "/guides" },
+];
+
 export function AppHeader() {
     const pathname = usePathname();
     const { user, signOut } = useAuth();
 
     return (
-        <header className="h-14 flex items-center justify-between px-4 md:px-6 border-b border-border/40 bg-background/95 backdrop-blur-md sticky top-0 z-50">
-            {/* Logo */}
-            <div className="flex items-center gap-4">
-                <Link href="/" className="flex items-center gap-2 shrink-0 group">
-                    <PocketMark className="w-5 h-5 text-brand transition-transform group-hover:scale-105" />
-                    <Wordmark className="h-4 md:h-5 text-foreground hidden sm:block" />
-                </Link>
+        <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-border/20 bg-background/95 backdrop-blur-lg sticky top-0 z-50">
+            {/* Logo — Left side with breathing room */}
+            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+                <PocketMark className="w-6 h-6 text-brand transition-transform group-hover:scale-105" />
+                <Wordmark className="h-5 md:h-[22px] text-foreground hidden sm:block" />
+            </Link>
 
-                {/* Desktop Nav - Pill Groups */}
-                <nav className="hidden md:flex items-center gap-0.5 bg-muted/40 rounded-lg px-1 py-0.5">
-                    {STUDIO_NAV.map((item) => {
+            {/* Navigation — Right aligned */}
+            <nav className="flex items-center gap-1 md:gap-2">
+                {/* Desktop Nav Links */}
+                <div className="hidden md:flex items-center gap-1">
+                    {APP_NAV.map((item) => {
                         const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
-                        const Icon = item.icon;
 
                         return (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={cn(
-                                    "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200",
-                                    isActive
-                                        ? "bg-background text-foreground shadow-sm"
-                                        : "text-muted-foreground hover:text-foreground hover:bg-background/50"
-                                )}
+                                className="group relative px-3 py-1.5"
                             >
-                                <Icon className={cn("w-3.5 h-3.5", isActive ? "text-brand" : "")} />
-                                <span className="hidden lg:inline">{item.label}</span>
+                                <span className={cn(
+                                    "text-sm font-medium transition-colors",
+                                    isActive
+                                        ? "text-foreground"
+                                        : "text-muted-foreground group-hover:text-foreground"
+                                )}>
+                                    {item.label}
+                                </span>
+                                {/* Underline indicator */}
+                                <span className={cn(
+                                    "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-brand rounded-full transition-all duration-200",
+                                    isActive
+                                        ? "w-4"
+                                        : "w-0 group-hover:w-4"
+                                )} />
                             </Link>
                         );
                     })}
-                </nav>
-            </div>
+                </div>
 
-            {/* Right Side: User + Mobile */}
-            <div className="flex items-center gap-2">
-                {user && (
-                    <div className="hidden md:flex items-center gap-2">
-                        <UserNav user={user} onSignOut={signOut} />
-                    </div>
-                )}
-                <ThemeToggle />
-                <MobileNav />
-            </div>
+                {/* Separator */}
+                <div className="hidden md:block w-px h-5 bg-border/40 mx-2" />
+
+                {/* User Actions */}
+                <div className="flex items-center gap-1.5">
+                    <ThemeToggle />
+                    {user && (
+                        <div className="hidden md:block">
+                            <UserNav user={user} onSignOut={signOut} />
+                        </div>
+                    )}
+                    <MobileNav />
+                </div>
+            </nav>
         </header>
     );
 }

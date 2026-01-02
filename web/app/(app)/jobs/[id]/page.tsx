@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import JobDetailClient from '@/components/jobs/JobDetailClient';
-import { AppShell } from '@/components/layout/AppShell';
 
 interface JobDetailPageProps {
     params: Promise<{ id: string }>;
@@ -19,8 +18,10 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     const resolvedParams = await params;
 
     return (
-        <AppShell maxWidth="5xl">
-            <JobDetailClient jobId={resolvedParams.id} />
-        </AppShell>
+        <div className="flex-1 p-6 md:p-8 lg:p-12">
+            <div className="mx-auto w-full max-w-5xl">
+                <JobDetailClient jobId={resolvedParams.id} />
+            </div>
+        </div>
     );
 }

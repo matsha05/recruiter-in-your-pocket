@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
 import {
@@ -112,8 +112,7 @@ export default function FAQClient() {
     };
 
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader />
+        <>
 
             {/* FAQ Schema.org for SEO */}
             <script
@@ -174,6 +173,6 @@ export default function FAQClient() {
             </main>
 
             <Footer />
-        </div>
+        </>
     );
 }

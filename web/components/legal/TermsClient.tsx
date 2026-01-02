@@ -1,15 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
 
 export default function TermsClient() {
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader />
-
+        <>
             <main className="max-w-3xl mx-auto px-6 py-16">
                 <LegalNav />
 
@@ -89,7 +87,7 @@ export default function TermsClient() {
             </main>
 
             <Footer />
-        </div>
+        </>
     );
 }
 

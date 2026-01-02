@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import JobsClient from '@/components/jobs/JobsClient';
-import { AppShell } from '@/components/layout/AppShell';
 
 export const metadata: Metadata = {
     title: 'Jobs — Recruiter in Your Pocket',
@@ -9,8 +8,10 @@ export const metadata: Metadata = {
 
 export default function JobsPage() {
     return (
-        <AppShell maxWidth="6xl">
-            <JobsClient />
-        </AppShell>
+        <div className="flex-1 p-6 md:p-8 lg:p-12">
+            <div className="mx-auto w-full max-w-6xl">
+                <JobsClient />
+            </div>
+        </div>
     );
 }

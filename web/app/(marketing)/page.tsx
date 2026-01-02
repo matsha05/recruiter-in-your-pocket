@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LandingClient from "../components/landing/LandingClient";
+import LandingClient from "@/components/landing/LandingClient";
 
 export const metadata: Metadata = {
   title: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",

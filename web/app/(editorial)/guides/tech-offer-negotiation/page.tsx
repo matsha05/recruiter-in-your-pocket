@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import {
     GuideSection,
     GuideAccordion,
@@ -30,8 +30,7 @@ import { ArrowRight, ArrowLeft, DollarSign, TrendingUp, Clock, Target, Lock, Mes
 
 export default function TechOfferNegotiationGuidePage() {
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader showResourcesLink={false} />
+        <>
 
             {/* Breadcrumb */}
             <div className="border-b border-border/20 bg-muted/30">
@@ -519,6 +518,6 @@ export default function TechOfferNegotiationGuidePage() {
                 </div>
 
             </main>
-        </div>
+        </>
     );
 }

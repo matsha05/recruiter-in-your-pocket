@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 import { ArrowRight, BookOpen, Building2, Briefcase } from "lucide-react";
 
@@ -47,9 +47,7 @@ const guides = [
 
 export default function GuidesPage() {
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader showResourcesLink={false} />
-
+        <>
             <main className="max-w-4xl mx-auto px-6 pt-16 pb-24">
                 {/* Hero */}
                 <motion.header
@@ -62,7 +60,7 @@ export default function GuidesPage() {
                         Actionable Playbooks
                     </span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight leading-tight mb-4">
-                        Guides
+                        Resources
                     </h1>
                     <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
                         Step-by-step playbooks for the moments that matter. Written from the recruiter&apos;s side of the table.
@@ -167,6 +165,6 @@ export default function GuidesPage() {
             </main>
 
             <Footer />
-        </div>
+        </>
     );
 }

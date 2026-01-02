@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import {
     Plus, X, ChevronRight, ChevronDown, ChevronUp,
     TrendingUp, Info, ExternalLink, Briefcase
@@ -498,8 +498,7 @@ export default function CompCalculatorPage() {
     const hasData = displayOffers.some(o => o.baseSalary > 0);
 
     return (
-        <div className="min-h-screen bg-muted/20">
-            <SiteHeader showResourcesLink={false} />
+        <>
 
             <div className="border-b border-border/20 bg-background">
                 <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
@@ -581,6 +580,6 @@ export default function CompCalculatorPage() {
                     <Link href="/guides/offer-negotiation"><Button variant="outline">All-Industries Guide →</Button></Link>
                 </div>
             </main>
-        </div>
+        </>
     );
 }

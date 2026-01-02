@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ReactNode } from "react";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 
 interface ResearchSource {
     id?: string;
@@ -72,8 +72,7 @@ export function ResearchArticle({
     }
 }: ResearchArticleProps) {
     return (
-        <div className="min-h-screen bg-background">
-            <SiteHeader />
+        <>
 
             <script
                 type="application/ld+json"
@@ -313,7 +312,7 @@ export function ResearchArticle({
                     </Link>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

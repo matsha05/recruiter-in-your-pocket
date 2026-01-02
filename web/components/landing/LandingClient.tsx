@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Lock, Shield, Trash2 } from "lucide-react";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+// SiteHeader removed — layout handles navigation
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import Footer from "@/components/landing/Footer";
 import { SampleReportPreview } from "@/components/landing/SampleReportPreview";
@@ -60,9 +60,7 @@ export default function LandingClient() {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-brand/20">
-            <SiteHeader />
-
+        <div className="flex flex-col font-sans selection:bg-brand/20">
             <main className="flex-1 flex flex-col overflow-hidden">
                 {/* Hero Section with Gradient */}
                 <section className="relative px-6 py-12 lg:py-20 overflow-hidden">

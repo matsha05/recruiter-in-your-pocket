@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { getUnlockContext, clearUnlockContext } from "@/lib/unlock/unlockContext";
-import WorkspaceHeader from "@/components/workspace/WorkspaceHeader";
+// WorkspaceHeader removed — AppShell provides AppHeader for unified navigation
 import InputPanel from "@/components/workspace/InputPanel";
 import ReportPanel from "@/components/workspace/ReportPanel";
 import HistorySidebar from "@/components/workspace/HistorySidebar";
@@ -614,20 +614,8 @@ export default function WorkspaceClient() {
 
     return (
         <>
-            <main className="h-screen max-h-screen flex flex-col bg-body overflow-hidden">
+            <main className="h-full flex flex-col bg-body overflow-hidden">
                 <h1 className="sr-only">Resume Workspace — Analyze Your Resume</h1>
-
-                <WorkspaceHeader
-                    user={user}
-                    onNewReport={handleNewReport}
-                    onResumeSample={handleResumeSample}
-                    onLinkedInSample={handleLinkedInSample}
-                    onSignIn={() => setIsAuthOpen(true)}
-                    onSignOut={signOut}
-                    onHistory={() => setIsHistoryOpen(true)}
-                    showBack={!!report || !!linkedInReport}
-                    onBack={handleNewReport}
-                />
 
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
                     {/* Mode Switcher - show only when no report is displayed */}
