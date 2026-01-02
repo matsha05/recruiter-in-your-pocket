@@ -97,8 +97,8 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                 {children}
             </span>
-            {/* Underline that grows on hover */}
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 bg-brand rounded-full transition-all duration-200 group-hover:w-4" />
+            {/* Underline — matches footer style */}
+            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-brand transition-all duration-200 group-hover:w-full" />
         </Link>
     );
 }

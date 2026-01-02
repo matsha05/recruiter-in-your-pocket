@@ -1,353 +1,237 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Lock, Shield, Trash2, ArrowRight, Check, BookOpen, BarChart2, Users, FileText, Star, TrendingUp, Target, Quote, Zap, AlertCircle } from "lucide-react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { Lock, Trash2, Shield, ArrowRight, Check, Star, AlertCircle } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
 /**
- * Landing Page Variation: Editorial Clarity
+ * Landing Page Variation: Massive Impact
  * 
- * Style: Magazine-style editorial with strong typographic hierarchy
- * - Light theme with bold black typography
- * - Clear section breaks with rules/dividers
- * - Large, confident headlines
- * - Progress bars and data visualization
- * - Dark testimonial section with good contrast
+ * Design principles applied:
+ * - OVERSIZED typography (100px+ headlines)
+ * - Dramatic whitespace — content breathes
+ * - Single-minded focus per section
+ * - Stripe-style purposeful animations
+ * - Product output as the hero moment
  */
 
-// Animated progress bar
-function ProgressBar({ value, label, delay = 0 }: { value: number; label: string; delay?: number }) {
-    const ref = useRef<HTMLDivElement>(null);
+// Animated number counter with spring physics
+function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
+    const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true });
+    const [count, setCount] = useState(0);
 
-    return (
-        <div ref={ref} className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
-                <span className="font-medium text-slate-700">{label}</span>
-                <span className="font-mono font-bold text-slate-900">{value}%</span>
-            </div>
-            <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
-                <motion.div
-                    className="h-full bg-teal-600 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: isInView ? `${value}%` : 0 }}
-                    transition={{ duration: 1, delay: delay, ease: "easeOut" }}
-                />
-            </div>
-        </div>
-    );
+    useEffect(() => {
+        if (!isInView) return;
+        const duration = 1500;
+        const start = Date.now();
+        const animate = () => {
+            const elapsed = Date.now() - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.round(value * eased));
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+    }, [isInView, value]);
+
+    return <span ref={ref} className="tabular-nums">{count}{suffix}</span>;
 }
 
-// Citation component
-function Citation({ text }: { text: string }) {
-    return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-teal-50 text-[10px] font-mono font-medium text-teal-700 border border-teal-100">
-            {text}
-        </span>
-    );
-}
+export function LandingMassiveImpact() {
+    const { scrollY } = useScroll();
+    const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+    const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
 
-export function LandingEditorialClarity() {
     return (
-        <div className="min-h-screen bg-white text-slate-900 selection:bg-teal-500/20">
-            {/* Navigation */}
-            <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-                <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="min-h-screen bg-white text-slate-900 selection:bg-teal-500/20 overflow-x-hidden">
+            {/* Minimal Navigation */}
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+                <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <PocketMark className="w-6 h-6 text-teal-600" />
-                        <span className="font-bold text-base tracking-tight">Recruiter in Your Pocket</span>
+                        <PocketMark className="w-7 h-7 text-teal-600" />
+                        <span className="font-semibold text-lg tracking-tight">RIYP</span>
                     </div>
-                    <div className="flex items-center gap-6">
-                        <a href="#methodology" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Methodology</a>
-                        <a href="#research" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Research</a>
-                        <button className="text-sm font-bold px-5 py-2.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                            Get Started
-                        </button>
-                    </div>
+                    <button className="px-6 py-3 rounded-full bg-slate-900 text-white font-semibold text-sm hover:bg-slate-800 transition-colors">
+                        Try Free
+                    </button>
                 </div>
             </nav>
 
-            {/* Hero Section */}
-            <section className="px-6 py-20 lg:py-28 border-b border-slate-100">
-                <div className="max-w-6xl mx-auto">
+            {/* HERO — Massive Typography */}
+            <motion.section
+                className="min-h-screen flex flex-col justify-center px-8 pt-24"
+                style={{ opacity: heroOpacity, scale: heroScale }}
+            >
+                <div className="max-w-7xl mx-auto w-full">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        {/* Massive headline */}
+                        <h1 className="text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.95] tracking-tight mb-8">
+                            <span className="block">What recruiters</span>
+                            <span className="block text-teal-600">actually see.</span>
+                        </h1>
+
+                        {/* Supporting copy — minimal */}
+                        <p className="text-2xl md:text-3xl text-slate-500 max-w-2xl mb-12 leading-relaxed">
+                            7.4 seconds. That's the average resume scan. We show you exactly what happens in that window.
+                        </p>
+
+                        {/* Single CTA */}
+                        <div className="flex flex-wrap items-center gap-6">
+                            <motion.button
+                                className="group inline-flex items-center gap-3 px-10 py-5 rounded-full bg-teal-600 text-white font-semibold text-xl hover:bg-teal-700 transition-colors"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                Get Your Verdict
+                                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                            </motion.button>
+                            <span className="text-slate-400">Free · 60 seconds</span>
+                        </div>
+                    </motion.div>
+                </div>
+            </motion.section>
+
+            {/* THE NUMBER — Dramatic Stats Section */}
+            <section className="py-32 px-8 bg-slate-950 text-white">
+                <div className="max-w-7xl mx-auto">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        {/* Left: Copy */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            {/* Eyebrow */}
-                            <div className="flex items-center gap-3 mb-6">
-                                <span className="h-px flex-1 max-w-16 bg-slate-300" />
-                                <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                                    Research-Backed Analysis
-                                </span>
+                        {/* Giant number */}
+                        <div>
+                            <div className="text-[clamp(6rem,20vw,14rem)] font-bold leading-none text-teal-400 mb-4">
+                                <AnimatedNumber value={7} suffix=".4s" />
                             </div>
-
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
-                                See what
-                                <br />
-                                <span className="text-teal-600">recruiters see.</span>
-                            </h1>
-
-                            <p className="text-xl text-slate-600 leading-relaxed mb-8 max-w-lg">
-                                A recruiter spends <strong className="text-slate-900">7.4 seconds</strong> on your resume. We show you exactly what they notice — and what they miss.
+                            <p className="text-2xl text-slate-300">
+                                The average time a recruiter spends on your resume before making a decision.
                             </p>
+                        </div>
 
-                            {/* CTA */}
-                            <div className="flex flex-wrap items-center gap-4 mb-8">
-                                <button className="group inline-flex items-center gap-2 px-7 py-4 rounded-lg bg-teal-600 text-white font-bold text-lg hover:bg-teal-700 transition-colors">
-                                    Analyze My Resume
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                                <span className="text-sm text-slate-500">Free • No signup</span>
-                            </div>
-
-                            {/* Trust signals */}
-                            <div className="flex items-center gap-6">
-                                <div className="flex items-center gap-1.5 text-sm text-slate-500">
-                                    <Lock className="w-4 h-4 text-teal-600" />
-                                    Encrypted
+                        {/* Supporting stats */}
+                        <div className="grid grid-cols-2 gap-8">
+                            {[
+                                { value: 75, suffix: "%", label: "Rejected in first scan" },
+                                { value: 250, suffix: "+", label: "Applications per role" },
+                                { value: 3, suffix: "x", label: "More callbacks with fixes" },
+                                { value: 94, suffix: "%", label: "Find their Critical Miss" },
+                            ].map((stat) => (
+                                <div key={stat.label} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                                    <div className="text-4xl font-bold text-white mb-2">
+                                        <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                                    </div>
+                                    <div className="text-slate-400">{stat.label}</div>
                                 </div>
-                                <div className="flex items-center gap-1.5 text-sm text-slate-500">
-                                    <Trash2 className="w-4 h-4 text-slate-400" />
-                                    Deleted in 24h
-                                </div>
-                                <div className="flex items-center gap-1.5 text-sm text-slate-500">
-                                    <Shield className="w-4 h-4 text-slate-400" />
-                                    Never trains AI
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Right: Signal Preview Card */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.15 }}
-                        >
-                            <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200">
-                                <div className="flex items-center gap-2 mb-8">
-                                    <BarChart2 className="w-5 h-5 text-teal-600" />
-                                    <span className="text-sm font-bold uppercase tracking-widest text-slate-500">Signal Strength</span>
-                                </div>
-
-                                <div className="space-y-6">
-                                    <ProgressBar value={92} label="Story & Narrative" delay={0.2} />
-                                    <ProgressBar value={78} label="Quantified Impact" delay={0.3} />
-                                    <ProgressBar value={85} label="Role Clarity" delay={0.4} />
-                                    <ProgressBar value={68} label="Visual Hierarchy" delay={0.5} />
-                                </div>
-
-                                <div className="mt-8 pt-6 border-t border-slate-200 flex items-center justify-between">
-                                    <span className="text-sm font-medium text-slate-600">Overall Score</span>
-                                    <span className="text-4xl font-bold text-teal-600">87</span>
-                                </div>
-                            </div>
-                        </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Stats Banner */}
-            <section className="px-6 py-12 bg-slate-900 text-white">
-                <div className="max-w-5xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        {[
-                            { value: "7.4s", label: "Average review time" },
-                            { value: "75%", label: "Rejected in <10 seconds" },
-                            { value: "250+", label: "Applicants per role" },
-                            { value: "3.2x", label: "More interviews with fixes" },
-                        ].map((stat) => (
-                            <div key={stat.label}>
-                                <div className="text-3xl md:text-4xl font-bold text-teal-400 mb-1">{stat.value}</div>
-                                <div className="text-sm text-slate-300">{stat.label}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* What You Get */}
-            <section className="px-6 py-20">
+            {/* PRODUCT AS HERO — Sample Verdict */}
+            <section className="py-32 px-8">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold tracking-tight mb-4">What you'll discover</h2>
-                        <p className="text-lg text-slate-600 max-w-xl mx-auto">
-                            Not generic feedback. Specific, actionable insights based on how recruiters actually evaluate resumes.
+                        <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+                            This is what you get.
+                        </h2>
+                        <p className="text-xl text-slate-500 max-w-xl mx-auto">
+                            Not vague suggestions. A recruiter's actual verdict on your resume.
                         </p>
+                    </div>
+
+                    {/* The actual product preview */}
+                    <motion.div
+                        className="rounded-3xl border-2 border-slate-200 bg-white shadow-2xl shadow-slate-200/50 overflow-hidden"
+                        initial={{ opacity: 0, y: 60 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        {/* Header bar */}
+                        <div className="px-8 py-5 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-full bg-red-400" />
+                                <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                                <div className="w-3 h-3 rounded-full bg-green-400" />
+                            </div>
+                            <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">Resume Analysis</span>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-10">
+                            <div className="grid lg:grid-cols-5 gap-8">
+                                {/* Score */}
+                                <div className="lg:col-span-1 flex flex-col items-center justify-center p-6 rounded-2xl bg-teal-50">
+                                    <div className="text-6xl font-bold text-teal-600">87</div>
+                                    <div className="text-sm font-medium text-teal-700 mt-1">Signal Score</div>
+                                </div>
+
+                                {/* Verdict */}
+                                <div className="lg:col-span-4 space-y-6">
+                                    <div>
+                                        <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">
+                                            Recruiter's First Impression
+                                        </div>
+                                        <p className="text-2xl font-medium text-slate-800 leading-snug">
+                                            "Strong founder energy, but your biggest win is buried in paragraph three. I almost missed it."
+                                        </p>
+                                    </div>
+
+                                    <div className="p-5 rounded-xl bg-amber-50 border border-amber-200">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <AlertCircle className="w-5 h-5 text-amber-600" />
+                                            <span className="text-sm font-bold uppercase tracking-widest text-amber-700">Critical Miss</span>
+                                        </div>
+                                        <p className="text-lg text-amber-900">
+                                            You led a team of 12 to a $2M revenue increase — but it's positioned after three bullets about day-to-day operations.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* TRUST — Social Proof */}
+            <section className="py-24 px-8 bg-slate-50 border-y border-slate-200">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl font-bold tracking-tight mb-4">
+                            Trusted by 10,000+ job seekers
+                        </h2>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
-                            {
-                                icon: Target,
-                                title: "7-Second Verdict",
-                                description: "The recruiter's honest first impression. What they noticed, what they thought, what they'd do next.",
-                                color: "bg-rose-50 text-rose-600 border-rose-100",
-                            },
-                            {
-                                icon: AlertCircle,
-                                title: "Critical Miss",
-                                description: "The single most damaging gap in your resume. Not a list — the one thing that matters most.",
-                                color: "bg-amber-50 text-amber-600 border-amber-100",
-                            },
-                            {
-                                icon: Zap,
-                                title: "Red Pen Rewrites",
-                                description: "Before and after for every weak bullet. Copy, paste, and watch your score improve.",
-                                color: "bg-teal-50 text-teal-600 border-teal-100",
-                            },
-                        ].map((feature, i) => (
+                            { quote: "Finally understood why I wasn't getting callbacks. Fixed everything in an hour.", name: "Sarah K.", role: "Product Manager at Google", stars: 5 },
+                            { quote: "The Critical Miss feature found what 3 career coaches missed.", name: "James R.", role: "Engineering Lead at Stripe", stars: 5 },
+                            { quote: "Worth every penny. Landed my dream job in 3 weeks.", name: "Emily T.", role: "Designer at Figma", stars: 5 },
+                        ].map((testimonial, i) => (
                             <motion.div
-                                key={feature.title}
-                                className="p-8 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 hover:shadow-lg transition-all"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <div className={`w-12 h-12 rounded-xl ${feature.color} border flex items-center justify-center mb-6`}>
-                                    <feature.icon className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                                <p className="text-slate-600 leading-relaxed">{feature.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Methodology Section */}
-            <section id="methodology" className="px-6 py-20 bg-slate-50 border-y border-slate-200">
-                <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-12">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-sm font-bold text-slate-600 mb-4">
-                            <FileText className="w-4 h-4" />
-                            The 6-Second Signal Model
-                        </div>
-                        <h2 className="text-4xl font-bold tracking-tight mb-4">How we analyze your resume</h2>
-                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                            Built on behavioral research from recruiting professionals. Not generic AI pattern matching.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-4 gap-6">
-                        {[
-                            { icon: Target, title: "Story Signal", weight: "35%", source: "NBER, 2019" },
-                            { icon: TrendingUp, title: "Impact Signal", weight: "30%", source: "Bock/Google, 2015" },
-                            { icon: BarChart2, title: "Clarity Signal", weight: "20%", source: "Ladders, 2018" },
-                            { icon: BookOpen, title: "Readability", weight: "15%", source: "Eye-tracking, 2018" },
-                        ].map((signal, i) => (
-                            <motion.div
-                                key={signal.title}
-                                className="p-6 rounded-xl bg-white border border-slate-200"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className="w-10 h-10 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600">
-                                        <signal.icon className="w-5 h-5" />
-                                    </div>
-                                    <span className="text-sm font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded border border-teal-100">
-                                        {signal.weight}
-                                    </span>
-                                </div>
-                                <h3 className="font-bold text-base mb-3">{signal.title}</h3>
-                                <Citation text={signal.source} />
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Research Section */}
-            <section id="research" className="px-6 py-20">
-                <div className="max-w-5xl mx-auto">
-                    <div className="flex items-center justify-between mb-12">
-                        <div>
-                            <h2 className="text-3xl font-bold tracking-tight mb-2">The Hiring Research Library</h2>
-                            <p className="text-slate-600">Primary sources behind our methodology</p>
-                        </div>
-                        <a href="#" className="text-sm font-bold text-teal-600 hover:text-teal-700 flex items-center gap-1">
-                            View all
-                            <ArrowRight className="w-4 h-4" />
-                        </a>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {[
-                            { icon: BookOpen, category: "Eye-tracking", title: "How Recruiters Skim in 7.4 Seconds", time: "4 min" },
-                            { icon: BarChart2, category: "Resume Writing", title: "The Laszlo Bock Formula", time: "5 min" },
-                            { icon: Users, category: "Job Search", title: "The Referral Advantage", time: "4 min" },
-                        ].map((article, i) => (
-                            <motion.a
-                                key={article.title}
-                                href="#"
-                                className="group p-6 rounded-xl border border-slate-200 bg-white hover:border-teal-300 hover:shadow-lg transition-all"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <div className="flex items-center gap-2 mb-4">
-                                    <article.icon className="w-4 h-4 text-teal-600" />
-                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">{article.category}</span>
-                                </div>
-                                <h3 className="font-bold text-lg mb-3 group-hover:text-teal-600 transition-colors">{article.title}</h3>
-                                <div className="text-sm font-mono text-slate-400">{article.time}</div>
-                            </motion.a>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonials - Dark Section */}
-            <section className="px-6 py-20 bg-slate-900 text-white">
-                <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold tracking-tight mb-4">Trusted by 10,000+ job seekers</h2>
-                        <p className="text-slate-300">Real results from real professionals</p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {[
-                            {
-                                quote: "The data-backed approach made me trust the recommendations. This isn't guesswork.",
-                                name: "Dr. Sarah Chen",
-                                role: "Senior Data Scientist",
-                                company: "Previously at Meta",
-                            },
-                            {
-                                quote: "I've reviewed thousands of resumes as a hiring manager. This catches what we actually look for.",
-                                name: "Marcus Williams",
-                                role: "VP Engineering",
-                                company: "Series C Startup",
-                            },
-                        ].map((t, i) => (
-                            <motion.div
-                                key={t.name}
-                                className="p-8 rounded-2xl border border-white/10 bg-white/5"
-                                initial={{ opacity: 0, y: 20 }}
+                                key={testimonial.name}
+                                className="p-8 rounded-2xl bg-white border border-slate-200"
+                                initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                             >
                                 <div className="flex gap-1 mb-6">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="w-5 h-5 fill-teal-400 text-teal-400" />
+                                    {[...Array(testimonial.stars)].map((_, i) => (
+                                        <Star key={i} className="w-5 h-5 fill-teal-500 text-teal-500" />
                                     ))}
                                 </div>
-                                <p className="text-xl font-medium text-white leading-relaxed mb-6">
-                                    "{t.quote}"
+                                <p className="text-lg text-slate-700 leading-relaxed mb-6">
+                                    "{testimonial.quote}"
                                 </p>
                                 <div>
-                                    <div className="font-bold text-white">{t.name}</div>
-                                    <div className="text-slate-300">{t.role} · {t.company}</div>
+                                    <div className="font-semibold text-slate-900">{testimonial.name}</div>
+                                    <div className="text-sm text-slate-500">{testimonial.role}</div>
                                 </div>
                             </motion.div>
                         ))}
@@ -355,48 +239,50 @@ export function LandingEditorialClarity() {
                 </div>
             </section>
 
-            {/* Pricing */}
-            <section className="px-6 py-20">
-                <div className="max-w-4xl mx-auto">
-                    <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold tracking-tight mb-4">Simple pricing</h2>
-                        <p className="text-lg text-slate-600">Start free. Upgrade when you need more.</p>
-                    </div>
+            {/* PRICING — Simple */}
+            <section className="py-32 px-8">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h2 className="text-5xl font-bold tracking-tight mb-6">
+                        Start free. Upgrade when ready.
+                    </h2>
+                    <p className="text-xl text-slate-500 mb-16">
+                        3 free analyses. Full reports. No credit card.
+                    </p>
 
-                    <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                    <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto text-left">
                         {/* Free */}
-                        <div className="p-8 rounded-2xl border border-slate-200 bg-white">
+                        <div className="p-10 rounded-3xl border-2 border-slate-200">
                             <div className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">Free</div>
-                            <div className="text-5xl font-bold mb-6">$0</div>
-                            <ul className="space-y-4 mb-8">
-                                {["3 resume analyses", "Full 4-dimension scoring", "Critical Miss detection", "Red Pen rewrites"].map((f) => (
+                            <div className="text-6xl font-bold mb-8">$0</div>
+                            <ul className="space-y-4 mb-10">
+                                {["3 resume analyses", "Full recruiter verdict", "Critical Miss detection", "Red Pen rewrites"].map((f) => (
                                     <li key={f} className="flex items-center gap-3 text-slate-600">
-                                        <Check className="w-5 h-5 text-teal-600" />
+                                        <Check className="w-5 h-5 text-teal-600 shrink-0" />
                                         {f}
                                     </li>
                                 ))}
                             </ul>
-                            <button className="w-full py-4 rounded-xl border-2 border-slate-200 font-bold hover:bg-slate-50 transition-colors">
+                            <button className="w-full py-4 rounded-xl border-2 border-slate-200 font-bold text-lg hover:bg-slate-50 transition-colors">
                                 Start Free
                             </button>
                         </div>
 
                         {/* Pro */}
-                        <div className="p-8 rounded-2xl border-2 border-teal-600 bg-white relative">
-                            <div className="absolute -top-3 left-6 px-3 py-1 bg-teal-600 text-white text-xs font-bold uppercase tracking-wider rounded-full">
+                        <div className="p-10 rounded-3xl border-2 border-teal-600 relative">
+                            <div className="absolute -top-4 left-8 px-4 py-1.5 bg-teal-600 text-white text-xs font-bold uppercase tracking-wider rounded-full">
                                 Best Value
                             </div>
                             <div className="text-sm font-bold uppercase tracking-widest text-teal-600 mb-2">Pro</div>
-                            <div className="text-5xl font-bold mb-6">$12<span className="text-xl text-slate-400 font-normal">/mo</span></div>
-                            <ul className="space-y-4 mb-8">
-                                {["Unlimited analyses", "LinkedIn profile reviews", "Job-matched analysis", "Chrome extension", "Priority support"].map((f) => (
+                            <div className="text-6xl font-bold mb-8">$12<span className="text-2xl text-slate-400 font-normal">/mo</span></div>
+                            <ul className="space-y-4 mb-10">
+                                {["Unlimited analyses", "LinkedIn reviews", "Job matching", "Chrome extension", "Priority support"].map((f) => (
                                     <li key={f} className="flex items-center gap-3 text-slate-600">
-                                        <Check className="w-5 h-5 text-teal-600" />
+                                        <Check className="w-5 h-5 text-teal-600 shrink-0" />
                                         {f}
                                     </li>
                                 ))}
                             </ul>
-                            <button className="w-full py-4 rounded-xl bg-teal-600 text-white font-bold hover:bg-teal-700 transition-colors">
+                            <button className="w-full py-4 rounded-xl bg-teal-600 text-white font-bold text-lg hover:bg-teal-700 transition-colors">
                                 Upgrade to Pro
                             </button>
                         </div>
@@ -404,8 +290,25 @@ export function LandingEditorialClarity() {
                 </div>
             </section>
 
+            {/* FINAL CTA — Massive */}
+            <section className="py-32 px-8 bg-slate-950 text-white">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+                        See what they see.
+                    </h2>
+                    <motion.button
+                        className="group inline-flex items-center gap-3 px-12 py-6 rounded-full bg-white text-slate-900 font-bold text-xl hover:bg-teal-400 transition-colors"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        Get Your Verdict
+                        <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
+                </div>
+            </section>
+
             {/* Footer */}
-            <footer className="px-6 py-12 bg-slate-50 border-t border-slate-200">
+            <footer className="px-8 py-12 bg-white border-t border-slate-100">
                 <div className="max-w-6xl mx-auto">
                     <div className="flex flex-wrap items-center justify-center gap-8 mb-8 text-sm text-slate-500">
                         <div className="flex items-center gap-2">

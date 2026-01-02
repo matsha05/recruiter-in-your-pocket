@@ -9,9 +9,9 @@ import { PocketMark } from "@/components/icons";
 import { LandingBoldAuthority } from "@/components/landing-showcase/LandingBoldAuthority";
 import { LandingUrgencyImpact } from "@/components/landing-showcase/LandingUrgencyImpact";
 import { LandingDataDriven } from "@/components/landing-showcase/LandingDataDriven";
-import { LandingImmersivePreview } from "@/components/landing-showcase/LandingImmersivePreview";
-import { LandingGradientImpact } from "@/components/landing-showcase/LandingGradientImpact";
-import { LandingModularConfidence } from "@/components/landing-showcase/LandingModularConfidence";
+import { LandingMassiveImpact } from "@/components/landing-showcase/LandingEditorialClarity";
+import { LandingAsymmetricConfidence } from "@/components/landing-showcase/LandingHybridConfidence";
+import { LandingNarrativeScroll } from "@/components/landing-showcase/LandingProductFirst";
 
 const landingPages = [
     {
@@ -35,7 +35,29 @@ const landingPages = [
         tags: ["Research", "Stats", "Authority"],
         component: LandingDataDriven,
     },
+    {
+        id: "massive-impact",
+        name: "Massive Impact",
+        description: "Oversized 100px+ typography, dramatic whitespace, product-as-hero. Stripe-style purposeful animations.",
+        tags: ["Oversized", "Dramatic", "Light"],
+        component: LandingMassiveImpact,
+    },
+    {
+        id: "asymmetric-confidence",
+        name: "Asymmetric Confidence",
+        description: "Bold dark hero with asymmetric grid, offset floating cards. High contrast alternating sections.",
+        tags: ["Dark", "Asymmetric", "Bold"],
+        component: LandingAsymmetricConfidence,
+    },
+    {
+        id: "narrative-scroll",
+        name: "Narrative Scroll",
+        description: "Story-driven full-height chapters, dramatic reveals on scroll. Clean light with bold dark chapters.",
+        tags: ["Story", "Scroll", "Chapters"],
+        component: LandingNarrativeScroll,
+    },
 ];
+
 
 export default function LandingOptionsPage() {
     const [selectedPage, setSelectedPage] = useState<string | null>(null);

@@ -61,13 +61,8 @@ export function AppHeader() {
                                 )}>
                                     {item.label}
                                 </span>
-                                {/* Underline indicator */}
-                                <span className={cn(
-                                    "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-brand rounded-full transition-all duration-200",
-                                    isActive
-                                        ? "w-4"
-                                        : "w-0 group-hover:w-4"
-                                )} />
+                                {/* Underline — matches footer style */}
+                                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-brand transition-all duration-200 group-hover:w-full" />
                             </Link>
                         );
                     })}

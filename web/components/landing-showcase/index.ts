@@ -8,6 +8,7 @@
 export { LandingBoldAuthority } from "./LandingBoldAuthority";
 export { LandingUrgencyImpact } from "./LandingUrgencyImpact";
 export { LandingDataDriven } from "./LandingDataDriven";
-export { LandingImmersivePreview } from "./LandingImmersivePreview";
-export { LandingGradientImpact } from "./LandingGradientImpact";
-export { LandingModularConfidence } from "./LandingModularConfidence";
+export { LandingMassiveImpact } from "./LandingEditorialClarity";
+export { LandingAsymmetricConfidence } from "./LandingHybridConfidence";
+export { LandingNarrativeScroll } from "./LandingProductFirst";
+
