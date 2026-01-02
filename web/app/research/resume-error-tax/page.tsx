@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { InferenceLadderDiagram } from "@/components/research/diagrams/InferenceLadderDiagram";
 
 export const metadata: Metadata = {
     title: "The Resume Error Tax | Hiring Research",
@@ -38,19 +39,7 @@ export default function ResumeErrorTaxPage() {
                         Errors are translated into traits, which become hiring risk.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <figure className="riyp-figure">
-                        <div className="riyp-figure-frame p-6">
-                            <ol className="space-y-3 text-sm text-muted-foreground">
-                                <li>1. Error spotted</li>
-                                <li>2. Inference: low conscientiousness or care</li>
-                                <li>3. Risk assessment rises</li>
-                                <li>4. Screening threshold tightens</li>
-                            </ol>
-                            <figcaption className="mt-4 text-xs text-muted-foreground">
-                                Fig. 1 - How small errors translate into higher perceived risk.
-                            </figcaption>
-                        </div>
-                    </figure>
+                    <InferenceLadderDiagram />
                 </>
             }
             productTieIn={{

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { SkillsShiftDiagram } from "@/components/research/diagrams/SkillsShiftDiagram";
+import { SkillsPromiseRealityDiagram } from "@/components/research/diagrams/SkillsPromiseRealityDiagram";
 
 export const metadata: Metadata = {
     title: "Skills-First Hiring: Promise vs Reality | Hiring Research",
@@ -39,7 +39,7 @@ export default function SkillsFirstPromiseRealityPage() {
                         Skills-first is a direction, not a guarantee. The gap between stated policy and actual hiring shows why evidence still matters.
                         <Citation id="source-3">3</Citation>
                     </p>
-                    <SkillsShiftDiagram />
+                    <SkillsPromiseRealityDiagram />
                 </>
             }
             productTieIn={{

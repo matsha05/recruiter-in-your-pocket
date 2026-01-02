@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScreeningDiagram";
 
 export const metadata: Metadata = {
     title: "Social Screening: What Recruiters Look For Online | Hiring Research",
@@ -38,37 +39,7 @@ export default function SocialScreeningPage() {
                         Different platforms serve different stages of evaluation.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <figure className="riyp-figure">
-                        <div className="riyp-figure-frame p-6">
-                            <div className="grid md:grid-cols-3 gap-6 text-sm">
-                                <div>
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">LinkedIn</div>
-                                    <ul className="space-y-2 text-muted-foreground">
-                                        <li>Discovery</li>
-                                        <li>Identity validation</li>
-                                        <li>Outreach channel</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">Portfolio sites</div>
-                                    <ul className="space-y-2 text-muted-foreground">
-                                        <li>Work samples</li>
-                                        <li>Craft proof</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">Other social</div>
-                                    <ul className="space-y-2 text-muted-foreground">
-                                        <li>Reputation checks</li>
-                                        <li>Culture fit signals</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <figcaption className="mt-4 text-xs text-muted-foreground">
-                                Fig. 1 - Social platforms used for different evaluation tasks.
-                            </figcaption>
-                        </div>
-                    </figure>
+                    <SocialScreeningDiagram />
                 </>
             }
             productTieIn={{

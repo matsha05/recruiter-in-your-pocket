@@ -199,3 +199,7 @@ Before merge, every research page must pass:
 - Any anecdotal callout is labeled and qualitative
 
 Restraint is still the baseline. Use visual craft to deepen understanding, not to decorate.
+
+---
+
+*See also: `diagram-visual-spec.md` for detailed diagram implementation patterns, motion grammar, and archetype definitions.*

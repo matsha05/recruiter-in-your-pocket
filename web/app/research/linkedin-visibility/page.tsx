@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { LinkedInVisibilityDiagram } from "@/components/research/diagrams/LinkedInVisibilityDiagram";
 
 export const metadata: Metadata = {
     title: "LinkedIn Profile Visibility Research | Hiring Research",
@@ -37,38 +38,7 @@ export default function LinkedInVisibilityPage() {
                         Recruiter lens: visibility starts with the fields recruiters see first and search against most often. LinkedIn does not publish exact weights,
                         so we treat this as an ordinal model rather than a quantitative one.
                     </p>
-
-                    <figure className="riyp-figure">
-                        <div className="riyp-figure-frame p-6 space-y-4">
-                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
-                                Inputs vs measurable outputs
-                            </div>
-                            <div className="grid md:grid-cols-2 gap-6 text-sm">
-                                <div className="space-y-3">
-                                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                                        Inputs you control
-                                    </div>
-                                    <ul className="space-y-2 text-muted-foreground">
-                                        <li>Headline keywords and role titles</li>
-                                        <li>Skills and endorsements</li>
-                                        <li>Experience keywords and role alignment</li>
-                                    </ul>
-                                </div>
-                                <div className="space-y-3">
-                                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                                        Outputs LinkedIn reports
-                                    </div>
-                                    <ul className="space-y-2 text-muted-foreground">
-                                        <li>Higher InMail acceptance with skills-first sourcing</li>
-                                        <li>Recruiter search behavior centered on skills and titles</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <figcaption className="text-xs text-muted-foreground">
-                                Fig. 1 - Visibility inputs versus LinkedIn-reported sourcing outcomes. Not a ranking model.
-                            </figcaption>
-                        </div>
-                    </figure>
+                    <LinkedInVisibilityDiagram />
                 </>
             }
             productTieIn={{

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { ResumeLengthChart } from "@/components/research/diagrams/ResumeLengthChart";
+import { PageTwoGateDiagram } from "@/components/research/diagrams/PageTwoGateDiagram";
 
 export const metadata: Metadata = {
     title: "The Page-2 Gate | Hiring Research",
@@ -38,7 +38,7 @@ export default function PageTwoGatePage() {
                         If the first page is dense but clear, the reader continues. If it is dense and noisy, they do not.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <ResumeLengthChart />
+                    <PageTwoGateDiagram />
                 </>
             }
             productTieIn={{
@@ -103,7 +103,7 @@ export default function PageTwoGatePage() {
                 />
                 <ArticleInsight
                     title="Noisy pages fail"
-                    desc="Dense, cluttered layouts raise scan cost and reduce attention." 
+                    desc="Dense, cluttered layouts raise scan cost and reduce attention."
                 />
             </div>
 

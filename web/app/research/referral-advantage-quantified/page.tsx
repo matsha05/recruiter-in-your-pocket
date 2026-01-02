@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ReferralCalculator } from "@/components/research/diagrams/ReferralCalculator";
-import { ReferralFunnelDiagram } from "@/components/research/diagrams/ReferralFunnelDiagram";
+import { ReferralQuantifiedDiagram } from "@/components/research/diagrams/ReferralQuantifiedDiagram";
 
 export const metadata: Metadata = {
     title: "Referral Advantage, Quantified | Hiring Research",
@@ -36,7 +36,7 @@ export default function ReferralAdvantageQuantifiedPage() {
                         Referrals add context, which changes how screening is interpreted.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <ReferralFunnelDiagram />
+                    <ReferralQuantifiedDiagram />
                 </>
             }
             productTieIn={{

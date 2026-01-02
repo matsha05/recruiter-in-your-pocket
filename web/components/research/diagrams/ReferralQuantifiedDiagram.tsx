@@ -3,17 +3,16 @@
 import { motion } from "framer-motion";
 
 /**
- * Trust Choice Grid / Human vs Algorithm Table (v2.0)
+ * Referral Quantified Diagram (v2.0)
  * 
- * Reverted to clear table format per user feedback
- * Shows how recruiters respond differently to human vs algorithm errors
+ * Unique diagram for referral-advantage-quantified page
+ * Shows the empirical evidence: callback rates and conversion
  */
-export function TrustChoiceGrid() {
-    const comparisons = [
-        { aspect: "Initial trust", human: "Higher", algorithm: "Lower" },
-        { aspect: "Error tolerance", human: "More forgiving", algorithm: "Less forgiving" },
-        { aspect: "Recovery after mistake", human: "Easier", algorithm: "Harder" },
-        { aspect: "Perceived explainability", human: "Intuitive", algorithm: "Opaque" },
+export function ReferralQuantifiedDiagram() {
+    const stats = [
+        { metric: "Callback rate", referral: "~40%", nonReferral: "~4%", factor: "10×" },
+        { metric: "Hire conversion", referral: "Higher", nonReferral: "Baseline", factor: "—" },
+        { metric: "Time to hire", referral: "Faster", nonReferral: "Standard", factor: "—" },
     ];
 
     return (
@@ -28,7 +27,7 @@ export function TrustChoiceGrid() {
                 {/* Header */}
                 <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
-                        Trust comparison
+                        Field evidence
                     </span>
                 </div>
 
@@ -39,62 +38,68 @@ export function TrustChoiceGrid() {
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.4, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="grid grid-cols-3 gap-4 pb-3 border-b border-border/30"
+                        className="grid grid-cols-4 gap-3 pb-3 border-b border-border/30"
                     >
                         <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60">
-                            Dimension
+                            Metric
                         </div>
                         <div className="text-[10px] font-mono uppercase tracking-wider text-center">
-                            <span className="px-2 py-1 rounded bg-foreground/5 text-foreground">Human</span>
+                            <span className="px-2 py-1 rounded bg-brand/10 text-brand">Referral</span>
                         </div>
                         <div className="text-[10px] font-mono uppercase tracking-wider text-center">
-                            <span className="px-2 py-1 rounded bg-brand/10 text-brand">Algorithm</span>
+                            <span className="px-2 py-1 rounded bg-muted-foreground/10 text-muted-foreground">Non-Referral</span>
+                        </div>
+                        <div className="text-[10px] font-mono uppercase tracking-wider text-center text-muted-foreground/60">
+                            Lift
                         </div>
                     </motion.div>
 
                     {/* Table rows */}
                     <div className="divide-y divide-border/20">
-                        {comparisons.map((row, i) => (
+                        {stats.map((row, i) => (
                             <motion.div
-                                key={row.aspect}
+                                key={row.metric}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 + i * 0.08 }}
                                 viewport={{ once: true }}
-                                className="grid grid-cols-3 gap-4 py-3"
+                                className="grid grid-cols-4 gap-3 py-3"
                             >
                                 <div className="text-sm text-muted-foreground">
-                                    {row.aspect}
+                                    {row.metric}
                                 </div>
-                                <div className="text-sm font-medium text-foreground text-center">
-                                    {row.human}
+                                <div className="text-sm font-medium text-brand text-center">
+                                    {row.referral}
                                 </div>
-                                <div className="text-sm text-brand text-center">
-                                    {row.algorithm}
+                                <div className="text-sm text-muted-foreground text-center">
+                                    {row.nonReferral}
+                                </div>
+                                <div className="text-sm font-mono font-medium text-emerald-600 dark:text-emerald-400 text-center">
+                                    {row.factor}
                                 </div>
                             </motion.div>
                         ))}
                     </div>
 
-                    {/* Key Insight */}
+                    {/* Key insight */}
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
                         viewport={{ once: true }}
-                        className="mt-6 bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
+                        className="mt-6 bg-brand/5 dark:bg-brand/10 rounded-lg p-4 border border-brand/20"
                     >
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                            <span className="font-medium text-foreground">Algorithm aversion:</span> Recruiters are quicker to distrust algorithms after errors, even when performance is similar.
+                        <p className="text-xs text-muted-foreground leading-relaxed text-center">
+                            <span className="font-medium text-brand">Referrals reduce uncertainty.</span> Hiring managers trust signals from known sources.
                         </p>
                     </motion.div>
                 </div>
             </motion.div>
 
             <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Trust Asymmetry</span>
+                <span className="block riyp-figure-kicker">Fig. 1 — The Numbers</span>
                 <span className="block text-sm text-foreground/80 font-medium">
-                    How recruiters respond to human vs algorithm recommendations
+                    Empirical evidence from field experiments
                 </span>
             </figcaption>
         </figure>

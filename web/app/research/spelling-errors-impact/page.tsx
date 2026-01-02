@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { FormContentSplit } from "@/components/research/diagrams/FormContentSplit";
+import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDiagram";
 
 export const metadata: Metadata = {
     title: "Spelling errors carry real weight in recruiter judgment | Hiring Research",
@@ -40,7 +40,7 @@ export default function SpellingErrorsPage() {
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
-                    <FormContentSplit />
+                    <ErrorImpactDiagram />
                 </>
             }
             productTieIn={{

@@ -258,4 +258,4 @@ If the claim is recruiter judgment or an internal heuristic:
 
 ---
 
-*See also: `design-principles.md` for brand guidelines, `research-ui-contract.md` for diagram specs.*
+*See also: `design-principles.md` for brand guidelines, `research-ui-contract.md` for research page rules, `diagram-visual-spec.md` for research diagram implementation.*

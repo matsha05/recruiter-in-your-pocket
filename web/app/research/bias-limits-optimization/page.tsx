@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { MetaTimeline } from "@/components/research/diagrams/MetaTimeline";
+import { OptimizationBoundaryDiagram } from "@/components/research/diagrams/OptimizationBoundaryDiagram";
 
 export const metadata: Metadata = {
     title: "Bias and the Limits of Resume Optimization | Hiring Research",
@@ -35,7 +35,7 @@ export default function BiasLimitsOptimizationPage() {
                         Optimization can reduce noise, but it cannot erase systemic bias.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <MetaTimeline />
+                    <OptimizationBoundaryDiagram />
                 </>
             }
             productTieIn={{
@@ -95,7 +95,7 @@ export default function BiasLimitsOptimizationPage() {
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     title="Control what you can"
-                    desc="Clarity, proof, and structure are within your control." 
+                    desc="Clarity, proof, and structure are within your control."
                 />
                 <ArticleInsight
                     title="Name the limits"

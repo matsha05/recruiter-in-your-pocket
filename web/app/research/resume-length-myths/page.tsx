@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { ResumeLengthChart } from "@/components/research/diagrams/ResumeLengthChart";
+import { ResumeLengthMythDiagram } from "@/components/research/diagrams/ResumeLengthMythDiagram";
 
 export const metadata: Metadata = {
     title: "Resume Length: What Research Says | Hiring Research",
@@ -37,7 +37,7 @@ export default function ResumeLengthPage() {
                     <p className="research-body mb-6">
                         Optimal resume length depends on how much relevant experience you have to communicate.
                     </p>
-                    <ResumeLengthChart />
+                    <ResumeLengthMythDiagram />
                 </>
             }
             productTieIn={{
