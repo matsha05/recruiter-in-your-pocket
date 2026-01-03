@@ -72,6 +72,27 @@ function Citation({ source, year }: { source: string; year: string }) {
 }
 
 export default function LandingContent() {
+    const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
+
+    async function handleCheckout(tier: "monthly" | "lifetime") {
+        setCheckoutLoading(tier);
+        try {
+            const res = await fetch("/api/checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ tier }),
+            });
+            const data = await res.json();
+            if (data.url) {
+                window.location.href = data.url;
+            }
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setCheckoutLoading(null);
+        }
+    }
+
     return (
         <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-teal-500/20">
             {/* Hero Section - Data Forward */}
@@ -423,9 +444,13 @@ export default function LandingContent() {
                                     </li>
                                 ))}
                             </ul>
-                            <Link href="/settings?tab=billing&tier=monthly" className="block w-full py-3 rounded-md border border-teal-600 text-teal-600 font-medium hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-center">
-                                Start Monthly
-                            </Link>
+                            <button
+                                onClick={() => handleCheckout("monthly")}
+                                disabled={checkoutLoading === "monthly"}
+                                className="block w-full py-3 rounded-md border border-teal-600 text-teal-600 font-medium hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-center disabled:opacity-50"
+                            >
+                                {checkoutLoading === "monthly" ? "Loading..." : "Start Monthly"}
+                            </button>
                         </div>
 
                         {/* Lifetime - Best Value */}
@@ -453,9 +478,13 @@ export default function LandingContent() {
                                     </li>
                                 ))}
                             </ul>
-                            <Link href="/settings?tab=billing&tier=lifetime" className="block w-full py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors text-center">
-                                Get Lifetime Access
-                            </Link>
+                            <button
+                                onClick={() => handleCheckout("lifetime")}
+                                disabled={checkoutLoading === "lifetime"}
+                                className="block w-full py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors text-center disabled:opacity-50"
+                            >
+                                {checkoutLoading === "lifetime" ? "Loading..." : "Get Lifetime Access"}
+                            </button>
                         </div>
                     </div>
                 </div>
