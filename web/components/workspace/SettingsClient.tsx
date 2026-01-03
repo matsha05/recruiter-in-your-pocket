@@ -213,11 +213,11 @@ export default function SettingsClient() {
 
                             {/* Pricing Cards */}
                             <section>
-                                <h2 className="text-lg font-medium text-foreground mb-1">Get More Reviews</h2>
-                                <p className="text-sm text-muted-foreground mb-5">Your first review is free. Unlock more to iterate.</p>
+                                <h2 className="text-lg font-medium text-foreground mb-1">Upgrade to Full Access</h2>
+                                <p className="text-sm text-muted-foreground mb-5">Unlimited analyses, LinkedIn reviews, and more.</p>
                                 <div className="grid md:grid-cols-2 gap-4">
-                                    <PricingCard tier="single" onSelect={() => handleCheckout("single")} loading={isLoading === "single"} />
-                                    <PricingCard tier="pack" onSelect={() => handleCheckout("pack")} loading={isLoading === "pack"} />
+                                    <PricingCard tier="monthly" onSelect={() => handleCheckout("monthly")} loading={isLoading === "monthly"} />
+                                    <PricingCard tier="lifetime" onSelect={() => handleCheckout("lifetime")} loading={isLoading === "lifetime"} />
                                 </div>
                             </section>
 

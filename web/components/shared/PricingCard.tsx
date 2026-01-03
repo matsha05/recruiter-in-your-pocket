@@ -1,10 +1,11 @@
 "use client";
 
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-export type PricingTier = "single" | "pack";
+// Pricing tiers: free, monthly ($9), lifetime ($79)
+export type PricingTier = "free" | "monthly" | "lifetime";
 
 interface PricingCardProps {
     tier: PricingTier;
@@ -16,32 +17,48 @@ interface PricingCardProps {
 }
 
 const TIER_DATA = {
-    single: {
-        label: "Quick Check",
-        price: "$9",
-        reviews: "1 review",
-        description: "Best for first-time feedback",
-        buttonText: "Get 1 Review",
+    free: {
+        label: "Free",
+        price: "$0",
+        period: "forever",
+        description: "3 free analyses to start",
+        buttonText: "Current Plan",
         badge: undefined as string | undefined,
         features: [
-            { text: "1 full review included", bold: true },
-            { text: "See what recruiters notice in 7.4 seconds", bold: false },
-            { text: "Copy-paste rewrites for weak bullets", bold: false },
+            { text: "3 resume analyses", bold: true },
+            { text: "Full 4-dimension scoring", bold: false },
+            { text: "Critical Miss detection", bold: false },
+            { text: "Red Pen rewrites", bold: false },
         ],
     },
-    pack: {
-        label: "Active Search",
-        price: "$29",
-        reviews: "5 reviews",
-        description: "For an active job search",
-        buttonText: "Get 5 Reviews",
+    monthly: {
+        label: "Full Access",
+        price: "$9",
+        period: "/month",
+        description: "Unlimited analyses, cancel anytime",
+        buttonText: "Start Monthly",
+        badge: undefined as string | undefined,
+        features: [
+            { text: "Unlimited analyses", bold: true },
+            { text: "LinkedIn profile review", bold: false },
+            { text: "Job description matching", bold: false },
+            { text: "Chrome extension access", bold: false },
+            { text: "Priority email support", bold: false },
+        ],
+    },
+    lifetime: {
+        label: "Lifetime",
+        price: "$79",
+        period: "one-time",
+        description: "Pay once, use forever",
+        buttonText: "Get Lifetime Access",
         badge: "Best Value",
         features: [
-            { text: "5 full reviews included", bold: true },
-            { text: "Tailor versions for different roles", bold: false },
-            { text: "Full rewrites and missing wins", bold: false },
-            { text: "Compare progress across versions", bold: false },
-            { text: "Export clean PDF when ready", bold: false },
+            { text: "Everything in Full Access", bold: true },
+            { text: "Never pay again", bold: false },
+            { text: "All future updates included", bold: false },
+            { text: "Export to PDF/ATS formats", bold: false },
+            { text: "Priority support forever", bold: false },
         ],
     },
 } as const;
@@ -55,7 +72,8 @@ export function PricingCard({
     className,
 }: PricingCardProps) {
     const data = TIER_DATA[tier];
-    const isPack = tier === "pack";
+    const isHighlighted = tier === "lifetime";
+    const isFree = tier === "free";
 
     // COMPACT variant - for modals
     if (variant === "compact") {
@@ -63,35 +81,37 @@ export function PricingCard({
             <button
                 type="button"
                 onClick={onSelect}
-                disabled={loading}
+                disabled={loading || isFree}
                 className={cn(
                     "p-4 rounded-xl text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center relative overflow-hidden",
                     selected
                         ? "bg-card ring-2 ring-brand border-transparent"
                         : "bg-transparent border-border/60 hover:bg-secondary/10 hover:border-brand/30",
+                    isFree && "opacity-50 cursor-not-allowed",
                     className
                 )}
             >
-                {isPack && data.badge && (
+                {isHighlighted && data.badge && (
                     <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
-                        <span className="text-[9px] uppercase tracking-wider bg-premium text-white px-2 py-0.5 rounded font-bold">
+                        <span className="text-[9px] uppercase tracking-wider bg-brand text-white px-2 py-0.5 rounded font-bold flex items-center gap-1">
+                            <Sparkles className="w-2.5 h-2.5" />
                             {data.badge}
                         </span>
                     </div>
                 )}
                 <span className={cn(
                     "text-2xl font-display font-medium mt-1",
-                    isPack ? "text-premium" : "text-foreground"
+                    isHighlighted ? "text-brand" : "text-foreground"
                 )}>
                     {data.price}
                 </span>
                 <span className={cn(
                     "text-xs font-medium uppercase tracking-wider mt-1",
-                    isPack ? "text-premium" : "text-muted-foreground"
+                    isHighlighted ? "text-brand" : "text-muted-foreground"
                 )}>
                     {data.label}
                 </span>
-                <span className="text-[10px] text-muted-foreground">{data.reviews}</span>
+                <span className="text-[10px] text-muted-foreground">{data.period}</span>
             </button>
         );
     }
@@ -101,14 +121,15 @@ export function PricingCard({
         <div
             className={cn(
                 "p-6 rounded-xl border transition-all duration-200 ease-out flex flex-col relative hover:shadow-md",
-                isPack
+                isHighlighted
                     ? "border-2 border-brand/30 bg-brand/5 hover:shadow-brand/10"
                     : "border-border/40 bg-white dark:bg-card hover:border-border",
                 className
             )}
         >
-            {isPack && data.badge && (
-                <div className="absolute -top-2.5 left-4 bg-brand text-white text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded">
+            {isHighlighted && data.badge && (
+                <div className="absolute -top-2.5 left-4 bg-brand text-white text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" />
                     {data.badge}
                 </div>
             )}
@@ -116,12 +137,17 @@ export function PricingCard({
             <div className="mb-5">
                 <div className={cn(
                     "text-xs font-bold uppercase tracking-wider mb-1",
-                    isPack ? "text-brand" : "text-muted-foreground"
+                    isHighlighted ? "text-brand" : "text-muted-foreground"
                 )}>
                     {data.label}
                 </div>
-                <div className="text-3xl font-display font-medium text-foreground">
-                    {data.price}
+                <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-display font-medium text-foreground">
+                        {data.price}
+                    </span>
+                    {data.period && (
+                        <span className="text-muted-foreground text-sm">{data.period}</span>
+                    )}
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">{data.description}</p>
             </div>
@@ -131,7 +157,7 @@ export function PricingCard({
                     <li key={i} className="flex items-start gap-2.5 text-sm">
                         <Check className={cn(
                             "w-3.5 h-3.5 mt-0.5 shrink-0",
-                            i === 0 && isPack ? "text-brand" : "text-muted-foreground/50"
+                            i === 0 && isHighlighted ? "text-brand" : "text-muted-foreground/50"
                         )} />
                         <span className={cn(
                             feature.bold ? "font-medium text-foreground" : "text-muted-foreground"
@@ -143,10 +169,10 @@ export function PricingCard({
             </ul>
 
             <Button
-                variant={isPack ? "brand" : "outline"}
+                variant={isHighlighted ? "brand" : isFree ? "ghost" : "outline"}
                 className="w-full"
                 onClick={onSelect}
-                disabled={loading}
+                disabled={loading || isFree}
             >
                 {loading ? (
                     <>
@@ -161,5 +187,5 @@ export function PricingCard({
     );
 }
 
-// Export tier data for use elsewhere (e.g., checkout copy)
+// Export tier data for use elsewhere
 export { TIER_DATA };

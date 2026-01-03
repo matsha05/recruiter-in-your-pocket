@@ -40,15 +40,17 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    /* V2.1 Borders */
-    --border: 0 0% 7%;
-    /* Uses opacity in utilities */
+    /* V2.1 Borders — Modern Editorial: soft gray, not black */
+    --border: 215 20% 88%;
+    /* Slate-200 equivalent #E2E8F0 */
     --input: 220 10% 90%;
     --ring: 215 20% 27%;
     /* Slate-700 */
 
     --radius: 0.25rem;
-    /* 4px - V2.1 */
+    /* 4px - App surfaces */
+    --radius-xl: 0.75rem;
+    /* 12px - Marketing cards */
 
     /* V2.1 Loading States */
     --skeleton: hsl(var(--muted) / 0.1);
@@ -155,6 +157,10 @@
     --ring: 213 27% 60%;
     /* Slate-400 */
 
+    /* V2.1 Dark Borders — Modern Editorial */
+    --border: 215 20% 25%;
+    /* Slate-700 equivalent #334155 */
+
     /* V2.1 Dark Brand */
     --brand: 168 76% 50%;
     /* Teal-400 #2DD4BF */
@@ -162,6 +168,10 @@
     /* Slate-400 */
     --premium: 45 93% 55%;
     /* Amber-400 #FBBF24 */
+
+    /* Inverted Surface (dark sections in light mode) */
+    --surface-inverted: 222 47% 11%;
+    /* Slate-950 #020617 */
   }
 }
 
@@ -435,6 +445,50 @@
     100% {
       background-color: transparent;
     }
+  }
+
+  /* ==========================================================================
+     V2.2 MODERN EDITORIAL UTILITIES
+     ========================================================================== */
+
+  /* Marketing card: rounded-xl with soft shadow (light mode only) */
+  .card-marketing {
+    @apply rounded-[var(--radius-xl)] border border-border bg-card;
+    box-shadow: 0 10px 25px -5px rgb(148 163 184 / 0.1), 0 4px 6px -2px rgb(148 163 184 / 0.05);
+  }
+
+  .dark .card-marketing {
+    box-shadow: none;
+  }
+
+  /* Interactive card hover: border + shadow transition */
+  .card-interactive {
+    @apply transition-all duration-200;
+  }
+
+  .card-interactive:hover {
+    @apply border-brand/40;
+    box-shadow: 0 10px 25px -5px hsl(var(--brand) / 0.08), 0 4px 6px -2px hsl(var(--brand) / 0.04);
+  }
+
+  /* Label mono: uppercase tracking-widest pattern */
+  .text-label-mono {
+    @apply font-mono text-[10px] uppercase tracking-widest text-muted-foreground;
+  }
+
+  /* Hero responsive: landing page headline */
+  .text-hero-responsive {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    @apply text-5xl md:text-6xl lg:text-7xl;
+  }
+
+  /* Inverted section background */
+  .bg-surface-inverted {
+    background-color: hsl(var(--surface-inverted));
+    color: hsl(0 0% 93%);
   }
 }
 

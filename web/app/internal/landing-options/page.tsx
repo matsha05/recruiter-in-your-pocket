@@ -5,23 +5,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
+import LandingContent from "@/components/landing/LandingContent";
 import { LandingDataDriven } from "@/components/landing-showcase/LandingDataDriven";
-import { LandingDataDrivenV4 } from "@/components/landing-showcase/LandingDataDrivenV4";
 
 const landingPages = [
     {
-        id: "data-driven",
-        name: "Data-Driven (Original)",
-        description: "Research-heavy, stats prominent, methodology transparent. Your favorite.",
-        tags: ["Original", "Research"],
-        component: LandingDataDriven,
+        id: "prod",
+        name: "★ Production (Live)",
+        description: "The current production landing page.",
+        tags: ["Live"],
+        component: LandingContent,
     },
     {
-        id: "data-driven-v4",
-        name: "V4: Scroll Reveal",
-        description: "Massive numbers, progress rings, emerald accent, full-height sections.",
-        tags: ["Dramatic", "Emerald"],
-        component: LandingDataDrivenV4,
+        id: "original",
+        name: "Original (Standalone)",
+        description: "The original design without production wiring.",
+        tags: ["Reference"],
+        component: LandingDataDriven,
     },
 ];
 
@@ -56,12 +56,12 @@ export default function LandingOptionsPage() {
     return (
         <div className="min-h-screen bg-slate-50">
             <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200">
-                <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+                <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <PocketMark className="w-6 h-6 text-teal-600" />
                         <div>
-                            <h1 className="font-semibold">Landing Page Options</h1>
-                            <p className="text-xs text-slate-500">2 variations</p>
+                            <h1 className="font-semibold">Landing Page</h1>
+                            <p className="text-xs text-slate-500">Production Ready vs Reference</p>
                         </div>
                     </div>
                 </div>
@@ -73,19 +73,29 @@ export default function LandingOptionsPage() {
                         <motion.button
                             key={page.id}
                             onClick={() => setSelectedPage(page.id)}
-                            className="group text-left p-6 rounded-xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-lg transition-all"
+                            className={`group text-left p-6 rounded-xl bg-white border-2 transition-all ${page.id === "prod"
+                                ? "border-teal-500 shadow-lg shadow-teal-500/10"
+                                : "border-slate-200 hover:border-slate-300"
+                                }`}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.05 }}
                         >
                             <div className="flex items-center gap-2 mb-3">
                                 {page.tags.map((tag) => (
-                                    <span key={tag} className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600">
+                                    <span
+                                        key={tag}
+                                        className={`px-2 py-0.5 rounded text-[10px] font-medium ${tag === "Ship" || tag === "Wired"
+                                            ? "bg-teal-100 text-teal-700"
+                                            : "bg-slate-100 text-slate-600"
+                                            }`}
+                                    >
                                         {tag}
                                     </span>
                                 ))}
                             </div>
-                            <h3 className="font-semibold text-lg mb-1 group-hover:text-teal-600 transition-colors">
+                            <h3 className={`font-semibold text-lg mb-1 ${page.id === "prod" ? "text-teal-700" : "group-hover:text-teal-600 transition-colors"
+                                }`}>
                                 {page.name}
                             </h3>
                             <p className="text-sm text-slate-500">{page.description}</p>
@@ -103,12 +113,15 @@ export default function LandingOptionsPage() {
                         exit={{ opacity: 0 }}
                     >
                         <div className="fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
-                            <button
-                                onClick={() => setSelectedPage(null)}
-                                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                            >
-                                <X className="w-5 h-5 text-white" />
-                            </button>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => setSelectedPage(null)}
+                                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                                >
+                                    <X className="w-5 h-5 text-white" />
+                                </button>
+                                <span className="text-white font-medium ml-2">{selectedLanding.name}</span>
+                            </div>
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={goToPrev}

@@ -90,12 +90,13 @@ Micro-animations on hover. Presentation-quality transitions. The interface respo
 Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 percent dramatic, always tied to verdict, value, or conversion.
 
 - Light editorial base by default, dark mode is fully supported
+- **V2.2 "Modern Editorial"**: Soft slate borders replace black-at-opacity for warmth without losing authority
 - Warm paper texture allowed only on marketing surfaces and kept subtle
 - One signature moment per screen is preferred, not required. Utility screens can have none. Never more than one per screen.
 - Teal brand accent (action)
 - Gold for premium moments only
 - Muted slate for UI chrome
-- Shadows are subtle, not dramatic
+- Shadows: subtle on app surfaces, soft lift on marketing cards (light mode only)
 - Surprise comes from clarity and craft, not theatrics
 
 ### 5. Invisible Perfection
@@ -189,4 +190,4 @@ This philosophy should be referenced when:
 - Writing copy ("Would our hiring manager friend say this?")
 - Choosing what to build ("Does this arm people or just inform them?")
 
-Last updated: December 2025
+Last updated: January 2026 (V2.2 "Modern Editorial")

@@ -11,10 +11,13 @@ const stripe = process.env.STRIPE_SECRET_KEY
     ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
     : null;
 
+// Pricing tiers: monthly subscription ($9) and lifetime one-time ($79)
 const PRICE_IDS = {
+    "monthly": process.env.STRIPE_PRICE_ID_MONTHLY || "price_MONTHLY_PLACEHOLDER",
+    "lifetime": process.env.STRIPE_PRICE_ID_LIFETIME || "price_LIFETIME_PLACEHOLDER",
+    // Legacy one-time pricing (deprecated, kept for existing purchases)
     "24h": process.env.STRIPE_PRICE_ID_24H || "price_1SeJLJK3nCOONJJ0g2JncGeY",
     "30d": process.env.STRIPE_PRICE_ID_30D || "price_1SeJLsK3nCOONJJ0mrQIVesj",
-    "90d": process.env.STRIPE_PRICE_ID_90D || "price_MISSING_90D_ID"
 };
 
 const getBaseUrl = () => {
@@ -23,12 +26,17 @@ const getBaseUrl = () => {
     return "http://localhost:3000";
 };
 
-function normalizeTier(input: unknown): "24h" | "30d" | "90d" | null {
+type PricingTier = "monthly" | "lifetime" | "24h" | "30d";
+
+function normalizeTier(input: unknown): PricingTier | null {
     if (typeof input !== "string") return null;
-    const raw = input.trim();
+    const raw = input.trim().toLowerCase();
+    // Current pricing tiers
+    if (raw === "monthly" || raw === "lifetime") return raw;
+    // Legacy mappings
     if (raw === "single") return "24h";
     if (raw === "pack") return "30d";
-    if (raw === "24h" || raw === "30d" || raw === "90d") return raw;
+    if (raw === "24h" || raw === "30d") return raw;
     return null;
 }
 
@@ -170,16 +178,20 @@ export async function POST(request: Request) {
         }
 
         const tierLabel =
-            requestedTier === "90d" ? "Executive Membership (Quarterly)" :
-                requestedTier === "30d" ? "Active Job Search" :
-                    "Quick Check";
+            requestedTier === "lifetime" ? "Lifetime Access" :
+                requestedTier === "monthly" ? "Full Access" :
+                    requestedTier === "30d" ? "Active Job Search (Legacy)" :
+                        "Quick Check (Legacy)";
 
         const baseUrl = getBaseUrl();
 
+        // Determine if this is a subscription or one-time payment
+        // Lifetime is one-time, monthly is subscription
+        const isSubscription = requestedTier === "monthly";
+
         // Create Stripe checkout session
-        // Name will be collected by Stripe in the checkout form
         const checkoutSession = await stripe.checkout.sessions.create({
-            mode: "payment",
+            mode: isSubscription ? "subscription" : "payment",
             payment_method_types: ["card"],
             line_items: [
                 {
@@ -188,7 +200,6 @@ export async function POST(request: Request) {
                 }
             ],
             customer_email: checkoutEmail,
-            // Collect billing name in checkout
             billing_address_collection: "required",
             success_url: `${baseUrl}/workspace?payment=success&tier=${requestedTier}`,
             cancel_url: `${baseUrl}/workspace?payment=cancelled`,
@@ -201,7 +212,11 @@ export async function POST(request: Request) {
             allow_promotion_codes: true,
             custom_text: {
                 submit: {
-                    message: `You're getting the ${tierLabel}. We'll activate it in your studio right after checkout.`
+                    message: requestedTier === "lifetime"
+                        ? `You're getting Lifetime Access. Pay once, use forever.`
+                        : isSubscription
+                            ? `You're subscribing to ${tierLabel}. Cancel anytime.`
+                            : `You're getting ${tierLabel}. We'll activate it right after checkout.`
                 }
             }
         });

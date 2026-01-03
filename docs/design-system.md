@@ -1,9 +1,9 @@
-# Design System V2.1 — Technical Specifications
+# Design System V2.2 — Technical Specifications
 
 > [!NOTE]
 > This is the **technical implementation reference**. For design decisions, see [design-philosophy.md](./design-philosophy.md) (source of truth) and [design-principles.md](./design-principles.md) (patterns & rules).
 
-*Last Updated: Dec 19, 2025*
+*Last Updated: January 2026 — V2.2 "Modern Editorial"*
 
 ---
 
@@ -56,13 +56,15 @@ These map to the typography utilities in `web/app/globals.css`.
 
 | Token | Value | Usage |
 |---|---|---|
-| `--radius` | `4px` | Default (cards, buttons, inputs) |
+| `--radius` | `4px` | App surfaces (buttons, inputs, dense cards) |
 | `--radius-sm` | `2px` | Badges, small chips |
-| `--radius-lg` | `8px` | Modals, hero cards |
+| `--radius-lg` | `8px` | Modals |
+| `--radius-xl` | `12px` | **Marketing cards, hero panels** |
 | `shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.04)` | Subtle lift (optional) |
 | `shadow-overlay` | `0 10px 30px rgba(0,0,0,0.08)` | Overlays only (peek, popover, modal) |
+| `.card-marketing` | Soft slate shadow (light mode only) | Marketing/landing pages |
 
-**Rule:** Base surfaces use borders only, not shadows. Overlay surfaces get `shadow-overlay`.
+**Rule:** Base surfaces use borders only, not shadows. Marketing surfaces use `.card-marketing` for soft lift in light mode. Overlay surfaces get `shadow-overlay`.
 
 ---
 
@@ -255,6 +257,46 @@ If the claim is recruiter judgment or an internal heuristic:
 - States: hover, focus, active, disabled, loading are all defined.
 - Motion: use `--ease` and duration tokens. No infinite motion.
 - Pixel: align baselines, icons, and borders to avoid jitter.
+
+---
+
+## 13. Animated Icons (V2.2)
+
+Package: `lucide-animated` (selectively imported)
+
+| Icon | Trigger | Usage |
+|------|---------|-------|
+| `CloudUploadAnimated` | On file drop | ResumeDropzone success |
+| `FileCheckAnimated` | On complete | Analysis complete toast |
+| `CheckAnimated` | On success | Form submissions, confirmations |
+| `SettingsAnimated` | On hover | Settings button (appbar) |
+
+**Rules:**
+- Only animate on meaningful state transitions, not idle states
+- 1-2 animated icons per screen maximum
+- Static fallback for `prefers-reduced-motion`
+
+---
+
+## 14. Modern Editorial Utilities (V2.2)
+
+These utilities implement the "Modern Editorial" aesthetic: soft borders, rounded cards, confident typography.
+
+| Utility | Usage |
+|---------|-------|
+| `.card-marketing` | Landing/marketing cards with `rounded-xl` and soft shadow |
+| `.card-interactive` | Adds brand-tinted hover state to cards |
+| `.text-label-mono` | `10px` uppercase monospace labels |
+| `.text-hero-responsive` | Responsive hero headline (5xl → 7xl) |
+| `.bg-surface-inverted` | Dark section backgrounds (testimonials) |
+
+### Border Philosophy
+
+V2.2 uses **soft slate borders** instead of black-at-opacity:
+- Light mode: `border-border` → Slate-200 (#E2E8F0)
+- Dark mode: `border-border` → Slate-700 (#334155)
+
+This creates a warmer, more approachable feel while maintaining editorial authority through typography and content density.
 
 ---
 
