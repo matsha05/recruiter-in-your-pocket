@@ -28,7 +28,7 @@ export default function PaywallModal({
     onSuccess
 }: PaywallModalProps) {
     const { user } = useAuth();
-    const [selectedTier, setSelectedTier] = useState<PricingTier>("pack");
+    const [selectedTier, setSelectedTier] = useState<PricingTier>("monthly");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -94,16 +94,16 @@ export default function PaywallModal({
                 {/* Tier Selection - Compact Cards */}
                 <div className="grid grid-cols-2 gap-3 mb-5">
                     <PricingCard
-                        tier="single"
+                        tier="monthly"
                         variant="compact"
-                        selected={selectedTier === "single"}
-                        onSelect={() => setSelectedTier("single")}
+                        selected={selectedTier === "monthly"}
+                        onSelect={() => setSelectedTier("monthly")}
                     />
                     <PricingCard
-                        tier="pack"
+                        tier="lifetime"
                         variant="compact"
-                        selected={selectedTier === "pack"}
-                        onSelect={() => setSelectedTier("pack")}
+                        selected={selectedTier === "lifetime"}
+                        onSelect={() => setSelectedTier("lifetime")}
                     />
                 </div>
 
@@ -119,7 +119,7 @@ export default function PaywallModal({
                                 onClick={handleCheckout}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `See What They Saw — ${selectedTier === "single" ? "$9" : "$29"}`}
+                                {loading ? "Processing..." : `See What They Saw — ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
                             </Button>
                         </>
                     ) : (
