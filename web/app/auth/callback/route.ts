@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   const next = searchParams.get("next") || "/workspace";
 
   if (!code) {
-    return NextResponse.redirect(`${origin}/signin?error=missing_code`);
+    return NextResponse.redirect(`${origin}/auth?error=missing_code`);
   }
 
   // Create response first so we can set cookies on it
@@ -34,10 +34,9 @@ export async function GET(request: Request) {
   const { error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
-    return NextResponse.redirect(`${origin}/signin?error=${encodeURIComponent(error.message)}`);
+    return NextResponse.redirect(`${origin}/auth?error=${encodeURIComponent(error.message)}`);
   }
 
   return response;
 }
-
 

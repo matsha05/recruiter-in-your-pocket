@@ -204,7 +204,7 @@ export function LandingRolexNarrative() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Shield className="w-4 h-4" />
-                            Never trains AI
+                            Not used to train public models
                         </div>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-emerald-200/50">

@@ -28,7 +28,7 @@ interface ScrollRevealProps extends Omit<HTMLMotionProps<"div">, "ref"> {
  */
 export const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
     ({ children, fast = false, threshold, className, ...props }, forwardedRef) => {
-        const { ref, isVisible } = useScrollReveal({ threshold });
+        const { ref: scrollRef, isVisible } = useScrollReveal({ threshold });
         const prefersReducedMotion = useReducedMotion();
 
         const variants = prefersReducedMotion
@@ -41,7 +41,7 @@ export const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
             <motion.div
                 ref={(node) => {
                     // Handle both refs
-                    (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+                    (scrollRef as React.MutableRefObject<HTMLElement | null>).current = node;
                     if (typeof forwardedRef === "function") {
                         forwardedRef(node);
                     } else if (forwardedRef) {

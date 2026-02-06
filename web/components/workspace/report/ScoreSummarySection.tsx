@@ -34,6 +34,15 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
         }))
     ].slice(0, 3);
 
+    const evidenceSnapshot = (data.top_fixes || [])
+        .filter((fix) => fix.evidence && (typeof fix.evidence === "string" ? fix.evidence.trim() : fix.evidence.excerpt?.trim()))
+        .slice(0, 3)
+        .map((fix) => ({
+            evidence: typeof fix.evidence === "string" ? fix.evidence : fix.evidence?.excerpt || "",
+            action: fix.fix || fix.text || "Strengthen this signal",
+            section: typeof fix.evidence === "string" ? fix.section_ref : fix.evidence?.section || fix.section_ref
+        }));
+
     return (
         <section className="space-y-8">
             <ReportSectionHeader
@@ -65,6 +74,40 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                             </li>
                         ))}
                     </ul>
+                </div>
+            )}
+
+            {evidenceSnapshot.length > 0 && (
+                <div className="rounded border border-border/60 bg-card p-5 space-y-4">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
+                            Evidence Snapshot
+                        </h3>
+                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                            Why this score moved
+                        </span>
+                    </div>
+                    <div className="space-y-3">
+                        {evidenceSnapshot.map((item, index) => (
+                            <div key={`${item.evidence}-${index}`} className="rounded border border-border/50 bg-secondary/10 p-4">
+                                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+                                    <span>Evidence</span>
+                                    {item.section && (
+                                        <>
+                                            <span>•</span>
+                                            <span>{item.section}</span>
+                                        </>
+                                    )}
+                                </div>
+                                <p className="mt-2 text-sm text-foreground/90 leading-relaxed">
+                                    “{item.evidence}”
+                                </p>
+                                <div className="mt-3 text-xs text-muted-foreground">
+                                    <span className="font-medium text-foreground/70">Action:</span> {item.action}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
 

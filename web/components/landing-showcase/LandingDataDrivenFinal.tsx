@@ -358,7 +358,7 @@ export function LandingDataDrivenFinal() {
                     <div className="flex flex-wrap items-center justify-center gap-8 mb-6">
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Lock className="w-4 h-4 text-teal-600" />
-                            End-to-end encrypted
+                            Encrypted in transit
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Trash2 className="w-4 h-4 text-slate-400" />
@@ -366,7 +366,7 @@ export function LandingDataDrivenFinal() {
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Shield className="w-4 h-4 text-slate-400" />
-                            Never trains AI models
+                            Not used to train public models
                         </div>
                     </div>
 

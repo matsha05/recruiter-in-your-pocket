@@ -394,15 +394,15 @@ export function LandingDataDriven() {
                             <div className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Free</div>
                             <div className="flex items-baseline gap-1 mb-6">
                                 <span className="text-4xl font-bold">$0</span>
-                                <span className="text-slate-400">forever</span>
+                                <span className="text-slate-400">1 review</span>
                             </div>
                             <ul className="space-y-3 mb-6">
                                 {[
-                                    "3 resume analyses",
-                                    "Full 4-dimension scoring",
-                                    "Critical Miss detection",
-                                    "Red Pen rewrites",
-                                    "Research library access",
+                                    "1 full resume review",
+                                    "Recruiter first-impression verdict",
+                                    "Signal score and critical gaps",
+                                    "Sample rewrites and next steps",
+                                    "Research library access"
                                 ].map((f) => (
                                     <li key={f} className="flex items-center gap-2 text-sm text-slate-600">
                                         <Check className="w-4 h-4 text-teal-600 flex-shrink-0" />
@@ -411,7 +411,7 @@ export function LandingDataDriven() {
                                 ))}
                             </ul>
                             <button className="w-full py-3 rounded-md border border-slate-200 font-medium hover:bg-slate-50 transition-colors">
-                                Start Free Analysis
+                                Run Free Review
                             </button>
                         </div>
 
@@ -454,7 +454,7 @@ export function LandingDataDriven() {
                     <div className="flex flex-wrap items-center justify-center gap-8 mb-8">
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Lock className="w-4 h-4 text-teal-600" />
-                            End-to-end encrypted
+                            Encrypted in transit
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Trash2 className="w-4 h-4 text-slate-400" />
@@ -462,7 +462,7 @@ export function LandingDataDriven() {
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Shield className="w-4 h-4 text-slate-400" />
-                            Never trains AI models
+                            Not used to train public models
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Award className="w-4 h-4 text-slate-400" />

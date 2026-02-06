@@ -88,7 +88,23 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "reports", count: reportsCount });
 
-        // 2. Delete all saved_jobs (for extension)
+        // 2. Delete saved resume profile (default resume + embeddings)
+        const { error: profilesError, count: profilesCount } = await admin
+            .from("user_profiles")
+            .delete({ count: "exact" })
+            .eq("user_id", userId);
+
+        if (profilesError && !profilesError.message.includes("does not exist")) {
+            logWarn({
+                msg: "account.deletion.table_warning",
+                request_id,
+                user_id: userId,
+                supabase: { table: "user_profiles", error_code: profilesError.code }
+            });
+        }
+        deletions.push({ table: "user_profiles", count: profilesCount });
+
+        // 3. Delete all saved_jobs (for extension)
         const { error: jobsError, count: jobsCount } = await admin
             .from("saved_jobs")
             .delete({ count: "exact" })
@@ -105,7 +121,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "saved_jobs", count: jobsCount });
 
-        // 3. Delete all artifacts (via cases cascade - or directly if no cases)
+        // 4. Delete all artifacts (via cases cascade - or directly if no cases)
         const { error: artifactsError, count: artifactsCount } = await admin
             .from("artifacts")
             .delete({ count: "exact" })
@@ -122,7 +138,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "artifacts", count: artifactsCount });
 
-        // 4. Delete user_usage tracking
+        // 5. Delete user_usage tracking
         const { error: usageError } = await admin
             .from("user_usage")
             .delete()
@@ -137,7 +153,7 @@ export async function DELETE(request: Request) {
             });
         }
 
-        // 5. Delete account export jobs
+        // 6. Delete account export jobs
         const { error: exportJobsError, count: exportJobsCount } = await admin
             .from("account_export_jobs")
             .delete({ count: "exact" })
@@ -153,7 +169,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "account_export_jobs", count: exportJobsCount });
 
-        // 6. Delete passes (credit records) - we keep Stripe records but delete our local pass records
+        // 7. Delete passes (credit records) - we keep Stripe records but delete our local pass records
         // Note: This is acceptable because Stripe has the authoritative payment record
         const { error: passesError, count: passesCount } = await admin
             .from("passes")
@@ -170,7 +186,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "passes", count: passesCount });
 
-        // 7. Delete cases (if any)
+        // 8. Delete cases (if any)
         const { error: casesError, count: casesCount } = await admin
             .from("cases")
             .delete({ count: "exact" })
@@ -186,7 +202,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "cases", count: casesCount });
 
-        // 8. Delete the user from auth (this is the final step)
+        // 9. Delete the user from auth (this is the final step)
         // Note: This requires admin privileges
         const { error: authDeleteError } = await admin.auth.admin.deleteUser(userId);
 

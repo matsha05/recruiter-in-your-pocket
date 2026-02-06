@@ -1,111 +1,67 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
-// SiteHeader removed — layout handles navigation
-import Footer from "@/components/landing/Footer";
-import { LegalNav } from "@/components/legal/LegalNav";
 import { LEGAL_LAST_UPDATED } from "@/lib/legal/dataHandling";
+import { LegalShell } from "@/components/legal/LegalShell";
 
-export default function TermsClient() {
+function TermsSection({ title, children }: { title: string; children: ReactNode }) {
     return (
-        <>
-            <main className="max-w-3xl mx-auto px-6 py-16">
-                <LegalNav />
-
-                {/* Header */}
-                <header className="mb-20 text-center max-w-2xl mx-auto">
-                    <h1 className="font-display text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
-                        Terms of Service
-                    </h1>
-                    <p className="text-xl text-muted-foreground leading-relaxed">
-                        The legal agreements that power our service.
-                        <br />
-                        <span className="text-sm font-mono mt-2 block text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</span>
-                    </p>
-                </header>
-
-                {/* Content */}
-                <article className="space-y-12 font-sans text-foreground/90 leading-relaxed">
-                    <Section title="1. Acceptance of Terms">
-                        By accessing and using Recruiter in Your Pocket (&quot;the Service&quot;), you agree to be
-                        bound by these Terms of Service. If you do not agree to these terms, please do not
-                        use the Service.
-                    </Section>
-
-                    <Section title="2. Description of Service">
-                        Recruiter in Your Pocket provides AI-powered resume feedback designed to help you
-                        understand how your resume is read by recruiters. The Service analyzes your resume
-                        and provides suggestions for improvement based on research into recruiter behavior.
-                    </Section>
-
-                    <Section title="3. User Responsibilities">
-                        <ul className="list-disc pl-5 space-y-2 mt-4 ml-2 marker:text-muted-foreground">
-                            <li>You are responsible for all content you submit to the Service.</li>
-                            <li>You agree not to submit content that is illegal, harmful, or infringes on others&apos; rights.</li>
-                            <li>You agree not to attempt to circumvent any security features.</li>
-                            <li>You are responsible for evaluating the accuracy of any AI-generated output.</li>
-                            <li>You must be at least 18 years old to use this Service.</li>
-                        </ul>
-                    </Section>
-
-                    <Section title="4. Prohibited Uses">
-                        You agree not to:
-                        <ul className="list-disc pl-5 space-y-2 mt-4 ml-2 marker:text-muted-foreground">
-                            <li>Use the Service to develop competing products or models.</li>
-                            <li>Scrape, crawl, or extract data from the Service.</li>
-                            <li>Automate large-scale or bulk requests.</li>
-                            <li>Reverse engineer the Service.</li>
-                        </ul>
-                    </Section>
-
-                    <Section title="5. Privacy and Data">
-                        Your privacy matters to us. Please review our <Link href="/privacy" className="underline underline-offset-4 decoration-muted-foreground hover:decoration-primary transition-colors">Privacy Policy</Link>.
-                        <br /><br />
-                        Resume content is processed to generate feedback. If you use a logged-in account,
-                        generated report data may be stored so you can review history and compare versions.
-                        You can delete and export account data from Settings.
-                    </Section>
-
-                    <Section title="6. Payment, Unlocks, and Refunds">
-                        The Service offers one free review and paid plans (monthly or lifetime). Payment processing,
-                        invoice generation, and card updates are handled by Stripe.
-                        <br /><br />
-                        If payment is successful and access appears locked, use <Link href="/purchase/restore" className="underline underline-offset-4 decoration-muted-foreground hover:decoration-primary transition-colors">Restore Access</Link> or Billing settings.
-                        <br /><br />
-                        Monthly subscriptions can be canceled in the billing portal. Refund requests are reviewed case by case
-                        based on delivery status and product access behavior.
-                    </Section>
-
-                    <Section title="7. Intellectual Property">
-                        The Service is owned by Recruiter in Your Pocket. You retain ownership of your resume content.
-                    </Section>
-
-                    <Section title="8. Disclaimer">
-                        The Service is provided &quot;as is&quot; without warranties. We do not guarantee job offers.
-                    </Section>
-
-                    <Section title="9. Limitation of Liability">
-                        We shall not be liable for any indirect damages resulting from your use of the Service.
-                    </Section>
-
-                    <Section title="10. Governing Law">
-                        These Terms shall be governed by the laws of the State of Colorado.
-                    </Section>
-                </article>
-            </main>
-
-            <Footer />
-        </>
+        <section className="landing-card landing-card-pad">
+            <h2 className="mb-3 font-display text-2xl leading-tight tracking-tight">{title}</h2>
+            <div className="landing-copy-muted">{children}</div>
+        </section>
     );
 }
 
-function Section({ title, children }: { title: string, children: React.ReactNode }) {
+export default function TermsClient() {
     return (
-        <section>
-            <h2 className="font-display text-xl font-medium text-foreground mb-4">{title}</h2>
-            <div className="text-[15px] md:text-base text-muted-foreground leading-relaxed">
-                {children}
-            </div>
-        </section>
-    )
+        <LegalShell
+            eyebrow="Terms of service"
+            title="Legal terms for using RIYP"
+            description="The operating terms for product use, billing, and account behavior."
+            lastUpdated={LEGAL_LAST_UPDATED}
+        >
+            <TermsSection title="1. Acceptance and service scope">
+                By using Recruiter in Your Pocket, you agree to these terms. The service provides AI-assisted resume and LinkedIn feedback designed for iteration support, not guaranteed hiring outcomes.
+            </TermsSection>
+
+            <TermsSection title="2. User responsibilities">
+                <ul className="list-disc space-y-2 pl-5">
+                    <li>You are responsible for content submitted for analysis.</li>
+                    <li>Do not upload illegal, harmful, or rights-infringing content.</li>
+                    <li>Do not attempt to bypass security or abuse system limits.</li>
+                    <li>Review AI output for factual and contextual accuracy before use.</li>
+                </ul>
+            </TermsSection>
+
+            <TermsSection title="3. Privacy and data">
+                Privacy behavior is documented at
+                {" "}
+                <Link href="/privacy" className="text-foreground underline underline-offset-4 hover:text-brand">/privacy</Link>
+                {" "}
+                and
+                {" "}
+                <Link href="/security" className="text-foreground underline underline-offset-4 hover:text-brand">/security</Link>.
+                Signed-in usage may store report history until removed by report deletion or account deletion.
+            </TermsSection>
+
+            <TermsSection title="4. Payment, unlocks, and refunds">
+                One full review is free. Paid plans unlock additional capabilities. Stripe handles billing and invoices.
+                If payment succeeds and access appears locked, use
+                {" "}
+                <Link href="/purchase/restore" className="text-foreground underline underline-offset-4 hover:text-brand">Restore Access</Link>
+                {" "}
+                before opening support. Refund requests are reviewed case by case.
+            </TermsSection>
+
+            <TermsSection title="5. Limits and liability">
+                The service is provided as-is. We do not guarantee interviews, offers, or employment outcomes. To the extent permitted by law, liability is limited for indirect or consequential damages.
+            </TermsSection>
+
+            <TermsSection title="6. Governing law">
+                These terms are governed by the laws of the State of Colorado.
+            </TermsSection>
+        </LegalShell>
+    );
 }

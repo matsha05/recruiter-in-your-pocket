@@ -19,6 +19,7 @@ import { useJobContextFromExtension, type LoadedJobContext } from "@/components/
 import { useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
+import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 
 export default function WorkspaceClient() {
     const router = useRouter();
@@ -31,6 +32,9 @@ export default function WorkspaceClient() {
     const [report, setReport] = useState<any>(null);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
+    const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
+    const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
+    const [lastLinkedInPdf, setLastLinkedInPdf] = useState<string | null>(null);
 
     // Mode switcher state (Resume vs LinkedIn)
     const [reviewMode, setReviewMode] = useState<ReviewMode>('resume');
@@ -46,14 +50,15 @@ export default function WorkspaceClient() {
     const [isAuthOpen, setIsAuthOpen] = useState(false);
     const [isSavePromptOpen, setIsSavePromptOpen] = useState(false);
     const [pendingReportForSave, setPendingReportForSave] = useState<any>(null);
-
-    const justUnlocked = false;
+    const [justUnlocked, setJustUnlocked] = useState(false);
+    const [highlightSection, setHighlightSection] = useState<string | null>(null);
 
     // Job context from extension capture (when accessing via ?job=id)
     const [loadedJobContext, setLoadedJobContext] = useState<LoadedJobContext | null>(null);
 
     // Ref to track pending auto-run from landing page
     const pendingAutoRunRef = useRef(false);
+    const abortControllerRef = useRef<AbortController | null>(null);
 
     useWorkspaceInit({
         searchParams,
@@ -93,6 +98,35 @@ export default function WorkspaceClient() {
 
     const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining });
 
+    const beginAnalysis = useCallback((mode: "resume" | "linkedin") => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+        }
+        const controller = new AbortController();
+        abortControllerRef.current = controller;
+        setAnalysisMode(mode);
+        setAnalysisStartedAt(Date.now());
+        return controller;
+    }, []);
+
+    const endAnalysis = useCallback(() => {
+        setAnalysisStartedAt(null);
+        abortControllerRef.current = null;
+    }, []);
+
+    const handleCancelAnalysis = useCallback((silent?: boolean) => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+            abortControllerRef.current = null;
+        }
+        setIsLoading(false);
+        setIsStreaming(false);
+        setAnalysisStartedAt(null);
+        if (!silent) {
+            toast.info("Analysis canceled");
+        }
+    }, []);
+
     const { handleLinkedInPdfSubmit, handleLinkedInUrlSubmit, handleLinkedInSample } = useLinkedInReview({
         user,
         freeUsesRemaining,
@@ -103,7 +137,10 @@ export default function WorkspaceClient() {
         setLinkedInReport,
         setLinkedInProfileName,
         setLinkedInProfileHeadline,
-        setReviewMode
+        setReviewMode,
+        beginAnalysis,
+        endAnalysis,
+        setLastLinkedInPdf
     });
 
     const handleFileSelect = useCallback(async (file: File) => {
@@ -156,6 +193,7 @@ export default function WorkspaceClient() {
         setIsLoading(true);
         setIsStreaming(true);
         setReport(null);
+        const controller = beginAnalysis("resume");
         Analytics.reportStarted(!!jobDescription.trim());
         Analytics.track("report_stream_started", {
             has_jd: !!jobDescription.trim(),
@@ -189,15 +227,25 @@ export default function WorkspaceClient() {
                             setIsLoading(false);
                         }
                     }
-                }
+                },
+                "resume",
+                { signal: controller.signal }
             );
             console.log("[WorkspaceClient] streamResumeFeedback result:", result);
+
+            if (result.aborted) {
+                setIsLoading(false);
+                setIsStreaming(false);
+                endAnalysis();
+                return;
+            }
 
             if (result.ok && result.report) {
                 console.log("[WorkspaceClient] Setting final report:", result.report);
                 setReport(result.report);
                 setIsStreaming(false);
                 setIsLoading(false);
+                endAnalysis();
                 Analytics.reportCompleted(result.report?.score || 0);
 
                 await refreshFreeStatus({
@@ -220,14 +268,16 @@ export default function WorkspaceClient() {
                 toast.error("Failed to generate report", { description: `${result.message || "Unknown error"} · No credits consumed` });
                 setIsLoading(false);
                 setIsStreaming(false);
+                endAnalysis();
             }
         } catch (err) {
             console.error("Report generation error:", err);
             toast.error("Report generation error", { description: "Please try again. No credits consumed." });
             setIsLoading(false);
             setIsStreaming(false);
+            endAnalysis();
         }
-    }, [resumeText, jobDescription, freeUsesRemaining, user, refreshFreeStatus, isLoading]);
+    }, [resumeText, jobDescription, freeUsesRemaining, user, refreshFreeStatus, isLoading, beginAnalysis, endAnalysis]);
 
     // Keep ref in sync with latest handleRun
     handleRunRef.current = handleRun;
@@ -258,18 +308,35 @@ export default function WorkspaceClient() {
         }
     }, []);
 
+    const handleRetryAnalysis = useCallback(() => {
+        if (analysisMode === "resume") {
+            handleCancelAnalysis(true);
+            handleRunRef.current();
+            return;
+        }
+        if (analysisMode === "linkedin") {
+            if (!lastLinkedInPdf) {
+                toast.message("Retry unavailable", { description: "Please re-upload your LinkedIn PDF." });
+                return;
+            }
+            handleCancelAnalysis(true);
+            handleLinkedInPdfSubmit(lastLinkedInPdf);
+        }
+    }, [analysisMode, handleCancelAnalysis, lastLinkedInPdf, handleLinkedInPdfSubmit]);
+
     // PDF export state
     const [isExporting, setIsExporting] = useState(false);
 
-    const handleExportPdf = useCallback(async () => {
-        if (!report) return;
+    const handleExportPdf = useCallback(async (overrideReport?: any) => {
+        const payload = overrideReport || report;
+        if (!payload) return;
 
         setIsExporting(true);
         try {
             const response = await fetch("/api/export-pdf", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ report }),
+                body: JSON.stringify({ report: payload }),
             });
 
             if (!response.ok) {
@@ -320,9 +387,47 @@ export default function WorkspaceClient() {
         }
     });
 
-    const isSampleReport = searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim());
     const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
     const effectiveUsesRemaining = hasPaidAccess ? Math.max(freeUsesRemaining, 1) : freeUsesRemaining;
+
+    useEffect(() => {
+        if (!hasPaidAccess) return;
+        if (!report) return;
+
+        const context = getUnlockContext();
+        if (!context?.section) return;
+
+        const sectionMap: Record<UnlockSection, string | null> = {
+            evidence_ledger: "section-evidence-ledger",
+            bullet_upgrades: "section-bullet-upgrades",
+            missing_wins: "section-missing-wins",
+            job_alignment: "section-job-alignment",
+            export_pdf: null
+        };
+
+        setJustUnlocked(true);
+        setHighlightSection(context.section);
+        Analytics.unlockUiRevealed(context.section, Date.now() - context.timestamp);
+
+        const targetId = sectionMap[context.section];
+        if (targetId) {
+            setTimeout(() => {
+                const el = document.getElementById(targetId);
+                el?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 350);
+        }
+
+        clearUnlockContext();
+
+        const highlightTimer = setTimeout(() => setHighlightSection(null), 3500);
+        const bannerTimer = setTimeout(() => setJustUnlocked(false), 6500);
+        return () => {
+            clearTimeout(highlightTimer);
+            clearTimeout(bannerTimer);
+        };
+    }, [hasPaidAccess, report]);
+
+    const isSampleReport = searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim());
 
     return (
         <>
@@ -336,7 +441,7 @@ export default function WorkspaceClient() {
                             <ModeSwitcher
                                 mode={reviewMode}
                                 onModeChange={setReviewMode}
-                                disabled={isLoading}
+                                disabled={isLoading || isStreaming}
                             />
                         </div>
                     )}
@@ -346,6 +451,7 @@ export default function WorkspaceClient() {
                         <ResumeModeSection
                             report={report}
                             isLoading={isLoading}
+                            isStreaming={isStreaming}
                             resumeText={resumeText}
                             jobDescription={jobDescription}
                             onResumeTextChange={setResumeText}
@@ -362,7 +468,11 @@ export default function WorkspaceClient() {
                             onNewReport={handleNewReport}
                             onUpgrade={() => setIsPaywallOpen(true)}
                             justUnlocked={justUnlocked}
+                            highlightSection={highlightSection}
                             hasPaidAccess={hasPaidAccess}
+                            analysisStartedAt={analysisStartedAt}
+                            onCancelAnalysis={() => handleCancelAnalysis()}
+                            onRetryAnalysis={handleRetryAnalysis}
                         />
                     ) : (
                         <LinkedInModeSection
@@ -370,6 +480,7 @@ export default function WorkspaceClient() {
                             linkedInProfileName={linkedInProfileName}
                             linkedInProfileHeadline={linkedInProfileHeadline}
                             isLoading={isLoading}
+                            isStreaming={isStreaming}
                             freeUsesRemaining={effectiveUsesRemaining}
                             user={user}
                             onUrlSubmit={handleLinkedInUrlSubmit}
@@ -377,6 +488,9 @@ export default function WorkspaceClient() {
                             onSampleReport={handleLinkedInSample}
                             onNewReport={handleNewReport}
                             onUpgrade={() => setIsPaywallOpen(true)}
+                            analysisStartedAt={analysisStartedAt}
+                            onCancelAnalysis={() => handleCancelAnalysis()}
+                            onRetryAnalysis={handleRetryAnalysis}
                         />
                     )}
                 </div>

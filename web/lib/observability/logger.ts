@@ -88,7 +88,6 @@ export function log(level: LogLevel, record: Omit<LogRecord, "ts" | "level" | "s
       service: "recruiter-in-your-pocket",
       env: envLabel()
     };
-    // eslint-disable-next-line no-console
     console.error(safeJson(scrubbed));
     return;
   }
@@ -107,7 +106,6 @@ export function log(level: LogLevel, record: Omit<LogRecord, "ts" | "level" | "s
     delete full.err.stack;
   }
 
-  // eslint-disable-next-line no-console
   (level === "error" ? console.error : level === "warn" ? console.warn : console.log)(safeJson(full));
 }
 

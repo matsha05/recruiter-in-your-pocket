@@ -145,7 +145,7 @@ export function LandingGradientImpact() {
                         <div className="flex items-center justify-center gap-8 text-sm text-white/30">
                             <div className="flex items-center gap-2">
                                 <Lock className="w-4 h-4" />
-                                <span>256-bit encrypted</span>
+                                <span>Encrypted in transit</span>
                             </div>
                             <div className="w-px h-4 bg-white/10" />
                             <div>10,000+ resumes analyzed</div>

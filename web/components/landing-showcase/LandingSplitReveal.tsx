@@ -283,7 +283,7 @@ export function LandingSplitReveal() {
                         <PocketMark className="w-5 h-5" />
                         <span>© 2026 RIYP</span>
                     </div>
-                    <div>Private · Secure · Never trains AI</div>
+                    <div>Private · Secure · Not used to train public models</div>
                 </div>
             </footer>
         </div>

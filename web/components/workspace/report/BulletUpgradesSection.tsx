@@ -7,9 +7,9 @@ import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
-import { cn } from "@/lib/utils";
 import { Lock, ChevronDown, ChevronUp } from "lucide-react";
 import { RedPenCard } from "@/components/shared/RedPenCard";
+import { UnlockValueList } from "@/components/shared/UnlockValueList";
 
 interface BulletUpgradesSectionProps {
     data: ReportData;
@@ -32,7 +32,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
             <section className="space-y-6">
                 <ReportSectionHeader
                     icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
-                    number="03"
+                    number="04"
                     title="The Red Pen"
                     subtitle="How I'd rewrite these to land harder."
                 />
@@ -70,7 +70,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
         <section className="space-y-8">
             <ReportSectionHeader
                 icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
-                number="03"
+                number="04"
                 title="The Red Pen"
                 subtitle="How I'd rewrite these to land harder."
             />
@@ -97,7 +97,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     <div className="space-y-6">
                         {isGated ? (
                             // Gated View
-                            <div className="relative">
+                            <div className="space-y-4">
                                 {/* Blurred Card */}
                                 <RedPenCard
                                     title="Locked Rewrite"
@@ -106,7 +106,33 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                     isLocked={true}
                                     onUnlock={handleUnlock}
                                 />
-                                <div className="mt-4 text-center">
+
+                                <div className="rounded border border-premium/20 bg-premium/5 p-4 space-y-3">
+                                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+                                        <Lock className="h-3.5 w-3.5 text-premium" />
+                                        Unlock the rest of The Red Pen
+                                    </div>
+                                    <UnlockValueList
+                                        items={[
+                                            "All remaining bullet rewrites",
+                                            "Copy-ready recruiter phrasing",
+                                            "Why each change improves signal"
+                                        ]}
+                                        dense
+                                    />
+                                    {onUpgrade && (
+                                        <Button
+                                            variant="premium"
+                                            size="sm"
+                                            onClick={handleUnlock}
+                                            className="w-full"
+                                        >
+                                            Unlock Full Red Pen
+                                        </Button>
+                                    )}
+                                </div>
+
+                                <div className="text-center">
                                     <p className="text-xs text-muted-foreground">
                                         {remainingRewrites.length} bullet{remainingRewrites.length > 1 ? 's' : ''} that made me pause. See why.
                                     </p>

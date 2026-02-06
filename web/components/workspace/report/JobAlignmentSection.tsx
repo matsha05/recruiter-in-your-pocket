@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
 import { InsightSparkleIcon, RoleTargetIcon } from "@/components/icons";
+import { UnlockValueList } from "@/components/shared/UnlockValueList";
 
 interface JobAlignmentSectionProps {
     data: ReportData;
@@ -29,7 +30,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
             <section className="space-y-6">
                 <ReportSectionHeader
                     icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
-                    number="05"
+                    number="06"
                     title="Where You Compete"
                     subtitle="Your primary lane and how to position."
                 />
@@ -76,7 +77,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
             <section className="space-y-6">
                 <ReportSectionHeader
                     icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
-                    number="05"
+                    number="06"
                     title="Where You Compete"
                     subtitle="Your primary lane and how to position."
                 />
@@ -91,7 +92,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
         <section className="space-y-8">
             <ReportSectionHeader
                 icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
-                number="05"
+                number="06"
                 title="Where You Compete"
                 subtitle="Your primary lane and how to position."
             />
@@ -119,6 +120,15 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             </h3>
                         </div>
                     )}
+
+                    <UnlockValueList
+                        items={[
+                            "Best-fit roles + stretch paths",
+                            "JD match score + missing skills",
+                            "Positioning statement you can reuse"
+                        ]}
+                        dense
+                    />
 
                     {onUpgrade && (
                         <Button

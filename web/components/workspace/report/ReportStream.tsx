@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { ReportData } from "./ReportTypes";
 import { FirstImpressionSection } from "./FirstImpressionSection";
 import { ScoreSummarySection } from "./ScoreSummarySection";
+import { EvidenceLedgerSection } from "./EvidenceLedgerSection";
 import { BulletUpgradesSection } from "./BulletUpgradesSection";
 import { MissingWinsSection } from "./MissingWinsSection";
 import { JobAlignmentSection } from "./JobAlignmentSection";
@@ -63,12 +64,26 @@ export function ReportStream({
             {/* Divider */}
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-200" />
 
-            {/* 3. The Value (Bullet Upgrades) */}
+            {/* 3. Evidence Ledger */}
+            <div
+                id="section-evidence-ledger"
+                className={cn(
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 rounded transition-colors",
+                    highlightSection === 'evidence_ledger' && "unlock-highlight"
+                )}
+            >
+                <EvidenceLedgerSection data={report} isGated={isGated} onUpgrade={onUpgrade} />
+            </div>
+
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-350" />
+
+            {/* 4. The Value (Bullet Upgrades) */}
             <div
                 id="section-bullet-upgrades"
                 ref={bulletUpgradesRef}
                 className={cn(
-                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300 rounded transition-colors",
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 rounded transition-colors",
                     highlightSection === 'bullet_upgrades' && "unlock-highlight"
                 )}
             >
@@ -76,14 +91,14 @@ export function ReportStream({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-350" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-550" />
 
-            {/* 4. Missing Wins (Uncover Hidden Achievements) */}
+            {/* 5. Missing Wins (Uncover Hidden Achievements) */}
             <div
                 id="section-missing-wins"
                 ref={missingWinsRef}
                 className={cn(
-                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500 rounded transition-colors",
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700 rounded transition-colors",
                     highlightSection === 'missing_wins' && "unlock-highlight"
                 )}
             >
@@ -91,14 +106,14 @@ export function ReportStream({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-550" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-750" />
 
-            {/* 5. Where You Compete (Job Alignment) */}
+            {/* 6. Where You Compete (Job Alignment) */}
             <div
                 id="section-job-alignment"
                 ref={jobAlignmentRef}
                 className={cn(
-                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-700 rounded transition-colors",
+                    "animate-in fade-in slide-in-from-bottom-4 duration-500 delay-900 rounded transition-colors",
                     highlightSection === 'job_alignment' && "unlock-highlight"
                 )}
             >

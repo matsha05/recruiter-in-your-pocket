@@ -23,6 +23,9 @@ type LinkedInReviewOptions = {
   setLinkedInProfileName: Dispatch<SetStateAction<string>>;
   setLinkedInProfileHeadline: Dispatch<SetStateAction<string>>;
   setReviewMode: Dispatch<SetStateAction<ReviewMode>>;
+  beginAnalysis: (mode: "resume" | "linkedin") => AbortController;
+  endAnalysis: () => void;
+  setLastLinkedInPdf: Dispatch<SetStateAction<string | null>>;
 };
 
 export function useLinkedInReview({
@@ -35,7 +38,10 @@ export function useLinkedInReview({
   setLinkedInReport,
   setLinkedInProfileName,
   setLinkedInProfileHeadline,
-  setReviewMode
+  setReviewMode,
+  beginAnalysis,
+  endAnalysis,
+  setLastLinkedInPdf
 }: LinkedInReviewOptions) {
   const handleLinkedInPdfSubmit = useCallback(
     async (pdfText: string) => {
@@ -46,6 +52,8 @@ export function useLinkedInReview({
         return;
       }
 
+      setLastLinkedInPdf(pdfText);
+      const controller = beginAnalysis("linkedin");
       setIsLoading(true);
       setIsStreaming(true);
       setLinkedInReport(null);
@@ -65,8 +73,16 @@ export function useLinkedInReview({
           (meta) => {
             if (meta.name) setLinkedInProfileName(meta.name);
             if (meta.headline) setLinkedInProfileHeadline(meta.headline);
-          }
+          },
+          { signal: controller.signal }
         );
+
+        if (result.aborted) {
+            setIsLoading(false);
+            setIsStreaming(false);
+            endAnalysis();
+            return;
+        }
 
         if (result.ok && result.report) {
           setLinkedInReport(result.report);
@@ -76,6 +92,7 @@ export function useLinkedInReview({
           }
           setIsStreaming(false);
           setIsLoading(false);
+          endAnalysis();
           Analytics.linkedInReviewCompleted(result.report?.score || 0);
 
           await refreshFreeStatus({
@@ -90,6 +107,7 @@ export function useLinkedInReview({
           });
           setIsLoading(false);
           setIsStreaming(false);
+          endAnalysis();
         }
       } catch (err) {
         console.error("LinkedIn analysis error:", err);
@@ -98,6 +116,7 @@ export function useLinkedInReview({
         });
         setIsLoading(false);
         setIsStreaming(false);
+        endAnalysis();
       }
     },
     [
@@ -109,7 +128,10 @@ export function useLinkedInReview({
       setIsStreaming,
       setLinkedInReport,
       setLinkedInProfileName,
-      setLinkedInProfileHeadline
+      setLinkedInProfileHeadline,
+      beginAnalysis,
+      endAnalysis,
+      setLastLinkedInPdf
     ]
   );
 

@@ -57,14 +57,15 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
     void loadReport();
   }, [loadReport]);
 
-  async function handleExportPdf() {
-    if (!report) return;
+  async function handleExportPdf(overrideReport?: ReportData) {
+    const payload = overrideReport || report;
+    if (!payload) return;
     setIsExporting(true);
     try {
       const response = await fetch("/api/export-pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ report }),
+        body: JSON.stringify({ report: payload }),
       });
 
       if (!response.ok) {

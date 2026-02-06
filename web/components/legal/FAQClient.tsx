@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-// SiteHeader removed — layout handles navigation
-import Footer from "@/components/landing/Footer";
-import { LegalNav } from "@/components/legal/LegalNav";
+import { LEGAL_LAST_UPDATED } from "@/lib/legal/dataHandling";
+import { LegalShell } from "@/components/legal/LegalShell";
 import {
     Accordion,
     AccordionContent,
@@ -16,141 +15,98 @@ const faqData = [
         category: "Product",
         questions: [
             {
-                q: "What exactly does the review analyze?",
-                a: "We analyze your resume through multiple lenses: recruiter first impression (what they see in 7.4 seconds), quantification density (are you using numbers?), action verb strength, bullet clarity, and overall structure. Each dimension is scored and explained with specific improvement suggestions."
+                q: "What does the review analyze?",
+                a: "We analyze first-pass recruiter signal, quantified outcomes, bullet clarity, structural readability, and role-fit evidence. Each dimension includes score context and concrete rewrite guidance.",
             },
             {
-                q: "How is this different from other resume tools?",
-                a: "Most tools optimize for ATS keywords or generic rules. We focus on what actually matters: how a human recruiter evaluates your resume in seconds. Our methodology is grounded in eye-tracking research and recruiting best practices, not keyword stuffing."
+                q: "How is this different from ATS keyword tools?",
+                a: "Most tools optimize for parser compliance only. RIYP prioritizes how a human recruiter evaluates your resume in seconds, then maps advice to evidence and rewrite order.",
             },
             {
-                q: "What file formats do you accept?",
-                a: "We accept PDF and Word documents (.doc, .docx). For best results, use a clean PDF exported from your word processor."
+                q: "What file formats are supported?",
+                a: "PDF and Word documents (.doc, .docx). If parsing fails, paste text directly in Workspace.",
             },
-            {
-                q: "Can I use this for any industry or role?",
-                a: "Yes. The principles of strong resume writing—quantified impact, clear structure, compelling bullets—apply universally. However, we're especially tuned for knowledge worker roles in tech, consulting, finance, and similar fields."
-            },
-        ]
+        ],
     },
     {
         category: "Privacy & Security",
         questions: [
             {
-                q: "What happens to my resume after I upload it?",
-                a: "We process your upload to generate feedback. If you use account features, your report output can be stored so you can revisit history. You can delete account data from Settings, and we never sell your data."
+                q: "What happens to uploaded resume data?",
+                a: "Anonymous runs are not stored unless you choose save paths. Signed-in runs can store report output and preview for history and comparisons. You can delete reports or account data at any time.",
             },
             {
-                q: "Is my data used to train AI models?",
-                a: "No. We use OpenAI's API for analysis, which means your data is not used to train their public models. Your resume is processed and forgotten."
+                q: "Is my data used to train public models?",
+                a: "No. We use OpenAI API services that do not train public models on your content.",
             },
             {
-                q: "How is my data encrypted?",
-                a: "All data is encrypted in transit (TLS 1.3) and at rest on our database. Payment processing is handled by Stripe—we never see your credit card numbers."
+                q: "How do I delete my data?",
+                a: "Use Settings to delete reports, export account data, or delete account.",
             },
-            {
-                q: "Can I delete my account and data?",
-                a: "Yes, at any time. Go to Settings and click 'Delete Account.' This permanently removes all your data from our systems."
-            },
-        ]
+        ],
     },
     {
-        category: "Pricing & Credits",
+        category: "Pricing & Billing",
         questions: [
             {
                 q: "Is the first review really free?",
-                a: "Yes. You get one full review for free with no credit card required."
+                a: "Yes. One full review is free and does not require a card.",
             },
             {
-                q: "What is the difference between Monthly and Lifetime?",
-                a: "Monthly ($9) is for active job search periods when you want unlimited iterations and can cancel anytime. Lifetime ($79 one-time) is for long-term access without recurring billing."
+                q: "What is monthly vs lifetime?",
+                a: "Monthly ($9) fits active search cycles and can be canceled anytime. Lifetime ($79 one-time) unlocks long-term access with no recurring charges.",
             },
             {
-                q: "How do I restore access or get invoices?",
-                a: "Use Settings > Billing to restore access, open the Stripe billing portal, update payment method, and download receipts/invoices."
+                q: "How do I restore access and get receipts?",
+                a: "Open Settings > Billing or use Restore Access. Stripe manages invoices and receipt history.",
             },
-            {
-                q: "Can I get a refund?",
-                a: "If billing looks wrong or the product fails to unlock after payment, contact support and we will resolve it quickly. Refund requests are handled case by case."
-            },
-        ]
+        ],
     },
-    {
-        category: "Technical",
-        questions: [
-            {
-                q: "Why did my PDF fail to upload?",
-                a: "Some PDFs use image-based text (scanned documents) that we can't parse. If your resume was created in Word or Google Docs, try exporting a fresh PDF. If issues persist, paste your resume text directly."
-            },
-            {
-                q: "How long does the analysis take?",
-                a: "Typically 30-60 seconds. The AI analysis runs in real-time, and you'll see results stream in as they're generated."
-            },
-            {
-                q: "Do you support mobile?",
-                a: "Yes. The workspace is fully responsive. However, for the best experience editing your resume based on feedback, we recommend using a desktop browser."
-            },
-        ]
-    }
 ];
 
 export default function FAQClient() {
-    // Generate FAQ Schema.org structured data
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": faqData.flatMap(section =>
-            section.questions.map(item => ({
+        mainEntity: faqData.flatMap((section) =>
+            section.questions.map((item) => ({
                 "@type": "Question",
-                "name": item.q,
-                "acceptedAnswer": {
+                name: item.q,
+                acceptedAnswer: {
                     "@type": "Answer",
-                    "text": item.a
-                }
+                    text: item.a,
+                },
             }))
-        )
+        ),
     };
 
     return (
         <>
-
-            {/* FAQ Schema.org for SEO */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
-
-            <main className="max-w-3xl mx-auto px-6 py-12">
-                <LegalNav />
-
-                {/* Hero */}
-                <header className="mb-12 text-center max-w-2xl mx-auto">
-                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-4 tracking-tight">
-                        Questions & Answers
-                    </h1>
-                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                        Everything you need to know about how we work.
-                    </p>
-                </header>
-
-                {/* FAQ Sections */}
-                <div className="space-y-12">
+            <LegalShell
+                eyebrow="FAQ"
+                title="Questions and answers"
+                description="The practical details behind product behavior, privacy, and billing."
+                lastUpdated={LEGAL_LAST_UPDATED}
+            >
+                <div className="space-y-8">
                     {faqData.map((section) => (
-                        <section key={section.category}>
-                            <h2 className="font-display text-lg font-semibold text-foreground mb-4">
-                                {section.category}
-                            </h2>
+                        <section key={section.category} className="space-y-3">
+                            <h2 className="font-display text-2xl leading-tight tracking-tight">{section.category}</h2>
                             <Accordion type="single" collapsible className="space-y-3">
                                 {section.questions.map((item, idx) => (
                                     <AccordionItem
-                                        key={idx}
+                                        key={item.q}
                                         value={`${section.category}-${idx}`}
-                                        className="border border-border/60 rounded bg-card px-6 data-[state=open]:ring-1 data-[state=open]:ring-brand/20 transition-all hover:border-border/80"
+                                        className="landing-card px-5 data-[state=open]:border-brand/25"
                                     >
-                                        <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-5 text-base">
+                                        <AccordionTrigger className="py-4 text-left text-base font-medium text-foreground hover:no-underline">
                                             {item.q}
                                         </AccordionTrigger>
-                                        <AccordionContent className="text-muted-foreground leading-relaxed pb-5 text-sm">
+                                        <AccordionContent className="pb-4 landing-copy-muted">
                                             {item.a}
                                         </AccordionContent>
                                     </AccordionItem>
@@ -160,19 +116,19 @@ export default function FAQClient() {
                     ))}
                 </div>
 
-                {/* CTA */}
-                <div className="mt-24 text-center">
-                    <p className="text-muted-foreground mb-6">Still have questions?</p>
-                    <Link
-                        href="mailto:support@recruiterinyourpocket.com"
-                        className="text-brand hover:text-brand/80 font-medium underline underline-offset-4 transition-colors"
-                    >
-                        Email us at support@recruiterinyourpocket.com
-                    </Link>
-                </div>
-            </main>
-
-            <Footer />
+                <section className="landing-card landing-card-pad text-center">
+                    <p className="landing-copy-muted">
+                        Still need help?
+                        {" "}
+                        <Link
+                            href="mailto:support@recruiterinyourpocket.com"
+                            className="text-foreground underline underline-offset-4 hover:text-brand"
+                        >
+                            support@recruiterinyourpocket.com
+                        </Link>
+                    </p>
+                </section>
+            </LegalShell>
         </>
     );
 }

@@ -153,7 +153,7 @@ export function LandingHybrid() {
                             </span>
                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">
                                 <Shield className="w-3 h-3" />
-                                Never trains AI
+                                Not used to train public models
                             </span>
                         </div>
                     </motion.div>

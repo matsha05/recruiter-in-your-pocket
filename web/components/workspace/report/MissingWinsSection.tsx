@@ -9,6 +9,7 @@ import { ReportSectionHeader } from "./ReportSectionHeader";
 import { Button } from "@/components/ui/button";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
+import { UnlockValueList } from "@/components/shared/UnlockValueList";
 
 interface MissingWinsSectionProps {
     data: ReportData;
@@ -29,7 +30,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
             <section className="space-y-6">
                 <ReportSectionHeader
                     icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
-                    number="04"
+                    number="05"
                     title="Missing Wins"
                     subtitle="The stories you forgot to tell."
                 />
@@ -58,7 +59,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
         <section className="space-y-8">
             <ReportSectionHeader
                 icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
-                number="04"
+                number="05"
                 title="Missing Wins"
                 subtitle="The stories you forgot to tell."
             />
@@ -86,6 +87,15 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                             </p>
                         </div>
                     )}
+
+                    <UnlockValueList
+                        items={[
+                            "All missing-win prompts",
+                            "Recruiter rationale for each",
+                            "Track progress as you add wins"
+                        ]}
+                        dense
+                    />
 
                     {onUpgrade && (
                         <Button

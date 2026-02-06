@@ -1,169 +1,217 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
-// SiteHeader removed — layout handles navigation
+import { ArrowRight, Calculator, Clock3, HandCoins, ShieldCheck, Sparkles, Target } from "lucide-react";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, BookOpen, Building2, Briefcase } from "lucide-react";
 
-/**
- * Guides Landing Page
- * 
- * Separate section for actionable playbooks (vs research which is evidence-based)
- */
-
-const guides = [
+const playbooks = [
     {
-        id: "tech-offer-negotiation",
-        title: "Tech Salary Negotiation",
-        subtitle: "The playbook insiders already use",
-        description: "Equity, levels, RSUs, and the full comp stack. Everything you need to negotiate a tech offer with confidence.",
-        readTime: "15 min",
-        href: "/guides/tech-offer-negotiation",
-        badge: "Most Popular",
-        icon: (
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
-        )
-    },
-    {
-        id: "offer-negotiation",
-        title: "Offer Negotiation",
-        subtitle: "The universal playbook",
-        description: "Negotiation principles that work across industries — from healthcare to hospitality. The psychology is the same.",
+        title: "Offer Negotiation Playbook",
+        subtitle: "All industries",
         readTime: "12 min",
         href: "/guides/offer-negotiation",
-        badge: "All Industries",
-        icon: (
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-        )
-    }
+        points: [
+            "Universal negotiation sequence",
+            "Copy-ready scripts for each stage",
+            "Levers beyond base salary",
+        ],
+    },
+    {
+        title: "Tech Compensation Playbook",
+        subtitle: "Engineering and product roles",
+        readTime: "15 min",
+        href: "/guides/tech-offer-negotiation",
+        points: [
+            "Equity and level strategy",
+            "How to anchor total compensation",
+            "Counteroffer structure that closes",
+        ],
+    },
+];
+
+const researchLinks = [
+    {
+        title: "The Referral Advantage",
+        href: "/research/referral-advantage",
+    },
+    {
+        title: "Salary Anchors",
+        href: "/research/salary-anchors",
+    },
+    {
+        title: "Structured Interviews Beat Vibes",
+        href: "/research/structured-interviews-why-star",
+    },
 ];
 
 export default function GuidesPage() {
     return (
         <>
-            <main className="max-w-4xl mx-auto px-6 pt-16 pb-24">
-                {/* Hero */}
-                <motion.header
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="text-center mb-16 max-w-2xl mx-auto"
-                >
-                    <span className="inline-block font-mono text-[10px] uppercase tracking-widest text-foreground bg-muted px-3 py-1.5 rounded-full mb-6">
-                        Actionable Playbooks
-                    </span>
-                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight leading-tight mb-4">
-                        Resources
-                    </h1>
-                    <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                        Step-by-step playbooks for the moments that matter. Written from the recruiter&apos;s side of the table.
-                    </p>
-                </motion.header>
+            <main className="landing-page">
+                <section className="landing-section-pad landing-section-hero landing-section-divider">
+                    <div className="landing-rail">
+                        <div className="max-w-[46rem]">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-label-mono text-muted-foreground dark:border-slate-700 dark:bg-slate-900">
+                                <Sparkles className="h-3.5 w-3.5 text-brand" />
+                                Resources for higher-stakes decisions
+                            </div>
+                            <h1 className="mt-5 font-display text-4xl leading-[0.98] tracking-tight md:text-[56px]">
+                                Practical playbooks you can use this week
+                            </h1>
+                            <p className="mt-4 max-w-[41rem] landing-copy">
+                                Keep this simple: choose the guide that matches your situation, apply the scripts, and run the next review with clearer evidence.
+                            </p>
+                        </div>
 
-                {/* Guide Cards */}
-                <div className="space-y-6">
-                    {guides.map((guide, i) => (
-                        <motion.div
-                            key={guide.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: i * 0.1 }}
-                        >
-                            <Link href={guide.href} className="group block">
-                                <div className="rounded-2xl border border-border/40 bg-white dark:bg-card p-8 transition-all duration-300 hover:border-brand/40 hover:shadow-xl hover:shadow-brand/5">
-                                    <div className="flex flex-col md:flex-row md:items-start gap-6">
-                                        <div className="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-300 shrink-0">
-                                            {guide.icon}
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex items-center gap-3 mb-2">
-                                                <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
-                                                    {guide.badge}
-                                                </span>
-                                                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                                                    {guide.readTime}
-                                                </span>
-                                            </div>
-                                            <h2 className="font-display text-2xl font-medium text-foreground group-hover:text-brand transition-colors mb-1">
-                                                {guide.title}
-                                            </h2>
-                                            <p className="text-base text-muted-foreground mb-3">
-                                                {guide.subtitle}
-                                            </p>
-                                            <p className="text-sm text-muted-foreground leading-relaxed">
-                                                {guide.description}
-                                            </p>
-                                        </div>
-                                        <div className="md:self-center">
-                                            <div className="w-10 h-10 rounded-full bg-muted/50 group-hover:bg-brand/10 flex items-center justify-center transition-colors">
-                                                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-brand transition-colors" />
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div className="mt-7 grid gap-4 sm:grid-cols-3">
+                            <div className="landing-card landing-card-pad">
+                                <div className="flex items-center gap-2 text-label-mono text-muted-foreground">
+                                    <HandCoins className="h-3.5 w-3.5 text-brand" />
+                                    Negotiation guides
                                 </div>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Tools Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.25 }}
-                    className="mt-12"
-                >
-                    <h2 className="font-display text-lg font-medium text-foreground mb-4">Tools</h2>
-                    <Link href="/guides/tools/comp-calculator" className="group block">
-                        <div className="rounded-xl border border-border/40 bg-muted/20 p-6 transition-all duration-300 hover:border-brand/40 hover:bg-muted/30">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-600 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <rect x="4" y="2" width="16" height="20" rx="2" />
-                                        <line x1="8" y1="6" x2="16" y2="6" />
-                                        <line x1="8" y1="10" x2="16" y2="10" />
-                                        <line x1="8" y1="14" x2="12" y2="14" />
-                                        <line x1="8" y1="18" x2="12" y2="18" />
-                                    </svg>
+                                <div className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">2 playbooks</div>
+                            </div>
+                            <div className="landing-card landing-card-pad">
+                                <div className="flex items-center gap-2 text-label-mono text-muted-foreground">
+                                    <Calculator className="h-3.5 w-3.5 text-brand" />
+                                    Compensation tool
                                 </div>
-                                <div className="flex-1">
-                                    <h3 className="font-medium text-foreground group-hover:text-brand transition-colors">
-                                        Comp Comparison Calculator
-                                    </h3>
-                                    <p className="text-sm text-foreground/80">
-                                        Compare two offers side-by-side. See Year 1 and 4-year totals.
-                                    </p>
+                                <div className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">1 calculator</div>
+                            </div>
+                            <div className="landing-card landing-card-pad">
+                                <div className="flex items-center gap-2 text-label-mono text-muted-foreground">
+                                    <Target className="h-3.5 w-3.5 text-brand" />
+                                    Use outcome
                                 </div>
-                                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-brand transition-colors" />
+                                <div className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">Faster close</div>
                             </div>
                         </div>
-                    </Link>
-                </motion.div>
+                    </div>
+                </section>
 
-                {/* Research Cross-link */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="mt-16 text-center"
-                >
-                    <p className="text-sm text-foreground mb-4">
-                        Looking for the evidence behind the advice?
-                    </p>
-                    <Link href="/research" className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:underline underline-offset-4">
-                        <BookOpen className="w-4 h-4" />
-                        Browse the Research Library
-                    </Link>
-                </motion.div>
+                <section className="landing-section-pad landing-section landing-section-divider">
+                    <div className="landing-rail">
+                        <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+                            <div>
+                                <div className="mb-2 landing-eyebrow">Guides</div>
+                                <h2 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[40px]">Choose your playbook</h2>
+                            </div>
+                            <Link href="/workspace" className="inline-flex items-center gap-2 text-sm text-brand hover:text-brand/80">
+                                Run free review
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                        </div>
+
+                        <div className="grid gap-5 lg:grid-cols-2">
+                            {playbooks.map((guide) => (
+                                <Link key={guide.title} href={guide.href} className="group landing-card card-interactive landing-card-pad block">
+                                    <div className="flex items-center justify-between gap-3">
+                                        <div className="text-label-mono text-muted-foreground">{guide.subtitle}</div>
+                                        <div className="inline-flex items-center gap-1.5 text-label-mono text-muted-foreground">
+                                            <Clock3 className="h-3.5 w-3.5" />
+                                            {guide.readTime}
+                                        </div>
+                                    </div>
+                                    <h3 className="mt-3 font-display text-[30px] leading-[1.02] tracking-tight transition-colors group-hover:text-brand">
+                                        {guide.title}
+                                    </h3>
+                                    <ul className="mt-4 space-y-2.5 landing-copy-muted">
+                                        {guide.points.map((point) => (
+                                            <li key={point} className="flex items-center gap-2.5">
+                                                <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <div className="mt-5 inline-flex items-center gap-2 text-sm text-brand">
+                                        Open guide
+                                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+
+                        <div className="mt-5 landing-card landing-card-pad">
+                            <div className="flex flex-wrap items-end justify-between gap-3">
+                                <div>
+                                    <div className="mb-2 landing-eyebrow">Tool</div>
+                                    <h3 className="font-display text-[30px] leading-[1.02] tracking-tight">Compensation Calculator</h3>
+                                    <p className="mt-2 max-w-[42rem] landing-copy-muted">
+                                        Compare multiple offers, normalize equity assumptions, and pressure-test year-one and four-year outcomes.
+                                    </p>
+                                </div>
+                                <Link href="/guides/tools/comp-calculator" className="inline-flex items-center gap-2 rounded-md bg-brand px-4 py-2.5 text-sm font-medium text-white hover:bg-brand/90">
+                                    Open calculator
+                                    <ArrowRight className="h-4 w-4" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="landing-section-pad landing-deep-ink landing-section-divider">
+                    <div className="landing-rail grid items-start gap-7 lg:grid-cols-[1.02fr_0.98fr]">
+                        <div>
+                            <div className="mb-4 text-label-mono text-slate-400">How to use this</div>
+                            <h2 className="font-display text-3xl leading-[0.98] tracking-tight text-slate-50 md:text-[42px]">
+                                One operating loop, every application cycle
+                            </h2>
+                            <p className="mt-4 max-w-[42rem] landing-copy-inverted">
+                                Use the guide for strategy, use the calculator for tradeoffs, then run another review with the exact role requirements.
+                            </p>
+                        </div>
+
+                        <div className="landing-deep-ink-panel">
+                            <div className="space-y-3.5">
+                                {[
+                                    "Run a free review to expose the first-pass gap.",
+                                    "Apply one guide script and one line-level rewrite.",
+                                    "Re-run and verify stronger impact and clarity signals.",
+                                ].map((step, index) => (
+                                    <div key={step} className="flex items-start gap-3">
+                                        <span className="mt-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand/15 text-[11px] font-semibold text-brand">
+                                            {index + 1}
+                                        </span>
+                                        <p className="text-[15px] leading-relaxed text-slate-200">{step}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <Link href="/workspace" className="mt-6 inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90">
+                                Start free review
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="landing-section-pad landing-section">
+                    <div className="landing-rail">
+                        <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+                            <div>
+                                <div className="mb-2 landing-eyebrow">Connected research</div>
+                                <h2 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[38px]">Evidence that supports the playbooks</h2>
+                            </div>
+                            <Link href="/research" className="inline-flex items-center gap-2 text-sm text-brand hover:text-brand/80">
+                                View all research
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                        </div>
+
+                        <div className="grid gap-4 md:grid-cols-3">
+                            {researchLinks.map((item) => (
+                                <Link key={item.title} href={item.href} className="landing-card landing-card-pad card-interactive">
+                                    <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md bg-brand/10 text-brand">
+                                        <ShieldCheck className="h-4 w-4" />
+                                    </div>
+                                    <h3 className="font-display text-[26px] leading-[1.05] tracking-tight">{item.title}</h3>
+                                    <div className="mt-4 inline-flex items-center gap-2 text-sm text-brand">
+                                        Read
+                                        <ArrowRight className="h-4 w-4" />
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
             </main>
-
             <Footer />
         </>
     );

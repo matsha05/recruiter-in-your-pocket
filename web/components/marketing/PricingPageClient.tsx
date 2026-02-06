@@ -2,121 +2,177 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ShieldCheck, RotateCcw, Receipt } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Receipt, RotateCcw, ShieldCheck } from "lucide-react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
 import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 
+const unlockPoints = [
+    "Evidence Ledger + Red Pen rewrites on every paid run",
+    "Role-specific matching, Missing Wins, and run history",
+    "Export/share plus self-serve billing restore controls",
+];
+
+const billingPoints = [
+    {
+        icon: ShieldCheck,
+        title: "Trust at checkout",
+        body: "Card details are handled by Stripe. We never store raw card numbers.",
+    },
+    {
+        icon: RotateCcw,
+        title: "Restore and billing control",
+        body: "Restore access, manage renewals, and cancel monthly from Billing.",
+    },
+    {
+        icon: Receipt,
+        title: "Immediate unlock scope",
+        body: "Deep sections, repeated runs, export, and history unlock right away.",
+    },
+];
+
 export default function PricingPageClient() {
-  const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
+    const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
 
-  async function handleCheckout(tier: "monthly" | "lifetime") {
-    try {
-      setLoadingTier(tier);
-      Analytics.checkoutStarted(tier, tier === "monthly" ? 9 : 79);
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          tier,
-          source: "pricing",
-          idempotencyKey: crypto.randomUUID()
-        })
-      });
-      const data = await res.json();
-      if (!data.ok || !data.url) {
-        throw new Error(data.message || "Unable to start checkout");
-      }
-      window.location.href = data.url;
-    } catch (err: any) {
-      Analytics.track("checkout_start_failed", { source: "pricing", tier });
-      toast.error(err.message || "Checkout failed. Please try again.");
-    } finally {
-      setLoadingTier(null);
+    async function handleCheckout(tier: "monthly" | "lifetime") {
+        try {
+            setLoadingTier(tier);
+            Analytics.checkoutStarted(tier, tier === "monthly" ? 9 : 79);
+            const res = await fetch("/api/checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    tier,
+                    source: "pricing",
+                    idempotencyKey: crypto.randomUUID(),
+                }),
+            });
+            const data = await res.json();
+            if (!data.ok || !data.url) {
+                throw new Error(data.message || "Unable to start checkout");
+            }
+            window.location.href = data.url;
+        } catch (err: any) {
+            Analytics.track("checkout_start_failed", { source: "pricing", tier });
+            toast.error(err.message || "Checkout failed. Please try again.");
+        } finally {
+            setLoadingTier(null);
+        }
     }
-  }
 
-  return (
-    <>
-      <section aria-label="Pricing content" className="min-h-screen bg-background">
-        <section className="px-6 py-20 border-b border-border/40">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground mb-4">Pricing</p>
-            <h1 className="font-display text-4xl md:text-5xl text-foreground tracking-tight">
-              Start free, pay when iteration matters
-            </h1>
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-              Recruiters do not review one resume version. They compare iterations. Monthly and lifetime plans are
-              built for repeated, role-specific improvements.
-            </p>
-          </div>
-        </section>
+    return (
+        <>
+            <main className="landing-page">
+                <section className="landing-section-pad landing-section-divider landing-section-hero">
+                    <div className="landing-rail">
+                        <motion.div
+                            className="mx-auto max-w-3xl text-center"
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.45 }}
+                        >
+                            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
+                                Pricing with clear value boundaries
+                            </div>
+                            <h1 className="mt-5 font-display text-4xl leading-[0.98] tracking-tight md:text-[54px]">
+                                Start free, upgrade when iteration speed matters
+                            </h1>
+                            <p className="mx-auto mt-4 max-w-2xl landing-copy">
+                                First review is free. Paid plans unlock repeated role-specific runs and deeper rewrite loops.
+                            </p>
+                            <div className="mx-auto mt-7 max-w-2xl landing-card landing-card-pad text-left">
+                                <div className="landing-eyebrow mb-2">What paid unlocks</div>
+                                <ul className="space-y-2.5 landing-copy-muted">
+                                    {unlockPoints.map((point) => (
+                                        <li key={point} className="flex items-start gap-2">
+                                            <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+                                            <span>{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
 
-        <section className="px-6 py-14">
-          <div className="max-w-5xl mx-auto grid gap-5 md:grid-cols-3">
-            <PricingCard tier="free" allowFreeSelect onSelect={() => (window.location.href = "/workspace")} />
-            <PricingCard
-              tier="monthly"
-              onSelect={() => handleCheckout("monthly")}
-              loading={loadingTier === "monthly"}
-            />
-            <PricingCard
-              tier="lifetime"
-              onSelect={() => handleCheckout("lifetime")}
-              loading={loadingTier === "lifetime"}
-            />
-          </div>
-        </section>
+                <section className="landing-section-pad landing-section landing-section-divider">
+                    <div className="landing-rail">
+                        <div className="mx-auto grid max-w-[1120px] gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                            <PricingCard
+                                tier="free"
+                                allowFreeSelect
+                                onSelect={() => {
+                                    Analytics.track("pricing_run_free_review_clicked", { source: "pricing_page" });
+                                    window.location.href = "/workspace";
+                                }}
+                            />
+                            <PricingCard
+                                tier="monthly"
+                                onSelect={() => handleCheckout("monthly")}
+                                loading={loadingTier === "monthly"}
+                            />
+                            <PricingCard
+                                tier="lifetime"
+                                onSelect={() => handleCheckout("lifetime")}
+                                loading={loadingTier === "lifetime"}
+                            />
+                        </div>
+                    </div>
+                </section>
 
-        <section className="px-6 pb-20">
-          <div className="max-w-4xl mx-auto rounded-xl border border-border/50 bg-muted/20 p-6 md:p-8">
-            <div className="grid gap-6 md:grid-cols-3">
-              <div className="flex items-start gap-3">
-                <ShieldCheck className="w-5 h-5 text-brand mt-0.5" />
-                <div>
-                  <h2 className="text-sm font-semibold text-foreground">Trust at checkout</h2>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Card details are handled by Stripe. We do not store raw card numbers.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <RotateCcw className="w-5 h-5 text-brand mt-0.5" />
-                <div>
-                  <h2 className="text-sm font-semibold text-foreground">Restore and billing control</h2>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Restore access, view receipts, update payment method, or cancel monthly from Settings.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Receipt className="w-5 h-5 text-brand mt-0.5" />
-                <div>
-                  <h2 className="text-sm font-semibold text-foreground">What unlocks immediately</h2>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Full report sections, additional runs, and export/history access.
-                  </p>
-                </div>
-              </div>
-            </div>
+                <section className="landing-section-pad landing-deep-ink">
+                    <div className="landing-rail grid items-start gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+                        <div>
+                            <div className="mb-4 text-label-mono text-slate-400">Billing trust</div>
+                            <h2 className="font-display text-3xl leading-[0.98] tracking-tight text-slate-50 md:text-[42px]">
+                                Payment and access are designed to be reversible and transparent
+                            </h2>
+                            <p className="mt-4 landing-copy-inverted max-w-[42rem]">
+                                If payment succeeds and unlock lags, restore flow and billing controls are available without support.
+                            </p>
+                        </div>
+                        <div className="landing-deep-ink-panel">
+                            <div className="space-y-3.5">
+                                {billingPoints.map((item) => (
+                                    <div key={item.title} className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3.5">
+                                        <div className="flex items-center gap-2">
+                                            <item.icon className="h-4 w-4 text-brand" />
+                                            <h3 className="text-sm font-semibold text-slate-100">{item.title}</h3>
+                                        </div>
+                                        <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{item.body}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <Link
+                                href="/purchase/restore"
+                                className="mt-5 inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90"
+                            >
+                                Open restore access
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                        </div>
+                    </div>
+                </section>
 
-            <p className="text-xs text-muted-foreground mt-6">
-              Refund handling is case-by-case with priority on billing errors and failed unlock scenarios.
-              {" "}
-              Use <Link href="/purchase/restore" className="text-foreground underline underline-offset-4">Restore Access</Link> first for the fastest fix.
-            </p>
-            <p className="text-xs text-muted-foreground mt-3">
-              Need procurement or team access? Contact{" "}
-              <Link href="mailto:support@recruiterinyourpocket.com" className="text-foreground underline underline-offset-4">
-                support@recruiterinyourpocket.com
-              </Link>
-              .
-            </p>
-          </div>
-        </section>
-      </section>
-      <Footer />
-    </>
-  );
+                <section className="landing-section-pad landing-section">
+                    <div className="landing-rail">
+                        <div className="mx-auto max-w-3xl text-center">
+                            <p className="landing-copy-muted">
+                                Need invoices, receipts, or procurement support?{" "}
+                                <Link
+                                    href="mailto:support@recruiterinyourpocket.com"
+                                    className="text-foreground underline underline-offset-4 hover:text-brand"
+                                >
+                                    support@recruiterinyourpocket.com
+                                </Link>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <Footer />
+        </>
+    );
 }

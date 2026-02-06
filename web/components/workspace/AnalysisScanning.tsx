@@ -1,146 +1,237 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Scan, Brain, Ruler, Search } from "lucide-react";
-import { InsightSparkleIcon, SixSecondIcon } from "@/components/icons";
+import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
+import {
+    CheckCircle2,
+    FileText,
+    Gauge,
+    Loader2,
+    Search,
+    Sparkles,
+    UserRound
+} from "lucide-react";
+import { SixSecondIcon } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-const ANALYSIS_STEPS = [
-    { text: "Scanning for impact verbs & ROI...", icon: Search },
-    { text: "Measuring narrative clarity...", icon: Ruler },
-    { text: "Checking pattern alignment...", icon: Scan },
-    { text: "Analyzing visual hierarchy...", icon: Brain },
-    { text: "Detecting passive voice...", icon: Search },
-    { text: "Identifying hidden wins...", icon: InsightSparkleIcon },
-    { text: "Formatting recruiter read...", icon: Brain },
-    { text: "Wrapping up your feedback...", icon: Scan, isFinal: true },
+type AnalysisMode = "resume" | "linkedin";
+
+type AnalysisStep = {
+    id: string;
+    label: string;
+    detail: string;
+    durationMs: number;
+    icon: ComponentType<{ className?: string }>;
+};
+
+const RESUME_STEPS: AnalysisStep[] = [
+    {
+        id: "normalize",
+        label: "Normalizing structure",
+        detail: "Sections, role signals, and layout cues",
+        durationMs: 6000,
+        icon: FileText
+    },
+    {
+        id: "evidence",
+        label: "Extracting evidence",
+        detail: "Impact verbs, metrics, and scope",
+        durationMs: 12000,
+        icon: Search
+    },
+    {
+        id: "scoring",
+        label: "Scoring recruiter signal",
+        detail: "Confidence bands + priority ordering",
+        durationMs: 9000,
+        icon: Gauge
+    },
+    {
+        id: "rewrites",
+        label: "Drafting actions",
+        detail: "Rewrites, gaps, and next steps",
+        durationMs: 9000,
+        icon: Sparkles
+    }
 ];
 
-// Witty end-stage messages for personality
-const FINAL_STAGE_MESSAGES = [
-    "Almost there...",
-    "Polishing the advice...",
-    "Double-checking the brutal honesty...",
-    "Making sure we didn't miss any gems...",
-    "Brewing some hot takes...",
-    "Adding the finishing touches...",
-    "Worth the wait, we promise...",
-    "Just a few more seconds...",
+const LINKEDIN_STEPS: AnalysisStep[] = [
+    {
+        id: "ingest",
+        label: "Parsing profile",
+        detail: "Headline, experience, and signals",
+        durationMs: 6000,
+        icon: UserRound
+    },
+    {
+        id: "evidence",
+        label: "Extracting evidence",
+        detail: "Achievements, keywords, and clarity",
+        durationMs: 12000,
+        icon: Search
+    },
+    {
+        id: "scoring",
+        label: "Scoring recruiter signal",
+        detail: "Clarity, relevance, differentiation",
+        durationMs: 9000,
+        icon: Gauge
+    },
+    {
+        id: "rewrites",
+        label: "Drafting actions",
+        detail: "Headline and positioning upgrades",
+        durationMs: 9000,
+        icon: Sparkles
+    }
 ];
 
-export default function AnalysisScanning() {
-    const [stepIndex, setStepIndex] = useState(0);
-    const [progress, setProgress] = useState(0);
-    const [finalMessageIndex, setFinalMessageIndex] = useState(0);
+const LONG_WAIT_MS = 45_000;
+
+interface AnalysisScanningProps {
+    mode?: AnalysisMode;
+    startedAt?: number | null;
+    onCancel?: () => void;
+    onRetry?: () => void;
+    className?: string;
+}
+
+export default function AnalysisScanning({
+    mode = "resume",
+    startedAt = null,
+    onCancel,
+    onRetry,
+    className
+}: AnalysisScanningProps) {
+    const startRef = useRef<number>(0);
+    const [elapsedMs, setElapsedMs] = useState(0);
 
     useEffect(() => {
-        // Cycle through heuristics, but stop on final step
-        const stepInterval = setInterval(() => {
-            setStepIndex((prev) => {
-                // If we've reached the final step, stay there
-                if (prev >= ANALYSIS_STEPS.length - 1) return prev;
-                return prev + 1;
-            });
-        }, 2000);
+        if (startRef.current === 0) {
+            startRef.current = typeof startedAt === "number" ? startedAt : Date.now();
+        } else if (typeof startedAt === "number" && startedAt !== startRef.current) {
+            startRef.current = startedAt;
+        }
+        setElapsedMs(Date.now() - startRef.current);
+    }, [startedAt]);
 
-        // Eased progress bar (slows at end for perceived thoroughness)
-        const progressInterval = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 95) return prev;
-                const increment = Math.max(0.3, (95 - prev) / 50);
-                return prev + increment;
-            });
-        }, 80);
-
-        return () => {
-            clearInterval(stepInterval);
-            clearInterval(progressInterval);
-        };
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setElapsedMs(Date.now() - startRef.current);
+        }, 250);
+        return () => clearInterval(timer);
     }, []);
 
-    // Cycle through final stage messages when we're at the final step
-    useEffect(() => {
-        if (stepIndex < ANALYSIS_STEPS.length - 1) return;
+    const steps = useMemo(() => (mode === "linkedin" ? LINKEDIN_STEPS : RESUME_STEPS), [mode]);
+    const totalMs = steps.reduce((sum, step) => sum + step.durationMs, 0);
+    const progress = Math.min(95, Math.max(4, (elapsedMs / totalMs) * 100));
+    const isSlow = elapsedMs > LONG_WAIT_MS;
 
-        const finalInterval = setInterval(() => {
-            setFinalMessageIndex((prev) => (prev + 1) % FINAL_STAGE_MESSAGES.length);
-        }, 2500);
+    const activeIndex = useMemo(() => {
+        let acc = 0;
+        for (let i = 0; i < steps.length; i += 1) {
+            acc += steps[i].durationMs;
+            if (elapsedMs < acc) return i;
+        }
+        return steps.length - 1;
+    }, [elapsedMs, steps]);
 
-        return () => clearInterval(finalInterval);
-    }, [stepIndex]);
-
-    const currentStep = ANALYSIS_STEPS[stepIndex];
-    const CurrentIcon = currentStep.icon;
+    const headline =
+        mode === "linkedin" ? "Analyzing your LinkedIn profile" : "Analyzing your resume";
 
     return (
-        <div className="flex flex-col items-center justify-center h-full p-8 animate-in fade-in duration-500">
-            {/* Visual Scanner - Refined with V2.1 tokens */}
-            <div className="relative w-28 h-28 mb-10">
-                {/* Subtle pulse rings - brand color */}
-                <div
-                    className="absolute inset-0 border border-brand/30 rounded-full animate-ping"
-                    style={{ animationDuration: '2.5s' }}
-                />
-                <div
-                    className="absolute inset-3 border border-brand/20 rounded-full animate-ping"
-                    style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}
-                />
-
-                {/* Center Icon Container - clean, no glow */}
-                <div className="absolute inset-0 flex items-center justify-center bg-card rounded-full border border-border z-10">
-                    <CurrentIcon
-                        className="w-10 h-10 text-brand transition-all duration-300"
-                        strokeWidth={1.5}
-                    />
-                </div>
-
-                {/* Rotating accent arc */}
-                <svg
-                    className="absolute inset-[-8px] w-[calc(100%+16px)] h-[calc(100%+16px)] animate-spin z-0"
-                    style={{ animationDuration: '4s', animationTimingFunction: 'linear' }}
-                >
-                    <circle
-                        cx="50%"
-                        cy="50%"
-                        r="48%"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                        strokeDasharray="40 200"
-                        className="text-brand/40"
-                    />
-                </svg>
-            </div>
-
-            {/* Heuristic Text - refined typography */}
-            <div className="flex flex-col items-center text-center h-16">
-                <div
-                    key={stepIndex}
-                    className="animate-in slide-in-from-bottom-2 fade-in duration-300"
-                >
-                    <p className="text-base font-medium text-foreground mb-1 font-display tracking-tight">
-                        {ANALYSIS_STEPS[stepIndex].text}
+        <div className={cn("flex flex-col items-center justify-center h-full p-8 animate-in fade-in duration-500", className)}>
+            <div className="w-full max-w-xl space-y-8">
+                <div className="text-center space-y-2">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                        Analysis in progress
+                    </div>
+                    <h2 className="font-display text-3xl md:text-4xl text-foreground tracking-tight">
+                        {headline}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                        We extract evidence before advice. You&apos;ll see the first meaningful insight as soon as it&apos;s ready.
                     </p>
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                    {currentStep.isFinal
-                        ? FINAL_STAGE_MESSAGES[finalMessageIndex]
-                        : `Analyzing pattern ${stepIndex + 1} of ${ANALYSIS_STEPS.length - 1}`}
+
+                <div className="rounded-xl border border-border/60 bg-card p-5 space-y-4">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        <span>Progress</span>
+                        <span>{Math.round(progress)}%</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-secondary/70 overflow-hidden">
+                        <div
+                            className="h-full bg-brand transition-all duration-300 ease-out"
+                            style={{ width: `${progress}%` }}
+                        />
+                    </div>
+
+                    <ul className="space-y-3 pt-2">
+                        {steps.map((step, index) => {
+                            const isComplete = index < activeIndex;
+                            const isActive = index === activeIndex;
+                            const Icon = step.icon;
+                            return (
+                                <li key={step.id} className="flex items-start gap-3">
+                                    <div
+                                        className={cn(
+                                            "mt-0.5 h-7 w-7 rounded-full border flex items-center justify-center",
+                                            isComplete && "border-success/40 bg-success/10 text-success",
+                                            isActive && "border-brand/40 bg-brand/10 text-brand",
+                                            !isComplete && !isActive && "border-border/40 text-muted-foreground"
+                                        )}
+                                    >
+                                        {isComplete ? (
+                                            <CheckCircle2 className="h-4 w-4" />
+                                        ) : isActive ? (
+                                            <Loader2 className="h-4 w-4 animate-spin" />
+                                        ) : (
+                                            <Icon className="h-4 w-4" />
+                                        )}
+                                    </div>
+                                    <div className="space-y-0.5">
+                                        <p className={cn(
+                                            "text-sm font-medium",
+                                            isActive ? "text-foreground" : "text-muted-foreground"
+                                        )}>
+                                            {step.label}
+                                        </p>
+                                        <p className="text-xs text-muted-foreground">
+                                            {step.detail}
+                                        </p>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+
+                <p className="text-[11px] text-muted-foreground/70 flex items-center justify-center gap-1.5">
+                    <SixSecondIcon className="w-3.5 h-3.5" />
+                    Typical time: 20–30 seconds
                 </p>
-            </div>
 
-            {/* Progress Bar - minimal, brand colored */}
-            <div className="w-56 h-1 bg-secondary rounded-full mt-10 overflow-hidden">
-                <div
-                    className="h-full bg-brand rounded-full transition-all duration-100 ease-out"
-                    style={{ width: `${progress}%` }}
-                />
+                {isSlow && (
+                    <div className="rounded-xl border border-warning/30 bg-warning/10 p-4 text-sm text-center space-y-3">
+                        <p className="font-medium text-warning">Taking longer than usual.</p>
+                        <p className="text-xs text-muted-foreground">
+                            You can keep waiting or retry. Retrying may consume another review if the current run completes.
+                        </p>
+                        <div className="flex flex-wrap items-center justify-center gap-2">
+                            {onRetry && (
+                                <Button variant="outline" size="sm" onClick={onRetry}>
+                                    Retry
+                                </Button>
+                            )}
+                            {onCancel && (
+                                <Button variant="ghost" size="sm" onClick={onCancel}>
+                                    Stop
+                                </Button>
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
-
-            {/* Subtle reassurance with time estimate */}
-            <p className="text-[11px] text-muted-foreground/60 mt-4 flex items-center gap-1.5">
-                <SixSecondIcon className="w-3.5 h-3.5" />
-                Usually takes 20-30 seconds
-            </p>
         </div>
     );
 }

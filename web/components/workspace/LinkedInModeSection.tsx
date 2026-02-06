@@ -4,12 +4,14 @@ import { LinkedInInputPanel } from "@/components/linkedin/LinkedInInputPanel";
 import { LinkedInReportPanel } from "@/components/linkedin/LinkedInReportPanel";
 import { LinkedInReportTOC } from "@/components/linkedin/LinkedInReportTOC";
 import { ReportLayout } from "@/components/layout/ReportLayout";
+import AnalysisScanning from "@/components/workspace/AnalysisScanning";
 
 type LinkedInModeSectionProps = {
   linkedInReport: any | null;
   linkedInProfileName: string;
   linkedInProfileHeadline: string;
   isLoading: boolean;
+  isStreaming: boolean;
   freeUsesRemaining: number;
   user: AuthUser | null;
   onUrlSubmit: (url: string) => void;
@@ -17,6 +19,9 @@ type LinkedInModeSectionProps = {
   onSampleReport: () => void;
   onNewReport: () => void;
   onUpgrade: () => void;
+  analysisStartedAt: number | null;
+  onCancelAnalysis: () => void;
+  onRetryAnalysis: () => void;
 };
 
 export default function LinkedInModeSection({
@@ -24,15 +29,34 @@ export default function LinkedInModeSection({
   linkedInProfileName,
   linkedInProfileHeadline,
   isLoading,
+  isStreaming,
   freeUsesRemaining,
   user,
   onUrlSubmit,
   onPdfSubmit,
   onSampleReport,
   onNewReport,
-  onUpgrade
+  onUpgrade,
+  analysisStartedAt,
+  onCancelAnalysis,
+  onRetryAnalysis
 }: LinkedInModeSectionProps) {
   const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
+
+  if (!linkedInReport && isStreaming) {
+    return (
+      <div className="h-full overflow-y-auto bg-body">
+        <div className="h-full">
+          <AnalysisScanning
+            mode="linkedin"
+            startedAt={analysisStartedAt}
+            onCancel={onCancelAnalysis}
+            onRetry={onRetryAnalysis}
+          />
+        </div>
+      </div>
+    );
+  }
 
   if (!linkedInReport) {
     return (

@@ -1,8 +1,8 @@
 "use client";
 
-type UnlockSection = 'bullet_upgrades' | 'missing_wins' | 'job_alignment' | 'export_pdf';
+export type UnlockSection = 'bullet_upgrades' | 'missing_wins' | 'job_alignment' | 'export_pdf' | 'evidence_ledger';
 
-interface UnlockContext {
+export interface UnlockContext {
     section: UnlockSection;
     reportId?: string;
     itemIndex?: number;

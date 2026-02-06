@@ -118,7 +118,7 @@ export function LandingUrgencyImpact() {
                         <div className="flex items-center justify-center gap-6 text-xs text-white/80">
                             <span className="flex items-center gap-1.5">
                                 <Lock className="w-3.5 h-3.5" />
-                                End-to-end encrypted
+                                Encrypted in transit
                             </span>
                             <span className="flex items-center gap-1.5">
                                 <Clock className="w-3.5 h-3.5" />
@@ -341,7 +341,7 @@ export function LandingUrgencyImpact() {
                             <div className="text-sm text-white/70 mb-2">Free</div>
                             <div className="text-4xl font-bold mb-6">$0</div>
                             <ul className="space-y-3 mb-8">
-                                {["3 resume scans", "Full recruiter verdict", "Red Pen rewrites", "Critical Miss detection"].map((f) => (
+                                {["1 full resume review", "Full recruiter verdict", "Red Pen rewrites", "Critical Miss detection"].map((f) => (
                                     <li key={f} className="flex items-center gap-2 text-sm text-white/70">
                                         <Check className="w-4 h-4 text-teal-400" />
                                         {f}
@@ -349,7 +349,7 @@ export function LandingUrgencyImpact() {
                                 ))}
                             </ul>
                             <button className="w-full py-3 rounded-xl border border-white/10 text-white font-medium hover:bg-white/5 transition-colors">
-                                Start Free
+                                Run Free Review
                             </button>
                         </div>
 

@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2, AlertTriangle, RefreshCw } from "lucide-react";
 import { Analytics } from "@/lib/analytics";
+import { saveUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 
 type ConfirmState = "checking" | "unlocked" | "pending" | "error" | "missing";
 
@@ -13,10 +14,23 @@ export default function PurchaseConfirmedClient() {
   const sessionId = searchParams.get("session_id");
   const tier = searchParams.get("tier");
   const source = searchParams.get("source");
+  const unlock = searchParams.get("unlock");
 
   const [state, setState] = useState<ConfirmState>(sessionId ? "checking" : "missing");
   const [message, setMessage] = useState("Confirming payment and unlocking access...");
   const [attempt, setAttempt] = useState(0);
+
+  const unlockLabel = useMemo(() => {
+    const map: Record<UnlockSection, string> = {
+      evidence_ledger: "Evidence Ledger",
+      bullet_upgrades: "The Red Pen",
+      missing_wins: "Missing Wins",
+      job_alignment: "Role Positioning",
+      export_pdf: "Export"
+    };
+    if (!unlock) return null;
+    return map[unlock as UnlockSection] || null;
+  }, [unlock]);
 
   const title = useMemo(() => {
     if (state === "unlocked") return "Purchase confirmed";
@@ -30,6 +44,7 @@ export default function PurchaseConfirmedClient() {
 
     let cancelled = false;
     const maxAttempts = 10;
+    const startedAt = Date.now();
 
     const confirm = async () => {
       Analytics.track("unlock_confirm_started", {
@@ -64,6 +79,7 @@ export default function PurchaseConfirmedClient() {
               tier: data?.pass?.tier || tier || "unknown",
               attempt: i + 1
             });
+            Analytics.unlockConfirmCompleted("success", Date.now() - startedAt);
             return;
           }
 
@@ -74,9 +90,18 @@ export default function PurchaseConfirmedClient() {
             continue;
           }
 
-          setState("error");
-          setMessage(data?.message || "We could not confirm unlock yet.");
+          if (data?.state === "checkout_incomplete") {
+            setState("error");
+            setMessage("Checkout is not complete yet. If you closed Stripe early, restart checkout.");
+          } else if (data?.state === "not_paid") {
+            setState("error");
+            setMessage("Payment is not marked as paid yet. Check your receipt or try Restore Access.");
+          } else {
+            setState("error");
+            setMessage(data?.message || "We could not confirm unlock yet.");
+          }
           Analytics.track("unlock_confirm_failed", { reason: data?.state || "unknown" });
+          Analytics.unlockConfirmCompleted("error", Date.now() - startedAt);
           return;
         } catch {
           if (cancelled) return;
@@ -90,6 +115,7 @@ export default function PurchaseConfirmedClient() {
         setState("error");
         setMessage("Payment succeeded, but unlock is still processing. Use Restore Access to sync now.");
         Analytics.track("unlock_confirm_failed", { reason: "timeout" });
+        Analytics.unlockConfirmCompleted("error", Date.now() - startedAt);
       }
     };
 
@@ -99,6 +125,20 @@ export default function PurchaseConfirmedClient() {
       cancelled = true;
     };
   }, [sessionId, source, tier]);
+
+  useEffect(() => {
+    if (!unlock) return;
+    const normalized = unlock.trim().toLowerCase() as UnlockSection;
+    const allowed: UnlockSection[] = [
+      "evidence_ledger",
+      "bullet_upgrades",
+      "missing_wins",
+      "job_alignment",
+      "export_pdf"
+    ];
+    if (!allowed.includes(normalized)) return;
+    saveUnlockContext({ section: normalized });
+  }, [unlock]);
 
   return (
     <main className="min-h-[calc(100vh-64px)] bg-background px-6 py-16">
@@ -111,6 +151,12 @@ export default function PurchaseConfirmedClient() {
         </div>
 
         <p className="mt-4 text-sm text-muted-foreground">{message}</p>
+
+        {unlockLabel && state !== "missing" && (
+          <p className="mt-3 text-xs text-muted-foreground">
+            We saved your place in <span className="text-foreground font-medium">{unlockLabel}</span>.
+          </p>
+        )}
 
         {state !== "missing" && (
           <p className="mt-3 text-xs text-muted-foreground">
@@ -139,6 +185,11 @@ export default function PurchaseConfirmedClient() {
           <Link href="/settings/billing" className="rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50">
             Billing Settings
           </Link>
+          {state === "error" && (
+            <Link href="/pricing" className="rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50">
+              Back to Pricing
+            </Link>
+          )}
         </div>
 
         <p className="mt-8 text-xs text-muted-foreground">

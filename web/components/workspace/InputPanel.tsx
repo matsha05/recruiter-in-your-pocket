@@ -132,8 +132,8 @@ export default function InputPanel({
                                 <div className="space-y-1">
                                     <p className="text-sm font-medium text-foreground">Before you run</p>
                                     <p className="text-xs text-muted-foreground">
-                                        Your upload is encrypted in transit. We store report history only when account features are used.
-                                        Delete stored data anytime from Settings.
+                                        Your upload is encrypted in transit. Anonymous runs aren&apos;t stored unless you save a report.
+                                        Signed-in runs keep report history and a short resume preview you can delete in Settings.
                                     </p>
                                     <p className="text-xs text-muted-foreground">
                                         <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link>

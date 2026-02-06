@@ -34,6 +34,7 @@ const getBaseUrl = () => {
 }
 
 type CheckoutSource = "landing" | "pricing" | "paywall" | "settings" | "workspace" | "unknown";
+type UnlockSection = "evidence_ledger" | "bullet_upgrades" | "missing_wins" | "job_alignment" | "export_pdf";
 
 function normalizeCheckoutSource(input: unknown): CheckoutSource {
     if (typeof input !== "string") return "unknown";
@@ -61,6 +62,19 @@ function isValidEmail(email: unknown): email is string {
     const trimmed = email.trim();
     if (!trimmed || trimmed.length > 320) return false;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+}
+
+function normalizeUnlockSection(input: unknown): UnlockSection | null {
+    if (typeof input !== "string") return null;
+    const trimmed = input.trim().toLowerCase();
+    const allowed: UnlockSection[] = [
+        "evidence_ledger",
+        "bullet_upgrades",
+        "missing_wins",
+        "job_alignment",
+        "export_pdf"
+    ];
+    return allowed.includes(trimmed as UnlockSection) ? (trimmed as UnlockSection) : null;
 }
 
 export async function POST(request: Request) {
@@ -113,6 +127,7 @@ export async function POST(request: Request) {
         const idempotencyKey = typeof body?.idempotencyKey === "string"
             ? body.idempotencyKey.trim().slice(0, 200)
             : null;
+        const unlockSection = normalizeUnlockSection(body?.unlockSection);
         if (!requestedTier) {
             const res = NextResponse.json({ ok: false, message: "Invalid plan selection." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
@@ -194,6 +209,9 @@ export async function POST(request: Request) {
         successUrl.searchParams.set("session_id", "{CHECKOUT_SESSION_ID}");
         successUrl.searchParams.set("tier", requestedTier);
         successUrl.searchParams.set("source", checkoutSource);
+        if (unlockSection) {
+            successUrl.searchParams.set("unlock", unlockSection);
+        }
 
         const createCheckoutSession = async () => {
             const checkoutSession = await stripe.checkout.sessions.create({
@@ -215,7 +233,8 @@ export async function POST(request: Request) {
                     pass_tier: storedTier,
                     tier_label: tierLabel,
                     user_id: userId || "",
-                    source: checkoutSource
+                    source: checkoutSource,
+                    unlock_section: unlockSection || ""
                 },
                 ...(isSubscription
                     ? {}

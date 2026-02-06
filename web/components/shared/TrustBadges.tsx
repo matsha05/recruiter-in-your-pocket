@@ -18,7 +18,7 @@ export function TrustBadges({ variant = "inline", className }: TrustBadgesProps)
     const badges = [
         { icon: Shield, label: "Encrypted in transit" },
         { label: "Delete reports anytime" },
-        { label: "Never sold as data" }
+        { label: "We do not sell resume data" }
     ];
 
     if (variant === "stacked") {

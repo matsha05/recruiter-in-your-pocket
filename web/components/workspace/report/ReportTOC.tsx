@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import {
     HiddenGemIcon,
+    InsightSparkleIcon,
     PrincipalRecruiterIcon,
     RoleTargetIcon,
     SignalRadarIcon,
@@ -26,6 +27,7 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
     const items: TOCItem[] = [
         { id: "section-first-impression", label: "The Verdict", icon: PrincipalRecruiterIcon },
         { id: "section-score-summary", label: "Signal Check", icon: SignalRadarIcon },
+        { id: "section-evidence-ledger", label: "Evidence Ledger", icon: InsightSparkleIcon },
         { id: "section-bullet-upgrades", label: "Red Pen Rewrites", icon: TransformArrowIcon },
         { id: "section-missing-wins", label: "Missing Wins", icon: HiddenGemIcon },
         { id: "section-job-alignment", label: "Job Fit", icon: RoleTargetIcon },

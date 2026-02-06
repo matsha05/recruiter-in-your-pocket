@@ -109,7 +109,7 @@ export function LandingBoldAuthority() {
                             <span className="w-px h-3 bg-black/10" />
                             <span className="inline-flex items-center gap-1.5 text-xs text-black/50">
                                 <Shield className="w-3 h-3" />
-                                Never trains AI
+                                Not used to train public models
                             </span>
                         </div>
                     </motion.div>
@@ -291,7 +291,7 @@ export function LandingBoldAuthority() {
                             <div className="text-xs font-mono uppercase tracking-widest text-black/40 mb-2">Free</div>
                             <div className="text-3xl font-display mb-4">$0</div>
                             <ul className="space-y-2 mb-6">
-                                {["3 resume scans", "Full report each time", "Red Pen rewrites"].map((feature) => (
+                                {["1 full resume review", "Full report with recruiter verdict", "Red Pen rewrites"].map((feature) => (
                                     <li key={feature} className="flex items-center gap-2 text-sm text-black/70">
                                         <Check className="w-4 h-4 text-teal-600" />
                                         {feature}
@@ -299,7 +299,7 @@ export function LandingBoldAuthority() {
                                 ))}
                             </ul>
                             <button className="w-full py-2.5 rounded-md border border-black/10 text-sm font-medium hover:bg-black/5 transition-colors">
-                                Get Started
+                                Run Free Review
                             </button>
                         </div>
 

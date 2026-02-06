@@ -151,9 +151,10 @@ module.exports = {
 			},
 			borderRadius: {
 				DEFAULT: 'var(--radius)',
-				lg: 'calc(var(--radius) * 2)',
+				sm: 'var(--radius-sm)',
 				md: 'var(--radius)',
-				sm: 'calc(var(--radius) / 2)'
+				lg: 'var(--radius-lg)',
+				xl: 'var(--radius-xl)'
 			},
 			boxShadow: {
 				sm: '0 1px 2px 0 rgb(0 0 0 / 0.04)',

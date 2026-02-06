@@ -215,7 +215,8 @@ export function ResumeDropzone({
                         )}
                     </div>
                     <div className="text-xs text-muted-foreground">
-                        We use your upload to generate feedback. Delete stored data anytime in Settings.
+                        We use your upload to generate feedback. Anonymous runs aren&apos;t stored unless you save.
+                        Signed-in runs keep report history you can delete in Settings.
                     </div>
                 </div>
             )}

@@ -171,7 +171,7 @@ export function LandingDataDrivenE() {
                     <div className="flex items-center justify-center gap-6 mt-8 text-xs text-slate-400">
                         <span className="flex items-center gap-1"><Lock className="w-3.5 h-3.5" /> Encrypted</span>
                         <span className="flex items-center gap-1"><Trash2 className="w-3.5 h-3.5" /> Delete anytime</span>
-                        <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5" /> Never trains AI</span>
+                        <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5" /> Not used to train public models</span>
                     </div>
                 </div>
             </section>

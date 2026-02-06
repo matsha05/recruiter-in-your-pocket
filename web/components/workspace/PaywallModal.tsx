@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import {
     Dialog,
@@ -13,8 +13,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
+import { UnlockValueList } from "@/components/shared/UnlockValueList";
 import { RefreshCw } from "lucide-react";
 import { Analytics } from "@/lib/analytics";
+import { getUnlockContext, type UnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -22,6 +24,76 @@ interface PaywallModalProps {
     creditsRemaining?: number;
     hasCurrentReport?: boolean;
 }
+
+const DEFAULT_UNLOCK_COPY = {
+    label: "Full Review",
+    title: "Unlock the full review",
+    subtitle: "Finish the evidence-ledger and recruiter rewrites, then keep iterating by role.",
+    bullets: [
+        "Unlimited iterations and report history",
+        "Full Evidence Ledger + Red Pen rewrites",
+        "Role targeting and missing wins",
+        "Export and share your report"
+    ]
+};
+
+const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
+    evidence_ledger: {
+        label: "Evidence Ledger",
+        title: "Finish the Evidence Ledger",
+        subtitle: "Every claim tied to the exact line that triggered it.",
+        bullets: [
+            "Remaining evidence-linked actions",
+            "Confidence + impact tags on every action",
+            "Rewrite guidance tied to your lines",
+            "Save and export the full ledger"
+        ]
+    },
+    bullet_upgrades: {
+        label: "The Red Pen",
+        title: "Unlock the rest of The Red Pen",
+        subtitle: "Recruiter-grade rewrites you can paste immediately.",
+        bullets: [
+            "All remaining bullet rewrites",
+            "Copy-ready recruiter phrasing",
+            "Why each change improves signal",
+            "Unlimited re-runs by role"
+        ]
+    },
+    missing_wins: {
+        label: "Missing Wins",
+        title: "Uncover every hidden win",
+        subtitle: "The missing stories that make recruiters slow down.",
+        bullets: [
+            "All missing-win prompts",
+            "Recruiter rationale for each",
+            "Progress tracking as you add wins",
+            "Full report export"
+        ]
+    },
+    job_alignment: {
+        label: "Role Positioning",
+        title: "Unlock role positioning",
+        subtitle: "Best-fit roles, stretch paths, and job match diagnostics.",
+        bullets: [
+            "Best-fit roles + stretch paths",
+            "JD match score + missing skills",
+            "Positioning statement you can reuse",
+            "Save this report for later"
+        ]
+    },
+    export_pdf: {
+        label: "Export",
+        title: "Export your report",
+        subtitle: "Download, share, and keep the full review.",
+        bullets: [
+            "PDF export with all sections",
+            "Shareable version without re-running",
+            "Access restore if unlock lags",
+            "Unlimited iterations"
+        ]
+    }
+};
 
 export default function PaywallModal({
     isOpen,
@@ -33,8 +105,25 @@ export default function PaywallModal({
     const [loading, setLoading] = useState(false);
     const [restoreLoading, setRestoreLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [unlockContext, setUnlockContext] = useState<UnlockContext | null>(null);
 
     const isLoggedIn = !!user;
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const context = getUnlockContext();
+        setUnlockContext(context);
+        if (context?.section) {
+            Analytics.paywallViewed(`section_${context.section}`);
+        }
+    }, [isOpen]);
+
+    const unlockCopy = useMemo(() => {
+        if (unlockContext?.section) {
+            return CONTEXT_UNLOCK_COPY[unlockContext.section] || DEFAULT_UNLOCK_COPY;
+        }
+        return DEFAULT_UNLOCK_COPY;
+    }, [unlockContext]);
 
     const handleCheckout = async () => {
         setLoading(true);
@@ -49,6 +138,7 @@ export default function PaywallModal({
         }
 
         try {
+            const unlockSection = unlockContext?.section || null;
             Analytics.checkoutStarted(selectedTier, selectedTier === "monthly" ? 9 : 79);
             const res = await fetch("/api/checkout", {
                 method: "POST",
@@ -57,7 +147,8 @@ export default function PaywallModal({
                     tier: selectedTier,
                     email: checkoutEmail,
                     source: "paywall",
-                    idempotencyKey: crypto.randomUUID()
+                    idempotencyKey: crypto.randomUUID(),
+                    unlockSection
                 })
             });
 
@@ -96,12 +187,31 @@ export default function PaywallModal({
             <DialogContent className="max-w-[400px] p-6">
                 <DialogHeader className="text-center mb-4">
                     <DialogTitle className="font-display text-xl font-medium">
-                        Your free review is used.
+                        {unlockCopy.title}
                     </DialogTitle>
                     <DialogDescription className="text-sm">
-                        Unlock unlimited iterations, recruiter-grade rewrites, and job-targeted feedback.
+                        {unlockCopy.subtitle}
                     </DialogDescription>
+                    <p className="text-[11px] text-muted-foreground">
+                        Your free review is used.
+                    </p>
                 </DialogHeader>
+
+                <div className="rounded border border-border/60 bg-secondary/10 p-4 space-y-3 mb-5">
+                    <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-muted-foreground">
+                        <span>Unlocks now</span>
+                        <span className="text-foreground/80">{unlockCopy.label}</span>
+                    </div>
+                    <UnlockValueList items={unlockCopy.bullets} dense />
+                    {unlockContext?.section && (
+                        <p className="text-[11px] text-muted-foreground">
+                            We saved your place in <span className="text-foreground font-medium">{unlockCopy.label}</span>.
+                        </p>
+                    )}
+                    <p className="text-[11px] text-muted-foreground">
+                        Already unlocked: First Impression · Score Summary
+                    </p>
+                </div>
 
                 {/* Tier Selection - Compact Cards */}
                 <div className="grid grid-cols-2 gap-3 mb-5">

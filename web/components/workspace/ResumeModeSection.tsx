@@ -2,10 +2,12 @@ import type { AuthUser } from "@/components/providers/AuthProvider";
 import type { LoadedJobContext } from "@/components/workspace/hooks/useJobContextFromExtension";
 import InputPanel from "@/components/workspace/InputPanel";
 import ReportPanel from "@/components/workspace/ReportPanel";
+import AnalysisScanning from "@/components/workspace/AnalysisScanning";
 
 type ResumeModeSectionProps = {
   report: any | null;
   isLoading: boolean;
+  isStreaming: boolean;
   resumeText: string;
   jobDescription: string;
   onResumeTextChange: (text: string) => void;
@@ -22,12 +24,17 @@ type ResumeModeSectionProps = {
   onNewReport: () => void;
   onUpgrade: () => void;
   justUnlocked: boolean;
+  highlightSection?: string | null;
   hasPaidAccess: boolean;
+  analysisStartedAt: number | null;
+  onCancelAnalysis: () => void;
+  onRetryAnalysis: () => void;
 };
 
 export default function ResumeModeSection({
   report,
   isLoading,
+  isStreaming,
   resumeText,
   jobDescription,
   onResumeTextChange,
@@ -44,8 +51,27 @@ export default function ResumeModeSection({
   onNewReport,
   onUpgrade,
   justUnlocked,
-  hasPaidAccess
+  highlightSection,
+  hasPaidAccess,
+  analysisStartedAt,
+  onCancelAnalysis,
+  onRetryAnalysis
 }: ResumeModeSectionProps) {
+  if (!report && isStreaming) {
+    return (
+      <div className="h-full overflow-y-auto bg-body">
+        <div className="h-full">
+          <AnalysisScanning
+            mode="resume"
+            startedAt={analysisStartedAt}
+            onCancel={onCancelAnalysis}
+            onRetry={onRetryAnalysis}
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (!report) {
     return (
       <div className="h-full overflow-y-auto bg-muted/10">
@@ -79,7 +105,11 @@ export default function ResumeModeSection({
       onUpgrade={onUpgrade}
       isGated={!isSample && !hasPaidAccess && freeUsesRemaining <= 0}
       justUnlocked={justUnlocked}
+      highlightSection={highlightSection}
       hasPaidAccess={hasPaidAccess}
+      analysisStartedAt={analysisStartedAt}
+      onCancelAnalysis={onCancelAnalysis}
+      onRetryAnalysis={onRetryAnalysis}
     />
   );
 }

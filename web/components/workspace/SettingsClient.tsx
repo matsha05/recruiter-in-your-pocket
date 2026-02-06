@@ -76,6 +76,18 @@ interface SettingsClientProps {
     initialTab?: Tab;
 }
 
+function formatDate(input?: string | null) {
+    if (!input) return null;
+    const date = new Date(input);
+    if (Number.isNaN(date.getTime())) return null;
+    return date.toLocaleDateString();
+}
+
+function formatAmount(cents: number, currency: string | null) {
+    const amount = (Number(cents || 0) / 100).toFixed(2);
+    return `${(currency || "USD").toUpperCase()} ${amount}`;
+}
+
 async function fetchPassesRequest(): Promise<PassRecord[]> {
     const res = await fetch("/api/passes");
     const data = await res.json().catch(() => ({} as any));
@@ -355,6 +367,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
         }
     });
 
+    const hasPaidMembership = Boolean(user?.membership && user.membership !== "free");
     const accessLabel = user?.membership === "lifetime"
         ? "Lifetime Access"
         : user?.membership === "monthly"
@@ -364,6 +377,29 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 : `${user?.freeUsesLeft || 0} free review${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
     const displayNameValue = profileForm.watch("displayName") || "";
     const guestEmailValue = guestCheckoutForm.watch("guestEmail") || "";
+    const activePass = loadingPasses ? null : passes.find((pass) => isPassActive(pass));
+    const latestPass = loadingPasses ? null : passes[0];
+    const passForStatus = activePass || latestPass || null;
+    const passTierLabel = passForStatus ? getTierLabel(passForStatus.tier) : null;
+    const passUsesLabel = passForStatus
+        ? isUnlimitedPassTier(passForStatus.tier)
+            ? "Unlimited"
+            : `${Math.max(0, Number(passForStatus.uses_remaining || 0))} remaining`
+        : null;
+    const passExpiryDate = passForStatus?.expires_at ? formatDate(passForStatus.expires_at) : null;
+    const passPurchasedDate = passForStatus?.created_at ? formatDate(passForStatus.created_at) : null;
+    const passExpiryLabel = passForStatus
+        ? passForStatus.tier === "lifetime"
+            ? "No renewal"
+            : isUnlimitedPassTier(passForStatus.tier)
+                ? passExpiryDate
+                    ? `Renews on ${passExpiryDate}`
+                    : null
+                : passExpiryDate
+                    ? `Expires on ${passExpiryDate}`
+                    : null
+        : null;
+    const showRestoreNudge = !loadingPasses && passes.length === 0 && hasPaidMembership;
 
     return (
         <div className="min-h-full pb-20">
@@ -477,14 +513,32 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                     {activeTab === "billing" && (
                         <div className="space-y-10 animate-in fade-in duration-200">
-                            <section className="bg-white dark:bg-card border border-border/40 rounded-xl p-5 transition-all hover:shadow-sm">
+                            <section className="bg-white dark:bg-card border border-border/40 rounded-xl p-5 transition-all hover:shadow-sm space-y-4">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Current Access</h2>
-                                        <p className="text-lg font-medium text-foreground">{accessLabel}</p>
-                                        <p className="text-sm text-muted-foreground mt-1">
+                                    <div className="space-y-2">
+                                        <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Billing Status</h2>
+                                        <div className="flex items-center gap-3 flex-wrap">
+                                            <span className={cn(
+                                                "text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-full",
+                                                (hasPaidMembership || activePass) ? "bg-emerald-100 text-emerald-700" : "bg-secondary text-muted-foreground"
+                                            )}>
+                                                {(hasPaidMembership || activePass) ? "Active" : "Free"}
+                                            </span>
+                                            <p className="text-lg font-medium text-foreground">{accessLabel}</p>
+                                        </div>
+                                        <div className="text-sm text-muted-foreground">
                                             Purchases are tied to <span className="font-medium text-foreground">{user?.email}</span>
-                                        </p>
+                                        </div>
+                                        {passTierLabel && (
+                                            <div className="text-xs text-muted-foreground space-y-1">
+                                                <div>
+                                                    <span className="text-foreground/70 font-medium">Pass:</span> {passTierLabel}
+                                                    {passUsesLabel && <span className="text-foreground/70"> · {passUsesLabel}</span>}
+                                                </div>
+                                                {passExpiryLabel && <div>{passExpiryLabel}</div>}
+                                                {passPurchasedDate && <div>Purchased on {passPurchasedDate}</div>}
+                                            </div>
+                                        )}
                                     </div>
 
                                     <div className="flex flex-wrap gap-2">
@@ -514,12 +568,19 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         </button>
                                     </div>
                                 </div>
+
+                                {showRestoreNudge && (
+                                    <div className="rounded border border-border/50 bg-muted/30 px-4 py-3 text-xs text-muted-foreground">
+                                        We couldn&apos;t find billing records for this email. If you used a different email at checkout,
+                                        sign in with that email and press Restore Access.
+                                    </div>
+                                )}
                             </section>
 
                             <section>
                                 <h2 className="text-lg font-medium text-foreground mb-1">Upgrade</h2>
                                 <p className="text-sm text-muted-foreground mb-5">
-                                    One free review, then pick monthly or lifetime when you need repeated iterations.
+                                    Keep iterating by role with full evidence ledgers, Red Pen rewrites, and export access.
                                 </p>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <PricingCard tier="monthly" onSelect={() => handleCheckout("monthly")} loading={isCheckoutLoading === "monthly"} />
@@ -537,7 +598,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     ) : passes.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
                                             <Clock className="w-5 h-5 mx-auto mb-2 opacity-40" />
-                                            No purchases yet
+                                            No purchases yet. If you already paid, use Restore Access.
                                         </div>
                                     ) : (
                                         <div className="divide-y divide-border/20">
@@ -547,6 +608,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                 const usesLabel = isUnlimitedPassTier(pass.tier)
                                                     ? "Unlimited"
                                                     : `${uses} remaining`;
+                                                const expiryDate = formatDate(pass.expires_at);
 
                                                 return (
                                                     <div key={pass.id} className="p-4 flex items-center justify-between gap-4">
@@ -559,6 +621,15 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                                 <p className="text-xs text-muted-foreground truncate">
                                                                     {new Date(pass.created_at).toLocaleDateString()} · {usesLabel}
                                                                 </p>
+                                                                {expiryDate && (
+                                                                    <p className="text-[11px] text-muted-foreground/70">
+                                                                        {pass.tier === "lifetime"
+                                                                            ? "No renewal"
+                                                                            : isUnlimitedPassTier(pass.tier)
+                                                                                ? `Renews on ${expiryDate}`
+                                                                                : `Expires on ${expiryDate}`}
+                                                                    </p>
+                                                                )}
                                                             </div>
                                                         </div>
                                                         <span
@@ -597,7 +668,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         </div>
                                     ) : receipts.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
-                                            No receipts yet
+                                            No receipts yet. Try Refresh or open the billing portal.
                                         </div>
                                     ) : (
                                         <div className="divide-y divide-border/20">
@@ -608,8 +679,16 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                             {receipt.number || receipt.id}
                                                         </p>
                                                         <p className="text-xs text-muted-foreground truncate">
-                                                            {new Date(receipt.created_at).toLocaleDateString()} · {(receipt.currency || "USD").toUpperCase()} {(Number(receipt.amount_paid || 0) / 100).toFixed(2)}
+                                                            {new Date(receipt.created_at).toLocaleDateString()} · {formatAmount(receipt.amount_paid, receipt.currency)}
                                                         </p>
+                                                        {receipt.status && (
+                                                            <span className={cn(
+                                                                "mt-1 inline-flex text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full",
+                                                                receipt.status === "paid" ? "bg-emerald-100 text-emerald-700" : "bg-secondary text-muted-foreground"
+                                                            )}>
+                                                                {receipt.status}
+                                                            </span>
+                                                        )}
                                                     </div>
                                                     <div className="flex items-center gap-2 shrink-0">
                                                         {receipt.hosted_invoice_url && (

@@ -93,20 +93,30 @@ export async function streamResumeFeedback(
   resumeText: string,
   jobDescription: string | undefined,
   onChunk: (partialJson: string, partialReport: any | null) => void,
-  mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume"
-): Promise<{ ok: boolean; report?: any; message?: string }> {
+  mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
+  options?: { signal?: AbortSignal }
+): Promise<{ ok: boolean; report?: any; message?: string; aborted?: boolean }> {
   console.log("[streamResumeFeedback] Starting...");
 
-  const res = await fetch("/api/resume-feedback-stream", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({
-      text: resumeText,
-      jobDescription,
-      mode: mode
-    })
-  });
+  let res: Response;
+  try {
+    res = await fetch("/api/resume-feedback-stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        text: resumeText,
+        jobDescription,
+        mode: mode
+      }),
+      signal: options?.signal
+    });
+  } catch (err: any) {
+    if (err?.name === "AbortError") {
+      return { ok: false, message: "Canceled", aborted: true };
+    }
+    throw err;
+  }
 
   console.log("[streamResumeFeedback] Response status:", res.status);
 
@@ -129,7 +139,16 @@ export async function streamResumeFeedback(
   console.log("[streamResumeFeedback] Starting to read stream...");
 
   while (true) {
-    const { done, value } = await reader.read();
+    let readResult: ReadableStreamReadResult<Uint8Array>;
+    try {
+      readResult = await reader.read();
+    } catch (err: any) {
+      if (err?.name === "AbortError") {
+        return { ok: false, message: "Canceled", aborted: true };
+      }
+      throw err;
+    }
+    const { done, value } = readResult;
     if (done) {
       console.log("[streamResumeFeedback] Stream done after", chunkCount, "chunks");
       break;
@@ -260,20 +279,30 @@ export type LinkedInStreamResult = {
 export async function streamLinkedInFeedback(
   input: LinkedInFeedbackRequest,
   onChunk: (partialJson: string, partialReport: any | null) => void,
-  onMeta?: (meta: { name?: string; headline?: string; source?: string }) => void
-): Promise<LinkedInStreamResult> {
+  onMeta?: (meta: { name?: string; headline?: string; source?: string }) => void,
+  options?: { signal?: AbortSignal }
+): Promise<LinkedInStreamResult & { aborted?: boolean }> {
   console.log("[streamLinkedInFeedback] Starting...", input.source);
 
-  const res = await fetch("/api/linkedin-feedback-stream", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({
-      profileUrl: input.profileUrl,
-      pdfText: input.pdfText,
-      source: input.source,
-    }),
-  });
+  let res: Response;
+  try {
+    res = await fetch("/api/linkedin-feedback-stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        profileUrl: input.profileUrl,
+        pdfText: input.pdfText,
+        source: input.source,
+      }),
+      signal: options?.signal
+    });
+  } catch (err: any) {
+    if (err?.name === "AbortError") {
+      return { ok: false, message: "Canceled", aborted: true };
+    }
+    throw err;
+  }
 
   console.log("[streamLinkedInFeedback] Response status:", res.status);
 
@@ -299,7 +328,16 @@ export async function streamLinkedInFeedback(
   console.log("[streamLinkedInFeedback] Starting to read stream...");
 
   while (true) {
-    const { done, value } = await reader.read();
+    let readResult: ReadableStreamReadResult<Uint8Array>;
+    try {
+      readResult = await reader.read();
+    } catch (err: any) {
+      if (err?.name === "AbortError") {
+        return { ok: false, message: "Canceled", aborted: true };
+      }
+      throw err;
+    }
+    const { done, value } = readResult;
     if (done) {
       console.log("[streamLinkedInFeedback] Stream done after", chunkCount, "chunks");
       break;

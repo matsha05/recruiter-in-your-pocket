@@ -2,455 +2,239 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-// SiteHeader removed — layout handles navigation
+import { ArrowRight, BookOpen, CircleGauge, ScanLine, Users } from "lucide-react";
 import Footer from "@/components/landing/Footer";
-
-/**
- * Research Hub v2.0 — Premium Landing Page
- * Document-first layout with visual polish per design philosophy.
- */
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const featuredArticles = [
     {
         id: "how-recruiters-read",
         title: "How Recruiters Actually Read Resumes",
-        thesis: "Eye-tracking studies on attention patterns and decision flow.",
+        thesis: "Eye-tracking findings on scan behavior and first-pass filtering.",
         readTime: "4 min",
         href: "/research/how-recruiters-read",
         label: "Start here",
-        icon: (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-            </svg>
-        )
     },
     {
         id: "quantifying-impact",
         title: "The Laszlo Bock Formula",
-        thesis: "How measurable outcomes shape perceived impact.",
+        thesis: "How quantified outcomes change perceived impact.",
         readTime: "5 min",
         href: "/research/quantifying-impact",
         label: "Most actionable",
-        icon: (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" />
-            </svg>
-        )
     },
     {
         id: "referral-advantage",
         title: "The Referral Advantage",
-        thesis: "How referrals shift movement through hiring funnels.",
+        thesis: "How referrals change movement through hiring funnels.",
         readTime: "4 min",
         href: "/research/referral-advantage",
-        label: "Highest impact",
-        icon: (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-        )
-    }
+        label: "Highest leverage",
+    },
 ];
 
 const categories = [
     {
         id: "recruiter-psychology",
         title: "Inside the Recruiter's Mind",
-        subtitle: "How hiring decisions actually get made",
+        subtitle: "How early decisions are formed",
         articles: [
-            { id: "how-people-scan", title: "How People Scan Text and Bullets", thesis: "F-patterns, first-word scanning, and structure for faster comprehension.", readTime: "4 min", href: "/research/how-people-scan" },
-            { id: "ats-myths", title: "ATS: What Actually Happens", thesis: "Where humans step in and where automation stops.", readTime: "4 min", href: "/research/ats-myths" },
-            { id: "automation-filter-points", title: "Where Automation Filters You Out", thesis: "Exposure, eligibility, and ranking touchpoints.", readTime: "4 min", href: "/research/automation-filter-points" },
-            { id: "automation-and-bias", title: "Hiring Algorithms and Bias", thesis: "How automated systems compound bias across stages.", readTime: "4 min", href: "/research/automation-and-bias" },
-            { id: "human-vs-algorithm", title: "Humans vs. Algorithms", thesis: "How recruiters interpret machine scores versus human signals.", readTime: "4 min", href: "/research/human-vs-algorithm" },
-            { id: "spelling-errors-impact", title: "Spelling Errors Carry Weight", thesis: "How small errors affect perceived rigor and clarity.", readTime: "3 min", href: "/research/spelling-errors-impact" },
-            { id: "resume-error-tax", title: "The Resume Error Tax", thesis: "Why typos are treated as risk signals.", readTime: "4 min", href: "/research/resume-error-tax" },
-            { id: "hiring-discrimination-meta-analysis", title: "Discrimination in Hiring", thesis: "What resumes can and cannot control.", readTime: "5 min", href: "/research/hiring-discrimination-meta-analysis" },
-            { id: "bias-limits-optimization", title: "Limits of Resume Optimization", thesis: "A bounded-control view of bias and signal.", readTime: "4 min", href: "/research/bias-limits-optimization" }
-        ]
+            { id: "how-people-scan", title: "How People Scan Text and Bullets", readTime: "4 min", href: "/research/how-people-scan" },
+            { id: "ats-myths", title: "ATS: What Actually Happens", readTime: "4 min", href: "/research/ats-myths" },
+            { id: "automation-filter-points", title: "Where Automation Filters You Out", readTime: "4 min", href: "/research/automation-filter-points" },
+            { id: "automation-and-bias", title: "Hiring Algorithms and Bias", readTime: "4 min", href: "/research/automation-and-bias" },
+            { id: "human-vs-algorithm", title: "Humans vs. Algorithms", readTime: "4 min", href: "/research/human-vs-algorithm" },
+            { id: "spelling-errors-impact", title: "Spelling Errors Carry Weight", readTime: "3 min", href: "/research/spelling-errors-impact" },
+            { id: "resume-error-tax", title: "The Resume Error Tax", readTime: "4 min", href: "/research/resume-error-tax" },
+            { id: "hiring-discrimination-meta-analysis", title: "Discrimination in Hiring", readTime: "5 min", href: "/research/hiring-discrimination-meta-analysis" },
+            { id: "bias-limits-optimization", title: "Limits of Resume Optimization", readTime: "4 min", href: "/research/bias-limits-optimization" },
+        ],
     },
     {
         id: "resume-craft",
         title: "Resume Craft",
         subtitle: "Writing and structure fundamentals",
         articles: [
-            { id: "how-we-score", title: "The 7.4-Second Signal Model", thesis: "How we score story, impact, clarity, and readability.", readTime: "5 min", href: "/research/how-we-score" },
-            { id: "star-method", title: "The STAR Method", thesis: "Structure for behavioral narratives and resume bullets.", readTime: "4 min", href: "/research/star-method" },
-            { id: "structured-interviews-why-star", title: "Structured Interviews Beat Vibes", thesis: "Why STAR exists and why structure wins.", readTime: "4 min", href: "/research/structured-interviews-why-star" },
-            { id: "quantifying-impact", title: "The Laszlo Bock Formula", thesis: "How measurable outcomes shape perceived impact.", readTime: "5 min", href: "/research/quantifying-impact" },
-            { id: "writing-quality-hire-probability", title: "Writing Quality Changes Hiring", thesis: "Clarity increases hiring outcomes in field evidence.", readTime: "4 min", href: "/research/writing-quality-hire-probability" },
-            { id: "signal-vs-clarity", title: "Signal vs. Clarity", thesis: "Two explanations for why good resumes work.", readTime: "4 min", href: "/research/signal-vs-clarity" },
-            { id: "resume-length-myths", title: "The One-Page Myth", thesis: "What length signals for experienced candidates.", readTime: "4 min", href: "/research/resume-length-myths" },
-            { id: "page-two-gate", title: "The Page-2 Gate", thesis: "Why page 2 is earned by page 1.", readTime: "3 min", href: "/research/page-two-gate" }
-        ]
+            { id: "how-we-score", title: "The 7.4-Second Signal Model", readTime: "5 min", href: "/research/how-we-score" },
+            { id: "star-method", title: "The STAR Method", readTime: "4 min", href: "/research/star-method" },
+            { id: "structured-interviews-why-star", title: "Structured Interviews Beat Vibes", readTime: "4 min", href: "/research/structured-interviews-why-star" },
+            { id: "quantifying-impact", title: "The Laszlo Bock Formula", readTime: "5 min", href: "/research/quantifying-impact" },
+            { id: "writing-quality-hire-probability", title: "Writing Quality Changes Hiring", readTime: "4 min", href: "/research/writing-quality-hire-probability" },
+            { id: "signal-vs-clarity", title: "Signal vs. Clarity", readTime: "4 min", href: "/research/signal-vs-clarity" },
+            { id: "resume-length-myths", title: "The One-Page Myth", readTime: "4 min", href: "/research/resume-length-myths" },
+            { id: "page-two-gate", title: "The Page-2 Gate", readTime: "3 min", href: "/research/page-two-gate" },
+        ],
     },
     {
         id: "job-search-strategy",
         title: "Job Search Strategy",
         subtitle: "LinkedIn, networking, and negotiation",
         articles: [
-            { id: "linkedin-vs-resume", title: "LinkedIn vs. Resume", thesis: "Discovery versus evaluation, and how each is used.", readTime: "4 min", href: "/research/linkedin-vs-resume" },
-            { id: "linkedin-visibility", title: "LinkedIn Visibility", thesis: "Which profile elements influence discovery and clicks.", readTime: "5 min", href: "/research/linkedin-visibility" },
-            { id: "recruiter-search-behavior", title: "Recruiter Search Behavior", thesis: "What LinkedIn discloses and what remains unknown.", readTime: "4 min", href: "/research/recruiter-search-behavior" },
-            { id: "social-screening", title: "Social Screening", thesis: "What recruiters look for online across platforms.", readTime: "4 min", href: "/research/social-screening" },
-            { id: "skills-based-hiring", title: "The Skills-Based Shift", thesis: "How skills-first hiring changes screening.", readTime: "5 min", href: "/research/skills-based-hiring" },
-            { id: "skills-first-promise-reality", title: "Skills-First: Promise vs Reality", thesis: "Where skills-first expands pools and where adoption lags.", readTime: "4 min", href: "/research/skills-first-promise-reality" },
-            { id: "offer-negotiation", title: "Offer Negotiation", thesis: "Negotiation is coordination, not combat.", readTime: "12 min", href: "/guides/offer-negotiation" },
-            { id: "salary-history-bans", title: "Salary History Disclosure", thesis: "How disclosure shapes the first anchor.", readTime: "4 min", href: "/research/salary-history-bans" },
-            { id: "salary-anchors", title: "Salary Anchors", thesis: "Avoid self-discounting early in negotiations.", readTime: "4 min", href: "/research/salary-anchors" },
-            { id: "referral-advantage", title: "The Referral Advantage", thesis: "How referrals shift movement through hiring funnels.", readTime: "4 min", href: "/research/referral-advantage" },
-            { id: "referral-advantage-quantified", title: "Referral Advantage, Quantified", thesis: "How referrals reduce uncertainty in field evidence.", readTime: "4 min", href: "/research/referral-advantage-quantified" }
-        ]
-    }
+            { id: "linkedin-vs-resume", title: "LinkedIn vs. Resume", readTime: "4 min", href: "/research/linkedin-vs-resume" },
+            { id: "linkedin-visibility", title: "LinkedIn Visibility", readTime: "5 min", href: "/research/linkedin-visibility" },
+            { id: "recruiter-search-behavior", title: "Recruiter Search Behavior", readTime: "4 min", href: "/research/recruiter-search-behavior" },
+            { id: "social-screening", title: "Social Screening", readTime: "4 min", href: "/research/social-screening" },
+            { id: "skills-based-hiring", title: "The Skills-Based Shift", readTime: "5 min", href: "/research/skills-based-hiring" },
+            { id: "skills-first-promise-reality", title: "Skills-First: Promise vs Reality", readTime: "4 min", href: "/research/skills-first-promise-reality" },
+            { id: "salary-history-bans", title: "Salary History Disclosure", readTime: "4 min", href: "/research/salary-history-bans" },
+            { id: "salary-anchors", title: "Salary Anchors", readTime: "4 min", href: "/research/salary-anchors" },
+            { id: "referral-advantage", title: "The Referral Advantage", readTime: "4 min", href: "/research/referral-advantage" },
+            { id: "referral-advantage-quantified", title: "Referral Advantage, Quantified", readTime: "4 min", href: "/research/referral-advantage-quantified" },
+        ],
+    },
 ];
 
 const totalArticles = categories.reduce((sum, category) => sum + category.articles.length, 0);
 
-function FeaturedCard({ article, index }: { article: typeof featuredArticles[0]; index: number }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-        >
-            <Link
-                href={article.href}
-                className="group block h-full rounded-xl border border-border/40 bg-white dark:bg-card p-6 transition-all duration-300 hover:border-brand/40 hover:shadow-lg hover:shadow-brand/5"
-            >
-                <div className="flex flex-col h-full">
-                    <div className="flex items-start justify-between mb-4">
-                        <div className="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-300">
-                            {article.icon}
-                        </div>
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60 bg-muted/30 px-2 py-1 rounded">
-                            {article.label}
-                        </span>
-                    </div>
-                    <h3 className="font-display text-lg font-medium text-foreground mb-2 group-hover:text-brand transition-colors">
-                        {article.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                        {article.thesis}
-                    </p>
-                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/20">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                            {article.readTime}
-                        </span>
-                        <svg className="w-4 h-4 text-muted-foreground/40 group-hover:text-brand group-hover:translate-x-1 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                </div>
-            </Link>
-        </motion.div>
-    );
-}
-
-function CategorySection({ category, index }: { category: typeof categories[0]; index: number }) {
-    return (
-        <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="border-t border-border/30 pt-8"
-        >
-            <div className="grid md:grid-cols-[200px_1fr] gap-6 items-start">
-                <div className="space-y-3">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                        {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                        <h3 className="font-display text-lg font-semibold text-foreground tracking-tight">
-                            {category.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                            {category.subtitle}
-                        </p>
-                    </div>
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                        {String(category.articles.length).padStart(2, "0")} pieces
-                    </span>
-                </div>
-                <div className="border-t border-border/30 divide-y divide-border/30">
-                    {category.articles.map((article) => (
-                        <Link key={article.id} href={article.href} className="group block py-4">
-                            <div className="flex items-baseline justify-between gap-6">
-                                <div className="min-w-0">
-                                    <div className="text-sm font-medium text-foreground group-hover:text-brand transition-colors">
-                                        {article.title}
-                                    </div>
-                                    <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                                        {article.thesis}
-                                    </div>
-                                </div>
-                                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 shrink-0">
-                                    {article.readTime}
-                                </span>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </div>
-        </motion.section>
-    );
-}
-
-function MethodologyDiagram() {
-    const dimensions = [
-        { name: "Story", weight: 30, color: "bg-brand" },
-        { name: "Impact", weight: 25, color: "bg-blue-500" },
-        { name: "Clarity", weight: 25, color: "bg-violet-500" },
-        { name: "Readability", weight: 20, color: "bg-emerald-500" }
-    ];
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="rounded-xl border border-border/40 bg-white dark:bg-card p-6 shadow-lg shadow-slate-200/50 dark:shadow-none"
-        >
-            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60 mb-4">
-                Scoring dimensions
-            </div>
-            <div className="space-y-3">
-                {dimensions.map((dim, i) => (
-                    <motion.div
-                        key={dim.name}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex items-center gap-4"
-                    >
-                        <span className="text-xs text-muted-foreground w-20">{dim.name}</span>
-                        <div className="flex-1 h-2 bg-muted/30 rounded-full overflow-hidden">
-                            <motion.div
-                                initial={{ width: 0 }}
-                                whileInView={{ width: `${dim.weight}%` }}
-                                transition={{ duration: 0.8, delay: 0.3 + i * 0.1, ease: "easeOut" }}
-                                viewport={{ once: true }}
-                                className={`h-full rounded-full ${dim.color}`}
-                            />
-                        </div>
-                        <span className="font-mono text-[10px] text-muted-foreground/60 w-8">{dim.weight}%</span>
-                    </motion.div>
-                ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-border/20">
-                <Link href="/research/how-we-score" className="text-sm text-brand hover:underline flex items-center gap-2">
-                    See full methodology
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </Link>
-            </div>
-        </motion.div>
-    );
-}
+const signals = [
+    { icon: ScanLine, name: "Story signal", weight: "35%" },
+    { icon: CircleGauge, name: "Impact signal", weight: "30%" },
+    { icon: BookOpen, name: "Clarity signal", weight: "20%" },
+    { icon: Users, name: "Readability signal", weight: "15%" },
+];
 
 export default function ResearchClient() {
     return (
         <>
-            <main className="max-w-5xl mx-auto px-6 pt-12 pb-20 space-y-16">
-                {/* Hero Section */}
-                <motion.header
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="space-y-6 text-center max-w-2xl mx-auto"
-                >
-                    <span className="inline-block font-mono text-[10px] uppercase tracking-widest text-foreground bg-muted px-3 py-1.5 rounded-full">
-                        The Hiring Playbook
-                    </span>
-                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight leading-tight">
-                        The rules they don&apos;t teach you.
-                    </h1>
-                    <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                        A curated library on how recruiters think, what they notice first, and how to present yourself.
-                    </p>
-                    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70">
-                        <span className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-brand" />
-                            {String(featuredArticles.length).padStart(2, "0")} essentials
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
-                            {String(categories.length).padStart(2, "0")} sections
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-muted-foreground/30" />
-                            {String(totalArticles).padStart(2, "0")} pieces
-                        </span>
-                    </div>
-                </motion.header>
-
-                {/* Featured Articles */}
-                <section>
-                    <div className="text-center mb-8">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                            01 / Start here
-                        </span>
-                        <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight mt-2">
-                            Essential Reading
-                        </h2>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {featuredArticles.map((article, i) => (
-                            <FeaturedCard key={article.id} article={article} index={i} />
-                        ))}
-                    </div>
-                </section>
-
-                {/* Methodology Section */}
-                <section className="border-t border-border/30 pt-12">
-                    <div className="grid md:grid-cols-2 gap-8 items-center">
-                        <div className="space-y-4">
-                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                                02 / Methodology
-                            </span>
-                            <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight">
-                                First-Impression Signal Model
-                            </h2>
-                            <p className="text-muted-foreground leading-relaxed">
-                                We translate early attention patterns into four scoring dimensions and map them to product decisions.
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                                Sources and citations live inside each article. The index stays descriptive.
-                            </p>
-                        </div>
-                        <MethodologyDiagram />
-                    </div>
-                </section>
-
-                {/* Guides Callout */}
-                <section>
-                    <Link href="/guides" className="group block rounded-xl border border-brand/20 bg-brand/5 p-6 hover:bg-brand/10 transition-colors">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-lg bg-brand/20 flex items-center justify-center text-brand">
-                                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span className="font-mono text-[10px] uppercase tracking-widest text-foreground">Actionable Playbooks</span>
-                                    <h3 className="font-display text-lg font-medium text-foreground">Offer Negotiation Guides</h3>
-                                    <p className="text-sm text-muted-foreground">Step-by-step playbooks for tech and universal negotiation.</p>
-                                </div>
+            <main className="landing-page">
+                <section className="landing-section-pad landing-section-divider landing-section-hero">
+                    <div className="landing-rail">
+                        <motion.header
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.45 }}
+                            className="mx-auto max-w-3xl text-center"
+                        >
+                            <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-label-mono text-muted-foreground dark:border-slate-700 dark:bg-slate-900">
+                                Research library
                             </div>
-                            <svg className="w-5 h-5 text-brand group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
+                            <h1 className="mt-5 font-display text-4xl leading-[0.98] tracking-tight md:text-[54px]">
+                                Evidence before advice
+                            </h1>
+                            <p className="mx-auto mt-4 max-w-2xl landing-copy">
+                                Research that explains how recruiters evaluate resumes and what changes actually improve outcomes.
+                            </p>
+                            <div className="mx-auto mt-6 inline-flex flex-wrap items-center justify-center gap-5 rounded-xl border border-border/60 bg-white px-5 py-3 text-label-mono text-muted-foreground dark:bg-slate-900">
+                                <span>{featuredArticles.length} essentials</span>
+                                <span>{categories.length} themes</span>
+                                <span>{totalArticles} articles</span>
+                            </div>
+                        </motion.header>
+                    </div>
+                </section>
+
+                <section className="landing-section-pad landing-section landing-section-divider">
+                    <div className="landing-rail">
+                        <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
+                            <div>
+                                <div className="mb-2 text-label-mono text-muted-foreground">Essential reads</div>
+                                <h2 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[40px]">
+                                    Start with these three
+                                </h2>
+                            </div>
+                            <Link href="/workspace" className="inline-flex items-center gap-2 text-sm text-brand hover:text-brand/80">
+                                Run a free review
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
                         </div>
-                    </Link>
+
+                        <div className="grid gap-4 md:grid-cols-3">
+                            {featuredArticles.map((article) => (
+                                <Link key={article.id} href={article.href} className="group landing-card landing-card-pad card-interactive">
+                                    <div className="flex items-center justify-between gap-2">
+                                        <span className="rounded-full bg-brand/10 px-2 py-1 text-label-mono text-brand">{article.label}</span>
+                                        <span className="text-label-mono text-muted-foreground">{article.readTime}</span>
+                                    </div>
+                                    <h3 className="mt-3 font-display text-2xl leading-tight tracking-tight transition-colors group-hover:text-brand">
+                                        {article.title}
+                                    </h3>
+                                    <p className="mt-2 landing-copy-muted">{article.thesis}</p>
+                                    <div className="mt-4 inline-flex items-center gap-2 text-sm text-brand">
+                                        Read article
+                                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
                 </section>
 
-                {/* Research Library */}
-                <section className="space-y-8">
-                    <div className="text-center">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                            03 / Browse research
-                        </span>
-                        <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight mt-2">
-                            Research Library
-                        </h2>
-                        <p className="text-sm text-muted-foreground mt-2">
-                            Browse by theme. Each section groups the sources and the product implications.
-                        </p>
-                    </div>
-                    <div className="space-y-8">
-                        {categories.map((category, i) => (
-                            <CategorySection key={category.id} category={category} index={i} />
-                        ))}
+                <section className="landing-section-pad landing-deep-ink">
+                    <div className="landing-rail grid items-start gap-7 lg:grid-cols-[1.02fr_0.98fr]">
+                        <div>
+                            <div className="mb-4 text-label-mono text-slate-400">Methodology</div>
+                            <h2 className="font-display text-3xl leading-[0.98] tracking-tight text-slate-50 md:text-[42px]">
+                                The 7.4-second signal model
+                            </h2>
+                            <p className="mt-4 landing-copy-inverted max-w-[40rem]">
+                                We translate scan behavior into a weighted rubric, then map each signal to line-level evidence and rewrite order.
+                            </p>
+                            <Link href="/research/how-we-score" className="mt-5 inline-flex items-center gap-2 text-sm text-teal-300 hover:text-teal-200">
+                                See full methodology
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                        </div>
+                        <div className="landing-deep-ink-panel">
+                            <div className="space-y-3">
+                                {signals.map((signal) => (
+                                    <div key={signal.name} className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3">
+                                        <div className="flex items-center gap-2">
+                                            <signal.icon className="h-4 w-4 text-brand" />
+                                            <span className="text-sm text-slate-100">{signal.name}</span>
+                                        </div>
+                                        <span className="text-label-mono text-slate-300">{signal.weight}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </section>
 
-                {/* Product Translation */}
-                <section className="border-t border-border/30 pt-12">
-                    <div className="text-center mb-8">
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
-                            04 / Product translation
-                        </span>
-                        <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground tracking-tight mt-2">
-                            How this shapes the product
-                        </h2>
-                        <p className="text-sm text-muted-foreground mt-2">
-                            Direct lines from insights to the features inside the workspace.
-                        </p>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                        {[
-                            {
-                                title: "First Impressions Matter",
-                                desc: "Recruiter First Impression focuses on the early window where fit signals form.",
-                                icon: (
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <circle cx="12" cy="12" r="3" />
-                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                                    </svg>
-                                )
-                            },
-                            {
-                                title: "Clarity over Keywords",
-                                desc: "Our engine rewards clarity and story and penalizes keyword stuffing.",
-                                icon: (
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .963L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-                                    </svg>
-                                )
-                            },
-                            {
-                                title: "Eye-Flow Optimization",
-                                desc: "Bullet Upgrades are designed for scan-first reading patterns.",
-                                icon: (
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <rect x="3" y="3" width="7" height="7" rx="1" />
-                                        <rect x="14" y="3" width="7" height="7" rx="1" />
-                                        <rect x="3" y="14" width="7" height="7" rx="1" />
-                                        <rect x="14" y="14" width="7" height="7" rx="1" />
-                                    </svg>
-                                )
-                            },
-                            {
-                                title: "Honest ATS Education",
-                                desc: "We teach how parsers work instead of selling fear.",
-                                icon: (
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                        <circle cx="11" cy="11" r="8" />
-                                        <path d="m21 21-4.3-4.3" />
-                                    </svg>
-                                )
-                            }
-                        ].map((principle, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
-                                className="rounded-xl border border-border/40 bg-white dark:bg-card p-5"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground shrink-0">
-                                        {principle.icon}
-                                    </div>
-                                    <div>
-                                        <strong className="block text-foreground font-medium text-sm mb-1">
-                                            {principle.title}
-                                        </strong>
-                                        <p className="text-sm text-muted-foreground leading-relaxed">
-                                            {principle.desc}
-                                        </p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                <section className="landing-section-pad landing-section">
+                    <div className="landing-rail">
+                        <div className="mb-6">
+                            <div className="mb-2 text-label-mono text-muted-foreground">Full library</div>
+                            <h2 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[40px]">
+                                Browse by theme
+                            </h2>
+                        </div>
+                        <Accordion type="multiple" className="space-y-3">
+                            {categories.map((category) => (
+                                <AccordionItem key={category.id} value={category.id} className="landing-card px-5">
+                                    <AccordionTrigger className="py-4 text-left hover:no-underline">
+                                        <div>
+                                            <h3 className="font-display text-2xl leading-tight tracking-tight">{category.title}</h3>
+                                            <p className="mt-1 landing-copy-muted">{category.subtitle}</p>
+                                        </div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="pb-4">
+                                        <div className="divide-y divide-border/40 border-t border-border/40">
+                                            {category.articles.map((article) => (
+                                                <Link key={article.id} href={article.href} className="group flex items-center justify-between gap-4 py-3.5">
+                                                    <span className="text-sm text-foreground transition-colors group-hover:text-brand">
+                                                        {article.title}
+                                                    </span>
+                                                    <span className="text-label-mono text-muted-foreground">{article.readTime}</span>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
+
+                        <div className="mt-8 rounded-xl border border-border/60 bg-muted/15 px-5 py-4 text-center landing-copy-muted">
+                            Want actionable scripts in addition to research?
+                            {" "}
+                            <Link href="/guides" className="text-foreground underline underline-offset-4 hover:text-brand">
+                                Open guides
+                            </Link>.
+                        </div>
                     </div>
                 </section>
             </main>

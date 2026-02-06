@@ -5,6 +5,34 @@ import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/log
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 
+type AuthDeliveryMode = "otp" | "magic_link";
+
+function normalizeMode(input: unknown): AuthDeliveryMode {
+    if (typeof input !== "string") return "otp";
+    const trimmed = input.trim().toLowerCase();
+    return trimmed === "magic_link" ? "magic_link" : "otp";
+}
+
+function getBaseUrl() {
+    if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
+    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+    return "http://localhost:3000";
+}
+
+function inferErrorCode(message: string): { code: string; hint?: string } {
+    const lowered = message.toLowerCase();
+    if (lowered.includes("otp") && lowered.includes("disabled")) {
+        return { code: "otp_disabled", hint: "Email codes are disabled for this project." };
+    }
+    if (lowered.includes("smtp") || lowered.includes("email provider")) {
+        return { code: "email_provider", hint: "Email delivery is not configured." };
+    }
+    if (lowered.includes("rate") && lowered.includes("limit")) {
+        return { code: "rate_limited", hint: "Too many attempts. Try again shortly." };
+    }
+    return { code: "provider_error" };
+}
+
 export async function POST(request: NextRequest) {
     const request_id = getRequestId(request);
     const { method, path } = routeLabel(request);
@@ -25,6 +53,8 @@ export async function POST(request: NextRequest) {
 
         const body = await readJsonWithLimit<any>(request, 16 * 1024);
         const email = body?.email;
+        const mode = normalizeMode(body?.mode);
+        const nextParam = typeof body?.next === "string" && body.next.startsWith("/") ? body.next : "/workspace";
 
         if (!email || typeof email !== "string") {
             const res = NextResponse.json(
@@ -37,19 +67,22 @@ export async function POST(request: NextRequest) {
         }
 
         const supabase = await createSupabaseServerAction();
+        const emailRedirectTo = mode === "magic_link"
+            ? `${getBaseUrl()}/auth/callback?next=${encodeURIComponent(nextParam)}`
+            : undefined;
 
-        // Send OTP email via Supabase Auth (6-digit code, not magic link)
+        // Send OTP email via Supabase Auth (8-digit code) or magic link fallback
         const { error } = await supabase.auth.signInWithOtp({
             email: email.trim(),
             options: {
                 shouldCreateUser: true,
-                // Don't send magic link, just the code
-                emailRedirectTo: undefined,
+                emailRedirectTo
             }
         });
 
         if (error) {
             // Avoid leaking account existence or provider internals.
+            const normalized = inferErrorCode(error.message || "provider_error");
             logError({
                 msg: "auth.send_code.failed",
                 request_id,
@@ -59,12 +92,20 @@ export async function POST(request: NextRequest) {
                 outcome: "provider_error",
                 err: { name: "SupabaseError", message: error.message }
             });
-            const res = NextResponse.json({ ok: false, message: "Could not send code. Try again shortly." }, { status: 400 });
+            const res = NextResponse.json(
+                {
+                    ok: false,
+                    message: "Could not send code. Try again shortly.",
+                    errorCode: normalized.code,
+                    hint: normalized.hint
+                },
+                { status: 400 }
+            );
             res.headers.set("x-request-id", request_id);
             return res;
         }
 
-        const res = NextResponse.json({ ok: true, message: "Code sent" });
+        const res = NextResponse.json({ ok: true, message: mode === "magic_link" ? "Link sent" : "Code sent", mode });
         res.headers.set("x-request-id", request_id);
         logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 200, latency_ms: Date.now() - startedAt, outcome: "success" });
         return res;

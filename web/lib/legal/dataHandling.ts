@@ -10,17 +10,31 @@ export type DataHandlingRow = {
 
 export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
-    dataType: "Resume upload text",
-    purpose: "Generate role-specific feedback and scoring output.",
-    retention: "Processed for analysis; report output may be stored for account history.",
-    userControl: "Delete account to remove stored reports and usage history.",
+    dataType: "Resume upload text (analysis input)",
+    purpose: "Generate recruiter-style feedback, scoring, and rewrite guidance.",
+    retention: "Processed to generate results. Raw input is not stored for anonymous runs.",
+    userControl: "Sign in to save history or delete account in Settings.",
     processor: "OpenAI, Supabase"
+  },
+  {
+    dataType: "Report output + resume preview",
+    purpose: "History, comparisons, and exports for signed-in users.",
+    retention: "Stored when you save a report or run while signed in. Deleted when you delete the report or account.",
+    userControl: "Delete a report in History or delete account in Settings.",
+    processor: "Supabase"
+  },
+  {
+    dataType: "Saved resume profile (default resume)",
+    purpose: "Job matching and extension workflows.",
+    retention: "Stored until you replace it or delete your account.",
+    userControl: "Replace or remove in Settings > Matching or delete account.",
+    processor: "Supabase, OpenAI (embeddings)"
   },
   {
     dataType: "LinkedIn profile input",
     purpose: "Generate profile feedback and recruiter-read recommendations.",
-    retention: "Stored in report output when account features are used.",
-    userControl: "Delete account to remove stored reports and usage history.",
+    retention: "Stored in report output when you save history or run while signed in.",
+    userControl: "Delete a report in History or delete account in Settings.",
     processor: "OpenAI, Supabase"
   },
   {
@@ -31,8 +45,8 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
     processor: "Supabase"
   },
   {
-    dataType: "Usage and report metadata",
-    purpose: "History, billing state, fraud prevention, and reliability diagnostics.",
+    dataType: "Usage, reliability, and abuse-prevention metadata",
+    purpose: "Rate limiting, reliability diagnostics, billing state, and product health.",
     retention: "Retained for product operation and security needs.",
     userControl: "Delete account removes app-level history records.",
     processor: "Supabase"
@@ -48,10 +62,12 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 
 export const TRUST_PROMISES = [
   "Your file is encrypted in transit.",
-  "We store report output only when account/history features are used.",
+  "Anonymous runs are not stored unless you choose to save.",
+  "Signed-in runs store report history and a short resume preview you can delete.",
   "Delete account removes reports and usage history from our app database.",
   "Payment details are handled by Stripe.",
   "We do not sell resume data.",
+  "We do not use your data to train public models.",
   "This score estimates hiring signal, not hiring outcome.",
   "First full review is free. No card required.",
   "You see exactly what unlocks before payment.",

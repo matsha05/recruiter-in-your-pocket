@@ -47,10 +47,14 @@
     --ring: 215 20% 27%;
     /* Slate-700 */
 
-    --radius: 0.25rem;
-    /* 4px - App surfaces */
-    --radius-xl: 0.75rem;
+    --radius-sm: 0.25rem;
+    /* 4px - App dense */
+    --radius: 0.5rem;
+    /* 8px - Default */
+    --radius-lg: 0.75rem;
     /* 12px - Marketing cards */
+    --radius-xl: 0.75rem;
+    /* 12px - Marketing cards (legacy alias) */
 
     /* V2.1 Loading States */
     --skeleton: hsl(var(--muted) / 0.1);
@@ -65,6 +69,10 @@
     /* Slate-700 #334155 */
     --slate-muted: 215 16% 47%;
     /* Slate-500 #64748B */
+
+    /* Inverted Surface (dark sections in light mode) */
+    --surface-inverted: 222 47% 11%;
+    /* Slate-950 #020617 */
 
     /* Premium: Gold (Unlock moments ONLY) */
     --premium: 43 96% 44%;
@@ -85,8 +93,6 @@
     /* = moss, for positive states (85+ scores, confirmations) */
     --warning: 48 96% 53%;
     /* = amber, for caution callouts (Critical Miss, gaps) */
-    --premium: 43 96% 44%;
-    /* = gold, for UNLOCK MOMENTS ONLY (upgrade CTAs, best value) */
     /* --destructive already defined above, for errors and <70 scores */
 
     /* V2.1 TYPOGRAPHY */
@@ -114,6 +120,18 @@
     /* 24px - hero cards */
     --space-section: 4rem;
     /* 64px - between major sections */
+
+    /* V2.1 SPACING SCALE (4px rhythm) */
+    --space-4: 0.25rem;
+    --space-8: 0.5rem;
+    --space-12: 0.75rem;
+    --space-16: 1rem;
+    --space-20: 1.25rem;
+    --space-24: 1.5rem;
+    --space-32: 2rem;
+    --space-40: 2.5rem;
+    --space-56: 3.5rem;
+    --space-72: 4.5rem;
 
     /* V2.1 BORDER OPACITY (Restrained Premium) */
     --border-subtle: 10%;
@@ -152,8 +170,6 @@
     --destructive: 0 62% 31%;
     --destructive-foreground: 0 0% 93%;
 
-    --border: 0 0% 93%;
-    /* Uses opacity */
     --input: 220 10% 20%;
     --ring: 213 27% 60%;
     /* Slate-400 */
@@ -499,6 +515,97 @@
   /* Label mono: uppercase tracking-widest pattern */
   .text-label-mono {
     @apply font-mono text-[10px] uppercase tracking-widest text-muted-foreground;
+  }
+
+  /* ==========================================================================
+     LANDING SYSTEM TOKENS
+     - Route-scoped rhythm and surface primitives
+     - Replaces ad-hoc section spacing on marketing landing
+     ========================================================================== */
+
+  .landing-page {
+    --landing-pad-x: clamp(1.25rem, 1.8vw, 2.25rem);
+    --landing-rail-max: 77.5rem;
+    --landing-section-y: clamp(4.25rem, 6.4vw, 6rem);
+    --landing-hero-top: clamp(2rem, 4vw, 3.25rem);
+    --landing-hero-bottom: clamp(2.75rem, 5.8vw, 4.5rem);
+    --landing-split-gap: clamp(2.5rem, 5.4vw, 3.75rem);
+    --landing-card-pad: clamp(1.125rem, 1.5vw, 1.5rem);
+    --landing-card-pad-lg: clamp(1.25rem, 1.9vw, 1.75rem);
+    @apply min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  .landing-section-pad {
+    padding-inline: var(--landing-pad-x);
+  }
+
+  .landing-rail {
+    margin-inline: auto;
+    max-width: var(--landing-rail-max);
+  }
+
+  .landing-section {
+    padding-block: var(--landing-section-y);
+  }
+
+  .landing-section-hero {
+    padding-top: var(--landing-hero-top);
+    padding-bottom: var(--landing-hero-bottom);
+  }
+
+  .landing-section-divider {
+    @apply border-b border-slate-100 dark:border-slate-800;
+  }
+
+  .landing-section-split {
+    @apply border-t border-slate-100 dark:border-slate-800;
+    margin-top: var(--landing-split-gap);
+    padding-top: calc(var(--landing-split-gap) - 0.5rem);
+  }
+
+  .landing-card {
+    @apply rounded-xl border border-border/60 bg-white dark:bg-slate-900;
+  }
+
+  .landing-card-soft {
+    @apply rounded-xl border border-border/60 bg-muted/20;
+  }
+
+  .landing-card-pad {
+    padding: var(--landing-card-pad-lg);
+  }
+
+  .landing-eyebrow {
+    @apply text-label-mono text-muted-foreground;
+  }
+
+  .landing-deep-ink {
+    @apply relative overflow-hidden border-y;
+    padding-block: clamp(4.5rem, 6.8vw, 5.75rem);
+    border-color: rgb(15 23 42 / 0.8);
+    background-image:
+      radial-gradient(940px 360px at 14% -8%, rgb(13 148 136 / 0.14), transparent),
+      linear-gradient(180deg, #061126 0%, #040b17 100%);
+  }
+
+  .landing-deep-ink-quote {
+    @apply rounded-xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm;
+  }
+
+  .landing-deep-ink-panel {
+    @apply rounded-2xl border border-brand/35 bg-white/[0.04] p-6 backdrop-blur-sm md:p-7;
+  }
+
+  .landing-copy {
+    @apply text-[15px] leading-relaxed text-slate-700 dark:text-slate-300;
+  }
+
+  .landing-copy-muted {
+    @apply text-sm leading-relaxed text-slate-600 dark:text-slate-400;
+  }
+
+  .landing-copy-inverted {
+    @apply text-[15px] leading-relaxed text-slate-300;
   }
 
   /* Hero responsive: landing page headline */

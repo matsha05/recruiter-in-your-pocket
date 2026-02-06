@@ -107,6 +107,11 @@ export default function PurchaseRestoreClient() {
           <p className="mt-3 text-sm text-muted-foreground">
             Use this page if payment succeeded but access looks locked, or if you need invoices and billing controls.
           </p>
+          {signedIn && (
+            <p className="mt-2 text-xs text-muted-foreground">
+              Signed in as <span className="text-foreground font-medium">{user?.email}</span>
+            </p>
+          )}
           {billingUpdated && (
             <p className="mt-3 rounded border border-success/20 bg-success/10 px-3 py-2 text-xs text-success">
               Billing updated successfully.
@@ -153,6 +158,12 @@ export default function PurchaseRestoreClient() {
                 {isReceiptsLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}
                 Load Receipts
               </button>
+              <Link
+                href="/workspace"
+                className="inline-flex items-center gap-2 rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
+              >
+                Back to Workspace
+              </Link>
             </div>
           )}
         </section>
