@@ -1,108 +1,87 @@
 "use client";
 
 import Link from "next/link";
-// SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
-import { ShieldCheck, Lock, Trash2, FileText, CheckCircle2 } from "lucide-react";
 import { LegalNav } from "@/components/legal/LegalNav";
+import { ShieldCheck, Lock, Receipt, Trash2, CheckCircle2 } from "lucide-react";
+import { LEGAL_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
+
+const trustBlocks = [
+  {
+    icon: ShieldCheck,
+    title: "Evidence over overclaim",
+    body: "Scores are presented as hiring-signal estimates, not guaranteed outcomes."
+  },
+  {
+    icon: Lock,
+    title: "Clear data handling",
+    body: "Security and retention behavior is documented in plain language on /security and /privacy."
+  },
+  {
+    icon: Receipt,
+    title: "Transparent billing controls",
+    body: "Checkout, invoices, cancellations, and card updates are handled through Stripe."
+  },
+  {
+    icon: Trash2,
+    title: "User-controlled deletion",
+    body: "Delete account removes reports and usage history from our app database."
+  }
+];
 
 export default function TrustClient() {
-    return (
-        <>
-            <main className="max-w-4xl mx-auto px-6 py-20">
-                <LegalNav />
+  return (
+    <>
+      <main className="max-w-4xl mx-auto px-6 py-16">
+        <LegalNav />
 
-                {/* Hero */}
-                <header className="mb-24 text-center max-w-2xl mx-auto">
-                    <h1 className="font-display text-5xl md:text-6xl font-medium text-foreground mb-6 tracking-tight">
-                        Your Data. Your Rules.
-                    </h1>
-                    <p className="text-xl text-muted-foreground leading-relaxed">
-                        We built Recruiter in Your Pocket to serve candidates, not to feed data brokers.
-                        Here is our promise to you.
-                    </p>
-                </header>
+        <header className="mb-12 text-center max-w-2xl mx-auto">
+          <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground mb-4">
+            Trust, In Operational Terms
+          </h1>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            This page summarizes what we claim, where to verify it, and what controls you have in-product.
+          </p>
+          <p className="text-xs font-mono text-muted-foreground mt-3">Last updated: {LEGAL_LAST_UPDATED}</p>
+        </header>
 
-                {/* Core Promises Grid */}
-                <div className="grid md:grid-cols-2 gap-6 mb-24">
-                    <PromiseCard
-                        icon={ShieldCheck}
-                        iconColor="text-moss"
-                        title="We verify, we don't sell."
-                        description="Your resume is parsed solely to generate feedback. We do not sell your personal data to recruiters, job boards, or third-party advertisers. You are the customer, not the product."
-                    />
-                    <PromiseCard
-                        icon={Lock}
-                        iconColor="text-premium"
-                        title="Bank-grade Encryption"
-                        description="We use Supabase (Postgres) for data storage, which is encrypted at rest and in transit. Payments are processed by Stripe; we never touch your credit card numbers."
-                    />
-                    <PromiseCard
-                        icon={Trash2}
-                        iconColor="text-rose"
-                        title="You own the delete button"
-                        description="You can delete your account and all associated data at any time from the Settings page. When you say delete, we mean 'DELETE FROM users WHERE id = ...'."
-                    />
-                    <PromiseCard
-                        icon={FileText}
-                        iconColor="text-primary"
-                        title="AI Analysis Policy"
-                        description="We use OpenAI to generate resume feedback. Your data is sent to the LLM for analysis but is not used to train OpenAI's public models (via our API usage tier)."
-                    />
-                </div>
-
-                {/* Methodology Divider */}
-                <div className="flex items-center justify-center mb-16">
-                    <div className="h-px bg-border w-24"></div>
-                    <span className="px-4 text-muted-foreground font-display italic text-lg">The Philosophy</span>
-                    <div className="h-px bg-border w-24"></div>
-                </div>
-
-                {/* Methodology Section */}
-                <section className="bg-secondary/10 border border-border/10 rounded-md p-8 md:p-12 shadow-sm">
-                    <div className="max-w-2xl mx-auto">
-                        <h2 className="font-display text-3xl font-medium text-foreground mb-8 text-center">
-                            Evidence, then Advice.
-                        </h2>
-                        <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                            <p>
-                                Most career tools use generic rules (&quot;Don&apos;t use passive voice&quot;).
-                                We rely on <Link href="/research/how-recruiters-read" className="underline underline-offset-4 decoration-muted-foreground hover:decoration-primary transition-colors font-medium">recruiter behavior research</Link> — how candidates are actually evaluated in seconds.
-                            </p>
-                            <ul className="space-y-4 mt-6">
-                                <li className="flex gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-moss flex-shrink-0" />
-                                    <span><strong>Quantification:</strong> Do you use numbers to prove impact? We count them.</span>
-                                </li>
-                                <li className="flex gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-moss flex-shrink-0" />
-                                    <span><strong>Action Verbs:</strong> Do you lead or just participate? We measure density.</span>
-                                </li>
-                                <li className="flex gap-3">
-                                    <CheckCircle2 className="w-6 h-6 text-moss flex-shrink-0" />
-                                    <span><strong>Brevity:</strong> Can you explain a complex project in 2 lines? We flag bloat.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <Footer />
-        </>
-    );
-}
-
-function PromiseCard({ icon: Icon, iconColor, title, description }: { icon: any, iconColor: string, title: string, description: string }) {
-    return (
-        <div className="flex flex-col gap-4 p-8 rounded-md border border-border/10 bg-card/30 hover:bg-secondary/20 hover:border-border/20 transition-all duration-normal">
-            <div className={`w-12 h-12 rounded-md bg-secondary/20 border border-border/10 flex items-center justify-center ${iconColor}`}>
-                <Icon className="w-6 h-6" strokeWidth={1.5} />
+        <section className="grid gap-4 md:grid-cols-2 mb-8">
+          {trustBlocks.map((block) => (
+            <div key={block.title} className="rounded-xl border border-border/50 bg-card p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <block.icon className="w-4 h-4 text-brand" />
+                <h2 className="text-sm font-semibold text-foreground">{block.title}</h2>
+              </div>
+              <p className="text-sm text-muted-foreground">{block.body}</p>
             </div>
-            <div>
-                <h3 className="font-medium text-lg text-foreground mb-2">{title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{description}</p>
-            </div>
-        </div>
-    );
+          ))}
+        </section>
+
+        <section className="rounded-xl border border-brand/20 bg-brand/5 p-6 mb-8">
+          <h2 className="text-sm font-semibold text-foreground mb-3">Commitments</h2>
+          <ul className="space-y-2">
+            {TRUST_PROMISES.map((line) => (
+              <li key={line} className="text-sm text-muted-foreground flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-brand mt-0.5 shrink-0" />
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="rounded-xl border border-border/50 bg-card p-6 text-sm text-muted-foreground">
+          Verify details:
+          {" "}
+          <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security & Data Handling</Link>
+          {" · "}
+          <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</Link>
+          {" · "}
+          <Link href="/terms" className="underline underline-offset-4 hover:text-foreground">Terms</Link>
+          {" · "}
+          <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Methodology</Link>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 }

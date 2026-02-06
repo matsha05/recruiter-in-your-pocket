@@ -6,7 +6,6 @@ import { UserNav } from "@/components/shared/UserNav";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { PocketMark, Wordmark } from "@/components/icons";
-import { cn } from "@/lib/utils";
 
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */
@@ -42,6 +41,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                 {/* Content Nav Links */}
                 {(showResearchLink || showResourcesLink) && (
                     <div className="hidden md:flex items-center gap-1">
+                        <NavLink href="/pricing">Pricing</NavLink>
                         {showResearchLink && (
                             <NavLink href="/research">Research</NavLink>
                         )}

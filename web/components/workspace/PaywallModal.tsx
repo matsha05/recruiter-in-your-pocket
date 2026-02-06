@@ -13,24 +13,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
+import { RefreshCw } from "lucide-react";
+import { Analytics } from "@/lib/analytics";
 
 interface PaywallModalProps {
     isOpen: boolean;
     onClose: () => void;
     creditsRemaining?: number;
     hasCurrentReport?: boolean;
-    onSuccess?: () => void;
 }
 
 export default function PaywallModal({
     isOpen,
-    onClose,
-    onSuccess
+    onClose
 }: PaywallModalProps) {
     const { user } = useAuth();
     const [selectedTier, setSelectedTier] = useState<PricingTier>("monthly");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
+    const [restoreLoading, setRestoreLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const isLoggedIn = !!user;
@@ -48,12 +49,15 @@ export default function PaywallModal({
         }
 
         try {
+            Analytics.checkoutStarted(selectedTier, selectedTier === "monthly" ? 9 : 79);
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     tier: selectedTier,
-                    email: checkoutEmail
+                    email: checkoutEmail,
+                    source: "paywall",
+                    idempotencyKey: crypto.randomUUID()
                 })
             });
 
@@ -62,9 +66,11 @@ export default function PaywallModal({
             if (result.ok && result.url) {
                 window.location.href = result.url;
             } else {
+                Analytics.track("checkout_start_failed", { source: "paywall", tier: selectedTier });
                 setError(result.message || "Failed to start checkout");
             }
         } catch (err: any) {
+            Analytics.track("checkout_start_failed", { source: "paywall", tier: selectedTier });
             setError(err.message || "Something went wrong");
         } finally {
             setLoading(false);
@@ -79,15 +85,21 @@ export default function PaywallModal({
         }
     };
 
+    const handleRestore = async () => {
+        Analytics.track("billing_restore_requested", { source: "paywall" });
+        setRestoreLoading(true);
+        window.location.href = "/purchase/restore";
+    };
+
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogContent className="max-w-[400px] p-6">
                 <DialogHeader className="text-center mb-4">
                     <DialogTitle className="font-display text-xl font-medium">
-                        In 7.4 seconds, they decided.
+                        Your free review is used.
                     </DialogTitle>
                     <DialogDescription className="text-sm">
-                        See exactly what made them pause - and how to fix it.
+                        Unlock unlimited iterations, recruiter-grade rewrites, and job-targeted feedback.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -112,14 +124,14 @@ export default function PaywallModal({
                     {isLoggedIn ? (
                         <>
                             <p className="text-sm text-muted-foreground mb-3 text-center">
-                                Adding credits to <strong className="text-foreground">{user.email}</strong>
+                                Upgrading <strong className="text-foreground">{user.email}</strong>
                             </p>
                             <Button
                                 className="w-full"
                                 onClick={handleCheckout}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `See What They Saw — ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
+                                {loading ? "Processing..." : `Unlock Full Review — ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
                             </Button>
                         </>
                     ) : (
@@ -141,11 +153,21 @@ export default function PaywallModal({
                                 disabled={!email.trim()}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `See What They Saw →`}
+                                {loading ? "Processing..." : `Continue to Secure Checkout`}
                             </Button>
                         </>
                     )}
                 </div>
+
+                <Button
+                    variant="ghost"
+                    className="w-full text-muted-foreground"
+                    onClick={handleRestore}
+                    isLoading={restoreLoading}
+                >
+                    {!restoreLoading && <RefreshCw className="w-4 h-4 mr-2" />}
+                    Restore Access / Manage Billing
+                </Button>
 
                 {error && (
                     <div className="text-destructive text-sm text-center mb-3 bg-destructive/10 p-2 rounded">
@@ -154,7 +176,7 @@ export default function PaywallModal({
                 )}
 
                 <p className="text-center text-[10px] text-muted-foreground/50 uppercase tracking-widest">
-                    Secure Payment by Stripe · 100% Money-Back Guarantee
+                    Secure checkout by Stripe · Cancel monthly anytime · Receipts in billing portal
                 </p>
             </DialogContent>
         </Dialog>

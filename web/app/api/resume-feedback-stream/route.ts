@@ -24,13 +24,14 @@ import {
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import {
     sanitizeUserInput,
     wrapUserContent,
     INJECTION_RESISTANCE_SUFFIX
 } from "@/lib/security/inputSanitization";
+import { getNextUsesRemaining, isPassActive, shouldConsumePassCredit } from "@/lib/billing/entitlements";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,12 +52,11 @@ async function getActivePass(supabase: any, userId: string) {
         .select("id, tier, expires_at, uses_remaining, created_at")
         .eq("user_id", userId)
         .gt("expires_at", nowIso())
-        .gt("uses_remaining", 0)
         .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
+        .limit(10);
     if (error) throw error;
-    return data || null;
+    const active = (data || []).find((pass: any) => isPassActive(pass));
+    return active || null;
 }
 
 function getBypassPaywall(): boolean {
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     logInfo({ msg: "http.request.started", request_id, route, method, path });
 
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
+    const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
         const res = NextResponse.json(
             { ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." },
@@ -209,7 +209,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "PAYWALL_REQUIRED",
-                        message: "You've used your free full reports. Upgrade to keep going."
+                        message: "You've used your free full review. Upgrade to keep going."
                     }) + "\n"));
                     controller.close();
                     logInfo({
@@ -364,13 +364,13 @@ export async function POST(request: Request) {
                 }) + "\n"));
 
                 // CONSUME PASS CREDIT
-                // Decrement uses_remaining for ALL pass types after successful report generation
-                if (activePass) {
+                // Unlimited plans do not consume per-review credits.
+                if (activePass && shouldConsumePassCredit(activePass)) {
                     try {
                         const admin = createSupabaseAdminClient();
                         if (!admin) throw new Error("Supabase admin client not configured");
 
-                        const newUsesRemaining = Math.max(0, (activePass.uses_remaining || 1) - 1);
+                        const newUsesRemaining = getNextUsesRemaining(activePass);
                         await admin
                             .from("passes")
                             .update({ uses_remaining: newUsesRemaining })

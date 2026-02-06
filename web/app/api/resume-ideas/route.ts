@@ -4,7 +4,7 @@ import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/pro
 import { validateResumeIdeasPayload, validateResumeIdeasRequest } from "@/lib/backend/validation";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 
 export const runtime = "nodejs";
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
+    const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
       const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
       res.headers.set("x-request-id", request_id);

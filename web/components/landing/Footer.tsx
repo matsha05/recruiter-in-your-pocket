@@ -8,7 +8,7 @@ import { PocketMark, Wordmark } from "@/components/icons";
  * - Raycast: Clean simplicity, newsletter focus
  * - Cal.com: Trust indicators  
  * - Mercury: Sophisticated legal typography
- * - Your unique trust signals (encryption, auto-delete, no AI training)
+ * - Your trust signals (encryption, transparent data handling, no data resale)
  * 
  * Key changes from v2:
  * - Removed dated pipe separators
@@ -40,12 +40,15 @@ export default function Footer() {
                         {/* Product */}
                         <FooterColumn title="Product">
                             <FooterLink href="/workspace">Studio</FooterLink>
+                            <FooterLink href="/pricing">Pricing</FooterLink>
                             <FooterLink href="/research">Research</FooterLink>
                             <FooterLink href="/guides">Resources</FooterLink>
                         </FooterColumn>
 
                         {/* Legal */}
                         <FooterColumn title="Legal">
+                            <FooterLink href="/security">Data Handling</FooterLink>
+                            <FooterLink href="/methodology">Methodology</FooterLink>
                             <FooterLink href="/privacy">Privacy</FooterLink>
                             <FooterLink href="/terms">Terms</FooterLink>
                             <FooterLink href="/trust">Trust</FooterLink>

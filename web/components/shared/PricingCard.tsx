@@ -3,6 +3,7 @@
 import { Check, Loader2, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { PRICING_PLANS } from "@/lib/billing/pricing";
 
 // Pricing tiers: free, monthly ($9), lifetime ($79)
 export type PricingTier = "free" | "monthly" | "lifetime";
@@ -13,55 +14,11 @@ interface PricingCardProps {
     selected?: boolean;
     onSelect?: () => void;
     loading?: boolean;
+    allowFreeSelect?: boolean;
     className?: string;
 }
 
-const TIER_DATA = {
-    free: {
-        label: "Free",
-        price: "$0",
-        period: "forever",
-        description: "3 free analyses to start",
-        buttonText: "Current Plan",
-        badge: undefined as string | undefined,
-        features: [
-            { text: "3 resume analyses", bold: true },
-            { text: "Full 4-dimension scoring", bold: false },
-            { text: "Critical Miss detection", bold: false },
-            { text: "Red Pen rewrites", bold: false },
-        ],
-    },
-    monthly: {
-        label: "Full Access",
-        price: "$9",
-        period: "/month",
-        description: "Unlimited analyses, cancel anytime",
-        buttonText: "Start Monthly",
-        badge: undefined as string | undefined,
-        features: [
-            { text: "Unlimited analyses", bold: true },
-            { text: "LinkedIn profile review", bold: false },
-            { text: "Job description matching", bold: false },
-            { text: "Chrome extension access", bold: false },
-            { text: "Priority email support", bold: false },
-        ],
-    },
-    lifetime: {
-        label: "Lifetime",
-        price: "$79",
-        period: "one-time",
-        description: "Pay once, use forever",
-        buttonText: "Get Lifetime Access",
-        badge: "Best Value",
-        features: [
-            { text: "Everything in Full Access", bold: true },
-            { text: "Never pay again", bold: false },
-            { text: "All future updates included", bold: false },
-            { text: "Export to PDF/ATS formats", bold: false },
-            { text: "Priority support forever", bold: false },
-        ],
-    },
-} as const;
+const TIER_DATA = PRICING_PLANS;
 
 export function PricingCard({
     tier,
@@ -69,11 +26,14 @@ export function PricingCard({
     selected = false,
     onSelect,
     loading = false,
+    allowFreeSelect = false,
     className,
 }: PricingCardProps) {
     const data = TIER_DATA[tier];
     const isHighlighted = tier === "lifetime";
     const isFree = tier === "free";
+    const disableForFree = isFree && !allowFreeSelect;
+    const buttonLabel = isFree && allowFreeSelect ? "Run Free Review" : data.buttonText;
 
     // COMPACT variant - for modals
     if (variant === "compact") {
@@ -81,13 +41,13 @@ export function PricingCard({
             <button
                 type="button"
                 onClick={onSelect}
-                disabled={loading || isFree}
+                disabled={loading || disableForFree}
                 className={cn(
                     "p-4 rounded-xl text-center transition-all duration-200 ease-out border flex flex-col items-center justify-center relative overflow-hidden",
                     selected
                         ? "bg-card ring-2 ring-brand border-transparent"
                         : "bg-transparent border-border/60 hover:bg-secondary/10 hover:border-brand/30",
-                    isFree && "opacity-50 cursor-not-allowed",
+                    disableForFree && "opacity-50 cursor-not-allowed",
                     className
                 )}
             >
@@ -172,7 +132,7 @@ export function PricingCard({
                 variant={isHighlighted ? "brand" : isFree ? "ghost" : "outline"}
                 className="w-full"
                 onClick={onSelect}
-                disabled={loading || isFree}
+                disabled={loading || disableForFree}
             >
                 {loading ? (
                     <>
@@ -180,7 +140,7 @@ export function PricingCard({
                         Processing...
                     </>
                 ) : (
-                    data.buttonText
+                    buttonLabel
                 )}
             </Button>
         </div>

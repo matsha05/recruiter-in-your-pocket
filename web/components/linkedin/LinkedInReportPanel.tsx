@@ -15,6 +15,7 @@ interface LinkedInReportPanelProps {
     isSample?: boolean;
     onNewReport?: () => void;
     freeUsesRemaining?: number;
+    hasPaidAccess?: boolean;
     onUpgrade?: () => void;
 }
 
@@ -24,7 +25,8 @@ export function LinkedInReportPanel({
     profileHeadline,
     isSample = false,
     onNewReport,
-    freeUsesRemaining = 2,
+    freeUsesRemaining = 1,
+    hasPaidAccess = false,
     onUpgrade
 }: LinkedInReportPanelProps) {
     const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['first-impression', 'headline', 'top-fixes']));
@@ -59,7 +61,7 @@ export function LinkedInReportPanel({
         });
     };
 
-    const isExhausted = !isSample && freeUsesRemaining <= 0;
+    const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
 
     return (
         <div className="space-y-12">
@@ -440,7 +442,9 @@ export function LinkedInReportPanel({
                     ) : onNewReport ? (
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
-                                {freeUsesRemaining > 0
+                                {hasPaidAccess
+                                    ? "Paid access is active. Iterate profile versions until the score stabilizes."
+                                    : freeUsesRemaining > 0
                                     ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
                                     : 'Ready to analyze another version?'}
                             </p>

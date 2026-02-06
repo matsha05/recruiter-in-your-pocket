@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, ChangeEvent } from 'react';
+import Link from 'next/link';
 import { ArrowRight, Linkedin, FileText, X, CheckCircle2, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TrustBadges } from '@/components/shared/TrustBadges';
@@ -101,16 +102,14 @@ export function LinkedInInputPanel({
     };
 
     const getRunHint = () => {
-        if (!user) {
-            // Logged out / Guest logic
-            if (freeUsesRemaining >= 2) return "No login required";
-            if (freeUsesRemaining === 1) return "Your first review is free";
-            return "Upgrade to continue";
-        } else {
-            // Logged in user logic
-            if (freeUsesRemaining > 0) return `${freeUsesRemaining} credit${freeUsesRemaining === 1 ? '' : 's'} remaining`;
-            return "Upgrade to continue";
+        const membership = user?.membership;
+        if (membership === "monthly" || membership === "lifetime") return "Paid access active";
+        if (membership === "credit") {
+            const paid = Number(user?.paidUsesLeft || 0);
+            return `${paid} paid review${paid === 1 ? '' : 's'} remaining`;
         }
+        if (freeUsesRemaining > 0) return "1 free review available";
+        return "Upgrade to continue";
     };
 
     return (
@@ -260,6 +259,11 @@ export function LinkedInInputPanel({
                     <TrustBadges variant="inline" />
                     <p className="text-[10px] text-muted-foreground/60 uppercase tracking-widest font-medium">
                         {getRunHint()}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground">
+                        <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Data handling</Link>
+                        {" · "}
+                        <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Scoring methodology</Link>
                     </p>
                 </div>
             </div>

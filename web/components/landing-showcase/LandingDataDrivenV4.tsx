@@ -206,7 +206,7 @@ export function LandingDataDrivenV4() {
                     </div>
                     <div className="flex items-center gap-6 text-sm text-slate-500">
                         <span className="flex items-center gap-1"><Lock className="w-4 h-4" /> Encrypted</span>
-                        <span className="flex items-center gap-1"><Trash2 className="w-4 h-4" /> Auto-deleted</span>
+                        <span className="flex items-center gap-1"><Trash2 className="w-4 h-4" /> Delete anytime</span>
                         <span className="flex items-center gap-1"><Shield className="w-4 h-4" /> Never trains AI</span>
                     </div>
                 </div>

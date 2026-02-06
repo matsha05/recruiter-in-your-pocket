@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import { Lock, Shield, Trash2, ArrowRight, Check, ExternalLink, BookOpen, BarChart2, Users, FileText, Award, Quote, TrendingUp, Target } from "lucide-react";
 
 import Footer from "@/components/landing/Footer";
+import { Analytics } from "@/lib/analytics";
 
 /**
  * LandingContent — Main landing page content
@@ -13,7 +14,7 @@ import Footer from "@/components/landing/Footer";
  * V2.2 "Modern Editorial" design with:
  * - Data-forward hero (7.4s stat, progress bars)
  * - Research citations throughout
- * - 3-tier subscription pricing
+ * - Free + monthly + lifetime pricing
  */
 
 // Count-up animation for numbers
@@ -65,7 +66,7 @@ function ProgressBar({ value, label, delay = 0 }: { value: number; label: string
 // Citation badge
 function Citation({ source, year }: { source: string; year: string }) {
     return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px] font-mono text-slate-600 dark:text-slate-400">
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px] font-mono text-slate-700 dark:text-slate-300">
             {source}, {year}
         </span>
     );
@@ -77,16 +78,22 @@ export default function LandingContent() {
     async function handleCheckout(tier: "monthly" | "lifetime") {
         setCheckoutLoading(tier);
         try {
+            Analytics.checkoutStarted(tier, tier === "monthly" ? 9 : 79);
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ tier }),
+                body: JSON.stringify({
+                    tier,
+                    source: "landing",
+                    idempotencyKey: crypto.randomUUID()
+                }),
             });
             const data = await res.json();
             if (data.url) {
                 window.location.href = data.url;
             }
         } catch (e) {
+            Analytics.track("checkout_start_failed", { source: "landing", tier });
             console.error(e);
         } finally {
             setCheckoutLoading(null);
@@ -112,7 +119,7 @@ export default function LandingContent() {
                             </div>
 
                             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.05] mb-6">
-                                Understand how you're <span className="text-teal-600">actually</span> being evaluated
+                                Understand how you&apos;re <span className="text-teal-600">actually</span> being evaluated
                             </h1>
 
                             <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8 max-w-lg">
@@ -139,7 +146,16 @@ export default function LandingContent() {
 
                             {/* CTA */}
                             <div className="flex flex-wrap items-center gap-4">
-                                <Link href="/workspace" className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors">
+                                <Link
+                                    href="/workspace"
+                                    onClick={() => {
+                                        Analytics.track("landing_cta_clicked", {
+                                            cta: "hero_get_analysis",
+                                            destination: "/workspace",
+                                        });
+                                    }}
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors"
+                                >
                                     Get Your Analysis
                                     <ArrowRight className="w-4 h-4" />
                                 </Link>
@@ -367,7 +383,7 @@ export default function LandingContent() {
                             >
                                 <Quote className="w-8 h-8 text-teal-400 mb-4" />
                                 <p className="text-xl text-white leading-relaxed mb-6">
-                                    "{testimonial.quote}"
+                                    &quot;{testimonial.quote}&quot;
                                 </p>
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full bg-teal-500/30 flex items-center justify-center text-teal-400 font-bold">
@@ -392,8 +408,12 @@ export default function LandingContent() {
                             Transparent pricing
                         </h2>
                         <p className="text-slate-600 dark:text-slate-400">
-                            Start free. Upgrade when you're ready. Cancel anytime.
+                            One free review. Upgrade when iteration matters.
                         </p>
+                        <Link href="/pricing" className="inline-flex items-center gap-1 text-sm text-teal-600 hover:text-teal-700 mt-3">
+                            View full pricing
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -406,7 +426,7 @@ export default function LandingContent() {
                             </div>
                             <ul className="space-y-3 mb-6">
                                 {[
-                                    "3 resume analyses",
+                                    "1 full review (free)",
                                     "Full 4-dimension scoring",
                                     "Critical Miss detection",
                                     "Red Pen rewrites",
@@ -418,8 +438,17 @@ export default function LandingContent() {
                                     </li>
                                 ))}
                             </ul>
-                            <Link href="/workspace" className="block w-full py-3 rounded-md border border-slate-200 dark:border-slate-700 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-center">
-                                Start Free Analysis
+                            <Link
+                                href="/workspace"
+                                onClick={() => {
+                                    Analytics.track("landing_cta_clicked", {
+                                        cta: "pricing_run_free_review",
+                                        destination: "/workspace",
+                                    });
+                                }}
+                                className="block w-full py-3 rounded-md border border-slate-200 dark:border-slate-700 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-center"
+                            >
+                                Run Free Review
                             </Link>
                         </div>
 
@@ -500,7 +529,7 @@ export default function LandingContent() {
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                             <Trash2 className="w-4 h-4 text-slate-400" />
-                            Auto-deleted in 24 hours
+                            Report data you can delete anytime
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                             <Shield className="w-4 h-4 text-slate-400" />
@@ -508,12 +537,12 @@ export default function LandingContent() {
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                             <Award className="w-4 h-4 text-slate-400" />
-                            GDPR compliant
+                            Billing handled by Stripe
                         </div>
                     </div>
 
                     <div className="text-center text-xs text-slate-400">
-                        Methodology reviewed by hiring professionals from Google, Meta, and Stripe
+                        Methodology and data handling are documented in plain English
                     </div>
                 </div>
             </section>

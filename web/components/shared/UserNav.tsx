@@ -57,13 +57,23 @@ export function UserNav({
 
                     {/* Membership Status Badge */}
                     <div className="mt-2 text-[10px] font-medium uppercase tracking-wider flex flex-col gap-1">
-                        {user.membership === "pro" && (
+                        {user.membership === "lifetime" && (
                             <span className="text-brand flex items-center gap-1">
-                                Pro Member • <span className="text-muted-foreground lowercase normal-case">{user.daysLeft} days left</span>
+                                Lifetime Access
                             </span>
                         )}
-                        {user.membership === "audit" && (
-                            <span className="text-success">1 Review Available</span>
+                        {user.membership === "monthly" && (
+                            <span className="text-brand flex items-center gap-1">
+                                Full Access Monthly
+                                {typeof user.daysLeft === "number" ? (
+                                    <span className="text-muted-foreground lowercase normal-case">• {user.daysLeft} days left</span>
+                                ) : null}
+                            </span>
+                        )}
+                        {user.membership === "credit" && (
+                            <span className="text-success">
+                                {user.paidUsesLeft || 0} paid review{(user.paidUsesLeft || 0) === 1 ? "" : "s"} remaining
+                            </span>
                         )}
                         {(user.membership === "free" || !user.membership) && (
                             <div className="flex flex-col gap-1">
@@ -102,7 +112,7 @@ export function UserNav({
                         </DropdownMenuItem>
                     ) : (
                         <DropdownMenuItem asChild>
-                            <Link href="/settings" className="w-full">
+                            <Link href="/settings/account" className="w-full">
                                 <SettingsIcon size={16} className="mr-2" />
                                 Settings
                             </Link>

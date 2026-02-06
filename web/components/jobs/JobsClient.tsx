@@ -383,7 +383,7 @@ function EmptyState({ hasJobs }: { hasJobs: boolean }) {
             <div className="space-y-3">
                 <h3 className="font-display text-lg font-medium text-foreground">No jobs captured yet</h3>
                 <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-                    Save your first job from LinkedIn or Indeed using the RIYP extension, and we'll show you how your resume stacks up.
+                    Save your first job from LinkedIn or Indeed using the RIYP extension, and we&apos;ll show you how your resume stacks up.
                 </p>
             </div>
             <div className="flex items-center justify-center gap-8 pt-2">

@@ -384,7 +384,7 @@ export function LandingDataDriven() {
                             Transparent pricing
                         </h2>
                         <p className="text-slate-600">
-                            Start with 3 free analyses. Full methodology access included.
+                            Start with 1 free review. Full methodology access included.
                         </p>
                     </div>
 
@@ -458,7 +458,7 @@ export function LandingDataDriven() {
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Trash2 className="w-4 h-4 text-slate-400" />
-                            Auto-deleted in 24 hours
+                            Delete anytime
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
                             <Shield className="w-4 h-4 text-slate-400" />

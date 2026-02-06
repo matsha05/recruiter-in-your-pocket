@@ -24,8 +24,9 @@ import {
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { getNextUsesRemaining, isPassActive, shouldConsumePassCredit } from "@/lib/billing/entitlements";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -41,14 +42,14 @@ function hashResumeText(text: string) {
 async function getActivePass(supabase: NonNullable<Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>>>, userId: string) {
   const { data, error } = await supabase
     .from("passes")
-    .select("id, tier, expires_at, created_at")
+    .select("id, tier, expires_at, uses_remaining, created_at")
     .eq("user_id", userId)
     .gt("expires_at", nowIso())
     .order("expires_at", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .limit(10);
   if (error) throw error;
-  return data || null;
+  const active = (data || []).find((pass: any) => isPassActive(pass));
+  return active || null;
 }
 
 function getBypassPaywall(): boolean {
@@ -64,7 +65,7 @@ export async function POST(request: Request) {
 
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
+    const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
       const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
       res.headers.set("x-request-id", request_id);
@@ -137,7 +138,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
-          message: "You've used your free full reports. Upgrade to keep going.",
+          message: "You've used your free full review. Upgrade to keep going.",
           free_uses_remaining: 0,
           free_uses_left: 0,
           access_tier: "preview"
@@ -271,12 +272,15 @@ ${jobDescription}`;
       data: payload
     };
 
-    // Consume single-use pass consistently (non-stream path).
-    if (activePass && activePass.tier === "single_use" && user) {
+    // Consume credit-based passes consistently (non-stream path).
+    if (activePass && shouldConsumePassCredit(activePass) && user) {
       try {
         const admin = createSupabaseAdminClient();
         if (admin) {
-          await admin.from("passes").update({ expires_at: nowIso() }).eq("id", activePass.id);
+          await admin
+            .from("passes")
+            .update({ uses_remaining: getNextUsesRemaining(activePass) })
+            .eq("id", activePass.id);
         }
       } catch {
         // Do not fail response if pass consumption fails.

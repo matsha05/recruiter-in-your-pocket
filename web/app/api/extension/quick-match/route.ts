@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
             await supabase
                 .from("saved_jobs")
                 .update({
-                    score: result.score,
+                    match_score: result.score,
                     matched_skills: result.matchedSkills,
                     missing_skills: result.missingSkills,
                     top_gaps: result.topGaps,

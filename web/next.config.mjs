@@ -4,6 +4,10 @@ import { fileURLToPath } from "url";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  env: {
+    BROWSERSLIST_IGNORE_OLD_DATA: "true",
+    BASELINE_BROWSER_MAPPING_IGNORE_OLD_DATA: "true",
+  },
   outputFileTracingRoot: fileURLToPath(new URL(".", import.meta.url)),
   turbopack: {
     // Keep Next's root inside web/ even with a monorepo lockfile.

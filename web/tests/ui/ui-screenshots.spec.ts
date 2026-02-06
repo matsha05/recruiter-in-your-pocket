@@ -9,7 +9,7 @@ const pages = [
   {
     name: "home",
     path: "/",
-    waitFor: "text=See what recruiters see.",
+    waitFor: "text=Understand how you're actually being evaluated",
   },
   {
     name: "workspace-empty",

@@ -175,7 +175,7 @@ export function LandingWarmGradient() {
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-6 text-sm text-gray-500">
                         <div className="flex items-center gap-2"><Lock className="w-4 h-4" /> Encrypted</div>
-                        <div className="flex items-center gap-2"><Trash2 className="w-4 h-4" /> Auto-deleted</div>
+                        <div className="flex items-center gap-2"><Trash2 className="w-4 h-4" /> Delete anytime</div>
                         <div className="flex items-center gap-2"><Shield className="w-4 h-4" /> Never trains AI</div>
                     </div>
                     <div className="text-sm text-gray-400">© 2026 RIYP</div>

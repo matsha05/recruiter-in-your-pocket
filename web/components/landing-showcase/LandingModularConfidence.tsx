@@ -70,7 +70,7 @@ export function LandingModularConfidence() {
         },
         {
             question: "Is my resume data secure?",
-            answer: "Yes. All data is encrypted in transit and at rest. We auto-delete your resume within 24 hours and never use it to train AI models.",
+            answer: "Yes. All data is encrypted in transit and at rest. We let you delete your resume data anytime and never use it to train AI models.",
         },
         {
             question: "Can I use this for LinkedIn profiles?",

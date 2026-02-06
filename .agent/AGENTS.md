@@ -28,6 +28,10 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
   Protect "Absolute Verifiability" - no hallucinated authority in career analysis.
 </epistemology>
 
+<constraints>
+  Do not break existing behavior during refactors.
+</constraints>
+
 <oracle>
   Oracle bundles prompts + files for GPT-5 Pro to answer complex questions.
   

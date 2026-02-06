@@ -149,7 +149,7 @@ export function LandingHybrid() {
                             </span>
                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">
                                 <Trash2 className="w-3 h-3" />
-                                Auto-deleted in 24h
+                                Delete anytime
                             </span>
                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">
                                 <Shield className="w-3 h-3" />

@@ -200,7 +200,7 @@ export function LandingRolexNarrative() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Trash2 className="w-4 h-4" />
-                            Auto-deleted
+                            Delete anytime
                         </div>
                         <div className="flex items-center gap-2">
                             <Shield className="w-4 h-4" />

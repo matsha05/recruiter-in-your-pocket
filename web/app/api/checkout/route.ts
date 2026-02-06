@@ -3,8 +3,15 @@ import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import {
+    getCheckoutModeForTier,
+    getTierLabel,
+    normalizeRequestedTier,
+    toStoredPassTier
+} from "@/lib/billing/entitlements";
+import { getOrSetCache } from "@/lib/redis/idempotency";
 
 // Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -24,20 +31,29 @@ const getBaseUrl = () => {
     if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
     if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
     return "http://localhost:3000";
-};
+}
 
-type PricingTier = "monthly" | "lifetime" | "24h" | "30d";
+type CheckoutSource = "landing" | "pricing" | "paywall" | "settings" | "workspace" | "unknown";
 
-function normalizeTier(input: unknown): PricingTier | null {
-    if (typeof input !== "string") return null;
-    const raw = input.trim().toLowerCase();
-    // Current pricing tiers
-    if (raw === "monthly" || raw === "lifetime") return raw;
-    // Legacy mappings
-    if (raw === "single") return "24h";
-    if (raw === "pack") return "30d";
-    if (raw === "24h" || raw === "30d") return raw;
-    return null;
+function normalizeCheckoutSource(input: unknown): CheckoutSource {
+    if (typeof input !== "string") return "unknown";
+    const normalized = input.trim().toLowerCase();
+    if (
+        normalized === "landing" ||
+        normalized === "pricing" ||
+        normalized === "paywall" ||
+        normalized === "settings" ||
+        normalized === "workspace"
+    ) {
+        return normalized;
+    }
+    return "unknown";
+}
+
+function getCancelUrl(baseUrl: string, source: CheckoutSource): string {
+    if (source === "settings") return `${baseUrl}/settings/billing?payment=cancelled`;
+    if (source === "paywall" || source === "workspace") return `${baseUrl}/workspace?payment=cancelled`;
+    return `${baseUrl}/pricing?payment=cancelled`;
 }
 
 function isValidEmail(email: unknown): email is string {
@@ -55,7 +71,7 @@ export async function POST(request: Request) {
     logInfo({ msg: "http.request.started", request_id, route, method, path });
 
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 10, 60_000);
+    const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 10, 60_000);
     if (!rl.ok) {
         const res = NextResponse.json({ ok: false, message: "Too many requests. Try again shortly." }, { status: 429 });
         res.headers.set("x-request-id", request_id);
@@ -92,7 +108,11 @@ export async function POST(request: Request) {
 
     try {
         const body = await readJsonWithLimit<any>(request, 64 * 1024);
-        const requestedTier = normalizeTier(body?.tier);
+        const requestedTier = normalizeRequestedTier(body?.tier);
+        const checkoutSource = normalizeCheckoutSource(body?.source);
+        const idempotencyKey = typeof body?.idempotencyKey === "string"
+            ? body.idempotencyKey.trim().slice(0, 200)
+            : null;
         if (!requestedTier) {
             const res = NextResponse.json({ ok: false, message: "Invalid plan selection." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
@@ -111,7 +131,7 @@ export async function POST(request: Request) {
 
         // Check if user is already logged in (optional). If so, bind purchase to that account email.
         let userId: string | null = null;
-        let checkoutEmail: string | undefined;
+        let checkoutEmail: string | undefined = undefined;
         try {
             const supabase = await createSupabaseServerClient();
             const { data: { session } } = await supabase.auth.getSession();
@@ -123,25 +143,7 @@ export async function POST(request: Request) {
             // Ignore - user will be created/linked in webhook
         }
 
-        if (!checkoutEmail) {
-            if (!isValidEmail(body?.email)) {
-                const res = NextResponse.json({ ok: false, message: "A valid email is required." }, { status: 400 });
-                res.headers.set("x-request-id", request_id);
-                logInfo({
-                    msg: "http.request.completed",
-                    request_id,
-                    route,
-                    method,
-                    path,
-                    status: 400,
-                    latency_ms: Date.now() - startedAt,
-                    outcome: "validation_error"
-                });
-                return res;
-            }
-            checkoutEmail = body.email.trim();
-        }
-        if (!checkoutEmail) {
+        if (!checkoutEmail && body?.email != null && !isValidEmail(body?.email)) {
             const res = NextResponse.json({ ok: false, message: "A valid email is required." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
             logInfo({
@@ -155,6 +157,10 @@ export async function POST(request: Request) {
                 outcome: "validation_error"
             });
             return res;
+        }
+
+        if (!checkoutEmail && isValidEmail(body?.email)) {
+            checkoutEmail = body.email.trim();
         }
 
         const priceId = PRICE_IDS[requestedTier as keyof typeof PRICE_IDS];
@@ -177,49 +183,71 @@ export async function POST(request: Request) {
             return res;
         }
 
-        const tierLabel =
-            requestedTier === "lifetime" ? "Lifetime Access" :
-                requestedTier === "monthly" ? "Full Access" :
-                    requestedTier === "30d" ? "Active Job Search (Legacy)" :
-                        "Quick Check (Legacy)";
+        const tierLabel = getTierLabel(requestedTier);
+        const storedTier = toStoredPassTier(requestedTier);
 
         const baseUrl = getBaseUrl();
 
-        // Determine if this is a subscription or one-time payment
-        // Lifetime is one-time, monthly is subscription
-        const isSubscription = requestedTier === "monthly";
+        const mode = getCheckoutModeForTier(requestedTier);
+        const isSubscription = mode === "subscription";
+        const successUrl = new URL(`${baseUrl}/purchase/confirmed`);
+        successUrl.searchParams.set("session_id", "{CHECKOUT_SESSION_ID}");
+        successUrl.searchParams.set("tier", requestedTier);
+        successUrl.searchParams.set("source", checkoutSource);
 
-        // Create Stripe checkout session
-        const checkoutSession = await stripe.checkout.sessions.create({
-            mode: isSubscription ? "subscription" : "payment",
-            payment_method_types: ["card"],
-            line_items: [
-                {
-                    price: priceId,
-                    quantity: 1
+        const createCheckoutSession = async () => {
+            const checkoutSession = await stripe.checkout.sessions.create({
+                mode,
+                payment_method_types: ["card"],
+                line_items: [
+                    {
+                        price: priceId,
+                        quantity: 1
+                    }
+                ],
+                ...(checkoutEmail ? { customer_email: checkoutEmail } : {}),
+                billing_address_collection: "required",
+                success_url: successUrl.toString(),
+                cancel_url: getCancelUrl(baseUrl, checkoutSource),
+                metadata: {
+                    email: checkoutEmail || "",
+                    tier: requestedTier,
+                    pass_tier: storedTier,
+                    tier_label: tierLabel,
+                    user_id: userId || "",
+                    source: checkoutSource
+                },
+                ...(isSubscription
+                    ? {}
+                    : {
+                        invoice_creation: { enabled: true as const }
+                    }),
+                allow_promotion_codes: true,
+                custom_text: {
+                    submit: {
+                        message: requestedTier === "lifetime"
+                            ? `You're getting Lifetime Access. Pay once, use forever.`
+                            : isSubscription
+                                ? `You're subscribing to ${tierLabel}. Cancel anytime.`
+                                : `You're getting ${tierLabel}. We'll activate it right after checkout.`
+                    }
                 }
-            ],
-            customer_email: checkoutEmail,
-            billing_address_collection: "required",
-            success_url: `${baseUrl}/workspace?payment=success&tier=${requestedTier}`,
-            cancel_url: `${baseUrl}/workspace?payment=cancelled`,
-            metadata: {
-                email: checkoutEmail,
-                tier: requestedTier,
-                tier_label: tierLabel,
-                user_id: userId || ""
-            },
-            allow_promotion_codes: true,
-            custom_text: {
-                submit: {
-                    message: requestedTier === "lifetime"
-                        ? `You're getting Lifetime Access. Pay once, use forever.`
-                        : isSubscription
-                            ? `You're subscribing to ${tierLabel}. Cancel anytime.`
-                            : `You're getting ${tierLabel}. We'll activate it right after checkout.`
-                }
-            }
-        });
+            }, idempotencyKey ? { idempotencyKey: `checkout:${idempotencyKey}` } : undefined);
+
+            return {
+                id: checkoutSession.id,
+                url: checkoutSession.url,
+            };
+        };
+
+        const dedupeIdentity = hashForLogs(`${userId || "guest"}:${checkoutEmail || "no-email"}`);
+        const dedupeKey = idempotencyKey
+            ? `checkout:${idempotencyKey}:${requestedTier}:${checkoutSource}:${dedupeIdentity}`
+            : null;
+
+        const checkoutSession = dedupeKey
+            ? (await getOrSetCache(dedupeKey, createCheckoutSession, 60 * 15)).value
+            : await createCheckoutSession();
 
         logInfo({
             msg: "checkout.session.created",
@@ -235,7 +263,12 @@ export async function POST(request: Request) {
         const res = NextResponse.json({
             ok: true,
             url: checkoutSession.url,
-            sessionId: checkoutSession.id
+            sessionId: checkoutSession.id,
+            checkoutIntent: {
+                tier: requestedTier,
+                mode,
+                source: checkoutSource
+            }
         });
         res.headers.set("x-request-id", request_id);
         logInfo({

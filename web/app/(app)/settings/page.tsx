@@ -1,11 +1,5 @@
-import { Metadata } from 'next';
-import SettingsClient from '@/components/workspace/SettingsClient';
-
-export const metadata: Metadata = {
-    title: 'Settings — Recruiter in Your Pocket',
-    description: 'Manage your subscription and billing.',
-};
+import { redirect } from "next/navigation";
 
 export default function SettingsPage() {
-    return <SettingsClient />;
+  redirect("/settings/account");
 }

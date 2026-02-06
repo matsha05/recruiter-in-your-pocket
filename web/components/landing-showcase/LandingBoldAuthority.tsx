@@ -104,7 +104,7 @@ export function LandingBoldAuthority() {
                             <span className="w-px h-3 bg-black/10" />
                             <span className="inline-flex items-center gap-1.5 text-xs text-black/50">
                                 <Trash2 className="w-3 h-3" />
-                                Auto-deleted in 24h
+                                Delete anytime
                             </span>
                             <span className="w-px h-3 bg-black/10" />
                             <span className="inline-flex items-center gap-1.5 text-xs text-black/50">

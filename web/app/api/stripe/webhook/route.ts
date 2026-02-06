@@ -1,27 +1,396 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
-import { logError, logInfo } from "@/lib/observability/logger";
+import { logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import {
+    getTierDefaults,
+    normalizeRequestedTier,
+    toStoredPassTier,
+    type RequestedPricingTier,
+} from "@/lib/billing/entitlements";
 
-// Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY
     ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
     : null;
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 
-function normalizeTier(input: unknown): "24h" | "30d" | "90d" {
-    if (typeof input !== "string") return "24h";
-    const raw = input.trim();
-    if (raw === "single") return "24h";
-    if (raw === "pack") return "30d";
-    if (raw === "24h" || raw === "30d" || raw === "90d") return raw;
-    return "24h";
+export const runtime = "nodejs";
+
+type UserResolutionContext = {
+    request_id: string;
+    route: string;
+    method: string;
+    path: string;
+};
+
+function getEmailFromCheckoutSession(session: Stripe.Checkout.Session): string | null {
+    const metadataEmail = session.metadata?.email;
+    if (metadataEmail && typeof metadataEmail === "string") return metadataEmail.toLowerCase();
+
+    const customerEmail = session.customer_details?.email || session.customer_email;
+    if (customerEmail && typeof customerEmail === "string") return customerEmail.toLowerCase();
+
+    return null;
 }
 
-// Disable body parser - Stripe requires raw body
-export const runtime = "nodejs";
+function resolveTier(session: Stripe.Checkout.Session): RequestedPricingTier {
+    const metadataTier = normalizeRequestedTier(session.metadata?.tier);
+    if (metadataTier) return metadataTier;
+
+    if (session.mode === "subscription") return "monthly";
+
+    return "lifetime";
+}
+
+function toIsoFromUnix(value: unknown): string | null {
+    if (typeof value === "number" && Number.isFinite(value)) {
+        return new Date(value * 1000).toISOString();
+    }
+    return null;
+}
+
+function extractInvoicePeriod(invoice: Stripe.Invoice): { start: string | null; end: string | null } {
+    const fromInvoiceStart = toIsoFromUnix((invoice as any).period_start);
+    const fromInvoiceEnd = toIsoFromUnix((invoice as any).period_end);
+
+    if (fromInvoiceStart || fromInvoiceEnd) {
+        return { start: fromInvoiceStart, end: fromInvoiceEnd };
+    }
+
+    const firstLine = invoice.lines?.data?.[0];
+    return {
+        start: toIsoFromUnix(firstLine?.period?.start),
+        end: toIsoFromUnix(firstLine?.period?.end),
+    };
+}
+
+function extractCurrentPeriodEndUnix(
+    subscription:
+        | Stripe.Subscription
+        | Stripe.Response<Stripe.Subscription>
+        | null
+        | undefined
+): number | null {
+    const fromDirect = (subscription as any)?.current_period_end;
+    if (typeof fromDirect === "number") return fromDirect;
+
+    const fromData = (subscription as any)?.data?.current_period_end;
+    if (typeof fromData === "number") return fromData;
+
+    return null;
+}
+
+async function findUserIdByEmail(admin: any, email: string): Promise<string | null> {
+    const perPage = 200;
+
+    for (let page = 1; page <= 20; page++) {
+        const { data, error } = await admin.auth.admin.listUsers({ page, perPage });
+        if (error || !data?.users?.length) break;
+
+        const found = data.users.find((u: any) => u.email?.toLowerCase() === email.toLowerCase());
+        if (found?.id) return found.id;
+
+        if (data.users.length < perPage) break;
+    }
+
+    return null;
+}
+
+async function resolveUserIdForInvoice(
+    admin: any,
+    invoice: Stripe.Invoice,
+    context: UserResolutionContext
+): Promise<string | null> {
+    let email = invoice.customer_email?.toLowerCase() || null;
+
+    if (!email && typeof invoice.customer === "string" && invoice.customer) {
+        try {
+            const customer = await stripe!.customers.retrieve(invoice.customer);
+            if (!("deleted" in customer) && typeof customer.email === "string") {
+                email = customer.email.toLowerCase();
+            }
+        } catch (err: any) {
+            logWarn({
+                msg: "stripe.webhook.invoice_customer_lookup_failed",
+                request_id: context.request_id,
+                route: context.route,
+                method: context.method,
+                path: context.path,
+                outcome: "provider_error",
+                stripe: { invoice_id: invoice.id },
+                err: { name: err?.name || "Error", message: err?.message || "Could not resolve invoice customer" }
+            });
+        }
+    }
+
+    if (!email) return null;
+    return findUserIdByEmail(admin, email);
+}
+
+async function upsertBillingReceipt(
+    admin: any,
+    invoice: Stripe.Invoice,
+    context: UserResolutionContext
+) {
+    const userId = await resolveUserIdForInvoice(admin, invoice, context);
+    if (!userId) {
+        logWarn({
+            msg: "stripe.webhook.invoice_user_not_resolved",
+            request_id: context.request_id,
+            route: context.route,
+            method: context.method,
+            path: context.path,
+            outcome: "validation_error",
+            stripe: { invoice_id: invoice.id, event_type: context.route }
+        });
+        return;
+    }
+
+    const period = extractInvoicePeriod(invoice);
+
+    const payload = {
+        user_id: userId,
+        stripe_invoice_id: invoice.id,
+        stripe_customer_id: typeof invoice.customer === "string" ? invoice.customer : null,
+        checkout_session_id: (invoice as any).checkout_session || null,
+        invoice_number: invoice.number || null,
+        status: invoice.status || null,
+        currency: invoice.currency || null,
+        amount_paid: typeof invoice.amount_paid === "number" ? invoice.amount_paid : 0,
+        hosted_invoice_url: invoice.hosted_invoice_url || null,
+        invoice_pdf: invoice.invoice_pdf || null,
+        period_start: period.start,
+        period_end: period.end,
+        created_at: new Date(invoice.created * 1000).toISOString(),
+        updated_at: new Date().toISOString(),
+    };
+
+    const { error } = await admin
+        .from("billing_receipts")
+        .upsert(payload, { onConflict: "stripe_invoice_id" });
+
+    if (error) {
+        throw new Error(`Failed to upsert billing receipt: ${error.message}`);
+    }
+}
+
+async function findOrCreateUserId(
+    admin: any,
+    email: string,
+    metadataUserId: string | null,
+    context: UserResolutionContext
+): Promise<{ userId: string; wasCreated: boolean }> {
+    if (metadataUserId) {
+        return { userId: metadataUserId, wasCreated: false };
+    }
+
+    const existingUserId = await findUserIdByEmail(admin, email);
+    if (existingUserId) return { userId: existingUserId, wasCreated: false };
+
+    const { data: newUser, error: createError } = await admin.auth.admin.createUser({
+        email,
+        email_confirm: true
+    });
+
+    if (!createError && newUser?.user?.id) {
+        return { userId: newUser.user.id, wasCreated: true };
+    }
+
+    // Handle race: user created by another process between list and create.
+    const fallbackUserId = await findUserIdByEmail(admin, email);
+    if (fallbackUserId) {
+        return { userId: fallbackUserId, wasCreated: false };
+    }
+
+    logError({
+        msg: "stripe.webhook.user_resolution_failed",
+        request_id: context.request_id,
+        route: context.route,
+        method: context.method,
+        path: context.path,
+        outcome: "provider_error",
+        err: { name: "SupabaseError", message: createError?.message || "Failed to resolve user" }
+    });
+
+    throw new Error("Could not find or create user");
+}
+
+async function maybeSendOtp(admin: any, email: string, context: UserResolutionContext) {
+    const { error } = await admin.auth.signInWithOtp({ email: email.toLowerCase() });
+    if (error) {
+        logWarn({
+            msg: "stripe.webhook.otp_send_failed",
+            request_id: context.request_id,
+            route: context.route,
+            method: context.method,
+            path: context.path,
+            outcome: "provider_error",
+            err: { name: "OtpError", message: error.message }
+        });
+        return;
+    }
+
+    logInfo({
+        msg: "stripe.webhook.otp_sent",
+        request_id: context.request_id,
+        route: context.route,
+        method: context.method,
+        path: context.path,
+        outcome: "success"
+    });
+}
+
+async function upsertPassForCheckout(
+    admin: any,
+    session: Stripe.Checkout.Session,
+    userId: string,
+    tier: RequestedPricingTier,
+    context: UserResolutionContext
+): Promise<void> {
+    const storedTier = toStoredPassTier(tier);
+
+    let subscriptionId: string | null = null;
+    let subscriptionPeriodEndUnix: number | null = null;
+
+    if (typeof session.subscription === "string" && session.subscription) {
+        subscriptionId = session.subscription;
+        try {
+            const subscription = await stripe!.subscriptions.retrieve(subscriptionId);
+            subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
+        } catch (err: any) {
+            logWarn({
+                msg: "stripe.webhook.subscription_lookup_failed",
+                request_id: context.request_id,
+                route: context.route,
+                method: context.method,
+                path: context.path,
+                outcome: "provider_error",
+                stripe: { session_id: session.id },
+                err: { name: err?.name || "Error", message: err?.message || "Failed to load subscription" }
+            });
+        }
+    }
+
+    const { usesRemaining, expiresAt } = getTierDefaults(storedTier, {
+        subscriptionPeriodEndUnix
+    });
+
+    // 1) Idempotency by checkout session id.
+    const { data: existingBySession } = await admin
+        .from("passes")
+        .select("id")
+        .eq("checkout_session_id", session.id)
+        .limit(1)
+        .maybeSingle();
+
+    if (existingBySession?.id) {
+        logInfo({
+            msg: "stripe.webhook.pass_already_exists_for_session",
+            request_id: context.request_id,
+            route: context.route,
+            method: context.method,
+            path: context.path,
+            outcome: "success",
+            user_id: userId,
+            stripe: { session_id: session.id }
+        });
+        return;
+    }
+
+    // 2) For subscription plans, update existing pass for the same subscription if present.
+    if (subscriptionId) {
+        const { data: existingSubPass } = await admin
+            .from("passes")
+            .select("id")
+            .eq("user_id", userId)
+            .eq("price_id", subscriptionId)
+            .limit(1)
+            .maybeSingle();
+
+        if (existingSubPass?.id) {
+            const { error: updateError } = await admin
+                .from("passes")
+                .update({
+                    tier: storedTier,
+                    uses_remaining: usesRemaining,
+                    expires_at: expiresAt,
+                    checkout_session_id: session.id
+                })
+                .eq("id", existingSubPass.id);
+
+            if (updateError) throw updateError;
+            return;
+        }
+    }
+
+    const passId = crypto.randomUUID();
+    const { error: insertError } = await admin
+        .from("passes")
+        .insert({
+            id: passId,
+            user_id: userId,
+            tier: storedTier,
+            uses_remaining: usesRemaining,
+            purchased_at: new Date().toISOString(),
+            expires_at: expiresAt,
+            price_id: subscriptionId,
+            checkout_session_id: session.id,
+            created_at: new Date().toISOString()
+        });
+
+    if (insertError) throw insertError;
+
+    logInfo({
+        msg: "stripe.webhook.pass_created",
+        request_id: context.request_id,
+        route: context.route,
+        method: context.method,
+        path: context.path,
+        outcome: "success",
+        user_id: userId,
+        stripe: { session_id: session.id }
+    });
+}
+
+async function syncSubscriptionStatus(
+    admin: any,
+    subscription: Stripe.Subscription,
+    context: UserResolutionContext,
+    eventType: string
+) {
+    const subscriptionId = subscription.id;
+    const isActive = subscription.status === "active" || subscription.status === "trialing" || subscription.status === "past_due";
+    const subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
+    const fallbackActiveExpiry = new Date(Date.now() + 31 * 24 * 60 * 60 * 1000).toISOString();
+    const expiresAt = isActive
+        ? (subscriptionPeriodEndUnix ? new Date(subscriptionPeriodEndUnix * 1000).toISOString() : fallbackActiveExpiry)
+        : new Date().toISOString();
+
+    const { error } = await admin
+        .from("passes")
+        .update({
+            expires_at: expiresAt,
+            uses_remaining: isActive ? 9_999 : 0
+        })
+        .eq("price_id", subscriptionId)
+        .eq("tier", "monthly");
+
+    if (error) {
+        throw error;
+    }
+
+    logInfo({
+        msg: "stripe.webhook.subscription_synced",
+        request_id: context.request_id,
+        route: context.route,
+        method: context.method,
+        path: context.path,
+        outcome: "success",
+        stripe: { event_type: eventType }
+    });
+}
 
 export async function POST(request: NextRequest) {
     const request_id = getRequestId(request);
@@ -56,7 +425,6 @@ export async function POST(request: NextRequest) {
         return new NextResponse("Database not configured", { status: 500, headers: { "x-request-id": request_id } });
     }
 
-    // Get raw body and signature
     const body = await request.text();
     const sig = request.headers.get("stripe-signature");
 
@@ -89,249 +457,109 @@ export async function POST(request: NextRequest) {
         return new NextResponse("Webhook signature invalid", { status: 400, headers: { "x-request-id": request_id } });
     }
 
-    // Handle checkout.session.completed
-    if (event.type === "checkout.session.completed") {
-        const session = event.data.object as Stripe.Checkout.Session;
-        const metadata = session.metadata || {};
-        const email = metadata.email || session.customer_email;
-        const tier = normalizeTier(metadata.tier);
-        const metadataUserId = metadata.user_id || null;
+    // Idempotency at event level.
+    const { data: existingEvent } = await supabaseAdmin
+        .from("stripe_events")
+        .select("id")
+        .eq("event_id", event.id)
+        .maybeSingle();
+
+    if (existingEvent) {
+        logInfo({
+            msg: "stripe.webhook.event_already_processed",
+            request_id,
+            route,
+            outcome: "success",
+            stripe: { event_id: event.id, event_type: event.type }
+        });
+        return NextResponse.json({ received: true }, { headers: { "x-request-id": request_id } });
+    }
+
+    try {
+        await supabaseAdmin.from("stripe_events").insert({
+            event_id: event.id,
+            event_type: event.type,
+            processed_at: new Date().toISOString(),
+            payload: JSON.stringify(event.data.object),
+            request_id
+        });
+    } catch {
+        // Non-blocking. Table may not exist in all environments.
+    }
+
+    const context: UserResolutionContext = { request_id, route, method, path };
+
+    try {
+        if (event.type === "checkout.session.completed") {
+            const session = event.data.object as Stripe.Checkout.Session;
+            const email = getEmailFromCheckoutSession(session);
+
+            if (!email) {
+                logError({
+                    msg: "stripe.webhook.missing_email",
+                    request_id,
+                    route,
+                    method,
+                    path,
+                    outcome: "validation_error",
+                    stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
+                });
+                return new NextResponse("No email found", { status: 400, headers: { "x-request-id": request_id } });
+            }
+
+            const { userId, wasCreated } = await findOrCreateUserId(
+                supabaseAdmin,
+                email,
+                session.metadata?.user_id || null,
+                context
+            );
+
+            if (wasCreated) {
+                await maybeSendOtp(supabaseAdmin, email, context);
+            }
+
+            await upsertPassForCheckout(supabaseAdmin, session, userId, resolveTier(session), context);
+        }
+
+        if (event.type === "customer.subscription.updated" || event.type === "customer.subscription.deleted") {
+            const subscription = event.data.object as Stripe.Subscription;
+            await syncSubscriptionStatus(supabaseAdmin, subscription, context, event.type);
+        }
+
+        if (
+            event.type === "invoice.finalized" ||
+            event.type === "invoice.paid" ||
+            event.type === "invoice.payment_failed" ||
+            event.type === "invoice.voided" ||
+            event.type === "invoice.marked_uncollectible"
+        ) {
+            const invoice = event.data.object as Stripe.Invoice;
+            await upsertBillingReceipt(supabaseAdmin, invoice, context);
+        }
 
         logInfo({
-            msg: "stripe.webhook.verified",
+            msg: "stripe.webhook.completed",
             request_id,
             route,
             method,
             path,
+            latency_ms: Date.now() - startedAt,
             outcome: "success",
-            stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
+            stripe: { event_id: event.id, event_type: event.type }
         });
-
-        // Log event to stripe_events table for audit trail
-        // This also serves as idempotency check by event_id
-        const { data: existingEvent } = await supabaseAdmin
-            .from("stripe_events")
-            .select("id")
-            .eq("event_id", event.id)
-            .maybeSingle();
-
-        if (existingEvent) {
-            logInfo({
-                msg: "stripe.webhook.event_already_processed",
-                request_id,
-                route,
-                outcome: "success",
-                stripe: { event_id: event.id, event_type: event.type }
-            });
-            return NextResponse.json({ received: true }, { headers: { "x-request-id": request_id } });
-        }
-
-        // Insert event log entry (ignore errors if table doesn't exist)
-        try {
-            await supabaseAdmin
-                .from("stripe_events")
-                .insert({
-                    event_id: event.id,
-                    event_type: event.type,
-                    processed_at: new Date().toISOString(),
-                    payload: JSON.stringify(event.data.object),
-                    request_id
-                });
-        } catch {
-            // Table may not exist yet - that's OK
-        }
-
-        if (!email) {
-            logError({
-                msg: "stripe.webhook.missing_email",
-                request_id,
-                route,
-                method,
-                path,
-                outcome: "validation_error",
-                stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
-            });
-            return new NextResponse("No email found", { status: 400, headers: { "x-request-id": request_id } });
-        }
-
-        try {
-            // Idempotency: if we've already created a pass for this checkout session, exit cleanly.
-            // This is a second layer of protection (first is event_id check above)
-            const { data: existing } = await supabaseAdmin
-                .from("passes")
-                .select("id")
-                .eq("checkout_session_id", session.id)
-                .limit(1)
-                .maybeSingle();
-            if (existing?.id) {
-                logInfo({
-                    msg: "stripe.webhook.idempotent_replay",
-                    request_id,
-                    route,
-                    method,
-                    path,
-                    outcome: "success",
-                    stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
-                });
-                return NextResponse.json({ received: true }, { headers: { "x-request-id": request_id } });
-            }
-
-            // Find or create user by email
-            let userId = metadataUserId;
-
-            if (!userId) {
-                // Look up user by email in Supabase auth
-                const { data: users, error: listError } = await supabaseAdmin.auth.admin.listUsers();
-
-                if (!listError && users.users) {
-                    const existingUser = users.users.find(u => u.email?.toLowerCase() === email.toLowerCase());
-                    if (existingUser) {
-                        userId = existingUser.id;
-                    }
-                }
-            }
-
-            if (!userId) {
-                // Create user via Supabase Auth
-                const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-                    email: email.toLowerCase(),
-                    email_confirm: true
-                });
-
-                if (createError) {
-                    // If user already exists, try to find them again
-                    console.log("[webhook] User creation failed, trying lookup:", createError.message);
-                    const { data: users } = await supabaseAdmin.auth.admin.listUsers();
-                    const existingUser = users?.users?.find(u => u.email?.toLowerCase() === email.toLowerCase());
-                    if (existingUser) {
-                        userId = existingUser.id;
-                    }
-                } else if (newUser?.user) {
-                    userId = newUser.user.id;
-                    logInfo({
-                        msg: "stripe.webhook.user_created",
-                        request_id,
-                        route,
-                        method,
-                        path,
-                        outcome: "success",
-                        stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
-                    });
-
-                    // Trigger login code email so they can access their account
-                    const { error: otpError } = await supabaseAdmin.auth.signInWithOtp({
-                        email: email.toLowerCase()
-                    });
-
-                    if (otpError) {
-                        logError({
-                            msg: "stripe.webhook.otp_send_failed",
-                            request_id,
-                            route,
-                            method,
-                            path,
-                            outcome: "provider_error",
-                            err: { name: "OtpError", message: otpError.message }
-                        });
-                    } else {
-                        logInfo({
-                            msg: "stripe.webhook.otp_sent",
-                            request_id,
-                            route,
-                            method,
-                            path,
-                            outcome: "success"
-                        });
-                    }
-                }
-            }
-
-            if (!userId) {
-                throw new Error("Could not find or create user");
-            }
-
-            // Update user's first name from billing if not set
-            const customerDetails = session.customer_details;
-            if (customerDetails?.name) {
-                const firstName = customerDetails.name.split(" ")[0];
-                const { data: existingUser } = await supabaseAdmin.auth.admin.getUserById(userId);
-
-                if (existingUser?.user && !existingUser.user.user_metadata?.first_name) {
-                    await supabaseAdmin.auth.admin.updateUserById(userId, {
-                        user_metadata: {
-                            ...existingUser.user.user_metadata,
-                            first_name: firstName
-                        }
-                    });
-                    console.log(`[webhook] Updated user first_name: ${firstName}`);
-                }
-            }
-
-            // Calculate expiration and credits
-            // Credits don't expire (per FAQ), but we set a long expiry for cleanup
-            // single_use = 1 credit, 30d = 5 credits
-            const dbTier = tier === "24h" ? "single_use" : tier;
-            const usesRemaining = dbTier === "30d" ? 5 : 1;
-            const nowMs = Date.now();
-            // Both tiers get 1 year expiry - access is controlled by uses_remaining
-            const expiresAt = new Date(nowMs + 365 * 24 * 60 * 60 * 1000).toISOString();
-
-            // Create pass in database
-            const passId = crypto.randomUUID();
-            const { error: passError } = await supabaseAdmin
-                .from("passes")
-                .insert({
-                    id: passId,
-                    user_id: userId,
-                    tier: dbTier,
-                    uses_remaining: usesRemaining,
-                    purchased_at: new Date().toISOString(),
-                    expires_at: expiresAt,
-                    price_id: null,
-                    checkout_session_id: session.id,
-                    created_at: new Date().toISOString()
-                });
-
-            if (passError) {
-                logError({
-                    msg: "stripe.webhook.pass_insert_failed",
-                    request_id,
-                    route,
-                    method,
-                    path,
-                    outcome: "provider_error",
-                    stripe: { event_id: event.id, event_type: event.type, session_id: session.id },
-                    err: { name: "SupabaseError", message: passError.message }
-                });
-                throw passError;
-            }
-
-            logInfo({
-                msg: "stripe.webhook.fulfillment.completed",
-                request_id,
-                route,
-                method,
-                path,
-                latency_ms: Date.now() - startedAt,
-                outcome: "success",
-                user_id: userId,
-                stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
-            });
-
-        } catch (err: any) {
-            logError({
-                msg: "stripe.webhook.fulfillment.failed",
-                request_id,
-                route,
-                method,
-                path,
-                latency_ms: Date.now() - startedAt,
-                outcome: "internal_error",
-                stripe: { event_id: event.id, event_type: event.type, session_id: (event.data.object as any)?.id },
-                err: { name: err?.name || "Error", message: err?.message || "Webhook processing failed", stack: err?.stack }
-            });
-            return new NextResponse("Processing Error", { status: 500, headers: { "x-request-id": request_id } });
-        }
+    } catch (err: any) {
+        logError({
+            msg: "stripe.webhook.fulfillment.failed",
+            request_id,
+            route,
+            method,
+            path,
+            latency_ms: Date.now() - startedAt,
+            outcome: "internal_error",
+            stripe: { event_id: event.id, event_type: event.type },
+            err: { name: err?.name || "Error", message: err?.message || "Webhook processing failed", stack: err?.stack }
+        });
+        return new NextResponse("Processing Error", { status: 500, headers: { "x-request-id": request_id } });
     }
 
     return NextResponse.json({ received: true }, { headers: { "x-request-id": request_id } });

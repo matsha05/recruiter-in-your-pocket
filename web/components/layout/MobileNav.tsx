@@ -59,11 +59,11 @@ export function MobileNav() {
 
                         {/* Settings - separate from primary nav */}
                         <MobileNavLink
-                            href="/settings"
+                            href="/settings/account"
                             icon={Settings}
                             label="Settings"
                             setOpen={setOpen}
-                            active={pathname === "/settings"}
+                            active={pathname === "/settings" || pathname?.startsWith("/settings/")}
                         />
                     </nav>
                 </div>
@@ -78,14 +78,23 @@ export function MobileNav() {
                                 <div className="flex-1 overflow-hidden">
                                     <p className="font-medium truncate">{user.email}</p>
                                     <p className="text-xs text-muted-foreground capitalize flex items-center gap-1.5 mt-0.5">
-                                        {user.membership === "pro" && (
+                                        {user.membership === "lifetime" && (
                                             <span className="inline-flex items-center gap-1">
-                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-brand/10 text-brand">Pro Member</span>
-                                                <span className="text-[10px] text-muted-foreground font-medium">• {user.daysLeft} days left</span>
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-brand/10 text-brand">Lifetime</span>
                                             </span>
                                         )}
-                                        {user.membership === "audit" && (
-                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success">1 Review Available</span>
+                                        {user.membership === "monthly" && (
+                                            <span className="inline-flex items-center gap-1">
+                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-brand/10 text-brand">Monthly</span>
+                                                {typeof user.daysLeft === "number" ? (
+                                                    <span className="text-[10px] text-muted-foreground font-medium">• {user.daysLeft} days left</span>
+                                                ) : null}
+                                            </span>
+                                        )}
+                                        {user.membership === "credit" && (
+                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success">
+                                                {user.paidUsesLeft || 0} Paid Reviews
+                                            </span>
                                         )}
                                         {(user.membership === "free" || !user.membership) && (
                                             <span className="inline-flex items-center gap-1">

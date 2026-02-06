@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, ArrowRight, Info, ChevronDown, AlignLeft, Target } from "lucide-react";
+import Link from "next/link";
+import { FileText, ArrowRight, Info, ChevronDown, AlignLeft, Target, ShieldCheck } from "lucide-react";
 import { SixSecondIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/shared/TrustBadges";
@@ -54,16 +55,14 @@ export default function InputPanel({
     };
 
     const getRunHint = () => {
-        if (!user) {
-            // Logged out / Guest logic
-            if (freeUsesRemaining >= 2) return "No login required";
-            if (freeUsesRemaining === 1) return "Your first review is free";
-            return "Upgrade to continue";
-        } else {
-            // Logged in user logic
-            if (freeUsesRemaining > 0) return `${freeUsesRemaining} credit${freeUsesRemaining === 1 ? '' : 's'} remaining`;
-            return "Upgrade to continue";
+        const membership = user?.membership;
+        if (membership === "monthly" || membership === "lifetime") return "Paid access active";
+        if (membership === "credit") {
+            const paid = Number(user?.paidUsesLeft || 0);
+            return `${paid} paid review${paid === 1 ? "" : "s"} remaining`;
         }
+        if (freeUsesRemaining > 0) return "1 free review available";
+        return "Upgrade to continue";
     };
 
     const charCount = resumeText.length;
@@ -126,6 +125,24 @@ export default function InputPanel({
                             fileName={fileName}
                             onRemoveFile={handleRemoveFile}
                         />
+
+                        <div className="rounded border border-brand/20 bg-brand/5 p-4">
+                            <div className="flex items-start gap-3">
+                                <ShieldCheck className="w-4 h-4 text-brand mt-0.5 shrink-0" />
+                                <div className="space-y-1">
+                                    <p className="text-sm font-medium text-foreground">Before you run</p>
+                                    <p className="text-xs text-muted-foreground">
+                                        Your upload is encrypted in transit. We store report history only when account features are used.
+                                        Delete stored data anytime from Settings.
+                                    </p>
+                                    <p className="text-xs text-muted-foreground">
+                                        <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link>
+                                        {" · "}
+                                        <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</Link>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Paste Text Toggle */}
                         {!fileName && (
@@ -271,6 +288,11 @@ Example: We are looking for a Senior Product Manager with 5+ years of experience
                             <TrustBadges variant="inline" />
                             <p className="text-[10px] text-muted-foreground/60 uppercase tracking-widest font-medium">
                                 {getRunHint()}
+                            </p>
+                            <p className="text-[11px] text-muted-foreground">
+                                <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Data handling</Link>
+                                {" · "}
+                                <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Scoring methodology</Link>
                             </p>
                         </div>
                     </div>

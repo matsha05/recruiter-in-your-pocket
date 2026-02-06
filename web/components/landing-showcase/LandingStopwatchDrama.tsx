@@ -368,7 +368,7 @@ export function LandingStopwatchDrama() {
                         <PocketMark className="w-5 h-5 text-orange-500" />
                         <span>© 2026 RIYP</span>
                     </div>
-                    <div>Encrypted · Private · Deleted after 24h</div>
+                    <div>Encrypted · Private · Delete anytime</div>
                 </div>
             </footer>
         </div>

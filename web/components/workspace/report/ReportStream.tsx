@@ -21,6 +21,7 @@ interface ReportStreamProps {
     isGated?: boolean;
     justUnlocked?: boolean;
     highlightSection?: string | null;
+    hasPaidAccess?: boolean;
 }
 
 export function ReportStream({
@@ -28,19 +29,20 @@ export function ReportStream({
     className,
     isSample = false,
     onNewReport,
-    freeUsesRemaining = 2,
+    freeUsesRemaining = 1,
     onUpgrade,
     hasJobDescription = false,
     isGated = false,
     justUnlocked = false,
-    highlightSection = null
+    highlightSection = null,
+    hasPaidAccess = false
 }: ReportStreamProps) {
     const bulletUpgradesRef = useRef<HTMLDivElement>(null);
     const missingWinsRef = useRef<HTMLDivElement>(null);
     const jobAlignmentRef = useRef<HTMLDivElement>(null);
 
     // Determine footer state
-    const isExhausted = !isSample && freeUsesRemaining <= 0;
+    const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
 
     return (
         <div className={cn("max-w-3xl mx-auto pb-32 space-y-16", className)}>
@@ -147,7 +149,9 @@ export function ReportStream({
                         // Has credits - run another
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
-                                {freeUsesRemaining > 0
+                                {hasPaidAccess
+                                    ? "Paid access is active. Keep iterating by role until the signal is sharp."
+                                    : freeUsesRemaining > 0
                                     ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
                                     : 'Ready to analyze another version?'}
                             </p>

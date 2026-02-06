@@ -3,6 +3,7 @@
 // SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
+import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED } from "@/lib/legal/dataHandling";
 
 export default function PrivacyClient() {
     return (
@@ -18,60 +19,55 @@ export default function PrivacyClient() {
                     <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                         How we handle your data, in plain English.
                         <br />
-                        <span className="text-xs font-mono mt-2 block opacity-70">Last updated: December 2025</span>
+                        <span className="text-xs font-mono mt-2 block text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</span>
                     </p>
                 </header>
 
                 {/* Content */}
                 <article className="space-y-12 font-sans text-foreground/90 leading-relaxed">
-                    <Section title="1. Introduction">
-                        Recruiter in Your Pocket (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy.
-                        This Privacy Policy explains how we collect, use, and protect your personal information
-                        when you use our resume feedback service.
+                    <Section title="1. Scope">
+                        This policy describes how Recruiter in Your Pocket processes resume and LinkedIn inputs,
+                        account identity, usage data, and billing metadata across the web app.
                     </Section>
 
-                    <Section title="2. Information We Collect">
-                        <ul className="list-disc pl-5 space-y-2 mt-4 ml-2 marker:text-muted-foreground">
-                            <li><strong>Resume Data:</strong> The text and content of resumes you upload.</li>
-                            <li><strong>Account Info:</strong> Email address and name (if you sign up).</li>
-                            <li><strong>Usage Data:</strong> How you interact with our reports and features.</li>
-                            <li><strong>Payment Data:</strong> Processed securely by Stripe; we do not store card numbers.</li>
-                        </ul>
+                    <Section title="2. Data handling table">
+                        <div className="rounded-xl border border-border/50 bg-card p-4 overflow-x-auto mt-3">
+                            <table className="min-w-[680px] w-full text-sm">
+                                <thead>
+                                    <tr className="border-b border-border/50 text-left text-xs uppercase tracking-wider text-muted-foreground">
+                                        <th className="py-2 pr-3">Data Type</th>
+                                        <th className="py-2 pr-3">Purpose</th>
+                                        <th className="py-2 pr-3">Retention</th>
+                                        <th className="py-2">Control</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {DATA_HANDLING_ROWS.map((row) => (
+                                        <tr key={row.dataType} className="border-b border-border/20 align-top">
+                                            <td className="py-3 pr-3 text-foreground font-medium">{row.dataType}</td>
+                                            <td className="py-3 pr-3 text-muted-foreground">{row.purpose}</td>
+                                            <td className="py-3 pr-3 text-muted-foreground">{row.retention}</td>
+                                            <td className="py-3 text-muted-foreground">{row.userControl}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </Section>
 
-                    <Section title="3. How We Use Your Data">
-                        <ul className="list-disc pl-5 space-y-2 mt-4 ml-2 marker:text-muted-foreground">
-                            <li>To provide the resume analysis and feedback.</li>
-                            <li>To allow you to access past reports.</li>
-                            <li>To improve the accuracy of our parsing heuristics.</li>
-                            <li>To communicate with you about your account (e.g., login codes).</li>
-                        </ul>
+                    <Section title="3. Third-party processors">
+                        We currently use OpenAI (model responses), Supabase (auth/database), Stripe (payments and invoices),
+                        and Vercel (hosting and runtime infrastructure). Stripe controls card data and invoice retention in its own systems.
                     </Section>
 
-                    <Section title="4. Resume Data Retention">
-                        We process resume uploads primarily in-memory for analysis.
-                        If you are logged in, we store the generated Report for your history.
-                        You can delete your account and data at any time.
+                    <Section title="4. Your controls">
+                        You can delete account data from Settings, export account data from Settings, manage billing in Stripe portal,
+                        and request help through support.
+                        This product does not sell candidate data.
                     </Section>
 
-                    <Section title="5. Third-Party Services">
-                        We use trusted providers to run our service:
-                        <ul className="list-disc pl-5 space-y-1 mt-2 text-sm">
-                            <li><strong>OpenAI:</strong> For generating feedback text.</li>
-                            <li><strong>Stripe:</strong> For payment processing.</li>
-                            <li><strong>Supabase:</strong> For database and authentication.</li>
-                            <li><strong>Vercel:</strong> For hosting.</li>
-                        </ul>
-                    </Section>
-
-                    <Section title="6. Your Rights">
-                        You have the right to access, correct, or delete your personal data.
-                        Contact us if you wish to exercise these rights.
-                    </Section>
-
-                    <Section title="7. Contact Us">
-                        If you have questions about this Privacy Policy, please contact us via our website
-                        or at support@recruiterinyourpocket.com.
+                    <Section title="5. Contact">
+                        Questions about this policy can be sent to support@recruiterinyourpocket.com.
                     </Section>
                 </article>
             </main >

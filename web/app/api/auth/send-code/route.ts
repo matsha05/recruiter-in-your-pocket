@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerAction } from "@/lib/supabase/serverClient";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 
 export async function POST(request: NextRequest) {
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     try {
         const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-        const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 5, 60_000);
+        const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 5, 60_000);
         if (!rl.ok) {
             const res = NextResponse.json({ ok: false, message: "Too many attempts. Try again shortly." }, { status: 429 });
             res.headers.set("x-request-id", request_id);

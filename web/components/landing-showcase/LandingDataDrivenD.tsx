@@ -220,7 +220,7 @@ export function LandingDataDrivenD() {
                     </div>
                     <div className="flex items-center gap-4">
                         <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted</span>
-                        <span className="flex items-center gap-1"><Trash2 className="w-3 h-3" /> Auto-deleted</span>
+                        <span className="flex items-center gap-1"><Trash2 className="w-3 h-3" /> Delete anytime</span>
                     </div>
                 </div>
             </footer>

@@ -4,6 +4,7 @@ import Link from "next/link";
 // SiteHeader removed — layout handles navigation
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
+import { LEGAL_LAST_UPDATED } from "@/lib/legal/dataHandling";
 
 export default function TermsClient() {
     return (
@@ -19,7 +20,7 @@ export default function TermsClient() {
                     <p className="text-xl text-muted-foreground leading-relaxed">
                         The legal agreements that power our service.
                         <br />
-                        <span className="text-sm font-mono mt-2 block opacity-70">Last updated: December 2025</span>
+                        <span className="text-sm font-mono mt-2 block text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</span>
                     </p>
                 </header>
 
@@ -60,12 +61,19 @@ export default function TermsClient() {
                     <Section title="5. Privacy and Data">
                         Your privacy matters to us. Please review our <Link href="/privacy" className="underline underline-offset-4 decoration-muted-foreground hover:decoration-primary transition-colors">Privacy Policy</Link>.
                         <br /><br />
-                        Resume text submitted through the Service is processed temporarily for generating
-                        feedback and is deleted automatically after processing.
+                        Resume content is processed to generate feedback. If you use a logged-in account,
+                        generated report data may be stored so you can review history and compare versions.
+                        You can delete and export account data from Settings.
                     </Section>
 
-                    <Section title="6. Payment and Refunds">
-                        The Service offers both free and paid features. All purchases are final. Refunds are not guaranteed but may be granted at our discretion.
+                    <Section title="6. Payment, Unlocks, and Refunds">
+                        The Service offers one free review and paid plans (monthly or lifetime). Payment processing,
+                        invoice generation, and card updates are handled by Stripe.
+                        <br /><br />
+                        If payment is successful and access appears locked, use <Link href="/purchase/restore" className="underline underline-offset-4 decoration-muted-foreground hover:decoration-primary transition-colors">Restore Access</Link> or Billing settings.
+                        <br /><br />
+                        Monthly subscriptions can be canceled in the billing portal. Refund requests are reviewed case by case
+                        based on delivery status and product access behavior.
                     </Section>
 
                     <Section title="7. Intellectual Property">

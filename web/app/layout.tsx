@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AuthProvider } from "@/components/providers/AuthProvider";
+import { AppProviders } from "@/components/providers/AppProviders";
 import { Analytics } from "@vercel/analytics/next";
 
 import { Toaster } from "@/components/ui/sonner";
@@ -56,12 +56,12 @@ export default function RootLayout({
         {/* Favicon is handled automatically by icon.tsx */}
       </head>
       <body>
-        <AuthProvider>
+        <AppProviders>
           {children}
           <CommandPalette />
           <Toaster />
           <Analytics />
-        </AuthProvider>
+        </AppProviders>
       </body>
     </html>
   );

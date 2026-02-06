@@ -122,7 +122,7 @@ export function LandingUrgencyImpact() {
                             </span>
                             <span className="flex items-center gap-1.5">
                                 <Clock className="w-3.5 h-3.5" />
-                                Deleted in 24 hours
+                                Delete anytime
                             </span>
                         </div>
                     </motion.div>
@@ -332,7 +332,7 @@ export function LandingUrgencyImpact() {
                         Start for free. Upgrade when you're ready.
                     </h2>
                     <p className="text-lg text-white/70 mb-12">
-                        3 free scans, full reports, no credit card required.
+                        1 free review, full report, no credit card required.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">

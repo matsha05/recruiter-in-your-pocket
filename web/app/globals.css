@@ -31,13 +31,13 @@
     --secondary-foreground: 0 0% 7%;
 
     --muted: 220 5% 96%;
-    --muted-foreground: 220 9% 46%;
-    /* Gray-500 */
+    --muted-foreground: 220 9% 36%;
+    /* Accessible muted text */
 
     --accent: 220 5% 96%;
     --accent-foreground: 0 0% 7%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 44%;
     --destructive-foreground: 0 0% 98%;
 
     /* V2.1 Borders — Modern Editorial: soft gray, not black */
@@ -57,8 +57,8 @@
 
     /* V2.1 BRAND PALETTE */
     /* Brand: Teal (Primary CTA, Score) */
-    --brand: 173 80% 30%;
-    /* Teal-600 #0D9488 */
+    --brand: 173 84% 24%;
+    /* Teal-700 for AA contrast on white text */
 
     /* Accent: Slate (UI Chrome) */
     --slate: 215 25% 27%;
@@ -97,6 +97,7 @@
     /* Usage Mapping */
     --font-display: var(--font-fraunces);
     --font-body: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 
     /* V2.1 MOTION */
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -231,6 +232,30 @@
 }
 
 @layer utilities {
+  /* Accessibility: raise contrast on heavily used utility colors in light mode. */
+  :root .text-slate-400 {
+    color: rgb(71 85 105) !important;
+  }
+
+  :root .text-slate-500 {
+    color: rgb(71 85 105) !important;
+  }
+
+  :root .text-teal-600 {
+    color: rgb(15 118 110) !important;
+  }
+
+  :root .bg-teal-600 {
+    background-color: rgb(15 118 110) !important;
+  }
+
+  :root .text-muted-foreground\/50,
+  :root .text-muted-foreground\/60,
+  :root .text-muted-foreground\/70,
+  :root .text-muted-foreground\/80 {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+
   .riyp-figure {
     margin: 2.5rem auto;
   }

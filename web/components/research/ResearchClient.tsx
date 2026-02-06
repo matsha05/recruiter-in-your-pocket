@@ -265,7 +265,7 @@ export default function ResearchClient() {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="space-y-6 text-center max-w-2xl mx-auto"
                 >
-                    <span className="inline-block font-mono text-[10px] uppercase tracking-widest text-brand bg-brand/10 px-3 py-1.5 rounded-full">
+                    <span className="inline-block font-mono text-[10px] uppercase tracking-widest text-foreground bg-muted px-3 py-1.5 rounded-full">
                         The Hiring Playbook
                     </span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight leading-tight">
@@ -339,7 +339,7 @@ export default function ResearchClient() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <span className="font-mono text-[10px] uppercase tracking-widest text-brand/70">Actionable Playbooks</span>
+                                    <span className="font-mono text-[10px] uppercase tracking-widest text-foreground">Actionable Playbooks</span>
                                     <h3 className="font-display text-lg font-medium text-foreground">Offer Negotiation Guides</h3>
                                     <p className="text-sm text-muted-foreground">Step-by-step playbooks for tech and universal negotiation.</p>
                                 </div>

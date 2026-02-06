@@ -3,15 +3,17 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import type { User } from "@supabase/supabase-js";
-import { identifyUser, resetAnalytics, setUserProperties } from "@/lib/analytics";
+import { identifyUser, resetAnalytics } from "@/lib/analytics";
+import { isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 
 export interface AuthUser {
     id: string;
     email: string | null;
     firstName?: string | null;
-    membership?: "pro" | "audit" | "free" | null;
+    membership?: "monthly" | "lifetime" | "credit" | "free" | null;
     daysLeft?: number;
     freeUsesLeft?: number;
+    paidUsesLeft?: number;
 }
 
 interface AuthContextType {
@@ -58,19 +60,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     // 1. Determine Membership from Passes
                     if (passesData.ok && Array.isArray(passesData.passes)) {
                         const now = new Date();
-                        const activePasses = passesData.passes.filter((p: any) => new Date(p.expires_at) > now);
+                        const activePasses = passesData.passes.filter((p: any) => isPassActive(p));
 
-                        const proPass = activePasses.find((p: any) => p.tier === "30d");
-                        const auditPass = activePasses.find((p: any) => p.tier === "single_use" || p.tier === "24h"); // Check both for legacy compat
+                        const lifetimePass = activePasses.find((p: any) => p.tier === "lifetime");
+                        const monthlyPass = activePasses.find((p: any) => p.tier === "monthly");
+                        const creditPasses = activePasses.filter((p: any) => !isUnlimitedPassTier(p.tier));
 
-                        if (proPass) {
-                            baseUser.membership = "pro";
-                            // Calculate days left
-                            const diffTime = new Date(proPass.expires_at).getTime() - now.getTime();
-                            baseUser.daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                        } else if (auditPass) {
-                            baseUser.membership = "audit";
-                            baseUser.daysLeft = undefined; // It's single use, no days count needed
+                        if (lifetimePass) {
+                            baseUser.membership = "lifetime";
+                            baseUser.daysLeft = undefined;
+                        } else if (monthlyPass) {
+                            baseUser.membership = "monthly";
+                            const diffTime = new Date(monthlyPass.expires_at).getTime() - now.getTime();
+                            baseUser.daysLeft = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+                        } else if (creditPasses.length > 0) {
+                            baseUser.membership = "credit";
+                            baseUser.paidUsesLeft = creditPasses.reduce((sum: number, pass: any) => {
+                                return sum + Math.max(0, Number(pass.uses_remaining || 0));
+                            }, 0);
                         } else {
                             baseUser.membership = "free";
                         }

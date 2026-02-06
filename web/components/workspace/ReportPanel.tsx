@@ -24,6 +24,7 @@ interface ReportPanelProps {
     isGated?: boolean;
     justUnlocked?: boolean;
     highlightSection?: string | null;
+    hasPaidAccess?: boolean;
 }
 
 export default function ReportPanel({
@@ -34,16 +35,18 @@ export default function ReportPanel({
     isExporting = false,
     isSample = false,
     onNewReport,
-    freeUsesRemaining = 2,
+    freeUsesRemaining = 1,
     onUpgrade,
     isGated = false,
     justUnlocked = false,
-    highlightSection = null
+    highlightSection = null,
+    hasPaidAccess = false
 }: ReportPanelProps) {
 
     // Derived states
     const showEmptyState = !report && !isLoading;
     const showReport = !!report;
+    const canRunAnother = hasPaidAccess || freeUsesRemaining > 0;
 
     return (
         <div className="flex flex-col h-full overflow-y-auto bg-body relative group">
@@ -123,7 +126,7 @@ export default function ReportPanel({
                                             <ArrowRight className="w-4 h-4" />
                                         </button>
                                     )}
-                                    {!isSample && freeUsesRemaining > 0 && onNewReport && (
+                                    {!isSample && canRunAnother && onNewReport && (
                                         <button
                                             onClick={onNewReport}
                                             className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
@@ -133,7 +136,7 @@ export default function ReportPanel({
                                             <span className="sm:hidden">New</span>
                                         </button>
                                     )}
-                                    {!isSample && freeUsesRemaining <= 0 && onUpgrade && (
+                                    {!isSample && !canRunAnother && onUpgrade && (
                                         <button
                                             onClick={onUpgrade}
                                             className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
@@ -179,6 +182,7 @@ export default function ReportPanel({
                                 isGated={isGated}
                                 justUnlocked={justUnlocked}
                                 highlightSection={highlightSection}
+                                hasPaidAccess={hasPaidAccess}
                                 className="max-w-none pb-16" // Extra padding for BottomActionRail
                             />
                         </div>
@@ -187,8 +191,8 @@ export default function ReportPanel({
                     {/* Bottom Action Rail - Raycast Pattern */}
                     <BottomActionRail
                         sectionName={report.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
-                        primaryActionLabel={isSample ? "Run Your Review" : freeUsesRemaining > 0 ? "Run Another" : "Upgrade"}
-                        onPrimaryAction={isSample || freeUsesRemaining > 0 ? onNewReport : onUpgrade}
+                        primaryActionLabel={isSample ? "Run Your Review" : canRunAnother ? "Run Another" : "Upgrade"}
+                        onPrimaryAction={isSample || canRunAnother ? onNewReport : onUpgrade}
                         onExport={onExportPdf}
                         onShare={() => {
                             navigator.clipboard.writeText(window.location.href);

@@ -413,7 +413,7 @@ function BenefitsNote() {
                 <div className="space-y-2">
                     <p className="text-sm text-foreground font-medium">Benefits add $10-30K+ in hidden value</p>
                     <p className="text-xs text-muted-foreground">
-                        Health insurance, 401k matching, PTO, meals, and other perks aren't captured here but matter significantly.
+                        Health insurance, 401k matching, PTO, meals, and other perks aren&apos;t captured here but matter significantly.
                     </p>
                     <a href="https://www.levels.fyi/benefits/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs text-brand hover:underline">
                         Compare benefits at levels.fyi <ExternalLink className="w-3 h-3" />

@@ -3,7 +3,7 @@ import mammoth from "mammoth";
 import pdfParse from "pdf-parse";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   logInfo({ msg: "http.request.started", request_id, route, method, path });
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 30, 60_000);
+  const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 30, 60_000);
   if (!rl.ok) {
     const res = NextResponse.json({ ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." }, { status: 429 });
     res.headers.set("x-request-id", request_id);
@@ -143,7 +143,6 @@ export async function POST(request: Request) {
     return res;
   }
 }
-
 
 
 

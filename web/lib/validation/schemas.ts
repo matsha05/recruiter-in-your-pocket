@@ -84,7 +84,7 @@ export type PdfExportRequest = z.infer<typeof PdfExportRequestSchema>;
  * Checkout request schema
  */
 export const CheckoutRequestSchema = z.object({
-    tier: z.enum(["24h", "30d", "90d", "single", "pack"]).optional(),
+    tier: z.enum(["monthly", "lifetime", "24h", "30d", "90d", "single", "pack"]).optional(),
     email: z.string().email("Invalid email format").optional(),
     user_id: z.string().uuid().optional()
 });
@@ -158,7 +158,7 @@ export type ResumeIdeasResponse = z.infer<typeof ResumeIdeasResponseSchema>;
  */
 export const StripeCheckoutMetadataSchema = z.object({
     email: z.string().email().optional(),
-    tier: z.enum(["24h", "30d", "90d", "single", "pack"]).optional(),
+    tier: z.enum(["monthly", "lifetime", "24h", "30d", "90d", "single", "pack"]).optional(),
     user_id: z.string().uuid().optional()
 });
 

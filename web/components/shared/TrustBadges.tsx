@@ -16,9 +16,9 @@ interface TrustBadgesProps {
  */
 export function TrustBadges({ variant = "inline", className }: TrustBadgesProps) {
     const badges = [
-        { icon: Shield, label: "Encrypted" },
-        { label: "Auto-deleted in 24h" },
-        { label: "Never trains AI" }
+        { icon: Shield, label: "Encrypted in transit" },
+        { label: "Delete reports anytime" },
+        { label: "Never sold as data" }
     ];
 
     if (variant === "stacked") {

@@ -149,7 +149,7 @@ export function LandingDataDrivenC() {
                             <div className="space-y-2">
                                 {[
                                     { icon: Lock, label: "End-to-end encrypted" },
-                                    { icon: Trash2, label: "Auto-deleted in 24h" },
+                                    { icon: Trash2, label: "Delete anytime" },
                                     { icon: Shield, label: "Never trains AI models" },
                                 ].map((item) => (
                                     <div key={item.label} className="flex items-center gap-2 text-xs text-slate-500">

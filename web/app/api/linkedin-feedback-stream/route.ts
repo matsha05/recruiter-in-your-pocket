@@ -16,7 +16,7 @@ import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/pro
 import { logError, logInfo, logWarn, hashForLogs } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
-import { rateLimit } from "@/lib/security/rateLimit";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import {
     sanitizeUserInput,
@@ -26,6 +26,7 @@ import {
 import { parseLinkedInText } from "@/lib/linkedin/pdf-parser";
 import { fetchLinkedInProfile, isValidLinkedInUrl, isBrightDataConfigured } from "@/lib/linkedin/bright-data";
 import type { LinkedInProfile } from "@/types/linkedin";
+import { getNextUsesRemaining, isPassActive, shouldConsumePassCredit } from "@/lib/billing/entitlements";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -40,12 +41,11 @@ async function getActivePass(supabase: any, userId: string) {
         .select("id, tier, expires_at, uses_remaining, created_at")
         .eq("user_id", userId)
         .gt("expires_at", nowIso())
-        .gt("uses_remaining", 0)
         .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
+        .limit(10);
     if (error) throw error;
-    return data || null;
+    const active = (data || []).find((pass: any) => isPassActive(pass));
+    return active || null;
 }
 
 function getBypassPaywall(): boolean {
@@ -141,7 +141,7 @@ export async function POST(request: Request) {
     logInfo({ msg: "http.request.started", request_id, route, method, path, feature: "linkedin" });
 
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-    const rl = rateLimit(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
+    const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
         const res = NextResponse.json(
             { ok: false, errorCode: "RATE_LIMITED", message: "Too many requests. Try again shortly." },
@@ -380,7 +380,7 @@ export async function POST(request: Request) {
 
                 // Track usage (same as resume)
                 const shouldIncrementFree = accessTier === "free_full";
-                const shouldDecrementPass = accessTier === "pass_full" && activePass && !bypass;
+                const shouldDecrementPass = accessTier === "pass_full" && activePass && !bypass && shouldConsumePassCredit(activePass);
                 const newFreeUsed = shouldIncrementFree ? (freeMeta.used || 0) + 1 : freeMeta.used || 0;
 
                 // Send complete event
@@ -438,7 +438,7 @@ export async function POST(request: Request) {
                     } else {
                         await adminSupabase
                             .from('passes')
-                            .update({ uses_remaining: activePass.uses_remaining - 1 })
+                            .update({ uses_remaining: getNextUsesRemaining(activePass) })
                             .eq('id', activePass.id);
                     }
                 }

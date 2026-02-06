@@ -70,6 +70,10 @@ export interface MarketingNavItem {
 }
 
 export const MARKETING_NAV = {
+    product: [
+        { label: "Pricing", href: "/pricing" },
+        { label: "Workspace", href: "/workspace" },
+    ],
     research: [
         { label: "How Recruiters Read", href: "/research/how-recruiters-read" },
         { label: "The 7-Second Scan", href: "/research/how-people-scan" },
@@ -82,6 +86,8 @@ export const MARKETING_NAV = {
     ],
     company: [
         { label: "FAQ", href: "/faq" },
+        { label: "Security", href: "/security" },
+        { label: "Methodology", href: "/methodology" },
         { label: "Privacy", href: "/privacy" },
         { label: "Terms", href: "/terms" },
     ],
@@ -93,11 +99,14 @@ export const MARKETING_NAV = {
 
 export const FOOTER_NAV = {
     pillLinks: [
+        { label: "Pricing", href: "/pricing" },
         { label: "Research", href: "/research" },
         { label: "Resources", href: "/guides" },
     ],
     legalLinks: [
         { label: "FAQ", href: "/faq" },
+        { label: "Security", href: "/security" },
+        { label: "Methodology", href: "/methodology" },
         { label: "Terms", href: "/terms" },
         { label: "Privacy", href: "/privacy" },
     ],

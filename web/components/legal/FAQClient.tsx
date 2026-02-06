@@ -38,7 +38,7 @@ const faqData = [
         questions: [
             {
                 q: "What happens to my resume after I upload it?",
-                a: "Your resume is analyzed by our AI, then automatically deleted within 24 hours. We don't store resumes long-term, and we never share or sell your personal data."
+                a: "We process your upload to generate feedback. If you use account features, your report output can be stored so you can revisit history. You can delete account data from Settings, and we never sell your data."
             },
             {
                 q: "Is my data used to train AI models?",
@@ -59,19 +59,19 @@ const faqData = [
         questions: [
             {
                 q: "Is the first review really free?",
-                a: "Yes. Your first full review is completely free, no credit card required. We want you to see the value before you commit."
+                a: "Yes. You get one full review for free with no credit card required."
             },
             {
-                q: "What's the difference between Quick Check and Active Job Search?",
-                a: "Quick Check ($9) is best if you're just getting started—one review to diagnose what's not working. Active Job Search ($29) gives you 5 reviews so you can iterate across versions and tailor for different roles."
+                q: "What is the difference between Monthly and Lifetime?",
+                a: "Monthly ($9) is for active job search periods when you want unlimited iterations and can cancel anytime. Lifetime ($79 one-time) is for long-term access without recurring billing."
             },
             {
-                q: "Do credits expire?",
-                a: "No. Once you purchase credits, they're yours to use whenever you need them."
+                q: "How do I restore access or get invoices?",
+                a: "Use Settings > Billing to restore access, open the Stripe billing portal, update payment method, and download receipts/invoices."
             },
             {
                 q: "Can I get a refund?",
-                a: "Yes. If you're not satisfied with your first review, email us within 24 hours for a full refund. No questions asked."
+                a: "If billing looks wrong or the product fails to unlock after payment, contact support and we will resolve it quickly. Refund requests are handled case by case."
             },
         ]
     },

@@ -16,7 +16,7 @@ export async function GET() {
 
     const { data, error } = await supabase
       .from("passes")
-      .select("id, tier, expires_at, created_at")
+      .select("id, tier, uses_remaining, expires_at, created_at, checkout_session_id, price_id")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false });
 

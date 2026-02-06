@@ -27,7 +27,13 @@ export type LogRecord = {
 
   http?: { body_bytes?: number; query_keys?: string[] };
   supabase?: { table?: string; op?: string; rows?: number; error_code?: string };
-  stripe?: { event_id?: string; event_type?: string; session_id?: string };
+  stripe?: {
+    event_id?: string;
+    event_type?: string;
+    session_id?: string;
+    invoice_id?: string;
+    customer_id?: string;
+  };
   llm?: {
     task?: string;
     model?: string;

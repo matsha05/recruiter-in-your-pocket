@@ -56,7 +56,7 @@ export default function GuidesPage() {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="text-center mb-16 max-w-2xl mx-auto"
                 >
-                    <span className="inline-block font-mono text-[10px] uppercase tracking-widest text-brand bg-brand/10 px-3 py-1.5 rounded-full mb-6">
+                    <span className="inline-block font-mono text-[10px] uppercase tracking-widest text-foreground bg-muted px-3 py-1.5 rounded-full mb-6">
                         Actionable Playbooks
                     </span>
                     <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight leading-tight mb-4">
@@ -87,7 +87,7 @@ export default function GuidesPage() {
                                                 <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
                                                     {guide.badge}
                                                 </span>
-                                                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
+                                                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                                                     {guide.readTime}
                                                 </span>
                                             </div>
@@ -97,7 +97,7 @@ export default function GuidesPage() {
                                             <p className="text-base text-muted-foreground mb-3">
                                                 {guide.subtitle}
                                             </p>
-                                            <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                                            <p className="text-sm text-muted-foreground leading-relaxed">
                                                 {guide.description}
                                             </p>
                                         </div>
@@ -137,7 +137,7 @@ export default function GuidesPage() {
                                     <h3 className="font-medium text-foreground group-hover:text-brand transition-colors">
                                         Comp Comparison Calculator
                                     </h3>
-                                    <p className="text-sm text-muted-foreground">
+                                    <p className="text-sm text-foreground/80">
                                         Compare two offers side-by-side. See Year 1 and 4-year totals.
                                     </p>
                                 </div>
@@ -154,10 +154,10 @@ export default function GuidesPage() {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="mt-16 text-center"
                 >
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <p className="text-sm text-foreground mb-4">
                         Looking for the evidence behind the advice?
                     </p>
-                    <Link href="/research" className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline underline-offset-4">
+                    <Link href="/research" className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:underline underline-offset-4">
                         <BookOpen className="w-4 h-4" />
                         Browse the Research Library
                     </Link>

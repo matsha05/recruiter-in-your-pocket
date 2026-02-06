@@ -163,7 +163,7 @@ export function LandingDataDrivenB() {
                     </div>
                     <div className="flex items-center gap-4">
                         <Lock className="w-3 h-3" /> Encrypted
-                        <Trash2 className="w-3 h-3" /> Auto-deleted
+                        <Trash2 className="w-3 h-3" /> Delete anytime
                     </div>
                 </div>
             </footer>

@@ -85,7 +85,7 @@ export function LandingPurpleConfidence() {
 
                             <div className="flex items-center gap-4 text-sm text-gray-500">
                                 <div className="flex items-center gap-1"><Lock className="w-4 h-4" /> Encrypted</div>
-                                <div className="flex items-center gap-1"><Trash2 className="w-4 h-4" /> Auto-deleted</div>
+                                <div className="flex items-center gap-1"><Trash2 className="w-4 h-4" /> Delete anytime</div>
                             </div>
                         </motion.div>
 

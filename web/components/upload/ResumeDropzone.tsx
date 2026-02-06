@@ -215,7 +215,7 @@ export function ResumeDropzone({
                         )}
                     </div>
                     <div className="text-xs text-muted-foreground">
-                        We delete your files automatically within 24 hours.
+                        We use your upload to generate feedback. Delete stored data anytime in Settings.
                     </div>
                 </div>
             )}

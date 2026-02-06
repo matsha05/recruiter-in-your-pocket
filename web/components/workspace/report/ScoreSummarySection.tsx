@@ -19,6 +19,20 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
     const strengths = data.strengths?.slice(0, 5) || [];
     const gaps = data.gaps?.slice(0, 5) || [];
     const hasLists = strengths.length > 0 || gaps.length > 0;
+    const topActions = [
+        ...(data.rewrites || []).slice(0, 2).map((rewrite) => ({
+            text: rewrite.label || `Rewrite: ${rewrite.original?.slice(0, 70)}`,
+            impact: "High"
+        })),
+        ...(data.gaps || []).slice(0, 2).map((gap) => ({
+            text: `Fix gap: ${gap}`,
+            impact: "Medium"
+        })),
+        ...(data.next_steps || []).slice(0, 1).map((step) => ({
+            text: step,
+            impact: "Medium"
+        }))
+    ].slice(0, 3);
 
     return (
         <section className="space-y-8">
@@ -28,6 +42,31 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 title="Signal Analysis"
                 subtitle="What made me lean in, and what made me pause."
             />
+
+            {topActions.length > 0 && (
+                <div className="rounded border border-brand/20 bg-brand/5 p-5">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-foreground mb-3">
+                        Next Pass Plan (15 Minutes)
+                    </h3>
+                    <ul className="space-y-2">
+                        {topActions.map((action, i) => (
+                            <li key={`${action.text}-${i}`} className="flex items-start justify-between gap-3 text-sm">
+                                <span className="text-foreground/90 leading-relaxed">{action.text}</span>
+                                <span
+                                    className={cn(
+                                        "shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded",
+                                        action.impact === "High"
+                                            ? "bg-success/15 text-success"
+                                            : "bg-premium/15 text-premium"
+                                    )}
+                                >
+                                    {action.impact}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
 
             {/* Subscores Grid - Story emphasized as most important */}
             {hasSubscores ? (
