@@ -33,11 +33,11 @@ export default function MethodologyClient() {
         <LegalShell
             eyebrow="Methodology"
             title="How the scoring model works"
-            description="What each score measures, how confidence is handled, and what the output should be used for."
+            description="What each score measures, how confidence is handled, and what output should be used for."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
             <section className="landing-card landing-card-pad">
-                <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-foreground">
+                <h2 className="legal-section-title flex items-center gap-2">
                     <BarChart3 className="h-4 w-4 text-brand" />
                     7.4-second signal rubric
                 </h2>
@@ -56,7 +56,7 @@ export default function MethodologyClient() {
 
             <section className="grid gap-4 md:grid-cols-2">
                 <div className="landing-card landing-card-pad">
-                    <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <h3 className="mb-2 flex items-center gap-2 text-base font-semibold text-foreground">
                         <Target className="h-4 w-4 text-brand" />
                         Output intent
                     </h3>
@@ -65,7 +65,7 @@ export default function MethodologyClient() {
                     </p>
                 </div>
                 <div className="landing-card landing-card-pad">
-                    <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <h3 className="mb-2 flex items-center gap-2 text-base font-semibold text-foreground">
                         <PenSquare className="h-4 w-4 text-brand" />
                         Rewrite quality bar
                     </h3>
@@ -76,7 +76,7 @@ export default function MethodologyClient() {
             </section>
 
             <section className="landing-card-soft landing-card-pad">
-                <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
+                <h3 className="mb-2 flex items-center gap-2 text-base font-semibold text-foreground">
                     <AlertTriangle className="h-4 w-4 text-warning" />
                     Limits and responsible use
                 </h3>

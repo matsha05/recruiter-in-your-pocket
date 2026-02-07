@@ -7,7 +7,7 @@ import { LegalShell } from "@/components/legal/LegalShell";
 function PrivacySection({ title, children }: { title: string; children: ReactNode }) {
     return (
         <section className="landing-card landing-card-pad">
-            <h2 className="mb-3 font-display text-2xl leading-tight tracking-tight">{title}</h2>
+            <h2 className="legal-section-title">{title}</h2>
             <div className="landing-copy-muted">{children}</div>
         </section>
     );
@@ -26,7 +26,7 @@ export default function PrivacyClient() {
             </PrivacySection>
 
             <section className="landing-card landing-card-pad overflow-x-auto">
-                <h2 className="mb-3 font-display text-2xl leading-tight tracking-tight">2. Data handling table</h2>
+                <h2 className="legal-section-title">2. Data handling table</h2>
                 <table className="min-w-[760px] w-full text-sm">
                     <thead>
                         <tr className="border-b border-border/50 text-left text-label-mono text-muted-foreground">

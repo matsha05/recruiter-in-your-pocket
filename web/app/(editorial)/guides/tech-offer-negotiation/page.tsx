@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 // SiteHeader removed — layout handles navigation
 import {
@@ -49,7 +48,7 @@ export default function TechOfferNegotiationGuidePage() {
                 <header className="mb-20">
                     <div className="space-y-6 max-w-3xl">
                         <div className="flex items-center gap-3">
-                            <span className="inline-flex items-center rounded-sm border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-violet-600">
+                            <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-brand">
                                 Tech Offers
                             </span>
                             <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
@@ -59,17 +58,35 @@ export default function TechOfferNegotiationGuidePage() {
 
                         <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground leading-tight">
                             Tech Salary Negotiation:<br />
-                            <span className="text-muted-foreground">The playbook insiders already use</span>
+                            <span className="text-muted-foreground">A playbook for tech offers</span>
                         </h1>
 
                         <p className="text-xl text-muted-foreground leading-relaxed">
-                            Equity can be half your total comp. Level controls everything. Most candidates leave $50K+ on the table because they negotiate like it&apos;s one number. Here&apos;s how to not be one of them.
+                            Equity can represent a major share of total compensation, and level controls most of the range. Negotiate the full package, not just base.
                         </p>
                     </div>
                 </header>
 
                 {/* Employer Math Callout */}
                 <EmployerMathCallout />
+
+                <div className="mb-12 rounded-xl border border-border/40 bg-muted/10 p-6 max-w-3xl">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">Quick start</div>
+                    <div className="grid gap-3 sm:grid-cols-3">
+                        <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
+                            <div className="text-sm font-medium text-foreground">1. Confirm level and band</div>
+                            <p className="mt-1 text-xs text-muted-foreground">Most upside comes from level calibration before comp tuning.</p>
+                        </div>
+                        <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
+                            <div className="text-sm font-medium text-foreground">2. Price equity clearly</div>
+                            <p className="mt-1 text-xs text-muted-foreground">Separate base, bonus, grant value, and vesting reality.</p>
+                        </div>
+                        <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
+                            <div className="text-sm font-medium text-foreground">3. Counter with one number</div>
+                            <p className="mt-1 text-xs text-muted-foreground">Use a commit-if target that helps the recruiter close.</p>
+                        </div>
+                    </div>
+                </div>
 
                 {/* Table of Contents */}
                 <div className="mb-20 p-8 rounded-xl border border-border/30 bg-muted/10 max-w-3xl">
@@ -100,7 +117,7 @@ export default function TechOfferNegotiationGuidePage() {
                             <span className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">4</span>
                             <div>
                                 <a href="#the-playbook" className="text-base font-medium text-foreground hover:text-brand">The playbook</a>
-                                <p className="text-sm text-muted-foreground mt-1">Step by step negotiation with scripts</p>
+                                <p className="text-sm text-muted-foreground mt-1">Step-by-step negotiation scripts</p>
                             </div>
                         </div>
                     </div>
@@ -485,10 +502,10 @@ export default function TechOfferNegotiationGuidePage() {
                             />
                         </div>
 
-                        <div className="mt-12 p-8 rounded-xl bg-gradient-to-r from-brand/10 to-violet-500/10 border border-brand/20">
-                            <h4 className="font-display text-xl font-medium text-foreground mb-3">The biggest mistake you can make</h4>
+                        <div className="mt-12 rounded-xl border border-brand/20 bg-brand/[0.07] p-8">
+                            <h4 className="font-display text-xl font-medium text-foreground mb-3">The most common mistake</h4>
                             <p className="text-lg text-muted-foreground">
-                                Doing nothing. Everyone regrets it — the other side <em>expects</em> you to negotiate. Negotiating is what successful professionals do. <GuideHighlight>It&apos;s not greedy. It&apos;s expected.</GuideHighlight>
+                                Skipping the negotiation step. Most teams expect a clear, professional counter. <GuideHighlight>Negotiating is not a red flag; it is normal process behavior.</GuideHighlight>
                             </p>
                         </div>
                     </GuideNumberedSection>
@@ -497,7 +514,7 @@ export default function TechOfferNegotiationGuidePage() {
 
                 {/* CTA */}
                 <div className="mt-24 bg-secondary/10 border border-border/10 rounded-2xl p-10 md:p-14 text-center max-w-3xl mx-auto">
-                    <h2 className="font-display text-3xl font-medium mb-4">Ready to negotiate?</h2>
+                    <h2 className="font-display text-3xl font-medium mb-4">Ready for your next offer conversation?</h2>
                     <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
                         Make sure your resume is strong before you start interviewing. Get reviewed by a recruiter&apos;s eye.
                     </p>

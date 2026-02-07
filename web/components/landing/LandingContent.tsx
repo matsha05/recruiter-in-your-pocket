@@ -2,7 +2,6 @@
 
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
     ArrowRight,
     Award,
@@ -75,7 +74,7 @@ const signalCards = [
     {
         icon: BarChart2,
         title: "Story Signal",
-        description: "Can your narrative survive first scan?",
+        description: "Will they keep reading after first scan?",
         weight: "35%",
         citation: "NBER, 2019",
     },
@@ -89,14 +88,14 @@ const signalCards = [
     {
         icon: SixSecondIcon,
         title: "Clarity Signal",
-        description: "Can role and level parse in seconds?",
+        description: "Can role and level parse at a glance?",
         weight: "20%",
         citation: "Ladders, 2018",
     },
     {
         icon: BookOpen,
         title: "Readability Signal",
-        description: "Does layout support fast scan?",
+        description: "Is this easy to scan under time pressure?",
         weight: "15%",
         citation: "Eye-tracking, 2018",
     },
@@ -107,7 +106,7 @@ const curatedResearch = [
         category: "Resume writing",
         title: "The Laszlo Bock Formula",
         readTime: "5 min",
-        copy: "Quantified outcomes that change perceived impact.",
+        copy: "Quantified outcomes and perceived impact",
         icon: BarChart2,
         href: "/research/quantifying-impact",
     },
@@ -115,7 +114,7 @@ const curatedResearch = [
         category: "Job search strategy",
         title: "The Referral Advantage",
         readTime: "4 min",
-        copy: "Referral patterns that increase interview odds.",
+        copy: "Referral patterns that shift interview odds",
         icon: Users,
         href: "/research/referral-advantage",
     },
@@ -169,13 +168,8 @@ export default function LandingContent() {
         <div className="landing-page selection:bg-teal-500/20">
             <section className="landing-section-pad landing-section-divider landing-section-hero">
                 <div className="landing-rail">
-                    <div className="grid items-start gap-9 lg:grid-cols-[0.98fr_1.02fr] lg:gap-11 xl:gap-12">
-                        <motion.div
-                            className="space-y-5 md:space-y-6"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
+                    <div className="grid items-start landing-grid-gap lg:grid-cols-[0.98fr_1.02fr]">
+                        <div className="landing-flow-lg">
                             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
                                 <BookOpen className="w-3.5 h-3.5" />
                                 Methodology grounded in recruiting science
@@ -186,7 +180,7 @@ export default function LandingContent() {
                             </h1>
 
                             <p className="max-w-[33rem] landing-copy">
-                                RIYP shows the first-pass judgment, why it happened, and what to rewrite first.
+                                Get the first-pass verdict, the evidence behind it, and what to rewrite first.
                             </p>
 
                             <div className="overflow-hidden rounded-[12px] border border-border/60 bg-white/95 dark:bg-slate-900/65">
@@ -226,18 +220,18 @@ export default function LandingContent() {
                                 </div>
                             </div>
 
-                            <div className="max-w-[34rem] space-y-2.5 landing-copy-muted">
+                            <div className="max-w-[34rem] landing-flow-sm landing-copy-muted">
                                 <div className="flex items-center gap-2">
                                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand" />
-                                    First-pass verdict plus one critical miss
+                                    Verdict and critical miss
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand" />
-                                    Evidence-linked rewrites in priority order
+                                    Evidence-linked rewrite
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand" />
-                                    Paste-ready language for immediate edits
+                                    Priority order for next iteration
                                 </div>
                             </div>
 
@@ -261,65 +255,60 @@ export default function LandingContent() {
                                 </Link>
                             </div>
                             <p className="text-sm text-slate-500 dark:text-slate-500">
-                                First review free · No card required · Save only if you choose
+                                First review free. No card required. Reports save only if you choose.
                             </p>
-                        </motion.div>
+                        </div>
 
-                        <motion.div
-                            className="lg:pt-1"
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: 0.15 }}
-                        >
+                        <div className="lg:pt-0.5">
                             <HeroReportArtifact
                                 data={HERO_REPORT_SAMPLE}
                                 playbackSeconds={firstPassPlaybackSeconds}
                             />
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="evidence" className="landing-section-pad landing-section landing-section-divider">
+            <section id="evidence" className="landing-section-pad landing-section landing-section-tight landing-section-divider">
                 <div className="landing-rail">
-                    <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
-                        <div>
-                            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-label-mono text-muted-foreground dark:border-slate-700">
-                                First-pass signal model
+                    <div className="grid items-start landing-grid-gap lg:grid-cols-[0.9fr_1.1fr]">
+                        <div className="landing-flow-md">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-label-mono text-muted-foreground dark:border-slate-700">
+                                The 7.4-second signal model
                             </div>
-                            <h2 className="mb-4 font-display text-4xl leading-[0.98] tracking-tight md:text-[48px]">
+                            <h2 className="landing-title-xl">
                                 Evidence before advice
                             </h2>
-                            <p className="mb-6 max-w-[34rem] landing-copy">
-                                Every recruiter signal maps to line-level evidence in your resume.
+                            <p className="max-w-[34rem] landing-copy">
+                                Four weighted signals mapped to line-level evidence.
                             </p>
 
-                            <div className="landing-card landing-card-pad">
-                                <div className="landing-eyebrow mb-2">Decision contract</div>
-                                <ol className="space-y-2.5 landing-copy">
-                                    <li>1. Detect the decision trigger.</li>
+                            <div className="landing-card landing-card-pad landing-flow-sm">
+                                <div className="landing-eyebrow">Decision contract</div>
+                                <ol className="landing-flow-sm landing-copy">
+                                    <li>1. Find what triggers the decision.</li>
                                     <li>2. Show the exact line that caused it.</li>
-                                    <li>3. Rewrite with expected impact.</li>
+                                    <li>3. Rewrite in priority order.</li>
                                 </ol>
-                                <Link href="/research/how-we-score" className="inline-flex items-center gap-2 text-sm text-brand hover:text-brand/80 mt-3">
-                                    See scoring method
+                                <Link href="/research/how-we-score" className="inline-flex items-center gap-2 text-sm text-brand hover:text-brand/80">
+                                    See full methodology
                                     <ArrowRight className="w-4 h-4" />
                                 </Link>
                             </div>
                         </div>
 
-                        <div className="grid gap-5 sm:grid-cols-2 md:gap-6">
+                        <div className="grid landing-grid-gap sm:grid-cols-2">
                             {signalCards.map((card) => (
-                                <div key={card.title} className="landing-card landing-card-pad">
-                                    <div className="mb-2 flex items-start justify-between gap-3">
+                                <div key={card.title} className="landing-card landing-card-pad-compact landing-flow-sm">
+                                    <div className="flex items-start justify-between gap-3">
                                         <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center">
                                             <card.icon className="w-4 h-4" />
                                         </div>
                                         <span className="text-label-mono text-muted-foreground">{card.weight}</span>
                                     </div>
-                                    <h3 className="mb-1 font-display text-[22px] leading-[1.08] tracking-tight">{card.title}</h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400">{card.description}</p>
-                                    <div className="inline-flex items-center mt-3 rounded bg-muted/25 px-2 py-0.5 text-label-mono text-muted-foreground">
+                                    <h3 className="font-display text-[21px] leading-[1.08] tracking-tight">{card.title}</h3>
+                                    <p className="text-[14px] leading-relaxed text-slate-600 dark:text-slate-400">{card.description}</p>
+                                    <div className="inline-flex items-center rounded bg-muted/25 px-2 py-0.5 text-label-mono text-muted-foreground">
                                         {card.citation}
                                     </div>
                                 </div>
@@ -328,14 +317,14 @@ export default function LandingContent() {
                     </div>
 
                     <div className="landing-section-split">
-                        <div className="mb-8 flex flex-wrap items-end justify-between gap-4 md:mb-10">
+                        <div className="landing-section-head">
                             <div>
-                                <div className="mb-2 text-label-mono text-muted-foreground">Research-backed by design</div>
-                                <h3 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[38px]">
+                                <div className="landing-kicker">Research-backed by design</div>
+                                <h3 className="landing-title-lg">
                                     Built on how recruiters decide
                                 </h3>
-                                <p className="mt-2 landing-copy-muted">
-                                    Research translated into practical edits for your next pass.
+                                <p className="landing-copy-muted">
+                                    Research translated into practical edits you can apply immediately.
                                 </p>
                             </div>
                             <Link
@@ -347,7 +336,7 @@ export default function LandingContent() {
                             </Link>
                         </div>
 
-                        <div className="grid items-start gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10">
+                        <div className="grid items-start gap-7 lg:grid-cols-[1.06fr_0.94fr] lg:gap-8">
                             <Link
                                 href="/research/how-recruiters-read"
                                 className="group card-interactive landing-card block rounded-2xl p-5 lg:p-6"
@@ -356,14 +345,14 @@ export default function LandingContent() {
                                     <span className="text-label-mono">Featured: Eye-tracking research</span>
                                     <span className="text-label-mono text-muted-foreground">4 min read</span>
                                 </div>
-                                <h4 className="mb-3 font-display text-[23px] leading-[1.08] tracking-tight transition-colors group-hover:text-brand md:text-[28px]">
+                                <h4 className="landing-title-md mb-3 transition-colors group-hover:text-brand">
                                     What recruiters actually read in the first 7.4 seconds
                                 </h4>
                                 <p className="landing-copy-muted">
-                                    Heat-map evidence on scan behavior and pass-versus-reject cues.
+                                    Eye-tracking evidence on the cues that drive pass versus reject.
                                 </p>
-                                <div className="mt-4 rounded-md border border-border/60 bg-muted/15 px-4 py-3.5 md:px-5 md:py-4">
-                                    <div className="mb-0.5 text-label-mono text-muted-foreground">What this means for your next edit</div>
+                                <div className="mt-4 rounded-md border border-border/60 bg-muted/15 px-4 py-3 md:px-5 md:py-3.5">
+                                    <div className="mb-0.5 text-label-mono text-muted-foreground">What this changes</div>
                                     <div className="landing-copy">
                                         Move your strongest quantified outcome into the first visible screen.
                                     </div>
@@ -374,29 +363,29 @@ export default function LandingContent() {
                                 </div>
                             </Link>
 
-                            <div className="landing-card rounded-2xl p-5 lg:p-6">
-                                <div className="landing-eyebrow mb-3">Curated next reads</div>
-                                <div className="divide-y divide-border/50">
+                            <div className="landing-flow-sm">
+                                <div className="landing-eyebrow">Curated next reads</div>
+                                <div className="space-y-3">
                                     {curatedResearch.map((article) => (
                                         <Link
                                             key={article.title}
                                             href={article.href}
-                                            className="group card-interactive block py-5 first:pt-0 last:pb-0 md:py-6"
+                                            className="group card-interactive block rounded-xl border border-border/60 bg-white px-4 py-3.5 dark:bg-slate-900"
                                         >
-                                            <div className="flex items-center justify-between gap-4">
-                                                <div className="flex items-center gap-3 min-w-0">
-                                                    <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center shrink-0">
-                                                        <article.icon className="w-4 h-4" />
-                                                    </div>
-                                                    <div className="min-w-0">
-                                                        <div className="text-label-mono mb-0.5">{article.category}</div>
-                                                        <div className="text-[21px] font-display leading-[1.1] tracking-tight text-slate-900 transition-colors group-hover:text-brand dark:text-slate-100">
-                                                            {article.title}
-                                                        </div>
-                                                        <p className="mt-1.5 landing-copy-muted">{article.copy}</p>
-                                                    </div>
-                                                </div>
+                                            <div className="mb-2 flex items-center justify-between gap-4">
+                                                <div className="text-label-mono">{article.category}</div>
                                                 <span className="text-label-mono text-muted-foreground shrink-0">{article.readTime}</span>
+                                            </div>
+                                            <div className="flex items-start gap-3">
+                                                <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center shrink-0">
+                                                    <article.icon className="w-4 h-4" />
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <div className="text-[20px] font-display leading-[1.1] tracking-tight text-slate-900 transition-colors group-hover:text-brand dark:text-slate-100">
+                                                        {article.title}
+                                                    </div>
+                                                    <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{article.copy}</p>
+                                                </div>
                                             </div>
                                         </Link>
                                     ))}
@@ -408,17 +397,17 @@ export default function LandingContent() {
             </section>
 
             <section className="landing-section-pad landing-deep-ink">
-                <div className="landing-rail grid items-start gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10">
-                    <div>
-                        <div className="mb-5 text-label-mono text-slate-400">Operator notes</div>
-                        <h2 className="mb-4 font-display text-4xl leading-[0.98] tracking-tight text-slate-50 md:text-[50px]">
+                <div className="landing-rail grid items-start landing-grid-gap lg:grid-cols-[1.02fr_0.98fr]">
+                    <div className="landing-flow-md">
+                        <div className="text-label-mono text-slate-400">Operator notes</div>
+                        <h2 className="font-display text-4xl leading-[0.98] tracking-tight text-slate-50 md:text-[50px]">
                             Trusted by people making hiring decisions
                         </h2>
                         <p className="landing-copy-inverted max-w-[42rem]">
-                            Not generic resume advice. It mirrors the first-pass process used by coaches and hiring teams.
+                            Built around the same first-pass judgment pattern used by coaches and hiring managers.
                         </p>
 
-                        <div className="mt-7 grid max-w-2xl gap-4 md:mt-8 md:grid-cols-2 md:gap-5">
+                        <div className="grid max-w-2xl gap-4 md:grid-cols-2 md:gap-5">
                             {testimonialCards.map((testimonial) => (
                                 <div
                                     key={testimonial.name}
@@ -435,8 +424,8 @@ export default function LandingContent() {
                         </div>
                     </div>
 
-                    <div className="landing-deep-ink-panel">
-                        <div className="mb-5 text-label-mono text-slate-400">Why people switch to RIYP</div>
+                    <div className="landing-deep-ink-panel landing-flow-md">
+                        <div className="text-label-mono text-slate-400">Why people switch to RIYP</div>
                         <div className="space-y-3.5">
                             {[
                                 "It surfaces the first-pass verdict, not just a score.",
@@ -451,13 +440,13 @@ export default function LandingContent() {
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-5 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3.5">
+                        <div className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3.5">
                             <div className="text-label-mono text-slate-400">No-risk first run</div>
-                            <div className="text-sm text-slate-100 mt-1">First full review is free. No card required.</div>
+                            <div className="mt-1 text-sm text-slate-100">First full review is free. No card required.</div>
                         </div>
                         <Link
                             href="/workspace"
-                            className="mt-6 inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90"
+                            className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90"
                         >
                             Try the free review
                             <ArrowRight className="w-4 h-4" />
@@ -466,25 +455,25 @@ export default function LandingContent() {
                 </div>
             </section>
 
-            <section className="landing-section-pad landing-section landing-section-divider">
-                <div className="landing-rail grid items-start gap-9 xl:grid-cols-[0.72fr_1.28fr] xl:gap-11">
-                    <div>
-                        <div className="mb-4 text-label-mono text-muted-foreground">Pricing with clear value boundaries</div>
-                        <h2 className="mb-4 font-display text-4xl leading-[0.98] tracking-tight md:text-[48px]">
+            <section className="landing-section-pad landing-section landing-section-tight landing-section-divider">
+                <div className="landing-rail grid items-start landing-grid-gap xl:grid-cols-[0.72fr_1.28fr]">
+                    <div className="landing-flow-md">
+                        <div className="text-label-mono text-muted-foreground">Pricing with clear value boundaries</div>
+                        <h2 className="landing-title-xl">
                             Start free, upgrade when iteration speed matters
                         </h2>
                         <p className="landing-copy">
-                            One full review is free. Paid tiers unlock repeated role-specific runs.
+                            One full review is free. Paid tiers unlock repeated role-specific runs, deeper rewrites, and history.
                         </p>
 
-                        <div className="landing-card-soft landing-card-pad mt-6">
-                            <div className="mb-2 text-label-mono text-muted-foreground">Included in every plan</div>
+                        <div className="landing-card-soft landing-card-pad landing-flow-sm">
+                            <div className="text-label-mono text-muted-foreground">Included in every plan</div>
                             <div className="space-y-2 landing-copy-muted">
                                 <p>Evidence-first report structure</p>
-                                <p>Clear priority sequence for edits</p>
-                                <p>Transparent billing and restore</p>
+                                <p>Clear priority rewrite sequence</p>
+                                <p>Transparent billing and self-serve restore</p>
                             </div>
-                            <Link href="/pricing" className="inline-flex items-center gap-1 text-sm text-brand hover:text-brand/80 mt-3">
+                            <Link href="/pricing" className="inline-flex items-center gap-1 text-sm text-brand hover:text-brand/80">
                                 View full pricing details
                                 <ArrowRight className="w-4 h-4" />
                             </Link>
@@ -517,10 +506,10 @@ export default function LandingContent() {
                 </div>
 
                 <div className="landing-rail landing-section-split">
-                    <div className="mb-8 flex flex-wrap items-end justify-between gap-4 md:mb-9">
+                    <div className="landing-section-head">
                         <div>
-                            <div className="mb-2 text-label-mono text-muted-foreground">Trust, in plain English</div>
-                            <h3 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[38px]">Clear rules for data, billing, and control</h3>
+                            <div className="landing-kicker">Trust, in plain English</div>
+                            <h3 className="landing-title-lg">Clear rules for data, billing, and control</h3>
                         </div>
                         <Link href="/security" className="text-sm text-brand hover:text-brand/80 inline-flex items-center gap-1">
                             Review security and data handling
@@ -528,18 +517,18 @@ export default function LandingContent() {
                         </Link>
                     </div>
 
-                    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-                        {[
-                            { icon: Lock, title: "Encrypted in transit", copy: "Files are secured while uploading and processing." },
-                            { icon: Trash2, title: "You control retention", copy: "Reports save when you choose and can be removed." },
-                            { icon: Shield, title: "No public model training", copy: "Resume data is not used to train public models." },
-                            { icon: Award, title: "Stripe handles billing", copy: "Receipts, renewals, and cancellation controls stay transparent." },
-                        ].map((item) => (
-                            <div key={item.title} className="landing-card landing-card-pad">
-                                <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center mb-3">
+                    <div className="grid landing-grid-gap md:grid-cols-2 lg:grid-cols-4">
+                            {[
+                                { icon: Lock, title: "Encrypted in transit", copy: "Files are encrypted during upload and processing." },
+                                { icon: Trash2, title: "You control retention", copy: "Reports save when you choose and can be removed in Settings." },
+                                { icon: Shield, title: "No public model training", copy: "Resume data is not used to train public models." },
+                                { icon: Award, title: "Stripe handles billing", copy: "Receipts, renewals, and cancellation are self-serve." },
+                            ].map((item) => (
+                            <div key={item.title} className="landing-card landing-card-pad landing-flow-sm">
+                                <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center">
                                     <item.icon className="w-4 h-4" />
                                 </div>
-                                <div className="text-base font-medium mb-1.5">{item.title}</div>
+                                <div className="text-base font-medium">{item.title}</div>
                                 <div className="landing-copy-muted">{item.copy}</div>
                             </div>
                         ))}

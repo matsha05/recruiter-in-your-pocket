@@ -8,13 +8,13 @@ import { LegalShell } from "@/components/legal/LegalShell";
 const trustBlocks = [
     {
         icon: ShieldCheck,
-        title: "Evidence over overclaim",
-        body: "Scores are presented as hiring-signal estimates, never guaranteed outcomes.",
+        title: "Evidence over claims",
+        body: "Scores are presented as hiring-signal estimates, not guaranteed outcomes.",
     },
     {
         icon: Lock,
         title: "Clear data handling",
-        body: "Retention and processor behavior is documented in plain language on Security and Privacy.",
+        body: "Retention and processors are documented in plain language on Security and Privacy.",
     },
     {
         icon: Receipt,
@@ -36,7 +36,7 @@ export default function TrustClient() {
             description="What we claim, where to verify it, and what controls you have in-product."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
-            <section className="grid gap-4 md:grid-cols-2">
+            <section className="grid gap-5 md:grid-cols-2">
                 {trustBlocks.map((block) => (
                     <div key={block.title} className="landing-card landing-card-pad">
                         <div className="mb-2 flex items-center gap-2">
@@ -49,7 +49,7 @@ export default function TrustClient() {
             </section>
 
             <section className="landing-card-soft landing-card-pad">
-                <h2 className="mb-3 text-sm font-semibold text-foreground">Commitments</h2>
+                <h2 className="legal-section-title">Commitments</h2>
                 <ul className="space-y-2.5 landing-copy-muted">
                     {TRUST_PROMISES.map((line) => (
                         <li key={line} className="flex items-start gap-2">

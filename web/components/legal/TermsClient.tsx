@@ -8,7 +8,7 @@ import { LegalShell } from "@/components/legal/LegalShell";
 function TermsSection({ title, children }: { title: string; children: ReactNode }) {
     return (
         <section className="landing-card landing-card-pad">
-            <h2 className="mb-3 font-display text-2xl leading-tight tracking-tight">{title}</h2>
+            <h2 className="legal-section-title">{title}</h2>
             <div className="landing-copy-muted">{children}</div>
         </section>
     );

@@ -524,14 +524,15 @@
      ========================================================================== */
 
   .landing-page {
-    --landing-pad-x: clamp(1.25rem, 1.8vw, 2.25rem);
-    --landing-rail-max: 77.5rem;
-    --landing-section-y: clamp(4.25rem, 6.4vw, 6rem);
-    --landing-hero-top: clamp(2rem, 4vw, 3.25rem);
-    --landing-hero-bottom: clamp(2.75rem, 5.8vw, 4.5rem);
-    --landing-split-gap: clamp(2.5rem, 5.4vw, 3.75rem);
-    --landing-card-pad: clamp(1.125rem, 1.5vw, 1.5rem);
-    --landing-card-pad-lg: clamp(1.25rem, 1.9vw, 1.75rem);
+    --landing-pad-x: clamp(1.25rem, 2.2vw, 2.65rem);
+    --landing-rail-max: 76rem;
+    --landing-section-y: clamp(4.2rem, 5.4vw, 5.35rem);
+    --landing-hero-top: clamp(2.2rem, 3.2vw, 3rem);
+    --landing-hero-bottom: clamp(3.1rem, 4.5vw, 4.1rem);
+    --landing-split-gap: clamp(2rem, 3.05vw, 2.5rem);
+    --landing-card-pad: clamp(1.15rem, 1.55vw, 1.65rem);
+    --landing-card-pad-lg: clamp(1.4rem, 1.95vw, 2.05rem);
+    --landing-grid-gap: clamp(1.3rem, 2vw, 1.95rem);
     @apply min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100;
   }
 
@@ -548,23 +549,71 @@
     padding-block: var(--landing-section-y);
   }
 
+  .landing-section-tight {
+    padding-block: clamp(3.55rem, 4.65vw, 4.75rem);
+  }
+
+  .landing-section-relaxed {
+    padding-block: clamp(4.75rem, 6.1vw, 5.9rem);
+  }
+
   .landing-section-hero {
     padding-top: var(--landing-hero-top);
     padding-bottom: var(--landing-hero-bottom);
   }
 
   .landing-section-divider {
-    @apply border-b border-slate-100 dark:border-slate-800;
+    @apply border-b border-slate-100/90 dark:border-slate-800;
   }
 
   .landing-section-split {
     @apply border-t border-slate-100 dark:border-slate-800;
     margin-top: var(--landing-split-gap);
-    padding-top: calc(var(--landing-split-gap) - 0.5rem);
+    padding-top: var(--landing-split-gap);
+  }
+
+  .landing-flow-lg>*+* {
+    margin-top: clamp(1.35rem, 1.95vw, 2.05rem);
+  }
+
+  .landing-flow-md>*+* {
+    margin-top: clamp(1.05rem, 1.55vw, 1.4rem);
+  }
+
+  .landing-flow-sm>*+* {
+    margin-top: clamp(0.68rem, 1.05vw, 0.95rem);
+  }
+
+  .landing-grid-gap {
+    gap: var(--landing-grid-gap);
+  }
+
+  .landing-section-head {
+    @apply flex flex-wrap items-end justify-between;
+    column-gap: 1rem;
+    row-gap: 0.85rem;
+    margin-bottom: clamp(1.05rem, 1.5vw, 1.5rem);
+  }
+
+  .landing-kicker {
+    @apply mb-2 text-label-mono text-muted-foreground;
+  }
+
+  .landing-title-xl {
+    @apply font-display text-4xl leading-[0.98] tracking-tight md:text-[50px];
+  }
+
+  .landing-title-lg {
+    @apply font-display text-3xl leading-[0.98] tracking-tight md:text-[40px];
+  }
+
+  .landing-title-md {
+    @apply font-display text-[24px] leading-[1.08] tracking-tight md:text-[31px];
   }
 
   .landing-card {
     @apply rounded-xl border border-border/60 bg-white dark:bg-slate-900;
+    box-shadow: 0 1px 0 rgb(15 23 42 / 0.03);
   }
 
   .landing-card-soft {
@@ -575,17 +624,21 @@
     padding: var(--landing-card-pad-lg);
   }
 
+  .landing-card-pad-compact {
+    padding: var(--landing-card-pad);
+  }
+
   .landing-eyebrow {
     @apply text-label-mono text-muted-foreground;
   }
 
   .landing-deep-ink {
     @apply relative overflow-hidden border-y;
-    padding-block: clamp(4.5rem, 6.8vw, 5.75rem);
+    padding-block: clamp(4.45rem, 5.9vw, 5.7rem);
     border-color: rgb(15 23 42 / 0.8);
     background-image:
-      radial-gradient(940px 360px at 14% -8%, rgb(13 148 136 / 0.14), transparent),
-      linear-gradient(180deg, #061126 0%, #040b17 100%);
+      radial-gradient(880px 340px at 14% -8%, rgb(13 148 136 / 0.14), transparent),
+      linear-gradient(180deg, #061126 0%, #030a15 100%);
   }
 
   .landing-deep-ink-quote {
@@ -597,15 +650,46 @@
   }
 
   .landing-copy {
-    @apply text-[15px] leading-relaxed text-slate-700 dark:text-slate-300;
+    @apply text-[16px] leading-[1.55] text-slate-700 dark:text-slate-300;
   }
 
   .landing-copy-muted {
-    @apply text-sm leading-relaxed text-slate-600 dark:text-slate-400;
+    @apply text-[15px] leading-[1.55] text-slate-600 dark:text-slate-400;
   }
 
   .landing-copy-inverted {
     @apply text-[15px] leading-relaxed text-slate-300;
+  }
+
+  .legal-shell-content {
+    @apply mx-auto max-w-[64rem];
+  }
+
+  .legal-flow>*+* {
+    margin-top: clamp(1.05rem, 1.5vw, 1.4rem);
+  }
+
+  .legal-section-title {
+    @apply mb-2.5 font-display text-[25px] leading-[1.05] tracking-tight text-foreground;
+  }
+
+  @media (max-width: 1024px) {
+    .landing-page {
+      --landing-section-y: clamp(3.5rem, 7.2vw, 4.7rem);
+      --landing-split-gap: clamp(1.55rem, 4.7vw, 2.2rem);
+      --landing-grid-gap: clamp(1rem, 3vw, 1.45rem);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .landing-page {
+      --landing-pad-x: clamp(0.95rem, 4vw, 1.15rem);
+      --landing-section-y: clamp(3rem, 9vw, 3.8rem);
+      --landing-hero-top: clamp(1.35rem, 4.5vw, 1.8rem);
+      --landing-hero-bottom: clamp(2.2rem, 6.8vw, 2.9rem);
+      --landing-split-gap: clamp(1.35rem, 4.2vw, 1.75rem);
+      --landing-grid-gap: clamp(0.85rem, 2.6vw, 1.1rem);
+    }
   }
 
   /* Hero responsive: landing page headline */

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Receipt, RotateCcw, ShieldCheck } from "lucide-react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
@@ -10,9 +9,9 @@ import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 
 const unlockPoints = [
-    "Evidence Ledger + Red Pen rewrites on every paid run",
-    "Role-specific matching, Missing Wins, and run history",
-    "Export/share plus self-serve billing restore controls",
+    "Evidence Ledger and Red Pen rewrites on paid runs",
+    "Role matching, Missing Wins, and run history",
+    "Export and restore controls without support tickets",
 ];
 
 const billingPoints = [
@@ -24,12 +23,12 @@ const billingPoints = [
     {
         icon: RotateCcw,
         title: "Restore and billing control",
-        body: "Restore access, manage renewals, and cancel monthly from Billing.",
+        body: "Restore access, manage renewals, and cancel from Billing.",
     },
     {
         icon: Receipt,
         title: "Immediate unlock scope",
-        body: "Deep sections, repeated runs, export, and history unlock right away.",
+        body: "Deep sections, repeated runs, export, and history unlock immediately.",
     },
 ];
 
@@ -67,23 +66,18 @@ export default function PricingPageClient() {
             <main className="landing-page">
                 <section className="landing-section-pad landing-section-divider landing-section-hero">
                     <div className="landing-rail">
-                        <motion.div
-                            className="mx-auto max-w-3xl text-center"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.45 }}
-                        >
+                        <div className="landing-flow-md mx-auto max-w-3xl text-center">
                             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
                                 Pricing with clear value boundaries
                             </div>
-                            <h1 className="mt-5 font-display text-4xl leading-[0.98] tracking-tight md:text-[54px]">
+                            <h1 className="landing-title-xl mx-auto max-w-[20ch]">
                                 Start free, upgrade when iteration speed matters
                             </h1>
-                            <p className="mx-auto mt-4 max-w-2xl landing-copy">
-                                First review is free. Paid plans unlock repeated role-specific runs and deeper rewrite loops.
+                            <p className="mx-auto max-w-2xl landing-copy">
+                                First review is free. Paid plans unlock repeated role-specific runs, deeper rewrites, and saved history.
                             </p>
-                            <div className="mx-auto mt-7 max-w-2xl landing-card landing-card-pad text-left">
-                                <div className="landing-eyebrow mb-2">What paid unlocks</div>
+                            <div className="landing-flow-sm mx-auto max-w-2xl landing-card landing-card-pad text-left">
+                                <div className="landing-eyebrow">What paid unlocks</div>
                                 <ul className="space-y-2.5 landing-copy-muted">
                                     {unlockPoints.map((point) => (
                                         <li key={point} className="flex items-start gap-2">
@@ -93,11 +87,11 @@ export default function PricingPageClient() {
                                     ))}
                                 </ul>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                 </section>
 
-                <section className="landing-section-pad landing-section landing-section-divider">
+                <section className="landing-section-pad landing-section landing-section-tight landing-section-divider">
                     <div className="landing-rail">
                         <div className="mx-auto grid max-w-[1120px] gap-4 sm:grid-cols-2 xl:grid-cols-3">
                             <PricingCard
@@ -123,17 +117,17 @@ export default function PricingPageClient() {
                 </section>
 
                 <section className="landing-section-pad landing-deep-ink">
-                    <div className="landing-rail grid items-start gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
-                        <div>
-                            <div className="mb-4 text-label-mono text-slate-400">Billing trust</div>
-                            <h2 className="font-display text-3xl leading-[0.98] tracking-tight text-slate-50 md:text-[42px]">
-                                Payment and access are designed to be reversible and transparent
+                    <div className="landing-rail landing-grid-gap grid items-start lg:grid-cols-[1.05fr_0.95fr]">
+                        <div className="landing-flow-md">
+                            <div className="text-label-mono text-slate-400">Billing trust</div>
+                            <h2 className="landing-title-lg text-slate-50">
+                                Payment and access stay transparent
                             </h2>
-                            <p className="mt-4 landing-copy-inverted max-w-[42rem]">
-                                If payment succeeds and unlock lags, restore flow and billing controls are available without support.
+                            <p className="landing-copy-inverted max-w-[42rem]">
+                                If unlock lags after payment, restore flow and billing controls are available immediately.
                             </p>
                         </div>
-                        <div className="landing-deep-ink-panel">
+                        <div className="landing-deep-ink-panel landing-flow-md">
                             <div className="space-y-3.5">
                                 {billingPoints.map((item) => (
                                     <div key={item.title} className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3.5">
@@ -147,7 +141,7 @@ export default function PricingPageClient() {
                             </div>
                             <Link
                                 href="/purchase/restore"
-                                className="mt-5 inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90"
+                                className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90"
                             >
                                 Open restore access
                                 <ArrowRight className="h-4 w-4" />
@@ -156,11 +150,11 @@ export default function PricingPageClient() {
                     </div>
                 </section>
 
-                <section className="landing-section-pad landing-section">
+                <section className="landing-section-pad landing-section landing-section-tight">
                     <div className="landing-rail">
                         <div className="mx-auto max-w-3xl text-center">
                             <p className="landing-copy-muted">
-                                Need invoices, receipts, or procurement support?{" "}
+                                Need invoices, receipts, or procurement help?{" "}
                                 <Link
                                     href="mailto:support@recruiterinyourpocket.com"
                                     className="text-foreground underline underline-offset-4 hover:text-brand"

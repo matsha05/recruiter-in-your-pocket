@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, CircleGauge, ScanLine, Users } from "lucide-react";
 import Footer from "@/components/landing/Footer";
 import {
@@ -15,7 +14,7 @@ const featuredArticles = [
     {
         id: "how-recruiters-read",
         title: "How Recruiters Actually Read Resumes",
-        thesis: "Eye-tracking findings on scan behavior and first-pass filtering.",
+        thesis: "Eye-tracking findings on first-pass filtering cues.",
         readTime: "4 min",
         href: "/research/how-recruiters-read",
         label: "Start here",
@@ -31,7 +30,7 @@ const featuredArticles = [
     {
         id: "referral-advantage",
         title: "The Referral Advantage",
-        thesis: "How referrals change movement through hiring funnels.",
+        thesis: "How referrals change movement through hiring funnels",
         readTime: "4 min",
         href: "/research/referral-advantage",
         label: "Highest leverage",
@@ -104,36 +103,31 @@ export default function ResearchClient() {
             <main className="landing-page">
                 <section className="landing-section-pad landing-section-divider landing-section-hero">
                     <div className="landing-rail">
-                        <motion.header
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.45 }}
-                            className="mx-auto max-w-3xl text-center"
-                        >
+                        <header className="landing-flow-md mx-auto max-w-3xl text-center">
                             <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-label-mono text-muted-foreground dark:border-slate-700 dark:bg-slate-900">
                                 Research library
                             </div>
-                            <h1 className="mt-5 font-display text-4xl leading-[0.98] tracking-tight md:text-[54px]">
+                            <h1 className="landing-title-xl">
                                 Evidence before advice
                             </h1>
-                            <p className="mx-auto mt-4 max-w-2xl landing-copy">
-                                Research that explains how recruiters evaluate resumes and what changes actually improve outcomes.
+                            <p className="mx-auto max-w-2xl landing-copy">
+                                Research on how recruiters evaluate resumes and which edits improve first-pass signal.
                             </p>
-                            <div className="mx-auto mt-6 inline-flex flex-wrap items-center justify-center gap-5 rounded-xl border border-border/60 bg-white px-5 py-3 text-label-mono text-muted-foreground dark:bg-slate-900">
+                            <div className="mx-auto inline-flex flex-wrap items-center justify-center gap-5 rounded-xl border border-border/60 bg-white px-5 py-3 text-label-mono text-muted-foreground dark:bg-slate-900">
                                 <span>{featuredArticles.length} essentials</span>
                                 <span>{categories.length} themes</span>
                                 <span>{totalArticles} articles</span>
                             </div>
-                        </motion.header>
+                        </header>
                     </div>
                 </section>
 
-                <section className="landing-section-pad landing-section landing-section-divider">
+                <section className="landing-section-pad landing-section landing-section-tight landing-section-divider">
                     <div className="landing-rail">
-                        <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
+                        <div className="landing-section-head">
                             <div>
-                                <div className="mb-2 text-label-mono text-muted-foreground">Essential reads</div>
-                                <h2 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[40px]">
+                                <div className="landing-kicker">Essential reads</div>
+                                <h2 className="landing-title-lg">
                                     Start with these three
                                 </h2>
                             </div>
@@ -145,16 +139,16 @@ export default function ResearchClient() {
 
                         <div className="grid gap-4 md:grid-cols-3">
                             {featuredArticles.map((article) => (
-                                <Link key={article.id} href={article.href} className="group landing-card landing-card-pad card-interactive">
+                                <Link key={article.id} href={article.href} className="group landing-card landing-card-pad card-interactive landing-flow-sm">
                                     <div className="flex items-center justify-between gap-2">
                                         <span className="rounded-full bg-brand/10 px-2 py-1 text-label-mono text-brand">{article.label}</span>
                                         <span className="text-label-mono text-muted-foreground">{article.readTime}</span>
                                     </div>
-                                    <h3 className="mt-3 font-display text-2xl leading-tight tracking-tight transition-colors group-hover:text-brand">
+                                    <h3 className="font-display text-[24px] leading-[1.06] tracking-tight transition-colors group-hover:text-brand">
                                         {article.title}
                                     </h3>
-                                    <p className="mt-2 landing-copy-muted">{article.thesis}</p>
-                                    <div className="mt-4 inline-flex items-center gap-2 text-sm text-brand">
+                                    <p className="landing-copy-muted">{article.thesis}</p>
+                                    <div className="inline-flex items-center gap-2 text-sm text-brand">
                                         Read article
                                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                     </div>
@@ -165,21 +159,21 @@ export default function ResearchClient() {
                 </section>
 
                 <section className="landing-section-pad landing-deep-ink">
-                    <div className="landing-rail grid items-start gap-7 lg:grid-cols-[1.02fr_0.98fr]">
-                        <div>
-                            <div className="mb-4 text-label-mono text-slate-400">Methodology</div>
-                            <h2 className="font-display text-3xl leading-[0.98] tracking-tight text-slate-50 md:text-[42px]">
-                                The 7.4-second signal model
+                    <div className="landing-rail landing-grid-gap grid items-start lg:grid-cols-[1.02fr_0.98fr]">
+                        <div className="landing-flow-md">
+                            <div className="text-label-mono text-slate-400">Methodology</div>
+                            <h2 className="landing-title-lg text-slate-50">
+                                Model behind every recommendation
                             </h2>
-                            <p className="mt-4 landing-copy-inverted max-w-[40rem]">
-                                We translate scan behavior into a weighted rubric, then map each signal to line-level evidence and rewrite order.
+                            <p className="landing-copy-inverted max-w-[40rem]">
+                                We map scan behavior to a weighted rubric, then tie each signal to evidence and rewrite priority.
                             </p>
-                            <Link href="/research/how-we-score" className="mt-5 inline-flex items-center gap-2 text-sm text-teal-300 hover:text-teal-200">
+                            <Link href="/research/how-we-score" className="inline-flex items-center gap-2 text-sm text-teal-300 hover:text-teal-200">
                                 See full methodology
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
-                        <div className="landing-deep-ink-panel">
+                        <div className="landing-deep-ink-panel landing-flow-sm">
                             <div className="space-y-3">
                                 {signals.map((signal) => (
                                     <div key={signal.name} className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3">
@@ -195,24 +189,26 @@ export default function ResearchClient() {
                     </div>
                 </section>
 
-                <section className="landing-section-pad landing-section">
+                <section className="landing-section-pad landing-section landing-section-tight">
                     <div className="landing-rail">
-                        <div className="mb-6">
-                            <div className="mb-2 text-label-mono text-muted-foreground">Full library</div>
-                            <h2 className="font-display text-3xl leading-[0.98] tracking-tight md:text-[40px]">
-                                Browse by theme
-                            </h2>
+                        <div className="landing-section-head">
+                            <div>
+                                <div className="landing-kicker">Full library</div>
+                                <h2 className="landing-title-lg">
+                                    Browse by theme
+                                </h2>
+                            </div>
                         </div>
                         <Accordion type="multiple" className="space-y-3">
                             {categories.map((category) => (
-                                <AccordionItem key={category.id} value={category.id} className="landing-card px-5">
-                                    <AccordionTrigger className="py-4 text-left hover:no-underline">
+                                <AccordionItem key={category.id} value={category.id} className="landing-card landing-card-pad">
+                                    <AccordionTrigger className="py-1 text-left hover:no-underline">
                                         <div>
                                             <h3 className="font-display text-2xl leading-tight tracking-tight">{category.title}</h3>
                                             <p className="mt-1 landing-copy-muted">{category.subtitle}</p>
                                         </div>
                                     </AccordionTrigger>
-                                    <AccordionContent className="pb-4">
+                                    <AccordionContent className="pb-0 pt-4">
                                         <div className="divide-y divide-border/40 border-t border-border/40">
                                             {category.articles.map((article) => (
                                                 <Link key={article.id} href={article.href} className="group flex items-center justify-between gap-4 py-3.5">
@@ -228,12 +224,12 @@ export default function ResearchClient() {
                             ))}
                         </Accordion>
 
-                        <div className="mt-8 rounded-xl border border-border/60 bg-muted/15 px-5 py-4 text-center landing-copy-muted">
-                            Want actionable scripts in addition to research?
+                        <div className="mt-7 rounded-xl border border-border/60 bg-muted/15 px-5 py-4 text-center landing-copy-muted">
+                            Need practical scripts in addition to research?
                             {" "}
                             <Link href="/guides" className="text-foreground underline underline-offset-4 hover:text-brand">
                                 Open guides
-                            </Link>.
+                            </Link>
                         </div>
                     </div>
                 </section>

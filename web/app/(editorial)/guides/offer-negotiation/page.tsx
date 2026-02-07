@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 // SiteHeader removed — layout handles navigation
 import {
@@ -56,35 +55,47 @@ export default function OfferNegotiationGuidePage() {
 
                         <h1 className="font-display text-4xl md:text-5xl font-medium tracking-tight text-foreground leading-tight">
                             Offer Negotiation:<br />
-                            <span className="text-muted-foreground">The universal playbook</span>
+                            <span className="text-muted-foreground">A playbook for any industry</span>
                         </h1>
 
                         <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                            Everyone negotiates. The psychology is the same whether you&apos;re in tech, healthcare, finance, or retail. The only thing that changes is which levers you pull.
+                            The psychology is consistent across industries. What changes is which compensation levers you can use.
                         </p>
 
                         {/* Link to tech-specific */}
                         <div className="flex items-center gap-4 pt-2">
                             <Link href="/guides/tech-offer-negotiation" className="text-sm text-brand hover:underline underline-offset-4">
-                                Looking for the tech-specific equity guide? →
+                                Need the tech equity version? →
                             </Link>
                         </div>
                     </div>
                 </header>
 
-                {/* Kill the stigma callout */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                    className="mb-16 bg-gradient-to-r from-brand/10 to-violet-500/10 border border-brand/20 rounded-xl p-6"
-                >
-                    <h3 className="font-medium text-foreground mb-2">Let&apos;s kill the stigma</h3>
+                {/* Reframe negotiation callout */}
+                <div className="mb-6 rounded-xl border border-brand/20 bg-brand/[0.07] p-6">
+                    <h3 className="font-medium text-foreground mb-2">Negotiation is expected</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        <GuideHighlight>Negotiating is not greedy. It&apos;s expected.</GuideHighlight> The other side has a budget. They made an offer below that budget. They expect you to negotiate. When you don&apos;t, you leave money on the table — and they know it.
+                        <GuideHighlight>Negotiating is a standard part of the process.</GuideHighlight> Teams set ranges, not fixed numbers. When you ask clearly and professionally, you help them match your offer to the role&apos;s actual scope.
                     </p>
-                </motion.div>
+                </div>
+
+                <div className="mb-16 rounded-xl border border-border/40 bg-muted/10 p-6">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">Quick start</div>
+                    <div className="grid gap-3 sm:grid-cols-3">
+                        <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
+                            <div className="text-sm font-medium text-foreground">1. Get the full package</div>
+                            <p className="mt-1 text-xs text-muted-foreground">Confirm level, band, and all comp components before you counter.</p>
+                        </div>
+                        <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
+                            <div className="text-sm font-medium text-foreground">2. Ask with one target</div>
+                            <p className="mt-1 text-xs text-muted-foreground">Use a specific number and tie it to scope and impact.</p>
+                        </div>
+                        <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
+                            <div className="text-sm font-medium text-foreground">3. Close with commitment</div>
+                            <p className="mt-1 text-xs text-muted-foreground">Make a clean sign-if ask so the recruiter can move quickly.</p>
+                        </div>
+                    </div>
+                </div>
 
                 {/* Employer Math Callout */}
                 <EmployerMathCallout />
@@ -136,7 +147,7 @@ export default function OfferNegotiationGuidePage() {
                             }
                         >
                             <p className="text-muted-foreground leading-relaxed mb-6">
-                                These principles work whether you&apos;re negotiating $50K or $500K, in tech or teaching. Master these first.
+                                These principles work whether you&apos;re negotiating $50K or $500K. Master these first.
                             </p>
 
                             <div className="space-y-4">
@@ -408,7 +419,7 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* CTA */}
                 <div className="mt-20 bg-secondary/10 border border-border/10 rounded-xl p-8 md:p-12 text-center">
-                    <h2 className="font-display text-2xl font-medium mb-4">Ready to negotiate?</h2>
+                    <h2 className="font-display text-2xl font-medium mb-4">Ready for your next offer conversation?</h2>
                     <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                         Get your resume reviewed by a recruiter&apos;s eye before your next interview.
                     </p>

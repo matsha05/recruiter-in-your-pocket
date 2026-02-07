@@ -16,11 +16,11 @@ const faqData = [
         questions: [
             {
                 q: "What does the review analyze?",
-                a: "We analyze first-pass recruiter signal, quantified outcomes, bullet clarity, structural readability, and role-fit evidence. Each dimension includes score context and concrete rewrite guidance.",
+                a: "First-pass recruiter signal, quantified impact, clarity/readability, and role fit. Output includes score context plus rewrite guidance.",
             },
             {
                 q: "How is this different from ATS keyword tools?",
-                a: "Most tools optimize for parser compliance only. RIYP prioritizes how a human recruiter evaluates your resume in seconds, then maps advice to evidence and rewrite order.",
+                a: "ATS tools focus on parser compliance. RIYP models human first-pass judgment and ties recommendations to evidence lines.",
             },
             {
                 q: "What file formats are supported?",
@@ -33,7 +33,7 @@ const faqData = [
         questions: [
             {
                 q: "What happens to uploaded resume data?",
-                a: "Anonymous runs are not stored unless you choose save paths. Signed-in runs can store report output and preview for history and comparisons. You can delete reports or account data at any time.",
+                a: "Anonymous runs are not stored unless you choose save paths. Signed-in runs can store report history. You can delete reports or account data at any time.",
             },
             {
                 q: "Is my data used to train public models?",
@@ -41,7 +41,7 @@ const faqData = [
             },
             {
                 q: "How do I delete my data?",
-                a: "Use Settings to delete reports, export account data, or delete account.",
+                a: "Use Settings to delete reports, export account data, or delete your account.",
             },
         ],
     },
@@ -58,7 +58,7 @@ const faqData = [
             },
             {
                 q: "How do I restore access and get receipts?",
-                a: "Open Settings > Billing or use Restore Access. Stripe manages invoices and receipt history.",
+                a: "Open Settings > Billing or use Restore Access. Stripe provides invoices and receipts.",
             },
         ],
     },
@@ -89,21 +89,21 @@ export default function FAQClient() {
             <LegalShell
                 eyebrow="FAQ"
                 title="Questions and answers"
-                description="The practical details behind product behavior, privacy, and billing."
+                description="Practical details on product behavior, privacy, and billing controls."
                 lastUpdated={LEGAL_LAST_UPDATED}
             >
-                <div className="space-y-8">
+                <div className="legal-flow">
                     {faqData.map((section) => (
-                        <section key={section.category} className="space-y-3">
-                            <h2 className="font-display text-2xl leading-tight tracking-tight">{section.category}</h2>
+                        <section key={section.category} className="landing-card landing-card-pad">
+                            <h2 className="legal-section-title">{section.category}</h2>
                             <Accordion type="single" collapsible className="space-y-3">
                                 {section.questions.map((item, idx) => (
                                     <AccordionItem
                                         key={item.q}
                                         value={`${section.category}-${idx}`}
-                                        className="landing-card px-5 data-[state=open]:border-brand/25"
+                                        className="rounded-lg border border-border/60 bg-white/80 px-4 data-[state=open]:border-brand/25 dark:bg-slate-900/70"
                                     >
-                                        <AccordionTrigger className="py-4 text-left text-base font-medium text-foreground hover:no-underline">
+                                        <AccordionTrigger className="py-3.5 text-left text-base font-medium text-foreground hover:no-underline">
                                             {item.q}
                                         </AccordionTrigger>
                                         <AccordionContent className="pb-4 landing-copy-muted">
@@ -116,7 +116,7 @@ export default function FAQClient() {
                     ))}
                 </div>
 
-                <section className="landing-card landing-card-pad text-center">
+                <section className="landing-card-soft landing-card-pad text-center">
                     <p className="landing-copy-muted">
                         Still need help?
                         {" "}

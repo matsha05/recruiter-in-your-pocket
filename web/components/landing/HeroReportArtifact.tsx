@@ -26,12 +26,12 @@ function SignalBar({
     delay: number;
 }) {
     return (
-        <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
+        <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-3 text-[14px]">
                 <span className="text-slate-600 dark:text-slate-300">{label}</span>
                 <span className="font-mono font-medium text-slate-900 dark:text-slate-100">{value}%</span>
             </div>
-            <div className="h-2.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+            <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                 <motion.div
                     className="h-full rounded-full bg-brand"
                     initial={{ width: 0 }}
@@ -41,6 +41,11 @@ function SignalBar({
             </div>
         </div>
     );
+}
+
+function trimLine(value: string, max = 120) {
+    if (value.length <= max) return value;
+    return `${value.slice(0, max - 1).trimEnd()}...`;
 }
 
 function getConfidenceLabel(score: number) {
@@ -74,67 +79,71 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
         [data.subscores?.clarity, data.subscores?.impact, data.subscores?.readability, data.subscores?.story]
     );
 
-    const prioritySequence = useMemo(() => {
-        return signalRows
-            .filter((item) => item.key !== "story")
-            .sort((a, b) => a.value - b.value)
-            .slice(0, 3)
-            .map((item) => item.label);
-    }, [signalRows]);
+    const prioritySequence = ["Impact proof", "Clarity", "Readability"];
 
-    const barDuration = Math.min(Math.max(playbackSeconds, 4.5), 8);
+    const barDuration = playbackSeconds;
     const headingClassName =
-        "space-y-1.5 [&_h2]:text-[10px] [&_h2]:tracking-[0.14em] [&_h2]:font-semibold [&_p]:text-[15px] [&_p]:leading-[1.35] [&_p]:font-medium";
+        "space-y-1 [&_h2]:text-[10px] [&_h2]:tracking-[0.14em] [&_h2]:font-semibold [&_p]:text-[14px] [&_p]:leading-[1.35] [&_p]:font-medium";
 
     return (
         <div
             ref={artifactRef}
-            className="card-marketing overflow-hidden rounded-[14px] bg-white/95 shadow-[0_22px_56px_-38px_rgba(2,6,23,0.36)] dark:bg-slate-900/80"
+            className="card-marketing overflow-hidden rounded-[14px] border border-border/60 bg-white/95 shadow-[0_18px_44px_-34px_rgba(2,6,23,0.34)] dark:bg-slate-900/80"
         >
-            <div className="border-b border-border/60 bg-muted/20 px-5 py-3 md:px-6">
+            <div className="border-b border-border/60 bg-muted/20 px-4 py-2.5 md:px-5">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <PrincipalRecruiterIcon className="h-4 w-4 text-brand" />
                         <span className="text-label-mono">Recruiter briefing</span>
                     </div>
-                    <span className="text-label-mono text-muted-foreground">Sample report</span>
+                    <span className="text-label-mono text-muted-foreground">Sample</span>
                 </div>
             </div>
 
-            <div className="space-y-3.5 p-4 md:p-5">
+            <div className="space-y-3 p-3.5 md:p-4">
                 <div className="rounded-md border border-border/60 bg-white/90 p-3.5 dark:bg-slate-900/65">
                     <ReportSectionHeader
                         icon={<PrincipalRecruiterIcon className="h-3.5 w-3.5 text-brand" />}
                         number="01"
-                        title="First-pass verdict"
+                        title="Decision snapshot"
                         subtitle={verdict}
                         className={headingClassName}
-                        badge={<span className="text-label-mono text-muted-foreground">{getConfidenceLabel(score)}</span>}
+                        badge={
+                            <span className="text-label-mono text-muted-foreground">
+                                {getConfidenceLabel(score)}
+                            </span>
+                        }
                     />
-                </div>
+                    <div className="mt-3 space-y-2.5">
+                        <div className="rounded-md border border-amber-200/80 bg-amber-50/70 px-3 py-2 dark:bg-amber-900/20">
+                            <div className="text-[10px] uppercase tracking-[0.14em] text-amber-700">Critical miss</div>
+                            <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-700 dark:text-slate-200">
+                                {trimLine(criticalMiss, 112)}
+                            </p>
+                        </div>
 
-                <div className="grid gap-2.5 sm:grid-cols-2">
-                    <div className="rounded-md border border-amber-200/80 bg-amber-50/70 px-4 py-3 dark:bg-amber-900/20">
-                        <div className="mb-1.5 text-[11px] uppercase tracking-[0.14em] text-amber-700">Critical miss</div>
-                        <p className="text-[14px] leading-relaxed text-slate-700 dark:text-slate-200">{criticalMiss}</p>
-                    </div>
-
-                    <div className="rounded-md border border-border/60 bg-white/90 px-4 py-3 dark:bg-slate-900/65">
-                        <div className="mb-1.5 text-label-mono text-muted-foreground">Evidence to rewrite</div>
-                        <p className="text-[14px] leading-relaxed text-slate-800 dark:text-slate-100">{evidence}</p>
-                        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Rewrite: {action}</p>
+                        <div className="rounded-md border border-border/60 bg-white/90 px-3 py-2 dark:bg-slate-900/65">
+                            <div className="text-label-mono text-muted-foreground">Evidence to rewrite</div>
+                            <p className="mt-0.5 text-[13px] leading-[1.4] text-slate-700 dark:text-slate-200">
+                                {trimLine(evidence, 86)}
+                            </p>
+                            <p className="mt-0.5 text-[13px] leading-[1.4] text-brand dark:text-brand">
+                                {trimLine(action, 92)}
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <div className="rounded-md border border-border/60 bg-white/90 p-3.5 dark:bg-slate-900/65">
-                    <div className="mb-3 flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2 text-label-mono">
-                            <SignalRadarIcon className="h-3.5 w-3.5 text-brand" />
-                            Signal analysis
-                        </div>
-                        <span className="text-label-mono text-muted-foreground">{playbackSeconds.toFixed(1)}s window</span>
-                    </div>
-                    <div className="space-y-3">
+                    <ReportSectionHeader
+                        icon={<SignalRadarIcon className="h-3.5 w-3.5 text-brand" />}
+                        number="02"
+                        title="Signal breakdown"
+                        subtitle={`Bars fill over the same ${playbackSeconds.toFixed(1)}-second first-pass window.`}
+                        className={headingClassName}
+                        badge={<span className="text-label-mono text-muted-foreground">Weighted rubric</span>}
+                    />
+                    <div className="space-y-2.5">
                         {signalRows.map((signal) => (
                             <SignalBar
                                 key={signal.key}
@@ -146,14 +155,25 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
                             />
                         ))}
                     </div>
+
+                    <div className="mt-3 rounded-md border border-border/60 bg-muted/20 px-3 py-2.5">
+                        <div className="text-label-mono text-muted-foreground">Priority sequence</div>
+                        <div className="mt-1.5 flex flex-wrap gap-1.5">
+                            {prioritySequence.map((label, index) => (
+                                <span
+                                    key={label}
+                                    className="inline-flex rounded border border-border/60 bg-white px-2 py-0.5 text-[12px] text-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                                >
+                                    {index + 1}. {label}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
-                <div className="flex items-end justify-between gap-4 border-t border-border/60 pt-3.5">
+                <div className="flex items-end justify-between gap-4 border-t border-border/60 pt-2.5">
                     <div className="min-w-0">
-                        <div className="text-base font-medium text-slate-700 dark:text-slate-200">Sample Signal Score</div>
-                        <div className="mt-1 text-label-mono text-muted-foreground">
-                            Priority: {prioritySequence.join(", ")}
-                        </div>
+                        <div className="text-base font-medium text-slate-700 dark:text-slate-200">Sample signal score</div>
                     </div>
                     <div className="text-right">
                         <div className="text-label-mono text-muted-foreground">{getConfidenceLabel(score)}</div>

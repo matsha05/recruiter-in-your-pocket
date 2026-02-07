@@ -66,8 +66,8 @@ export function ResearchArticle({
     sources,
     faq,
     cta = {
-        title: "See what your resume looks like",
-        buttonText: "Run Free Analysis",
+        title: "See your resume through recruiter eyes",
+        buttonText: "Run Free Review",
         href: "/workspace"
     }
 }: ResearchArticleProps) {
@@ -114,24 +114,27 @@ export function ResearchArticle({
                     }}
                 />
             )}
-            <div className="max-w-3xl mx-auto space-y-12 pb-16 px-6 md:px-0 pt-8">
+            <main className="landing-page">
+                <section className="landing-section-pad landing-section-tight">
+                    <div className="landing-rail">
+                        <div className="mx-auto max-w-3xl space-y-12 pb-10">
                 <header className="space-y-6">
                     <Link
                         href="/research"
-                        className="inline-flex items-center mb-6 text-[10px] font-mono uppercase tracking-widest text-muted-foreground/70 hover:text-foreground transition-colors"
+                        className="inline-flex items-center mb-6 text-[10px] font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
                     >
-                        Back to Research
+                        Back to research library
                     </Link>
                     <div className="space-y-6">
                         <div className="flex flex-wrap items-center gap-3">
-                            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                                 {header.tag}
                             </span>
                             {(header.readTime || header.lastUpdated) && (
-                                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground/60">
+                                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
                                     {header.readTime && (
                                         <span className="flex items-baseline gap-2">
-                                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">
+                                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                                                 Read time
                                             </span>
                                             <span>{header.readTime}</span>
@@ -139,7 +142,7 @@ export function ResearchArticle({
                                     )}
                                     {header.lastUpdated && (
                                         <span className="flex items-baseline gap-2">
-                                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">
+                                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                                                 Updated
                                             </span>
                                             <span>{header.lastUpdated}</span>
@@ -158,7 +161,7 @@ export function ResearchArticle({
                 </header>
 
                 <div className="border-l-4 border-brand pl-5 py-5 space-y-4">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-brand/80">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-brand">
                         {keyFinding.subtitle}
                     </div>
                     <div className="space-y-2">
@@ -167,9 +170,9 @@ export function ResearchArticle({
                             {keyFinding.statDescription}
                         </p>
                     </div>
-                    <dl className="pt-4 border-t border-border/40 text-xs text-muted-foreground/70 space-y-2">
+                    <dl className="pt-4 border-t border-border/40 text-xs text-muted-foreground space-y-2">
                         <div className="flex flex-wrap items-baseline gap-x-2">
-                            <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                            <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                                 Source
                             </dt>
                             <dd>
@@ -189,7 +192,7 @@ export function ResearchArticle({
                         </div>
                         {keyFinding.sampleSize && (
                             <div className="flex flex-wrap items-baseline gap-x-2">
-                                <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                                <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                                     Sample
                                 </dt>
                                 <dd>{keyFinding.sampleSize}</dd>
@@ -231,7 +234,7 @@ export function ResearchArticle({
                     <div className="space-y-4">
                         {productTieIn.items.map((item, i) => (
                             <div key={i} className="flex gap-4 items-start">
-                                <span className="font-mono text-[10px] text-muted-foreground/40 mt-1 shrink-0">
+                                <span className="font-mono text-[10px] text-muted-foreground mt-1 shrink-0">
                                     {String(i + 1).padStart(2, "0")}
                                 </span>
                                 <div>
@@ -257,7 +260,7 @@ export function ResearchArticle({
                                         {article.title}
                                     </span>
                                     {article.tag && (
-                                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">{article.tag}</span>
+                                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{article.tag}</span>
                                     )}
                                 </Link>
                             ))}
@@ -311,7 +314,10 @@ export function ResearchArticle({
                         {cta.buttonText}
                     </Link>
                 </div>
-            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </>
     );
 }
