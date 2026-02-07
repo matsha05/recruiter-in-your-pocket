@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 export function ResumeHeatmap() {
     return (
-        <figure className="w-full max-w-[420px] mx-auto my-12 group select-none">
-            <div className="relative w-full aspect-[1/1.4] bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none transition-all duration-500 hover:shadow-xl">
+        <DiagramFigure className="w-full max-w-[420px] mx-auto my-12 group select-none">
+            <DiagramFrame className="riyp-diagram-shell relative w-full aspect-[1/1.4] transition-all duration-500">
 
                 {/* Premium Resume Skeleton (Matching ScanPattern) */}
                 <div className="absolute inset-0 p-8 space-y-6 opacity-60">
@@ -64,7 +65,7 @@ export function ResumeHeatmap() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                         className="absolute top-6 left-6 w-64 h-32 rounded-[100%] blur-3xl bg-[radial-gradient(circle,rgba(225,29,72,0.8)_0%,rgba(245,158,11,0.5)_40%,transparent_70%)]"
                     />
 
@@ -72,7 +73,7 @@ export function ResumeHeatmap() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                        transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                         className="absolute top-48 left-6 w-56 h-24 rounded-[100%] blur-2xl bg-[radial-gradient(circle,rgba(245,158,11,0.7)_0%,rgba(13,148,136,0.4)_50%,transparent_70%)]"
                     />
 
@@ -105,12 +106,12 @@ export function ResumeHeatmap() {
                     </span>
                 </div>
 
-            </div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 2 — Attention Density</span>
                 <span className="block text-sm text-foreground/80 font-medium">Aggregated Recruiter Fixation Points</span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "See how recruiters actually read your resume. Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes.",
   openGraph: {
     title: "See How Recruiters Actually Read Your Resume",
-    description: "Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes. Free audit, no signup required.",
+    description: "Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes. First full review is free.",
     url: "https://recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
     images: [{
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "See How Recruiters Actually Read Your Resume",
-    description: "Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes. Free audit, no signup required.",
+    description: "Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes. First full review is free.",
     images: ["https://recruiterinyourpocket.com/assets/og-image.png"],
   },
 };
@@ -28,5 +28,4 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return <LandingContent />;
 }
-
 

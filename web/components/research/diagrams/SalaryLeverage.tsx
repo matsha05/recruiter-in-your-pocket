@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Salary Leverage / Before-After Ban Diagram (v2.0)
@@ -10,16 +11,16 @@ import { motion } from "framer-motion";
  */
 export function SalaryLeverage() {
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Salary history ban impact
                     </span>
@@ -30,7 +31,7 @@ export function SalaryLeverage() {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                         viewport={{ once: true }}
                         className="rounded-lg border border-border/40 bg-muted/10 p-5"
                     >
@@ -58,7 +59,7 @@ export function SalaryLeverage() {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                         viewport={{ once: true }}
                         className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-5"
                     >
@@ -82,7 +83,7 @@ export function SalaryLeverage() {
                         </p>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — The Shift</span>
@@ -90,6 +91,6 @@ export function SalaryLeverage() {
                     Salary history bans change the negotiation anchor
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

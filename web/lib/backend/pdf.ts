@@ -65,7 +65,7 @@ const POCKET_MARK_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="n
 </svg>`;
 
 // Combined brand header with logo + wordmark
-const BRAND_HEADER = `<span style="display: inline-flex; align-items: center;">${POCKET_MARK_SVG}<span style="font-family: 'Fraunces', Georgia, serif; font-size: 18pt; font-weight: 500; letter-spacing: -0.02em;">Recruiter in Your Pocket</span></span>`;
+const BRAND_HEADER = `<span style="display: inline-flex; align-items: center;">${POCKET_MARK_SVG}<span style="font-family: 'Sentient', Georgia, serif; font-size: 18pt; font-weight: 500; letter-spacing: -0.02em;">Recruiter in Your Pocket</span></span>`;
 
 function getScoreColor(score: number): string {
   if (score >= 85) return "#22c55e"; // --success (green)
@@ -195,8 +195,6 @@ export async function renderReportHtml(report: ReportForPdf) {
   <meta charset="utf-8" />
   <title>Resume Audit — Recruiter in Your Pocket</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Geist+Mono&display=swap');
-    
     :root {
       /* Aligned with site's globals.css */
       --foreground: #121212; /* Matches 0 0% 7% */
@@ -219,7 +217,7 @@ export async function renderReportHtml(report: ReportForPdf) {
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
-      font-family: "Inter", -apple-system, sans-serif;
+      font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--foreground);
       background: var(--surface);
       font-size: 11pt;
@@ -287,7 +285,7 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     .score-value {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: "Sentient", Georgia, serif;
       font-size: 54pt;
       font-weight: 600;
       line-height: 1.1;
@@ -312,7 +310,7 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     .recruiter-note {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: "Sentient", Georgia, serif;
       font-size: 13pt;
       font-style: italic;
       color: var(--foreground);
@@ -352,7 +350,7 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     .subscore-value {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: "Sentient", Georgia, serif;
       font-size: 22pt;
       font-weight: 600;
       letter-spacing: -0.01em;
@@ -365,7 +363,7 @@ export async function renderReportHtml(report: ReportForPdf) {
     }
 
     h2 {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: "Sentient", Georgia, serif;
       font-size: 13pt;
       font-weight: 500;
       color: var(--foreground);

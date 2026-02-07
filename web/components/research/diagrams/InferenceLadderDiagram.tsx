@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Inference Ladder Diagram (v2.0)
@@ -41,16 +42,16 @@ export function InferenceLadderDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-[480px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[480px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         The inference cascade
                     </span>
@@ -64,7 +65,7 @@ export function InferenceLadderDiagram() {
                                 key={step.number}
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 + i * 0.1 }}
+                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.1 }}
                                 viewport={{ once: true }}
                                 className="flex items-center gap-4"
                             >
@@ -110,7 +111,7 @@ export function InferenceLadderDiagram() {
                         className="absolute left-[52px] top-[72px] bottom-[100px] w-0.5 bg-gradient-to-b from-rose-500/40 to-rose-500/10"
                         initial={{ scaleY: 0, transformOrigin: "top" }}
                         whileInView={{ scaleY: 1 }}
-                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
                         viewport={{ once: true }}
                     />
 
@@ -118,7 +119,7 @@ export function InferenceLadderDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
                         viewport={{ once: true }}
                         className="mt-6 bg-rose-500/5 dark:bg-rose-500/10 rounded-lg p-4 border border-rose-500/20"
                     >
@@ -127,7 +128,7 @@ export function InferenceLadderDiagram() {
                         </p>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — The Ladder</span>
@@ -135,6 +136,6 @@ export function InferenceLadderDiagram() {
                     How small errors translate into higher perceived risk
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

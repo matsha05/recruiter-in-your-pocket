@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Form Content Split / Penalty Decomposition Diagram (v2.0)
@@ -16,16 +17,16 @@ export function FormContentSplit() {
     ];
 
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Penalty decomposition
                     </span>
@@ -39,7 +40,7 @@ export function FormContentSplit() {
                                 key={cat.label}
                                 initial={{ width: 0 }}
                                 whileInView={{ width: `${cat.weight}%` }}
-                                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 + i * 0.1 }}
+                                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.1 }}
                                 viewport={{ once: true }}
                                 className={`h-full ${i === 0 ? "bg-brand/50" : i === 1 ? "bg-brand/30" : "bg-muted-foreground/20"
                                     }`}
@@ -54,7 +55,7 @@ export function FormContentSplit() {
                                 key={cat.label}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 + i * 0.1 }}
+                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.4 + i * 0.1 }}
                                 viewport={{ once: true }}
                                 className="text-center"
                             >
@@ -70,7 +71,7 @@ export function FormContentSplit() {
                         ))}
                     </div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — Error Attribution</span>
@@ -78,6 +79,6 @@ export function FormContentSplit() {
                     How evaluators may attribute error penalties
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

@@ -41,6 +41,27 @@ export function normalizeRequestedTier(input: unknown): RequestedPricingTier | n
   return null;
 }
 
+export function resolveRequestedTierFromSession(input: {
+  metadataTier?: unknown;
+  passTier?: unknown;
+  mode?: string | null;
+}): RequestedPricingTier {
+  const metadataTier = normalizeRequestedTier(input.metadataTier);
+  if (metadataTier) return metadataTier;
+
+  const passTierRaw = typeof input.passTier === "string"
+    ? input.passTier.trim().toLowerCase()
+    : "";
+
+  if (passTierRaw === "monthly") return "monthly";
+  if (passTierRaw === "lifetime") return "lifetime";
+  if (passTierRaw === "30d") return "30d";
+  if (passTierRaw === "90d") return "90d";
+  if (passTierRaw === "single_use") return "24h";
+
+  return input.mode === "subscription" ? "monthly" : "lifetime";
+}
+
 export function toStoredPassTier(tier: RequestedPricingTier): StoredPassTier {
   if (tier === "24h") return "single_use";
   return tier;

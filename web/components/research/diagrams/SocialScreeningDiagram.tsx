@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Social Screening Diagram (v2.0)
@@ -16,7 +17,7 @@ export function SocialScreeningDiagram() {
         },
         {
             name: "Portfolio Sites",
-            color: "violet",
+            color: "teal",
             uses: ["Work samples", "Craft proof"]
         },
         {
@@ -27,16 +28,16 @@ export function SocialScreeningDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Platform by purpose
                     </span>
@@ -49,19 +50,19 @@ export function SocialScreeningDiagram() {
                                 key={platform.name}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 + i * 0.1 }}
+                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.1 }}
                                 viewport={{ once: true }}
                                 className={`rounded-lg p-4 border ${platform.color === "blue"
                                         ? "border-blue-500/30 bg-blue-500/5 dark:bg-blue-500/10"
-                                        : platform.color === "violet"
-                                            ? "border-violet-500/30 bg-violet-500/5 dark:bg-violet-500/10"
+                                        : platform.color === "teal"
+                                            ? "border-brand/30 bg-brand/5 dark:bg-brand/10"
                                             : "border-border/30 bg-muted/10"
                                     }`}
                             >
                                 <p className={`text-xs font-mono uppercase tracking-wider mb-3 ${platform.color === "blue"
                                         ? "text-blue-600 dark:text-blue-400"
-                                        : platform.color === "violet"
-                                            ? "text-violet-600 dark:text-violet-400"
+                                        : platform.color === "teal"
+                                            ? "text-brand"
                                             : "text-muted-foreground"
                                     }`}>
                                     {platform.name}
@@ -88,7 +89,7 @@ export function SocialScreeningDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
                         viewport={{ once: true }}
                         className="mt-6 bg-blue-500/5 dark:bg-blue-500/10 rounded-lg p-4 border border-blue-500/20"
                     >
@@ -97,7 +98,7 @@ export function SocialScreeningDiagram() {
                         </p>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — Platform Roles</span>
@@ -105,6 +106,6 @@ export function SocialScreeningDiagram() {
                     Different platforms serve different evaluation stages
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

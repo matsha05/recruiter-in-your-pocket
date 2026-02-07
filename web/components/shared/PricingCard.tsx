@@ -33,7 +33,7 @@ export function PricingCard({
     const isHighlighted = tier === "lifetime";
     const isFree = tier === "free";
     const disableForFree = isFree && !allowFreeSelect;
-    const buttonLabel = isFree && allowFreeSelect ? "Run Free Review" : data.buttonText;
+    const buttonLabel = isFree && allowFreeSelect ? "Start free review" : data.buttonText;
 
     // COMPACT variant - for modals
     if (variant === "compact") {

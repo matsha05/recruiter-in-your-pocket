@@ -5,9 +5,8 @@ import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
   getTierDefaults,
   isPassActive,
-  normalizeRequestedTier,
-  toStoredPassTier,
-  type RequestedPricingTier
+  resolveRequestedTierFromSession,
+  toStoredPassTier
 } from "@/lib/billing/entitlements";
 
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -16,21 +15,6 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function inferRequestedTier(session: Stripe.Checkout.Session): RequestedPricingTier {
-  const metadataTier = normalizeRequestedTier(session.metadata?.tier);
-  if (metadataTier) return metadataTier;
-
-  const passTierRaw = String(session.metadata?.pass_tier || "").trim().toLowerCase();
-  if (passTierRaw === "monthly") return "monthly";
-  if (passTierRaw === "lifetime") return "lifetime";
-  if (passTierRaw === "30d") return "30d";
-  if (passTierRaw === "90d") return "90d";
-  if (passTierRaw === "single_use") return "24h";
-
-  // Current payment-mode default is lifetime unless explicit legacy metadata says otherwise.
-  return session.mode === "subscription" ? "monthly" : "lifetime";
-}
 
 function extractCurrentPeriodEndUnix(
   subscription:
@@ -147,7 +131,11 @@ export async function POST() {
       const session = sessionsById.get(sessionId);
       if (!session) continue;
 
-      const requestedTier = inferRequestedTier(session);
+      const requestedTier = resolveRequestedTierFromSession({
+        metadataTier: session.metadata?.tier,
+        passTier: session.metadata?.pass_tier,
+        mode: session.mode,
+      });
       const storedTier = toStoredPassTier(requestedTier);
 
       let subscriptionId: string | null = null;

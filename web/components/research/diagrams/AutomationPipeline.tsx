@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Automation Pipeline Diagram (v2.0)
@@ -40,16 +41,16 @@ export function AutomationPipeline() {
     ];
 
     return (
-        <figure className="w-full max-w-[680px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[680px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Automation risk cascade
                     </span>
@@ -63,7 +64,7 @@ export function AutomationPipeline() {
                             className="absolute top-12 left-8 right-8 h-0.5 bg-gradient-to-r from-muted/40 via-amber-400/40 to-rose-400/60 z-0"
                             initial={{ scaleX: 0, transformOrigin: "left" }}
                             whileInView={{ scaleX: 1 }}
-                            transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                             viewport={{ once: true }}
                         />
 
@@ -73,7 +74,7 @@ export function AutomationPipeline() {
                                     key={s.stage}
                                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
                                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 + i * 0.12 }}
+                                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.12 }}
                                     viewport={{ once: true }}
                                     className="flex-1"
                                 >
@@ -111,7 +112,7 @@ export function AutomationPipeline() {
                                                 <motion.div
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: `${s.riskLevel * 100}%` }}
-                                                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 + i * 0.12 }}
+                                                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.5 + i * 0.12 }}
                                                     viewport={{ once: true }}
                                                     className={`h-full rounded-full ${s.riskLevel >= 0.8
                                                         ? "bg-gradient-to-r from-rose-400 to-rose-500"
@@ -132,7 +133,7 @@ export function AutomationPipeline() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
                         viewport={{ once: true }}
                         className="mt-6 bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
                     >
@@ -161,6 +162,6 @@ export function AutomationPipeline() {
                     Automation handoffs where bias can compound
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFrame>
     );
 }

@@ -54,10 +54,10 @@ export default function GuidesPage() {
                                 Resources for higher-stakes decisions
                             </div>
                             <h1 className="landing-title-xl md:text-[56px]">
-                                Practical playbooks for this week
+                                Practical playbooks you can use this week
                             </h1>
                             <p className="max-w-[41rem] landing-copy">
-                                Pick the guide for your situation, run the script, then rerun with stronger evidence.
+                                Pick the guide for your situation, apply the script, then review again with stronger evidence.
                             </p>
                         </div>
 
@@ -92,10 +92,10 @@ export default function GuidesPage() {
                         <div className="landing-section-head">
                             <div>
                                 <div className="landing-kicker">Guides</div>
-                                <h2 className="landing-title-lg">Choose your playbook</h2>
+                                <h2 className="landing-title-lg">Choose your guide</h2>
                             </div>
                             <Link href="/workspace" className="inline-flex items-center gap-2 text-sm text-brand hover:text-brand/80">
-                                Run free review
+                                Start free review
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
@@ -152,7 +152,7 @@ export default function GuidesPage() {
                         <div className="landing-flow-md">
                             <div className="text-label-mono text-slate-400">How to apply this</div>
                             <h2 className="landing-title-lg text-slate-50">
-                                Run the same loop for every application
+                                Run one repeatable process for every application
                             </h2>
                             <p className="max-w-[42rem] landing-copy-inverted">
                                 Use a guide for strategy, pressure-test tradeoffs, then rerun against exact role requirements.
@@ -162,9 +162,9 @@ export default function GuidesPage() {
                         <div className="landing-deep-ink-panel landing-flow-md">
                             <div className="space-y-3.5">
                                 {[
-                                    "Run a free review to expose the first-pass gap.",
+                                    "Start a free review to spot what recruiters will question first.",
                                     "Apply one guide script and one targeted rewrite.",
-                                    "Rerun and verify stronger impact and clarity signals.",
+                                    "Review again and confirm stronger impact and clarity.",
                                 ].map((step, index) => (
                                     <div key={step} className="flex items-start gap-3">
                                         <span className="mt-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand/15 text-[11px] font-semibold text-brand">

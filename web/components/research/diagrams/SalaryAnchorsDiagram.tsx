@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Salary Anchors Diagram (v2.0)
@@ -25,16 +26,16 @@ export function SalaryAnchorsDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-[480px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[480px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Anchoring effect
                     </span>
@@ -46,7 +47,7 @@ export function SalaryAnchorsDiagram() {
                             key={item.scenario}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 + i * 0.15 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.15 }}
                             viewport={{ once: true }}
                             className={`rounded-lg p-4 border ${item.danger
                                     ? "border-rose-500/30 bg-rose-500/5 dark:bg-rose-500/10"
@@ -71,7 +72,7 @@ export function SalaryAnchorsDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
                         viewport={{ once: true }}
                         className="mt-4 bg-muted/20 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
                     >
@@ -80,7 +81,7 @@ export function SalaryAnchorsDiagram() {
                         </p>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — The Anchor</span>
@@ -88,6 +89,6 @@ export function SalaryAnchorsDiagram() {
                     Why the first number shapes the outcome
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

@@ -10,6 +10,7 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "test:ui": "playwright test",
+    "qa:design-system": "node scripts/qa/design-system-guardrails.mjs",
     "test:injection": "npx tsx tests/injection.test.ts",
     "test:pii": "npx tsx tests/pii.test.ts",
     "test:security": "npm run test:injection && npm run test:pii",
@@ -24,10 +25,6 @@
     "eval:bulk-analyze": "npx tsx scripts/bulk-analyze.ts"
   },
   "dependencies": {
-    "@fontsource-variable/fraunces": "^5.2.9",
-    "@fontsource/fraunces": "^5.2.9",
-    "@fontsource/geist-mono": "^5.2.7",
-    "@fontsource/geist-sans": "^5.2.5",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -50,7 +47,6 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "framer-motion": "^12.23.26",
-    "geist": "^1.5.1",
     "inngest": "^3.48.1",
     "lucide-react": "^0.561.0",
     "mammoth": "^1.11.0",

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * STAR Method Structure Diagram (v2.0)
@@ -19,16 +20,16 @@ export function StarStructureDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Behavioral response framework
                     </span>
@@ -42,7 +43,7 @@ export function StarStructureDiagram() {
                             className="absolute top-8 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-slate-200 via-slate-300 to-brand/40 dark:from-slate-700 dark:via-slate-600 dark:to-brand/40 z-0"
                             initial={{ scaleX: 0, transformOrigin: "left" }}
                             whileInView={{ scaleX: 1 }}
-                            transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                             viewport={{ once: true }}
                         />
 
@@ -52,7 +53,7 @@ export function StarStructureDiagram() {
                                     key={step.letter}
                                     initial={{ opacity: 0, y: 20, scale: 0.9 }}
                                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 + i * 0.15 }}
+                                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.15 }}
                                     viewport={{ once: true }}
                                     className="flex flex-col items-center flex-1"
                                 >
@@ -83,7 +84,7 @@ export function StarStructureDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
                         viewport={{ once: true }}
                         className="mt-8 bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
                     >
@@ -113,7 +114,7 @@ export function StarStructureDiagram() {
                         </div>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — STAR Framework</span>
@@ -121,6 +122,6 @@ export function StarStructureDiagram() {
                     The behavioral interview structure, optimized for resume bullets
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

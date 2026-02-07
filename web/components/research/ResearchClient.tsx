@@ -14,7 +14,7 @@ const featuredArticles = [
     {
         id: "how-recruiters-read",
         title: "How Recruiters Actually Read Resumes",
-        thesis: "Eye-tracking findings on first-pass filtering cues.",
+        thesis: "Eye-tracking findings on early resume reading cues.",
         readTime: "4 min",
         href: "/research/how-recruiters-read",
         label: "Start here",
@@ -30,7 +30,7 @@ const featuredArticles = [
     {
         id: "referral-advantage",
         title: "The Referral Advantage",
-        thesis: "How referrals change movement through hiring funnels",
+        thesis: "How referrals change movement through hiring processes.",
         readTime: "4 min",
         href: "/research/referral-advantage",
         label: "Highest leverage",
@@ -111,7 +111,7 @@ export default function ResearchClient() {
                                 Evidence before advice
                             </h1>
                             <p className="mx-auto max-w-2xl landing-copy">
-                                Research on how recruiters evaluate resumes and which edits improve first-pass signal.
+                                Research on how recruiters evaluate resumes and which edits improve results.
                             </p>
                             <div className="mx-auto inline-flex flex-wrap items-center justify-center gap-5 rounded-xl border border-border/60 bg-white px-5 py-3 text-label-mono text-muted-foreground dark:bg-slate-900">
                                 <span>{featuredArticles.length} essentials</span>
@@ -132,7 +132,7 @@ export default function ResearchClient() {
                                 </h2>
                             </div>
                             <Link href="/workspace" className="inline-flex items-center gap-2 text-sm text-brand hover:text-brand/80">
-                                Run a free review
+                                Start free review
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
@@ -163,10 +163,10 @@ export default function ResearchClient() {
                         <div className="landing-flow-md">
                             <div className="text-label-mono text-slate-400">Methodology</div>
                             <h2 className="landing-title-lg text-slate-50">
-                                Model behind every recommendation
+                                How each recommendation is scored
                             </h2>
                             <p className="landing-copy-inverted max-w-[40rem]">
-                                We map scan behavior to a weighted rubric, then tie each signal to evidence and rewrite priority.
+                                We map scan behavior to a weighted rubric, then tie each signal to evidence and rewrite order.
                             </p>
                             <Link href="/research/how-we-score" className="inline-flex items-center gap-2 text-sm text-teal-300 hover:text-teal-200">
                                 See full methodology

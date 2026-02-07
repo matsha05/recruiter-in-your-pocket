@@ -91,7 +91,7 @@ export function GuideAccordion({ title, badge, children, defaultOpen = false }: 
                 <div className="flex items-center gap-3">
                     <span className="font-medium text-foreground">{title}</span>
                     {badge && (
-                        <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-600 border border-violet-500/20">
+                        <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand/10 text-brand border border-brand/20">
                             {badge}
                         </span>
                     )}
@@ -289,34 +289,34 @@ export function EmployerMathCallout() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="my-10 p-6 rounded-xl border border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-orange-500/5"
+            className="my-10 rounded-xl border border-border/40 bg-muted/15 p-6"
         >
-            <div className="flex items-center gap-2 text-amber-600 text-[10px] font-bold uppercase tracking-widest mb-4">
+            <div className="mb-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand">
                 <Calculator className="w-4 h-4" />
                 <span>The Math They&apos;re Doing</span>
             </div>
             <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-sm font-bold text-amber-600">$</span>
+                    <span className="shrink-0 w-6 h-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">$</span>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        <strong className="text-foreground">$24,000+</strong> just to get you to this offer (job posts, resume review, interviews, coordination)
+                        <strong className="text-foreground">$24,000+</strong> to source, interview, and close one role.
                     </p>
                 </div>
                 <div className="flex items-start gap-3">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-sm font-bold text-amber-600">%</span>
+                    <span className="shrink-0 w-6 h-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">%</span>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        <strong className="text-foreground">150-200%</strong> of your salary = your fully-loaded annual cost to them (benefits, taxes, overhead)
+                        <strong className="text-foreground">150-200%</strong> of salary is a common fully loaded annual cost (benefits, tax, overhead).
                     </p>
                 </div>
                 <div className="flex items-start gap-3">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-sm font-bold text-amber-600">~</span>
+                    <span className="shrink-0 w-6 h-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">~</span>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                        Your extra <strong className="text-foreground">$5K</strong> = roughly 3% of your annual cost. Mouse droppings.
+                        An extra <strong className="text-foreground">$5K</strong> is usually a small variance against total hiring cost.
                     </p>
                 </div>
             </div>
-            <p className="mt-4 text-xs text-muted-foreground italic">
-                &ldquo;They will not feel offended if you ask for it.&rdquo; — patio11
+            <p className="mt-4 text-xs text-muted-foreground">
+                Clear, specific asks are usually easier to approve than vague requests.
             </p>
         </motion.div>
     );
@@ -707,4 +707,3 @@ export function LeverDeepDives() {
         </div>
     );
 }
-

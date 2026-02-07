@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Skills vs Credentials Shift Diagram (v2.0)
@@ -18,16 +19,16 @@ export function SkillsShiftDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-[480px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[480px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Hiring paradigm shift
                     </span>
@@ -39,7 +40,7 @@ export function SkillsShiftDiagram() {
                         <motion.div
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                             viewport={{ once: true }}
                             className="flex items-center gap-2"
                         >
@@ -51,7 +52,7 @@ export function SkillsShiftDiagram() {
                         <motion.div
                             initial={{ opacity: 0, x: 10 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                             viewport={{ once: true }}
                             className="flex items-center gap-2"
                         >
@@ -69,7 +70,7 @@ export function SkillsShiftDiagram() {
                                 key={shift.old}
                                 initial={{ opacity: 0, y: 12 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 + i * 0.1 }}
+                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.1 }}
                                 viewport={{ once: true }}
                                 className="flex items-center gap-4"
                             >
@@ -83,7 +84,7 @@ export function SkillsShiftDiagram() {
                                 <motion.div
                                     initial={{ scaleX: 0 }}
                                     whileInView={{ scaleX: 1 }}
-                                    transition={{ duration: 0.3, ease: "easeOut", delay: 0.5 + i * 0.1 }}
+                                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1], delay: 0.5 + i * 0.1 }}
                                     viewport={{ once: true }}
                                     className="w-12 flex items-center justify-center"
                                 >
@@ -106,7 +107,7 @@ export function SkillsShiftDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.7 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
                         viewport={{ once: true }}
                         className="mt-6 bg-brand/5 dark:bg-brand/10 rounded-lg p-4 border border-brand/20"
                     >
@@ -130,7 +131,7 @@ export function SkillsShiftDiagram() {
                         </div>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — Paradigm Shift</span>
@@ -138,6 +139,6 @@ export function SkillsShiftDiagram() {
                     The shift from credentials to skills-based signals
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

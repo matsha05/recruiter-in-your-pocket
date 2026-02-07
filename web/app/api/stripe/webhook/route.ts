@@ -5,7 +5,7 @@ import { logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import {
     getTierDefaults,
-    normalizeRequestedTier,
+    resolveRequestedTierFromSession,
     toStoredPassTier,
     type RequestedPricingTier,
 } from "@/lib/billing/entitlements";
@@ -36,12 +36,11 @@ function getEmailFromCheckoutSession(session: Stripe.Checkout.Session): string |
 }
 
 function resolveTier(session: Stripe.Checkout.Session): RequestedPricingTier {
-    const metadataTier = normalizeRequestedTier(session.metadata?.tier);
-    if (metadataTier) return metadataTier;
-
-    if (session.mode === "subscription") return "monthly";
-
-    return "lifetime";
+    return resolveRequestedTierFromSession({
+        metadataTier: session.metadata?.tier,
+        passTier: session.metadata?.pass_tier,
+        mode: session.mode,
+    });
 }
 
 function toIsoFromUnix(value: unknown): string | null {

@@ -1,5 +1,5 @@
-# Recruiter in Your Pocket — Design Constitution V2.1
-**Fraunces Authority. Teal Expertise. Honest Clarity.**
+# Recruiter in Your Pocket — Design Constitution V3.0
+**Sentient Authority. Satoshi Clarity. Honest Precision.**
 
 > [!NOTE]
 > This document is the **implementation spec** for [design-philosophy.md](./design-philosophy.md), which is the canonical source of truth for *why* we make design decisions. This doc covers *how* to implement them.
@@ -21,9 +21,9 @@ Embrace "Studio energy" (Stripe, Linear, Notion).
 ### 2. Typography Creates Authority
 | Role | Font | Usage |
 |---|---|---|
-| **Display** | **Fraunces** (400 H1, 500 H2+) | Verdicts, headlines, scores |
-| **Interface** | **Geist Sans** | Controls, body, labels |
-| **Data** | **Geist Mono** | Metrics, captions |
+| **Display** | **Sentient** (400-700) | Verdicts, headlines, scores |
+| **Interface** | **Satoshi** (400-700) | Controls, body, labels |
+| **Data** | **Satoshi** with tabular numerics | Metrics, captions |
 
 ### 3. Color Creates Meaning
 | Token | Color | Usage |
@@ -197,7 +197,7 @@ const peekVariants = {
 Central command surface for pro users. This is the highest-leverage craft pattern.
 
 - Opens with Cmd+K globally
-- Shows: action name, description (optional), shortcut hint (Geist Mono 11px)
+- Shows: action name, description (optional), shortcut hint (Satoshi 11px with wide tracking)
 - Supports: section jumps, quick actions, recent commands
 - Context-aware: actions change based on current surface
 

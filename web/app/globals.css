@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    /* 
-      DESIGN SYSTEM V2.1
-      - Fraunces Display (Authority)
-      - Geist Sans/Mono (Precision)
+    /*
+      DESIGN SYSTEM V3.0
+      - Sentient Display (Authority + Warmth)
+      - Satoshi Interface/Data (Clarity + Consistency)
       - Teal Brand + Slate UI + Gold Premium
     */
 
@@ -95,15 +95,11 @@
     /* = amber, for caution callouts (Critical Miss, gaps) */
     /* --destructive already defined above, for errors and <70 scores */
 
-    /* V2.1 TYPOGRAPHY */
-    --font-fraunces: "Fraunces Variable", serif;
-    --font-geist-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
-    --font-geist-mono: var(--font-geist-mono), ui-monospace, monospace;
-
-    /* Usage Mapping */
-    --font-display: var(--font-fraunces);
-    --font-body: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    /* V3 TYPOGRAPHY */
+    /* next/font/local defines --font-sentient and --font-satoshi on <html>. */
+    --font-display: var(--font-sentient), ui-serif, Georgia, serif;
+    --font-body: var(--font-satoshi), ui-sans-serif, system-ui;
+    --font-mono: var(--font-satoshi), ui-monospace, SFMono-Regular, Menlo, monospace;
 
     /* V2.1 MOTION */
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -289,7 +285,7 @@
   }
 
   .riyp-figure-kicker {
-    font-family: var(--font-geist-mono);
+    font-family: var(--font-mono);
     font-size: 0.625rem;
     text-transform: uppercase;
     letter-spacing: 0.22em;
@@ -340,10 +336,10 @@
   }
 
   /* ==========================================================================
-     V2 TYPOGRAPHY SYSTEM
-     - Fraunces (Display): verdicts, headlines, scores
-     - Geist Sans (Interface): body, labels, controls
-     - Geist Mono (Data): metrics, dates, code
+     V3 TYPOGRAPHY SYSTEM
+     - Sentient (Display): verdicts, headlines, scores
+     - Satoshi (Interface): body, labels, controls
+     - Satoshi (Data): metrics and labels with tabular numbers
      ========================================================================== */
 
   /* Display: Verdicts (largest, lightest) */
@@ -671,6 +667,73 @@
 
   .legal-section-title {
     @apply mb-2.5 font-display text-[25px] leading-[1.05] tracking-tight text-foreground;
+  }
+
+  .riyp-diagram-shell {
+    @apply relative overflow-hidden rounded-xl border border-border/45 bg-white/95 dark:bg-slate-900/95;
+    box-shadow:
+      0 22px 52px -40px rgba(2, 6, 23, 0.44),
+      0 6px 18px -14px rgba(2, 6, 23, 0.24);
+    isolation: isolate;
+    transition:
+      box-shadow var(--duration-normal) var(--ease),
+      border-color var(--duration-normal) var(--ease),
+      transform var(--duration-normal) var(--ease);
+  }
+
+  .riyp-diagram-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(120% 65% at 0% 0%, rgb(13 148 136 / 0.08), transparent 55%),
+      radial-gradient(80% 50% at 100% 0%, rgb(15 23 42 / 0.06), transparent 60%);
+  }
+
+  .riyp-diagram-shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .riyp-diagram-shell:hover {
+    border-color: rgb(13 148 136 / 0.32);
+    box-shadow:
+      0 24px 60px -38px rgba(2, 6, 23, 0.5),
+      0 10px 24px -18px rgba(2, 6, 23, 0.3);
+  }
+
+  .riyp-diagram-head {
+    @apply border-b border-border/35 px-6 py-4;
+    background:
+      linear-gradient(90deg, rgb(13 148 136 / 0.12), rgb(13 148 136 / 0.02) 44%, rgb(15 23 42 / 0.03));
+  }
+
+  .dark .riyp-diagram-shell {
+    border-color: rgb(148 163 184 / 0.22);
+    box-shadow:
+      0 28px 64px -46px rgba(0, 0, 0, 0.86),
+      0 10px 24px -20px rgba(0, 0, 0, 0.62);
+  }
+
+  .dark .riyp-diagram-shell::before {
+    background:
+      radial-gradient(120% 65% at 0% 0%, rgb(45 212 191 / 0.09), transparent 58%),
+      radial-gradient(80% 55% at 100% 0%, rgb(30 41 59 / 0.42), transparent 62%);
+  }
+
+  .dark .riyp-diagram-shell:hover {
+    border-color: rgb(45 212 191 / 0.35);
+    box-shadow:
+      0 30px 70px -44px rgba(0, 0, 0, 0.92),
+      0 10px 30px -20px rgba(0, 0, 0, 0.74);
+  }
+
+  .dark .riyp-diagram-head {
+    border-bottom-color: rgb(148 163 184 / 0.2);
+    background:
+      linear-gradient(90deg, rgb(45 212 191 / 0.17), rgb(45 212 191 / 0.03) 44%, rgb(15 23 42 / 0.42));
   }
 
   @media (max-width: 1024px) {

@@ -1,7 +1,8 @@
 "use client";
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { AuthFlow, type AuthContext } from "@/components/auth/AuthFlow";
+import { AuthFlow } from "@/components/auth/AuthFlow";
+import type { AuthContext } from "@/lib/auth/content";
 
 interface AuthModalProps {
     isOpen: boolean;

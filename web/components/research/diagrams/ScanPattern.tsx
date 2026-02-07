@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 export function ScanPattern() {
     // Saccade path: More realistic eye movement with slight vertical adjustments
@@ -16,8 +17,8 @@ export function ScanPattern() {
     const fullPath = "M 40 50 L 280 50 L 40 50 L 40 120 L 220 120 L 40 120 L 40 500";
 
     return (
-        <figure className="w-full max-w-[420px] mx-auto my-12 group select-none">
-            <div className="relative w-full aspect-[1/1.4] bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none transition-all duration-500 hover:shadow-xl">
+        <DiagramFigure className="w-full max-w-[420px] mx-auto my-12 group select-none">
+            <DiagramFrame className="riyp-diagram-shell relative w-full aspect-[1/1.4] transition-all duration-500">
 
                 {/* Premium Resume Skeleton */}
                 <div className="absolute inset-0 p-8 space-y-6 opacity-80">
@@ -142,12 +143,12 @@ export function ScanPattern() {
                         Eye Tracking
                     </span>
                 </div>
-            </div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — Gaze Plot</span>
                 <span className="block text-sm text-foreground/80 font-medium">Typical &apos;F-Pattern&apos; Scanning Behavior</span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

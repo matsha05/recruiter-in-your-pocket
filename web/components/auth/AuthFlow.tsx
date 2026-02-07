@@ -8,28 +8,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { cn } from "@/lib/utils";
+import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
 
-export type AuthContext = "default" | "report" | "settings" | "paywall";
 type AuthStep = "email" | "code" | "link" | "name";
-
-const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
-  default: {
-    headline: "Welcome back",
-    subtext: "Sign in to access your reports and history."
-  },
-  report: {
-    headline: "Save this report",
-    subtext: "Keep this report and track improvements over time."
-  },
-  settings: {
-    headline: "Manage your account",
-    subtext: "Access billing, receipts, and saved reports."
-  },
-  paywall: {
-    headline: "Use your credits",
-    subtext: "Your purchases are linked to your account."
-  }
-};
 
 interface AuthFlowProps {
   variant?: "page" | "modal";
@@ -51,7 +32,7 @@ export function AuthFlow({
   initialError = null
 }: AuthFlowProps) {
   const router = useRouter();
-  const copy = AUTH_COPY[context] || AUTH_COPY.default;
+  const copy = getAuthCopy(context);
 
   const [step, setStep] = useState<AuthStep>("email");
   const [email, setEmail] = useState("");

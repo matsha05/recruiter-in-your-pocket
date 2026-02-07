@@ -33,7 +33,7 @@ import {
  * Features:
  * - Opens with Cmd+K (or Ctrl+K on Windows)
  * - Opens in 0-90ms (no data fetch on open)
- * - Shows shortcut hints (Geist Mono 11px)
+ * - Shows shortcut hints (Satoshi 11px, wide tracking)
  * - Context-aware actions based on current route
  * - Recent commands (last 8, persisted to localStorage)
  */

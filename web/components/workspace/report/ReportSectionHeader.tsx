@@ -7,9 +7,9 @@ import { ReactNode } from "react";
  * ReportSectionHeader
  * 
  * A systemized header component for all report sections.
- * Typography follows V2.1 design system:
- * - Eyebrow: text-sm uppercase tracking-wider (Geist)
- * - Subtitle: font-serif text-2xl (Fraunces) - the recruiter-voice hook
+ * Typography follows V3 design system:
+ * - Eyebrow: text-sm uppercase tracking-wider (Satoshi)
+ * - Subtitle: font-display text-xl (Sentient) - the recruiter-voice hook
  * 
  * Usage:
  *   <ReportSectionHeader
@@ -24,7 +24,7 @@ interface ReportSectionHeaderProps {
     icon: ReactNode;
     number: string;
     title: string;
-    subtitle: string;
+    subtitle?: string;
     badge?: ReactNode;
     className?: string;
 }
@@ -48,10 +48,11 @@ export function ReportSectionHeader({
                 {badge}
             </div>
 
-            {/* Subtitle: Recruiter-voice editorial hook */}
-            <p className="font-display font-medium text-xl text-foreground tracking-tight leading-snug">
-                {subtitle}
-            </p>
+            {subtitle ? (
+                <p className="font-display font-medium text-xl text-foreground tracking-tight leading-snug">
+                    {subtitle}
+                </p>
+            ) : null}
         </div>
     );
 }

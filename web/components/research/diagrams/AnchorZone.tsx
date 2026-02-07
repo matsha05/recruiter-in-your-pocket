@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Anchor Zone Diagram (v2.0)
@@ -10,16 +11,16 @@ import { motion } from "framer-motion";
  */
 export function AnchorZone() {
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Anchor placement strategy
                     </span>
@@ -32,7 +33,7 @@ export function AnchorZone() {
                         <motion.div
                             initial={{ scaleX: 0, transformOrigin: "left" }}
                             whileInView={{ scaleX: 1 }}
-                            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                             viewport={{ once: true }}
                             className="absolute top-12 left-4 right-4 h-1 bg-gradient-to-r from-muted-foreground/20 via-brand/40 to-rose-400/50 rounded-full"
                         />
@@ -47,7 +48,7 @@ export function AnchorZone() {
                                 key={marker.label}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 + i * 0.15 }}
+                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.4 + i * 0.15 }}
                                 viewport={{ once: true }}
                                 className="absolute"
                                 style={{ left: marker.pos, top: 0, transform: "translateX(-50%)" }}
@@ -78,14 +79,14 @@ export function AnchorZone() {
                     <motion.div
                         initial={{ opacity: 0, y: 8 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, ease: "easeOut", delay: 0.9 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
                         viewport={{ once: true }}
                         className="mt-8 text-center text-xs text-muted-foreground"
                     >
                         Anchor just below the impasse point, then justify with market data.
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — The Zones</span>
@@ -93,6 +94,6 @@ export function AnchorZone() {
                     Anchor placement relative to offer risk
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

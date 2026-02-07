@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
-import { isPassActive } from "@/lib/billing/entitlements";
+import {
+  getTierDefaults,
+  isPassActive,
+  resolveRequestedTierFromSession,
+  toStoredPassTier
+} from "@/lib/billing/entitlements";
+import { buildConfirmResponse, type UnlockConfirmResponse } from "@/lib/billing/unlockStateMachine";
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
@@ -9,34 +15,137 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 export const runtime = "nodejs";
 
-type ConfirmResponse = {
-  ok: boolean;
-  state: "unlocked" | "fulfillment_pending" | "checkout_incomplete" | "not_paid";
-  pending?: boolean;
-  status?: string | null;
-  message: string;
-  pass?: {
-    id: string;
-    tier: string | null;
-    expires_at: string | null;
-    uses_remaining: number | null;
-    active: boolean;
-  };
-};
-
-function response(body: ConfirmResponse, status: number) {
+function response(body: UnlockConfirmResponse, status: number) {
   return NextResponse.json(body, { status });
+}
+
+function getEmailFromCheckoutSession(session: Stripe.Checkout.Session): string | null {
+  const metadataEmail = session.metadata?.email;
+  if (metadataEmail && typeof metadataEmail === "string") return metadataEmail.toLowerCase();
+
+  const customerEmail = session.customer_details?.email || session.customer_email;
+  if (customerEmail && typeof customerEmail === "string") return customerEmail.toLowerCase();
+
+  return null;
+}
+
+async function findUserIdByEmail(admin: any, email: string): Promise<string | null> {
+  const perPage = 200;
+
+  for (let page = 1; page <= 20; page++) {
+    const { data, error } = await admin.auth.admin.listUsers({ page, perPage });
+    if (error || !data?.users?.length) break;
+
+    const found = data.users.find((u: any) => u.email?.toLowerCase() === email.toLowerCase());
+    if (found?.id) return found.id;
+
+    if (data.users.length < perPage) break;
+  }
+
+  return null;
+}
+
+function extractCurrentPeriodEndUnix(
+  subscription:
+    | Stripe.Subscription
+    | Stripe.Response<Stripe.Subscription>
+    | null
+    | undefined
+): number | null {
+  const direct = (subscription as any)?.current_period_end;
+  if (typeof direct === "number") return direct;
+
+  const wrapped = (subscription as any)?.data?.current_period_end;
+  if (typeof wrapped === "number") return wrapped;
+
+  return null;
+}
+
+async function ensurePassForCheckoutSession(
+  admin: any,
+  session: Stripe.Checkout.Session
+) {
+  const existing = await admin
+    .from("passes")
+    .select("id, tier, uses_remaining, expires_at")
+    .eq("checkout_session_id", session.id)
+    .limit(1)
+    .maybeSingle();
+
+  if (existing?.data?.id) {
+    return existing.data;
+  }
+
+  const metadataUserId = typeof session.metadata?.user_id === "string" && session.metadata.user_id
+    ? session.metadata.user_id
+    : null;
+
+  const email = getEmailFromCheckoutSession(session);
+  const userId = metadataUserId || (email ? await findUserIdByEmail(admin, email) : null);
+  if (!userId) return null;
+
+  const requestedTier = resolveRequestedTierFromSession({
+    metadataTier: session.metadata?.tier,
+    passTier: session.metadata?.pass_tier,
+    mode: session.mode,
+  });
+  const storedTier = toStoredPassTier(requestedTier);
+
+  let subscriptionId: string | null = null;
+  let subscriptionPeriodEndUnix: number | null = null;
+  if (typeof session.subscription === "string" && session.subscription) {
+    subscriptionId = session.subscription;
+    try {
+      const subscription = await stripe!.subscriptions.retrieve(subscriptionId);
+      subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
+    } catch {
+      // Best-effort; defaults below.
+    }
+  }
+
+  const { usesRemaining, expiresAt } = getTierDefaults(storedTier, { subscriptionPeriodEndUnix });
+  const passId = crypto.randomUUID();
+
+  const { error: insertError } = await admin.from("passes").insert({
+    id: passId,
+    user_id: userId,
+    tier: storedTier,
+    uses_remaining: usesRemaining,
+    purchased_at: new Date().toISOString(),
+    expires_at: expiresAt,
+    price_id: subscriptionId,
+    checkout_session_id: session.id,
+    created_at: new Date().toISOString(),
+  });
+
+  if (insertError) {
+    const fallback = await admin
+      .from("passes")
+      .select("id, tier, uses_remaining, expires_at")
+      .eq("checkout_session_id", session.id)
+      .limit(1)
+      .maybeSingle();
+
+    return fallback?.data ?? null;
+  }
+
+  return {
+    id: passId,
+    tier: storedTier,
+    uses_remaining: usesRemaining,
+    expires_at: expiresAt,
+  };
 }
 
 export async function POST(req: NextRequest) {
   try {
     if (!stripe) {
       return response(
-        {
-          ok: false,
+        buildConfirmResponse({
           state: "not_paid",
-          message: "Payments are not configured yet."
-        },
+          message: "Payments are not configured yet.",
+          pending: false,
+        }),
         500
       );
     }
@@ -45,11 +154,11 @@ export async function POST(req: NextRequest) {
     const sessionId = typeof body?.sessionId === "string" ? body.sessionId.trim() : "";
     if (!sessionId) {
       return response(
-        {
-          ok: false,
+        buildConfirmResponse({
           state: "checkout_incomplete",
-          message: "Missing sessionId."
-        },
+          message: "Missing sessionId.",
+          pending: false,
+        }),
         400
       );
     }
@@ -59,24 +168,20 @@ export async function POST(req: NextRequest) {
 
     if (status !== "complete") {
       return response(
-        {
-          ok: false,
+        buildConfirmResponse({
           state: "checkout_incomplete",
           status,
-          message: "Checkout is not complete yet."
-        },
+        }),
         409
       );
     }
 
     if (checkoutSession.payment_status !== "paid") {
       return response(
-        {
-          ok: false,
+        buildConfirmResponse({
           state: "not_paid",
           status,
-          message: "Payment is not marked as paid yet."
-        },
+        }),
         409
       );
     }
@@ -84,13 +189,11 @@ export async function POST(req: NextRequest) {
     const supabaseAdmin = createSupabaseAdminClient();
     if (!supabaseAdmin) {
       return response(
-        {
-          ok: false,
+        buildConfirmResponse({
           state: "fulfillment_pending",
-          pending: true,
           status,
-          message: "Database is not configured."
-        },
+          message: "Database is not configured.",
+        }),
         500
       );
     }
@@ -105,55 +208,46 @@ export async function POST(req: NextRequest) {
     if (error) {
       console.error("[billing.confirm] query failed:", error.message);
       return response(
-        {
-          ok: false,
+        buildConfirmResponse({
           state: "fulfillment_pending",
-          pending: true,
           status,
-          message: "Payment received. Finalizing access..."
-        },
+        }),
         202
       );
     }
 
-    if (!data?.id) {
+    const pass = data?.id ? data : await ensurePassForCheckoutSession(supabaseAdmin, checkoutSession);
+
+    if (!pass?.id) {
       return response(
-        {
-          ok: false,
+        buildConfirmResponse({
           state: "fulfillment_pending",
-          pending: true,
           status,
-          message: "Payment received. Finalizing access..."
-        },
+        }),
         202
       );
     }
 
     return response(
-      {
-        ok: true,
+      buildConfirmResponse({
         state: "unlocked",
         status,
-        message: "Access unlocked.",
         pass: {
-          id: data.id,
-          tier: data.tier ?? null,
-          expires_at: data.expires_at ?? null,
-          uses_remaining: typeof data.uses_remaining === "number" ? data.uses_remaining : null,
-          active: isPassActive(data as any)
-        }
-      },
+          id: pass.id,
+          tier: pass.tier ?? null,
+          expires_at: pass.expires_at ?? null,
+          uses_remaining: typeof pass.uses_remaining === "number" ? pass.uses_remaining : null,
+          active: isPassActive(pass as any),
+        },
+      }),
       200
     );
   } catch (error: any) {
     console.error("[billing.confirm] error:", error?.message);
     return response(
-      {
-        ok: false,
+      buildConfirmResponse({
         state: "fulfillment_pending",
-        pending: true,
-        message: "Payment received. Finalizing access..."
-      },
+      }),
       202
     );
   }

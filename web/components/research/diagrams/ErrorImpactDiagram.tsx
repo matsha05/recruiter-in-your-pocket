@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Error Impact Diagram (v2.1)
@@ -60,12 +61,12 @@ export function ErrorImpactDiagram() {
     };
 
     return (
-        <figure className="w-full max-w-[640px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[640px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
@@ -85,7 +86,7 @@ export function ErrorImpactDiagram() {
                                     key={step.stage}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 + i * 0.1 }}
+                                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.1 }}
                                     viewport={{ once: true }}
                                     className="relative"
                                 >
@@ -118,7 +119,7 @@ export function ErrorImpactDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
                         viewport={{ once: true }}
                         className="mt-6 bg-red-50 dark:bg-red-950/20 rounded-lg p-4 border border-red-200/50 dark:border-red-800/30"
                     >
@@ -127,7 +128,7 @@ export function ErrorImpactDiagram() {
                         </p>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — Error Cascade</span>
@@ -135,6 +136,6 @@ export function ErrorImpactDiagram() {
                     How spelling errors trigger trait inferences and hiring penalties
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

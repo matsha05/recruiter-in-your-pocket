@@ -59,8 +59,8 @@ We are NOT:
 
 Headlines are confident. Typography has personality. Every word earns its place. We're not a dashboard — we're a document that respects your time.
 
-- Fraunces for display (authority)
-- Geist for body (precision)
+- Sentient for display (authority + warmth)
+- Satoshi for body (precision + readability)
 - Maximum two weights per typeface
 - Color only where it carries meaning
 
@@ -148,7 +148,7 @@ Delight in RIYP is **competence made visible**:
 - Copy is polite instead of decisive
 
 **Memorable comes from:**
-- **Editorial hierarchy** — Fraunces used decisively, not everywhere
+- **Editorial hierarchy** — Sentient used decisively, not everywhere
 - **Verdict-driven structure** — Strong judgment moment, then evidence
 - **Microcopy with spine** — "This bullet is weak because..."
 - **Interaction certainty** — The UI never hesitates or surprises
@@ -166,8 +166,8 @@ Delight in RIYP is **competence made visible**:
 | `--radius` | 4px | All corners, always |
 | `--duration-normal` | 200ms | Standard transitions |
 | `--duration-slow` | 350ms | Reveals, entrances |
-| `font-display` | Fraunces | Headlines, scores, verdicts |
-| `font-sans` | Geist | Body, UI, labels |
+| `font-display` | Sentient | Headlines, scores, verdicts |
+| `font-sans` | Satoshi | Body, UI, labels |
 
 ---
 
@@ -190,4 +190,4 @@ This philosophy should be referenced when:
 - Writing copy ("Would our hiring manager friend say this?")
 - Choosing what to build ("Does this arm people or just inform them?")
 
-Last updated: January 2026 (V2.2 "Modern Editorial")
+Last updated: February 2026 (V3.0 "Warm Authority")

@@ -160,7 +160,7 @@ const CommandItem = React.forwardRef<
 CommandItem.displayName = CommandPrimitive.Item.displayName
 
 /**
- * CommandShortcut - Keyboard shortcut hint (Geist Mono 11px)
+ * CommandShortcut - Keyboard shortcut hint (Satoshi 11px with wide tracking)
  */
 const CommandShortcut = ({
     className,

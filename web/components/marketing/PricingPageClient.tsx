@@ -9,9 +9,9 @@ import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 
 const unlockPoints = [
-    "Evidence Ledger and Red Pen rewrites on paid runs",
-    "Role matching, Missing Wins, and run history",
-    "Export and restore controls without support tickets",
+    "Evidence Ledger and Red Pen rewrites on paid reviews",
+    "Role matching, Missing Wins, and saved review history",
+    "Self-serve export, receipts, and restore controls",
 ];
 
 const billingPoints = [
@@ -27,8 +27,8 @@ const billingPoints = [
     },
     {
         icon: Receipt,
-        title: "Immediate unlock scope",
-        body: "Deep sections, repeated runs, export, and history unlock immediately.",
+        title: "Immediate access scope",
+        body: "Deep sections, repeated reviews, export, and history are available immediately.",
     },
 ];
 
@@ -73,11 +73,9 @@ export default function PricingPageClient() {
                             <h1 className="landing-title-xl mx-auto max-w-[20ch]">
                                 Start free, upgrade when iteration speed matters
                             </h1>
-                            <p className="mx-auto max-w-2xl landing-copy">
-                                First review is free. Paid plans unlock repeated role-specific runs, deeper rewrites, and saved history.
-                            </p>
+                            <p className="mx-auto max-w-2xl landing-copy">Your first review is free. Paid plans add repeated role-specific reviews, deeper rewrites, and saved history.</p>
                             <div className="landing-flow-sm mx-auto max-w-2xl landing-card landing-card-pad text-left">
-                                <div className="landing-eyebrow">What paid unlocks</div>
+                                <div className="landing-eyebrow">What paid plans include</div>
                                 <ul className="space-y-2.5 landing-copy-muted">
                                     {unlockPoints.map((point) => (
                                         <li key={point} className="flex items-start gap-2">
@@ -119,12 +117,12 @@ export default function PricingPageClient() {
                 <section className="landing-section-pad landing-deep-ink">
                     <div className="landing-rail landing-grid-gap grid items-start lg:grid-cols-[1.05fr_0.95fr]">
                         <div className="landing-flow-md">
-                            <div className="text-label-mono text-slate-400">Billing trust</div>
+                            <div className="text-label-mono text-slate-400">Billing clarity</div>
                             <h2 className="landing-title-lg text-slate-50">
-                                Payment and access stay transparent
+                                Payment and access stay straightforward
                             </h2>
                             <p className="landing-copy-inverted max-w-[42rem]">
-                                If unlock lags after payment, restore flow and billing controls are available immediately.
+                                If access lags after payment, restore is available immediately in Billing.
                             </p>
                         </div>
                         <div className="landing-deep-ink-panel landing-flow-md">
@@ -143,7 +141,7 @@ export default function PricingPageClient() {
                                 href="/purchase/restore"
                                 className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90"
                             >
-                                Open restore access
+                                Open restore page
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>

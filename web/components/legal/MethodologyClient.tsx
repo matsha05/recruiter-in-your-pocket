@@ -24,7 +24,7 @@ const rubric = [
     {
         name: "Readability",
         weight: "15%",
-        detail: "Is the document scan-friendly in first-pass review time?",
+        detail: "Is the document easy to scan quickly?",
     },
 ];
 
@@ -61,7 +61,7 @@ export default function MethodologyClient() {
                         Output intent
                     </h3>
                     <p className="landing-copy-muted">
-                        Feedback is action-oriented: what hurts signal, what to rewrite first, and where role-fit is weak.
+                        Feedback is action-oriented: what weakens signal, what to rewrite first, and where role fit is weak.
                     </p>
                 </div>
                 <div className="landing-card landing-card-pad">

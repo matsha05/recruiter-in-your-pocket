@@ -1,13 +1,54 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Analytics } from "@vercel/analytics/next";
 
 import { Toaster } from "@/components/ui/sonner";
 import { CommandPalette } from "@/components/CommandPalette";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import "@fontsource-variable/fraunces";
+const sentient = localFont({
+  src: [
+    {
+      path: "../public/fonts/sentient/sentient-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/sentient/sentient-500.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/sentient/sentient-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-sentient",
+  display: "swap",
+});
+
+const satoshi = localFont({
+  src: [
+    {
+      path: "../public/fonts/satoshi/satoshi-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/satoshi/satoshi-500.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/satoshi/satoshi-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-satoshi",
+  display: "swap",
+});
 
 
 export const metadata: Metadata = {
@@ -51,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${sentient.variable} ${satoshi.variable}`}>
       <head>
         {/* Favicon is handled automatically by icon.tsx */}
       </head>

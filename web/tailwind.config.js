@@ -18,24 +18,24 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: [
-					'var(--font-geist-sans)',
+					'var(--font-satoshi)',
 					'ui-sans-serif',
 					'system-ui'
 				],
 				display: [
-					'"Fraunces Variable"',
+					'var(--font-sentient)',
 					'ui-serif',
 					'Georgia',
 					'serif'
 				],
 				serif: [
-					'"Fraunces Variable"',
+					'var(--font-sentient)',
 					'ui-serif',
 					'Georgia',
 					'serif'
 				],
 				mono: [
-					'var(--font-geist-mono)',
+					'var(--font-satoshi)',
 					'ui-monospace',
 					'monospace'
 				]

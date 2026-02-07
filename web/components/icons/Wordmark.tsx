@@ -1,10 +1,9 @@
 /**
- * Wordmark Component — Generated from Fraunces Font
- * 
- * This SVG was programmatically extracted from the actual Fraunces 500
- * (Medium) font file using text-to-svg. This preserves the exact
- * letterforms, spacing, and kerning from the typeface.
- * 
+ * Wordmark Component — Static vector source of truth.
+ *
+ * This SVG is preserved as a stable brand asset so product typography
+ * changes do not accidentally alter the logo lockup.
+ *
  * Usage: <Wordmark className="h-5 text-foreground" />
  */
 

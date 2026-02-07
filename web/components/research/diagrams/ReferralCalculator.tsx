@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { DiagramFigure, DiagramFrame, DiagramHeader } from "@/components/shared/diagrams/DiagramPrimitives";
 
 export function ReferralCalculator() {
     // Default values for better initial state
@@ -50,13 +51,16 @@ export function ReferralCalculator() {
     };
 
     return (
-        <figure className="my-12 w-full max-w-2xl mx-auto font-sans">
-            <div className="rounded-xl border border-border/40 bg-card overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500">
-                {/* Header */}
-                <div className="bg-muted/30 px-6 py-4 border-b border-border/40 flex items-center justify-between">
-                    <span className="font-display font-medium text-foreground tracking-tight">Referral ROI Calculator</span>
-                    <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground bg-background px-2 py-1 rounded border border-border/40">Interactive</span>
-                </div>
+        <DiagramFigure className="max-w-2xl font-sans">
+            <DiagramFrame className="overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-500">
+                <DiagramHeader
+                    label="Referral ROI Calculator"
+                    rightSlot={(
+                        <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground bg-background px-2 py-1 rounded border border-border/40">
+                            Interactive
+                        </span>
+                    )}
+                />
 
                 <div className="p-6 md:p-8 space-y-8">
                     {/* Controls */}
@@ -165,13 +169,13 @@ export function ReferralCalculator() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </DiagramFrame>
 
             <figcaption className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="font-medium text-foreground">Fig. 2</span>
                 <span>Referral efficiency model.</span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }
 

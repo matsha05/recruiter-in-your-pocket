@@ -14,7 +14,7 @@ import {
     ScriptLibrary
 } from "@/components/guides/GuideComponents";
 import { CompStackDiagram, EquityTruthTable } from "@/components/guides/GuideDiagrams";
-import { ArrowRight, ArrowLeft, DollarSign, TrendingUp, Clock, Target, Lock, MessageSquare, Users, ChevronRight } from "lucide-react";
+import { ArrowRight, Lock, MessageSquare, Users, ChevronRight } from "lucide-react";
 
 /**
  * Tech Offer Negotiation Guide
@@ -234,7 +234,7 @@ export default function TechOfferNegotiationGuidePage() {
                         <GuideSection
                             tip={
                                 <>
-                                    <strong>Every employer will ask about expected salary and every experienced professional knows to not answer.</strong> This is a standard part of the hiring dance. Don&apos;t be afraid to stand your ground — the recruiter will not rescind the offer because you didn&apos;t answer.
+                                    <strong>Most recruiters will ask for expectations early.</strong> A professional deflection is normal and keeps you from anchoring too low.
                                 </>
                             }
                         >
@@ -261,7 +261,7 @@ export default function TechOfferNegotiationGuidePage() {
                         <GuideSection
                             tip={
                                 <>
-                                    <strong>Sometimes a tight deadline is legitimate but often it&apos;s a pressure tactic.</strong> &quot;Exploding offers&quot; are a bad industry practice and unfortunately common with new grad offers. Here&apos;s a secret: if you renege on a signed offer, nothing bad will happen. Don&apos;t feel pressured.
+                                    <strong>Some deadlines are real, some are pressure.</strong> Ask for enough time to review the full package before committing.
                                 </>
                             }
                             tipType="warning"
@@ -410,7 +410,7 @@ export default function TechOfferNegotiationGuidePage() {
                         <GuideSection
                             tip={
                                 <>
-                                    <strong>Remember: the company just spent 10s of thousands finding you, vetting you, etc.</strong> They&apos;ve wasted time wading through a glut of unqualified candidates. The recruiter has quotas to fill. The hiring manager needed the job filled months ago. Everybody wants this deal to happen.
+                                    <strong>Hiring is expensive and time-sensitive.</strong> Your recruiter is usually incentivized to close efficiently, which gives well-structured counters real leverage.
                                 </>
                             }
                         >

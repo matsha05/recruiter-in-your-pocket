@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Impact Formula Diagram (v2.0)
@@ -16,16 +17,16 @@ export function ImpactFormulaDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         The Bock formula
                     </span>
@@ -39,7 +40,7 @@ export function ImpactFormulaDiagram() {
                                 key={item.letter}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 + i * 0.12 }}
+                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.12 }}
                                 viewport={{ once: true }}
                                 className="flex items-center gap-3"
                             >
@@ -79,7 +80,7 @@ export function ImpactFormulaDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
                         viewport={{ once: true }}
                         className="mt-6 border-t border-border/20 pt-5"
                     >
@@ -99,7 +100,7 @@ export function ImpactFormulaDiagram() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.4, ease: "easeOut", delay: 0.8 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
                         viewport={{ once: true }}
                         className="mt-4 flex justify-center gap-6 text-[10px] text-muted-foreground"
                     >
@@ -108,7 +109,7 @@ export function ImpactFormulaDiagram() {
                         <span>By doing [Z]</span>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — X → Y → Z</span>
@@ -116,6 +117,6 @@ export function ImpactFormulaDiagram() {
                     The Laszlo Bock formula for high-impact resume bullets
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

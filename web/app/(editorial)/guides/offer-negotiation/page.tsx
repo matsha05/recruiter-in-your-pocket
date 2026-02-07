@@ -15,7 +15,7 @@ import {
     LeverDeepDives
 } from "@/components/guides/GuideComponents";
 import { NegotiationTimelineDiagram, LeverComparisonDiagram } from "@/components/guides/GuideDiagrams";
-import { ArrowRight, ArrowLeft, Lock, MessageSquare, Users, Briefcase, Heart, Building2, ChevronRight } from "lucide-react";
+import { ArrowRight, Lock, MessageSquare, Users, ChevronRight } from "lucide-react";
 
 /**
  * Universal Offer Negotiation Guide
@@ -320,8 +320,8 @@ export default function OfferNegotiationGuidePage() {
                             }
                         >
                             {/* Email vs Phone callout */}
-                            <div className="mb-8 p-5 rounded-xl border border-blue-500/30 bg-blue-500/5">
-                                <h4 className="font-medium text-foreground mb-3">📧 Email is your friend</h4>
+                            <div className="mb-8 rounded-xl border border-brand/25 bg-brand/[0.06] p-5">
+                                <h4 className="mb-3 font-medium text-foreground">Use email for your first counter</h4>
                                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                                     <GuideHighlight>You don&apos;t have to negotiate on the phone.</GuideHighlight> Email gives you time to think, craft your words, and avoid saying something you regret under pressure. Most recruiters are fine with email — they prefer written records too.
                                 </p>
@@ -345,8 +345,8 @@ export default function OfferNegotiationGuidePage() {
                                         </ul>
                                     </div>
                                 </div>
-                                <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Pro tip: If they call you, it&apos;s okay to say &quot;Thanks for calling — let me think about this and follow up by email.&quot;
+                                <p className="mt-4 text-xs text-muted-foreground">
+                                    If they call unexpectedly, it is fine to say: &quot;Thanks for calling. Let me review and follow up by email.&quot;
                                 </p>
                             </div>
 

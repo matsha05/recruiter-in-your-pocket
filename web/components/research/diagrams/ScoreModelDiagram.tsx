@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Score Model Diagram (v2.0)
@@ -34,22 +35,22 @@ export function ScoreModelDiagram() {
         {
             name: "Readability",
             weight: 18,
-            color: "violet",
+            color: "slate",
             desc: "Clean formatting and scan-flow"
         },
     ];
 
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Scoring dimensions
                     </span>
@@ -61,7 +62,7 @@ export function ScoreModelDiagram() {
                             key={dim.name}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 + i * 0.1 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.1 }}
                             viewport={{ once: true }}
                             className="space-y-2"
                         >
@@ -87,12 +88,12 @@ export function ScoreModelDiagram() {
                                 <motion.div
                                     initial={{ width: 0 }}
                                     whileInView={{ width: `${dim.weight}%` }}
-                                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 + i * 0.1 }}
+                                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.1 }}
                                     viewport={{ once: true }}
                                     className={`h-full rounded-full ${dim.color === "brand" ? "bg-gradient-to-r from-brand/70 to-brand" :
                                             dim.color === "emerald" ? "bg-gradient-to-r from-emerald-500/70 to-emerald-500" :
                                                 dim.color === "blue" ? "bg-gradient-to-r from-blue-500/70 to-blue-500" :
-                                                    "bg-gradient-to-r from-violet-500/70 to-violet-500"
+                                                    "bg-gradient-to-r from-slate-500/70 to-slate-500"
                                         }`}
                                 />
                             </div>
@@ -107,7 +108,7 @@ export function ScoreModelDiagram() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.8 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
                         viewport={{ once: true }}
                         className="mt-6 pt-4 border-t border-border/20"
                     >
@@ -128,7 +129,7 @@ export function ScoreModelDiagram() {
                         </div>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — The Four Dimensions</span>
@@ -136,6 +137,6 @@ export function ScoreModelDiagram() {
                     How we weight signal strength in the 7.4-second window
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

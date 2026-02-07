@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "provider": "Fontshare (Indian Type Foundry)",
+  "license_type": "itf_ffl",
+  "sources": {
+    "satoshi": "https://api.fontshare.com/v2/fonts?limit=200 (slug: satoshi, id: 20e9fcdc-1e41-4559-a43d-1ede0adc8896)",
+    "sentient": "https://api.fontshare.com/v2/fonts?limit=200 (slug: sentient, id: 297238ab-7a3e-44e0-af29-056f778c2728)"
+  },
+  "files": [
+    {
+      "family": "sentient",
+      "weight": 400,
+      "path": "public/fonts/sentient/sentient-400.woff2",
+      "sha256": "f08e7da6181ee421ea564df6c727bc84bfe6fe656b9e613efbd8a2161fd26b14"
+    },
+    {
+      "family": "sentient",
+      "weight": 500,
+      "path": "public/fonts/sentient/sentient-500.woff2",
+      "sha256": "5b5be289c90cf98f0d924ec0c7a0bc6ebf417f134152eb5d8b9b589248feeaf6"
+    },
+    {
+      "family": "sentient",
+      "weight": 700,
+      "path": "public/fonts/sentient/sentient-700.woff2",
+      "sha256": "cb153c0d7ffabb2a6198c0834630690f58deaa302af5e03edef51ff910e69449"
+    },
+    {
+      "family": "satoshi",
+      "weight": 400,
+      "path": "public/fonts/satoshi/satoshi-400.woff2",
+      "sha256": "50dca57f0b77918e0fb7dac998c3f5ef6b0c2a29657da97658a04f98ac532fc5"
+    },
+    {
+      "family": "satoshi",
+      "weight": 500,
+      "path": "public/fonts/satoshi/satoshi-500.woff2",
+      "sha256": "af02a72246f53ad49c44a591921edbd39ec8258a03d8cc2e0532aa1e497e85b4"
+    },
+    {
+      "family": "satoshi",
+      "weight": 700,
+      "path": "public/fonts/satoshi/satoshi-700.woff2",
+      "sha256": "353a7fbfb4475f0c31470a7449226006cb64211c71055ca9db860a8acdaa9f68"
+    }
+  ]
+}

@@ -59,7 +59,7 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
     const isInView = useInView(artifactRef, { once: true, amount: 0.4 });
 
     const score = data.score ?? 0;
-    const verdict = data.score_comment_short || data.first_impression || "Strong story. Weak quantified impact.";
+    const verdict = data.score_comment_short || data.first_impression || "Strong story. Impact is under-quantified.";
     const criticalMiss = data.biggest_gap_example || "Impact metrics missing in two recent roles.";
 
     const firstFix = data.top_fixes?.[0];
@@ -105,7 +105,7 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
                     <ReportSectionHeader
                         icon={<PrincipalRecruiterIcon className="h-3.5 w-3.5 text-brand" />}
                         number="01"
-                        title="Decision snapshot"
+                        title="Initial recruiter read"
                         subtitle={verdict}
                         className={headingClassName}
                         badge={
@@ -139,7 +139,6 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
                         icon={<SignalRadarIcon className="h-3.5 w-3.5 text-brand" />}
                         number="02"
                         title="Signal breakdown"
-                        subtitle={`Bars fill over the same ${playbackSeconds.toFixed(1)}-second first-pass window.`}
                         className={headingClassName}
                         badge={<span className="text-label-mono text-muted-foreground">Weighted rubric</span>}
                     />
@@ -157,7 +156,7 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
                     </div>
 
                     <div className="mt-3 rounded-md border border-border/60 bg-muted/20 px-3 py-2.5">
-                        <div className="text-label-mono text-muted-foreground">Priority sequence</div>
+                        <div className="text-label-mono text-muted-foreground">Fix order</div>
                         <div className="mt-1.5 flex flex-wrap gap-1.5">
                             {prioritySequence.map((label, index) => (
                                 <span

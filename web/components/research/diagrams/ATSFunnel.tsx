@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * ATS Decision Funnel Diagram (v2.0)
@@ -36,16 +37,16 @@ export function ATSFunnel() {
     ];
 
     return (
-        <figure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
+            <DiagramFrame
+                className="riyp-diagram-shell"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
             >
                 {/* Header */}
-                <div className="bg-muted/30 dark:bg-muted/10 px-6 py-4 border-b border-border/30">
+                <div className="riyp-diagram-head">
                     <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
                         Decision rights hierarchy
                     </span>
@@ -59,7 +60,7 @@ export function ATSFunnel() {
                                 key={layer.title}
                                 initial={{ opacity: 0, y: 16, scale: 0.98 }}
                                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 + i * 0.15 }}
+                                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.15 }}
                                 viewport={{ once: true }}
                                 className="relative"
                             >
@@ -101,7 +102,7 @@ export function ATSFunnel() {
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: `${layer.intensity * 100}%` }}
-                                                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 + i * 0.15 }}
+                                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 + i * 0.15 }}
                                                 viewport={{ once: true }}
                                                 className={`h-full rounded-full ${layer.intensity === 1
                                                     ? "bg-gradient-to-r from-brand/60 to-brand"
@@ -126,7 +127,7 @@ export function ATSFunnel() {
                     <motion.div
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut", delay: 0.7 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
                         viewport={{ once: true }}
                         className="bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
                     >
@@ -147,7 +148,7 @@ export function ATSFunnel() {
                         </div>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — Decision Rights</span>
@@ -155,6 +156,6 @@ export function ATSFunnel() {
                     Where automation operates vs where humans decide
                 </span>
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }

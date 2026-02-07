@@ -1,6 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+    DiagramBulletList,
+    DiagramFigure,
+    DiagramFrame,
+    DiagramHeader,
+} from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
  * Comp Stack Diagram - Simplified visual for offer guides
@@ -17,19 +23,15 @@ export function CompStackDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-2xl mx-auto my-10 select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
+        <DiagramFigure className="max-w-2xl">
+            <DiagramFrame
+                className="relative border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
             >
-                <div className="px-6 py-4 border-b border-border/30">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
-                        Tech Total Comp Breakdown
-                    </span>
-                </div>
+                <DiagramHeader label="Tech Total Comp Breakdown" />
 
                 <div className="p-6 md:p-8 space-y-6">
                     {/* Stacked bar */}
@@ -59,11 +61,11 @@ export function CompStackDiagram() {
                         ))}
                     </div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
             <figcaption className="mt-4 text-sm text-muted-foreground text-center">
                 Senior engineer total comp at a large tech company
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }
 
@@ -82,19 +84,15 @@ export function NegotiationTimelineDiagram() {
     ];
 
     return (
-        <figure className="w-full max-w-3xl mx-auto my-10 select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
+        <DiagramFigure className="max-w-3xl">
+            <DiagramFrame
+                className="relative border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
             >
-                <div className="px-6 py-4 border-b border-border/30">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
-                        The Negotiation Sequence
-                    </span>
-                </div>
+                <DiagramHeader label="The Negotiation Sequence" />
 
                 <div className="p-6 md:p-8">
                     {/* Desktop: Horizontal */}
@@ -144,93 +142,108 @@ export function NegotiationTimelineDiagram() {
                         ))}
                     </div>
                 </div>
-            </motion.div>
-        </figure>
+            </DiagramFrame>
+        </DiagramFigure>
     );
 }
 
 /**
  * Lever Comparison Diagram
  * 
- * Shows which levers are available in different industries
+ * Shows common negotiation levers by industry
  */
 export function LeverComparisonDiagram() {
     const industries = [
         {
             name: "Tech",
-            levers: ["Base", "Equity", "Signing Bonus", "Level"],
-            color: "violet"
+            summary: "Comp is usually base, equity, and sign-on; level placement sets the pay band.",
+            levers: ["Base", "Equity", "Sign-on", "Level"],
+            color: "violet",
         },
         {
             name: "Finance",
-            levers: ["Base", "Performance Bonus", "Guaranteed Bonus", "Title"],
-            color: "amber"
+            summary: "Bonus structure often drives total comp more than base alone.",
+            levers: ["Base", "Performance bonus", "Guaranteed bonus", "Title"],
+            color: "amber",
         },
         {
             name: "Healthcare",
-            levers: ["Base", "PTO", "Loan Repayment", "CME Budget"],
-            color: "emerald"
+            summary: "Schedule and support terms can move real value quickly.",
+            levers: ["Base", "PTO", "Loan repayment", "CME budget"],
+            color: "emerald",
         },
         {
             name: "Other",
-            levers: ["Base", "Signing Bonus", "Flexibility", "Title"],
-            color: "slate"
+            summary: "Flexibility and role scope are often the practical levers.",
+            levers: ["Base", "Sign-on", "Flexibility", "Title"],
+            color: "slate",
         },
     ];
 
     const colorMap: Record<string, { bg: string; border: string; text: string }> = {
-        violet: { bg: "bg-violet-500/10", border: "border-violet-500/30", text: "text-violet-600" },
-        amber: { bg: "bg-amber-500/10", border: "border-amber-500/30", text: "text-amber-600" },
-        emerald: { bg: "bg-emerald-500/10", border: "border-emerald-500/30", text: "text-emerald-600" },
-        slate: { bg: "bg-slate-500/10", border: "border-slate-500/30", text: "text-slate-600" },
+        violet: {
+            bg: "bg-violet-500/[0.09]",
+            border: "border-violet-500/30",
+            text: "text-violet-600 dark:text-violet-300",
+        },
+        amber: {
+            bg: "bg-amber-500/[0.09]",
+            border: "border-amber-500/35",
+            text: "text-amber-700 dark:text-amber-300",
+        },
+        emerald: {
+            bg: "bg-emerald-500/[0.09]",
+            border: "border-emerald-500/30",
+            text: "text-emerald-700 dark:text-emerald-300",
+        },
+        slate: {
+            bg: "bg-slate-500/[0.1]",
+            border: "border-slate-500/30",
+            text: "text-slate-700 dark:text-slate-300",
+        },
     };
 
     return (
-        <figure className="w-full max-w-3xl mx-auto my-10 select-none">
-            <motion.div
-                className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
+        <DiagramFigure className="max-w-5xl">
+            <DiagramFrame
+                className="relative border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
             >
-                <div className="px-6 py-4 border-b border-border/30">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
-                        Negotiation Levers by Industry
-                    </span>
+                <DiagramHeader label="Negotiation Levers by Industry" />
+
+                <div className="px-6 pt-5 text-sm text-muted-foreground md:px-8">
+                    Different industries use different compensation structures, but the negotiation process is the same.
                 </div>
 
-                <div className="p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div className="p-6 pt-4 md:p-8 md:pt-5 grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4 md:gap-6">
                     {industries.map((industry, i) => {
                         const colors = colorMap[industry.color];
                         return (
                             <motion.div
                                 key={industry.name}
-                                className={`p-5 rounded-xl border ${colors.bg} ${colors.border}`}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+                                className={`rounded-xl border ${colors.bg} ${colors.border} p-4 md:p-5`}
+                                initial={{ opacity: 0, y: 8 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3, delay: 0.1 + i * 0.08 }}
                                 viewport={{ once: true }}
                             >
-                                <span className={`text-base font-semibold ${colors.text} block mb-3`}>
-                                    {industry.name}
-                                </span>
-                                <ul className="space-y-1.5">
-                                    {industry.levers.map((lever) => (
-                                        <li key={lever} className="text-sm text-muted-foreground">
-                                            • {lever}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <p className={`text-base font-semibold ${colors.text}`}>{industry.name}</p>
+                                <p className="mt-2 min-h-[3rem] text-sm leading-relaxed text-muted-foreground">{industry.summary}</p>
+                                <div className="my-3 h-px bg-border/40" />
+                                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/75">Common levers</p>
+                                <DiagramBulletList items={industry.levers} className="mt-2" />
                             </motion.div>
                         );
                     })}
                 </div>
-            </motion.div>
+            </DiagramFrame>
             <figcaption className="mt-4 text-sm text-muted-foreground text-center">
-                Different industries have different compensation levers
+                Different industries emphasize different compensation levers.
             </figcaption>
-        </figure>
+        </DiagramFigure>
     );
 }
 
@@ -329,13 +342,14 @@ export function EquityTruthTable() {
                             {redFlags.map((flag, i) => (
                                 <motion.li
                                     key={i}
-                                    className="text-sm text-muted-foreground leading-relaxed"
+                                    className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
                                     viewport={{ once: true }}
                                 >
-                                    • {flag}
+                                    <span aria-hidden className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-rose-600/70" />
+                                    <span>{flag}</span>
                                 </motion.li>
                             ))}
                         </ul>
