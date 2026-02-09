@@ -3,7 +3,13 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PricingCard } from "@/components/shared/PricingCard";
-import type { LandingPricingContent } from "@/components/landing/landingContent";
+import type { LandingPricingContent } from "@/components/landing/landingConfig";
+import {
+    LandingSectionBreak,
+    LandingSectionFrame,
+    LandingSectionHeader,
+    LandingSectionTag,
+} from "@/components/landing/sections/SectionPrimitives";
 
 type PricingSectionProps = {
     content: LandingPricingContent;
@@ -14,9 +20,10 @@ type PricingSectionProps = {
 
 export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect }: PricingSectionProps) {
     return (
-        <section className="landing-section-pad landing-section landing-section-tight landing-section-divider">
-            <div className="landing-rail grid items-start landing-grid-gap xl:grid-cols-[0.72fr_1.28fr]">
-                <div className="landing-flow-md">
+        <LandingSectionFrame tone="soft" density="tight" divider="bottom">
+            <div className="grid items-start landing-grid-gap xl:grid-cols-[0.72fr_1.28fr]">
+                <div className="landing-flow-md xl:sticky xl:top-20">
+                    <LandingSectionTag index="04" label="Plans And Access" />
                     <div className="text-label-mono text-muted-foreground">{content.eyebrow}</div>
                     <h2 className="landing-title-xl">
                         {content.title}
@@ -32,43 +39,48 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
                                 <p key={item}>{item}</p>
                             ))}
                         </div>
-                        <Link href={content.included.cta.href} className="inline-flex items-center gap-1 text-sm text-brand hover:text-brand/80">
+                        <Link href={content.included.cta.href} className="landing-link-inline">
                             {content.included.cta.label}
                             <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-3">
-                    <PricingCard
-                        tier="free"
-                        allowFreeSelect
-                        onSelect={onFreeSelect}
-                    />
-                    <PricingCard
-                        tier="monthly"
-                        onSelect={() => onCheckout("monthly")}
-                        loading={loadingTier === "monthly"}
-                    />
-                    <PricingCard
-                        tier="lifetime"
-                        onSelect={() => onCheckout("lifetime")}
-                        loading={loadingTier === "lifetime"}
-                    />
+                <div className="rounded-2xl border border-border/55 bg-gradient-to-b from-white/90 to-amber-50/45 p-3.5 shadow-[0_24px_48px_-34px_rgba(2,6,23,0.36)] dark:from-slate-900/60 dark:to-slate-900/40 sm:p-4">
+                    <div className="grid gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-3">
+                        <PricingCard
+                            tier="free"
+                            allowFreeSelect
+                            onSelect={onFreeSelect}
+                        />
+                        <PricingCard
+                            tier="monthly"
+                            onSelect={() => onCheckout("monthly")}
+                            loading={loadingTier === "monthly"}
+                        />
+                        <PricingCard
+                            tier="lifetime"
+                            onSelect={() => onCheckout("lifetime")}
+                            loading={loadingTier === "lifetime"}
+                        />
+                    </div>
                 </div>
             </div>
 
-            <div className="landing-rail landing-section-split">
-                <div className="landing-section-head">
-                    <div>
-                        <div className="landing-kicker">{content.trust.kicker}</div>
-                        <h3 className="landing-title-lg">{content.trust.title}</h3>
-                    </div>
-                    <Link href={content.trust.cta.href} className="text-sm text-brand hover:text-brand/80 inline-flex items-center gap-1">
-                        {content.trust.cta.label}
-                        <ArrowRight className="w-4 h-4" />
-                    </Link>
-                </div>
+            <LandingSectionBreak label={content.trust.kicker} />
+
+            <div className="landing-flow-md">
+                <LandingSectionHeader
+                    title={content.trust.title}
+                    titleAs="h3"
+                    titleClassName="landing-title-lg"
+                    action={(
+                        <Link href={content.trust.cta.href} className="landing-link-inline">
+                            {content.trust.cta.label}
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
+                    )}
+                />
 
                 <div className="grid landing-grid-gap md:grid-cols-2 lg:grid-cols-4">
                     {content.trust.items.map((item) => (
@@ -82,6 +94,6 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
                     ))}
                 </div>
             </div>
-        </section>
+        </LandingSectionFrame>
     );
 }

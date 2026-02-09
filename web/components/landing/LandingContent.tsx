@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import Footer from "@/components/landing/Footer";
-import { landingContent } from "@/components/landing/landingContent";
+import { landingContent } from "@/components/landing/landingConfig";
 import { HeroSection } from "@/components/landing/sections/HeroSection";
 import { EvidenceSection } from "@/components/landing/sections/EvidenceSection";
 import { ResearchSection } from "@/components/landing/sections/ResearchSection";
 import { TrustSection } from "@/components/landing/sections/TrustSection";
 import { PricingSection } from "@/components/landing/sections/PricingSection";
+import { LandingSectionFrame } from "@/components/landing/sections/SectionPrimitives";
 import { Analytics } from "@/lib/analytics";
 
 export default function LandingContent() {
@@ -50,12 +51,13 @@ export default function LandingContent() {
                 }}
             />
 
-            <section id="evidence" className="landing-section-pad landing-section landing-section-tight landing-section-divider">
-                <div className="landing-rail">
-                    <EvidenceSection content={landingContent.evidence} />
-                    <ResearchSection content={landingContent.research} />
-                </div>
-            </section>
+            <LandingSectionFrame id="evidence" tone="mist" density="default" divider="bottom">
+                <EvidenceSection content={landingContent.evidence} />
+            </LandingSectionFrame>
+
+            <LandingSectionFrame tone="paper" density="default" divider="bottom">
+                <ResearchSection content={landingContent.research} />
+            </LandingSectionFrame>
 
             <TrustSection content={landingContent.trust} />
 
