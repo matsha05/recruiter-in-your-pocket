@@ -7,6 +7,7 @@ import { Loader2, RefreshCw, Receipt, ExternalLink } from "lucide-react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
+import Footer from "@/components/landing/Footer";
 
 type ReceiptItem = {
   id: string;
@@ -23,6 +24,18 @@ function formatAmount(cents: number, currency: string | null) {
   const amount = (Number(cents || 0) / 100).toFixed(2);
   return `${currency?.toUpperCase() || "USD"} ${amount}`;
 }
+
+/** Paper shadow matching all Editor's Desk cards */
+const paperShadow =
+  "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
+
+/** Dark pill CTA */
+const pillPrimary =
+  "rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors disabled:opacity-70";
+
+/** Bordered pill secondary */
+const pillSecondary =
+  "rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-70";
 
 export default function PurchaseRestoreClient() {
   const searchParams = useSearchParams();
@@ -100,116 +113,137 @@ export default function PurchaseRestoreClient() {
   }
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-background px-6 py-16">
-      <div className="mx-auto max-w-3xl space-y-6">
-        <section className="rounded-xl border border-border/50 bg-card p-8">
-          <h1 className="font-display text-3xl tracking-tight text-foreground">{header}</h1>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Use this page if payment succeeded but access looks locked, or if you need invoices and billing controls.
-          </p>
-          {signedIn && (
-            <p className="mt-2 text-xs text-muted-foreground">
-              Signed in as <span className="text-foreground font-medium">{user?.email}</span>
+    <>
+      <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36 pb-16 px-6">
+        <div className="mx-auto max-w-3xl space-y-6">
+          {/* ── Main restore card ── */}
+          <section
+            className="rounded-2xl bg-white p-8"
+            style={{ boxShadow: paperShadow }}
+          >
+            <h1
+              className="font-display text-slate-900"
+              style={{
+                fontSize: "clamp(1.6rem, 4vw, 2rem)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.025em",
+                fontWeight: 400,
+              }}
+            >
+              {header}
+            </h1>
+            <p className="mt-3 text-[15px] leading-[1.65] text-slate-500">
+              Use this page if payment succeeded but access looks locked, or if you need invoices and billing controls.
             </p>
-          )}
-          {billingUpdated && (
-            <p className="mt-3 rounded border border-success/20 bg-success/10 px-3 py-2 text-xs text-success">
-              Billing updated successfully.
-            </p>
-          )}
-          {restoreMessage && (
-            <p className="mt-3 rounded border border-border/60 bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
-              {restoreMessage}
-            </p>
-          )}
+            {signedIn && (
+              <p className="mt-2 text-xs text-slate-400">
+                Signed in as <span className="text-slate-700 font-medium">{user?.email}</span>
+              </p>
+            )}
+            {billingUpdated && (
+              <p className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-700">
+                Billing updated successfully.
+              </p>
+            )}
+            {restoreMessage && (
+              <p className="mt-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-500">
+                {restoreMessage}
+              </p>
+            )}
 
-          {!signedIn ? (
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/auth?from=paywall" className="rounded bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand/90">
-                Sign In
-              </Link>
-              <Link href="/workspace" className="rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50">
-                Back to Workspace
-              </Link>
-            </div>
-          ) : (
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                onClick={handleRestore}
-                disabled={isRestoring}
-                className="inline-flex items-center gap-2 rounded bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand/90 disabled:opacity-70"
-              >
-                {isRestoring ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
-                Restore Access
-              </button>
-              <button
-                onClick={handleOpenPortal}
-                disabled={isPortalLoading}
-                className="inline-flex items-center gap-2 rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50 disabled:opacity-70"
-              >
-                {isPortalLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ExternalLink className="h-4 w-4" />}
-                Open Billing Portal
-              </button>
-              <button
-                onClick={handleLoadReceipts}
-                disabled={isReceiptsLoading}
-                className="inline-flex items-center gap-2 rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50 disabled:opacity-70"
-              >
-                {isReceiptsLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}
-                Load Receipts
-              </button>
-              <Link
-                href="/workspace"
-                className="inline-flex items-center gap-2 rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
-              >
-                Back to Workspace
-              </Link>
-            </div>
-          )}
-        </section>
-
-        {receipts.length > 0 && (
-          <section className="rounded-xl border border-border/50 bg-card p-6">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Receipts</h2>
-            <div className="mt-4 divide-y divide-border/30">
-              {receipts.map((item) => (
-                <div key={item.id} className="flex flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">
-                      {item.number || item.id}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(item.created_at).toLocaleDateString()} · {formatAmount(item.amount_paid, item.currency)}
-                    </p>
-                  </div>
-                  <div className="flex gap-2">
-                    {item.hosted_invoice_url && (
-                      <a
-                        href={item.hosted_invoice_url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
-                      >
-                        View Invoice
-                      </a>
-                    )}
-                    {item.invoice_pdf && (
-                      <a
-                        href={item.invoice_pdf}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
-                      >
-                        PDF
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            {!signedIn ? (
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/auth?from=paywall" className={pillPrimary}>
+                  Sign In
+                </Link>
+                <Link href="/workspace" className={pillSecondary}>
+                  Back to Workspace
+                </Link>
+              </div>
+            ) : (
+              <div className="mt-6 flex flex-wrap gap-3">
+                <button
+                  onClick={handleRestore}
+                  disabled={isRestoring}
+                  className={`inline-flex items-center gap-2 ${pillPrimary}`}
+                >
+                  {isRestoring ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
+                  Restore Access
+                </button>
+                <button
+                  onClick={handleOpenPortal}
+                  disabled={isPortalLoading}
+                  className={`inline-flex items-center gap-2 ${pillSecondary}`}
+                >
+                  {isPortalLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ExternalLink className="h-4 w-4" />}
+                  Open Billing Portal
+                </button>
+                <button
+                  onClick={handleLoadReceipts}
+                  disabled={isReceiptsLoading}
+                  className={`inline-flex items-center gap-2 ${pillSecondary}`}
+                >
+                  {isReceiptsLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}
+                  Load Receipts
+                </button>
+                <Link
+                  href="/workspace"
+                  className={`inline-flex items-center gap-2 ${pillSecondary}`}
+                >
+                  Back to Workspace
+                </Link>
+              </div>
+            )}
           </section>
-        )}
-      </div>
-    </main>
+
+          {/* ── Receipts card ── */}
+          {receipts.length > 0 && (
+            <section
+              className="rounded-2xl bg-white p-6"
+              style={{ boxShadow: paperShadow }}
+            >
+              <h2 className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">Receipts</h2>
+              <div className="mt-4 divide-y divide-slate-100">
+                {receipts.map((item) => (
+                  <div key={item.id} className="flex flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-slate-700">
+                        {item.number || item.id}
+                      </p>
+                      <p className="text-xs text-slate-400">
+                        {new Date(item.created_at).toLocaleDateString()} · {formatAmount(item.amount_paid, item.currency)}
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      {item.hosted_invoice_url && (
+                        <a
+                          href={item.hosted_invoice_url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors"
+                        >
+                          View Invoice
+                        </a>
+                      )}
+                      {item.invoice_pdf && (
+                        <a
+                          href={item.invoice_pdf}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors"
+                        >
+                          PDF
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }

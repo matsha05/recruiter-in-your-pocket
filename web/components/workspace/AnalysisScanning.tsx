@@ -27,28 +27,28 @@ type AnalysisStep = {
 const RESUME_STEPS: AnalysisStep[] = [
     {
         id: "normalize",
-        label: "Normalizing structure",
-        detail: "Sections, role signals, and layout cues",
+        label: "Reading your resume",
+        detail: "Sections, roles, and layout cues",
         durationMs: 6000,
         icon: FileText
     },
     {
         id: "evidence",
-        label: "Extracting evidence",
-        detail: "Impact verbs, metrics, and scope",
+        label: "Finding proof of impact",
+        detail: "Metrics, outcomes, and scope",
         durationMs: 12000,
         icon: Search
     },
     {
         id: "scoring",
-        label: "Scoring recruiter signal",
-        detail: "Confidence bands + priority ordering",
+        label: "Scoring what a recruiter would notice",
+        detail: "What stands out, what falls flat",
         durationMs: 9000,
         icon: Gauge
     },
     {
         id: "rewrites",
-        label: "Drafting actions",
+        label: "Writing your action items",
         detail: "Rewrites, gaps, and next steps",
         durationMs: 9000,
         icon: Sparkles
@@ -58,28 +58,28 @@ const RESUME_STEPS: AnalysisStep[] = [
 const LINKEDIN_STEPS: AnalysisStep[] = [
     {
         id: "ingest",
-        label: "Parsing profile",
+        label: "Reading your profile",
         detail: "Headline, experience, and signals",
         durationMs: 6000,
         icon: UserRound
     },
     {
         id: "evidence",
-        label: "Extracting evidence",
+        label: "Finding proof of impact",
         detail: "Achievements, keywords, and clarity",
         durationMs: 12000,
         icon: Search
     },
     {
         id: "scoring",
-        label: "Scoring recruiter signal",
+        label: "Scoring what a recruiter would notice",
         detail: "Clarity, relevance, differentiation",
         durationMs: 9000,
         icon: Gauge
     },
     {
         id: "rewrites",
-        label: "Drafting actions",
+        label: "Writing your action items",
         detail: "Headline and positioning upgrades",
         durationMs: 9000,
         icon: Sparkles
@@ -150,7 +150,7 @@ export default function AnalysisScanning({
                         {headline}
                     </h2>
                     <p className="text-sm text-muted-foreground">
-                        We extract evidence before advice. You&apos;ll see the first meaningful insight as soon as it&apos;s ready.
+                        We read the evidence first, then tell you what to do with it. You&apos;ll see the first insight as soon as it&apos;s ready.
                     </p>
                 </div>
 

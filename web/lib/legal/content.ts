@@ -12,43 +12,43 @@ export type LegalParagraph = LegalInline[];
 
 export type LegalSection =
   | {
-      type: "card";
-      title: string;
-      paragraphs: LegalParagraph[];
-    }
+    type: "card";
+    title: string;
+    paragraphs: LegalParagraph[];
+  }
   | {
-      type: "bullet_list";
-      title: string;
-      items: string[];
-    }
+    type: "bullet_list";
+    title: string;
+    items: string[];
+  }
   | {
-      type: "table";
-      title: string;
-      columns: string[];
-      rows: typeof DATA_HANDLING_ROWS;
-    }
+    type: "table";
+    title: string;
+    columns: string[];
+    rows: typeof DATA_HANDLING_ROWS;
+  }
   | {
-      type: "card_grid";
-      items: Array<{ icon: LegalIcon; title: string; body: string }>;
-      columns?: 2 | 3 | 4;
-    }
+    type: "card_grid";
+    items: Array<{ icon: LegalIcon; title: string; body: string }>;
+    columns?: 2 | 3 | 4;
+  }
   | {
-      type: "checklist";
-      title: string;
-      items: string[];
-      icon: LegalIcon;
-      variant?: "soft" | "default";
-    }
+    type: "checklist";
+    title: string;
+    items: string[];
+    icon: LegalIcon;
+    variant?: "soft" | "default";
+  }
   | {
-      type: "callout";
-      paragraphs: LegalParagraph[];
-      variant?: "soft" | "default";
-      align?: "left" | "center";
-    }
+    type: "callout";
+    paragraphs: LegalParagraph[];
+    variant?: "soft" | "default";
+    align?: "left" | "center";
+  }
   | {
-      type: "faq";
-      categories: Array<{ category: string; questions: Array<{ q: string; a: string }> }>;
-    };
+    type: "faq";
+    categories: Array<{ category: string; questions: Array<{ q: string; a: string }> }>;
+  };
 
 export type LegalPageContent = {
   eyebrow: string;
@@ -64,7 +64,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   trust: {
     eyebrow: "Trust",
     title: "Trust, in plain language",
-    description: "What we claim, where to verify it, and what controls you have in product.",
+    description: "What we claim, where you can verify it, and what controls you have.",
     lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
       {
@@ -73,29 +73,29 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         items: [
           {
             icon: ShieldCheck,
-            title: "Evidence before claims",
-            body: "Scores are presented as hiring-signal estimates, not guaranteed outcomes.",
+            title: "Evidence, not promises",
+            body: "Scores estimate your resume's hiring signal — they don't guarantee outcomes.",
           },
           {
             icon: Lock,
             title: "Clear data handling",
-            body: "Retention and processors are documented in plain language on Security and Privacy.",
+            body: "How we store and process your data is documented clearly on our Security and Privacy pages.",
           },
           {
             icon: Receipt,
-            title: "Transparent billing controls",
-            body: "Checkout, invoices, renewals, and cancellation are managed through Stripe.",
+            title: "Simple billing",
+            body: "Checkout, invoices, renewals, and cancellation are all handled through Stripe.",
           },
           {
             icon: Trash2,
-            title: "User-controlled deletion",
-            body: "Delete account removes reports and usage history from our app database.",
+            title: "You control deletion",
+            body: "Deleting your account removes your reports and usage history from our database.",
           },
         ],
       },
       {
         type: "checklist",
-        title: "Commitments you can verify",
+        title: "Things you can verify yourself",
         items: TRUST_PROMISES,
         icon: CheckCircle2,
         variant: "soft",
@@ -120,8 +120,8 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   },
   privacy: {
     eyebrow: "Privacy policy",
-    title: "How we handle data, in plain English",
-    description: "What data flows through the product, why it exists, and how you can remove or export it.",
+    title: "How we handle your data",
+    description: "What data flows through the product, why it's there, and how you can remove or export it.",
     lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
       {
@@ -131,7 +131,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "This policy covers resume and LinkedIn inputs, account identity, usage metadata, and billing events used by the web app.",
+              value: "This policy covers resume and LinkedIn inputs, account info, usage data, and billing events processed by the web app.",
             },
           ],
         ],
@@ -149,7 +149,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "OpenAI supports review generation, Supabase supports authentication and database storage, Stripe handles billing, and Vercel provides hosting/runtime. Stripe controls card data and billing retention in Stripe systems.",
+              value: "OpenAI generates reviews, Supabase handles auth and database storage, Stripe handles billing, and Vercel provides hosting. Stripe manages card data on their systems — we never have access to it.",
             },
           ],
         ],
@@ -161,7 +161,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "You can delete reports, export account data, and delete account data from Settings. The product does not sell candidate data.",
+              value: "You can delete reports, export your data, and delete your account from Settings. We don't sell your data.",
             },
           ],
         ],
@@ -193,7 +193,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "By using Recruiter in Your Pocket, you agree to these terms. The service provides model-assisted resume and LinkedIn feedback designed for iteration support, not guaranteed hiring outcomes.",
+              value: "By using Recruiter in Your Pocket, you agree to these terms. The service provides AI-assisted resume and LinkedIn feedback designed to help you improve — but it doesn't guarantee hiring outcomes.",
             },
           ],
         ],
@@ -202,10 +202,10 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         type: "bullet_list",
         title: "2. User responsibilities",
         items: [
-          "You are responsible for content submitted for review.",
-          "Do not upload illegal, harmful, or rights-infringing content.",
-          "Do not attempt to bypass security or abuse system limits.",
-          "Review output for factual and contextual accuracy before use.",
+          "You're responsible for the content you submit.",
+          "Don't upload illegal, harmful, or rights-infringing content.",
+          "Don't try to bypass security or abuse system limits.",
+          "Review the output for accuracy and context before using it.",
         ],
       },
       {
@@ -217,7 +217,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             { type: "link", label: "/privacy", href: "/privacy" },
             { type: "text", value: " and " },
             { type: "link", label: "/security", href: "/security" },
-            { type: "text", value: ". Signed-in usage may store report history until removed by report deletion or account deletion." },
+            { type: "text", value: ". If you're signed in, your report history is saved until you delete it." },
           ],
         ],
       },
@@ -226,9 +226,9 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: "One full review is free. Paid plans add additional capabilities. Stripe handles billing and invoices. If payment succeeds and access appears locked, use " },
+            { type: "text", value: "Your first review is free. Paid plans give you more. Stripe handles billing and invoices. If you paid but your access looks locked, try " },
             { type: "link", label: "Restore Access", href: "/purchase/restore" },
-            { type: "text", value: " before opening support. Refund requests are reviewed case by case." },
+            { type: "text", value: " before reaching out to support. Refunds are reviewed case by case." },
           ],
         ],
       },
@@ -239,7 +239,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "The service is provided as-is. We do not guarantee interviews, offers, or employment outcomes. To the extent permitted by law, liability is limited for indirect or consequential damages.",
+              value: "The service is provided as-is. We don't guarantee interviews, offers, or employment outcomes. To the extent permitted by law, liability is limited for indirect or consequential damages.",
             },
           ],
         ],
@@ -260,8 +260,8 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
   },
   faq: {
     eyebrow: "FAQ",
-    title: "Questions and answers",
-    description: "Practical details on product behavior, privacy, and billing controls.",
+    title: "Frequently asked questions",
+    description: "Answers to common questions about the product, privacy, and billing.",
     lastUpdated: LEGAL_LAST_UPDATED,
     sections: [
       {
@@ -272,15 +272,15 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What does the review analyze?",
-                a: "Initial recruiter read, quantified impact, clarity/readability, and role fit. Output includes score context and rewrite guidance.",
+                a: "We look at the first impression a recruiter would have, the impact of your bullets, how clear your resume is, and how well it fits the role. You get a score breakdown and specific rewrites.",
               },
               {
                 q: "How is this different from ATS keyword tools?",
-                a: "ATS tools focus on parser compliance. RIYP models human recruiter judgment and ties recommendations to evidence lines.",
+                a: "ATS tools check if a parser can read your file. We focus on what a human recruiter really thinks when they read it — and tie every suggestion to evidence from your resume.",
               },
               {
                 q: "What file formats are supported?",
-                a: "PDF and Word documents (.doc, .docx). If parsing fails, paste text directly in Workspace.",
+                a: "PDF and Word documents (.doc, .docx). If parsing doesn't work, you can paste your text directly in the Workspace.",
               },
             ],
           },
@@ -289,15 +289,15 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What happens to uploaded resume data?",
-                a: "Anonymous runs are not stored unless you choose save paths. Signed-in runs can store report history. You can delete reports or account data at any time.",
+                a: "Anonymous reviews aren't saved unless you choose to. Signed-in reviews save your history. You can delete reports or your entire account at any time.",
               },
               {
                 q: "Is my data used to train public models?",
-                a: "No. We use OpenAI API services that do not train public models on your content.",
+                a: "No. We use OpenAI's API, which doesn't train public models on your content.",
               },
               {
                 q: "How do I delete my data?",
-                a: "Use Settings to delete reports, export account data, or delete your account.",
+                a: "Go to Settings. You can delete reports, export your data, or delete your account entirely.",
               },
             ],
           },
@@ -306,15 +306,15 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "Is the first review really free?",
-                a: "Yes. One full review is free and does not require a card.",
+                a: "Yes. One complete review, free, no credit card.",
               },
               {
                 q: "What is monthly vs lifetime?",
-                a: "Monthly ($9) fits active search cycles and can be canceled anytime. Lifetime ($79 one-time) gives long-term access with no recurring charges.",
+                a: "Monthly ($9/mo) is great while you're actively job hunting — cancel anytime. Lifetime ($79 one-time) is there if you want access forever with no recurring charges.",
               },
               {
                 q: "How do I restore access and get receipts?",
-                a: "Open Settings > Billing or use Restore Access. Stripe provides invoices and receipts.",
+                a: "Go to Settings > Billing, or use the Restore Access page. Stripe handles all your invoices and receipts.",
               },
             ],
           },

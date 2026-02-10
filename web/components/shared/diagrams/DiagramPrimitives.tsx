@@ -41,11 +41,11 @@ export function DiagramHeader({ label, className, rightSlot, children }: Diagram
   return (
     <div className={cn("riyp-diagram-head flex items-center justify-between gap-3", className)}>
       {children ?? (
-        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
           {label}
         </span>
       )}
-      {rightSlot ? <div className="text-label-mono text-muted-foreground">{rightSlot}</div> : null}
+      {rightSlot ? <div className="text-label-mono text-slate-400">{rightSlot}</div> : null}
     </div>
   );
 }
@@ -70,10 +70,10 @@ export function DiagramCaption({
     <figcaption className={cn("mt-4 space-y-1", alignClass, className)}>
       {kicker ? <span className="block riyp-figure-kicker">{kicker}</span> : null}
       {title ? (
-        <span className="block text-sm text-foreground/80 font-medium">{title}</span>
+        <span className="block text-sm text-slate-700 font-medium">{title}</span>
       ) : null}
       {description ? (
-        <span className="block text-xs text-muted-foreground">{description}</span>
+        <span className="block text-xs text-slate-500">{description}</span>
       ) : null}
     </figcaption>
   );
@@ -89,13 +89,13 @@ export function DiagramBulletList({ items, dense, className }: DiagramBulletList
   return (
     <ul
       className={cn(
-        "list-disc list-outside pl-5 marker:text-foreground/55",
+        "list-disc list-outside pl-5 marker:text-slate-400",
         dense ? "space-y-1" : "space-y-1.5",
         className
       )}
     >
       {items.map((item) => (
-        <li key={item} className="text-sm leading-6 text-foreground/90">
+        <li key={item} className="text-sm leading-6 text-slate-700">
           {item}
         </li>
       ))}

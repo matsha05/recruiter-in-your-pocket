@@ -10,17 +10,10 @@ interface HeaderLayoutProps {
 
 /**
  * HeaderLayout — Unified header wrapper for marketing/editorial pages.
- * 
+ *
  * Renders the appropriate navigation based on authentication state:
- * - Guests see SiteHeader (marketing-style: Research, Resources, Get Started)
- * - Logged-in users see AppHeader (app nav: The Studio, Jobs, Research, Resources, Settings)
- * 
- * This component is used by route group layouts to provide consistent 
- * navigation without per-page header imports.
- * 
- * Design rationale: 
- * - "Invisible Perfection" — consistent muscle memory across the site
- * - "Quiet Power" — calm, unified navigation experience
+ * - Guests see SiteHeader (Editor's Desk style)
+ * - Logged-in users see AppHeader (app nav)
  */
 export function HeaderLayout({ children }: HeaderLayoutProps) {
     const { user, isLoading } = useAuth();
@@ -28,9 +21,14 @@ export function HeaderLayout({ children }: HeaderLayoutProps) {
     // Loading skeleton prevents flash of wrong header
     if (isLoading) {
         return (
-            <div className="min-h-screen flex flex-col bg-background">
-                <header className="h-14 md:h-16 border-b border-border/10 bg-background/80 backdrop-blur-md sticky top-0 z-50" />
-                <main className="flex-1">{children}</main>
+            <div className="min-h-screen flex flex-col">
+                <div className="site-header">
+                    <div className="mx-auto flex max-w-[1120px] items-center justify-between px-6 py-5 md:px-8">
+                        <div className="h-5 w-40 animate-pulse rounded bg-slate-200/50" />
+                        <div className="h-8 w-24 animate-pulse rounded-full bg-slate-200/50" />
+                    </div>
+                </div>
+                <main className="flex-1 pt-[68px]">{children}</main>
             </div>
         );
     }
@@ -45,9 +43,9 @@ export function HeaderLayout({ children }: HeaderLayoutProps) {
         );
     }
 
-    // Guests get the marketing navigation
+    // Guests get the marketing navigation (fixed position, content needs top padding)
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className="min-h-screen flex flex-col">
             <SiteHeader />
             <main className="flex-1">{children}</main>
         </div>

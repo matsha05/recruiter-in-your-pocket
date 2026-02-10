@@ -163,7 +163,27 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
+    let checkoutSession: Stripe.Checkout.Session;
+    try {
+      checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
+    } catch (err: any) {
+      const invalidRequest =
+        err instanceof Stripe.errors.StripeInvalidRequestError ||
+        err?.type === "StripeInvalidRequestError";
+
+      if (invalidRequest) {
+        return response(
+          buildConfirmResponse({
+            state: "checkout_incomplete",
+            message: "Checkout session not found.",
+            pending: false,
+          }),
+          404
+        );
+      }
+
+      throw err;
+    }
     const status = checkoutSession.status || null;
 
     if (status !== "complete") {

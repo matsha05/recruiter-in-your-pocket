@@ -3,6 +3,9 @@
 // THE ONE
 export { LandingDataDrivenFinal } from "./LandingDataDrivenFinal";
 
+// V2 — "The Editor's Desk"
+export { LandingEditorsDesk } from "./LandingEditorsDesk";
+
 // Hybrid - Production functionality + Original animations
 export { LandingHybrid } from "./LandingHybrid";
 

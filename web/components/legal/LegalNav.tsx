@@ -8,6 +8,11 @@ interface LegalNavProps {
     className?: string;
 }
 
+/**
+ * LegalNav — Editor's Desk style tab bar
+ *
+ * Clean, horizontal pill-shaped tabs on warm background.
+ */
 export function LegalNav({ className }: LegalNavProps) {
     const pathname = usePathname();
 
@@ -22,7 +27,12 @@ export function LegalNav({ className }: LegalNavProps) {
 
     return (
         <div className={cn("flex flex-col items-center", className)}>
-            <nav className="flex w-full max-w-[68rem] flex-wrap items-center gap-1 rounded-xl border border-border/60 bg-white/95 p-1.5 dark:bg-slate-900/90">
+            <nav
+                className="flex w-full max-w-[68rem] flex-wrap items-center gap-1 rounded-xl bg-white p-1.5"
+                style={{
+                    boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03)",
+                }}
+            >
                 {tabs.map((tab) => {
                     const isActive = pathname === tab.href;
                     return (
@@ -30,10 +40,10 @@ export function LegalNav({ className }: LegalNavProps) {
                             key={tab.href}
                             href={tab.href}
                             className={cn(
-                                "whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold tracking-[0.01em] transition-all duration-150",
+                                "whitespace-nowrap rounded-lg px-3 py-2 text-[12px] font-semibold tracking-[0.01em] transition-all duration-150",
                                 isActive
-                                    ? "bg-brand/12 text-foreground shadow-[inset_0_0_0_1px_hsl(var(--brand)/0.22)]"
-                                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                                    ? "bg-slate-900 text-white"
+                                    : "text-slate-400 hover:bg-slate-50 hover:text-slate-700"
                             )}
                         >
                             {tab.name}

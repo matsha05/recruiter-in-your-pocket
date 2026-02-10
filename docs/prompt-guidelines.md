@@ -20,3 +20,7 @@
 
 ## Export
 - The same tone and structure apply to on-screen report, PDF, and Copy report outputs.
+
+## Canonical Reference
+- The definitive tone and copy guide is at `web/docs/copy-guide.md`.
+- Before writing or reviewing any user-facing copy, check the banned phrases list and proofreading checklist in that doc.

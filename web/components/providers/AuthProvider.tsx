@@ -130,7 +130,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         // Listen for auth state changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
             async (event, session) => {
-                setUser(mapUser(session?.user || null));
+                if (!session?.user) {
+                    setUser(null);
+                    resetAnalytics();
+                    return;
+                }
+
+                // Keep entitlements in sync after sign-in/refresh/user updates.
+                if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED" || event === "USER_UPDATED") {
+                    await refreshUser();
+                    return;
+                }
+
+                setUser(mapUser(session.user));
             }
         );
 

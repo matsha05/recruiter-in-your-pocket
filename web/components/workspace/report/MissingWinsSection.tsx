@@ -90,8 +90,8 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
                     <UnlockValueList
                         items={[
-                            "All missing-win prompts",
-                            "Recruiter rationale for each",
+                            "All the hidden wins we found",
+                            "Why each one matters to a recruiter",
                             "Track progress as you add wins"
                         ]}
                         dense

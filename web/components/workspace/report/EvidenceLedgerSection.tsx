@@ -86,7 +86,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         id: `top-fix-${index}`,
         evidence: normalizeEvidence(evidence),
         evidenceSection: typeof fix.evidence === "string" ? fix.section_ref : fix.evidence?.section || fix.section_ref,
-        action: fix.fix || "Add a clear, evidence-backed edit.",
+        action: fix.fix || "Make a clear, specific edit here.",
         rationale: fix.why || undefined,
         confidence: normalizeConfidence(fix.confidence),
         impact: normalizeImpact(fix.impact_level),
@@ -100,7 +100,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
       id: `rewrite-${index}`,
       evidence: normalizeEvidence(rewrite.original || ""),
       evidenceSection: "Resume",
-      action: rewrite.better || "Upgrade the line with specific outcomes.",
+      action: rewrite.better || "Strengthen this line with specific outcomes.",
       rationale: rewrite.enhancement_note || undefined,
       confidence: "medium" as const,
       impact: "medium" as const,
@@ -120,7 +120,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
           subtitle="Every recommendation tied to the exact line that triggered it."
         />
         <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-          Evidence ledger unavailable for this run. Try again or add more detail for stronger evidence extraction.
+          Evidence ledger isn't available for this run. Try again or add more detail to your resume for better results.
         </div>
       </section>
     );
@@ -212,18 +212,18 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
               <Lock className="w-5 h-5" />
               <div>
                 <p className="text-sm font-medium text-foreground">
-                  {hiddenCount} more evidence-linked actions
+                  {hiddenCount} more items to fix
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Unlock to see the remaining evidence and rewrite guidance.
+                  Unlock to see the rest of the evidence and what to do about it.
                 </p>
               </div>
             </div>
             <UnlockValueList
               items={[
-                "Confidence + impact tags on every action",
-                "Rewrite guidance tied to your lines",
-                "Save and export the full ledger"
+                "How confident we are in each suggestion",
+                "The fix for each, tied to the exact line",
+                "Save and export the full list"
               ]}
               dense
               className="relative z-10"

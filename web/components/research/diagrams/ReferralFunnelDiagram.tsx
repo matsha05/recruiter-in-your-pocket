@@ -26,7 +26,7 @@ export function ReferralFunnelDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
                         Information flow comparison
                     </span>
                 </div>
@@ -42,7 +42,7 @@ export function ReferralFunnelDiagram() {
                     >
                         <div className="flex items-center gap-3">
                             <div className="w-20 shrink-0">
-                                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                                <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
                                     Cold
                                 </span>
                             </div>
@@ -56,14 +56,14 @@ export function ReferralFunnelDiagram() {
                                         viewport={{ once: true }}
                                         className="flex-1 relative"
                                     >
-                                        <div className="border border-border/40 bg-muted/20 dark:bg-muted/10 rounded-lg p-3 text-center">
-                                            <span className="text-xs text-muted-foreground font-medium">
+                                        <div className="border border-slate-200 bg-slate-50 rounded-lg p-3 text-center">
+                                            <span className="text-xs text-slate-500 font-medium">
                                                 {stage}
                                             </span>
                                         </div>
                                         {i < coldStages.length - 1 && (
                                             <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-4 text-center z-10">
-                                                <span className="text-muted-foreground/40 text-sm">→</span>
+                                                <span className="text-slate-300 text-sm">→</span>
                                             </div>
                                         )}
                                     </motion.div>
@@ -71,17 +71,17 @@ export function ReferralFunnelDiagram() {
                             </div>
                         </div>
                         <div className="ml-20 pl-3">
-                            <div className="h-1 bg-gradient-to-r from-muted/40 via-muted/20 to-muted/10 rounded-full" />
+                            <div className="h-1 bg-slate-200 rounded-full" />
                         </div>
                     </motion.div>
 
                     {/* Divider */}
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-dashed border-border/40" />
+                            <div className="w-full border-t border-dashed border-slate-200" />
                         </div>
                         <div className="relative flex justify-center">
-                            <span className="bg-white dark:bg-card px-3 text-[9px] font-mono uppercase tracking-widest text-muted-foreground/50">
+                            <span className="bg-white px-3 text-[9px] font-mono uppercase tracking-widest text-slate-400">
                                 vs
                             </span>
                         </div>
@@ -97,7 +97,7 @@ export function ReferralFunnelDiagram() {
                     >
                         <div className="flex items-center gap-3">
                             <div className="w-20 shrink-0">
-                                <span className="font-mono text-[10px] uppercase tracking-widest text-brand/80 font-medium">
+                                <span className="font-mono text-[10px] uppercase tracking-widest text-slate-700 font-medium">
                                     Referred
                                 </span>
                             </div>
@@ -112,19 +112,19 @@ export function ReferralFunnelDiagram() {
                                         className="flex-1 relative"
                                     >
                                         <div className={`border rounded-lg p-3 text-center ${stage === "Screen"
-                                            ? "border-brand/40 bg-brand/5 dark:bg-brand/10"
-                                            : "border-border/40 bg-muted/20 dark:bg-muted/10"
+                                            ? "border-slate-300 bg-slate-50"
+                                            : "border-slate-200 bg-slate-50"
                                             }`}>
                                             <span className={`text-xs font-medium ${stage === "Screen"
-                                                ? "text-brand"
-                                                : "text-muted-foreground"
+                                                ? "text-slate-900"
+                                                : "text-slate-500"
                                                 }`}>
                                                 {stage}
                                             </span>
                                         </div>
                                         {i < referredStages.length - 1 && (
                                             <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-4 text-center z-10">
-                                                <span className="text-brand/60 text-sm">→</span>
+                                                <span className="text-slate-400 text-sm">→</span>
                                             </div>
                                         )}
                                     </motion.div>
@@ -140,17 +140,17 @@ export function ReferralFunnelDiagram() {
                             viewport={{ once: true }}
                             className="ml-20 pl-3 flex items-center gap-3"
                         >
-                            <div className="h-6 w-px bg-gradient-to-b from-brand/60 to-transparent" />
-                            <div className="flex items-center gap-2 bg-brand/10 dark:bg-brand/15 border border-brand/30 rounded-lg px-3 py-1.5">
-                                <div className="w-2 h-2 rounded-full bg-brand/60" />
-                                <span className="text-[10px] font-medium text-brand">
+                            <div className="h-6 w-px bg-slate-300" />
+                            <div className="flex items-center gap-2 bg-slate-100 border border-slate-200 rounded-lg px-3 py-1.5">
+                                <div className="w-2 h-2 rounded-full bg-slate-500" />
+                                <span className="text-[10px] font-medium text-slate-700">
                                     + Referrer context injected
                                 </span>
                             </div>
                         </motion.div>
 
                         <div className="ml-20 pl-3">
-                            <div className="h-1 bg-gradient-to-r from-brand/40 via-brand/20 to-brand/10 rounded-full" />
+                            <div className="h-1 bg-slate-300 rounded-full" />
                         </div>
                     </motion.div>
 
@@ -160,21 +160,21 @@ export function ReferralFunnelDiagram() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 1.0 }}
                         viewport={{ once: true }}
-                        className="bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
+                        className="bg-slate-50 rounded-lg p-4 border border-slate-200"
                     >
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg className="w-4 h-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg className="w-4 h-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M12 2L2 7l10 5 10-5-10-5z" />
                                     <path d="M2 17l10 5 10-5" />
                                     <path d="M2 12l10 5 10-5" />
                                 </svg>
                             </div>
                             <div className="space-y-1">
-                                <p className="text-sm font-medium text-foreground">
+                                <p className="text-sm font-medium text-slate-900">
                                     Information asymmetry
                                 </p>
-                                <p className="text-xs text-muted-foreground leading-relaxed">
+                                <p className="text-xs text-slate-500 leading-relaxed">
                                     Referred candidates enter screening with additional context the cold candidate cannot provide.
                                 </p>
                             </div>

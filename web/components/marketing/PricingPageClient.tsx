@@ -9,26 +9,26 @@ import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 
 const unlockPoints = [
-    "Evidence Ledger and Red Pen rewrites on paid reviews",
-    "Role matching, Missing Wins, and saved review history",
-    "Self-serve export, receipts, and restore controls",
+    "Full rewrites and evidence breakdowns on every review",
+    "Match your resume to specific job descriptions",
+    "Export, save your history, and manage everything yourself",
 ];
 
 const billingPoints = [
     {
         icon: ShieldCheck,
-        title: "Trust at checkout",
-        body: "Card details are handled by Stripe. We never store raw card numbers.",
+        title: "Secure checkout",
+        body: "Stripe handles your payment. We never see or store your card number.",
     },
     {
         icon: RotateCcw,
-        title: "Restore and billing control",
-        body: "Restore access, manage renewals, and cancel from Billing.",
+        title: "Easy to manage",
+        body: "Restore access, manage renewals, or cancel — all from your billing page.",
     },
     {
         icon: Receipt,
-        title: "Immediate access scope",
-        body: "Deep sections, repeated reviews, export, and history are available immediately.",
+        title: "Access starts immediately",
+        body: "As soon as you pay, everything unlocks — reviews, exports, history, all of it.",
     },
 ];
 
@@ -63,104 +63,146 @@ export default function PricingPageClient() {
 
     return (
         <>
-            <main className="landing-page">
-                <section className="landing-section-pad landing-section-divider landing-section-hero">
-                    <div className="landing-rail">
-                        <div className="landing-flow-md mx-auto max-w-3xl text-center">
-                            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-                                Pricing with clear value boundaries
-                            </div>
-                            <h1 className="landing-title-xl mx-auto max-w-[20ch]">
-                                Start free, upgrade when iteration speed matters
-                            </h1>
-                            <p className="mx-auto max-w-2xl landing-copy">Your first review is free. Paid plans add repeated role-specific reviews, deeper rewrites, and saved history.</p>
-                            <div className="landing-flow-sm mx-auto max-w-2xl landing-card landing-card-pad text-left">
-                                <div className="landing-eyebrow">What paid plans include</div>
-                                <ul className="space-y-2.5 landing-copy-muted">
-                                    {unlockPoints.map((point) => (
-                                        <li key={point} className="flex items-start gap-2">
-                                            <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-brand" />
-                                            <span>{point}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
+            <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36">
+                {/* Hero */}
+                <section className="px-6 pb-10 md:px-8 md:pb-14">
+                    <div className="mx-auto max-w-[600px] text-center">
+                        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                            Pricing
+                        </p>
+                        <h1
+                            className="font-display text-slate-900"
+                            style={{
+                                fontSize: "clamp(2.4rem, 6vw, 4rem)",
+                                lineHeight: 1.0,
+                                letterSpacing: "-0.035em",
+                                fontWeight: 400,
+                            }}
+                        >
+                            Start free. Pay when it&apos;s working.
+                        </h1>
+                        <p className="mx-auto mt-5 max-w-[440px] text-[17px] leading-[1.7] text-slate-500">
+                            Your first review is on us — the full thing, not a teaser.
+                            If you want to keep reviewing for different roles, that&apos;s when the paid plans come in.
+                        </p>
                     </div>
                 </section>
 
-                <section className="landing-section-pad landing-section landing-section-tight landing-section-divider">
-                    <div className="landing-rail">
-                        <div className="mx-auto grid max-w-[1120px] gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                            <PricingCard
-                                tier="free"
-                                allowFreeSelect
-                                onSelect={() => {
-                                    Analytics.track("pricing_run_free_review_clicked", { source: "pricing_page" });
-                                    window.location.href = "/workspace";
-                                }}
-                            />
-                            <PricingCard
-                                tier="monthly"
-                                onSelect={() => handleCheckout("monthly")}
-                                loading={loadingTier === "monthly"}
-                            />
-                            <PricingCard
-                                tier="lifetime"
-                                onSelect={() => handleCheckout("lifetime")}
-                                loading={loadingTier === "lifetime"}
-                            />
-                        </div>
-                    </div>
-                </section>
-
-                <section className="landing-section-pad landing-deep-ink">
-                    <div className="landing-rail landing-grid-gap grid items-start lg:grid-cols-[1.05fr_0.95fr]">
-                        <div className="landing-flow-md">
-                            <div className="text-label-mono text-slate-400">Billing clarity</div>
-                            <h2 className="landing-title-lg text-slate-50">
-                                Payment and access stay straightforward
-                            </h2>
-                            <p className="landing-copy-inverted max-w-[42rem]">
-                                If access lags after payment, restore is available immediately in Billing.
+                {/* What you unlock */}
+                <section className="px-6 pb-8 md:px-8 md:pb-12">
+                    <div className="mx-auto max-w-[560px]">
+                        <div
+                            className="rounded-2xl bg-white p-6 md:p-8"
+                            style={{
+                                boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)",
+                            }}
+                        >
+                            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                                What you unlock with a paid plan
                             </p>
-                        </div>
-                        <div className="landing-deep-ink-panel landing-flow-md">
-                            <div className="space-y-3.5">
-                                {billingPoints.map((item) => (
-                                    <div key={item.title} className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3.5">
-                                        <div className="flex items-center gap-2">
-                                            <item.icon className="h-4 w-4 text-brand" />
-                                            <h3 className="text-sm font-semibold text-slate-100">{item.title}</h3>
-                                        </div>
-                                        <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{item.body}</p>
-                                    </div>
+                            <ul className="space-y-3">
+                                {unlockPoints.map((point) => (
+                                    <li key={point} className="flex items-start gap-2.5 text-[15px] leading-[1.65] text-slate-600">
+                                        <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#0D7377" }} />
+                                        <span>{point}</span>
+                                    </li>
                                 ))}
-                            </div>
-                            <Link
-                                href="/purchase/restore"
-                                className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 text-white transition-colors hover:bg-brand/90"
-                            >
-                                Open restore page
-                                <ArrowRight className="h-4 w-4" />
-                            </Link>
+                            </ul>
                         </div>
                     </div>
                 </section>
 
-                <section className="landing-section-pad landing-section landing-section-tight">
-                    <div className="landing-rail">
-                        <div className="mx-auto max-w-3xl text-center">
-                            <p className="landing-copy-muted">
-                                Need invoices, receipts, or procurement help?{" "}
-                                <Link
-                                    href="mailto:support@recruiterinyourpocket.com"
-                                    className="text-foreground underline underline-offset-4 hover:text-brand"
+                {/* Pricing cards */}
+                <section className="px-6 pb-10 md:px-8 md:pb-14">
+                    <div className="mx-auto grid max-w-[1000px] gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                        <PricingCard
+                            tier="free"
+                            context="marketing"
+                            allowFreeSelect
+                            onSelect={() => {
+                                Analytics.track("pricing_run_free_review_clicked", { source: "pricing_page" });
+                                window.location.href = "/workspace";
+                            }}
+                        />
+                        <PricingCard
+                            tier="monthly"
+                            context="marketing"
+                            onSelect={() => handleCheckout("monthly")}
+                            loading={loadingTier === "monthly"}
+                        />
+                        <PricingCard
+                            tier="lifetime"
+                            context="marketing"
+                            onSelect={() => handleCheckout("lifetime")}
+                            loading={loadingTier === "lifetime"}
+                        />
+                    </div>
+                </section>
+
+                {/* Billing clarity — warm sand section */}
+                <section
+                    className="px-6 py-12 md:px-8 md:py-16"
+                    style={{ backgroundColor: "hsl(40 20% 94%)" }}
+                >
+                    <div className="mx-auto max-w-[640px]">
+                        <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                            Billing clarity
+                        </p>
+                        <h2
+                            className="font-display text-slate-900"
+                            style={{
+                                fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+                                lineHeight: 1.1,
+                                letterSpacing: "-0.02em",
+                                fontWeight: 400,
+                            }}
+                        >
+                            Billing is simple
+                        </h2>
+                        <p className="mt-3 max-w-[420px] text-[16px] leading-[1.65] text-slate-500">
+                            Paid? Your access starts right away. If anything goes wrong, you can fix it yourself.
+                        </p>
+
+                        <div className="mt-8 space-y-3">
+                            {billingPoints.map((item) => (
+                                <div
+                                    key={item.title}
+                                    className="rounded-lg bg-white p-4"
+                                    style={{
+                                        boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03)",
+                                    }}
                                 >
-                                    support@recruiterinyourpocket.com
-                                </Link>
-                            </p>
+                                    <div className="flex items-center gap-2">
+                                        <item.icon className="h-4 w-4" style={{ color: "#0D7377" }} />
+                                        <h3 className="text-sm font-semibold text-slate-700">{item.title}</h3>
+                                    </div>
+                                    <p className="mt-1.5 text-[14px] leading-relaxed text-slate-500">{item.body}</p>
+                                </div>
+                            ))}
                         </div>
+
+                        <Link
+                            href="/purchase/restore"
+                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-[14px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                        >
+                            Open restore page
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </div>
+                </section>
+
+                {/* Support note */}
+                <section className="px-6 py-10 md:px-8 md:py-12">
+                    <div className="mx-auto max-w-[600px] text-center">
+                        <p className="text-[14px] text-slate-400">
+                            Need invoices, receipts, or procurement help?{" "}
+                            <Link
+                                href="mailto:support@recruiterinyourpocket.com"
+                                className="text-slate-600 underline underline-offset-4 hover:text-slate-900"
+                            >
+                                support@recruiterinyourpocket.com
+                            </Link>
+                        </p>
                     </div>
                 </section>
             </main>

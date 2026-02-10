@@ -1,5 +1,8 @@
 # Copy System V1.0
 
+> **📌 For voice, tone, and banned phrases, see the definitive guide: [`web/docs/copy-guide.md`](../web/docs/copy-guide.md).**
+> This document covers structural rules (copy budgets, route-level intent, redline rules) that complement the tone guide.
+
 Last updated: 2026-02-07
 Owner: Product + Design
 Scope: Marketing pages, app UI, trust and billing copy, error states

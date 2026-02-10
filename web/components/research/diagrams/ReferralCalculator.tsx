@@ -42,6 +42,8 @@ export function ReferralCalculator() {
         };
     }, [salary, coldRate, referralRate, minutesPerApp]);
 
+    const paperShadow = "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
+
     const formatCurrency = (value: number) => {
         return new Intl.NumberFormat("en-US", {
             style: "currency",
@@ -56,7 +58,7 @@ export function ReferralCalculator() {
                 <DiagramHeader
                     label="Referral ROI Calculator"
                     rightSlot={(
-                        <span className="text-[10px] uppercase font-mono tracking-wider text-muted-foreground bg-background px-2 py-1 rounded border border-border/40">
+                        <span className="text-[10px] uppercase font-mono tracking-wider text-slate-400 bg-white px-2 py-1 rounded border border-slate-200">
                             Interactive
                         </span>
                     )}
@@ -91,7 +93,7 @@ export function ReferralCalculator() {
                             max={20}
                             step={0.5}
                             suffix="%"
-                            color="bg-muted-foreground"
+                            color="bg-slate-400"
                         />
                         <InputGroup
                             label="Referral Callback Rate"
@@ -101,26 +103,26 @@ export function ReferralCalculator() {
                             max={90}
                             step={5}
                             suffix="%"
-                            color="bg-brand"
+                            color="bg-slate-700"
                         />
                     </div>
 
                     {/* Visualization */}
-                    <div className="space-y-6 pt-4 border-t border-border/40">
+                    <div className="space-y-6 pt-4 border-t border-slate-100">
                         <div className="space-y-4">
-                            <div className="flex items-center justify-between text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                            <div className="flex items-center justify-between text-xs font-medium text-slate-400 uppercase tracking-wider">
                                 <span>Applications Needed for 1 Interview</span>
                             </div>
 
                             {/* Cold Bar */}
                             <div className="space-y-1.5">
                                 <div className="flex justify-between text-xs">
-                                    <span className="text-muted-foreground">Cold Apply ({coldRate}%)</span>
-                                    <span className="font-mono text-foreground">{stats.coldAppsNeeded} apps</span>
+                                    <span className="text-slate-500">Cold Apply ({coldRate}%)</span>
+                                    <span className="font-mono text-slate-900">{stats.coldAppsNeeded} apps</span>
                                 </div>
-                                <div className="h-3 w-full bg-muted/20 rounded-full overflow-hidden">
+                                <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
                                     <motion.div
-                                        className="h-full bg-muted-foreground/40"
+                                        className="h-full bg-slate-300"
                                         initial={{ width: 0 }}
                                         animate={{ width: `${stats.coldBarPercent}%` }}
                                         transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -131,12 +133,12 @@ export function ReferralCalculator() {
                             {/* Referral Bar */}
                             <div className="space-y-1.5">
                                 <div className="flex justify-between text-xs">
-                                    <span className="text-brand font-medium">Referral ({referralRate}%)</span>
-                                    <span className="font-mono text-brand font-medium">{stats.referralAppsNeeded} apps</span>
+                                    <span className="text-slate-700 font-medium">Referral ({referralRate}%)</span>
+                                    <span className="font-mono text-slate-700 font-medium">{stats.referralAppsNeeded} apps</span>
                                 </div>
-                                <div className="h-3 w-full bg-muted/20 rounded-full overflow-hidden">
+                                <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
                                     <motion.div
-                                        className="h-full bg-brand"
+                                        className="h-full bg-slate-700"
                                         initial={{ width: 0 }}
                                         animate={{ width: `${stats.referralBarPercent}%` }}
                                         transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -146,33 +148,33 @@ export function ReferralCalculator() {
                         </div>
 
                         {/* Summary Box */}
-                        <div className="bg-brand/5 border border-brand/10 rounded-lg p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div className="bg-slate-50 border border-slate-200 rounded-lg p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                             <div className="space-y-1">
-                                <span className="block text-xs uppercase tracking-wide text-brand/80 font-medium">Time Saved</span>
-                                <span className="block font-display text-2xl font-medium text-foreground">
+                                <span className="block text-xs uppercase tracking-wide text-slate-500 font-medium">Time Saved</span>
+                                <span className="block font-display text-2xl font-medium text-slate-900">
                                     {stats.hoursSaved} hours
                                 </span>
                             </div>
 
-                            <div className="hidden md:block w-px h-10 bg-brand/10" />
+                            <div className="hidden md:block w-px h-10 bg-slate-200" />
 
                             <div className="space-y-1">
-                                <span className="block text-xs uppercase tracking-wide text-brand/80 font-medium">Value Created</span>
-                                <span className="block font-display text-2xl font-medium text-foreground">
+                                <span className="block text-xs uppercase tracking-wide text-slate-500 font-medium">Value Created</span>
+                                <span className="block font-display text-2xl font-medium text-slate-900">
                                     {formatCurrency(stats.timeSavingsValue)}
                                 </span>
                             </div>
 
-                            <div className="md:text-right text-xs text-muted-foreground max-w-[150px] leading-relaxed">
-                                Avoids sending <strong className="text-foreground">{stats.appsSaved}</strong> unnecessary applications.
+                            <div className="md:text-right text-xs text-slate-500 max-w-[150px] leading-relaxed">
+                                Avoids sending <strong className="text-slate-900">{stats.appsSaved}</strong> unnecessary applications.
                             </div>
                         </div>
                     </div>
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-                <span className="font-medium text-foreground">Fig. 2</span>
+            <figcaption className="mt-3 flex items-center gap-2 text-xs text-slate-500">
+                <span className="font-medium text-slate-900">Fig. 2</span>
                 <span>Referral efficiency model.</span>
             </figcaption>
         </DiagramFigure>
@@ -203,9 +205,9 @@ function InputGroup({
     return (
         <div className="space-y-3">
             <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-muted-foreground">{label}</label>
-                <span className="font-mono text-sm text-foreground bg-muted/30 px-2 py-0.5 rounded">
-                    {format ? format(value) : value}{suffix && <span className="text-muted-foreground ml-0.5">{suffix}</span>}
+                <label className="text-sm font-medium text-slate-500">{label}</label>
+                <span className="font-mono text-sm text-slate-900 bg-slate-100 px-2 py-0.5 rounded">
+                    {format ? format(value) : value}{suffix && <span className="text-slate-400 ml-0.5">{suffix}</span>}
                 </span>
             </div>
             <input
@@ -215,7 +217,7 @@ function InputGroup({
                 step={step}
                 value={value}
                 onChange={(e) => setValue(Number(e.target.value))}
-                className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-brand"
+                className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-700"
             />
         </div>
     );

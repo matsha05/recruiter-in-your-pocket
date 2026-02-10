@@ -7,11 +7,19 @@ import { PocketMark } from "@/components/icons";
 
 import LandingContent from "@/components/landing/LandingContent";
 import { LandingDataDriven } from "@/components/landing-showcase/LandingDataDriven";
+import { LandingEditorsDesk } from "@/components/landing-showcase/LandingEditorsDesk";
 
 const landingPages = [
   {
+    id: "editors-desk",
+    name: "★ The Editor's Desk (V2)",
+    description: "Premium redesign. Grain texture, product-as-hero, research quotes. Zero gradients.",
+    tags: ["V2", "Ship"],
+    component: LandingEditorsDesk,
+  },
+  {
     id: "prod",
-    name: "★ Production (Live)",
+    name: "Production (Live)",
     description: "The current production landing page.",
     tags: ["Live"],
     component: LandingContent,
@@ -73,11 +81,10 @@ export default function LandingOptionsClient() {
             <motion.button
               key={page.id}
               onClick={() => setSelectedPage(page.id)}
-              className={`group rounded-xl border-2 bg-white p-6 text-left transition-all ${
-                page.id === "prod"
+              className={`group rounded-xl border-2 bg-white p-6 text-left transition-all ${page.id === "prod"
                   ? "border-teal-500 shadow-lg shadow-teal-500/10"
                   : "border-slate-200 hover:border-slate-300"
-              }`}
+                }`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
@@ -86,20 +93,18 @@ export default function LandingOptionsClient() {
                 {page.tags.map((tag) => (
                   <span
                     key={tag}
-                    className={`rounded px-2 py-0.5 text-[10px] font-medium ${
-                      tag === "Ship" || tag === "Wired"
+                    className={`rounded px-2 py-0.5 text-[10px] font-medium ${tag === "Ship" || tag === "Wired"
                         ? "bg-teal-100 text-teal-700"
                         : "bg-slate-100 text-slate-600"
-                    }`}
+                      }`}
                   >
                     {tag}
                   </span>
                 ))}
               </div>
               <h3
-                className={`mb-1 text-lg font-semibold ${
-                  page.id === "prod" ? "text-teal-700" : "transition-colors group-hover:text-teal-600"
-                }`}
+                className={`mb-1 text-lg font-semibold ${page.id === "prod" ? "text-teal-700" : "transition-colors group-hover:text-teal-600"
+                  }`}
               >
                 {page.name}
               </h3>

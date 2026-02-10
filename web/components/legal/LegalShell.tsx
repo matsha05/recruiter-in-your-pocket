@@ -14,6 +14,11 @@ type LegalShellProps = {
     contentClassName?: string;
 };
 
+/**
+ * LegalShell — Editor's Desk style
+ *
+ * Warm paper background, clean typography, minimal chrome.
+ */
 export function LegalShell({
     eyebrow,
     title,
@@ -24,29 +29,41 @@ export function LegalShell({
 }: LegalShellProps) {
     return (
         <>
-            <main className="landing-page">
-                <section className="landing-section-pad landing-section-divider landing-section-hero">
-                    <div className="landing-rail">
-                        <div className="mx-auto max-w-5xl">
-                            <LegalNav className="mb-8 md:mb-10" />
-                            <header className="mx-auto max-w-3xl text-center">
-                                <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-label-mono text-muted-foreground dark:border-slate-700 dark:bg-slate-900">
-                                    {eyebrow}
-                                </div>
-                                <h1 className="mt-5 font-display text-4xl leading-[0.98] tracking-tight md:text-[52px]">
-                                    {title}
-                                </h1>
-                                <p className="mx-auto mt-4 max-w-2xl landing-copy">{description}</p>
-                                {lastUpdated ? (
-                                    <p className="mt-3 text-label-mono text-muted-foreground">Last updated {lastUpdated}</p>
-                                ) : null}
-                            </header>
+            <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36">
+                {/* Hero */}
+                <section className="px-6 pb-8 md:px-8 md:pb-10">
+                    <div className="mx-auto max-w-[800px]">
+                        <LegalNav className="mb-8 md:mb-10" />
+                        <div className="mx-auto max-w-[640px] text-center">
+                            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                                {eyebrow}
+                            </p>
+                            <h1
+                                className="font-display text-slate-900"
+                                style={{
+                                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
+                                    lineHeight: 1.0,
+                                    letterSpacing: "-0.03em",
+                                    fontWeight: 400,
+                                }}
+                            >
+                                {title}
+                            </h1>
+                            <p className="mx-auto mt-4 max-w-[480px] text-[16px] leading-[1.7] text-slate-500">
+                                {description}
+                            </p>
+                            {lastUpdated && (
+                                <p className="mt-3 text-[11px] text-slate-300">
+                                    Last updated {lastUpdated}
+                                </p>
+                            )}
                         </div>
                     </div>
                 </section>
 
-                <section className="landing-section-pad landing-section landing-section-tight">
-                    <div className={cn("landing-rail legal-shell-content legal-flow", contentClassName)}>
+                {/* Content */}
+                <section className="px-6 pb-12 md:px-8 md:pb-16">
+                    <div className={cn("mx-auto max-w-[720px] space-y-4", contentClassName)}>
                         {children}
                     </div>
                 </section>

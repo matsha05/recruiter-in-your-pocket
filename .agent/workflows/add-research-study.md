@@ -177,6 +177,7 @@ Write a page.tsx file with these sections, in this exact order:
 STYLE:
 - Short sentences. Concrete language.
 - Match RIYP voice: calm, evidence-based, recruiter-realistic.
+- Follow web/docs/copy-guide.md for tone, banned phrases, and the proofreading checklist.
 - No em dashes. Use commas or parentheses.
 - Add footnote-style citations inline like [1]
 
@@ -380,4 +381,5 @@ Before marking complete:
 - [ ] Build passes (`npm run build`)
 - [ ] Visual review in light and dark mode
 - [ ] Added to library page card array
+- [ ] Copy passes web/docs/copy-guide.md proofreading checklist
 

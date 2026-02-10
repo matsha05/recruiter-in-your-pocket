@@ -56,4 +56,14 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
   SaaS patterns are allowed when they materially improve clarity, conversion, or growth.
 </design-constitution>
 
+<copy-constitution>
+  Canonical sources of truth:
+  - web/docs/copy-guide.md (voice, tone, banned phrases, proofreading checklist)
+  - docs/copy-system.md (structural rules, copy budgets, redline rules)
+
+  Voice: "Sharp recruiter friend" — warm, confident, direct, opinionated.
+  Before writing ANY user-facing copy, read web/docs/copy-guide.md.
+  Before shipping, run the banned-phrases list and proofreading checklist from that doc.
+</copy-constitution>
+
 </riyp-instructions>

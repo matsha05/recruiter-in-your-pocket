@@ -32,7 +32,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
                     number="06"
                     title="Where You Compete"
-                    subtitle="Your primary lane and how to position."
+                    subtitle="The roles you're strongest for — and where to stretch."
                 />
                 <div className="rounded border border-border/60 bg-card p-5 text-sm text-muted-foreground">
                     {hasJobDescription
@@ -79,7 +79,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
                     number="06"
                     title="Where You Compete"
-                    subtitle="Your primary lane and how to position."
+                    subtitle="The roles you're strongest for — and where to stretch."
                 />
                 <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
                     Where you compete is unclear from the current text. Add clearer role, level, and scope signals (titles, domain, team size, and outcomes).
@@ -94,7 +94,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
                 number="06"
                 title="Where You Compete"
-                subtitle="Your primary lane and how to position."
+                subtitle="The roles you're strongest for — and where to stretch."
             />
 
             {isGated ? (
@@ -104,10 +104,10 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                         <Lock className="w-5 h-5" />
                         <div>
                             <p className="text-sm font-medium text-foreground">
-                                Role positioning identified
+                                We found your strongest roles
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                Best-fit roles, stretch opportunities, and positioning notes
+                                Best-fit roles, stretch opportunities, and how to position yourself
                             </p>
                         </div>
                     </div>
@@ -125,7 +125,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                         items={[
                             "Best-fit roles + stretch paths",
                             "JD match score + missing skills",
-                            "Positioning statement you can reuse"
+                            "A positioning statement you can use"
                         ]}
                         dense
                     />

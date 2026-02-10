@@ -15,28 +15,28 @@ import { Loader2 } from "lucide-react"
  * - Full state coverage: hover, active, focus, disabled, loading
  */
 const buttonVariants = cva(
-    "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-all duration-normal ease-snap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
     {
         variants: {
             variant: {
                 default:
-                    "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 active:scale-[0.98] active:bg-primary/80",
+                    "bg-primary text-primary-foreground shadow-sm hover:bg-primary/92 active:scale-[0.98] active:bg-primary/82",
                 destructive:
                     "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 active:scale-[0.98]",
                 outline:
-                    "border border-border/60 bg-transparent hover:bg-secondary hover:border-border/80 active:bg-secondary/80 active:scale-[0.98]",
+                    "border border-border/55 bg-card/70 hover:bg-secondary/80 hover:border-brand/30 active:bg-secondary/90 active:scale-[0.98]",
                 secondary:
                     "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:bg-secondary/70 active:scale-[0.98]",
                 ghost:
-                    "hover:bg-secondary hover:text-secondary-foreground active:bg-secondary/80",
+                    "hover:bg-secondary/80 hover:text-secondary-foreground active:bg-secondary/90",
                 link:
                     "text-slate-muted underline-offset-4 hover:underline hover:text-foreground",
                 // V2.1 Brand: Teal primary CTA
                 brand:
-                    "bg-brand text-white shadow-sm hover:bg-brand/90 active:bg-brand/80 active:scale-[0.98] font-medium",
+                    "bg-brand text-white shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_14px_30px_-20px_rgb(13_148_136_/0.65)] hover:bg-brand/92 hover:shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_20px_34px_-22px_rgb(13_148_136_/0.72)] active:bg-brand/82 active:scale-[0.98] font-medium",
                 // V2.1 Premium: Gold unlock moments
                 premium:
-                    "bg-premium text-white shadow-sm hover:bg-premium/90 active:bg-premium/80 active:scale-[0.98] font-medium",
+                    "bg-premium text-white shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_14px_30px_-20px_rgb(217_119_6_/0.6)] hover:bg-premium/92 hover:shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_20px_34px_-22px_rgb(217_119_6_/0.68)] active:bg-premium/82 active:scale-[0.98] font-medium",
                 // Studio: Minimal ink/paper
                 studio:
                     "bg-foreground text-background hover:opacity-90 active:opacity-80 active:scale-[0.98] dark:bg-foreground dark:text-background font-medium tracking-tight",

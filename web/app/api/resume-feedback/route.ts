@@ -128,7 +128,21 @@ export async function POST(request: Request) {
     const bypass = getBypassPaywall();
     const activePass = user && supabase ? await getActivePass(supabase, user.id) : null;
     const freeUsed = freeMeta.used || 0;
-    const freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - freeUsed);
+    let freeUsesRemaining = 0;
+    let loggedInFreeAlreadyUsed = false;
+
+    if (user && supabase) {
+      const { data: usageData } = await supabase
+        .from("user_usage")
+        .select("free_report_used_at")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      loggedInFreeAlreadyUsed = Boolean(usageData?.free_report_used_at);
+      freeUsesRemaining = loggedInFreeAlreadyUsed ? 0 : 1;
+    } else {
+      freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - freeUsed);
+    }
 
     const accessTier = bypass ? "pass_full" : activePass ? "pass_full" : freeUsesRemaining > 0 ? "free_full" : "preview";
     const access = accessTier === "preview" ? "preview" : "full";
@@ -225,9 +239,13 @@ ${jobDescription}`;
     }
 
     // Increment free run counter only when using free tier (no pass) and not bypassing
-    const shouldIncrementFree = !bypass && !activePass && freeUsed < FREE_RUN_LIMIT;
-    const newFreeUsed = shouldIncrementFree ? freeUsed + 1 : freeUsed;
-    const newFreeRemaining = Math.max(0, FREE_RUN_LIMIT - newFreeUsed);
+    const shouldIncrementFree = !bypass && !activePass && freeUsesRemaining > 0;
+    const newFreeUsed = user
+      ? (loggedInFreeAlreadyUsed || shouldIncrementFree ? 1 : 0)
+      : (shouldIncrementFree ? freeUsed + 1 : freeUsed);
+    const newFreeRemaining = shouldIncrementFree
+      ? Math.max(0, freeUsesRemaining - 1)
+      : freeUsesRemaining;
 
     // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
@@ -287,11 +305,32 @@ ${jobDescription}`;
       }
     }
 
+    // Persist logged-in free-use consumption in DB so clearing cookies cannot bypass limits.
+    if (shouldIncrementFree && user) {
+      try {
+        const admin = createSupabaseAdminClient();
+        if (admin) {
+          await admin
+            .from("user_usage")
+            .upsert(
+              {
+                user_id: user.id,
+                free_report_used_at: nowIso(),
+                updated_at: nowIso(),
+              },
+              { onConflict: "user_id" }
+            );
+        }
+      } catch {
+        // Do not fail response if free-use persistence fails.
+      }
+    }
+
     const res = NextResponse.json(responseBody);
     res.headers.set("x-request-id", request_id);
 
     // Persist free-run cookie if we incremented, or if cookie was missing/invalid/month-reset.
-    if (!bypass && !activePass && (shouldIncrementFree || !freeParsed || freeMeta.needs_reset)) {
+    if (!user && !bypass && !activePass && (shouldIncrementFree || !freeParsed || freeMeta.needs_reset)) {
       const newMeta = {
         used: newFreeUsed,
         last_free_ts: shouldIncrementFree ? nowIso() : freeMeta.last_free_ts || null,

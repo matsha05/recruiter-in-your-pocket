@@ -206,12 +206,12 @@ export function AuthFlow({
   }, [copy.subtext, email, step]);
 
   const outerClass = variant === "page"
-    ? "flex flex-col items-center justify-center min-h-[85vh] px-4 bg-background"
+    ? "flex flex-col items-center justify-center min-h-[85vh] px-4 bg-[#FAFAF8] pt-20"
     : "";
 
   const panelClass = cn(
     "space-y-5",
-    variant === "page" && "rounded border border-border/60 bg-card p-8"
+    variant === "page" && "rounded-2xl bg-white p-8 shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.06)]"
   );
 
   return (

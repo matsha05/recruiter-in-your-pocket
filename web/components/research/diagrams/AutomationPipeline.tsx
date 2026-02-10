@@ -154,7 +154,7 @@ export function AutomationPipeline() {
                         </div>
                     </motion.div>
                 </div>
-            </motion.div>
+            </DiagramFrame>
 
             <figcaption className="mt-4 space-y-1">
                 <span className="block riyp-figure-kicker">Fig. 1 — Risk Cascade</span>
@@ -162,6 +162,6 @@ export function AutomationPipeline() {
                     Automation handoffs where bias can compound
                 </span>
             </figcaption>
-        </DiagramFrame>
+        </DiagramFigure>
     );
 }

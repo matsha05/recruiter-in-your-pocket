@@ -19,7 +19,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Free",
     price: "$0",
     period: "1 review",
-    description: "One full review to validate fit before you pay.",
+    description: "Try a full review before you pay a thing.",
     buttonText: "Current Plan",
     features: [
       { text: "1 full resume review (all sections)", bold: true },
@@ -34,7 +34,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Full Access",
     price: "$9",
     period: "/month",
-    description: "Unlimited reviews while you are actively searching.",
+    description: "Unlimited reviews while you're job hunting.",
     buttonText: "Start Monthly",
     features: [
       { text: "Unlimited resume + LinkedIn reviews", bold: true },
@@ -49,7 +49,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Lifetime",
     price: "$79",
     period: "one-time",
-    description: "Pay once for long-term career iteration.",
+    description: "Pay once. Keep it forever.",
     buttonText: "Get Lifetime Access",
     badge: "Best Value",
     features: [

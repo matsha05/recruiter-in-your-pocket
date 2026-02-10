@@ -42,10 +42,10 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     </div>
                     <div>
                         <h3 className="font-display font-medium text-foreground text-lg mb-1">
-                            Zero Critical Issues Detected
+                            Your bullets look strong
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                            Your bullets are landing with authority. Our heuristics found high verb impact and strong measurable outcomes.
+                            Nothing jumped out as a problem. Your verbs are sharp and your outcomes are specific.
                         </p>
                     </div>
                 </div>
@@ -115,8 +115,8 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                     <UnlockValueList
                                         items={[
                                             "All remaining bullet rewrites",
-                                            "Copy-ready recruiter phrasing",
-                                            "Why each change improves signal"
+                                            "Phrasing a recruiter would notice",
+                                            "Why each change makes you stronger"
                                         ]}
                                         dense
                                     />

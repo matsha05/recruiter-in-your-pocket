@@ -381,7 +381,13 @@ export async function POST(request: Request) {
                 // Track usage (same as resume)
                 const shouldIncrementFree = accessTier === "free_full";
                 const shouldDecrementPass = accessTier === "pass_full" && activePass && !bypass && shouldConsumePassCredit(activePass);
-                const newFreeUsed = shouldIncrementFree ? (freeMeta.used || 0) + 1 : freeMeta.used || 0;
+                const loggedInFreeAlreadyUsed = Boolean(userUsageRecord?.free_report_used_at);
+                const newFreeUsed = user
+                    ? (loggedInFreeAlreadyUsed || shouldIncrementFree ? 1 : 0)
+                    : (shouldIncrementFree ? (freeMeta.used || 0) + 1 : freeMeta.used || 0);
+                const newFreeRemaining = shouldIncrementFree
+                    ? Math.max(0, freeUsesRemaining - 1)
+                    : freeUsesRemaining;
 
                 // Send complete event
                 controller.enqueue(encoder.encode(JSON.stringify({
@@ -390,7 +396,7 @@ export async function POST(request: Request) {
                     profile: profile,
                     access,
                     accessTier,
-                    free_uses_remaining: user ? freeUsesRemaining - (shouldIncrementFree ? 1 : 0) : FREE_RUN_LIMIT - newFreeUsed,
+                    free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
                     free_run_index: newFreeUsed,
                 }) + "\n"));
 

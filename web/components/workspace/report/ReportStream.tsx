@@ -165,10 +165,10 @@ export function ReportStream({
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
                                 {hasPaidAccess
-                                    ? "Paid access is active. Keep iterating by role until the signal is sharp."
+                                    ? "You have full access. Run as many reviews as you want."
                                     : freeUsesRemaining > 0
-                                    ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
-                                    : 'Ready to analyze another version?'}
+                                        ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
+                                        : 'Ready to analyze another version?'}
                             </p>
                             <Button
                                 variant="brand"

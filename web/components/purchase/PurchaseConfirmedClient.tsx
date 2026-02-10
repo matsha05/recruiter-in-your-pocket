@@ -6,6 +6,11 @@ import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2, AlertTriangle, RefreshCw } from "lucide-react";
 import { usePaymentConfirmation } from "@/hooks/usePaymentConfirmation";
 import { saveUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
+import Footer from "@/components/landing/Footer";
+
+/** Paper shadow matching all Editor's Desk cards */
+const paperShadow =
+  "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
 
 export default function PurchaseConfirmedClient() {
   const searchParams = useSearchParams();
@@ -47,69 +52,99 @@ export default function PurchaseConfirmedClient() {
   }, [unlock]);
 
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-background px-6 py-16">
-      <div className="mx-auto max-w-2xl rounded-xl border border-border/50 bg-card p-8 md:p-10">
-        <div className="flex items-center gap-3">
-          {state.status === "unlocked" && <CheckCircle2 className="h-6 w-6 text-success" />}
-          {(state.status === "checking" || state.status === "pending") && (
-            <Loader2 className="h-6 w-6 animate-spin text-brand" />
-          )}
-          {(state.status === "error" || state.status === "missing") && (
-            <AlertTriangle className="h-6 w-6 text-warning" />
-          )}
-          <h1 className="font-display text-3xl tracking-tight text-foreground">{state.title}</h1>
+    <>
+      <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36 pb-16 px-6">
+        <div className="mx-auto max-w-2xl">
+          <div
+            className="rounded-2xl bg-white p-8 md:p-10"
+            style={{ boxShadow: paperShadow }}
+          >
+            <div className="flex items-center gap-3">
+              {state.status === "unlocked" && <CheckCircle2 className="h-6 w-6 text-emerald-600" />}
+              {(state.status === "checking" || state.status === "pending") && (
+                <Loader2 className="h-6 w-6 animate-spin text-slate-400" />
+              )}
+              {(state.status === "error" || state.status === "missing") && (
+                <AlertTriangle className="h-6 w-6 text-amber-500" />
+              )}
+              <h1
+                className="font-display text-slate-900"
+                style={{
+                  fontSize: "clamp(1.6rem, 4vw, 2rem)",
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.025em",
+                  fontWeight: 400,
+                }}
+              >
+                {state.title}
+              </h1>
+            </div>
+
+            <p className="mt-4 text-[15px] leading-[1.65] text-slate-500">{state.message}</p>
+
+            {unlockLabel && state.status !== "missing" && (
+              <p className="mt-3 text-xs text-slate-400">
+                We saved your place in <span className="text-slate-700 font-medium">{unlockLabel}</span>.
+              </p>
+            )}
+
+            {state.status !== "missing" && (
+              <p className="mt-3 text-xs text-slate-400">
+                Attempt {attempt || 1} · Session <span className="font-mono">{sessionSuffix}</span>
+              </p>
+            )}
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {state.status === "unlocked" ? (
+                <Link
+                  href="/workspace"
+                  className="rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+                >
+                  Open Workspace
+                </Link>
+              ) : (
+                <button
+                  onClick={() => window.location.reload()}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  <RefreshCw className="h-4 w-4" />
+                  Check Again
+                </button>
+              )}
+
+              <Link
+                href="/purchase/restore"
+                className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                Restore Access
+              </Link>
+              <Link
+                href="/settings/billing"
+                className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                Billing Settings
+              </Link>
+              {state.status === "error" && (
+                <Link
+                  href="/pricing"
+                  className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  Back to Pricing
+                </Link>
+              )}
+            </div>
+
+            <p className="mt-8 text-xs text-slate-400">
+              Need help now? Email{" "}
+              <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-2 text-slate-500 hover:text-slate-700">
+                support@recruiterinyourpocket.com
+              </Link>
+              {" "}and include your checkout email.
+            </p>
+          </div>
         </div>
-
-        <p className="mt-4 text-sm text-muted-foreground">{state.message}</p>
-
-        {unlockLabel && state.status !== "missing" && (
-          <p className="mt-3 text-xs text-muted-foreground">
-            We saved your place in <span className="text-foreground font-medium">{unlockLabel}</span>.
-          </p>
-        )}
-
-        {state.status !== "missing" && (
-          <p className="mt-3 text-xs text-muted-foreground">
-            Attempt {attempt || 1} · Session <span className="font-mono">{sessionSuffix}</span>
-          </p>
-        )}
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          {state.status === "unlocked" ? (
-            <Link href="/workspace" className="rounded bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand/90">
-              Open Workspace
-            </Link>
-          ) : (
-            <button
-              onClick={() => window.location.reload()}
-              className="inline-flex items-center gap-2 rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
-            >
-              <RefreshCw className="h-4 w-4" />
-              Check Again
-            </button>
-          )}
-
-          <Link href="/purchase/restore" className="rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50">
-            Restore Access
-          </Link>
-          <Link href="/settings/billing" className="rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50">
-            Billing Settings
-          </Link>
-          {state.status === "error" && (
-            <Link href="/pricing" className="rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50">
-              Back to Pricing
-            </Link>
-          )}
-        </div>
-
-        <p className="mt-8 text-xs text-muted-foreground">
-          Need help now? Email{" "}
-          <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-2">
-            support@recruiterinyourpocket.com
-          </Link>
-          {" "}and include your checkout email.
-        </p>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

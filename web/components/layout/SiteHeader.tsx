@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "@/components/shared/UserNav";
-import ThemeToggle from "@/components/shared/ThemeToggle";
 import { Button } from "@/components/ui/button";
-import { PocketMark, Wordmark } from "@/components/icons";
+import { PocketMark } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 interface SiteHeaderProps {
     /** Show "Research" nav link (hide on research hub itself) */
@@ -15,90 +15,81 @@ interface SiteHeaderProps {
 }
 
 /**
- * SiteHeader — Premium navigation for guests/marketing pages
- * 
- * Design: "Editorial Authority" Pattern (right-aligned)
- * - Logo left with generous breathing room
- * - Navigation links right-aligned
- * - Underline hover effect (Stripe-inspired)
- * - CTA + user actions far right
- * 
- * Consistent with AppHeader — no jarring transition when user logs in.
+ * SiteHeader — Editor's Desk design language
+ *
+ * Warm paper background, minimal text links, pill CTA.
+ * Matches the canonical landing page nav style.
  */
 export function SiteHeader({ showResearchLink = true, showResourcesLink = true }: SiteHeaderProps) {
     const { user, isLoading: isAuthLoading, signOut } = useAuth();
 
     return (
-        <header className="h-14 md:h-16 flex items-center justify-between px-4 md:px-6 border-b border-border/20 bg-background/95 backdrop-blur-lg sticky top-0 z-50">
-            {/* Logo — Left side with breathing room */}
-            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-                <PocketMark className="w-6 h-6 text-brand transition-transform group-hover:scale-105" />
-                <Wordmark className="h-5 md:h-[22px] text-foreground hidden sm:block" />
-            </Link>
+        <header className="site-header">
+            <div className="mx-auto flex max-w-[1120px] items-center justify-between px-6 py-5 md:px-8">
+                <Link href="/" className="group flex shrink-0 items-center gap-2.5">
+                    <PocketMark className="h-5 w-5 text-slate-800 transition-transform group-hover:scale-105" />
+                    <span className="text-[15px] font-medium tracking-[-0.01em] text-slate-700">
+                        Recruiter in Your Pocket
+                    </span>
+                </Link>
 
-            {/* Navigation — Right aligned */}
-            <nav className="flex items-center gap-1 md:gap-2">
-                {/* Content Nav Links */}
-                {(showResearchLink || showResourcesLink) && (
-                    <div className="hidden md:flex items-center gap-1">
-                        <NavLink href="/pricing">Pricing</NavLink>
-                        {showResearchLink && (
-                            <NavLink href="/research">Research</NavLink>
-                        )}
-                        {showResourcesLink && (
-                            <NavLink href="/guides">Resources</NavLink>
-                        )}
+                <nav className="flex items-center gap-8">
+                    <div className="hidden items-center gap-6 md:flex">
+                        <SiteNavLink href="/pricing">Pricing</SiteNavLink>
+                        {showResearchLink && <SiteNavLink href="/research">Research</SiteNavLink>}
+                        {showResourcesLink && <SiteNavLink href="/guides">Resources</SiteNavLink>}
                     </div>
-                )}
 
-                {/* Separator */}
-                <div className="hidden md:block w-px h-5 bg-border/40 mx-2" />
-
-                {/* Auth Section */}
-                {isAuthLoading ? (
-                    <div className="w-20 h-9" />
-                ) : user ? (
-                    <div className="flex items-center gap-1.5">
-                        {/* Desktop: Show Studio link */}
-                        <NavLink href="/workspace">Studio</NavLink>
-                        <ThemeToggle />
-                        <UserNav user={user} onSignOut={signOut} />
-                        {/* Mobile: Studio button */}
-                        <Link href="/workspace" className="md:hidden">
-                            <Button variant="brand" size="sm" className="px-3">Studio</Button>
-                        </Link>
-                    </div>
-                ) : (
-                    <div className="flex items-center gap-1.5">
-                        <Link href="/auth" className="hidden sm:block">
-                            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-                                Log In
-                            </Button>
-                        </Link>
-                        <Link href="/workspace">
-                            <Button variant="brand" size="sm" className="px-3 md:px-4">
+                    {isAuthLoading ? (
+                        <div className="h-9 w-20" />
+                    ) : user ? (
+                        <div className="flex items-center gap-4">
+                            <SiteNavLink href="/workspace">Studio</SiteNavLink>
+                            <UserNav user={user} onSignOut={signOut} />
+                        </div>
+                    ) : (
+                        <div className="flex items-center gap-4">
+                            <Link
+                                href="/auth"
+                                className="hidden text-[13px] font-medium text-slate-400 transition-colors hover:text-slate-700 sm:block"
+                            >
+                                Log in
+                            </Link>
+                            <Link
+                                href="/workspace"
+                                className="rounded-full bg-slate-900 px-5 py-2 text-[13px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                            >
                                 Get Started
-                            </Button>
-                        </Link>
-                        <ThemeToggle />
-                    </div>
-                )}
-            </nav>
+                            </Link>
+                        </div>
+                    )}
+                </nav>
+            </div>
         </header>
     );
 }
 
 /**
- * NavLink — Text link with underline hover effect
+ * SiteNavLink — Clean text link, Editor's Desk style
  */
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function SiteNavLink({
+    href,
+    children,
+    className,
+}: {
+    href: string;
+    children: React.ReactNode;
+    className?: string;
+}) {
     return (
-        <Link href={href} className="group relative px-3 py-1.5 hidden md:block">
-            <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                {children}
-            </span>
-            {/* Underline — matches footer style */}
-            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-brand transition-all duration-200 group-hover:w-full" />
+        <Link
+            href={href}
+            className={cn(
+                "text-[13px] font-medium text-slate-400 transition-colors hover:text-slate-700",
+                className
+            )}
+        >
+            {children}
         </Link>
     );
 }
