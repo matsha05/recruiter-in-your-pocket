@@ -206,7 +206,7 @@ export function AuthFlow({
   }, [copy.subtext, email, step]);
 
   const outerClass = variant === "page"
-    ? "flex flex-col items-center justify-center min-h-[85vh] px-4 bg-[#FAFAF8] pt-20"
+    ? "bg-paper flex min-h-[85vh] flex-col items-center justify-center px-4 pt-20"
     : "";
 
   const panelClass = cn(
@@ -248,7 +248,7 @@ export function AuthFlow({
                     className="h-12 pl-10 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/40"
                   />
                 </div>
-                <p className="text-[11px] text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   We&apos;ll email a one-time code. No password required.
                 </p>
               </div>
@@ -277,7 +277,7 @@ export function AuthFlow({
                   id="auth-code"
                   type="text"
                   placeholder="00000000"
-                  className="h-14 font-mono tracking-[0.5em] text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
+                  className="h-14 font-mono tracking-widest text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
                   value={code}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "").slice(0, 8);
@@ -395,7 +395,7 @@ export function AuthFlow({
           )}
         </div>
 
-        <div className="text-[10px] text-center text-muted-foreground/60 uppercase tracking-widest font-medium">
+        <div className="text-xs text-center text-muted-foreground/60 uppercase tracking-widest font-medium">
           Secure Login • No Password Required
         </div>
       </div>

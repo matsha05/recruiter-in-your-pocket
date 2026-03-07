@@ -9,18 +9,18 @@ import { PocketMark } from "@/components/icons";
  */
 export default function Footer() {
     return (
-        <footer className="relative z-[2] border-t border-slate-200/50 bg-[#FAFAF8] px-6 py-8 md:px-8">
-            <div className="mx-auto flex max-w-[1120px] flex-col items-center justify-between gap-6 md:flex-row">
-                <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2 text-[13px] text-slate-400">
-                        <PocketMark className="h-4 w-4 text-slate-300" />
+        <footer className="relative z-10 border-t border-border/50 bg-paper px-6 py-8 md:px-8">
+            <div className="mx-auto flex max-w-[var(--page-max)] flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+                <div className="flex flex-col gap-1.5">
+                    <div className="flex items-center gap-2 text-sm text-slate-400">
+                        <PocketMark className="h-4 w-4 text-brand/65" />
                         <span>© 2026 Recruiter in Your Pocket</span>
                     </div>
-                    <span className="text-[12px] text-slate-300 md:pl-6">
+                    <span className="max-w-[22rem] text-xs leading-5 text-slate-400 md:pl-6">
                         What recruiters think, before you hit send.
                     </span>
                 </div>
-                <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-[13px] text-slate-400">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-400 md:justify-end">
                     <FooterLink href="/pricing">Pricing</FooterLink>
                     <FooterLink href="/research">Research</FooterLink>
                     <FooterLink href="/trust">Trust</FooterLink>
@@ -37,7 +37,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     return (
         <Link
             href={href}
-            className="transition-colors hover:text-slate-600"
+            className="rounded-md px-2 py-1 transition-colors hover:bg-background/80 hover:text-slate-700"
         >
             {children}
         </Link>

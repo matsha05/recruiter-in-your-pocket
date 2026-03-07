@@ -1,4 +1,4 @@
-export const LEGAL_LAST_UPDATED = "February 6, 2026";
+export const LEGAL_LAST_UPDATED = "March 7, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -49,7 +49,14 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
     purpose: "Rate limiting, reliability diagnostics, billing state, and product health.",
     retention: "Retained for product operation and security needs.",
     userControl: "Deleting your account removes app-level history.",
-    processor: "Supabase"
+    processor: "Supabase, Sentry, Vercel"
+  },
+  {
+    dataType: "Product analytics and conversion telemetry",
+    purpose: "Measure product quality, onboarding friction, and billing funnel health when analytics is enabled.",
+    retention: "Retained under the analytics vendors' configured retention windows.",
+    userControl: "Respects browser Do Not Track and can be disabled at launch.",
+    processor: "Mixpanel, Vercel"
   },
   {
     dataType: "Billing events and invoices",
@@ -62,16 +69,18 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 
 export const TRUST_PROMISES = [
   "Your file is encrypted when you upload it.",
-  "Anonymous reviews aren't saved unless you choose to.",
-  "Signed-in reviews save your history and a short resume preview — you can delete both.",
+  "Anonymous reviews are not saved to an account automatically.",
+  "Signed-in reviews save your history and a short resume preview — you can delete both from Reports or Settings.",
   "Deleting your account removes your reports and usage history from our database.",
   "Payment info is handled by Stripe. We never see your card.",
   "We don't sell your data.",
   "We don't use your data to train AI models.",
+  "Browser session replay stays off by default.",
   "Scores estimate your resume's hiring signal — they don't predict hiring outcomes.",
   "Your first full review is free. No credit card needed.",
   "You see exactly what you're unlocking before you pay.",
   "If payment goes through but access looks locked, restore it from Billing.",
   "All receipts and invoices are available in Billing.",
-  "You can export your data from Settings anytime."
+  "You can export your data from Settings anytime.",
+  "Security reports can be sent using the disclosure instructions on our Security and Status pages."
 ];

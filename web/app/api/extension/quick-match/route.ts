@@ -2,19 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { quickMatch, extractSkillsFromText, extractSeniority } from "@/lib/matching/skill-engine";
 import { createEmbedding } from "@/lib/matching/embedding-service";
+import { buildExtensionCorsHeaders } from "@/lib/extension/cors";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
-// CORS headers for extension
-const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-};
-
-export async function OPTIONS() {
-    return NextResponse.json({}, { headers: corsHeaders });
+export async function OPTIONS(request: NextRequest) {
+    return NextResponse.json({}, { headers: buildExtensionCorsHeaders(request, ["POST", "OPTIONS"]) });
 }
 
 export async function POST(request: NextRequest) {
+    const corsHeaders = buildExtensionCorsHeaders(request, ["POST", "OPTIONS"]);
+
+    if (!isLaunchFlagEnabled("extensionSync")) {
+        return NextResponse.json(
+            { success: false, errorCode: "FEATURE_DISABLED", error: "Extension sync is temporarily unavailable." },
+            { status: 503, headers: corsHeaders }
+        );
+    }
+
     try {
         const supabase = await createSupabaseServerClient();
         const { data: { user }, error: authError } = await supabase.auth.getUser();
@@ -24,7 +28,7 @@ export async function POST(request: NextRequest) {
 
         if (!jdText || typeof jdText !== "string") {
             return NextResponse.json(
-                { success: false, error: "Job description text is required" },
+                { success: false, errorCode: "INVALID_REQUEST", error: "Job description text is required" },
                 { status: 400, headers: corsHeaders }
             );
         }
@@ -145,7 +149,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         console.error("[QuickMatch] Error:", error);
         return NextResponse.json(
-            { success: false, error: "Internal server error" },
+            { success: false, errorCode: "INTERNAL_ERROR", error: "Internal server error" },
             { status: 500, headers: corsHeaders }
         );
     }

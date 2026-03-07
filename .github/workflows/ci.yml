@@ -7,7 +7,7 @@ on:
     branches: [main, master]
 
 jobs:
-  ci:
+  web:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -41,3 +41,79 @@ jobs:
           # Supabase env vars needed for static generation
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
+          NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false"
+          NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false"
+
+      - name: Security tests
+        run: npm run test:security
+
+      - name: Eval dry run
+        run: npm run eval:dry-run
+
+  launch_program:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            web/package-lock.json
+            extension/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install extension dependencies
+        run: npm ci --prefix extension
+
+      - name: Launch gate
+        run: npm run launch:gate
+        env:
+          USE_MOCK_OPENAI: "1"
+          NEXT_PUBLIC_APP_URL: "http://localhost:3000"
+          SESSION_SECRET: "test-session-secret"
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_MIXPANEL_TOKEN: "test-token"
+          NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
+          NEXT_PUBLIC_ENABLE_ERROR_REPLAY: "false"
+          NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false"
+          NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false"
+          NEXT_PUBLIC_ENABLE_EXTENSION_SYNC: "true"
+          NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "true"
+          RIYP_EXTENSION_ORIGINS: "chrome-extension://abcdefghijklmnopqrstuvwxyzabcdef"
+          STRIPE_SECRET_KEY: "sk_test_ci_dummy"
+          STRIPE_WEBHOOK_SECRET: "whsec_ci_dummy"
+          STRIPE_PRICE_ID_MONTHLY: "price_ci_monthly"
+          STRIPE_PRICE_ID_LIFETIME: "price_ci_lifetime"
+
+  extension:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: extension
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: extension/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build

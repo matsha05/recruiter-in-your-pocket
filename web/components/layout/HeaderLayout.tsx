@@ -16,22 +16,7 @@ interface HeaderLayoutProps {
  * - Logged-in users see AppHeader (app nav)
  */
 export function HeaderLayout({ children }: HeaderLayoutProps) {
-    const { user, isLoading } = useAuth();
-
-    // Loading skeleton prevents flash of wrong header
-    if (isLoading) {
-        return (
-            <div className="min-h-screen flex flex-col">
-                <div className="site-header">
-                    <div className="mx-auto flex max-w-[1120px] items-center justify-between px-6 py-5 md:px-8">
-                        <div className="h-5 w-40 animate-pulse rounded bg-slate-200/50" />
-                        <div className="h-8 w-24 animate-pulse rounded-full bg-slate-200/50" />
-                    </div>
-                </div>
-                <main className="flex-1 pt-[68px]">{children}</main>
-            </div>
-        );
-    }
+    const { user } = useAuth();
 
     // Logged-in users get the full app navigation
     if (user) {

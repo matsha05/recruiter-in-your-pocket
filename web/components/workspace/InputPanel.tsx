@@ -70,7 +70,7 @@ export default function InputPanel({
     const hasContent = fileName || resumeText.length > 0;
 
     return (
-        <div className="flex justify-center p-6 md:p-12 min-h-full relative">
+        <div data-visual-anchor="workspace-resume-empty" className="flex justify-center p-6 md:p-12 min-h-full relative">
             {/* Subtle gradient background like landing hero */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand/5 via-transparent to-transparent pointer-events-none" />
             <div className="w-full max-w-xl space-y-6 relative z-10">
@@ -132,8 +132,8 @@ export default function InputPanel({
                                 <div className="space-y-1">
                                     <p className="text-sm font-medium text-foreground">Before you run</p>
                                     <p className="text-xs text-muted-foreground">
-                                        Your upload is encrypted in transit. Anonymous runs aren&apos;t stored unless you save a report.
-                                        Signed-in runs keep report history and a short resume preview you can delete in Settings.
+                                        Your upload is encrypted in transit. Anonymous runs aren&apos;t stored automatically.
+                                        Signed-in runs keep report history and a short resume preview you can delete from Reports or Settings.
                                     </p>
                                     <p className="text-xs text-muted-foreground">
                                         <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link>

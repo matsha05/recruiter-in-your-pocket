@@ -3,17 +3,14 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Bookmark, Loader2 } from "lucide-react";
-import { toast } from "sonner";
 import { Analytics } from "@/lib/analytics";
 
 interface SaveReportPromptProps {
     isOpen: boolean;
     onClose: () => void;
     report: any;
-    onSuccess?: (email: string) => void;
+    onRequestAuth: () => Promise<void> | void;
 }
 
 /**
@@ -24,9 +21,8 @@ export default function SaveReportPrompt({
     isOpen,
     onClose,
     report,
-    onSuccess
+    onRequestAuth
 }: SaveReportPromptProps) {
-    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -34,44 +30,20 @@ export default function SaveReportPrompt({
     const score = report?.score || 0;
     const getPersonalizedMessage = () => {
         if (score >= 85) {
-            return "Great score! Save this report to share with others or compare future versions.";
+            return "Great score! Create a secure account to keep this report in your history and compare future versions.";
         } else if (score >= 70) {
-            return `Your score is ${score}. Save this report to track your improvements as you refine your resume.`;
+            return `Your score is ${score}. Create a secure account to track your improvements as you refine your resume.`;
         } else {
-            return `Your score is ${score}. Save this report and come back after making the suggested changes.`;
+            return `Your score is ${score}. Create an account to keep this report and come back after making the suggested changes.`;
         }
     };
 
     const handleSave = async () => {
-        if (!email.trim()) {
-            setError("Please enter your email");
-            return;
-        }
-
         setLoading(true);
         setError(null);
 
         try {
-            const res = await fetch("/api/reports", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email: email.trim(),
-                    report
-                })
-            });
-
-            const result = await res.json();
-
-            if (result.ok) {
-                toast.success("Report saved!", {
-                    description: "Check your email to access it anytime."
-                });
-                onSuccess?.(email.trim());
-                onClose();
-            } else {
-                setError(result.message || "Failed to save report");
-            }
+            await onRequestAuth();
         } catch (err: any) {
             setError(err.message || "Something went wrong");
         } finally {
@@ -81,7 +53,6 @@ export default function SaveReportPrompt({
 
     const handleOpenChange = (open: boolean) => {
         if (!open) {
-            setEmail("");
             setError(null);
             onClose();
         }
@@ -97,7 +68,7 @@ export default function SaveReportPrompt({
                         </div>
                     </div>
                     <DialogTitle className="font-display text-xl font-medium">
-                        Save this review
+                        Save this review securely
                     </DialogTitle>
                     <DialogDescription className="text-sm">
                         {getPersonalizedMessage()}
@@ -105,24 +76,8 @@ export default function SaveReportPrompt({
                 </DialogHeader>
 
                 <div className="space-y-4">
-                    <div>
-                        <Label htmlFor="save-email" className="text-muted-foreground text-sm mb-2 block">
-                            Your email
-                        </Label>
-                        <Input
-                            id="save-email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="you@example.com"
-                            className="bg-background border-border/60 focus:border-brand/40"
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter" && email.trim()) {
-                                    handleSave();
-                                }
-                            }}
-                            autoFocus
-                        />
+                    <div className="rounded border border-brand/20 bg-brand/5 p-3 text-left text-xs text-muted-foreground">
+                        We only save reports to verified signed-in accounts. No background account creation, no unverified email handoff.
                     </div>
 
                     {error && (
@@ -134,15 +89,15 @@ export default function SaveReportPrompt({
                     <Button
                         className="w-full"
                         onClick={handleSave}
-                        disabled={!email.trim() || loading}
+                        disabled={loading}
                     >
                         {loading ? (
                             <>
                                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                Saving...
+                                Opening secure sign-in...
                             </>
                         ) : (
-                            "Save My Review →"
+                            "Create account to save →"
                         )}
                     </Button>
 
@@ -158,7 +113,7 @@ export default function SaveReportPrompt({
                 </div>
 
                 <p className="text-center text-[10px] text-muted-foreground/50 mt-4">
-                    We&apos;ll only email you about this report. No spam.
+                    Save requires a verified account so your report stays attached to the right owner.
                 </p>
             </DialogContent>
         </Dialog>

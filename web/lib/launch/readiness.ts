@@ -1,0 +1,280 @@
+import path from "path";
+import { existsSync, readFileSync } from "fs";
+import { createSupabaseServerClient } from "../supabase/serverClient";
+import { loadPromptForMode } from "../backend/prompts";
+import { getConfiguredExtensionOrigins, launchFlags } from "./flags";
+import {
+  LAUNCH_GATE_DEFINITIONS,
+  REQUIRED_LAUNCH_DOCS,
+  REQUIRED_PUBLIC_TRUST_FILES,
+} from "./program";
+
+export type ReadinessCheckStatus = "ok" | "missing" | "disabled";
+export type LaunchGateStatus = "pass" | "warn" | "fail";
+
+export type ReadinessCheck = {
+  name: string;
+  status: ReadinessCheckStatus;
+  message: string;
+};
+
+export type LaunchGate = {
+  id: string;
+  label: string;
+  description: string;
+  status: LaunchGateStatus;
+  checks: string[];
+};
+
+export type LaunchBlocker = {
+  gateId: string;
+  gateLabel: string;
+  check: string;
+  message: string;
+};
+
+export type LaunchReadinessSnapshot = {
+  ok: boolean;
+  goNoGo: boolean;
+  generatedAt: string;
+  checks: ReadinessCheck[];
+  gates: LaunchGate[];
+  blockers: LaunchBlocker[];
+};
+
+function isAbsoluteUrl(value: string | undefined) {
+  if (!value) return false;
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function getRepoRoot() {
+  return path.resolve(process.cwd(), "..");
+}
+
+function addCheck(checks: ReadinessCheck[], name: string, status: ReadinessCheckStatus, message: string) {
+  checks.push({ name, status, message });
+}
+
+function getGoldenFixtureCount() {
+  const calibrationPath = path.join(getRepoRoot(), "tests", "fixtures", "calibration.json");
+  if (!existsSync(calibrationPath)) return 0;
+
+  try {
+    const raw = JSON.parse(readFileSync(calibrationPath, "utf8")) as {
+      fixtures?: Array<{ tier?: string }>;
+    };
+    return (raw.fixtures || []).filter((fixture) => fixture.tier === "golden").length;
+  } catch {
+    return 0;
+  }
+}
+
+function deriveGates(checks: ReadinessCheck[]): { gates: LaunchGate[]; blockers: LaunchBlocker[] } {
+  const checkMap = new Map(checks.map((check) => [check.name, check]));
+  const blockers: LaunchBlocker[] = [];
+
+  const gates = LAUNCH_GATE_DEFINITIONS.map((definition) => {
+    const gateChecks = definition.checks
+      .map((name) => checkMap.get(name))
+      .filter((check): check is ReadinessCheck => Boolean(check));
+
+    const hasMissing = gateChecks.some((check) => check.status === "missing");
+    const hasDisabled = gateChecks.some((check) => check.status === "disabled");
+
+    if (hasMissing) {
+      for (const check of gateChecks.filter((item) => item.status === "missing")) {
+        blockers.push({
+          gateId: definition.id,
+          gateLabel: definition.label,
+          check: check.name,
+          message: check.message,
+        });
+      }
+    }
+
+    return {
+      ...definition,
+      status: hasMissing ? "fail" : hasDisabled ? "warn" : "pass",
+    } satisfies LaunchGate;
+  });
+
+  return { gates, blockers };
+}
+
+export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnapshot> {
+  const checks: ReadinessCheck[] = [];
+
+  const requiredEnv = [
+    "SESSION_SECRET",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+  ];
+  const missingEnv = requiredEnv.filter((key) => !process.env[key]);
+  const mock = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
+  if (!mock && !process.env.OPENAI_API_KEY) {
+    missingEnv.push("OPENAI_API_KEY");
+  }
+
+  addCheck(
+    checks,
+    "runtime_env",
+    missingEnv.length === 0 ? "ok" : "missing",
+    missingEnv.length === 0 ? "Core runtime environment is configured." : `Missing env: ${missingEnv.join(", ")}`
+  );
+
+  addCheck(
+    checks,
+    "auth_callback",
+    isAbsoluteUrl(process.env.NEXT_PUBLIC_APP_URL) ? "ok" : "missing",
+    isAbsoluteUrl(process.env.NEXT_PUBLIC_APP_URL)
+      ? `Auth callbacks can return to ${process.env.NEXT_PUBLIC_APP_URL}.`
+      : "NEXT_PUBLIC_APP_URL must be set to an absolute app URL for auth return paths."
+  );
+
+  if (launchFlags.billingUnlock) {
+    const missingBilling = [
+      "STRIPE_SECRET_KEY",
+      "STRIPE_WEBHOOK_SECRET",
+      "STRIPE_PRICE_ID_MONTHLY",
+      "STRIPE_PRICE_ID_LIFETIME",
+    ].filter((key) => !process.env[key]);
+    addCheck(
+      checks,
+      "billing_unlock",
+      missingBilling.length === 0 ? "ok" : "missing",
+      missingBilling.length === 0 ? "Billing unlock flow is configured." : `Missing billing env: ${missingBilling.join(", ")}`
+    );
+    addCheck(
+      checks,
+      "billing_webhook",
+      process.env.STRIPE_WEBHOOK_SECRET ? "ok" : "missing",
+      process.env.STRIPE_WEBHOOK_SECRET
+        ? "Stripe webhook verification secret is configured."
+        : "STRIPE_WEBHOOK_SECRET is required for billing go/no-go."
+    );
+  } else {
+    addCheck(checks, "billing_unlock", "disabled", "Billing unlock is disabled by launch flag.");
+    addCheck(checks, "billing_webhook", "disabled", "Stripe webhook is disabled because billing is disabled.");
+  }
+
+  const extensionOrigins = getConfiguredExtensionOrigins();
+  addCheck(
+    checks,
+    "extension_sync",
+    launchFlags.extensionSync ? (extensionOrigins.length > 0 ? "ok" : "missing") : "disabled",
+    launchFlags.extensionSync
+      ? extensionOrigins.length > 0
+        ? `Extension sync is enabled with ${extensionOrigins.length} exact allowed origin(s).`
+        : "Extension sync is enabled but RIYP_EXTENSION_ORIGINS is empty."
+      : "Extension sync is disabled by launch flag."
+  );
+
+  addCheck(
+    checks,
+    "public_share_links",
+    launchFlags.publicShareLinks ? "missing" : "disabled",
+    launchFlags.publicShareLinks
+      ? "Public share links are enabled, but launch only permits them after a dedicated share model ships."
+      : "Public share links are intentionally disabled until the launch gate passes."
+  );
+
+  addCheck(
+    checks,
+    "guest_report_save",
+    launchFlags.guestReportSave ? "missing" : "disabled",
+    launchFlags.guestReportSave
+      ? "Guest report save is enabled, but launch requires a verified ownership flow first."
+      : "Guest report save is intentionally disabled pending verified ownership."
+  );
+
+  addCheck(
+    checks,
+    "analytics_configuration",
+    launchFlags.analytics
+      ? process.env.NEXT_PUBLIC_MIXPANEL_TOKEN
+        ? "ok"
+        : "missing"
+      : "disabled",
+    launchFlags.analytics
+      ? process.env.NEXT_PUBLIC_MIXPANEL_TOKEN
+        ? "Analytics is enabled with Mixpanel configured."
+        : "Analytics is enabled but NEXT_PUBLIC_MIXPANEL_TOKEN is missing."
+      : "Analytics is disabled by launch flag."
+  );
+
+  addCheck(
+    checks,
+    "error_replay",
+    launchFlags.errorReplay ? "missing" : "disabled",
+    launchFlags.errorReplay
+      ? "Error replay is enabled. Keep it disabled unless privacy review explicitly approves it."
+      : "Error replay remains disabled by default."
+  );
+
+  await loadPromptForMode("resume");
+  await loadPromptForMode("resume_ideas");
+  addCheck(checks, "prompt_assets", "ok", "Prompt assets are readable.");
+
+  const goldenFixtureCount = getGoldenFixtureCount();
+  const hasRequiredDocs = REQUIRED_LAUNCH_DOCS.every((relativePath) => existsSync(path.join(getRepoRoot(), relativePath)));
+  addCheck(
+    checks,
+    "eval_harness",
+    goldenFixtureCount >= 20 ? "ok" : "missing",
+    goldenFixtureCount >= 20
+      ? `Eval harness includes ${goldenFixtureCount} golden fixtures.`
+      : `Eval harness has only ${goldenFixtureCount} golden fixtures. Minimum launch bar is 20.`
+  );
+  addCheck(
+    checks,
+    "launch_runbooks",
+    hasRequiredDocs ? "ok" : "missing",
+    hasRequiredDocs
+      ? "Go/no-go docs, vendor review, incident runbook, rehearsal, and shipping gate docs are present."
+      : "One or more required launch runbooks are missing."
+  );
+
+  const hasTrustFiles = REQUIRED_PUBLIC_TRUST_FILES.every((relativePath) => existsSync(path.join(getRepoRoot(), relativePath)));
+  addCheck(
+    checks,
+    "public_trust_surfaces",
+    hasTrustFiles ? "ok" : "missing",
+    hasTrustFiles
+      ? "Privacy, security, methodology, status, security.txt, robots, and sitemap surfaces are present."
+      : "One or more public trust files are missing."
+  );
+
+  if (["1", "true", "yes", "on"].includes(String(process.env.SKIP_DB_READY_CHECK || "").trim().toLowerCase())) {
+    addCheck(checks, "database", "disabled", "Database readiness check skipped for local test harness.");
+  } else {
+    try {
+      const supabase = await createSupabaseServerClient();
+      const { error } = await supabase.from("profiles").select("id").limit(1);
+      addCheck(
+        checks,
+        "database",
+        error ? "missing" : "ok",
+        error ? `Database not ready: ${error.message}` : "Database connectivity check passed."
+      );
+    } catch (error: any) {
+      addCheck(checks, "database", "missing", error?.message || "Database connectivity check failed.");
+    }
+  }
+
+  const { gates, blockers } = deriveGates(checks);
+  const ok = checks.every((check) => check.status !== "missing");
+
+  return {
+    ok,
+    goNoGo: blockers.length === 0,
+    generatedAt: new Date().toISOString(),
+    checks,
+    gates,
+    blockers,
+  };
+}

@@ -1,6 +1,6 @@
 # PromptOps Shipping Gate
 
-**Last Updated:** 2025-12-28  
+**Last Updated:** 2026-03-07  
 **Status:** ENFORCED
 
 ---
@@ -22,7 +22,7 @@ Before any prompt modification can be merged or deployed:
 | Check | Command | Threshold |
 |-------|---------|-----------|
 | Smoke tier | `npm run eval:smoke` | 0 FAILs |
-| Golden tier | `npm run eval:golden` | 0 FAILs |
+| Golden tier | `npm run eval:golden -- --baseline ../tests/fixtures/baselines/v2_baseline.json` | 0 FAILs |
 | Schema validation | Automatic | All outputs must pass Zod schema |
 
 ### Should Monitor
@@ -39,12 +39,12 @@ Before any prompt modification can be merged or deployed:
 
 ### Before Modifying a Prompt
 
-1. Run baseline: `npm run eval:golden`
+1. Run baseline: `npm run eval:golden -- --baseline ../tests/fixtures/baselines/v2_baseline.json`
 2. Note current pass/fail/warn counts
 
 ### After Modifying a Prompt
 
-1. Run eval: `npm run eval:golden`
+1. Run eval: `npm run eval:golden -- --baseline ../tests/fixtures/baselines/v2_baseline.json`
 2. Compare to baseline
 3. If FAILs introduced → **DO NOT SHIP**
 4. If WARNs increase significantly → document justification
@@ -66,23 +66,34 @@ If shipping with known WARNs, add a comment to the PR:
 
 ## Baseline Reference
 
-| Metric | V2 Baseline (2025-12-28) |
-|--------|--------------------------|
-| Golden fixtures | 17 |
-| PASS | 1 |
-| WARN | 15 |
-| FAIL | 1 (E_BANNED_PHRASE) |
-| Judge score | 9.1/10 (50-sample bulk run) |
+| Metric | Current corpus / historical baseline |
+|--------|-------------------------------------|
+| Golden fixtures in current corpus | 20 |
+| Historical V2 baseline run (2025-12-28) | 17 fixtures |
+| Historical PASS | 1 |
+| Historical WARN | 15 |
+| Historical FAIL | 1 (E_BANNED_PHRASE) |
+| Historical judge score | 9.1/10 (50-sample bulk run) |
 
 Baseline files:
 - `tests/fixtures/baselines/v2_baseline.json`
 - `tests/fixtures/baselines/v2_baseline_summary.md`
 
+Before the next prompt release, cut a refreshed baseline that covers the full 20-fixture golden corpus.
+
+## Launch Tie-In
+
+Before any live launch decision:
+
+1. Run `npm run launch:gate:strict`
+2. Confirm the strict gate ran live smoke and golden evals
+3. Treat any prompt FAIL as an automatic no-go
+
 ---
 
 ## Future: CI Integration
 
-When ready, add to GitHub Actions:
+CI should continue to run the dry-run and preflight checks. Live golden evals remain part of the strict launch gate and should run in protected environments with `OPENAI_API_KEY`.
 
 ```yaml
 # .github/workflows/promptops.yml

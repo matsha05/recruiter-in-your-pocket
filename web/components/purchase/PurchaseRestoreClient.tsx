@@ -114,7 +114,7 @@ export default function PurchaseRestoreClient() {
 
   return (
     <>
-      <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36 pb-16 px-6">
+      <main className="bg-paper px-6 pb-16 pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
         <div className="mx-auto max-w-3xl space-y-6">
           {/* ── Main restore card ── */}
           <section
@@ -132,7 +132,7 @@ export default function PurchaseRestoreClient() {
             >
               {header}
             </h1>
-            <p className="mt-3 text-[15px] leading-[1.65] text-slate-500">
+            <p className="mt-3 text-sm leading-7 text-slate-500">
               Use this page if payment succeeded but access looks locked, or if you need invoices and billing controls.
             </p>
             {signedIn && (
@@ -202,7 +202,7 @@ export default function PurchaseRestoreClient() {
               className="rounded-2xl bg-white p-6"
               style={{ boxShadow: paperShadow }}
             >
-              <h2 className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">Receipts</h2>
+              <h2 className="editorial-kicker text-slate-400">Receipts</h2>
               <div className="mt-4 divide-y divide-slate-100">
                 {receipts.map((item) => (
                   <div key={item.id} className="flex flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">

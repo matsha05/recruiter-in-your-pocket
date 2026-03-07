@@ -11,16 +11,24 @@
  */
 
 const TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
+const ANALYTICS_ENABLED = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS !== "false";
 
 let mixpanelInstance: any = null;
 let initPromise: Promise<void> | null = null;
 let currentUserId: string | null = null;
 
+function debugLog(...args: unknown[]) {
+  if (process.env.NODE_ENV !== "production") {
+    console.log(...args);
+  }
+}
+
 async function initMixpanel() {
   if (typeof window === "undefined") return;
   if (mixpanelInstance) return;
+  if (!ANALYTICS_ENABLED) return;
   if (!TOKEN) {
-    console.warn("Analytics: NEXT_PUBLIC_MIXPANEL_TOKEN not set");
+    debugLog("Analytics: NEXT_PUBLIC_MIXPANEL_TOKEN not set");
     return;
   }
 
@@ -41,7 +49,7 @@ async function initMixpanel() {
       platform: "web",
     });
   } catch (e) {
-    console.warn("Analytics: Failed to load mixpanel", e);
+    debugLog("Analytics: Failed to load mixpanel", e);
   }
 }
 
@@ -66,9 +74,10 @@ function isDNT(): boolean {
  */
 export function trackEvent(name: string, props: Record<string, any> = {}) {
   if (typeof window === "undefined") return;
+  if (!ANALYTICS_ENABLED) return;
 
   if (isDNT()) {
-    console.log("[Analytics DNT]", name, props);
+    debugLog("[Analytics DNT]", name, props);
     return;
   }
 
@@ -79,7 +88,7 @@ export function trackEvent(name: string, props: Record<string, any> = {}) {
         timestamp: new Date().toISOString(),
       });
     } else {
-      console.log("[Analytics Dev]", name, props);
+      debugLog("[Analytics Dev]", name, props);
     }
   });
 }
@@ -100,6 +109,7 @@ export function identifyUser(userId: string, traits?: {
   credits_remaining?: number;
 }) {
   if (typeof window === "undefined") return;
+  if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;
 
   ensureInit().then(() => {
@@ -126,7 +136,7 @@ export function identifyUser(userId: string, traits?: {
       });
     }
 
-    console.log("[Analytics] User identified:", userId);
+    debugLog("[Analytics] User identified:", userId);
   });
 }
 
@@ -135,6 +145,7 @@ export function identifyUser(userId: string, traits?: {
  */
 export function setUserProperties(props: Record<string, any>) {
   if (typeof window === "undefined") return;
+  if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;
 
   ensureInit().then(() => {
@@ -149,6 +160,7 @@ export function setUserProperties(props: Record<string, any>) {
  */
 export function incrementUserProperty(prop: string, by: number = 1) {
   if (typeof window === "undefined") return;
+  if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;
 
   ensureInit().then(() => {
@@ -163,12 +175,13 @@ export function incrementUserProperty(prop: string, by: number = 1) {
  */
 export function resetAnalytics() {
   if (typeof window === "undefined") return;
+  if (!ANALYTICS_ENABLED) return;
 
   ensureInit().then(() => {
     if (mixpanelInstance) {
       mixpanelInstance.reset();
       currentUserId = null;
-      console.log("[Analytics] User reset");
+      debugLog("[Analytics] User reset");
     }
   });
 }
@@ -186,6 +199,7 @@ export function trackRevenue(amount: number, props?: {
   currency?: string;
 }) {
   if (typeof window === "undefined") return;
+  if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;
 
   ensureInit().then(() => {
@@ -207,7 +221,7 @@ export function trackRevenue(amount: number, props?: {
     // Increment total spend
     mixpanelInstance.people.increment("total_spend", amount);
 
-    console.log("[Analytics] Revenue tracked:", amount);
+    debugLog("[Analytics] Revenue tracked:", amount);
   });
 }
 
@@ -220,6 +234,7 @@ export function trackRevenue(amount: number, props?: {
  */
 export function setSuperProperties(props: Record<string, any>) {
   if (typeof window === "undefined") return;
+  if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;
 
   ensureInit().then(() => {

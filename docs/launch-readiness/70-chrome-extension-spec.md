@@ -1,5 +1,8 @@
 # Chrome Extension Preliminary Spec
 
+> [!WARNING]
+> This document started as a pre-build spec when the extension was still post-launch. The extension is now in launch scope, but only behind the current gates in `80-go-no-go-program.md` and the live readiness surfaces.
+
 **Agent:** Retention and Distribution Specialist  
 **Date:** 2025-12-28  
 **Purpose:** Define scope and requirements for #1 retention mechanism
@@ -8,10 +11,10 @@
 
 ## Executive Summary
 
-The Chrome extension is the **#1 retention driver** across all successful competitors (Teal, Jobscan, Simplify). While it cannot ship in the 2-week sprint, this spec defines scope so it's ready to build immediately after launch.
+The Chrome extension is the **#1 retention driver** across all successful competitors (Teal, Jobscan, Simplify). This document remains useful as scope guidance, but it is no longer the live verdict on whether the extension is ready to ship.
 
-**Target:** Week 3-4 post-launch MVP  
-**Full Release:** Q1 2026
+**Current rule:** ship the extension only if auth, origin safety, sync behavior, and Web Store trust posture all pass the active launch gates.  
+**Source of truth:** `docs/launch-readiness/80-go-no-go-program.md`
 
 ---
 

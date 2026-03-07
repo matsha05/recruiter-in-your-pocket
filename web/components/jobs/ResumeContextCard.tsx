@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { InsightSparkleIcon } from "@/components/icons";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 // =============================================================================
 // TYPES
@@ -39,6 +41,7 @@ interface ResumeContextCardProps {
 // =============================================================================
 
 export default function ResumeContextCard({ className, onResumeUpdated }: ResumeContextCardProps) {
+    const { user, isLoading: authLoading } = useAuth();
     const [profile, setProfile] = useState<ResumeProfile | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
@@ -74,10 +77,21 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
     }, []);
 
     useEffect(() => {
+        if (authLoading) return;
+        if (!user) {
+            setProfile({ hasResume: false });
+            setIsLoading(false);
+            return;
+        }
         fetchProfile();
-    }, [fetchProfile]);
+    }, [authLoading, fetchProfile, user]);
 
     const handleFile = async (file: File) => {
+        if (!user) {
+            toast.error("Sign in to save a default resume for job matching.");
+            return;
+        }
+
         if (file.size > 10 * 1024 * 1024) {
             toast.error("File too large. Max 10MB.");
             return;
@@ -303,6 +317,32 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                     }}
                     className="hidden"
                 />
+            </div>
+        );
+    }
+
+    if (!user) {
+        return (
+            <div className={cn("rounded border border-border/60 bg-card p-4", className)}>
+                <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded bg-muted/50">
+                            <Upload className="h-4 w-4 text-muted-foreground" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-foreground">Sign in to set your matching resume</p>
+                            <p className="mt-1 text-xs text-muted-foreground">
+                                We use your saved default resume to calculate match scores next to each role.
+                            </p>
+                        </div>
+                    </div>
+                    <Link
+                        href="/auth?from=jobs"
+                        className="inline-flex shrink-0 items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
+                    >
+                        Sign In
+                    </Link>
+                </div>
             </div>
         );
     }

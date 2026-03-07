@@ -215,8 +215,8 @@ export function ResumeDropzone({
                         )}
                     </div>
                     <div className="text-xs text-muted-foreground">
-                        We use your upload to generate feedback. Anonymous runs aren&apos;t stored unless you save.
-                        Signed-in runs keep report history you can delete in Settings.
+                        We use your upload to generate feedback. Anonymous runs aren&apos;t stored automatically.
+                        Signed-in runs keep report history you can delete from Reports or Settings.
                     </div>
                 </div>
             )}

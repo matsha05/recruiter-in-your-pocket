@@ -51,7 +51,7 @@ export async function getSavedJobs(): Promise<SavedJob[]> {
         throw new Error(data.error || 'Failed to fetch jobs');
     }
 
-    return data.data;
+    return Array.isArray(data.jobs) ? data.jobs : [];
 }
 
 /**
@@ -109,12 +109,12 @@ export function getJobsUrl(): string {
  * Get the login URL.
  */
 export function getLoginUrl(): string {
-    return `${API_BASE}/login?from=extension`;
+    return `${API_BASE}/auth?from=extension&next=/jobs`;
 }
 
 /**
  * Get the Google OAuth URL.
  */
 export function getGoogleAuthUrl(): string {
-    return `${API_BASE}/auth/google?from=extension`;
+    return getLoginUrl();
 }

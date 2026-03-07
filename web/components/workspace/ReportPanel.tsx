@@ -14,6 +14,7 @@ import { BottomActionRail } from "@/components/ui/bottom-action-rail";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
 import { redactReport } from "@/lib/redaction";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -55,13 +56,18 @@ export default function ReportPanel({
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
+    const shareEnabled = isLaunchFlagEnabled("publicShareLinks");
     const [shareMode, setShareMode] = useState(false);
     const [shareToast, setShareToast] = useState<{ message: string; type?: "success" | "info" } | null>(null);
 
     useEffect(() => {
+        if (!shareEnabled) {
+            setShareMode(false);
+            return;
+        }
         const shareParam = searchParams.get("share");
         setShareMode(shareParam === "1");
-    }, [searchParams]);
+    }, [searchParams, shareEnabled]);
 
     useEffect(() => {
         if (!shareToast) return;
@@ -107,7 +113,7 @@ export default function ReportPanel({
     };
 
     const handleShare = () => {
-        if (typeof window === "undefined") return;
+        if (!shareEnabled || typeof window === "undefined") return;
         const url = buildShareUrl();
         navigator.clipboard.writeText(url);
         setShareMode(true);
@@ -116,7 +122,7 @@ export default function ReportPanel({
     };
 
     const handleExitShare = () => {
-        if (typeof window === "undefined") return;
+        if (!shareEnabled || typeof window === "undefined") return;
         const url = new URL(window.location.href);
         url.searchParams.delete("share");
         window.history.replaceState({}, "", url.toString());
@@ -180,7 +186,7 @@ export default function ReportPanel({
                     >
                         {/* Document Meta / Actions Header (Inline for Mobile, handled by Layout context usually but here just content) */}
                         <div className="space-y-6">
-                            {shareMode && (
+                            {shareEnabled && shareMode && (
                                 <div className="rounded border border-premium/20 bg-premium/5 p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                         <ShieldCheck className="h-4 w-4 text-premium" />
@@ -221,7 +227,7 @@ export default function ReportPanel({
                                                 Example
                                             </span>
                                         )}
-                                        {shareMode && (
+                                        {shareEnabled && shareMode && (
                                             <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-premium/15 text-premium border border-premium/30 shrink-0">
                                                 Share View
                                             </span>
@@ -273,7 +279,7 @@ export default function ReportPanel({
                                             <span className="hidden sm:inline">{isExporting ? "Exporting..." : "PDF"}</span>
                                         </button>
                                     )}
-                                    {!shareMode && (
+                                    {shareEnabled && !shareMode && (
                                         <button
                                             onClick={handleShare}
                                             className="flex items-center gap-2 px-3 py-2 rounded text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
@@ -314,14 +320,14 @@ export default function ReportPanel({
                     </ReportLayout>
 
                     {/* Bottom Action Rail - Raycast Pattern */}
-                    <BottomActionRail
-                        sectionName={displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
-                        primaryActionLabel={shareMode ? "Exit Share View" : isSample ? "Run Your Review" : canRunAnother ? "Run Another" : "Upgrade"}
-                        onPrimaryAction={shareMode ? handleExitShare : isSample || canRunAnother ? onNewReport : onUpgrade}
-                        onExport={canExport ? handleExport : undefined}
-                        onShare={shareMode ? handleShare : handleShare}
-                        toast={shareToast}
-                    />
+                        <BottomActionRail
+                            sectionName={displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
+                            primaryActionLabel={shareMode ? "Exit Share View" : isSample ? "Run Your Review" : canRunAnother ? "Run Another" : "Upgrade"}
+                            onPrimaryAction={shareMode ? handleExitShare : isSample || canRunAnother ? onNewReport : onUpgrade}
+                            onExport={canExport ? handleExport : undefined}
+                            onShare={shareEnabled ? (shareMode ? handleShare : handleShare) : undefined}
+                            toast={shareToast}
+                        />
                 </>
             )
             }

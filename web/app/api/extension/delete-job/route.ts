@@ -1,31 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/serverClient';
-
-// Allowed origins for CORS
-const ALLOWED_ORIGINS = [
-    'chrome-extension://',
-    'http://localhost:3000',
-    'https://recruiterinyourpocket.com',
-    'https://www.recruiterinyourpocket.com',
-];
-
-function getCorsHeaders(req: NextRequest) {
-    const origin = req.headers.get('origin') || '';
-    const isAllowed = ALLOWED_ORIGINS.some(allowed =>
-        origin.startsWith(allowed) || allowed.startsWith('chrome-extension://')
-    );
-    const allowedOrigin = isAllowed ? origin : '';
-
-    return {
-        'Access-Control-Allow-Origin': allowedOrigin,
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
-}
+import { buildExtensionCorsHeaders } from '@/lib/extension/cors';
+import { isLaunchFlagEnabled } from '@/lib/launch/flags';
 
 export async function OPTIONS(req: NextRequest) {
-    return NextResponse.json({}, { headers: getCorsHeaders(req) });
+    return NextResponse.json({}, { headers: buildExtensionCorsHeaders(req, ['DELETE', 'OPTIONS']) });
 }
 
 /**
@@ -34,7 +13,14 @@ export async function OPTIONS(req: NextRequest) {
  * Deletes a saved job. Supports both API jobs and local-only jobs.
  */
 export async function DELETE(req: NextRequest) {
-    const corsHeaders = getCorsHeaders(req);
+    const corsHeaders = buildExtensionCorsHeaders(req, ['DELETE', 'OPTIONS']);
+
+    if (!isLaunchFlagEnabled('extensionSync')) {
+        return NextResponse.json(
+            { success: false, errorCode: 'FEATURE_DISABLED', error: 'Extension sync is temporarily unavailable.' },
+            { status: 503, headers: corsHeaders }
+        );
+    }
 
     try {
         const { searchParams } = new URL(req.url);
@@ -42,7 +28,7 @@ export async function DELETE(req: NextRequest) {
 
         if (!jobId) {
             return NextResponse.json(
-                { success: false, error: 'Missing job ID' },
+                { success: false, errorCode: 'MISSING_ID', error: 'Missing job ID' },
                 { status: 400, headers: corsHeaders }
             );
         }
@@ -70,7 +56,7 @@ export async function DELETE(req: NextRequest) {
         if (deleteError) {
             console.error('[Extension] Delete job error:', deleteError);
             return NextResponse.json(
-                { success: false, error: 'Failed to delete job' },
+                { success: false, errorCode: 'DELETE_FAILED', error: 'Failed to delete job' },
                 { status: 500, headers: corsHeaders }
             );
         }
@@ -83,7 +69,7 @@ export async function DELETE(req: NextRequest) {
     } catch (error) {
         console.error('[Extension] Delete job error:', error);
         return NextResponse.json(
-            { success: false, error: 'Internal server error' },
+            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Internal server error' },
             { status: 500, headers: corsHeaders }
         );
     }

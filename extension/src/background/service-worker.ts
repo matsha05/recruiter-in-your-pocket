@@ -81,9 +81,12 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
                 const mergedJobs = mergeJobs(apiJobs, localJobs);
 
                 return { success: true, data: mergedJobs };
-            } catch {
+            } catch (error: any) {
                 // Fallback to local storage
                 const localJobs = await getLocalJobs();
+                if (error?.message?.includes('Not authenticated')) {
+                    return { success: true, data: localJobs };
+                }
                 return { success: true, data: localJobs };
             }
         }

@@ -20,6 +20,7 @@ import { useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 export default function WorkspaceClient() {
     const router = useRouter();
@@ -143,8 +144,31 @@ export default function WorkspaceClient() {
         setLastLinkedInPdf
     });
 
+    const saveReportForCurrentUser = useCallback(async (reportToSave: any) => {
+        if (!reportToSave) return;
+
+        const res = await fetch("/api/reports", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ report: reportToSave })
+        });
+
+        const result = await res.json();
+        if (!result.ok) {
+            throw new Error(result.message || "Failed to save report");
+        }
+
+        toast.success("Report saved to your history");
+        setPendingReportForSave(null);
+        setIsSavePromptOpen(false);
+    }, []);
+
+    const handleRequestSaveAuth = useCallback(() => {
+        setIsSavePromptOpen(false);
+        setIsAuthOpen(true);
+    }, []);
+
     const handleFileSelect = useCallback(async (file: File) => {
-        console.log("[WorkspaceClient] handleFileSelect called with:", file.name, file.type);
         try {
             Analytics.track("workspace_upload_started", {
                 source: "workspace",
@@ -156,7 +180,6 @@ export default function WorkspaceClient() {
             formData.append("file", file);
 
             const result = await parseResume(formData);
-            console.log("[WorkspaceClient] parseResume result:", result);
             if (result.ok && result.text) {
                 setResumeText(result.text);
                 Analytics.track("workspace_upload_succeeded", {
@@ -179,7 +202,6 @@ export default function WorkspaceClient() {
     }, []);
 
     const handleRun = useCallback(async () => {
-        console.log("[WorkspaceClient] handleRun called, resumeText length:", resumeText.length);
         if (!resumeText.trim()) return;
         const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
 
@@ -201,7 +223,6 @@ export default function WorkspaceClient() {
         });
 
         try {
-            console.log("[WorkspaceClient] Calling streamResumeFeedback...");
             const streamStartedAt = Date.now();
             let firstMeaningfulTracked = false;
 
@@ -231,8 +252,6 @@ export default function WorkspaceClient() {
                 "resume",
                 { signal: controller.signal }
             );
-            console.log("[WorkspaceClient] streamResumeFeedback result:", result);
-
             if (result.aborted) {
                 setIsLoading(false);
                 setIsStreaming(false);
@@ -241,7 +260,6 @@ export default function WorkspaceClient() {
             }
 
             if (result.ok && result.report) {
-                console.log("[WorkspaceClient] Setting final report:", result.report);
                 setReport(result.report);
                 setIsStreaming(false);
                 setIsLoading(false);
@@ -255,7 +273,7 @@ export default function WorkspaceClient() {
                 });
 
                 // Show save prompt for guest users after report is generated
-                if (!user && result.report) {
+                if (!user && result.report && !isLaunchFlagEnabled("guestReportSave")) {
                     setPendingReportForSave(result.report);
                     setTimeout(() => {
                         Analytics.track('save_prompt_viewed', { score: result.report?.score || 0 });
@@ -431,7 +449,12 @@ export default function WorkspaceClient() {
 
     return (
         <>
-            <section aria-label="Workspace" className="h-full flex flex-col bg-body overflow-hidden">
+            <section
+                aria-label="Workspace"
+                data-visual-anchor="workspace-shell"
+                data-workspace-mode={reviewMode}
+                className="h-full flex flex-col bg-body overflow-hidden"
+            >
                 <h1 className="sr-only">Resume Workspace — Analyze Your Resume</h1>
 
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
@@ -528,6 +551,13 @@ export default function WorkspaceClient() {
                 context="default"
                 onSuccess={async () => {
                     await refreshUser();
+                    if (pendingReportForSave) {
+                        try {
+                            await saveReportForCurrentUser(pendingReportForSave);
+                        } catch (error: any) {
+                            toast.error(error?.message || "Failed to save report");
+                        }
+                    }
                     setIsAuthOpen(false);
                 }}
             />
@@ -537,10 +567,7 @@ export default function WorkspaceClient() {
                 isOpen={isSavePromptOpen}
                 onClose={() => setIsSavePromptOpen(false)}
                 report={pendingReportForSave}
-                onSuccess={(email) => {
-                    // Could refresh user or show sign-in prompt
-                    toast.success("Report saved! Check your email for access.");
-                }}
+                onRequestAuth={handleRequestSaveAuth}
             />
         </>
     );

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, BarChart3, PenSquare, Target } from "lucide-react";
+import { AlertTriangle, BarChart3, PenSquare, Target, ShieldCheck } from "lucide-react";
 import { LEGAL_LAST_UPDATED } from "@/lib/legal/dataHandling";
 import { LegalShell } from "@/components/legal/LegalShell";
 
@@ -86,6 +86,18 @@ export default function MethodologyClient() {
                     </h3>
                     <p className="text-[14px] leading-[1.65] text-slate-500">
                         Rewrites focus on real results and tighter language — not inflated claims or generic filler.
+                    </p>
+                </div>
+                <div
+                    className="rounded-2xl bg-white p-6"
+                    style={{ boxShadow: paperShadow }}
+                >
+                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
+                        <ShieldCheck className="h-4 w-4 text-slate-400" />
+                        How we handle uncertainty
+                    </h3>
+                    <p className="text-[14px] leading-[1.65] text-slate-500">
+                        We surface confidence directly in evidence-heavy sections so weaker recommendations are framed honestly instead of sounding certain when the input is thin.
                     </p>
                 </div>
             </section>

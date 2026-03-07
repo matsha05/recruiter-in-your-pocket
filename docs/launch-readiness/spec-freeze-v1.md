@@ -1,9 +1,12 @@
 # RIYP Spec Freeze v1.0
 
+> [!WARNING]
+> Historical planning snapshot only. This file is no longer the source of truth for launch verdicts or sign-off. Use `docs/launch-readiness/80-go-no-go-program.md` and the live `/launch` + `/api/ready` surfaces instead.
+
 **Version:** 1.0  
 **Date:** 2025-12-28  
 **Timeline:** 3 Months to Launch (End of March 2026)  
-**Status:** LOCKED
+**Status:** Historical baseline
 
 ---
 
@@ -36,7 +39,7 @@ Active job seeker with 3-10 years experience, applying to competitive roles, ske
 | **P0 Bundle 4: Payment Correctness** | RT-013, RT-014 | Webhook replay does not double-credit or double-charge. Unlock state is consistent under retries. Event log proves idempotency. |
 | **P0 Bundle 5: Timeout and Billing Integrity** | RT-017, RT-023 | Timeouts degrade gracefully with clear UI states. Credits are not consumed on timeout or schema-failing completion. Streaming never leaves UI stuck. |
 
-**Gate A Sign-off:** [x] Pass / [ ] Fail — Owner: Matt Date: 2025-12-31
+**Gate A Sign-off:** Historical only. Current verdict lives in `80-go-no-go-program.md`.
 
 ---
 
@@ -50,7 +53,7 @@ Active job seeker with 3-10 years experience, applying to competitive roles, ske
 | Output contract validation | Zod schema + completeness checks (all arrays populated, score 0-100) |
 | Shipping gate exists | Documented rule: "prompt changes cannot ship unless eval thresholds pass" |
 
-**Gate B Sign-off:** [x] Pass / [ ] Fail — Owner: Matt Date: 2025-12-31
+**Gate B Sign-off:** Historical only. Current verdict lives in `80-go-no-go-program.md`.
 
 ---
 
@@ -72,7 +75,7 @@ If Chrome Web Store approval is delayed:
 4. Feedback collection: In-app form + email survey
 5. Duration: Until Web Store approval (max 2 weeks)
 
-**Gate C Sign-off:** [x] Ready / [ ] Fail — Owner: Matt Date: 2025-12-31
+**Gate C Sign-off:** Historical only. Current verdict lives in `80-go-no-go-program.md`.
 
 **Documentation:**
 - Permissions: [extension-permissions.md](./extension-permissions.md)
@@ -357,4 +360,3 @@ See [40-promptops-quality-spec.md](file:///Users/matsha05/Desktop/dev/recruiter-
 
 *Spec Freeze v1.0 — Locked 2025-12-28*  
 *Next review: End of Month 1*
-

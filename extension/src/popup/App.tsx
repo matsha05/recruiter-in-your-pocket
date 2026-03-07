@@ -14,6 +14,7 @@ export default function App() {
     const [state, setState] = useState<PopupState>('loading');
     const [jobs, setJobs] = useState<SavedJob[]>([]);
     const [user, setUser] = useState<AuthUser | null>(null);
+    const [authenticated, setAuthenticated] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [deletedJob, setDeletedJob] = useState<SavedJob | null>(null);
 
@@ -32,11 +33,15 @@ export default function App() {
 
             // Check auth status
             const authResponse = await chrome.runtime.sendMessage({ type: 'CHECK_AUTH' });
-            if (authResponse.success && authResponse.data?.user) {
-                setUser(authResponse.data.user);
+            const isAuthenticated = Boolean(authResponse.success && authResponse.data?.authenticated);
+            if (authResponse.success) {
+                setAuthenticated(isAuthenticated);
+                if (authResponse.data?.user) {
+                    setUser(authResponse.data.user);
+                }
             }
 
-            await loadJobs();
+            await loadJobs(isAuthenticated);
         } catch (err) {
             console.error('[RIYP] Init error:', err);
             setError('Failed to initialize');
@@ -44,7 +49,7 @@ export default function App() {
         }
     }
 
-    async function loadJobs() {
+    async function loadJobs(authenticatedOverride = authenticated) {
         try {
             setState('loading');
             const response = await chrome.runtime.sendMessage({ type: 'GET_JOBS' });
@@ -52,9 +57,15 @@ export default function App() {
             if (response.success) {
                 const savedJobs = response.data as SavedJob[];
                 setJobs(savedJobs);
-                setState(savedJobs.length > 0 ? 'jobs' : 'empty');
+                if (savedJobs.length > 0) {
+                    setState('jobs');
+                } else if (!authenticatedOverride) {
+                    setState('unauthenticated');
+                } else {
+                    setState('empty');
+                }
             } else {
-                if (response.error?.includes('Not authenticated')) {
+                if (response.error?.includes('Not authenticated') || response.error?.includes('AUTH_REQUIRED')) {
                     setState('unauthenticated');
                 } else {
                     throw new Error(response.error || 'Failed to load jobs');
@@ -72,7 +83,7 @@ export default function App() {
     }
 
     function handleLogin() {
-        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/login?from=extension' } });
+        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/auth?from=extension&next=/jobs' } });
     }
 
     function handleJobClick(job: SavedJob) {
@@ -91,11 +102,13 @@ export default function App() {
     const handleDeleteJob = useCallback(async (job: SavedJob) => {
         // Optimistically remove from UI
         setJobs(prev => prev.filter(j => j.id !== job.id));
-        setDeletedJob(job);
+        if (!authenticated) {
+            setDeletedJob(job);
+        }
 
         // If no jobs left, show empty state
         if (jobs.length <= 1) {
-            setState('empty');
+            setState(authenticated ? 'empty' : 'unauthenticated');
         }
 
         // Delete in background
@@ -108,7 +121,7 @@ export default function App() {
             setDeletedJob(null);
             setState('jobs');
         }
-    }, [jobs.length]);
+    }, [authenticated, jobs.length]);
 
     const handleUndo = useCallback(async () => {
         if (!deletedJob) return;
@@ -133,6 +146,10 @@ export default function App() {
     async function handleOnboardingComplete() {
         await chrome.storage.local.set({ riyp_onboarding_complete: true });
         await loadJobs();
+    }
+
+    function handleRetryLoadJobs() {
+        void loadJobs();
     }
 
     return (
@@ -180,7 +197,7 @@ export default function App() {
                         </div>
                         <div className="empty-state-title">Something went wrong</div>
                         <div className="empty-state-description">{error}</div>
-                        <button className="btn btn-secondary" onClick={loadJobs}>
+                        <button className="btn btn-secondary" onClick={handleRetryLoadJobs}>
                             Try Again
                         </button>
                     </div>
@@ -194,7 +211,7 @@ export default function App() {
                 </button>
             </div>
 
-            {deletedJob && (
+            {deletedJob && !authenticated && (
                 <UndoToast
                     message={`Removed "${deletedJob.title.slice(0, 30)}..."`}
                     onUndo={handleUndo}

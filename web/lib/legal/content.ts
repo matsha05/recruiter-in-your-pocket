@@ -107,6 +107,8 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             { type: "text", value: "Verify details in " },
             { type: "link", label: "Security", href: "/security" },
             { type: "text", value: " · " },
+            { type: "link", label: "Status", href: "/status" },
+            { type: "text", value: " · " },
             { type: "link", label: "Privacy", href: "/privacy" },
             { type: "text", value: " · " },
             { type: "link", label: "Terms", href: "/terms" },
@@ -131,7 +133,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "This policy covers resume and LinkedIn inputs, account info, usage data, and billing events processed by the web app.",
+              value: "This policy covers resume and LinkedIn inputs, account info, usage data, extension capture data, analytics metadata, and billing events processed by the web app.",
             },
           ],
         ],
@@ -149,7 +151,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "OpenAI generates reviews, Supabase handles auth and database storage, Stripe handles billing, and Vercel provides hosting. Stripe manages card data on their systems — we never have access to it.",
+              value: "OpenAI generates reviews, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Stripe manages card data on their systems — we never have access to it.",
             },
           ],
         ],
@@ -161,7 +163,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "You can delete reports, export your data, and delete your account from Settings. We don't sell your data.",
+              value: "You can delete reports, export your data, and delete your account from Settings. We don't sell your data, and anonymous history is not auto-attached to an account.",
             },
           ],
         ],
@@ -173,7 +175,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "Questions about this policy can be sent to support@recruiterinyourpocket.com.",
+              value: "Questions about this policy can be sent to support@recruiterinyourpocket.com. Security disclosures should follow the instructions on /security or /.well-known/security.txt.",
             },
           ],
         ],

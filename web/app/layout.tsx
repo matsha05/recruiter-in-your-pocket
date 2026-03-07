@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 
 import { Toaster } from "@/components/ui/sonner";
 import { CommandPalette } from "@/components/CommandPalette";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 const sentient = localFont({
   src: [
     {
@@ -101,7 +102,7 @@ export default function RootLayout({
           {children}
           <CommandPalette />
           <Toaster />
-          <Analytics />
+          {isLaunchFlagEnabled("analytics") ? <Analytics /> : null}
         </AppProviders>
       </body>
     </html>

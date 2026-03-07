@@ -65,6 +65,54 @@
             ]
         },
         {
+            "id": "golden_talent_leader_high_bar_matt_shaw_current_1",
+            "path": "smoke/talent_leader_high_bar_matt_shaw_current_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 84,
+                "max": 92
+            },
+            "expected_band": "high_bar",
+            "tags": [
+                "hr",
+                "leader",
+                "anchor",
+                "golden"
+            ]
+        },
+        {
+            "id": "golden_finance_controller_strong_foundation_1",
+            "path": "smoke/finance_controller_strong_foundation_suzanne_allman_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 80,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "finance",
+                "controller",
+                "anchor",
+                "golden"
+            ]
+        },
+        {
+            "id": "golden_sales_strong_foundation_mark_sherrod_1",
+            "path": "smoke/sales_strong_foundation_mark_sherrod_1.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 80,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "sales",
+                "ae",
+                "anchor",
+                "golden"
+            ]
+        },
+        {
             "id": "anchor_elite_ml_staff_1",
             "path": "golden/anchor_elite_ml_staff_1.txt",
             "tier": "golden",

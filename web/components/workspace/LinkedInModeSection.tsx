@@ -61,7 +61,7 @@ export default function LinkedInModeSection({
   if (!linkedInReport) {
     return (
       <div className="h-full overflow-y-auto bg-muted/10">
-        <div className="flex justify-center p-6 md:p-12 min-h-full">
+        <div data-visual-anchor="workspace-linkedin-empty" className="flex justify-center p-6 md:p-12 min-h-full">
           <div className="w-full max-w-xl space-y-6">
             <div className="text-center space-y-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <h1 className="font-display text-4xl md:text-5xl text-foreground tracking-tight">

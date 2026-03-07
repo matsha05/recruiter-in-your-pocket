@@ -50,7 +50,11 @@ export function MobileNav() {
                                 icon={item.icon}
                                 label={item.label}
                                 setOpen={setOpen}
-                                active={pathname === item.href || pathname?.startsWith(`${item.href}/`)}
+                                active={
+                                    item.href === "/workspace"
+                                        ? pathname === "/workspace" || pathname?.startsWith("/workspace/") || pathname === "/reports" || pathname?.startsWith("/reports/")
+                                        : pathname === item.href || pathname?.startsWith(`${item.href}/`)
+                                }
                             />
                         ))}
 

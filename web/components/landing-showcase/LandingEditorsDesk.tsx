@@ -48,11 +48,11 @@ function Reveal({
         <motion.div
             ref={ref}
             className={className}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
                 duration: 0.8,
-                delay,
+                delay: inView ? delay : 0,
                 ease: [0.22, 1, 0.36, 1],
             }}
         >
@@ -285,7 +285,7 @@ function SubscoreRow() {
 export function LandingEditorsDesk() {
 
     return (
-        <div className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15">
+        <div data-visual-anchor="landing-home" className="landing-page bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15">
 
             {/* ═══════════════════════════════════════════════════════
                 SECTION 1 — HERO
@@ -295,7 +295,7 @@ export function LandingEditorsDesk() {
             <section className="relative z-[2] px-6 pt-36 pb-6 md:px-8 md:pt-44 md:pb-10">
                 <div className="mx-auto max-w-[1120px]">
                     <motion.div
-                        initial={{ opacity: 0 }}
+                        initial={false}
                         animate={{ opacity: 1 }}
                         transition={{
                             duration: 1.2,
@@ -303,6 +303,7 @@ export function LandingEditorsDesk() {
                         }}
                     >
                         <h1
+                            id="landing-home-title"
                             className="font-display max-w-[900px] text-slate-900"
                             style={{
                                 fontSize: "clamp(3rem, 7.5vw, 6.5rem)",
@@ -318,7 +319,7 @@ export function LandingEditorsDesk() {
 
                     <motion.p
                         className="mt-7 max-w-[440px] text-[18px] leading-[1.7] text-slate-500 md:mt-8 md:text-[19px]"
-                        initial={{ opacity: 0 }}
+                        initial={false}
                         animate={{ opacity: 1 }}
                         transition={{
                             duration: 1,
@@ -333,7 +334,7 @@ export function LandingEditorsDesk() {
 
                     <motion.div
                         className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center md:mt-12"
-                        initial={{ opacity: 0 }}
+                        initial={false}
                         animate={{ opacity: 1 }}
                         transition={{
                             duration: 1,
@@ -356,7 +357,7 @@ export function LandingEditorsDesk() {
                     {/* Fix #18: Social proof pill — balances hero right side */}
                     <motion.div
                         className="mt-10 flex items-center gap-3 md:mt-14"
-                        initial={{ opacity: 0 }}
+                        initial={false}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                     >

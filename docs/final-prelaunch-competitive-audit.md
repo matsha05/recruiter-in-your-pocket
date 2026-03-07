@@ -2,8 +2,8 @@
 **December 26, 2025 — Final Pass Before Go-Live**
 
 > [!IMPORTANT]
-> **FINAL VERDICT: GO ✅ — Success Probability: 8.5/10**
-> RIYP is positioned to carve a defensible niche. The "Recruiter Lens" wedge is unique in a commoditized market. The credit-based pricing ($9/$29) disrupts subscription fatigue. **No critical blockers remain.**
+> Historical market thesis only. This document is not a live launch verdict.
+> Current launch decisions now live in `docs/launch-readiness/80-go-no-go-program.md`, `npm run launch:gate:strict`, and the `/launch` readiness board.
 
 ---
 

@@ -124,14 +124,14 @@ export function ResearchArticle({
                 />
             )}
 
-            <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36">
+            <main className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
 
                 {/* ── Header ── */}
                 <section className="px-6 md:px-8">
                     <div className="mx-auto max-w-3xl pb-8">
                         <Link
                             href="/research"
-                            className="group inline-flex items-center gap-1.5 mb-10 text-[13px] text-slate-400 hover:text-slate-600 transition-colors"
+                            className="group mb-10 inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-600"
                         >
                             <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
                             Research
@@ -139,20 +139,20 @@ export function ResearchArticle({
 
                         {/* Compact meta line: tag · read time · date */}
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-5">
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.08em]" style={{ color: "#0D7377" }}>
+                            <span className="editorial-kicker editorial-kicker-strong tracking-wide">
                                 {header.tag}
                             </span>
                             {(header.readTime || header.lastUpdated) && (
                                 <>
                                     <span className="text-slate-200">·</span>
                                     {header.readTime && (
-                                        <span className="text-[12px] text-slate-400">{header.readTime}</span>
+                                        <span className="text-xs text-slate-400">{header.readTime}</span>
                                     )}
                                     {header.readTime && header.lastUpdated && (
                                         <span className="text-slate-200">·</span>
                                     )}
                                     {header.lastUpdated && (
-                                        <span className="text-[12px] text-slate-400">{compressDate(header.lastUpdated)}</span>
+                                        <span className="text-xs text-slate-400">{compressDate(header.lastUpdated)}</span>
                                     )}
                                 </>
                             )}
@@ -169,7 +169,7 @@ export function ResearchArticle({
                         >
                             {header.title}
                         </h1>
-                        <p className="mt-4 max-w-xl text-[17px] leading-[1.7] text-slate-500">
+                        <p className="mt-4 max-w-xl text-base leading-7 text-slate-500">
                             {header.description}
                         </p>
                     </div>
@@ -193,10 +193,10 @@ export function ResearchArticle({
                             >
                                 {keyFinding.stat}
                             </p>
-                            <p className="mt-3 max-w-xl text-[15px] leading-[1.65] text-slate-500">
+                            <p className="mt-3 max-w-xl text-sm leading-7 text-slate-500">
                                 {keyFinding.statDescription}
                             </p>
-                            <p className="mt-3 text-[12px] text-slate-400">
+                            <p className="mt-3 text-xs text-slate-400">
                                 {keyFinding.source.href ? (
                                     <a
                                         href={keyFinding.source.href}
@@ -231,7 +231,7 @@ export function ResearchArticle({
                         )}
 
                         {/* ── Article body ── */}
-                        <article className="prose prose-slate max-w-none prose-headings:font-display prose-headings:font-normal prose-headings:tracking-tight prose-p:text-base prose-p:leading-[1.7] prose-p:text-slate-500 prose-strong:font-medium prose-strong:text-slate-700 prose-h2:text-2xl prose-h2:text-slate-900 prose-h2:mt-10 prose-h2:mb-3 prose-li:my-1 prose-li:text-slate-500">
+                        <article className="prose prose-slate max-w-none prose-headings:font-display prose-headings:font-normal prose-headings:tracking-tight prose-p:text-base prose-p:leading-7 prose-p:text-slate-500 prose-strong:font-medium prose-strong:text-slate-700 prose-h2:text-2xl prose-h2:text-slate-900 prose-h2:mt-10 prose-h2:mb-3 prose-li:my-1 prose-li:text-slate-500">
                             {children}
                         </article>
 
@@ -247,8 +247,8 @@ export function ResearchArticle({
                                 <div className="border-t border-slate-100 divide-y divide-slate-100">
                                     {faq.map((item) => (
                                         <div key={item.question} className="py-4">
-                                            <h3 className="text-[15px] font-medium text-slate-700 mb-1.5">{item.question}</h3>
-                                            <p className="text-[14px] text-slate-500 leading-relaxed">{item.answer}</p>
+                                            <h3 className="mb-1.5 text-sm font-medium text-slate-700">{item.question}</h3>
+                                            <p className="text-sm leading-relaxed text-slate-500">{item.answer}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -273,12 +273,12 @@ export function ResearchArticle({
                             <div className="space-y-3">
                                 {productTieIn.items.map((item, i) => (
                                     <div key={i} className="flex gap-3.5 items-start">
-                                        <span className="font-mono text-[10px] text-slate-300 mt-0.5 shrink-0">
+                                        <span className="mt-0.5 shrink-0 font-mono text-xs text-slate-300">
                                             {String(i + 1).padStart(2, "0")}
                                         </span>
                                         <div>
-                                            <h4 className="font-medium text-slate-700 text-[14px] mb-0.5">{item.title}</h4>
-                                            <p className="text-[13px] text-slate-500 leading-relaxed">{item.description}</p>
+                                            <h4 className="mb-0.5 text-sm font-medium text-slate-700">{item.title}</h4>
+                                            <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -303,11 +303,11 @@ export function ResearchArticle({
                                                 href={article.href}
                                                 className="group flex items-baseline justify-between py-2.5"
                                             >
-                                                <span className="text-[14px] text-slate-600 group-hover:text-slate-900 transition-colors">
+                                                <span className="text-sm text-slate-600 transition-colors group-hover:text-slate-900">
                                                     {article.title}
                                                 </span>
                                                 {article.tag && (
-                                                    <span className="text-[10px] uppercase tracking-[0.08em] text-slate-300">
+                                                    <span className="editorial-kicker tracking-wide text-slate-300">
                                                         {article.tag}
                                                     </span>
                                                 )}
@@ -318,8 +318,8 @@ export function ResearchArticle({
 
                                 {sources && sources.length > 0 && (
                                     <div className="pt-2">
-                                        <p className="text-[11px] font-medium uppercase tracking-[0.06em] text-slate-300 mb-3">Sources</p>
-                                        <ol className="list-decimal pl-5 space-y-1.5 text-[12px] text-slate-400 leading-relaxed">
+                                        <p className="mb-3 text-xs font-medium uppercase tracking-wide text-slate-300">Sources</p>
+                                        <ol className="list-decimal space-y-1.5 pl-5 text-xs leading-relaxed text-slate-400">
                                             {sources.map((source, index) => {
                                                 const sourceId = source.id ?? `source-${index + 1}`;
                                                 const sourceLabel = [
@@ -360,7 +360,7 @@ export function ResearchArticle({
                 {/* ── CTA — dark strip ── */}
                 <section
                     className="px-6 py-12 md:px-8 md:py-16"
-                    style={{ backgroundColor: "#0F172A" }}
+                    style={{ backgroundColor: "hsl(var(--surface-inverted))" }}
                 >
                     <div className="mx-auto max-w-3xl flex flex-col items-center justify-center gap-5 text-center">
                         <h3
@@ -391,8 +391,8 @@ export function ResearchArticle({
 export function ArticleInsight({ title, desc }: { title: string, desc: ReactNode }) {
     return (
         <div className="border-l-2 border-slate-200 pl-4 py-2">
-            <div className="text-slate-700 font-medium text-[14px] mb-1">{title}</div>
-            <p className="text-[13px] text-slate-500 leading-relaxed">{desc}</p>
+            <div className="mb-1 text-sm font-medium text-slate-700">{title}</div>
+            <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
         </div>
     );
 }
@@ -402,7 +402,7 @@ export function Citation({ id, children }: { id: string; children: ReactNode }) 
         <sup className="align-super">
             <a
                 href={`#${id}`}
-                className="text-[10px] font-mono text-slate-400 hover:text-slate-600"
+                className="font-mono text-xs text-slate-400 hover:text-slate-600"
             >
                 {children}
             </a>

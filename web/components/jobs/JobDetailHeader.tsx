@@ -48,8 +48,11 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
   };
 
   return (
-    <div className="flex items-start justify-between gap-4">
+    <div className="app-card app-card-highlight flex flex-col gap-5 p-5 md:flex-row md:items-start md:justify-between md:p-6">
       <div className="space-y-2">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          Saved role
+        </p>
         <div className="flex items-center gap-3">
           <h1 className="text-2xl font-display font-semibold tracking-tight text-foreground">
             {job.title}
@@ -110,15 +113,17 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
         </div>
       </div>
 
-      <a
-        href={job.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded border border-border hover:bg-muted transition-colors"
-      >
-        <ExternalLink className="h-4 w-4" />
-        View Original
-      </a>
+      <div className="flex shrink-0 items-start">
+        <a
+          href={job.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
+        >
+          <ExternalLink className="h-4 w-4" />
+          View Original
+        </a>
+      </div>
     </div>
   );
 }

@@ -98,7 +98,7 @@ export function UserNav({
                         </DropdownMenuItem>
                     ) : (
                         <DropdownMenuItem asChild>
-                            <Link href="/workspace" className="w-full">
+                            <Link href="/reports" className="w-full">
                                 <Files className="mr-2 h-4 w-4" />
                                 My Reports
                             </Link>

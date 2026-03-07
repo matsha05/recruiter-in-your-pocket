@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
@@ -28,6 +29,10 @@ async function resolveCustomerIdByEmail(email: string): Promise<string | null> {
 
 export async function POST(req: Request) {
   try {
+    if (!isLaunchFlagEnabled("billingUnlock")) {
+      return NextResponse.json({ ok: false, message: "Billing portal is temporarily unavailable." }, { status: 503 });
+    }
+
     if (!stripe) {
       return NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
     }

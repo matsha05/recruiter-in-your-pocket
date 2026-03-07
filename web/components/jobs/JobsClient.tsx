@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import {
@@ -14,6 +15,8 @@ import {
 } from 'lucide-react';
 import ResumeContextCard from './ResumeContextCard';
 import ConfirmModal from '@/components/shared/ConfirmModal';
+import { AppPageIntro } from '@/components/layout/AppPageIntro';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 // =============================================================================
 // TYPES
@@ -53,6 +56,7 @@ const STATUS_CONFIG: Record<JobStatus, { label: string; color: string; bgColor: 
 
 export default function JobsClient() {
     const router = useRouter();
+    const { user, isLoading: authLoading } = useAuth();
     const [jobs, setJobs] = useState<Job[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -66,6 +70,13 @@ export default function JobsClient() {
 
     // Fetch jobs on mount
     useEffect(() => {
+        if (authLoading) return;
+        if (!user) {
+            setJobs([]);
+            setLoading(false);
+            return;
+        }
+
         async function fetchJobs() {
             try {
                 const res = await fetch('/api/extension/saved-jobs');
@@ -93,7 +104,7 @@ export default function JobsClient() {
             }
         }
         fetchJobs();
-    }, [refreshKey]);
+    }, [authLoading, refreshKey, user]);
 
     // Filter jobs
     const filteredJobs = jobs.filter(job => {
@@ -148,23 +159,33 @@ export default function JobsClient() {
         setRefreshKey(k => k + 1);
     }, []);
 
+    const activeJobs = jobs.filter((job) => job.status !== 'archived').length;
+    const trackedSources = new Set(jobs.map((job) => job.source)).size;
+
     return (
-        <div className="space-y-6">
-            {/* Header */}
-            <div className="space-y-1">
-                <h1 className="text-2xl font-display font-semibold tracking-tight text-foreground">
-                    Jobs
-                </h1>
-                <p className="text-muted-foreground">
-                    Track and compare jobs with recruiter-grade match insights.
-                </p>
-            </div>
+        <div data-visual-anchor="jobs-page" className="space-y-6">
+            <AppPageIntro
+                anchor="jobs-page"
+                eyebrow="Opportunity tracker"
+                title="Jobs"
+                description="Track saved roles, compare fit, and keep the recruiter-grade context next to every application."
+                meta={
+                    <>
+                        <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                            {activeJobs} active role{activeJobs === 1 ? "" : "s"}
+                        </span>
+                        <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                            {trackedSources || 1} source{trackedSources === 1 ? "" : "s"}
+                        </span>
+                    </>
+                }
+            />
 
             {/* Resume Context Card */}
             <ResumeContextCard onResumeUpdated={handleResumeUpdated} />
 
             {/* Toolbar */}
-            <div className="flex items-center gap-3">
+            <div className="app-card flex flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-5">
                 {/* Search */}
                 <div className="relative flex-1 max-w-md">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -178,28 +199,34 @@ export default function JobsClient() {
                 </div>
 
                 {/* Status Filter */}
-                <select
-                    value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value as JobStatus | 'all')}
-                    className="h-9 px-3 rounded border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
-                >
-                    <option value="all">All Status</option>
-                    <option value="saved">Saved</option>
-                    <option value="interested">Interested</option>
-                    <option value="applying">Applying</option>
-                    <option value="interviewing">Interviewing</option>
-                    <option value="archived">Archived</option>
-                </select>
+                <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                        <Filter className="h-3.5 w-3.5" />
+                        Status
+                    </span>
+                    <select
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value as JobStatus | 'all')}
+                        className="h-9 px-3 rounded border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
+                    >
+                        <option value="all">All Status</option>
+                        <option value="saved">Saved</option>
+                        <option value="interested">Interested</option>
+                        <option value="applying">Applying</option>
+                        <option value="interviewing">Interviewing</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
             </div>
 
             {/* Jobs List */}
-            <div className="rounded-xl border border-border/40 overflow-hidden bg-white dark:bg-card">
+            <div className="app-card overflow-hidden">
                 {loading ? (
-                    <div className="p-8 text-center text-muted-foreground">
+                    <div className="p-10 text-center text-muted-foreground">
                         Loading jobs...
                     </div>
                 ) : filteredJobs.length === 0 ? (
-                    <EmptyState hasJobs={jobs.length > 0} />
+                    <EmptyState hasJobs={jobs.length > 0} signedIn={Boolean(user)} />
                 ) : (
                     <div className="divide-y divide-border">
                         {filteredJobs.map((job) => (
@@ -253,7 +280,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
 
     return (
         <div
-            className="group flex items-center gap-4 px-4 py-3.5 hover:bg-muted/30 cursor-pointer transition-all"
+            className="group flex items-center gap-4 px-4 py-4 hover:bg-muted/20 cursor-pointer transition-all"
             onClick={onClick}
         >
             {/* Score Dial */}
@@ -362,11 +389,41 @@ function ScoreDial({ score }: { score: number }) {
 // EMPTY STATE
 // =============================================================================
 
-function EmptyState({ hasJobs }: { hasJobs: boolean }) {
+function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean }) {
     if (hasJobs) {
         return (
             <div className="p-8 text-center">
                 <p className="text-muted-foreground">No jobs match your filters.</p>
+            </div>
+        );
+    }
+
+    if (!signedIn) {
+        return (
+            <div className="space-y-5 p-16 text-center">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl border border-border/60 bg-background">
+                    <Briefcase className="h-8 w-8 text-brand/60" />
+                </div>
+                <div className="space-y-3">
+                    <h3 className="font-display text-lg font-medium text-foreground">Sign in to see saved jobs</h3>
+                    <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
+                        Your job tracker is tied to your account, so we only load saved roles and default resume context after you sign in.
+                    </p>
+                </div>
+                <div className="flex items-center justify-center gap-3">
+                    <Link
+                        href="/auth?from=jobs"
+                        className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                    >
+                        Sign In
+                    </Link>
+                    <Link
+                        href="/workspace"
+                        className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
+                    >
+                        Open Workspace
+                    </Link>
+                </div>
             </div>
         );
     }

@@ -63,14 +63,15 @@ export default function PricingPageClient() {
 
     return (
         <>
-            <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36">
+            <main data-visual-anchor="pricing-page" className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
                 {/* Hero */}
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
                     <div className="mx-auto max-w-[600px] text-center">
-                        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                        <p className="editorial-kicker mb-4 text-slate-300">
                             Pricing
                         </p>
                         <h1
+                            id="pricing-page-title"
                             className="font-display text-slate-900"
                             style={{
                                 fontSize: "clamp(2.4rem, 6vw, 4rem)",
@@ -81,7 +82,7 @@ export default function PricingPageClient() {
                         >
                             Start free. Pay when it&apos;s working.
                         </h1>
-                        <p className="mx-auto mt-5 max-w-[440px] text-[17px] leading-[1.7] text-slate-500">
+                        <p className="editorial-copy-lg mx-auto mt-5 max-w-[440px] text-slate-500">
                             Your first review is on us — the full thing, not a teaser.
                             If you want to keep reviewing for different roles, that&apos;s when the paid plans come in.
                         </p>
@@ -97,13 +98,13 @@ export default function PricingPageClient() {
                                 boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)",
                             }}
                         >
-                            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                            <p className="editorial-kicker mb-4 text-slate-300">
                                 What you unlock with a paid plan
                             </p>
                             <ul className="space-y-3">
                                 {unlockPoints.map((point) => (
-                                    <li key={point} className="flex items-start gap-2.5 text-[15px] leading-[1.65] text-slate-600">
-                                        <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: "#0D7377" }} />
+                                    <li key={point} className="flex items-start gap-2.5 text-sm leading-6 text-slate-600">
+                                        <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
                                         <span>{point}</span>
                                     </li>
                                 ))}
@@ -142,10 +143,10 @@ export default function PricingPageClient() {
                 {/* Billing clarity — warm sand section */}
                 <section
                     className="px-6 py-12 md:px-8 md:py-16"
-                    style={{ backgroundColor: "hsl(40 20% 94%)" }}
+                    style={{ backgroundColor: "hsl(var(--paper-muted))" }}
                 >
                     <div className="mx-auto max-w-[640px]">
-                        <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                        <p className="editorial-kicker mb-5 text-slate-400">
                             Billing clarity
                         </p>
                         <h2
@@ -159,7 +160,7 @@ export default function PricingPageClient() {
                         >
                             Billing is simple
                         </h2>
-                        <p className="mt-3 max-w-[420px] text-[16px] leading-[1.65] text-slate-500">
+                        <p className="mt-3 max-w-[420px] text-base leading-7 text-slate-500">
                             Paid? Your access starts right away. If anything goes wrong, you can fix it yourself.
                         </p>
 
@@ -173,17 +174,17 @@ export default function PricingPageClient() {
                                     }}
                                 >
                                     <div className="flex items-center gap-2">
-                                        <item.icon className="h-4 w-4" style={{ color: "#0D7377" }} />
+                                        <item.icon className="h-4 w-4 text-brand" />
                                         <h3 className="text-sm font-semibold text-slate-700">{item.title}</h3>
                                     </div>
-                                    <p className="mt-1.5 text-[14px] leading-relaxed text-slate-500">{item.body}</p>
+                                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{item.body}</p>
                                 </div>
                             ))}
                         </div>
 
                         <Link
                             href="/purchase/restore"
-                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-[14px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
                         >
                             Open restore page
                             <ArrowRight className="h-4 w-4" />
@@ -194,7 +195,7 @@ export default function PricingPageClient() {
                 {/* Support note */}
                 <section className="px-6 py-10 md:px-8 md:py-12">
                     <div className="mx-auto max-w-[600px] text-center">
-                        <p className="text-[14px] text-slate-400">
+                        <p className="text-sm text-slate-400">
                             Need invoices, receipts, or procurement help?{" "}
                             <Link
                                 href="mailto:support@recruiterinyourpocket.com"

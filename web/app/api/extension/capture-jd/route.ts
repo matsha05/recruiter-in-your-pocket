@@ -1,33 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/serverClient';
-import { quickMatch, extractSkillsFromText, extractSeniority } from '@/lib/matching/skill-engine';
+import { quickMatch } from '@/lib/matching/skill-engine';
 import { createEmbedding } from '@/lib/matching/embedding-service';
-
-// Allowed origins for CORS
-const ALLOWED_ORIGINS = [
-    'chrome-extension://',
-    'http://localhost:3000',
-    'https://recruiterinyourpocket.com',
-    'https://www.recruiterinyourpocket.com',
-];
-
-function getCorsHeaders(req: NextRequest) {
-    const origin = req.headers.get('origin') || '';
-    const isAllowed = ALLOWED_ORIGINS.some(allowed =>
-        origin.startsWith(allowed) || allowed.startsWith('chrome-extension://')
-    );
-    const allowedOrigin = isAllowed ? origin : '';
-
-    return {
-        'Access-Control-Allow-Origin': allowedOrigin,
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
-}
+import { buildExtensionCorsHeaders } from '@/lib/extension/cors';
+import { isLaunchFlagEnabled } from '@/lib/launch/flags';
 
 export async function OPTIONS(req: NextRequest) {
-    return NextResponse.json({}, { headers: getCorsHeaders(req) });
+    return NextResponse.json({}, { headers: buildExtensionCorsHeaders(req, ['POST', 'OPTIONS']) });
 }
 
 /**
@@ -37,7 +16,14 @@ export async function OPTIONS(req: NextRequest) {
  * Returns a hybrid match score against the user's saved resume profile.
  */
 export async function POST(req: NextRequest) {
-    const corsHeaders = getCorsHeaders(req);
+    const corsHeaders = buildExtensionCorsHeaders(req, ['POST', 'OPTIONS']);
+
+    if (!isLaunchFlagEnabled('extensionSync')) {
+        return NextResponse.json(
+            { success: false, errorCode: 'FEATURE_DISABLED', error: 'Extension sync is temporarily unavailable.' },
+            { status: 503, headers: corsHeaders }
+        );
+    }
 
     try {
         const supabase = await createSupabaseServerClient();
@@ -47,7 +33,7 @@ export async function POST(req: NextRequest) {
 
         if (authError || !user) {
             return NextResponse.json(
-                { success: false, error: 'Not authenticated' },
+                { success: false, errorCode: 'AUTH_REQUIRED', error: 'Not authenticated' },
                 { status: 401, headers: corsHeaders }
             );
         }
@@ -58,7 +44,7 @@ export async function POST(req: NextRequest) {
 
         if (!jd || !meta) {
             return NextResponse.json(
-                { success: false, error: 'Missing jd or meta' },
+                { success: false, errorCode: 'INVALID_REQUEST', error: 'Missing jd or meta' },
                 { status: 400, headers: corsHeaders }
             );
         }
@@ -86,7 +72,7 @@ export async function POST(req: NextRequest) {
         if (saveError) {
             console.error('[Extension] Save job error:', saveError);
             return NextResponse.json(
-                { success: false, error: 'Failed to save job' },
+                { success: false, errorCode: 'SAVE_FAILED', error: 'Failed to save job' },
                 { status: 500, headers: corsHeaders }
             );
         }
@@ -174,7 +160,7 @@ export async function POST(req: NextRequest) {
     } catch (error) {
         console.error('[Extension] Capture JD error:', error);
         return NextResponse.json(
-            { success: false, error: 'Internal server error' },
+            { success: false, errorCode: 'INTERNAL_ERROR', error: 'Internal server error' },
             { status: 500, headers: corsHeaders }
         );
     }

@@ -66,6 +66,19 @@ export default function SecurityClient() {
                     ))}
                 </ul>
             </section>
+
+            <section
+                className="rounded-2xl border border-slate-100 p-6"
+                style={{ backgroundColor: "hsl(40 20% 99%)" }}
+            >
+                <h2 className="mb-3 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
+                    <ShieldCheck className="h-4 w-4 text-slate-400" />
+                    Responsible disclosure
+                </h2>
+                <p className="text-[14px] leading-[1.65] text-slate-500">
+                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-slate-900">support@recruiterinyourpocket.com</a> with steps to reproduce it. Our canonical disclosure instructions are also published at <a href="/.well-known/security.txt" className="underline underline-offset-4 hover:text-slate-900">/.well-known/security.txt</a>.
+                </p>
+            </section>
         </LegalShell>
     );
 }

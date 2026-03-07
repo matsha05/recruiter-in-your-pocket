@@ -19,6 +19,7 @@ export function LegalNav({ className }: LegalNavProps) {
     const tabs = [
         { name: "Trust & Security", href: "/trust" },
         { name: "Data Handling", href: "/security" },
+        { name: "Status", href: "/status" },
         { name: "Methodology", href: "/methodology" },
         { name: "Privacy Policy", href: "/privacy" },
         { name: "Terms of Service", href: "/terms" },

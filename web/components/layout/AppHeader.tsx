@@ -11,6 +11,7 @@ import { MobileNav } from "./MobileNav";
 
 const APP_NAV = [
     { label: "Studio", href: "/workspace" },
+    { label: "Reports", href: "/reports" },
     { label: "Jobs", href: "/jobs" },
     { label: "Research", href: "/research" },
     { label: "Resources", href: "/guides" },
@@ -19,6 +20,13 @@ const APP_NAV = [
 export function AppHeader() {
     const pathname = usePathname();
     const { user, signOut } = useAuth();
+
+    const isActive = (href: string) => {
+        if (href === "/workspace") {
+            return pathname === "/workspace" || pathname?.startsWith("/workspace/");
+        }
+        return pathname === href || pathname?.startsWith(`${href}/`);
+    };
 
     return (
         <header className="app-shell-header">
@@ -31,12 +39,11 @@ export function AppHeader() {
                 <nav className="flex items-center gap-1 md:gap-2">
                     <div className="hidden items-center gap-1 md:flex">
                         {APP_NAV.map((item) => {
-                            const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
                             return (
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={cn("app-nav-link hidden md:inline-flex", isActive && "app-nav-link-active")}
+                                    className={cn("app-nav-link hidden md:inline-flex", isActive(item.href) && "app-nav-link-active")}
                                 >
                                     {item.label}
                                 </Link>

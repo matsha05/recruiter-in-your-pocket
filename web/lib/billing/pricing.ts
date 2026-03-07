@@ -26,7 +26,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
       { text: "Recruiter first-impression verdict" },
       { text: "Evidence Ledger + Red Pen rewrites" },
       { text: "Role alignment with job description" },
-      { text: "PDF export + share link" }
+      { text: "PDF export" }
     ]
   },
   monthly: {
@@ -40,7 +40,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
       { text: "Unlimited resume + LinkedIn reviews", bold: true },
       { text: "Evidence Ledger + Red Pen on every run" },
       { text: "Role matching + Missing Wins" },
-      { text: "Export, share, and report history" },
+      { text: "Export and report history" },
       { text: "Cancel anytime in billing portal" }
     ]
   },

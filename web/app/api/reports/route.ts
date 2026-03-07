@@ -1,51 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
-import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-async function findUserIdByEmail(admin: any, email: string): Promise<string | null> {
-  const perPage = 200;
-
-  for (let page = 1; page <= 20; page++) {
-    const { data, error } = await admin.auth.admin.listUsers({ page, perPage });
-    if (error || !data?.users?.length) break;
-
-    const existing = data.users.find((u: any) => u.email?.toLowerCase() === email.toLowerCase());
-    if (existing?.id) return existing.id;
-
-    if (data.users.length < perPage) break;
-  }
-
-  return null;
-}
-
-async function findOrCreateUserIdByEmail(email: string): Promise<string> {
-  const admin = createSupabaseAdminClient();
-  if (!admin) {
-    throw new Error("Database admin client not configured");
-  }
-
-  const existing = await findUserIdByEmail(admin, email);
-  if (existing) return existing;
-
-  const { data: created, error } = await admin.auth.admin.createUser({
-    email,
-    email_confirm: true
-  });
-
-  if (!error && created?.user?.id) {
-    return created.user.id;
-  }
-
-  const fallback = await findUserIdByEmail(admin, email);
-  if (fallback) return fallback;
-
-  throw new Error(error?.message || "Could not create account for report save");
-}
 
 function nowIso() {
   return new Date().toISOString();
@@ -116,7 +76,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await readJsonWithLimit<any>(request, 256 * 1024);
     const report = body?.report;
-    const emailInput = body?.email;
 
     if (!report || typeof report !== "object") {
       return NextResponse.json(
@@ -129,17 +88,15 @@ export async function POST(request: NextRequest) {
     const { data: userData } = await supabase.auth.getUser();
     const sessionUser = userData.user;
 
-    let userId: string | null = sessionUser?.id || null;
+    if (!sessionUser) {
+      const flagMessage = isLaunchFlagEnabled("guestReportSave")
+        ? "Please sign in to verify ownership before saving this report."
+        : "Report saving is available after sign-in.";
 
-    if (!userId) {
-      if (!emailInput || typeof emailInput !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.trim())) {
-        return NextResponse.json(
-          { ok: false, errorCode: "EMAIL_REQUIRED", message: "A valid email is required to save this report." },
-          { status: 400 }
-        );
-      }
-
-      userId = await findOrCreateUserIdByEmail(emailInput.trim().toLowerCase());
+      return NextResponse.json(
+        { ok: false, errorCode: "AUTH_REQUIRED", message: flagMessage },
+        { status: 401 }
+      );
     }
 
     const reportId = crypto.randomUUID();
@@ -148,7 +105,7 @@ export async function POST(request: NextRequest) {
 
     const payload = {
       id: reportId,
-      user_id: userId,
+      user_id: sessionUser.id,
       resume_hash: reportHash,
       score: Number(report?.score || 0),
       score_label: typeof report?.score_label === "string" ? report.score_label : null,
@@ -158,10 +115,7 @@ export async function POST(request: NextRequest) {
       created_at: nowIso()
     };
 
-    const admin = createSupabaseAdminClient();
-    const dbClient = admin || supabase;
-
-    const { error } = await dbClient.from("reports").insert(payload);
+    const { error } = await supabase.from("reports").insert(payload);
     if (error) {
       console.error("Save report failed:", error);
       return NextResponse.json(

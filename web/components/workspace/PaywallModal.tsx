@@ -85,10 +85,10 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     export_pdf: {
         label: "Export",
         title: "Export your report",
-        subtitle: "Download, share, and keep your full review.",
+        subtitle: "Download and keep your full review.",
         bullets: [
             "PDF export with everything included",
-            "Share without re-running",
+            "Export without re-running",
             "Restore access if anything looks locked",
             "Unlimited reviews"
         ]
@@ -193,7 +193,7 @@ export default function PaywallModal({
                         {unlockCopy.subtitle}
                     </DialogDescription>
                     <p className="text-[11px] text-muted-foreground">
-                        You've used your free review.
+                        You&apos;ve used your free review.
                     </p>
                 </DialogHeader>
 

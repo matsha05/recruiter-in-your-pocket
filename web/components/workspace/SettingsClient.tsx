@@ -25,6 +25,7 @@ import ConfirmModal from "@/components/shared/ConfirmModal";
 import { cn } from "@/lib/utils";
 import { getTierLabel, isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 import { Analytics } from "@/lib/analytics";
+import { AppPageIntro } from "@/components/layout/AppPageIntro";
 
 type Tab = "account" | "matching" | "billing";
 
@@ -107,7 +108,7 @@ async function fetchReceiptsRequest(): Promise<ReceiptRecord[]> {
 }
 
 export default function SettingsClient({ initialTab = "account" }: SettingsClientProps) {
-    const { user, refreshUser } = useAuth();
+    const { user, refreshUser, isLoading: authLoading } = useAuth();
     const queryClient = useQueryClient();
 
     const [activeTab, setActiveTab] = useState<Tab>(initialTab);
@@ -400,15 +401,77 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     : null
         : null;
     const showRestoreNudge = !loadingPasses && passes.length === 0 && hasPaidMembership;
+    const tabDescriptions: Record<Tab, string> = {
+        account: "Profile, exports, and account controls. Clear, reversible where possible, and easy to audit.",
+        matching: "Choose the resume that powers your extension match scores so job triage stays fast and accurate.",
+        billing: "See access status, restore purchases, and manage renewals without leaving the product.",
+    };
+
+    if (!authLoading && !user) {
+        return (
+            <div data-visual-anchor="settings-page" className="min-h-full pb-20">
+                <div className="max-w-4xl mx-auto px-6 pt-8 space-y-6">
+                    <AppPageIntro
+                        anchor="settings-page"
+                        eyebrow="Settings"
+                        title="Settings"
+                        description="Sign in to manage your account, billing, and matching defaults. We keep these controls simple so you can verify and change things yourself."
+                    />
+
+                    <section className="app-card app-card-highlight p-8 text-center md:p-10">
+                        <ShieldAlert className="mx-auto h-8 w-8 text-brand" />
+                        <h2 className="mt-4 font-display text-[1.9rem] font-medium tracking-[-0.03em] text-foreground">
+                            Sign in to open settings
+                        </h2>
+                        <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-muted-foreground">
+                            Signed-in settings give you data export, billing restore, account deletion, and the default resume used by matching features.
+                        </p>
+                        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                            <Link
+                                href="/auth"
+                                className="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand/90"
+                            >
+                                Sign in
+                            </Link>
+                            <Link
+                                href="/workspace"
+                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted/50"
+                            >
+                                Back to workspace
+                            </Link>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        );
+    }
 
     return (
-        <div className="min-h-full pb-20">
+        <div data-visual-anchor="settings-page" className="min-h-full pb-20">
             <div className="max-w-4xl mx-auto px-6 pt-8">
-                <h1 className="font-display text-2xl font-medium text-foreground mb-8">Settings</h1>
+                <AppPageIntro
+                    anchor="settings-page"
+                    eyebrow="Settings"
+                    title="Settings"
+                    description={tabDescriptions[activeTab]}
+                    meta={
+                        <>
+                            <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                                {accessLabel}
+                            </span>
+                            {user?.email ? (
+                                <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                                    {user.email}
+                                </span>
+                            ) : null}
+                        </>
+                    }
+                    className="mb-8"
+                />
 
                 <nav
                     aria-label="Settings sections"
-                    className="inline-flex items-center gap-0.5 p-1 rounded-lg bg-muted/60 border border-border/80 mb-8"
+                    className="app-card mb-8 inline-flex items-center gap-0.5 p-1.5"
                 >
                     {TABS.map(({ id, label, href, icon: Icon }) => (
                         <Link
@@ -431,7 +494,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 <div className="space-y-8">
                     {activeTab === "account" && (
                         <div className="space-y-8 animate-in fade-in duration-200">
-                            <section className="bg-white dark:bg-card border border-border/40 rounded-xl p-6 transition-all hover:shadow-sm">
+                            <section className="app-card p-6">
                                 <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-6">Profile</h2>
                                 <div className="flex items-start gap-6">
                                     <div className="w-14 h-14 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand font-display font-medium text-xl select-none shrink-0">
@@ -472,7 +535,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </div>
                             </section>
 
-                            <section className="p-4 rounded-xl border border-destructive/20 bg-destructive/5">
+                            <section className="rounded-xl border border-destructive/20 bg-destructive/5 p-4">
                                 <div className="flex items-center justify-between gap-4 flex-wrap">
                                     <div>
                                         <h3 className="text-sm font-medium text-destructive mb-0.5">Delete Account</h3>
@@ -513,7 +576,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                     {activeTab === "billing" && (
                         <div className="space-y-10 animate-in fade-in duration-200">
-                            <section className="bg-white dark:bg-card border border-border/40 rounded-xl p-5 transition-all hover:shadow-sm space-y-4">
+                            <section className="app-card space-y-4 p-5">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                     <div className="space-y-2">
                                         <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Billing Status</h2>
@@ -590,7 +653,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                             <section>
                                 <h2 className="text-base font-medium text-foreground mb-3">Purchase History</h2>
-                                <div className="bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden">
+                                <div className="app-card overflow-hidden">
                                     {loadingPasses ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
                                             <Loader2 className="w-4 h-4 animate-spin" /> Loading...
@@ -661,7 +724,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         {loadingReceipts ? "Loading..." : "Refresh"}
                                     </button>
                                 </div>
-                                <div className="bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden">
+                                <div className="app-card overflow-hidden">
                                     {loadingReceipts ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
                                             <Loader2 className="w-4 h-4 animate-spin" /> Loading...

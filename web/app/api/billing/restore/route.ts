@@ -8,6 +8,7 @@ import {
   resolveRequestedTierFromSession,
   toStoredPassTier
 } from "@/lib/billing/entitlements";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
@@ -34,6 +35,13 @@ function extractCurrentPeriodEndUnix(
 
 export async function POST() {
   try {
+    if (!isLaunchFlagEnabled("billingUnlock")) {
+      return NextResponse.json(
+        { ok: false, restored: 0, message: "Billing restore is temporarily unavailable." },
+        { status: 503 }
+      );
+    }
+
     const supabase = await createSupabaseServerClient();
     const { data: authData } = await supabase.auth.getUser();
     const user = authData.user;

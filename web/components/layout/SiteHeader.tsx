@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "@/components/shared/UserNav";
-import { Button } from "@/components/ui/button";
-import { PocketMark } from "@/components/icons";
+import { Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 interface SiteHeaderProps {
@@ -21,30 +21,29 @@ interface SiteHeaderProps {
  * Matches the canonical landing page nav style.
  */
 export function SiteHeader({ showResearchLink = true, showResourcesLink = true }: SiteHeaderProps) {
-    const { user, isLoading: isAuthLoading, signOut } = useAuth();
+    const pathname = usePathname();
+    const { user, signOut } = useAuth();
+
+    const isMarketingActive = (href: string) => pathname === href || pathname?.startsWith(`${href}/`);
+    const isStudioActive = pathname === "/workspace" || pathname?.startsWith("/workspace/") || pathname === "/reports" || pathname?.startsWith("/reports/");
 
     return (
         <header className="site-header">
-            <div className="mx-auto flex max-w-[1120px] items-center justify-between px-6 py-5 md:px-8">
+            <div className="app-shell-inner">
                 <Link href="/" className="group flex shrink-0 items-center gap-2.5">
-                    <PocketMark className="h-5 w-5 text-slate-800 transition-transform group-hover:scale-105" />
-                    <span className="text-[15px] font-medium tracking-[-0.01em] text-slate-700">
-                        Recruiter in Your Pocket
-                    </span>
+                    <Wordmark className="h-5 text-foreground transition-transform group-hover:scale-[1.01] md:h-[22px]" />
                 </Link>
 
                 <nav className="flex items-center gap-8">
                     <div className="hidden items-center gap-6 md:flex">
-                        <SiteNavLink href="/pricing">Pricing</SiteNavLink>
-                        {showResearchLink && <SiteNavLink href="/research">Research</SiteNavLink>}
-                        {showResourcesLink && <SiteNavLink href="/guides">Resources</SiteNavLink>}
+                        <SiteNavLink href="/pricing" active={isMarketingActive("/pricing")}>Pricing</SiteNavLink>
+                        {showResearchLink && <SiteNavLink href="/research" active={isMarketingActive("/research")}>Research</SiteNavLink>}
+                        {showResourcesLink && <SiteNavLink href="/guides" active={isMarketingActive("/guides")}>Resources</SiteNavLink>}
                     </div>
 
-                    {isAuthLoading ? (
-                        <div className="h-9 w-20" />
-                    ) : user ? (
+                    {user ? (
                         <div className="flex items-center gap-4">
-                            <SiteNavLink href="/workspace">Studio</SiteNavLink>
+                            <SiteNavLink href="/workspace" active={isStudioActive}>Studio</SiteNavLink>
                             <UserNav user={user} onSignOut={signOut} />
                         </div>
                     ) : (
@@ -76,16 +75,19 @@ function SiteNavLink({
     href,
     children,
     className,
+    active = false,
 }: {
     href: string;
     children: React.ReactNode;
     className?: string;
+    active?: boolean;
 }) {
     return (
         <Link
             href={href}
             className={cn(
-                "text-[13px] font-medium text-slate-400 transition-colors hover:text-slate-700",
+                "site-nav-link",
+                active && "site-nav-link-active",
                 className
             )}
         >

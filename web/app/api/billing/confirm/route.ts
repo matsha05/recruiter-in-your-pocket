@@ -8,6 +8,7 @@ import {
   toStoredPassTier
 } from "@/lib/billing/entitlements";
 import { buildConfirmResponse, type UnlockConfirmResponse } from "@/lib/billing/unlockStateMachine";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
@@ -138,6 +139,16 @@ async function ensurePassForCheckoutSession(
 }
 
 export async function POST(req: NextRequest) {
+  if (!isLaunchFlagEnabled("billingUnlock")) {
+    return response(
+      buildConfirmResponse({
+        state: "checkout_incomplete",
+        status: "unavailable",
+      }),
+      503
+    );
+  }
+
   try {
     if (!stripe) {
       return response(

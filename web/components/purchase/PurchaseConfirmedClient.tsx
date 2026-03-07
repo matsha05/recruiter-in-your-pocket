@@ -53,7 +53,7 @@ export default function PurchaseConfirmedClient() {
 
   return (
     <>
-      <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36 pb-16 px-6">
+      <main className="bg-paper px-6 pb-16 pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
         <div className="mx-auto max-w-2xl">
           <div
             className="rounded-2xl bg-white p-8 md:p-10"
@@ -80,7 +80,7 @@ export default function PurchaseConfirmedClient() {
               </h1>
             </div>
 
-            <p className="mt-4 text-[15px] leading-[1.65] text-slate-500">{state.message}</p>
+            <p className="mt-4 text-sm leading-7 text-slate-500">{state.message}</p>
 
             {unlockLabel && state.status !== "missing" && (
               <p className="mt-3 text-xs text-slate-400">

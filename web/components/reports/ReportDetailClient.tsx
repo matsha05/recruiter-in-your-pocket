@@ -9,6 +9,7 @@ import ReportPanel from "@/components/workspace/ReportPanel";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
+import { AppPageIntro } from "@/components/layout/AppPageIntro";
 
 type ReportLoadState = "loading" | "ready" | "not_found" | "error";
 
@@ -99,19 +100,16 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
   }, [state]);
 
   return (
-    <main className="flex-1 min-h-0 flex flex-col overflow-hidden bg-body">
-      <div className="border-b border-border/40 bg-background px-6 py-3">
+    <main data-visual-anchor="report-detail-page" className="flex-1 min-h-0 flex flex-col overflow-hidden bg-body">
+      <div className="border-b border-border/40 bg-background/90 px-6 py-4 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => router.push("/workspace")}
-              className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted/50"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Workspace
-            </button>
-            <p className="text-sm text-muted-foreground">{headerTitle}</p>
-          </div>
+          <button
+            onClick={() => router.push("/workspace")}
+            className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3.5 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Workspace
+          </button>
           <Link
             href="/workspace"
             className="text-xs font-medium text-brand hover:underline underline-offset-4"
@@ -122,8 +120,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       </div>
 
       {state === "loading" && (
-        <div className="flex flex-1 items-center justify-center">
-          <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="flex flex-1 items-center justify-center px-6 py-10">
+          <div className="app-card inline-flex items-center gap-2 px-5 py-4 text-sm text-muted-foreground">
             <Loader2 className="h-4 w-4 animate-spin" />
             Loading report...
           </div>
@@ -132,7 +130,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
       {state === "not_found" && (
         <div className="flex flex-1 items-center justify-center px-6">
-          <div className="max-w-md rounded-xl border border-border/50 bg-card p-8 text-center">
+          <div className="app-card max-w-md p-8 text-center">
             <AlertTriangle className="mx-auto h-6 w-6 text-warning" />
             <h1 className="mt-3 font-display text-2xl text-foreground">Report not found</h1>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -150,7 +148,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
       {state === "error" && (
         <div className="flex flex-1 items-center justify-center px-6">
-          <div className="max-w-md rounded-xl border border-border/50 bg-card p-8 text-center">
+          <div className="app-card max-w-md p-8 text-center">
             <AlertTriangle className="mx-auto h-6 w-6 text-warning" />
             <h1 className="mt-3 font-display text-2xl text-foreground">Could not load report</h1>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -175,21 +173,43 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       )}
 
       {state === "ready" && report && (
-        <ReportPanel
-          report={report}
-          isLoading={false}
-          hasJobDescription={hasJobDescription}
-          onExportPdf={handleExportPdf}
-          isExporting={isExporting}
-          isSample={false}
-          onNewReport={() => router.push("/workspace")}
-          freeUsesRemaining={freeUsesRemaining}
-          onUpgrade={() => router.push("/pricing")}
-          isGated={false}
-          justUnlocked={false}
-          highlightSection={null}
-          hasPaidAccess={hasPaidAccess}
-        />
+        <div className="min-h-0 flex-1 overflow-y-auto">
+          <div className="mx-auto w-full max-w-6xl px-4 pb-6 pt-6 md:px-6">
+            <AppPageIntro
+              eyebrow="Saved report"
+              title="Report details"
+              description={hasJobDescription
+                ? "Your saved recruiter read, with job-alignment context and the exact fixes worth making first."
+                : "Your saved recruiter read, preserved with the original verdict, rewrites, and evidence trail."}
+              meta={
+                <>
+                  <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                    {report.score ?? "—"}/100
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                    {headerTitle}
+                  </span>
+                </>
+              }
+            />
+          </div>
+
+          <ReportPanel
+            report={report}
+            isLoading={false}
+            hasJobDescription={hasJobDescription}
+            onExportPdf={handleExportPdf}
+            isExporting={isExporting}
+            isSample={false}
+            onNewReport={() => router.push("/workspace")}
+            freeUsesRemaining={freeUsesRemaining}
+            onUpgrade={() => router.push("/pricing")}
+            isGated={false}
+            justUnlocked={false}
+            highlightSection={null}
+            hasPaidAccess={hasPaidAccess}
+          />
+        </div>
       )}
     </main>
   );

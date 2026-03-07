@@ -49,14 +49,14 @@ const researchLinks = [
 export default function GuidesPage() {
     return (
         <>
-            <main className="bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15 pt-28 md:pt-36">
+            <main className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
 
                 {/* ── Hero ── */}
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
                     <div className="mx-auto max-w-[720px]">
                         <div className="max-w-[46rem]">
-                            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
-                                <Sparkles className="h-3.5 w-3.5" style={{ color: "#0D7377" }} />
+                            <div className="editorial-kicker inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-400">
+                                <Sparkles className="h-3.5 w-3.5 text-brand" />
                                 For when the stakes are higher
                             </div>
                             <h1
@@ -70,7 +70,7 @@ export default function GuidesPage() {
                             >
                                 Scripts and strategies you can use this week
                             </h1>
-                            <p className="mt-5 max-w-[41rem] text-[17px] leading-[1.7] text-slate-500">
+                            <p className="editorial-copy-lg mt-5 max-w-[41rem] text-slate-500">
                                 Pick a guide, use the scripts, then run another review and see the difference.
                             </p>
                         </div>
@@ -82,7 +82,7 @@ export default function GuidesPage() {
                     <div className="mx-auto max-w-[720px]">
                         <div className="mb-6 flex items-center justify-between">
                             <div>
-                                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                                <p className="editorial-kicker text-slate-400">
                                     Guides
                                 </p>
                                 <h2
@@ -115,10 +115,10 @@ export default function GuidesPage() {
                                     style={{ boxShadow: paperShadow }}
                                 >
                                     <div className="flex items-center justify-between gap-3">
-                                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
-                                            {guide.subtitle}
-                                        </span>
-                                        <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                                            <span className="editorial-kicker text-slate-400">
+                                                {guide.subtitle}
+                                            </span>
+                                        <span className="editorial-kicker inline-flex items-center gap-1.5 text-slate-400">
                                             <Clock3 className="h-3.5 w-3.5" />
                                             {guide.readTime}
                                         </span>
@@ -136,8 +136,8 @@ export default function GuidesPage() {
                                     </h3>
                                     <ul className="mt-4 space-y-2.5">
                                         {guide.points.map((point) => (
-                                            <li key={point} className="flex items-center gap-2.5 text-[15px] leading-[1.65] text-slate-500">
-                                                <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#0D7377" }} />
+                                            <li key={point} className="flex items-center gap-2.5 text-sm leading-6 text-slate-500">
+                                                <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
                                                 {point}
                                             </li>
                                         ))}
@@ -157,7 +157,7 @@ export default function GuidesPage() {
                         >
                             <div className="flex flex-wrap items-end justify-between gap-3">
                                 <div>
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                                    <p className="editorial-kicker text-slate-400">
                                         Tool
                                     </p>
                                     <h3
@@ -171,7 +171,7 @@ export default function GuidesPage() {
                                     >
                                         Compensation Calculator
                                     </h3>
-                                    <p className="mt-2 max-w-[42rem] text-[15px] leading-[1.65] text-slate-500">
+                                    <p className="mt-2 max-w-[42rem] text-sm leading-6 text-slate-500">
                                         Compare multiple offers side by side, see what equity is really worth, and figure out what actually matters to you over 1 and 4 years.
                                     </p>
                                 </div>
@@ -190,11 +190,11 @@ export default function GuidesPage() {
                 {/* ── Philosophy — dark section ── */}
                 <section
                     className="px-6 py-14 md:px-8 md:py-20"
-                    style={{ backgroundColor: "#0F172A" }}
+                    style={{ backgroundColor: "hsl(var(--surface-inverted))" }}
                 >
                     <div className="mx-auto max-w-[720px] grid items-start gap-8 lg:grid-cols-[1.02fr_0.98fr]">
                         <div>
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                            <p className="editorial-kicker text-slate-400">
                                 The philosophy
                             </p>
                             <h2
@@ -208,7 +208,7 @@ export default function GuidesPage() {
                             >
                                 Written from the recruiter&apos;s side of the table
                             </h2>
-                            <p className="mt-4 max-w-[42rem] text-[15px] leading-[1.65] text-slate-400">
+                            <p className="mt-4 max-w-[42rem] text-sm leading-6 text-slate-400">
                                 Most career advice is recycled filler. These guides are grounded in how hiring actually works — the psychology, the incentives, and the language that moves recruiters to act.
                             </p>
                         </div>
@@ -219,16 +219,16 @@ export default function GuidesPage() {
                         >
                             <div className="space-y-4">
                                 <div>
-                                    <p className="text-[15px] font-medium text-white">Real scripts, not theory.</p>
-                                    <p className="mt-1 text-[14px] leading-relaxed text-slate-400">Every conversation in these guides is something you can actually say.</p>
+                                    <p className="text-sm font-medium text-white">Real scripts, not theory.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Every conversation in these guides is something you can actually say.</p>
                                 </div>
                                 <div className="border-t border-white/10 pt-4">
-                                    <p className="text-[15px] font-medium text-white">Backed by research.</p>
-                                    <p className="mt-1 text-[14px] leading-relaxed text-slate-400">Each strategy connects to peer-reviewed evidence on hiring behavior.</p>
+                                    <p className="text-sm font-medium text-white">Backed by research.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Each strategy connects to peer-reviewed evidence on hiring behavior.</p>
                                 </div>
                                 <div className="border-t border-white/10 pt-4">
-                                    <p className="text-[15px] font-medium text-white">Built for your next conversation.</p>
-                                    <p className="mt-1 text-[14px] leading-relaxed text-slate-400">Not a course. Not a webinar. Pick a guide and use it this week.</p>
+                                    <p className="text-sm font-medium text-white">Built for your next conversation.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Not a course. Not a webinar. Pick a guide and use it this week.</p>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +240,7 @@ export default function GuidesPage() {
                     <div className="mx-auto max-w-[720px]">
                         <div className="mb-6 flex items-center justify-between">
                             <div>
-                                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                                <p className="editorial-kicker text-slate-400">
                                     Connected research
                                 </p>
                                 <h2
@@ -273,7 +273,7 @@ export default function GuidesPage() {
                                     style={{ boxShadow: paperShadow }}
                                 >
                                     <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg" style={{ backgroundColor: "rgba(13,115,119,0.08)" }}>
-                                        <ShieldCheck className="h-4 w-4" style={{ color: "#0D7377" }} />
+                                        <ShieldCheck className="h-4 w-4 text-brand" />
                                     </div>
                                     <h3
                                         className="font-display text-slate-900 transition-colors group-hover:text-slate-600"

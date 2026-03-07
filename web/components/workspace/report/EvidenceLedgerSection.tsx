@@ -120,7 +120,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
           subtitle="Every recommendation tied to the exact line that triggered it."
         />
         <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-          Evidence ledger isn't available for this run. Try again or add more detail to your resume for better results.
+          Evidence ledger isn&apos;t available for this run. Try again or add more detail to your resume for better results.
         </div>
       </section>
     );

@@ -1,38 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/serverClient';
-
-// Allowed origins for CORS
-const ALLOWED_ORIGINS = [
-    'chrome-extension://',  // Any Chrome extension
-    'http://localhost:3000',
-    'https://recruiterinyourpocket.com',
-    'https://www.recruiterinyourpocket.com',
-];
-
-function getCorsHeaders(req: NextRequest) {
-    const origin = req.headers.get('origin') || '';
-
-    // Check if origin is allowed (Chrome extensions have special handling)
-    const isAllowed = ALLOWED_ORIGINS.some(allowed =>
-        origin.startsWith(allowed) || allowed.startsWith('chrome-extension://')
-    );
-
-    // For Chrome extensions, we need to echo back their exact origin
-    const allowedOrigin = isAllowed ? origin : '';
-
-    return {
-        'Access-Control-Allow-Origin': allowedOrigin,
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
-}
+import { buildExtensionCorsHeaders } from '@/lib/extension/cors';
+import { isLaunchFlagEnabled } from '@/lib/launch/flags';
 
 /**
  * OPTIONS handler for CORS preflight
  */
 export async function OPTIONS(req: NextRequest) {
-    return NextResponse.json({}, { headers: getCorsHeaders(req) });
+    return NextResponse.json({}, { headers: buildExtensionCorsHeaders(req, ['GET', 'OPTIONS']) });
 }
 
 /**
@@ -41,7 +16,14 @@ export async function OPTIONS(req: NextRequest) {
  * Checks if the user is authenticated. Used by extension to show login prompt.
  */
 export async function GET(req: NextRequest) {
-    const corsHeaders = getCorsHeaders(req);
+    const corsHeaders = buildExtensionCorsHeaders(req, ['GET', 'OPTIONS']);
+
+    if (!isLaunchFlagEnabled('extensionSync')) {
+        return NextResponse.json(
+            { success: false, errorCode: 'FEATURE_DISABLED', authenticated: false, user: null },
+            { status: 503, headers: corsHeaders }
+        );
+    }
 
     try {
         const supabase = await createSupabaseServerClient();
@@ -69,7 +51,7 @@ export async function GET(req: NextRequest) {
     } catch (error) {
         console.error('[Extension] Auth status error:', error);
         return NextResponse.json(
-            { success: false, authenticated: false, user: null },
+            { success: false, errorCode: 'INTERNAL_ERROR', authenticated: false, user: null },
             { status: 500, headers: corsHeaders }
         );
     }

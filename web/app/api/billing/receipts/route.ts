@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
@@ -23,6 +24,10 @@ type ReceiptItem = {
 
 export async function GET() {
   try {
+    if (!isLaunchFlagEnabled("billingUnlock")) {
+      return NextResponse.json({ ok: false, receipts: [], message: "Receipts are temporarily unavailable." }, { status: 503 });
+    }
+
     const supabase = await createSupabaseServerClient();
     const { data: userData } = await supabase.auth.getUser();
     const user = userData.user;

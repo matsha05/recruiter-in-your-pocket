@@ -12,6 +12,7 @@ import {
     toStoredPassTier
 } from "@/lib/billing/entitlements";
 import { getOrSetCache } from "@/lib/redis/idempotency";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 // Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -62,6 +63,11 @@ function isValidEmail(email: unknown): email is string {
     const trimmed = email.trim();
     if (!trimmed || trimmed.length > 320) return false;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+}
+
+function isInvalidPriceId(priceId: string | undefined) {
+    if (!priceId) return true;
+    return priceId.includes("MISSING") || priceId.includes("PLACEHOLDER");
 }
 
 function normalizeUnlockSection(input: unknown): UnlockSection | null {
@@ -116,6 +122,12 @@ export async function POST(request: Request) {
             err: { name: "ConfigError", message: "STRIPE_SECRET_KEY not set", code: "STRIPE_SECRET_KEY_MISSING" }
         });
         const res = NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
+        res.headers.set("x-request-id", request_id);
+        return res;
+    }
+
+    if (!isLaunchFlagEnabled("billingUnlock")) {
+        const res = NextResponse.json({ ok: false, message: "Purchases are temporarily unavailable." }, { status: 503 });
         res.headers.set("x-request-id", request_id);
         return res;
     }
@@ -180,7 +192,7 @@ export async function POST(request: Request) {
 
         const priceId = PRICE_IDS[requestedTier as keyof typeof PRICE_IDS];
 
-        if (!priceId || priceId.includes("MISSING")) {
+        if (isInvalidPriceId(priceId)) {
             logError({
                 msg: "checkout.invalid_price_id",
                 request_id,
