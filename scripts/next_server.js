@@ -1,3 +1,4 @@
+const { existsSync } = require("fs");
 const { spawn, spawnSync } = require("child_process");
 const path = require("path");
 const net = require("net");
@@ -8,6 +9,7 @@ const webDir = path.join(repoRoot, "web");
 function withLaunchTestDefaults(env) {
   return {
     ...env,
+    USE_MOCK_OPENAI: env.USE_MOCK_OPENAI || "1",
     NEXT_PUBLIC_APP_URL: env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
     NEXT_PUBLIC_ENABLE_ANALYTICS: env.NEXT_PUBLIC_ENABLE_ANALYTICS || "false",
     NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK || "false",
@@ -49,7 +51,10 @@ async function waitForHealth(baseUrl, maxWaitMs = 30000) {
 
 function ensureWebBuild() {
   const buildIdPath = path.join(webDir, ".next", "BUILD_ID");
-  if (process.env.FORCE_NEXT_BUILD !== "1" && process.env.FORCE_NEXT_BUILD !== "true" && require("fs").existsSync(buildIdPath)) {
+  const hasProductionBuild = existsSync(buildIdPath);
+  const shouldForce = process.env.FORCE_NEXT_BUILD === "1" || process.env.FORCE_NEXT_BUILD === "true";
+
+  if (!shouldForce && hasProductionBuild) {
     return;
   }
 
@@ -59,6 +64,9 @@ function ensureWebBuild() {
     env: withLaunchTestDefaults(process.env),
   });
   if (r.status !== 0) throw new Error("Failed to build web app");
+  if (!existsSync(buildIdPath)) {
+    throw new Error("Build completed but BUILD_ID is missing");
+  }
 }
 
 async function startNextServer({ ensureBuild = true } = {}) {

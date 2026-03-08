@@ -64,6 +64,7 @@ export default function StatusClient() {
 
   return (
     <LegalShell
+      pageKey="status"
       eyebrow="Status"
       title="Current product status"
       description="A live summary of launch-critical readiness checks and the controls we verify before shipping."

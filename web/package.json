@@ -10,6 +10,8 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "test:ui": "playwright test",
+    "test:launch-smoke": "node scripts/run-launch-smoke.cjs",
+    "test:redteam-journeys": "node scripts/run-redteam-journeys.cjs",
     "qa:design-system": "node scripts/qa/design-system-guardrails.mjs",
     "test:injection": "node scripts/run-ts-test.cjs tests/injection.test.ts",
     "test:pii": "node scripts/run-ts-test.cjs tests/pii.test.ts",

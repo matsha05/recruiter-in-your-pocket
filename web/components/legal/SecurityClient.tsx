@@ -11,6 +11,7 @@ const paperShadow =
 export default function SecurityClient() {
     return (
         <LegalShell
+            pageKey="security"
             eyebrow="Security & data"
             title="How we handle your data"
             description="What we collect, why, how long we keep it, and what you can do about it."

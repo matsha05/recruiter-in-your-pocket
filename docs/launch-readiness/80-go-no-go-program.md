@@ -10,10 +10,16 @@ This document replaces any older static "GO" verdict in the repo. A launch decis
 Run these from the repo root:
 
 ```bash
+npm run launch:autopilot
 npm run launch:gate
 npm run launch:gate:strict
+npm run launch:env-report
 npm run launch:rehearsal
 ```
+
+`launch:autopilot`
+- Runs the environment report, launch gate, rehearsal artifact generation, and Playwright launch smoke coverage.
+- Writes `docs/launch-readiness/generated/launch-autopilot-latest.json` and `.md`.
 
 `launch:gate`
 - Standard preflight.
@@ -27,6 +33,10 @@ npm run launch:rehearsal
 
 `launch:rehearsal`
 - Generates the human rehearsal checklist used in the final launch meeting.
+
+`launch:env-report`
+- Captures the current launch flags and required environment variables without exposing secrets.
+- Writes `docs/launch-readiness/generated/launch-env-report.json` and `.md`.
 
 ## Required Evidence
 
@@ -62,6 +72,7 @@ Launch is automatically `NO-GO` if any of the following are true:
 ## Launch-Day Workflow
 
 1. Run `npm run launch:gate:strict`
+2. Run `npm run launch:autopilot:strict` when you want the machine-readable rollup plus browser smoke checks
 2. Open the internal launch page at `/launch`
 3. Confirm `/api/ready` shows no blockers
 4. Run the rehearsal checklist on a clean browser profile
