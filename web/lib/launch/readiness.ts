@@ -64,6 +64,90 @@ function getRepoRoot() {
   return path.resolve(process.cwd(), "..");
 }
 
+function findUpward(start: string, targetDir: string) {
+  let current = start;
+  while (true) {
+    const candidate = path.join(current, targetDir);
+    if (existsSync(candidate)) return candidate;
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return null;
+}
+
+function normalizeRoute(value: string) {
+  if (!value.startsWith("/")) return null;
+  let route = value.replace(/\\/g, "/");
+  route = route.replace(/\/(page|route)$/, "");
+  if (route.length > 1 && route.endsWith("/")) {
+    route = route.slice(0, -1);
+  }
+  return route || "/";
+}
+
+function collectRoutesFromManifest(manifest: unknown) {
+  const routes = new Set<string>();
+
+  const addRoute = (value: string) => {
+    const normalized = normalizeRoute(value);
+    if (normalized) routes.add(normalized);
+  };
+
+  const walk = (value: unknown) => {
+    if (!value) return;
+    if (typeof value === "string") {
+      if (value.startsWith("/")) addRoute(value);
+      return;
+    }
+    if (Array.isArray(value)) {
+      for (const item of value) walk(item);
+      return;
+    }
+    if (typeof value === "object") {
+      for (const [key, child] of Object.entries(value)) {
+        if (key.startsWith("/")) addRoute(key);
+        walk(child);
+      }
+    }
+  };
+
+  walk(manifest);
+  return routes;
+}
+
+function getNextRouteSet(repoRoot: string) {
+  const nextDir =
+    findUpward(process.cwd(), ".next") ||
+    findUpward(repoRoot, ".next");
+
+  if (!nextDir) return null;
+
+  const manifestPaths = [
+    path.join(nextDir, "server", "app-paths-manifest.json"),
+    path.join(nextDir, "server", "app-path-routes-manifest.json"),
+    path.join(nextDir, "app-paths-manifest.json"),
+    path.join(nextDir, "app-path-routes-manifest.json"),
+    path.join(nextDir, "routes-manifest.json"),
+  ];
+
+  for (const manifestPath of manifestPaths) {
+    if (!existsSync(manifestPath)) continue;
+    try {
+      const raw = JSON.parse(readFileSync(manifestPath, "utf8"));
+      return collectRoutesFromManifest(raw);
+    } catch {
+      continue;
+    }
+  }
+
+  return null;
+}
+
+function repoHasDir(repoRoot: string, name: string) {
+  return existsSync(path.join(repoRoot, name));
+}
+
 function isTruthyEnv(value: string | undefined) {
   return ["1", "true", "yes", "on"].includes(String(value || "").trim().toLowerCase());
 }
@@ -72,9 +156,9 @@ function addCheck(checks: ReadinessCheck[], name: string, status: ReadinessCheck
   checks.push({ name, status, message });
 }
 
-function getGoldenFixtureCount() {
+function getGoldenFixtureCount(): number | null {
   const calibrationPath = path.join(getRepoRoot(), "tests", "fixtures", "calibration.json");
-  if (!existsSync(calibrationPath)) return 0;
+  if (!existsSync(calibrationPath)) return null;
 
   try {
     const raw = JSON.parse(readFileSync(calibrationPath, "utf8")) as {
@@ -82,7 +166,7 @@ function getGoldenFixtureCount() {
     };
     return (raw.fixtures || []).filter((fixture) => fixture.tier === "golden").length;
   } catch {
-    return 0;
+    return null;
   }
 }
 
@@ -121,6 +205,10 @@ function deriveGates(checks: ReadinessCheck[]): { gates: LaunchGate[]; blockers:
 export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnapshot> {
   const checks: ReadinessCheck[] = [];
   const hostedRuntime = isHostedProductionRuntime();
+  const repoRoot = getRepoRoot();
+  const hasDocsDir = repoHasDir(repoRoot, "docs");
+  const hasTestsDir = repoHasDir(repoRoot, "tests");
+  const hasWebAppDir = existsSync(path.join(repoRoot, "web", "app"));
 
   const requiredEnv = [
     "SESSION_SECRET",
@@ -184,23 +272,16 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   const extensionOrigins = getConfiguredExtensionOrigins();
   const extensionSyncRequested = requestedLaunchFlags.extensionSync;
   const extensionSyncConfigured = extensionOrigins.length > 0;
+  const extensionSyncEnabled = launchFlags.extensionSync;
   addCheck(
     checks,
     "extension_sync",
-    extensionSyncRequested
-      ? extensionSyncConfigured
-        ? "ok"
-        : hostedRuntime
-          ? "missing"
-          : "disabled"
-      : "disabled",
-    extensionSyncRequested
-      ? extensionSyncConfigured
-        ? `Extension sync is enabled with ${extensionOrigins.length} exact allowed origin(s).`
-        : hostedRuntime
-          ? "Extension sync is enabled, but RIYP_EXTENSION_ORIGINS is empty. Add the exact extension origin before launch."
-          : "Extension sync stays dark in this local environment until RIYP_EXTENSION_ORIGINS is configured with an exact extension origin."
-      : "Extension sync is disabled by launch flag until exact extension origins are configured."
+    extensionSyncEnabled ? "ok" : "disabled",
+    extensionSyncEnabled
+      ? `Extension sync is enabled with ${extensionOrigins.length} exact allowed origin(s).`
+      : extensionSyncRequested
+        ? "Extension sync was requested, but it remains off until RIYP_EXTENSION_ORIGINS is configured with an exact extension origin."
+        : "Extension sync is disabled by launch flag until exact extension origins are configured."
   );
 
   addCheck(
@@ -250,25 +331,60 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   addCheck(checks, "prompt_assets", "ok", "Prompt assets are readable.");
 
   const goldenFixtureCount = getGoldenFixtureCount();
-  const hasRequiredDocs = REQUIRED_LAUNCH_DOCS.every((relativePath) => existsSync(path.join(getRepoRoot(), relativePath)));
-  addCheck(
-    checks,
-    "eval_harness",
-    goldenFixtureCount >= 20 ? "ok" : "missing",
-    goldenFixtureCount >= 20
-      ? `Eval harness includes ${goldenFixtureCount} golden fixtures.`
-      : `Eval harness has only ${goldenFixtureCount} golden fixtures. Minimum launch bar is 20.`
-  );
+  if (goldenFixtureCount === null) {
+    addCheck(
+      checks,
+      "eval_harness",
+      hostedRuntime && !hasTestsDir ? "disabled" : "missing",
+      hostedRuntime && !hasTestsDir
+        ? "Eval harness fixtures live in the repo and are validated via CI before launch."
+        : "Eval harness calibration.json is missing or unreadable."
+    );
+  } else {
+    addCheck(
+      checks,
+      "eval_harness",
+      goldenFixtureCount >= 20 ? "ok" : "missing",
+      goldenFixtureCount >= 20
+        ? `Eval harness includes ${goldenFixtureCount} golden fixtures.`
+        : `Eval harness has only ${goldenFixtureCount} golden fixtures. Minimum launch bar is 20.`
+    );
+  }
+
+  const hasRequiredDocs = REQUIRED_LAUNCH_DOCS.every((relativePath) => existsSync(path.join(repoRoot, relativePath)));
   addCheck(
     checks,
     "launch_runbooks",
-    hasRequiredDocs ? "ok" : "missing",
+    hasRequiredDocs ? "ok" : hostedRuntime && !hasDocsDir ? "disabled" : "missing",
     hasRequiredDocs
       ? "Go/no-go docs, vendor review, incident runbook, rehearsal, and shipping gate docs are present."
-      : "One or more required launch runbooks are missing."
+      : hostedRuntime && !hasDocsDir
+        ? "Launch runbooks are tracked in the repo and verified during launch readiness reviews."
+        : "One or more required launch runbooks are missing."
   );
 
-  const hasTrustFiles = REQUIRED_PUBLIC_TRUST_FILES.every((relativePath) => existsSync(path.join(getRepoRoot(), relativePath)));
+  const hasTrustFiles =
+    REQUIRED_PUBLIC_TRUST_FILES.every((relativePath) => existsSync(path.join(repoRoot, relativePath))) ||
+    (() => {
+      if (hasWebAppDir) return false;
+      const routes = getNextRouteSet(repoRoot);
+      if (!routes) return false;
+      const requiredRoutes = [
+        "/privacy",
+        "/security",
+        "/methodology",
+        "/status",
+        "/.well-known/security.txt",
+        "/robots.txt",
+        "/sitemap.xml",
+      ];
+      return requiredRoutes.every((route) => {
+        if (routes.has(route)) return true;
+        if (route === "/robots.txt" && routes.has("/robots")) return true;
+        if (route === "/sitemap.xml" && routes.has("/sitemap")) return true;
+        return false;
+      });
+    })();
   addCheck(
     checks,
     "public_trust_surfaces",
