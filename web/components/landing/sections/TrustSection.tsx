@@ -1,20 +1,30 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LandingTrustContent } from "@/components/landing/landingConfig";
 import { LandingSectionFrame, LandingSectionTag } from "@/components/landing/sections/SectionPrimitives";
+import { SCROLL_REVEAL_VARIANTS, SCROLL_REVEAL_FAST } from "@/lib/animation";
 
 type TrustSectionProps = {
     content: LandingTrustContent;
 };
 
 export function TrustSection({ content }: TrustSectionProps) {
+    const prefersReducedMotion = useReducedMotion();
+
     return (
         <LandingSectionFrame tone="ink" density="relaxed" divider="both" className="landing-deep-ink">
             <div className="grid items-start landing-grid-gap lg:grid-cols-[1.02fr_0.98fr]">
-                <div className="landing-flow-md">
+                <motion.div
+                    className="landing-flow-md"
+                    variants={SCROLL_REVEAL_VARIANTS}
+                    initial={prefersReducedMotion ? false : "hidden"}
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                >
                     <LandingSectionTag index="03" label="Trust Signals" />
                     <div className="landing-label text-slate-400">{content.eyebrow}</div>
                     <h2 className="landing-title-xl text-slate-50 md:text-[3.1rem]">
@@ -42,9 +52,15 @@ export function TrustSection({ content }: TrustSectionProps) {
                             </div>
                         ))}
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="landing-deep-ink-panel landing-flow-md">
+                <motion.div
+                    className="landing-deep-ink-panel landing-flow-md"
+                    variants={SCROLL_REVEAL_FAST}
+                    initial={prefersReducedMotion ? false : "hidden"}
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                >
                     <div className="landing-label text-slate-400">{content.reasonsLabel}</div>
                     <div className="space-y-3.5">
                         {content.reasons.map((point, index) => (
@@ -67,7 +83,7 @@ export function TrustSection({ content }: TrustSectionProps) {
                         {content.cta.label}
                         <ArrowRight className="w-4 h-4" />
                     </Link>
-                </div>
+                </motion.div>
             </div>
         </LandingSectionFrame>
     );

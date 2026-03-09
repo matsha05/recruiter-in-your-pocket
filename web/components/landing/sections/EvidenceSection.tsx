@@ -1,22 +1,32 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LandingEvidenceContent } from "@/components/landing/landingConfig";
 import { LandingSectionTag } from "@/components/landing/sections/SectionPrimitives";
+import { SCROLL_REVEAL_VARIANTS, STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/animation";
 
 type EvidenceSectionProps = {
     content: LandingEvidenceContent;
 };
 
 export function EvidenceSection({ content }: EvidenceSectionProps) {
+    const prefersReducedMotion = useReducedMotion();
+
     return (
         <div className="landing-flow-lg">
             <LandingSectionTag index="01" label="Evidence System" />
 
             <div className="grid items-start landing-grid-gap xl:grid-cols-[0.92fr_1.08fr]">
-                <div className="landing-flow-md">
+                <motion.div
+                    className="landing-flow-md"
+                    variants={SCROLL_REVEAL_VARIANTS}
+                    initial={prefersReducedMotion ? false : "hidden"}
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                >
                     <div className="inline-flex items-center gap-2 rounded-full border border-slate-300/70 bg-gradient-to-r from-white/95 to-amber-50/55 px-3 py-1 text-label-mono text-muted-foreground dark:border-slate-700 dark:bg-slate-900/50">
                         {content.eyebrow}
                     </div>
@@ -47,12 +57,19 @@ export function EvidenceSection({ content }: EvidenceSectionProps) {
                             <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="grid auto-rows-fr landing-grid-gap sm:grid-cols-2">
+                <motion.div
+                    className="grid auto-rows-fr landing-grid-gap sm:grid-cols-2"
+                    variants={STAGGER_CONTAINER}
+                    initial={prefersReducedMotion ? false : "hidden"}
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                >
                     {content.signalCards.map((card, index) => (
-                        <div
+                        <motion.div
                             key={card.title}
+                            variants={prefersReducedMotion ? {} : STAGGER_ITEM}
                             className={cn(
                                 "landing-card card-interactive h-full landing-card-pad-compact landing-flow-sm",
                                 (index === 0 || index === content.signalCards.length - 1) && "sm:col-span-2"
@@ -69,9 +86,9 @@ export function EvidenceSection({ content }: EvidenceSectionProps) {
                             <div className="inline-flex items-center rounded-md border border-border/55 bg-muted/25 px-2 py-0.5 text-label-mono text-muted-foreground">
                                 {card.citation}
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </div>
     );

@@ -37,7 +37,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     return (
         <Link
             href={href}
-            className="rounded-md px-2 py-1 transition-colors hover:bg-background/80 hover:text-slate-700"
+            className="relative rounded-md px-2 py-1 text-slate-400 transition-colors hover:text-slate-600 after:absolute after:bottom-0 after:left-2 after:right-2 after:h-px after:origin-left after:scale-x-0 after:bg-slate-400/50 after:transition-transform after:duration-200 hover:after:scale-x-100"
         >
             {children}
         </Link>

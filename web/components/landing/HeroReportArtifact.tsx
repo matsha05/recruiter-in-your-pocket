@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useMemo, useRef, useState, useEffect } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { PrincipalRecruiterIcon, SignalRadarIcon } from "@/components/icons";
 import { ReportSectionHeader } from "@/components/workspace/report/ReportSectionHeader";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
@@ -54,11 +54,48 @@ function getConfidenceLabel(score: number) {
     return "Low confidence";
 }
 
+function useAnimatedCount(target: number, trigger: boolean, duration = 800) {
+    const [count, setCount] = useState(0);
+    const hasRun = useRef(false);
+    const prefersReducedMotion = useReducedMotion();
+
+    useEffect(() => {
+        if (prefersReducedMotion) {
+            setCount(target);
+            return;
+        }
+        if (!trigger || hasRun.current) return;
+        hasRun.current = true;
+
+        const start = performance.now();
+        let frame = 0;
+        const step = (now: number) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // easeOutCubic for smooth deceleration
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.round(eased * target));
+            if (progress < 1) {
+                frame = requestAnimationFrame(step);
+            }
+        };
+        frame = requestAnimationFrame(step);
+
+        return () => {
+            if (frame) cancelAnimationFrame(frame);
+        };
+    }, [duration, prefersReducedMotion, target, trigger]);
+
+    return count;
+}
+
 export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifactProps) {
     const artifactRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(artifactRef, { once: true, amount: 0.4 });
 
     const score = data.score ?? 0;
+    const countDurationMs = Math.min(Math.max(playbackSeconds * 220, 650), 950);
+    const displayScore = useAnimatedCount(score, isInView, countDurationMs);
     const verdict = data.score_comment_short || data.first_impression || "Strong story. Impact is under-quantified.";
     const criticalMiss = data.biggest_gap_example || "Impact metrics missing in two recent roles.";
 
@@ -176,7 +213,7 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
                     </div>
                     <div className="text-right">
                         <div className="text-label-mono text-muted-foreground">{getConfidenceLabel(score)}</div>
-                        <span className={`text-metric ${getScoreColor(score)}`}>{score}/100</span>
+                        <span className={`text-metric ${getScoreColor(score)}`}>{displayScore}/100</span>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { PricingCard } from "@/components/shared/PricingCard";
 import type { LandingPricingContent } from "@/components/landing/landingConfig";
@@ -10,6 +11,7 @@ import {
     LandingSectionHeader,
     LandingSectionTag,
 } from "@/components/landing/sections/SectionPrimitives";
+import { SCROLL_REVEAL_VARIANTS, SCROLL_REVEAL_FAST } from "@/lib/animation";
 
 type PricingSectionProps = {
     content: LandingPricingContent;
@@ -19,10 +21,18 @@ type PricingSectionProps = {
 };
 
 export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect }: PricingSectionProps) {
+    const prefersReducedMotion = useReducedMotion();
+
     return (
         <LandingSectionFrame tone="soft" density="tight" divider="bottom">
             <div className="grid items-start landing-grid-gap xl:grid-cols-[0.72fr_1.28fr]">
-                <div className="landing-flow-md xl:sticky xl:top-20">
+                <motion.div
+                    className="landing-flow-md xl:sticky xl:top-20"
+                    variants={SCROLL_REVEAL_VARIANTS}
+                    initial={prefersReducedMotion ? false : "hidden"}
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                >
                     <LandingSectionTag index="04" label="Plans And Access" />
                     <div className="text-label-mono text-muted-foreground">{content.eyebrow}</div>
                     <h2 className="landing-title-xl">
@@ -44,9 +54,15 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
                             <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="rounded-2xl border border-border/55 bg-gradient-to-b from-white/90 to-amber-50/45 p-3.5 shadow-[0_24px_48px_-34px_rgba(2,6,23,0.36)] dark:from-slate-900/60 dark:to-slate-900/40 sm:p-4">
+                <motion.div
+                    className="rounded-2xl border border-border/55 bg-gradient-to-b from-white/90 to-amber-50/45 p-3.5 shadow-[0_24px_48px_-34px_rgba(2,6,23,0.36)] dark:from-slate-900/60 dark:to-slate-900/40 sm:p-4"
+                    variants={SCROLL_REVEAL_FAST}
+                    initial={prefersReducedMotion ? false : "hidden"}
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                >
                     <div className="grid gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-3">
                         <PricingCard
                             tier="free"
@@ -64,7 +80,7 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
                             loading={loadingTier === "lifetime"}
                         />
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             <LandingSectionBreak label={content.trust.kicker} />
