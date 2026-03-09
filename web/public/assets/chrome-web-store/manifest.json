@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-03-09T02:38:23.089Z",
+  "assets": [
+    {
+      "id": "popup-jobs",
+      "path": "/assets/chrome-web-store/popup-jobs.png"
+    },
+    {
+      "id": "popup-auth",
+      "path": "/assets/chrome-web-store/popup-auth.png"
+    },
+    {
+      "id": "workspace-return",
+      "path": "/assets/chrome-web-store/workspace-return.png"
+    },
+    {
+      "id": "install-disclosure",
+      "path": "/assets/chrome-web-store/install-disclosure.png"
+    },
+    {
+      "id": "capture-context",
+      "path": "/assets/chrome-web-store/capture-context.png"
+    },
+    {
+      "id": "promo-tile",
+      "path": "/assets/chrome-web-store/promo-tile.png"
+    }
+  ]
+}

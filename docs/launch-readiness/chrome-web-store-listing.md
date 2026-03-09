@@ -30,3 +30,21 @@ The extension reads supported LinkedIn and Indeed job pages only when needed for
    Show the website install surface with supported sites, purpose-bound access, and policy links.
 5. Supported job page capture
    Show the supported-page capture workflow in context rather than a decorative hero mockup.
+
+## Generated asset pack
+
+Regenerate the asset pack with:
+
+```bash
+npm run assets:chrome-web-store
+```
+
+Generated files:
+
+- `/web/public/assets/chrome-web-store/popup-jobs.png`
+- `/web/public/assets/chrome-web-store/popup-auth.png`
+- `/web/public/assets/chrome-web-store/workspace-return.png`
+- `/web/public/assets/chrome-web-store/install-disclosure.png`
+- `/web/public/assets/chrome-web-store/capture-context.png`
+- `/web/public/assets/chrome-web-store/promo-tile.png`
+- `/web/public/assets/chrome-web-store/manifest.json`

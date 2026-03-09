@@ -6,12 +6,12 @@ const { startNextServer } = require(path.resolve(process.cwd(), "..", "scripts",
 
 const OUTPUT_DIR = path.resolve(process.cwd(), "public", "assets", "chrome-web-store");
 const ASSETS = [
-  "popup-jobs",
-  "popup-auth",
-  "workspace-return",
-  "install-disclosure",
-  "capture-context",
-  "promo-tile",
+  { id: "popup-jobs", width: 1280, height: 800 },
+  { id: "popup-auth", width: 1280, height: 800 },
+  { id: "workspace-return", width: 1280, height: 800 },
+  { id: "install-disclosure", width: 1280, height: 800 },
+  { id: "capture-context", width: 1280, height: 800 },
+  { id: "promo-tile", width: 440, height: 280 },
 ];
 
 async function main() {
@@ -32,22 +32,38 @@ async function main() {
       waitUntil: "networkidle",
     });
     await page.emulateMedia({ reducedMotion: "reduce" });
+    const docHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+    await page.setViewportSize({
+      width: 1600,
+      height: Math.min(Math.max(docHeight + 200, 1200), 9000),
+    });
     await page.waitForTimeout(500);
 
-    for (const assetId of ASSETS) {
+    for (const asset of ASSETS) {
+      const { id: assetId, width, height } = asset;
       const locator = page.locator(`[data-store-asset="${assetId}"]`);
       await locator.waitFor({ state: "visible" });
-      await locator.screenshot({
+      const box = await locator.boundingBox();
+      if (!box) {
+        throw new Error(`Could not resolve bounding box for ${assetId}`);
+      }
+      await page.screenshot({
         path: path.join(OUTPUT_DIR, `${assetId}.png`),
         type: "png",
+        clip: {
+          x: Math.floor(box.x),
+          y: Math.floor(box.y),
+          width,
+          height,
+        },
       });
     }
 
     const manifest = {
       generatedAt: new Date().toISOString(),
-      assets: ASSETS.map((assetId) => ({
-        id: assetId,
-        path: `/assets/chrome-web-store/${assetId}.png`,
+      assets: ASSETS.map(({ id }) => ({
+        id,
+        path: `/assets/chrome-web-store/${id}.png`,
       })),
     };
 

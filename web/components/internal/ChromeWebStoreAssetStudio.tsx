@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { PocketMark, Wordmark } from "@/components/icons";
 import { extensionStoreContent } from "@/lib/extension/storeContent";
-import { extensionDisclosureMessage } from "@/lib/trust/messages";
 
 const popupJobs = [
   {
@@ -303,24 +302,24 @@ function PopupAuthScene() {
               Screenshot 2
             </p>
             <h3 className="mt-4 font-display text-5xl tracking-[-0.05em] text-slate-900">
-              Sign in only if you want saved jobs across devices.
+              Keep using it locally. Sign in only when sync matters.
             </h3>
             <p className="mt-5 text-lg leading-8 text-slate-600">
-              The popup stays honest about what sign-in unlocks, what still works locally, and
-              why the account matters.
+              The popup makes the boundary clear at a glance: local capture works first, while
+              sign-in unlocks saved-job history across devices and a cleaner handoff to the studio.
             </p>
           </div>
 
           <div className="grid max-w-[540px] gap-4">
             <InfoStrip
-              icon={<Lock className="h-4 w-4" />}
-              title="Secure sign-in"
-              body="Passwordless auth keeps extension and web flows aligned."
-            />
-            <InfoStrip
               icon={<BriefcaseBusiness className="h-4 w-4" />}
               title="Local use first"
               body="You can still capture supported roles without committing to sync."
+            />
+            <InfoStrip
+              icon={<Lock className="h-4 w-4" />}
+              title="Sync when you want it"
+              body="Passwordless sign-in keeps saved jobs across devices and opens the studio on the right account."
             />
           </div>
         </div>
@@ -328,7 +327,15 @@ function PopupAuthScene() {
         <div className="flex flex-1 items-center justify-center pr-10">
           <PopupShell>
             <div className="rounded-[22px] border border-black/6 bg-white px-5 py-5">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand">
+              <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 px-4 py-3">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                  Local capture is already on
+                </div>
+                <div className="mt-1 text-sm text-slate-600">
+                  Sign in only if you want synced saved jobs and studio continuity.
+                </div>
+              </div>
+              <div className="mx-auto mt-5 flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand">
                 <Lock className="h-5 w-5" />
               </div>
               <h4 className="mt-4 text-center text-xl font-semibold text-slate-900">
@@ -363,38 +370,56 @@ function WorkspaceReturnScene() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#f6f0e7_0%,#f9f6f1_60%,#f3ece2_100%)]" />
       <div className="relative flex h-full flex-col">
         <StudioHeader pill="Saved job reopened" />
-        <div className="grid flex-1 grid-cols-[320px_1fr] gap-8 px-8 py-8">
-          <aside className="rounded-[28px] border border-black/8 bg-white/90 p-6 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-              Saved role
-            </p>
-            <h4 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
-              Senior Product Designer
-            </h4>
-            <p className="mt-2 text-sm text-slate-500">Notion · LinkedIn capture</p>
-            <div className="mt-6 space-y-3">
-              <MetricCard label="First impression" value="Strong strategic framing" />
+        <div className="grid flex-1 grid-cols-[0.82fr_1.18fr] gap-8 px-8 py-8">
+          <aside className="rounded-[30px] border border-black/8 bg-white/92 p-7 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand">
+                <Chrome className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                  Saved from extension
+                </p>
+                <h4 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
+                  Senior Product Designer
+                </h4>
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-slate-500">Notion · LinkedIn capture · reopened in studio</p>
+
+            <div className="mt-6 rounded-[24px] border border-brand/15 bg-brand/8 p-5">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+                Why reopen it
+              </div>
+              <p className="mt-3 text-sm leading-6 text-slate-700">
+                The extension keeps the role in view. The studio picks up that same context for the
+                deeper recruiter-grade review.
+              </p>
+            </div>
+
+            <div className="mt-5 space-y-3">
               <MetricCard label="Resume match" value="84 / 100" />
               <MetricCard label="Best next move" value="Refine leadership bullets" />
             </div>
-            <button className="mt-6 w-full rounded-2xl border border-slate-200 bg-[#fbfaf7] px-4 py-3 text-sm font-medium text-slate-700">
+
+            <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-[#fbfaf7] px-4 py-3 text-sm font-medium text-slate-700">
               Return to saved jobs
+              <ArrowRight className="h-4 w-4" />
             </button>
           </aside>
 
           <section className="rounded-[30px] border border-black/8 bg-white/94 p-8 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
             <div className="flex items-start justify-between gap-6 border-b border-black/6 pb-6">
-              <div className="max-w-[600px]">
+              <div className="max-w-[580px]">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
                   Recruiter-grade review
                 </p>
                 <h3 className="mt-3 font-display text-[2.7rem] tracking-[-0.05em] text-slate-900">
-                  Studio handoff keeps the job context intact.
+                  Extension capture turns into a real studio handoff.
                 </h3>
                 <p className="mt-3 text-base leading-7 text-slate-600">
-                  Saved jobs do not stop at capture. The studio carries the role back into a
-                  deeper review with clearer suggestions, stronger bullets, and export-ready next
-                  steps.
+                  One saved role becomes a clearer review, stronger bullets, and a cleaner decision
+                  about whether this job deserves the next pass.
                 </p>
               </div>
               <div className="rounded-[26px] border border-brand/15 bg-brand/8 px-6 py-5 text-center">
@@ -422,8 +447,8 @@ function WorkspaceReturnScene() {
                 body="Lead with shipped outcomes, clarify team span, and tighten the top three bullets."
               />
               <ReportCard
-                title="Next step"
-                body="Export the updated version, then compare against similar design leadership roles."
+                title="Next studio move"
+                body="Export the update, then compare against similar design leadership roles."
               />
             </div>
           </section>
@@ -447,18 +472,22 @@ function InstallDisclosureScene() {
             <h3 className="mt-3 font-display text-[3rem] tracking-[-0.05em] text-slate-900">
               Save the job while it’s in front of you.
             </h3>
-            <p className="mt-4 max-w-[60ch] text-base leading-8 text-slate-600">
-              Capture supported LinkedIn and Indeed roles, keep your saved jobs in view, and jump
-              into the studio when you want the full recruiter-grade review.
+            <p className="mt-4 max-w-[54ch] text-lg leading-8 text-slate-600">
+              Capture supported LinkedIn and Indeed roles, then reopen them in the studio when you
+              want the deeper recruiter-grade pass.
             </p>
 
-            <div className="mt-6 rounded-[24px] border border-black/8 bg-[#fbfaf7] p-5">
-              <p className="text-sm leading-7 text-slate-700">
-                {extensionStoreContent.page.disclosure}
-              </p>
-              <p className="mt-3 text-sm leading-7 text-slate-500">
-                {extensionDisclosureMessage}
-              </p>
+            <div className="mt-6 grid gap-3">
+              <InfoStrip
+                icon={<CheckCircle2 className="h-4 w-4" />}
+                title="Supported job pages only"
+                body="Capture starts only when you ask to save a supported LinkedIn or Indeed role."
+              />
+              <InfoStrip
+                icon={<Lock className="h-4 w-4" />}
+                title="Sign-in is optional"
+                body="Use your account only when you want synced saved jobs across devices."
+              />
             </div>
 
             <div className="mt-6 flex items-center gap-3">
@@ -470,6 +499,10 @@ function InstallDisclosureScene() {
                 Review privacy and data handling
               </button>
             </div>
+            <p className="mt-4 max-w-[46ch] text-sm leading-6 text-slate-500">
+              The extension reads supported pages only for user-initiated capture. No hidden
+              scraping, no all-sites access.
+            </p>
           </section>
 
           <section className="space-y-5">
@@ -488,7 +521,11 @@ function InstallDisclosureScene() {
                 </span>
               </div>
               <div className="mt-5 space-y-3">
-                {extensionStoreContent.page.highlights.map((item) => (
+                {[
+                  "Capture a supported role in one click",
+                  "Check fit without breaking browsing flow",
+                  "Open the studio only when you want deeper review",
+                ].map((item) => (
                   <div
                     key={item}
                     className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-[#fbfaf7] px-4 py-4"
@@ -503,7 +540,11 @@ function InstallDisclosureScene() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              {extensionStoreContent.page.trustPoints.map((item, index) => (
+              {[
+                "No hidden scraping or all-sites access",
+                "Sync is limited to saved-job workflows",
+                "Privacy and support links stay visible",
+              ].map((item, index) => (
                 <div
                   key={item}
                   className="rounded-[24px] border border-black/8 bg-white/94 px-5 py-4 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]"
@@ -558,7 +599,16 @@ function CaptureContextScene() {
               />
             </div>
 
-            <div className="mt-7 rounded-[24px] border border-black/8 bg-[#fbfaf7] p-5">
+            <div className="mt-6 flex items-center gap-2">
+              <span className="rounded-full bg-brand/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+                One-click capture
+              </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Reopen later in studio
+              </span>
+            </div>
+
+            <div className="mt-6 rounded-[24px] border border-black/8 bg-[#fbfaf7] p-5">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
                 Purpose-bound access
               </p>
@@ -566,6 +616,11 @@ function CaptureContextScene() {
                 The extension reads supported job pages only when needed for user-initiated job
                 capture. No hidden scraping, no all-sites access, and no automatic save behavior.
               </p>
+            </div>
+
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              <MetricCard label="Supported flow" value="Save here, review later" />
+              <MetricCard label="Account boundary" value="Sync is optional" />
             </div>
           </section>
 
