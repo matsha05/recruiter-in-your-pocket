@@ -215,13 +215,21 @@ export function AuthFlow({
   );
 
   return (
-    <div className={outerClass}>
+    <div
+      data-visual-anchor={variant === "page" ? "auth-page" : undefined}
+      className={outerClass}
+    >
       <div className={cn("w-full max-w-md space-y-6", variant === "modal" && "max-w-none")}>
         <div className="text-center space-y-2">
           <h1 className={cn("font-display font-medium text-foreground tracking-tight", variant === "page" ? "text-3xl" : "text-2xl")}>
             {stepTitle}
           </h1>
           <p className="text-sm text-muted-foreground">{stepSubtitle}</p>
+          {step === "email" ? (
+            <div className="mx-auto max-w-sm rounded-xl border border-brand/20 bg-brand/5 px-4 py-3 text-left text-xs leading-5 text-muted-foreground">
+              Sign-in is only for durable history, billing controls, and synced saved jobs. Anonymous reviews are not silently attached to an account.
+            </div>
+          ) : null}
         </div>
 
         <div className={panelClass}>
@@ -249,12 +257,12 @@ export function AuthFlow({
                   />
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  We&apos;ll email a one-time code. No password required.
+                  We&apos;ll email a one-time code so you can save securely without a password.
                 </p>
               </div>
               <Button onClick={() => handleSendCode("otp")} disabled={loading} className="w-full h-12 text-base font-medium">
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Send Login Code
+                Email secure sign-in code
                 {!loading && <ArrowRight className="ml-2 h-4 w-4" />}
               </Button>
               {showMagicLinkFallback && (
@@ -395,8 +403,15 @@ export function AuthFlow({
           )}
         </div>
 
-        <div className="text-xs text-center text-muted-foreground/60 uppercase tracking-widest font-medium">
-          Secure Login • No Password Required
+        <div className="space-y-2 text-center">
+          <div className="text-xs text-muted-foreground/60 uppercase tracking-widest font-medium">
+            Secure Login • No Password Required
+          </div>
+          {variant === "page" ? (
+            <p className="text-xs text-muted-foreground">
+              Questions about privacy or billing? <a href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</a> · <a href="/security" className="underline underline-offset-4 hover:text-foreground">Security</a> · <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">Support</a>
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

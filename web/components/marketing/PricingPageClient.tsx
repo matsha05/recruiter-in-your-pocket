@@ -12,6 +12,7 @@ const unlockPoints = [
     "Full rewrites and evidence breakdowns on every review",
     "Match your resume to specific job descriptions",
     "Export, save your history, and manage everything yourself",
+    "Bring saved job context back from the extension when you want a role-by-role workflow",
 ];
 
 const billingPoints = [
@@ -84,7 +85,7 @@ export default function PricingPageClient() {
                         </h1>
                         <p className="editorial-copy-lg mx-auto mt-5 max-w-[440px] text-slate-500">
                             Your first review is on us — the full thing, not a teaser.
-                            If you want to keep reviewing for different roles, that&apos;s when the paid plans come in.
+                            Pay only when you want repeated reviews, durable history, exports, and a steadier role-by-role workflow.
                         </p>
                     </div>
                 </section>
@@ -188,6 +189,12 @@ export default function PricingPageClient() {
                         >
                             Open restore page
                             <ArrowRight className="h-4 w-4" />
+                        </Link>
+                        <Link
+                            href="/extension"
+                            className="mt-6 ml-3 inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-medium text-slate-700 transition-all hover:bg-white"
+                        >
+                            Review extension install flow
                         </Link>
                     </div>
                 </section>

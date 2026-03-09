@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
     Clock,
+    Chrome,
     FileText,
     Loader2,
     User,
@@ -466,6 +467,23 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             ) : null}
                         </>
                     }
+                    actions={
+                        <div className="flex flex-wrap items-center gap-2">
+                            <Link
+                                href="/extension"
+                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                            >
+                                <Chrome className="h-4 w-4" />
+                                Extension
+                            </Link>
+                            <Link
+                                href="/security"
+                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                            >
+                                Review data handling
+                            </Link>
+                        </div>
+                    }
                     className="mb-8"
                 />
 
@@ -570,6 +588,9 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     Upload your default resume for instant match scores in the Chrome extension.
                                 </p>
                             </div>
+                            <div className="rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
+                                The extension reads supported job pages only when you capture a role. Your default resume here powers match context once you choose to use it.
+                            </div>
                             <DefaultResumeSection />
                         </div>
                     )}
@@ -649,6 +670,13 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     <PricingCard tier="monthly" onSelect={() => handleCheckout("monthly")} loading={isCheckoutLoading === "monthly"} />
                                     <PricingCard tier="lifetime" onSelect={() => handleCheckout("lifetime")} loading={isCheckoutLoading === "lifetime"} />
                                 </div>
+                            </section>
+
+                            <section className="rounded-xl border border-border/50 bg-muted/20 px-4 py-4 text-sm text-muted-foreground">
+                                Need procurement, invoices, or a billing edge-case reviewed by a person?{" "}
+                                <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">
+                                    support@recruiterinyourpocket.com
+                                </Link>
                             </section>
 
                             <section>

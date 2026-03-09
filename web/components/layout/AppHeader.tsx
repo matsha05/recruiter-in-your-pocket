@@ -13,6 +13,7 @@ const APP_NAV = [
     { label: "Studio", href: "/workspace" },
     { label: "Reports", href: "/reports" },
     { label: "Jobs", href: "/jobs" },
+    { label: "Extension", href: "/extension" },
     { label: "Research", href: "/research" },
     { label: "Resources", href: "/guides" },
 ];

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import {
     Briefcase,
+    Chrome,
     Search,
     Filter,
     ExternalLink,
@@ -179,6 +180,23 @@ export default function JobsClient() {
                         </span>
                     </>
                 }
+                actions={(
+                    <div className="flex flex-wrap items-center gap-2">
+                        <Link
+                            href="/extension"
+                            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                        >
+                            <Chrome className="h-4 w-4" />
+                            Install extension
+                        </Link>
+                        <Link
+                            href="/workspace"
+                            className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
+                        >
+                            Run review
+                        </Link>
+                    </div>
+                )}
             />
 
             {/* Resume Context Card */}
@@ -217,6 +235,10 @@ export default function JobsClient() {
                         <option value="archived">Archived</option>
                     </select>
                 </div>
+            </div>
+
+            <div className="rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
+                Saved jobs are easiest to build from the extension. Capture a supported role while you browse, then return here when you want to compare fit and move it forward.
             </div>
 
             {/* Jobs List */}
@@ -423,6 +445,12 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
                     >
                         Open Workspace
                     </Link>
+                    <Link
+                        href="/extension"
+                        className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
+                    >
+                        Install extension
+                    </Link>
                 </div>
             </div>
         );
@@ -442,6 +470,20 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
                 <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
                     Save your first job from LinkedIn or Indeed using the RIYP extension, and we&apos;ll show you how your resume stacks up.
                 </p>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+                <Link
+                    href="/extension"
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                >
+                    Install extension
+                </Link>
+                <Link
+                    href="/workspace"
+                    className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
+                >
+                    Run review manually
+                </Link>
             </div>
             <div className="flex items-center justify-center gap-8 pt-2">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground/70">

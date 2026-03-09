@@ -43,6 +43,18 @@ export const visualRoutes: VisualRoute[] = [
     fullPage: true,
   },
   {
+    name: "auth",
+    path: "/auth",
+    waitFor: "[data-visual-anchor='auth-page']",
+    fullPage: true,
+  },
+  {
+    name: "extension",
+    path: "/extension",
+    waitFor: "[data-visual-anchor='extension-page']",
+    fullPage: true,
+  },
+  {
     name: "trust",
     path: "/trust",
     waitFor: "[data-visual-anchor='legal-trust']",

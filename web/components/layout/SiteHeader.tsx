@@ -37,6 +37,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                 <nav className="flex items-center gap-8">
                     <div className="hidden items-center gap-6 md:flex">
                         <SiteNavLink href="/pricing" active={isMarketingActive("/pricing")}>Pricing</SiteNavLink>
+                        <SiteNavLink href="/extension" active={isMarketingActive("/extension")}>Extension</SiteNavLink>
                         {showResearchLink && <SiteNavLink href="/research" active={isMarketingActive("/research")}>Research</SiteNavLink>}
                         {showResourcesLink && <SiteNavLink href="/guides" active={isMarketingActive("/guides")}>Resources</SiteNavLink>}
                     </div>
@@ -58,7 +59,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                 href="/workspace"
                                 className="rounded-full bg-slate-900 px-5 py-2 text-[13px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
                             >
-                                Get Started
+                                Start free review
                             </Link>
                         </div>
                     )}

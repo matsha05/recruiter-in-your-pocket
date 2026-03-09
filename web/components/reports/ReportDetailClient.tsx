@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, AlertTriangle, Loader2 } from "lucide-react";
+import { ArrowLeft, AlertTriangle, Chrome, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import ReportPanel from "@/components/workspace/ReportPanel";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
@@ -191,7 +191,27 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
                   </span>
                 </>
               }
+              actions={
+                <div className="flex flex-wrap items-center gap-2">
+                  <Link
+                    href="/reports"
+                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                  >
+                    All saved reviews
+                  </Link>
+                  <Link
+                    href="/extension"
+                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                  >
+                    <Chrome className="h-4 w-4" />
+                    Extension
+                  </Link>
+                </div>
+              }
             />
+            <div className="mt-4 rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
+              Saved reviews preserve the recruiter verdict and rewrites from that run. If you want a new verdict with fresh role context, start another review from the workspace.
+            </div>
           </div>
 
           <ReportPanel

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PocketMark } from "@/components/icons";
+import { FOOTER_NAV } from "@/lib/navigation";
 
 /**
  * Footer — Editor's Desk style
@@ -10,19 +11,24 @@ import { PocketMark } from "@/components/icons";
 export default function Footer() {
     return (
         <footer className="relative z-10 border-t border-border/50 bg-paper px-6 py-8 md:px-8">
-            <div className="mx-auto flex max-w-[var(--page-max)] flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-                <div className="flex flex-col gap-1.5">
-                    <div className="flex items-center gap-2 text-sm text-slate-400">
-                        <PocketMark className="h-4 w-4 text-brand/65" />
+            <div className="mx-auto flex max-w-[var(--page-max)] flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+                <div className="flex max-w-[27rem] flex-col gap-2">
+                    <div className="flex items-center gap-2 text-sm text-slate-500">
+                        <PocketMark className="h-4.5 w-4.5 text-brand/70" />
                         <span>© 2026 Recruiter in Your Pocket</span>
                     </div>
-                    <span className="max-w-[22rem] text-xs leading-5 text-slate-400 md:pl-6">
-                        What recruiters think, before you hit send.
-                    </span>
+                    <p className="text-sm leading-6 text-slate-500">
+                        What recruiters think, before you hit send. Start free, save deliberately, and carry job context back into the studio when it matters.
+                    </p>
+                    <p className="text-xs text-slate-400">
+                        Support and security:{" "}
+                        <FooterLink href="mailto:support@recruiterinyourpocket.com">support@recruiterinyourpocket.com</FooterLink>
+                    </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-400 md:justify-end">
-                    <FooterLink href="/pricing">Pricing</FooterLink>
-                    <FooterLink href="/research">Research</FooterLink>
+                    {FOOTER_NAV.pillLinks.map((link) => (
+                        <FooterLink key={link.href} href={link.href}>{link.label}</FooterLink>
+                    ))}
                     <FooterLink href="/trust">Trust</FooterLink>
                     <FooterLink href="/privacy">Privacy</FooterLink>
                     <FooterLink href="/methodology">Methodology</FooterLink>

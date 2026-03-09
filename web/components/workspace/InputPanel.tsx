@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/shared/TrustBadges";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { cn } from "@/lib/utils";
+import { workspaceTrustMessage } from "@/lib/trust/messages";
 
 interface InputPanelProps {
     resumeText: string;
@@ -82,7 +83,7 @@ export default function InputPanel({
                     </h1>
                     <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
                         <SixSecondIcon className="w-5 h-5 text-brand" />
-                        <p className="text-lg font-medium">7.4 seconds. That&apos;s your window.</p>
+                        <p className="text-lg font-medium">Start with a free review. Add a job only when you want fit context.</p>
                     </div>
                 </div>
 
@@ -130,10 +131,12 @@ export default function InputPanel({
                             <div className="flex items-start gap-3">
                                 <ShieldCheck className="w-4 h-4 text-brand mt-0.5 shrink-0" />
                                 <div className="space-y-1">
-                                    <p className="text-sm font-medium text-foreground">Before you run</p>
+                                    <p className="text-sm font-medium text-foreground">{workspaceTrustMessage.title}</p>
                                     <p className="text-xs text-muted-foreground">
-                                        Your upload is encrypted in transit. Anonymous runs aren&apos;t stored automatically.
-                                        Signed-in runs keep report history and a short resume preview you can delete from Reports or Settings.
+                                        {workspaceTrustMessage.body}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground">
+                                        {workspaceTrustMessage.detail}
                                     </p>
                                     <p className="text-xs text-muted-foreground">
                                         <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link>
@@ -235,7 +238,7 @@ export default function InputPanel({
                                             Check fit for a specific job
                                         </span>
                                         <span className="block text-xs text-muted-foreground mt-0.5">
-                                            See your match score + missing skills
+                                            Optional: add a job posting for fit, missing skills, and match context
                                         </span>
                                     </div>
                                 </div>
@@ -293,6 +296,8 @@ Example: We are looking for a Senior Product Manager with 5+ years of experience
                                 <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Data handling</Link>
                                 {" · "}
                                 <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Scoring methodology</Link>
+                                {" · "}
+                                <Link href="/extension" className="underline underline-offset-4 hover:text-foreground">Chrome extension</Link>
                             </p>
                         </div>
                     </div>

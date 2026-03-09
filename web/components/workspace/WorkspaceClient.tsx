@@ -21,6 +21,7 @@ import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import type { AuthContext } from "@/lib/auth/content";
 
 export default function WorkspaceClient() {
     const router = useRouter();
@@ -49,6 +50,7 @@ export default function WorkspaceClient() {
     const [isHistoryOpen, setIsHistoryOpen] = useState(false);
     const [isPaywallOpen, setIsPaywallOpen] = useState(false);
     const [isAuthOpen, setIsAuthOpen] = useState(false);
+    const [authContext, setAuthContext] = useState<AuthContext>("default");
     const [isSavePromptOpen, setIsSavePromptOpen] = useState(false);
     const [pendingReportForSave, setPendingReportForSave] = useState<any>(null);
     const [justUnlocked, setJustUnlocked] = useState(false);
@@ -165,6 +167,7 @@ export default function WorkspaceClient() {
 
     const handleRequestSaveAuth = useCallback(() => {
         setIsSavePromptOpen(false);
+        setAuthContext("report");
         setIsAuthOpen(true);
     }, []);
 
@@ -527,6 +530,7 @@ export default function WorkspaceClient() {
                 user={user ? { email: user.email || undefined } : null}
                 onSignIn={() => {
                     setIsHistoryOpen(false);
+                    setAuthContext("history");
                     setIsAuthOpen(true);
                 }}
                 onLoadReport={async (reportId) => {
@@ -547,8 +551,9 @@ export default function WorkspaceClient() {
                 isOpen={isAuthOpen}
                 onClose={() => {
                     setIsAuthOpen(false);
+                    setAuthContext("default");
                 }}
-                context="default"
+                context={authContext}
                 onSuccess={async () => {
                     await refreshUser();
                     if (pendingReportForSave) {
@@ -559,6 +564,7 @@ export default function WorkspaceClient() {
                         }
                     }
                     setIsAuthOpen(false);
+                    setAuthContext("default");
                 }}
             />
 
