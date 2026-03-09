@@ -1,6 +1,6 @@
 import path from "path";
 import { existsSync, readFileSync } from "fs";
-import { createSupabaseServerClient } from "../supabase/serverClient";
+import { maybeCreateSupabaseServerClient } from "../supabase/serverClient";
 import { loadPromptForMode } from "../backend/prompts";
 import { getConfiguredExtensionOrigins, launchFlags, requestedLaunchFlags } from "./flags";
 import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUrl";
@@ -44,7 +44,28 @@ export type LaunchReadinessSnapshot = {
 };
 
 function getRepoRoot() {
+  let current = process.cwd();
+
+  while (true) {
+    const looksLikeRepoRoot =
+      existsSync(path.join(current, "docs")) &&
+      existsSync(path.join(current, "tests")) &&
+      existsSync(path.join(current, "web", "package.json"));
+
+    if (looksLikeRepoRoot) {
+      return current;
+    }
+
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+
   return path.resolve(process.cwd(), "..");
+}
+
+function isTruthyEnv(value: string | undefined) {
+  return ["1", "true", "yes", "on"].includes(String(value || "").trim().toLowerCase());
 }
 
 function addCheck(checks: ReadinessCheck[], name: string, status: ReadinessCheckStatus, message: string) {
@@ -99,6 +120,7 @@ function deriveGates(checks: ReadinessCheck[]): { gates: LaunchGate[]; blockers:
 
 export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnapshot> {
   const checks: ReadinessCheck[] = [];
+  const hostedRuntime = isHostedProductionRuntime();
 
   const requiredEnv = [
     "SESSION_SECRET",
@@ -160,18 +182,24 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   }
 
   const extensionOrigins = getConfiguredExtensionOrigins();
+  const extensionSyncRequested = requestedLaunchFlags.extensionSync;
+  const extensionSyncConfigured = extensionOrigins.length > 0;
   addCheck(
     checks,
     "extension_sync",
-    requestedLaunchFlags.extensionSync
-      ? extensionOrigins.length > 0
+    extensionSyncRequested
+      ? extensionSyncConfigured
         ? "ok"
-        : "missing"
+        : hostedRuntime
+          ? "missing"
+          : "disabled"
       : "disabled",
-    requestedLaunchFlags.extensionSync
-      ? extensionOrigins.length > 0
+    extensionSyncRequested
+      ? extensionSyncConfigured
         ? `Extension sync is enabled with ${extensionOrigins.length} exact allowed origin(s).`
-        : "Extension sync was requested, but RIYP_EXTENSION_ORIGINS is empty. The feature is being kept dark until an exact extension origin is configured."
+        : hostedRuntime
+          ? "Extension sync is enabled, but RIYP_EXTENSION_ORIGINS is empty. Add the exact extension origin before launch."
+          : "Extension sync stays dark in this local environment until RIYP_EXTENSION_ORIGINS is configured with an exact extension origin."
       : "Extension sync is disabled by launch flag until exact extension origins are configured."
   );
 
@@ -250,20 +278,43 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
       : "One or more public trust files are missing."
   );
 
-  if (["1", "true", "yes", "on"].includes(String(process.env.SKIP_DB_READY_CHECK || "").trim().toLowerCase())) {
+  if (isTruthyEnv(process.env.SKIP_DB_READY_CHECK)) {
     addCheck(checks, "database", "disabled", "Database readiness check skipped for local test harness.");
   } else {
     try {
-      const supabase = await createSupabaseServerClient();
-      const { error } = await supabase.from("profiles").select("id").limit(1);
+      const supabase = await maybeCreateSupabaseServerClient();
+
+      if (!supabase) {
+        addCheck(
+          checks,
+          "database",
+          hostedRuntime ? "missing" : "disabled",
+          hostedRuntime
+            ? "Database readiness check requires Supabase environment variables."
+            : "Database readiness is not configured in this local environment."
+        );
+      } else {
+        const { error } = await supabase.from("user_profiles").select("id").limit(1);
+        addCheck(
+          checks,
+          "database",
+          error ? (hostedRuntime ? "missing" : "disabled") : "ok",
+          error
+            ? hostedRuntime
+              ? `Database not ready: ${error.message}`
+              : `Database readiness could not be verified from this local environment: ${error.message}`
+            : "Database connectivity check passed."
+        );
+      }
+    } catch (error: any) {
       addCheck(
         checks,
         "database",
-        error ? "missing" : "ok",
-        error ? `Database not ready: ${error.message}` : "Database connectivity check passed."
+        hostedRuntime ? "missing" : "disabled",
+        hostedRuntime
+          ? error?.message || "Database connectivity check failed."
+          : `Database readiness could not be verified from this local environment: ${error?.message || "connectivity check failed."}`
       );
-    } catch (error: any) {
-      addCheck(checks, "database", "missing", error?.message || "Database connectivity check failed.");
     }
   }
 
