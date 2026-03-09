@@ -56,10 +56,10 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                         <div className="space-y-1">
                             <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
                                 <InsightSparkleIcon className="w-4 h-4 text-premium" />
-                                Now you see what they see.
+                                Full report unlocked.
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                Start with the bullets that need work, then export when you&apos;re ready.
+                                Start with the lines that need work, then export when you&apos;re ready.
                             </p>
                         </div>
 

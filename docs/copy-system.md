@@ -1,198 +1,158 @@
-# Copy System V1.0
+# Copy System
 
-> **📌 For voice, tone, and banned phrases, see the definitive guide: [`web/docs/copy-guide.md`](../web/docs/copy-guide.md).**
-> This document covers structural rules (copy budgets, route-level intent, redline rules) that complement the tone guide.
+> Canonical voice guide: [`web/docs/copy-guide.md`](../web/docs/copy-guide.md)
 
-Last updated: 2026-02-07
+This document is the operating system around that guide. It covers naming, structure, and the small rules that keep the product voice from drifting.
+
+Last updated: 2026-03-08
 Owner: Product + Design
-Scope: Marketing pages, app UI, trust and billing copy, error states
 
-## 1. Voice Definition
+## 1. Product Naming
 
-Primary voice:
-- Trusted recruiter friend.
-- Warm, direct, specific.
-- Technical when useful, never performative.
+User-facing noun:
+- `report`
 
-What we sound like:
-- "Here is what a recruiter sees."
-- "Here is why it matters."
-- "Here is what to change next."
+Supporting phrases:
+- `recruiter report`
+- `recruiter read`
 
-What we do not sound like:
-- Generic AI assistant.
-- Corporate policy document.
-- Hype-heavy direct response ad copy.
+Avoid mixing:
+- `review`
+- `analysis`
+- `artifact`
 
-## 2. Tone by State
+If the user is looking at the generated output, call it a `report`.
 
-| Product state | Tone target | Rules |
-|---|---|---|
-| Marketing hero | Clear and decisive | One claim, one mechanism, one CTA |
-| Product guidance | Direct and practical | Evidence first, recommendation second |
-| Error states | Calm and actionable | What happened, what to do now, fallback path |
-| Pricing and billing | Precise and explicit | Boundaries and controls over persuasion |
-| Trust, privacy, security | Plain-language first | Summary first, legal detail one click away |
-| Legal pages | Accurate and readable | No product hype, no vague promises |
+## 2. Canonical Report Structure
 
-## 3. Structure Rule
+Generated report sections should stay in this order:
+1. `First Read`
+2. `Signal Breakdown`
+3. `Evidence Ledger`
+4. `Red Pen`
+5. `Missing Wins`
+6. `Role Fit`
 
-Every core section follows this order:
-1. Outcome headline.
-2. Mechanism sentence.
-3. One concrete proof point.
-4. One clear CTA.
+If a new section is added, it should sound like it belongs in this sequence.
 
-## 4. Copy Budget
+## 3. Copy Budgets
 
-| Surface | Budget |
-|---|---|
-| Hero headline | Max 2 lines |
-| Hero support copy | Max 2 sentences |
-| Section intro | Max 2 sentences |
-| Card description | 1 line, optional second detail line |
-| CTA | 2-5 words |
-| Error message | 1 sentence + 1 next step sentence |
+Keep the product scanning clean.
 
-If copy exceeds budget, simplify before adding visuals.
+Budgets:
+- headline: 2 lines max
+- subhead: 1 sentence, sometimes 2
+- card description: 1 sentence
+- CTA: 2-4 words
+- error state: what happened + next step
 
-## 5. Terminology Guardrails
+If the line needs three clauses to work, it is probably trying to do too much.
 
-Use:
-- `review`, `report`, `rewrite`, `evidence`, `fit`, `impact`, `clarity`, `readability`, `hiring team`, `recruiter read`
+## 4. Tone by State
 
-Avoid:
-- `operator-style`, `first-pass filter`, `growth loop`, `funnel`, `unlock velocity`, `AI-powered excellence`, `no-risk`
+Marketing:
+- sharper
+- more opinionated
+- one idea at a time
 
-Word mapping:
-- `analysis` -> `review` (user-facing)
-- `artifact` -> `report preview`
-- `run` (vague) -> `start review` or `review resume`
+In-app report:
+- calmer
+- more direct
+- no extra selling once the user is inside
 
-## 6. Claims and Proof
+Billing and recovery:
+- short
+- reassuring
+- exact next step
 
-Rules:
-- Each meaningful claim must have one nearby proof or source.
-- Do not stack multiple stats in one block.
-- No unsourced superlatives.
-- No "guaranteed interviews" style promises.
+Trust and policy:
+- plain English first
+- policy detail second
 
-Allowed claim pattern:
-- Claim: "Recruiters decide quickly."
-- Proof: one cited data point, close to claim.
-- Action: "Place your strongest quantified outcome in the top third."
+## 5. Claims Rule
 
-## 7. CTA System
+Every strong claim needs nearby proof.
+
+Good pattern:
+- claim
+- proof
+- what to do with it
+
+Bad pattern:
+- claim
+- louder claim
+- CTA
+
+Never promise interviews, jobs, or guaranteed outcomes.
+
+## 6. CTA System
 
 Primary CTA:
-- Outcome-led and plain.
-- Examples: `Start free review`, `Review my resume`.
+- verb first
+- clear outcome
+
+Examples:
+- `Run Your Free Report`
+- `Run Another Report`
+- `Unlock More Reports`
+- `Export PDF`
 
 Secondary CTA:
-- Clarifying action.
-- Examples: `See methodology`, `View pricing details`.
+- clarifies or supports
+
+Examples:
+- `Copy Link`
+- `See Methodology`
+- `View Pricing`
 
 Avoid:
-- `Try now`, `Unlock now`, `Crush your interview`.
+- `Get Started`
+- `Learn More`
+- `Submit`
 
-## 8. Free vs Paid Boundary Rule
+## 7. Error and Recovery Pattern
 
-Every pricing surface must state, in the same viewport:
-1. What is free now.
-2. What paid adds.
-3. How billing control works.
+Every error should answer:
+1. what happened
+2. what to do next
+3. fallback if needed
 
-Required sentence pattern:
-- "Your first full review is free."
-- "Paid plans add repeated role-specific reviews, deeper rewrites, and saved history."
-
-## 9. Error and Recovery Template
-
-Template:
-1. What happened: "Could not verify that code."
-2. Next step: "Request a new code and try again."
-3. Fallback: "Still stuck? Contact support."
+Example:
+- `Could not load report. Refresh and try again.`
+- `Still stuck? Restore access from Billing.`
 
 Never use:
-- Vague copy ("Something went wrong.")
-- Blame language.
-- Internal system terms.
+- `Something went wrong`
+- blame language
+- internal system terms
 
-## 10. Trust Copy Template
+## 8. Free vs Paid Rule
 
-Trust blocks must answer:
-1. What data is used.
-2. Why it is used.
-3. How long it is retained.
-4. Who controls deletion.
-5. How billing is handled.
+Any pricing or paywall surface must make three things obvious:
+1. what is free now
+2. what paid unlocks
+3. how much control the user has
 
-Required style:
-- Plain sentence structure.
-- Verbs over nouns.
-- No legal hedging in summary text.
+Preferred phrasing:
+- `Your first report is free.`
+- `Paid unlocks more reports, deeper rewrites, and saved history.`
 
-## 11. QA Checklist
+## 9. Trust Copy Rule
 
-Before shipping copy:
-1. Does each section have one clear headline and one clear CTA?
-2. Are there any invented recruiter terms?
-3. Is each major claim paired with proof or source?
-4. Is free vs paid boundary explicit?
-5. Are error states actionable in one read?
-6. Is trust copy readable without legal context?
-7. Does the page scan cleanly on mobile without long text walls?
+Trust pages and trust blocks should answer:
+1. what we store
+2. why we store it
+3. how long it stays
+4. how the user deletes it
+5. who handles billing
 
-Any "no" blocks release.
+Say it in plain English. If legal wording is required, put it after the summary.
 
-## 12. Route-Level Copy Intent
+## 10. Ship Check
 
-| Route | Primary job | Secondary job | Max tone intensity |
-|---|---|---|---|
-| `/` | Explain value in one pass | Build trust fast | medium |
-| `/pricing` | Clarify free vs paid boundary | Reduce purchase anxiety | medium |
-| `/research` | Teach and prove | Route users to action | low |
-| `/guides` | Give practical scripts | Route to tools/review flow | medium |
-| `/faq` | Resolve objections quickly | Link to policy/support | low |
-| `/trust` `/security` `/privacy` `/terms` | State operational truth | Provide controls and recourse | low |
-
-Rule:
-- If a line sounds better for an ad than a recruiter conversation, cut it.
-
-## 13. Recruiter Lexicon
-
-Preferred terms:
-- `screen`, `shortlist`, `hiring loop`, `scope`, `outcomes`, `role fit`, `evidence`, `rewrite`
-
-Avoid in user-facing copy:
-- `funnel`, `growth loop`, `velocity unlock`, `first-pass filter`, `operator style`
-
-Replace patterns:
-- "optimize your narrative architecture" -> "show clearer impact"
-- "unlock interview outcomes" -> "improve your odds of getting interviews"
-- "high-leverage intervention" -> "high-impact edit"
-
-## 14. Microcopy Patterns
-
-CTA patterns:
-- Primary: verb + outcome (`Start free review`, `Review my resume`)
-- Secondary: verb + context (`See methodology`, `View billing controls`)
-
-Error patterns:
-- "Could not send code. Try again in 30 seconds."
-- "Payment confirmed, but access is still updating. We will keep retrying."
-- "Could not load report history. Refresh or open Billing to restore access."
-
-Trust patterns:
-- "Reports are saved only when you choose account features."
-- "Delete account removes reports and usage history from our app database."
-- "Stripe handles payment details. We do not store full card numbers."
-
-## 15. Redline Rules (Ship Blockers)
-
-Reject copy if any of these appear:
-1. invented recruiter terminology
-2. unsourced performance superlatives
-3. conflicting free/paid or retention claims across routes
-4. paragraphs >3 sentences on mobile-first sections
-5. CTA labels without explicit user outcome
+Copy is not ready if any of this is true:
+1. the same thing has two names
+2. the line sounds generic enough to belong to any SaaS app
+3. the CTA does not say what happens next
+4. the section intro repeats the headline
+5. the report voice sounds like a coach instead of a recruiter

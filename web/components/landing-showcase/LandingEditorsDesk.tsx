@@ -328,8 +328,8 @@ export function LandingEditorsDesk() {
                         }}
                     >
                         In 7.4 seconds, they&apos;ve already made up their
-                        mind about you. We&apos;ll show you what they
-                        think. And what to fix so they keep reading.
+                        mind about you. We&apos;ll show you the recruiter
+                        read, and what to fix so they keep reading.
                     </motion.p>
 
                     <motion.div
@@ -346,7 +346,7 @@ export function LandingEditorsDesk() {
                             href="/workspace"
                             className="group inline-flex w-fit items-center gap-2.5 rounded-full bg-slate-900 px-7 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
                         >
-                            Run Your Free Review
+                            Run Your Free Report
                             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                         </a>
                         <span className="text-[14px] text-slate-400">
@@ -376,7 +376,7 @@ export function LandingEditorsDesk() {
                             ))}
                         </div>
                         <span className="text-[13px] text-slate-400">
-                            <span className="font-medium text-slate-500">1,200+</span> resumes reviewed this month
+                            <span className="font-medium text-slate-500">1,200+</span> resumes screened this month
                         </span>
                     </motion.div>
                 </div>
@@ -392,7 +392,7 @@ export function LandingEditorsDesk() {
                 <div className="mx-auto max-w-[600px]">
                     <Reveal>
                         <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
-                            What we actually do
+                            What you get
                         </p>
                         <div className="border-l-2 border-slate-300 pl-6 md:pl-8">
                             <p
@@ -402,8 +402,8 @@ export function LandingEditorsDesk() {
                                     lineHeight: 1.8,
                                 }}
                             >
-                                Not a score. Not a checklist. A recruiter&apos;s
-                                honest reaction, line by line.{" "}
+                                Not a score. Not a checklist. The recruiter
+                                read, line by line.{" "}
                                 <RedPenMarkup
                                     original="Responsible for managing service deployments"
                                     replacement="Led cross-functional migration across 4 services, reducing deploy time by 40%."
@@ -441,7 +441,7 @@ export function LandingEditorsDesk() {
                                     <div className="flex items-center gap-2.5">
                                         <PocketMark className="h-3.5 w-3.5 text-teal-700" />
                                         <span className="text-[12px] font-medium tracking-[-0.01em] text-slate-500">
-                                            Recruiter Briefing
+                                            Recruiter Report
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
@@ -450,7 +450,7 @@ export function LandingEditorsDesk() {
                                             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                                         </span>
                                         <span className="text-[11px] text-slate-400">
-                                            Analysis complete
+                                            Report ready
                                         </span>
                                     </div>
                                 </div>
@@ -469,7 +469,7 @@ export function LandingEditorsDesk() {
                                 <div className="flex items-center gap-2.5">
                                     <div className="h-px w-4 bg-slate-200" />
                                     <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
-                                        01. Recruiter First Impression
+                                        01. First Read
                                     </p>
                                 </div>
 
@@ -499,7 +499,7 @@ export function LandingEditorsDesk() {
                                                     style={{ backgroundColor: "hsl(30 80% 55%)" }}
                                                 />
                                                 <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-amber-700/80">
-                                                    Critical Miss
+                                                    Main gap
                                                 </p>
                                             </div>
                                             <p className="mt-2 text-[13px] leading-[1.65] text-slate-600">
@@ -546,7 +546,7 @@ export function LandingEditorsDesk() {
                                     <div className="flex items-center gap-2 mb-3">
                                         <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#0D7377" }} />
                                         <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
-                                            High-Priority Rewrite
+                                            Highest-leverage rewrite
                                         </span>
                                     </div>
 
@@ -569,7 +569,7 @@ export function LandingEditorsDesk() {
                                         </span>
                                         <span className="text-[10px] text-slate-200">·</span>
                                         <span className="text-[10px] text-slate-300 hidden sm:inline">
-                                            Story Arc · Impact · Clarity · Brevity
+                                            Signal Breakdown · Evidence Ledger · Missing Wins · Role Fit
                                         </span>
                                     </div>
                                     <a
@@ -660,7 +660,7 @@ export function LandingEditorsDesk() {
                     </Reveal>
                     <Reveal delay={0.08}>
                         <p className="mx-auto mt-5 max-w-[340px] text-[18px] leading-[1.7] text-slate-500">
-                            See what they see. Fix what they skip.
+                            Get the recruiter read. Fix what is getting skipped.
                         </p>
                     </Reveal>
                     <Reveal delay={0.15}>
@@ -673,7 +673,7 @@ export function LandingEditorsDesk() {
                                     boxShadow: "0 0 0 1px rgba(0,0,0,0.1), 0 4px 20px rgba(13,115,119,0.2), 0 8px 32px rgba(0,0,0,0.12)",
                                 }}
                             >
-                                Start Your Free Review
+                                Run Your Free Report
                                 <ArrowRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-1" />
                             </a>
                         </div>

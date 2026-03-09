@@ -96,7 +96,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
     if (state === "loading") return "Loading report";
     if (state === "not_found") return "Report not found";
     if (state === "error") return "Could not load report";
-    return "Report details";
+    return "Recruiter report";
   }, [state]);
 
   return (
@@ -114,7 +114,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             href="/workspace"
             className="text-xs font-medium text-brand hover:underline underline-offset-4"
           >
-            Run another review
+            Run another report
           </Link>
         </div>
       </div>
@@ -176,11 +176,11 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
         <div className="min-h-0 flex-1 overflow-y-auto">
           <div className="mx-auto w-full max-w-6xl px-4 pb-6 pt-6 md:px-6">
             <AppPageIntro
-              eyebrow="Saved report"
-              title="Report details"
+              eyebrow="Saved recruiter report"
+              title="Recruiter report"
               description={hasJobDescription
-                ? "Your saved recruiter read, with job-alignment context and the exact fixes worth making first."
-                : "Your saved recruiter read, preserved with the original verdict, rewrites, and evidence trail."}
+                ? "Your saved recruiter report, with role-fit context and the exact fixes worth making first."
+                : "Your saved recruiter report, preserved with the original read, rewrites, and evidence trail."}
               meta={
                 <>
                   <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
@@ -197,7 +197,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
                     href="/reports"
                     className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
                   >
-                    All saved reviews
+                    All saved reports
                   </Link>
                   <Link
                     href="/extension"
@@ -210,7 +210,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
               }
             />
             <div className="mt-4 rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
-              Saved reviews preserve the recruiter verdict and rewrites from that run. If you want a new verdict with fresh role context, start another review from the workspace.
+              Saved reports preserve the read and rewrites from that run. If you want a fresh report with new role context, run another report from the workspace.
             </div>
           </div>
 

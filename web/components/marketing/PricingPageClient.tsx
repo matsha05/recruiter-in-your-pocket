@@ -9,9 +9,9 @@ import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 
 const unlockPoints = [
-    "Full rewrites and evidence breakdowns on every review",
+    "Full rewrites and evidence breakdowns in every report",
     "Match your resume to specific job descriptions",
-    "Export, save your history, and manage everything yourself",
+    "Export reports, save history, and manage it yourself",
     "Bring saved job context back from the extension when you want a role-by-role workflow",
 ];
 
@@ -29,7 +29,7 @@ const billingPoints = [
     {
         icon: Receipt,
         title: "Access starts immediately",
-        body: "As soon as you pay, everything unlocks — reviews, exports, history, all of it.",
+        body: "As soon as you pay, everything unlocks: reports, exports, history, all of it.",
     },
 ];
 
@@ -84,8 +84,8 @@ export default function PricingPageClient() {
                             Start free. Pay when it&apos;s working.
                         </h1>
                         <p className="editorial-copy-lg mx-auto mt-5 max-w-[440px] text-slate-500">
-                            Your first review is on us — the full thing, not a teaser.
-                            Pay only when you want repeated reviews, durable history, exports, and a steadier role-by-role workflow.
+                            Your first report is on us. The full thing, not a teaser.
+                            Pay only when you want more reports, saved history, exports, and a steadier role-by-role workflow.
                         </p>
                     </div>
                 </section>
@@ -162,7 +162,7 @@ export default function PricingPageClient() {
                             Billing is simple
                         </h2>
                         <p className="mt-3 max-w-[420px] text-base leading-7 text-slate-500">
-                            Paid? Your access starts right away. If anything goes wrong, you can fix it yourself.
+                            Paid access starts right away. If anything goes wrong, you can fix it yourself.
                         </p>
 
                         <div className="mt-8 space-y-3">
@@ -194,7 +194,7 @@ export default function PricingPageClient() {
                             href="/extension"
                             className="mt-6 ml-3 inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-medium text-slate-700 transition-all hover:bg-white"
                         >
-                            Review extension install flow
+                            See extension flow
                         </Link>
                     </div>
                 </section>

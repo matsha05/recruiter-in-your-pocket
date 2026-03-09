@@ -32,10 +32,10 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                     icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
                     number="05"
                     title="Missing Wins"
-                    subtitle="The stories you forgot to tell."
+                    subtitle="Wins hiding between the lines."
                 />
                 <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No missing wins this time. Either you&apos;ve covered your bases, or we need more detail.
+                    No missing wins surfaced in this run. Either the story is complete, or the resume needs more detail.
                 </div>
             </section>
         );
@@ -61,7 +61,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                 icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
                 number="05"
                 title="Missing Wins"
-                subtitle="The stories you forgot to tell."
+                subtitle="Wins hiding between the lines."
             />
 
             {isGated ? (
@@ -71,10 +71,10 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                         <Lock className="w-5 h-5" />
                         <div>
                             <p className="text-sm font-medium text-foreground">
-                                {questions.length} hidden win{questions.length > 1 ? 's' : ''} identified
+                                We found {questions.length} win{questions.length > 1 ? 's' : ''} worth surfacing
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                Wins like these make recruiters slow down. Let&apos;s find yours.
+                                These are the details that make recruiters stop and pay attention.
                             </p>
                         </div>
                     </div>
@@ -90,9 +90,9 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
                     <UnlockValueList
                         items={[
-                            "All the hidden wins we found",
-                            "Why each one matters to a recruiter",
-                            "Track progress as you add wins"
+                            "All the wins we found",
+                            "Why each one matters",
+                            "Track them as you add them back in"
                         ]}
                         dense
                     />
@@ -109,7 +109,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                             className="w-full"
                         >
                             <InsightSparkleIcon className="w-4 h-4 mr-2" />
-                            Uncover Your Hidden Wins
+                            Unlock Missing Wins
                         </Button>
                     )}
                 </div>
@@ -195,7 +195,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                         <div className="text-center py-6 space-y-2 animate-in fade-in duration-500">
                             <p className="text-lg font-medium text-success">All questions answered.</p>
                             <p className="text-sm text-muted-foreground">
-                                Go back to your resume and add these details. They&apos;ll make a difference.
+                                Good. Now put those details back into the resume.
                             </p>
                         </div>
                     )}

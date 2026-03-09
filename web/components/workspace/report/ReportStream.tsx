@@ -108,7 +108,7 @@ export function ReportStream({
             {/* Divider */}
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-750" />
 
-            {/* 6. Where You Compete (Job Alignment) */}
+            {/* 6. Role Fit */}
             <div
                 id="section-job-alignment"
                 ref={jobAlignmentRef}
@@ -120,20 +120,20 @@ export function ReportStream({
                 <JobAlignmentSection data={report} hasJobDescription={hasJobDescription} isGated={isGated} onUpgrade={onUpgrade} />
             </div>
 
-            {/* Report Footer - "What's next?" */}
+            {/* Report Footer */}
             <div className="pt-8 space-y-6">
                 <div className="h-px bg-gradient-to-r from-brand/20 via-brand/40 to-brand/20" />
 
                 <div className="text-center space-y-6">
                     <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                        What&apos;s next?
+                        Next pass
                     </h3>
 
                     {isSample ? (
                         // Sample report - CTA to run their own
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                                This is what a recruiter sees. Ready to see yours?
+                                This is the recruiter read. Ready to see yours?
                             </p>
                             {onNewReport && (
                                 <Button
@@ -141,7 +141,7 @@ export function ReportStream({
                                     size="lg"
                                     onClick={onNewReport}
                                 >
-                                    Run Your Free Review
+                                    Run Your Free Report
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             )}
@@ -150,14 +150,14 @@ export function ReportStream({
                         // Exhausted free reports - upgrade CTA
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
-                                That was your free review. Want to run another version?
+                                That was your free report. Want to run another version?
                             </p>
                             <Button
                                 variant="premium"
                                 onClick={onUpgrade}
                             >
                                 <InsightSparkleIcon className="w-4 h-4 mr-2" />
-                                Get More Reviews
+                                Unlock More Reports
                             </Button>
                         </div>
                     ) : onNewReport ? (
@@ -165,17 +165,17 @@ export function ReportStream({
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
                                 {hasPaidAccess
-                                    ? "You have full access. Run as many reviews as you want."
+                                    ? "You have full access. Run as many reports as you want."
                                     : freeUsesRemaining > 0
-                                        ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
-                                        : 'Ready to analyze another version?'}
+                                        ? `You have ${freeUsesRemaining} free report${freeUsesRemaining > 1 ? 's' : ''} remaining.`
+                                        : 'Ready to run another version?'}
                             </p>
                             <Button
                                 variant="brand"
                                 onClick={onNewReport}
                             >
                                 <Plus className="w-4 h-4 mr-2" />
-                                Run Another
+                                Run Another Report
                             </Button>
                         </div>
                     ) : null}

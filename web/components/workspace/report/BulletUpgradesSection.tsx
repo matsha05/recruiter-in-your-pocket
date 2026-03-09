@@ -34,7 +34,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
                     number="04"
                     title="The Red Pen"
-                    subtitle="How I'd rewrite these to land harder."
+                    subtitle="Line-by-line rewrites a recruiter would notice."
                 />
                 <div className="rounded border border-success/20 bg-success/5 p-6 flex items-start gap-4">
                     <div className="h-10 w-10 rounded bg-success/10 flex items-center justify-center shrink-0">
@@ -42,10 +42,10 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     </div>
                     <div>
                         <h3 className="font-display font-medium text-foreground text-lg mb-1">
-                            Your bullets look strong
+                            Your bullets already land
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                            Nothing jumped out as a problem. Your verbs are sharp and your outcomes are specific.
+                            Nothing here felt vague or soft. The verbs are clear and the outcomes are doing their job.
                         </p>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                 icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
                 number="04"
                 title="The Red Pen"
-                subtitle="How I'd rewrite these to land harder."
+                subtitle="Line-by-line rewrites a recruiter would notice."
             />
 
             <div className="space-y-4">
@@ -80,13 +80,13 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                 <div className="flex items-center gap-2 px-1">
                     <div className="h-1.5 w-1.5 rounded-full bg-brand" />
                     <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                        {data.rewrites.length} Opportunities Identified
+                        {data.rewrites.length} rewrites ready
                     </span>
                 </div>
 
                 {/* Hero Rewrite */}
                 <RedPenCard
-                    title="High-Priority Rewrite"
+                    title="Highest-leverage rewrite"
                     before={heroRewrite.original}
                     after={heroRewrite.better}
                     className="border-brand/20"
@@ -110,13 +110,13 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                 <div className="rounded border border-premium/20 bg-premium/5 p-4 space-y-3">
                                     <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
                                         <Lock className="h-3.5 w-3.5 text-premium" />
-                                        Unlock the rest of The Red Pen
+                                        Unlock the rest of Red Pen
                                     </div>
                                     <UnlockValueList
                                         items={[
-                                            "All remaining bullet rewrites",
-                                            "Phrasing a recruiter would notice",
-                                            "Why each change makes you stronger"
+                                            "The rest of the rewrites",
+                                            "Why each change lands harder",
+                                            "Export the full report"
                                         ]}
                                         dense
                                     />
@@ -134,7 +134,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
 
                                 <div className="text-center">
                                     <p className="text-xs text-muted-foreground">
-                                        {remainingRewrites.length} bullet{remainingRewrites.length > 1 ? 's' : ''} that made me pause. See why.
+                                        {remainingRewrites.length} more line{remainingRewrites.length > 1 ? 's' : ''} we would tighten.
                                     </p>
                                 </div>
                             </div>

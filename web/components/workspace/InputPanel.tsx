@@ -60,9 +60,9 @@ export default function InputPanel({
         if (membership === "monthly" || membership === "lifetime") return "Paid access active";
         if (membership === "credit") {
             const paid = Number(user?.paidUsesLeft || 0);
-            return `${paid} paid review${paid === 1 ? "" : "s"} remaining`;
+            return `${paid} paid report${paid === 1 ? "" : "s"} remaining`;
         }
-        if (freeUsesRemaining > 0) return "1 free review available";
+        if (freeUsesRemaining > 0) return "1 free report available";
         return "Upgrade to continue";
     };
 
@@ -83,7 +83,7 @@ export default function InputPanel({
                     </h1>
                     <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
                         <SixSecondIcon className="w-5 h-5 text-brand" />
-                        <p className="text-lg font-medium">Start with a free review. Add a job only when you want fit context.</p>
+                        <p className="text-lg font-medium">Start with a free report. Add a job only when you want fit context.</p>
                     </div>
                 </div>
 

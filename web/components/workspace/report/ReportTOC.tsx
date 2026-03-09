@@ -25,12 +25,12 @@ interface ReportTOCProps {
 
 export function ReportTOC({ activeId }: ReportTOCProps) {
     const items: TOCItem[] = [
-        { id: "section-first-impression", label: "The Verdict", icon: PrincipalRecruiterIcon },
-        { id: "section-score-summary", label: "Signal Check", icon: SignalRadarIcon },
+        { id: "section-first-impression", label: "First Read", icon: PrincipalRecruiterIcon },
+        { id: "section-score-summary", label: "Signal Breakdown", icon: SignalRadarIcon },
         { id: "section-evidence-ledger", label: "Evidence Ledger", icon: InsightSparkleIcon },
-        { id: "section-bullet-upgrades", label: "Red Pen Rewrites", icon: TransformArrowIcon },
+        { id: "section-bullet-upgrades", label: "Red Pen", icon: TransformArrowIcon },
         { id: "section-missing-wins", label: "Missing Wins", icon: HiddenGemIcon },
-        { id: "section-job-alignment", label: "Job Fit", icon: RoleTargetIcon },
+        { id: "section-job-alignment", label: "Role Fit", icon: RoleTargetIcon },
     ]
 
     const handleScroll = (id: string) => {

@@ -148,7 +148,7 @@ export const landingContent: LandingContentConfig = {
         badge: "Based on how recruiters actually decide",
         badgeIcon: BookOpen,
         title: "In 7.4 seconds, they've already made up their mind about you.",
-        subtitle: "Upload your resume for a free recruiter-grade review, then add a job description only if you want fit context for a specific role.",
+        subtitle: "Upload your resume for a free recruiter report, then add a job description only if you want fit context for a specific role.",
         stats: [
             {
                 value: "7.4s",
@@ -166,7 +166,7 @@ export const landingContent: LandingContentConfig = {
             {
                 value: "3",
                 label: "Fixes you can make tonight",
-                sublabel: "In your first free review",
+                sublabel: "In your first free report",
                 valueClassName: "text-[42px] leading-none font-semibold tracking-tight",
             },
         ],
@@ -176,16 +176,16 @@ export const landingContent: LandingContentConfig = {
             "Rewrites you can paste into your resume tonight",
         ],
         primaryCta: {
-            label: "Start free review",
+            label: "Run free report",
             href: "/workspace",
-            analyticsCta: "hero_run_free_review",
+            analyticsCta: "hero_run_free_report",
             analyticsDestination: "/workspace",
         },
         secondaryCta: {
             label: "View methodology",
             href: "/research/how-we-score",
         },
-        footnote: "First review free. No login required. Save only when you decide to.",
+        footnote: "First report free. No login required. Save only when you decide to.",
         reportSample: HERO_REPORT_SAMPLE,
         reportPlaybackSeconds: 7.4,
         reportLabel: "The first 7.4 seconds",
@@ -197,7 +197,7 @@ export const landingContent: LandingContentConfig = {
         title: "Most tools say 'add more impact.' We highlight the exact sentence and rewrite it for you.",
         copy: "You get the specific line from your resume, why it's weak, and a better version you can use.",
         howItWorks: {
-            eyebrow: "How the review works",
+            eyebrow: "How the report works",
             steps: [
                 "1. Read your resume the way a recruiter would — fast.",
                 "2. Find the line that makes them hesitate.",
@@ -302,21 +302,21 @@ export const landingContent: LandingContentConfig = {
             "Honest, useful feedback. Not robotic.",
             "Clear controls for saving, deleting, billing, and extension capture.",
         ],
-        policyLabel: "First review is on us",
-        policyCopy: "Your first review is completely free. No card, no silent save, and no account required until you want durable history.",
+        policyLabel: "First report is on us",
+        policyCopy: "Your first report is completely free. No card, no silent save, and no account required until you want durable history.",
         cta: {
-            label: "Start free review",
+            label: "Run free report",
             href: "/workspace",
         },
     },
     pricing: {
         eyebrow: "Simple pricing",
         title: "Start free. Pay when you want more.",
-        copy: "Your first review is free — the full thing, not a teaser. Paid plans are for repeated reviews, report history, exports, and a steadier role-by-role workflow.",
+        copy: "Your first report is free. The full thing, not a teaser. Paid plans are for more reports, report history, exports, and a steadier role-by-role workflow.",
         included: {
             eyebrow: "Included in every plan",
             items: [
-                "Your review, the evidence behind it, and rewrites — every time",
+                "Your report, the evidence behind it, and rewrites every time",
                 "Fixes in the order that matters most",
                 "Straightforward billing, restore, and cancellation paths.",
             ],

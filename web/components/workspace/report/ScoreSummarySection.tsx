@@ -48,14 +48,14 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
             <ReportSectionHeader
                 icon={<SignalRadarIcon className="w-4 h-4 text-brand" />}
                 number="02"
-                title="Signal Analysis"
-                subtitle="What made me lean in, and what made me pause."
+                title="Signal Breakdown"
+                subtitle="What landed fast, what felt thin, and what to fix first."
             />
 
             {topActions.length > 0 && (
                 <div className="rounded border border-brand/20 bg-brand/5 p-5">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-foreground mb-3">
-                        Next Pass Plan (15 Minutes)
+                        Next Pass Plan
                     </h3>
                     <ul className="space-y-2">
                         {topActions.map((action, i) => (
@@ -84,7 +84,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                             Evidence Snapshot
                         </h3>
                         <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                            Why this score moved
+                            Why the score landed here
                         </span>
                     </div>
                     <div className="space-y-3">
@@ -136,7 +136,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 </div>
             ) : (
                 <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    Subscores unavailable for this run.
+                    Subscores were not available for this run.
                 </div>
             )}
 
@@ -146,7 +146,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     {/* Working */}
                     <div className="space-y-4">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
-                            Working
+                            What lands
                         </h3>
                         <ul className="space-y-3">
                             {strengths.length > 0 ? strengths.map((s, i) => (
@@ -162,7 +162,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     {/* Missing */}
                     <div className="space-y-4">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-premium">
-                            Missing
+                            What is thin
                         </h3>
                         <ul className="space-y-3">
                             {gaps.length > 0 ? gaps.map((s, i) => (
@@ -177,7 +177,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 </div>
             ) : (
                 <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    Signal breakdown unavailable.
+                    Signal breakdown was not available for this run.
                 </div>
             )}
         </section>

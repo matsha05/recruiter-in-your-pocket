@@ -154,16 +154,16 @@ export default function ReportPanel({
                     {/* Copy - Question Headline */}
                     <div className="space-y-3 max-w-md">
                         <h2 className="font-display text-2xl md:text-3xl text-foreground">
-                            What will recruiters notice?
+                            What does the first read say?
                         </h2>
                         <p className="text-muted-foreground">
-                            Drop your resume to find out. Takes 30 seconds.
+                            Drop your resume and get the recruiter report in under a minute.
                         </p>
                     </div>
 
                     {/* Trust Signal */}
                     <p className="text-xs text-muted-foreground/60 font-medium">
-                        First review free · No login required
+                        First report free · No login required
                     </p>
 
                     {/* Divider + Example Link */}
@@ -172,7 +172,7 @@ export default function ReportPanel({
                             onClick={onNewReport}
                             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
-                            Want to see an example first? <span className="text-brand hover:underline">View example →</span>
+                            Want a sample first? <span className="text-brand hover:underline">View sample →</span>
                         </button>
                     </div>
                 </div>
@@ -191,9 +191,9 @@ export default function ReportPanel({
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                         <ShieldCheck className="h-4 w-4 text-premium" />
                                         <div>
-                                            <p className="text-foreground font-medium">Share mode is active.</p>
+                                            <p className="text-foreground font-medium">Share view is on.</p>
                                             <p className="text-xs text-muted-foreground">
-                                                PII is redacted in this view. Use this link to share safely.
+                                                Personal details are hidden in this view, so you can share it safely.
                                             </p>
                                         </div>
                                     </div>
@@ -203,14 +203,14 @@ export default function ReportPanel({
                                             className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
                                         >
                                             <Link2 className="h-3.5 w-3.5" />
-                                            Copy Share Link
+                                            Copy link
                                         </button>
                                         <button
                                             onClick={handleExitShare}
                                             className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
                                         >
                                             <X className="h-3.5 w-3.5" />
-                                            Exit Share View
+                                            Exit share
                                         </button>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@ export default function ReportPanel({
                                 <div className="space-y-1 min-w-0">
                                     <div className="flex items-center gap-3 flex-wrap">
                                         <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">
-                                            {displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
+                                            {displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Report'}
                                         </h1>
                                         {isSample && (
                                             <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-muted text-muted-foreground border border-border shrink-0">
@@ -233,7 +233,7 @@ export default function ReportPanel({
                                             </span>
                                         )}
                                     </div>
-                                    <p className="text-sm text-muted-foreground">This is what a recruiter sees.</p>
+                                    <p className="text-sm text-muted-foreground">This is the recruiter read.</p>
                                 </div>
 
                                 {/* Action Buttons */}
@@ -243,7 +243,7 @@ export default function ReportPanel({
                                             onClick={onNewReport}
                                             className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                                         >
-                                            <span className="hidden sm:inline">Run Your Review</span>
+                                            <span className="hidden sm:inline">Run Your Report</span>
                                             <span className="sm:hidden">Run</span>
                                             <ArrowRight className="w-4 h-4" />
                                         </button>
@@ -254,7 +254,7 @@ export default function ReportPanel({
                                             className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                                         >
                                             <Plus className="w-4 h-4" />
-                                            <span className="hidden sm:inline">Run Another</span>
+                                            <span className="hidden sm:inline">Run Another Report</span>
                                             <span className="sm:hidden">New</span>
                                         </button>
                                     )}
@@ -263,7 +263,7 @@ export default function ReportPanel({
                                             onClick={onUpgrade}
                                             className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                                         >
-                                            <span className="hidden sm:inline">Get More Reviews</span>
+                                            <span className="hidden sm:inline">Unlock More Reports</span>
                                             <span className="sm:hidden">Upgrade</span>
                                             <ArrowRight className="w-4 h-4" />
                                         </button>
@@ -276,7 +276,7 @@ export default function ReportPanel({
                                             className="flex items-center gap-2 px-3 py-2 rounded text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50 min-h-10"
                                         >
                                             <DownloadIcon size={16} />
-                                            <span className="hidden sm:inline">{isExporting ? "Exporting..." : "PDF"}</span>
+                                            <span className="hidden sm:inline">{isExporting ? "Exporting..." : "Export PDF"}</span>
                                         </button>
                                     )}
                                     {shareEnabled && !shareMode && (
@@ -285,7 +285,7 @@ export default function ReportPanel({
                                             className="flex items-center gap-2 px-3 py-2 rounded text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
                                         >
                                             <Link2 className="h-4 w-4" />
-                                            <span className="hidden sm:inline">Share</span>
+                                            <span className="hidden sm:inline">Share Report</span>
                                         </button>
                                     )}
                                 </div>
@@ -322,7 +322,7 @@ export default function ReportPanel({
                     {/* Bottom Action Rail - Raycast Pattern */}
                         <BottomActionRail
                             sectionName={displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
-                            primaryActionLabel={shareMode ? "Exit Share View" : isSample ? "Run Your Review" : canRunAnother ? "Run Another" : "Upgrade"}
+                            primaryActionLabel={shareMode ? "Exit Share" : isSample ? "Run Your Report" : canRunAnother ? "Run Another Report" : "Upgrade"}
                             onPrimaryAction={shareMode ? handleExitShare : isSample || canRunAnother ? onNewReport : onUpgrade}
                             onExport={canExport ? handleExport : undefined}
                             onShare={shareEnabled ? (shareMode ? handleShare : handleShare) : undefined}

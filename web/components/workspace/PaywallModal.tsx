@@ -26,13 +26,13 @@ interface PaywallModalProps {
 }
 
 const DEFAULT_UNLOCK_COPY = {
-    label: "Full Review",
-    title: "Unlock the full review",
-    subtitle: "See the complete breakdown, get your rewrites, and keep reviewing as much as you want.",
+    label: "Full Report",
+    title: "Unlock the full report",
+    subtitle: "Get the full breakdown, the rewrites, and more reports whenever you need them.",
     bullets: [
-        "Unlimited reviews and saved history",
-        "Full evidence breakdown + rewrites",
-        "Tailor feedback to specific roles",
+        "More reports and saved history",
+        "Full evidence breakdown and rewrites",
+        "Role-fit feedback for specific jobs",
         "Export and share your report"
     ]
 };
@@ -41,43 +41,43 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     evidence_ledger: {
         label: "Evidence Ledger",
         title: "Finish the Evidence Ledger",
-        subtitle: "See exactly which lines triggered each recommendation.",
+        subtitle: "See the exact lines behind the rest of the fixes.",
         bullets: [
-            "Every remaining action with the evidence behind it",
-            "Confidence and impact ratings on every item",
-            "Rewrite suggestions tied to your actual resume",
-            "Save and export the full breakdown"
+            "Every remaining fix with the line behind it",
+            "Confidence and impact on each call",
+            "Rewrites tied to your actual resume",
+            "Save and export the full report"
         ]
     },
     bullet_upgrades: {
-        label: "The Red Pen",
-        title: "Unlock the rest of The Red Pen",
-        subtitle: "Copy-paste rewrites, ready to go.",
+        label: "Red Pen",
+        title: "Unlock the rest of Red Pen",
+        subtitle: "Get the rewrites that make the resume land faster.",
         bullets: [
             "All remaining bullet rewrites",
-            "Phrasing a recruiter would actually notice",
-            "Why each change makes your resume stronger",
-            "Unlimited reviews for different roles"
+            "Phrasing a recruiter would notice",
+            "Why each change lands harder",
+            "More reports for different roles"
         ]
     },
     missing_wins: {
         label: "Missing Wins",
-        title: "Uncover your hidden wins",
-        subtitle: "The stories you're not telling — that would make a recruiter slow down.",
+        title: "Unlock Missing Wins",
+        subtitle: "Surface the wins that are there, but not landing yet.",
         bullets: [
             "All missing-win prompts",
-            "Why each one matters to a recruiter",
-            "Track your progress as you add them",
+            "Why each one matters",
+            "Track them as you add them back in",
             "Full report export"
         ]
     },
     job_alignment: {
-        label: "Role Positioning",
-        title: "Unlock role positioning",
-        subtitle: "See which roles you're strongest for — and where to stretch.",
+        label: "Role Fit",
+        title: "Unlock role fit",
+        subtitle: "See where the resume fits now and where it stretches.",
         bullets: [
             "Your best-fit roles and stretch paths",
-            "Job match score and gap analysis",
+            "Job match score and missing signals",
             "A positioning statement you can reuse",
             "Save this report for later"
         ]
@@ -85,12 +85,12 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     export_pdf: {
         label: "Export",
         title: "Export your report",
-        subtitle: "Download and keep your full review.",
+        subtitle: "Download and keep the full report.",
         bullets: [
             "PDF export with everything included",
             "Export without re-running",
             "Restore access if anything looks locked",
-            "Unlimited reviews"
+            "More reports when you need them"
         ]
     }
 };
@@ -193,7 +193,7 @@ export default function PaywallModal({
                         {unlockCopy.subtitle}
                     </DialogDescription>
                     <p className="text-[11px] text-muted-foreground">
-                        You&apos;ve used your free review.
+                        You&apos;ve used your free report.
                     </p>
                 </DialogHeader>
 
@@ -241,7 +241,7 @@ export default function PaywallModal({
                                 onClick={handleCheckout}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `Unlock Full Review — ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
+                                {loading ? "Processing..." : `Unlock Full Report - ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
                             </Button>
                         </>
                     ) : (

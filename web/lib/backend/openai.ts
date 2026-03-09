@@ -116,25 +116,51 @@ function getMockOpenAIResponse(mode: Mode) {
     score_label: "Strong",
     score_comment_short: "Clear ownership with real signal; a few scope gaps keep it from landing faster.",
     score_comment_long: "You read as someone who ships and owns outcomes. Tighten scope and add one before/after metric.",
+    score_plain: "This reads like real work with real ownership. The missing piece is scale, so the best parts do not land fast enough.",
+    first_impression: "We see someone who can take messy work and make it move. We also have to guess at scope in a few key places.",
+    biggest_gap_example: "\"Improved process across teams\" is too thin on scope and outcome, so we cannot place the impact.",
+    first_impression_takeaway: "Show the scale.",
     summary:
       "You read as someone who takes messy work and makes it shippable. You keep momentum and close loops. You operate with structure. What is harder to see is the scale and before/after change. Trajectory is up if you surface scope and outcomes faster.",
     strengths: ["You show ownership instead of vague participation."],
     gaps: ["Scope and measurable outcomes are missing in a few key bullets."],
-    top_fixes: [{ fix: "Add scope numbers to your top 2 bullets.", impact_level: "high", effort: "moderate", section_ref: "Work Experience" }],
-    rewrites: [{ label: "Impact", original: "Improved process across teams.", better: "Led a cross-team change that reduced handoff confusion and sped up delivery.", enhancement_note: "If you have it, include: the before/after time or error rate so the reader can see scale." }],
+    top_fixes: [{
+      fix: "Add scope numbers to your top 2 bullets.",
+      why: "Without scale, recruiters cannot tell how big the work really was.",
+      confidence: "high",
+      evidence: { excerpt: "Improved process across teams.", section: "Work Experience" },
+      impact_level: "high",
+      effort: "moderate",
+      section_ref: "Work Experience"
+    }],
+    rewrites: [{ label: "Impact", original: "Improved process across teams.", better: "Led a cross-team process change that sped up delivery and reduced handoff confusion.", enhancement_note: "Add the before-and-after timing so we can see the size of the change." }],
     next_steps: ["Add one before/after metric to your top bullet."],
     subscores: { impact: 82, clarity: 84, story: 80, readability: 83 },
     section_review: {
-      Summary: { grade: "B", priority: "Medium", working: "Clear identity statement.", missing: "Scope is vague.", fix: "Add 1 scope detail (team/users) in the first line." }
+      Summary: { grade: "B", priority: "Medium", working: "Clear identity statement.", missing: "Scope is vague.", fix: "Add 1 scope detail (team/users) in the first line." },
+      "Work Experience": { grade: "B", priority: "High", working: "Ownership shows up.", missing: "Scope and impact are thin in places.", fix: "Add one concrete outcome to the top two bullets." },
+      Skills: { grade: "N/A", priority: "Low", working: "", missing: "Section not present.", fix: "Add only if it helps your story." },
+      Education: { grade: "N/A", priority: "Low", working: "", missing: "Section not present.", fix: "Add only if it helps your story." }
     },
     job_alignment: {
+      jd_match_score: 0,
+      jd_match_summary: "No job description provided.",
+      jd_keywords: { matched: [], missing: [], match_count: 0, total_count: 0 },
       strongly_aligned: ["Ownership", "Execution"],
       underplayed: ["Scale context"],
       missing: ["Named metrics"],
       role_fit: { best_fit_roles: ["Software Engineer"], stretch_roles: ["Tech Lead"], seniority_read: "Senior IC", industry_signals: ["Tech"], company_stage_fit: "Growth to public" },
       positioning_suggestion: "Lead with the biggest system or product you owned, then add one hard metric so scale is obvious."
     },
-    ideas: { questions: [], notes: [], how_to_use: "" }
+    ideas: {
+      questions: [
+        { question: "What part of this work was highest stakes, and what changed because of your call?", archetype: "HIGH STAKES", why: "This shows judgment, not just activity." },
+        { question: "Where did scope grow, and what broke before you fixed it?", archetype: "SCALING", why: "Scaling stories make complexity visible fast." },
+        { question: "What quality bar did you raise, and how did you keep it from slipping?", archetype: "QUALITY UNDER PRESSURE", why: "This shows repeatable standards, not one-off effort." },
+        { question: "What got faster, cheaper, safer, or clearer after your change?", archetype: "IMPROVEMENT", why: "Hiring teams look for visible before-and-after movement." },
+        { question: "Which cross-team tension did you resolve, and what tradeoff did you choose?", archetype: "CROSS-FUNCTIONAL COMPLEXITY", why: "This shows how you operate when priorities conflict." }
+      ]
+    }
   };
 }
 

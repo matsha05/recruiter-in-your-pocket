@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { LandingEditorsDesk } from "@/components/landing-showcase/LandingEditorsDesk";
 
 export const metadata: Metadata = {
-  title: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",
-  description: "See what a recruiter actually thinks of your resume. Real feedback, stronger bullets, and clear next steps — not a generic score.",
+  title: "Recruiter in Your Pocket — Free Recruiter Report on Your Resume",
+  description: "Get the recruiter read on your resume. Clear feedback, stronger bullets, and the fixes worth making first.",
   openGraph: {
     title: "See How Recruiters Actually Read Your Resume",
-    description: "See what a recruiter actually thinks of your resume. Real feedback, not a generic score. First review is free.",
+    description: "Get the recruiter read on your resume. Real feedback, not a generic score. Your first report is free.",
     url: "https://recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
     images: [{
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "See How Recruiters Actually Read Your Resume",
-    description: "See what a recruiter actually thinks of your resume. Real feedback, not a generic score. First review is free.",
+    description: "Get the recruiter read on your resume. Real feedback, not a generic score. Your first report is free.",
     images: ["https://recruiterinyourpocket.com/assets/og-image.png"],
   },
 };
@@ -28,4 +28,3 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return <LandingEditorsDesk />;
 }
-

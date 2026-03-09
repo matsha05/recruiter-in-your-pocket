@@ -42,7 +42,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                 <div className="text-5xl font-display font-bold text-foreground mb-2">
                     {sortedScores[0].score}
                 </div>
-                <p className="text-sm text-muted-foreground">Your first review</p>
+                <p className="text-sm text-muted-foreground">Your first report</p>
             </div>
         );
     }
@@ -54,7 +54,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                 <div>
                     <h3 className="text-sm font-semibold text-foreground">Score Trend</h3>
                     <p className="text-xs text-muted-foreground">
-                        {sortedScores.length} reviews tracked
+                        {sortedScores.length} reports tracked
                     </p>
                 </div>
                 <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold ${improvement > 0
@@ -116,9 +116,9 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                 <div className={`mt-4 text-center text-sm ${improvement > 0 ? 'text-green-600' : 'text-destructive'
                     }`}>
                     {improvement > 0 ? (
-                        <><Check className="inline w-4 h-4 mr-1" /> Your resume improved {improvement} points since your first review</>
+                        <><Check className="inline w-4 h-4 mr-1" /> Your resume improved {improvement} points since your first report</>
                     ) : (
-                        `Score decreased by ${Math.abs(improvement)} points — review recent changes`
+                        `Score decreased by ${Math.abs(improvement)} points. Review recent changes.`
                     )}
                 </div>
             )}

@@ -280,7 +280,7 @@ export async function POST(request: Request) {
                     task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
                     mode,
                     model,
-                    prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v1",
+                    prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
                     schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
                     messages
                 })) {

@@ -127,7 +127,16 @@ export function validateResumeModelPayload(obj: any) {
 
   obj.score = normalizeScore(obj.score, "score");
 
-  const requiredStrings = ["score_label", "score_comment_short", "score_comment_long", "summary"];
+  const requiredStrings = [
+    "score_label",
+    "score_comment_short",
+    "score_comment_long",
+    "score_plain",
+    "first_impression",
+    "biggest_gap_example",
+    "first_impression_takeaway",
+    "summary"
+  ];
   for (const key of requiredStrings) {
     if (typeof obj[key] !== "string") {
       throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", `The model response was missing ${key}.`, 502);

@@ -59,7 +59,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                 href="/workspace"
                                 className="rounded-full bg-slate-900 px-5 py-2 text-[13px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
                             >
-                                Start free review
+                                Run free report
                             </Link>
                         </div>
                     )}

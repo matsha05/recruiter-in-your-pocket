@@ -41,7 +41,7 @@ export function PricingCard({
     const isHighlighted = tier === "lifetime";
     const isFree = tier === "free";
     const disableForFree = isFree && !allowFreeSelect;
-    const buttonLabel = isFree && allowFreeSelect ? "Start free review" : data.buttonText;
+    const buttonLabel = isFree && allowFreeSelect ? "Run free report" : data.buttonText;
     const isMarketing = context === "marketing";
 
     // COMPACT variant — modals (always uses app tokens)

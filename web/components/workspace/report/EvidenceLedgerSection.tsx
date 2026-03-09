@@ -117,10 +117,10 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
           icon={<InsightSparkleIcon className="w-4 h-4 text-brand" />}
           number="03"
           title="Evidence Ledger"
-          subtitle="Every recommendation tied to the exact line that triggered it."
+          subtitle="Every fix tied to the line that triggered it."
         />
         <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-          Evidence ledger isn&apos;t available for this run. Try again or add more detail to your resume for better results.
+          No evidence ledger for this run. Add more detail, then run it again.
         </div>
       </section>
     );
@@ -135,7 +135,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         icon={<InsightSparkleIcon className="w-4 h-4 text-brand" />}
         number="03"
         title="Evidence Ledger"
-        subtitle="Every recommendation tied to the exact line that triggered it."
+        subtitle="Every fix tied to the line that triggered it."
       />
 
       <div className="space-y-6">
@@ -212,18 +212,18 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
               <Lock className="w-5 h-5" />
               <div>
                 <p className="text-sm font-medium text-foreground">
-                  {hiddenCount} more items to fix
+                  {hiddenCount} more fixes waiting
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Unlock to see the rest of the evidence and what to do about it.
+                  Unlock the rest of the evidence and fixes.
                 </p>
               </div>
             </div>
             <UnlockValueList
               items={[
-                "How confident we are in each suggestion",
-                "The fix for each, tied to the exact line",
-                "Save and export the full list"
+                "Confidence on each call",
+                "The fix tied to each line",
+                "Save and export the full report"
               ]}
               dense
               className="relative z-10"

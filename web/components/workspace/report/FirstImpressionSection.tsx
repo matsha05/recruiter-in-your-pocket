@@ -12,9 +12,9 @@ import { Button } from "@/components/ui/button";
 
 
 function getScoreBand(score: number): { label: string; colorClass: string } {
-    if (score >= 85) return { label: 'Competes for Senior Roles', colorClass: 'bg-success/10 border-success/20 text-success' };
+    if (score >= 85) return { label: 'High Bar', colorClass: 'bg-success/10 border-success/20 text-success' };
     if (score >= 70) return { label: 'Solid Foundation', colorClass: 'bg-premium/10 border-premium/20 text-premium' };
-    return { label: 'Needs Work', colorClass: 'bg-destructive/10 border-destructive/20 text-destructive' };
+    return { label: 'Needs Clarity', colorClass: 'bg-destructive/10 border-destructive/20 text-destructive' };
 }
 
 export function FirstImpressionSection({ data }: { data: ReportData }) {
@@ -24,7 +24,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
     const [peekOpen, setPeekOpen] = useState(false);
     const hasAnimated = useRef(false);
 
-    const firstImpressionText = data.score_comment_long || data.score_comment_short || data.first_impression || data.summary;
+    const firstImpressionText = data.first_impression || data.score_comment_long || data.score_comment_short || data.summary;
     const targetScore = data.score || 0;
     const strokeColor = getDialStrokeColor(targetScore);
     const scoreBand = data.score_label ? { label: data.score_label, colorClass: getScoreBand(targetScore).colorClass } : getScoreBand(targetScore);
@@ -80,7 +80,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     <div className="w-6 h-px bg-border" />
                     <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                         <PrincipalRecruiterIcon className="w-4 h-4 text-brand" />
-                        01. Recruiter First Impression
+                        01. First Read
                     </h2>
                 </div>
                 <a
@@ -89,7 +89,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     target="_blank"
                     rel="noopener"
                 >
-                    How we score →
+                    Scoring guide →
                 </a>
             </div>
 
@@ -104,7 +104,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 space-y-6">
                         <div className="space-y-3">
                             <h3 className="text-headline text-foreground">
-                                &quot;Here is exactly what I noticed...&quot;
+                                &quot;Here is the read.&quot;
                             </h3>
                         </div>
 
@@ -115,13 +115,13 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             )}
                         </p>
 
-                        {/* The Critical Miss - with Peek for evidence expansion */}
+                        {/* Main gap - with a small explanation panel */}
                         {data.biggest_gap_example && (
                             <div className="p-4 bg-warning/10 border border-warning/20 rounded transition-all duration-300" style={{ transitionDelay: '400ms' }}>
                                 <div className="flex items-center justify-between gap-2 mb-2">
                                     <div className="flex items-center gap-2">
                                         <div className="w-2 h-2 rounded-full bg-warning" />
-                                        <span className="text-label text-warning">Critical Miss</span>
+                                        <span className="text-label text-warning">Main gap</span>
                                     </div>
                                     <Peek
                                         open={peekOpen}
@@ -133,21 +133,17 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                             </Button>
                                         }
                                         side="right"
-                                        title="Why Critical Misses Matter"
+                                        title="Why this slows the read"
                                     >
                                         <PeekHeader>
                                             <PeekTitle>Recruiter Perspective</PeekTitle>
                                             <PeekDescription>
-                                                Why this stood out during the 6-second scan
+                                                Why this becomes a pass risk
                                             </PeekDescription>
                                         </PeekHeader>
                                         <PeekContent>
                                             <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                                                Critical misses are the moments where a recruiter&apos;s eye pauses—and then moves on.
-                                                These gaps often represent the difference between a callback and a pass.
-                                            </p>
-                                            <p className="text-sm text-foreground/80 leading-relaxed">
-                                                <strong>This specific miss:</strong> {data.biggest_gap_example}
+                                                When a line is vague, we have to guess. Most recruiters do not stop and decode it. They move on.
                                             </p>
                                         </PeekContent>
                                     </Peek>

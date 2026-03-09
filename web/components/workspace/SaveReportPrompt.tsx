@@ -31,11 +31,11 @@ export default function SaveReportPrompt({
     const score = report?.score || 0;
     const getPersonalizedMessage = () => {
         if (score >= 85) {
-            return "Great score! Create a secure account to keep this report in your history and compare future versions.";
+            return "Strong score. Create an account to keep this report and compare future versions.";
         } else if (score >= 70) {
-            return `Your score is ${score}. Create a secure account to track your improvements as you refine your resume.`;
+            return `Your score is ${score}. Create an account to keep this report and track the next version.`;
         } else {
-            return `Your score is ${score}. Create an account to keep this report and come back after making the suggested changes.`;
+            return `Your score is ${score}. Create an account to keep this report and come back after you make the changes.`;
         }
     };
 
@@ -69,7 +69,7 @@ export default function SaveReportPrompt({
                         </div>
                     </div>
                     <DialogTitle className="font-display text-xl font-medium">
-                        Save this review securely
+                        Save this report
                     </DialogTitle>
                     <DialogDescription className="text-sm">
                         {getPersonalizedMessage()}
@@ -98,7 +98,7 @@ export default function SaveReportPrompt({
                                 Opening secure sign-in...
                             </>
                         ) : (
-                            "Sign in to save this review →"
+                            "Sign in to save this report"
                         )}
                     </Button>
 

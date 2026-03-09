@@ -72,16 +72,16 @@ export function UserNav({
                         )}
                         {user.membership === "credit" && (
                             <span className="text-success">
-                                {user.paidUsesLeft || 0} paid review{(user.paidUsesLeft || 0) === 1 ? "" : "s"} remaining
+                                {user.paidUsesLeft || 0} paid report{(user.paidUsesLeft || 0) === 1 ? "" : "s"} remaining
                             </span>
                         )}
                         {(user.membership === "free" || !user.membership) && (
                             <div className="flex flex-col gap-1">
                                 <span className="text-muted-foreground">Free Plan</span>
                                 {user.freeUsesLeft !== undefined && user.freeUsesLeft > 0 ? (
-                                    <span className="text-success lowercase normal-case">• {user.freeUsesLeft} {user.freeUsesLeft === 1 ? 'review' : 'reviews'} remaining</span>
+                                    <span className="text-success lowercase normal-case">• {user.freeUsesLeft} {user.freeUsesLeft === 1 ? 'report' : 'reports'} remaining</span>
                                 ) : (
-                                    <span className="text-muted-foreground/60 lowercase normal-case">• 0 reviews remaining</span>
+                                    <span className="text-muted-foreground/60 lowercase normal-case">• 0 reports remaining</span>
                                 )}
                             </div>
                         )}
