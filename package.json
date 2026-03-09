@@ -18,6 +18,7 @@
     "launch:autopilot": "node scripts/launch-autopilot.cjs",
     "launch:autopilot:strict": "node scripts/launch-autopilot.cjs --strict",
     "launch:redteam": "npm run test:redteam-journeys --prefix web",
+    "assets:chrome-web-store": "npm run assets:chrome-web-store --prefix web",
     "test": "node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
     "test:ready": "node tests/test_ready_and_auth.js",
     "calibrate": "node scripts/calibrate_score.js",

@@ -8,13 +8,11 @@ import type { JobMeta, SavedJob, AuthUser } from './messages';
 
 // Base URL for API calls
 // Production: https://recruiterinyourpocket.com
-// Development: Set VITE_DEV_MODE=true in .env to use localhost
-// Base URL for API calls
-// Production: https://recruiterinyourpocket.com
-// Development: Set VITE_DEV_MODE=true in .env to use localhost
-export const API_BASE = import.meta.env.VITE_DEV_MODE === 'true'
-    ? 'http://localhost:3000'
-    : 'https://recruiterinyourpocket.com';
+// Development: set VITE_WEBAPP_URL to match the active local web app server.
+export const API_BASE = import.meta.env.VITE_WEBAPP_URL
+    || (import.meta.env.VITE_DEV_MODE === 'true'
+        ? 'http://localhost:3000'
+        : 'https://recruiterinyourpocket.com');
 
 /**
  * Capture a job description and get quick match score.

@@ -24,7 +24,7 @@ export default function RecentJobsList({ jobs, onJobClick, onOpenOriginal, onDel
     return (
         <div className="animate-in">
             <div className="section-header">
-                <span className="section-title">RECENT JOBS ({jobs.length})</span>
+                <span className="section-title">Saved jobs ({jobs.length})</span>
                 {jobs.length > 5 && (
                     <button className="btn btn-ghost" onClick={handleViewAll}>
                         View All

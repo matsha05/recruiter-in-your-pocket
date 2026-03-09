@@ -7,6 +7,7 @@ import EmptyState from './components/EmptyState';
 import AuthPrompt from './components/AuthPrompt';
 import Onboarding from './components/Onboarding';
 import UndoToast from './components/UndoToast';
+import { popupContent } from './content';
 
 type PopupState = 'loading' | 'onboarding' | 'unauthenticated' | 'empty' | 'jobs' | 'error';
 
@@ -79,7 +80,8 @@ export default function App() {
     }
 
     function handleOpenStudio() {
-        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path: '/jobs' } });
+        const path = state === 'jobs' ? '/jobs' : '/workspace';
+        chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path } });
     }
 
     function handleLogin() {
@@ -154,7 +156,7 @@ export default function App() {
 
     return (
         <div className="popup-container">
-            <PopupHeader user={user} />
+            <PopupHeader user={user} authenticated={authenticated} />
 
             <div className="popup-content">
                 {state === 'loading' && <LoadingSkeleton />}
@@ -205,8 +207,11 @@ export default function App() {
             </div>
 
             <div className="popup-footer">
+                <p className="popup-footer-note">
+                    {popupContent.footer[state].title}
+                </p>
                 <button className="btn btn-primary" onClick={handleOpenStudio}>
-                    Open RIYP Studio
+                    {popupContent.footer[state].cta}
                     <span className="btn-arrow">→</span>
                 </button>
             </div>

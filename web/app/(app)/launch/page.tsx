@@ -1,6 +1,9 @@
 import { AlertTriangle, CheckCircle2, ClipboardList, ShieldCheck, Siren, ToggleRight } from "lucide-react";
+import { redirect } from "next/navigation";
 import { getLaunchReadinessSnapshot } from "@/lib/launch/readiness";
 import { LAUNCH_OWNERS, LAUNCH_REHEARSAL_STEPS, ROLLBACK_CONTROLS, VENDOR_REVIEW_ITEMS } from "@/lib/launch/program";
+import { shouldProtectInternalLaunchSurface } from "@/lib/launch/access";
+import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 
 function badgeClass(status: "pass" | "warn" | "fail") {
   if (status === "pass") return "bg-emerald-50 text-emerald-700";
@@ -9,6 +12,14 @@ function badgeClass(status: "pass" | "warn" | "fail") {
 }
 
 export default async function LaunchPage() {
+  if (await shouldProtectInternalLaunchSurface()) {
+    const supabase = await createSupabaseServerClient();
+    const { data } = await supabase.auth.getUser();
+    if (!data.user) {
+      redirect("/auth?from=launch&next=/launch");
+    }
+  }
+
   const snapshot = await getLaunchReadinessSnapshot();
 
   return (

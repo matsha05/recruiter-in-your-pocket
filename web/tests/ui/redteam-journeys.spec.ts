@@ -25,7 +25,7 @@ async function runAnonymousReview(page: Page) {
   await page.getByRole("button", { name: /Check fit for a specific job/i }).click();
   await page.getByPlaceholder(/Paste the full job posting here/i).fill(JOB_DESCRIPTION);
   await page.getByRole("button", { name: /See What They See/i }).click();
-  await expect(page.getByText("This is what a recruiter sees.")).toBeVisible({ timeout: 35_000 });
+  await expect(page.getByText("This is the read they get in seconds.")).toBeVisible({ timeout: 35_000 });
   await expect(page.locator("#section-evidence-ledger")).toBeVisible({ timeout: 35_000 });
 }
 
@@ -39,11 +39,11 @@ test.describe("launch red-team journeys", () => {
   });
 
   test("2. public trust surfaces publish readiness and disclosure details", async ({ page, request }) => {
-    const readyResponse = await request.get("/api/ready");
-    expect(readyResponse.ok()).toBeTruthy();
-    const readyJson = await readyResponse.json();
-    expect(readyJson.ok).toBe(true);
-    expect(Array.isArray(readyJson.gates)).toBe(true);
+    const statusResponse = await request.get("/api/status");
+    expect(statusResponse.ok()).toBeTruthy();
+    const statusJson = await statusResponse.json();
+    expect(statusJson.ok).toBe(true);
+    expect(Array.isArray(statusJson.services)).toBe(true);
 
     const securityTxt = await request.get("/.well-known/security.txt");
     expect(securityTxt.ok()).toBeTruthy();
@@ -52,15 +52,15 @@ test.describe("launch red-team journeys", () => {
     expect(securityText).toContain("Policy: https://recruiterinyourpocket.com/security");
 
     await page.goto("/status");
-    await expect(page.getByRole("heading", { name: /Launch gates/i })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Readiness checks/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Customer-facing systems/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Support and trust/i })).toBeVisible();
   });
 
   test("3. example report path feels complete and returns users to a fresh run", async ({ page }) => {
     await page.goto("/workspace");
     await page.getByRole("button", { name: /See example report/i }).click();
     await expect(page.getByText("Example", { exact: true }).first()).toBeVisible({ timeout: 15_000 });
-    await expect(page.getByText("This is what a recruiter sees.").first()).toBeVisible();
+    await expect(page.getByText("This is the read they get in seconds.").first()).toBeVisible();
     await expect(page.getByText("Example", { exact: true }).first()).toBeVisible();
     await page.getByRole("button", { name: /Run Your Review/i }).first().click();
     await expect(page).toHaveURL(/\/workspace$/);
@@ -70,24 +70,24 @@ test.describe("launch red-team journeys", () => {
   test("4. anonymous pasted resume review with a JD produces a usable report", async ({ page }) => {
     await runAnonymousReview(page);
     await expect(page.locator("#section-job-alignment")).toBeVisible();
-    await expect(page.getByText("This is what a recruiter sees.")).toBeVisible();
+    await expect(page.getByText("This is the read they get in seconds.")).toBeVisible();
     await expect(page.getByRole("button", { name: /Copy Share Link/i })).toHaveCount(0);
   });
 
   test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {
     await runAnonymousReview(page);
     await expect(page.getByRole("dialog").getByText("Save this review securely")).toBeVisible({ timeout: 15_000 });
-    await expect(page.getByText(/No background account creation/i)).toBeVisible();
-    await page.getByRole("button", { name: /Create account to save/i }).click();
+    await expect(page.getByText(/Nothing is created in the background/i)).toBeVisible();
+    await page.getByRole("button", { name: /Sign in to save this review/i }).click();
     await expect(page.locator("#auth-email")).toBeVisible();
-    await expect(page.getByRole("button", { name: /Send Login Code/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Email secure sign-in code/i })).toBeVisible();
   });
 
   test("6. extension deep links land on the real auth flow with the intended next path", async ({ page }) => {
     await page.goto("/auth?from=extension&next=/jobs");
     await expect(page).toHaveURL(/\/auth\?from=extension&next=\/jobs/);
     await expect(page.locator("#auth-email")).toBeVisible();
-    await expect(page.getByRole("button", { name: /Send Login Code/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Email secure sign-in code/i })).toBeVisible();
   });
 
   test("7. report history sends anonymous users into an auth-protected flow", async ({ page }) => {

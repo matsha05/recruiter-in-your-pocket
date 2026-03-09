@@ -79,12 +79,12 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: Lock,
             title: "Clear data handling",
-            body: "How we store and process your data is documented clearly on our Security and Privacy pages.",
+            body: "How we store and process your review data and extension capture data is documented clearly on our Security and Privacy pages.",
           },
           {
             icon: Receipt,
             title: "Simple billing",
-            body: "Checkout, invoices, renewals, and cancellation are all handled through Stripe.",
+            body: "Checkout, invoices, renewals, cancellation, and restore paths are all handled through Stripe-backed billing flows.",
           },
           {
             icon: Trash2,
@@ -228,7 +228,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: "Your first review is free. Paid plans give you more. Stripe handles billing and invoices. If you paid but your access looks locked, try " },
+            { type: "text", value: "Your first review is free. Paid plans give you repeated use, history, and exports. Stripe handles billing and invoices. If you paid but your access looks locked, try " },
             { type: "link", label: "Restore Access", href: "/purchase/restore" },
             { type: "text", value: " before reaching out to support. Refunds are reviewed case by case." },
           ],

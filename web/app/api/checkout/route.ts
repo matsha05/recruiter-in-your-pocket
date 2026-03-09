@@ -13,6 +13,7 @@ import {
 } from "@/lib/billing/entitlements";
 import { getOrSetCache } from "@/lib/redis/idempotency";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
 
 // Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -27,12 +28,6 @@ const PRICE_IDS = {
     "24h": process.env.STRIPE_PRICE_ID_24H || "price_1SeJLJK3nCOONJJ0g2JncGeY",
     "30d": process.env.STRIPE_PRICE_ID_30D || "price_1SeJLsK3nCOONJJ0mrQIVesj",
 };
-
-const getBaseUrl = () => {
-    if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    return "http://localhost:3000";
-}
 
 type CheckoutSource = "landing" | "pricing" | "paywall" | "settings" | "workspace" | "unknown";
 type UnlockSection = "evidence_ledger" | "bullet_upgrades" | "missing_wins" | "job_alignment" | "export_pdf";
@@ -213,7 +208,7 @@ export async function POST(request: Request) {
         const tierLabel = getTierLabel(requestedTier);
         const storedTier = toStoredPassTier(requestedTier);
 
-        const baseUrl = getBaseUrl();
+        const baseUrl = getAppUrlForRequest(request);
 
         const mode = getCheckoutModeForTier(requestedTier);
         const isSubscription = mode === "subscription";

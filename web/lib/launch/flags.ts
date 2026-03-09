@@ -9,24 +9,30 @@ function parseFlag(value: string | undefined, defaultValue: boolean) {
   return defaultValue;
 }
 
-export const launchFlags = {
+export function getConfiguredExtensionOrigins() {
+  return (process.env.RIYP_EXTENSION_ORIGINS || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
+export const requestedLaunchFlags = {
   analytics: parseFlag(process.env.NEXT_PUBLIC_ENABLE_ANALYTICS, true),
   billingUnlock: parseFlag(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK, true),
-  extensionSync: parseFlag(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC, true),
+  extensionSync: parseFlag(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC, false),
   guestReportSave: parseFlag(process.env.NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE, false),
   publicShareLinks: parseFlag(process.env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS, false),
   errorReplay: parseFlag(process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY, false),
+} as const;
+
+export const launchFlags = {
+  ...requestedLaunchFlags,
+  extensionSync:
+    requestedLaunchFlags.extensionSync && getConfiguredExtensionOrigins().length > 0,
 } as const;
 
 export type LaunchFlagName = keyof typeof launchFlags;
 
 export function isLaunchFlagEnabled(name: LaunchFlagName) {
   return launchFlags[name];
-}
-
-export function getConfiguredExtensionOrigins() {
-  return (process.env.RIYP_EXTENSION_ORIGINS || "")
-    .split(",")
-    .map((value) => value.trim())
-    .filter(Boolean);
 }

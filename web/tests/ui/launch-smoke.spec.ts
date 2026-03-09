@@ -1,18 +1,17 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("launch smoke", () => {
-  test("health and ready endpoints report green in launch-safe mode", async ({ request }) => {
+  test("health and public status endpoints report cleanly in launch-safe mode", async ({ request }) => {
     const health = await request.get("/api/health");
     expect(health.status()).toBe(200);
 
-    const ready = await request.get("/api/ready");
-    expect(ready.status()).toBe(200);
+    const status = await request.get("/api/status");
+    expect(status.status()).toBe(200);
 
-    const payload = await ready.json();
+    const payload = await status.json();
     expect(payload.ok).toBe(true);
-    expect(payload.goNoGo).toBe(true);
-    expect(Array.isArray(payload.blockers)).toBe(true);
-    expect(payload.blockers).toHaveLength(0);
+    expect(payload.summary.status).toBe("operational");
+    expect(Array.isArray(payload.services)).toBe(true);
   });
 
   test("launch dashboard renders gate and rollback sections", async ({ page }) => {
@@ -29,14 +28,16 @@ test.describe("launch smoke", () => {
     await page.waitForSelector("[data-visual-anchor='legal-status']", { timeout: 30_000 });
 
     await expect(page.getByRole("heading", { name: /current product status/i })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /readiness checks/i })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /launch gates/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /customer-facing systems/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /support and trust/i })).toBeVisible();
   });
 
   test("critical launch routes render", async ({ page }) => {
     const routes = [
       ["/", "[data-visual-anchor='landing-home']"],
       ["/pricing", "[data-visual-anchor='pricing-page']"],
+      ["/auth", "[data-visual-anchor='auth-page']"],
+      ["/extension", "[data-visual-anchor='extension-page']"],
       ["/trust", "[data-visual-anchor='legal-trust']"],
       ["/security", "[data-visual-anchor='legal-security']"],
       ["/privacy", "[data-visual-anchor='legal-privacy']"],

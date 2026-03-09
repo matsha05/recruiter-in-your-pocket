@@ -9,10 +9,8 @@ import {
     FileText,
     Briefcase,
     Library,
-    CreditCard,
-    Home,
+    Chrome,
     BookOpen,
-    Wrench,
 } from "lucide-react";
 
 // ============================================================================
@@ -38,6 +36,12 @@ export const STUDIO_NAV: NavItem[] = [
         href: "/jobs",
         icon: Briefcase,
         description: "Saved jobs and matching",
+    },
+    {
+        label: "Extension",
+        href: "/extension",
+        icon: Chrome,
+        description: "Install and use the Chrome extension",
     },
     {
         label: "Research",
@@ -73,6 +77,7 @@ export const MARKETING_NAV = {
     product: [
         { label: "Pricing", href: "/pricing" },
         { label: "Workspace", href: "/workspace" },
+        { label: "Extension", href: "/extension" },
     ],
     research: [
         { label: "How Recruiters Read", href: "/research/how-recruiters-read" },
@@ -100,6 +105,7 @@ export const MARKETING_NAV = {
 export const FOOTER_NAV = {
     pillLinks: [
         { label: "Pricing", href: "/pricing" },
+        { label: "Extension", href: "/extension" },
         { label: "Research", href: "/research" },
         { label: "Resources", href: "/guides" },
     ],

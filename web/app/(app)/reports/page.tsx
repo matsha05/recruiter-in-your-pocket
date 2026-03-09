@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { FileText, History, ArrowRight } from "lucide-react";
+import { FileText, History, ArrowRight, Chrome } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { ScoreBadge } from "@/components/shared/ScoreBadge";
+import { AppPageIntro } from "@/components/layout/AppPageIntro";
 
 export const dynamic = "force-dynamic";
 
@@ -33,21 +34,42 @@ export default async function ReportsPage() {
   return (
     <section className="flex-1 bg-background">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-10">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Report history</p>
-            <h1 className="font-display text-3xl text-foreground">Your saved reviews</h1>
-            <p className="max-w-2xl text-sm text-muted-foreground">
-              Reopen past reviews, compare your progress, and keep a clean record of the versions you want to revisit.
-            </p>
-          </div>
-          <Link
-            href="/workspace"
-            className="inline-flex items-center gap-2 rounded-md bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
-          >
-            Run another review
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+        <AppPageIntro
+          eyebrow="Report history"
+          title="Your saved reviews"
+          description="Reopen past reviews, compare your progress, and keep a clean record of the versions you want to revisit."
+          meta={
+            <>
+              <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                {items.length} saved review{items.length === 1 ? "" : "s"}
+              </span>
+              <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                Signed in as {user.email}
+              </span>
+            </>
+          }
+          actions={
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                href="/extension"
+                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+              >
+                <Chrome className="h-4 w-4" />
+                Extension
+              </Link>
+              <Link
+                href="/workspace"
+                className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
+              >
+                Run another review
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          }
+        />
+
+        <div className="rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
+          Signed-in reviews stay attached to this account until you delete them. Extension-saved jobs can send role context back into the studio when you want a fresh comparison.
         </div>
 
         {items.length === 0 ? (

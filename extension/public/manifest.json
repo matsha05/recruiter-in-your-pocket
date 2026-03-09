@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Recruiter in Your Pocket",
-    "description": "Get recruiter-grade insights on LinkedIn and Indeed jobs. Capture job descriptions and see your match score instantly.",
+  "description": "Capture supported LinkedIn and Indeed roles, keep saved jobs close, and open recruiter-grade match context in RIYP.",
     "version": "0.2.1",
     "icons": {
         "16": "icons/icon-16.png",

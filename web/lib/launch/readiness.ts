@@ -2,7 +2,8 @@ import path from "path";
 import { existsSync, readFileSync } from "fs";
 import { createSupabaseServerClient } from "../supabase/serverClient";
 import { loadPromptForMode } from "../backend/prompts";
-import { getConfiguredExtensionOrigins, launchFlags } from "./flags";
+import { getConfiguredExtensionOrigins, launchFlags, requestedLaunchFlags } from "./flags";
+import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUrl";
 import {
   LAUNCH_GATE_DEFINITIONS,
   REQUIRED_LAUNCH_DOCS,
@@ -41,16 +42,6 @@ export type LaunchReadinessSnapshot = {
   gates: LaunchGate[];
   blockers: LaunchBlocker[];
 };
-
-function isAbsoluteUrl(value: string | undefined) {
-  if (!value) return false;
-  try {
-    const parsed = new URL(value);
-    return parsed.protocol === "http:" || parsed.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
 
 function getRepoRoot() {
   return path.resolve(process.cwd(), "..");
@@ -130,10 +121,16 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   addCheck(
     checks,
     "auth_callback",
-    isAbsoluteUrl(process.env.NEXT_PUBLIC_APP_URL) ? "ok" : "missing",
-    isAbsoluteUrl(process.env.NEXT_PUBLIC_APP_URL)
-      ? `Auth callbacks can return to ${process.env.NEXT_PUBLIC_APP_URL}.`
-      : "NEXT_PUBLIC_APP_URL must be set to an absolute app URL for auth return paths."
+    getConfiguredAppUrl()
+      ? "ok"
+      : isHostedProductionRuntime()
+        ? "missing"
+        : "disabled",
+    getConfiguredAppUrl()
+      ? `Auth callbacks can return to ${getConfiguredAppUrl()}.`
+      : isHostedProductionRuntime()
+        ? "NEXT_PUBLIC_APP_URL must be set to an absolute app URL for auth return paths."
+        : "Auth callbacks can fall back to the current request origin in local or preview environments. Set NEXT_PUBLIC_APP_URL before production launch."
   );
 
   if (launchFlags.billingUnlock) {
@@ -166,12 +163,16 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   addCheck(
     checks,
     "extension_sync",
-    launchFlags.extensionSync ? (extensionOrigins.length > 0 ? "ok" : "missing") : "disabled",
-    launchFlags.extensionSync
+    requestedLaunchFlags.extensionSync
+      ? extensionOrigins.length > 0
+        ? "ok"
+        : "missing"
+      : "disabled",
+    requestedLaunchFlags.extensionSync
       ? extensionOrigins.length > 0
         ? `Extension sync is enabled with ${extensionOrigins.length} exact allowed origin(s).`
-        : "Extension sync is enabled but RIYP_EXTENSION_ORIGINS is empty."
-      : "Extension sync is disabled by launch flag."
+        : "Extension sync was requested, but RIYP_EXTENSION_ORIGINS is empty. The feature is being kept dark until an exact extension origin is configured."
+      : "Extension sync is disabled by launch flag until exact extension origins are configured."
   );
 
   addCheck(
@@ -276,5 +277,78 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     checks,
     gates,
     blockers,
+  };
+}
+
+export type PublicServiceStatus = "operational" | "limited";
+
+export type PublicStatusSnapshot = {
+  ok: boolean;
+  generatedAt: string;
+  summary: {
+    status: PublicServiceStatus;
+    title: string;
+    message: string;
+  };
+  services: Array<{
+    name: string;
+    status: PublicServiceStatus;
+    message: string;
+  }>;
+  incidents: string[];
+};
+
+export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
+  const snapshot = await getLaunchReadinessSnapshot();
+  const gateMap = new Map(snapshot.gates.map((gate) => [gate.id, gate.status]));
+  const gateStatus = (id: string) => gateMap.get(id) || "pass";
+  const toPublicStatus = (status: LaunchGateStatus): PublicServiceStatus =>
+    status === "fail" ? "limited" : "operational";
+
+  const incidents: string[] = [];
+  if (gateStatus("auth") === "fail") {
+    incidents.push("Account sign-in, saved history, or secure return flows may be temporarily limited.");
+  }
+  if (gateStatus("billing") === "fail") {
+    incidents.push("Checkout, restore, or receipt access may be temporarily limited.");
+  }
+  if (gateStatus("extension") === "fail") {
+    incidents.push("Extension sync may be limited while local capture and studio review remain available.");
+  }
+
+  return {
+    ok: snapshot.ok,
+    generatedAt: snapshot.generatedAt,
+    summary: {
+      status: incidents.length === 0 ? "operational" : "limited",
+      title: incidents.length === 0 ? "All core systems operational" : "Some features are limited",
+      message:
+        incidents.length === 0
+          ? "Review, saved history, billing, and extension-assisted workflows are currently operating normally."
+          : "The product is available, but one or more supporting workflows are currently degraded or limited.",
+    },
+    services: [
+      {
+        name: "Review studio",
+        status: toPublicStatus(gateStatus("quality")),
+        message: "Run recruiter-grade reviews, reopen reports, and continue the core analysis workflow.",
+      },
+      {
+        name: "Account and saved history",
+        status: toPublicStatus(gateStatus("auth")),
+        message: "Sign in, save reviews, and reopen report history tied to your account.",
+      },
+      {
+        name: "Billing and restore",
+        status: toPublicStatus(gateStatus("billing")),
+        message: "Start paid access, restore purchases, open receipts, and manage renewals.",
+      },
+      {
+        name: "Extension-assisted workflows",
+        status: toPublicStatus(gateStatus("extension")),
+        message: "Capture supported jobs, reopen them in the studio, and sync saved roles when enabled.",
+      },
+    ],
+    incidents,
   };
 }

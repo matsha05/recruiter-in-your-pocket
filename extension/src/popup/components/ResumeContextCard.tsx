@@ -64,7 +64,7 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
     function handleChangeResume() {
         chrome.runtime.sendMessage({
             type: 'OPEN_WEBAPP',
-            payload: { path: '/jobs' }
+            payload: { path: '/settings/account' }
         });
     }
 
@@ -94,7 +94,7 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
                 </div>
                 <div className="resume-context-info">
                     <span className="resume-context-title">Upload resume for matching</span>
-                    <span className="resume-context-subtitle">Get instant match scores</span>
+                    <span className="resume-context-subtitle">Add a default resume so saved jobs have fit context</span>
                 </div>
                 <span className="resume-context-arrow">→</span>
             </div>

@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Bookmark, Loader2 } from "lucide-react";
 import { Analytics } from "@/lib/analytics";
+import { saveReportTrustMessage } from "@/lib/trust/messages";
 
 interface SaveReportPromptProps {
     isOpen: boolean;
@@ -77,7 +78,7 @@ export default function SaveReportPrompt({
 
                 <div className="space-y-4">
                     <div className="rounded border border-brand/20 bg-brand/5 p-3 text-left text-xs text-muted-foreground">
-                        We only save reports to verified signed-in accounts. No background account creation, no unverified email handoff.
+                        {saveReportTrustMessage}
                     </div>
 
                     {error && (
@@ -97,7 +98,7 @@ export default function SaveReportPrompt({
                                 Opening secure sign-in...
                             </>
                         ) : (
-                            "Create account to save →"
+                            "Sign in to save this review →"
                         )}
                     </Button>
 

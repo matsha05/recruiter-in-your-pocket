@@ -9,6 +9,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
+    "assets:chrome-web-store": "node scripts/generate-chrome-web-store-assets.cjs",
     "test:ui": "playwright test",
     "test:launch-smoke": "node scripts/run-launch-smoke.cjs",
     "test:redteam-journeys": "node scripts/run-redteam-journeys.cjs",

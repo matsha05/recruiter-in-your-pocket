@@ -1,7 +1,7 @@
 # Chrome Extension Permissions Justification
 
 **Version:** 0.2.1  
-**Date:** 2025-12-31  
+**Date:** 2026-03-09
 **Purpose:** Document and justify all extension permissions for Chrome Web Store review
 
 ---
@@ -9,7 +9,7 @@
 ## Declared Permissions
 
 ### `storage`
-**Justification:** Store captured job descriptions and match scores locally so users can access their job history across browser sessions without requiring an account.
+**Justification:** Store captured jobs, match scores, and popup state locally so users can use the extension immediately and keep local history even before signing in.
 
 **Data stored:**
 - Job metadata (title, company, URL)
@@ -17,7 +17,7 @@
 - Match scores
 - User preferences (onboarding state)
 
-**Privacy:** All data is local to the user's browser. No data is synced or transmitted without explicit user action.
+**Privacy:** Local storage powers immediate popup use. If the user signs in, saved-job workflows can also sync with the RIYP web app so history is attached to the right account.
 
 ---
 
@@ -57,9 +57,10 @@
 **Justification:** Communicate with the RIYP web app for:
 - Authentication state sync (check if user is logged in)
 - Quick match scoring (send JD, receive score)
+- Saved-job sync for signed-in users
 - Deep linking to full analysis
 
-**Privacy:** Only the job description text is sent for scoring. Resume data stays on the web app.
+**Privacy:** Job description text and saved-job metadata are only sent for extension workflows the user triggers or enables. Resume data stays on the web app.
 
 ---
 
@@ -86,11 +87,11 @@
 ## Privacy Summary
 
 1. **User-initiated only:** Data capture requires explicit button click
-2. **Local storage:** Job data stored in browser, not synced automatically
-3. **Minimal transmission:** Only JD text sent for scoring; resume stays on web app
+2. **Local-first behavior:** The popup works with local capture first; sign-in is only needed for synced saved-job history
+3. **Minimal transmission:** JD text and saved-job metadata are used for extension workflows; resume data stays on the web app
 4. **No tracking:** No analytics in content scripts; no browsing behavior recorded
-5. **Clear deletion:** Users can delete all data via extension popup
+5. **Clear deletion:** Users can delete local or synced saved jobs from the popup and web app
 
 ---
 
-*Last updated: 2025-12-31*
+*Last updated: 2026-03-09*

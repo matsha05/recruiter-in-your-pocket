@@ -6,6 +6,7 @@
  */
 
 import { getLoginUrl } from '../../background/api';
+import { popupContent } from '../content';
 
 interface AuthPromptProps {
     onLogin: () => void;
@@ -61,10 +62,11 @@ export default function AuthPrompt({ onLogin }: AuthPromptProps) {
                 </svg>
             </div>
 
-            <h2 className="auth-title">Sign in to unlock</h2>
+            <h2 className="auth-title">{popupContent.auth.title}</h2>
             <p className="auth-description">
-                Connect your RIYP account to save jobs across devices and get personalized match scores.
+                {popupContent.auth.description}
             </p>
+            <p className="auth-support">{popupContent.auth.supportLine}</p>
 
             <div className="auth-buttons">
                 <button className="btn btn-google" onClick={handleSecureLogin}>
@@ -74,7 +76,7 @@ export default function AuthPrompt({ onLogin }: AuthPromptProps) {
                         <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
                         <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                     </svg>
-                    Open secure sign-in
+                    {popupContent.auth.primaryCta}
                 </button>
 
                 <div className="auth-divider">
@@ -82,12 +84,12 @@ export default function AuthPrompt({ onLogin }: AuthPromptProps) {
                 </div>
 
                 <button className="btn btn-secondary" onClick={onLogin}>
-                    Open in browser
+                    {popupContent.auth.secondaryCta}
                 </button>
             </div>
 
             <p className="auth-footer">
-                Don&apos;t have an account? <a href={signupUrl} target="_blank" rel="noopener noreferrer">Create one free</a>
+                {popupContent.auth.footer} <a href={signupUrl} target="_blank" rel="noopener noreferrer">Create one free</a>
             </p>
         </div>
     );

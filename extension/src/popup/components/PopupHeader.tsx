@@ -6,9 +6,10 @@
 
 interface PopupHeaderProps {
     user?: { email: string; firstName?: string } | null;
+    authenticated?: boolean;
 }
 
-export default function PopupHeader({ user }: PopupHeaderProps) {
+export default function PopupHeader({ user, authenticated = false }: PopupHeaderProps) {
     return (
         <header className="popup-header">
             <div className="popup-logo">
@@ -20,9 +21,10 @@ export default function PopupHeader({ user }: PopupHeaderProps) {
                     <>
                         <span className="popup-status-dot" />
                         <span>{user.firstName || user.email.split('@')[0]}</span>
+                        <span className="popup-status-badge">Sync on</span>
                     </>
                 ) : (
-                    <span className="popup-status-text">Not signed in</span>
+                    <span className="popup-status-text">{authenticated ? "Checking sync…" : "Local only"}</span>
                 )}
             </div>
         </header>

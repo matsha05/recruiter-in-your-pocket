@@ -68,6 +68,16 @@
     color: hsl(var(--muted-foreground));
 }
 
+.popup-status-badge {
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: hsl(var(--brand) / 0.12);
+    color: hsl(var(--brand));
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
 /* ============= CONTENT ============= */
 .popup-content {
     flex: 1;
@@ -392,6 +402,13 @@
     background: hsl(var(--card));
 }
 
+.popup-footer-note {
+    margin: 0 0 10px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
+}
+
 .popup-footer .btn {
     width: 100%;
 }
@@ -475,22 +492,20 @@
     text-align: left;
     margin-bottom: 28px;
     padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .onboarding-feature {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 16px;
     padding: 12px;
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
-}
-
-.onboarding-feature:last-child {
-    margin-bottom: 0;
 }
 
 .onboarding-feature .feature-icon {
@@ -520,6 +535,14 @@
     color: hsl(var(--muted-foreground));
     margin: 0;
     line-height: 1.45;
+}
+
+.auth-support {
+    margin: -4px auto 0;
+    max-width: 250px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
 }
 
 .onboarding-cta {

@@ -5,6 +5,8 @@
  * Features gradient illustration, feature hints, and engaging copy.
  */
 
+import { popupContent } from "../content";
+
 export default function EmptyState() {
     return (
         <div className="empty-state-premium">
@@ -28,9 +30,9 @@ export default function EmptyState() {
             </div>
 
             <div className="empty-content">
-                <div className="empty-state-title">No jobs captured yet</div>
+                <div className="empty-state-title">{popupContent.empty.title}</div>
                 <div className="empty-state-description">
-                    Browse to a LinkedIn or Indeed job posting, then click the capture button to see how your resume stacks up.
+                    {popupContent.empty.description}
                 </div>
             </div>
 

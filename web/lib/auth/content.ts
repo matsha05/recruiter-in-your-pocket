@@ -1,21 +1,29 @@
-export type AuthContext = "default" | "report" | "settings" | "paywall";
+export type AuthContext = "default" | "report" | "settings" | "paywall" | "history" | "extension";
 
 export const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
   default: {
-    headline: "Welcome back",
-    subtext: "Sign in to access your reports and history."
+    headline: "Pick up where you left off",
+    subtext: "Use secure sign-in to reach your reports, history, and saved job context."
   },
   report: {
-    headline: "Save this report",
-    subtext: "Keep this report and track improvements over time."
+    headline: "Save this review securely",
+    subtext: "Sign in to attach this review to the right account and compare future versions."
   },
   settings: {
-    headline: "Manage your account",
-    subtext: "Access billing, receipts, and saved reports."
+    headline: "Manage billing and account controls",
+    subtext: "Use one secure sign-in to reach receipts, restore access, and account settings."
   },
   paywall: {
-    headline: "Use your credits",
-    subtext: "Your purchases are linked to your account."
+    headline: "Use the access you already paid for",
+    subtext: "Purchases, credits, and restores stay tied to your signed-in account."
+  },
+  history: {
+    headline: "Open your saved history",
+    subtext: "Sign in to reach saved reviews, compare versions, and keep everything attached to the right owner."
+  },
+  extension: {
+    headline: "Sync saved jobs across devices",
+    subtext: "Sign in only if you want your extension history and studio history to stay in sync."
   }
 };
 

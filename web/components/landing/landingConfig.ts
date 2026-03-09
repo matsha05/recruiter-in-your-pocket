@@ -148,7 +148,7 @@ export const landingContent: LandingContentConfig = {
         badge: "Based on how recruiters actually decide",
         badgeIcon: BookOpen,
         title: "In 7.4 seconds, they've already made up their mind about you.",
-        subtitle: "Upload your resume. We'll tell you what a recruiter thinks in the first 7 seconds — and what to change so they keep reading.",
+        subtitle: "Upload your resume for a free recruiter-grade review, then add a job description only if you want fit context for a specific role.",
         stats: [
             {
                 value: "7.4s",
@@ -185,7 +185,7 @@ export const landingContent: LandingContentConfig = {
             label: "View methodology",
             href: "/research/how-we-score",
         },
-        footnote: "Free. No login. Takes 2 minutes.",
+        footnote: "First review free. No login required. Save only when you decide to.",
         reportSample: HERO_REPORT_SAMPLE,
         reportPlaybackSeconds: 7.4,
         reportLabel: "The first 7.4 seconds",
@@ -280,7 +280,7 @@ export const landingContent: LandingContentConfig = {
     trust: {
         eyebrow: "From people who hire",
         title: "Built by people who've read 10,000 resumes.",
-        copy: "You're better than your resume makes you look. We fix that.",
+        copy: "You're better than your resume makes you look. We make that obvious, without hiding the methodology or the data handling.",
         reasonsLabel: "What feels different",
         testimonials: [
             {
@@ -300,9 +300,10 @@ export const landingContent: LandingContentConfig = {
             "You see what a recruiter would actually think — not tips from a blog.",
             "Every suggestion links to the exact line on your resume.",
             "Honest, useful feedback. Not robotic.",
+            "Clear controls for saving, deleting, billing, and extension capture.",
         ],
         policyLabel: "First review is on us",
-        policyCopy: "Your first review is completely free. No credit card needed. Only pay if you want to keep going.",
+        policyCopy: "Your first review is completely free. No card, no silent save, and no account required until you want durable history.",
         cta: {
             label: "Start free review",
             href: "/workspace",
@@ -311,13 +312,13 @@ export const landingContent: LandingContentConfig = {
     pricing: {
         eyebrow: "Simple pricing",
         title: "Start free. Pay when you want more.",
-        copy: "Your first review is free — the full thing, not a teaser. Paid plans let you keep going for every role you're applying to.",
+        copy: "Your first review is free — the full thing, not a teaser. Paid plans are for repeated reviews, report history, exports, and a steadier role-by-role workflow.",
         included: {
             eyebrow: "Included in every plan",
             items: [
                 "Your review, the evidence behind it, and rewrites — every time",
                 "Fixes in the order that matters most",
-                "Straightforward billing. Cancel whenever.",
+                "Straightforward billing, restore, and cancellation paths.",
             ],
             cta: {
                 label: "View full pricing details",
@@ -326,16 +327,16 @@ export const landingContent: LandingContentConfig = {
         },
         trust: {
             kicker: "Your data, your rules",
-            title: "Want to know exactly how we handle your data?",
+            title: "Want to know exactly how we handle your data and extension access?",
             cta: {
-                label: "Review security and data handling",
-                href: "/security",
+                label: "Review security and install details",
+                href: "/extension",
             },
             items: [
                 { icon: Lock, title: "Encrypted on upload", copy: "Your resume is encrypted the moment you upload it." },
                 { icon: Trash2, title: "You control your data", copy: "Your reports are only saved if you want them — and you can delete them anytime." },
                 { icon: Shield, title: "No AI training", copy: "We never use your resume to train AI models." },
-                { icon: Award, title: "Self-serve billing", copy: "Manage your billing yourself. No emails to support." },
+                { icon: Award, title: "Explicit extension capture", copy: "The extension works on supported job pages and only captures roles when you ask it to." },
             ],
         },
     },

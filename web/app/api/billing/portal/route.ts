@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
@@ -9,12 +10,6 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function getBaseUrl() {
-  if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "http://localhost:3000";
-}
 
 async function resolveCustomerIdByEmail(email: string): Promise<string | null> {
   if (!stripe) return null;
@@ -96,8 +91,8 @@ export async function POST(req: Request) {
     const portal = await stripe.billingPortal.sessions.create({
       customer: customerId,
       return_url: returnTo === "restore"
-        ? `${getBaseUrl()}/purchase/restore?billing=updated`
-        : `${getBaseUrl()}/settings/billing?billing=updated`
+        ? `${getAppUrlForRequest(req)}/purchase/restore?billing=updated`
+        : `${getAppUrlForRequest(req)}/settings/billing?billing=updated`
     });
 
     return NextResponse.json({ ok: true, url: portal.url });

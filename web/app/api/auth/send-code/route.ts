@@ -4,6 +4,7 @@ import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
 
 type AuthDeliveryMode = "otp" | "magic_link";
 
@@ -11,12 +12,6 @@ function normalizeMode(input: unknown): AuthDeliveryMode {
     if (typeof input !== "string") return "otp";
     const trimmed = input.trim().toLowerCase();
     return trimmed === "magic_link" ? "magic_link" : "otp";
-}
-
-function getBaseUrl() {
-    if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    return "http://localhost:3000";
 }
 
 function inferErrorCode(message: string): { code: string; hint?: string } {
@@ -68,7 +63,7 @@ export async function POST(request: NextRequest) {
 
         const supabase = await createSupabaseServerAction();
         const emailRedirectTo = mode === "magic_link"
-            ? `${getBaseUrl()}/auth/callback?next=${encodeURIComponent(nextParam)}`
+            ? `${getAppUrlForRequest(request)}/auth/callback?next=${encodeURIComponent(nextParam)}`
             : undefined;
 
         // Send OTP email via Supabase Auth (8-digit code) or magic link fallback
