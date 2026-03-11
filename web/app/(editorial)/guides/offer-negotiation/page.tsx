@@ -421,12 +421,12 @@ export default function OfferNegotiationGuidePage() {
                 <div className="mt-20 bg-secondary/10 border border-border/10 rounded-xl p-8 md:p-12 text-center">
                     <h2 className="font-display text-2xl font-medium mb-4">Ready for your next offer conversation?</h2>
                     <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                        Get your resume reviewed by a recruiter&apos;s eye before your next interview.
+                        Get a report before your next interview so the right things are obvious fast.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/workspace">
                             <Button variant="brand" size="lg" className="gap-2 w-full sm:w-auto">
-                                Start Your Review
+                                Get Your Report
                                 <ArrowRight className="w-4 h-4" />
                             </Button>
                         </Link>

@@ -76,8 +76,8 @@ Landing → Upload/Paste → Analysis (Loading) → Report → Paywall → Post-
 | **During analysis** | Loading state | "Analyzing from recruiter perspective..." shows expertise |
 | **Score reveal** | Report header | Subscore breakdown shows methodology |
 | **Top fixes** | Report body | Impact/effort labels show thoughtfulness |
-| **Pre-paywall** | After free value | "You've seen the full analysis. Pay to track improvements over time." |
-| **Post-purchase** | Unlock moment | "You now have [X] reviews. Use them whenever you need." |
+| **Pre-paywall** | After free value | "You've seen the full report. Pay to track improvements over time." |
+| **Post-purchase** | Unlock moment | "You now have [X] reports. Use them whenever you need." |
 
 ---
 
@@ -261,10 +261,10 @@ Landing → Upload/Paste → Analysis (Loading) → Report → Paywall → Post-
 > Real feedback from a principal recruiter's perspective. No subscription. Pay when you need it.
 
 **CTA:**
-> Get Your Free Review
+> Get Your Free Report
 
 **3 Bullets:**
-1. "Recruiter-grade analysis, not ATS keyword stuffing"
+1. "A recruiter report, not ATS keyword stuffing"
 2. "Specific fixes, not generic advice"
 3. "Pay $9 once. No subscription. Credits never expire."
 
@@ -311,16 +311,16 @@ Landing → Upload/Paste → Analysis (Loading) → Report → Paywall → Post-
 ### Paywall
 
 **Header:**
-> You've seen the full analysis.
+> You've seen the full report.
 
 **Body:**
-> Pay once to unlock version tracking, score history, and additional reviews. No subscription—credits never expire.
+> Pay once to unlock version tracking, score history, and additional reports. No subscription, credits never expire.
 
 **Plan names:**
 | Tier | Name | Price |
 |:-----|:-----|:------|
-| Single | One Review | $9 |
-| Pack | 5 Reviews | $29 |
+| Single | One Report | $9 |
+| Pack | 5 Reports | $29 |
 
 **CTA:**
 > Unlock [Plan Name]
@@ -331,7 +331,7 @@ Landing → Upload/Paste → Analysis (Loading) → Report → Paywall → Post-
 
 | Error | Message |
 |:------|:--------|
-| Empty input | "Paste your resume so I can review it." |
+| Empty input | "Paste your resume to get your report." |
 | Too short | "This looks short. Make sure you've pasted the full resume." |
 | Parse failure | "I couldn't read this file. Try pasting the text directly." |
 | Server error | "Something went wrong on our end. Try again in a moment." |
@@ -342,10 +342,10 @@ Landing → Upload/Paste → Analysis (Loading) → Report → Paywall → Post-
 ### Post-Purchase
 
 **Unlock banner:**
-> You now have [X] reviews. Use them whenever you need.
+> You now have [X] reports. Use them whenever you need.
 
 **Toast:**
-> Review unlocked! Your credits never expire.
+> Report unlocked. Your credits never expire.
 
 ---
 
@@ -361,7 +361,7 @@ Landing → Upload/Paste → Analysis (Loading) → Report → Paywall → Post-
 > How we analyze resumes →
 
 **Trust statement:**
-> "Recruiter-grade analysis backed by a calibrated scoring system"
+> "A recruiter report backed by a calibrated scoring system"
 
 > **Note:** All privacy copy must align with the [Data Handling Truth Table in spec-freeze-v1.md](file:///Users/matsha05/Desktop/dev/recruiter-in-your-pocket/docs/launch-readiness/spec-freeze-v1.md). Do not claim "never stored" unless literally true.
 

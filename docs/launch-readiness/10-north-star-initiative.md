@@ -15,7 +15,7 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 
 ## Target User and Context
 
-**Primary User:** Active job seeker who has already received one free review  
+**Primary User:** Active job seeker who has already received one free report  
 **Context:** Returning to RIYP to refine resume before applying to a specific role  
 **Trigger:** New job posting, upcoming application deadline, or score they want to improve
 
@@ -98,7 +98,7 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 **What makes returning BETTER than first-time:**
 - Score history shows progress
 - Version comparison shows improvements
-- Returning user sees: "Since your last review, you've improved 8 points. Here's what's next."
+- Returning user sees: "Since your last report, you've improved 8 points. Here's what's next."
 
 ---
 
@@ -107,15 +107,15 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 ### Activation (Day 0)
 | Metric | Definition | Target |
 |:-------|:-----------|:-------|
-| First review completed | User uploads resume and receives full report | 80% of visitors |
-| Report engagement | User scrolls to "Top Fixes" section | 90% of completed reviews |
-| Aha moment signal | Time on score summary > 10 seconds | 70% of reviews |
+| First report completed | User uploads resume and receives full report | 80% of visitors |
+| Report engagement | User scrolls to "Top Fixes" section | 90% of completed reports |
+| Aha moment signal | Time on score summary > 10 seconds | 70% of reports |
 
 ### Conversion (Day 0-7)
 | Metric | Definition | Target |
 |:-------|:-----------|:-------|
 | Free → Paid | User purchases any credit pack | 10-15% |
-| Second review | Paid user runs a second analysis | 60% of paid users |
+| Second report | Paid user runs another report | 60% of paid users |
 
 ### Retention (Day 7+)
 | Metric | Definition | Target |
@@ -144,7 +144,7 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 5. **AI resume generation** — Anti-pattern for our positioning
 6. **A/B testing infrastructure** — Complexity without urgent need
 7. **Mobile app** — Web-first for now
-8. **LinkedIn profile editing** — Review only, not generation
+8. **LinkedIn profile editing** — Reports only, not generation
 
 ### Explicitly Deferred
 

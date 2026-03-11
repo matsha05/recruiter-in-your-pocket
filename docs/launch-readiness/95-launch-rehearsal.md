@@ -7,8 +7,8 @@ Run this on a clean browser profile and capture evidence for every step.
 
 ## Checklist
 
-1. Anonymous review
-   Evidence: Run a review without signing in and confirm no account is silently created.
+1. Anonymous report
+   Evidence: Run a report without signing in and confirm no account is silently created.
 2. Account creation
    Evidence: Create a new account and confirm the auth callback returns to the product.
 3. Report save

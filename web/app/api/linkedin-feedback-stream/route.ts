@@ -238,7 +238,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "PAYWALL_REQUIRED",
-                        message: "You've used your free review. Upgrade to continue."
+                        message: "You've used your free report. Upgrade to continue."
                     }) + "\n"));
                     controller.close();
                     return;

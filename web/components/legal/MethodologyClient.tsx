@@ -18,12 +18,12 @@ const rubric = [
     {
         name: "Impact",
         weight: "30%",
-        detail: "Do your bullets show real results — numbers, scope, outcomes — not just responsibilities?",
+        detail: "Do your bullets show real results, numbers, scope, and outcomes, not just responsibilities?",
     },
     {
         name: "Clarity",
         weight: "20%",
-        detail: "Can a recruiter tell what you do, how senior you are, and why you matter — without re-reading?",
+        detail: "Can a recruiter tell what you do, how senior you are, and why you matter without re-reading?",
     },
     {
         name: "Readability",
@@ -85,7 +85,7 @@ export default function MethodologyClient() {
                         How we write rewrites
                     </h3>
                     <p className="text-[14px] leading-[1.65] text-slate-500">
-                        Rewrites focus on real results and tighter language — not inflated claims or generic filler.
+                        Rewrites focus on real results and tighter language, not inflated claims or generic filler.
                     </p>
                 </div>
                 <div
@@ -112,8 +112,8 @@ export default function MethodologyClient() {
                     Limits and responsible use
                 </h3>
                 <ul className="space-y-2 text-[14px] leading-[1.65] text-slate-500">
-                    <li>1. Scores estimate how strong your resume signal is — they don&apos;t guarantee interviews or offers.</li>
-                    <li>2. Industry and role context can shift what matters most in any given review.</li>
+                    <li>1. Scores estimate how strong your resume signal is. They don&apos;t guarantee interviews or offers.</li>
+                    <li>2. Industry and role context can shift what matters most in any given report.</li>
                     <li>3. Always double-check the rewrites for accuracy and tone before using them.</li>
                     <li>
                         4. For deeper research references, see{" "}

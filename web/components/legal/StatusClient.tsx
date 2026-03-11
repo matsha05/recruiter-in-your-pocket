@@ -66,7 +66,7 @@ export default function StatusClient() {
       pageKey="status"
       eyebrow="Status"
       title="Current product status"
-      description="A customer-facing summary of the systems you rely on before, during, and after a review."
+      description="A customer-facing summary of the systems you rely on before, during, and after a report."
     >
       <section className="rounded-2xl bg-white p-6 shadow-sm">
         <div className="flex items-start gap-3">

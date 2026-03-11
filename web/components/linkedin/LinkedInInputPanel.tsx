@@ -106,9 +106,9 @@ export function LinkedInInputPanel({
         if (membership === "monthly" || membership === "lifetime") return "Paid access active";
         if (membership === "credit") {
             const paid = Number(user?.paidUsesLeft || 0);
-            return `${paid} paid review${paid === 1 ? '' : 's'} remaining`;
+            return `${paid} paid report${paid === 1 ? '' : 's'} remaining`;
         }
-        if (freeUsesRemaining > 0) return "1 free review available";
+        if (freeUsesRemaining > 0) return "1 free report available";
         return "Upgrade to continue";
     };
 

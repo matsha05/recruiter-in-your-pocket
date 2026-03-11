@@ -38,7 +38,7 @@ The Chrome extension is the **#1 retention driver** across all successful compet
 |:----------|:------------------|:---------------|
 | **Touchpoints** | User visits website | Extension visible on every job board |
 | **Workflow fit** | Separate tool | Integrated into job search |
-| **JD analysis** | Manual paste | One-click capture |
+| **JD fit check** | Manual paste | One-click capture |
 | **Return triggers** | Email only | Visual badge + notifications |
 | **Retention D30** | Estimate: 10-15% | Estimate: 25-40% |
 
@@ -61,7 +61,7 @@ The Chrome extension is the **#1 retention driver** across all successful compet
 |:--------|:---------|:------------|
 | **JD Capture** | P0 | One-click button to save job description from supported sites |
 | **Quick Match** | P0 | Show match score against saved resume (cached) |
-| **Link to Full Review** | P0 | "Get full analysis" link to web app |
+| **Link to Full Report** | P0 | "Get full report" link to web app |
 | **Badge Counter** | P1 | Visual indicator of saved jobs |
 | **Auth Sync** | P1 | Connect to existing RIYP account |
 
@@ -94,7 +94,7 @@ The Chrome extension is the **#1 retention driver** across all successful compet
 ├─────────────────────────────────────────────────────┤
 │  Popup UI                                            │
 │  ├── Quick match score display                      │
-│  ├── "Get full analysis" CTA                        │
+│  ├── "Get full report" CTA                          │
 │  └── Recent saved jobs list                         │
 ├─────────────────────────────────────────────────────┤
 │  Content Scripts                                     │
@@ -129,7 +129,7 @@ The Chrome extension is the **#1 retention driver** across all successful compet
 4. Content script extracts JD text + metadata
 5. Background script sends to /api/extension/capture-jd
 6. API returns quick match score (if resume cached)
-7. Popup shows score + "Get full analysis" link
+7. Popup shows score + "Get full report" link
 ```
 
 ---
@@ -209,7 +209,7 @@ The Chrome extension is the **#1 retention driver** across all successful compet
 ### Phase 2: Enhancements (Month 2)
 - [ ] Greenhouse + Lever support
 - [ ] Job tracking list in popup
-- [ ] Badge counter for unreviewed matches
+- [ ] Badge counter for unopened matches
 - [ ] Push notification for good matches
 
 ### Phase 3: Full Integration (Q1 2026)
@@ -248,9 +248,9 @@ The Chrome extension is the **#1 retention driver** across all successful compet
 ### How Extension Supports Weekly Return
 
 ```
-Week 1: User installs extension after paid review
+Week 1: User installs extension after buying a report
 Week 2: User browses jobs, captures 5 JDs, sees match scores
-Week 3: Extension badge shows "2 good matches" → clicks to review
+Week 3: Extension badge shows "2 good matches" → clicks to open the full report
 Week 4: Returns to improve resume for specific role
 ```
 

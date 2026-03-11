@@ -24,12 +24,12 @@ const billingPoints = [
     {
         icon: RotateCcw,
         title: "Easy to manage",
-        body: "Restore access, manage renewals, or cancel — all from your billing page.",
+        body: "Restore access, manage renewals, or cancel, all from your billing page.",
     },
     {
         icon: Receipt,
         title: "Access starts immediately",
-        body: "As soon as you pay, everything unlocks: reports, exports, history, all of it.",
+        body: "As soon as you pay, paid access turns on: reports, exports, history, all of it.",
     },
 ];
 
@@ -85,7 +85,7 @@ export default function PricingPageClient() {
                         </h1>
                         <p className="editorial-copy-lg mx-auto mt-5 max-w-[440px] text-slate-500">
                             Your first report is on us. The full thing, not a teaser.
-                            Pay only when you want more reports, saved history, exports, and a steadier role-by-role workflow.
+                            Pay only if you want more reports, saved history, exports, and a steadier role-by-role workflow.
                         </p>
                     </div>
                 </section>
@@ -100,7 +100,7 @@ export default function PricingPageClient() {
                             }}
                         >
                             <p className="editorial-kicker mb-4 text-slate-300">
-                                What you unlock with a paid plan
+                                What paid access adds
                             </p>
                             <ul className="space-y-3">
                                 {unlockPoints.map((point) => (
@@ -162,7 +162,7 @@ export default function PricingPageClient() {
                             Billing is simple
                         </h2>
                         <p className="mt-3 max-w-[420px] text-base leading-7 text-slate-500">
-                            Paid access starts right away. If anything goes wrong, you can fix it yourself.
+                            Paid access starts right away. If anything goes sideways, you can sort it out yourself.
                         </p>
 
                         <div className="mt-8 space-y-3">

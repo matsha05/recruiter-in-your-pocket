@@ -13,7 +13,7 @@
 ## A. North Star Initiative
 
 ### Problem Statement
-Job seekers receive inconsistent, generic feedback from AI resume tools, leading to distrust and wasted effort. RIYP must prove its "Recruiter Lens" produces reliable, evidence-backed analysis that users can trust and act on.
+Job seekers receive inconsistent, generic feedback from AI resume tools, leading to distrust and wasted effort. RIYP must prove its recruiter-first report is reliable, evidence-backed, and worth acting on.
 
 ### Target User
 Active job seeker with 3-10 years experience, applying to competitive roles, skeptical of AI tools after bad experiences with generic advice.
@@ -178,7 +178,7 @@ If Chrome Web Store approval is delayed:
 | Indeed support | Conditional | Add in Week 6 only if LinkedIn is stable AND Gate C passes |
 | Greenhouse/Lever | Deferred | Month 3+ only if extension has >100 installs |
 | Job saving/tracking | Never for MVP | Different product |
-| Full analysis in popup | Never | Always link to web |
+| Full report in popup | Never | Always link to web |
 | Rewrite editing in popup | Never | Complexity explosion |
 
 ### Retention Hypothesis and Metric
@@ -236,21 +236,21 @@ See [A3 Section 4](file:///Users/matsha05/Desktop/dev/recruiter-in-your-pocket/d
 
 | Metric | Numerator | Denominator | Target | Event |
 |:-------|:----------|:------------|:-------|:------|
-| First review completion | Users who complete first review | Users who start input (paste/upload) | 80% | `analysis_completed` / `input_started` |
-| SM1 engagement | Users who scroll to Top Fixes | Users who complete review | 90% | `sm1_fixes_rendered` / `analysis_completed` |
+| First report completion | Users who complete first report | Users who start input (paste/upload) | 80% | `analysis_completed` / `input_started` |
+| SM1 engagement | Users who scroll to Top Fixes | Users who complete report | 90% | `sm1_fixes_rendered` / `analysis_completed` |
 
 ### Conversion
 
 | Metric | Numerator | Denominator | Target | Event |
 |:-------|:----------|:------------|:-------|:------|
 | Paywall conversion | Users who purchase | Users who see paywall | 10-15% | `purchase_completed` / `paywall_shown` |
-| Second review | Paid users who run second review | Paid users | 60% | `analysis_completed` (count ≥2) / `purchase_completed` |
+| Second report | Paid users who run another report | Paid users | 60% | `analysis_completed` (count ≥2) / `purchase_completed` |
 
 ### Retention
 
 | Metric | Numerator | Denominator | Target | Event |
 |:-------|:----------|:------------|:-------|:------|
-| D7 return | Users who return within 7 days | Users who activated (first review) | 25% | `session_start` (D7) / `analysis_completed` (D0) |
+| D7 return | Users who return within 7 days | Users who activated (first report) | 25% | `session_start` (D7) / `analysis_completed` (D0) |
 | D30 return | Users who return within 30 days | Users who activated | 15% (no extension), 25% (with extension) | Same |
 
 ### Quality

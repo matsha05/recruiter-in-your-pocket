@@ -31,7 +31,7 @@ Your landing page (`index.html`) has **no meta description, no Open Graph tags, 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- What you need (at minimum) -->
-<title>Recruiter in Your Pocket — Free Resume Review from a Real Recruiter</title>
+<title>Recruiter in Your Pocket — Free Resume Report from a Real Recruiter</title>
 <meta name="description" content="See how recruiters actually read your resume. Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes. Built by a recruiter who's hired 1000+ at Google, Meta, and OpenAI." />
 <meta property="og:title" content="See How Recruiters Actually Read Your Resume" />
 <meta property="og:description" content="Get recruiter-grade feedback, stronger bullets, and clear next steps in minutes." />
@@ -43,7 +43,7 @@ Your landing page (`index.html`) has **no meta description, no Open Graph tags, 
 ### Why This Matters for MRR
 Your competitive intelligence report correctly identifies that Resume Worded, Rezi, and Teal all rely heavily on SEO-driven resume example libraries and keyword-rich guides. They get millions of users from organic search. Without basic SEO:
 - **No shareability**: When users share their reports or your site on LinkedIn/Twitter, they'll see ugly default link previews
-- **No Google visibility**: You're invisible for "resume review", "recruiter feedback resume", etc.
+- **No Google visibility**: You're invisible for "resume report", "recruiter feedback resume", etc.
 - **No content marketing foundation**: Your research pages exist but aren't optimized
 
 ### The Fix
@@ -75,7 +75,7 @@ You're **losing 100% of free users who never hit the paywall** and walk away for
 - **No churn recovery**: Paid users who expire have no prompt to come back
 
 ### The Fix (Minimal Viable Email Capture)
-Add an **optional** email capture after the first free analysis completes. Something like:
+Add an **optional** email capture after the first free report completes. Something like:
 
 > "Want your report saved so you can compare next time?"
 > [Email input] [Save my progress]
@@ -133,7 +133,7 @@ You don't have JD matching. The workspace only accepts a resume — there's no p
 ### Why This Matters for MRR
 - **Feature parity for paid value**: Users pay for tools that help them *apply to specific jobs*, not just improve abstract clarity
 - **Repeat usage motivation**: Without JD matching, users analyze once, improve their resume, and leave. With JD matching, they come back for *every application*
-- **24-hour pass justification**: "Unlimited JD matching for 24 hours" is a clearer value prop than "unlimited resume reviews"
+- **24-hour pass justification**: "Unlimited JD matching for 24 hours" is a clearer value prop than "unlimited reports"
 
 ### Your Own Roadmap Says This
 From `master-roadmap.md`:
@@ -250,7 +250,7 @@ You have **zero referral mechanics**. No "Share with a friend, get a free report
 - **No user acquisition flywheel**: You're 100% dependent on SEO and paid ads
 
 ### The Fix (Simple V1)
-After a successful analysis:
+After a successful report:
 > "Know someone who's job hunting? Share your link and you both get a free report."
 > [Copy my referral link]
 
@@ -283,7 +283,7 @@ Searching your codebase for `utm` returns zero results. When someone lands on yo
 
 ### The Gap
 Users can export a PDF, but:
-- **No shareable report URL**: "Here's my resume analysis" should be a link
+- **No shareable report URL**: "Here's my resume report" should be a link
 - **No social sharing**: "Share this to Twitter/LinkedIn" with pre-populated text
 - **No clipboard-friendly summary**: Beyond "copy full report"
 
@@ -296,7 +296,7 @@ Sharing is a core loop you're not enabling.
 Consider a public report permalink (anonymized by default, with user opt-in):
 - `recruiterinyourpocket.com/report/abc123`
 - "Share my score" button with OG image showing the score
-- Pre-populated LinkedIn/Twitter text: "Got my resume reviewed by a real recruiter lens 🎯 Score: 86"
+- Pre-populated LinkedIn/Twitter text: "Got a real recruiter report on my resume 🎯 Score: 86"
 
 **Effort**: 1 week for full implementation. **Impact**: High for virality.
 
@@ -330,7 +330,7 @@ External review noted: *"You are very good at explaining mechanics and policy, b
 
 Specific opportunities:
 - **Resume textarea**: No reassurance that imperfect resumes are fine
-- **After first analysis**: No celebration or "you did it" moment
+- **After first report**: No celebration or "you did it" moment
 - **Upgrade dialog**: No empathy for the vulnerability of the purchase moment
 
 ### Why This Matters
@@ -340,7 +340,7 @@ Specific opportunities:
 
 ### The Fix (Specific Copy Suggestions from Review)
 1. **Under resume textarea**: *"You don't have to have it perfect. We'll help you find what's missing."*
-2. **After analysis completes**: Toast: *"Your report is ready 🎯"* + visual flourish on score dial
+2. **After the report is ready**: Toast: *"Your report is ready 🎯"* + visual flourish on score dial
 3. **In upgrade dialog**: *"If this pass doesn't help you make at least one clear improvement, it wasn't worth it."*
 
 **Effort**: 30 minutes for copy, 1 hour for visual polish. **Impact**: High for trust and conversion.

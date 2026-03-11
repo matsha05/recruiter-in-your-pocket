@@ -34,6 +34,7 @@ const ARBITRARY_CLASS_EXCLUDED_PREFIXES = [
   "app/playground/",
   "app/sentry-example-page/",
   "app/preview/",
+  "components/internal/",
   "components/landing-showcase/",
   "components/research/diagrams/",
 ];
@@ -43,6 +44,7 @@ const NON_PRODUCT_PREFIXES = [
   "app/playground/",
   "app/sentry-example-page/",
   "app/preview/",
+  "components/internal/",
   "components/landing-showcase/",
 ];
 
@@ -55,11 +57,20 @@ const REQUIRED_LOCAL_FONT_FILES = [
   "public/fonts/satoshi/satoshi-700.woff2",
 ];
 
-const BANNED_TERMS = [
-  "operator-style",
-  "first-pass filter",
-  "unlock velocity",
-  "ai-powered excellence",
+const BANNED_COPY_PATTERNS = [
+  { label: "operator-style", regex: /\boperator-style\b/i },
+  { label: "first-pass filter", regex: /\bfirst-pass filter\b/i },
+  { label: "unlock velocity", regex: /\bunlock velocity\b/i },
+  { label: "ai-powered excellence", regex: /\bai-powered excellence\b/i },
+  { label: "recruiter read", regex: /\brecruiter read\b/i },
+  { label: "get the recruiter read", regex: /\bget the recruiter read\b/i },
+  { label: "tighten the read", regex: /\btighten the read\b/i },
+  { label: "dragging the read down", regex: /\bdragging the read down\b/i },
+  { label: "ai-powered", regex: /\bai-powered\b/i },
+  { label: "smart insights", regex: /\bsmart insights\b/i },
+  { label: "stand out from the crowd", regex: /\bstand out from the crowd\b/i },
+  { label: "land your dream job", regex: /\bland your dream job\b/i },
+  { label: "transform your resume", regex: /\btransform your resume\b/i },
 ];
 
 function normalize(relativePath) {
@@ -131,13 +142,13 @@ function findViolations(files) {
       violations.legacyFontBranding.push(file);
     }
 
-    if (!HEX_ALLOWLIST.has(file) && /#[0-9a-fA-F]{3,8}\b/.test(source)) {
+    if (!HEX_ALLOWLIST.has(file) && /#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\b/.test(source)) {
       violations.hardcodedHex.push(file);
     }
 
-    for (const term of BANNED_TERMS) {
-      if (lower.includes(term)) {
-        violations.bannedTerms.push(`${file} -> "${term}"`);
+    for (const pattern of BANNED_COPY_PATTERNS) {
+      if (pattern.regex.test(source)) {
+        violations.bannedTerms.push(`${file} -> "${pattern.label}"`);
       }
     }
 

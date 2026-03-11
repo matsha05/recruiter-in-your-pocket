@@ -45,7 +45,7 @@ All of the following must be green before launch:
 | Gate | Evidence | Source |
 |:-----|:---------|:-------|
 | Trust and security | `launch:gate:strict` passes, `/api/ready` reports no blockers, status/privacy/security pages are live | CLI + runtime |
-| Auth and identity | Fresh account returns to workspace, anonymous review does not create durable ownership | rehearsal |
+| Auth and identity | Fresh account returns to workspace, anonymous report does not create durable ownership | rehearsal |
 | Billing and unlocks | Test checkout, restore, receipts, and portal work | rehearsal |
 | Extension | Sign-in opens the real auth path, captured jobs persist across reopen and second profile | rehearsal |
 | PromptOps quality | Golden eval passes against baseline with zero FAIL fixtures | strict gate |

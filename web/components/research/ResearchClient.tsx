@@ -1,399 +1,534 @@
-"use client";
-
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, CircleGauge, ScanLine, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Footer from "@/components/landing/Footer";
+import { LandingSectionTag } from "@/components/landing/sections/SectionPrimitives";
+import { cn } from "@/lib/utils";
 
-const featuredArticles = [
+type ResearchArticle = {
+    id: string;
+    title: string;
+    description: string;
+    readTime: string;
+    href: string;
+    note?: string;
+};
+
+type ResearchCategory = {
+    accentBarClassName: string;
+    descriptor: string;
+    id: string;
+    navLabel: string;
+    title: string;
+    subtitle: string;
+    articles: ResearchArticle[];
+};
+
+function ResearchSection({
+    children,
+    className,
+    containerClassName,
+    divider = true,
+    density = "default",
+}: {
+    children: ReactNode;
+    className?: string;
+    containerClassName?: string;
+    divider?: boolean;
+    density?: "hero" | "default" | "tight";
+}) {
+    return (
+        <section
+            className={cn(
+                "bg-background",
+                divider && "border-b border-border/60",
+                density === "hero" && "px-6 pb-14 pt-20 md:px-8 md:pb-18 md:pt-24",
+                density === "default" && "px-6 py-14 md:px-8 md:py-18",
+                density === "tight" && "px-6 py-10 md:px-8 md:py-12",
+                className
+            )}
+        >
+            <div className={cn("mx-auto", containerClassName)}>{children}</div>
+        </section>
+    );
+}
+
+const essentialReading: ResearchArticle[] = [
     {
         id: "how-recruiters-read",
         title: "How Recruiters Actually Read Resumes",
-        description: "Eye tracking research on how recruiters review resumes in real time.",
-        readTime: "4 min",
+        description: "Start here: where recruiters look first, what they skip, and why hierarchy matters so much.",
+        readTime: "6 min read",
         href: "/research/how-recruiters-read",
-        label: "Start here",
+        note: "Start here",
     },
     {
         id: "quantifying-impact",
-        title: "The Laszlo Bock Formula",
-        description: "A structured formula for turning responsibilities into quantified impact.",
-        readTime: "5 min",
+        title: "Quantifying Impact: The Laszlo Bock Formula",
+        description: "How to turn vague work into visible results.",
+        readTime: "7 min read",
         href: "/research/quantifying-impact",
-        label: "Most actionable",
+        note: "Core craft",
     },
     {
-        id: "referral-advantage",
-        title: "The Referral Advantage",
-        description: "How referrals change hiring outcomes and where they create leverage.",
-        readTime: "4 min",
-        href: "/research/referral-advantage",
-        label: "Highest leverage",
+        id: "how-we-score",
+        title: "The 7.4-Second Signal Model",
+        description: "How we turn this research into a report you can actually use.",
+        readTime: "5 min read",
+        href: "/research/how-we-score",
+        note: "Methodology",
     },
 ];
 
-const categories = [
+const categories: ResearchCategory[] = [
     {
-        id: "recruiter-psychology",
-        title: "Inside the Recruiter's Mind",
-        subtitle: "How early decisions are formed",
+        accentBarClassName: "bg-teal-500/70",
+        descriptor: "What gets noticed first.",
+        id: "attention",
+        navLabel: "Attention",
+        title: "Attention and first-pass judgment",
+        subtitle: "These pieces explain why hierarchy, page one, and small errors change first impression.",
         articles: [
-            { id: "how-people-scan", title: "How People Scan Text and Bullets", description: "How readers scan resumes for structure, signal, and proof.", tag: "Usability research", readTime: "4 min", href: "/research/how-people-scan" },
-            { id: "how-recruiters-read", title: "How Recruiters Actually Read Resumes", description: "Eye tracking research on how recruiters review resumes in real time.", tag: "Eye-tracking research", readTime: "4 min", href: "/research/how-recruiters-read" },
-            { id: "ats-myths", title: "ATS: What Actually Happens", description: "What applicant tracking systems do — and what they don't.", tag: "ATS research", readTime: "4 min", href: "/research/ats-myths" },
-            { id: "automation-filter-points", title: "Where Automation Filters You Out", description: "Where automated screening decides who advances.", tag: "Screening research", readTime: "4 min", href: "/research/automation-filter-points" },
-            { id: "automation-and-bias", title: "Hiring Algorithms and Bias", description: "How algorithmic aversion shapes recruiter trust and decision-making.", tag: "Algorithmic bias", readTime: "4 min", href: "/research/automation-and-bias" },
-            { id: "human-vs-algorithm", title: "Humans vs. Algorithms", description: "Why recruiters often trust human judgment over opaque algorithms.", tag: "Algorithmic aversion", readTime: "4 min", href: "/research/human-vs-algorithm" },
-            { id: "spelling-errors-impact", title: "Spelling Errors Carry Weight", description: "How form and content shape first impressions in screening.", tag: "Screening heuristics", readTime: "3 min", href: "/research/spelling-errors-impact" },
-            { id: "resume-error-tax", title: "The Resume Error Tax", description: "Errors are read as risk signals. The penalty is not just about spelling.", tag: "Screening heuristics", readTime: "4 min", href: "/research/resume-error-tax" },
-            { id: "hiring-discrimination-meta-analysis", title: "Discrimination in Hiring", description: "A meta-analysis of what resumes can and cannot control.", tag: "Meta-analysis", readTime: "5 min", href: "/research/hiring-discrimination-meta-analysis" },
-            { id: "bias-limits-optimization", title: "Limits of Resume Optimization", description: "Where resume optimization ends and systemic factors begin.", tag: "Research context", readTime: "4 min", href: "/research/bias-limits-optimization" },
+            {
+                id: "how-recruiters-read",
+                title: "How Recruiters Actually Read Resumes",
+                description: "The foundation: where recruiters look first, what they skip, and why hierarchy matters so much.",
+                readTime: "6 min read",
+                href: "/research/how-recruiters-read",
+                note: "Start here",
+            },
+            {
+                id: "how-people-scan",
+                title: "How People Scan Resumes",
+                description: "Skimming behavior, visual anchors, and why layout either helps or gets in the way.",
+                readTime: "5 min read",
+                href: "/research/how-people-scan",
+            },
+            {
+                id: "page-two-gate",
+                title: "The Page-2 Gate",
+                description: "Page two only works if page one earns it.",
+                readTime: "5 min read",
+                href: "/research/page-two-gate",
+            },
+            {
+                id: "resume-length-myths",
+                title: "Resume Length: What Research Says",
+                description: "A cleaner answer to the one-page debate.",
+                readTime: "6 min read",
+                href: "/research/resume-length-myths",
+            },
+            {
+                id: "spelling-errors-impact",
+                title: "Spelling Errors Carry Real Weight in Recruiter Judgment",
+                description: "Small mistakes do bigger damage than people think.",
+                readTime: "5 min read",
+                href: "/research/spelling-errors-impact",
+            },
+            {
+                id: "resume-error-tax",
+                title: "The Resume Error Tax",
+                description: "Tiny trust leaks add up.",
+                readTime: "5 min read",
+                href: "/research/resume-error-tax",
+            },
         ],
     },
     {
-        id: "resume-craft",
-        title: "Resume Craft",
-        subtitle: "Writing and structure fundamentals",
+        accentBarClassName: "bg-amber-500/70",
+        descriptor: "What makes proof easy to trust.",
+        id: "writing",
+        navLabel: "Writing",
+        title: "Writing, evidence, and structure",
+        subtitle: "These pieces cover stronger bullets, better proof, and clearer structure.",
         articles: [
-            { id: "how-we-score", title: "The 7.4-Second Signal Model", description: "How we measure first-impression signal — and what you can do about it.", tag: "Methodology", readTime: "5 min", href: "/research/how-we-score" },
-            { id: "star-method", title: "The STAR Method", description: "The STAR method structures behavioral answers for interviews and resumes.", tag: "Interview prep", readTime: "4 min", href: "/research/star-method" },
-            { id: "structured-interviews-why-star", title: "Structured Interviews Beat Vibes", description: "Why structure outperforms intuition in hiring decisions.", tag: "Interview research", readTime: "4 min", href: "/research/structured-interviews-why-star" },
-            { id: "quantifying-impact", title: "The Laszlo Bock Formula", description: "Turning responsibilities into quantified impact.", tag: "Resume writing", readTime: "5 min", href: "/research/quantifying-impact" },
-            { id: "writing-quality-hire-probability", title: "Writing Quality Changes Hiring", description: "Clearer resumes change outcomes, even when experience stays the same.", tag: "Writing quality", readTime: "4 min", href: "/research/writing-quality-hire-probability" },
-            { id: "signal-vs-clarity", title: "Signal vs. Clarity", description: "Two competing views of what a resume does — and why clarity wins.", tag: "Resume theory", readTime: "4 min", href: "/research/signal-vs-clarity" },
-            { id: "resume-length-myths", title: "The One-Page Myth", description: "Why resume length depends on experience, relevance, and clarity.", tag: "Resume structure", readTime: "4 min", href: "/research/resume-length-myths" },
-            { id: "page-two-gate", title: "The Page-2 Gate", description: "Page 2 is not forbidden. It is earned by clarity on page 1.", tag: "Resume structure", readTime: "3 min", href: "/research/page-two-gate" },
+            {
+                id: "quantifying-impact",
+                title: "Quantifying Impact: The Laszlo Bock Formula",
+                description: "How to turn vague work into visible results.",
+                readTime: "7 min read",
+                href: "/research/quantifying-impact",
+            },
+            {
+                id: "writing-quality-hire-probability",
+                title: "Writing Quality Changes Hiring Outcomes",
+                description: "Clearer writing changes how competent you look.",
+                readTime: "6 min read",
+                href: "/research/writing-quality-hire-probability",
+            },
+            {
+                id: "signal-vs-clarity",
+                title: "Signal vs Clarity in Resumes",
+                description: "Strong experience still gets lost when the writing is muddy.",
+                readTime: "5 min read",
+                href: "/research/signal-vs-clarity",
+            },
+            {
+                id: "star-method",
+                title: "The STAR Method: Structure That Works",
+                description: "A clean structure for bullets that need a spine.",
+                readTime: "5 min read",
+                href: "/research/star-method",
+            },
+            {
+                id: "structured-interviews-why-star",
+                title: "Structured Interviews Beat Vibes",
+                description: "Why evidence beats charisma in evaluation.",
+                readTime: "6 min read",
+                href: "/research/structured-interviews-why-star",
+            },
+            {
+                id: "how-we-score",
+                title: "The 7.4-Second Signal Model",
+                description: "How we turn this research into a report you can actually use.",
+                readTime: "5 min read",
+                href: "/research/how-we-score",
+                note: "Methodology",
+            },
         ],
     },
     {
-        id: "job-search-strategy",
-        title: "Job Search Strategy",
-        subtitle: "LinkedIn, networking, and negotiation",
+        accentBarClassName: "bg-sky-500/70",
+        descriptor: "What gets you found before someone opens the resume.",
+        id: "visibility",
+        navLabel: "Visibility",
+        title: "Search, LinkedIn, and referral visibility",
+        subtitle: "These cover search, LinkedIn, referrals, and what happens before someone even opens the resume.",
         articles: [
-            { id: "linkedin-vs-resume", title: "LinkedIn vs. Resume", description: "How LinkedIn and resumes serve different roles across hiring.", tag: "Sourcing research", readTime: "4 min", href: "/research/linkedin-vs-resume" },
-            { id: "linkedin-visibility", title: "LinkedIn Visibility", description: "What actually affects whether recruiters find your profile.", tag: "LinkedIn optimization", readTime: "5 min", href: "/research/linkedin-visibility" },
-            { id: "recruiter-search-behavior", title: "Recruiter Search Behavior", description: "LinkedIn does not disclose ranking weights. Here is what we know.", tag: "LinkedIn research", readTime: "4 min", href: "/research/recruiter-search-behavior" },
-            { id: "social-screening", title: "Social Screening", description: "Recruiters use social channels for discovery and validation.", tag: "Social screening", readTime: "4 min", href: "/research/social-screening" },
-            { id: "skills-based-hiring", title: "The Skills-Based Shift", description: "How skills-first hiring changes what employers look for.", tag: "Industry trends", readTime: "5 min", href: "/research/skills-based-hiring" },
-            { id: "skills-first-promise-reality", title: "Skills-First: Promise vs Reality", description: "Skills-first expands talent pools, but adoption is uneven.", tag: "Industry trends", readTime: "4 min", href: "/research/skills-first-promise-reality" },
-            { id: "salary-history-bans", title: "Salary History Disclosure", description: "How early disclosure affects leverage in negotiations.", tag: "Negotiation", readTime: "4 min", href: "/research/salary-history-bans" },
-            { id: "salary-anchors", title: "Salary Anchors", description: "Why early disclosure anchors compensation — and how to avoid it.", tag: "Negotiation", readTime: "4 min", href: "/research/salary-anchors" },
-            { id: "referral-advantage", title: "The Referral Advantage", description: "How referrals change hiring outcomes and where they create leverage.", tag: "Job search strategy", readTime: "4 min", href: "/research/referral-advantage" },
-            { id: "referral-advantage-quantified", title: "Referral Advantage, Quantified", description: "How referrals reduce uncertainty and shift hiring odds.", tag: "Networking", readTime: "4 min", href: "/research/referral-advantage-quantified" },
+            {
+                id: "recruiter-search-behavior",
+                title: "Recruiter Search Behavior: What We Can Cite",
+                description: "What we can actually say about search, sourcing, and keyword matching.",
+                readTime: "6 min read",
+                href: "/research/recruiter-search-behavior",
+            },
+            {
+                id: "linkedin-visibility",
+                title: "LinkedIn Profile Visibility Research",
+                description: "What makes a profile easier to find and easier to trust.",
+                readTime: "5 min read",
+                href: "/research/linkedin-visibility",
+            },
+            {
+                id: "linkedin-vs-resume",
+                title: "LinkedIn vs. Resume: What Gets Seen",
+                description: "Same candidate, different surface.",
+                readTime: "5 min read",
+                href: "/research/linkedin-vs-resume",
+            },
+            {
+                id: "social-screening",
+                title: "Social Screening: What Recruiters Look For Online",
+                description: "What recruiters check once they leave the resume.",
+                readTime: "6 min read",
+                href: "/research/social-screening",
+            },
+            {
+                id: "referral-advantage",
+                title: "The Referral Advantage",
+                description: "Why referred candidates move differently.",
+                readTime: "6 min read",
+                href: "/research/referral-advantage",
+            },
+            {
+                id: "referral-advantage-quantified",
+                title: "Referral Advantage, Quantified",
+                description: "A tighter look at the numbers behind that advantage.",
+                readTime: "5 min read",
+                href: "/research/referral-advantage-quantified",
+            },
+        ],
+    },
+    {
+        accentBarClassName: "bg-rose-500/70",
+        descriptor: "What the resume cannot control.",
+        id: "systems",
+        navLabel: "Systems",
+        title: "Hiring systems, bias, and market context",
+        subtitle: "These explain where the resume helps, where it does not, and where the rest of the process starts shaping the outcome.",
+        articles: [
+            {
+                id: "ats-myths",
+                title: "ATS: How Applicant Tracking Systems Actually Work",
+                description: "What applicant tracking systems do, and what they do not.",
+                readTime: "6 min read",
+                href: "/research/ats-myths",
+            },
+            {
+                id: "automation-filter-points",
+                title: "Where Automation Filters You Out",
+                description: "Where the process gets automated before a recruiter forms an opinion.",
+                readTime: "6 min read",
+                href: "/research/automation-filter-points",
+            },
+            {
+                id: "automation-and-bias",
+                title: "Hiring Algorithms, Equity, and Bias",
+                description: "Why automated systems can reproduce bad inputs.",
+                readTime: "6 min read",
+                href: "/research/automation-and-bias",
+            },
+            {
+                id: "human-vs-algorithm",
+                title: "Recruiters Trust Humans More Than Algorithms",
+                description: "Readable usually beats over-optimized when a person makes the call.",
+                readTime: "5 min read",
+                href: "/research/human-vs-algorithm",
+            },
+            {
+                id: "bias-limits-optimization",
+                title: "Bias and the Limits of Resume Optimization",
+                description: "A good resume helps, but it does not erase structural bias.",
+                readTime: "5 min read",
+                href: "/research/bias-limits-optimization",
+            },
+            {
+                id: "hiring-discrimination-meta-analysis",
+                title: "Meta-analysis: Discrimination in Hiring",
+                description: "A broader reminder of what resumes cannot solve.",
+                readTime: "6 min read",
+                href: "/research/hiring-discrimination-meta-analysis",
+            },
+            {
+                id: "skills-based-hiring",
+                title: "The Skills-Based Hiring Shift",
+                description: "What is actually changing, and what is mostly talk.",
+                readTime: "6 min read",
+                href: "/research/skills-based-hiring",
+            },
+            {
+                id: "skills-first-promise-reality",
+                title: "Skills-First Hiring: Promise vs Reality",
+                description: "The gap between hiring rhetoric and hiring behavior.",
+                readTime: "7 min read",
+                href: "/research/skills-first-promise-reality",
+            },
+            {
+                id: "salary-anchors",
+                title: "Salary Anchors: Avoid Self-Discounting",
+                description: "Early numbers change the whole conversation.",
+                readTime: "5 min read",
+                href: "/research/salary-anchors",
+            },
+            {
+                id: "salary-history-bans",
+                title: "Salary History Bans and Negotiation Leverage",
+                description: "Why the rules around disclosure matter.",
+                readTime: "5 min read",
+                href: "/research/salary-history-bans",
+            },
         ],
     },
 ];
 
-const totalArticles = categories.reduce((sum, category) => sum + category.articles.length, 0);
+function ThemeJumpLink({
+    accentBarClassName,
+    description,
+    href,
+    index,
+    title,
+    className,
+}: {
+    href: string;
+    index?: string;
+    title: string;
+    description?: string;
+    accentBarClassName?: string;
+    className?: string;
+}) {
+    return (
+        <a
+            href={href}
+            className={cn(
+                "group block text-sm text-slate-600 transition-colors hover:text-slate-950",
+                className
+            )}
+        >
+            <div className="flex items-center gap-3">
+                {accentBarClassName ? <span className={cn("h-[3px] w-5 rounded-full", accentBarClassName)} /> : null}
+                {index ? <span className="font-mono text-[11px] tracking-[0.16em] text-slate-400">{index}</span> : null}
+                <span className="font-medium">{title}</span>
+            </div>
+            {description ? <p className="mt-1 pl-8 text-sm leading-6 text-slate-500">{description}</p> : null}
+        </a>
+    );
+}
 
-const signals = [
-    { icon: ScanLine, name: "Story signal", weight: "35%" },
-    { icon: CircleGauge, name: "Impact signal", weight: "30%" },
-    { icon: BookOpen, name: "Clarity signal", weight: "20%" },
-    { icon: Users, name: "Readability signal", weight: "15%" },
-];
+function EssentialReadingRow({ article }: { article: ResearchArticle }) {
+    return (
+        <Link
+            href={article.href}
+            className="group grid gap-3 border-t border-slate-200/90 py-5 transition-colors hover:border-slate-300 md:grid-cols-[minmax(0,1fr)_7rem]"
+        >
+            <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h3 className="font-display text-[1.35rem] leading-tight tracking-tight text-slate-950 transition-colors group-hover:text-brand">
+                        {article.title}
+                    </h3>
+                    {article.note ? <span className="landing-label text-slate-500">{article.note}</span> : null}
+                </div>
+                <p className="mt-2 max-w-[38rem] text-sm leading-6 text-slate-600">{article.description}</p>
+            </div>
+            <div className="flex items-center justify-between gap-3 md:justify-end">
+                <span className="text-xs tracking-[0.03em] text-slate-400">{article.readTime}</span>
+                <ArrowRight className="h-4 w-4 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-slate-500" />
+            </div>
+        </Link>
+    );
+}
+
+function ResearchArticleRow({ article }: { article: ResearchArticle }) {
+    return (
+        <Link
+            href={article.href}
+            className="group grid gap-3 border-t border-slate-200/90 py-4 transition-colors hover:border-slate-300 md:grid-cols-[minmax(0,1fr)_6.5rem] md:gap-6"
+        >
+            <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h3 className="font-display text-[1.08rem] leading-tight tracking-tight text-slate-950 transition-colors group-hover:text-brand">
+                        {article.title}
+                    </h3>
+                    {article.note ? <span className="landing-label text-slate-500">{article.note}</span> : null}
+                </div>
+                <p className="mt-1.5 max-w-[42rem] text-sm leading-6 text-slate-600">{article.description}</p>
+            </div>
+            <div className="flex items-center justify-between gap-3 md:justify-end">
+                <span className="text-xs tracking-[0.03em] text-slate-400">{article.readTime}</span>
+                <ArrowRight className="h-4 w-4 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-slate-500" />
+            </div>
+        </Link>
+    );
+}
+
+function ResearchThemeSection({ category, index }: { category: ResearchCategory; index: number }) {
+    return (
+        <section id={category.id} className="scroll-mt-28 border-t border-slate-200/85 pt-10 first:border-t-0 first:pt-0">
+            <div className="landing-flow-sm">
+                <div className="flex items-center gap-3">
+                    <div className={cn("h-[3px] w-10 rounded-full", category.accentBarClassName)} />
+                    <div className="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500">
+                        {String(index + 1).padStart(2, "0")}
+                    </div>
+                </div>
+                <h2 className="landing-title-lg max-w-[36rem] text-slate-950">{category.title}</h2>
+            </div>
+
+            <p className="mt-3 max-w-[44rem] text-[15px] leading-7 text-slate-600">{category.subtitle}</p>
+
+            <div className="mt-6 border-b border-slate-200/90">
+                {category.articles.map((article) => (
+                    <ResearchArticleRow key={article.id} article={article} />
+                ))}
+            </div>
+        </section>
+    );
+}
 
 export default function ResearchClient() {
     return (
-        <>
-            <main data-visual-anchor="research-hub" className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
-                <section className="px-6 pb-8 md:px-8 md:pb-12">
-                    <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
-                        <div>
-                            <p className="editorial-kicker mb-4 text-slate-300">
-                                Research library · {featuredArticles.length} essentials · {categories.length} themes · {totalArticles} articles
-                            </p>
-                            <h1
-                                id="research-hub-title"
-                                className="font-display text-slate-900"
-                                style={{
-                                    fontSize: "clamp(2.5rem, 6vw, 4.4rem)",
-                                    lineHeight: 0.98,
-                                    letterSpacing: "-0.04em",
-                                    fontWeight: 400,
-                                }}
-                            >
-                                The research behind the feedback
-                            </h1>
-                            <p className="editorial-copy-lg mt-5 max-w-[36rem] text-slate-500">
-                                Real studies on how recruiters evaluate resumes, where hiring decisions form, and which edits actually improve your odds.
-                            </p>
+        <div className="landing-page selection:bg-teal-500/20" data-visual-anchor="research-hub">
+            <ResearchSection density="hero" containerClassName="max-w-[68rem]">
+                <div className="mx-auto max-w-[68rem]">
+                    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_15rem]">
+                        <div className="landing-flow-lg">
+                            <LandingSectionTag index="00" label="Research Hub" />
+
+                            <div className="landing-flow-sm">
+                                <h1 className="landing-headline max-w-[46rem] text-slate-950">
+                                    What shapes the first impression
+                                </h1>
+                                <p className="landing-subhead max-w-[39rem]">
+                                    A research library on what recruiters notice first, what gets missed, and why some resumes earn trust faster than others.
+                                </p>
+                            </div>
+
+                            <div className="max-w-[42rem] border-t border-slate-200/85 pt-6">
+                                <p className="text-[1.05rem] leading-8 text-slate-700">
+                                    Start with the question that feels most familiar, then stop when you know what to change.
+                                </p>
+                            </div>
                         </div>
 
-                        <div className="editorial-card-soft p-5">
-                            <p className="editorial-kicker text-slate-300">
-                                How to use this library
+                        <aside className="lg:pt-14">
+                            <div className="border-l border-slate-200 pl-5">
+                                <div className="landing-label">How to use this</div>
+                                <p className="mt-4 text-sm leading-6 text-slate-500">
+                                    You do not need to read everything. Start with the part that explains what keeps getting missed.
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </ResearchSection>
+
+            <ResearchSection density="default" divider={false} containerClassName="max-w-[68rem]">
+                <div className="mx-auto max-w-[68rem] grid gap-10 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16">
+                    <aside className="hidden lg:block">
+                        <div className="sticky top-24">
+                            <div className="landing-label">Browse by theme</div>
+                            <nav aria-label="Research theme rail" className="mt-5 border-l border-slate-200 pl-4">
+                                <div className="space-y-5">
+                                    {categories.map((category, index) => (
+                                        <ThemeJumpLink
+                                            key={category.id}
+                                            href={`#${category.id}`}
+                                            index={String(index + 1).padStart(2, "0")}
+                                            title={category.navLabel}
+                                            description={category.descriptor}
+                                            accentBarClassName={category.accentBarClassName}
+                                            className="w-full"
+                                        />
+                                    ))}
+                                </div>
+                            </nav>
+                            <div className="mt-8 border-l border-slate-200 pl-4">
+                                <div className="landing-label">How this becomes a report</div>
+                                <p className="mt-3 text-sm leading-6 text-slate-500">
+                                    This research shapes the report. The report applies it to your own resume.
+                                </p>
+                                <Link href="/research/how-we-score" className="mt-4 inline-flex items-center gap-2 text-sm text-slate-700 transition-colors hover:text-slate-950">
+                                    See methodology
+                                    <ArrowRight className="h-4 w-4" />
+                                </Link>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div className="landing-flow-lg">
+                        <div className="border-t border-slate-200/85 pt-2">
+                            <p className="max-w-[43rem] text-[0.95rem] leading-7 text-slate-500">
+                                Short version: start with scan behavior, then read impact and clarity.
                             </p>
-                            <div className="mt-4 space-y-4">
+                            <div className="mt-4 border-b border-slate-200/90">
+                                {essentialReading.map((article) => (
+                                    <EssentialReadingRow key={article.id} article={article} />
+                                ))}
+                            </div>
+                        </div>
+
+                        {categories.map((category, index) => (
+                            <ResearchThemeSection key={category.id} category={category} index={index} />
+                        ))}
+
+                        <div className="border-t border-slate-200/85 pt-8">
+                            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-slate-700">Start with the essentials</p>
-                                    <p className="mt-1 text-sm leading-6 text-slate-500">Read the featured pieces first, then go deeper by theme.</p>
+                                    <div className="landing-label">Take it back to your report</div>
+                                    <p className="mt-2 max-w-[36rem] text-sm leading-6 text-slate-600">
+                                        This is the thinking behind the report. Your report shows what it means for your resume.
+                                    </p>
                                 </div>
-                                <div>
-                                    <p className="text-sm font-medium text-slate-700">Treat it like a playbook</p>
-                                    <p className="mt-1 text-sm leading-6 text-slate-500">Each article should help you make a concrete resume or job-search decision.</p>
-                                </div>
-                                <Link href="/workspace" className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">
-                                    Start free review
-                                    <ArrowRight className="h-3.5 w-3.5" />
+                                <Link href="/workspace" className="inline-flex items-center gap-2 text-sm text-slate-700 transition-colors hover:text-slate-950">
+                                    Open workspace
+                                    <ArrowRight className="h-4 w-4" />
                                 </Link>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </ResearchSection>
 
-                <section className="px-6 pb-12 md:px-8 md:pb-16">
-                    <div className="mx-auto max-w-[1120px]">
-                        <div className="mb-6 flex items-center justify-between gap-4">
-                            <p className="editorial-kicker text-slate-300">
-                                Essential reads
-                            </p>
-                            <Link href="/workspace" className="text-sm font-medium text-slate-400 transition-colors hover:text-slate-700">
-                                Start free review →
-                            </Link>
-                        </div>
-
-                        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-                            <Link
-                                href={featuredArticles[0].href}
-                                className="editorial-card group p-7 md:p-8"
-                            >
-                                <div className="flex items-center justify-between gap-3">
-                                    <span className="editorial-kicker editorial-kicker-strong">
-                                        {featuredArticles[0].label}
-                                    </span>
-                                    <span className="editorial-meta text-slate-300">{featuredArticles[0].readTime}</span>
-                                </div>
-                                <h2
-                                    className="mt-5 max-w-[28rem] font-display text-slate-900 transition-colors group-hover:text-slate-700"
-                                    style={{
-                                        fontSize: "clamp(2rem, 3vw, 2.75rem)",
-                                        lineHeight: 1.02,
-                                        letterSpacing: "-0.03em",
-                                        fontWeight: 400,
-                                    }}
-                                >
-                                    {featuredArticles[0].title}
-                                </h2>
-                                <p className="editorial-copy mt-4 max-w-[30rem] text-slate-500">
-                                    {featuredArticles[0].description}
-                                </p>
-                                <div className="mt-8 flex items-center gap-1.5 text-sm font-medium text-brand">
-                                    Read article
-                                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                                </div>
-                            </Link>
-
-                            <div className="grid gap-4">
-                                {featuredArticles.slice(1).map((article) => (
-                                    <Link
-                                        key={article.id}
-                                        href={article.href}
-                                        className="editorial-card-subtle group p-6"
-                                    >
-                                        <div className="flex items-center justify-between gap-2">
-                                            <span className="editorial-kicker editorial-kicker-strong">
-                                                {article.label}
-                                            </span>
-                                            <span className="editorial-meta text-slate-300">{article.readTime}</span>
-                                        </div>
-                                        <h3
-                                            className="mt-4 font-display text-slate-900 transition-colors group-hover:text-slate-700"
-                                            style={{
-                                                fontSize: "clamp(1.35rem, 2vw, 1.8rem)",
-                                                lineHeight: 1.08,
-                                                letterSpacing: "-0.02em",
-                                                fontWeight: 500,
-                                            }}
-                                        >
-                                            {article.title}
-                                        </h3>
-                                        <p className="mt-2.5 text-sm leading-7 text-slate-500">{article.description}</p>
-                                        <div className="mt-5 flex items-center gap-1 text-xs font-medium text-slate-400 transition-colors group-hover:text-slate-700">
-                                            Read
-                                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {categories.map((category, catIdx) => {
-                    const [leadArticle, ...restArticles] = category.articles;
-                    return (
-                        <section
-                            key={category.id}
-                            className="px-6 md:px-8"
-                            style={{
-                                backgroundColor: catIdx % 2 === 0 ? "transparent" : "hsl(var(--paper-muted))",
-                                paddingTop: "3.25rem",
-                                paddingBottom: "3.4rem",
-                            }}
-                        >
-                            <div className="mx-auto max-w-[1120px]">
-                                <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-                                    <div className="max-w-[42rem]">
-                                        <p className="editorial-kicker mb-2 text-slate-300">
-                                            {category.id === "recruiter-psychology" && "Theme 1"}
-                                            {category.id === "resume-craft" && "Theme 2"}
-                                            {category.id === "job-search-strategy" && "Theme 3"}
-                                        </p>
-                                        <h2
-                                            className="font-display text-slate-900"
-                                            style={{
-                                                fontSize: "clamp(1.6rem, 3vw, 2.35rem)",
-                                                lineHeight: 1.05,
-                                                letterSpacing: "-0.024em",
-                                                fontWeight: 400,
-                                            }}
-                                        >
-                                            {category.title}
-                                        </h2>
-                                        <p className="mt-2 text-sm leading-7 text-slate-500">{category.subtitle}</p>
-                                    </div>
-                                    <div className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200/80 bg-white/80 px-3.5 py-2 text-xs font-medium uppercase tracking-wide text-slate-400">
-                                        <span>{category.articles.length} articles</span>
-                                    </div>
-                                </div>
-
-                                <div className="grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-                                    <Link
-                                        href={leadArticle.href}
-                                        className="editorial-card group p-6 md:p-7"
-                                    >
-                                        <div className="flex items-center justify-between gap-2">
-                                            <span className="editorial-kicker editorial-kicker-strong tracking-wide">
-                                                {leadArticle.tag}
-                                            </span>
-                                            <span className="editorial-meta text-slate-300">{leadArticle.readTime}</span>
-                                        </div>
-                                        <h3
-                                            className="mt-4 font-display text-slate-900 transition-colors group-hover:text-slate-700"
-                                            style={{
-                                                fontSize: "clamp(1.6rem, 2.3vw, 2.1rem)",
-                                                lineHeight: 1.06,
-                                                letterSpacing: "-0.02em",
-                                                fontWeight: 500,
-                                            }}
-                                        >
-                                            {leadArticle.title}
-                                        </h3>
-                                        <p className="mt-3 text-sm leading-7 text-slate-500">
-                                            {leadArticle.description}
-                                        </p>
-                                        <div className="mt-6 flex items-center gap-1 text-xs font-medium text-slate-400 transition-colors group-hover:text-slate-700">
-                                            Read article
-                                            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                                        </div>
-                                    </Link>
-
-                                    <div className="grid gap-3 sm:grid-cols-2">
-                                        {restArticles.map((article) => (
-                                            <Link
-                                                key={article.id}
-                                                href={article.href}
-                                                className="group rounded-xl border border-slate-200/75 bg-white/92 p-4 transition-all hover:-translate-y-0.5"
-                                                style={{ boxShadow: "0 0 0 1px rgba(0,0,0,0.02), 0 8px 20px -18px rgba(15,23,42,0.2)" }}
-                                            >
-                                                <div className="flex items-center justify-between gap-2">
-                                                    <span className="editorial-kicker tracking-wide text-slate-300">
-                                                        {article.tag}
-                                                    </span>
-                                                    <span className="text-xs text-slate-300">{article.readTime}</span>
-                                                </div>
-                                                <h3
-                                                    className="mt-3 font-display text-slate-900 transition-colors group-hover:text-slate-700"
-                                                    style={{
-                                                        fontSize: "clamp(1rem, 1.4vw, 1.15rem)",
-                                                        lineHeight: 1.16,
-                                                        letterSpacing: "-0.012em",
-                                                        fontWeight: 500,
-                                                    }}
-                                                >
-                                                    {article.title}
-                                                </h3>
-                                                <p className="mt-1.5 text-sm leading-6 text-slate-400">
-                                                    {article.description}
-                                                </p>
-                                                <div className="mt-3 flex items-center gap-1 text-xs font-medium text-slate-300 transition-colors group-hover:text-slate-500">
-                                                    Read
-                                                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    );
-                })}
-
-                {/* Methodology — quiet authority signal at bottom */}
-                <section
-                    className="px-6 py-12 md:px-8 md:py-16"
-                    style={{ backgroundColor: "hsl(var(--paper-muted))" }}
-                >
-                    <div className="mx-auto grid max-w-[1000px] gap-10 lg:grid-cols-[1fr_1fr]">
-                        <div>
-                            <p className="editorial-kicker mb-5 text-slate-400">
-                                Methodology
-                            </p>
-                            <h2
-                                className="font-display text-slate-900"
-                                style={{
-                                    fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
-                                    lineHeight: 1.1,
-                                    letterSpacing: "-0.02em",
-                                    fontWeight: 400,
-                                }}
-                            >
-                                How we score your resume
-                            </h2>
-                            <p className="mt-3 max-w-[400px] text-base leading-7 text-slate-500">
-                                We look at four things — based on how recruiters scan — and score each one. Then we tell you what to fix first.
-                            </p>
-                            <Link
-                                href="/research/how-we-score"
-                                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 transition-colors hover:text-slate-700"
-                            >
-                                See full methodology
-                                <ArrowRight className="h-3.5 w-3.5" />
-                            </Link>
-                        </div>
-                        <div className="space-y-3">
-                            {signals.map((signal) => (
-                                <div
-                                    key={signal.name}
-                                    className="flex items-center justify-between rounded-lg bg-white p-4"
-                                    style={{
-                                        boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03)",
-                                    }}
-                                >
-                                    <div className="flex items-center gap-2.5">
-                                        <signal.icon className="h-4 w-4 text-brand" />
-                                        <span className="text-sm font-medium text-slate-700">{signal.name}</span>
-                                    </div>
-                                    <span className="text-xs font-semibold tabular-nums text-slate-400">{signal.weight}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Cross-link to guides */}
-                <section className="px-6 py-8 md:px-8">
-                    <div className="mx-auto max-w-[800px] text-center">
-                        <p className="text-sm text-slate-400">
-                            Need practical scripts in addition to research?{" "}
-                            <Link href="/guides" className="text-slate-600 underline underline-offset-4 hover:text-slate-900">
-                                Open guides
-                            </Link>
-                        </p>
-                    </div>
-                </section>
-            </main>
             <Footer />
-        </>
+        </div>
     );
 }

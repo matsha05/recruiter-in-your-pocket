@@ -148,7 +148,7 @@ export const landingContent: LandingContentConfig = {
         badge: "Based on how recruiters actually decide",
         badgeIcon: BookOpen,
         title: "In 7.4 seconds, they've already made up their mind about you.",
-        subtitle: "Upload your resume for a free recruiter report, then add a job description only if you want fit context for a specific role.",
+        subtitle: "Get your free report first. Add a job description only if you want to see how it lines up with a specific role.",
         stats: [
             {
                 value: "7.4s",
@@ -171,9 +171,9 @@ export const landingContent: LandingContentConfig = {
             },
         ],
         bullets: [
-            "What a recruiter actually thinks — not a score with no explanation",
-            "The one thing that's hurting you most, with proof",
-            "Rewrites you can paste into your resume tonight",
+            "What stands out first, and what gets missed",
+            "The line that is weakening the first impression, with proof",
+            "Fixes you can use tonight",
         ],
         primaryCta: {
             label: "Run free report",
@@ -194,12 +194,12 @@ export const landingContent: LandingContentConfig = {
     },
     evidence: {
         eyebrow: "How it works",
-        title: "Most tools say 'add more impact.' We highlight the exact sentence and rewrite it for you.",
-        copy: "You get the specific line from your resume, why it's weak, and a better version you can use.",
+        title: "Most tools give you advice. We show you the exact line and help you make it stronger.",
+        copy: "You get the line from your resume, why it is not landing yet, and a better version you can actually use.",
         howItWorks: {
             eyebrow: "How the report works",
             steps: [
-                "1. Read your resume the way a recruiter would — fast.",
+                "1. Read your resume the way a recruiter would, fast.",
                 "2. Find the line that makes them hesitate.",
                 "3. Rewrite it for you, starting with what matters most.",
             ],
@@ -226,7 +226,7 @@ export const landingContent: LandingContentConfig = {
             {
                 icon: SixSecondIcon,
                 title: "Clarity Signal",
-                description: "Can someone tell what you do — quickly?",
+                description: "Can someone tell what you do quickly?",
                 weight: "20%",
                 citation: "Ladders, 2018",
             },
@@ -242,7 +242,7 @@ export const landingContent: LandingContentConfig = {
     research: {
         kicker: "The research behind it",
         title: "Peer-reviewed research. Not a blog post from 2019.",
-        copy: "Every recommendation traces back to a real study — and becomes a specific edit on your resume.",
+        copy: "Every recommendation traces back to real research, then turns into a more useful edit on your resume.",
         cta: {
             label: "View all research",
             href: "/research",
@@ -252,9 +252,9 @@ export const landingContent: LandingContentConfig = {
             eyebrow: "Featured: Eye-tracking",
             readTime: "4 min read",
             title: "What recruiters read in the first 7.4 seconds",
-            copy: "What they look at, what they skip, and what they get wrong.",
+            copy: "What they look at first, what they skip, and what that changes.",
             highlightLabel: "What this changes",
-            highlightCopy: "Put your biggest win near the top — before they stop reading.",
+            highlightCopy: "Put your strongest proof near the top, before they move on.",
             ctaLabel: "Read the full research note",
             href: "/research/how-recruiters-read",
         },
@@ -271,7 +271,7 @@ export const landingContent: LandingContentConfig = {
                 category: "Job search strategy",
                 title: "The Referral Advantage",
                 readTime: "4 min",
-                copy: "When referrals help — and how to ask without being weird.",
+                copy: "When referrals help, and how to ask without being weird.",
                 icon: Users,
                 href: "/research/referral-advantage",
             },
@@ -280,7 +280,7 @@ export const landingContent: LandingContentConfig = {
     trust: {
         eyebrow: "From people who hire",
         title: "Built by people who've read 10,000 resumes.",
-        copy: "You're better than your resume makes you look. We make that obvious, without hiding the methodology or the data handling.",
+        copy: "Your experience may be stronger than your resume makes it look. We help the right things come through, without hiding how the product works or how your data is handled.",
         reasonsLabel: "What feels different",
         testimonials: [
             {
@@ -290,14 +290,14 @@ export const landingContent: LandingContentConfig = {
                 company: "Executive coaching practice",
             },
             {
-                quote: "This catches the same stuff we flag in hiring debriefs — but with actual rewrites.",
+                quote: "This catches the same stuff we flag in hiring debriefs, but with actual rewrites.",
                 name: "Marcus Williams",
                 role: "VP Engineering",
                 company: "Series C Startup",
             },
         ],
         reasons: [
-            "You see what a recruiter would actually think — not tips from a blog.",
+            "You see what a recruiter is likely to notice first, not generic resume tips.",
             "Every suggestion links to the exact line on your resume.",
             "Honest, useful feedback. Not robotic.",
             "Clear controls for saving, deleting, billing, and extension capture.",
@@ -312,7 +312,7 @@ export const landingContent: LandingContentConfig = {
     pricing: {
         eyebrow: "Simple pricing",
         title: "Start free. Pay when you want more.",
-        copy: "Your first report is free. The full thing, not a teaser. Paid plans are for more reports, report history, exports, and a steadier role-by-role workflow.",
+        copy: "Your first report is free. Not a teaser. Paid plans are for more reports, saved history, exports, and a steadier role-by-role workflow.",
         included: {
             eyebrow: "Included in every plan",
             items: [
@@ -334,7 +334,7 @@ export const landingContent: LandingContentConfig = {
             },
             items: [
                 { icon: Lock, title: "Encrypted on upload", copy: "Your resume is encrypted the moment you upload it." },
-                { icon: Trash2, title: "You control your data", copy: "Your reports are only saved if you want them — and you can delete them anytime." },
+                { icon: Trash2, title: "You control your data", copy: "Your reports are only saved if you want them, and you can delete them anytime." },
                 { icon: Shield, title: "No AI training", copy: "We never use your resume to train AI models." },
                 { icon: Award, title: "Explicit extension capture", copy: "The extension works on supported job pages and only captures roles when you ask it to." },
             ],

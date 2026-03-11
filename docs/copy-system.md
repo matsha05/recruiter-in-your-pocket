@@ -4,7 +4,7 @@
 
 This document is the operating system around that guide. It covers naming, structure, and the small rules that keep the product voice from drifting.
 
-Last updated: 2026-03-08
+Last updated: 2026-03-10
 Owner: Product + Design
 
 ## 1. Product Naming
@@ -14,7 +14,7 @@ User-facing noun:
 
 Supporting phrases:
 - `recruiter report`
-- `recruiter read`
+- `what a recruiter sees first`
 
 Avoid mixing:
 - `review`
@@ -92,9 +92,9 @@ Primary CTA:
 - clear outcome
 
 Examples:
-- `Run Your Free Report`
-- `Run Another Report`
-- `Unlock More Reports`
+- `Get Your Free Report`
+- `Get Another Report`
+- `See Pricing`
 - `Export PDF`
 
 Secondary CTA:

@@ -45,7 +45,7 @@ The product has **real differentiation that's undersold**:
 **How the UI expresses "Recruiter in Your Pocket":**
 - **Voice**: "The Partner." Direct, specific, with teeth. "I read this as..."
 - **Typography**: `Newsreader` (Serif) is the "Voice of Judgment". `Geist` (Sans) is the "Voice of the Tool".
-- **Hero Moment**: A cinematic loop of the analysis + **One single "Try a fix" interaction** vs a static image.
+- **Hero Moment**: A cinematic loop of the report + **One single "Try a fix" interaction** vs a static image.
 
 **Pricing Aggression**:
 - **Default**: $39/mo ("Career Move" / "Full System").
@@ -113,7 +113,7 @@ The **"Recruiter First Impression"** card. It’s the wedge. It must be the hero
 ### Navigation Model
 - **Linear Stream**: Scroll-driven execution. No tabs.
 - **Sticky Spine**: Chapter markers on left/top loop user to current section.
-- **Time-to-Value**: First impression renders immediately; deep analysis streams in.
+- **Time-to-Value**: First impression renders immediately; the deeper report streams in.
 
 ### Insight → Action Flow
 - **Pattern**: [Observation] → [Why it hurts] → [Fix it].

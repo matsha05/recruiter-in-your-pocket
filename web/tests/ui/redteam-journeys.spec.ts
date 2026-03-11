@@ -25,15 +25,15 @@ async function runAnonymousReview(page: Page) {
   await page.getByRole("button", { name: /Check fit for a specific job/i }).click();
   await page.getByPlaceholder(/Paste the full job posting here/i).fill(JOB_DESCRIPTION);
   await page.getByRole("button", { name: /See What They See/i }).click();
-  await expect(page.getByText("This is the read they get in seconds.")).toBeVisible({ timeout: 35_000 });
+  await expect(page.getByText("Here’s how your resume comes across first.")).toBeVisible({ timeout: 35_000 });
   await expect(page.locator("#section-evidence-ledger")).toBeVisible({ timeout: 35_000 });
 }
 
 test.describe("launch red-team journeys", () => {
   test("1. landing page drives users toward the workspace", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("link", { name: /Run Your Free Review/i }).first()).toBeVisible();
-    await page.getByRole("link", { name: /Run Your Free Review/i }).first().click();
+    await expect(page.getByRole("link", { name: /Run Your Free Report/i }).first()).toBeVisible();
+    await page.getByRole("link", { name: /Run Your Free Report/i }).first().click();
     await expect(page).toHaveURL(/\/workspace$/);
     await expect(page.getByText("This is what they see.")).toBeVisible();
   });
@@ -60,25 +60,25 @@ test.describe("launch red-team journeys", () => {
     await page.goto("/workspace");
     await page.getByRole("button", { name: /See example report/i }).click();
     await expect(page.getByText("Example", { exact: true }).first()).toBeVisible({ timeout: 15_000 });
-    await expect(page.getByText("This is the read they get in seconds.").first()).toBeVisible();
+    await expect(page.getByText("This is a sample report. Ready to see yours?").first()).toBeVisible();
     await expect(page.getByText("Example", { exact: true }).first()).toBeVisible();
-    await page.getByRole("button", { name: /Run Your Review/i }).first().click();
+    await page.getByRole("button", { name: /Run Your Free Report/i }).first().click();
     await expect(page).toHaveURL(/\/workspace$/);
     await expect(page.getByRole("button", { name: /See What They See/i })).toBeVisible();
   });
 
-  test("4. anonymous pasted resume review with a JD produces a usable report", async ({ page }) => {
+  test("4. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
     await runAnonymousReview(page);
     await expect(page.locator("#section-job-alignment")).toBeVisible();
-    await expect(page.getByText("This is the read they get in seconds.")).toBeVisible();
+    await expect(page.getByText("Here’s how your resume comes across first.")).toBeVisible();
     await expect(page.getByRole("button", { name: /Copy Share Link/i })).toHaveCount(0);
   });
 
   test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {
     await runAnonymousReview(page);
-    await expect(page.getByRole("dialog").getByText("Save this review securely")).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByRole("dialog").getByText("Save this report")).toBeVisible({ timeout: 15_000 });
     await expect(page.getByText(/Nothing is created in the background/i)).toBeVisible();
-    await page.getByRole("button", { name: /Sign in to save this review/i }).click();
+    await page.getByRole("button", { name: /Sign in to save this report/i }).click();
     await expect(page.locator("#auth-email")).toBeVisible();
     await expect(page.getByRole("button", { name: /Email secure sign-in code/i })).toBeVisible();
   });

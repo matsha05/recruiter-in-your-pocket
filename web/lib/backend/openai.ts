@@ -29,7 +29,7 @@ async function fetchWithTimeout(url: string, options: RequestInit, timeoutMs: nu
     }
     throw createAppError(
       "OPENAI_NETWORK_ERROR",
-      "There was a network hiccup while getting your resume review.",
+      "There was a network hiccup while getting your report.",
       502,
       err?.message
     );
@@ -219,7 +219,7 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
         const status = res.status;
         const baseError = createAppError(
           "OPENAI_HTTP_ERROR",
-          "The model had trouble finishing your resume review.",
+          "The model had trouble finishing your report.",
           status >= 500 || status === 429 ? 502 : status,
           textBody
         );
@@ -302,7 +302,7 @@ export async function* callOpenAIChatStreaming(
       const textBody = await res.text();
       throw createAppError(
         "OPENAI_HTTP_ERROR",
-        "The model had trouble finishing your resume review.",
+        "The model had trouble finishing your report.",
         res.status >= 500 || res.status === 429 ? 502 : res.status,
         textBody
       );
@@ -358,7 +358,7 @@ export async function* callOpenAIChatStreaming(
     if (err?.code) throw err;
     throw createAppError(
       "OPENAI_NETWORK_ERROR",
-      "There was a network hiccup while getting your resume review.",
+      "There was a network hiccup while getting your report.",
       502,
       err?.message
     );
@@ -433,7 +433,7 @@ export function callOpenAIChatStreamingWithUsage(
           const textBody = await res.text();
           throw createAppError(
             "OPENAI_HTTP_ERROR",
-            "The model had trouble finishing your resume review.",
+            "The model had trouble finishing your report.",
             res.status >= 500 || res.status === 429 ? 502 : res.status,
             textBody
           );

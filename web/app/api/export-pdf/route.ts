@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generatePdfBuffer, validateReportForPdf } from "@/lib/backend/pdf";
+import { generatePdfBuffer } from "@/lib/backend/pdf";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { normalizeReportForPdf } from "@/lib/reports/pdf-export";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,9 +37,9 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await readJsonWithLimit<any>(request, 256 * 1024);
-    const payload = body?.report || body || {};
+    const payload = normalizeReportForPdf(body?.report || body || {});
 
-    if (!validateReportForPdf(payload)) {
+    if (!payload) {
       const res = NextResponse.json(
         { ok: false, errorCode: "INVALID_PAYLOAD", message: "Report data is incomplete. Try exporting again." },
         { status: 400 }
@@ -63,7 +64,7 @@ export async function POST(request: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="resume-review.pdf"',
+        "Content-Disposition": 'attachment; filename="resume-report.pdf"',
         "x-request-id": request_id
       }
     });

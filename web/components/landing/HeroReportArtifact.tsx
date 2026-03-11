@@ -142,7 +142,7 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
                     <ReportSectionHeader
                         icon={<PrincipalRecruiterIcon className="h-3.5 w-3.5 text-brand" />}
                         number="01"
-                        title="Initial recruiter read"
+                        title="First impression"
                         subtitle={verdict}
                         className={headingClassName}
                         badge={

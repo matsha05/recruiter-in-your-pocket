@@ -4,7 +4,7 @@
 export { LandingDataDrivenFinal } from "./LandingDataDrivenFinal";
 
 // V2 — "The Editor's Desk"
-export { LandingEditorsDesk } from "./LandingEditorsDesk";
+export { LandingEditorsDesk } from "../landing/LandingEditorsDesk";
 
 // Hybrid - Production functionality + Original animations
 export { LandingHybrid } from "./LandingHybrid";

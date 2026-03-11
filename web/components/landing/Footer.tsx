@@ -18,7 +18,7 @@ export default function Footer() {
                         <span>© 2026 Recruiter in Your Pocket</span>
                     </div>
                     <p className="text-sm leading-6 text-slate-500">
-                        What recruiters think, before you hit send. Start free, save deliberately, and carry job context back into the studio when it matters.
+                        See what recruiters are likely to notice before you hit send. Start free, save when you want to, and bring job context back into the workspace when it helps.
                     </p>
                     <p className="text-xs text-slate-400">
                         Support and security:{" "}

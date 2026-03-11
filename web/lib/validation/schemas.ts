@@ -35,7 +35,7 @@ export type Mode = z.infer<typeof ModeSchema>;
  */
 export const ResumeFeedbackRequestSchema = z.object({
     text: z.string()
-        .min(1, "Paste your resume text so I can actually review it.")
+        .min(1, "Paste your resume text so I can actually look at it.")
         .max(MAX_TEXT_LENGTH, "Your resume text is very long. Try trimming extra content.")
         .transform(s => s.trim()),
     mode: ModeSchema.optional().default("resume"),
@@ -53,7 +53,7 @@ export type ResumeFeedbackRequest = z.infer<typeof ResumeFeedbackRequestSchema>;
  */
 export const ResumeIdeasRequestSchema = z.object({
     text: z.string()
-        .min(1, "Paste your resume text so I can actually review it.")
+        .min(1, "Paste your resume text so I can actually look at it.")
         .max(MAX_TEXT_LENGTH, "Your resume text is very long. Try trimming extra content.")
         .transform(s => s.trim())
 });

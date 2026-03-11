@@ -269,7 +269,7 @@ export function LinkedInReportPanel({
                     icon={<InsightSparkleIcon className="w-4 h-4 text-brand" />}
                     number="03"
                     title="About Section"
-                    subtitle="Your opening hook — the 2 seconds that matter."
+                    subtitle="Your opening hook, the 2 seconds that matter."
                 />
 
                 <div className="mt-6 space-y-6">
@@ -421,7 +421,7 @@ export function LinkedInReportPanel({
                                     size="lg"
                                     onClick={onNewReport}
                                 >
-                                    Run Your Free Review
+                                    Get Your Free Report
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             )}
@@ -429,14 +429,14 @@ export function LinkedInReportPanel({
                     ) : isExhausted && onUpgrade ? (
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
-                                That was your free review. Want to run another version?
+                                That was your free report. Want to run another version?
                             </p>
                             <Button
                                 variant="premium"
                                 onClick={onUpgrade}
                             >
                                 <InsightSparkleIcon className="w-4 h-4 mr-2" />
-                                Get More Reviews
+                                Get More Reports
                             </Button>
                         </div>
                     ) : onNewReport ? (
@@ -445,7 +445,7 @@ export function LinkedInReportPanel({
                                 {hasPaidAccess
                                     ? "Paid access is active. Iterate profile versions until the score stabilizes."
                                     : freeUsesRemaining > 0
-                                    ? `You have ${freeUsesRemaining} free review${freeUsesRemaining > 1 ? 's' : ''} remaining.`
+                                    ? `You have ${freeUsesRemaining} free report${freeUsesRemaining > 1 ? 's' : ''} remaining.`
                                     : 'Ready to analyze another version?'}
                             </p>
                             <Button

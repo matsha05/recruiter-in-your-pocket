@@ -18,7 +18,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Report output + resume preview",
-    purpose: "So you can view past reviews, compare results, and export.",
+    purpose: "So you can open past reports, compare versions, and export.",
     retention: "Saved when you keep a report or run one while signed in. Deleted when you delete the report or your account.",
     userControl: "Delete individual reports in History, or delete your account in Settings.",
     processor: "Supabase"
@@ -69,15 +69,15 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 
 export const TRUST_PROMISES = [
   "Your file is encrypted when you upload it.",
-  "Anonymous reviews are not saved to an account automatically.",
-  "Signed-in reviews save your history and a short resume preview — you can delete both from Reports or Settings.",
+  "Anonymous reports are not saved to an account automatically.",
+  "Signed-in reports save your history and a short resume preview. You can delete both from Reports or Settings.",
   "Deleting your account removes your reports and usage history from our database.",
   "Payment info is handled by Stripe. We never see your card.",
   "We don't sell your data.",
   "We don't use your data to train AI models.",
   "Browser session replay stays off by default.",
-  "Scores estimate your resume's hiring signal — they don't predict hiring outcomes.",
-  "Your first full review is free. No credit card needed.",
+  "Scores estimate your resume's hiring signal. They don't predict hiring outcomes.",
+  "Your first full report is free. No credit card needed.",
   "You see exactly what you're unlocking before you pay.",
   "If payment goes through but access looks locked, restore it from Billing.",
   "All receipts and invoices are available in Billing.",

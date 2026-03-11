@@ -233,7 +233,7 @@ export default function ReportPanel({
                                             </span>
                                         )}
                                     </div>
-                                    <p className="text-sm text-muted-foreground">This is the recruiter read.</p>
+                                    <p className="text-sm text-muted-foreground">Here&apos;s how your resume comes across first.</p>
                                 </div>
 
                                 {/* Action Buttons */}

@@ -55,10 +55,10 @@ const satoshi = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://recruiterinyourpocket.com'),
   title: {
-    default: "Recruiter in Your Pocket — Free Resume Review from a Recruiter's Perspective",
+    default: "Recruiter in Your Pocket — Free Resume Report from a Recruiter's Perspective",
     template: "%s | Recruiter in Your Pocket"
   },
-  description: "Get recruiter-grade feedback on your resume. See what hiring managers at top companies actually notice in the first 10 seconds.",
+  description: "Get a free recruiter report on your resume. See what stands out first, what gets missed, and what to fix next.",
   robots: {
     index: true,
     follow: true,

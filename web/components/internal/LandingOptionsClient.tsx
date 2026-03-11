@@ -6,8 +6,8 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
 import LandingContent from "@/components/landing/LandingContent";
+import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
 import { LandingDataDriven } from "@/components/landing-showcase/LandingDataDriven";
-import { LandingEditorsDesk } from "@/components/landing-showcase/LandingEditorsDesk";
 
 const landingPages = [
   {

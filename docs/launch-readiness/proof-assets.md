@@ -72,10 +72,10 @@ real resumes before it reaches you. If quality drops, we don't ship.
 
 > **Your resume stays private.**
 >
-> When you upload your resume, we process it to generate your analysis — then delete the text immediately. We never store your raw resume. We never train AI on your content. We never share your data with anyone.
+> When you upload your resume, we process it to generate your report, then delete the text immediately. We never store your raw resume. We never train AI on your content. We never share your data with anyone.
 >
 > **What we do store:**
-> - Your analysis results (so you can see your history)
+> - Your report results (so you can see your history)
 > - Your score and comments (for version comparison)
 > - A hash of your resume (to detect duplicates, not readable)
 >
@@ -170,12 +170,12 @@ you've managed and the hard trade-offs you've navigated."
 1. **Trigger:** Post-purchase email (D3)
 2. **Ask:** "Would you recommend RIYP? Tell us why in 1-2 sentences."
 3. **Follow-up:** If positive, ask permission to use publicly
-4. **Incentive:** Additional free review credit
+4. **Incentive:** Additional free report credit
 
 ### Template for Users
 
 ```
-"Before RIYP, I was _______________. After my review, I realized 
+"Before RIYP, I was _______________. After my report, I realized 
 _______________. I recommend RIYP because _______________."
 
 - [First Name], [Role/Industry]
@@ -198,7 +198,7 @@ _______________. I recommend RIYP because _______________."
 > time AI feedback actually felt useful."  
 > — Marcus, Software Engineer
 
-> "Spent $50/month on other tools for a year. RIYP's $9 review 
+> "Spent $50/month on other tools for a year. RIYP's $9 report 
 > was more helpful than all of it."  
 > — Jennifer, Product Manager
 

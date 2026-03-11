@@ -22,6 +22,7 @@ import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInRevie
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
+import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 
 export default function WorkspaceClient() {
     const router = useRouter();
@@ -351,13 +352,18 @@ export default function WorkspaceClient() {
     const handleExportPdf = useCallback(async (overrideReport?: any) => {
         const payload = overrideReport || report;
         if (!payload) return;
+        const requestBody = buildPdfExportRequest(payload);
+        if (!requestBody) {
+            toast.error("This report is missing some data. Please rerun it and try exporting again.");
+            return;
+        }
 
         setIsExporting(true);
         try {
             const response = await fetch("/api/export-pdf", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ report: payload }),
+                body: JSON.stringify(requestBody),
             });
 
             if (!response.ok) {

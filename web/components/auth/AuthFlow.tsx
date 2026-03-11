@@ -227,7 +227,7 @@ export function AuthFlow({
           <p className="text-sm text-muted-foreground">{stepSubtitle}</p>
           {step === "email" ? (
             <div className="mx-auto max-w-sm rounded-xl border border-brand/20 bg-brand/5 px-4 py-3 text-left text-xs leading-5 text-muted-foreground">
-              Sign-in is only for durable history, billing controls, and synced saved jobs. Anonymous reviews are not silently attached to an account.
+              Sign-in is only for durable history, billing controls, and synced saved jobs. Anonymous reports are not silently attached to an account.
             </div>
           ) : null}
         </div>

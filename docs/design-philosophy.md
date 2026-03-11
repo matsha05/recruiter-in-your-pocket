@@ -1,193 +1,150 @@
 # Recruiter in Your Pocket — Design Philosophy
 
-> **"The interview starts before you apply."**
+> Helpful can be joyful.
+>
+> The smartest friend in hiring. Clear, confident, and genuinely helpful.
 
----
+## Core Belief
 
-## The Core Belief
+Hiring decisions start before the interview.
 
-Every time someone opens your resume, they're making a decision about you in seconds — before you ever get a chance to speak. Most candidates never know *how* they're being evaluated. We change that.
+People do not experience their own resume the way a recruiter does. They know the backstory. The recruiter sees a fast first impression, makes a judgment quickly, and moves on if the story is hard to find.
 
-RIYP exists to give job seekers the perspective shift they've never had: **see what they see, then change it.**
+RIYP exists to close that gap.
 
----
+We show people how their resume comes across on first pass, what gets missed, and what to fix first. The product should make hard truths feel clearer and lighter, not heavier.
 
-## What We're Not
+## Emotional Target
 
-| They Are | We're Not |
-|----------|-----------|
-| AI wrappers with no character | We have a point of view and voice |
-| College career centers | We speak to professionals, not students |
-| Generic template factories | Every insight is specific to *your* resume |
-| Advice from people who've never hired | Our methodology comes from real hiring decisions |
+When someone uses RIYP well, they should feel:
 
----
+1. Empowered
+2. Clearer
+3. More capable
+4. More hopeful
+5. More in control
 
-## The Emotional Hierarchy
+They should not feel:
 
-When someone finishes using RIYP, they should feel:
+1. Judged
+2. Marketed at
+3. Managed by a machine
+4. Buried in jargon
+5. Flattened into a workflow
 
-1. **Armed** — "I have weapons I didn't have before"
-2. **Empowered** — "I can fix this myself now"
-3. **Confident** — "I know what they're looking for"
-4. **Relieved** — "I'm not guessing anymore"
-5. **Seen** — "Someone understood my situation"
+## Voice Relationship
 
-We lead with *armament*, not comfort. This is a tool for competing, not just feeling good.
+RIYP should feel like someone who really knows hiring, explains things clearly, and genuinely wants to help the user get stronger without making them feel small.
 
----
+The voice is built from three traits:
 
-## The Voice
+- Warm confidence
+- Sharp clarity
+- Joyful helpfulness
 
-**RIYP speaks like your best friend who's done thousands of interviews** — someone who knows the inside game and wants you to win.
+This does not mean cute, bubbly, or casual. It means the product feels alive, human, and glad to be useful.
 
-- **Warm but direct.** We don't hedge. "This bullet is weak" not "This could potentially be stronger."
-- **Expert but accessible.** We've done the research so you don't have to doubt.
-- **On your side.** We're rooting for you, not grading you.
+## What We Are
 
-We are NOT:
-- Cold editors red-penning your grammar
-- Corporate HR-speak
-- Anxious productivity gurus
+- A hiring product with judgment
+- A calm, high-taste tool
+- Helpful without posturing
+- Premium in restraint, not in flourish
+- Specific about what matters
 
----
+## What We Are Not
 
-## The 5 Design Principles
+- Corporate HR software
+- Resume-influencer energy
+- Generic AI wallpaper
+- Dead, over-polished product copy
+- Clever for the sake of sounding branded
 
-### 1. Editorial Authority
-**Reference: Medium, Arc**
+## Design Principles
 
-Headlines are confident. Typography has personality. Every word earns its place. We're not a dashboard — we're a document that respects your time.
+### 1. Helpful Can Be Joyful
 
-- Sentient for display (authority + warmth)
-- Satoshi for body (precision + readability)
-- Maximum two weights per typeface
-- Color only where it carries meaning
+The product should feel useful and bright at the same time.
 
-### 2. Raycast Density
-**Reference: Raycast, Linear**
+- Clear help beats feature theater
+- Warmth should lighten the experience
+- Delight comes from competence, rhythm, and relief
+- No cuteness, no gimmicks, no mascot energy
 
-Every pixel earns its place. Information is dense but never cramped. Power-user confidence without overwhelming newcomers.
+### 2. Truth First, Relief Second
 
-- Tight spacing, generous negative space
-- No decorative elements that don't inform
-- Data speaks for itself
-- Monospace for numbers and labels
+The best RIYP moments start from hiring reality, then help the user act on it.
 
-### 3. Alive, Not Static
-**Reference: Loom, Pitch**
+- Say the uncomfortable thing clearly
+- Show what it means
+- Offer the next useful move
+- Never dramatize just to create tension
 
-Micro-animations on hover. Presentation-quality transitions. The interface responds to you — it's not a static page.
+### 3. Premium In Restraint
 
-- Motion respects `prefers-reduced-motion`
-- Transitions are snappy (200ms default, 350ms for reveals)
-- Animation teaches (shows what happened, where things went)
-- No motion for motion's sake
+We should feel sharp and memorable without becoming glossy or loud.
 
-### 4. Quiet Power
-**Reference: Superhuman, Craft, Bear Notes**
+- Typography does most of the work
+- Color carries meaning, not decoration
+- Visual confidence comes from spacing, structure, and finish
+- One expressive moment per screen is enough
 
-Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 percent dramatic, always tied to verdict, value, or conversion.
+### 4. Alive, Not Busy
 
-- Light editorial base by default, dark mode is fully supported
-- **V2.2 "Modern Editorial"**: Soft slate borders replace black-at-opacity for warmth without losing authority
-- Warm paper texture allowed only on marketing surfaces and kept subtle
-- One signature moment per screen is preferred, not required. Utility screens can have none. Never more than one per screen.
-- Teal brand accent (action)
-- Gold for premium moments only
-- Muted slate for UI chrome
-- Shadows: subtle on app surfaces, soft lift on marketing cards (light mode only)
-- Surprise comes from clarity and craft, not theatrics
+The experience should have shape and energy, but never feel crowded or over-designed.
 
-### 5. Invisible Perfection
-**Reference: Bear Notes, Things 3**
+- A few memorable lines matter more than constant sparkle
+- Motion should teach and reassure
+- Character should come from phrasing, rhythm, and observation
+- If a screen feels generic, change the composition before adding decoration
 
-A writer's tool with a designer's eye. Complexity is hidden. The surface is simple; the depth is earned.
+### 5. Speak With The User
 
-- No tutorials needed
-- Progressive disclosure
-- Components are systematic, not one-offs
-- Craft is in the details people feel but don't notice
+RIYP should feel like it is helping a real person, not processing a document.
 
----
+- Prefer direct, human language
+- Talk about what stands out, what gets missed, and what to fix
+- Avoid system language in primary surfaces
+- Keep naming consistent so the product feels trustworthy
 
-## The Signature Moments
+### 6. Respect The Reader
 
-These are the experiences that define RIYP:
+Assume the user is smart, slightly tired, and looking for clarity.
 
-1. **The 7.4-Second Verdict** — The first thing you see is how a recruiter sees you. Not a score, a *judgment*.
+- Never oversimplify
+- Never scold
+- Never over-cheerlead
+- Never use fluff to avoid saying something real
 
-2. **The Red Pen Reveal** — Tap to see the before/after. Interactive, satisfying, actionable.
+## Signature Moments
 
-3. **The Subscore Confidence** — Four dimensions, color-coded. You know exactly where to focus.
+These are the experiences that define the product:
 
-4. **The Evidence Trace** — When we cite facts or research, we show sources. When we apply recruiter judgment, we label it.
+1. The first impression
+2. The exact line that is causing drag
+3. The rewrite that makes the improvement obvious
+4. The evidence behind the judgment
 
----
+Each moment should feel specific, fair, and helpful.
 
 ## Permissible Delight
 
-Delight in RIYP is **competence made visible**:
+Delight in RIYP is competence made visible.
 
-- A Peek preview that opens instantly and closes cleanly
-- A verdict reveal that counts up once, with restrained spring
-- A submenu that never collapses accidentally
-- A command palette that learns intent (recent commands, role-aware)
-- An optimistic "Applied" state with Undo, instead of a spinner
+- Fast, confident transitions
+- Clear before-and-after moments
+- Small visual lifts tied to meaning
+- Friendly copy that still has standards
 
-**The Rule:** No confetti. No playful bounce. Delight is "I feel in control."
+Never use delight to distract from weak thinking. If the product is charming but vague, it is failing.
 
----
+## Living Standard
 
-## Sterile vs Memorable
+Use this document when deciding:
 
-**Sterile happens when:**
-- Everything is evenly weighted
-- Nothing has a point of view
-- Motion is absent or generic
-- Copy is polite instead of decisive
+- how a screen should feel
+- whether a layout is too dead or too loud
+- whether a piece of copy sounds like RIYP
+- whether the product feels like a sharp ally instead of a polished machine
 
-**Memorable comes from:**
-- **Editorial hierarchy** — Sentient used decisively, not everywhere
-- **Verdict-driven structure** — Strong judgment moment, then evidence
-- **Microcopy with spine** — "This bullet is weak because..."
-- **Interaction certainty** — The UI never hesitates or surprises
-
----
-
-## Design System Summary
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--brand` | Teal-600 | Primary CTAs, links, active states |
-| `--premium` | Gold/Amber | Unlock moments, upsell, special |
-| `--success` | Green-700 | Strong scores (85+) |
-| `--destructive` | Rose-700 | Weak scores (<70), errors |
-| `--radius` | 4px | All corners, always |
-| `--duration-normal` | 200ms | Standard transitions |
-| `--duration-slow` | 350ms | Reveals, entrances |
-| `font-display` | Sentient | Headlines, scores, verdicts |
-| `font-sans` | Satoshi | Body, UI, labels |
-
----
-
-## The Magazine Test
-
-If RIYP were featured in a design publication, the headline would be:
-
-> **"The resume tool that finally respects both candidates and design"**
-
-And the subhead:
-
-> *How one product proves that 'career tools' don't have to look like career tools.*
-
----
-
-## Living Document
-
-This philosophy should be referenced when:
-- Making component decisions ("Does this feel like Bear Notes?")
-- Writing copy ("Would our hiring manager friend say this?")
-- Choosing what to build ("Does this arm people or just inform them?")
-
-Last updated: February 2026 (V3.0 "Warm Authority")
+Last updated: March 2026

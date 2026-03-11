@@ -10,27 +10,27 @@ export const extensionStoreContent = {
     eyebrow: "Chrome extension",
     title: "Save the job while it's in front of you.",
     description:
-      "Capture supported LinkedIn and Indeed roles, keep your saved jobs in view, and jump into the studio when you want the full recruiter-grade review.",
+      "Save supported LinkedIn and Indeed roles while you're browsing, keep them in view, and open the full report when you want a closer look.",
     primaryCta: "Install on Chrome",
-    fallbackCta: "Review privacy and data handling",
+    fallbackCta: "Read privacy",
     disclosure:
-      "Works on supported LinkedIn and Indeed job pages. Capture is user-initiated. Sign-in is only required for synced history.",
+      "Works on supported LinkedIn and Indeed job pages. Capture only happens when you ask for it. Sign in only if you want saved jobs to sync.",
     highlights: [
-      "Capture a role in one click from supported job pages",
-      "See match context without leaving the browsing flow",
-      "Open the full studio when you want deeper review and rewrites",
+      "Save a role without breaking your browsing flow",
+      "Keep match context close while you compare jobs",
+      "Open the full workspace when you want the report and rewrites",
     ],
     trustPoints: [
-      "No hidden scraping or all-sites access",
-      "Storage and sync are limited to saved job workflows",
-      "Privacy, security, and support links stay visible from install through use",
+      "No all-sites access",
+      "No hidden capture",
+      "Sync is optional",
     ],
   },
   shortDescription:
-    "Capture LinkedIn and Indeed roles, keep saved jobs in sync, and open recruiter-grade match context in RIYP.",
+    "Save supported LinkedIn and Indeed roles, keep saved jobs close, and open the full report in RIYP when you need it.",
   longDescription: [
     "Recruiter in Your Pocket helps you save supported job postings while you're browsing and carry that context back into the studio.",
-    "Use the popup to capture a role, check fit, and jump into a deeper recruiter-grade review when you're ready.",
+    "Use the popup to save a role, check the basics, and jump into the full report when you're ready.",
     "Sign-in is only required if you want synced saved jobs across devices. Local capture and browsing support stay explicit and purpose-bound.",
   ],
   privacyFieldSummary:
@@ -52,7 +52,7 @@ export const extensionStoreContent = {
     {
       id: "workspace-return",
       title: "Studio handoff",
-      caption: "Show the saved job flowing into the studio for deeper recruiter-grade review.",
+      caption: "Show the saved job flowing into the studio for deeper recruiter-grade report guidance.",
     },
     {
       id: "install-disclosure",

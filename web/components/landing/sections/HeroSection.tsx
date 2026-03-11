@@ -43,7 +43,7 @@ export function HeroSection({ content, onPrimaryCta }: HeroSectionProps) {
         <LandingSectionFrame tone="hero" density="hero" divider="bottom">
             <div className="grid items-start landing-grid-gap lg:grid-cols-[0.98fr_1.02fr]">
                 <div className="landing-flow-lg">
-                    <LandingSectionTag index="00" label="Recruiter Read" />
+                    <LandingSectionTag index="00" label="First Impression" />
                     <div className="inline-flex items-center gap-2 rounded-full border border-slate-300/80 bg-white/90 px-3 py-1.5 text-xs text-slate-600 shadow-[0_8px_24px_-20px_rgba(2,6,23,0.35)] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
                         <content.badgeIcon className="w-3.5 h-3.5" />
                         {content.badge}

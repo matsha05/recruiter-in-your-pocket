@@ -25,7 +25,7 @@ export function validateResumeFeedbackRequest(body: any): {
   const jobDescription = (body as any).jobDescription;
 
   const trimmedText = typeof text === "string" ? text.trim() : "";
-  if (!trimmedText) fieldErrors.text = "Paste your resume text so I can actually review it.";
+  if (!trimmedText) fieldErrors.text = "Paste your resume text so I can actually look at it.";
   else if (trimmedText.length > MAX_TEXT_LENGTH) {
     fieldErrors.text = "Your resume text is very long. Try trimming extra content.";
   }
@@ -77,7 +77,7 @@ export function validateResumeIdeasRequest(body: any): {
   const { text } = body as { text?: unknown };
   const trimmedText = typeof text === "string" ? text.trim() : "";
 
-  if (!trimmedText) fieldErrors.text = "Paste your resume text so I can actually review it.";
+  if (!trimmedText) fieldErrors.text = "Paste your resume text so I can actually look at it.";
   else if (trimmedText.length > MAX_TEXT_LENGTH) fieldErrors.text = "Your resume text is very long. Try trimming extra content.";
 
   if (Object.keys(fieldErrors).length > 0) {

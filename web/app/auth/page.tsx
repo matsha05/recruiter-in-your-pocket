@@ -5,7 +5,7 @@ import { StudioShell } from '@/components/layout/StudioShell';
 
 export const metadata: Metadata = {
     title: 'Login — Recruiter in Your Pocket',
-    description: 'Sign in to access your analysis history and pro features.'
+    description: 'Sign in to access your saved reports, billing controls, and pro features.'
 };
 
 export default function AuthPage() {

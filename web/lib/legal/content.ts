@@ -74,12 +74,12 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: ShieldCheck,
             title: "Evidence, not promises",
-            body: "Scores estimate your resume's hiring signal — they don't guarantee outcomes.",
+            body: "Scores estimate your resume's hiring signal. They don't guarantee outcomes.",
           },
           {
             icon: Lock,
             title: "Clear data handling",
-            body: "How we store and process your review data and extension capture data is documented clearly on our Security and Privacy pages.",
+            body: "How we store and process your report data and extension capture data is documented clearly on our Security and Privacy pages.",
           },
           {
             icon: Receipt,
@@ -151,7 +151,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "OpenAI generates reviews, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Stripe manages card data on their systems — we never have access to it.",
+              value: "OpenAI generates reports, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Stripe manages card data on their systems. We never have access to it.",
             },
           ],
         ],
@@ -195,7 +195,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "By using Recruiter in Your Pocket, you agree to these terms. The service provides AI-assisted resume and LinkedIn feedback designed to help you improve — but it doesn't guarantee hiring outcomes.",
+              value: "By using Recruiter in Your Pocket, you agree to these terms. The service provides resume and LinkedIn reports and guidance to help you improve, but it doesn't guarantee hiring outcomes.",
             },
           ],
         ],
@@ -228,7 +228,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: "Your first review is free. Paid plans give you repeated use, history, and exports. Stripe handles billing and invoices. If you paid but your access looks locked, try " },
+            { type: "text", value: "Your first report is free. Paid plans give you repeated use, history, and exports. Stripe handles billing and invoices. If you paid but your access looks locked, try " },
             { type: "link", label: "Restore Access", href: "/purchase/restore" },
             { type: "text", value: " before reaching out to support. Refunds are reviewed case by case." },
           ],
@@ -273,12 +273,12 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             category: "Product",
             questions: [
               {
-                q: "What does the review analyze?",
+                q: "What does the report cover?",
                 a: "We look at the first impression a recruiter would have, the impact of your bullets, how clear your resume is, and how well it fits the role. You get a score breakdown and specific rewrites.",
               },
               {
                 q: "How is this different from ATS keyword tools?",
-                a: "ATS tools check if a parser can read your file. We focus on what a human recruiter really thinks when they read it — and tie every suggestion to evidence from your resume.",
+                a: "ATS tools check if a parser can read your file. We focus on what a human recruiter really thinks when they read it, and tie every suggestion to evidence from your resume.",
               },
               {
                 q: "What file formats are supported?",
@@ -291,7 +291,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             questions: [
               {
                 q: "What happens to uploaded resume data?",
-                a: "Anonymous reviews aren't saved unless you choose to. Signed-in reviews save your history. You can delete reports or your entire account at any time.",
+                a: "Anonymous reports aren't saved unless you choose to. Signed-in reports save your history. You can delete reports or your entire account at any time.",
               },
               {
                 q: "Is my data used to train public models?",
@@ -307,8 +307,8 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             category: "Pricing & Billing",
             questions: [
               {
-                q: "Is the first review really free?",
-                a: "Yes. One complete review, free, no credit card.",
+                q: "Is the first report really free?",
+                a: "Yes. One complete report, free, no credit card.",
               },
               {
                 q: "What is monthly vs lifetime?",

@@ -63,7 +63,7 @@ export default function HowWeScorePage() {
             faq={[
                 {
                     question: "Is the score a guarantee?",
-                    answer: "No. The score is a structured signal model, not a promise of outcomes."
+                    answer: "No. The score is a structured read on first impression, not a promise of outcomes."
                 },
                 {
                     question: "Why weight story highest?",
@@ -132,7 +132,7 @@ export default function HowWeScorePage() {
             {/* The Thresholds */}
             <h2 className="research-h2">What the scores mean</h2>
             <p className="research-body mb-6">
-                These thresholds are internal heuristics based on recruiter feedback patterns and review discussions.
+                These thresholds are internal calibration bands based on recruiter feedback patterns and scoring work.
             </p>
 
             <div className="not-prose border-t border-border/30 divide-y divide-border/30 mb-8">

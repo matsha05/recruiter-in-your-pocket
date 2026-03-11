@@ -375,8 +375,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
         : user?.membership === "monthly"
             ? "Full Access Monthly"
             : user?.membership === "credit"
-                ? `${user.paidUsesLeft || 0} paid reviews`
-                : `${user?.freeUsesLeft || 0} free review${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
+                ? `${user.paidUsesLeft || 0} paid reports`
+                : `${user?.freeUsesLeft || 0} free report${(user?.freeUsesLeft || 0) === 1 ? "" : "s"} left`;
     const displayNameValue = profileForm.watch("displayName") || "";
     const guestEmailValue = guestCheckoutForm.watch("guestEmail") || "";
     const activePass = loadingPasses ? null : passes.find((pass) => isPassActive(pass));
@@ -673,7 +673,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             </section>
 
                             <section className="rounded-xl border border-border/50 bg-muted/20 px-4 py-4 text-sm text-muted-foreground">
-                                Need procurement, invoices, or a billing edge-case reviewed by a person?{" "}
+                                Need procurement, invoices, or a billing edge case handled by a person?{" "}
                                 <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">
                                     support@recruiterinyourpocket.com
                                 </Link>

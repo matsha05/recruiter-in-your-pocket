@@ -61,7 +61,7 @@ RIYP is NOT a feature because:
 | **Credits never expire** | Lifetime value | Operational choice |
 | **No subscription** | Addresses fatigue | Market positioning |
 
-**Moat strength:** Low-Medium. Easy to copy, but first-mover brand association helps. "The $9 resume review."
+**Moat strength:** Low-Medium. Easy to copy, but first-mover brand association helps. "The $9 resume report."
 
 ### 4. Chrome Extension + Workflow Presence (FUTURE DEFENSIBILITY)
 
@@ -102,7 +102,7 @@ RIYP is NOT a feature because:
 
 | Metric | Target | Why It Matters |
 |:-------|:-------|:---------------|
-| **Reviews completed** | 1,000+ | Volume validates product-market fit |
+| **Reports completed** | 1,000+ | Volume validates product-market fit |
 | **Conversion rate** | 10-15% | Shows willingness to pay |
 | **D7 retention** | 25%+ | Shows stickiness |
 | **NPS score** | 40+ | Word-of-mouth potential |

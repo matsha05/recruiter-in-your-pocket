@@ -1,6 +1,7 @@
 import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
+import { normalizeReportForPdf, type ReportForPdf } from "@/lib/reports/pdf-export";
 
 /**
  * Editorial-Grade PDF Generator
@@ -13,40 +14,8 @@ import puppeteerCore from "puppeteer-core";
  * 5. Vector branding (inline SVG)
  */
 
-export type ReportForPdf = {
-  score: number;
-  summary: string;
-  strengths: string[];
-  gaps: string[];
-  rewrites: Array<{ label?: string; original: string; better: string; enhancement_note?: string }>;
-  next_steps: string[];
-  score_label?: string;
-  score_comment_short?: string;
-  generated_on?: string;
-  missing_wins?: string[];
-  subscores?: { impact?: number; clarity?: number; story?: number; readability?: number };
-  top_fixes?: Array<{ fix?: string; text?: string; why?: string }>;
-  job_alignment?: {
-    positioning_suggestion?: string;
-    role_fit?: {
-      best_fit_roles?: string[];
-      stretch_roles?: string[];
-      seniority_read?: string;
-      industry_signals?: string[];
-      company_stage_fit?: string;
-    };
-  };
-};
-
 export function validateReportForPdf(report: any): report is ReportForPdf {
-  if (!report || typeof report !== "object") return false;
-  const requiredArrays = ["strengths", "gaps", "rewrites", "next_steps"];
-  for (const key of requiredArrays) if (!Array.isArray(report[key])) return false;
-  if (typeof report.summary !== "string") return false;
-  if (typeof report.score !== "number" || !Number.isFinite(report.score)) return false;
-  const rounded = Math.round(report.score);
-  if (rounded < 0 || rounded > 100) return false;
-  return true;
+  return normalizeReportForPdf(report) !== null;
 }
 
 function escapeHtml(str: string) {

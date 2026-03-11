@@ -1,150 +1,319 @@
 # RIYP Copy Guide
 
-This is the voice guide for Recruiter in Your Pocket. The goal is simple: every screen should sound like the same calm, sharp recruiter.
+## Core Anchors
 
-## Who We Sound Like
+- Design principle: `Helpful can be joyful.`
+- Tone anchor: `The smartest friend in hiring. Clear, confident, and genuinely helpful.`
 
-We sound like a recruiter who has screened a lot of resumes and knows how to explain what they are seeing without turning it into theater.
+RIYP should feel sharp enough to trust, warm enough to like, and alive enough to remember.
+
+## What We Sound Like
+
+We sound like someone who really knows hiring, explains things clearly, and genuinely wants to help the user do better without making them feel small.
 
 We are:
-- direct
-- human
-- specific
-- calm
+
+- warm
+- confident
+- sharp
+- bright
+- helpful
+- natural
+- high-taste
 
 We are not:
-- hypey
-- corporate
-- vague
-- smug
-- blamey
 
-If a line sounds like a brand workshop wrote it, cut it.
+- corporate
+- AI-generic
+- salesy
+- stiff
+- smug
+- cheesy
+- over-branded
 
 ## The Main Rule
 
-Say the thing plainly.
+Speak with the user, not at them.
 
 Good:
-- `This is the recruiter read.`
-- `Every fix tied to the line that triggered it.`
-- `Add more scope so we can see the size of the work.`
+
+- `We show you what stands out, what gets missed, and what to fix first.`
+- `Your experience may be stronger than this version makes it look.`
+- `Let’s make the strongest parts easier to see.`
 
 Bad:
-- `Unlock deeper resume intelligence.`
-- `Surface your hidden potential.`
-- `Evidence-backed optimization.`
 
-## One-Noun Rule
+- `This document is analyzed across multiple dimensions.`
+- `Users receive insight into content quality.`
+- `Optimize your materials for stronger recruiter alignment.`
 
-The product output is a `report`.
+## Voice Pillars
+
+### Warm Confidence
+
+We sound capable, assured, and relaxed. We do not posture.
+
+Good:
+
+- `Good experience gets missed all the time. Usually for fixable reasons.`
+- `We’ll show you what stands out, what gets missed, and what to fix first.`
+
+Bad:
+
+- `Our advanced system delivers precise resume evaluation.`
+- `You’re making critical mistakes.`
+
+### Sharp Clarity
+
+We say the truth fast. Prefer concrete language over abstract language.
+
+Good:
+
+- `They’re not reading your resume.`
+- `They’re making a decision about it.`
+- `Most tools give you advice. We show you exactly what to fix.`
+
+Bad:
+
+- `Hiring outcomes are influenced by multiple first-pass evaluation signals.`
+- `Improve overall clarity and impact.`
+
+### Joyful Helpfulness
+
+The product should feel alive, generous, and glad to help. Bright, not bubbly.
+
+Good:
+
+- `There’s more value here than is coming through right now.`
+- `You’re probably closer than this version makes it look.`
+- `The good news is, this is fixable.`
+
+Bad:
+
+- `Yay, let’s fix your resume!`
+- `We’ve got you, bestie.`
+- `Make your resume shine.`
+
+## Naming Rules
+
+### Default Action Verb
+
+`get`
+
+Preferred:
+
+- `Get your report`
+- `Get your first report`
+- `Get a clearer picture`
+
+Less preferred:
+
+- `generate`
+- `unlock`
+- `produce`
+
+### Default Product Noun
+
+`report`
 
 Use:
-- `report`
-- `recruiter report`
-- `recruiter read` as supporting language
 
-Do not bounce between:
+- `report`
+- `resume report`
+- `your report`
+- `saved reports`
+
+Avoid rotating between:
+
 - `review`
 - `analysis`
-- `read`
-- `report`
+- `assessment`
+- `audit`
+- `results`
 
-Pick `report` as the main noun and stay there.
+### Use Of `recruiter`
 
-## Generated Report Voice
-
-Inside the report, we speak like a recruiter.
-
-Use:
-- `we read this as...`
-- `what lands fast is...`
-- `what is missing is...`
-- `this slows the read because...`
-
-Avoid:
-- `you forgot`
-- `you should`
-- `maybe`
-- `consider`
-- `critical miss`
-
-We are describing what we see, not scolding the user.
-
-## Canonical Report Language
-
-Section names:
-- `First Read`
-- `Signal Breakdown`
-- `Evidence Ledger`
-- `Red Pen`
-- `Missing Wins`
-- `Role Fit`
-
-Common phrases:
-- `This is the recruiter read.`
-- `What landed fast, what felt thin, and what to fix first.`
-- `Every fix tied to the line that triggered it.`
-- `Line-by-line rewrites a recruiter would notice.`
-- `Wins hiding between the lines.`
-- `Where this story fits now, and where it stretches.`
-
-## Tone By Surface
-
-Marketing:
-- a little sharper
-- one clear claim
-- one reason to care
-
-In-app:
-- calmer
-- less sales language
-- more observation, less performance
-
-Billing and errors:
-- short
-- reassuring
-- one next step
-
-Trust and policy:
-- plain English
-- no legal throat-clearing in the summary
-
-## Words To Avoid
-
-Cut these from user-facing copy unless there is a very good reason:
-- `actionable insights`
-- `optimize`
-- `best-in-class`
-- `leverage` as a verb
-- `heuristics`
-- `data-driven`
-- `synergy`
-- `positioning notes`
-- `analysis` when `report` will do
-
-Also avoid em dashes. They make the voice feel overworked.
-
-## CTA Rules
-
-Buttons should usually be 2-4 words.
+Use recruiter language when it sounds natural.
 
 Good:
-- `Run Your Free Report`
-- `Run Another Report`
-- `Unlock More Reports`
-- `Export PDF`
-- `Copy Link`
 
-Bad:
-- `Get Started`
-- `Learn More`
-- `Submit`
+- `See your resume the way a recruiter is likely to see it.`
+- `Built around how recruiters make quick first-pass decisions.`
 
-## Quick Gut Check
+Avoid:
+
+- `the read`
+- `tighten the read`
+- `get the recruiter read`
+- `recruiter-read optimization`
+
+## Preferred Vocabulary
+
+- report
+- first impression
+- what stands out
+- what gets missed
+- what to fix first
+- proof
+- clarity
+- fit
+- stronger
+- clearer
+- easier to trust
+- easier to understand
+- what a recruiter sees first
+- what’s helping
+- what’s hurting
+- what gets lost
+
+Use carefully:
+
+- methodology
+- framework
+- model
+- evaluation
+- optimization
+- analysis
+
+Avoid:
+
+- AI-powered
+- smart insights
+- unlock
+- elevate
+- maximize impact
+- stand out from the crowd
+- land your dream job
+- career journey
+- next chapter
+- seamless
+- best-in-class
+
+## Sentence Patterns
+
+### Truth → implication → help
+
+- `They’re not reading your resume. They’re making a decision about it. We show you what to fix first.`
+- `Good experience gets missed all the time. Usually for fixable reasons. We help you catch them.`
+
+### Contrast
+
+- `Most tools give you advice. We show you exactly what to fix.`
+- `Not just feedback. A clearer first impression.`
+
+### Helpful Reframe
+
+- `Your experience may be stronger than this version makes it look.`
+- `This section may be underselling you.`
+- `The proof shows up too late.`
+
+## Surface Rules
+
+### Homepage
+
+- strongest point of view
+- fastest tension
+- most memorable lines
+
+Good:
+
+- `They’re not reading your resume.`
+- `Good experience gets missed every day.`
+
+### In-app
+
+- calmer than marketing
+- more orienting
+- less flair
+
+Good:
+
+- `Your report is ready.`
+- `Here’s what stands out first.`
+- `Start with the fixes that matter most.`
+
+### Report
+
+- specific
+- fair
+- useful
+- non-shaming
+
+Good:
+
+- `This bullet has effort, but not enough proof.`
+- `A recruiter might miss the scope here on first pass.`
+- `There’s more value here than is coming through right now.`
+
+### Research and methodology
+
+- grounded
+- readable
+- still human
+
+Good:
+
+- `This is the thinking behind the report.`
+- `We built this around how recruiters actually screen quickly.`
+
+### Pricing, auth, empty states, and errors
+
+- shortest and plainest surfaces
+- low drama
+- high trust
+
+Good:
+
+- `Sign in to save your report.`
+- `We couldn’t load your report.`
+- `That link has expired.`
+
+## Keep It Alive
+
+RIYP should be alive, not boring.
+
+That means:
+
+- protect one or two memorable lines on important pages
+- vary the rhythm
+- let observations feel noticed, not generated
+- keep the writing emotionally light
+
+It does not mean:
+
+- jokes
+- cute language
+- startup sass
+- turning every sentence into a tagline
+
+## Quick Rewrite Rules
+
+When a line feels off, move it in one of these directions:
+
+- product language → hiring reality
+- abstract explanation → concrete user outcome
+- system language → human language
+- generic helpfulness → specific helpfulness
+- harsh critique → fair judgment
+- polished-flat copy → natural confidence
+
+Examples:
+
+- `Resume optimization powered by research` → `Built around how recruiters actually screen quickly`
+- `Gain clarity into resume performance` → `See what stands out, what gets missed, and what to fix`
+- `Weak bullet` → `This bullet has effort, but not enough proof`
+
+## Ship Check
 
 Before shipping copy, ask:
-- Would a real person say this out loud?
-- Is this concrete, or is it just polished?
-- Are we calling the same thing by the same name?
-- Does this help the user, or is it showing off?
+
+1. Does this sound like a real person with judgment said it?
+2. Is it speaking with the user, not at them?
+3. Is there a more concrete hiring truth underneath it?
+4. Is the phrase natural, or does it sound coined?
+5. Is it sharp without being smug?
+6. Is it warm without getting soft or cute?
+7. Is it clear without becoming generic?
+8. Is it alive, or has it been polished flat?
+
+If any answer is no, rewrite it.

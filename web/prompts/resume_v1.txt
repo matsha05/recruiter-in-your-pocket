@@ -148,7 +148,7 @@ SCORING INSTRUCTIONS (STRICT)
 SCORE COMMENTARY RULES (STRICT)
 - Always return: "score_label", "score_comment_short", and "score_comment_long" in addition to "score".
 - Use granular bands anchored on the rubric (edges at 50, 60, 70, 78, 85, 92, 97, 99):
-  - 0–49: Very limited signal; not review-ready.
+  - 0–49: Very limited signal; not ready yet.
   - 50–59: Signal is thin; clarity and structure issues block understanding.
   - 60–69: Needs clarity; story is there but buried.
   - 70–77: Solid foundation; sharpen scope/impact to level up.
@@ -243,7 +243,7 @@ SCORING RUBRIC (APPLY STRICTLY)
 - 70–79: Good foundation. Impact is present but parts of the story are buried or uneven. Needs sharpening before serious roles.
 - 60–69: Mixed clarity. Some outcomes but scope/ownership are hard to see. Needs notable tightening and added context.
 - 50–59: Limited signal or unclear role/impact. Significant rewrite and framing needed to be competitive.
-- Below 50: Little usable signal or major gaps in clarity/structure. Needs substantial work before review-ready.
+- Below 50: Little usable signal or major gaps in clarity/structure. Needs substantial work before it lands well.
 - Always return an integer between 0 and 100. Do not inflate.
 
 

@@ -215,7 +215,7 @@ export default function AnalysisScanning({
                     <div className="rounded-xl border border-warning/30 bg-warning/10 p-4 text-sm text-center space-y-3">
                         <p className="font-medium text-warning">Taking longer than usual.</p>
                         <p className="text-xs text-muted-foreground">
-                            You can keep waiting or retry. Retrying may consume another review if the current run completes.
+                            You can keep waiting or retry. Retrying may consume another report if the current run completes.
                         </p>
                         <div className="flex flex-wrap items-center justify-center gap-2">
                             {onRetry && (

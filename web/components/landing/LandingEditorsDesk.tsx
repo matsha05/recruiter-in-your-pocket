@@ -87,7 +87,7 @@ function RedPenMarkup({
             </span>{" "}
             <motion.span
                 className="font-medium"
-                style={{ color: "#0D7377" }}
+                style={{ color: "hsl(var(--brand))" }}
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
@@ -107,11 +107,13 @@ function AnimatedRedPen() {
         <div ref={ref} className="rounded-lg border border-slate-100 p-4" style={{ backgroundColor: "hsl(210 20% 99%)" }}>
             {/* Before */}
             <div className="flex items-center gap-2 mb-2">
-                <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-slate-300">Original</span>
+                <span className="font-bold uppercase text-slate-300" style={{ fontSize: "9px", letterSpacing: "0.15em" }}>Original</span>
             </div>
             <motion.p
-                className="text-[13px] leading-[1.65] text-slate-500"
+                className="text-slate-500"
                 style={{
+                    fontSize: "13px",
+                    lineHeight: 1.65,
                     textDecoration: inView ? "line-through" : "none",
                     textDecorationColor: "rgb(203 213 225)",
                     textDecorationThickness: "1.5px",
@@ -128,7 +130,8 @@ function AnimatedRedPen() {
             <div className="my-3 flex items-center gap-2">
                 <div className="h-px flex-1 bg-slate-100" />
                 <motion.span
-                    className="text-[10px] text-slate-300"
+                    className="text-slate-300"
+                    style={{ fontSize: "10px" }}
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: 0.6, duration: 0.3 }}
@@ -141,8 +144,8 @@ function AnimatedRedPen() {
             {/* After */}
             <div className="flex items-center gap-2 mb-2">
                 <motion.span
-                    className="text-[9px] font-bold uppercase tracking-[0.15em]"
-                    style={{ color: "#0D7377" }}
+                    className="font-bold uppercase"
+                    style={{ color: "hsl(var(--brand))", fontSize: "9px", letterSpacing: "0.15em" }}
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: 0.8, duration: 0.4 }}
@@ -151,8 +154,8 @@ function AnimatedRedPen() {
                 </motion.span>
             </div>
             <motion.p
-                className="text-[13px] font-medium leading-[1.65]"
-                style={{ color: "#0D7377" }}
+                className="font-medium"
+                style={{ color: "hsl(var(--brand))", fontSize: "13px", lineHeight: 1.65 }}
                 initial={{ opacity: 0, y: 4 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
                 transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -192,7 +195,7 @@ function ScoreRing({ score, onComplete }: { score: number; onComplete?: () => vo
                     cy="48"
                     r="38"
                     fill="none"
-                    stroke="#0D7377"
+                    stroke="hsl(var(--brand))"
                     strokeWidth="3"
                     strokeLinecap="round"
                     strokeDasharray={circumference}
@@ -210,7 +213,7 @@ function ScoreRing({ score, onComplete }: { score: number; onComplete?: () => vo
                         fontSize: "28px",
                         fontWeight: 400,
                         letterSpacing: "-0.02em",
-                        color: "#0D7377",
+                        color: "hsl(var(--brand))",
                     }}
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
@@ -219,7 +222,8 @@ function ScoreRing({ score, onComplete }: { score: number; onComplete?: () => vo
                     {score}
                 </motion.span>
                 <motion.span
-                    className="text-[11px] text-slate-400"
+                    className="text-slate-400"
+                    style={{ fontSize: "11px" }}
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ duration: 0.6, delay: 1.0 }}
@@ -285,7 +289,7 @@ function SubscoreRow() {
 export function LandingEditorsDesk() {
 
     return (
-        <div data-visual-anchor="landing-home" className="landing-page bg-[#FAFAF8] text-slate-900 selection:bg-teal-700/15">
+        <div data-visual-anchor="landing-home" className="landing-page bg-paper text-slate-900 selection:bg-brand/15">
 
             {/* ═══════════════════════════════════════════════════════
                 SECTION 1 — HERO
@@ -318,7 +322,8 @@ export function LandingEditorsDesk() {
                     </motion.div>
 
                     <motion.p
-                        className="mt-7 max-w-[440px] text-[18px] leading-[1.7] text-slate-500 md:mt-8 md:text-[19px]"
+                        className="mt-7 max-w-[440px] text-slate-500 md:mt-8"
+                        style={{ fontSize: "clamp(18px, 2vw, 19px)", lineHeight: 1.7 }}
                         initial={false}
                         animate={{ opacity: 1 }}
                         transition={{
@@ -328,8 +333,8 @@ export function LandingEditorsDesk() {
                         }}
                     >
                         In 7.4 seconds, they&apos;ve already made up their
-                        mind about you. We&apos;ll show you the recruiter
-                        read, and what to fix so they keep reading.
+                        mind about you. We&apos;ll show you what stands out
+                        first, and what to fix so they keep reading.
                     </motion.p>
 
                     <motion.div
@@ -344,17 +349,17 @@ export function LandingEditorsDesk() {
                     >
                         <a
                             href="/workspace"
-                            className="group inline-flex w-fit items-center gap-2.5 rounded-full bg-slate-900 px-7 py-3.5 text-[15px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                            className="group inline-flex w-fit items-center gap-2.5 rounded-full bg-slate-900 px-7 py-3.5 font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                            style={{ fontSize: "15px" }}
                         >
                             Run Your Free Report
                             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                         </a>
-                        <span className="text-[14px] text-slate-400">
+                        <span className="text-slate-400" style={{ fontSize: "14px" }}>
                             No credit card, no catch.
                         </span>
                     </motion.div>
 
-                    {/* Fix #18: Social proof pill — balances hero right side */}
                     <motion.div
                         className="mt-10 flex items-center gap-3 md:mt-14"
                         initial={false}
@@ -370,12 +375,12 @@ export function LandingEditorsDesk() {
                             ].map((bg, i) => (
                                 <div
                                     key={i}
-                                    className="h-6 w-6 rounded-full border-2 border-[#FAFAF8]"
-                                    style={{ backgroundColor: bg }}
+                                    className="h-6 w-6 rounded-full border-2"
+                                    style={{ backgroundColor: bg, borderColor: "hsl(var(--paper))" }}
                                 />
                             ))}
                         </div>
-                        <span className="text-[13px] text-slate-400">
+                        <span className="text-slate-400" style={{ fontSize: "13px" }}>
                             <span className="font-medium text-slate-500">1,200+</span> resumes screened this month
                         </span>
                     </motion.div>
@@ -391,7 +396,7 @@ export function LandingEditorsDesk() {
             <section className="relative z-[2] px-6 py-8 md:px-8 md:py-12">
                 <div className="mx-auto max-w-[600px]">
                     <Reveal>
-                        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                        <p className="mb-4 font-semibold uppercase text-slate-300" style={{ fontSize: "10px", letterSpacing: "0.12em" }}>
                             What you get
                         </p>
                         <div className="border-l-2 border-slate-300 pl-6 md:pl-8">
@@ -402,8 +407,8 @@ export function LandingEditorsDesk() {
                                     lineHeight: 1.8,
                                 }}
                             >
-                                Not a score. Not a checklist. The recruiter
-                                read, line by line.{" "}
+                                Not a score. Not a checklist. A first-pass
+                                report, line by line.{" "}
                                 <RedPenMarkup
                                     original="Responsible for managing service deployments"
                                     replacement="Led cross-functional migration across 4 services, reducing deploy time by 40%."
@@ -440,7 +445,7 @@ export function LandingEditorsDesk() {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2.5">
                                         <PocketMark className="h-3.5 w-3.5 text-teal-700" />
-                                        <span className="text-[12px] font-medium tracking-[-0.01em] text-slate-500">
+                                        <span className="font-medium text-slate-500" style={{ fontSize: "12px", letterSpacing: "-0.01em" }}>
                                             Recruiter Report
                                         </span>
                                     </div>
@@ -449,7 +454,7 @@ export function LandingEditorsDesk() {
                                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                                             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                                         </span>
-                                        <span className="text-[11px] text-slate-400">
+                                        <span className="text-slate-400" style={{ fontSize: "11px" }}>
                                             Report ready
                                         </span>
                                     </div>
@@ -468,7 +473,7 @@ export function LandingEditorsDesk() {
                                 {/* ── Section 01 ── */}
                                 <div className="flex items-center gap-2.5">
                                     <div className="h-px w-4 bg-slate-200" />
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                                    <p className="font-semibold uppercase text-slate-400" style={{ fontSize: "10px", letterSpacing: "0.12em" }}>
                                         01. First Read
                                     </p>
                                 </div>
@@ -544,7 +549,7 @@ export function LandingEditorsDesk() {
                                 <div className="mt-4">
                                     {/* Priority label */}
                                     <div className="flex items-center gap-2 mb-3">
-                                        <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "#0D7377" }} />
+                                        <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(var(--brand))" }} />
                                         <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
                                             Highest-leverage rewrite
                                         </span>
@@ -660,7 +665,7 @@ export function LandingEditorsDesk() {
                     </Reveal>
                     <Reveal delay={0.08}>
                         <p className="mx-auto mt-5 max-w-[340px] text-[18px] leading-[1.7] text-slate-500">
-                            Get the recruiter read. Fix what is getting skipped.
+                            See what they notice first. Fix what is getting skipped.
                         </p>
                     </Reveal>
                     <Reveal delay={0.15}>

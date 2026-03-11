@@ -77,7 +77,7 @@ export default function DashboardPage() {
                     <BarChart3 className="w-12 h-12 mx-auto text-muted-foreground" />
                     <h1 className="text-2xl font-display text-foreground">Sign in to view your progress</h1>
                     <p className="text-muted-foreground max-w-md">
-                        Track your progress, see score trends, and identify patterns across your resume reviews.
+                        Track your progress, see score trends, and identify patterns across your resume reports.
                     </p>
                     <Link
                         href="/workspace"
@@ -118,15 +118,15 @@ export default function DashboardPage() {
             <div className="min-h-screen flex items-center justify-center bg-body p-6">
                 <div className="text-center space-y-4">
                     <BarChart3 className="w-12 h-12 mx-auto text-muted-foreground" />
-                    <h1 className="text-2xl font-display text-foreground">No reviews yet</h1>
+                    <h1 className="text-2xl font-display text-foreground">No reports yet</h1>
                     <p className="text-muted-foreground max-w-md">
-                        Run your first resume review to start tracking your progress.
+                        Get your first resume report to start tracking your progress.
                     </p>
                     <Link
                         href="/workspace"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded bg-brand text-white hover:bg-brand/90 transition-colors"
                     >
-                        Run Your Review
+                        Get Your Report
                     </Link>
                 </div>
             </div>

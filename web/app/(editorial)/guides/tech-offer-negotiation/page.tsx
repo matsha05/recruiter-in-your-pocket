@@ -516,12 +516,12 @@ export default function TechOfferNegotiationGuidePage() {
                 <div className="mt-24 bg-secondary/10 border border-border/10 rounded-2xl p-10 md:p-14 text-center max-w-3xl mx-auto">
                     <h2 className="font-display text-3xl font-medium mb-4">Ready for your next offer conversation?</h2>
                     <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
-                        Make sure your resume is strong before you start interviewing. Get reviewed by a recruiter&apos;s eye.
+                        Make sure your resume is strong before you start interviewing. Get a report before the next round.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/workspace">
                             <Button variant="brand" size="lg" className="gap-2 w-full sm:w-auto">
-                                Start Your Review
+                                Get Your Report
                                 <ArrowRight className="w-4 h-4" />
                             </Button>
                         </Link>

@@ -193,7 +193,7 @@ export default function JobsClient() {
                             href="/workspace"
                             className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
                         >
-                            Run review
+                            Get report
                         </Link>
                     </div>
                 )}
@@ -482,7 +482,7 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
                     href="/workspace"
                     className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
                 >
-                    Run review manually
+                    Get report manually
                 </Link>
             </div>
             <div className="flex items-center justify-center gap-8 pt-2">

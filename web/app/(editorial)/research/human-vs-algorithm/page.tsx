@@ -86,7 +86,7 @@ export default function HumanVsAlgorithmPage() {
                 },
                 {
                     question: "How should candidates respond?",
-                    answer: "Optimize for clarity and credibility so a human reviewer feels confident in the narrative."
+                    answer: "Aim for clarity and credibility so a human reviewer feels confident in the story."
                 }
             ]}
         >

@@ -13,10 +13,10 @@ function nowIso() {
 
 function buildResumePreview(report: any): string {
   const source = String(
-    report?.summary || report?.score_comment_short || report?.score_comment_long || "Resume review"
+    report?.summary || report?.score_comment_short || report?.score_comment_long || "Resume report"
   ).trim();
 
-  if (!source) return "Resume review";
+  if (!source) return "Resume report";
 
   if (source.length <= 200) return source;
   const preview = source.slice(0, 200);

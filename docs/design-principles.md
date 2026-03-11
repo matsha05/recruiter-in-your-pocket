@@ -1,478 +1,204 @@
-# Recruiter in Your Pocket — Design Constitution V3.0
-**Sentient Authority. Satoshi Clarity. Honest Precision.**
+# Recruiter in Your Pocket — Design Principles
 
-> [!NOTE]
-> This document is the **implementation spec** for [design-philosophy.md](./design-philosophy.md), which is the canonical source of truth for *why* we make design decisions. This doc covers *how* to implement them.
+> Implementation guide for [`design-philosophy.md`](./design-philosophy.md)
 
----
+This document covers how the product should look, move, and sound in practice.
 
-## The Constitution
+## 1. Core Anchors
 
-We are building a product that feels acquisition-worthy by elite teams (OpenAI, Notion, Stripe, Linear, Figma). This requires strict adherence to the following constitution.
+- Design principle: `Helpful can be joyful.`
+- Tone anchor: `The smartest friend in hiring. Clear, confident, and genuinely helpful.`
 
-### 1. Elite Flavor: The "Un-SaaS"
-Avoid "marketing-site energy" (illustrations, cheerful mascots, bouncy animations).
-Embrace "Studio energy" (Stripe, Linear, Notion).
-- **Vibe:** Serious, premium, capable.
-- **Visuals:** Depth through borders and spacing, not shadows.
-- **Restraint:** Only use color for meaning.
-- **Patterns:** Use proven UX patterns when they increase clarity, conversion, or growth. Style them with RIYP typography, density, and tone.
+If a design decision makes the product feel colder, more generic, or more corporate, it is probably wrong.
 
-### 2. Typography Creates Authority
+## 2. Visual Posture
+
+RIYP should feel premium through restraint.
+
+- Light editorial base by default
+- Open layouts over stacked card grids
+- Borders and spacing over heavy shadow
+- A few well-placed color accents over decorative treatments
+- No page-scale glossy gradients or startup glow effects
+
+Small moments of character are welcome. They should feel pleasant and intentional, not ornamental.
+
+## 3. Typography
+
 | Role | Font | Usage |
 |---|---|---|
-| **Display** | **Sentient** (400-700) | Verdicts, headlines, scores |
-| **Interface** | **Satoshi** (400-700) | Controls, body, labels |
-| **Data** | **Satoshi** with tabular numerics | Metrics, captions |
+| Display | Sentient | Headlines, verdicts, key moments |
+| Interface | Satoshi | Body copy, controls, labels |
+| Data | Satoshi with tabular numerics | Scores, metrics, metadata |
 
-### 3. Color Creates Meaning
-| Token | Color | Usage |
-|---|---|---|
-| `--brand` | **Teal-600** (`#0D9488`) | Primary CTA, Score highlight, key data |
-| `--accent` | Slate-700 (`#334155`) | UI chrome, secondary buttons |
-| `--premium` | Amber-600 (`#D97706`) | Gold unlock moments ONLY (positive: upgrades, best value, premium features) |
-| `--amber` | Amber-500 (`#F59E0B`) | Caution/warning callouts (Critical Miss, gaps, attention needed) |
-| `--success` | Green-700 | Positive states |
-| `--warning` | Yellow-600 | Form validation, soft warnings |
-| `--error` | Rose-700 | Critical failures |
+Rules:
 
-### 4. Quiet Power
-Calm by default, decisive in the one moment that matters. 90 percent quiet, 10 percent dramatic, always tied to verdict, value, or conversion.
-- Light editorial base by default, dark mode is fully supported
-- Warm paper texture allowed only on marketing surfaces and kept subtle
-- One signature moment per screen is preferred, not required. Utility screens can have none. Never more than one per screen.
-- Teal brand accent (action)
-- Gold for premium moments only
-- Muted slate for UI chrome
-- Shadows are subtle, not dramatic
+- Let typography create authority before adding visual treatment
+- Use fewer weights, not more
+- Keep headings compressed and decisive
+- Let body copy feel easy to read, never dense for sport
 
-### 5. Crafted Modernity
-We are premium and intentional, not templated. This is where we allow advanced craft.
-- Composition can be bold. Asymmetry and editorial layout are welcome when they improve clarity.
-- Use modern techniques with restraint: variable font axes, layered grids, bespoke data viz, and micro-interaction choreography.
-- Surprise comes from clarity and craft, not theatrics. No gimmicks, no mascots, no confetti.
-- Consistency comes from type, tokens, spacing, and voice. Layout can vary.
-- If a screen feels generic, change the structure first, not the decoration.
+## 4. Color And Surfaces
 
-### 6. The University Anti-Pattern
-We are NOT a friendly university career center. We are a high-stakes partner.
-- **Banned:** Flat vector illustrations, "Hi there!" voice, gamification badges.
-- **Approved:** Data-driven visuals, precision microcopy, editorial tone.
-
-### 7. Interaction Grammar
-
-Every component maps to one of 6 canonical interaction verbs. This creates a cohesive "language" across the app.
-
-| Verb | Motion | States | RIYP Examples |
-|------|--------|--------|---------------|
-| **Reveal** | 320ms reveal | hidden → visible | Section expand, score dial animation |
-| **Select** | 140ms select | default → selected | List row, checkbox, radio |
-| **Commit** | 80ms press → 200ms swap | idle → pending → done | Apply rewrite, save job, mark addressed |
-| **Navigate** | 200ms swap | current → next | Tab switch, route change |
-| **Preview** | 320ms in / 140ms out | closed → peek | Evidence trace, Recruiter Lens definitions |
-| **Reorder** | 200ms swap | idle → dragging → dropped | Action plan items |
-
-If a component can't be described with these verbs, it's probably unnecessary chrome.
-
-### 8. Interaction Physics
-
-| Type | Rule |
+| Token | Usage |
 |---|---|
-| Easing | `cubic-bezier(0.16, 1, 0.3, 1)`: snappy |
-| Press | `80ms` — input acknowledgement |
-| Hover | `90ms in / 160ms out` — asymmetric for calm |
-| Select | `140ms` — selection highlight |
-| Swap | `200ms` — tabs, accordions, content changes |
-| Reveal | `320ms` — panels, section reveals |
-| Hero | `420ms` — verdict only (signature moment) |
-| No bounce | No playful wobbles for structural UI |
-
-Exception: Signature moments may use a single, low-amplitude overshoot spring. Only one per screen, tied to verdict, value, or conversion. Never use bounce on modals, sheets, navigation, or form controls.
-
-### 9. Layer Model
-
-Every overlay belongs to exactly one layer type with consistent behavior.
-
-| Layer | Focus | Dismiss | Scroll | Examples |
-|-------|-------|---------|--------|----------|
-| **Tooltip** | None | Auto on mouse leave | Closes | Hint text, abbreviation definitions |
-| **Popover** | Trapped | Outside click, Esc | Blocks | Dropdown menus, color pickers |
-| **Peek** | None | Outside click, Esc | Preserves page | Evidence panel, Recruiter Lens |
-| **Sheet/Modal** | Trapped | Outside click (optional), Esc | Blocks | Settings, upload, confirmation |
-| **Critical** | Trapped | Explicit action only | Blocks | Delete confirm, cancel subscription |
-
-**Rules:**
-- Esc always closes topmost layer
-- Focus always returns to invoker on close
-- Single portal root for z-index management
-
-### 10. The 12-State Rule
-
-Every interactive component must define these states. Missing states = perceived cheapness.
-
-| # | State | Required For |
-|---|-------|--------------|
-| 1 | `default` | All |
-| 2 | `hover` | All |
-| 3 | `active` (pressed) | All |
-| 4 | `focus-visible` | All |
-| 5 | `disabled` | All |
-| 6 | `loading` | Buttons, forms |
-| 7 | `selected` | Lists, toggles, checkboxes |
-| 8 | `selected+hover` | Selectable elements |
-| 9 | `selected+focus` | Selectable elements |
-| 10 | `error` | Inputs, forms |
-| 11 | `read-only` | Inputs |
-| 12 | `pending` | Optimistic UI (before server confirms) |
-
-**Component Finish Pass Gate:** No component ships without states 1-6 defined. States 7-12 as applicable.
-
-### 11. Craft Laws
-
-These patterns separate 9/10 from 10/10. They are what makes users say "this feels expensive."
-
-#### Motion Presets (RIYP Craft Library)
-
-**Easing Curves:**
-```ts
-export const ease = {
-  snappy:   [0.16, 1, 0.3, 1],    // Default (current)
-  micro:    [0.2, 0.9, 0.2, 1],   // Ultra fast micro feedback
-  outCubic: [0.33, 1, 0.68, 1],   // Crisp out for panels/peeks
-  inOut:    [0.65, 0, 0.35, 1],   // Calm for layout shifts
-};
-
-export const dur = {
-  micro:  90,   // hover + press feedback
-  fast:   140,  // selection highlight, small toggles
-  normal: 200,  // tabs, accordions, list expansion
-  reveal: 320,  // section reveals, peek panel open
-  hero:   420,  // verdict reveal only (signature moment)
-};
-```
+| `--brand` | Primary CTA, links, active states |
+| `--premium` | Premium moments only |
+| `--success` | Positive states |
+| `--warning` | Soft warnings and caution |
+| `--destructive` | Errors and critical problems |
 
-**Spring Physics (signature moments only):**
-```ts
-export const spring = {
-  verdict: { type: "spring", stiffness: 520, damping: 48, mass: 0.9 },
-  snap:    { type: "spring", stiffness: 700, damping: 55, mass: 0.7 },
-};
-```
+Rules:
 
-#### Latency Staging Contract
+- Use color to guide attention, not to fill space
+- Prefer paper, mist, and quiet neutral surfaces
+- Gold is for premium moments, not general warmth
+- Teal should feel precise and fresh, not loud
 
-All interactions follow a staged timing model. Never animate more than 2 layers at once.
+## 5. Layout Rhythm
 
-| Stage | Timing | Purpose |
-|-------|--------|---------|
-| **Layer 1: Confirm** | 0-90ms | Input registered (pressed/selected state) |
-| **Layer 2: Content** | 140-200ms | Swap, expand, collapse |
-| **Layer 3: Detail** | 280-320ms | Secondary text, helper, metadata |
+The product should feel structured, not boxed in.
 
-**Rule:** Never make the user wait to see that the click "worked."
+- Most pages should read as sections and rails, not card piles
+- Use dividers, pacing, and long rows before introducing new containers
+- Keep one focal point near the top of important pages
+- Avoid multiple competing hero moments
+- If a page feels heavy, remove surfaces before removing information
 
-#### Peek Panel (Arc Pattern)
+## 6. Motion
 
-Non-destructive overlay for evidence, citations, definitions. Opens anchored to clicked element.
+Motion should make the UI feel alive and confident, never playful.
 
-**Behavior:**
-- Dismiss: click outside, Esc
-- No global page dim unless destructive action
-- Never steals scroll position
+Timing:
 
-**Motion:**
-```ts
-const peekVariants = {
-  initial: { opacity: 0, scale: 0.985, y: 8 },
-  animate: { opacity: 1, scale: 1, y: 0 },
-  exit:    { opacity: 0, scale: 0.99, y: 4 },
-};
-// Entry: 320ms ease.snappy | Exit: 140ms ease.outCubic
-```
+- `90ms` for hover and press feedback
+- `140ms` for small selection changes
+- `200ms` for swaps and state changes
+- `320ms` for reveals
+- `420ms` only for true signature moments
 
-**Layout:** Max 420px desktop, 100vw bottom sheet mobile. Border: 1px var(--border). Shadow: `0 10px 30px rgba(0,0,0,0.08)`.
+Rules:
 
-#### Command Palette (Cmd+K)
+- Motion teaches, confirms, and reassures
+- No bounce on structural UI
+- Respect `prefers-reduced-motion`
+- Never animate decoration just because the screen feels flat
 
-Central command surface for pro users. This is the highest-leverage craft pattern.
+## 7. Voice In The UI
 
-- Opens with Cmd+K globally
-- Shows: action name, description (optional), shortcut hint (Satoshi 11px with wide tracking)
-- Supports: section jumps, quick actions, recent commands
-- Context-aware: actions change based on current surface
-
-**Minimum scope:**
-- "Run 6-second scan"
-- "Jump to: Red Pen"
-- "Toggle: show only critical misses"
-- "Export: ATS version"
-
-#### Submenu Safe Area (Linear Pattern)
-
-Nested menus must include a triangular "safe zone" so cursor movement from parent to child doesn't accidentally close the menu.
-
-**Parameters:**
-- Sample rate: 16ms
-- Close delay: 250ms
-- Max buffer: 5 mouse positions
-
-#### Three-State List Selection (Raycast Pattern)
-
-Every list row has 3 distinct states. Hover timing is asymmetric (slower out = calm).
-
-| State | Visual | Timing |
-|-------|--------|--------|
-| **Hover** | `bg-muted/40` | In: 90ms, Out: 140ms |
-| **Active (keyboard)** | `bg-muted/60` + 2px left brand hairline | 90ms |
-| **Pressed** | `bg-muted/70` (no scale) | 90ms |
-
-#### Optimistic UI + Undo (Superhuman Pattern)
-
-For actions like "Apply rewrite":
-1. Immediately apply visually
-2. Show inline "Applied" state
-3. On failure: rollback with inline error + Undo option
-
-#### Pixel-Jitter Audit
-
-No element should move on hover except opacity and background. No reflow on load. Skeletons must match final layout exactly.
-
-#### Bottom Action Rail (Raycast Pattern)
-
-Persistent bar at bottom of report pages:
-- Left: current section name (dense)
-- Center: "Cmd+K" shortcut hint
-- Right: primary next action ("Apply fixes," "Export")
-- Toasts appear inside this bar, not floating
-
----
-
-## Visual Language
-
-### Radius
-- **Default:** `4px` everywhere
-- **Small (badges):** `2px`
-- **Large (modals):** `8px`
-
-### Shadows
-- **Only:** `shadow-sm` (`0 1px 2px 0 rgb(0 0 0 / 0.04)`)
-- **No heavy shadows.** Depth via borders and background contrast.
-
-### Iconography
-
-**The Problem:** Lucide is npm install-able by anyone. Every YC startup, every indie SaaS, every bootstrapped product uses Lucide. Stock icons are the design equivalent of system fonts—functional, but they scream "template."
-
-**The Standard:** Elite products (OpenAI, Notion, Stripe, Linear) use stock icons for **utility chrome only** and invest in **custom glyphs for signature moments**.
-
-#### Utility Icons (Lucide OK)
-- Navigation: Home, Settings, Menu, ChevronDown
-- Actions: Plus, Edit, Trash, Download, Send
-- Feedback: Check, X, AlertCircle, Loader
-- **Rules:** `strokeWidth: 1.5`, outline only, never filled
-
-#### Custom Signature Icons (IMPLEMENTED)
-Location: `/web/components/icons/`
-
-| Icon | File | Purpose | Usage |
-|------|------|---------|-------|
-| **PocketMark** | `PocketMark.tsx` | Brand mark | Headers, Favicon |
-| **Wordmark** | `Wordmark.tsx` | Path-based "pocket" wordmark | Brand applications |
-| **PrincipalRecruiterIcon** | `PrincipalRecruiterIcon.tsx` | Authority/Expert Profile | 01. First Impression header |
-| **SignalRadarIcon** | `SignalRadarIcon.tsx` | Data Visualization | 02. Signal Analysis header |
-| **TransformArrowIcon** | `TransformArrowIcon.tsx` | Editorial Quill | 03. The Red Pen header |
-| **HiddenGemIcon** | `HiddenGemIcon.tsx` | Discovery/Treasure | 04. Missing Wins header |
-| **RoleTargetIcon** | `RoleTargetIcon.tsx` | Role Fit Target | 05. Where You Compete header |
-| **SixSecondIcon** | `SixSecondIcon.tsx` | Timer Segment | Scanning state, InputPanel |
-| **EmptyReportIcon** | `EmptyReportIcon.tsx` | Empty states | Reserved (text-first preferred) |
-| **InsightSparkleIcon** | `InsightSparkleIcon.tsx` | North Star/Value | Pro Tip, Pricing, Coach notes |
-
-#### Icon Design Rules
-- All custom icons use `strokeWidth: 1.5` for consistency with Lucide utility icons
-- ViewBox: `0 0 24 24` (standard)
-- Fill: `none` (stroke-based)
-- Custom icons support `className` and `size` props
-- Signature moments use custom icons. Do not use Lucide in report headers or TOCs.
-- **Never use** Lucide `Sparkles` — use `InsightSparkleIcon` instead
-- **Never use** generic User/Eye icons for recruiter persona — use `PrincipalRecruiterIcon`
-
-#### Report Section Header Format
-All report sections use identical chrome:
-```
-[Icon w-4 text-brand] [Number]. [Title]    [Optional Badge]
-```
+Design and copy are one system.
 
-```tsx
-<h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-    <SignalRadarIcon className="w-4 h-4 text-brand" />
-    02. Signal Analysis
-</h2>
-```
+The UI should sound:
 
-#### Icon Color Standards
-| Context | Token |
-|---------|-------|
-| Section header icons | `text-brand` (Teal) |
-| Premium/Upgrade CTAs | `text-premium` (Gold) |
-| Muted/Disabled | `text-muted-foreground` |
+- warm
+- sharp
+- bright
+- helpful
+- natural
 
-### Navigation Patterns
+It should not sound:
 
-| Context | Pattern | Example |
-|---------|---------|---------|
-| **Back to parent** | `<ArrowLeft>` icon + text | `<ArrowLeft className="w-4 h-4" /> Back to Home` |
-| **Mobile header** | Icon button only | `<ArrowLeft className="w-5 h-5" />` |
-| **Modal dismiss** | X icon, top-right | Lucide `X` |
+- corporate
+- AI-generic
+- salesy
+- stiff
+- over-branded
 
-**Rules:**
-- Always use Lucide `ArrowLeft`, never text arrows (`←`)
-- Text follows icon with `gap-2` spacing
-- **Sentence case** (not uppercase)
-- Color: `text-muted-foreground hover:text-foreground`
-- Exception: Research hub and research articles use a text-only back label to preserve editorial tone. Follow `docs/research-ui-contract.md`.
+## 8. Naming Rules
 
-### Article Tags (Category Pills)
+- Default product noun: `report`
+- Default action verb: `get`
+- Use `recruiter` language naturally, not as coined shorthand
 
-| Content Type | Color | Example |
-|--------------|-------|---------|
-| **Research articles** | Neutral gray | `border-border bg-muted/50 text-muted-foreground` |
-| **Guides/Playbooks** | Brand teal | `border-brand/20 bg-brand/10 text-brand` |
+Prefer:
 
-**Rules:**
-- Always **UPPERCASE** with `tracking-widest`
-- Font size: `text-[10px]`
-- **Never use Gold** for content tags (reserved for unlock moments)
+- `Get your report`
+- `See what stands out first`
+- `What a recruiter may notice first`
 
-> **Note:** Guides use a different layout than Research (full-width, no sidebar). See `diagram-visual-spec.md` § "Guide-Specific Patterns".
+Avoid:
 
----
+- `review` as the main product noun
+- `analysis` as the main product noun
+- `the read`
+- `get the recruiter read`
+- `signal model` in top-level UI copy
 
-## Report Section Patterns
+## 9. Surface Rules
 
-### Subscore Color Thresholds
-Signal Analysis subscores use semantic colors based on score value:
+### Homepage
 
-| Score Range | Token | Meaning |
-|-------------|-------|---------|
-| **85+** | `text-success` (Green) | Strong signal |
-| **70–84** | `text-premium` (Gold) | Solid foundation |
-| **<70** | `text-destructive` (Red) | Needs work |
+- strongest point of view
+- quickest tension
+- most memorable lines
 
-**Implementation:** Color applies to numbers only, not backgrounds. Cards remain neutral (`bg-secondary/20`).
+### In-app
 
-### Subscore Hierarchy
-**Story is the most important subscore.** Order: Story → Impact → Clarity → Readability.
+- calmer than marketing
+- more orienting
+- less performance, more help
 
-The methodology tooltip explains:
-- **Story** — "What narrative are you telling? This is the most important signal."
-- **Impact, Clarity, Readability** — "Supporting dimensions that strengthen your story."
+### Report
 
-### List Hierarchy (Working/Missing)
-- All items have **equal visual weight** (`text-muted-foreground`)
-- No colored backgrounds on list items
-- Headers: "Working" (neutral), "Missing" (gold text)
+- specific
+- fair
+- actionable
+- non-shaming
 
-### The Red Pen Pattern
-- **Hero rewrite:** Interactive tap-to-reveal, clean white card
-- **Body font only** — no monospace for rewrites (jarring)
-- **Collapsed list:** Show 2 rewrites by default, "Show X more" to expand
-- **Coaching notes:** Inline text, not separate boxes
+### Research and methodology
 
-### Report Footer CTA States
+- grounded and readable
+- slightly more explanatory
+- never academic for its own sake
 
-| Context | CTA | Button Color |
-|---------|-----|--------------|
-| **Sample report** | "That's the full picture." → **Run Your Free Report →** | `bg-brand` (Teal) |
-| **Real report, has credits** | "That's the full picture." → **+ Run Another** | `bg-brand` (Teal) |
-| **Real report, exhausted** | "You've used your free reports." → **✨ Unlock Unlimited** | `bg-premium` (Gold) |
+### Pricing, auth, empty states, and errors
 
----
+- shortest and plainest surfaces
+- low drama
+- high trust
 
-## Evidence and Citations
+## 10. Character Rules
 
-We do not assert facts without a source.
-- Factual or research claims require a citation marker and a source entry.
-- Recruiter judgment and heuristics must be labeled as such, not disguised as research.
-- Use the citation pattern in `docs/design-system.md`. Avoid badges and decorative chips.
-- Source quality follows `docs/source-quality.md` for research content and should be Tier 1 or Tier 2 for product copy.
+RIYP should feel alive, not boring.
 
----
+That means:
 
-## Messaging: "See What They See"
+- protect one or two lines with real shape on important pages
+- vary sentence rhythm
+- let observations feel noticed, not generated
+- keep delight emotionally light
 
-**One-Liner:** `See what they see.`
-**Hero:** `In 7.4 seconds, a recruiter has already decided. This is what they saw.`
-**Tone:** Confident expert, not cheerful coach.
+It does not mean:
 
----
+- jokes everywhere
+- social-brand banter
+- forced cleverness
+- writing every sentence like a tagline
 
-## Bending the Rules
+## 11. Component Finish
 
-> [!IMPORTANT]
-> **Design principles are guidelines, not prison.** They exist to prevent accidental drift into low-quality patterns, not to block competitive features.
-> If a rule blocks clarity, conversion, or growth, bend it and document the reason in the change description.
+Every interactive component must define these states when relevant:
 
-### When to Bend
-- **Competitive necessity:** If Teal, Jobscan, or Resume Worded have a feature that users expect, we may need to add it even if it doesn't perfectly fit our aesthetic.
-- **Acquisition readiness:** If a feature increases our value to potential acquirers (analytics, dashboards, data exports), we build it.
-- **User demand:** If 3+ users request the same thing post-launch, we seriously consider it.
-- **Clarity or conversion:** If it makes the next action obvious or materially improves activation, we bend.
+- default
+- hover
+- active
+- focus-visible
+- disabled
+- loading
+- selected
+- error
+- pending
 
-### When NOT to Bend
-- **Never sacrifice quality:** A bent rule still needs premium execution. No half-baked features.
-- **Never lose identity:** We remain the "Recruiter Lens" expert, not a generic job-search OS.
-- **Never copy blindly:** Competitors have features we won't build (auto-apply, job boards) because they're not our wedge.
+Missing states make the product feel cheaper than the typography and copy imply.
 
-### The Litmus Test
-Before bending a rule, ask:
-1. Does this make us **more competitive** in our category?
-2. Does this make us **more acquisition-ready**?
-3. Does this improve **clarity or conversion** for the target user?
-4. Can we execute this **at our quality bar**?
+## 12. Final Gut Check
 
-If all four are YES, bend the rule.
+Before shipping a screen, ask:
 
----
+1. Does this feel helpful and alive, or just polished?
+2. Is the strongest idea obvious fast?
+3. Are we using structure, not decoration, to create confidence?
+4. Does the copy sound like a real person with judgment said it?
+5. Does this feel like RIYP, or like a generic product with nicer fonts?
 
-## Defaults (Not Absolutes)
-
-The following are **defaults**, not hard bans. Bend with justification:
-
-| Default | When to Bend |
-|:---|:---|
-| "Reports by default, dashboards when they prove progress" | If a dashboard increases retention, clarity, or trust |
-| "No gamification" | If tasteful progress visualization (not badges/confetti) improves UX |
-| "No social features" | If shareable report links or referrals drive growth |
-
----
-
-## Allowed Patterns (Non-Exhaustive)
-
-These are allowed when they improve clarity or conversion and are styled with RIYP density and tone. Research pages still follow `docs/research-ui-contract.md`.
-
-| Pattern | Purpose | Constraints |
-|:---|:---|:---|
-| Primary and secondary CTAs | Action hierarchy | One primary per view, no gimmick copy |
-| Pricing cards | Decision clarity | One highlighted tier, no visual noise |
-| Modals and sheets | Focused tasks | Tight motion, no bounce on entry |
-| Tabs and segmented controls | Mode switching | 3-5 options max, clear labels |
-| Tables and lists | History and tracking | Dense, scannable, no decorative chrome |
-| Cards as containers | Group related content | Border and spacing only, no heavy shadow |
-| Filters and chips | Scoping and search | Factual labels, no playful badges |
-| Progress indicators | Show real state | Only real progress, no fake momentum |
-| Empty states | Onboarding clarity | Text-first, single CTA |
-| Toasts and inline alerts | Error and success feedback | Actionable, honest, no fluff |
-| Dashboards | Progress and trust | Only when they prove improvement over time |
-
----
-
-## Accessibility (Required)
-
-- Text contrast meets WCAG 2.1 AA. Do not rely on color alone to convey meaning.
-- Every interactive element is keyboard accessible and has a visible focus state.
-- Respect `prefers-reduced-motion` and avoid continuous motion or parallax.
-- Touch targets are at least 44px.
-- Errors are explicit, actionable, and do not disappear on blur.
-
----
-
-*V2.3 — Updated Dec 26, 2025 — Added flexibility for competitive features*
+Last updated: March 2026

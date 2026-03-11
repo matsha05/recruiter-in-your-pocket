@@ -10,6 +10,7 @@ import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
+import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 
 type ReportLoadState = "loading" | "ready" | "not_found" | "error";
 
@@ -61,12 +62,18 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
   async function handleExportPdf(overrideReport?: ReportData) {
     const payload = overrideReport || report;
     if (!payload) return;
+    const requestBody = buildPdfExportRequest(payload);
+    if (!requestBody) {
+      toast.error("This report is missing some data. Please rerun it and try exporting again.");
+      return;
+    }
+
     setIsExporting(true);
     try {
       const response = await fetch("/api/export-pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ report: payload }),
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {
@@ -210,7 +217,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
               }
             />
             <div className="mt-4 rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
-              Saved reports preserve the read and rewrites from that run. If you want a fresh report with new role context, run another report from the workspace.
+              Saved reports preserve the first impression and rewrites from that run. If you want a fresh report with new role context, get another report from the workspace.
             </div>
           </div>
 

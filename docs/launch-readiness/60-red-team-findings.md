@@ -451,9 +451,9 @@ Expected: 429 responses after limit
 ### RT-021: Free Tier Abuse (Cookie Manipulation)
 **Severity:** P1  
 **Repro Steps:**
-1. Use free review
+1. Use free report
 2. Clear cookies
-3. Request another free review
+3. Request another free report
 
 **Expected Behavior:** Fingerprinting or limit still applied  
 **Actual Risk:** Unlimited free tier abuse

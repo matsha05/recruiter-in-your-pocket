@@ -133,7 +133,7 @@ export function ReportStream({
                         // Sample report - CTA to run their own
                         <div className="space-y-3">
                             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                                This is the recruiter read. Ready to see yours?
+                                This is a sample report. Ready to see yours?
                             </p>
                             {onNewReport && (
                                 <Button

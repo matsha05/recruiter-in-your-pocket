@@ -47,7 +47,7 @@ They should not feel like:
 ## 3. Visual Language
 
 ### Typography and Layout
-- Headers use Fraunces, body uses Geist Sans, data uses Geist Mono.
+- Headers use Sentient, body uses Satoshi, data uses Satoshi with tabular numerics.
 - Favor whitespace, clear sectioning, and tight editorial hierarchy.
 - Use lists and rules to structure reading flow.
 - Embrace layout rhythm. A research page can feel designed without feeling busy.
@@ -101,14 +101,14 @@ Figures are the primary place where visual expression is encouraged.
 - Annotations: callout chips, underlines, and highlighter bars are allowed if they map to the insight.
 
 ### Typography in Figures
-- Axis labels: Geist Mono, 10px, uppercase, `--muted`.
-- Data labels: Geist Mono, 11px, `--foreground`.
-- Figure caption: Geist Sans, 12px, `--muted`.
-- Key stat callout: Fraunces, 24 to 32px.
+- Axis labels: Satoshi, 10px, uppercase, `--muted`, with tabular numerics where numbers appear.
+- Data labels: Satoshi, 11px, `--foreground`, with tabular numerics where numbers appear.
+- Figure caption: Satoshi, 12px, `--muted`.
+- Key stat callout: Sentient, 24 to 32px.
 
 ### Figure Labeling
 Every figure must include:
-- Figure number: "Fig. 1" (Geist Mono, 10px, uppercase, muted)
+- Figure number: "Fig. 1" (Satoshi, 10px, uppercase, muted, tabular numerics)
 - Caption: one sentence explaining what the figure shows
 
 Captions can live under the figure or inside the figure if the layout demands it.

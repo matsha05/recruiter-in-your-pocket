@@ -4,13 +4,13 @@ This file is the canonical copy and screenshot brief for the Chrome Web Store li
 
 ## Short description
 
-Capture LinkedIn and Indeed roles, keep saved jobs in sync, and open recruiter-grade match context in RIYP.
+Save supported LinkedIn and Indeed roles, keep saved jobs close, and open the full report in RIYP when you need it.
 
 ## Long description
 
 Recruiter in Your Pocket helps you save supported job postings while you're browsing and carry that context back into the studio.
 
-Use the popup to capture a role, check fit, and jump into a deeper recruiter-grade review when you're ready.
+Use the popup to save a role, check the basics, and jump into the full report when you're ready.
 
 Sign-in is only required if you want synced saved jobs across devices. Local capture and browsing support stay explicit and purpose-bound.
 
@@ -25,7 +25,7 @@ The extension reads supported LinkedIn and Indeed job pages only when needed for
 2. Popup sign-in state
    Show what sign-in unlocks, why it matters, and that capture remains explicit.
 3. Studio handoff
-   Show the saved job flowing into the studio for deeper recruiter-grade review.
+   Show the saved job flowing into the studio for the full report and follow-up work.
 4. Install disclosure
    Show the website install surface with supported sites, purpose-bound access, and policy links.
 5. Supported job page capture

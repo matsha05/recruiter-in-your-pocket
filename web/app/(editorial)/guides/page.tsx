@@ -71,7 +71,7 @@ export default function GuidesPage() {
                                 Scripts and strategies you can use this week
                             </h1>
                             <p className="editorial-copy-lg mt-5 max-w-[41rem] text-slate-500">
-                                Pick a guide, use the scripts, then run another review and see the difference.
+                                Pick a guide, use the scripts, then get another report and see the difference.
                             </p>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ export default function GuidesPage() {
                                 href="/workspace"
                                 className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors"
                             >
-                                Start free review
+                                Get free report
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
@@ -209,7 +209,7 @@ export default function GuidesPage() {
                                 Written from the recruiter&apos;s side of the table
                             </h2>
                             <p className="mt-4 max-w-[42rem] text-sm leading-6 text-slate-400">
-                                Most career advice is recycled filler. These guides are grounded in how hiring actually works — the psychology, the incentives, and the language that moves recruiters to act.
+                                Most career advice is recycled filler. These guides are grounded in how hiring actually works: the psychology, the incentives, and the language that moves recruiters to act.
                             </p>
                         </div>
 

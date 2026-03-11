@@ -271,7 +271,7 @@ Expected: UI shows error at 60s, credit not consumed, retry button visible
 | Task | Acceptance Criteria |
 |:-----|:--------------------|
 | Email service setup | SendGrid/Resend connected, test email sends |
-| D1 email | Sent 24h post-review, helpful not spammy |
+| D1 email | Sent 24h post-report, helpful not spammy |
 | D3 email | Sent 3 days later, action-oriented |
 | D7 email | Sent 7 days later, warm return |
 | Warm return in-app | Returning users see welcome message with last score |

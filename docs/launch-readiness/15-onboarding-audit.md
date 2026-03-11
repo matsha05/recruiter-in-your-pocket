@@ -60,7 +60,7 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 
 **Recommended:** Add "How It Works" micro-section:
 1. "Upload your resume (30 seconds)"
-2. "Get recruiter-grade analysis (instant)"
+2. "Get your report in minutes"
 3. "See exactly what to fix"
 
 ---
@@ -73,8 +73,8 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 
 **Recommended:** First-visit UI:
 - "Welcome! Paste your resume to get started."
-- Link to sample: "See what a review looks like →"
-- Clear steps: "1. Paste → 2. Get Reviewed → 3. Improve"
+- Link to sample: "See what a report looks like →"
+- Clear steps: "1. Paste → 2. Get Your Report → 3. Improve"
 
 ---
 
@@ -82,11 +82,11 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 **Severity:** Low  
 **Evidence:** User doesn't know what to expect before hitting "Run"
 
-**Current:** Button says "Get Recruiter Review"
+**Current:** Button says "Get report"
 
 **Recommended:** Add time expectation:
-- "Your analysis will take about 15 seconds"
-- Or: Icon indicating "Fast analysis"
+- "Your report will take about 15 seconds"
+- Or: Icon indicating "Fast report"
 
 ---
 
@@ -94,7 +94,7 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 **Severity:** Medium  
 **Evidence:** Score just appears; no "aha moment" amplification
 
-**Current:** Score dial animates in, but no special treatment for first review
+**Current:** Score dial animates in, but no special treatment for first report
 
 **Recommended:** First-view enhancement:
 - Subtle confetti or glow on first score reveal
@@ -105,7 +105,7 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 
 ### Gap 5: No Value Summary Before Paywall
 **Severity:** Medium  
-**Evidence:** Paywall appears after free review, but value recap is minimal
+**Evidence:** Paywall appears after the free report, but value recap is minimal
 
 **Current:** `PaywallModal.tsx` shows pricing
 
@@ -140,7 +140,7 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 | 0s | Lands on page | Sees hero, reads "See what recruiters see" |
 | 5s | Scrolls, scans | Sees sample report preview |
 | 15s | Decides to try | Drops resume file or pastes |
-| 20s | Redirected to workspace | Sees analysis starting |
+| 20s | Redirected to workspace | Sees report starting |
 | 30s | Analysis loading | Progress messages appear |
 | 45s | Report appears | Score dial animates, content loads |
 | 60s | Scrolls report | Sees Top Fixes, reads first one |
@@ -193,7 +193,7 @@ Landing → Hero (with dropzone) → Sample Report → Research → Testimonials
 5. **Warm return detection** for returning users
 
 ### P3 (Post-Launch)
-6. **Onboarding email sequence** after first review
+6. **Onboarding email sequence** after first report
 7. **Interactive sample resume** they can explore before uploading
 
 ---

@@ -8,7 +8,7 @@
 
 ## 1. Key User Flows
 
-### 1.1 Primary Flow: Resume Review
+### 1.1 Primary Flow: Resume Report
 
 ```
 Entry → Upload/Paste → Analysis → Report → Upgrade (if needed) → Post-Upgrade
@@ -19,11 +19,11 @@ Entry → Upload/Paste → Analysis → Report → Upgrade (if needed) → Post-
 | **Entry** | Landing page with pricing, testimonials, sample report | `app/page.tsx`, `components/landing/*` |
 | **Input** | Resume text paste or PDF upload | `components/upload/ResumeDropzone.tsx`, `components/workspace/InputPanel.tsx` |
 | **Analysis** | Streaming LLM call with progress states | `api/resume-feedback-stream/route.ts` (439 lines) |
-| **Report** | Structured analysis with scores, rewrites, gaps | `components/workspace/report/*` (9 components) |
+| **Report** | Structured report with scores, rewrites, gaps | `components/workspace/report/*` (9 components) |
 | **Paywall** | Modal with credit purchase flow | `components/workspace/PaywallModal.tsx` |
 | **Post-Upgrade** | Unlock banner, version comparison | `components/workspace/UnlockBanner.tsx`, `VersionComparisonView.tsx` |
 
-### 1.2 Secondary Flow: LinkedIn Review
+### 1.2 Secondary Flow: LinkedIn Report
 
 ```
 Entry → LinkedIn URL → Profile Fetch (Bright Data) → Analysis → Report
@@ -159,7 +159,7 @@ export async function loadPromptForMode(mode: Mode): Promise<string> { ... }
 
 | Event Category | Likely Events | Evidence |
 |:---------------|:--------------|:---------|
-| **Activation** | Report generated, first analysis | API route completion |
+| **Activation** | Report generated, first report | API route completion |
 | **Conversion** | Checkout started, payment completed | Stripe webhook |
 | **Engagement** | PDF export, version comparison | Component usage |
 | **Retention** | Return visit, variant analysis | Analytics API aggregation |

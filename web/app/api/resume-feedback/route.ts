@@ -152,7 +152,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
-          message: "You've used your free full review. Upgrade to keep going.",
+          message: "You've used your free full report. Upgrade to keep going.",
           free_uses_remaining: 0,
           free_uses_left: 0,
           access_tier: "preview"

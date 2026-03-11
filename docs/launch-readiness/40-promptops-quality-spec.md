@@ -207,7 +207,7 @@ confidence?: {
 
 | Band | Range | Definition |
 |:-----|:------|:-----------|
-| Very Limited | 0-49 | Not review-ready; major gaps in content or clarity |
+| Very Limited | 0-49 | Not ready yet; major gaps in content or clarity |
 | Thin Signal | 50-59 | Signal present but clarity/structure block understanding |
 | Needs Clarity | 60-69 | Story is there but buried; notable tightening needed |
 | Solid Foundation | 70-77 | Impact present but uneven; needs sharpening |

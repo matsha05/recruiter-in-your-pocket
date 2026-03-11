@@ -104,7 +104,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 space-y-6">
                         <div className="space-y-3">
                             <h3 className="text-headline text-foreground">
-                                &quot;Here is the read.&quot;
+                                &quot;Here is what stands out first.&quot;
                             </h3>
                         </div>
 
@@ -133,7 +133,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                             </Button>
                                         }
                                         side="right"
-                                        title="Why this slows the read"
+                                        title="Why this slows the first impression"
                                     >
                                         <PeekHeader>
                                             <PeekTitle>Recruiter Perspective</PeekTitle>

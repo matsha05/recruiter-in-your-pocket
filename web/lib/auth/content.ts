@@ -6,8 +6,8 @@ export const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string 
     subtext: "Use secure sign-in to reach your reports, history, and saved job context."
   },
   report: {
-    headline: "Save this review securely",
-    subtext: "Sign in to attach this review to the right account and compare future versions."
+    headline: "Save this report",
+    subtext: "Sign in to save this report to the right account and compare later versions."
   },
   settings: {
     headline: "Manage billing and account controls",
@@ -19,7 +19,7 @@ export const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string 
   },
   history: {
     headline: "Open your saved history",
-    subtext: "Sign in to reach saved reviews, compare versions, and keep everything attached to the right owner."
+    subtext: "Sign in to open saved reports, compare versions, and keep everything in one place."
   },
   extension: {
     headline: "Sync saved jobs across devices",
