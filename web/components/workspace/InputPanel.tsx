@@ -71,19 +71,21 @@ export default function InputPanel({
     const hasContent = fileName || resumeText.length > 0;
 
     return (
-        <div data-visual-anchor="workspace-resume-empty" className="flex justify-center p-6 md:p-12 min-h-full relative">
-            {/* Subtle gradient background like landing hero */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand/5 via-transparent to-transparent pointer-events-none" />
-            <div className="w-full max-w-xl space-y-6 relative z-10">
+        <div data-visual-anchor="workspace-resume-empty" className="flex justify-center px-6 py-8 md:px-12 md:py-12 min-h-full">
+            <div className="w-full max-w-[56rem] space-y-8">
 
-                {/* Hero Header */}
-                <div className="text-center space-y-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                    <h1 className="font-display text-4xl md:text-5xl text-foreground tracking-tight">
-                        This is what they see.
-                    </h1>
-                    <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
-                        <SixSecondIcon className="w-5 h-5 text-brand" />
-                        <p className="text-lg font-medium">Start with a free report. Add a job only when you want fit context.</p>
+                <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                    <p className="editorial-kicker text-slate-400">Resume studio</p>
+                    <div className="space-y-3">
+                        <h1 className="font-display text-4xl text-foreground tracking-tight md:text-5xl">
+                            Start with the resume.
+                        </h1>
+                        <div className="flex items-start gap-3 max-w-[42rem] text-muted-foreground pt-1">
+                            <SixSecondIcon className="w-5 h-5 text-brand mt-1 shrink-0" />
+                            <p className="text-lg leading-8">
+                                Run the first report first. Add a job only when you want fit context.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -114,7 +116,7 @@ export default function InputPanel({
                 )}
 
                 {/* Main Card */}
-                <div className="bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden transition-all hover:shadow-sm">
+                <div className="bg-white dark:bg-card border border-border/45 rounded-2xl overflow-hidden shadow-[0_20px_48px_-40px_rgba(15,23,42,0.18)]">
 
                     {/* Section 1: The Input (Hero) */}
                     <div className="p-6 md:p-8 space-y-6">

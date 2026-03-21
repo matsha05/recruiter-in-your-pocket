@@ -482,9 +482,9 @@ export default function ResearchClient() {
                                 </div>
                             </nav>
                             <div className="mt-8 border-l border-slate-200 pl-4">
-                                <div className="landing-label">How this becomes a report</div>
+                                <div className="landing-label">Why this shows up in your report</div>
                                 <p className="mt-3 text-sm leading-6 text-slate-500">
-                                    This research shapes the report. The report applies it to your own resume.
+                                    Your report uses these same hiring patterns to show what stands out, what gets missed, and what to fix first.
                                 </p>
                                 <Link href="/research/how-we-score" className="mt-4 inline-flex items-center gap-2 text-sm text-slate-700 transition-colors hover:text-slate-950">
                                     See methodology
