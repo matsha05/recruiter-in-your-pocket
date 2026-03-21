@@ -503,7 +503,7 @@ export default function CompCalculatorPage() {
             <div className="border-b border-border/20 bg-background">
                 <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-2 text-sm">
-                        <Link href="/guides" className="text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
+                        <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
                         <ChevronRight className="w-3 h-3 text-muted-foreground/50" />
                         <span className="text-foreground font-medium">Offer Calculator</span>
                     </div>
@@ -576,8 +576,8 @@ export default function CompCalculatorPage() {
                 </div>
 
                 <div className="mt-12 flex flex-wrap gap-4">
-                    <Link href="/guides/tech-offer-negotiation"><Button variant="outline">Tech Negotiation Guide →</Button></Link>
-                    <Link href="/guides/offer-negotiation"><Button variant="outline">All-Industries Guide →</Button></Link>
+                    <Link href="/resources/tech-offer-negotiation"><Button variant="outline">Tech Negotiation Guide →</Button></Link>
+                    <Link href="/resources/offer-negotiation"><Button variant="outline">All-Industries Guide →</Button></Link>
                 </div>
             </main>
         </>

@@ -31,7 +31,7 @@ export default function OfferNegotiationGuidePage() {
             {/* Breadcrumb */}
             <div className="border-b border-border/20 bg-muted/30">
                 <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-2 text-sm">
-                    <Link href="/guides" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
                         Resources
                     </Link>
                     <ChevronRight className="w-3 h-3 text-muted-foreground/50" />
@@ -64,7 +64,7 @@ export default function OfferNegotiationGuidePage() {
 
                         {/* Link to tech-specific */}
                         <div className="flex items-center gap-4 pt-2">
-                            <Link href="/guides/tech-offer-negotiation" className="text-sm text-brand hover:underline underline-offset-4">
+                            <Link href="/resources/tech-offer-negotiation" className="text-sm text-brand hover:underline underline-offset-4">
                                 Need the tech equity version? →
                             </Link>
                         </div>
@@ -430,7 +430,7 @@ export default function OfferNegotiationGuidePage() {
                                 <ArrowRight className="w-4 h-4" />
                             </Button>
                         </Link>
-                        <Link href="/guides/tech-offer-negotiation">
+                        <Link href="/resources/tech-offer-negotiation">
                             <Button variant="outline" size="lg" className="gap-2 w-full sm:w-auto">
                                 Tech Equity Guide
                                 <ArrowRight className="w-4 h-4" />

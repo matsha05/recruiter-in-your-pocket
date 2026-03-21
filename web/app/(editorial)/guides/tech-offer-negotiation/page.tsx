@@ -34,7 +34,7 @@ export default function TechOfferNegotiationGuidePage() {
             {/* Breadcrumb */}
             <div className="border-b border-border/20 bg-muted/30">
                 <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-2 text-sm">
-                    <Link href="/guides" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
                         Resources
                     </Link>
                     <ChevronRight className="w-3 h-3 text-muted-foreground/50" />
@@ -525,7 +525,7 @@ export default function TechOfferNegotiationGuidePage() {
                                 <ArrowRight className="w-4 h-4" />
                             </Button>
                         </Link>
-                        <Link href="/guides/offer-negotiation">
+                        <Link href="/resources/offer-negotiation">
                             <Button variant="outline" size="lg" className="gap-2 w-full sm:w-auto">
                                 <Users className="w-4 h-4" />
                                 All Industries Guide

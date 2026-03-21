@@ -7,7 +7,7 @@ const routes = [
   "/reports",
   "/jobs",
   "/research",
-  "/guides",
+  "/resources",
   "/trust",
   "/security",
   "/privacy",

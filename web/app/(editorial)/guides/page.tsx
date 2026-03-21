@@ -11,7 +11,7 @@ const playbooks = [
         title: "Offer Negotiation Playbook",
         subtitle: "All industries",
         readTime: "12 min",
-        href: "/guides/offer-negotiation",
+        href: "/resources/offer-negotiation",
         points: [
             "A step-by-step negotiation sequence that works everywhere",
             "Word-for-word scripts you can actually use",
@@ -22,7 +22,7 @@ const playbooks = [
         title: "Tech Compensation Playbook",
         subtitle: "Engineering and product roles",
         readTime: "15 min",
-        href: "/guides/tech-offer-negotiation",
+        href: "/resources/tech-offer-negotiation",
         points: [
             "How equity and levels really work",
             "How to frame your total comp, not just salary",
@@ -57,7 +57,7 @@ export default function GuidesPage() {
                         <div className="max-w-[46rem]">
                             <div className="editorial-kicker inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-400">
                                 <Sparkles className="h-3.5 w-3.5 text-brand" />
-                                For when the stakes are higher
+                                Practical career advice
                             </div>
                             <h1
                                 className="mt-5 font-display text-slate-900"
@@ -68,10 +68,10 @@ export default function GuidesPage() {
                                     fontWeight: 400,
                                 }}
                             >
-                                Scripts and strategies you can use this week
+                                Scripts, strategy, and tools for big career conversations
                             </h1>
                             <p className="editorial-copy-lg mt-5 max-w-[41rem] text-slate-500">
-                                Pick a guide, use the scripts, then get another report and see the difference.
+                                Negotiation help, compensation context, and straight answers you can use right away.
                             </p>
                         </div>
                     </div>
@@ -176,7 +176,7 @@ export default function GuidesPage() {
                                     </p>
                                 </div>
                                 <Link
-                                    href="/guides/tools/comp-calculator"
+                                    href="/resources/tools/comp-calculator"
                                     className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
                                 >
                                     Open calculator
@@ -209,7 +209,7 @@ export default function GuidesPage() {
                                 Written from the recruiter&apos;s side of the table
                             </h2>
                             <p className="mt-4 max-w-[42rem] text-sm leading-6 text-slate-400">
-                                Most career advice is recycled filler. These guides are grounded in how hiring actually works: the psychology, the incentives, and the language that moves recruiters to act.
+                                Most career advice is either vague or weirdly theatrical. These guides stay grounded in how hiring actually works, what companies respond to, and what is actually worth saying.
                             </p>
                         </div>
 
@@ -220,7 +220,7 @@ export default function GuidesPage() {
                             <div className="space-y-4">
                                 <div>
                                     <p className="text-sm font-medium text-white">Real scripts, not theory.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Every conversation in these guides is something you can actually say.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Every conversation in these guides is something you could actually say out loud.</p>
                                 </div>
                                 <div className="border-t border-white/10 pt-4">
                                     <p className="text-sm font-medium text-white">Backed by research.</p>
@@ -228,7 +228,7 @@ export default function GuidesPage() {
                                 </div>
                                 <div className="border-t border-white/10 pt-4">
                                     <p className="text-sm font-medium text-white">Built for your next conversation.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Not a course. Not a webinar. Pick a guide and use it this week.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Not a course. Not a webinar. Pick what you need and use it this week.</p>
                                 </div>
                             </div>
                         </div>

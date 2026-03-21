@@ -51,7 +51,7 @@ export const STUDIO_NAV: NavItem[] = [
     },
     {
         label: "Resources",
-        href: "/guides",
+        href: "/resources",
         icon: BookOpen,
         description: "Negotiation guides & tools",
     },
@@ -85,9 +85,9 @@ export const MARKETING_NAV = {
         { label: "Research Hub", href: "/research" },
     ],
     resources: [
-        { label: "Negotiation Guide", href: "/guides/tech-offer-negotiation" },
-        { label: "Offer Calculator", href: "/guides/tools/comp-calculator" },
-        { label: "All Resources", href: "/guides" },
+        { label: "Negotiation Guide", href: "/resources/tech-offer-negotiation" },
+        { label: "Offer Calculator", href: "/resources/tools/comp-calculator" },
+        { label: "All Resources", href: "/resources" },
     ],
     company: [
         { label: "FAQ", href: "/faq" },
@@ -107,7 +107,7 @@ export const FOOTER_NAV = {
         { label: "Pricing", href: "/pricing" },
         { label: "Extension", href: "/extension" },
         { label: "Research", href: "/research" },
-        { label: "Resources", href: "/guides" },
+        { label: "Resources", href: "/resources" },
     ],
     legalLinks: [
         { label: "FAQ", href: "/faq" },

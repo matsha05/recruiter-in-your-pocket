@@ -4,6 +4,15 @@ import { fileURLToPath } from "url";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: "/guides/:path*",
+        destination: "/resources/:path*",
+        permanent: true,
+      },
+    ];
+  },
   env: {
     BROWSERSLIST_IGNORE_OLD_DATA: "true",
     BASELINE_BROWSER_MAPPING_IGNORE_OLD_DATA: "true",

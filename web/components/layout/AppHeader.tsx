@@ -15,7 +15,7 @@ const APP_NAV = [
     { label: "Jobs", href: "/jobs" },
     { label: "Extension", href: "/extension" },
     { label: "Research", href: "/research" },
-    { label: "Resources", href: "/guides" },
+    { label: "Resources", href: "/resources" },
 ];
 
 export function AppHeader() {

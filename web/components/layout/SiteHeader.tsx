@@ -39,7 +39,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                         <SiteNavLink href="/pricing" active={isMarketingActive("/pricing")}>Pricing</SiteNavLink>
                         <SiteNavLink href="/extension" active={isMarketingActive("/extension")}>Extension</SiteNavLink>
                         {showResearchLink && <SiteNavLink href="/research" active={isMarketingActive("/research")}>Research</SiteNavLink>}
-                        {showResourcesLink && <SiteNavLink href="/guides" active={isMarketingActive("/guides")}>Resources</SiteNavLink>}
+                        {showResourcesLink && <SiteNavLink href="/resources" active={isMarketingActive("/resources")}>Resources</SiteNavLink>}
                     </div>
 
                     {user ? (
