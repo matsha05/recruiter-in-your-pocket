@@ -102,8 +102,6 @@ export function trackEvent(name: string, props: Record<string, any> = {}) {
  * This links their anonymous activity to their user ID
  */
 export function identifyUser(userId: string, traits?: {
-  email?: string;
-  name?: string;
   created_at?: string;
   plan?: string;
   credits_remaining?: number;
@@ -125,15 +123,19 @@ export function identifyUser(userId: string, traits?: {
     mixpanelInstance.identify(userId);
     currentUserId = userId;
 
-    // Set user profile properties (for segmentation in Mixpanel)
+    // Keep analytics pseudonymous: account email/name stay in Supabase, not Mixpanel.
     if (traits) {
-      mixpanelInstance.people.set({
-        $email: traits.email,
-        $name: traits.name,
+      const profile = {
         $created: traits.created_at,
         plan: traits.plan,
         credits_remaining: traits.credits_remaining,
-      });
+      };
+      const definedProfile = Object.fromEntries(
+        Object.entries(profile).filter(([, value]) => value !== undefined)
+      );
+      if (Object.keys(definedProfile).length > 0) {
+        mixpanelInstance.people.set(definedProfile);
+      }
     }
 
     debugLog("[Analytics] User identified:", userId);

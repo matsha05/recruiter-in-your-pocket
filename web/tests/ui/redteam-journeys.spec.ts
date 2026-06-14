@@ -25,7 +25,7 @@ async function runAnonymousReview(page: Page) {
   await page.getByRole("button", { name: /Check fit for a specific job/i }).click();
   await page.getByPlaceholder(/Paste the full job posting here/i).fill(JOB_DESCRIPTION);
   await page.getByRole("button", { name: /See What They See/i }).click();
-  await expect(page.getByText("Here’s how your resume comes across first.")).toBeVisible({ timeout: 35_000 });
+  await expect(page.getByText("Here's how your resume comes across first.")).toBeVisible({ timeout: 35_000 });
   await expect(page.locator("#section-evidence-ledger")).toBeVisible({ timeout: 35_000 });
 }
 
@@ -56,7 +56,32 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByRole("heading", { name: /Support and trust/i })).toBeVisible();
   });
 
-  test("3. example report path feels complete and returns users to a fresh run", async ({ page }) => {
+  test("3. launch-only and demo surfaces stay off the public site", async ({ request }) => {
+    await expect((await request.get("/sentry-example-page")).status()).toBe(404);
+    await expect((await request.get("/api/sentry-example-api")).status()).toBe(404);
+    await expect((await request.get("/playground/animated-icons")).status()).toBe(404);
+
+    const hostedReady = await request.get("/api/ready", {
+      headers: { host: "www.recruiterinyourpocket.com" },
+    });
+    expect(hostedReady.status()).toBe(404);
+
+    const robots = await request.get("/robots.txt");
+    expect(robots.ok()).toBeTruthy();
+    const robotsText = await robots.text();
+    expect(robotsText).toContain("Disallow: /api/");
+    expect(robotsText).toContain("Disallow: /reports");
+    expect(robotsText).toContain("Disallow: /jobs");
+
+    const sitemap = await request.get("/sitemap.xml");
+    expect(sitemap.ok()).toBeTruthy();
+    const sitemapText = await sitemap.text();
+    expect(sitemapText).toContain("https://recruiterinyourpocket.com/pricing");
+    expect(sitemapText).not.toContain("https://recruiterinyourpocket.com/reports");
+    expect(sitemapText).not.toContain("https://recruiterinyourpocket.com/jobs");
+  });
+
+  test("4. example report path feels complete and returns users to a fresh run", async ({ page }) => {
     await page.goto("/workspace");
     await page.getByRole("button", { name: /See example report/i }).click();
     await expect(page.getByText("Example", { exact: true }).first()).toBeVisible({ timeout: 15_000 });
@@ -67,36 +92,37 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByRole("button", { name: /See What They See/i })).toBeVisible();
   });
 
-  test("4. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
+  test("5. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
     await runAnonymousReview(page);
     await expect(page.locator("#section-job-alignment")).toBeVisible();
-    await expect(page.getByText("Here’s how your resume comes across first.")).toBeVisible();
+    await expect(page.getByText("Here's how your resume comes across first.")).toBeVisible();
     await expect(page.getByRole("button", { name: /Copy Share Link/i })).toHaveCount(0);
   });
 
-  test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {
+  test("6. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {
     await runAnonymousReview(page);
-    await expect(page.getByRole("dialog").getByText("Save this report")).toBeVisible({ timeout: 15_000 });
+    const saveDialog = page.getByRole("dialog", { name: /Save this report/i });
+    await expect(saveDialog).toBeVisible({ timeout: 15_000 });
     await expect(page.getByText(/Nothing is created in the background/i)).toBeVisible();
-    await page.getByRole("button", { name: /Sign in to save this report/i }).click();
+    await saveDialog.getByRole("button", { name: /Sign in to save this report/i }).click();
     await expect(page.locator("#auth-email")).toBeVisible();
     await expect(page.getByRole("button", { name: /Email secure sign-in code/i })).toBeVisible();
   });
 
-  test("6. extension deep links land on the real auth flow with the intended next path", async ({ page }) => {
+  test("7. extension deep links land on the real auth flow with the intended next path", async ({ page }) => {
     await page.goto("/auth?from=extension&next=/jobs");
     await expect(page).toHaveURL(/\/auth\?from=extension&next=\/jobs/);
     await expect(page.locator("#auth-email")).toBeVisible();
     await expect(page.getByRole("button", { name: /Email secure sign-in code/i })).toBeVisible();
   });
 
-  test("7. report history sends anonymous users into an auth-protected flow", async ({ page }) => {
+  test("8. report history sends anonymous users into an auth-protected flow", async ({ page }) => {
     await page.goto("/reports");
     await expect(page).toHaveURL(/\/auth\?from=reports&next=\/reports/);
     await expect(page.locator("#auth-email")).toBeVisible();
   });
 
-  test("8. jobs tracker explains the signed-out state clearly", async ({ page }) => {
+  test("9. jobs tracker explains the signed-out state clearly", async ({ page }) => {
     await page.goto("/jobs");
     await expect(page.getByRole("heading", { name: "Jobs", exact: true }).first()).toBeVisible();
     await expect(page.getByRole("heading", { name: /Sign in to see saved jobs/i })).toBeVisible();
@@ -104,7 +130,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByRole("link", { name: "Open Workspace" }).first()).toBeVisible();
   });
 
-  test("9. settings keeps sensitive controls behind a sign-in gate", async ({ page }) => {
+  test("10. settings keeps sensitive controls behind a sign-in gate", async ({ page }) => {
     await page.goto("/settings/account");
     await expect(page.getByRole("heading", { name: "Settings", exact: true }).first()).toBeVisible();
     await expect(page.getByRole("heading", { name: /Sign in to open settings/i })).toBeVisible();
@@ -112,7 +138,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByRole("link", { name: /Back to workspace/i })).toBeVisible();
   });
 
-  test("10. anonymous attack paths are blocked cleanly by save and checkout APIs", async ({ request }) => {
+  test("11. anonymous attack paths are blocked cleanly by save and checkout APIs", async ({ request }) => {
     const saveResponse = await request.post("/api/reports", {
       data: {
         report: {
@@ -137,5 +163,32 @@ test.describe("launch red-team journeys", () => {
     const checkoutJson = await checkoutResponse.json();
     expect(checkoutJson.ok).toBe(false);
     expect(checkoutJson.message).toMatch(/temporarily unavailable/i);
+  });
+
+  test("12. exhausted free report opens paid access before another run", async ({ page }) => {
+    await page.route("**/api/free-status", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: true,
+          free_uses_left: 0,
+          free_uses_remaining: 0,
+          source: "test",
+        }),
+      });
+    });
+
+    await openPasteMode(page);
+    await expect(page.getByText("Upgrade to continue")).toBeVisible();
+    await page.getByPlaceholder("Paste your resume content here...").fill(RESUME_TEXT);
+    await page.getByRole("button", { name: /Check fit for a specific job/i }).click();
+    await page.getByPlaceholder(/Paste the full job posting here/i).fill(JOB_DESCRIPTION);
+    await page.getByRole("button", { name: /See What They See/i }).click();
+
+    const paywall = page.getByRole("dialog", { name: /Unlock the full report/i });
+    await expect(paywall).toBeVisible();
+    await expect(paywall.getByText("You've used your free report.")).toBeVisible();
+    await expect(paywall.getByText(/More reports and saved history/i)).toBeVisible();
   });
 });

@@ -551,6 +551,8 @@ export default function HistorySidebar({
                         </div>
                         <DialogDescription>
                             {reportToDelete?.name || `Report from ${formatDate(reportToDelete?.createdAt || '')}`} will be permanently deleted. This action cannot be undone.
+                            {" "}
+                            If this report came from a saved job, the saved job and job description stay in Jobs until you delete them there.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="flex gap-3 mt-4">

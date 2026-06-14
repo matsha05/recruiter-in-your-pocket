@@ -104,6 +104,12 @@ export async function POST(request: Request) {
         return res;
     }
 
+    if (!isLaunchFlagEnabled("billingUnlock")) {
+        const res = NextResponse.json({ ok: false, message: "Purchases are temporarily unavailable." }, { status: 503 });
+        res.headers.set("x-request-id", request_id);
+        return res;
+    }
+
     if (!stripe) {
         logError({
             msg: "http.request.completed",
@@ -117,12 +123,6 @@ export async function POST(request: Request) {
             err: { name: "ConfigError", message: "STRIPE_SECRET_KEY not set", code: "STRIPE_SECRET_KEY_MISSING" }
         });
         const res = NextResponse.json({ ok: false, message: "Payments are not configured yet." }, { status: 500 });
-        res.headers.set("x-request-id", request_id);
-        return res;
-    }
-
-    if (!isLaunchFlagEnabled("billingUnlock")) {
-        const res = NextResponse.json({ ok: false, message: "Purchases are temporarily unavailable." }, { status: 503 });
         res.headers.set("x-request-id", request_id);
         return res;
     }
@@ -252,7 +252,7 @@ export async function POST(request: Request) {
                 custom_text: {
                     submit: {
                         message: requestedTier === "lifetime"
-                            ? `You're getting Lifetime Access. Pay once, use forever.`
+                            ? `You're getting Lifetime Access. Pay once for long-term access.`
                             : isSubscription
                                 ? `You're subscribing to ${tierLabel}. Cancel anytime.`
                                 : `You're getting ${tierLabel}. We'll activate it right after checkout.`

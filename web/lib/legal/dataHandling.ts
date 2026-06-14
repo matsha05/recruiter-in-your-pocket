@@ -18,15 +18,15 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Report output + resume preview",
-    purpose: "So you can open past reports, compare versions, and export.",
-    retention: "Saved when you keep a report or run one while signed in. Deleted when you delete the report or your account.",
+    purpose: "So you can open past reports, compare versions, inspect evidence excerpts, and export.",
+    retention: "Saved when you keep a report or run one while signed in. Includes report output, evidence excerpts, a short resume preview, and any job description you add. Deleted when you delete the report or your account.",
     userControl: "Delete individual reports in History, or delete your account in Settings.",
     processor: "Supabase"
   },
   {
     dataType: "Saved resume profile (default resume)",
     purpose: "Job matching and extension workflows.",
-    retention: "Stored until you replace it or delete your account.",
+    retention: "Stored until you replace it, remove it, or delete your account. Includes raw resume text for matching plus derived skills, seniority signals, embeddings, hash, and preview.",
     userControl: "Replace or remove it in Settings > Matching, or delete your account.",
     processor: "Supabase, OpenAI (embeddings)"
   },
@@ -36,6 +36,13 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
     retention: "Saved in your report history when you're signed in.",
     userControl: "Delete individual reports in History, or delete your account in Settings.",
     processor: "OpenAI, Supabase"
+  },
+  {
+    dataType: "Captured jobs and job descriptions",
+    purpose: "Save roles from the extension, run role-fit checks, and compare your resume against specific postings.",
+    retention: "Stored when you save a job or sync extension captures. Includes job title, company, URL, description text, match signals, and latest report links until you delete the saved job or your account.",
+    userControl: "Delete saved jobs from Jobs, delete linked reports from Reports, or delete your account in Settings.",
+    processor: "Supabase, Chrome local storage, OpenAI when used in a report"
   },
   {
     dataType: "Account identity (email, name)",
@@ -68,9 +75,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 ];
 
 export const TRUST_PROMISES = [
-  "Your file is encrypted when you upload it.",
+  "Your upload is encrypted in transit.",
   "Anonymous reports are not saved to an account automatically.",
-  "Signed-in reports save your history and a short resume preview. You can delete both from Reports or Settings.",
+  "Signed-in reports save report output, evidence excerpts, a short resume preview, and any job description you add. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
   "Payment info is handled by Stripe. We never see your card.",
   "We don't sell your data.",
@@ -81,6 +88,6 @@ export const TRUST_PROMISES = [
   "You see exactly what you're unlocking before you pay.",
   "If payment goes through but access looks locked, restore it from Billing.",
   "All receipts and invoices are available in Billing.",
-  "You can export your data from Settings anytime.",
+  "You can export your data from Settings when export controls are enabled.",
   "Security reports can be sent using the disclosure instructions on our Security and Status pages."
 ];

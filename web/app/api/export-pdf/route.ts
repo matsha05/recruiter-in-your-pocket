@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="resume-report.pdf"',
+        "Content-Disposition": 'attachment; filename="resume-review.pdf"',
         "x-request-id": request_id
       }
     });
@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
       outcome: "internal_error",
       err: { name: error?.name || "Error", message: error?.message || message, stack: error?.stack }
     });
-    const res = NextResponse.json({ ok: false, message }, { status: 500 });
+    const res = NextResponse.json({ ok: false, errorCode: error?.code || "PDF_GENERATION_FAILED", message }, { status: 500 });
     res.headers.set("x-request-id", request_id);
     return res;
   }

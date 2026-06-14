@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getLaunchReadinessSnapshot } from "@/lib/launch/readiness";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
-import { shouldProtectInternalLaunchSurfaceForRequest } from "@/lib/launch/access";
+import { canAccessInternalLaunchSurface, shouldProtectInternalLaunchSurfaceForRequest } from "@/lib/launch/access";
 import type { NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -12,10 +12,10 @@ export async function GET(request: NextRequest) {
     if (shouldProtectInternalLaunchSurfaceForRequest(request)) {
       const supabase = await createSupabaseServerClient();
       const { data } = await supabase.auth.getUser();
-      if (!data.user) {
+      if (!canAccessInternalLaunchSurface(data.user?.email)) {
         return NextResponse.json(
           { ok: false, goNoGo: false, message: "Internal launch readiness is restricted." },
-          { status: 401 }
+          { status: 404 }
         );
       }
     }

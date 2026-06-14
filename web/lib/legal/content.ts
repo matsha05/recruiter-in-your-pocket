@@ -89,7 +89,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: Trash2,
             title: "You control deletion",
-            body: "Deleting your account removes your reports and usage history from our database.",
+            body: "Saved reports can be deleted from report history. Deleting your account removes reports, saved jobs, default resume profile, and usage history from our database.",
           },
         ],
       },
@@ -163,7 +163,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "You can delete reports, export your data, and delete your account from Settings. We don't sell your data, and anonymous history is not auto-attached to an account.",
+              value: "You can delete reports from report history and delete your account from Settings. We don't sell your data, and anonymous history is not auto-attached to an account.",
             },
           ],
         ],
@@ -282,7 +282,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "What file formats are supported?",
-                a: "PDF and Word documents (.doc, .docx). If parsing doesn't work, you can paste your text directly in the Workspace.",
+                a: "PDF and Word documents (.docx). If parsing doesn't work, you can paste your text directly in the Workspace.",
               },
             ],
           },
@@ -312,7 +312,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "What is monthly vs lifetime?",
-                a: "Monthly ($9/mo) is great while you're actively job hunting — cancel anytime. Lifetime ($79 one-time) is there if you want access forever with no recurring charges.",
+                a: "Monthly ($9/mo) is great while you're actively job hunting - cancel anytime. Lifetime ($79 one-time) is there if you want long-term access with no recurring charges.",
               },
               {
                 q: "How do I restore access and get receipts?",
