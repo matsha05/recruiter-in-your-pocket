@@ -7,6 +7,13 @@ export const metadata: Metadata = {
     "Your first recruiter report is free. Paid plans add more reports, exports, saved history, and LinkedIn iterations."
 };
 
-export default function PricingPage() {
-  return <PricingPageClient />;
+type PricingPageProps = {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export default async function PricingPage({ searchParams }: PricingPageProps) {
+  const params = await searchParams;
+  const paymentCancelled = params?.payment === "cancelled";
+
+  return <PricingPageClient paymentCancelled={paymentCancelled} />;
 }

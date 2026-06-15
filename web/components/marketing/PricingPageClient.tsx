@@ -12,7 +12,7 @@ const unlockPoints = [
     "Full rewrites and evidence breakdowns in every report",
     "Match your resume to specific job descriptions",
     "Export reports, save history, and manage it yourself",
-    "Bring saved job context back from the extension when you want a role-by-role workflow",
+    "Keep role-by-role context close when you want to compare different opportunities",
 ];
 
 const billingPoints = [
@@ -29,11 +29,15 @@ const billingPoints = [
     {
         icon: Receipt,
         title: "Access starts immediately",
-        body: "As soon as you pay, paid access turns on: reports, exports, history, all of it.",
+        body: "As soon as you pay, paid access turns on for reports, exports, history, and billing controls.",
     },
 ];
 
-export default function PricingPageClient() {
+type PricingPageClientProps = {
+    paymentCancelled?: boolean;
+};
+
+export default function PricingPageClient({ paymentCancelled = false }: PricingPageClientProps) {
     const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
 
     async function handleCheckout(tier: "monthly" | "lifetime") {
@@ -87,6 +91,11 @@ export default function PricingPageClient() {
                             Your first report is on us. The full thing, not a teaser.
                             Pay only if you want more reports, saved history, exports, and a steadier role-by-role workflow.
                         </p>
+                        {paymentCancelled && (
+                            <div className="mx-auto mt-6 max-w-[440px] rounded-lg border border-slate-200 bg-white px-4 py-3 text-left text-sm leading-6 text-slate-600 shadow-sm">
+                                Checkout was cancelled. No charge was made, and you can restart whenever you are ready.
+                            </div>
+                        )}
                     </div>
                 </section>
 
@@ -195,7 +204,7 @@ export default function PricingPageClient() {
                                 href="/extension"
                                 className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-medium text-slate-700 transition-all hover:bg-white"
                             >
-                                See extension flow
+                                Extension status
                             </Link>
                         </div>
                     </div>

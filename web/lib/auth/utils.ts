@@ -1,7 +1,8 @@
 import type { AuthContext } from "@/lib/auth/content";
 
 export function normalizeAuthContext(from: string | null): AuthContext {
-  if (from === "report" || from === "settings" || from === "paywall") return from;
+  if (from === "reports" || from === "history") return "history";
+  if (from === "report" || from === "settings" || from === "paywall" || from === "extension") return from;
   return "default";
 }
 
