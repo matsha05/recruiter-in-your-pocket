@@ -1,7 +1,8 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { FileText, Linkedin } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
+import { EmptyReportIcon } from '@/components/icons';
 
 export type ReviewMode = 'resume' | 'linkedin';
 
@@ -26,7 +27,10 @@ export function ModeSwitcher({ mode, onModeChange, disabled }: ModeSwitcherProps
                 )}
                 aria-pressed={mode === 'resume'}
             >
-                <FileText className="w-4 h-4" />
+                <EmptyReportIcon
+                    className={cn("w-4 h-4", mode === 'resume' ? "text-brand" : "text-muted-foreground")}
+                    size={16}
+                />
                 <span>Resume</span>
             </button>
             <button

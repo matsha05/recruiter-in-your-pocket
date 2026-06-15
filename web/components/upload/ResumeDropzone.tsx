@@ -3,7 +3,8 @@
 import { useState, useCallback, useRef } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, AlertCircle, CloudUpload } from "lucide-react";
+import { AlertCircle } from "lucide-react";
+import { EmptyReportIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -149,7 +150,7 @@ export function ResumeDropzone({
                 <div className="flex items-center justify-between p-3 bg-brand/5 border border-brand/10 rounded animate-in fade-in slide-in-from-top-2">
                     <span className="text-sm font-medium text-brand flex items-center gap-3">
                         <div className="w-8 h-8 rounded border border-brand/20 flex items-center justify-center">
-                            <FileText className="w-4 h-4" />
+                            <EmptyReportIcon className="w-4 h-4" size={16} />
                         </div>
                         {displayFileName}
                     </span>
@@ -194,8 +195,8 @@ export function ResumeDropzone({
                     >
                         <input {...getInputProps()} aria-label="Upload resume file (PDF or DOCX)" />
 
-                        <div className="w-10 h-10 rounded border border-border/60 flex items-center justify-center text-muted-foreground">
-                            <CloudUpload className="w-5 h-5" strokeWidth={1.5} />
+                        <div className="w-10 h-10 rounded border border-brand/15 bg-brand/5 flex items-center justify-center text-brand">
+                            <EmptyReportIcon className="w-5 h-5" size={20} />
                         </div>
 
                         <div className="space-y-1">

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Clock, TrendingUp, FileText, Pencil, AlertTriangle, Check } from "lucide-react";
+import { Trash2, Clock, TrendingUp, Pencil, AlertTriangle, Check } from "lucide-react";
+import { EmptyReportIcon } from "@/components/icons";
 import {
     Sheet,
     SheetContent,
@@ -197,7 +198,7 @@ export default function HistorySidebar({
                     <SheetHeader className="px-6 py-5 border-b border-border/60">
                         <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-md bg-brand/10 flex items-center justify-center">
-                                <FileText className="w-4 h-4 text-brand" />
+                                <EmptyReportIcon className="w-4 h-4 text-brand" size={16} />
                             </div>
                             <SheetTitle className="font-display text-lg font-semibold">
                                 Your Reports
@@ -249,7 +250,7 @@ export default function HistorySidebar({
                             /* Empty state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
                                 <div className="w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mb-6">
-                                    <FileText className="w-8 h-8 text-muted-foreground" />
+                                    <EmptyReportIcon className="w-8 h-8 text-muted-foreground" size={32} />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
                                     No reports yet

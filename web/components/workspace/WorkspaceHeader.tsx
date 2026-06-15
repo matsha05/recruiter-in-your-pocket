@@ -3,8 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "../shared/ThemeToggle";
-import { Plus, ArrowLeft, FileText, ChevronDown, Linkedin } from "lucide-react";
-import { PocketMark, Wordmark } from "@/components/icons";
+import { Plus, ArrowLeft, ChevronDown, Linkedin } from "lucide-react";
+import { EmptyReportIcon, PocketMark, Wordmark } from "@/components/icons";
 import { UserNav } from "../shared/UserNav";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -88,7 +88,7 @@ export default function WorkspaceHeader({
                         onClick={() => setIsExampleOpen(!isExampleOpen)}
                         className="gap-1"
                     >
-                        <FileText className="w-4 h-4" />
+                        <EmptyReportIcon className="w-4 h-4" size={16} />
                         Examples
                         <ChevronDown className={cn(
                             "w-3.5 h-3.5 transition-transform",
@@ -105,7 +105,7 @@ export default function WorkspaceHeader({
                                 }}
                                 className="w-full flex items-center gap-3 px-3 py-2 text-sm hover:bg-muted transition-colors text-left"
                             >
-                                <FileText className="w-4 h-4 text-muted-foreground" />
+                                <EmptyReportIcon className="w-4 h-4 text-muted-foreground" size={16} />
                                 <span>Resume Example</span>
                             </button>
                             <button

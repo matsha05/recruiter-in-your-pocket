@@ -1,10 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { FileText, History, ArrowRight, Chrome } from "lucide-react";
+import { FileText, ArrowRight, Chrome } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { ScoreBadge } from "@/components/shared/ScoreBadge";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
+import { EmptyReportIcon } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
 
@@ -75,7 +76,7 @@ export default async function ReportsPage() {
         {items.length === 0 ? (
           <div className="rounded-2xl border border-border/60 bg-card p-8 text-center shadow-sm">
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand/10">
-              <History className="h-6 w-6 text-brand" />
+              <EmptyReportIcon className="h-7 w-7 text-brand" size={28} />
             </div>
             <h2 className="font-display text-2xl text-foreground">No saved reports yet</h2>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">

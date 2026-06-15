@@ -3,6 +3,7 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Linkedin, FileText, X, CheckCircle2, ExternalLink } from 'lucide-react';
+import { EmptyReportIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { TrustBadges } from '@/components/shared/TrustBadges';
 import { cn } from '@/lib/utils';
@@ -230,7 +231,7 @@ export function LinkedInInputPanel({
                                 onClick={onSampleReport}
                                 className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-brand/80 transition-colors px-3 py-1.5"
                             >
-                                <FileText className="w-4 h-4" />
+                                <EmptyReportIcon className="w-4 h-4" size={16} />
                                 See example report
                             </button>
                         )}

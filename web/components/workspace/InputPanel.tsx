@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FileText, ArrowRight, Info, ChevronDown, AlignLeft, Target, ShieldCheck } from "lucide-react";
-import { SixSecondIcon } from "@/components/icons";
+import { ArrowRight, Info, ChevronDown, AlignLeft, ShieldCheck } from "lucide-react";
+import { EmptyReportIcon, RoleTargetIcon, SixSecondIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { TrustBadges } from "@/components/shared/TrustBadges";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
@@ -81,9 +81,9 @@ export default function InputPanel({
                     <h1 className="font-display text-4xl md:text-5xl text-foreground tracking-tight">
                         This is what they see.
                     </h1>
-                    <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
-                        <SixSecondIcon className="w-5 h-5 text-brand" />
-                        <p className="text-lg font-medium">Start with a free report. Add a job only when you want fit context.</p>
+                    <div className="mx-auto flex max-w-sm flex-col items-center justify-center gap-2 text-muted-foreground pt-2 sm:max-w-none sm:flex-row">
+                        <SixSecondIcon className="w-5 h-5 shrink-0 text-brand" />
+                        <p className="text-base font-medium leading-relaxed md:text-lg">Start with a free report. Add a job only when you want fit context.</p>
                     </div>
                 </div>
 
@@ -91,8 +91,8 @@ export default function InputPanel({
                 {loadedJobContext && (
                     <div className="animate-in fade-in slide-in-from-top-2 bg-brand/5 border border-brand/20 rounded p-4 mb-4">
                         <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded bg-brand/10 flex items-center justify-center shrink-0">
-                                <Target className="w-5 h-5 text-brand" />
+                            <div className="w-10 h-10 rounded bg-brand/10 flex items-center justify-center shrink-0 text-brand">
+                                <RoleTargetIcon className="w-5 h-5" size={20} />
                             </div>
                             <div className="min-w-0 flex-1">
                                 <div className="flex items-center gap-2 flex-wrap">
@@ -164,7 +164,7 @@ export default function InputPanel({
                                                 onClick={onSampleReport}
                                                 className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-brand/80 transition-colors px-3 py-1.5"
                                             >
-                                                <FileText className="w-4 h-4" />
+                                                <EmptyReportIcon className="w-4 h-4" size={16} />
                                                 See example report
                                             </button>
                                         )}
@@ -225,10 +225,10 @@ export default function InputPanel({
                             >
                                 <div className="flex items-start gap-3 text-left">
                                     <div className={cn(
-                                        "w-8 h-8 rounded flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors",
-                                        showJD ? "bg-brand/20 text-brand" : "bg-muted text-muted-foreground"
+                                        "w-8 h-8 rounded flex items-center justify-center flex-shrink-0 mt-0.5 border transition-colors",
+                                        showJD ? "border-brand/20 bg-brand/20 text-brand" : "border-brand/10 bg-brand/5 text-brand"
                                     )}>
-                                        <Target className="w-4 h-4" strokeWidth={1.5} />
+                                        <RoleTargetIcon className="w-4 h-4" size={16} />
                                     </div>
                                     <div>
                                         <span className={cn(

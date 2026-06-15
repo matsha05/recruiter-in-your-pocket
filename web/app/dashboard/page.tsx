@@ -3,8 +3,9 @@
 import { useState, useEffect, useMemo } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { ScoreProgressChart } from "@/components/workspace/ScoreProgressChart";
-import { TrendingUp, BarChart3, Target, AlertTriangle, Star, ArrowLeft } from "lucide-react";
+import { TrendingUp, BarChart3, AlertTriangle, Star, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { EmptyReportIcon, RoleTargetIcon } from "@/components/icons";
 
 interface Analytics {
     totalReviews: number;
@@ -117,7 +118,7 @@ export default function DashboardPage() {
         return (
             <div className="min-h-screen flex items-center justify-center bg-body p-6">
                 <div className="text-center space-y-4">
-                    <BarChart3 className="w-12 h-12 mx-auto text-muted-foreground" />
+                    <EmptyReportIcon className="w-12 h-12 mx-auto text-muted-foreground" />
                     <h1 className="text-2xl font-display text-foreground">No reports yet</h1>
                     <p className="text-muted-foreground max-w-md">
                         Get your first resume report to start tracking your progress.
@@ -192,7 +193,7 @@ export default function DashboardPage() {
                     {/* Average Score */}
                     <div className="bg-card border border-border rounded p-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <Target className="w-5 h-5 text-brand" />
+                            <RoleTargetIcon className="w-5 h-5 text-brand" size={20} />
                             <span className="text-sm text-muted-foreground">Average Score</span>
                         </div>
                         <p className="text-3xl font-display font-bold text-foreground">
