@@ -112,7 +112,11 @@ export function ResumeDropzone({
                             isDragReject && "border-destructive/50 bg-destructive/5 text-destructive"
                         )}
                     >
-                        <input {...getInputProps()} aria-label="Upload resume file (PDF or DOCX)" />
+                        <input
+                            {...getInputProps()}
+                            aria-label="Upload resume file (PDF or DOCX)"
+                            suppressHydrationWarning
+                        />
                         <div className="text-sm font-medium">Drop your resume here</div>
                         <div className="text-xs text-muted-foreground mt-1">No login required</div>
                     </div>
@@ -193,7 +197,11 @@ export function ResumeDropzone({
                             isProcessing && "opacity-50 cursor-not-allowed"
                         )}
                     >
-                        <input {...getInputProps()} aria-label="Upload resume file (PDF or DOCX)" />
+                        <input
+                            {...getInputProps()}
+                            aria-label="Upload resume file (PDF or DOCX)"
+                            suppressHydrationWarning
+                        />
 
                         <div className="w-10 h-10 rounded border border-brand/15 bg-brand/5 flex items-center justify-center text-brand">
                             <EmptyReportIcon className="w-5 h-5" size={20} />
