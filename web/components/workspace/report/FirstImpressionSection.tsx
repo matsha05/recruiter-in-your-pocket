@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Info } from "lucide-react";
 import { PrincipalRecruiterIcon } from "@/components/icons";
@@ -20,6 +21,7 @@ function getScoreBand(score: number): { label: string; colorClass: string } {
 export function FirstImpressionSection({ data }: { data: ReportData }) {
     const [animatedScore, setAnimatedScore] = useState(0);
     const [showBadge, setShowBadge] = useState(false);
+    const [showFirstPassNote, setShowFirstPassNote] = useState(false);
     const [sectionVisible, setSectionVisible] = useState(false);
     const [peekOpen, setPeekOpen] = useState(false);
     const hasAnimated = useRef(false);
@@ -41,12 +43,16 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
             if (!hasAnimated.current) {
                 setAnimatedScore(targetScore);
                 setShowBadge(true);
+                setShowFirstPassNote(true);
             }
             return;
         }
         hasAnimated.current = true;
-        const duration = 1200; // Slightly longer for more impact
+        const duration = 900;
         const startTime = Date.now();
+        let animationFrameId = 0;
+        let badgeTimer: ReturnType<typeof setTimeout> | undefined;
+        let noteTimer: ReturnType<typeof setTimeout> | undefined;
 
         const animate = () => {
             const elapsed = Date.now() - startTime;
@@ -56,13 +62,22 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
             setAnimatedScore(Math.round(targetScore * eased));
 
             if (progress < 1) {
-                requestAnimationFrame(animate);
+                animationFrameId = requestAnimationFrame(animate);
             } else {
                 // Show badge after score animation completes
-                setTimeout(() => setShowBadge(true), 200);
+                badgeTimer = setTimeout(() => {
+                    setShowBadge(true);
+                    noteTimer = setTimeout(() => setShowFirstPassNote(true), 140);
+                }, 200);
             }
         };
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            if (badgeTimer) clearTimeout(badgeTimer);
+            if (noteTimer) clearTimeout(noteTimer);
+        };
     }, [targetScore]);
 
     // Calculate stroke dash offset for the dial
@@ -71,7 +86,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
     return (
         <section className={cn(
-            "space-y-6 transition-all duration-500 ease-out",
+            "gap-y-5 md:gap-y-6 transition-all duration-500 ease-out",
             sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
             {/* Section Header with horizontal line decoration */}
@@ -79,18 +94,18 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                 <div className="flex items-center gap-3">
                     <div className="w-6 h-px bg-border" />
                     <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                        <PrincipalRecruiterIcon className="w-4 h-4 text-brand" />
+                        <PrincipalRecruiterIcon className="size-4 text-brand" />
                         01. First Read
                     </h2>
                 </div>
-                <a
+                <Link
                     href="/research/how-we-score"
-                    className="text-[10px] text-muted-foreground/60 hover:text-brand transition-colors font-medium"
+                    className="text-xs text-muted-foreground/60 hover:text-brand transition-colors font-medium"
                     target="_blank"
                     rel="noopener"
                 >
                     Scoring guide →
-                </a>
+                </Link>
             </div>
 
             {/* Main Card - THE Signature Moment */}
@@ -101,8 +116,8 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                 <div className="grid md:grid-cols-5">
 
                     {/* LEFT: THE VERDICT (3 cols) */}
-                    <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 space-y-6">
-                        <div className="space-y-3">
+                    <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 gap-y-6">
+                        <div className="gap-y-3">
                             <h3 className="text-headline text-foreground">
                                 &quot;Here is what stands out first.&quot;
                             </h3>
@@ -120,15 +135,24 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                             <div className="p-4 bg-warning/10 border border-warning/20 rounded transition-all duration-300" style={{ transitionDelay: '400ms' }}>
                                 <div className="flex items-center justify-between gap-2 mb-2">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-warning" />
+                                        <div className="size-2 rounded-full bg-warning" />
                                         <span className="text-label text-warning">Main gap</span>
                                     </div>
                                     <Peek
                                         open={peekOpen}
                                         onOpenChange={setPeekOpen}
                                         trigger={
-                                            <Button variant="ghost" size="sm" className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground">
-                                                <Info className="w-3 h-3 mr-1" />
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                className={cn(
+                                                    "min-h-11 px-3 text-xs transition-all",
+                                                    peekOpen
+                                                        ? "bg-brand/10 text-brand hover:bg-brand/10 hover:text-brand"
+                                                        : "text-muted-foreground hover:text-foreground"
+                                                )}
+                                            >
+                                                <Info className="size-3 mr-1" />
                                                 Why this matters
                                             </Button>
                                         }
@@ -156,12 +180,12 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     </div>
 
                     {/* RIGHT: THE SCORE DIAL (2 cols) */}
-                    <div className="md:col-span-2 p-6 md:p-8 bg-secondary/20 flex flex-col items-center justify-center space-y-6">
+                    <div className="md:col-span-2 p-6 md:p-8 bg-secondary/20 flex flex-col items-center justify-center gap-y-6">
 
                         {/* Score Dial */}
-                        <div className="text-center space-y-4">
+                        <div className="text-center gap-y-4">
                             <div className="relative inline-flex items-center justify-center">
-                                <svg className="w-36 h-36 transform -rotate-90">
+                                <svg className="size-36 transform -rotate-90">
                                     {/* Background circle */}
                                     <circle
                                         cx="72"
@@ -184,27 +208,35 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                         strokeDashoffset={strokeDashoffset}
                                         strokeLinecap="round"
                                         style={{
-                                            transition: 'stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1)'
+                                            transition: 'stroke-dashoffset 900ms cubic-bezier(0.16, 1, 0.3, 1)'
                                         }}
                                     />
                                 </svg>
                                 <div className="absolute inset-0 flex items-center justify-center flex-col">
                                     <span className="text-5xl font-display font-semibold tracking-tighter tabular-nums">{animatedScore}</span>
-                                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Score</span>
+                                    <span className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Score</span>
                                 </div>
                             </div>
 
                             {/* Score Band Badge - Delayed reveal */}
                             <div className={cn(
                                 "transition-all duration-300 ease-out",
-                                showBadge ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                                showBadge ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-2 scale-[0.96]"
                             )}>
                                 <span className={cn(
-                                    "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] font-bold uppercase tracking-wider",
+                                    "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wider shadow-[0_8px_24px_rgba(15,23,42,0.04)]",
                                     scoreBand.colorClass
                                 )}>
-                                    <CheckCircle2 className="w-3 h-3" /> {scoreBand.label}
+                                    <CheckCircle2 className="size-3" /> {scoreBand.label}
                                 </span>
+                            </div>
+
+                            <div className={cn(
+                                "flex items-center justify-center gap-2 text-xs uppercase tracking-wide text-muted-foreground transition-all duration-300",
+                                showFirstPassNote ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                            )}>
+                                <span className="size-1.5 rounded-full bg-brand/70" />
+                                First pass complete
                             </div>
                         </div>
 

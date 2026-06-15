@@ -49,7 +49,7 @@ function SubscoreRow({ label, before, after }: { label: string; before?: number;
 
             {/* Numbers */}
             <div className="font-mono text-xs tabular-nums text-right shrink-0 w-24">
-                <span className="text-muted-foreground">{before ?? '—'}</span>
+                <span className="text-muted-foreground">{before ?? ' - '}</span>
                 <span className="text-muted-foreground/30 mx-1">→</span>
                 <span className={cn(
                     "font-semibold",
@@ -57,11 +57,11 @@ function SubscoreRow({ label, before, after }: { label: string; before?: number;
                     declined && "text-destructive",
                     !improved && !declined && "text-foreground"
                 )}>
-                    {after ?? '—'}
+                    {after ?? ' - '}
                 </span>
                 {diff !== 0 && (
                     <span className={cn(
-                        "text-[10px] ml-1",
+                        "text-xs ml-1",
                         improved ? "text-green-600" : "text-destructive"
                     )}>
                         {diff > 0 ? '+' : ''}{diff}
@@ -112,11 +112,11 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                             {getLabel(older)} → {getLabel(newer)}
                         </span>
                     </div>
-                    <button
+                    <button type="button"
                         onClick={onClose}
                         className="p-1.5 hover:bg-muted rounded transition-colors"
                     >
-                        <X className="w-4 h-4 text-muted-foreground" />
+                        <X className="size-4 text-muted-foreground" />
                     </button>
                 </div>
 
@@ -125,7 +125,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                     <div className="flex items-center justify-center gap-10">
                         {/* Before */}
                         <div className="text-center">
-                            <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 font-medium">Before</p>
+                            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2 font-medium">Before</p>
                             <span className={cn(
                                 "font-display text-6xl font-bold tabular-nums tracking-tight",
                                 getScoreColor(older.score)
@@ -142,11 +142,11 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                             !isImprovement && !isDecline && "bg-muted text-muted-foreground"
                         )}>
                             {isImprovement ? (
-                                <TrendingUp className="w-5 h-5" />
+                                <TrendingUp className="size-5" />
                             ) : isDecline ? (
-                                <TrendingDown className="w-5 h-5" />
+                                <TrendingDown className="size-5" />
                             ) : (
-                                <Minus className="w-5 h-5" />
+                                <Minus className="size-5" />
                             )}
                             <span className="font-mono text-lg tabular-nums">
                                 {scoreDiff > 0 ? '+' : ''}{scoreDiff}
@@ -155,7 +155,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
 
                         {/* After */}
                         <div className="text-center">
-                            <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 font-medium">After</p>
+                            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2 font-medium">After</p>
                             <span className={cn(
                                 "font-display text-6xl font-bold tabular-nums tracking-tight",
                                 getScoreColor(newer.score)
@@ -185,11 +185,11 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
 
                     {/* Signal Breakdown */}
                     {(older.report.subscores || newer.report.subscores) && (
-                        <div className="px-5 py-5 border-b border-border">
-                            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground mb-4 font-semibold">
+                        <div className="p-5 border-b border-border">
+                            <h3 className="text-xs uppercase tracking-wide text-muted-foreground mb-4 font-semibold">
                                 Signal Breakdown
                             </h3>
-                            <div className="space-y-3">
+                            <div className="gap-y-3">
                                 <SubscoreRow
                                     label="Story"
                                     before={older.report.subscores?.story}
@@ -217,17 +217,17 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                     {/* Qualitative Comparison */}
                     <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
                         {/* Before Column */}
-                        <div className="px-5 py-5">
-                            <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-4">
+                        <div className="p-5">
+                            <p className="text-xs uppercase tracking-wide text-muted-foreground font-semibold mb-4">
                                 {getLabel(older)}
                             </p>
 
                             {/* Working */}
                             <div className="mb-5">
                                 <p className="text-xs font-medium text-foreground mb-2.5">Working</p>
-                                <ul className="space-y-3">
+                                <ul className="gap-y-3">
                                     {(older.report.strengths || []).slice(0, 3).map((s, i) => (
-                                        <li key={i} className="text-[13px] text-muted-foreground leading-[1.6]">
+                                        <li key={s} className="text-[13px] text-muted-foreground leading-[1.6]">
                                             {firstSentence(s)}
                                         </li>
                                     ))}
@@ -240,9 +240,9 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                             {/* Gaps */}
                             <div>
                                 <p className="text-xs font-medium text-foreground/80 mb-2.5">Gaps</p>
-                                <ul className="space-y-3">
+                                <ul className="gap-y-3">
                                     {(older.report.gaps || []).slice(0, 3).map((g, i) => (
-                                        <li key={i} className="text-[13px] text-muted-foreground leading-[1.6]">
+                                        <li key={g} className="text-[13px] text-muted-foreground leading-[1.6]">
                                             {firstSentence(g)}
                                         </li>
                                     ))}
@@ -254,17 +254,17 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                         </div>
 
                         {/* After Column - Highlighted */}
-                        <div className="px-5 py-5 bg-brand/5">
-                            <p className="text-[10px] uppercase tracking-widest text-brand font-semibold mb-4">
+                        <div className="p-5 bg-brand/5">
+                            <p className="text-xs uppercase tracking-wide text-brand font-semibold mb-4">
                                 {getLabel(newer)} · Current
                             </p>
 
                             {/* Working */}
                             <div className="mb-5">
                                 <p className="text-xs font-medium text-foreground mb-2.5">Working</p>
-                                <ul className="space-y-3">
+                                <ul className="gap-y-3">
                                     {(newer.report.strengths || []).slice(0, 3).map((s, i) => (
-                                        <li key={i} className="text-[13px] text-foreground/80 leading-[1.6]">
+                                        <li key={s} className="text-[13px] text-foreground/80 leading-[1.6]">
                                             {firstSentence(s)}
                                         </li>
                                     ))}
@@ -277,9 +277,9 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                             {/* Gaps */}
                             <div>
                                 <p className="text-xs font-medium text-foreground/80 mb-2.5">Gaps</p>
-                                <ul className="space-y-3">
+                                <ul className="gap-y-3">
                                     {(newer.report.gaps || []).slice(0, 3).map((g, i) => (
-                                        <li key={i} className="text-[13px] text-foreground/70 leading-[1.6]">
+                                        <li key={g} className="text-[13px] text-foreground/70 leading-[1.6]">
                                             {firstSentence(g)}
                                         </li>
                                     ))}

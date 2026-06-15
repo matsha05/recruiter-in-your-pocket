@@ -59,7 +59,7 @@ const ACTION_EVENT = "command-palette:action"
 /**
  * Dispatch a command action that can be handled anywhere in the app
  */
-export function dispatchCommandAction(action: CommandAction) {
+function dispatchCommandAction(action: CommandAction) {
     window.dispatchEvent(new CustomEvent(ACTION_EVENT, { detail: action }))
 }
 
@@ -98,7 +98,7 @@ function addRecentCommand(command: RecentCommand) {
 export function CommandPalette() {
     const [open, setOpen] = React.useState(false)
     const [recentCommands, setRecentCommands] = React.useState<RecentCommand[]>([])
-    const router = useRouter()
+    const { push } = useRouter()
     const pathname = usePathname()
 
     // Load recent commands on mount
@@ -151,13 +151,13 @@ export function CommandPalette() {
                                     onSelect={() => {
                                         // Re-run the recent command based on its ID
                                         if (cmd.id.startsWith("nav:")) {
-                                            runCommand(() => router.push(cmd.id.replace("nav:", "")))
+                                            runCommand(() => push(cmd.id.replace("nav:", "")))
                                         } else {
                                             runCommand(() => dispatchCommandAction(cmd.id as CommandAction))
                                         }
                                     }}
                                 >
-                                    <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
+                                    <Clock className="mr-2 size-4 text-muted-foreground" />
                                     <span>{cmd.label}</span>
                                 </CommandItem>
                             ))}
@@ -176,7 +176,7 @@ export function CommandPalette() {
                                     { id: "upload", label: "Upload Resume", icon: "Upload" }
                                 )}
                             >
-                                <Upload className="mr-2 h-4 w-4" />
+                                <Upload className="mr-2 size-4" />
                                 <span>Upload Resume</span>
                                 <CommandShortcut>U</CommandShortcut>
                             </CommandItem>
@@ -188,7 +188,7 @@ export function CommandPalette() {
                                             { id: "export-pdf", label: "Export PDF", icon: "Download" }
                                         )}
                                     >
-                                        <Download className="mr-2 h-4 w-4" />
+                                        <Download className="mr-2 size-4" />
                                         <span>Export PDF</span>
                                         <CommandShortcut>E</CommandShortcut>
                                     </CommandItem>
@@ -198,7 +198,7 @@ export function CommandPalette() {
                                             { id: "copy-link", label: "Copy Share Link", icon: "Link2" }
                                         )}
                                     >
-                                        <Link2 className="mr-2 h-4 w-4" />
+                                        <Link2 className="mr-2 size-4" />
                                         <span>Copy Share Link</span>
                                         <CommandShortcut>C</CommandShortcut>
                                     </CommandItem>
@@ -208,7 +208,7 @@ export function CommandPalette() {
                                             { id: "run-analysis", label: "Run New Analysis", icon: "Sparkles" }
                                         )}
                                     >
-                                        <Sparkles className="mr-2 h-4 w-4" />
+                                        <Sparkles className="mr-2 size-4" />
                                         <span>Run New Analysis</span>
                                         <CommandShortcut>⏎</CommandShortcut>
                                     </CommandItem>
@@ -223,31 +223,31 @@ export function CommandPalette() {
                 <CommandGroup heading="Navigation">
                     <CommandItem
                         onSelect={() => runCommand(
-                            () => router.push("/"),
+                            () => push("/"),
                             { id: "nav:/", label: "Go to Home", icon: "Home" }
                         )}
                     >
-                        <Home className="mr-2 h-4 w-4" />
+                        <Home className="mr-2 size-4" />
                         <span>Go to Home</span>
                         <CommandShortcut>G H</CommandShortcut>
                     </CommandItem>
                     <CommandItem
                         onSelect={() => runCommand(
-                            () => router.push("/workspace"),
+                            () => push("/workspace"),
                             { id: "nav:/workspace", label: "Go to Studio", icon: "FileText" }
                         )}
                     >
-                        <FileText className="mr-2 h-4 w-4" />
+                        <FileText className="mr-2 size-4" />
                         <span>Go to Studio</span>
                         <CommandShortcut>G S</CommandShortcut>
                     </CommandItem>
                     <CommandItem
                         onSelect={() => runCommand(
-                            () => router.push("/research"),
+                            () => push("/research"),
                             { id: "nav:/research", label: "Go to Research", icon: "BookOpen" }
                         )}
                     >
-                        <BookOpen className="mr-2 h-4 w-4" />
+                        <BookOpen className="mr-2 size-4" />
                         <span>Go to Research</span>
                         <CommandShortcut>G R</CommandShortcut>
                     </CommandItem>
@@ -263,7 +263,7 @@ export function CommandPalette() {
                             { id: "keyboard-shortcuts", label: "Keyboard Shortcuts", icon: "Keyboard" }
                         )}
                     >
-                        <Keyboard className="mr-2 h-4 w-4" />
+                        <Keyboard className="mr-2 size-4" />
                         <span>Keyboard Shortcuts</span>
                         <CommandShortcut>?</CommandShortcut>
                     </CommandItem>
@@ -276,7 +276,7 @@ export function CommandPalette() {
 /**
  * Hook to programmatically open the command palette
  */
-export function useCommandPaletteState() {
+function useCommandPaletteState() {
     const [open, setOpen] = React.useState(false)
 
     const toggle = React.useCallback(() => {

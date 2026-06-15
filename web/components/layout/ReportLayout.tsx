@@ -14,16 +14,16 @@ interface ReportLayoutProps {
  */
 export function ReportLayout({ children, toc }: ReportLayoutProps) {
     return (
-        <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_240px] gap-8 md:gap-12">
+        <div className="relative mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 md:py-10 lg:px-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_248px] md:gap-14">
                 {/* Main Content */}
-                <main className="min-w-0 space-y-12">
+                <main className="min-w-0 space-y-10 md:space-y-12">
                     {children}
                 </main>
 
                 {/* Desktop Sticky TOC */}
-                <aside className="hidden md:block relative">
-                    <div className="sticky top-8 space-y-4">
+                <aside className="relative hidden md:block">
+                    <div className="sticky top-10 space-y-4 pl-2">
                         {toc}
                     </div>
                 </aside>

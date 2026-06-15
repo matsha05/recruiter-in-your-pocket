@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -51,7 +51,7 @@ export function AutomationPipeline() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Automation risk cascade
                     </span>
                 </div>
@@ -84,13 +84,13 @@ export function AutomationPipeline() {
                                         } shadow-sm`}>
                                         {/* Stage number */}
                                         <div className="flex items-center gap-2 mb-3">
-                                            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold ${s.highlight
+                                            <div className={`size-6 rounded-full flex items-center justify-center text-xs font-mono font-bold ${s.highlight
                                                 ? "bg-rose-400/20 text-rose-600 dark:text-rose-400"
                                                 : "bg-muted/30 text-muted-foreground"
                                                 }`}>
                                                 {i + 1}
                                             </div>
-                                            <span className={`font-mono text-[9px] uppercase tracking-widest ${s.highlight ? "text-rose-600/80 dark:text-rose-400/80" : "text-muted-foreground/60"
+                                            <span className={`font-mono text-xs uppercase tracking-wide ${s.highlight ? "text-rose-600/80 dark:text-rose-400/80" : "text-muted-foreground/60"
                                                 }`}>
                                                 {s.stage}
                                             </span>
@@ -104,7 +104,7 @@ export function AutomationPipeline() {
 
                                         {/* Risk */}
                                         <div className="mt-auto">
-                                            <p className="text-[11px] text-muted-foreground mb-2 leading-relaxed">
+                                            <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
                                                 {s.risk}
                                             </p>
                                             {/* Risk bar */}
@@ -138,12 +138,12 @@ export function AutomationPipeline() {
                         className="mt-6 bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
                     >
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg className="w-4 h-4 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <div className="size-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg className="size-4 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
-                            <div className="space-y-1">
+                            <div className="gap-y-1">
                                 <p className="text-sm font-medium text-foreground">
                                     Bias compounds downstream
                                 </p>
@@ -156,8 +156,8 @@ export function AutomationPipeline() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Risk Cascade</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Risk Cascade</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Automation handoffs where bias can compound
                 </span>

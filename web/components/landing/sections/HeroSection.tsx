@@ -45,7 +45,7 @@ export function HeroSection({ content, onPrimaryCta }: HeroSectionProps) {
                 <div className="landing-flow-lg">
                     <LandingSectionTag index="00" label="First Impression" />
                     <div className="inline-flex items-center gap-2 rounded-full border border-slate-300/80 bg-white/90 px-3 py-1.5 text-xs text-slate-600 shadow-[0_8px_24px_-20px_rgba(2,6,23,0.35)] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
-                        <content.badgeIcon className="w-3.5 h-3.5" />
+                        <content.badgeIcon className="size-3.5" />
                         {content.badge}
                     </div>
 
@@ -58,14 +58,14 @@ export function HeroSection({ content, onPrimaryCta }: HeroSectionProps) {
                     <div className="overflow-hidden rounded-2xl border border-border/55 bg-white/95 shadow-[0_28px_58px_-44px_rgba(2,6,23,0.44)] dark:bg-slate-900/65">
                         <div className="flex items-center justify-between border-b border-border/60 bg-muted/20 px-5 py-3.5">
                             <div className="flex items-center gap-2 text-label-mono">
-                                <content.reportIcon className="w-4 h-4 text-brand" />
+                                <content.reportIcon className="size-4 text-brand" />
                                 {content.reportLabel}
                             </div>
                             <span className="text-label-mono text-muted-foreground">{content.reportSubtitle}</span>
                         </div>
                         <div className="grid divide-y divide-border/60 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
                             {content.stats.map((stat) => (
-                                <div key={stat.label} className="px-5 py-5">
+                                <div key={stat.label} className="p-5">
                                     <HeroStat
                                         value={stat.value}
                                         label={stat.label}
@@ -96,11 +96,11 @@ export function HeroSection({ content, onPrimaryCta }: HeroSectionProps) {
                             className="landing-btn-primary"
                         >
                             {content.primaryCta.label}
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="size-4" />
                         </Link>
                         <Link href={content.secondaryCta.href} className="landing-btn-secondary">
                             {content.secondaryCta.label}
-                            <ExternalLink className="w-3 h-3" />
+                            <ExternalLink className="size-3" />
                         </Link>
                     </div>
                     <p className="landing-footnote">

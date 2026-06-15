@@ -1,6 +1,7 @@
 export type ResumeFeedbackRequest = {
   text: string;
   jobDescription?: string;
+  savedJobId?: string | null;
   mode?: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation";
 };
 
@@ -33,7 +34,7 @@ export type ResumeFeedbackError = {
   free_uses_remaining?: number;
 };
 
-export async function postResumeFeedback(
+async function postResumeFeedback(
   payload: ResumeFeedbackRequest
 ): Promise<ResumeFeedbackResponse | ResumeFeedbackError> {
   const res = await fetch(`/api/resume-feedback`, {
@@ -43,6 +44,7 @@ export async function postResumeFeedback(
     body: JSON.stringify({
       text: payload.text,
       jobDescription: payload.jobDescription,
+      savedJobId: payload.savedJobId || undefined,
       mode: payload.mode || "resume"
     })
   });
@@ -61,7 +63,7 @@ export async function parseResume(formData: FormData): Promise<{ ok: boolean; te
 }
 
 // Wrapper for postResumeFeedback that returns data in format expected by WorkspaceClient
-export async function createResumeFeedback(resumeText: string, jobDescription?: string): Promise<{ ok: boolean; report?: any; message?: string }> {
+async function createResumeFeedback(resumeText: string, jobDescription?: string): Promise<{ ok: boolean; report?: any; message?: string }> {
   const result = await postResumeFeedback({
     text: resumeText,
     jobDescription,
@@ -94,8 +96,8 @@ export async function streamResumeFeedback(
   jobDescription: string | undefined,
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
-  options?: { signal?: AbortSignal }
-): Promise<{ ok: boolean; report?: any; message?: string; aborted?: boolean }> {
+  options?: { signal?: AbortSignal; savedJobId?: string | null }
+): Promise<{ ok: boolean; report?: any; message?: string; aborted?: boolean; reportId?: string | null }> {
   console.log("[streamResumeFeedback] Starting...");
 
   let res: Response;
@@ -107,6 +109,7 @@ export async function streamResumeFeedback(
       body: JSON.stringify({
         text: resumeText,
         jobDescription,
+        savedJobId: options?.savedJobId || undefined,
         mode: mode
       }),
       signal: options?.signal
@@ -133,6 +136,7 @@ export async function streamResumeFeedback(
   let buffer = "";
   let accumulatedJson = "";
   let finalReport: any = null;
+  let finalReportId: string | null = null;
   let errorMessage: string | null = null;
   let chunkCount = 0;
 
@@ -180,6 +184,10 @@ export async function streamResumeFeedback(
         } else if (event.type === "complete") {
           console.log("[streamResumeFeedback] Got complete event");
           finalReport = event.data;
+          if (finalReport && event.report_id) {
+            finalReport.report_id = event.report_id;
+          }
+          finalReportId = event.report_id || null;
         } else if (event.type === "error") {
           console.log("[streamResumeFeedback] Got error event:", event.message);
           errorMessage = event.message;
@@ -197,7 +205,7 @@ export async function streamResumeFeedback(
   }
 
   if (finalReport) {
-    return { ok: true, report: finalReport };
+    return { ok: true, report: finalReport, reportId: finalReportId };
   }
 
   return { ok: false, message: "Stream ended without completion" };
@@ -394,7 +402,7 @@ export async function streamLinkedInFeedback(
 /**
  * Parse a LinkedIn PDF file and return the extracted text.
  */
-export async function parseLinkedInPdf(file: File): Promise<{ ok: boolean; text?: string; message?: string }> {
+async function parseLinkedInPdf(file: File): Promise<{ ok: boolean; text?: string; message?: string }> {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("type", "linkedin");

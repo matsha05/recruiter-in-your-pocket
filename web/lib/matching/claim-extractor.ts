@@ -40,7 +40,7 @@ export interface SkillWithEvidence {
 /**
  * Get the credit multiplier for an evidence level
  */
-export function getEvidenceCredit(level: EvidenceLevel): number {
+function getEvidenceCredit(level: EvidenceLevel): number {
     switch (level) {
         case 2: return 1.0;   // Full credit: demonstrated in experience
         case 1: return 0.6;   // Partial credit: listed but not demonstrated

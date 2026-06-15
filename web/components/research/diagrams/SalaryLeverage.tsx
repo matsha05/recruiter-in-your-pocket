@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -21,7 +21,7 @@ export function SalaryLeverage() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Salary history ban impact
                     </span>
                 </div>
@@ -36,12 +36,12 @@ export function SalaryLeverage() {
                         className="rounded-lg border border-border/40 bg-muted/10 p-5"
                     >
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="w-6 h-6 rounded-full bg-muted-foreground/10 flex items-center justify-center">
-                                <svg className="w-3 h-3 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <div className="size-6 rounded-full bg-muted-foreground/10 flex items-center justify-center">
+                                <svg className="size-3 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M18 6L6 18M6 6l12 12" />
                                 </svg>
                             </div>
-                            <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60">
+                            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                                 Before ban
                             </span>
                         </div>
@@ -64,12 +64,12 @@ export function SalaryLeverage() {
                         className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-5"
                     >
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center">
-                                <svg className="w-3 h-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <div className="size-6 rounded-full bg-brand/10 flex items-center justify-center">
+                                <svg className="size-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <polyline points="20 6 9 17 4 12" />
                                 </svg>
                             </div>
-                            <span className="text-[10px] font-mono uppercase tracking-wider text-brand/70">
+                            <span className="text-xs font-mono uppercase tracking-wider text-brand/70">
                                 After ban
                             </span>
                         </div>
@@ -85,8 +85,8 @@ export function SalaryLeverage() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — The Shift</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  The Shift</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Salary history bans change the negotiation anchor
                 </span>

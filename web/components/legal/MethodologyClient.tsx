@@ -36,25 +36,40 @@ export default function MethodologyClient() {
     return (
         <LegalShell
             eyebrow="Methodology"
-            title="How we score your resume"
-            description="What each score measures, how we handle uncertainty, and what the output is actually for."
+            title="How the recruiter signal works"
+            description="The score is a recruiter-style clarity signal guided by impact, relevance, evidence, and polish. It is not a prediction formula."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
+            <section
+                className="rounded-2xl bg-white p-6 md:p-8"
+                style={{ boxShadow: paperShadow }}
+            >
+                <h2 className="mb-3 font-display text-slate-900" style={{ fontSize: "1.35rem", fontWeight: 500, letterSpacing: "-0.015em" }}>
+                    A calibrated first-read signal, not a hiring prediction
+                </h2>
+                <p className="text-[14px] leading-[1.75] text-slate-500">
+                    RIYP estimates how clearly your resume lands when someone has to skim quickly. The dimensions below guide the model and calibration reviews, but the score is not strict math and does not guarantee interviews, offers, or ATS outcomes.
+                </p>
+            </section>
+
             {/* Rubric card */}
             <section
                 className="rounded-2xl bg-white p-6 md:p-8"
                 style={{ boxShadow: paperShadow }}
             >
                 <h2 className="mb-4 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <BarChart3 className="h-4 w-4 text-slate-400" />
-                    7.4-second signal rubric
+                    <BarChart3 className="size-4 text-slate-400" />
+                    First-read guidance rubric
                 </h2>
-                <div className="space-y-3">
+                <p className="mb-4 text-[13px] leading-[1.65] text-slate-500">
+                    These weights guide attention. They are not a literal formula, and report confidence can move down when the resume does not provide enough evidence.
+                </p>
+                <div className="gap-y-3">
                     {rubric.map((item) => (
                         <div key={item.name} className="rounded-lg border border-slate-100 bg-slate-50/50 px-4 py-3">
                             <div className="flex items-center justify-between gap-2">
                                 <p className="text-sm font-semibold text-slate-700">{item.name}</p>
-                                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">{item.weight}</p>
+                                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{item.weight}</p>
                             </div>
                             <p className="mt-1.5 text-[14px] leading-[1.65] text-slate-500">{item.detail}</p>
                         </div>
@@ -69,7 +84,7 @@ export default function MethodologyClient() {
                     style={{ boxShadow: paperShadow }}
                 >
                     <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                        <Target className="h-4 w-4 text-slate-400" />
+                        <Target className="size-4 text-slate-400" />
                         What the feedback focuses on
                     </h3>
                     <p className="text-[14px] leading-[1.65] text-slate-500">
@@ -81,7 +96,7 @@ export default function MethodologyClient() {
                     style={{ boxShadow: paperShadow }}
                 >
                     <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                        <PenSquare className="h-4 w-4 text-slate-400" />
+                        <PenSquare className="size-4 text-slate-400" />
                         How we write rewrites
                     </h3>
                     <p className="text-[14px] leading-[1.65] text-slate-500">
@@ -93,11 +108,23 @@ export default function MethodologyClient() {
                     style={{ boxShadow: paperShadow }}
                 >
                     <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                        <ShieldCheck className="h-4 w-4 text-slate-400" />
+                        <ShieldCheck className="size-4 text-slate-400" />
                         How we handle uncertainty
                     </h3>
                     <p className="text-[14px] leading-[1.65] text-slate-500">
                         We surface confidence directly in evidence-heavy sections so weaker recommendations are framed honestly instead of sounding certain when the input is thin.
+                    </p>
+                </div>
+                <div
+                    className="rounded-2xl bg-white p-6"
+                    style={{ boxShadow: paperShadow }}
+                >
+                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
+                        <ShieldCheck className="size-4 text-slate-400" />
+                        What evidence means
+                    </h3>
+                    <p className="text-[14px] leading-[1.65] text-slate-500">
+                        Evidence excerpts should quote the resume directly. If a recommendation depends on missing context, the report should ask for that detail instead of inventing it.
                     </p>
                 </div>
             </section>
@@ -108,10 +135,10 @@ export default function MethodologyClient() {
                 style={{ backgroundColor: "hsl(40 20% 97%)" }}
             >
                 <h3 className="mb-3 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                    <AlertTriangle className="h-4 w-4 text-amber-500" />
+                    <AlertTriangle className="size-4 text-amber-500" />
                     Limits and responsible use
                 </h3>
-                <ul className="space-y-2 text-[14px] leading-[1.65] text-slate-500">
+                <ul className="gap-y-2 text-[14px] leading-[1.65] text-slate-500">
                     <li>1. Scores estimate how strong your resume signal is. They don&apos;t guarantee interviews or offers.</li>
                     <li>2. Industry and role context can shift what matters most in any given report.</li>
                     <li>3. Always double-check the rewrites for accuracy and tone before using them.</li>

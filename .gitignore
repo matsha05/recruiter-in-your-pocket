@@ -24,6 +24,8 @@ yarn-error.log*
 
 # Generated artifacts
 .codex-artifacts/
+.playwright-cli/
+.playwright-mcp/
 extension/dist/
 web/test-results/
 docs/launch-readiness/generated/
@@ -31,6 +33,7 @@ docs/launch-readiness/generated/
 # Root-level design QA screenshots
 landing-*.png
 tmp-*.png
+riyp-*.png
 
 # O*NET skill embeddings (162MB, regenerate with: node scripts/generate-skill-embeddings.js)
 web/lib/matching/onet-skill-embeddings.json

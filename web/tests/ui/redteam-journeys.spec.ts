@@ -15,7 +15,7 @@ and improve launch operations with measurable process improvements.`;
 
 async function openPasteMode(page: Page) {
   await page.goto("/workspace");
-  await page.getByRole("button", { name: /Or paste text instead/i }).click();
+  await page.getByRole("button", { name: /Paste text instead/i }).click();
   await expect(page.getByPlaceholder("Paste your resume content here...")).toBeVisible();
 }
 
@@ -24,8 +24,8 @@ async function runAnonymousReview(page: Page) {
   await page.getByPlaceholder("Paste your resume content here...").fill(RESUME_TEXT);
   await page.getByRole("button", { name: /Check fit for a specific job/i }).click();
   await page.getByPlaceholder(/Paste the full job posting here/i).fill(JOB_DESCRIPTION);
-  await page.getByRole("button", { name: /See What They See/i }).click();
-  await expect(page.getByText("Here’s how your resume comes across first.")).toBeVisible({ timeout: 35_000 });
+  await page.getByRole("button", { name: /Get Recruiter Brief/i }).click();
+  await expect(page.getByText("Here's how your resume comes across first.")).toBeVisible({ timeout: 35_000 });
   await expect(page.locator("#section-evidence-ledger")).toBeVisible({ timeout: 35_000 });
 }
 
@@ -35,7 +35,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByRole("link", { name: /Run Your Free Report/i }).first()).toBeVisible();
     await page.getByRole("link", { name: /Run Your Free Report/i }).first().click();
     await expect(page).toHaveURL(/\/workspace$/);
-    await expect(page.getByText("This is what they see.")).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Get the first-read brief/i })).toBeVisible();
   });
 
   test("2. public trust surfaces publish readiness and disclosure details", async ({ page, request }) => {
@@ -64,21 +64,22 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByText("Example", { exact: true }).first()).toBeVisible();
     await page.getByRole("button", { name: /Run Your Free Report/i }).first().click();
     await expect(page).toHaveURL(/\/workspace$/);
-    await expect(page.getByRole("button", { name: /See What They See/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Get Recruiter Brief/i })).toBeVisible();
   });
 
   test("4. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
     await runAnonymousReview(page);
     await expect(page.locator("#section-job-alignment")).toBeVisible();
-    await expect(page.getByText("Here’s how your resume comes across first.")).toBeVisible();
+    await expect(page.getByText("Here's how your resume comes across first.")).toBeVisible();
     await expect(page.getByRole("button", { name: /Copy Share Link/i })).toHaveCount(0);
   });
 
   test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {
     await runAnonymousReview(page);
-    await expect(page.getByRole("dialog").getByText("Save this report")).toBeVisible({ timeout: 15_000 });
-    await expect(page.getByText(/Nothing is created in the background/i)).toBeVisible();
-    await page.getByRole("button", { name: /Sign in to save this report/i }).click();
+    const saveDialog = page.getByRole("dialog", { name: /Keep this report/i });
+    await expect(saveDialog.getByRole("heading", { name: "Keep this report" })).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByText(/We only save reports to verified signed-in accounts/i)).toBeVisible();
+    await saveDialog.getByRole("button", { name: /Sign in and keep this report/i }).click();
     await expect(page.locator("#auth-email")).toBeVisible();
     await expect(page.getByRole("button", { name: /Email secure sign-in code/i })).toBeVisible();
   });
@@ -137,5 +138,32 @@ test.describe("launch red-team journeys", () => {
     const checkoutJson = await checkoutResponse.json();
     expect(checkoutJson.ok).toBe(false);
     expect(checkoutJson.message).toMatch(/temporarily unavailable/i);
+  });
+
+  test("11. exhausted free report opens paid access before another run", async ({ page }) => {
+    await page.route("**/api/free-status", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: true,
+          free_uses_left: 0,
+          free_uses_remaining: 0,
+          source: "test",
+        }),
+      });
+    });
+
+    await openPasteMode(page);
+    await expect(page.getByText("Upgrade to continue")).toBeVisible();
+    await page.getByPlaceholder("Paste your resume content here...").fill(RESUME_TEXT);
+    await page.getByRole("button", { name: /Check fit for a specific job/i }).click();
+    await page.getByPlaceholder(/Paste the full job posting here/i).fill(JOB_DESCRIPTION);
+    await page.getByRole("button", { name: /Get Recruiter Brief/i }).click();
+
+    const paywall = page.getByRole("dialog", { name: /Run the next role-specific report/i });
+    await expect(paywall).toBeVisible();
+    await expect(paywall.getByText("You've used your free report.")).toBeVisible();
+    await expect(paywall.getByText(/Upgrade only when you want another pass/i)).toBeVisible();
   });
 });

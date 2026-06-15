@@ -228,8 +228,8 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
             )}>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-success/10 flex items-center justify-center">
-                            <Check className="w-4 h-4 text-success" />
+                        <div className="size-8 rounded bg-success/10 flex items-center justify-center">
+                            <Check className="size-4 text-success" />
                         </div>
                         <div>
                             <div className="flex items-center gap-2">
@@ -246,18 +246,18 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                             className="h-6 px-1.5 text-sm font-medium border border-border rounded bg-background focus:outline-none focus:ring-1 focus:ring-brand"
                                             autoFocus
                                         />
-                                        <button
+                                        <button type="button"
                                             onClick={handleRename}
                                             disabled={isSaving}
                                             className="p-1 text-success hover:bg-success/10 rounded"
                                         >
-                                            <Check className="w-3 h-3" />
+                                            <Check className="size-3" />
                                         </button>
-                                        <button
+                                        <button type="button"
                                             onClick={() => setIsRenaming(false)}
                                             className="p-1 text-muted-foreground hover:bg-muted rounded"
                                         >
-                                            <X className="w-3 h-3" />
+                                            <X className="size-3" />
                                         </button>
                                     </div>
                                 ) : (
@@ -265,7 +265,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                         <span className="font-medium text-foreground text-sm">
                                             {profile.resumeFilename || 'Resume Locked In'}
                                         </span>
-                                        <button
+                                        <button type="button"
                                             onClick={() => {
                                                 setRenameValue(profile.resumeFilename || '');
                                                 setIsRenaming(true);
@@ -273,7 +273,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                             className="p-1 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors"
                                             title="Rename"
                                         >
-                                            <Pencil className="w-3 h-3" />
+                                            <Pencil className="size-3" />
                                         </button>
                                     </>
                                 )}
@@ -283,12 +283,12 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                             </div>
                             <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
                                 <span className="flex items-center gap-1">
-                                    <Target className="w-3 h-3" />
+                                    <Target className="size-3" />
                                     {profile.skillsCount} skills
                                 </span>
                                 {profile.hasEmbedding && (
                                     <span className="flex items-center gap-1 text-warning">
-                                        <InsightSparkleIcon className="w-3 h-3" />
+                                        <InsightSparkleIcon className="size-3" />
                                         Semantic matching
                                     </span>
                                 )}
@@ -297,13 +297,13 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                         </div>
                     </div>
 
-                    <button
+                    <button type="button"
                         onClick={() => fileInputRef.current?.click()}
                         disabled={isSaving}
                         className="text-xs text-muted-foreground hover:text-foreground font-medium inline-flex items-center gap-1.5 transition-colors"
                     >
-                        <RefreshCw className={cn("w-3 h-3", isSaving && "animate-spin")} />
-                        {isSaving ? "Updating..." : "Change"}
+                        <RefreshCw className={cn("size-3", isSaving && "animate-spin")} />
+                        {isSaving ? "Updating…" : "Change"}
                     </button>
                 </div>
 
@@ -326,8 +326,8 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
             <div className={cn("rounded border border-border/60 bg-card p-4", className)}>
                 <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded bg-muted/50">
-                            <Upload className="h-4 w-4 text-muted-foreground" />
+                        <div className="flex size-8 items-center justify-center rounded bg-muted/50">
+                            <Upload className="size-4 text-muted-foreground" />
                         </div>
                         <div>
                             <p className="text-sm font-medium text-foreground">Sign in to set your matching resume</p>
@@ -364,16 +364,16 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
         >
             {isSaving ? (
                 <div className="flex items-center gap-3">
-                    <Loader2 className="w-5 h-5 text-brand animate-spin" />
+                    <Loader2 className="size-5 text-brand animate-spin" />
                     <div>
-                        <p className="text-sm font-medium text-foreground">Indexing skills...</p>
+                        <p className="text-sm font-medium text-foreground">Indexing skills…</p>
                         {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}
                     </div>
                 </div>
             ) : (
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded bg-muted/50 flex items-center justify-center">
-                        <Upload className="w-4 h-4 text-muted-foreground" />
+                    <div className="size-8 rounded bg-muted/50 flex items-center justify-center">
+                        <Upload className="size-4 text-muted-foreground" />
                     </div>
                     <div>
                         <p className="text-sm font-medium text-foreground">

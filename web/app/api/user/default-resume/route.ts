@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
 }
 
 // GET: Check default resume status
-export async function GET() {
+export async function GET(request: NextRequest) {
     try {
         const supabase = await createSupabaseServerClient();
         const { data: { user }, error: authError } = await supabase.auth.getUser();
@@ -123,9 +123,14 @@ export async function GET() {
             );
         }
 
+        const includeText = request.nextUrl.searchParams.get("includeText") === "1";
+        const selectFields = includeText
+            ? "resume_preview, resume_filename, resume_updated_at, skills_index, resume_embedding, resume_text"
+            : "resume_preview, resume_filename, resume_updated_at, skills_index, resume_embedding";
+
         const { data: profile, error } = await supabase
             .from("user_profiles")
-            .select("resume_preview, resume_filename, resume_updated_at, skills_index, resume_embedding")
+            .select(selectFields)
             .eq("user_id", user.id)
             .single();
 
@@ -145,17 +150,20 @@ export async function GET() {
             });
         }
 
+        const profileRecord = profile as any;
+
         return NextResponse.json({
             success: true,
             data: {
                 hasResume: true,
-                resumePreview: profile.resume_preview,
-                resumeFilename: profile.resume_filename,
-                updatedAt: profile.resume_updated_at,
-                skillsCount: Array.isArray(profile.skills_index)
-                    ? profile.skills_index.length
+                resumePreview: profileRecord.resume_preview,
+                resumeFilename: profileRecord.resume_filename,
+                updatedAt: profileRecord.resume_updated_at,
+                skillsCount: Array.isArray(profileRecord.skills_index)
+                    ? profileRecord.skills_index.length
                     : 0,
-                hasEmbedding: profile.resume_embedding !== null,
+                hasEmbedding: profileRecord.resume_embedding !== null,
+                ...(includeText ? { resumeText: profileRecord.resume_text || "" } : {}),
             },
         });
     } catch (error) {
@@ -198,6 +206,42 @@ export async function PATCH(request: NextRequest) {
             console.error("[DefaultResume] Update error:", error);
             return NextResponse.json(
                 { success: false, error: "Failed to update filename" },
+                { status: 500 }
+            );
+        }
+
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error("[DefaultResume] Error:", error);
+        return NextResponse.json(
+            { success: false, error: "Internal server error" },
+            { status: 500 }
+        );
+    }
+}
+
+// DELETE: Remove default resume profile
+export async function DELETE() {
+    try {
+        const supabase = await createSupabaseServerClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
+            return NextResponse.json(
+                { success: false, error: "Unauthorized" },
+                { status: 401 }
+            );
+        }
+
+        const { error } = await supabase
+            .from("user_profiles")
+            .delete()
+            .eq("user_id", user.id);
+
+        if (error) {
+            console.error("[DefaultResume] Delete error:", error);
+            return NextResponse.json(
+                { success: false, error: "Failed to remove resume profile" },
                 { status: 500 }
             );
         }

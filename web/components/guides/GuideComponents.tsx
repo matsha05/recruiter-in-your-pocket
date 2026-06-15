@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Lightbulb, AlertTriangle, Info, Check } from "lucide-react";
 
 /**
@@ -47,7 +47,7 @@ interface GuideTipProps {
     type?: "insight" | "warning" | "info";
 }
 
-export function GuideTip({ children, type = "insight" }: GuideTipProps) {
+function GuideTip({ children, type = "insight" }: GuideTipProps) {
     const config = {
         insight: { label: "Recruiter's Take", icon: Lightbulb, color: "text-brand", bg: "bg-brand/5", border: "border-brand/20" },
         warning: { label: "Watch Out", icon: AlertTriangle, color: "text-rose-500", bg: "bg-rose-500/5", border: "border-rose-500/20" },
@@ -57,8 +57,8 @@ export function GuideTip({ children, type = "insight" }: GuideTipProps) {
 
     return (
         <div className={`sticky top-24 p-4 rounded-lg border ${bg} ${border}`}>
-            <div className={`flex items-center gap-2 ${color} text-[10px] font-bold uppercase tracking-widest mb-2`}>
-                <Icon className="w-3.5 h-3.5" />
+            <div className={`flex items-center gap-2 ${color} text-xs font-bold uppercase tracking-wide mb-2`}>
+                <Icon className="size-3.5" />
                 <span>{label}</span>
             </div>
             <div className="text-sm text-muted-foreground leading-relaxed">
@@ -84,14 +84,14 @@ export function GuideAccordion({ title, badge, children, defaultOpen = false }: 
 
     return (
         <div className="border border-border/40 rounded-lg overflow-hidden">
-            <button
+            <button type="button"
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex items-center justify-between gap-4 p-4 text-left bg-muted/20 hover:bg-muted/40 transition-colors"
             >
                 <div className="flex items-center gap-3">
                     <span className="font-medium text-foreground">{title}</span>
                     {badge && (
-                        <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-brand/10 text-brand border border-brand/20">
+                        <span className="text-xs font-bold uppercase tracking-wide px-2 py-0.5 rounded-full bg-brand/10 text-brand border border-brand/20">
                             {badge}
                         </span>
                     )}
@@ -100,7 +100,7 @@ export function GuideAccordion({ title, badge, children, defaultOpen = false }: 
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                 >
-                    <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                    <ChevronDown className="size-4 text-muted-foreground" />
                 </motion.div>
             </button>
             <AnimatePresence initial={false}>
@@ -167,22 +167,22 @@ export function GuideChatUI({ messages, title }: GuideChatUIProps) {
                 <span className="text-sm font-medium text-slate-300">
                     {title || "Sample Conversation"}
                 </span>
-                <button
+                <button type="button"
                     onClick={isPlaying ? resetConversation : playConversation}
                     disabled={isPlaying}
-                    className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-brand/20 text-brand hover:bg-brand/30 transition-colors disabled:opacity-50"
+                    className="text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full bg-brand/20 text-brand hover:bg-brand/30 transition-colors disabled:opacity-50"
                 >
                     {visibleMessages.length === messages.length ? "Replay" : isPlaying ? "Playing..." : "Play"}
                 </button>
             </div>
 
             {/* Chat area */}
-            <div className="p-4 space-y-3 min-h-[160px]">
+            <div className="p-4 gap-y-3 min-h-[160px]">
                 <AnimatePresence>
                     {messages.map((msg, index) => (
                         visibleMessages.includes(index) && (
                             <motion.div
-                                key={index}
+                                key={`${msg.role}-${msg.message}`}
                                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
@@ -192,7 +192,7 @@ export function GuideChatUI({ messages, title }: GuideChatUIProps) {
                                     ? "bg-brand text-white rounded-br-md"
                                     : "bg-slate-800 text-slate-200 rounded-bl-md"
                                     }`}>
-                                    <div className="text-[10px] font-medium uppercase tracking-wider opacity-60 mb-1">
+                                    <div className="text-xs font-medium uppercase tracking-wider opacity-60 mb-1">
                                         {msg.role === "you" ? "You" : "Recruiter"}
                                     </div>
                                     <p className="text-sm leading-relaxed">{msg.message}</p>
@@ -227,7 +227,7 @@ export function GuideNumberedSection({ number, title, children, id }: GuideNumbe
     return (
         <section id={id} className="scroll-mt-24">
             <div className="flex items-start gap-6 mb-6">
-                <div className="shrink-0 w-14 h-14 rounded-xl bg-muted/50 border border-border/30 flex items-center justify-center">
+                <div className="shrink-0 size-14 rounded-xl bg-muted/50 border border-border/30 flex items-center justify-center">
                     <span className="text-2xl font-display font-bold text-foreground">{number}</span>
                 </div>
                 <div className="pt-2">
@@ -268,8 +268,8 @@ interface GuideQuickWinProps {
 export function GuideQuickWin({ children }: GuideQuickWinProps) {
     return (
         <li className="flex items-start gap-3">
-            <div className="shrink-0 w-5 h-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5">
-                <Check className="w-3 h-3 text-success" />
+            <div className="shrink-0 size-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5">
+                <Check className="size-3 text-success" />
             </div>
             <span className="text-muted-foreground">{children}</span>
         </li>
@@ -291,25 +291,25 @@ export function EmployerMathCallout() {
             viewport={{ once: true }}
             className="my-10 rounded-xl border border-border/40 bg-muted/15 p-6"
         >
-            <div className="mb-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand">
-                <Calculator className="w-4 h-4" />
+            <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-brand">
+                <Calculator className="size-4" />
                 <span>The Math They&apos;re Doing</span>
             </div>
-            <div className="space-y-3">
+            <div className="gap-y-3">
                 <div className="flex items-start gap-3">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">$</span>
+                    <span className="shrink-0 size-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">$</span>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                         <strong className="text-foreground">$24,000+</strong> to source, interview, and close one role.
                     </p>
                 </div>
                 <div className="flex items-start gap-3">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">%</span>
+                    <span className="shrink-0 size-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">%</span>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                         <strong className="text-foreground">150-200%</strong> of salary is a common fully loaded annual cost (benefits, tax, overhead).
                     </p>
                 </div>
                 <div className="flex items-start gap-3">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">~</span>
+                    <span className="shrink-0 size-6 rounded-full bg-brand/15 flex items-center justify-center text-sm font-bold text-brand">~</span>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                         An extra <strong className="text-foreground">$5K</strong> is usually a small variance against total hiring cost.
                     </p>
@@ -342,7 +342,7 @@ interface ScriptScenario {
 const COUNTER_SCRIPTS: ScriptScenario[] = [
     {
         situation: "They ask for your salary expectation first",
-        context: "This happens early — during screening or even the application. They want to anchor you to a number before you know enough to value yourself properly.",
+        context: "This happens early  -  during screening or even the application. They want to anchor you to a number before you know enough to value yourself properly.",
         scripts: [
             {
                 label: "Polite deflection",
@@ -358,17 +358,17 @@ const COUNTER_SCRIPTS: ScriptScenario[] = [
             }
         ],
         recruiterHears: "They're not desperate. They've done this before. I'll need to share our range first or lose control of the conversation.",
-        whyItWorks: "Whoever says a number first sets the anchor. By deflecting, you force them to reveal their range — which becomes the floor, not the ceiling.",
+        whyItWorks: "Whoever says a number first sets the anchor. By deflecting, you force them to reveal their range  -  which becomes the floor, not the ceiling.",
         ifTheyPushBack: "If they insist, say: 'I'm flexible within the market range for this role. I'd need to see the full package before committing to a number.'",
         commonMistake: "Giving a number because you feel awkward. That one moment of discomfort can cost you $10K+ over the life of the offer."
     },
     {
         situation: "They say 'this is the best we can do'",
-        context: "You've countered, and they've come back with resistance. This is often a test — or a signal to shift to other levers.",
+        context: "You've countered, and they've come back with resistance. This is often a test  -  or a signal to shift to other levers.",
         scripts: [
             {
                 label: "Shift to other levers",
-                text: "I appreciate you pushing on this. Are there other parts of the package that might have more flexibility — signing bonus, equity, or start date?"
+                text: "I appreciate you pushing on this. Are there other parts of the package that might have more flexibility  -  signing bonus, equity, or start date?"
             },
             {
                 label: "Ask what's possible",
@@ -380,17 +380,17 @@ const COUNTER_SCRIPTS: ScriptScenario[] = [
             }
         ],
         recruiterHears: "They're persistent but collaborative. They're not walking. They're giving me room to find a solution. Let me check what else I can do.",
-        whyItWorks: "You're not fighting — you're problem-solving together. And you're implicitly signaling that you're close to yes, which motivates them to find creative solutions.",
+        whyItWorks: "You're not fighting  -  you're problem-solving together. And you're implicitly signaling that you're close to yes, which motivates them to find creative solutions.",
         ifTheyPushBack: "'This is truly the max' is sometimes true. If they won't budge on anything, you can still negotiate start date, title, review timing, or remote flexibility.",
         commonMistake: "Accepting the first 'no' as final. Recruiters expect pushback. A single 'no' is often just the start of the real conversation."
     },
     {
         situation: "They lowballed you",
-        context: "The offer is significantly below market or your expectations. Stay calm — this is recoverable if you handle it right.",
+        context: "The offer is significantly below market or your expectations. Stay calm  -  this is recoverable if you handle it right.",
         scripts: [
             {
                 label: "Acknowledge & pivot",
-                text: "Thank you for the offer — I'm genuinely excited about this role and team. There were a couple of things I wanted to discuss before I can move forward."
+                text: "Thank you for the offer  -  I'm genuinely excited about this role and team. There were a couple of things I wanted to discuss before I can move forward."
             },
             {
                 label: "State your target",
@@ -398,13 +398,13 @@ const COUNTER_SCRIPTS: ScriptScenario[] = [
             },
             {
                 label: "Focus on total comp",
-                text: "I'd love to make this work. If we can get to [X] in total year-one compensation — through some mix of base and signing — I'm ready to commit."
+                text: "I'd love to make this work. If we can get to [X] in total year-one compensation  -  through some mix of base and signing  -  I'm ready to commit."
             }
         ],
         recruiterHears: "They're serious but not walking away. They're being professional about this. I need to go back to comp committee with a counter-proposal.",
         whyItWorks: "You've shown you're interested (so they won't lose you) but you've also established that the current offer isn't acceptable. This forces action without burning bridges.",
         ifTheyPushBack: "If they claim budget constraints, ask: 'Is this offer at the top of the band for my level, or is there room to grow?' Sometimes you can negotiate a guaranteed 6-month review.",
-        commonMistake: "Reacting emotionally or expressing disappointment. Stay positive and solution-oriented. Your frustration doesn't help you — it just makes the recruiter defensive."
+        commonMistake: "Reacting emotionally or expressing disappointment. Stay positive and solution-oriented. Your frustration doesn't help you  -  it just makes the recruiter defensive."
     },
     {
         situation: "They pressure you with a 24-48 hour deadline",
@@ -452,11 +452,11 @@ const COUNTER_SCRIPTS: ScriptScenario[] = [
     },
     {
         situation: "You have a competing offer",
-        context: "This is the strongest lever you have. Use it ethically — don't fabricate offers, but do use real offers to your advantage.",
+        context: "This is the strongest lever you have. Use it ethically  -  don't fabricate offers, but do use real offers to your advantage.",
         scripts: [
             {
                 label: "Direct approach",
-                text: "I've received another offer at [X]. I'd prefer to join [your company] — would you be able to revisit the compensation to make this work?"
+                text: "I've received another offer at [X]. I'd prefer to join [your company]  -  would you be able to revisit the compensation to make this work?"
             },
             {
                 label: "Frame as helping them",
@@ -478,13 +478,13 @@ export function ScriptLibrary() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <div className="space-y-3">
+        <div className="gap-y-3">
             {COUNTER_SCRIPTS.map((script, index) => (
                 <div
-                    key={index}
+                    key={script.situation}
                     className="border border-border/40 rounded-lg overflow-hidden"
                 >
-                    <button
+                    <button type="button"
                         onClick={() => setOpenIndex(openIndex === index ? null : index)}
                         className="w-full flex items-center justify-between gap-4 p-4 text-left bg-muted/20 hover:bg-muted/40 transition-colors"
                     >
@@ -493,7 +493,7 @@ export function ScriptLibrary() {
                             animate={{ rotate: openIndex === index ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
+                            <ChevronDown className="size-4 text-muted-foreground shrink-0" />
                         </motion.div>
                     </button>
                     <AnimatePresence initial={false}>
@@ -504,7 +504,7 @@ export function ScriptLibrary() {
                                 exit={{ height: 0, opacity: 0 }}
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
                             >
-                                <div className="p-5 border-t border-border/30 space-y-5">
+                                <div className="p-5 border-t border-border/30 gap-y-5">
                                     {/* Context */}
                                     <p className="text-sm text-muted-foreground leading-relaxed">
                                         {script.context}
@@ -512,13 +512,13 @@ export function ScriptLibrary() {
 
                                     {/* Script variations */}
                                     <div>
-                                        <div className="text-[10px] font-bold uppercase tracking-widest text-brand mb-3">
+                                        <div className="text-xs font-bold uppercase tracking-wide text-brand mb-3">
                                             What you say
                                         </div>
-                                        <div className="space-y-2">
+                                        <div className="gap-y-2">
                                             {script.scripts.map((s, i) => (
-                                                <div key={i} className="bg-brand/5 border border-brand/20 rounded-lg p-3">
-                                                    <div className="text-[10px] font-medium text-brand/70 uppercase mb-1">
+                                                <div key={s.label} className="bg-brand/5 border border-brand/20 rounded-lg p-3">
+                                                    <div className="text-xs font-medium text-brand/70 uppercase mb-1">
                                                         {s.label}
                                                     </div>
                                                     <p className="text-sm text-foreground leading-relaxed">
@@ -531,7 +531,7 @@ export function ScriptLibrary() {
 
                                     {/* What recruiter hears */}
                                     <div>
-                                        <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                                        <div className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-2">
                                             What the recruiter hears
                                         </div>
                                         <p className="text-sm text-muted-foreground bg-muted/30 rounded-lg p-3 leading-relaxed italic">
@@ -541,7 +541,7 @@ export function ScriptLibrary() {
 
                                     {/* Why it works */}
                                     <div>
-                                        <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 mb-2">
+                                        <div className="text-xs font-bold uppercase tracking-wide text-emerald-600 mb-2">
                                             Why this works
                                         </div>
                                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -552,7 +552,7 @@ export function ScriptLibrary() {
                                     {/* If they push back */}
                                     {script.ifTheyPushBack && (
                                         <div>
-                                            <div className="text-[10px] font-bold uppercase tracking-widest text-amber-600 mb-2">
+                                            <div className="text-xs font-bold uppercase tracking-wide text-amber-600 mb-2">
                                                 If they push back
                                             </div>
                                             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -564,9 +564,9 @@ export function ScriptLibrary() {
                                     {/* Common mistake */}
                                     {script.commonMistake && (
                                         <div className="flex items-start gap-2 text-rose-600 bg-rose-500/5 border border-rose-500/20 rounded-lg p-3">
-                                            <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                                            <AlertTriangle className="size-4 shrink-0 mt-0.5" />
                                             <div>
-                                                <div className="text-[10px] font-bold uppercase tracking-widest mb-1">
+                                                <div className="text-xs font-bold uppercase tracking-wide mb-1">
                                                     Common mistake
                                                 </div>
                                                 <p className="text-sm leading-relaxed text-rose-700 dark:text-rose-400">
@@ -641,13 +641,13 @@ export function LeverDeepDives() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <div className="space-y-3">
+        <div className="gap-y-3">
             {LEVER_DEEP_DIVES.map((lever, index) => (
                 <div
-                    key={index}
+                    key={lever.name}
                     className="border border-border/40 rounded-lg overflow-hidden"
                 >
-                    <button
+                    <button type="button"
                         onClick={() => setOpenIndex(openIndex === index ? null : index)}
                         className="w-full flex items-center justify-between gap-4 p-4 text-left bg-muted/20 hover:bg-muted/40 transition-colors"
                     >
@@ -656,7 +656,7 @@ export function LeverDeepDives() {
                             animate={{ rotate: openIndex === index ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />
+                            <ChevronDown className="size-4 text-muted-foreground shrink-0" />
                         </motion.div>
                     </button>
                     <AnimatePresence initial={false}>
@@ -667,9 +667,9 @@ export function LeverDeepDives() {
                                 exit={{ height: 0, opacity: 0 }}
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
                             >
-                                <div className="p-5 border-t border-border/30 space-y-4">
+                                <div className="p-5 border-t border-border/30 gap-y-4">
                                     <div>
-                                        <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">
+                                        <div className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-1">
                                             Why it&apos;s easier to get
                                         </div>
                                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -677,7 +677,7 @@ export function LeverDeepDives() {
                                         </p>
                                     </div>
                                     <div>
-                                        <div className="text-[10px] font-bold uppercase tracking-widest text-brand mb-1">
+                                        <div className="text-xs font-bold uppercase tracking-wide text-brand mb-1">
                                             How to ask
                                         </div>
                                         <p className="text-sm text-foreground bg-brand/5 border border-brand/20 rounded-lg p-3 leading-relaxed">
@@ -686,7 +686,7 @@ export function LeverDeepDives() {
                                     </div>
                                     {lever.typicalRange && (
                                         <div>
-                                            <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">
+                                            <div className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-1">
                                                 Typical range
                                             </div>
                                             <p className="text-sm text-muted-foreground">{lever.typicalRange}</p>
@@ -694,7 +694,7 @@ export function LeverDeepDives() {
                                     )}
                                     {lever.watchOut && (
                                         <div className="flex items-start gap-2 text-amber-600 bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
-                                            <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                                            <AlertTriangle className="size-4 shrink-0 mt-0.5" />
                                             <p className="text-sm leading-relaxed">{lever.watchOut}</p>
                                         </div>
                                     )}

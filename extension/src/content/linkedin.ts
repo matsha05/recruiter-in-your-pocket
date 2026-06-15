@@ -352,6 +352,7 @@ function extractJobMeta(): JobMeta {
     company: extractText(queryWithFallback(COMPANY_SELECTORS)),
     location: extractText(queryWithFallback(LOCATION_SELECTORS)),
     url: window.location.href,
+    source: 'linkedin',
     capturedAt: Date.now(),
   };
 }

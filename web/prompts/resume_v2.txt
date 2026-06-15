@@ -31,6 +31,7 @@ SCORING
 
 JSON SCHEMA
 {
+  "contract_version": "v2",
   "score": 0,
   "score_label": "",
   "score_comment_short": "",
@@ -135,6 +136,10 @@ JSON SCHEMA
 
 FIELD RULES
 
+- contract_version
+  - Must be exactly "v2".
+  - This is used by the eval harness and production validator to catch stale prompt output.
+
 - score
   - Integer from 0 to 99.
   - Use the lower score when stuck between two bands.
@@ -202,9 +207,13 @@ FIELD RULES
   - fix must be specific, short, and concrete.
   - why must explain the recruiter consequence.
   - confidence must be "high", "medium", or "low".
+  - Use "low" when the resume gives weak evidence for the recommendation.
+  - Use "medium" when the recommendation is sound but depends on missing context.
+  - Use "high" only when the evidence excerpt clearly supports the fix.
   - impact_level must be "high", "medium", or "low".
   - effort must be "quick", "moderate", or "high".
   - evidence.excerpt must be a direct quote from the resume.
+  - evidence.excerpt must be under 140 characters.
   - evidence.section and section_ref must use a real section name.
 
 - next_steps

@@ -22,7 +22,7 @@ export default function Error({
             {/* Simple Header */}
             <header className="h-16 flex items-center justify-between px-6 border-b border-border/10">
                 <Link href="/" className="flex items-center gap-2">
-                    <PocketMark className="w-6 h-6 text-brand" />
+                    <PocketMark className="size-6 text-brand" />
                     <Wordmark className="h-5 text-foreground" />
                 </Link>
             </header>
@@ -32,8 +32,8 @@ export default function Error({
                 <div className="text-center max-w-md">
                     {/* Error Icon */}
                     <div className="mb-8 flex justify-center">
-                        <div className="w-20 h-20 rounded-full bg-rose/10 flex items-center justify-center">
-                            <AlertTriangle className="w-10 h-10 text-rose" strokeWidth={1.5} />
+                        <div className="size-20 rounded-full bg-rose/10 flex items-center justify-center">
+                            <AlertTriangle className="size-10 text-rose" strokeWidth={1.5} />
                         </div>
                     </div>
 
@@ -48,18 +48,18 @@ export default function Error({
 
                     {/* Actions */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <button
+                        <button type="button"
                             onClick={reset}
                             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand text-brand-foreground font-medium rounded-md hover:bg-brand/90 transition-colors"
                         >
-                            <RefreshCw className="w-4 h-4" />
+                            <RefreshCw className="size-4" />
                             Try Again
                         </button>
                         <Link
                             href="/"
                             className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border/60 bg-background text-foreground font-medium rounded-md hover:bg-accent transition-colors"
                         >
-                            <Home className="w-4 h-4" />
+                            <Home className="size-4" />
                             Back to Home
                         </Link>
                     </div>

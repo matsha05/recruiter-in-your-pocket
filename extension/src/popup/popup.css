@@ -234,6 +234,12 @@
     box-shadow: var(--shadow-sm);
 }
 
+.job-card-main {
+    all: unset;
+    display: contents;
+    cursor: pointer;
+}
+
 .job-card:hover {
     border-color: hsl(var(--border-subtle));
     box-shadow: var(--shadow-md);
@@ -885,6 +891,10 @@
     background: hsl(var(--muted) / 0.3);
     border: 1px dashed hsl(var(--border));
     cursor: pointer;
+    width: 100%;
+    color: inherit;
+    font: inherit;
+    text-align: left;
 }
 
 .resume-context-empty:hover {

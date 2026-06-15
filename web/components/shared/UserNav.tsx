@@ -35,13 +35,13 @@ export function UserNav({
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <button
+                <button type="button"
                     className={cn(
                         "flex items-center justify-center rounded-full hover:ring-2 hover:ring-border/50 transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                         className
                     )}
                 >
-                    <span className="w-8 h-8 flex items-center justify-center bg-brand text-white rounded-full text-xs font-semibold ring-1 ring-border/20">
+                    <span className="size-8 flex items-center justify-center bg-brand text-white rounded-full text-xs font-semibold ring-1 ring-border/20">
                         {userInitial}
                     </span>
                 </button>
@@ -50,13 +50,13 @@ export function UserNav({
             <DropdownMenuContent className="w-56 border-border/60 shadow-sm" align="end">
                 {/* User info header */}
                 <DropdownMenuLabel className="font-normal">
-                    <div className="flex flex-col space-y-1">
+                    <div className="flex flex-col gap-y-1">
                         <p className="text-sm font-medium">{user.firstName || 'User'}</p>
                         <p className="text-xs text-muted-foreground truncate">{user.email}</p>
                     </div>
 
                     {/* Membership Status Badge */}
-                    <div className="mt-2 text-[10px] font-medium uppercase tracking-wider flex flex-col gap-1">
+                    <div className="mt-2 text-xs font-medium uppercase tracking-wider flex flex-col gap-1">
                         {user.membership === "lifetime" && (
                             <span className="text-brand flex items-center gap-1">
                                 Lifetime Access
@@ -93,13 +93,13 @@ export function UserNav({
                 <DropdownMenuGroup>
                     {onHistoryClick ? (
                         <DropdownMenuItem onClick={onHistoryClick}>
-                            <Files className="mr-2 h-4 w-4" />
+                            <Files className="mr-2 size-4" />
                             My Reports
                         </DropdownMenuItem>
                     ) : (
                         <DropdownMenuItem asChild>
                             <Link href="/reports" className="w-full">
-                                <Files className="mr-2 h-4 w-4" />
+                                <Files className="mr-2 size-4" />
                                 My Reports
                             </Link>
                         </DropdownMenuItem>
@@ -126,7 +126,7 @@ export function UserNav({
                     onClick={onSignOut}
                     className="text-destructive focus:text-destructive focus:bg-destructive/10"
                 >
-                    <LogOut className="mr-2 h-4 w-4" />
+                    <LogOut className="mr-2 size-4" />
                     Sign Out
                 </DropdownMenuItem>
             </DropdownMenuContent>

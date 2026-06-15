@@ -13,6 +13,9 @@ export type ErrorCode =
     | "E_EMPTY_REQUIRED_FIELD"
     | "E_NO_EVIDENCE"
     | "E_EVIDENCE_TOO_LONG"
+    | "E_EVIDENCE_NOT_VERBATIM"
+    | "E_REWRITE_ORIGINAL_NOT_VERBATIM"
+    | "E_REWRITE_INVENTED_SPECIFIC"
     | "E_BANNED_PHRASE"
     | "E_SCORE_EXTREME";
 
@@ -168,7 +171,7 @@ export interface EvalOptions {
 // CONSTANTS
 // ============================================
 
-export const EVIDENCE_MAX_LENGTH = 300;
+export const EVIDENCE_MAX_LENGTH = 140;
 export const SCORE_DRIFT_WARN_THRESHOLD = 5;
 export const SCORE_DRIFT_ERROR_THRESHOLD = 12;
 export const SUBSCORE_DRIFT_WARN_THRESHOLD = 10;

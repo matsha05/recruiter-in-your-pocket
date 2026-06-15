@@ -167,7 +167,7 @@ const BOOTSTRAP_CORPUS_SIZE = 100;
  * @param docFrequency - Number of documents containing the skill
  * @param totalDocs - Total documents in corpus
  */
-export function calculateIDF(docFrequency: number, totalDocs: number): number {
+function calculateIDF(docFrequency: number, totalDocs: number): number {
     // Standard IDF with smoothing
     return Math.log((totalDocs + 1) / (docFrequency + 1)) + 1;
 }
@@ -179,7 +179,7 @@ export function calculateIDF(docFrequency: number, totalDocs: number): number {
  * Medium IDF → normal weight (0.8-1.2)
  * High IDF (rare skill) → high weight (1.5-2.0)
  */
-export function idfToWeight(idf: number): number {
+function idfToWeight(idf: number): number {
     // Normalize IDF to weight
     // IDF typically ranges 1.0 (very common) to ~4.6 (appears once in 100 docs)
     // Map to 0.2 - 2.0 range
@@ -229,7 +229,7 @@ export function getSkillWeight(skill: string, store?: IDFStore, socCode?: string
 /**
  * Apply IDF weighting to a skill score
  */
-export function applyIDFWeight(baseScore: number, skill: string, store?: IDFStore): number {
+function applyIDFWeight(baseScore: number, skill: string, store?: IDFStore): number {
     const weight = getSkillWeight(skill, store);
     return baseScore * weight;
 }
@@ -239,7 +239,7 @@ export function applyIDFWeight(baseScore: number, skill: string, store?: IDFStor
 /**
  * Create a new empty IDF store
  */
-export function createIDFStore(): IDFStore {
+function createIDFStore(): IDFStore {
     return {
         skillCounts: { ...BOOTSTRAP_SKILL_FREQUENCIES },
         totalDocuments: BOOTSTRAP_CORPUS_SIZE,
@@ -250,7 +250,7 @@ export function createIDFStore(): IDFStore {
 /**
  * Update store with skills from a new JD
  */
-export function updateIDFStore(store: IDFStore, skills: string[]): IDFStore {
+function updateIDFStore(store: IDFStore, skills: string[]): IDFStore {
     const newCounts = { ...store.skillCounts };
     const seenInDoc = new Set<string>();
 
@@ -272,7 +272,7 @@ export function updateIDFStore(store: IDFStore, skills: string[]): IDFStore {
 /**
  * Get all skill weights for debugging/display
  */
-export function getSkillWeights(skills: string[], store?: IDFStore): SkillFrequency[] {
+function getSkillWeights(skills: string[], store?: IDFStore): SkillFrequency[] {
     return skills.map(skill => {
         const normalized = skill.toLowerCase().trim();
         const count = store?.skillCounts[normalized] ||

@@ -29,7 +29,6 @@
     "eval:bulk-analyze": "node scripts/run-ts-script.cjs scripts/bulk-analyze.ts"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
@@ -37,9 +36,6 @@
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.4",
-    "@radix-ui/react-switch": "^1.2.6",
-    "@radix-ui/react-tabs": "^1.1.13",
-    "@radix-ui/react-tooltip": "^1.2.8",
     "@sentry/nextjs": "^10.32.1",
     "@sparticuz/chromium": "^131.0.0",
     "@supabase/ssr": "^0.8.0",
@@ -79,7 +75,6 @@
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "10.4.19",
-    "baseline-browser-mapping": "^2.9.19",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
     "postcss": "8.4.47",

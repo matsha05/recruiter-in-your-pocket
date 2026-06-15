@@ -26,55 +26,55 @@ interface PaywallModalProps {
 }
 
 const DEFAULT_UNLOCK_COPY = {
-    label: "Full Report",
-    title: "Unlock the full report",
-    subtitle: "Get the full breakdown, the rewrites, and more reports whenever you need them.",
+    label: "Paid Access",
+    title: "Run the next role-specific report",
+    subtitle: "Your completed free report stays visible. Paid access is for repeated recruiter reports across the jobs, versions, and LinkedIn updates you actually plan to send.",
     bullets: [
-        "More reports and saved history",
-        "Full evidence breakdown and rewrites",
-        "Role-fit feedback for specific jobs",
-        "Export and share your report"
+        "Fresh reports for serious applications",
+        "Role-fit runs for specific jobs",
+        "Resume and LinkedIn iterations",
+        "Version history and exports for reports you keep"
     ]
 };
 
 const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     evidence_ledger: {
         label: "Evidence Ledger",
-        title: "Finish the Evidence Ledger",
-        subtitle: "See the exact lines behind the rest of the fixes.",
+        title: "Keep going with evidence",
+        subtitle: "Your free report stays visible. Paid access lets you keep using evidence-led reports across roles and versions.",
         bullets: [
-            "Every remaining fix with the line behind it",
+            "Every run grounded in the line behind it",
             "Confidence and impact on each call",
             "Rewrites tied to your actual resume",
-            "Save and export the full report"
+            "Keep a history of reports you use"
         ]
     },
     bullet_upgrades: {
         label: "Red Pen",
-        title: "Unlock the rest of Red Pen",
-        subtitle: "Get the rewrites that make the resume land faster.",
+        title: "Keep using Red Pen",
+        subtitle: "Run more recruiter-grade rewrites without losing your completed free report.",
         bullets: [
-            "All remaining bullet rewrites",
+            "More bullet rewrites across versions",
             "Phrasing a recruiter would notice",
             "Why each change lands harder",
-            "More reports for different roles"
+            "Fresh reports for different roles"
         ]
     },
     missing_wins: {
         label: "Missing Wins",
-        title: "Unlock Missing Wins",
-        subtitle: "Surface the wins that are there, but not landing yet.",
+        title: "Find the missing wins",
+        subtitle: "Use paid access when you want repeated passes on the wins that are still buried.",
         bullets: [
             "All missing-win prompts",
             "Why each one matters",
             "Track them as you add them back in",
-            "Full report export"
+            "Keep report versions together"
         ]
     },
     job_alignment: {
         label: "Role Fit",
-        title: "Unlock role fit",
-        subtitle: "See where the resume fits now and where it stretches.",
+        title: "Run role-fit briefs",
+        subtitle: "Compare the resume against specific jobs whenever you want a closer read.",
         bullets: [
             "Your best-fit roles and stretch paths",
             "Job match score and missing signals",
@@ -85,12 +85,12 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     export_pdf: {
         label: "Export",
         title: "Export your report",
-        subtitle: "Download and keep the full report.",
+        subtitle: "Download and keep reports after the free in-browser read.",
         bullets: [
-            "PDF export with everything included",
+            "PDF export for saved reports",
             "Export without re-running",
             "Restore access if anything looks locked",
-            "More reports when you need them"
+            "Fresh reports when you need them"
         ]
     }
 };
@@ -192,24 +192,24 @@ export default function PaywallModal({
                     <DialogDescription className="text-sm">
                         {unlockCopy.subtitle}
                     </DialogDescription>
-                    <p className="text-[11px] text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                         You&apos;ve used your free report.
                     </p>
                 </DialogHeader>
 
-                <div className="rounded border border-border/60 bg-secondary/10 p-4 space-y-3 mb-5">
-                    <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-muted-foreground">
+                <div className="rounded border border-border/60 bg-secondary/10 p-4 gap-y-3 mb-5">
+                    <div className="flex items-center justify-between text-xs uppercase tracking-wide text-muted-foreground">
                         <span>Unlocks now</span>
                         <span className="text-foreground/80">{unlockCopy.label}</span>
                     </div>
                     <UnlockValueList items={unlockCopy.bullets} dense />
                     {unlockContext?.section && (
-                        <p className="text-[11px] text-muted-foreground">
+                        <p className="text-xs text-muted-foreground">
                             We saved your place in <span className="text-foreground font-medium">{unlockCopy.label}</span>.
                         </p>
                     )}
-                    <p className="text-[11px] text-muted-foreground">
-                        Already unlocked: First Impression · Score Summary
+                    <p className="text-xs text-muted-foreground">
+                        Your completed free report stays visible. Upgrade only when you want another pass for a real application, a revised resume, or a LinkedIn/profile update.
                     </p>
                 </div>
 
@@ -241,7 +241,7 @@ export default function PaywallModal({
                                 onClick={handleCheckout}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `Unlock Full Report - ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
+                                {loading ? "Processing..." : `Start Paid Access - ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
                             </Button>
                         </>
                     ) : (
@@ -275,7 +275,7 @@ export default function PaywallModal({
                     onClick={handleRestore}
                     isLoading={restoreLoading}
                 >
-                    {!restoreLoading && <RefreshCw className="w-4 h-4 mr-2" />}
+                    {!restoreLoading && <RefreshCw className="size-4 mr-2" />}
                     Restore Access / Manage Billing
                 </Button>
 
@@ -285,7 +285,7 @@ export default function PaywallModal({
                     </div>
                 )}
 
-                <p className="text-center text-[10px] text-muted-foreground/50 uppercase tracking-widest">
+                <p className="text-center text-xs text-muted-foreground/50 uppercase tracking-wide">
                     Secure checkout by Stripe · Cancel anytime · All receipts in billing
                 </p>
             </DialogContent>

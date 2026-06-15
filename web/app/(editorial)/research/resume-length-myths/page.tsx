@@ -49,7 +49,7 @@ export default function ResumeLengthPage() {
                     },
                     {
                         title: "Density Warnings",
-                        description: "We flag when content is too sparse or too cramped—both hurt readability."
+                        description: "We flag when content is too sparse or too cramped - both hurt readability."
                     }
                 ]
             }}
@@ -103,7 +103,7 @@ export default function ResumeLengthPage() {
             </p>
             <p className="research-body mb-6">
                 Today, resumes are digital. They&apos;re scrolled, not flipped. The constraint that created
-                the rule no longer exists—but the rule persists.
+                the rule no longer exists - but the rule persists.
             </p>
 
             <h2 className="research-h2">What research shows</h2>
@@ -148,7 +148,7 @@ export default function ResumeLengthPage() {
 
             <h2 className="research-h2">The right answer</h2>
             <p className="research-body mb-6">
-                <strong>Use the space you need—but not more.</strong> If you have 15 years of relevant experience,
+                <strong>Use the space you need - but not more.</strong> If you have 15 years of relevant experience,
                 cramming it into one page sacrifices readability. If you have 2 years of experience, padding
                 to two pages signals weak content.
             </p>

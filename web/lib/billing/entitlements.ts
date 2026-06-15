@@ -99,7 +99,7 @@ export function getTierLabel(tier: string | null | undefined): string {
   if (tier === "lifetime") return "Lifetime Access";
   if (tier === "30d") return "Active Job Search Pack";
   if (tier === "90d") return "Extended Pack";
-  return "Quick Check";
+  return "Single Report";
 }
 
 export function getCheckoutModeForTier(tier: RequestedPricingTier): "subscription" | "payment" {

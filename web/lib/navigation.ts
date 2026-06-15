@@ -73,7 +73,7 @@ export interface MarketingNavItem {
     description?: string;
 }
 
-export const MARKETING_NAV = {
+const MARKETING_NAV = {
     product: [
         { label: "Pricing", href: "/pricing" },
         { label: "Workspace", href: "/workspace" },

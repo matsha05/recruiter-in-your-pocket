@@ -22,7 +22,7 @@ export function getConfiguredAppUrl() {
   return null;
 }
 
-export function resolveRequestOrigin(request: Request | NextRequest) {
+function resolveRequestOrigin(request: Request | NextRequest) {
   const requestUrl = new URL(request.url);
   const forwardedProto =
     request.headers.get("x-forwarded-proto") || requestUrl.protocol.replace(/:$/, "");

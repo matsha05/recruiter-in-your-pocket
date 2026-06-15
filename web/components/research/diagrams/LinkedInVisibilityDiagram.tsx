@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -34,7 +34,7 @@ export function LinkedInVisibilityDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Visibility equation
                     </span>
                 </div>
@@ -50,17 +50,17 @@ export function LinkedInVisibilityDiagram() {
                             className="flex-1 rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-4"
                         >
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-6 h-6 rounded-full bg-brand/20 flex items-center justify-center">
-                                    <svg className="w-3 h-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <div className="size-6 rounded-full bg-brand/20 flex items-center justify-center">
+                                    <svg className="size-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                                     </svg>
                                 </div>
-                                <span className="text-[10px] font-mono uppercase tracking-wider text-brand">
+                                <span className="text-xs font-mono uppercase tracking-wider text-brand">
                                     You control
                                 </span>
                             </div>
-                            <ul className="space-y-2">
+                            <ul className="gap-y-2">
                                 {inputs.map((item, i) => (
                                     <motion.li
                                         key={item}
@@ -85,7 +85,7 @@ export function LinkedInVisibilityDiagram() {
                             viewport={{ once: true }}
                             className="flex items-center"
                         >
-                            <svg className="w-6 h-6 text-muted-foreground/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <svg className="size-6 text-muted-foreground/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </motion.div>
@@ -99,16 +99,16 @@ export function LinkedInVisibilityDiagram() {
                             className="flex-1 rounded-lg border border-blue-500/30 bg-blue-500/5 dark:bg-blue-500/10 p-4"
                         >
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
-                                    <svg className="w-3 h-3 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <div className="size-6 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                    <svg className="size-3 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
                                     </svg>
                                 </div>
-                                <span className="text-[10px] font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                                <span className="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400">
                                     LinkedIn reports
                                 </span>
                             </div>
-                            <ul className="space-y-2">
+                            <ul className="gap-y-2">
                                 {outputs.map((item, i) => (
                                     <motion.li
                                         key={item}
@@ -128,8 +128,8 @@ export function LinkedInVisibilityDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Visibility Model</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Visibility Model</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Inputs vs LinkedIn-reported sourcing outcomes
                 </span>

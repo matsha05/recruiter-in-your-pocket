@@ -101,8 +101,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             // Identify user in analytics
             if (baseUser) {
                 identifyUser(baseUser.id, {
-                    email: baseUser.email || undefined,
-                    name: baseUser.firstName || undefined,
                     plan: baseUser.membership || "free",
                     credits_remaining: baseUser.freeUsesLeft,
                 });

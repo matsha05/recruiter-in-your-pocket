@@ -26,7 +26,7 @@ export default function RecentJobsList({ jobs, onJobClick, onOpenOriginal, onDel
             <div className="section-header">
                 <span className="section-title">Saved jobs ({jobs.length})</span>
                 {jobs.length > 5 && (
-                    <button className="btn btn-ghost" onClick={handleViewAll}>
+                    <button type="button" className="btn btn-ghost" onClick={handleViewAll}>
                         View All
                     </button>
                 )}

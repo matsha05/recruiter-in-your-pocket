@@ -16,7 +16,7 @@ import ResumeModeSection from "@/components/workspace/ResumeModeSection";
 import LinkedInModeSection from "@/components/workspace/LinkedInModeSection";
 import { useWorkspaceInit } from "@/components/workspace/hooks/useWorkspaceInit";
 import { useJobContextFromExtension, type LoadedJobContext } from "@/components/workspace/hooks/useJobContextFromExtension";
-import { useSampleReport } from "@/components/workspace/hooks/useSampleReport";
+import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
@@ -24,9 +24,16 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 
+const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+function getPersistedSavedJobId(jobContext: LoadedJobContext | null) {
+    return jobContext?.id && SAVED_JOB_ID_PATTERN.test(jobContext.id) ? jobContext.id : null;
+}
+
 export default function WorkspaceClient() {
-    const router = useRouter();
+    const { push } = useRouter();
     const searchParams = useSearchParams();
+    const getSearchParam = searchParams.get.bind(searchParams);
     const { user, refreshUser } = useAuth();
     const [resumeText, setResumeText] = useState("");
     const [jobDescription, setJobDescription] = useState("");
@@ -74,9 +81,11 @@ export default function WorkspaceClient() {
 
     useJobContextFromExtension({
         searchParams,
+        setResumeText,
         setJobDescription,
         setLoadedJobContext,
-        setSkipSample
+        setSkipSample,
+        shouldHydrateDefaultResume: Boolean(user)
     });
 
     // Ref to store latest handleRun (avoids circular dependency with resumeText)
@@ -87,16 +96,16 @@ export default function WorkspaceClient() {
         if (pendingAutoRunRef.current && resumeText.trim()) {
             pendingAutoRunRef.current = false;
             // Small delay to ensure component is fully mounted
-            setTimeout(() => {
+            const timer = setTimeout(() => {
                 handleRunRef.current();
             }, 100);
+            return () => clearTimeout(timer);
         }
     }, [resumeText]);
 
     useSampleReport({
         searchParams,
         report,
-        skipSample,
         setReport
     });
 
@@ -193,20 +202,30 @@ export default function WorkspaceClient() {
                     extracted_chars: result.text.length
                 });
                 Analytics.resumeUploaded("workspace");
+                return true;
             } else {
                 console.error("Failed to parse resume:", result.message);
                 toast.error("Failed to parse resume", { description: result.message || "Unknown error" });
+                setResumeText("");
+                return false;
             }
         } catch (err) {
             console.error("File parsing error:", err);
             toast.error("File parsing error", { description: "Please try another file." });
+            setResumeText("");
+            return false;
         } finally {
             setIsLoading(false);
         }
     }, []);
 
+    const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
+
     const handleRun = useCallback(async () => {
-        if (!resumeText.trim()) return;
+        if (!resumeText.trim()) {
+            toast.error("Add your resume first", { description: "Upload a file or paste the resume text before running the brief." });
+            return;
+        }
         const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
 
         // Check if free uses exhausted (and user doesn't have active pass)
@@ -254,7 +273,7 @@ export default function WorkspaceClient() {
                     }
                 },
                 "resume",
-                { signal: controller.signal }
+                { signal: controller.signal, savedJobId: persistedSavedJobId }
             );
             if (result.aborted) {
                 setIsLoading(false);
@@ -287,19 +306,19 @@ export default function WorkspaceClient() {
             } else {
                 // Error case - show immediately
                 console.error("Failed to generate report:", result.message);
-                toast.error("Failed to generate report", { description: `${result.message || "Unknown error"} · No credits consumed` });
+                toast.error("Failed to generate report", { description: `${result.message || "Unknown error"} · Your free report was not used` });
                 setIsLoading(false);
                 setIsStreaming(false);
                 endAnalysis();
             }
         } catch (err) {
             console.error("Report generation error:", err);
-            toast.error("Report generation error", { description: "Please try again. No credits consumed." });
+            toast.error("Report generation error", { description: "Please try again. Your free report was not used." });
             setIsLoading(false);
             setIsStreaming(false);
             endAnalysis();
         }
-    }, [resumeText, jobDescription, freeUsesRemaining, user, refreshFreeStatus, isLoading, beginAnalysis, endAnalysis]);
+    }, [resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, refreshFreeStatus, isLoading, beginAnalysis, endAnalysis]);
 
     // Keep ref in sync with latest handleRun
     handleRunRef.current = handleRun;
@@ -454,7 +473,7 @@ export default function WorkspaceClient() {
         };
     }, [hasPaidAccess, report]);
 
-    const isSampleReport = searchParams.get("sample") === "true" || (!skipSample && !resumeText.trim());
+    const isSampleReport = isSampleParamEnabled(getSearchParam("sample")) || (!skipSample && !resumeText.trim());
 
     return (
         <>
@@ -464,7 +483,7 @@ export default function WorkspaceClient() {
                 data-workspace-mode={reviewMode}
                 className="h-full flex flex-col bg-body overflow-hidden"
             >
-                <h1 className="sr-only">Resume Workspace — Analyze Your Resume</h1>
+                <h1 className="sr-only">Resume Workspace  -  Analyze Your Resume</h1>
 
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
                     {/* Mode Switcher - show only when no report is displayed */}
@@ -541,7 +560,7 @@ export default function WorkspaceClient() {
                 }}
                 onLoadReport={async (reportId) => {
                     setIsHistoryOpen(false);
-                    router.push(`/reports/${reportId}`);
+                    push(`/reports/${reportId}`);
                 }}
             />
 

@@ -104,7 +104,7 @@ export default function SkillsBasedHiringPage() {
                 <Citation id="source-2">2</Citation>
             </p>
             <p className="research-body mb-6">
-                This doesn&apos;t mean credentials don&apos;t matter—it means how you communicate skills matters more.
+                This doesn&apos;t mean credentials don&apos;t matter - it means how you communicate skills matters more.
                 A degree proves you completed a program. Your resume needs to prove you can do the work.
             </p>
             <p className="research-body mb-6">
@@ -140,7 +140,7 @@ export default function SkillsBasedHiringPage() {
             </p>
             <p className="research-body">
                 <strong>Match the job posting&apos;s skill language.</strong> If they ask for &quot;stakeholder management,&quot;
-                use that phrase—not synonyms. Skills-based hiring often means skills-based searching.
+                use that phrase - not synonyms. Skills-based hiring often means skills-based searching.
             </p>
 
             <h2 className="research-h2">Definition: skills-first</h2>

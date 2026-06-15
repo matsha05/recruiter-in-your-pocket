@@ -346,7 +346,7 @@ function ThemeJumpLink({
         >
             <div className="flex items-center gap-3">
                 {accentBarClassName ? <span className={cn("h-[3px] w-5 rounded-full", accentBarClassName)} /> : null}
-                {index ? <span className="font-mono text-[11px] tracking-[0.16em] text-slate-400">{index}</span> : null}
+                {index ? <span className="font-mono text-xs tracking-wide text-slate-400">{index}</span> : null}
                 <span className="font-medium">{title}</span>
             </div>
             {description ? <p className="mt-1 pl-8 text-sm leading-6 text-slate-500">{description}</p> : null}
@@ -371,7 +371,7 @@ function EssentialReadingRow({ article }: { article: ResearchArticle }) {
             </div>
             <div className="flex items-center justify-between gap-3 md:justify-end">
                 <span className="text-xs tracking-[0.03em] text-slate-400">{article.readTime}</span>
-                <ArrowRight className="h-4 w-4 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-slate-500" />
+                <ArrowRight className="size-4 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-slate-500" />
             </div>
         </Link>
     );
@@ -394,7 +394,7 @@ function ResearchArticleRow({ article }: { article: ResearchArticle }) {
             </div>
             <div className="flex items-center justify-between gap-3 md:justify-end">
                 <span className="text-xs tracking-[0.03em] text-slate-400">{article.readTime}</span>
-                <ArrowRight className="h-4 w-4 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-slate-500" />
+                <ArrowRight className="size-4 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:text-slate-500" />
             </div>
         </Link>
     );
@@ -406,7 +406,7 @@ function ResearchThemeSection({ category, index }: { category: ResearchCategory;
             <div className="landing-flow-sm">
                 <div className="flex items-center gap-3">
                     <div className={cn("h-[3px] w-10 rounded-full", category.accentBarClassName)} />
-                    <div className="font-mono text-[11px] font-semibold tracking-[0.16em] text-slate-500">
+                    <div className="font-mono text-xs font-semibold tracking-wide text-slate-500">
                         {String(index + 1).padStart(2, "0")}
                     </div>
                 </div>
@@ -467,7 +467,7 @@ export default function ResearchClient() {
                         <div className="sticky top-24">
                             <div className="landing-label">Browse by theme</div>
                             <nav aria-label="Research theme rail" className="mt-5 border-l border-slate-200 pl-4">
-                                <div className="space-y-5">
+                                <div className="gap-y-5">
                                     {categories.map((category, index) => (
                                         <ThemeJumpLink
                                             key={category.id}
@@ -488,7 +488,7 @@ export default function ResearchClient() {
                                 </p>
                                 <Link href="/research/how-we-score" className="mt-4 inline-flex items-center gap-2 text-sm text-slate-700 transition-colors hover:text-slate-950">
                                     See methodology
-                                    <ArrowRight className="h-4 w-4" />
+                                    <ArrowRight className="size-4" />
                                 </Link>
                             </div>
                         </div>
@@ -520,7 +520,7 @@ export default function ResearchClient() {
                                 </div>
                                 <Link href="/workspace" className="inline-flex items-center gap-2 text-sm text-slate-700 transition-colors hover:text-slate-950">
                                     Open workspace
-                                    <ArrowRight className="h-4 w-4" />
+                                    <ArrowRight className="size-4" />
                                 </Link>
                             </div>
                         </div>

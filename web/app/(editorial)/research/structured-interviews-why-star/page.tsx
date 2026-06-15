@@ -126,7 +126,7 @@ export default function StructuredInterviewsWhyStarPage() {
                 Recruiter lens: you only need to make action and result explicit. Situation and task are implied by the role title.
             </p>
             <div className="border border-border/40 rounded-md p-4 text-sm text-muted-foreground not-prose mb-6">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60 mb-2">Example</div>
+                <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60 mb-2">Example</div>
                 <p className="text-foreground">
                     Built a pricing experiment that lifted conversion and reduced churn drivers, enabling sales to land larger enterprise deals.
                 </p>

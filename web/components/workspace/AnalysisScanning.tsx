@@ -141,9 +141,9 @@ export default function AnalysisScanning({
 
     return (
         <div className={cn("flex flex-col items-center justify-center h-full p-8 animate-in fade-in duration-500", className)}>
-            <div className="w-full max-w-xl space-y-8">
-                <div className="text-center space-y-2">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+            <div className="w-full max-w-xl gap-y-8">
+                <div className="text-center gap-y-2">
+                    <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                         Analysis in progress
                     </div>
                     <h2 className="font-display text-3xl md:text-4xl text-foreground tracking-tight">
@@ -154,7 +154,7 @@ export default function AnalysisScanning({
                     </p>
                 </div>
 
-                <div className="rounded-xl border border-border/60 bg-card p-5 space-y-4">
+                <div className="rounded-xl border border-border/60 bg-card p-5 gap-y-4">
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <span>Progress</span>
                         <span>{Math.round(progress)}%</span>
@@ -166,7 +166,7 @@ export default function AnalysisScanning({
                         />
                     </div>
 
-                    <ul className="space-y-3 pt-2">
+                    <ul className="gap-y-3 pt-2">
                         {steps.map((step, index) => {
                             const isComplete = index < activeIndex;
                             const isActive = index === activeIndex;
@@ -175,21 +175,21 @@ export default function AnalysisScanning({
                                 <li key={step.id} className="flex items-start gap-3">
                                     <div
                                         className={cn(
-                                            "mt-0.5 h-7 w-7 rounded-full border flex items-center justify-center",
+                                            "mt-0.5 size-7 rounded-full border flex items-center justify-center",
                                             isComplete && "border-success/40 bg-success/10 text-success",
                                             isActive && "border-brand/40 bg-brand/10 text-brand",
                                             !isComplete && !isActive && "border-border/40 text-muted-foreground"
                                         )}
                                     >
                                         {isComplete ? (
-                                            <CheckCircle2 className="h-4 w-4" />
+                                            <CheckCircle2 className="size-4" />
                                         ) : isActive ? (
-                                            <Loader2 className="h-4 w-4 animate-spin" />
+                                            <Loader2 className="size-4 animate-spin" />
                                         ) : (
-                                            <Icon className="h-4 w-4" />
+                                            <Icon className="size-4" />
                                         )}
                                     </div>
-                                    <div className="space-y-0.5">
+                                    <div className="gap-y-0.5">
                                         <p className={cn(
                                             "text-sm font-medium",
                                             isActive ? "text-foreground" : "text-muted-foreground"
@@ -206,13 +206,13 @@ export default function AnalysisScanning({
                     </ul>
                 </div>
 
-                <p className="text-[11px] text-muted-foreground/70 flex items-center justify-center gap-1.5">
-                    <SixSecondIcon className="w-3.5 h-3.5" />
+                <p className="text-xs text-muted-foreground/70 flex items-center justify-center gap-1.5">
+                    <SixSecondIcon className="size-3.5" />
                     Typical time: 20–30 seconds
                 </p>
 
                 {isSlow && (
-                    <div className="rounded-xl border border-warning/30 bg-warning/10 p-4 text-sm text-center space-y-3">
+                    <div className="rounded-xl border border-warning/30 bg-warning/10 p-4 text-sm text-center gap-y-3">
                         <p className="font-medium text-warning">Taking longer than usual.</p>
                         <p className="text-xs text-muted-foreground">
                             You can keep waiting or retry. Retrying may consume another report if the current run completes.

@@ -1,11 +1,9 @@
 /**
  * Empty Report Icon
- * 
- * A custom empty state illustration for when no reports exist.
- * Not a generic clipboard - this conveys the potential of insights waiting.
- * 
- * Design: Abstract document with subtle "scan lines" suggesting
- * the analysis that's about to happen.
+ *
+ * A signature empty-state mark for report surfaces. It keeps the product
+ * language specific: a resume report is waiting to be scanned, not just a
+ * blank file.
  */
 
 interface IconProps {
@@ -16,80 +14,63 @@ interface IconProps {
 export function EmptyReportIcon({ className = "", size = 48 }: IconProps) {
     return (
         <svg
-            width={size}
+            aria-hidden="true"
+            className={className}
+            fill="none"
+            focusable="false"
             height={size}
             viewBox="0 0 48 48"
-            fill="none"
+            width={size}
             xmlns="http://www.w3.org/2000/svg"
-            className={className}
         >
-            {/* Document base */}
-            <rect
-                x="8"
-                y="4"
-                width="32"
-                height="40"
-                rx="4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                fill="none"
-                opacity="0.3"
-            />
-
-            {/* Folded corner detail */}
             <path
-                d="M32 4 L40 12 L32 12 L32 4"
+                d="M13 5.5h16.5L36 12v29.5H13V5.5Z"
                 stroke="currentColor"
-                strokeWidth="1.5"
                 strokeLinejoin="round"
-                fill="none"
-                opacity="0.3"
-            />
-
-            {/* Scan lines - dashed, suggesting pending analysis */}
-            <path
-                d="M14 18 L34 18"
-                stroke="currentColor"
                 strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeDasharray="4 2"
-                opacity="0.2"
+                opacity="0.36"
             />
             <path
-                d="M14 24 L30 24"
+                d="M29.5 5.5V12H36"
                 stroke="currentColor"
+                strokeLinejoin="round"
                 strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeDasharray="4 2"
-                opacity="0.15"
+                opacity="0.36"
             />
             <path
-                d="M14 30 L26 30"
+                d="M18.5 18.5h11"
                 stroke="currentColor"
-                strokeWidth="1.5"
                 strokeLinecap="round"
-                strokeDasharray="4 2"
-                opacity="0.1"
-            />
-
-            {/* Focus circle - the "eye" about to analyze */}
-            <circle
-                cx="24"
-                cy="24"
-                r="8"
-                stroke="currentColor"
                 strokeWidth="1.5"
-                fill="none"
-                opacity="0.4"
+                opacity="0.42"
             />
-
-            {/* Center dot - awaiting activation */}
-            <circle
-                cx="24"
-                cy="24"
-                r="2"
+            <path
+                d="M18.5 24.5h8.5"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeWidth="1.5"
+                opacity="0.24"
+            />
+            <path
+                d="M18.5 30.5h5.5"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeWidth="1.5"
+                opacity="0.18"
+            />
+            <path
+                d="M27.25 32c1.1-1.9 2.68-3 4.75-3s3.65 1.1 4.75 3c-1.1 1.9-2.68 3-4.75 3s-3.65-1.1-4.75-3Z"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                opacity="0.56"
+            />
+            <circle cx="32" cy="32" r="1.45" fill="currentColor" opacity="0.62" />
+            <path
+                d="M37.25 21.75 38.4 24l2.35 1.15-2.35 1.15-1.15 2.35-1.15-2.35-2.35-1.15L36.1 24l1.15-2.25Z"
                 fill="currentColor"
-                opacity="0.3"
+                opacity="0.42"
             />
         </svg>
     );

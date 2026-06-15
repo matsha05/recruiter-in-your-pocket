@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState, useEffect } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m as motion, useInView, useReducedMotion } from "motion/react";
 import { PrincipalRecruiterIcon, SignalRadarIcon } from "@/components/icons";
 import { ReportSectionHeader } from "@/components/workspace/report/ReportSectionHeader";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
@@ -26,7 +26,7 @@ function SignalBar({
     delay: number;
 }) {
     return (
-        <div className="space-y-1.5">
+        <div className="gap-y-1.5">
             <div className="flex items-center justify-between gap-3 text-[14px]">
                 <span className="text-slate-600 dark:text-slate-300">{label}</span>
                 <span className="font-mono font-medium text-slate-900 dark:text-slate-100">{value}%</span>
@@ -120,7 +120,7 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
 
     const barDuration = playbackSeconds;
     const headingClassName =
-        "space-y-1 [&_h2]:text-[10px] [&_h2]:tracking-[0.14em] [&_h2]:font-semibold [&_p]:text-[14px] [&_p]:leading-[1.35] [&_p]:font-medium";
+        "gap-y-1 [&_h2]:text-xs [&_h2]:tracking-wide [&_h2]:font-semibold [&_p]:text-[14px] [&_p]:leading-[1.35] [&_p]:font-medium";
 
     return (
         <div
@@ -130,17 +130,17 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
             <div className="border-b border-border/60 bg-muted/20 px-4 py-2.5 md:px-5">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <PrincipalRecruiterIcon className="h-4 w-4 text-brand" />
+                        <PrincipalRecruiterIcon className="size-4 text-brand" />
                         <span className="text-label-mono">Recruiter briefing</span>
                     </div>
                     <span className="text-label-mono text-muted-foreground">Sample</span>
                 </div>
             </div>
 
-            <div className="space-y-3 p-3.5 md:p-4">
+            <div className="gap-y-3 p-3.5 md:p-4">
                 <div className="rounded-md border border-border/60 bg-white/90 p-3.5 dark:bg-slate-900/65">
                     <ReportSectionHeader
-                        icon={<PrincipalRecruiterIcon className="h-3.5 w-3.5 text-brand" />}
+                        icon={<PrincipalRecruiterIcon className="size-3.5 text-brand" />}
                         number="01"
                         title="First impression"
                         subtitle={verdict}
@@ -151,9 +151,9 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
                             </span>
                         }
                     />
-                    <div className="mt-3 space-y-2.5">
+                    <div className="mt-3 gap-y-2.5">
                         <div className="rounded-md border border-amber-200/80 bg-amber-50/70 px-3 py-2 dark:bg-amber-900/20">
-                            <div className="text-[10px] uppercase tracking-[0.14em] text-amber-700">Critical miss</div>
+                            <div className="text-xs uppercase tracking-wide text-amber-700">Critical miss</div>
                             <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-700 dark:text-slate-200">
                                 {trimLine(criticalMiss, 112)}
                             </p>
@@ -173,13 +173,13 @@ export function HeroReportArtifact({ data, playbackSeconds }: HeroReportArtifact
 
                 <div className="rounded-md border border-border/60 bg-white/90 p-3.5 dark:bg-slate-900/65">
                     <ReportSectionHeader
-                        icon={<SignalRadarIcon className="h-3.5 w-3.5 text-brand" />}
+                        icon={<SignalRadarIcon className="size-3.5 text-brand" />}
                         number="02"
                         title="Signal breakdown"
                         className={headingClassName}
                         badge={<span className="text-label-mono text-muted-foreground">Weighted rubric</span>}
                     />
-                    <div className="space-y-2.5">
+                    <div className="gap-y-2.5">
                         {signalRows.map((signal) => (
                             <SignalBar
                                 key={signal.key}

@@ -46,7 +46,7 @@ export function ReportStream({
     const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
 
     return (
-        <div className={cn("max-w-3xl mx-auto pb-32 space-y-16", className)}>
+        <div className={cn("mx-auto max-w-3xl gap-y-12 pb-28 md:gap-y-14", className)}>
 
             {/* 1. The Hook (First Impression) */}
             <div id="section-first-impression" className="animate-in fade-in slide-in-from-bottom-4 duration-500 scroll-mt-24">
@@ -54,7 +54,7 @@ export function ReportStream({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-100" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border/80 to-transparent animate-in fade-in duration-700 delay-100" />
 
             {/* 2. The Data (Score Summary) */}
             <div id="section-score-summary" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150 scroll-mt-24">
@@ -62,7 +62,7 @@ export function ReportStream({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-200" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border/80 to-transparent animate-in fade-in duration-700 delay-200" />
 
             {/* 3. Evidence Ledger */}
             <div
@@ -76,7 +76,7 @@ export function ReportStream({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-350" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border/80 to-transparent animate-in fade-in duration-700 delay-350" />
 
             {/* 4. The Value (Bullet Upgrades) */}
             <div
@@ -91,7 +91,7 @@ export function ReportStream({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-550" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border/80 to-transparent animate-in fade-in duration-700 delay-550" />
 
             {/* 5. Missing Wins (Uncover Hidden Achievements) */}
             <div
@@ -106,7 +106,7 @@ export function ReportStream({
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700 delay-750" />
+            <div className="h-px bg-gradient-to-r from-transparent via-border/80 to-transparent animate-in fade-in duration-700 delay-750" />
 
             {/* 6. Role Fit */}
             <div
@@ -121,18 +121,18 @@ export function ReportStream({
             </div>
 
             {/* Report Footer */}
-            <div className="pt-8 space-y-6">
+            <div className="gap-y-5 pt-6 md:pt-8">
                 <div className="h-px bg-gradient-to-r from-brand/20 via-brand/40 to-brand/20" />
 
-                <div className="text-center space-y-6">
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                <div className="gap-y-5 text-center">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                         Next pass
                     </h3>
 
                     {isSample ? (
                         // Sample report - CTA to run their own
-                        <div className="space-y-3">
-                            <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                        <div className="gap-y-3">
+                            <p className="mx-auto max-w-md text-sm text-muted-foreground">
                                 This is a sample report. Ready to see yours?
                             </p>
                             {onNewReport && (
@@ -142,13 +142,13 @@ export function ReportStream({
                                     onClick={onNewReport}
                                 >
                                     Run Your Free Report
-                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                    <ArrowRight className="size-4 ml-2" />
                                 </Button>
                             )}
                         </div>
                     ) : isExhausted && onUpgrade ? (
                         // Exhausted free reports - upgrade CTA
-                        <div className="space-y-3">
+                        <div className="gap-y-3">
                             <p className="text-sm text-muted-foreground">
                                 That was your free report. Want to run another version?
                             </p>
@@ -156,16 +156,16 @@ export function ReportStream({
                                 variant="premium"
                                 onClick={onUpgrade}
                             >
-                                <InsightSparkleIcon className="w-4 h-4 mr-2" />
+                                <InsightSparkleIcon className="size-4 mr-2" />
                                 Unlock More Reports
                             </Button>
                         </div>
                     ) : onNewReport ? (
                         // Has credits - run another
-                        <div className="space-y-3">
+                        <div className="gap-y-3">
                             <p className="text-sm text-muted-foreground">
                                 {hasPaidAccess
-                                    ? "You have full access. Run as many reports as you want."
+                                    ? "Paid access is active. Run the next role-specific report when you need it."
                                     : freeUsesRemaining > 0
                                         ? `You have ${freeUsesRemaining} free report${freeUsesRemaining > 1 ? 's' : ''} remaining.`
                                         : 'Ready to run another version?'}
@@ -174,7 +174,7 @@ export function ReportStream({
                                 variant="brand"
                                 onClick={onNewReport}
                             >
-                                <Plus className="w-4 h-4 mr-2" />
+                                <Plus className="size-4 mr-2" />
                                 Run Another Report
                             </Button>
                         </div>

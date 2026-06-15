@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import { m as motion, AnimatePresence, useReducedMotion } from "motion/react"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -114,7 +114,7 @@ export function Peek({
                                         className="absolute right-3 top-3 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                                         aria-label="Close"
                                     >
-                                        <X className="h-4 w-4" />
+                                        <X className="size-4" />
                                     </PopoverPrimitive.Close>
                                 )}
 
@@ -147,7 +147,7 @@ export function PeekHeader({
 }: React.HTMLAttributes<HTMLDivElement>) {
     return (
         <div
-            className={cn("mb-3 space-y-1", className)}
+            className={cn("mb-3 gap-y-1", className)}
             {...props}
         />
     )
@@ -201,7 +201,7 @@ export function PeekContent({
 /**
  * PeekFooter - Footer with actions
  */
-export function PeekFooter({
+function PeekFooter({
     className,
     ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
@@ -212,5 +212,3 @@ export function PeekFooter({
         />
     )
 }
-
-export { peekVariants, peekTransitionIn, peekTransitionOut }

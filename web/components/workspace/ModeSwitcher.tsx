@@ -14,7 +14,7 @@ interface ModeSwitcherProps {
 export function ModeSwitcher({ mode, onModeChange, disabled }: ModeSwitcherProps) {
     return (
         <div className="inline-flex items-center gap-0.5 p-1 rounded bg-muted/60 border border-border/80">
-            <button
+            <button type="button"
                 onClick={() => onModeChange('resume')}
                 disabled={disabled}
                 className={cn(
@@ -26,10 +26,10 @@ export function ModeSwitcher({ mode, onModeChange, disabled }: ModeSwitcherProps
                 )}
                 aria-pressed={mode === 'resume'}
             >
-                <FileText className="w-4 h-4" />
+                <FileText className="size-4" />
                 <span>Resume</span>
             </button>
-            <button
+            <button type="button"
                 onClick={() => onModeChange('linkedin')}
                 disabled={disabled}
                 className={cn(
@@ -41,7 +41,7 @@ export function ModeSwitcher({ mode, onModeChange, disabled }: ModeSwitcherProps
                 )}
                 aria-pressed={mode === 'linkedin'}
             >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="size-4" />
                 <span>LinkedIn</span>
             </button>
         </div>

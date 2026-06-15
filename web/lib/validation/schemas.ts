@@ -14,10 +14,10 @@ import { z } from "zod";
 // COMMON SCHEMAS
 // =============================================================================
 
-export const MAX_TEXT_LENGTH = 30000;
-export const MAX_JOB_DESCRIPTION_LENGTH = 8000;
+const MAX_TEXT_LENGTH = 30000;
+const MAX_JOB_DESCRIPTION_LENGTH = 8000;
 
-export const ModeSchema = z.enum([
+const ModeSchema = z.enum([
     "resume",
     "resume_ideas",
     "case_resume",
@@ -33,7 +33,7 @@ export type Mode = z.infer<typeof ModeSchema>;
 /**
  * Resume feedback request schema
  */
-export const ResumeFeedbackRequestSchema = z.object({
+const ResumeFeedbackRequestSchema = z.object({
     text: z.string()
         .min(1, "Paste your resume text so I can actually look at it.")
         .max(MAX_TEXT_LENGTH, "Your resume text is very long. Try trimming extra content.")
@@ -51,7 +51,7 @@ export type ResumeFeedbackRequest = z.infer<typeof ResumeFeedbackRequestSchema>;
 /**
  * Resume ideas request schema
  */
-export const ResumeIdeasRequestSchema = z.object({
+const ResumeIdeasRequestSchema = z.object({
     text: z.string()
         .min(1, "Paste your resume text so I can actually look at it.")
         .max(MAX_TEXT_LENGTH, "Your resume text is very long. Try trimming extra content.")
@@ -62,7 +62,7 @@ export type ResumeIdeasRequest = z.infer<typeof ResumeIdeasRequestSchema>;
 /**
  * PDF export request schema
  */
-export const PdfExportRequestSchema = z.object({
+const PdfExportRequestSchema = z.object({
     report: z.object({
         score: z.number().int().min(0).max(100),
         score_label: z.string(),
@@ -83,7 +83,7 @@ export type PdfExportRequest = z.infer<typeof PdfExportRequestSchema>;
 /**
  * Checkout request schema
  */
-export const CheckoutRequestSchema = z.object({
+const CheckoutRequestSchema = z.object({
     tier: z.enum(["monthly", "lifetime", "24h", "30d", "90d", "single", "pack"]).optional(),
     email: z.string().email("Invalid email format").optional(),
     user_id: z.string().uuid().optional()
@@ -97,26 +97,160 @@ export type CheckoutRequest = z.infer<typeof CheckoutRequestSchema>;
 /**
  * Rewrite item schema
  */
-export const RewriteSchema = z.object({
+const RewriteSchema = z.object({
     label: z.string(),
     original: z.string(),
     better: z.string(),
     enhancement_note: z.string()
 });
 
+const ConfidenceSchema = z.enum(["high", "medium", "low"]);
+const ImpactLevelSchema = z.enum(["high", "medium", "low"]);
+const EffortLevelSchema = z.enum(["quick", "moderate", "high"]);
+
+const EvidenceSchema = z.object({
+    excerpt: z.string().min(1).max(140),
+    section: z.string().min(1)
+});
+
+const TopFixSchema = z.object({
+    fix: z.string().min(1),
+    why: z.string().min(1),
+    confidence: ConfidenceSchema,
+    evidence: EvidenceSchema,
+    impact_level: ImpactLevelSchema,
+    effort: EffortLevelSchema,
+    section_ref: z.string().min(1)
+});
+
+function normalizeForEvidence(value: string) {
+    return value
+        .toLowerCase()
+        .replace(/[^\w\d%\s]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function isAcceptedAbsenceMarker(value: string) {
+    const normalizedValue = normalizeForEvidence(value);
+    return [
+        "no summary section present",
+        "no job description provided",
+        "no matching job description provided",
+        "no linkedin profile provided"
+    ].includes(normalizedValue);
+}
+
+const concreteMetricPattern = /\b\d+(?:\.\d+)?\s*(?:%|x|×|k|m|b|teams?|users?|customers?|projects?|features?|partners?|regions?|weeks?|months?|years?|hrs?|hours?|days?)?\b/gi;
+
+function removeBracketPlaceholders(value: string) {
+    return value.replace(/\[[^\]]+\]/g, "");
+}
+
+function escapeRegExp(value: string) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function containsLiteral(text: string, value: string) {
+    return new RegExp(escapeRegExp(value)).test(text);
+}
+
+function findUngroundedSpecifics(text: string, sourceText: string) {
+    const normalizedSource = normalizeForEvidence(sourceText);
+    const unbracketedText = removeBracketPlaceholders(text);
+    const matches = unbracketedText.match(concreteMetricPattern) || [];
+    const ungrounded = new Set<string>();
+
+    for (const match of matches) {
+        const normalizedMetric = normalizeForEvidence(match);
+        const numericValue = match.match(/\d+(?:\.\d+)?/)?.[0];
+        if (!numericValue) continue;
+
+        const numberPattern = new RegExp(`\\b${escapeRegExp(numericValue)}\\b`);
+        const isGrounded =
+            (normalizedMetric.length > 0 && containsLiteral(normalizedSource, normalizedMetric)) ||
+            numberPattern.test(normalizedSource);
+
+        if (!isGrounded) {
+            ungrounded.add(match.trim());
+        }
+    }
+
+    return Array.from(ungrounded);
+}
+
+export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText: string) {
+    const normalizedResume = normalizeForEvidence(resumeText);
+    const missingEvidence: string[] = [];
+    const inventedSpecifics: string[] = [];
+
+    for (const [index, fix] of report.top_fixes.entries()) {
+        const excerpt = normalizeForEvidence(fix.evidence.excerpt);
+        if (excerpt.length > 10 && !containsLiteral(normalizedResume, excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt)) {
+            missingEvidence.push(`top_fixes[${index}].evidence.excerpt`);
+        }
+    }
+
+    for (const [index, rewrite] of report.rewrites.entries()) {
+        const original = normalizeForEvidence(rewrite.original);
+        if (original.length > 10 && !containsLiteral(normalizedResume, original)) {
+            missingEvidence.push(`rewrites[${index}].original`);
+        }
+        const ungroundedSpecifics = findUngroundedSpecifics(rewrite.better, resumeText);
+        if (ungroundedSpecifics.length > 0) {
+            inventedSpecifics.push(`rewrites[${index}].better: ${ungroundedSpecifics.join(", ")}`);
+        }
+    }
+
+    if (missingEvidence.length > 0 || inventedSpecifics.length > 0) {
+        return {
+            ok: false as const,
+            missingEvidence,
+            inventedSpecifics
+        };
+    }
+
+    return {
+        ok: true as const,
+        missingEvidence: [],
+        inventedSpecifics: []
+    };
+}
+
+const SectionReviewItemSchema = z.object({
+    grade: z.string(),
+    priority: z.string(),
+    working: z.string().nullable().optional().default(""),
+    missing: z.string().nullable().optional().default(""),
+    fix: z.string().nullable().optional().default("")
+});
+
 /**
  * Resume feedback response schema (from LLM)
  */
 export const ResumeFeedbackResponseSchema = z.object({
+    contract_version: z.literal("v2"),
     score: z.number().transform(n => Math.min(100, Math.max(0, Math.round(n)))),
     score_label: z.string(),
     score_comment_short: z.string(),
     score_comment_long: z.string(),
+    score_plain: z.string(),
+    first_impression: z.string(),
+    biggest_gap_example: z.string(),
+    first_impression_takeaway: z.string(),
     summary: z.string(),
     strengths: z.array(z.string()),
     gaps: z.array(z.string()),
     rewrites: z.array(RewriteSchema),
+    top_fixes: z.array(TopFixSchema).min(3),
     next_steps: z.array(z.string()),
+    subscores: z.object({
+        impact: z.number().int().min(0).max(100),
+        clarity: z.number().int().min(0).max(100),
+        story: z.number().int().min(0).max(100),
+        readability: z.number().int().min(0).max(100)
+    }).optional(),
+    section_review: z.record(z.string(), SectionReviewItemSchema).optional(),
     // Optional layout fields
     layout_score: z.number().nullable().optional(),
     layout_band: z.string().optional(),
@@ -134,7 +268,15 @@ export const ResumeFeedbackResponseSchema = z.object({
         }).optional(),
         strongly_aligned: z.array(z.string()),
         underplayed: z.array(z.string()),
-        missing: z.array(z.string())
+        missing: z.array(z.string()),
+        role_fit: z.object({
+            best_fit_roles: z.array(z.string()).optional(),
+            stretch_roles: z.array(z.string()).optional(),
+            seniority_read: z.string().optional(),
+            industry_signals: z.array(z.string()).optional(),
+            company_stage_fit: z.string().optional()
+        }).optional(),
+        positioning_suggestion: z.string().optional()
     }).passthrough().optional()
 }).passthrough();
 export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema>;
@@ -142,7 +284,7 @@ export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema
 /**
  * Resume ideas response schema (from LLM)
  */
-export const ResumeIdeasResponseSchema = z.object({
+const ResumeIdeasResponseSchema = z.object({
     questions: z.array(z.string()),
     notes: z.array(z.string()),
     how_to_use: z.string()
@@ -156,7 +298,7 @@ export type ResumeIdeasResponse = z.infer<typeof ResumeIdeasResponseSchema>;
 /**
  * Stripe checkout session metadata
  */
-export const StripeCheckoutMetadataSchema = z.object({
+const StripeCheckoutMetadataSchema = z.object({
     email: z.string().email().optional(),
     tier: z.enum(["monthly", "lifetime", "24h", "30d", "90d", "single", "pack"]).optional(),
     user_id: z.string().uuid().optional()
@@ -169,7 +311,7 @@ export const StripeCheckoutMetadataSchema = z.object({
 /**
  * Safely parse with Zod, returning a result object instead of throwing
  */
-export function safeParse<T>(schema: z.ZodSchema<T>, data: unknown): {
+function safeParse<T>(schema: z.ZodSchema<T>, data: unknown): {
     ok: true;
     data: T;
 } | {

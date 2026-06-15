@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FileText, ArrowRight, Info, ChevronDown, AlignLeft, Target, ShieldCheck } from "lucide-react";
 import { SixSecondIcon } from "@/components/icons";
@@ -15,7 +15,7 @@ interface InputPanelProps {
     jobDescription: string;
     onResumeTextChange: (text: string) => void;
     onJobDescChange: (text: string) => void;
-    onFileSelect: (file: File) => void;
+    onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
     onRun: () => void;
     isLoading: boolean;
     freeUsesRemaining: number;
@@ -46,13 +46,21 @@ export default function InputPanel({
     const [showJD, setShowJD] = useState(!!loadedJobContext);
     const [showPaste, setShowPaste] = useState(false);
 
-    const handleFileSelect = (file: File) => {
-        setFileName(file.name);
-        onFileSelect(file);
+    useEffect(() => {
+        if (loadedJobContext) setShowJD(true);
+    }, [loadedJobContext]);
+
+    const handleFileSelect = async (file: File) => {
+        setFileName(null);
+        const accepted = await onFileSelect(file);
+        if (accepted !== false) {
+            setFileName(file.name);
+        }
     };
 
     const handleRemoveFile = () => {
         setFileName(null);
+        onResumeTextChange("");
     };
 
     const getRunHint = () => {
@@ -62,64 +70,59 @@ export default function InputPanel({
             const paid = Number(user?.paidUsesLeft || 0);
             return `${paid} paid report${paid === 1 ? "" : "s"} remaining`;
         }
-        if (freeUsesRemaining > 0) return "1 free report available";
+        if (freeUsesRemaining > 0) return "first report available";
         return "Upgrade to continue";
     };
 
     const charCount = resumeText.length;
     const isShortResume = charCount > 0 && charCount < 1500;
-    const hasContent = fileName || resumeText.length > 0;
+    const hasContent = Boolean(fileName || resumeText.length > 0);
 
     return (
-        <div data-visual-anchor="workspace-resume-empty" className="flex justify-center px-6 py-8 md:px-12 md:py-12 min-h-full">
-            <div className="w-full max-w-[56rem] space-y-8">
+        <div data-visual-anchor="workspace-resume-empty" className="flex min-h-full justify-center p-6 md:p-12">
+            <div className="w-full max-w-[44rem] gap-y-6">
 
-                <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                    <p className="editorial-kicker text-slate-400">Resume studio</p>
-                    <div className="space-y-3">
-                        <h1 className="font-display text-4xl text-foreground tracking-tight md:text-5xl">
-                            Start with the resume.
-                        </h1>
-                        <div className="flex items-start gap-3 max-w-[42rem] text-muted-foreground pt-1">
-                            <SixSecondIcon className="w-5 h-5 text-brand mt-1 shrink-0" />
-                            <p className="text-lg leading-8">
-                                Run the first report first. Add a job only when you want fit context.
-                            </p>
-                        </div>
+                <div className="mb-8 gap-y-2 text-center animate-in fade-in slide-in-from-bottom-2 duration-500">
+                    <h1 className="font-display text-4xl tracking-tight text-foreground md:text-5xl">
+                        Get the first-read brief.
+                    </h1>
+                    <div className="flex items-center justify-center gap-2 pt-2 text-muted-foreground">
+                        <SixSecondIcon className="size-5 shrink-0 text-brand" />
+                        <p className="text-lg font-medium">Upload or paste the resume. Add a job only when it matters.</p>
                     </div>
                 </div>
 
                 {/* Job Context Banner - from Extension */}
                 {loadedJobContext && (
-                    <div className="animate-in fade-in slide-in-from-top-2 bg-brand/5 border border-brand/20 rounded p-4 mb-4">
+                    <div className="mb-4 animate-in fade-in slide-in-from-top-2 rounded-xl border border-brand/20 bg-brand/5 p-4">
                         <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded bg-brand/10 flex items-center justify-center shrink-0">
-                                <Target className="w-5 h-5 text-brand" />
+                            <div className="size-10 rounded bg-brand/10 flex items-center justify-center shrink-0">
+                                <Target className="size-5 text-brand" />
                             </div>
                             <div className="min-w-0 flex-1">
                                 <div className="flex items-center gap-2 flex-wrap">
                                     <span className="text-sm font-medium text-foreground truncate">
                                         {loadedJobContext.title}
                                     </span>
-                                    {loadedJobContext.score != null && loadedJobContext.score > 0 && (
-                                        <span className="text-xs font-bold text-brand bg-brand/10 px-2 py-0.5 rounded">
-                                            {loadedJobContext.score}% match
-                                        </span>
-                                    )}
+                                        {loadedJobContext.score != null && loadedJobContext.score > 0 && (
+                                            <span className="text-xs font-bold text-brand bg-brand/10 px-2 py-0.5 rounded">
+                                                {loadedJobContext.score}% match
+                                            </span>
+                                        )}
+                                    </div>
+                                    <p className="text-xs text-muted-foreground truncate">
+                                    {loadedJobContext.company} · saved job context loaded
+                                    </p>
                                 </div>
-                                <p className="text-xs text-muted-foreground truncate">
-                                    {loadedJobContext.company}
-                                </p>
                             </div>
                         </div>
-                    </div>
                 )}
 
                 {/* Main Card */}
                 <div className="bg-white dark:bg-card border border-border/45 rounded-2xl overflow-hidden shadow-[0_20px_48px_-40px_rgba(15,23,42,0.18)]">
 
                     {/* Section 1: The Input (Hero) */}
-                    <div className="p-6 md:p-8 space-y-6">
+                    <div className="p-6 md:p-8 gap-y-6">
 
                         {/* Dropzone - Unified Component */}
                         <ResumeDropzone
@@ -129,16 +132,13 @@ export default function InputPanel({
                             onRemoveFile={handleRemoveFile}
                         />
 
-                        <div className="rounded border border-brand/20 bg-brand/5 p-4">
+                        <div className="rounded-xl border border-brand/20 bg-brand/5 p-4 md:p-5">
                             <div className="flex items-start gap-3">
-                                <ShieldCheck className="w-4 h-4 text-brand mt-0.5 shrink-0" />
-                                <div className="space-y-1">
+                                <ShieldCheck className="mt-0.5 size-4 shrink-0 text-brand" />
+                                <div className="gap-y-1.5">
                                     <p className="text-sm font-medium text-foreground">{workspaceTrustMessage.title}</p>
-                                    <p className="text-xs text-muted-foreground">
-                                        {workspaceTrustMessage.body}
-                                    </p>
-                                    <p className="text-xs text-muted-foreground">
-                                        {workspaceTrustMessage.detail}
+                                    <p className="text-sm leading-7 text-muted-foreground">
+                                        {workspaceTrustMessage.body} {workspaceTrustMessage.detail}
                                     </p>
                                     <p className="text-xs text-muted-foreground">
                                         <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link>
@@ -151,44 +151,44 @@ export default function InputPanel({
 
                         {/* Paste Text Toggle */}
                         {!fileName && (
-                            <div className="space-y-4">
+                            <div className="gap-y-4">
                                 {!showPaste ? (
-                                    <div className="text-center">
-                                        <button
+                                    <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 pt-1">
+                                        <button type="button"
                                             onClick={() => setShowPaste(true)}
-                                            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded border border-border/40 hover:border-brand/40 hover:bg-brand/5"
+                                            className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border/45 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-brand/35 hover:bg-brand/5 hover:text-foreground"
                                         >
-                                            <AlignLeft className="w-4 h-4" />
-                                            Or paste text instead
+                                            <AlignLeft className="size-4" />
+                                            Paste text instead
                                         </button>
                                         {onSampleReport && (
-                                            <button
+                                            <button type="button"
                                                 onClick={onSampleReport}
-                                                className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-brand/80 transition-colors px-3 py-1.5"
+                                                className="inline-flex min-h-11 items-center gap-2 px-3 py-2 text-sm font-medium text-brand transition-colors hover:text-brand/80"
                                             >
-                                                <FileText className="w-4 h-4" />
+                                                <FileText className="size-4" />
                                                 See example report
                                             </button>
                                         )}
                                     </div>
                                 ) : (
-                                    <div className="animate-in fade-in slide-in-from-top-2 space-y-2">
+                                    <div className="animate-in fade-in slide-in-from-top-2 gap-y-2">
                                         <div className="flex items-center justify-between">
-                                            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Paste Text</span>
+                                            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Paste text</span>
                                             <div className="flex items-center gap-3">
                                                 {onSampleReport && (
-                                                    <button
+                                                    <button type="button"
                                                         onClick={onSampleReport}
-                                                        className="text-xs font-medium text-brand hover:text-brand/80 transition-colors"
+                                                        className="min-h-11 text-xs font-medium text-brand transition-colors hover:text-brand/80"
                                                     >
-                                                        See example
+                                                        See example report
                                                     </button>
                                                 )}
-                                                <button
+                                                <button type="button"
                                                     onClick={() => setShowPaste(false)}
-                                                    className="text-xs text-muted-foreground hover:text-foreground"
+                                                    className="min-h-11 text-xs text-muted-foreground hover:text-foreground"
                                                 >
-                                                    Upload file instead
+                                                    Use file upload
                                                 </button>
                                             </div>
                                         </div>
@@ -200,10 +200,10 @@ export default function InputPanel({
                                             autoFocus
                                         />
                                         {isShortResume && (
-                                            <div className="flex gap-2 text-warning text-xs items-center bg-warning/10 border border-warning/20 px-3 py-2 rounded">
-                                                <Info className="w-3.5 h-3.5" />
-                                                <span>Short resume detected ({charCount} chars). Add more detail for best results.</span>
-                                            </div>
+                                        <div className="flex items-center gap-2 rounded border border-warning/20 bg-warning/10 px-3 py-2 text-xs text-warning">
+                                            <Info className="size-3.5" />
+                                            <span>Short resume detected ({charCount} chars). Add more detail for best results.</span>
+                                        </div>
                                         )}
                                     </div>
                                 )}
@@ -214,7 +214,7 @@ export default function InputPanel({
                         <div className="border-t border-border/40" />
 
                         {/* JD Matching - First-Class Feature */}
-                        <div className="space-y-3">
+                        <div className="gap-y-3">
                             <button
                                 type="button"
                                 onClick={() => setShowJD(!showJD)}
@@ -227,10 +227,10 @@ export default function InputPanel({
                             >
                                 <div className="flex items-start gap-3 text-left">
                                     <div className={cn(
-                                        "w-8 h-8 rounded flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors",
+                                        "size-8 rounded flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors",
                                         showJD ? "bg-brand/20 text-brand" : "bg-muted text-muted-foreground"
                                     )}>
-                                        <Target className="w-4 h-4" strokeWidth={1.5} />
+                                        <Target className="size-4" strokeWidth={1.5} />
                                     </div>
                                     <div>
                                         <span className={cn(
@@ -240,18 +240,18 @@ export default function InputPanel({
                                             Check fit for a specific job
                                         </span>
                                         <span className="block text-xs text-muted-foreground mt-0.5">
-                                            Optional: add a job posting for fit, missing skills, and match context
+                                            Optional: paste a posting to include role fit and missing signals
                                         </span>
                                     </div>
                                 </div>
                                 <ChevronDown className={cn(
-                                    "w-4 h-4 text-muted-foreground transition-transform duration-200 flex-shrink-0",
+                                    "size-4 text-muted-foreground transition-transform duration-200 flex-shrink-0",
                                     showJD && "rotate-180 text-brand"
                                 )} />
                             </button>
 
                             {showJD && (
-                                <div className="animate-in fade-in slide-in-from-top-1 space-y-2">
+                                <div className="animate-in fade-in slide-in-from-top-1 gap-y-2">
                                     <textarea
                                         value={jobDescription}
                                         onChange={(e) => onJobDescChange(e.target.value)}
@@ -263,8 +263,8 @@ Example: We are looking for a Senior Product Manager with 5+ years of experience
                                     />
                                     {jobDescription.length > 0 && (
                                         <div className="flex items-center gap-2 text-xs text-brand">
-                                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand" />
-                                            JD detected — your report will include a match score
+                                            <span className="inline-block size-1.5 rounded-full bg-brand" />
+                                            Job context loaded. This report will name fit, gaps, and missing signals.
                                         </div>
                                     )}
                                 </div>
@@ -273,28 +273,28 @@ Example: We are looking for a Senior Product Manager with 5+ years of experience
                     </div>
 
                     {/* Footer CTA */}
-                    <div className="p-6 md:p-8 bg-secondary/30 border-t border-border/50">
+                    <div className="border-t border-border/50 bg-secondary/20 p-6 md:p-8">
                         <Button
                             variant="brand"
                             size="lg"
-                            className="w-full h-12 text-base font-medium transition-transform active:scale-[0.99]"
+                            className="h-12 w-full text-base font-medium transition-transform active:scale-[0.99]"
                             onClick={onRun}
                             disabled={!hasContent}
                             isLoading={isLoading}
                         >
                             {isLoading ? "Running Analysis..." : (
                                 <span className="flex items-center gap-2">
-                                    See What They See <ArrowRight className="w-4 h-4" />
+                                    Get Recruiter Brief <ArrowRight className="size-4" />
                                 </span>
                             )}
                         </Button>
 
-                        <div className="mt-4 flex flex-col items-center gap-2">
-                            <TrustBadges variant="inline" />
-                            <p className="text-[10px] text-muted-foreground/60 uppercase tracking-widest font-medium">
+                        <div className="mt-4 flex flex-col items-center gap-2.5 text-center">
+                            <TrustBadges variant="inline" className="flex-wrap justify-center gap-x-3 gap-y-1 text-xs" />
+                            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground/70">
                                 {getRunHint()}
                             </p>
-                            <p className="text-[11px] text-muted-foreground">
+                            <p className="text-xs text-muted-foreground">
                                 <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Data handling</Link>
                                 {" · "}
                                 <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Scoring methodology</Link>

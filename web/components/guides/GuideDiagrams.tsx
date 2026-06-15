@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import {
     DiagramBulletList,
     DiagramFigure,
@@ -33,7 +33,7 @@ export function CompStackDiagram() {
             >
                 <DiagramHeader label="Tech Total Comp Breakdown" />
 
-                <div className="p-6 md:p-8 space-y-6">
+                <div className="p-6 md:p-8 gap-y-6">
                     {/* Stacked bar */}
                     <div className="h-16 rounded-xl overflow-hidden flex shadow-inner">
                         {components.map((comp, i) => (
@@ -55,7 +55,7 @@ export function CompStackDiagram() {
                     <div className="flex flex-wrap gap-6">
                         {components.map((comp) => (
                             <div key={comp.name} className="flex items-center gap-2">
-                                <div className={`w-4 h-4 rounded ${comp.color}`} />
+                                <div className={`size-4 rounded ${comp.color}`} />
                                 <span className="text-sm text-muted-foreground">{comp.name}</span>
                             </div>
                         ))}
@@ -110,7 +110,7 @@ export function NegotiationTimelineDiagram() {
                                     transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
                                     viewport={{ once: true }}
                                 >
-                                    <div className="w-14 h-14 rounded-full bg-white dark:bg-card border-2 border-brand flex items-center justify-center mb-3 shadow-md shadow-brand/10">
+                                    <div className="size-14 rounded-full bg-white dark:bg-card border-2 border-brand flex items-center justify-center mb-3 shadow-md shadow-brand/10">
                                         <span className="text-lg font-bold text-brand">{step.step}</span>
                                     </div>
                                     <span className="text-sm font-medium text-foreground mb-1">{step.label}</span>
@@ -121,7 +121,7 @@ export function NegotiationTimelineDiagram() {
                     </div>
 
                     {/* Mobile: Vertical */}
-                    <div className="md:hidden space-y-6">
+                    <div className="md:hidden gap-y-6">
                         {steps.map((step, i) => (
                             <motion.div
                                 key={step.step}
@@ -131,7 +131,7 @@ export function NegotiationTimelineDiagram() {
                                 transition={{ duration: 0.3, delay: i * 0.1 }}
                                 viewport={{ once: true }}
                             >
-                                <div className="w-10 h-10 rounded-full bg-brand/20 border-2 border-brand flex items-center justify-center shrink-0">
+                                <div className="size-10 rounded-full bg-brand/20 border-2 border-brand flex items-center justify-center shrink-0">
                                     <span className="text-sm font-bold text-brand">{step.step}</span>
                                 </div>
                                 <div>
@@ -233,7 +233,7 @@ export function LeverComparisonDiagram() {
                                 <p className={`text-base font-semibold ${colors.text}`}>{industry.name}</p>
                                 <p className="mt-2 min-h-[3rem] text-sm leading-relaxed text-muted-foreground">{industry.summary}</p>
                                 <div className="my-3 h-px bg-border/40" />
-                                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/75">Common levers</p>
+                                <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground/75">Common levers</p>
                                 <DiagramBulletList items={industry.levers} className="mt-2" />
                             </motion.div>
                         );
@@ -283,7 +283,7 @@ export function EquityTruthTable() {
 
     const redFlags = [
         "5-year vesting (vs 4-year standard)",
-        "\"We're growing 10x so your options are worth millions\" (BS — investors already priced in growth)",
+        "\"We're growing 10x so your options are worth millions\" (BS  -  investors already priced in growth)",
         "No info on total shares outstanding (impossible to value your %)",
         "Options with a high strike price close to current valuation"
     ];
@@ -298,7 +298,7 @@ export function EquityTruthTable() {
                 viewport={{ once: true }}
             >
                 <div className="px-6 py-4 border-b border-border/30">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         RSUs vs Stock Options
                     </span>
                 </div>
@@ -335,20 +335,20 @@ export function EquityTruthTable() {
 
                     {/* Red flags */}
                     <div className="mt-8 p-4 rounded-lg bg-rose-500/5 border border-rose-500/20">
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-rose-600 mb-3">
+                        <div className="text-xs font-bold uppercase tracking-wide text-rose-600 mb-3">
                             🚩 Red Flags in Equity Offers
                         </div>
-                        <ul className="space-y-2">
+                        <ul className="gap-y-2">
                             {redFlags.map((flag, i) => (
                                 <motion.li
-                                    key={i}
+                                    key={flag}
                                     className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
                                     viewport={{ once: true }}
                                 >
-                                    <span aria-hidden className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-rose-600/70" />
+                                    <span aria-hidden className="mt-[0.45rem] size-1.5 shrink-0 rounded-full bg-rose-600/70" />
                                     <span>{flag}</span>
                                 </motion.li>
                             ))}

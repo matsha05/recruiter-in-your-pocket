@@ -13,7 +13,7 @@ import { logError, logInfo } from "@/lib/observability/logger";
  * - Better error visibility via Inngest dashboard
  * - Can handle longer generation times
  */
-export const generatePdfJob = inngest.createFunction(
+const generatePdfJob = inngest.createFunction(
     {
         id: "generate-pdf",
         retries: 3,
@@ -70,7 +70,7 @@ export const generatePdfJob = inngest.createFunction(
  * 3. Persist JSON payload in account_export_jobs.result_json
  * 4. Mark job completed (or failed with error message)
  */
-export const exportAccountDataJob = inngest.createFunction(
+const exportAccountDataJob = inngest.createFunction(
     {
         id: "export-account-data",
         retries: 2,

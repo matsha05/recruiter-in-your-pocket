@@ -79,7 +79,7 @@ export function hashForLogs(value: string): string {
   return crypto.createHash("sha256").update(`${salt}:${value}`).digest("hex");
 }
 
-export function log(level: LogLevel, record: Omit<LogRecord, "ts" | "level" | "service" | "env">) {
+function log(level: LogLevel, record: Omit<LogRecord, "ts" | "level" | "service" | "env">) {
   if (containsForbiddenKeys(record)) {
     const scrubbed: LogRecord = {
       ts: new Date().toISOString(),

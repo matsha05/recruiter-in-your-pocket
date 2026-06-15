@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -26,23 +26,23 @@ export function ReferralFunnelDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+                    <span className="font-mono text-xs uppercase tracking-wide text-slate-400">
                         Information flow comparison
                     </span>
                 </div>
 
-                <div className="p-6 space-y-6">
+                <div className="p-6 gap-y-6">
                     {/* Cold Apply Flow */}
                     <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="space-y-3"
+                        className="gap-y-3"
                     >
                         <div className="flex items-center gap-3">
                             <div className="w-20 shrink-0">
-                                <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+                                <span className="font-mono text-xs uppercase tracking-wide text-slate-400">
                                     Cold
                                 </span>
                             </div>
@@ -81,7 +81,7 @@ export function ReferralFunnelDiagram() {
                             <div className="w-full border-t border-dashed border-slate-200" />
                         </div>
                         <div className="relative flex justify-center">
-                            <span className="bg-white px-3 text-[9px] font-mono uppercase tracking-widest text-slate-400">
+                            <span className="bg-white px-3 text-xs font-mono uppercase tracking-wide text-slate-400">
                                 vs
                             </span>
                         </div>
@@ -93,11 +93,11 @@ export function ReferralFunnelDiagram() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
                         viewport={{ once: true }}
-                        className="space-y-3"
+                        className="gap-y-3"
                     >
                         <div className="flex items-center gap-3">
                             <div className="w-20 shrink-0">
-                                <span className="font-mono text-[10px] uppercase tracking-widest text-slate-700 font-medium">
+                                <span className="font-mono text-xs uppercase tracking-wide text-slate-700 font-medium">
                                     Referred
                                 </span>
                             </div>
@@ -142,8 +142,8 @@ export function ReferralFunnelDiagram() {
                         >
                             <div className="h-6 w-px bg-slate-300" />
                             <div className="flex items-center gap-2 bg-slate-100 border border-slate-200 rounded-lg px-3 py-1.5">
-                                <div className="w-2 h-2 rounded-full bg-slate-500" />
-                                <span className="text-[10px] font-medium text-slate-700">
+                                <div className="size-2 rounded-full bg-slate-500" />
+                                <span className="text-xs font-medium text-slate-700">
                                     + Referrer context injected
                                 </span>
                             </div>
@@ -163,14 +163,14 @@ export function ReferralFunnelDiagram() {
                         className="bg-slate-50 rounded-lg p-4 border border-slate-200"
                     >
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg className="w-4 h-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <div className="size-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg className="size-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M12 2L2 7l10 5 10-5-10-5z" />
                                     <path d="M2 17l10 5 10-5" />
                                     <path d="M2 12l10 5 10-5" />
                                 </svg>
                             </div>
-                            <div className="space-y-1">
+                            <div className="gap-y-1">
                                 <p className="text-sm font-medium text-slate-900">
                                     Information asymmetry
                                 </p>
@@ -183,8 +183,8 @@ export function ReferralFunnelDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Information Channel</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Information Channel</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     How referrals inject signal into the hiring pipeline
                 </span>

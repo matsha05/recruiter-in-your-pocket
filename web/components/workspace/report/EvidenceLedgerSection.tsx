@@ -52,7 +52,7 @@ function normalizeEvidence(raw: LedgerItem["evidence"]) {
 }
 
 function normalizeConfidence(value?: string): LedgerItem["confidence"] {
-  if (!value) return "medium";
+  if (!value) return "low";
   const lowered = value.toLowerCase();
   if (lowered.includes("high")) return "high";
   if (lowered.includes("low")) return "low";
@@ -60,7 +60,7 @@ function normalizeConfidence(value?: string): LedgerItem["confidence"] {
 }
 
 function normalizeImpact(value?: string): LedgerItem["impact"] {
-  if (!value) return "medium";
+  if (!value) return "low";
   const lowered = value.toLowerCase();
   if (lowered.includes("high")) return "high";
   if (lowered.includes("low")) return "low";
@@ -68,7 +68,7 @@ function normalizeImpact(value?: string): LedgerItem["impact"] {
 }
 
 function normalizeEffort(value?: string): LedgerItem["effort"] {
-  if (!value) return "moderate";
+  if (!value) return "high";
   const lowered = value.toLowerCase();
   if (lowered.includes("quick") || lowered.includes("low")) return "quick";
   if (lowered.includes("high") || lowered.includes("heavy")) return "high";
@@ -99,12 +99,12 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
     const fallbackRewrites = (data.rewrites || []).slice(0, 4).map((rewrite, index) => ({
       id: `rewrite-${index}`,
       evidence: normalizeEvidence(rewrite.original || ""),
-      evidenceSection: "Resume",
-      action: rewrite.better || "Strengthen this line with specific outcomes.",
-      rationale: rewrite.enhancement_note || undefined,
-      confidence: "medium" as const,
-      impact: "medium" as const,
-      effort: "moderate" as const
+        evidenceSection: "Resume",
+        action: rewrite.better || "Strengthen this line with specific outcomes.",
+        rationale: rewrite.enhancement_note || undefined,
+      confidence: "low" as const,
+        impact: "medium" as const,
+        effort: "moderate" as const
     }));
 
     return [...fromTopFixes, ...fallbackRewrites].slice(0, 6);
@@ -112,9 +112,9 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
 
   if (items.length === 0) {
     return (
-      <section className="space-y-6">
+      <section className="gap-y-6">
         <ReportSectionHeader
-          icon={<InsightSparkleIcon className="w-4 h-4 text-brand" />}
+          icon={<InsightSparkleIcon className="size-4 text-brand" />}
           number="03"
           title="Evidence Ledger"
           subtitle="Every fix tied to the line that triggered it."
@@ -130,23 +130,23 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
   const hiddenCount = Math.max(0, items.length - visibleCount);
 
   return (
-    <section className="space-y-8">
+    <section className="gap-y-8">
       <ReportSectionHeader
-        icon={<InsightSparkleIcon className="w-4 h-4 text-brand" />}
+        icon={<InsightSparkleIcon className="size-4 text-brand" />}
         number="03"
         title="Evidence Ledger"
         subtitle="Every fix tied to the line that triggered it."
       />
 
-      <div className="space-y-6">
+      <div className="gap-y-6">
         {items.slice(0, visibleCount).map((item, index) => (
           <div
             key={item.id}
             className="rounded-xl border border-border/60 bg-card p-5 md:p-6"
           >
             <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+              <div className="gap-y-3">
+                <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
                   <span>Evidence</span>
                   {item.evidenceSection && (
                     <>
@@ -165,26 +165,31 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                     <span className="font-medium text-foreground/70">Why it matters:</span> {item.rationale}
                   </p>
                 )}
+                {item.confidence === "low" && (
+                  <p className="rounded border border-warning/20 bg-warning/10 px-3 py-2 text-xs leading-relaxed text-warning">
+                    What we need from you: add the missing number, scope, or context before treating this as final.
+                  </p>
+                )}
               </div>
 
-              <div className="space-y-3">
+              <div className="gap-y-3">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                  <span className="text-xs uppercase tracking-wide text-muted-foreground">
                     Action
                   </span>
                   <div className="flex flex-wrap items-center gap-2">
                     {item.confidence && (
-                      <span className={cn("text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded", confidenceStyles[item.confidence])}>
+                      <span className={cn("text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded", confidenceStyles[item.confidence])}>
                         Confidence {item.confidence}
                       </span>
                     )}
                     {item.impact && (
-                      <span className={cn("text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded", impactStyles[item.impact])}>
+                      <span className={cn("text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded", impactStyles[item.impact])}>
                         Impact {item.impact}
                       </span>
                     )}
                     {item.effort && (
-                      <span className={cn("text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded", effortStyles[item.effort])}>
+                      <span className={cn("text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded", effortStyles[item.effort])}>
                         Effort {item.effort}
                       </span>
                     )}
@@ -206,10 +211,10 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         ))}
 
         {isGated && hiddenCount > 0 && (
-          <div className="rounded-xl border border-border/60 bg-card p-6 space-y-4 relative overflow-hidden">
+          <div className="rounded-xl border border-border/60 bg-card p-6 gap-y-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/70 to-card" />
             <div className="relative z-10 flex items-center gap-3 text-muted-foreground">
-              <Lock className="w-5 h-5" />
+              <Lock className="size-5" />
               <div>
                 <p className="text-sm font-medium text-foreground">
                   {hiddenCount} more fixes waiting
@@ -223,7 +228,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
               items={[
                 "Confidence on each call",
                 "The fix tied to each line",
-                "Save and export the full report"
+                "Save and export reports"
               ]}
               dense
               className="relative z-10"
@@ -239,7 +244,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                   onUpgrade();
                 }}
               >
-                <InsightSparkleIcon className="w-4 h-4 mr-2" />
+                <InsightSparkleIcon className="size-4 mr-2" />
                 Unlock the Evidence Ledger
               </Button>
             )}

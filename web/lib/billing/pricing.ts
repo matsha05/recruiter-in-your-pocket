@@ -19,14 +19,14 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Free",
     price: "$0",
     period: "1 report",
-    description: "Get one full report before you pay a thing.",
+    description: "Get one full in-browser report before you pay a thing.",
     buttonText: "Current Plan",
     features: [
-      { text: "1 full resume report (all sections)", bold: true },
+      { text: "1 full in-browser resume report", bold: true },
       { text: "Recruiter first-impression verdict" },
       { text: "Evidence Ledger + Red Pen rewrites" },
-      { text: "Role alignment with job description" },
-      { text: "PDF export" }
+      { text: "Role alignment when you add a job" },
+      { text: "No login or credit card required" }
     ]
   },
   monthly: {
@@ -34,13 +34,13 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Full Access",
     price: "$9",
     period: "/month",
-    description: "Unlimited reports while you're job hunting.",
+    description: "Run repeated role-specific reports while you're actively applying.",
     buttonText: "Start Monthly",
     features: [
-      { text: "Unlimited resume + LinkedIn reports", bold: true },
+      { text: "More resume + LinkedIn reports for each role", bold: true },
       { text: "Evidence Ledger + Red Pen on every run" },
       { text: "Role matching + Missing Wins" },
-      { text: "Export and report history" },
+      { text: "Version history and export for reports you keep" },
       { text: "Cancel anytime in billing portal" }
     ]
   },
@@ -49,15 +49,15 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Lifetime",
     price: "$79",
     period: "one-time",
-    description: "Pay once. Keep it forever.",
+    description: "Pay once for long-term access.",
     buttonText: "Get Lifetime Access",
-    badge: "Best Value",
+    badge: "Pay Once",
     features: [
       { text: "Everything in Full Access", bold: true },
       { text: "No recurring billing" },
-      { text: "All future updates included" },
-      { text: "Permanent export and history access" },
-      { text: "Long-term access to new features" }
+      { text: "Product updates included while the service operates" },
+      { text: "Long-term report workspace access" },
+      { text: "Access to new resume features as they ship" }
     ]
   }
 };

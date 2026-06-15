@@ -19,7 +19,7 @@ const DEFAULT_TTL_SECONDS = 60 * 60 * 24; // 24 hours
  * 
  * Uses Redis SET NX (only set if not exists) for atomicity.
  */
-export async function checkIdempotencyKey(
+async function checkIdempotencyKey(
     key: string,
     ttlSeconds: number = DEFAULT_TTL_SECONDS
 ): Promise<{ alreadyProcessed: boolean }> {

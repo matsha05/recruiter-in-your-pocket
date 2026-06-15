@@ -47,10 +47,15 @@ Load `extension/dist` in `chrome://extensions` (Developer Mode).
 - `npm run build` - web build
 - `npm run lint` - web lint
 - `npm run test` - contract tests and smoke checks
-- `npm run eval:smoke` - evaluation harness (run inside `web`)
+- `npm run eval:dry-run` - offline evaluation harness sanity check
+- `npm run eval:smoke` - paid smoke evaluation harness
 - `npm run calibrate` - score calibration
 
 ## Design and Research
+- `docs/brand-system.md`
+- `docs/visual-direction.md`
+- `docs/homepage-story-arc.md`
+- `docs/brand-implementation-plan.md`
 - `docs/design-philosophy.md`
 - `docs/design-principles.md`
 - `docs/design-system.md`

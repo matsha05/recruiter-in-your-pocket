@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useReducer, useEffect, useCallback } from 'react';
 import type { SavedJob, AuthUser } from '../background/messages';
 import PopupHeader from './components/PopupHeader';
 import ResumeContextCard from './components/ResumeContextCard';
@@ -11,13 +11,74 @@ import { popupContent } from './content';
 
 type PopupState = 'loading' | 'onboarding' | 'unauthenticated' | 'empty' | 'jobs' | 'error';
 
+type AppState = {
+    view: PopupState;
+    jobs: SavedJob[];
+    user: AuthUser | null;
+    authenticated: boolean;
+    error: string | null;
+    deletedJob: SavedJob | null;
+};
+
+type AppAction =
+    | { type: 'patch'; patch: Partial<AppState> }
+    | { type: 'jobsLoaded'; jobs: SavedJob[]; authenticated: boolean }
+    | { type: 'deleteOptimistic'; job: SavedJob; authenticated: boolean }
+    | { type: 'deleteFailed'; job: SavedJob }
+    | { type: 'undoDelete'; job: SavedJob };
+
+const initialAppState: AppState = {
+    view: 'loading',
+    jobs: [],
+    user: null,
+    authenticated: false,
+    error: null,
+    deletedJob: null,
+};
+
+function appReducer(state: AppState, action: AppAction): AppState {
+    switch (action.type) {
+        case 'patch':
+            return { ...state, ...action.patch };
+        case 'jobsLoaded': {
+            const view =
+                action.jobs.length > 0
+                    ? 'jobs'
+                    : action.authenticated
+                        ? 'empty'
+                        : 'unauthenticated';
+            return { ...state, jobs: action.jobs, view };
+        }
+        case 'deleteOptimistic': {
+            const jobs = state.jobs.filter((job) => job.id !== action.job.id);
+            return {
+                ...state,
+                jobs,
+                deletedJob: action.authenticated ? state.deletedJob : action.job,
+                view: jobs.length > 0 ? 'jobs' : action.authenticated ? 'empty' : 'unauthenticated',
+            };
+        }
+        case 'deleteFailed':
+            return {
+                ...state,
+                jobs: [action.job, ...state.jobs],
+                deletedJob: null,
+                view: 'jobs',
+            };
+        case 'undoDelete':
+            return {
+                ...state,
+                jobs: [action.job, ...state.jobs].sort((a, b) => b.capturedAt - a.capturedAt),
+                deletedJob: null,
+                view: 'jobs',
+            };
+        default:
+            return state;
+    }
+}
+
 export default function App() {
-    const [state, setState] = useState<PopupState>('loading');
-    const [jobs, setJobs] = useState<SavedJob[]>([]);
-    const [user, setUser] = useState<AuthUser | null>(null);
-    const [authenticated, setAuthenticated] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [deletedJob, setDeletedJob] = useState<SavedJob | null>(null);
+    const [{ view, jobs, user, authenticated, error, deletedJob }, dispatch] = useReducer(appReducer, initialAppState);
 
     useEffect(() => {
         initialize();
@@ -28,7 +89,7 @@ export default function App() {
             // Check onboarding status
             const result = await chrome.storage.local.get('riyp_onboarding_complete');
             if (!result.riyp_onboarding_complete) {
-                setState('onboarding');
+                dispatch({ type: 'patch', patch: { view: 'onboarding' } });
                 return;
             }
 
@@ -36,51 +97,52 @@ export default function App() {
             const authResponse = await chrome.runtime.sendMessage({ type: 'CHECK_AUTH' });
             const isAuthenticated = Boolean(authResponse.success && authResponse.data?.authenticated);
             if (authResponse.success) {
-                setAuthenticated(isAuthenticated);
-                if (authResponse.data?.user) {
-                    setUser(authResponse.data.user);
-                }
+                dispatch({
+                    type: 'patch',
+                    patch: {
+                        authenticated: isAuthenticated,
+                        user: authResponse.data?.user ?? null,
+                    },
+                });
             }
 
             await loadJobs(isAuthenticated);
         } catch (err) {
             console.error('[RIYP] Init error:', err);
-            setError('Failed to initialize');
-            setState('error');
+            dispatch({ type: 'patch', patch: { error: 'Failed to initialize', view: 'error' } });
         }
     }
 
     async function loadJobs(authenticatedOverride = authenticated) {
         try {
-            setState('loading');
+            dispatch({ type: 'patch', patch: { view: 'loading' } });
             const response = await chrome.runtime.sendMessage({ type: 'GET_JOBS' });
 
             if (response.success) {
                 const savedJobs = response.data as SavedJob[];
-                setJobs(savedJobs);
-                if (savedJobs.length > 0) {
-                    setState('jobs');
-                } else if (!authenticatedOverride) {
-                    setState('unauthenticated');
-                } else {
-                    setState('empty');
-                }
+                dispatch({ type: 'jobsLoaded', jobs: savedJobs, authenticated: authenticatedOverride });
             } else {
                 if (response.error?.includes('Not authenticated') || response.error?.includes('AUTH_REQUIRED')) {
-                    setState('unauthenticated');
+                    dispatch({ type: 'patch', patch: { view: 'unauthenticated' } });
                 } else {
                     throw new Error(response.error || 'Failed to load jobs');
                 }
             }
         } catch (err) {
             console.error('[RIYP] Failed to load jobs:', err);
-            setError(err instanceof Error ? err.message : 'Failed to load jobs');
-            setState('error');
+            dispatch({
+                type: 'patch',
+                patch: {
+                    error: err instanceof Error ? err.message : 'Failed to load jobs',
+                    view: 'error',
+                },
+            });
         }
     }
 
     function handleOpenStudio() {
-        const path = state === 'jobs' ? '/jobs' : '/workspace';
+        const hasSyncedJobs = jobs.some(isSyncedJob);
+        const path = view === 'jobs' && hasSyncedJobs ? '/jobs' : '/workspace';
         chrome.runtime.sendMessage({ type: 'OPEN_WEBAPP', payload: { path } });
     }
 
@@ -89,7 +151,15 @@ export default function App() {
     }
 
     function handleJobClick(job: SavedJob) {
-        // Primary action: Open job detail page with Match Insights
+        if (!isSyncedJob(job)) {
+            chrome.runtime.sendMessage({
+                type: 'OPEN_WEBAPP',
+                payload: { path: buildLocalWorkspacePath(job) }
+            });
+            return;
+        }
+
+        // Primary action: Open synced job detail page with Match Insights
         chrome.runtime.sendMessage({
             type: 'OPEN_WEBAPP',
             payload: { path: `/jobs/${job.id}` }
@@ -102,35 +172,21 @@ export default function App() {
     }
 
     const handleDeleteJob = useCallback(async (job: SavedJob) => {
-        // Optimistically remove from UI
-        setJobs(prev => prev.filter(j => j.id !== job.id));
-        if (!authenticated) {
-            setDeletedJob(job);
-        }
-
-        // If no jobs left, show empty state
-        if (jobs.length <= 1) {
-            setState(authenticated ? 'empty' : 'unauthenticated');
-        }
+        dispatch({ type: 'deleteOptimistic', job, authenticated });
 
         // Delete in background
         try {
             await chrome.runtime.sendMessage({ type: 'DELETE_JOB', payload: { jobId: job.id } });
         } catch (err) {
             console.error('[RIYP] Delete failed:', err);
-            // Restore job on failure
-            setJobs(prev => [job, ...prev]);
-            setDeletedJob(null);
-            setState('jobs');
+            dispatch({ type: 'deleteFailed', job });
         }
-    }, [authenticated, jobs.length]);
+    }, [authenticated]);
 
     const handleUndo = useCallback(async () => {
         if (!deletedJob) return;
 
-        // Restore to UI
-        setJobs(prev => [deletedJob, ...prev].sort((a, b) => b.capturedAt - a.capturedAt));
-        setState('jobs');
+        dispatch({ type: 'undoDelete', job: deletedJob });
 
         // Restore to storage
         const storage = await chrome.storage.local.get('riyp_extension_data');
@@ -138,11 +194,10 @@ export default function App() {
         data.savedJobs = [deletedJob, ...(data.savedJobs || [])];
         await chrome.storage.local.set({ riyp_extension_data: data });
 
-        setDeletedJob(null);
     }, [deletedJob]);
 
     const handleUndoDismiss = useCallback(() => {
-        setDeletedJob(null);
+        dispatch({ type: 'patch', patch: { deletedJob: null } });
     }, []);
 
     async function handleOnboardingComplete() {
@@ -159,26 +214,31 @@ export default function App() {
             <PopupHeader user={user} authenticated={authenticated} />
 
             <div className="popup-content">
-                {state === 'loading' && <LoadingSkeleton />}
+                {view === 'loading' && <LoadingSkeleton />}
 
-                {state === 'onboarding' && (
+                {view === 'onboarding' && (
                     <Onboarding onComplete={handleOnboardingComplete} />
                 )}
 
-                {state === 'unauthenticated' && (
+                {view === 'unauthenticated' && (
                     <AuthPrompt onLogin={handleLogin} />
                 )}
 
-                {state === 'empty' && (
+                {view === 'empty' && (
                     <>
                         <ResumeContextCard />
                         <EmptyState />
                     </>
                 )}
 
-                {state === 'jobs' && (
+                {view === 'jobs' && (
                     <>
                         <ResumeContextCard />
+                        {jobs.some((job) => !isSyncedJob(job)) && (
+                            <div className="empty-state-description" style={{ marginBottom: 12, textAlign: 'left' }}>
+                                Some jobs are saved on this browser only. Open the studio for a fresh report, or sign in and capture again to sync.
+                            </div>
+                        )}
                         <RecentJobsList
                             jobs={jobs}
                             onJobClick={handleJobClick}
@@ -188,7 +248,7 @@ export default function App() {
                     </>
                 )}
 
-                {state === 'error' && (
+                {view === 'error' && (
                     <div className="empty-state">
                         <div className="empty-state-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="empty-icon-svg">
@@ -199,7 +259,7 @@ export default function App() {
                         </div>
                         <div className="empty-state-title">Something went wrong</div>
                         <div className="empty-state-description">{error}</div>
-                        <button className="btn btn-secondary" onClick={handleRetryLoadJobs}>
+                        <button type="button" className="btn btn-secondary" onClick={handleRetryLoadJobs}>
                             Try Again
                         </button>
                     </div>
@@ -208,10 +268,10 @@ export default function App() {
 
             <div className="popup-footer">
                 <p className="popup-footer-note">
-                    {popupContent.footer[state].title}
+                    {popupContent.footer[view].title}
                 </p>
-                <button className="btn btn-primary" onClick={handleOpenStudio}>
-                    {popupContent.footer[state].cta}
+                <button type="button" className="btn btn-primary" onClick={handleOpenStudio}>
+                    {popupContent.footer[view].cta}
                     <span className="btn-arrow">→</span>
                 </button>
             </div>
@@ -225,6 +285,34 @@ export default function App() {
             )}
         </div>
     );
+}
+
+function isSyncedJob(job: SavedJob): boolean {
+    return Boolean(job.externalId) || isLikelyServerId(job.id);
+}
+
+function buildLocalWorkspacePath(job: SavedJob): string {
+    const params = new URLSearchParams({
+        source: 'extension-local',
+        title: job.title,
+        company: job.company,
+        url: job.url,
+    });
+
+    if (job.location) {
+        params.set('location', job.location);
+    }
+
+    const jobDescription = job.jobDescription || job.jdPreview;
+    if (jobDescription) {
+        params.set('jd', jobDescription.slice(0, 8000));
+    }
+
+    return `/workspace?${params.toString()}`;
+}
+
+function isLikelyServerId(id: string): boolean {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 }
 
 function LoadingSkeleton() {

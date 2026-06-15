@@ -56,7 +56,7 @@ const STATUS_CONFIG: Record<JobStatus, { label: string; color: string; bgColor: 
 // =============================================================================
 
 export default function JobsClient() {
-    const router = useRouter();
+    const { push } = useRouter();
     const { user, isLoading: authLoading } = useAuth();
     const [jobs, setJobs] = useState<Job[]>([]);
     const [loading, setLoading] = useState(true);
@@ -118,8 +118,8 @@ export default function JobsClient() {
 
     // Handle job click - navigate to job detail
     const handleJobClick = useCallback((job: Job) => {
-        router.push(`/jobs/${job.id}`);
-    }, [router]);
+        push(`/jobs/${job.id}`);
+    }, [push]);
 
     // Handle open original
     const handleOpenOriginal = useCallback((e: React.MouseEvent, job: Job) => {
@@ -164,7 +164,7 @@ export default function JobsClient() {
     const trackedSources = new Set(jobs.map((job) => job.source)).size;
 
     return (
-        <div data-visual-anchor="jobs-page" className="space-y-6">
+        <div data-visual-anchor="jobs-page" className="gap-y-6">
             <AppPageIntro
                 anchor="jobs-page"
                 eyebrow="Opportunity tracker"
@@ -186,7 +186,7 @@ export default function JobsClient() {
                             href="/extension"
                             className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
                         >
-                            <Chrome className="h-4 w-4" />
+                            <Chrome className="size-4" />
                             Install extension
                         </Link>
                         <Link
@@ -203,13 +203,13 @@ export default function JobsClient() {
             <ResumeContextCard onResumeUpdated={handleResumeUpdated} />
 
             {/* Toolbar */}
-            <div className="app-card flex flex-col gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-5">
+            <div className="app-card flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between md:px-5">
                 {/* Search */}
                 <div className="relative flex-1 max-w-md">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                     <input
                         type="text"
-                        placeholder="Search jobs..."
+                        placeholder="Search jobs…"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full h-9 pl-9 pr-4 rounded border border-border bg-background text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
@@ -218,8 +218,8 @@ export default function JobsClient() {
 
                 {/* Status Filter */}
                 <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                        <Filter className="h-3.5 w-3.5" />
+                    <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        <Filter className="size-3.5" />
                         Status
                     </span>
                     <select
@@ -245,7 +245,7 @@ export default function JobsClient() {
             <div className="app-card overflow-hidden">
                 {loading ? (
                     <div className="p-10 text-center text-muted-foreground">
-                        Loading jobs...
+                        Loading jobs…
                     </div>
                 ) : filteredJobs.length === 0 ? (
                     <EmptyState hasJobs={jobs.length > 0} signedIn={Boolean(user)} />
@@ -302,7 +302,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
 
     return (
         <div
-            className="group flex items-center gap-4 px-4 py-4 hover:bg-muted/20 cursor-pointer transition-all"
+            className="group flex items-center gap-4 p-4 hover:bg-muted/20 cursor-pointer transition-all"
             onClick={onClick}
         >
             {/* Score Dial */}
@@ -337,19 +337,19 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
 
             {/* Actions */}
             <div className="flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
-                <button
+                <button type="button"
                     onClick={onOpenOriginal}
                     className="p-2 rounded hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
                     title="Open original posting"
                 >
-                    <ExternalLink className="h-4 w-4" />
+                    <ExternalLink className="size-4" />
                 </button>
-                <button
+                <button type="button"
                     onClick={onDelete}
                     className="p-2 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
                     title="Delete job"
                 >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="size-4" />
                 </button>
             </div>
         </div>
@@ -374,8 +374,8 @@ function ScoreDial({ score }: { score: number }) {
     };
 
     return (
-        <div className="relative w-12 h-12 shrink-0">
-            <svg className="w-full h-full -rotate-90" viewBox="0 0 48 48">
+        <div className="relative size-12 shrink-0">
+            <svg className="size-full -rotate-90" viewBox="0 0 48 48">
                 <circle
                     cx="24"
                     cy="24"
@@ -401,7 +401,7 @@ function ScoreDial({ score }: { score: number }) {
                 "absolute inset-0 flex items-center justify-center text-sm font-semibold",
                 colors[scoreClass].text
             )}>
-                {score > 0 ? score : '—'}
+                {score > 0 ? score : ' - '}
             </div>
         </div>
     );
@@ -422,11 +422,11 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
 
     if (!signedIn) {
         return (
-            <div className="space-y-5 p-16 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl border border-border/60 bg-background">
-                    <Briefcase className="h-8 w-8 text-brand/60" />
+            <div className="gap-y-5 p-16 text-center">
+                <div className="mx-auto flex size-20 items-center justify-center rounded-2xl border border-border/60 bg-background">
+                    <Briefcase className="size-8 text-brand/60" />
                 </div>
-                <div className="space-y-3">
+                <div className="gap-y-3">
                     <h3 className="font-display text-lg font-medium text-foreground">Sign in to see saved jobs</h3>
                     <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
                         Your job tracker is tied to your account, so we only load saved roles and default resume context after you sign in.
@@ -457,15 +457,15 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
     }
 
     return (
-        <div className="p-16 text-center space-y-6">
+        <div className="p-16 text-center gap-y-6">
             {/* Visual illustration */}
-            <div className="relative w-20 h-20 mx-auto">
+            <div className="relative size-20 mx-auto">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/10 to-brand/5 animate-pulse" />
                 <div className="absolute inset-2 rounded-xl bg-card border border-border/40 flex items-center justify-center">
-                    <Briefcase className="h-8 w-8 text-brand/60" />
+                    <Briefcase className="size-8 text-brand/60" />
                 </div>
             </div>
-            <div className="space-y-3">
+            <div className="gap-y-3">
                 <h3 className="font-display text-lg font-medium text-foreground">No jobs captured yet</h3>
                 <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
                     Save your first job from LinkedIn or Indeed using the RIYP extension, and we&apos;ll show you how your resume stacks up.
@@ -487,15 +487,15 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
             </div>
             <div className="flex items-center justify-center gap-8 pt-2">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
-                    <div className="w-2 h-2 rounded-full bg-success/40" />
+                    <div className="size-2 rounded-full bg-success/40" />
                     <span>Match scoring</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
-                    <div className="w-2 h-2 rounded-full bg-brand/40" />
+                    <div className="size-2 rounded-full bg-brand/40" />
                     <span>Gap analysis</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
-                    <div className="w-2 h-2 rounded-full bg-premium/40" />
+                    <div className="size-2 rounded-full bg-premium/40" />
                     <span>Tailored suggestions</span>
                 </div>
             </div>

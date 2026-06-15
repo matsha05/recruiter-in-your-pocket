@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -27,13 +27,13 @@ export function ResumeLengthMythDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Length guidelines
                     </span>
                 </div>
 
                 <div className="p-6">
-                    <div className="space-y-3">
+                    <div className="gap-y-3">
                         {levels.map((level, i) => (
                             <motion.div
                                 key={level.years}
@@ -84,8 +84,8 @@ export function ResumeLengthMythDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Length Logic</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Length Logic</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Resume length should scale with experience
                 </span>

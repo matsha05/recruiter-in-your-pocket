@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
@@ -66,7 +66,7 @@ export default function LandingOptionsClient() {
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <PocketMark className="h-6 w-6 text-teal-600" />
+            <PocketMark className="size-6 text-teal-600" />
             <div>
               <h1 className="font-semibold">Landing Page</h1>
               <p className="text-xs text-slate-500">Production Ready vs Reference</p>
@@ -93,7 +93,7 @@ export default function LandingOptionsClient() {
                 {page.tags.map((tag) => (
                   <span
                     key={tag}
-                    className={`rounded px-2 py-0.5 text-[10px] font-medium ${tag === "Ship" || tag === "Wired"
+                    className={`rounded px-2 py-0.5 text-xs font-medium ${tag === "Ship" || tag === "Wired"
                         ? "bg-teal-100 text-teal-700"
                         : "bg-slate-100 text-slate-600"
                       }`}
@@ -124,28 +124,28 @@ export default function LandingOptionsClient() {
           >
             <div className="fixed left-4 right-4 top-4 z-50 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <button
+                <button type="button"
                   onClick={() => setSelectedPage(null)}
                   className="rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20"
                 >
-                  <X className="h-5 w-5 text-white" />
+                  <X className="size-5 text-white" />
                 </button>
                 <span className="ml-2 font-medium text-white">{selectedLanding.name}</span>
               </div>
               <div className="flex items-center gap-2">
-                <button
+                <button type="button"
                   onClick={goToPrev}
                   disabled={currentIndex === 0}
                   className="rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20 disabled:opacity-30"
                 >
-                  <ChevronLeft className="h-5 w-5 text-white" />
+                  <ChevronLeft className="size-5 text-white" />
                 </button>
-                <button
+                <button type="button"
                   onClick={goToNext}
                   disabled={currentIndex === landingPages.length - 1}
                   className="rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20 disabled:opacity-30"
                 >
-                  <ChevronRight className="h-5 w-5 text-white" />
+                  <ChevronRight className="size-5 text-white" />
                 </button>
               </div>
             </div>

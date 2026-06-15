@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-// SiteHeader removed — layout handles navigation
+// SiteHeader removed  -  layout handles navigation
 import {
     GuideSection,
     GuideAccordion,
@@ -37,7 +37,7 @@ export default function TechOfferNegotiationGuidePage() {
                     <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
                         Resources
                     </Link>
-                    <ChevronRight className="w-3 h-3 text-muted-foreground/50" />
+                    <ChevronRight className="size-3 text-muted-foreground/50" />
                     <span className="text-foreground font-medium">Tech Salary Negotiation</span>
                 </div>
             </div>
@@ -46,12 +46,12 @@ export default function TechOfferNegotiationGuidePage() {
 
                 {/* Hero */}
                 <header className="mb-20">
-                    <div className="space-y-6 max-w-3xl">
+                    <div className="gap-y-6 max-w-3xl">
                         <div className="flex items-center gap-3">
-                            <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-brand">
+                            <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-xs uppercase tracking-wide font-semibold text-brand">
                                 Tech Offers
                             </span>
-                            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                            <span className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                                 15 min read
                             </span>
                         </div>
@@ -71,7 +71,7 @@ export default function TechOfferNegotiationGuidePage() {
                 <EmployerMathCallout />
 
                 <div className="mb-12 rounded-xl border border-border/40 bg-muted/10 p-6 max-w-3xl">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">Quick start</div>
+                    <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground mb-3">Quick start</div>
                     <div className="grid gap-3 sm:grid-cols-3">
                         <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
                             <div className="text-sm font-medium text-foreground">1. Confirm level and band</div>
@@ -90,31 +90,31 @@ export default function TechOfferNegotiationGuidePage() {
 
                 {/* Table of Contents */}
                 <div className="mb-20 p-8 rounded-xl border border-border/30 bg-muted/10 max-w-3xl">
-                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-6">In this guide</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-6">In this guide</h3>
                     <div className="grid sm:grid-cols-2 gap-6">
                         <div className="flex items-start gap-4">
-                            <span className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">1</span>
+                            <span className="size-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">1</span>
                             <div>
                                 <a href="#understand-comp" className="text-base font-medium text-foreground hover:text-brand">Understand tech comp</a>
-                                <p className="text-sm text-muted-foreground mt-1">Base, equity, bonus, level — and why each matters</p>
+                                <p className="text-sm text-muted-foreground mt-1">Base, equity, bonus, level  -  and why each matters</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-4">
-                            <span className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">2</span>
+                            <span className="size-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">2</span>
                             <div>
                                 <a href="#the-call" className="text-base font-medium text-foreground hover:text-brand">The money conversation</a>
                                 <p className="text-sm text-muted-foreground mt-1">What to ask, what to never say, and why</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-4">
-                            <span className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">3</span>
+                            <span className="size-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">3</span>
                             <div>
                                 <a href="#level-lever" className="text-base font-medium text-foreground hover:text-brand">Level is the lever</a>
                                 <p className="text-sm text-muted-foreground mt-1">The #1 variable controlling your comp</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-4">
-                            <span className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">4</span>
+                            <span className="size-8 rounded-lg bg-muted flex items-center justify-center text-base font-semibold text-foreground shrink-0">4</span>
                             <div>
                                 <a href="#the-playbook" className="text-base font-medium text-foreground hover:text-brand">The playbook</a>
                                 <p className="text-sm text-muted-foreground mt-1">Step-by-step negotiation scripts</p>
@@ -123,7 +123,7 @@ export default function TechOfferNegotiationGuidePage() {
                     </div>
                 </div>
 
-                <div className="space-y-24">
+                <div className="gap-y-24">
 
                     {/* Section 1: Understand Tech Comp */}
                     <GuideNumberedSection number={1} title="Understand tech compensation" id="understand-comp">
@@ -138,24 +138,24 @@ export default function TechOfferNegotiationGuidePage() {
                                 There&apos;s a lot outside of salary that forms your total compensation package. Your <GuideHighlight>&quot;total comp&quot;</GuideHighlight> includes at least:
                             </p>
 
-                            <ul className="space-y-6 mb-10">
+                            <ul className="gap-y-6 mb-10">
                                 <li>
-                                    <strong className="text-foreground">Base salary</strong> — the money you&apos;re paid every pay period. This is the foundation. It&apos;s also the most visible line item in a budget, which means it&apos;s often the hardest to negotiate.
+                                    <strong className="text-foreground">Base salary</strong>  -  the money you&apos;re paid every pay period. This is the foundation. It&apos;s also the most visible line item in a budget, which means it&apos;s often the hardest to negotiate.
                                 </li>
                                 <li>
-                                    <strong className="text-foreground">Equity</strong> — ownership stake in the company. At senior levels, this could easily be <GuideHighlight>half your total comp or more</GuideHighlight>. It vests over 4 years with a 1-year cliff (you get nothing if you leave before year 1).
+                                    <strong className="text-foreground">Equity</strong>  -  ownership stake in the company. At senior levels, this could easily be <GuideHighlight>half your total comp or more</GuideHighlight>. It vests over 4 years with a 1-year cliff (you get nothing if you leave before year 1).
                                 </li>
                                 <li>
-                                    <strong className="text-foreground">Benefits</strong> — in the US, health insurance alone can easily cost your employer $500-1000/month. Benefit packages also include things like vacation days, free food, and other perks. This is (mostly) not taxed, so you&apos;d rather have these benefits than the equivalent in cash.
+                                    <strong className="text-foreground">Benefits</strong>  -  in the US, health insurance alone can easily cost your employer $500-1000/month. Benefit packages also include things like vacation days, free food, and other perks. This is (mostly) not taxed, so you&apos;d rather have these benefits than the equivalent in cash.
                                 </li>
                                 <li>
-                                    <strong className="text-foreground">Annual bonus</strong> — percentage bonus on top of your salary based on performance, common only with public companies. The recruiter will likely quote you a &quot;target bonus&quot; (e.g. 15%), which is what you can expect if you meet expectations. Generally also comes with additional equity (a &quot;refresher&quot;).
+                                    <strong className="text-foreground">Annual bonus</strong>  -  percentage bonus on top of your salary based on performance, common only with public companies. The recruiter will likely quote you a &quot;target bonus&quot; (e.g. 15%), which is what you can expect if you meet expectations. Generally also comes with additional equity (a &quot;refresher&quot;).
                                 </li>
                                 <li>
-                                    <strong className="text-foreground">Signing bonus</strong> — one-time bonus paid out either when you sign or the day you start. Might come with a clause that you must pay it back if you leave after X months. Quite common in large tech companies, can be anywhere from $10k–$100k. <GuideHighlight>Highly negotiable.</GuideHighlight>
+                                    <strong className="text-foreground">Signing bonus</strong>  -  one-time bonus paid out either when you sign or the day you start. Might come with a clause that you must pay it back if you leave after X months. Quite common in large tech companies, can be anywhere from $10k–$100k. <GuideHighlight>Highly negotiable.</GuideHighlight>
                                 </li>
                                 <li>
-                                    <strong className="text-foreground">Other perks</strong> — a whole suite of one-time or ongoing cash perks, like relocation package, phone stipend, commuter benefits, car allowance, etc.
+                                    <strong className="text-foreground">Other perks</strong>  -  a whole suite of one-time or ongoing cash perks, like relocation package, phone stipend, commuter benefits, car allowance, etc.
                                 </li>
                             </ul>
                         </GuideSection>
@@ -163,7 +163,7 @@ export default function TechOfferNegotiationGuidePage() {
                         <GuideSection
                             tip={
                                 <>
-                                    <strong>Levels are completely non-standard between companies.</strong> An &quot;L5&quot; engineer at Amazon is not equivalent to an &quot;E5&quot; engineer at Facebook. This is why levels.fyi exists — and why you should use it before every negotiation.
+                                    <strong>Levels are completely non-standard between companies.</strong> An &quot;L5&quot; engineer at Amazon is not equivalent to an &quot;E5&quot; engineer at Facebook. This is why levels.fyi exists  -  and why you should use it before every negotiation.
                                 </>
                             }
                         >
@@ -179,18 +179,18 @@ export default function TechOfferNegotiationGuidePage() {
                         </GuideSection>
 
                         {/* Equity Deep Dive */}
-                        <div className="space-y-4 mt-12">
+                        <div className="gap-y-4 mt-12">
                             <h3 className="font-display text-xl font-medium text-foreground mb-4">Understanding & valuing equity</h3>
 
                             {/* RSU vs Options Comparison */}
                             <EquityTruthTable />
 
                             <GuideAccordion title="RSUs (Restricted Stock Units)" badge="Common at public companies">
-                                <div className="space-y-4">
+                                <div className="gap-y-4">
                                     <p className="text-muted-foreground">
-                                        RSUs are shares you receive after vesting. You don&apos;t pay anything for them — they&apos;re taxed as ordinary income when they vest. Public company RSUs have clear value; private company RSUs require a liquidity event (IPO or acquisition).
+                                        RSUs are shares you receive after vesting. You don&apos;t pay anything for them  -  they&apos;re taxed as ordinary income when they vest. Public company RSUs have clear value; private company RSUs require a liquidity event (IPO or acquisition).
                                     </p>
-                                    <ul className="text-muted-foreground space-y-2">
+                                    <ul className="text-muted-foreground gap-y-2">
                                         <li>• <strong>Vesting:</strong> Typically 4 years with 1-year cliff. You get nothing if you leave in year 1.</li>
                                         <li>• <strong>Tax:</strong> Taxed as ordinary income at vest. The company typically withholds shares to cover taxes.</li>
                                         <li>• <strong>Refreshers:</strong> Annual top-ups based on performance. These can add up significantly over time.</li>
@@ -200,11 +200,11 @@ export default function TechOfferNegotiationGuidePage() {
                             </GuideAccordion>
 
                             <GuideAccordion title="Stock Options (ISOs/NSOs)" badge="Common at startups">
-                                <div className="space-y-4">
+                                <div className="gap-y-4">
                                     <p className="text-muted-foreground">
                                         Options give you the right to buy shares at a fixed &quot;strike price.&quot; Only valuable if company value exceeds your strike price. Common at startups.
                                     </p>
-                                    <ul className="text-muted-foreground space-y-2">
+                                    <ul className="text-muted-foreground gap-y-2">
                                         <li>• <strong>Strike price:</strong> What you pay to exercise (buy) the shares. This is set at the 409A valuation when the options are granted.</li>
                                         <li>• <strong>Exercise window:</strong> How long after leaving you can buy the shares. 90 days is standard, 10 years is generous.</li>
                                         <li>• <strong>ISOs vs NSOs:</strong> ISOs have tax advantages (you may owe less on capital gains) but come with complexity. NSOs are simpler but taxed as ordinary income on exercise.</li>
@@ -214,9 +214,9 @@ export default function TechOfferNegotiationGuidePage() {
                             </GuideAccordion>
 
                             <GuideAccordion title="Questions to ask about equity">
-                                <ul className="space-y-3">
+                                <ul className="gap-y-3">
                                     <GuideQuickWin>What is the current valuation and total share count? (To calculate your ownership %)</GuideQuickWin>
-                                    <GuideQuickWin>What is the strike price? (For options — determines if they&apos;re worth anything)</GuideQuickWin>
+                                    <GuideQuickWin>What is the strike price? (For options  -  determines if they&apos;re worth anything)</GuideQuickWin>
                                     <GuideQuickWin>What is the vesting schedule? Is there a cliff?</GuideQuickWin>
                                     <GuideQuickWin>How long do I have to exercise after leaving? (90 days vs 10 years is a huge difference)</GuideQuickWin>
                                     <GuideQuickWin>Is the equity quote per year or total over 4 years? (Recruiters sometimes quote the 4-year number)</GuideQuickWin>
@@ -247,8 +247,8 @@ export default function TechOfferNegotiationGuidePage() {
                             </p>
 
                             <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl p-6 mb-10">
-                                <div className="flex items-center gap-2 text-rose-600 text-[10px] font-bold uppercase tracking-widest mb-3">
-                                    <Lock className="w-3.5 h-3.5" />
+                                <div className="flex items-center gap-2 text-rose-600 text-xs font-bold uppercase tracking-wide mb-3">
+                                    <Lock className="size-3.5" />
                                     The golden rule
                                 </div>
                                 <p className="text-foreground font-medium mb-2">Never share your current or previous salary.</p>
@@ -280,37 +280,37 @@ export default function TechOfferNegotiationGuidePage() {
                                 Our goal is to collect information and retreat to a place where we analyze all the details with a cool head. Follow up with these questions:
                             </p>
 
-                            <ol className="space-y-4 mb-10">
+                            <ol className="gap-y-4 mb-10">
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">1</span>
+                                    <span className="size-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">1</span>
                                     <div>
                                         <p className="font-medium text-foreground">What level is the job offer?</p>
                                         <p className="text-muted-foreground">What are the requirements for this level vs. the level above it?</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">2</span>
+                                    <span className="size-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">2</span>
                                     <div>
                                         <p className="font-medium text-foreground">What is the salary band for this level?</p>
                                         <p className="text-muted-foreground">This is 100% a reasonable thing to ask. In California, an employer must legally provide this if asked.</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">3</span>
+                                    <span className="size-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">3</span>
                                     <div>
                                         <p className="font-medium text-foreground">How much is the equity worth currently?</p>
                                         <p className="text-muted-foreground">You can also ask: what percentage of the company does the equity represent? What is the valuation?</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">4</span>
+                                    <span className="size-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">4</span>
                                     <div>
                                         <p className="font-medium text-foreground">What is the vesting schedule?</p>
                                         <p className="text-muted-foreground">Is there a 1 year cliff? Are there quarterly vesting deadlines I should know about? Confirm whether the equity was quoted per year or over 4 years.</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">5</span>
+                                    <span className="size-7 rounded-full bg-brand/20 flex items-center justify-center text-sm font-semibold text-brand shrink-0">5</span>
                                     <div>
                                         <p className="font-medium text-foreground">For options: what is the strike price?</p>
                                         <p className="text-muted-foreground">How long after leaving do I have to exercise the options?</p>
@@ -326,14 +326,14 @@ export default function TechOfferNegotiationGuidePage() {
                         {/* Sample Conversation */}
                         <div className="mt-10">
                             <h3 className="font-display text-xl font-medium text-foreground mb-4 flex items-center gap-2">
-                                <MessageSquare className="w-5 h-5" />
+                                <MessageSquare className="size-5" />
                                 Sample: Asking for time
                             </h3>
                             <GuideChatUI
                                 title="After receiving the offer"
                                 messages={[
                                     { role: "recruiter", message: "We're excited to extend you an offer! The base is $185K, with $200K in RSUs over 4 years, and a $25K signing bonus.", delay: 500 },
-                                    { role: "you", message: "Thank you so much — I'm genuinely excited about this opportunity and the team.", delay: 2000 },
+                                    { role: "you", message: "Thank you so much  -  I'm genuinely excited about this opportunity and the team.", delay: 2000 },
                                     { role: "you", message: "Quick question: what's the vesting schedule on the RSUs? And is that $200K over 4 years or per year?", delay: 3500 },
                                     { role: "recruiter", message: "It's $200K total over 4 years with a one-year cliff, then quarterly vesting.", delay: 5000 },
                                     { role: "you", message: "Got it, that's helpful. I'd love to take 48 hours to review the full package carefully. Could we schedule a call Thursday to discuss?", delay: 6500 },
@@ -363,11 +363,11 @@ export default function TechOfferNegotiationGuidePage() {
                             </p>
 
                             <div className="bg-muted/20 border border-border/30 rounded-xl p-6 mb-10">
-                                <h4 className="font-medium text-foreground mb-4">What you can actually negotiate — by company type</h4>
+                                <h4 className="font-medium text-foreground mb-4">What you can actually negotiate  -  by company type</h4>
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div>
                                         <p className="font-medium text-foreground mb-2">Large tech (FAANG)</p>
-                                        <p className="text-muted-foreground text-sm">Level is usually set by committee based on your interview performance. Hard to move. Focus on comp within the band — signing bonus has the most flexibility.</p>
+                                        <p className="text-muted-foreground text-sm">Level is usually set by committee based on your interview performance. Hard to move. Focus on comp within the band  -  signing bonus has the most flexibility.</p>
                                     </div>
                                     <div>
                                         <p className="font-medium text-foreground mb-2">Mid-size / Startups</p>
@@ -390,7 +390,7 @@ export default function TechOfferNegotiationGuidePage() {
                                 For smaller companies and non-technical roles, you&apos;ll have more leeway. The key is to connect your experience directly to their level requirements:
                             </p>
 
-                            <div className="space-y-4 mb-8">
+                            <div className="gap-y-4 mb-8">
                                 <div className="p-4 border border-border/30 rounded-lg">
                                     <p className="font-medium text-foreground mb-1">Don&apos;t say</p>
                                     <p className="text-muted-foreground">&quot;I think I deserve a higher level based on my experience.&quot;</p>
@@ -415,7 +415,7 @@ export default function TechOfferNegotiationGuidePage() {
                             }
                         >
                             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                                Good salary negotiation isn&apos;t an adversarial game of counter-offers — <GuideHighlight>make it clear you&apos;re a team working together to overcome a common hurdle</GuideHighlight>.
+                                Good salary negotiation isn&apos;t an adversarial game of counter-offers  -  <GuideHighlight>make it clear you&apos;re a team working together to overcome a common hurdle</GuideHighlight>.
                             </p>
 
                             <h3 className="font-display text-xl font-medium text-foreground mb-4">Negotiate for the upper end of the band</h3>
@@ -446,23 +446,23 @@ export default function TechOfferNegotiationGuidePage() {
                                 If you can&apos;t get what you want, offer to shift between compensation components but don&apos;t back down on total compensation. In order of difficulty:
                             </p>
 
-                            <ol className="space-y-4 mb-8">
+                            <ol className="gap-y-4 mb-8">
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-sm font-semibold text-emerald-600 shrink-0">1</span>
+                                    <span className="size-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-sm font-semibold text-emerald-600 shrink-0">1</span>
                                     <div>
                                         <p className="font-medium text-foreground">Signing bonus (Easiest)</p>
                                         <p className="text-muted-foreground">One-time cost, doesn&apos;t affect ongoing budget. Most flex here.</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-amber-500/20 flex items-center justify-center text-sm font-semibold text-amber-600 shrink-0">2</span>
+                                    <span className="size-7 rounded-full bg-amber-500/20 flex items-center justify-center text-sm font-semibold text-amber-600 shrink-0">2</span>
                                     <div>
                                         <p className="font-medium text-foreground">Equity</p>
                                         <p className="text-muted-foreground">Not cash today, so easier to approve. Some companies prefer this.</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-7 h-7 rounded-full bg-rose-500/20 flex items-center justify-center text-sm font-semibold text-rose-600 shrink-0">3</span>
+                                    <span className="size-7 rounded-full bg-rose-500/20 flex items-center justify-center text-sm font-semibold text-rose-600 shrink-0">3</span>
                                     <div>
                                         <p className="font-medium text-foreground">Base salary (Hardest)</p>
                                         <p className="text-muted-foreground">Ongoing commitment, affects internal parity. Least flexibility.</p>
@@ -474,11 +474,11 @@ export default function TechOfferNegotiationGuidePage() {
                         {/* Counter-Script Library */}
                         <div className="mt-10">
                             <h3 className="font-display text-xl font-medium text-foreground mb-4 flex items-center gap-2">
-                                <MessageSquare className="w-5 h-5" />
+                                <MessageSquare className="size-5" />
                                 Counter-Scripts for Common Situations
                             </h3>
                             <p className="text-muted-foreground mb-4">
-                                Click any situation to see what to say — and what the recruiter hears when you say it.
+                                Click any situation to see what to say  -  and what the recruiter hears when you say it.
                             </p>
                             <ScriptLibrary />
                         </div>
@@ -486,18 +486,18 @@ export default function TechOfferNegotiationGuidePage() {
                         {/* Sample Negotiation Conversation */}
                         <div className="mt-10">
                             <h3 className="font-display text-xl font-medium text-foreground mb-4 flex items-center gap-2">
-                                <MessageSquare className="w-5 h-5" />
+                                <MessageSquare className="size-5" />
                                 Example: The counter
                             </h3>
                             <GuideChatUI
                                 title="Negotiation call"
                                 messages={[
                                     { role: "you", message: "Thanks for connecting again. I've had time to review and I'm really excited about the role and the team.", delay: 500 },
-                                    { role: "you", message: "I'd love to make this work. If we can get to $220K total comp in year one — through some mix of base and signing — I'm ready to commit.", delay: 2200 },
+                                    { role: "you", message: "I'd love to make this work. If we can get to $220K total comp in year one  -  through some mix of base and signing  -  I'm ready to commit.", delay: 2200 },
                                     { role: "recruiter", message: "I appreciate that. Let me see what I can do. Base is pretty set by the band, but I might have room on the signing bonus.", delay: 4000 },
-                                    { role: "you", message: "That would be great. I'm flexible on the mix — $220K total is what I need to move forward quickly.", delay: 5800 },
+                                    { role: "you", message: "That would be great. I'm flexible on the mix  -  $220K total is what I need to move forward quickly.", delay: 5800 },
                                     { role: "recruiter", message: "That's helpful. Let me take this back to comp and I'll get back to you by end of day tomorrow.", delay: 7500 },
-                                    { role: "you", message: "Sounds good. I really appreciate you working on this — I'd love to be able to wrap this up so I can focus on ramping up.", delay: 9200 },
+                                    { role: "you", message: "Sounds good. I really appreciate you working on this  -  I'd love to be able to wrap this up so I can focus on ramping up.", delay: 9200 },
                                 ]}
                             />
                         </div>
@@ -522,12 +522,12 @@ export default function TechOfferNegotiationGuidePage() {
                         <Link href="/workspace">
                             <Button variant="brand" size="lg" className="gap-2 w-full sm:w-auto">
                                 Get Your Report
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="size-4" />
                             </Button>
                         </Link>
                         <Link href="/resources/offer-negotiation">
                             <Button variant="outline" size="lg" className="gap-2 w-full sm:w-auto">
-                                <Users className="w-4 h-4" />
+                                <Users className="size-4" />
                                 All Industries Guide
                             </Button>
                         </Link>

@@ -7,7 +7,7 @@ import {
   CheckCircle2,
   XCircle,
   FileText,
-  MessageSquare
+  ArrowRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { InsightSparkleIcon } from "@/components/icons";
@@ -30,11 +30,11 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="gap-y-6">
       <div className="border-b border-border">
         <nav className="flex gap-6">
           {tabs.map(({ id, label, icon: Icon }) => (
-            <button
+            <button type="button"
               key={id}
               onClick={() => setActiveTab(id)}
               className={cn(
@@ -44,7 +44,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                   : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
               )}
             >
-              <Icon className="h-4 w-4" />
+              <Icon className="size-4" />
               {label}
             </button>
           ))}
@@ -54,7 +54,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
       <div className="min-h-[400px]">
         {activeTab === "overview" && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 space-y-4">
+            <div className="lg:col-span-2 gap-y-4">
               <RecruiterFitSummary
                 score={score}
                 matchedSkills={job.matchedSkills}
@@ -62,7 +62,8 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                 topGaps={job.topGaps}
               />
             </div>
-            <div className="space-y-4">
+            <div className="gap-y-4">
+              <ApplicationReadiness job={job} score={score} />
               <NextBestActions jobId={job.id} />
             </div>
           </div>
@@ -97,15 +98,15 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
         )}
 
         {activeTab === "analysis" && (
-          <div className="space-y-6">
+          <div className="gap-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="border border-border rounded bg-card p-6">
                 <h3 className="font-medium text-foreground mb-4">What you already cover</h3>
                 {job.matchedSkills.length > 0 ? (
-                  <div className="space-y-3">
-                    {job.matchedSkills.slice(0, 12).map((skill, i) => (
+                  <div className="gap-y-3">
+                    {job.matchedSkills.slice(0, 12).map((skill) => (
                       <span
-                        key={i}
+                        key={skill}
                         className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-success/10 text-success mr-2 mb-2"
                       >
                         {skill}
@@ -120,10 +121,10 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
               <div className="border border-border rounded bg-card p-6">
                 <h3 className="font-medium text-foreground mb-4">Missing or underplayed</h3>
                 {job.missingSkills.length > 0 ? (
-                  <div className="space-y-3">
-                    {job.missingSkills.slice(0, 12).map((skill, i) => (
+                  <div className="gap-y-3">
+                    {job.missingSkills.slice(0, 12).map((skill) => (
                       <span
-                        key={i}
+                        key={skill}
                         className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-destructive/10 text-destructive mr-2 mb-2"
                       >
                         {skill}
@@ -131,7 +132,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-muted-foreground">No missing skills — great match!</p>
+                  <p className="text-sm text-muted-foreground">No missing skills  -  great match!</p>
                 )}
               </div>
             </div>
@@ -139,10 +140,10 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
             {job.topGaps.length > 0 && (
               <div className="border border-border rounded bg-card p-6">
                 <h3 className="font-medium text-foreground mb-4">Priority Gaps to Address</h3>
-                <ul className="space-y-3">
+                <ul className="gap-y-3">
                   {job.topGaps.map((gap, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500/10 text-amber-600 text-xs font-medium flex items-center justify-center">
+                    <li key={gap} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 size-6 rounded-full bg-amber-500/10 text-amber-600 text-xs font-medium flex items-center justify-center">
                         {i + 1}
                       </span>
                       <span className="text-sm text-muted-foreground">{gap}</span>
@@ -152,6 +153,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
               </div>
             )}
 
+            <ApplicationReadiness job={job} score={score} />
             <NextBestActions jobId={job.id} />
           </div>
         )}
@@ -184,7 +186,7 @@ function RecruiterFitSummary({
   const coveragePercent = totalSkills > 0 ? (requirementsMet / totalSkills) * 100 : 0;
 
   return (
-    <div className="border border-border rounded p-6 bg-card space-y-6">
+    <div className="border border-border rounded p-6 bg-card gap-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="font-medium text-foreground">Recruiter Fit Summary</h3>
@@ -194,16 +196,16 @@ function RecruiterFitSummary({
         </div>
         <div
           className={cn(
-            "w-16 h-16 rounded-full border-2 flex items-center justify-center",
+            "size-16 rounded-full border-2 flex items-center justify-center",
             scoreColors[scoreClass]
           )}
         >
-          <span className="text-xl font-bold">{score > 0 ? score : "—"}</span>
+          <span className="text-xl font-bold">{score > 0 ? score : " - "}</span>
         </div>
       </div>
 
       {totalSkills > 0 && (
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Skills Coverage</span>
             <span className="font-medium">
@@ -220,22 +222,22 @@ function RecruiterFitSummary({
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-3">
+        <div className="gap-y-3">
           <h4 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-success" />
+            <CheckCircle2 className="size-4 text-success" />
             Skills recruiters will see
           </h4>
           {matchedSkills.length > 0 ? (
-            <ul className="space-y-2">
-              {(expanded ? matchedSkills : matchedSkills.slice(0, 5)).map((skill, i) => (
-                <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+            <ul className="gap-y-2">
+              {(expanded ? matchedSkills : matchedSkills.slice(0, 5)).map((skill) => (
+                <li key={skill} className="text-sm text-muted-foreground flex items-start gap-2">
                   <span className="text-success mt-1">•</span>
                   {skill}
                 </li>
               ))}
               {matchedSkills.length > 5 && (
                 <li>
-                  <button
+                  <button type="button"
                     onClick={() => setExpanded(!expanded)}
                     className="text-xs text-brand hover:underline font-medium"
                   >
@@ -249,21 +251,21 @@ function RecruiterFitSummary({
           )}
         </div>
 
-        <div className="space-y-3">
+        <div className="gap-y-3">
           <h4 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <XCircle className="h-4 w-4 text-destructive" />
+            <XCircle className="size-4 text-destructive" />
             Gaps to address
           </h4>
           {topGaps.length > 0 || missingSkills.length > 0 ? (
-            <ul className="space-y-2">
-              {topGaps.map((gap, i) => (
-                <li key={`gap-${i}`} className="text-sm text-muted-foreground flex items-start gap-2">
+            <ul className="gap-y-2">
+              {topGaps.map((gap) => (
+                <li key={gap} className="text-sm text-muted-foreground flex items-start gap-2">
                   <span className="text-destructive mt-1">•</span>
                   {gap}
                 </li>
               ))}
-              {missingSkills.slice(0, Math.max(0, 3 - topGaps.length)).map((skill, i) => (
-                <li key={`missing-${i}`} className="text-sm text-muted-foreground flex items-start gap-2">
+              {missingSkills.slice(0, Math.max(0, 3 - topGaps.length)).map((skill) => (
+                <li key={skill} className="text-sm text-muted-foreground flex items-start gap-2">
                   <span className="text-destructive mt-1">•</span>
                   Missing: {skill}
                 </li>
@@ -278,29 +280,78 @@ function RecruiterFitSummary({
   );
 }
 
+function ApplicationReadiness({ job, score }: { job: JobDetail; score: number }) {
+  const missingCount = job.missingSkills.length;
+  const gapCount = job.topGaps.length;
+  const hasJobText = Boolean(job.job_description_text?.trim());
+  const readinessLabel = score >= 75
+    ? "Ready to tailor"
+    : score >= 60
+      ? "Needs a focused pass"
+      : "High-risk stretch";
+
+  return (
+    <div className="rounded border border-brand/20 bg-brand/[0.045] p-5">
+      <div className="mb-4 flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            Application readiness
+          </p>
+          <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-foreground">
+            {readinessLabel}
+          </h3>
+        </div>
+        <span className="rounded bg-background/80 px-2 py-1 text-xs font-semibold tabular-nums text-brand">
+          {score > 0 ? `${score}%` : "No score"}
+        </span>
+      </div>
+
+      <div className="gap-y-3 text-sm">
+        <ReadinessRow complete={hasJobText} label="Job description captured" />
+        <ReadinessRow complete={score >= 60} label="Quick fit score available" />
+        <ReadinessRow complete={missingCount + gapCount === 0} label={missingCount + gapCount > 0 ? `${missingCount + gapCount} gaps to resolve` : "No priority gaps detected"} />
+      </div>
+
+      <Link
+        href={`/workspace?job=${job.id}`}
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
+      >
+        Run role-specific briefing
+        <ArrowRight className="size-4" />
+      </Link>
+    </div>
+  );
+}
+
+function ReadinessRow({ complete, label }: { complete: boolean; label: string }) {
+  return (
+    <div className="flex items-center gap-2 text-muted-foreground">
+      {complete ? (
+        <CheckCircle2 className="size-4 text-success" />
+      ) : (
+        <XCircle className="size-4 text-warning" />
+      )}
+      <span>{label}</span>
+    </div>
+  );
+}
+
 function NextBestActions({ jobId }: { jobId: string }) {
   return (
-    <div className="border border-border rounded p-6 bg-card space-y-4">
-      <h3 className="font-medium text-foreground">Next Best Actions</h3>
+    <div className="border border-border rounded p-6 bg-card gap-y-4">
+      <h3 className="font-medium text-foreground">Next best actions</h3>
 
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <ActionButton
           icon={FileText}
-          label="Tailor Resume"
-          description="Get bullet edits for this job"
+          label="Role-specific brief"
+          description="See the exact edits for this job"
           href={`/workspace?job=${jobId}`}
         />
         <ActionButton
           icon={InsightSparkleIcon}
-          label="Generate Bullets"
-          description="Fill evidence gaps"
-          comingSoon
-        />
-        <ActionButton
-          icon={MessageSquare}
-          label="Draft Outreach"
-          description="Recruiter message template"
-          comingSoon
+          label="Review job description"
+          description="Use the analysis tab to see present and missing signals"
         />
       </div>
     </div>
@@ -312,30 +363,23 @@ function ActionButton({
   label,
   description,
   href,
-  comingSoon
 }: {
   icon: ElementType;
   label: string;
   description: string;
   href?: string;
-  comingSoon?: boolean;
 }) {
   const content = (
     <>
-      <Icon className="h-5 w-5 text-brand shrink-0" />
+      <Icon className="size-5 text-brand shrink-0" />
       <div className="flex-1 text-left">
         <div className="text-sm font-medium text-foreground">{label}</div>
         <div className="text-xs text-muted-foreground">{description}</div>
       </div>
-      {comingSoon && (
-        <span className="text-[10px] font-medium text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
-          Soon
-        </span>
-      )}
     </>
   );
 
-  if (href && !comingSoon) {
+  if (href) {
     return (
       <Link
         href={href}
@@ -350,7 +394,7 @@ function ActionButton({
     <div
       className={cn(
         "flex items-center gap-3 p-3 rounded border border-border",
-        comingSoon ? "opacity-60 cursor-not-allowed" : "hover:bg-muted/50 cursor-pointer transition-colors"
+        "bg-muted/20"
       )}
     >
       {content}
@@ -401,24 +445,24 @@ function FormattedJobDescription({ text }: { text: string }) {
   }
 
   return (
-    <div className="space-y-6">
-      {sections.map((section, idx) => (
-        <div key={idx} className="space-y-2">
+    <div className="gap-y-6">
+      {sections.map((section) => (
+        <div key={`${section.header || "section"}-${section.content.join("|")}`} className="gap-y-2">
           {section.header && (
             <h4 className="text-sm font-semibold text-foreground">{section.header}</h4>
           )}
-          <div className="text-sm text-muted-foreground leading-relaxed space-y-2">
+          <div className="text-sm text-muted-foreground leading-relaxed gap-y-2">
             {section.content.map((line, lineIdx) => {
               const isBullet = /^[•\-*]\s/.test(line) || /^\d+[.)]\s/.test(line);
               if (isBullet) {
                 return (
-                  <div key={lineIdx} className="flex gap-2 pl-2">
+                  <div key={line} className="flex gap-2 pl-2">
                     <span className="text-brand">•</span>
                     <span>{line.replace(/^[•\-*\d.)]+\s*/, "")}</span>
                   </div>
                 );
               }
-              return <p key={lineIdx}>{line}</p>;
+              return <p key={line}>{line}</p>;
             })}
           </div>
         </div>

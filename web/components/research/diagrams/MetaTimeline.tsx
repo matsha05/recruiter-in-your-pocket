@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -21,14 +21,14 @@ export function MetaTimeline() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Sphere of control
                     </span>
                 </div>
 
                 <div className="p-6">
                     {/* Concentric circles visualization */}
-                    <div className="relative w-64 h-64 mx-auto">
+                    <div className="relative size-64 mx-auto">
                         {/* Outer circle - Systemic */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
@@ -55,13 +55,13 @@ export function MetaTimeline() {
                             viewport={{ once: true }}
                             className="absolute inset-0 flex items-center justify-center"
                         >
-                            <div className="text-center space-y-4">
+                            <div className="text-center gap-y-4">
                                 <div className="px-3 py-1 rounded-full bg-brand/10 border border-brand/20">
-                                    <span className="text-[10px] font-mono uppercase tracking-wider text-brand font-medium">
+                                    <span className="text-xs font-mono uppercase tracking-wider text-brand font-medium">
                                         Controllable
                                     </span>
                                 </div>
-                                <div className="space-y-1">
+                                <div className="gap-y-1">
                                     <p className="text-xs text-foreground font-medium">Clarity</p>
                                     <p className="text-xs text-foreground font-medium">Structure</p>
                                     <p className="text-xs text-foreground font-medium">Proof</p>
@@ -77,7 +77,7 @@ export function MetaTimeline() {
                             viewport={{ once: true }}
                             className="absolute -top-2 left-1/2 -translate-x-1/2"
                         >
-                            <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/60">
+                            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                                 Systemic
                             </span>
                         </motion.div>
@@ -88,7 +88,7 @@ export function MetaTimeline() {
                             viewport={{ once: true }}
                             className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-center"
                         >
-                            <span className="text-[9px] text-muted-foreground/60">
+                            <span className="text-xs text-muted-foreground/60">
                                 Market bias · Gatekeeping · Algorithms
                             </span>
                         </motion.div>
@@ -109,8 +109,8 @@ export function MetaTimeline() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Bounded Control</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Bounded Control</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     What resumes can improve vs what they cannot
                 </span>

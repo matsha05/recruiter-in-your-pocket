@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { FADE_IN_UP } from "@/lib/animation";
 
 export default function Template({ children }: { children: React.ReactNode }) {

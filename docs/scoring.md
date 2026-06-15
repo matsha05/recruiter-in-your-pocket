@@ -1,10 +1,10 @@
 # Resume scoring rubric
 
-The score measures how clearly your resume tells your story on a first read. It is calibrated from 60 to 100 and anchored on real resumes. It is not a grade on your worth, seniority, or potential. Most solid resumes land in the high 70s to mid 80s. Higher scores reflect clearer structure, stronger ownership language, and more specific outcomes, not just more experience.
+The score measures how clearly your resume tells your story on a first read. It is a recruiter-style clarity signal calibrated from 60 to 100 and anchored on real resumes. It is not a grade on your worth, seniority, potential, or probability of getting an interview. Most solid resumes land in the high 70s to mid 80s. Higher scores reflect clearer structure, stronger ownership language, and more specific outcomes, not just more experience.
 
 The goal is not perfection. The goal is an honest, recruiter-calibrated signal: "If I read this quickly in a real pipeline, how strong would it feel?"
 
-The score is a clarity signal, not a judgment. Bands are calibrated to how clearly a recruiter can understand your story on a first read. These bands are calibrated against a set of 20–30 real and synthetic resumes across multiple domains and seniority levels.
+The score is a clarity signal, not a judgment or a strict predictive formula. Bands are calibrated to how clearly a recruiter can understand your story on a first read. These bands are calibrated against a set of 20–30 real and synthetic resumes across multiple domains and seniority levels.
 
 ## Components of the score
 
@@ -63,7 +63,7 @@ The model considers five dimensions:
    - No obvious spelling or grammar issues.
    - Overall presentation feels intentional and professional.
 
-Scores are not a strict formula, but the model is guided to stay within these weights.
+Scores are not a strict formula. The model is guided by these weights, then calibrated against anchor resumes and evidence quality. Recommendations that depend on missing context should carry lower confidence and ask for the missing detail instead of inventing it.
 
 ## Score bands
 

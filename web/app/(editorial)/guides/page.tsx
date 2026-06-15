@@ -56,7 +56,7 @@ export default function GuidesPage() {
                     <div className="mx-auto max-w-[720px]">
                         <div className="max-w-[46rem]">
                             <div className="editorial-kicker inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-400">
-                                <Sparkles className="h-3.5 w-3.5 text-brand" />
+                                <Sparkles className="size-3.5 text-brand" />
                                 Practical career advice
                             </div>
                             <h1
@@ -102,7 +102,7 @@ export default function GuidesPage() {
                                 className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors"
                             >
                                 Get free report
-                                <ArrowRight className="h-4 w-4" />
+                                <ArrowRight className="size-4" />
                             </Link>
                         </div>
 
@@ -119,7 +119,7 @@ export default function GuidesPage() {
                                                 {guide.subtitle}
                                             </span>
                                         <span className="editorial-kicker inline-flex items-center gap-1.5 text-slate-400">
-                                            <Clock3 className="h-3.5 w-3.5" />
+                                            <Clock3 className="size-3.5" />
                                             {guide.readTime}
                                         </span>
                                     </div>
@@ -134,17 +134,17 @@ export default function GuidesPage() {
                                     >
                                         {guide.title}
                                     </h3>
-                                    <ul className="mt-4 space-y-2.5">
+                                    <ul className="mt-4 gap-y-2.5">
                                         {guide.points.map((point) => (
                                             <li key={point} className="flex items-center gap-2.5 text-sm leading-6 text-slate-500">
-                                                <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+                                                <span className="inline-block size-1.5 rounded-full bg-brand" />
                                                 {point}
                                             </li>
                                         ))}
                                     </ul>
                                     <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-slate-500 group-hover:text-slate-700 transition-colors">
                                         Open guide
-                                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                        <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                                     </div>
                                 </Link>
                             ))}
@@ -180,21 +180,21 @@ export default function GuidesPage() {
                                     className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
                                 >
                                     Open calculator
-                                    <ArrowRight className="h-4 w-4" />
+                                    <ArrowRight className="size-4" />
                                 </Link>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* ── Philosophy — dark section ── */}
+                {/* ── Philosophy  -  dark section ── */}
                 <section
                     className="px-6 py-14 md:px-8 md:py-20"
                     style={{ backgroundColor: "hsl(var(--surface-inverted))" }}
                 >
                     <div className="mx-auto max-w-[720px] grid items-start gap-8 lg:grid-cols-[1.02fr_0.98fr]">
                         <div>
-                            <p className="editorial-kicker text-slate-400">
+                            <p className="editorial-kicker editorial-kicker-inverted">
                                 The philosophy
                             </p>
                             <h2
@@ -208,7 +208,7 @@ export default function GuidesPage() {
                             >
                                 Written from the recruiter&apos;s side of the table
                             </h2>
-                            <p className="mt-4 max-w-[42rem] text-sm leading-6 text-slate-400">
+                            <p className="mt-4 max-w-[42rem] text-sm leading-6 text-slate-300">
                                 Most career advice is either vague or weirdly theatrical. These guides stay grounded in how hiring actually works, what companies respond to, and what is actually worth saying.
                             </p>
                         </div>
@@ -217,18 +217,18 @@ export default function GuidesPage() {
                             className="rounded-2xl border border-white/10 p-6"
                             style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
                         >
-                            <div className="space-y-4">
+                            <div className="gap-y-4">
                                 <div>
                                     <p className="text-sm font-medium text-white">Real scripts, not theory.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Every conversation in these guides is something you could actually say out loud.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-300">Every conversation in these guides is something you could actually say out loud.</p>
                                 </div>
                                 <div className="border-t border-white/10 pt-4">
                                     <p className="text-sm font-medium text-white">Backed by research.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Each strategy connects to peer-reviewed evidence on hiring behavior.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-300">Each strategy connects to peer-reviewed evidence on hiring behavior.</p>
                                 </div>
                                 <div className="border-t border-white/10 pt-4">
                                     <p className="text-sm font-medium text-white">Built for your next conversation.</p>
-                                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Not a course. Not a webinar. Pick what you need and use it this week.</p>
+                                    <p className="mt-1 text-sm leading-relaxed text-slate-300">Not a course. Not a webinar. Pick what you need and use it this week.</p>
                                 </div>
                             </div>
                         </div>
@@ -260,7 +260,7 @@ export default function GuidesPage() {
                                 className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors"
                             >
                                 View all research
-                                <ArrowRight className="h-4 w-4" />
+                                <ArrowRight className="size-4" />
                             </Link>
                         </div>
 
@@ -272,8 +272,8 @@ export default function GuidesPage() {
                                     className="group rounded-2xl bg-white p-6 transition-all duration-200 hover:-translate-y-0.5"
                                     style={{ boxShadow: paperShadow }}
                                 >
-                                    <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg" style={{ backgroundColor: "rgba(13,115,119,0.08)" }}>
-                                        <ShieldCheck className="h-4 w-4 text-brand" />
+                                    <div className="mb-3 inline-flex size-8 items-center justify-center rounded-lg" style={{ backgroundColor: "rgba(13,115,119,0.08)" }}>
+                                        <ShieldCheck className="size-4 text-brand" />
                                     </div>
                                     <h3
                                         className="font-display text-slate-900 transition-colors group-hover:text-slate-600"
@@ -288,7 +288,7 @@ export default function GuidesPage() {
                                     </h3>
                                     <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-500 group-hover:text-slate-700 transition-colors">
                                         Read
-                                        <ArrowRight className="h-4 w-4" />
+                                        <ArrowRight className="size-4" />
                                     </div>
                                 </Link>
                             ))}

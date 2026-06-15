@@ -73,8 +73,8 @@ export default function DashboardPage() {
     if (!user) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-body p-6">
-                <div className="text-center space-y-4">
-                    <BarChart3 className="w-12 h-12 mx-auto text-muted-foreground" />
+                <div className="text-center gap-y-4">
+                    <BarChart3 className="size-12 mx-auto text-muted-foreground" />
                     <h1 className="text-2xl font-display text-foreground">Sign in to view your progress</h1>
                     <p className="text-muted-foreground max-w-md">
                         Track your progress, see score trends, and identify patterns across your resume reports.
@@ -93,9 +93,9 @@ export default function DashboardPage() {
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-body">
-                <div className="animate-pulse space-y-4 text-center">
-                    <BarChart3 className="w-12 h-12 mx-auto text-muted-foreground" />
-                    <p className="text-muted-foreground">Loading your progress...</p>
+                <div className="animate-pulse gap-y-4 text-center">
+                    <BarChart3 className="size-12 mx-auto text-muted-foreground" />
+                    <p className="text-muted-foreground">Loading your progress…</p>
                 </div>
             </div>
         );
@@ -104,8 +104,8 @@ export default function DashboardPage() {
     if (error || !analytics) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-body p-6">
-                <div className="text-center space-y-4">
-                    <AlertTriangle className="w-12 h-12 mx-auto text-destructive" />
+                <div className="text-center gap-y-4">
+                    <AlertTriangle className="size-12 mx-auto text-destructive" />
                     <h1 className="text-2xl font-display text-foreground">Something went wrong</h1>
                     <p className="text-muted-foreground">{error || "Could not load analytics"}</p>
                 </div>
@@ -116,8 +116,8 @@ export default function DashboardPage() {
     if (analytics.totalReviews === 0) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-body p-6">
-                <div className="text-center space-y-4">
-                    <BarChart3 className="w-12 h-12 mx-auto text-muted-foreground" />
+                <div className="text-center gap-y-4">
+                    <BarChart3 className="size-12 mx-auto text-muted-foreground" />
                     <h1 className="text-2xl font-display text-foreground">No reports yet</h1>
                     <p className="text-muted-foreground max-w-md">
                         Get your first resume report to start tracking your progress.
@@ -139,7 +139,7 @@ export default function DashboardPage() {
             <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
                 <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
                     <Link href="/workspace" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                        <ArrowLeft className="w-4 h-4" />
+                        <ArrowLeft className="size-4" />
                         <span className="text-sm">Back to Workspace</span>
                     </Link>
                     <h1 className="font-display text-lg font-semibold text-foreground">Your Progress</h1>
@@ -147,11 +147,11 @@ export default function DashboardPage() {
                 </div>
             </header>
 
-            <main className="max-w-5xl mx-auto px-6 py-8 space-y-8">
+            <main className="max-w-5xl mx-auto px-6 py-8 gap-y-8">
                 {/* Variant Filter Tabs */}
                 {analytics.variants.length > 0 && (
                     <div className="flex flex-wrap gap-2">
-                        <button
+                        <button type="button"
                             onClick={() => setFilterVariant(null)}
                             className={`text-sm px-4 py-2 rounded transition-colors ${filterVariant === null
                                 ? 'bg-foreground text-background'
@@ -161,7 +161,7 @@ export default function DashboardPage() {
                             All Resumes
                         </button>
                         {analytics.variants.map(v => (
-                            <button
+                            <button type="button"
                                 key={v}
                                 onClick={() => setFilterVariant(v)}
                                 className={`text-sm px-4 py-2 rounded transition-colors ${filterVariant === v
@@ -179,7 +179,7 @@ export default function DashboardPage() {
                     {/* Total Reviews */}
                     <div className="bg-card border border-border rounded p-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <BarChart3 className="w-5 h-5 text-brand" />
+                            <BarChart3 className="size-5 text-brand" />
                             <span className="text-sm text-muted-foreground">
                                 {filterVariant ? `${filterVariant} Reviews` : 'Total Reviews'}
                             </span>
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                     {/* Average Score */}
                     <div className="bg-card border border-border rounded p-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <Target className="w-5 h-5 text-brand" />
+                            <Target className="size-5 text-brand" />
                             <span className="text-sm text-muted-foreground">Average Score</span>
                         </div>
                         <p className="text-3xl font-display font-bold text-foreground">
@@ -203,7 +203,7 @@ export default function DashboardPage() {
                     {/* Improvement */}
                     <div className="bg-card border border-border rounded p-6">
                         <div className="flex items-center gap-3 mb-2">
-                            <TrendingUp className="w-5 h-5 text-brand" />
+                            <TrendingUp className="size-5 text-brand" />
                             <span className="text-sm text-muted-foreground">Score Change</span>
                         </div>
                         <p className={`text-3xl font-display font-bold ${(filterVariant ? filteredStats.improvement : analytics.scoreImprovement) > 0 ? 'text-green-500' :
@@ -227,12 +227,12 @@ export default function DashboardPage() {
                     {analytics.commonGaps.length > 0 && (
                         <div className="bg-card border border-border rounded p-6">
                             <div className="flex items-center gap-2 mb-4">
-                                <AlertTriangle className="w-5 h-5 text-warning" />
+                                <AlertTriangle className="size-5 text-warning" />
                                 <h2 className="font-semibold text-foreground">Recurring Gaps</h2>
                             </div>
-                            <ul className="space-y-2">
+                            <ul className="gap-y-2">
                                 {analytics.commonGaps.map((gap, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-sm">
+                                    <li key={gap.text} className="flex items-start gap-2 text-sm">
                                         <span className="text-warning">•</span>
                                         <span className="text-foreground/80">{gap.text}</span>
                                         {gap.count > 1 && (
@@ -248,12 +248,12 @@ export default function DashboardPage() {
                     {analytics.topStrengths.length > 0 && (
                         <div className="bg-card border border-border rounded p-6">
                             <div className="flex items-center gap-2 mb-4">
-                                <Star className="w-5 h-5 text-green-500" />
+                                <Star className="size-5 text-green-500" />
                                 <h2 className="font-semibold text-foreground">Consistent Strengths</h2>
                             </div>
-                            <ul className="space-y-2">
+                            <ul className="gap-y-2">
                                 {analytics.topStrengths.map((strength, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-sm">
+                                    <li key={strength.text} className="flex items-start gap-2 text-sm">
                                         <span className="text-green-500">✓</span>
                                         <span className="text-foreground/80">{strength.text}</span>
                                         {strength.count > 1 && (

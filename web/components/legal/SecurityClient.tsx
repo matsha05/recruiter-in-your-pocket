@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Lock, ShieldCheck } from "lucide-react";
 import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
 import { LegalShell } from "@/components/legal/LegalShell";
@@ -23,17 +24,17 @@ export default function SecurityClient() {
                 style={{ boxShadow: paperShadow }}
             >
                 <h2 className="mb-4 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <Lock className="h-4 w-4 text-slate-400" />
+                    <Lock className="size-4 text-slate-400" />
                     What we store and why
                 </h2>
                 <table className="min-w-[860px] w-full text-sm">
                     <thead>
                         <tr className="border-b border-slate-100 text-left">
-                            <th className="py-2 pr-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">Data type</th>
-                            <th className="py-2 pr-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">Purpose</th>
-                            <th className="py-2 pr-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">Retention</th>
-                            <th className="py-2 pr-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">Your control</th>
-                            <th className="py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">Processor</th>
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Data type</th>
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Purpose</th>
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Retention</th>
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Your control</th>
+                            <th className="py-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Processor</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,13 +56,13 @@ export default function SecurityClient() {
                 style={{ backgroundColor: "hsl(40 20% 97%)" }}
             >
                 <h2 className="mb-3 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <ShieldCheck className="h-4 w-4 text-slate-400" />
+                    <ShieldCheck className="size-4 text-slate-400" />
                     What we commit to
                 </h2>
-                <ul className="space-y-2.5 text-[14px] leading-[1.65] text-slate-500">
+                <ul className="gap-y-2.5 text-[14px] leading-[1.65] text-slate-500">
                     {TRUST_PROMISES.map((line) => (
                         <li key={line} className="flex items-start gap-2">
-                            <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-slate-300" />
+                            <span className="mt-2 inline-block size-1.5 rounded-full bg-slate-300" />
                             <span>{line}</span>
                         </li>
                     ))}
@@ -73,11 +74,11 @@ export default function SecurityClient() {
                 style={{ backgroundColor: "hsl(40 20% 99%)" }}
             >
                 <h2 className="mb-3 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <ShieldCheck className="h-4 w-4 text-slate-400" />
+                    <ShieldCheck className="size-4 text-slate-400" />
                     Responsible disclosure
                 </h2>
                 <p className="text-[14px] leading-[1.65] text-slate-500">
-                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-slate-900">support@recruiterinyourpocket.com</a> with steps to reproduce it. Our canonical disclosure instructions are also published at <a href="/.well-known/security.txt" className="underline underline-offset-4 hover:text-slate-900">/.well-known/security.txt</a>.
+                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-slate-900">support@recruiterinyourpocket.com</a> with steps to reproduce it. Our canonical disclosure instructions are also published at <Link href="/.well-known/security.txt" className="underline underline-offset-4 hover:text-slate-900">/.well-known/security.txt</Link>.
                 </p>
             </section>
         </LegalShell>

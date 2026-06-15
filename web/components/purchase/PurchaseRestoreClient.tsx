@@ -39,6 +39,7 @@ const pillSecondary =
 
 export default function PurchaseRestoreClient() {
   const searchParams = useSearchParams();
+    const getSearchParam = searchParams.get.bind(searchParams);
   const { user, refreshUser } = useAuth();
   const [isRestoring, setIsRestoring] = useState(false);
   const [isPortalLoading, setIsPortalLoading] = useState(false);
@@ -46,7 +47,7 @@ export default function PurchaseRestoreClient() {
   const [restoreMessage, setRestoreMessage] = useState<string | null>(null);
   const [receipts, setReceipts] = useState<ReceiptItem[]>([]);
 
-  const billingUpdated = searchParams.get("billing") === "updated";
+  const billingUpdated = getSearchParam("billing") === "updated";
   const signedIn = !!user?.email;
 
   const header = useMemo(() => {
@@ -115,7 +116,7 @@ export default function PurchaseRestoreClient() {
   return (
     <>
       <main className="bg-paper px-6 pb-16 pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
-        <div className="mx-auto max-w-3xl space-y-6">
+        <div className="mx-auto max-w-3xl gap-y-6">
           {/* ── Main restore card ── */}
           <section
             className="rounded-2xl bg-white p-8"
@@ -162,28 +163,28 @@ export default function PurchaseRestoreClient() {
               </div>
             ) : (
               <div className="mt-6 flex flex-wrap gap-3">
-                <button
+                <button type="button"
                   onClick={handleRestore}
                   disabled={isRestoring}
                   className={`inline-flex items-center gap-2 ${pillPrimary}`}
                 >
-                  {isRestoring ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
+                  {isRestoring ? <Loader2 className="size-4 animate-spin" /> : <RefreshCw className="size-4" />}
                   Restore Access
                 </button>
-                <button
+                <button type="button"
                   onClick={handleOpenPortal}
                   disabled={isPortalLoading}
                   className={`inline-flex items-center gap-2 ${pillSecondary}`}
                 >
-                  {isPortalLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ExternalLink className="h-4 w-4" />}
+                  {isPortalLoading ? <Loader2 className="size-4 animate-spin" /> : <ExternalLink className="size-4" />}
                   Open Billing Portal
                 </button>
-                <button
+                <button type="button"
                   onClick={handleLoadReceipts}
                   disabled={isReceiptsLoading}
                   className={`inline-flex items-center gap-2 ${pillSecondary}`}
                 >
-                  {isReceiptsLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Receipt className="h-4 w-4" />}
+                  {isReceiptsLoading ? <Loader2 className="size-4 animate-spin" /> : <Receipt className="size-4" />}
                   Load Receipts
                 </button>
                 <Link

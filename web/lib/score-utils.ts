@@ -29,7 +29,7 @@ export function getScoreBg(score: number): string {
 /**
  * Returns the border color class for a given score
  */
-export function getScoreBorder(score: number): string {
+function getScoreBorder(score: number): string {
     if (score >= 85) return "border-success/30";
     if (score >= 70) return "border-premium/30";
     return "border-destructive/30";
@@ -111,7 +111,7 @@ const JOB_MATCH_BANDS: JobMatchBand[] = [
 /**
  * Get the job matching score band for a given score
  */
-export function getJobMatchBand(score: number): JobMatchBand {
+function getJobMatchBand(score: number): JobMatchBand {
     for (const band of JOB_MATCH_BANDS) {
         if (score >= band.score_range[0] && score <= band.score_range[1]) {
             return band;
@@ -123,14 +123,14 @@ export function getJobMatchBand(score: number): JobMatchBand {
 /**
  * Get just the label for a job match score
  */
-export function getJobMatchLabel(score: number): string {
+function getJobMatchLabel(score: number): string {
     return getJobMatchBand(score).label;
 }
 
 /**
  * Get the color classes for a job match score
  */
-export function getJobMatchColors(score: number): { bg: string; border: string; text: string } {
+function getJobMatchColors(score: number): { bg: string; border: string; text: string } {
     const band = getJobMatchBand(score);
     return {
         bg: band.colorClass.split(' ')[0],

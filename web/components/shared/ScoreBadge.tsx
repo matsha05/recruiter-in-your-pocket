@@ -41,7 +41,7 @@ export function ScoreBadge({
     };
 
     const labelSizeStyles = {
-        sm: "text-[10px]",
+        sm: "text-xs",
         md: "text-xs",
         lg: "text-sm"
     };

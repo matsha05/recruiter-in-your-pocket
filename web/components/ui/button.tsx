@@ -2,7 +2,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { motion, HTMLMotionProps } from "framer-motion"
+import { m as motion, HTMLMotionProps } from "motion/react"
 import { BUTTON_TAP } from "@/lib/animation"
 import { Loader2 } from "lucide-react"
 
@@ -46,7 +46,7 @@ const buttonVariants = cva(
                 sm: "h-8 px-3 text-xs",
                 lg: "h-10 px-6",
                 xl: "h-12 px-8 text-base",
-                icon: "h-9 w-9",
+                icon: "size-9",
             },
         },
         defaultVariants: {
@@ -77,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
             <>
                 {isLoading && (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="size-4 animate-spin" />
                 )}
                 {isLoading ? <span className="opacity-70">{children}</span> : children}
             </>
@@ -104,4 +104,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants }
+export { Button }

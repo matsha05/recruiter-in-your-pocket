@@ -15,7 +15,7 @@ const DEFAULT_STORAGE: ExtensionStorage = {
 /**
  * Get the current extension storage
  */
-export async function getStorage(): Promise<ExtensionStorage> {
+async function getStorage(): Promise<ExtensionStorage> {
     const result = await chrome.storage.local.get(STORAGE_KEY);
     return result[STORAGE_KEY] ?? DEFAULT_STORAGE;
 }
@@ -23,7 +23,7 @@ export async function getStorage(): Promise<ExtensionStorage> {
 /**
  * Update the extension storage
  */
-export async function setStorage(data: Partial<ExtensionStorage>): Promise<void> {
+async function setStorage(data: Partial<ExtensionStorage>): Promise<void> {
     const current = await getStorage();
     await chrome.storage.local.set({
         [STORAGE_KEY]: {
@@ -37,11 +37,10 @@ export async function setStorage(data: Partial<ExtensionStorage>): Promise<void>
 /**
  * Add a new saved job
  */
-export async function addSavedJob(job: SavedJob): Promise<void> {
+async function addSavedJob(job: SavedJob): Promise<void> {
     const storage = await getStorage();
 
-    // Check if job already exists (by URL)
-    const existingIndex = storage.savedJobs.findIndex((j) => j.url === job.url);
+    const existingIndex = findSavedJobIndex(storage.savedJobs, job);
 
     if (existingIndex >= 0) {
         // Update existing
@@ -57,14 +56,23 @@ export async function addSavedJob(job: SavedJob): Promise<void> {
     await setStorage({ savedJobs: storage.savedJobs });
 }
 
+export async function addSavedJobAndUpdateBadge(job: SavedJob): Promise<void> {
+    await addSavedJob(job);
+    await updateBadge();
+}
+
 /**
  * Delete a saved job by ID or URL
  */
 export async function deleteSavedJob(jobIdOrUrl: string): Promise<SavedJob | null> {
     const storage = await getStorage();
+    const normalizedUrl = normalizeJobUrl(jobIdOrUrl);
 
     const index = storage.savedJobs.findIndex(
-        (j) => j.id === jobIdOrUrl || j.url === jobIdOrUrl
+        (job) => job.id === jobIdOrUrl
+            || job.externalId === jobIdOrUrl
+            || job.url === jobIdOrUrl
+            || normalizeJobUrl(job.url) === normalizedUrl
     );
 
     if (index === -1) {
@@ -75,13 +83,6 @@ export async function deleteSavedJob(jobIdOrUrl: string): Promise<SavedJob | nul
     await setStorage({ savedJobs: storage.savedJobs });
 
     return deleted;
-}
-
-/**
- * Restore a deleted job (for undo)
- */
-export async function restoreSavedJob(job: SavedJob): Promise<void> {
-    await addSavedJob(job);
 }
 
 /**
@@ -97,7 +98,8 @@ export async function getSavedJobs(): Promise<SavedJob[]> {
  */
 export async function isJobCaptured(url: string): Promise<{ captured: boolean; job?: SavedJob }> {
     const storage = await getStorage();
-    const job = storage.savedJobs.find((j) => j.url === url);
+    const normalizedUrl = normalizeJobUrl(url);
+    const job = storage.savedJobs.find((savedJob) => normalizeJobUrl(savedJob.url) === normalizedUrl);
     return { captured: !!job, job };
 }
 
@@ -114,4 +116,58 @@ export async function updateBadge(): Promise<void> {
     } else {
         await chrome.action.setBadgeText({ text: '' });
     }
+}
+
+export function getSavedJobDedupeKey(job: SavedJob): string {
+    const externalJobId = getExternalJobId(job);
+    if (job.source && externalJobId) {
+        return `${job.source}:external:${externalJobId}`;
+    }
+
+    return `url:${normalizeJobUrl(job.url)}`;
+}
+
+function normalizeJobUrl(url: string): string {
+    try {
+        const parsedUrl = new URL(url);
+        parsedUrl.hash = '';
+
+        const params = new URLSearchParams(parsedUrl.search);
+        for (const key of Array.from(params.keys())) {
+            const normalizedKey = key.toLowerCase();
+            if (
+                normalizedKey.startsWith('utm_')
+                || normalizedKey === 'trk'
+                || normalizedKey === 'refid'
+                || normalizedKey === 'ref'
+                || normalizedKey === 'trackingid'
+            ) {
+                params.delete(key);
+            }
+        }
+
+        params.sort();
+        parsedUrl.search = params.toString();
+        parsedUrl.pathname = parsedUrl.pathname.replace(/\/+$/, '');
+        return parsedUrl.toString();
+    } catch {
+        return url.trim();
+    }
+}
+
+function findSavedJobIndex(savedJobs: SavedJob[], incomingJob: SavedJob): number {
+    const incomingKey = getSavedJobDedupeKey(incomingJob);
+    return savedJobs.findIndex((savedJob) => getSavedJobDedupeKey(savedJob) === incomingKey);
+}
+
+function getExternalJobId(job: SavedJob): string | null {
+    if (job.externalId) {
+        return job.externalId;
+    }
+
+    return isLikelyServerId(job.id) ? null : job.id;
+}
+
+function isLikelyServerId(id: string): boolean {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 }

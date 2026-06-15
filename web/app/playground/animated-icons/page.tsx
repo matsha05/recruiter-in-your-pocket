@@ -1,5 +1,3 @@
-"use client";
-
 import { Settings, Check, Download, Sun, Moon, FileCheck, CloudUpload } from "lucide-react";
 import { SettingsIcon } from "@/components/ui/settings";
 import { CheckIcon } from "@/components/ui/check";
@@ -8,8 +6,13 @@ import { SunIcon } from "@/components/ui/sun";
 import { MoonIcon } from "@/components/ui/moon";
 import { FileCheckIcon } from "@/components/ui/file-check";
 import { CloudUploadIcon } from "@/components/ui/cloud-upload";
+import { notFound } from "next/navigation";
 
 export default function AnimatedIconsPlayground() {
+    if (process.env.NODE_ENV === "production" && process.env.ALLOW_INTERNAL_PAGES !== "true") {
+        notFound();
+    }
+
     return (
         <div className="min-h-screen bg-background p-12">
             <div className="max-w-3xl mx-auto space-y-12">

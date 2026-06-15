@@ -5,8 +5,8 @@ import { Variants, Transition, TargetAndTransition } from "framer-motion";
 // Per design-principles.md: cubic-bezier(0.16, 1, 0.3, 1) — snappy
 // =============================================================================
 
-export const TRANSITION_EASE = [0.32, 0.72, 0, 1] as const;
-export const EASE_SNAP = [0.16, 1, 0.3, 1] as const;
+const TRANSITION_EASE = [0.32, 0.72, 0, 1] as const;
+const EASE_SNAP = [0.16, 1, 0.3, 1] as const;
 
 // =============================================================================
 // SPRING CONFIGURATIONS
@@ -15,31 +15,31 @@ export const EASE_SNAP = [0.16, 1, 0.3, 1] as const;
 // =============================================================================
 
 /** Signature moment spring - use only for verdict/value/conversion moments */
-export const SPRING_SIGNATURE = {
+const SPRING_SIGNATURE = {
     type: "spring",
     stiffness: 400,
     damping: 30,
 } as const;
 
 /** @deprecated Use SPRING_SIGNATURE instead */
-export const SPRING_BOUNCE = SPRING_SIGNATURE;
+const SPRING_BOUNCE = SPRING_SIGNATURE;
 
 /** Tight spring for structural micro-interactions and quick feedback */
-export const SPRING_TIGHT = {
+const SPRING_TIGHT = {
     type: "spring",
     stiffness: 500,
     damping: 30,
 } as const;
 
 /** Modal/dialog spring - snappy with no overshoot */
-export const SPRING_MODAL = {
+const SPRING_MODAL = {
     type: "spring",
     stiffness: 500,
     damping: 35,
 } as const;
 
 /** Subtle spring for structural hover states - responsive but not distracting */
-export const SPRING_SUBTLE = {
+const SPRING_SUBTLE = {
     type: "spring",
     stiffness: 300,
     damping: 25,
@@ -93,7 +93,7 @@ export const FADE_IN_UP = {
     transition: { duration: DURATION.slow, ease: TRANSITION_EASE }
 } as const;
 
-export const PAGE_VARIANTS: Variants = {
+const PAGE_VARIANTS: Variants = {
     initial: { opacity: 0, y: 20 },
     enter: {
         opacity: 1,
@@ -158,7 +158,7 @@ export const STAGGER_CONTAINER: Variants = {
     }
 };
 
-export const STAGGER_CONTAINER_SLOW: Variants = {
+const STAGGER_CONTAINER_SLOW: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -284,7 +284,7 @@ export const CARD_TAP: TargetAndTransition = {
 // Per motion-primitives.md: translateX(4px) on parent hover
 // =============================================================================
 
-export const ARROW_SLIDE: TargetAndTransition = {
+const ARROW_SLIDE: TargetAndTransition = {
     x: 4,
     transition: { duration: DURATION.normal, ease: EASE_SNAP }
 };
@@ -294,7 +294,7 @@ export const ARROW_SLIDE: TargetAndTransition = {
 // Reduced motion detection helper
 // =============================================================================
 
-export const reducedMotionVariants = <T extends Variants>(variants: T): T => {
+const reducedMotionVariants = <T extends Variants>(variants: T): T => {
     // This is a marker - actual implementation happens in components
     // using useReducedMotion() from framer-motion
     return variants;

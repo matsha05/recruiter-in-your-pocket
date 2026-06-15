@@ -36,14 +36,14 @@ export default function ThemeToggle() {
 
     if (!mounted) {
         return (
-            <div className="w-9 h-9" /> // Skeleton placeholder
+            <div className="size-9" /> // Skeleton placeholder
         );
     }
 
     return (
-        <button
+        <button type="button"
             onClick={toggleTheme}
-            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-muted hover:ring-2 hover:ring-border/30 transition-all text-muted-foreground hover:text-foreground"
+            className="size-8 flex items-center justify-center rounded-full hover:bg-muted hover:ring-2 hover:ring-border/30 transition-all text-muted-foreground hover:text-foreground"
             aria-label="Toggle theme"
         >
             {isDark ? (

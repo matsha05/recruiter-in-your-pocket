@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, type MotionProps } from "framer-motion";
+import { m as motion, type MotionProps } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type DiagramFigureProps = {
@@ -41,7 +41,7 @@ export function DiagramHeader({ label, className, rightSlot, children }: Diagram
   return (
     <div className={cn("riyp-diagram-head flex items-center justify-between gap-3", className)}>
       {children ?? (
-        <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400">
+        <span className="font-mono text-xs uppercase tracking-widest text-slate-400">
           {label}
         </span>
       )}
@@ -58,7 +58,7 @@ type DiagramCaptionProps = {
   className?: string;
 };
 
-export function DiagramCaption({
+function DiagramCaption({
   kicker,
   title,
   description,

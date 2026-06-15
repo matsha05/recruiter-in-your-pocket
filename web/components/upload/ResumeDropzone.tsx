@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "motion/react";
 import { FileText, AlertCircle, CloudUpload } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 interface ResumeDropzoneProps {
-    onFileSelect: (file: File) => void;
+    onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
     isProcessing?: boolean;
     className?: string;
     /** 
@@ -33,9 +33,6 @@ export function ResumeDropzone({
 }: ResumeDropzoneProps) {
     const [error, setError] = useState<string | null>(null);
     const [localFileName, setLocalFileName] = useState<string | null>(null);
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
-    // Use external fileName if provided, otherwise local state
     const displayFileName = fileName !== undefined ? fileName : localFileName;
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
@@ -80,14 +77,13 @@ export function ResumeDropzone({
         noKeyboard: true,
     });
 
-    // Hero variant (landing page)
     if (variant === "hero") {
         return (
             <div className={cn("w-full max-w-xl mx-auto", className)}>
-                <div className={cn("rounded border border-border/60 bg-card p-5 space-y-4", isProcessing && "opacity-60")}>
+                <div className={cn("rounded border border-border/60 bg-card p-5 gap-y-4", isProcessing && "opacity-60")}>
                     <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
-                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                            <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                                 Upload resume
                             </div>
                             <div className="text-xs text-muted-foreground">PDF or DOCX</div>
@@ -111,7 +107,7 @@ export function ResumeDropzone({
                             isDragReject && "border-destructive/50 bg-destructive/5 text-destructive"
                         )}
                     >
-                        <input {...getInputProps()} aria-label="Upload resume file (PDF or DOCX)" />
+                        <input {...getInputProps()} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
                         <div className="text-sm font-medium">Drop your resume here</div>
                         <div className="text-xs text-muted-foreground mt-1">No login required</div>
                     </div>
@@ -132,7 +128,7 @@ export function ResumeDropzone({
 
                     {error && (
                         <div className="flex items-center gap-2 text-xs text-destructive bg-destructive/10 px-3 py-2 rounded border border-destructive/20">
-                            <AlertCircle className="h-3 w-3" />
+                            <AlertCircle className="size-3" />
                             {error}
                         </div>
                     )}
@@ -141,42 +137,40 @@ export function ResumeDropzone({
         );
     }
 
-    // Compact variant (workspace)
     return (
         <div className={cn("w-full", className)}>
-            {/* File uploaded state */}
             {displayFileName ? (
-                <div className="flex items-center justify-between p-3 bg-brand/5 border border-brand/10 rounded animate-in fade-in slide-in-from-top-2">
-                    <span className="text-sm font-medium text-brand flex items-center gap-3">
-                        <div className="w-8 h-8 rounded border border-brand/20 flex items-center justify-center">
-                            <FileText className="w-4 h-4" />
+                <div className="animate-in fade-in slide-in-from-top-2 flex items-center justify-between rounded-xl border border-brand/15 bg-brand/5 p-4">
+                    <span className="flex items-center gap-3 text-sm font-medium text-brand">
+                        <div className="flex size-9 items-center justify-center rounded-lg border border-brand/20 bg-white/70">
+                            <FileText className="size-4" />
                         </div>
-                        {displayFileName}
+                        <span className="min-w-0 truncate text-foreground">{displayFileName}</span>
                     </span>
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="text-muted-foreground hover:text-destructive h-auto py-1 px-2 hover:bg-destructive/10"
+                        className="h-10 rounded-lg px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                         onClick={handleRemoveFile}
                     >
                         Remove
                     </Button>
                 </div>
             ) : (
-                <div className="space-y-3">
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                <div className="gap-y-5">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div className="gap-y-1">
+                            <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                                 Upload resume
                             </div>
-                            <div className="text-xs text-muted-foreground">PDF or DOCX</div>
+                            <div className="text-sm text-muted-foreground">PDF or DOCX</div>
                         </div>
                         <Button
                             variant="brand"
                             size="sm"
                             onClick={open}
                             disabled={isProcessing}
-                            className="px-3"
+                            className="min-h-11 min-w-[6.5rem] rounded-lg px-4"
                         >
                             Select file
                         </Button>
@@ -184,38 +178,38 @@ export function ResumeDropzone({
                     <div
                         {...getRootProps()}
                         className={cn(
-                            "relative flex flex-col items-center justify-center gap-3 px-4 py-6 border border-dashed rounded cursor-pointer transition-colors text-center",
+                            "relative flex min-h-[11.5rem] cursor-pointer flex-col items-center justify-center gap-4 rounded-xl border border-dashed px-5 py-8 text-center transition-all duration-300",
                             isDragActive
-                                ? "border-brand bg-brand/5"
-                                : "border-border/40 hover:border-brand/40 hover:bg-brand/5",
+                                ? "border-brand/45 bg-brand/5"
+                                : "border-border/45 hover:border-brand/35 hover:bg-brand/5",
                             isDragReject && "border-destructive/50 bg-destructive/5",
                             isProcessing && "opacity-50 cursor-not-allowed"
                         )}
                     >
-                        <input {...getInputProps()} aria-label="Upload resume file (PDF or DOCX)" />
+                        <input {...getInputProps()} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
 
-                        <div className="w-10 h-10 rounded border border-border/60 flex items-center justify-center text-muted-foreground">
-                            <CloudUpload className="w-5 h-5" strokeWidth={1.5} />
+                        <div className="flex size-14 items-center justify-center rounded-xl border border-border/70 bg-background text-muted-foreground transition-all duration-300">
+                            <CloudUpload className="size-6" strokeWidth={1.5} />
                         </div>
 
-                        <div className="space-y-1">
-                            <div className="text-sm font-medium text-foreground">
+                        <div className="gap-y-1.5">
+                            <div className="text-base font-medium text-foreground">
                                 Drop your resume here
                             </div>
-                            <div className="text-xs text-muted-foreground">
+                            <div className="text-sm text-muted-foreground">
                                 No login required
                             </div>
                         </div>
 
                         {error && (
-                            <div className="flex items-center gap-2 text-xs text-destructive bg-destructive/10 px-3 py-1.5 rounded border border-destructive/20">
-                                <AlertCircle className="h-3 w-3" />
+                            <div className="flex items-center gap-2 rounded-lg border border-destructive/20 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                                <AlertCircle className="size-3" />
                                 {error}
                             </div>
                         )}
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                        We use your upload to generate feedback. Anonymous runs aren&apos;t stored automatically.
+                    <div className="max-w-[36rem] text-sm leading-7 text-muted-foreground">
+                        We use your upload to generate feedback. Anonymous runs are not stored automatically.
                         Signed-in runs keep report history you can delete from Reports or Settings.
                     </div>
                 </div>

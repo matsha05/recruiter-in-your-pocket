@@ -164,7 +164,7 @@ export interface DiffEntry {
     new_warnings: WarningCode[];
 }
 
-export function generateDiffReport(
+function generateDiffReport(
     currentResults: FixtureResult[],
     baseline: Record<string, { score: number; subscores?: Record<string, number> }>
 ): DiffEntry[] {

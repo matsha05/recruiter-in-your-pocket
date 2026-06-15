@@ -64,14 +64,14 @@ const screenshotCards = [
 
 export default function ChromeWebStoreAssetStudio() {
   return (
-    <main className="min-h-screen bg-[#f6f0e7] px-10 py-10 text-slate-900">
+    <main className="min-h-screen bg-[#f6f0e7] p-10 text-slate-900">
       <div className="mx-auto max-w-[1560px]">
         <header className="rounded-[32px] border border-black/8 bg-white/90 px-8 py-7 shadow-[0_24px_80px_-52px_rgba(15,23,42,0.35)]">
           <div className="flex items-start justify-between gap-6">
             <div className="max-w-[720px]">
               <div className="flex items-center gap-3">
-                <PocketMark className="h-7 w-7 text-brand" />
-                <span className="rounded-full border border-brand/15 bg-brand/8 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-brand">
+                <PocketMark className="size-7 text-brand" />
+                <span className="rounded-full border border-brand/15 bg-brand/8 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
                   Chrome Web Store assets
                 </span>
               </div>
@@ -85,10 +85,10 @@ export default function ChromeWebStoreAssetStudio() {
               </p>
             </div>
             <div className="w-[320px] rounded-[28px] border border-black/8 bg-[#faf6f1] p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                 Export checklist
               </p>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+              <ul className="mt-4 gap-y-3 text-sm leading-6 text-slate-600">
                 <li>5 screenshots at 1280×800</li>
                 <li>1 promo tile at 440×280</li>
                 <li>Honest captions pulled from source-of-truth copy</li>
@@ -100,10 +100,10 @@ export default function ChromeWebStoreAssetStudio() {
 
         <section className="mt-10 grid gap-8">
           {screenshotCards.map((card) => (
-            <article key={card.id} className="space-y-4">
+            <article key={card.id} className="gap-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                     {card.eyebrow}
                   </p>
                   <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
@@ -124,7 +124,7 @@ export default function ChromeWebStoreAssetStudio() {
 
         <section className="mt-10">
           <div className="mb-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
               Promo tile
             </p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
@@ -161,10 +161,10 @@ function StudioHeader({ pill }: { pill: string }) {
   return (
     <div className="flex items-center justify-between border-b border-black/6 px-8 py-5">
       <div className="flex items-center gap-3">
-        <PocketMark className="h-7 w-7 text-brand" />
+        <PocketMark className="size-7 text-brand" />
         <Wordmark className="h-4 text-slate-900" />
       </div>
-      <span className="rounded-full border border-brand/12 bg-brand/8 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
+      <span className="rounded-full border border-brand/12 bg-brand/8 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
         {pill}
       </span>
     </div>
@@ -175,9 +175,9 @@ function BrowserChrome({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-3 border-b border-black/6 px-5 py-3 text-sm text-slate-500">
       <div className="flex gap-1.5">
-        <span className="h-3 w-3 rounded-full bg-[#f59f9f]" />
-        <span className="h-3 w-3 rounded-full bg-[#f4cf7f]" />
-        <span className="h-3 w-3 rounded-full bg-[#94d3a2]" />
+        <span className="size-3 rounded-full bg-[#f59f9f]" />
+        <span className="size-3 rounded-full bg-[#f4cf7f]" />
+        <span className="size-3 rounded-full bg-[#94d3a2]" />
       </div>
       <div className="flex-1 rounded-full border border-black/8 bg-white/85 px-4 py-2 text-xs text-slate-400">
         {label}
@@ -192,18 +192,18 @@ function PopupShell({ children }: { children: React.ReactNode }) {
       <div className="border-b border-black/6 px-5 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <PocketMark className="h-6 w-6 text-brand" />
+            <PocketMark className="size-6 text-brand" />
             <div>
               <div className="text-sm font-semibold text-slate-900">Recruiter in Your Pocket</div>
               <div className="text-xs text-slate-500">Chrome extension</div>
             </div>
           </div>
-          <span className="rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+          <span className="rounded-full bg-brand/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
             Supported sites
           </span>
         </div>
       </div>
-      <div className="px-5 py-5">{children}</div>
+      <div className="p-5">{children}</div>
     </div>
   );
 }
@@ -213,9 +213,9 @@ function PopupJobsScene() {
     <AssetFrame assetId="popup-jobs" className="h-[800px] w-[1280px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(38,166,154,0.14),_transparent_36%),linear-gradient(180deg,#faf6f1_0%,#f3ece2_100%)]" />
       <div className="relative flex h-full">
-        <div className="flex w-[56%] flex-col justify-between px-10 py-10">
+        <div className="flex w-[56%] flex-col justify-between p-10">
           <div className="max-w-[540px]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
               Screenshot 1
             </p>
             <h3 className="mt-4 font-display text-5xl tracking-[-0.05em] text-slate-900">
@@ -229,12 +229,12 @@ function PopupJobsScene() {
 
           <div className="grid max-w-[560px] gap-4">
             <InfoStrip
-              icon={<CheckCircle2 className="h-4 w-4" />}
+              icon={<CheckCircle2 className="size-4" />}
               title="Sync stays explicit"
               body="Saved-job history follows your account only after sign-in."
             />
             <InfoStrip
-              icon={<ShieldCheck className="h-4 w-4" />}
+              icon={<ShieldCheck className="size-4" />}
               title="Purpose-bound capture"
               body="Capture is initiated from supported LinkedIn and Indeed job pages."
             />
@@ -243,23 +243,23 @@ function PopupJobsScene() {
 
         <div className="flex flex-1 items-center justify-center pr-10">
           <PopupShell>
-            <div className="rounded-[22px] border border-black/6 bg-white px-4 py-4">
+            <div className="rounded-[22px] border border-black/6 bg-white p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  <div className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                     Saved jobs
                   </div>
                   <div className="mt-1 text-lg font-semibold text-slate-900">2 roles in view</div>
                 </div>
-                <span className="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
                   Sync ready
                 </span>
               </div>
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 gap-y-3">
                 {popupJobs.map((job) => (
                   <div
                     key={`${job.company}-${job.role}`}
-                    className="rounded-2xl border border-slate-100 bg-[#fbfaf7] px-4 py-4"
+                    className="rounded-2xl border border-slate-100 bg-[#fbfaf7] p-4"
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div>
@@ -268,7 +268,7 @@ function PopupJobsScene() {
                           {job.company} · {job.source}
                         </div>
                       </div>
-                      <span className="rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+                      <span className="rounded-full bg-brand/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
                         {job.score}
                       </span>
                     </div>
@@ -279,9 +279,9 @@ function PopupJobsScene() {
                   </div>
                 ))}
               </div>
-              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
+              <button type="button" className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
                 Open saved jobs in studio
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="size-4" />
               </button>
             </div>
           </PopupShell>
@@ -296,9 +296,9 @@ function PopupAuthScene() {
     <AssetFrame assetId="popup-auth" className="h-[800px] w-[1280px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(38,166,154,0.16),_transparent_38%),linear-gradient(180deg,#f7f0e6_0%,#f3ece2_100%)]" />
       <div className="relative flex h-full">
-        <div className="flex w-[52%] flex-col justify-between px-10 py-10">
+        <div className="flex w-[52%] flex-col justify-between p-10">
           <div className="max-w-[520px]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
               Screenshot 2
             </p>
             <h3 className="mt-4 font-display text-5xl tracking-[-0.05em] text-slate-900">
@@ -312,12 +312,12 @@ function PopupAuthScene() {
 
           <div className="grid max-w-[540px] gap-4">
             <InfoStrip
-              icon={<BriefcaseBusiness className="h-4 w-4" />}
+              icon={<BriefcaseBusiness className="size-4" />}
               title="Local use first"
               body="You can still capture supported roles without committing to sync."
             />
             <InfoStrip
-              icon={<Lock className="h-4 w-4" />}
+              icon={<Lock className="size-4" />}
               title="Sync when you want it"
               body="Passwordless sign-in keeps saved jobs across devices and opens the studio on the right account."
             />
@@ -326,17 +326,17 @@ function PopupAuthScene() {
 
         <div className="flex flex-1 items-center justify-center pr-10">
           <PopupShell>
-            <div className="rounded-[22px] border border-black/6 bg-white px-5 py-5">
+            <div className="rounded-[22px] border border-black/6 bg-white p-5">
               <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 px-4 py-3">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                <div className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
                   Local capture is already on
                 </div>
                 <div className="mt-1 text-sm text-slate-600">
                   Sign in only if you want synced saved jobs and studio continuity.
                 </div>
               </div>
-              <div className="mx-auto mt-5 flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand">
-                <Lock className="h-5 w-5" />
+              <div className="mx-auto mt-5 flex size-12 items-center justify-center rounded-full bg-brand/10 text-brand">
+                <Lock className="size-5" />
               </div>
               <h4 className="mt-4 text-center text-xl font-semibold text-slate-900">
                 Sign in for synced saved jobs
@@ -345,15 +345,15 @@ function PopupAuthScene() {
                 Keep saved roles across devices, reopen them in the studio, and attach extension
                 history to the right account.
               </p>
-              <div className="mt-5 rounded-2xl border border-slate-100 bg-[#fbfaf7] px-4 py-4 text-sm leading-6 text-slate-600">
+              <div className="mt-5 rounded-2xl border border-slate-100 bg-[#fbfaf7] p-4 text-sm leading-6 text-slate-600">
                 You can still use the extension locally. Sign-in is only required for synced
                 history and personalized context.
               </div>
-              <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
+              <button type="button" className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
                 Open secure sign-in
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="size-4" />
               </button>
-              <button className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">
+              <button type="button" className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">
                 Open in browser instead
               </button>
             </div>
@@ -370,14 +370,14 @@ function WorkspaceReturnScene() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#f6f0e7_0%,#f9f6f1_60%,#f3ece2_100%)]" />
       <div className="relative flex h-full flex-col">
         <StudioHeader pill="Saved job reopened" />
-        <div className="grid flex-1 grid-cols-[0.82fr_1.18fr] gap-8 px-8 py-8">
+        <div className="grid flex-1 grid-cols-[0.82fr_1.18fr] gap-8 p-8">
           <aside className="rounded-[30px] border border-black/8 bg-white/92 p-7 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand">
-                <Chrome className="h-5 w-5" />
+              <span className="inline-flex size-11 items-center justify-center rounded-full bg-brand/10 text-brand">
+                <Chrome className="size-5" />
               </span>
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                   Saved from extension
                 </p>
                 <h4 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
@@ -388,7 +388,7 @@ function WorkspaceReturnScene() {
             <p className="mt-3 text-sm text-slate-500">Notion · LinkedIn capture · reopened in studio</p>
 
             <div className="mt-6 rounded-[24px] border border-brand/15 bg-brand/8 p-5">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+              <div className="text-xs font-semibold uppercase tracking-wide text-brand">
                 Why reopen it
               </div>
               <p className="mt-3 text-sm leading-6 text-slate-700">
@@ -397,21 +397,21 @@ function WorkspaceReturnScene() {
               </p>
             </div>
 
-            <div className="mt-5 space-y-3">
+            <div className="mt-5 gap-y-3">
               <MetricCard label="Resume match" value="84 / 100" />
               <MetricCard label="Best next move" value="Refine leadership bullets" />
             </div>
 
-            <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-[#fbfaf7] px-4 py-3 text-sm font-medium text-slate-700">
+            <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-[#fbfaf7] px-4 py-3 text-sm font-medium text-slate-700">
               Return to saved jobs
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="size-4" />
             </button>
           </aside>
 
           <section className="rounded-[30px] border border-black/8 bg-white/94 p-8 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
             <div className="flex items-start justify-between gap-6 border-b border-black/6 pb-6">
               <div className="max-w-[580px]">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                   Recruiter-grade review
                 </p>
                 <h3 className="mt-3 font-display text-[2.7rem] tracking-[-0.05em] text-slate-900">
@@ -423,7 +423,7 @@ function WorkspaceReturnScene() {
                 </p>
               </div>
               <div className="rounded-[26px] border border-brand/15 bg-brand/8 px-6 py-5 text-center">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+                <div className="text-xs font-semibold uppercase tracking-wide text-brand">
                   Match signal
                 </div>
                 <div className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-slate-900">
@@ -464,9 +464,9 @@ function InstallDisclosureScene() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(38,166,154,0.14),_transparent_34%),linear-gradient(180deg,#f9f4ed_0%,#f6f0e7_100%)]" />
       <div className="relative flex h-full flex-col">
         <StudioHeader pill="Website install flow" />
-        <div className="grid flex-1 grid-cols-[1.02fr_0.98fr] gap-8 px-8 py-8">
+        <div className="grid flex-1 grid-cols-[1.02fr_0.98fr] gap-8 p-8">
           <section className="rounded-[30px] border border-black/8 bg-white/94 p-8 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
               Chrome extension
             </p>
             <h3 className="mt-3 font-display text-[3rem] tracking-[-0.05em] text-slate-900">
@@ -479,23 +479,23 @@ function InstallDisclosureScene() {
 
             <div className="mt-6 grid gap-3">
               <InfoStrip
-                icon={<CheckCircle2 className="h-4 w-4" />}
+                icon={<CheckCircle2 className="size-4" />}
                 title="Supported job pages only"
                 body="Capture starts only when you ask to save a supported LinkedIn or Indeed role."
               />
               <InfoStrip
-                icon={<Lock className="h-4 w-4" />}
+                icon={<Lock className="size-4" />}
                 title="Sign-in is optional"
                 body="Use your account only when you want synced saved jobs across devices."
               />
             </div>
 
             <div className="mt-6 flex items-center gap-3">
-              <button className="flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
-                <Chrome className="h-4 w-4" />
+              <button type="button" className="flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
+                <Chrome className="size-4" />
                 Install on Chrome
               </button>
-              <button className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700">
+              <button type="button" className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700">
                 Review privacy and data handling
               </button>
             </div>
@@ -505,22 +505,22 @@ function InstallDisclosureScene() {
             </p>
           </section>
 
-          <section className="space-y-5">
+          <section className="gap-y-5">
             <div className="rounded-[28px] border border-black/8 bg-white/94 p-6 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
               <div className="flex items-center justify-between border-b border-black/6 pb-4">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                     One obvious next step
                   </p>
                   <h4 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
                     Supported sites only
                   </h4>
                 </div>
-                <span className="rounded-full bg-brand/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+                <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
                   Purpose-bound
                 </span>
               </div>
-              <div className="mt-5 space-y-3">
+              <div className="mt-5 gap-y-3">
                 {[
                   "Capture a supported role in one click",
                   "Check fit without breaking browsing flow",
@@ -528,10 +528,10 @@ function InstallDisclosureScene() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-[#fbfaf7] px-4 py-4"
+                    className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-[#fbfaf7] p-4"
                   >
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 text-brand">
-                      <Sparkles className="h-4 w-4" />
+                    <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand/10 text-brand">
+                      <Sparkles className="size-4" />
                     </span>
                     <p className="text-sm leading-6 text-slate-600">{item}</p>
                   </div>
@@ -550,11 +550,11 @@ function InstallDisclosureScene() {
                   className="rounded-[24px] border border-black/8 bg-white/94 px-5 py-4 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]"
                 >
                   {index === 0 ? (
-                    <Chrome className="h-4 w-4 text-brand" />
+                    <Chrome className="size-4 text-brand" />
                   ) : index === 1 ? (
-                    <Lock className="h-4 w-4 text-brand" />
+                    <Lock className="size-4 text-brand" />
                   ) : (
-                    <ShieldCheck className="h-4 w-4 text-brand" />
+                    <ShieldCheck className="size-4 text-brand" />
                   )}
                   <p className="mt-3 text-sm leading-6 text-slate-600">{item}</p>
                 </div>
@@ -573,13 +573,13 @@ function CaptureContextScene() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#f8f2ea_0%,#f1eadf_100%)]" />
       <div className="relative flex h-full flex-col">
         <BrowserChrome label="www.linkedin.com/jobs/view/riyp-product-designer" />
-        <div className="grid flex-1 grid-cols-[1.08fr_0.92fr] gap-8 px-8 py-8">
+        <div className="grid flex-1 grid-cols-[1.08fr_0.92fr] gap-8 p-8">
           <section className="rounded-[30px] border border-black/8 bg-white/94 p-8 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
             <div className="flex items-center gap-2">
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
                 LinkedIn role
               </span>
-              <span className="rounded-full bg-brand/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+              <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
                 Supported page
               </span>
             </div>
@@ -600,16 +600,16 @@ function CaptureContextScene() {
             </div>
 
             <div className="mt-6 flex items-center gap-2">
-              <span className="rounded-full bg-brand/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+              <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
                 One-click capture
               </span>
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Reopen later in studio
               </span>
             </div>
 
             <div className="mt-6 rounded-[24px] border border-black/8 bg-[#fbfaf7] p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                 Purpose-bound access
               </p>
               <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -628,10 +628,10 @@ function CaptureContextScene() {
             <div className="relative">
               <div className="absolute -inset-6 rounded-[40px] bg-brand/10 blur-3xl" />
               <PopupShell>
-                <div className="rounded-[22px] border border-black/6 bg-white px-5 py-5">
+                <div className="rounded-[22px] border border-black/6 bg-white p-5">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-brand">
-                      <Target className="h-5 w-5" />
+                    <span className="inline-flex size-10 items-center justify-center rounded-full bg-brand/10 text-brand">
+                      <Target className="size-5" />
                     </span>
                     <div>
                       <div className="text-sm font-semibold text-slate-900">
@@ -640,15 +640,15 @@ function CaptureContextScene() {
                       <div className="text-xs text-slate-500">Supported LinkedIn page</div>
                     </div>
                   </div>
-                  <div className="mt-4 rounded-2xl border border-slate-100 bg-[#fbfaf7] px-4 py-4 text-sm leading-6 text-slate-600">
+                  <div className="mt-4 rounded-2xl border border-slate-100 bg-[#fbfaf7] p-4 text-sm leading-6 text-slate-600">
                     Save this posting while it matters, then reopen it later for match context and
                     the full recruiter-grade review.
                   </div>
-                  <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
+                  <button type="button" className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-[0_18px_38px_-22px_rgba(15,23,42,0.5)]">
                     Save this job
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="size-4" />
                   </button>
-                  <button className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">
+                  <button type="button" className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700">
                     Open studio for deeper review
                   </button>
                 </div>
@@ -667,7 +667,7 @@ function PromoTileScene() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(38,166,154,0.16),_transparent_38%),linear-gradient(180deg,#fbf7f2_0%,#f2eade_100%)]" />
       <div className="relative flex h-full flex-col justify-between p-7">
         <div className="flex items-center gap-3">
-          <PocketMark className="h-8 w-8 text-brand" />
+          <PocketMark className="size-8 text-brand" />
           <Wordmark className="h-5 text-slate-900" />
         </div>
         <div>
@@ -680,10 +680,10 @@ function PromoTileScene() {
           </p>
         </div>
         <div className="flex items-center justify-between">
-          <span className="rounded-full bg-brand/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
+          <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand">
             Chrome extension
           </span>
-          <ArrowRight className="h-4 w-4 text-slate-400" />
+          <ArrowRight className="size-4 text-slate-400" />
         </div>
       </div>
     </AssetFrame>
@@ -701,7 +701,7 @@ function InfoStrip({
 }) {
   return (
     <div className="flex items-start gap-3 rounded-[24px] border border-black/8 bg-white/85 px-5 py-4 shadow-[0_24px_60px_-48px_rgba(15,23,42,0.34)]">
-      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 text-brand">
+      <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand/10 text-brand">
         {icon}
       </span>
       <div>
@@ -714,8 +714,8 @@ function InfoStrip({
 
 function MetricCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-slate-100 bg-[#fbfaf7] px-4 py-4">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+    <div className="rounded-2xl border border-slate-100 bg-[#fbfaf7] p-4">
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
         {label}
       </p>
       <p className="mt-2 text-sm font-medium text-slate-700">{value}</p>
@@ -725,7 +725,7 @@ function MetricCard({ label, value }: { label: string; value: string }) {
 
 function ReportCard({ title, body }: { title: string; body: string }) {
   return (
-    <div className="rounded-[24px] border border-slate-100 bg-[#fbfaf7] px-5 py-5">
+    <div className="rounded-[24px] border border-slate-100 bg-[#fbfaf7] p-5">
       <div className="text-sm font-semibold text-slate-900">{title}</div>
       <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
     </div>

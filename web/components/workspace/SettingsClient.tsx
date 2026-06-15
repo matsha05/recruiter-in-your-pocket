@@ -411,7 +411,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     if (!authLoading && !user) {
         return (
             <div data-visual-anchor="settings-page" className="min-h-full pb-20">
-                <div className="max-w-4xl mx-auto px-6 pt-8 space-y-6">
+                <div className="max-w-4xl mx-auto px-6 pt-8 gap-y-6">
                     <AppPageIntro
                         anchor="settings-page"
                         eyebrow="Settings"
@@ -420,7 +420,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     />
 
                     <section className="app-card app-card-highlight p-8 text-center md:p-10">
-                        <ShieldAlert className="mx-auto h-8 w-8 text-brand" />
+                        <ShieldAlert className="mx-auto size-8 text-brand" />
                         <h2 className="mt-4 font-display text-[1.9rem] font-medium tracking-[-0.03em] text-foreground">
                             Sign in to open settings
                         </h2>
@@ -473,7 +473,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 href="/extension"
                                 className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
                             >
-                                <Chrome className="h-4 w-4" />
+                                <Chrome className="size-4" />
                                 Extension
                             </Link>
                             <Link
@@ -503,22 +503,22 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             )}
                             aria-current={activeTab === id ? "page" : undefined}
                         >
-                            <Icon className="w-4 h-4" />
+                            <Icon className="size-4" />
                             {label}
                         </Link>
                     ))}
                 </nav>
 
-                <div className="space-y-8">
+                <div className="gap-y-8">
                     {activeTab === "account" && (
-                        <div className="space-y-8 animate-in fade-in duration-200">
+                        <div className="gap-y-8 animate-in fade-in duration-200">
                             <section className="app-card p-6">
                                 <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-6">Profile</h2>
                                 <div className="flex items-start gap-6">
-                                    <div className="w-14 h-14 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand font-display font-medium text-xl select-none shrink-0">
+                                    <div className="size-14 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-brand font-display font-medium text-xl select-none shrink-0">
                                         {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "?"}
                                     </div>
-                                    <div className="flex-1 space-y-5">
+                                    <div className="flex-1 gap-y-5">
                                         <form
                                             className="max-w-sm"
                                             onSubmit={profileForm.handleSubmit(handleSaveProfile)}
@@ -540,7 +540,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                     }
                                                     className="px-3 py-2 bg-secondary hover:bg-secondary/80 rounded font-medium text-sm transition-all disabled:opacity-40 flex items-center gap-1.5"
                                                 >
-                                                    {profileForm.formState.isSubmitting && <Loader2 className="w-3 h-3 animate-spin" />}
+                                                    {profileForm.formState.isSubmitting && <Loader2 className="size-3 animate-spin" />}
                                                     Save
                                                 </button>
                                             </div>
@@ -560,19 +560,19 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                         <p className="text-xs text-destructive">Permanently remove your account, reports, and usage data.</p>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <button
+                                        <button type="button"
                                             onClick={handleExportData}
                                             disabled={isExportingData}
                                             className="text-xs px-3 py-1.5 border border-border/50 rounded text-foreground hover:bg-muted/40 font-medium bg-background shrink-0 disabled:opacity-50"
                                         >
-                                            {isExportingData ? "Exporting..." : "Export Data"}
+                                            {isExportingData ? "Exporting…" : "Export Data"}
                                         </button>
-                                        <button
+                                        <button type="button"
                                             onClick={() => setIsDeleteConfirmOpen(true)}
                                             disabled={isDeletingAccount}
                                             className="text-xs px-3 py-1.5 border border-destructive/30 rounded text-destructive hover:bg-destructive/10 font-medium bg-background shrink-0 disabled:opacity-50"
                                         >
-                                            {isDeletingAccount ? "Deleting..." : "Delete"}
+                                            {isDeletingAccount ? "Deleting…" : "Delete"}
                                         </button>
                                     </div>
                                 </div>
@@ -581,7 +581,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     )}
 
                     {activeTab === "matching" && (
-                        <div className="space-y-6 animate-in fade-in duration-200">
+                        <div className="gap-y-6 animate-in fade-in duration-200">
                             <div className="mb-2">
                                 <h2 className="text-lg font-medium text-foreground">Job Matching</h2>
                                 <p className="text-sm text-muted-foreground mt-1">
@@ -596,14 +596,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     )}
 
                     {activeTab === "billing" && (
-                        <div className="space-y-10 animate-in fade-in duration-200">
-                            <section className="app-card space-y-4 p-5">
+                        <div className="gap-y-10 animate-in fade-in duration-200">
+                            <section className="app-card gap-y-4 p-5">
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                                    <div className="space-y-2">
+                                    <div className="gap-y-2">
                                         <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Billing Status</h2>
                                         <div className="flex items-center gap-3 flex-wrap">
                                             <span className={cn(
-                                                "text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-full",
+                                                "text-xs uppercase tracking-wide font-bold px-2 py-1 rounded-full",
                                                 (hasPaidMembership || activePass) ? "bg-emerald-100 text-emerald-700" : "bg-secondary text-muted-foreground"
                                             )}>
                                                 {(hasPaidMembership || activePass) ? "Active" : "Free"}
@@ -614,7 +614,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             Purchases are tied to <span className="font-medium text-foreground">{user?.email}</span>
                                         </div>
                                         {passTierLabel && (
-                                            <div className="text-xs text-muted-foreground space-y-1">
+                                            <div className="text-xs text-muted-foreground gap-y-1">
                                                 <div>
                                                     <span className="text-foreground/70 font-medium">Pass:</span> {passTierLabel}
                                                     {passUsesLabel && <span className="text-foreground/70"> · {passUsesLabel}</span>}
@@ -626,27 +626,27 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     </div>
 
                                     <div className="flex flex-wrap gap-2">
-                                        <button
+                                        <button type="button"
                                             onClick={handleRestoreAccess}
                                             disabled={isRestoreLoading}
                                             className="px-4 py-2 rounded text-sm font-medium border border-border/50 hover:bg-muted/40 transition-colors disabled:opacity-50 inline-flex items-center gap-2"
                                         >
                                             {isRestoreLoading ? (
-                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                                <Loader2 className="size-4 animate-spin" />
                                             ) : (
-                                                <RefreshCw className="w-4 h-4" />
+                                                <RefreshCw className="size-4" />
                                             )}
                                             Restore Access
                                         </button>
-                                        <button
+                                        <button type="button"
                                             onClick={handleOpenBillingPortal}
                                             disabled={isPortalLoading}
                                             className="px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors disabled:opacity-50 inline-flex items-center gap-2"
                                         >
                                             {isPortalLoading ? (
-                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                                <Loader2 className="size-4 animate-spin" />
                                             ) : (
-                                                <ExternalLink className="w-4 h-4" />
+                                                <ExternalLink className="size-4" />
                                             )}
                                             Manage Billing
                                         </button>
@@ -672,7 +672,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </div>
                             </section>
 
-                            <section className="rounded-xl border border-border/50 bg-muted/20 px-4 py-4 text-sm text-muted-foreground">
+                            <section className="rounded-xl border border-border/50 bg-muted/20 p-4 text-sm text-muted-foreground">
                                 Need procurement, invoices, or a billing edge case handled by a person?{" "}
                                 <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">
                                     support@recruiterinyourpocket.com
@@ -684,11 +684,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 <div className="app-card overflow-hidden">
                                     {loadingPasses ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
-                                            <Loader2 className="w-4 h-4 animate-spin" /> Loading...
+                                            <Loader2 className="size-4 animate-spin" /> Loading…
                                         </div>
                                     ) : passes.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
-                                            <Clock className="w-5 h-5 mx-auto mb-2 opacity-40" />
+                                            <Clock className="size-5 mx-auto mb-2 opacity-40" />
                                             No purchases yet. If you already paid, use Restore Access.
                                         </div>
                                     ) : (
@@ -704,8 +704,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                 return (
                                                     <div key={pass.id} className="p-4 flex items-center justify-between gap-4">
                                                         <div className="flex items-center gap-3 min-w-0">
-                                                            <div className="w-8 h-8 rounded-full bg-secondary/30 flex items-center justify-center shrink-0">
-                                                                <FileText className="w-3.5 h-3.5" />
+                                                            <div className="size-8 rounded-full bg-secondary/30 flex items-center justify-center shrink-0">
+                                                                <FileText className="size-3.5" />
                                                             </div>
                                                             <div className="min-w-0">
                                                                 <p className="text-sm font-medium truncate">{getTierLabel(pass.tier)}</p>
@@ -713,7 +713,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                                     {new Date(pass.created_at).toLocaleDateString()} · {usesLabel}
                                                                 </p>
                                                                 {expiryDate && (
-                                                                    <p className="text-[11px] text-muted-foreground/70">
+                                                                    <p className="text-xs text-muted-foreground/70">
                                                                         {pass.tier === "lifetime"
                                                                             ? "No renewal"
                                                                             : isUnlimitedPassTier(pass.tier)
@@ -725,7 +725,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                         </div>
                                                         <span
                                                             className={cn(
-                                                                "text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full",
+                                                                "text-xs uppercase tracking-wider font-bold px-2 py-0.5 rounded-full",
                                                                 active ? "bg-emerald-100 text-emerald-700" : "bg-secondary text-muted-foreground"
                                                             )}
                                                         >
@@ -742,20 +742,20 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             <section>
                                 <div className="flex items-center justify-between gap-3 mb-3">
                                     <h2 className="text-base font-medium text-foreground">Receipts & Invoices</h2>
-                                    <button
+                                    <button type="button"
                                         onClick={() => {
                                             void refetchReceipts();
                                         }}
                                         disabled={loadingReceipts}
                                         className="text-xs px-3 py-1.5 border border-border/50 rounded hover:bg-muted/40 transition-colors disabled:opacity-50"
                                     >
-                                        {loadingReceipts ? "Loading..." : "Refresh"}
+                                        {loadingReceipts ? "Loading…" : "Refresh"}
                                     </button>
                                 </div>
                                 <div className="app-card overflow-hidden">
                                     {loadingReceipts ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
-                                            <Loader2 className="w-4 h-4 animate-spin" /> Loading...
+                                            <Loader2 className="size-4 animate-spin" /> Loading…
                                         </div>
                                     ) : receipts.length === 0 ? (
                                         <div className="p-6 text-center text-muted-foreground/70 text-sm">
@@ -774,7 +774,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                         </p>
                                                         {receipt.status && (
                                                             <span className={cn(
-                                                                "mt-1 inline-flex text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full",
+                                                                "mt-1 inline-flex text-xs uppercase tracking-wide font-bold px-2 py-0.5 rounded-full",
                                                                 receipt.status === "paid" ? "bg-emerald-100 text-emerald-700" : "bg-secondary text-muted-foreground"
                                                             )}>
                                                                 {receipt.status}
@@ -812,7 +812,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                             <section className="rounded-xl border border-border/50 bg-muted/20 p-4">
                                 <p className="text-xs text-muted-foreground flex items-start gap-2">
-                                    <ShieldAlert className="w-4 h-4 mt-0.5 shrink-0" />
+                                    <ShieldAlert className="size-4 mt-0.5 shrink-0" />
                                     Billing portal includes card updates, invoices/receipts, and subscription cancellation.
                                     If you paid with a different email, use Restore Access first.
                                 </p>
@@ -823,12 +823,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                 {showEmailInput && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
-                        <div className="bg-card border border-border/20 rounded w-full max-w-sm p-6 space-y-4">
+                        <div className="bg-card border border-border/20 rounded w-full max-w-sm p-6 gap-y-4">
                             <div className="text-center">
                                 <h3 className="text-lg font-display font-semibold">Where should we send your receipt?</h3>
                                 <p className="text-muted-foreground text-sm mt-1">We will link access to this email.</p>
                             </div>
-                            <form onSubmit={handleGuestSubmit} className="space-y-3">
+                            <form onSubmit={handleGuestSubmit} className="gap-y-3">
                                 <input
                                     type="email"
                                     required
@@ -845,11 +845,11 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     disabled={!guestEmailValue.trim() || !!isCheckoutLoading}
                                     className="w-full py-2.5 rounded bg-brand text-white font-medium hover:bg-brand/90 transition-colors flex items-center justify-center gap-2"
                                 >
-                                    {isCheckoutLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+                                    {isCheckoutLoading && <Loader2 className="size-4 animate-spin" />}
                                     Continue to Checkout
                                 </button>
                             </form>
-                            <button onClick={() => setShowEmailInput(null)} className="w-full text-sm text-muted-foreground hover:text-foreground">
+                            <button type="button" onClick={() => setShowEmailInput(null)} className="w-full text-sm text-muted-foreground hover:text-foreground">
                                 Cancel
                             </button>
                         </div>

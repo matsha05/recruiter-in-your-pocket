@@ -32,7 +32,7 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
         const res = await fetch(`/api/extension/saved-jobs/${jobId}`);
         if (!res.ok) {
           if (res.status === 404) {
-            setError("Job not found");
+            setError("This job is not synced online. Open the studio for a fresh report.");
           } else {
             setError("Failed to load job");
           }
@@ -69,24 +69,32 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
   if (loading) {
     return (
       <div data-visual-anchor="job-detail-page" className="app-card flex items-center justify-center py-24">
-        <div className="text-muted-foreground">Loading job details...</div>
+        <div className="text-muted-foreground">Loading job details…</div>
       </div>
     );
   }
 
   if (error || !job) {
     return (
-      <div data-visual-anchor="job-detail-page" className="space-y-4">
+      <div data-visual-anchor="job-detail-page" className="gap-y-4">
         <Link
           href="/jobs"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="size-4" />
           Back to Jobs
         </Link>
         <div className="app-card p-8 text-center">
-          <AlertCircle className="h-8 w-8 mx-auto text-destructive mb-3" />
+          <AlertCircle className="size-8 mx-auto text-destructive mb-3" />
           <p className="text-muted-foreground">{error || "Job not found"}</p>
+          {error?.includes("not synced online") ? (
+            <Link
+              href="/workspace"
+              className="mt-4 inline-flex items-center justify-center rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:bg-foreground/90"
+            >
+              Open studio instead
+            </Link>
+          ) : null}
         </div>
       </div>
     );
@@ -95,12 +103,12 @@ export default function JobDetailClient({ jobId }: JobDetailClientProps) {
   const score = job.match_score ?? 0;
 
   return (
-    <div data-visual-anchor="job-detail-page" className="space-y-6">
+    <div data-visual-anchor="job-detail-page" className="gap-y-6">
       <Link
         href="/jobs"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
-        <ArrowLeft className="h-4 w-4" />
+        <ArrowLeft className="size-4" />
         Back to Jobs
       </Link>
 

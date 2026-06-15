@@ -19,6 +19,14 @@
 // ----- NORMALIZATION LAYER -----
 // Normalizes text variations to improve matching recall
 
+function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function findTermIndex(text: string, term: string): number {
+    return text.search(new RegExp(escapeRegExp(term)));
+}
+
 const LEMMA_MAP: Record<string, string> = {
     // Recruiting variations
     'sourcers': 'sourcing', 'sourcer': 'sourcing', 'sourced': 'sourcing',
@@ -290,7 +298,7 @@ for (const node of SKILL_ONTOLOGY) {
  * Get the credit for matching a resume skill against a JD skill.
  * Returns 0-1 where 1 = perfect match, 0 = no match.
  */
-export function getMatchCredit(jdSkill: string, resumeSkill: string): { credit: number; matchType: string } {
+function getMatchCredit(jdSkill: string, resumeSkill: string): { credit: number; matchType: string } {
     // Normalize to lowercase for comparison
     const jdLower = jdSkill.toLowerCase();
     const resumeLower = resumeSkill.toLowerCase();
@@ -420,7 +428,7 @@ const PREFERRED_MARKER_PATTERNS = [
  * Parse JD text to identify which skills are required vs preferred.
  * Returns requirements grouped by tier for tiered scoring.
  */
-export function parseJDRequirements(
+function parseJDRequirements(
     jdText: string,
     extractedSkills: Map<string, { weight: number; category: string }>
 ): Map<string, JDRequirement> {
@@ -456,7 +464,7 @@ export function parseJDRequirements(
         // For each extracted skill, check if it appears in this section
         for (const [skillId] of extractedSkills) {
             const skillLower = skillId.toLowerCase();
-            if (sectionLower.includes(skillLower)) {
+            if (findTermIndex(sectionLower, skillLower) !== -1) {
                 // Only update if not already set or if we're more specific
                 if (!skillTierMap.has(skillId) ||
                     (skillTierMap.get(skillId) === "unlabeled" && currentTier !== "unlabeled")) {
@@ -469,7 +477,7 @@ export function parseJDRequirements(
     // Also check for inline markers (e.g., "Python (required)")
     for (const [skillId, { weight }] of extractedSkills) {
         const skillLower = skillId.toLowerCase();
-        const skillIndex = jdLower.indexOf(skillLower);
+        const skillIndex = findTermIndex(jdLower, skillLower);
 
         let detectedTier: RequirementTier = skillTierMap.get(skillId) || "unlabeled";
         let marker: string | null = null;
@@ -518,7 +526,7 @@ export function parseJDRequirements(
     return requirements;
 }
 
-export function normalizeText(text: string): string {
+function normalizeText(text: string): string {
     let normalized = text.toLowerCase();
     // Apply lemmatization
     for (const [variant, lemma] of Object.entries(LEMMA_MAP)) {
@@ -535,7 +543,7 @@ export function normalizeText(text: string): string {
 // ----- SKILL ALIASES (Canonical Skill IDs) -----
 // Maps various surface forms to canonical skill IDs across ALL industries
 
-export const SKILL_ALIASES: Record<string, string[]> = {
+const SKILL_ALIASES: Record<string, string[]> = {
     // ===== TECHNOLOGY =====
     'Machine Learning': ['ml', 'deep learning', 'neural network', 'ai/ml', 'ml/ai',
         'machine learning engineer', 'mlops', 'model training'],
@@ -735,7 +743,7 @@ export const SKILL_ALIASES: Record<string, string[]> = {
 // ----- INFERENCE RULES -----
 // Tools/systems that imply familiarity with related skills across ALL industries
 
-export const INFERENCE_RULES: Array<{
+const INFERENCE_RULES: Array<{
     trigger: RegExp;
     implies: string;
     confidence: number;
@@ -1161,7 +1169,7 @@ export const INFERENCE_RULES: Array<{
 // ----- ROLE ARCHETYPES -----
 // Detect role type to apply appropriate skill bundles
 
-export const ROLE_ARCHETYPES: Array<{
+const ROLE_ARCHETYPES: Array<{
     name: string;
     titlePatterns: RegExp[];
     contextPatterns: RegExp[];
@@ -1221,7 +1229,7 @@ export const ROLE_ARCHETYPES: Array<{
 // ----- SKILL DICTIONARY -----
 // 300+ skill patterns across all major industries
 
-export const SKILL_PATTERNS: Array<{ pattern: RegExp; skill: string; weight: number; category: string }> = [
+const SKILL_PATTERNS: Array<{ pattern: RegExp; skill: string; weight: number; category: string }> = [
     // ================= TECHNOLOGY =================
     // Programming Languages
     { pattern: /\bpython\b/gi, skill: "Python", weight: 10, category: "language" },
@@ -1633,7 +1641,7 @@ export function extractSeniority(text: string): SenioritySignals {
 
 // ================= MATCHING FUNCTIONS =================
 
-export function calculateKeywordScore(
+function calculateKeywordScore(
     resumeSkills: Map<string, { weight: number; category: string }>,
     jdSkills: Map<string, { weight: number; category: string }>
 ): {
@@ -1704,7 +1712,7 @@ export function calculateKeywordScore(
     return { score, matchedSkills, missingSkills, matchDetails };
 }
 
-export function calculateSeniorityPenalty(
+function calculateSeniorityPenalty(
     resumeSeniority: SenioritySignals,
     jdSeniority: SenioritySignals
 ): { penalty: number; flag: string | null } {
@@ -1740,7 +1748,7 @@ export function calculateSeniorityPenalty(
     return { penalty: Math.min(penalty, 20), flag };
 }
 
-export function calculateHybridScore(
+function calculateHybridScore(
     keywordScore: number,
     semanticScore: number | null,
     seniorityPenalty: number
@@ -1790,7 +1798,7 @@ const LOW_VALUE_GAPS = new Set([
     'team-oriented',
 ]);
 
-export function generateTopGaps(
+function generateTopGaps(
     missingSkills: string[],
     seniorityFlag: string | null,
     jdSkills: Map<string, { weight: number; category: string }>
@@ -2049,7 +2057,7 @@ export interface EnhancedMatchResult {
  * 
  * Cost: ~$0.002 for first match (LLM parsing), $0 for subsequent with cached claims
  */
-export async function calculateEnhancedMatch(
+async function calculateEnhancedMatch(
     resumeText: string,
     jdText: string,
     resumeEmbedding?: number[],
@@ -2137,7 +2145,7 @@ export async function calculateEnhancedMatch(
  * Get evidence-based explanations for a match
  * Returns human-readable strings for each matched requirement
  */
-export function getMatchEvidence(result: EnhancedMatchResult): string[] {
+function getMatchEvidence(result: EnhancedMatchResult): string[] {
     const evidence: string[] = [];
 
     for (const match of result.claimMatches) {
@@ -2152,7 +2160,7 @@ export function getMatchEvidence(result: EnhancedMatchResult): string[] {
 /**
  * Get actionable gaps with suggestions
  */
-export function getActionableGaps(result: EnhancedMatchResult): Array<{
+function getActionableGaps(result: EnhancedMatchResult): Array<{
     requirement: string;
     status: 'gap' | 'partial';
     suggestion: string;

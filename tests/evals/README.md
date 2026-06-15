@@ -101,7 +101,10 @@ In reports we separate:
 | `E_MISSING_REQUIRED_SECTION` | Missing required section(s) or `top_fixes.length < 3` |
 | `E_EMPTY_REQUIRED_FIELD` | Any required string field is empty |
 | `E_NO_EVIDENCE` | Zero evidence excerpts in top fixes |
-| `E_EVIDENCE_TOO_LONG` | Evidence excerpt exceeds 200 chars |
+| `E_EVIDENCE_TOO_LONG` | Evidence excerpt exceeds 140 chars |
+| `E_EVIDENCE_NOT_VERBATIM` | Evidence excerpt is not a verbatim resume match |
+| `E_REWRITE_ORIGINAL_NOT_VERBATIM` | Rewrite original is not a verbatim resume match |
+| `E_REWRITE_INVENTED_SPECIFIC` | Rewrite adds a concrete metric not found in the resume |
 | `E_BANNED_PHRASE` | Matches banned phrase list |
 | `E_SCORE_EXTREME` | Absolute drift > 12 points vs baseline |
 
@@ -111,7 +114,6 @@ In reports we separate:
 |:-----|:------------|
 | `W_SCORE_DRIFT` | Absolute drift 5–12 points vs baseline |
 | `W_SUBSCORE_DRIFT` | Subscores drift > ±10 vs baseline |
-| `W_EVIDENCE_PARAPHRASE` | Evidence excerpt not verbatim match |
 | `W_SUMMARY_STRUCTURE` | Missing role-level signal OR strength OR gap |
 | `W_SPECIFICITY_LOW` | Top fixes lack concrete tokens |
 | `W_DISCOURAGED_PHRASE` | Matches discouraged phrase list |

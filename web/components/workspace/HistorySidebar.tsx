@@ -196,8 +196,8 @@ export default function HistorySidebar({
                 <SheetContent side="right" className="w-[380px] max-w-[90vw] p-0 flex flex-col">
                     <SheetHeader className="px-6 py-5 border-b border-border/60">
                         <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-md bg-brand/10 flex items-center justify-center">
-                                <FileText className="w-4 h-4 text-brand" />
+                            <div className="size-8 rounded-md bg-brand/10 flex items-center justify-center">
+                                <FileText className="size-4 text-brand" />
                             </div>
                             <SheetTitle className="font-display text-lg font-semibold">
                                 Your Reports
@@ -210,8 +210,8 @@ export default function HistorySidebar({
                         {!user?.email ? (
                             /* Logged out state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
-                                <div className="w-16 h-16 rounded-full bg-brand/10 flex items-center justify-center mb-6">
-                                    <TrendingUp className="w-8 h-8 text-brand" />
+                                <div className="size-16 rounded-full bg-brand/10 flex items-center justify-center mb-6">
+                                    <TrendingUp className="size-8 text-brand" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
                                     Track your progress
@@ -229,17 +229,17 @@ export default function HistorySidebar({
                             </div>
                         ) : loading ? (
                             /* Skeleton loading state */
-                            <div className="p-4 space-y-3">
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="p-4 rounded border border-border/60 bg-card space-y-3">
+                            <div className="p-4 gap-y-3">
+                                {["first", "second", "third"].map((slot) => (
+                                    <div key={slot} className="p-4 rounded border border-border/60 bg-card gap-y-3">
                                         <div className="flex items-start justify-between">
                                             <Skeleton className="h-8 w-16 rounded-md" />
-                                            <Skeleton className="h-6 w-6 rounded" />
+                                            <Skeleton className="size-6 rounded" />
                                         </div>
                                         <Skeleton className="h-4 w-full" />
                                         <Skeleton className="h-4 w-3/4" />
                                         <div className="flex items-center gap-1.5">
-                                            <Skeleton className="h-3 w-3 rounded-full" />
+                                            <Skeleton className="size-3 rounded-full" />
                                             <Skeleton className="h-3 w-20" />
                                         </div>
                                     </div>
@@ -248,8 +248,8 @@ export default function HistorySidebar({
                         ) : reports.length === 0 ? (
                             /* Empty state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
-                                <div className="w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mb-6">
-                                    <FileText className="w-8 h-8 text-muted-foreground" />
+                                <div className="size-16 rounded-full bg-secondary/50 flex items-center justify-center mb-6">
+                                    <FileText className="size-8 text-muted-foreground" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
                                     No reports yet
@@ -260,14 +260,14 @@ export default function HistorySidebar({
                             </div>
                         ) : (
                             /* Reports list */
-                            <div className="p-4 space-y-3">
+                            <div className="p-4 gap-y-3">
                                 {/* Summary header with Compare toggle */}
-                                <div className="flex items-center justify-between px-2 py-2">
+                                <div className="flex items-center justify-between p-2">
                                     <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                         {reports.length} {reports.length === 1 ? "Report" : "Reports"}
                                     </span>
                                     {reports.length > 1 && (
-                                        <button
+                                        <button type="button"
                                             onClick={() => {
                                                 setIsCompareMode(!isCompareMode);
                                                 setSelectedForCompare([]);
@@ -285,7 +285,7 @@ export default function HistorySidebar({
                                 {/* Label filter chips */}
                                 {existingLabels.length > 0 && (
                                     <div className="flex flex-wrap gap-2 px-2 pb-2">
-                                        <button
+                                        <button type="button"
                                             onClick={() => setFilterVariant(null)}
                                             className={`text-xs px-2 py-1 rounded transition-colors ${filterVariant === null
                                                 ? 'bg-foreground text-background'
@@ -295,7 +295,7 @@ export default function HistorySidebar({
                                             All
                                         </button>
                                         {existingLabels.map(v => (
-                                            <button
+                                            <button type="button"
                                                 key={v}
                                                 onClick={() => setFilterVariant(v)}
                                                 className={`text-xs px-2 py-1 rounded transition-colors ${filterVariant === v
@@ -311,12 +311,12 @@ export default function HistorySidebar({
 
                                 {/* Compare action bar */}
                                 {isCompareMode && (
-                                    <div className="px-2 py-2 bg-muted/50 rounded flex items-center justify-between">
+                                    <div className="p-2 bg-muted/50 rounded flex items-center justify-between">
                                         <span className="text-xs text-muted-foreground">
                                             Select 2 reports to compare ({selectedForCompare.length}/2)
                                         </span>
                                         {selectedForCompare.length === 2 && (
-                                            <button
+                                            <button type="button"
                                                 onClick={async () => {
                                                     setLoadingComparison(true);
                                                     try {
@@ -404,11 +404,11 @@ export default function HistorySidebar({
                                                 {/* Compare mode checkbox */}
                                                 {isCompareMode && (
                                                     <div className="absolute top-2 right-2 z-10">
-                                                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${isSelected
+                                                        <div className={`size-5 rounded border-2 flex items-center justify-center transition-colors ${isSelected
                                                             ? 'bg-brand border-brand text-white'
                                                             : 'border-muted-foreground/30 bg-card'
                                                             }`}>
-                                                            {isSelected && <Check className="w-3 h-3" />}
+                                                            {isSelected && <Check className="size-3" />}
                                                         </div>
                                                     </div>
                                                 )}
@@ -437,7 +437,7 @@ export default function HistorySidebar({
                                                         <span className="text-sm font-medium text-foreground truncate">
                                                             {report.name}
                                                         </span>
-                                                        <button
+                                                        <button type="button"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setEditName(report.name || '');
@@ -445,11 +445,11 @@ export default function HistorySidebar({
                                                             }}
                                                             className="opacity-0 group-hover:opacity-100 p-1 hover:bg-muted rounded"
                                                         >
-                                                            <Pencil className="w-3 h-3 text-muted-foreground" />
+                                                            <Pencil className="size-3 text-muted-foreground" />
                                                         </button>
                                                     </div>
                                                 ) : (
-                                                    <button
+                                                    <button type="button"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
                                                             setEditName('');
@@ -479,9 +479,9 @@ export default function HistorySidebar({
                                                         aria-label="Delete report"
                                                     >
                                                         {deletingId === report.id ? (
-                                                            <div className="w-4 h-4 border-2 border-destructive/30 border-t-destructive rounded-full animate-spin" />
+                                                            <div className="size-4 border-2 border-destructive/30 border-t-destructive rounded-full animate-spin" />
                                                         ) : (
-                                                            <Trash2 className="w-4 h-4" />
+                                                            <Trash2 className="size-4" />
                                                         )}
                                                     </Button>
                                                 </div>
@@ -513,7 +513,7 @@ export default function HistorySidebar({
 
                                                 {/* Date */}
                                                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                                                    <Clock className="w-3.5 h-3.5" />
+                                                    <Clock className="size-3.5" />
                                                     <span>{formatDate(report.createdAt)}</span>
                                                 </div>
                                             </CardInteractive>
@@ -544,13 +544,14 @@ export default function HistorySidebar({
                 <DialogContent className="max-w-[360px]">
                     <DialogHeader>
                         <div className="flex items-center gap-3 mb-2">
-                            <div className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center">
-                                <AlertTriangle className="w-5 h-5 text-destructive" />
+                            <div className="size-10 rounded-full bg-destructive/10 flex items-center justify-center">
+                                <AlertTriangle className="size-5 text-destructive" />
                             </div>
                             <DialogTitle className="font-display">Delete Report?</DialogTitle>
                         </div>
                         <DialogDescription>
                             {reportToDelete?.name || `Report from ${formatDate(reportToDelete?.createdAt || '')}`} will be permanently deleted. This action cannot be undone.
+                            If this report came from a saved job, the saved job and job description stay in Jobs until you delete them there.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="flex gap-3 mt-4">

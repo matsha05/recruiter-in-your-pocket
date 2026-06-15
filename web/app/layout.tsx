@@ -7,6 +7,13 @@ import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "@/components/ui/sonner";
 import { CommandPalette } from "@/components/CommandPalette";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+
+function shouldRenderVercelAnalytics() {
+  if (!isLaunchFlagEnabled("analytics")) return false;
+  if (process.env.NEXT_PUBLIC_ENABLE_VERCEL_ANALYTICS === "true") return true;
+  return process.env.VERCEL === "1" || process.env.VERCEL_ENV === "production";
+}
+
 const sentient = localFont({
   src: [
     {
@@ -102,7 +109,7 @@ export default function RootLayout({
           {children}
           <CommandPalette />
           <Toaster />
-          {isLaunchFlagEnabled("analytics") ? <Analytics /> : null}
+          {shouldRenderVercelAnalytics() ? <Analytics /> : null}
         </AppProviders>
       </body>
     </html>

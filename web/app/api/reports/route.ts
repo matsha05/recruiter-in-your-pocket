@@ -24,6 +24,38 @@ function buildResumePreview(report: any): string {
   return `${preview.slice(0, lastSpace > 120 ? lastSpace : 200)}...`;
 }
 
+function buildReportTrustMetadata(report: any) {
+  const topFixes = Array.isArray(report?.top_fixes) ? report.top_fixes : [];
+  const evidence = topFixes
+    .map((fix: any) => ({
+      fix: fix?.fix || "",
+      confidence: fix?.confidence || "medium",
+      impact_level: fix?.impact_level || "medium",
+      effort: fix?.effort || "moderate",
+      excerpt: typeof fix?.evidence === "string" ? fix.evidence : fix?.evidence?.excerpt || "",
+      section: typeof fix?.evidence === "string" ? fix?.section_ref || "Resume" : fix?.evidence?.section || fix?.section_ref || "Resume"
+    }))
+    .filter((item: any) => item.fix || item.excerpt);
+
+  const confidenceValues = evidence.map((item: any) => item.confidence);
+  const confidence_band = confidenceValues.includes("low")
+    ? "low"
+    : confidenceValues.includes("medium")
+      ? "medium"
+      : evidence.length > 0
+        ? "high"
+        : null;
+
+  return {
+    evidence_json: evidence.length > 0 ? evidence : null,
+    evidence_version: report?.contract_version || "v2",
+    evidence_summary: evidence.length > 0
+      ? `${evidence.length} grounded fix${evidence.length === 1 ? "" : "es"} with ${confidence_band || "medium"} overall confidence.`
+      : null,
+    confidence_band
+  };
+}
+
 export async function GET(request: NextRequest) {
   try {
     const supabase = await createSupabaseServerClient();
@@ -110,6 +142,7 @@ export async function POST(request: NextRequest) {
       score: Number(report?.score || 0),
       score_label: typeof report?.score_label === "string" ? report.score_label : null,
       report_json: report,
+      ...buildReportTrustMetadata(report),
       resume_preview: buildResumePreview(report),
       target_role: report?.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
       created_at: nowIso()

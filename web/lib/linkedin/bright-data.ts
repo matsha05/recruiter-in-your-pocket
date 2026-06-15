@@ -20,7 +20,7 @@ export function isBrightDataConfigured(): boolean {
 /**
  * Extract LinkedIn handle from URL
  */
-export function extractLinkedInHandle(url: string): string | null {
+function extractLinkedInHandle(url: string): string | null {
     // Handle various LinkedIn URL formats:
     // - https://www.linkedin.com/in/johnsmith
     // - https://linkedin.com/in/johnsmith/

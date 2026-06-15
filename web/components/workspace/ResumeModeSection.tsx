@@ -12,7 +12,7 @@ type ResumeModeSectionProps = {
   jobDescription: string;
   onResumeTextChange: (text: string) => void;
   onJobDescChange: (text: string) => void;
-  onFileSelect: (file: File) => void;
+  onFileSelect: (file: File) => void | boolean | Promise<void | boolean>;
   onRun: () => void;
   freeUsesRemaining: number;
   user: AuthUser | null;
@@ -103,7 +103,7 @@ export default function ResumeModeSection({
       onNewReport={onNewReport}
       freeUsesRemaining={freeUsesRemaining}
       onUpgrade={onUpgrade}
-      isGated={!isSample && !hasPaidAccess && freeUsesRemaining <= 0}
+      isGated={false}
       justUnlocked={justUnlocked}
       highlightSection={highlightSection}
       hasPaidAccess={hasPaidAccess}

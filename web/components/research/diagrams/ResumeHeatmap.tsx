@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 export function ResumeHeatmap() {
@@ -9,9 +9,9 @@ export function ResumeHeatmap() {
             <DiagramFrame className="riyp-diagram-shell relative w-full aspect-[1/1.4] transition-all duration-500">
 
                 {/* Premium Resume Skeleton (Matching ScanPattern) */}
-                <div className="absolute inset-0 p-8 space-y-6 opacity-60">
+                <div className="absolute inset-0 p-8 gap-y-6 opacity-60">
                     {/* Header */}
-                    <div className="space-y-3 mb-8">
+                    <div className="gap-y-3 mb-8">
                         <div className="h-8 w-2/3 bg-slate-200 dark:bg-slate-800/80 rounded-md" />
                         <div className="h-4 w-1/3 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
                     </div>
@@ -20,13 +20,13 @@ export function ResumeHeatmap() {
                     <div className="h-px w-full bg-slate-100 dark:bg-slate-800" />
 
                     {/* Experience Block 1 */}
-                    <div className="space-y-3 pt-2">
+                    <div className="gap-y-3 pt-2">
                         <div className="flex justify-between items-start">
                             <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
                             <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
                         <div className="h-4 w-1/4 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        <div className="space-y-2 pt-2">
+                        <div className="gap-y-2 pt-2">
                             <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[92%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[98%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
@@ -34,24 +34,24 @@ export function ResumeHeatmap() {
                     </div>
 
                     {/* Experience Block 2 */}
-                    <div className="space-y-3 pt-4">
+                    <div className="gap-y-3 pt-4">
                         <div className="flex justify-between items-start">
                             <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
                             <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="space-y-2 pt-2">
+                        <div className="gap-y-2 pt-2">
                             <div className="h-2.5 w-[88%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[75%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
                     </div>
 
                     {/* Experience Block 3 */}
-                    <div className="space-y-3 pt-4">
+                    <div className="gap-y-3 pt-4">
                         <div className="flex justify-between items-start">
                             <div className="h-5 w-1/4 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
                             <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="space-y-2 pt-2">
+                        <div className="gap-y-2 pt-2">
                             <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[65%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
@@ -96,20 +96,20 @@ export function ResumeHeatmap() {
 
                 {/* Legend/Label */}
                 <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-rose-500/20 rounded-full px-3 py-1 shadow-sm flex items-center gap-2 z-10">
-                    <div className="flex space-x-0.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-teal-500" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
+                    <div className="flex gap-x-0.5">
+                        <div className="size-1.5 rounded-full bg-teal-500" />
+                        <div className="size-1.5 rounded-full bg-amber-500" />
+                        <div className="size-1.5 rounded-full bg-rose-600 animate-pulse" />
                     </div>
-                    <span className="text-[10px] font-mono font-medium text-rose-600 uppercase tracking-wider">
+                    <span className="text-xs font-mono font-medium text-rose-600 uppercase tracking-wider">
                         Heatmap
                     </span>
                 </div>
 
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 2 — Attention Density</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 2  -  Attention Density</span>
                 <span className="block text-sm text-foreground/80 font-medium">Aggregated Recruiter Fixation Points</span>
             </figcaption>
         </DiagramFigure>

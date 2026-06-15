@@ -49,8 +49,8 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
 
   return (
     <div className="app-card app-card-highlight flex flex-col gap-5 p-5 md:flex-row md:items-start md:justify-between md:p-6">
-      <div className="space-y-2">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+      <div className="gap-y-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           Saved role
         </p>
         <div className="flex items-center gap-3">
@@ -58,7 +58,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
             {job.title}
           </h1>
           <div className="relative">
-            <button
+            <button type="button"
               onClick={() => setStatusMenuOpen(!statusMenuOpen)}
               disabled={updatingStatus}
               className={cn(
@@ -69,7 +69,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
               )}
             >
               {statusConfig.label}
-              <ChevronDown className="h-3 w-3" />
+              <ChevronDown className="size-3" />
             </button>
             {statusMenuOpen && (
               <div className="absolute top-full left-0 mt-1 w-40 bg-card border border-border rounded shadow-sm z-50">
@@ -77,7 +77,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
                   const config = STATUS_CONFIG[statusKey];
                   const isSelected = job.status === statusKey;
                   return (
-                    <button
+                    <button type="button"
                       key={statusKey}
                       onClick={() => handleStatusSelect(statusKey)}
                       className={cn(
@@ -87,7 +87,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
                       )}
                     >
                       <span className={config.color}>{config.label}</span>
-                      {isSelected && <Check className="h-4 w-4 text-success" />}
+                      {isSelected && <Check className="size-4 text-success" />}
                     </button>
                   );
                 })}
@@ -97,17 +97,17 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
         </div>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <Building2 className="h-4 w-4" />
+            <Building2 className="size-4" />
             {job.company}
           </span>
           {job.location && (
             <span className="flex items-center gap-1.5">
-              <MapPin className="h-4 w-4" />
+              <MapPin className="size-4" />
               {job.location}
             </span>
           )}
           <span className="flex items-center gap-1.5">
-            <Calendar className="h-4 w-4" />
+            <Calendar className="size-4" />
             Captured {capturedDate.toLocaleDateString()}
           </span>
         </div>
@@ -120,7 +120,7 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
         >
-          <ExternalLink className="h-4 w-4" />
+          <ExternalLink className="size-4" />
           View Original
         </a>
       </div>

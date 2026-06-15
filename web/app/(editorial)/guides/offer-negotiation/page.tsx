@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-// SiteHeader removed — layout handles navigation
+// SiteHeader removed  -  layout handles navigation
 import {
     GuideSection,
     GuideAccordion,
@@ -34,7 +34,7 @@ export default function OfferNegotiationGuidePage() {
                     <Link href="/resources" className="text-muted-foreground hover:text-foreground transition-colors">
                         Resources
                     </Link>
-                    <ChevronRight className="w-3 h-3 text-muted-foreground/50" />
+                    <ChevronRight className="size-3 text-muted-foreground/50" />
                     <span className="text-foreground font-medium">Offer Negotiation</span>
                 </div>
             </div>
@@ -43,12 +43,12 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* Header */}
                 <header className="mb-16">
-                    <div className="space-y-6">
+                    <div className="gap-y-6">
                         <div className="flex items-center gap-3">
-                            <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-[10px] uppercase tracking-widest font-semibold text-brand">
+                            <span className="inline-flex items-center rounded-sm border border-brand/20 bg-brand/10 px-3 py-1 text-xs uppercase tracking-wide font-semibold text-brand">
                                 All Industries
                             </span>
-                            <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                            <span className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                                 12 min read
                             </span>
                         </div>
@@ -80,7 +80,7 @@ export default function OfferNegotiationGuidePage() {
                 </div>
 
                 <div className="mb-16 rounded-xl border border-border/40 bg-muted/10 p-6">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">Quick start</div>
+                    <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground mb-3">Quick start</div>
                     <div className="grid gap-3 sm:grid-cols-3">
                         <div className="rounded-lg border border-border/40 bg-white/80 p-3 dark:bg-slate-900/70">
                             <div className="text-sm font-medium text-foreground">1. Get the full package</div>
@@ -102,31 +102,31 @@ export default function OfferNegotiationGuidePage() {
 
                 {/* Table of Contents */}
                 <div className="mb-16 p-6 rounded-xl border border-border/30 bg-muted/10">
-                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-4">In this guide</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-4">In this guide</h3>
                     <div className="grid sm:grid-cols-2 gap-4">
                         <div className="flex items-start gap-3">
-                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">1</span>
+                            <span className="size-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">1</span>
                             <div>
                                 <a href="#universal" className="text-sm font-medium text-foreground hover:text-brand">Universal principles</a>
                                 <p className="text-xs text-muted-foreground mt-0.5">The psychology that works everywhere</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">2</span>
+                            <span className="size-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">2</span>
                             <div>
                                 <a href="#timeline" className="text-sm font-medium text-foreground hover:text-brand">The timeline</a>
                                 <p className="text-xs text-muted-foreground mt-0.5">Sequence wins over cleverness</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">3</span>
+                            <span className="size-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">3</span>
                             <div>
                                 <a href="#levers" className="text-sm font-medium text-foreground hover:text-brand">Know your levers</a>
                                 <p className="text-xs text-muted-foreground mt-0.5">What you can actually negotiate</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <span className="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">4</span>
+                            <span className="size-6 rounded-md bg-muted flex items-center justify-center text-sm font-medium text-foreground shrink-0">4</span>
                             <div>
                                 <a href="#scripts" className="text-sm font-medium text-foreground hover:text-brand">The scripts</a>
                                 <p className="text-xs text-muted-foreground mt-0.5">Copy/paste conversations</p>
@@ -135,7 +135,7 @@ export default function OfferNegotiationGuidePage() {
                     </div>
                 </div>
 
-                <div className="space-y-20">
+                <div className="gap-y-20">
 
                     {/* Section 1: Universal Principles */}
                     <GuideNumberedSection number={1} title="Universal principles" id="universal">
@@ -150,17 +150,17 @@ export default function OfferNegotiationGuidePage() {
                                 These principles work whether you&apos;re negotiating $50K or $500K. Master these first.
                             </p>
 
-                            <div className="space-y-4">
+                            <div className="gap-y-4">
                                 <div className="p-5 border border-border/30 rounded-lg">
                                     <h4 className="font-medium text-foreground mb-2">1. Never share your current salary</h4>
                                     <p className="text-sm text-muted-foreground leading-relaxed">
-                                        In many states, it&apos;s illegal for employers to ask. Even where legal, deflect: <GuideHighlight>&quot;I&apos;m focused on the scope of this role—can you share the band?&quot;</GuideHighlight> Your past salary anchors you to your past. Your new salary should reflect your new role.
+                                        In many states, it&apos;s illegal for employers to ask. Even where legal, deflect: <GuideHighlight>&quot;I&apos;m focused on the scope of this role - can you share the band?&quot;</GuideHighlight> Your past salary anchors you to your past. Your new salary should reflect your new role.
                                     </p>
                                 </div>
                                 <div className="p-5 border border-border/30 rounded-lg">
                                     <h4 className="font-medium text-foreground mb-2">2. Let them make the first offer</h4>
                                     <p className="text-sm text-muted-foreground leading-relaxed">
-                                        When asked for salary expectations, defer: &quot;I&apos;m flexible within your range for this level—can you share it?&quot; This prevents you from anchoring low. Once they name a number, that becomes the floor.
+                                        When asked for salary expectations, defer: &quot;I&apos;m flexible within your range for this level - can you share it?&quot; This prevents you from anchoring low. Once they name a number, that becomes the floor.
                                     </p>
                                 </div>
                                 <div className="p-5 border border-border/30 rounded-lg">
@@ -172,7 +172,7 @@ export default function OfferNegotiationGuidePage() {
                                 <div className="p-5 border border-border/30 rounded-lg">
                                     <h4 className="font-medium text-foreground mb-2">4. Negotiate total compensation</h4>
                                     <p className="text-sm text-muted-foreground leading-relaxed">
-                                        If base is capped, shift the conversation: &quot;If we can get to $X total in year one through some mix of base and signing...&quot; Different levers have different flexibility.
+                                        If base is capped, shift the conversation: &quot;If we can get to $X total in year one through some mix of base and signing…&quot; Different levers have different flexibility.
                                     </p>
                                 </div>
                                 <div className="p-5 border border-border/30 rounded-lg">
@@ -203,37 +203,37 @@ export default function OfferNegotiationGuidePage() {
 
                             <NegotiationTimelineDiagram />
 
-                            <div className="space-y-4 mt-8">
+                            <div className="gap-y-4 mt-8">
                                 <div className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">1</span>
+                                    <span className="size-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">1</span>
                                     <div>
                                         <p className="font-medium text-foreground">Get the offer</p>
                                         <p className="text-sm text-muted-foreground">This is a fact-finding call. Ask questions, collect information, express excitement. Do not negotiate.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">2</span>
+                                    <span className="size-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">2</span>
                                     <div>
                                         <p className="font-medium text-foreground">Ask for time</p>
                                         <p className="text-sm text-muted-foreground">48 hours minimum. &quot;I&apos;d love to review the full package carefully.&quot;</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">3</span>
+                                    <span className="size-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">3</span>
                                     <div>
                                         <p className="font-medium text-foreground">Research</p>
                                         <p className="text-sm text-muted-foreground">Know the band for your level/role. Use Levels.fyi, Glassdoor, or ask your network.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">4</span>
+                                    <span className="size-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">4</span>
                                     <div>
                                         <p className="font-medium text-foreground">Counter</p>
-                                        <p className="text-sm text-muted-foreground">Target total comp, not just base. Be specific. &quot;If we can get to $X total...&quot;</p>
+                                        <p className="text-sm text-muted-foreground">Target total comp, not just base. Be specific. &quot;If we can get to $X total…&quot;</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">5</span>
+                                    <span className="size-8 rounded-full bg-brand/20 flex items-center justify-center text-sm font-medium text-brand shrink-0">5</span>
                                     <div>
                                         <p className="font-medium text-foreground">Close</p>
                                         <p className="text-sm text-muted-foreground">Be committal. &quot;If you can get to $X, I&apos;m ready to sign.&quot;</p>
@@ -255,7 +255,7 @@ export default function OfferNegotiationGuidePage() {
                             }
                         >
                             <p className="text-muted-foreground leading-relaxed mb-6">
-                                Different industries have different comp structures. The psychology is the same — <GuideHighlight>the levers change</GuideHighlight>.
+                                Different industries have different comp structures. The psychology is the same  -  <GuideHighlight>the levers change</GuideHighlight>.
                             </p>
                             <LeverComparisonDiagram />
 
@@ -264,13 +264,13 @@ export default function OfferNegotiationGuidePage() {
                         </GuideSection>
 
                         {/* Industry Accordions */}
-                        <div className="space-y-4 mt-8">
+                        <div className="gap-y-4 mt-8">
                             <GuideAccordion title="Finance & Consulting" badge="Bonus-Heavy">
-                                <div className="space-y-4">
+                                <div className="gap-y-4">
                                     <p className="text-sm text-muted-foreground">
                                         Bonus structures dominate compensation. Your leverage depends on whether you&apos;re a standard hire or experienced lateral.
                                     </p>
-                                    <ul className="space-y-2">
+                                    <ul className="gap-y-2">
                                         <GuideQuickWin><strong>Signing bonus:</strong> Often $10K-$100K+ for lateral moves. Highly negotiable.</GuideQuickWin>
                                         <GuideQuickWin><strong>Guaranteed year-one bonus:</strong> If joining mid-cycle, negotiate a guaranteed bonus.</GuideQuickWin>
                                         <GuideQuickWin><strong>Level/title:</strong> Your &quot;tenure credit&quot; affects starting salary and bonus targets.</GuideQuickWin>
@@ -279,11 +279,11 @@ export default function OfferNegotiationGuidePage() {
                             </GuideAccordion>
 
                             <GuideAccordion title="Healthcare" badge="Benefits-Heavy">
-                                <div className="space-y-4">
+                                <div className="gap-y-4">
                                     <p className="text-sm text-muted-foreground">
                                         Healthcare has unique levers that often matter more than base salary.
                                     </p>
-                                    <ul className="space-y-2">
+                                    <ul className="gap-y-2">
                                         <GuideQuickWin><strong>PTO:</strong> 25-35 days common for physicians; negotiate CME days separately.</GuideQuickWin>
                                         <GuideQuickWin><strong>Loan repayment:</strong> Some employers offer $10K-$50K+/year toward student loans.</GuideQuickWin>
                                         <GuideQuickWin><strong>Malpractice (tail coverage):</strong> Get tail coverage in writing.</GuideQuickWin>
@@ -293,11 +293,11 @@ export default function OfferNegotiationGuidePage() {
                             </GuideAccordion>
 
                             <GuideAccordion title="Retail & Hospitality" badge="Flexibility-Heavy">
-                                <div className="space-y-4">
+                                <div className="gap-y-4">
                                     <p className="text-sm text-muted-foreground">
                                         Flexibility is often the most valuable lever. Schedule control and performance bonuses are negotiable.
                                     </p>
-                                    <ul className="space-y-2">
+                                    <ul className="gap-y-2">
                                         <GuideQuickWin><strong>Schedule flexibility:</strong> Fixed days off, no clopens, shift preferences.</GuideQuickWin>
                                         <GuideQuickWin><strong>Performance bonus:</strong> Sales targets, customer satisfaction metrics.</GuideQuickWin>
                                         <GuideQuickWin><strong>Title:</strong> Senior/Lead roles come with faster paths.</GuideQuickWin>
@@ -323,12 +323,12 @@ export default function OfferNegotiationGuidePage() {
                             <div className="mb-8 rounded-xl border border-brand/25 bg-brand/[0.06] p-5">
                                 <h4 className="mb-3 font-medium text-foreground">Use email for your first counter</h4>
                                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                                    <GuideHighlight>You don&apos;t have to negotiate on the phone.</GuideHighlight> Email gives you time to think, craft your words, and avoid saying something you regret under pressure. Most recruiters are fine with email — they prefer written records too.
+                                    <GuideHighlight>You don&apos;t have to negotiate on the phone.</GuideHighlight> Email gives you time to think, craft your words, and avoid saying something you regret under pressure. Most recruiters are fine with email  -  they prefer written records too.
                                 </p>
                                 <div className="grid sm:grid-cols-2 gap-4 text-sm">
                                     <div>
                                         <div className="font-medium text-foreground mb-1">When to use email:</div>
-                                        <ul className="text-muted-foreground space-y-1">
+                                        <ul className="text-muted-foreground gap-y-1">
                                             <li>• Making your counter-offer</li>
                                             <li>• Responding to a lowball</li>
                                             <li>• Asking for more time</li>
@@ -337,7 +337,7 @@ export default function OfferNegotiationGuidePage() {
                                     </div>
                                     <div>
                                         <div className="font-medium text-foreground mb-1">When phone is better:</div>
-                                        <ul className="text-muted-foreground space-y-1">
+                                        <ul className="text-muted-foreground gap-y-1">
                                             <li>• Building rapport early in the process</li>
                                             <li>• When they specifically ask to call</li>
                                             <li>• If you&apos;re very close to a deal and need to finalize</li>
@@ -356,27 +356,27 @@ export default function OfferNegotiationGuidePage() {
 
                             {/* Counter-Script Library */}
                             <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
-                                <MessageSquare className="w-4 h-4" />
+                                <MessageSquare className="size-4" />
                                 Counter-Scripts for Common Situations
                             </h4>
                             <p className="text-sm text-muted-foreground mb-4">
-                                Click any situation to see what to say — and what the recruiter hears when you say it.
+                                Click any situation to see what to say  -  and what the recruiter hears when you say it.
                             </p>
                             <ScriptLibrary />
 
                             <h4 className="font-medium text-foreground mt-10 mb-4">Example Conversations</h4>
 
-                            <div className="space-y-8">
+                            <div className="gap-y-8">
                                 <div>
                                     <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
-                                        <MessageSquare className="w-4 h-4" />
+                                        <MessageSquare className="size-4" />
                                         Asking for time
                                     </h4>
                                     <GuideChatUI
                                         title="After receiving the offer"
                                         messages={[
                                             { role: "recruiter", message: "We'd like to extend you an offer! Base is $95K with full benefits and 3 weeks PTO.", delay: 500 },
-                                            { role: "you", message: "Thank you so much — I'm really excited about this opportunity.", delay: 2000 },
+                                            { role: "you", message: "Thank you so much  -  I'm really excited about this opportunity.", delay: 2000 },
                                             { role: "you", message: "I'd love to take a couple days to review everything carefully. Could we connect Thursday?", delay: 3500 },
                                         ]}
                                     />
@@ -384,14 +384,14 @@ export default function OfferNegotiationGuidePage() {
 
                                 <div>
                                     <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
-                                        <MessageSquare className="w-4 h-4" />
+                                        <MessageSquare className="size-4" />
                                         Countering with a package ask
                                     </h4>
                                     <GuideChatUI
                                         title="The negotiation call"
                                         messages={[
                                             { role: "you", message: "Thanks for connecting. I'm genuinely excited about the role and the team.", delay: 500 },
-                                            { role: "you", message: "I've done some research and I'd love to make this work. If we can get to $105K — whether through base or a signing bonus — I'm ready to commit.", delay: 2000 },
+                                            { role: "you", message: "I've done some research and I'd love to make this work. If we can get to $105K  -  whether through base or a signing bonus  -  I'm ready to commit.", delay: 2000 },
                                             { role: "recruiter", message: "I appreciate that. Let me see what I can do on the signing bonus side.", delay: 4000 },
                                         ]}
                                     />
@@ -399,7 +399,7 @@ export default function OfferNegotiationGuidePage() {
 
                                 <div>
                                     <h4 className="font-medium text-foreground mb-4 flex items-center gap-2">
-                                        <Lock className="w-4 h-4" />
+                                        <Lock className="size-4" />
                                         Deflecting salary history
                                     </h4>
                                     <GuideChatUI
@@ -427,13 +427,13 @@ export default function OfferNegotiationGuidePage() {
                         <Link href="/workspace">
                             <Button variant="brand" size="lg" className="gap-2 w-full sm:w-auto">
                                 Get Your Report
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="size-4" />
                             </Button>
                         </Link>
                         <Link href="/resources/tech-offer-negotiation">
                             <Button variant="outline" size="lg" className="gap-2 w-full sm:w-auto">
                                 Tech Equity Guide
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="size-4" />
                             </Button>
                         </Link>
                     </div>

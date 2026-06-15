@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { m as motion, useInView } from "motion/react";
 import { Lock, Shield, Trash2, ArrowRight, Check, ExternalLink, BookOpen, BarChart2, Users, FileText, Award, Quote, Star, TrendingUp, Clock, Target } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
@@ -44,7 +45,7 @@ function ProgressBar({ value, label, delay = 0 }: { value: number; label: string
     const isInView = useInView(ref, { once: true });
 
     return (
-        <div ref={ref} className="space-y-2">
+        <div ref={ref} className="gap-y-2">
             <div className="flex items-center justify-between text-sm">
                 <span className="text-slate-600">{label}</span>
                 <span className="font-mono font-medium text-slate-900">{value}%</span>
@@ -64,7 +65,7 @@ function ProgressBar({ value, label, delay = 0 }: { value: number; label: string
 // Citation badge
 function Citation({ source, year }: { source: string; year: string }) {
     return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 text-[10px] font-mono text-slate-600">
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 text-xs font-mono text-slate-600">
             {source}, {year}
         </span>
     );
@@ -77,7 +78,7 @@ export function LandingDataDriven() {
             <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md">
                 <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <PocketMark className="w-5 h-5 text-teal-600" />
+                        <PocketMark className="size-5 text-teal-600" />
                         <div>
                             <span className="font-medium text-sm tracking-tight">Recruiter in Your Pocket</span>
                             <span className="hidden sm:inline text-xs text-slate-400 ml-2">Research-backed career analysis</span>
@@ -86,7 +87,7 @@ export function LandingDataDriven() {
                     <div className="flex items-center gap-4">
                         <a href="#methodology" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Methodology</a>
                         <a href="#research" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">Research</a>
-                        <button className="text-sm font-medium px-4 py-2 rounded-md bg-teal-600 text-white hover:bg-teal-700 transition-colors">
+                        <button type="button" className="text-sm font-medium px-4 py-2 rounded-md bg-teal-600 text-white hover:bg-teal-700 transition-colors">
                             Analyze Resume
                         </button>
                     </div>
@@ -105,7 +106,7 @@ export function LandingDataDriven() {
                         >
                             {/* Research badge */}
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 text-xs text-slate-600 mb-6">
-                                <BookOpen className="w-3.5 h-3.5" />
+                                <BookOpen className="size-3.5" />
                                 Methodology grounded in recruiting science
                             </div>
 
@@ -114,7 +115,7 @@ export function LandingDataDriven() {
                             </h1>
 
                             <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-lg">
-                                Recruiters spend an average of <strong>7.4 seconds</strong> on initial resume review. We use eye-tracking research and hiring data to show you exactly what they see — and miss.
+                                Recruiters spend an average of <strong>7.4 seconds</strong> on initial resume review. We use eye-tracking research and hiring data to show you exactly what they see  -  and miss.
                             </p>
 
                             {/* Key stat callout */}
@@ -137,31 +138,31 @@ export function LandingDataDriven() {
 
                             {/* CTA */}
                             <div className="flex flex-wrap items-center gap-4">
-                                <button className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors">
+                                <button type="button" className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors">
                                     Get Your Analysis
-                                    <ArrowRight className="w-4 h-4" />
+                                    <ArrowRight className="size-4" />
                                 </button>
                                 <a href="#methodology" className="text-sm text-slate-600 hover:text-teal-600 transition-colors flex items-center gap-1">
                                     View our methodology
-                                    <ExternalLink className="w-3 h-3" />
+                                    <ExternalLink className="size-3" />
                                 </a>
                             </div>
                         </motion.div>
 
                         {/* Right: Visual Data */}
                         <motion.div
-                            className="space-y-6"
+                            className="gap-y-6"
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
                             <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-100">
                                 <div className="flex items-center gap-2 mb-6">
-                                    <BarChart2 className="w-4 h-4 text-teal-600" />
-                                    <span className="text-xs font-mono uppercase tracking-widest text-slate-500">Resume Signal Strength</span>
+                                    <BarChart2 className="size-4 text-teal-600" />
+                                    <span className="text-xs font-mono uppercase tracking-wide text-slate-500">Resume Signal Strength</span>
                                 </div>
 
-                                <div className="space-y-5">
+                                <div className="gap-y-5">
                                     <ProgressBar value={92} label="Story & Narrative" delay={0} />
                                     <ProgressBar value={78} label="Quantified Impact" delay={0.1} />
                                     <ProgressBar value={85} label="Role-Signal Clarity" delay={0.2} />
@@ -192,7 +193,7 @@ export function LandingDataDriven() {
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white text-xs text-slate-600 mb-4">
-                            <FileText className="w-3.5 h-3.5" />
+                            <FileText className="size-3.5" />
                             The 6-Second Signal Model™
                         </div>
                         <h2 className="font-display text-3xl md:text-4xl font-normal tracking-tight mb-4">
@@ -243,8 +244,8 @@ export function LandingDataDriven() {
                                 transition={{ delay: i * 0.1 }}
                             >
                                 <div className="flex items-center justify-between mb-4">
-                                    <div className="w-10 h-10 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600">
-                                        <signal.icon className="w-5 h-5" />
+                                    <div className="size-10 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600">
+                                        <signal.icon className="size-5" />
                                     </div>
                                     <span className="text-xs font-mono font-medium text-teal-600 bg-teal-50 px-2 py-1 rounded">
                                         {signal.weight}
@@ -269,10 +270,10 @@ export function LandingDataDriven() {
                             </h2>
                             <p className="text-slate-600">Research-backed guidance behind our methodology.</p>
                         </div>
-                        <a href="#" className="text-sm text-teal-600 hover:text-teal-700 flex items-center gap-1">
+                        <Link href="/workspace" className="text-sm text-teal-600 hover:text-teal-700 flex items-center gap-1">
                             View all research
-                            <ArrowRight className="w-4 h-4" />
-                        </a>
+                            <ArrowRight className="size-4" />
+                        </Link>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6">
@@ -301,7 +302,7 @@ export function LandingDataDriven() {
                         ].map((article, i) => (
                             <motion.a
                                 key={article.title}
-                                href="#"
+                                href="/workspace"
                                 className="group block p-6 rounded-xl border border-slate-200 bg-white hover:border-teal-300 hover:shadow-lg hover:shadow-teal-500/5 transition-all"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -309,14 +310,14 @@ export function LandingDataDriven() {
                                 transition={{ delay: i * 0.1 }}
                             >
                                 <div className="flex items-center gap-2 mb-3">
-                                    <article.icon className="w-4 h-4 text-teal-600" />
-                                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400">{article.category}</span>
+                                    <article.icon className="size-4 text-teal-600" />
+                                    <span className="text-xs font-mono uppercase tracking-wide text-slate-400">{article.category}</span>
                                 </div>
                                 <h3 className="font-medium text-base mb-2 group-hover:text-teal-600 transition-colors">{article.title}</h3>
                                 <p className="text-sm text-slate-500 leading-relaxed mb-4">{article.description}</p>
                                 <div className="flex items-center justify-between text-xs">
                                     <span className="font-mono text-slate-400">{article.readTime}</span>
-                                    <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" />
+                                    <ArrowRight className="size-4 text-slate-300 group-hover:text-teal-600 group-hover:translate-x-1 transition-all" />
                                 </div>
                             </motion.a>
                         ))}
@@ -337,7 +338,7 @@ export function LandingDataDriven() {
                     <div className="grid md:grid-cols-2 gap-6">
                         {[
                             {
-                                quote: "Executive coaches charge $500+ for a resume review that's half this good. This is what I actually tell my clients — except I couldn't automate my brain. Somehow you did.",
+                                quote: "Executive coaches charge $500+ for a resume review that's half this good. This is what I actually tell my clients  -  except I couldn't automate my brain. Somehow you did.",
                                 name: "Jennifer Martinez",
                                 role: "Career Coach",
                                 company: "$450/hr clients",
@@ -357,12 +358,12 @@ export function LandingDataDriven() {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                             >
-                                <Quote className="w-8 h-8 text-teal-400 mb-4" />
+                                <Quote className="size-8 text-teal-400 mb-4" />
                                 <p className="text-xl text-white leading-relaxed mb-6">
                                     "{testimonial.quote}"
                                 </p>
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-teal-500/30 flex items-center justify-center text-teal-400 font-bold">
+                                    <div className="size-10 rounded-full bg-teal-500/30 flex items-center justify-center text-teal-400 font-bold">
                                         {testimonial.name.charAt(0)}
                                     </div>
                                     <div>
@@ -391,12 +392,12 @@ export function LandingDataDriven() {
                     <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                         {/* Free */}
                         <div className="p-6 rounded-xl border border-slate-200 bg-white">
-                            <div className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">Free</div>
+                            <div className="text-xs font-mono uppercase tracking-wide text-slate-400 mb-2">Free</div>
                             <div className="flex items-baseline gap-1 mb-6">
                                 <span className="text-4xl font-bold">$0</span>
                                 <span className="text-slate-400">1 review</span>
                             </div>
-                            <ul className="space-y-3 mb-6">
+                            <ul className="gap-y-3 mb-6">
                                 {[
                                     "1 full resume review",
                                     "Recruiter first-impression verdict",
@@ -405,27 +406,27 @@ export function LandingDataDriven() {
                                     "Research library access"
                                 ].map((f) => (
                                     <li key={f} className="flex items-center gap-2 text-sm text-slate-600">
-                                        <Check className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                                        <Check className="size-4 text-teal-600 flex-shrink-0" />
                                         {f}
                                     </li>
                                 ))}
                             </ul>
-                            <button className="w-full py-3 rounded-md border border-slate-200 font-medium hover:bg-slate-50 transition-colors">
+                            <button type="button" className="w-full py-3 rounded-md border border-slate-200 font-medium hover:bg-slate-50 transition-colors">
                                 Run Free Review
                             </button>
                         </div>
 
                         {/* Pro */}
                         <div className="p-6 rounded-xl border-2 border-teal-600 bg-white relative">
-                            <div className="absolute -top-3 left-4 px-2 py-0.5 bg-teal-600 text-white text-[10px] font-mono uppercase tracking-wider rounded">
+                            <div className="absolute -top-3 left-4 px-2 py-0.5 bg-teal-600 text-white text-xs font-mono uppercase tracking-wider rounded">
                                 Most Value
                             </div>
-                            <div className="text-xs font-mono uppercase tracking-widest text-teal-600 mb-2">Pro</div>
+                            <div className="text-xs font-mono uppercase tracking-wide text-teal-600 mb-2">Pro</div>
                             <div className="flex items-baseline gap-1 mb-6">
                                 <span className="text-4xl font-bold">$12</span>
                                 <span className="text-slate-400">/month</span>
                             </div>
-                            <ul className="space-y-3 mb-6">
+                            <ul className="gap-y-3 mb-6">
                                 {[
                                     "Unlimited analyses",
                                     "LinkedIn profile review",
@@ -435,12 +436,12 @@ export function LandingDataDriven() {
                                     "Export to PDF/ATS formats",
                                 ].map((f) => (
                                     <li key={f} className="flex items-center gap-2 text-sm text-slate-600">
-                                        <Check className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                                        <Check className="size-4 text-teal-600 flex-shrink-0" />
                                         {f}
                                     </li>
                                 ))}
                             </ul>
-                            <button className="w-full py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors">
+                            <button type="button" className="w-full py-3 rounded-md bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors">
                                 Upgrade to Pro
                             </button>
                         </div>
@@ -453,19 +454,19 @@ export function LandingDataDriven() {
                 <div className="max-w-6xl mx-auto">
                     <div className="flex flex-wrap items-center justify-center gap-8 mb-8">
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                            <Lock className="w-4 h-4 text-teal-600" />
+                            <Lock className="size-4 text-teal-600" />
                             Encrypted in transit
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                            <Trash2 className="w-4 h-4 text-slate-400" />
+                            <Trash2 className="size-4 text-slate-400" />
                             Delete anytime
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                            <Shield className="w-4 h-4 text-slate-400" />
+                            <Shield className="size-4 text-slate-400" />
                             Not used to train public models
                         </div>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
-                            <Award className="w-4 h-4 text-slate-400" />
+                            <Award className="size-4 text-slate-400" />
                             GDPR compliant
                         </div>
                     </div>
@@ -480,14 +481,14 @@ export function LandingDataDriven() {
             <footer className="px-6 py-8 border-t border-slate-100">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
-                        <PocketMark className="w-4 h-4 text-teal-600" />
+                        <PocketMark className="size-4 text-teal-600" />
                         <span className="text-sm text-slate-500">© 2026 Recruiter in Your Pocket</span>
                     </div>
                     <div className="flex items-center gap-6 text-sm text-slate-500">
-                        <a href="#" className="hover:text-slate-900 transition-colors">Privacy</a>
-                        <a href="#" className="hover:text-slate-900 transition-colors">Terms</a>
-                        <a href="#" className="hover:text-slate-900 transition-colors">Methodology</a>
-                        <a href="#" className="hover:text-slate-900 transition-colors">Research</a>
+                        <Link href="/workspace" className="hover:text-slate-900 transition-colors">Privacy</Link>
+                        <Link href="/workspace" className="hover:text-slate-900 transition-colors">Terms</Link>
+                        <Link href="/workspace" className="hover:text-slate-900 transition-colors">Methodology</Link>
+                        <Link href="/workspace" className="hover:text-slate-900 transition-colors">Research</Link>
                     </div>
                 </div>
             </footer>

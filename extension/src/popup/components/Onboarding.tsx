@@ -72,7 +72,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                 ))}
             </div>
 
-            <button className="btn btn-primary onboarding-cta" onClick={onComplete}>
+            <button type="button" className="btn btn-primary onboarding-cta" onClick={onComplete}>
                 {popupContent.onboarding.cta}
                 <span className="btn-arrow">→</span>
             </button>

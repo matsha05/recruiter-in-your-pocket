@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 export function ScanPattern() {
@@ -21,9 +21,9 @@ export function ScanPattern() {
             <DiagramFrame className="riyp-diagram-shell relative w-full aspect-[1/1.4] transition-all duration-500">
 
                 {/* Premium Resume Skeleton */}
-                <div className="absolute inset-0 p-8 space-y-6 opacity-80">
+                <div className="absolute inset-0 p-8 gap-y-6 opacity-80">
                     {/* Header */}
-                    <div className="space-y-3 mb-8">
+                    <div className="gap-y-3 mb-8">
                         <div className="h-8 w-2/3 bg-slate-200 dark:bg-slate-800/80 rounded-md" />
                         <div className="h-4 w-1/3 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
                     </div>
@@ -32,13 +32,13 @@ export function ScanPattern() {
                     <div className="h-px w-full bg-slate-100 dark:bg-slate-800" />
 
                     {/* Experience Block 1 */}
-                    <div className="space-y-3 pt-2">
+                    <div className="gap-y-3 pt-2">
                         <div className="flex justify-between items-start">
                             <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
                             <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
                         <div className="h-4 w-1/4 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        <div className="space-y-2 pt-2">
+                        <div className="gap-y-2 pt-2">
                             <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[92%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[98%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
@@ -46,24 +46,24 @@ export function ScanPattern() {
                     </div>
 
                     {/* Experience Block 2 */}
-                    <div className="space-y-3 pt-4 opacity-90">
+                    <div className="gap-y-3 pt-4 opacity-90">
                         <div className="flex justify-between items-start">
                             <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm hover:ring-2 hover:ring-indigo-500/10 transition-all" />
                             <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="space-y-2 pt-2">
+                        <div className="gap-y-2 pt-2">
                             <div className="h-2.5 w-[88%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[75%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
                     </div>
 
                     {/* Experience Block 3 */}
-                    <div className="space-y-3 pt-4 opacity-75">
+                    <div className="gap-y-3 pt-4 opacity-75">
                         <div className="flex justify-between items-start">
                             <div className="h-5 w-1/4 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
                             <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
                         </div>
-                        <div className="space-y-2 pt-2">
+                        <div className="gap-y-2 pt-2">
                             <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                             <div className="h-2.5 w-[65%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
                         </div>
@@ -73,15 +73,15 @@ export function ScanPattern() {
                     <div className="pt-6 opacity-60">
                         <div className="h-4 w-1/6 bg-slate-200 dark:bg-slate-800/80 rounded-sm mb-3" />
                         <div className="flex flex-wrap gap-2">
-                            {[1, 2, 3, 4, 5].map((i) => (
-                                <div key={i} className="h-6 w-16 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
+                            {["one", "two", "three", "four", "five"].map((slot) => (
+                                <div key={slot} className="h-6 w-16 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
                             ))}
                         </div>
                     </div>
                 </div>
 
                 {/* SVG Overlay */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 420 588" preserveAspectRatio="none">
+                <svg className="absolute inset-0 size-full pointer-events-none overflow-visible" viewBox="0 0 420 588" preserveAspectRatio="none">
                     <defs>
                         <linearGradient id="scanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stopColor="hsl(var(--brand))" stopOpacity="1" />
@@ -114,7 +114,7 @@ export function ScanPattern() {
 
                 {/* The "Eye" Tracker Dot */}
                 <motion.div
-                    className="absolute w-8 h-8 -ml-4 -mt-4 rounded-full z-20 flex items-center justify-center"
+                    className="absolute size-8 -ml-4 -mt-4 rounded-full z-20 flex items-center justify-center"
                     style={{
                         offsetPath: `path("${fullPath}")`,
                     }}
@@ -132,21 +132,21 @@ export function ScanPattern() {
                     }}
                     viewport={{ once: true }}
                 >
-                    <div className="w-3 h-3 bg-white rounded-full shadow-[0_0_10px_rgba(13,148,136,0.8)] z-20" />
-                    <div className="absolute w-full h-full bg-brand/30 rounded-full animate-ping" />
+                    <div className="size-3 bg-white rounded-full shadow-[0_0_10px_rgba(13,148,136,0.8)] z-20" />
+                    <div className="absolute size-full bg-brand/30 rounded-full animate-ping" />
                 </motion.div>
 
                 {/* Meta Labels */}
                 <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-brand/20 rounded-full px-3 py-1 shadow-sm flex items-center gap-2 z-10">
-                    <div className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-                    <span className="text-[10px] font-mono font-medium text-brand uppercase tracking-wider">
+                    <div className="size-1.5 rounded-full bg-brand animate-pulse" />
+                    <span className="text-xs font-mono font-medium text-brand uppercase tracking-wider">
                         Eye Tracking
                     </span>
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Gaze Plot</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Gaze Plot</span>
                 <span className="block text-sm text-foreground/80 font-medium">Typical &apos;F-Pattern&apos; Scanning Behavior</span>
             </figcaption>
         </DiagramFigure>

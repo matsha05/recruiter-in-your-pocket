@@ -56,7 +56,7 @@ export function LegalShell({
                                 {description}
                             </p>
                             {lastUpdated && (
-                                <p className="mt-3 text-xs text-slate-300">
+                                <p className="mt-3 text-xs text-slate-500">
                                     Last updated {lastUpdated}
                                 </p>
                             )}

@@ -58,7 +58,7 @@ export async function rateLimitAsync(
  * Synchronous in-memory rate limit (legacy, per-instance only).
  * Use rateLimitAsync for cross-instance limiting.
  */
-export function rateLimitSync(
+function rateLimitSync(
   key: string,
   limit: number,
   windowMs: number,
@@ -86,7 +86,7 @@ export function rateLimitSync(
  * Legacy sync API for backwards compatibility.
  * @deprecated Use rateLimitAsync for Redis-backed limiting.
  */
-export function rateLimit(
+function rateLimit(
   key: string,
   limit: number,
   windowMs: number,

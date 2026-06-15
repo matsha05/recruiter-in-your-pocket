@@ -18,21 +18,26 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
 
     useEffect(() => {
         // Check if dismissed for this specific report
-        const dismissedReports = JSON.parse(localStorage.getItem('riyp_dismissed_unlock_banners') || '{}');
+        const dismissedReports = JSON.parse(localStorage.getItem('riyp_dismissed_unlock_banners:v1') || '{}');
+        let timer: ReturnType<typeof setTimeout> | undefined;
         if (!dismissedReports[reportId]) {
             setIsDismissed(false);
             // Small delay for entrance animation
-            setTimeout(() => setIsVisible(true), 500);
+            timer = setTimeout(() => setIsVisible(true), 500);
         }
+
+        return () => {
+            if (timer) clearTimeout(timer);
+        };
     }, [reportId]);
 
     const handleDismiss = () => {
         setIsVisible(false);
         setTimeout(() => {
             setIsDismissed(true);
-            const dismissedReports = JSON.parse(localStorage.getItem('riyp_dismissed_unlock_banners') || '{}');
+            const dismissedReports = JSON.parse(localStorage.getItem('riyp_dismissed_unlock_banners:v1') || '{}');
             dismissedReports[reportId] = true;
-            localStorage.setItem('riyp_dismissed_unlock_banners', JSON.stringify(dismissedReports));
+            localStorage.setItem('riyp_dismissed_unlock_banners:v1', JSON.stringify(dismissedReports));
         }, 300);
     };
 
@@ -48,14 +53,14 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
             <div className="relative rounded border border-premium/20 bg-premium/5 p-4 md:p-6 overflow-hidden">
                 {/* Background Sparkle Decoration */}
                 <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                    <InsightSparkleIcon className="w-16 h-16 text-premium" />
+                    <InsightSparkleIcon className="size-16 text-premium" />
                 </div>
 
                 <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1 space-y-4">
-                        <div className="space-y-1">
+                    <div className="flex-1 gap-y-4">
+                        <div className="gap-y-1">
                             <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                                <InsightSparkleIcon className="w-4 h-4 text-premium" />
+                                <InsightSparkleIcon className="size-4 text-premium" />
                                 Full report unlocked.
                             </h3>
                             <p className="text-sm text-muted-foreground">
@@ -71,7 +76,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 className="h-9"
                             >
                                 Jump to Rewrites
-                                <ArrowRight className="w-3.5 h-3.5 ml-2" />
+                                <ArrowRight className="size-3.5 ml-2" />
                             </Button>
                             <Button
                                 variant="ghost"
@@ -79,7 +84,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 onClick={onDownloadPdf}
                                 className="h-9 text-muted-foreground hover:text-foreground"
                             >
-                                <Download className="w-3.5 h-3.5 mr-2" />
+                                <Download className="size-3.5 mr-2" />
                                 Download PDF
                             </Button>
                         </div>
@@ -89,10 +94,10 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                         variant="ghost"
                         size="sm"
                         onClick={handleDismiss}
-                        className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+                        className="size-8 p-0 text-muted-foreground hover:text-foreground"
                         aria-label="Dismiss banner"
                     >
-                        <X className="w-4 h-4" />
+                        <X className="size-4" />
                     </Button>
                 </div>
             </div>

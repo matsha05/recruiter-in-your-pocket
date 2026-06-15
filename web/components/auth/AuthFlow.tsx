@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, ArrowRight, Check, Mail } from "lucide-react";
@@ -31,7 +32,7 @@ export function AuthFlow({
   isOpen = true,
   initialError = null
 }: AuthFlowProps) {
-  const router = useRouter();
+  const { push, refresh } = useRouter();
   const copy = getAuthCopy(context);
 
   const [step, setStep] = useState<AuthStep>("email");
@@ -111,12 +112,12 @@ export function AuthFlow({
   const finishAuth = useCallback(() => {
     onSuccess?.();
     if (variant === "page") {
-      router.refresh();
-      router.push(redirectTo || "/workspace");
+      refresh();
+      push(redirectTo || "/workspace");
     } else {
       onClose?.();
     }
-  }, [onClose, onSuccess, redirectTo, router, variant]);
+  }, [onClose, onSuccess, redirectTo, push, refresh, variant]);
 
   const verifyCode = useCallback(async () => {
     if (!code.trim() || loading) return;
@@ -210,7 +211,7 @@ export function AuthFlow({
     : "";
 
   const panelClass = cn(
-    "space-y-5",
+    "gap-y-5",
     variant === "page" && "rounded-[28px] border border-slate-200 bg-white/95 p-8 shadow-[0_24px_56px_-40px_rgba(15,23,42,0.22)]"
   );
 
@@ -221,14 +222,14 @@ export function AuthFlow({
     >
       <div
         className={cn(
-          "w-full space-y-6",
+          "w-full gap-y-6",
           variant === "page" && "mx-auto grid max-w-[72rem] gap-12 lg:grid-cols-[minmax(0,1fr)_27rem] lg:items-start",
           variant === "modal" && "max-w-none"
         )}
       >
         {variant === "page" ? (
-          <div className="space-y-8 pt-6">
-            <div className="space-y-4">
+          <div className="gap-y-8 pt-6">
+            <div className="gap-y-4">
               <div className="editorial-kicker text-slate-400">Secure sign-in</div>
               <h1
                 className="font-display max-w-[34rem] text-slate-950"
@@ -246,7 +247,7 @@ export function AuthFlow({
               </div>
             </div>
 
-            <div className="max-w-[34rem] space-y-4 border-t border-slate-200/85 pt-6">
+            <div className="max-w-[34rem] gap-y-4 border-t border-slate-200/85 pt-6">
               {step === "email" ? (
                 <>
                   <p className="text-[1.02rem] leading-8 text-slate-700">
@@ -259,7 +260,7 @@ export function AuthFlow({
                       { label: "Saved jobs", value: "Sync extension history only if you want it." },
                     ].map((item) => (
                       <div key={item.label} className="border-t border-slate-200/80 pt-3">
-                        <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-400">{item.label}</p>
+                        <p className="text-xs font-medium uppercase tracking-wide text-slate-400">{item.label}</p>
                         <p className="mt-2 text-sm leading-6 text-slate-600">{item.value}</p>
                       </div>
                     ))}
@@ -275,7 +276,7 @@ export function AuthFlow({
             </div>
           </div>
         ) : (
-          <div className="text-center space-y-2">
+          <div className="text-center gap-y-2">
             <h1 className="font-display font-medium text-2xl text-foreground tracking-tight">
               {stepTitle}
             </h1>
@@ -288,10 +289,10 @@ export function AuthFlow({
           </div>
         )}
 
-        <div className={cn(variant === "page" ? "space-y-5" : "max-w-md space-y-5", variant === "modal" && "max-w-none")}>
+        <div className={cn(variant === "page" ? "gap-y-5" : "max-w-md gap-y-5", variant === "modal" && "max-w-none")}>
           {variant === "page" ? (
-            <div className="space-y-2">
-              <div className="text-xs font-medium uppercase tracking-[0.14em] text-slate-400">
+            <div className="gap-y-2">
+              <div className="text-xs font-medium uppercase tracking-wide text-slate-400">
                 {step === "email" ? "Enter your email" : step === "code" ? "Enter your code" : step === "link" ? "Check your link" : "Finish setup"}
               </div>
               <p className="text-sm text-slate-500">
@@ -308,11 +309,11 @@ export function AuthFlow({
           )}
 
           {step === "email" && (
-            <div className="space-y-4">
-              <div className="space-y-2">
+            <div className="gap-y-4">
+              <div className="gap-y-2">
                 <Label htmlFor="auth-email" className="sr-only">Email address</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground/60" />
                   <Input
                     id="auth-email"
                     type="email"
@@ -329,9 +330,9 @@ export function AuthFlow({
                 </p>
               </div>
               <Button onClick={() => handleSendCode("otp")} disabled={loading} className="w-full h-12 text-base font-medium">
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
                 Email secure sign-in code
-                {!loading && <ArrowRight className="ml-2 h-4 w-4" />}
+                {!loading && <ArrowRight className="ml-2 size-4" />}
               </Button>
               {showMagicLinkFallback && (
                 <button
@@ -346,14 +347,14 @@ export function AuthFlow({
           )}
 
           {step === "code" && (
-            <div className="space-y-4">
-              <div className="space-y-2">
+            <div className="gap-y-4">
+              <div className="gap-y-2">
                 <Label htmlFor="auth-code" className="sr-only">Login code</Label>
                 <Input
                   id="auth-code"
                   type="text"
                   placeholder="00000000"
-                  className="h-14 font-mono tracking-widest text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
+                  className="h-14 font-mono tracking-wide text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
                   value={code}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "").slice(0, 8);
@@ -364,9 +365,9 @@ export function AuthFlow({
                 />
               </div>
               <Button onClick={verifyCode} disabled={loading || code.length !== 8} className="w-full h-12 text-base font-medium">
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
                 Verify Code
-                {!loading && <Check className="ml-2 h-4 w-4" />}
+                {!loading && <Check className="ml-2 size-4" />}
               </Button>
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <button
@@ -404,7 +405,7 @@ export function AuthFlow({
           )}
 
           {step === "link" && (
-            <div className="space-y-4">
+            <div className="gap-y-4">
               <div className="rounded border border-border/60 bg-secondary/10 p-4 text-sm text-muted-foreground">
                 Click the link in your email to sign in. You can close this tab after it opens.
               </div>
@@ -442,8 +443,8 @@ export function AuthFlow({
           )}
 
           {step === "name" && (
-            <div className="space-y-4">
-              <div className="space-y-2">
+            <div className="gap-y-4">
+              <div className="gap-y-2">
                 <Label htmlFor="auth-name" className="sr-only">First name</Label>
                 <Input
                   id="auth-name"
@@ -457,7 +458,7 @@ export function AuthFlow({
                 />
               </div>
               <Button onClick={handleSaveName} disabled={loading || !firstName.trim()} className="w-full h-12 text-base font-medium">
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
                 Continue
               </Button>
               <Button
@@ -471,13 +472,13 @@ export function AuthFlow({
           )}
         </div>
 
-          <div className={cn("space-y-2", variant === "page" ? "pt-1" : "text-center")}>
-            <div className="text-xs text-muted-foreground/60 uppercase tracking-widest font-medium">
+          <div className={cn("gap-y-2", variant === "page" ? "pt-1" : "text-center")}>
+            <div className="text-xs text-muted-foreground/60 uppercase tracking-wide font-medium">
               Secure Login • No Password Required
             </div>
             {variant === "page" ? (
               <p className="text-xs text-muted-foreground">
-                Questions about privacy or billing? <a href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</a> · <a href="/security" className="underline underline-offset-4 hover:text-foreground">Security</a> · <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">Support</a>
+                Questions about privacy or billing? <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</Link> · <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link> · <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">Support</a>
               </p>
             ) : null}
           </div>

@@ -4,7 +4,7 @@ import { StarStructureDiagram } from "@/components/research/diagrams/StarStructu
 
 export const metadata: Metadata = {
     title: "The STAR Method: Structure That Works | Hiring Research",
-    description: "The STAR method isn't just for interviews—it's also the best structure for resume bullets.",
+    description: "The STAR method isn't just for interviews - it's also the best structure for resume bullets.",
 };
 
 export default function StarMethodPage() {
@@ -13,7 +13,7 @@ export default function StarMethodPage() {
             header={{
                 tag: "Interview prep",
                 title: "The STAR Method: Structure That Works",
-                description: "The STAR method—Situation, Task, Action, Result—structures behavioral answers for interviews and resumes.",
+                description: "The STAR method - Situation, Task, Action, Result - structures behavioral answers for interviews and resumes.",
                 lastUpdated: "December 2025",
                 readTime: "5 min read"
             }}
@@ -36,7 +36,7 @@ export default function StarMethodPage() {
                 <>
                     <h2 className="research-h2">The STAR framework</h2>
                     <p className="research-body mb-6">
-                        A complete answer structure that works for behavioral interviews—and adapts to resume bullets.
+                        A complete answer structure that works for behavioral interviews - and adapts to resume bullets.
                     </p>
                     <StarStructureDiagram />
                 </>
@@ -100,7 +100,7 @@ export default function StarMethodPage() {
             <h2 className="research-h2">Why structure matters</h2>
             <p className="research-body mb-6">
                 Unstructured answers ramble. Structured answers communicate competence. The STAR method
-                forces you to tell a complete story with a clear outcome—exactly what interviewers
+                forces you to tell a complete story with a clear outcome - exactly what interviewers
                 are trained to listen for.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>

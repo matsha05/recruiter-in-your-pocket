@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LandingEvidenceContent } from "@/components/landing/landingConfig";
@@ -42,7 +42,7 @@ export function EvidenceSection({ content }: EvidenceSectionProps) {
                         <ol className="landing-flow-sm landing-copy">
                             {content.howItWorks.steps.map((step, index) => (
                                 <li key={step} className="flex items-start gap-2.5">
-                                    <span className="mt-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-brand/12 text-[11px] font-semibold text-brand">
+                                    <span className="mt-0.5 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-brand/12 text-xs font-semibold text-brand">
                                         {index + 1}
                                     </span>
                                     <span>{step.replace(/^\d+\.\s*/, "")}</span>
@@ -54,7 +54,7 @@ export function EvidenceSection({ content }: EvidenceSectionProps) {
                             className="landing-link-inline"
                         >
                             {content.howItWorks.cta.label}
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="size-4" />
                         </Link>
                     </div>
                 </motion.div>
@@ -76,8 +76,8 @@ export function EvidenceSection({ content }: EvidenceSectionProps) {
                             )}
                         >
                             <div className="flex items-start justify-between gap-3">
-                                <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center">
-                                    <card.icon className="w-4 h-4" />
+                                <div className="size-8 rounded-md bg-brand/10 text-brand flex items-center justify-center">
+                                    <card.icon className="size-4" />
                                 </div>
                                 <span className="text-label-mono text-muted-foreground">{card.weight}</span>
                             </div>

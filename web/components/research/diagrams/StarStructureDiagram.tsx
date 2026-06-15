@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -30,7 +30,7 @@ export function StarStructureDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Behavioral response framework
                     </span>
                 </div>
@@ -57,7 +57,7 @@ export function StarStructureDiagram() {
                                     viewport={{ once: true }}
                                     className="flex flex-col items-center flex-1"
                                 >
-                                    <div className={`w-14 h-14 md:w-16 md:h-16 rounded-xl border-2 flex items-center justify-center shadow-lg transition-all duration-300 group-hover:shadow-md ${step.color === "brand"
+                                    <div className={`size-14 md:w-16 md:h-16 rounded-xl border-2 flex items-center justify-center shadow-lg transition-all duration-300 group-hover:shadow-md ${step.color === "brand"
                                         ? "border-brand/50 bg-gradient-to-br from-brand/10 to-brand/5 dark:from-brand/20 dark:to-brand/10"
                                         : "border-border/40 bg-white dark:bg-card"
                                         }`}>
@@ -71,7 +71,7 @@ export function StarStructureDiagram() {
                                             }`}>
                                             {step.label}
                                         </p>
-                                        <p className="text-[10px] md:text-xs text-muted-foreground mt-0.5">
+                                        <p className="text-xs md:text-xs text-muted-foreground mt-0.5">
                                             {step.desc}
                                         </p>
                                     </div>
@@ -89,13 +89,13 @@ export function StarStructureDiagram() {
                         className="mt-8 bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
                     >
                         <div className="flex items-center gap-2 mb-3">
-                            <div className="w-5 h-5 rounded-full bg-brand/10 flex items-center justify-center">
-                                <svg className="w-3 h-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <div className="size-5 rounded-full bg-brand/10 flex items-center justify-center">
+                                <svg className="size-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                     <path d="M9 12l2 2 4-4" />
                                     <circle cx="12" cy="12" r="10" />
                                 </svg>
                             </div>
-                            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                            <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                                 On a resume bullet
                             </span>
                         </div>
@@ -116,8 +116,8 @@ export function StarStructureDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — STAR Framework</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  STAR Framework</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     The behavioral interview structure, optimized for resume bullets
                 </span>

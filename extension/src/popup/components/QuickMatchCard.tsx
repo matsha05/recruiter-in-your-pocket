@@ -32,41 +32,50 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
     const capturedAgo = getTimeAgo(job.capturedAt);
 
     return (
-        <div className="job-card" onClick={onClick} title="Open analysis">
-            <ScoreDial score={score} />
-            <div className="job-info">
-                <div className="job-title-row">
-                    <span className="job-title">{job.title}</span>
-                    {job.status && job.status !== 'saved' && (
-                        <span className={`job-status-pill status-${job.status}`}>
-                            {getStatusLabel(job.status)}
-                        </span>
+        <div className="job-card">
+            <button
+                type="button"
+                className="job-card-main"
+                onClick={onClick}
+                title="Open analysis"
+            >
+                <ScoreDial score={score} />
+                <div className="job-info">
+                    <div className="job-title-row">
+                        <span className="job-title">{job.title}</span>
+                        {job.status && job.status !== 'saved' && (
+                            <span className={`job-status-pill status-${job.status}`}>
+                                {getStatusLabel(job.status)}
+                            </span>
+                        )}
+                    </div>
+                    <div className="job-meta">
+                        <span className="job-company">{job.company}</span>
+                        {job.source && (
+                            <span className="job-source">{job.source === 'linkedin' ? 'LI' : 'IN'}</span>
+                        )}
+                    </div>
+                    {score > 0 && (
+                        <div className="job-alignment">
+                            <span className={`alignment-badge ${getRoleAlignmentClass(score)}`}>
+                                {getRoleAlignmentLabel(score)}
+                            </span>
+                        </div>
                     )}
-                </div>
-                <div className="job-meta">
-                    <span className="job-company">{job.company}</span>
-                    {job.source && (
-                        <span className="job-source">{job.source === 'linkedin' ? 'LI' : 'IN'}</span>
-                    )}
-                </div>
-                {score > 0 && (
-                    <div className="job-alignment">
-                        <span className={`alignment-badge ${getRoleAlignmentClass(score)}`}>
-                            {getRoleAlignmentLabel(score)}
+                    <div className="job-status">
+                        <span className="job-status-text">
+                            Captured {capturedAgo} • {score > 0 ? `${getScoreBandLabel(score)}: ${score}%` : 'Ready to analyze'}
                         </span>
                     </div>
-                )}
-                <div className="job-status">
-                    <span className="job-status-text">
-                        Captured {capturedAgo} • {score > 0 ? `${getScoreBandLabel(score)}: ${score}%` : 'Ready to analyze'}
-                    </span>
                 </div>
-            </div>
+            </button>
             <div className="job-actions">
                 <button
+                    type="button"
                     className="job-action-btn job-external-btn"
                     onClick={handleOpenOriginal}
                     title="Open original posting"
+                    aria-label="Open original posting"
                 >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -75,9 +84,11 @@ export default function QuickMatchCard({ job, onClick, onOpenOriginal, onDelete 
                     </svg>
                 </button>
                 <button
+                    type="button"
                     className="job-action-btn job-delete-btn"
                     onClick={handleDelete}
                     title="Remove job"
+                    aria-label="Remove job"
                 >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="3 6 5 6 21 6" />

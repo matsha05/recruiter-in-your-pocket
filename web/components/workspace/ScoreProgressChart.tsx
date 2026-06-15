@@ -64,18 +64,18 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                         : 'bg-muted text-muted-foreground border border-border'
                     }`}>
                     {improvement > 0 ? (
-                        <TrendingUp className="w-4 h-4" />
+                        <TrendingUp className="size-4" />
                     ) : improvement < 0 ? (
-                        <TrendingDown className="w-4 h-4" />
+                        <TrendingDown className="size-4" />
                     ) : (
-                        <Minus className="w-4 h-4" />
+                        <Minus className="size-4" />
                     )}
                     {improvement > 0 ? '+' : ''}{improvement} pts
                 </div>
             </div>
 
             {/* Simple Bar Chart */}
-            <div className="space-y-2">
+            <div className="gap-y-2">
                 {sortedScores.map((point, idx) => {
                     const widthPercent = ((point.score - minScore) / range) * 100;
                     const isLatest = idx === sortedScores.length - 1;
@@ -87,7 +87,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                     };
 
                     return (
-                        <div key={point.date} className="space-y-1">
+                        <div key={point.date} className="gap-y-1">
                             <div className="flex items-center justify-between text-xs">
                                 <span className={`${isLatest ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
                                     {point.name || formatDate(point.date)}
@@ -116,7 +116,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                 <div className={`mt-4 text-center text-sm ${improvement > 0 ? 'text-green-600' : 'text-destructive'
                     }`}>
                     {improvement > 0 ? (
-                        <><Check className="inline w-4 h-4 mr-1" /> Your resume improved {improvement} points since your first report</>
+                        <><Check className="inline size-4 mr-1" /> Your resume improved {improvement} points since your first report</>
                     ) : (
                         `Score decreased by ${Math.abs(improvement)} points. Review recent changes.`
                     )}

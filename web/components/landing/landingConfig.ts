@@ -312,7 +312,7 @@ export const landingContent: LandingContentConfig = {
     pricing: {
         eyebrow: "Simple pricing",
         title: "Start free. Pay when you want more.",
-        copy: "Your first report is free. Not a teaser. Paid plans are for more reports, saved history, exports, and a steadier role-by-role workflow.",
+        copy: "Your first report is free. Not a teaser. Paid plans are for repeated role-specific reports, version history, exports, and a steadier application workflow.",
         included: {
             eyebrow: "Included in every plan",
             items: [
@@ -333,7 +333,7 @@ export const landingContent: LandingContentConfig = {
                 href: "/extension",
             },
             items: [
-                { icon: Lock, title: "Encrypted on upload", copy: "Your resume is encrypted the moment you upload it." },
+                { icon: Lock, title: "Encrypted in transit", copy: "Your resume is protected while it moves through the upload flow." },
                 { icon: Trash2, title: "You control your data", copy: "Your reports are only saved if you want them, and you can delete them anytime." },
                 { icon: Shield, title: "No AI training", copy: "We never use your resume to train AI models." },
                 { icon: Award, title: "Explicit extension capture", copy: "The extension works on supported job pages and only captures roles when you ask it to." },

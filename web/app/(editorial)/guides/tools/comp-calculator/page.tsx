@@ -138,7 +138,7 @@ function BigNumberInput({ label, value, onChange, prefix = "$", suffix, hint }: 
 }) {
     return (
         <div className="space-y-1.5">
-            <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{label}</label>
+            <label className="text-xs font-mono uppercase tracking-widest text-muted-foreground">{label}</label>
             <div className="relative">
                 {prefix && <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">{prefix}</span>}
                 <input
@@ -151,7 +151,7 @@ function BigNumberInput({ label, value, onChange, prefix = "$", suffix, hint }: 
                 />
                 {suffix && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">{suffix}</span>}
             </div>
-            {hint && <p className="text-[10px] text-muted-foreground/70">{hint}</p>}
+            {hint && <p className="text-xs text-muted-foreground/70">{hint}</p>}
         </div>
     );
 }
@@ -164,7 +164,7 @@ function VestingEditor({ schedule, onChange }: { schedule: number[]; onChange: (
     return (
         <div className="space-y-2">
             <button onClick={() => setOpen(!open)} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                <span className="text-[10px] font-mono uppercase tracking-widest">Vesting:</span>
+                <span className="text-xs font-mono uppercase tracking-widest">Vesting:</span>
                 <span className="font-medium text-foreground">{schedule.join("/")}</span>
                 {open ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             </button>
@@ -174,7 +174,7 @@ function VestingEditor({ schedule, onChange }: { schedule: number[]; onChange: (
                         <div className="grid grid-cols-4 gap-2 p-3 bg-muted/30 rounded-lg">
                             {[1, 2, 3, 4].map((year, i) => (
                                 <div key={year} className="space-y-1">
-                                    <label className="text-[9px] font-mono uppercase text-muted-foreground">Y{year} %</label>
+                                    <label className="text-xs font-mono uppercase text-muted-foreground">Y{year} %</label>
                                     <input
                                         type="number"
                                         value={schedule[i] || 0}
@@ -206,7 +206,7 @@ function AdvancedOptions({ offer, onChange }: { offer: OfferData; onChange: (o: 
                 {open ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 <span className="font-medium">Advanced</span>
                 {hasAdvanced && !open && (
-                    <span className="text-[10px] text-brand bg-brand/10 px-1.5 py-0.5 rounded">Active</span>
+                    <span className="text-xs text-brand bg-brand/10 px-1.5 py-0.5 rounded">Active</span>
                 )}
             </button>
             <AnimatePresence>
@@ -289,7 +289,7 @@ function OfferInputCard({ offer, onChange, onRemove, colorIndex, canRemove }: {
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full" style={{ backgroundColor: color.primary }} />
-                    {offer.isCurrentJob && <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground bg-muted px-2 py-0.5 rounded">Baseline</span>}
+                    {offer.isCurrentJob && <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground bg-muted px-2 py-0.5 rounded">Baseline</span>}
                 </div>
                 {canRemove && <button onClick={onRemove} className="text-muted-foreground/50 hover:text-destructive transition-colors p-1"><X className="w-4 h-4" /></button>}
             </div>
@@ -311,7 +311,7 @@ function OfferInputCard({ offer, onChange, onRemove, colorIndex, canRemove }: {
             <AdvancedOptions offer={offer} onChange={onChange} />
             <div className="mt-4 pt-4 border-t border-border/20">
                 <div className="flex items-baseline justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">4-Year Total</span>
+                    <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">4-Year Total</span>
                     <span className="text-2xl font-display font-semibold" style={{ color: color.primary }}>{formatCurrency(fourYearTotal)}</span>
                 </div>
             </div>
@@ -328,7 +328,7 @@ function StackedBarChart({ offers }: { offers: OfferData[] }) {
 
     return (
         <div className="space-y-4">
-            <h3 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Year-by-Year Breakdown</h3>
+            <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Year-by-Year Breakdown</h3>
             <div className="flex items-end gap-2">
                 {[1, 2, 3, 4].map((year) => (
                     <div key={year} className="flex-1 space-y-2">
@@ -373,14 +373,14 @@ function DataTable({ offers }: { offers: OfferData[] }) {
 
     return (
         <div className="space-y-3">
-            <h3 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Detailed Breakdown</h3>
+            <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Detailed Breakdown</h3>
             <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                     <thead>
                         <tr className="border-b border-border/30">
-                            <th className="text-left py-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Year</th>
+                            <th className="text-left py-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">Year</th>
                             {validOffers.map((offer, i) => (
-                                <th key={offer.id} className="text-right py-2 font-mono text-[10px] uppercase tracking-widest" style={{ color: OFFER_COLORS[i].primary }}>
+                                <th key={offer.id} className="text-right py-2 font-mono text-xs uppercase tracking-widest" style={{ color: OFFER_COLORS[i].primary }}>
                                     {offer.companyName || `Offer ${i + 1}`}
                                 </th>
                             ))}
@@ -433,7 +433,7 @@ function SummaryTable({ offers }: { offers: OfferData[] }) {
 
     return (
         <div className="space-y-3">
-            <h3 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">4-Year Ranking</h3>
+            <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground">4-Year Ranking</h3>
             <div className="space-y-2">
                 {sorted.map((offer, i) => {
                     const total = getFourYearTotal(offer);
@@ -448,8 +448,8 @@ function SummaryTable({ offers }: { offers: OfferData[] }) {
                                 <div className="flex items-center gap-3">
                                     <span className="w-3 h-3 rounded-full" style={{ backgroundColor: color.primary }} />
                                     <span className="font-medium text-foreground">{offer.companyName || `Offer ${offers.indexOf(offer) + 1}`}</span>
-                                    {offer.isCurrentJob && <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground bg-muted px-2 py-0.5 rounded">Current</span>}
-                                    {isWinner && validOffers.length > 1 && <span className="text-[9px] font-mono uppercase tracking-widest text-white bg-brand px-2 py-0.5 rounded">Best</span>}
+                                    {offer.isCurrentJob && <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground bg-muted px-2 py-0.5 rounded">Current</span>}
+                                    {isWinner && validOffers.length > 1 && <span className="text-xs font-mono uppercase tracking-widest text-white bg-brand px-2 py-0.5 rounded">Best</span>}
                                 </div>
                                 <div className="flex items-center gap-4">
                                     {!isWinner && diff > 0 && <span className="text-sm text-muted-foreground">-{formatCompact(diff)}</span>}
@@ -513,7 +513,7 @@ export default function CompCalculatorPage() {
             <main className="max-w-6xl mx-auto px-6 py-10">
                 <header className="mb-8">
                     <div className="flex items-center gap-3 mb-3">
-                        <span className="inline-flex items-center rounded-sm border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[9px] uppercase tracking-widest font-semibold text-amber-600">Tool</span>
+                        <span className="inline-flex items-center rounded-sm border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-xs uppercase tracking-widest font-semibold text-amber-600">Tool</span>
                     </div>
                     <h1 className="font-display text-3xl md:text-4xl font-medium tracking-tight text-foreground leading-tight mb-2">Total Compensation Calculator</h1>
                     <p className="text-muted-foreground max-w-xl">Compare offers side-by-side with custom vesting, stock growth simulation, and 4-year projections.</p>

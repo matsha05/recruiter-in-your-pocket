@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, useReducedMotion, HTMLMotionProps } from "framer-motion"
+import { m as motion, useReducedMotion, HTMLMotionProps } from "motion/react"
 import { cn } from "@/lib/utils"
 import { CARD_HOVER, CARD_TAP } from "@/lib/animation"
 

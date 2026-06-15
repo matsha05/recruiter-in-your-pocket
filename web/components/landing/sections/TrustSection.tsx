@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LandingTrustContent } from "@/components/landing/landingConfig";
@@ -43,7 +43,7 @@ export function TrustSection({ content }: TrustSectionProps) {
                                     index === 0 && "md:col-span-2"
                                 )}
                             >
-                                <Quote className="w-5 h-5 text-brand mb-3" />
+                                <Quote className="size-5 text-brand mb-3" />
                                 <p className="text-[16px] leading-[1.62] mb-3 text-slate-100">{testimonial.quote}</p>
                                 <div className="text-sm text-slate-300">
                                     <div className="font-medium text-slate-100">{testimonial.name}</div>
@@ -62,10 +62,10 @@ export function TrustSection({ content }: TrustSectionProps) {
                     viewport={{ once: true, amount: 0.15 }}
                 >
                     <div className="landing-label text-slate-400">{content.reasonsLabel}</div>
-                    <div className="space-y-3.5">
+                    <div className="gap-y-3.5">
                         {content.reasons.map((point, index) => (
                             <div key={point} className="flex items-start gap-3">
-                                <span className="mt-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand/15 text-[11px] font-semibold text-brand">
+                                <span className="mt-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand/15 text-xs font-semibold text-brand">
                                     {index + 1}
                                 </span>
                                 <p className="text-[15px] leading-relaxed text-slate-200">{point}</p>
@@ -81,7 +81,7 @@ export function TrustSection({ content }: TrustSectionProps) {
                         className="landing-btn-primary w-fit"
                     >
                         {content.cta.label}
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="size-4" />
                     </Link>
                 </motion.div>
             </div>

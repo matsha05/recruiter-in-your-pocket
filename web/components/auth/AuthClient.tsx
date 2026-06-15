@@ -6,9 +6,10 @@ import { normalizeAuthContext, safeAuthRedirect } from "@/lib/auth/utils";
 
 export default function AuthClient() {
     const searchParams = useSearchParams();
-    const from = searchParams.get("from");
-    const nextParam = searchParams.get("next");
-    const errorParam = searchParams.get("error");
+    const getSearchParam = searchParams.get.bind(searchParams);
+    const from = getSearchParam("from");
+    const nextParam = getSearchParam("next");
+    const errorParam = getSearchParam("error");
 
     const context = normalizeAuthContext(from);
     const fallback = from === "settings" ? "/settings" : "/workspace";

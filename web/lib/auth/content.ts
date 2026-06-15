@@ -1,6 +1,6 @@
 export type AuthContext = "default" | "report" | "settings" | "paywall" | "history" | "extension";
 
-export const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
+const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
   default: {
     headline: "Pick up where you left off",
     subtext: "Use secure sign-in to reach your reports, history, and saved job context."
@@ -15,7 +15,7 @@ export const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string 
   },
   paywall: {
     headline: "Use the access you already paid for",
-    subtext: "Purchases, credits, and restores stay tied to your signed-in account."
+    subtext: "Purchases, billing restores, and paid access stay tied to your signed-in account."
   },
   history: {
     headline: "Open your saved history",

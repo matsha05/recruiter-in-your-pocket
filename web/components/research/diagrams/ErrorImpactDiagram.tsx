@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -16,7 +16,7 @@ export function ErrorImpactDiagram() {
             detail: "Typo, grammar, inconsistency",
             color: "rose",
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10" /><path d="m15 9-6 6M9 9l6 6" />
                 </svg>
             )
@@ -26,7 +26,7 @@ export function ErrorImpactDiagram() {
             detail: "Low attention to detail, carelessness",
             color: "amber",
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 9v4M12 17h.01" /><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
                 </svg>
             )
@@ -36,7 +36,7 @@ export function ErrorImpactDiagram() {
             detail: "Higher perceived hiring risk",
             color: "orange",
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" />
                 </svg>
             )
@@ -46,7 +46,7 @@ export function ErrorImpactDiagram() {
             detail: "Reduced interview chances",
             color: "red",
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M18 6 6 18M6 6l12 12" />
                 </svg>
             )
@@ -71,7 +71,7 @@ export function ErrorImpactDiagram() {
             >
                 {/* Header */}
                 <div className="bg-gradient-to-r from-rose-50 to-red-50 dark:from-rose-950/20 dark:to-red-950/20 px-6 py-4 border-b border-border/30">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-rose-600/70 dark:text-rose-400/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-rose-600/70 dark:text-rose-400/70">
                         The Error Penalty Chain
                     </span>
                 </div>
@@ -93,20 +93,20 @@ export function ErrorImpactDiagram() {
                                     {/* Arrow connector (hidden on first item and mobile) */}
                                     {i > 0 && (
                                         <div className="hidden md:block absolute -left-2 top-1/2 -translate-y-1/2 -translate-x-1/2">
-                                            <svg className="w-4 h-4 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <svg className="size-4 text-muted-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                                 <path d="M5 12h14M12 5l7 7-7 7" />
                                             </svg>
                                         </div>
                                     )}
 
                                     <div className={`rounded-lg p-4 border ${colors.bg} ${colors.border} h-full`}>
-                                        <div className={`w-10 h-10 rounded-lg ${colors.iconBg} flex items-center justify-center ${colors.text} mb-3`}>
+                                        <div className={`size-10 rounded-lg ${colors.iconBg} flex items-center justify-center ${colors.text} mb-3`}>
                                             {step.icon}
                                         </div>
                                         <p className={`text-sm font-semibold ${colors.text} mb-1`}>
                                             {step.stage}
                                         </p>
-                                        <p className="text-[11px] text-muted-foreground leading-relaxed">
+                                        <p className="text-xs text-muted-foreground leading-relaxed">
                                             {step.detail}
                                         </p>
                                     </div>
@@ -130,8 +130,8 @@ export function ErrorImpactDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Error Cascade</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Error Cascade</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     How spelling errors trigger trait inferences and hiring penalties
                 </span>

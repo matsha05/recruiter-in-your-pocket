@@ -19,7 +19,7 @@ export function routeLabel(req: Request): { method: string; path: string } {
   return { method: req.method.toUpperCase(), path: url.pathname };
 }
 
-export function outcomeFromHttpStatus(status: number): OutcomeCategory {
+function outcomeFromHttpStatus(status: number): OutcomeCategory {
   if (status >= 200 && status < 300) return "success";
   if (status === 400) return "validation_error";
   if (status === 401) return "auth_required";

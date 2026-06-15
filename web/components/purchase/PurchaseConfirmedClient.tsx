@@ -14,10 +14,11 @@ const paperShadow =
 
 export default function PurchaseConfirmedClient() {
   const searchParams = useSearchParams();
-  const sessionId = searchParams.get("session_id");
-  const tier = searchParams.get("tier");
-  const source = searchParams.get("source");
-  const unlock = searchParams.get("unlock");
+    const getSearchParam = searchParams.get.bind(searchParams);
+  const sessionId = getSearchParam("session_id");
+  const tier = getSearchParam("tier");
+  const source = getSearchParam("source");
+  const unlock = getSearchParam("unlock");
 
   const { state, attempt, sessionSuffix } = usePaymentConfirmation({
     sessionId,
@@ -60,12 +61,12 @@ export default function PurchaseConfirmedClient() {
             style={{ boxShadow: paperShadow }}
           >
             <div className="flex items-center gap-3">
-              {state.status === "unlocked" && <CheckCircle2 className="h-6 w-6 text-emerald-600" />}
+              {state.status === "unlocked" && <CheckCircle2 className="size-6 text-emerald-600" />}
               {(state.status === "checking" || state.status === "pending") && (
-                <Loader2 className="h-6 w-6 animate-spin text-slate-400" />
+                <Loader2 className="size-6 animate-spin text-slate-400" />
               )}
               {(state.status === "error" || state.status === "missing") && (
-                <AlertTriangle className="h-6 w-6 text-amber-500" />
+                <AlertTriangle className="size-6 text-amber-500" />
               )}
               <h1
                 className="font-display text-slate-900"
@@ -103,11 +104,11 @@ export default function PurchaseConfirmedClient() {
                   Open Workspace
                 </Link>
               ) : (
-                <button
+                <button type="button"
                   onClick={() => window.location.reload()}
                   className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
                 >
-                  <RefreshCw className="h-4 w-4" />
+                  <RefreshCw className="size-4" />
                   Check Again
                 </button>
               )}

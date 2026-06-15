@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { m as motion, AnimatePresence } from "motion/react"
 import { Command, Download, Share2, ChevronRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -67,7 +67,7 @@ export function BottomActionRail({
                 "fixed bottom-0 left-0 right-0 z-40",
                 "border-t border-border/60 bg-background/95 backdrop-blur-sm",
                 "px-4 py-3",
-                "flex items-center justify-between gap-4",
+                "hidden items-center justify-between gap-4 sm:flex",
                 className
             )}
         >
@@ -117,8 +117,8 @@ export function BottomActionRail({
                             }}
                             className="flex items-center gap-1.5 px-2 py-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors duration-micro"
                         >
-                            <Command className="h-3.5 w-3.5" />
-                            <span className="font-mono text-[11px] tracking-wider">K</span>
+                            <Command className="size-3.5" />
+                            <span className="font-mono text-xs tracking-wider">K</span>
                         </motion.button>
                     )}
                 </AnimatePresence>
@@ -133,7 +133,7 @@ export function BottomActionRail({
                         onClick={onShare}
                         className="h-8 px-2"
                     >
-                        <Share2 className="h-4 w-4" />
+                        <Share2 className="size-4" />
                     </Button>
                 )}
                 {onExport && (
@@ -143,7 +143,7 @@ export function BottomActionRail({
                         onClick={onExport}
                         className="h-8 px-2"
                     >
-                        <Download className="h-4 w-4" />
+                        <Download className="size-4" />
                     </Button>
                 )}
                 {onPrimaryAction && (
@@ -158,7 +158,7 @@ export function BottomActionRail({
                         ) : (
                             <>
                                 {primaryActionLabel}
-                                <ChevronRight className="h-4 w-4 ml-1" />
+                                <ChevronRight className="size-4 ml-1" />
                             </>
                         )}
                     </Button>

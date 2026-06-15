@@ -90,13 +90,6 @@ export async function checkAuth(): Promise<{ authenticated: boolean; user: AuthU
 }
 
 /**
- * Get the full analysis URL for a job.
- */
-export function getFullAnalysisUrl(jobId: string): string {
-    return `${API_BASE}/jobs/${jobId}`;
-}
-
-/**
  * Get the jobs page URL.
  */
 export function getJobsUrl(): string {
@@ -108,11 +101,4 @@ export function getJobsUrl(): string {
  */
 export function getLoginUrl(): string {
     return `${API_BASE}/auth?from=extension&next=/jobs`;
-}
-
-/**
- * Get the Google OAuth URL.
- */
-export function getGoogleAuthUrl(): string {
-    return getLoginUrl();
 }

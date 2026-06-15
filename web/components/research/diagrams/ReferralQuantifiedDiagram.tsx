@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -12,8 +12,8 @@ import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/Diagra
 export function ReferralQuantifiedDiagram() {
     const stats = [
         { metric: "Callback rate", referral: "~40%", nonReferral: "~4%", factor: "10×" },
-        { metric: "Hire conversion", referral: "Higher", nonReferral: "Baseline", factor: "—" },
-        { metric: "Time to hire", referral: "Faster", nonReferral: "Standard", factor: "—" },
+        { metric: "Hire conversion", referral: "Higher", nonReferral: "Baseline", factor: " - " },
+        { metric: "Time to hire", referral: "Faster", nonReferral: "Standard", factor: " - " },
     ];
 
     return (
@@ -27,7 +27,7 @@ export function ReferralQuantifiedDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Field evidence
                     </span>
                 </div>
@@ -41,16 +41,16 @@ export function ReferralQuantifiedDiagram() {
                         viewport={{ once: true }}
                         className="grid grid-cols-4 gap-3 pb-3 border-b border-border/30"
                     >
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60">
+                        <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                             Metric
                         </div>
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-center">
+                        <div className="text-xs font-mono uppercase tracking-wider text-center">
                             <span className="px-2 py-1 rounded bg-brand/10 text-brand">Referral</span>
                         </div>
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-center">
+                        <div className="text-xs font-mono uppercase tracking-wider text-center">
                             <span className="px-2 py-1 rounded bg-muted-foreground/10 text-muted-foreground">Non-Referral</span>
                         </div>
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-center text-muted-foreground/60">
+                        <div className="text-xs font-mono uppercase tracking-wider text-center text-muted-foreground/60">
                             Lift
                         </div>
                     </motion.div>
@@ -97,8 +97,8 @@ export function ReferralQuantifiedDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — The Numbers</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  The Numbers</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Empirical evidence from field experiments
                 </span>

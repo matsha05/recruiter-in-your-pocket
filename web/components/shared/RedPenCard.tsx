@@ -38,7 +38,7 @@ export function RedPenCard({
             await navigator.clipboard.writeText(after);
             setCopied(true);
             Analytics.track('sm1_fix_copied', { title });
-            setTimeout(() => setCopied(false), 2000);
+            setTimeout(() => setCopied(false), 1800);
         } catch (err) {
             console.error('Failed to copy:', err);
         }
@@ -51,7 +51,7 @@ export function RedPenCard({
         )}>
             {/* Header */}
             <div className="flex items-center gap-2 border-b border-border/10 bg-muted/20 px-4 py-3">
-                <TransformArrowIcon className="h-4 w-4 text-brand" />
+                <TransformArrowIcon className="size-4 text-brand" />
                 <h3 className="font-display font-medium text-sm text-foreground">{title}</h3>
             </div>
 
@@ -65,47 +65,60 @@ export function RedPenCard({
                 </div>
 
                 {/* AFTER Panel */}
-                <div className="relative p-5 bg-brand/5">
-                    <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand flex items-center justify-between">
-                        <span className="flex items-center gap-2">
-                            <ArrowRight className="h-3 w-3" />
+                <div className={cn(
+                    "relative p-5 transition-all duration-300",
+                    copied ? "bg-brand/10 ring-1 ring-brand/15 shadow-[0_0_0_6px_rgba(13,148,136,0.06)]" : "bg-brand/5"
+                )}>
+                    <div className="mb-2 flex items-start justify-between gap-3">
+                        <div className="text-xs font-semibold uppercase tracking-wider text-brand flex items-center gap-2">
+                            <ArrowRight className="size-3" />
                             Recruiter Version
-                        </span>
+                        </div>
                         {!isLocked && (
-                            <button
-                                onClick={handleCopy}
-                                className={cn(
-                                    "flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider transition-all",
-                                    copied
-                                        ? "bg-success/10 text-success"
-                                        : "bg-muted/50 text-muted-foreground hover:bg-brand/10 hover:text-brand opacity-0 group-hover:opacity-100"
-                                )}
-                            >
+                            <div className="flex items-center gap-2">
+                                <button type="button"
+                                    onClick={handleCopy}
+                                    className={cn(
+                                        "inline-flex min-h-11 min-w-[84px] items-center justify-center gap-1 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider transition-all",
+                                        copied
+                                            ? "bg-success/10 text-success"
+                                            : "bg-muted/50 text-muted-foreground hover:bg-brand/10 hover:text-brand"
+                                    )}
+                                    aria-live="polite"
+                                >
+                                    {copied ? <CheckIcon size={12} /> : <Copy className="size-3" />}
+                                    Copy
+                                </button>
                                 {copied ? (
-                                    <>
-                                        <CheckIcon size={12} />
+                                    <span
+                                        className="text-xs font-bold uppercase tracking-wider text-success transition-all duration-200"
+                                        aria-live="polite"
+                                    >
                                         Copied
-                                    </>
-                                ) : (
-                                    <>
-                                        <Copy className="h-3 w-3" />
-                                        Copy
-                                    </>
-                                )}
-                            </button>
+                                    </span>
+                                ) : null}
+                            </div>
                         )}
                     </div>
 
                     <div className={cn("relative", isLocked && "select-none")}>
-                        <p className={cn(
-                            "text-sm font-medium leading-relaxed text-foreground",
-                            isLocked && "blur-sm opacity-50"
-                        )}>
-                            {isLocked ? (
-                                // If locked, show a generic length of text that matches 'before' roughly
-                                before.split(' ').map(() => "█████").join(' ').slice(0, before.length * 1.2)
-                            ) : after}
-                        </p>
+                        <div
+                            className={cn(
+                                "relative rounded-md -mx-2 -my-1 px-2 py-1 transition-all duration-300",
+                                copied && !isLocked && "bg-white/75 shadow-[inset_0_0_0_1px_rgba(13,148,136,0.12)]"
+                            )}
+                        >
+                            <p className={cn(
+                                "relative text-sm font-medium leading-relaxed text-foreground transition-all duration-300",
+                                copied && !isLocked && "scale-[1.01]",
+                                isLocked && "blur-sm opacity-50"
+                            )}>
+                                {isLocked ? (
+                                    // If locked, show a generic length of text that matches 'before' roughly
+                                    before.split(' ').map(() => "█████").join(' ').slice(0, before.length * 1.2)
+                                ) : after}
+                            </p>
+                        </div>
 
                         {isLocked && (
                             <div className="absolute inset-0 flex items-center justify-center">
@@ -115,7 +128,7 @@ export function RedPenCard({
                                     onClick={onUnlock}
                                     className="relative overflow-hidden scale-95 transition-transform group-hover:scale-100"
                                 >
-                                    <Lock className="mr-2 h-3.5 w-3.5" />
+                                    <Lock className="mr-2 size-3.5" />
                                     See the Recruiter&apos;s Version
                                 </Button>
                             </div>

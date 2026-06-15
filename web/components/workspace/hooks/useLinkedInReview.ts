@@ -103,7 +103,7 @@ export function useLinkedInReview({
         } else {
           console.error("Failed to generate LinkedIn report:", result.message);
           toast.error("Failed to analyze LinkedIn profile", {
-            description: `${result.message || "Unknown error"} · No credits consumed`
+            description: `${result.message || "Unknown error"} · Your free report was not used`
           });
           setIsLoading(false);
           setIsStreaming(false);
@@ -112,7 +112,7 @@ export function useLinkedInReview({
       } catch (err) {
         console.error("LinkedIn analysis error:", err);
         toast.error("LinkedIn analysis error", {
-          description: "Please try again. No credits consumed."
+          description: "Please try again. Your free report was not used."
         });
         setIsLoading(false);
         setIsStreaming(false);

@@ -90,28 +90,6 @@ export async function GET() {
       invoice_pdf: invoice.invoice_pdf || null
     }));
 
-    // Best-effort backfill into billing_receipts.
-    if (receipts.length > 0) {
-      const upserts = invoices.data.map((invoice) => ({
-        user_id: user.id,
-        stripe_invoice_id: invoice.id,
-        stripe_customer_id: customer.id,
-        checkout_session_id: (invoice as any).checkout_session || null,
-        invoice_number: invoice.number || null,
-        status: invoice.status || null,
-        currency: invoice.currency || null,
-        amount_paid: typeof invoice.amount_paid === "number" ? invoice.amount_paid : 0,
-        hosted_invoice_url: invoice.hosted_invoice_url || null,
-        invoice_pdf: invoice.invoice_pdf || null,
-        created_at: new Date(invoice.created * 1000).toISOString(),
-        updated_at: new Date().toISOString()
-      }));
-
-      await admin
-        .from("billing_receipts")
-        .upsert(upserts, { onConflict: "stripe_invoice_id" });
-    }
-
     return NextResponse.json({ ok: true, receipts });
   } catch (err: any) {
     console.error("[billing.receipts] error:", err?.message);

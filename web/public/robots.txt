@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Sitemaps
-Sitemap: https://recruiterinyourpocket.com/sitemap.xml
-
-# Disallow admin/api routes
-Disallow: /api/

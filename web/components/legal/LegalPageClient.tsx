@@ -20,10 +20,10 @@ const cardShadow = "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4p
 const cardShadowLight = "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03)";
 
 function renderInline(inline: LegalInline, index: number) {
-  if (inline.type === "text") return <span key={`text-${index}`}>{inline.value}</span>;
+  if (inline.type === "text") return <span key={`text-${index}-${inline.value}`}>{inline.value}</span>;
   return (
     <Link
-      key={`link-${index}`}
+      key={`link-${index}-${inline.href}-${inline.label}`}
       href={inline.href}
       className="text-slate-700 underline underline-offset-4 hover:text-slate-900"
     >
@@ -33,8 +33,9 @@ function renderInline(inline: LegalInline, index: number) {
 }
 
 function renderParagraph(paragraph: LegalParagraph, index: number) {
+  const paragraphKey = paragraph.map((inline) => inline.type === "text" ? inline.value : inline.label).join(" ");
   return (
-    <p key={`para-${index}`} className="text-sm leading-7 text-slate-500">
+    <p key={`${index}-${paragraphKey}`} className="text-sm leading-7 text-slate-500">
       {paragraph.map(renderInline)}
     </p>
   );
@@ -45,12 +46,12 @@ function renderSection(section: LegalSection, index: number) {
     case "card":
       return (
         <section
-          key={`section-${index}`}
+          key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className="rounded-2xl bg-white p-6 md:p-8"
           style={{ boxShadow: cardShadow }}
         >
           <h2 className="mb-4 text-sm font-semibold text-slate-700">{section.title}</h2>
-          <div className="space-y-3">
+          <div className="gap-y-3">
             {section.paragraphs.map(renderParagraph)}
           </div>
         </section>
@@ -58,14 +59,14 @@ function renderSection(section: LegalSection, index: number) {
     case "bullet_list":
       return (
         <section
-          key={`section-${index}`}
+          key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className="rounded-2xl bg-white p-6 md:p-8"
           style={{ boxShadow: cardShadow }}
         >
           <h2 className="mb-4 text-sm font-semibold text-slate-700">{section.title}</h2>
-          <ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-slate-500">
-            {section.items.map((item) => (
-              <li key={item}>{item}</li>
+          <ul className="list-disc gap-y-2 pl-5 text-sm leading-7 text-slate-500">
+            {section.items.map((item, itemIndex) => (
+              <li key={`${itemIndex}-${item}`}>{item}</li>
             ))}
           </ul>
         </section>
@@ -73,8 +74,10 @@ function renderSection(section: LegalSection, index: number) {
     case "table":
       return (
         <section
-          key={`section-${index}`}
+          key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className="overflow-x-auto rounded-2xl bg-white p-6 md:p-8"
+          tabIndex={0}
+          aria-label={`${section.title} table`}
           style={{ boxShadow: cardShadow }}
         >
           <h2 className="mb-4 text-sm font-semibold text-slate-700">{section.title}</h2>
@@ -89,8 +92,8 @@ function renderSection(section: LegalSection, index: number) {
               </tr>
             </thead>
             <tbody>
-              {section.rows.map((row) => (
-                <tr key={row.dataType} className="border-b border-slate-50 align-top">
+              {section.rows.map((row, rowIndex) => (
+                <tr key={`${rowIndex}-${row.dataType}`} className="border-b border-slate-50 align-top">
                   <td className="py-3 pr-3 text-sm font-medium text-slate-700">{row.dataType}</td>
                   <td className="py-3 pr-3 text-sm text-slate-500">{row.purpose}</td>
                   <td className="py-3 pr-3 text-sm text-slate-500">{row.retention}</td>
@@ -108,15 +111,15 @@ function renderSection(section: LegalSection, index: number) {
           ? "md:grid-cols-2 lg:grid-cols-3"
           : "md:grid-cols-2";
       return (
-        <section key={`section-${index}`} className={`grid gap-4 ${columnClass}`}>
-          {section.items.map((item) => (
+        <section key={`${index}-${section.type}-${section.items.map((item) => item.title).join("-")}`} className={`grid gap-4 ${columnClass}`}>
+          {section.items.map((item, itemIndex) => (
             <div
-              key={item.title}
+              key={`${itemIndex}-${item.title}`}
               className="rounded-2xl bg-white p-5"
               style={{ boxShadow: cardShadowLight }}
             >
               <div className="mb-2 flex items-center gap-2">
-                <item.icon className="h-4 w-4 text-teal-700" />
+                <item.icon className="size-4 text-teal-700" />
                 <h2 className="text-sm font-semibold text-slate-700">{item.title}</h2>
               </div>
               <p className="text-sm leading-6 text-slate-500">{item.body}</p>
@@ -128,15 +131,15 @@ function renderSection(section: LegalSection, index: number) {
     case "checklist": {
       return (
         <section
-          key={`section-${index}`}
+          key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className="rounded-2xl bg-white p-6 md:p-8"
           style={{ boxShadow: section.variant === "soft" ? cardShadowLight : cardShadow }}
         >
           <h2 className="mb-4 text-sm font-semibold text-slate-700">{section.title}</h2>
-          <ul className="space-y-2.5 text-sm leading-7 text-slate-500">
-            {section.items.map((line) => (
-              <li key={line} className="flex items-start gap-2">
-                <section.icon className="mt-0.5 h-4 w-4 shrink-0 text-teal-700" />
+          <ul className="gap-y-2.5 text-sm leading-7 text-slate-500">
+            {section.items.map((line, lineIndex) => (
+              <li key={`${lineIndex}-${line}`} className="flex items-start gap-2">
+                <section.icon className="mt-0.5 size-4 shrink-0 text-teal-700" />
                 <span>{line}</span>
               </li>
             ))}
@@ -147,11 +150,11 @@ function renderSection(section: LegalSection, index: number) {
     case "callout": {
       return (
         <section
-          key={`section-${index}`}
+          key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
           className={`rounded-2xl bg-white p-6 md:p-8 ${section.align === "center" ? "text-center" : ""}`}
           style={{ boxShadow: section.variant === "soft" ? cardShadowLight : cardShadow }}
         >
-          <div className="space-y-3">
+          <div className="gap-y-3">
             {section.paragraphs.map(renderParagraph)}
           </div>
         </section>
@@ -159,18 +162,18 @@ function renderSection(section: LegalSection, index: number) {
     }
     case "faq":
       return (
-        <div key={`section-${index}`} className="space-y-4">
-          {section.categories.map((category) => (
+        <div key={`${index}-${section.type}-${section.categories.map((category) => category.category).join("-")}`} className="gap-y-4">
+          {section.categories.map((category, categoryIndex) => (
             <section
-              key={category.category}
+              key={`${categoryIndex}-${category.category}`}
               className="rounded-2xl bg-white p-6 md:p-8"
               style={{ boxShadow: cardShadow }}
             >
               <h2 className="mb-4 text-sm font-semibold text-slate-700">{category.category}</h2>
-              <Accordion type="single" collapsible className="space-y-2">
+              <Accordion type="single" collapsible className="gap-y-2">
                 {category.questions.map((item, idx) => (
                   <AccordionItem
-                    key={item.q}
+                    key={`${idx}-${item.q}`}
                     value={`${category.category}-${idx}`}
                     className="rounded-lg border border-slate-100 px-4"
                   >

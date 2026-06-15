@@ -14,7 +14,7 @@ import { normalizeReportForPdf, type ReportForPdf } from "@/lib/reports/pdf-expo
  * 5. Vector branding (inline SVG)
  */
 
-export function validateReportForPdf(report: any): report is ReportForPdf {
+function validateReportForPdf(report: any): report is ReportForPdf {
   return normalizeReportForPdf(report) !== null;
 }
 
@@ -51,7 +51,7 @@ function getSubscoreBar(value: number | undefined): string {
   </div>`;
 }
 
-export async function renderReportHtml(report: ReportForPdf) {
+async function renderReportHtml(report: ReportForPdf) {
   const generatedOn =
     typeof report.generated_on === "string" && report.generated_on.trim()
       ? report.generated_on

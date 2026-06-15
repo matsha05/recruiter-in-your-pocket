@@ -252,7 +252,7 @@ export async function POST(request: Request) {
                 custom_text: {
                     submit: {
                         message: requestedTier === "lifetime"
-                            ? `You're getting Lifetime Access. Pay once, use forever.`
+                            ? `You're getting Lifetime Access. Pay once for long-term access.`
                             : isSubscription
                                 ? `You're subscribing to ${tierLabel}. Cancel anytime.`
                                 : `You're getting ${tierLabel}. We'll activate it right after checkout.`

@@ -33,7 +33,7 @@ export function getRedisClient(): Redis | null {
 /**
  * Check if Redis is available and configured
  */
-export function isRedisConfigured(): boolean {
+function isRedisConfigured(): boolean {
     return Boolean(
         process.env.UPSTASH_REDIS_REST_URL &&
         process.env.UPSTASH_REDIS_REST_TOKEN

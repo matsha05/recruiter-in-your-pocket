@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -29,7 +29,7 @@ export function SkillsShiftDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Hiring paradigm shift
                     </span>
                 </div>
@@ -44,7 +44,7 @@ export function SkillsShiftDiagram() {
                             viewport={{ once: true }}
                             className="flex items-center gap-2"
                         >
-                            <div className="w-3 h-3 rounded-full bg-muted-foreground/20" />
+                            <div className="size-3 rounded-full bg-muted-foreground/20" />
                             <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                                 Traditional
                             </span>
@@ -59,12 +59,12 @@ export function SkillsShiftDiagram() {
                             <span className="text-xs font-mono uppercase tracking-wider text-brand/80">
                                 Emerging
                             </span>
-                            <div className="w-3 h-3 rounded-full bg-brand/60" />
+                            <div className="size-3 rounded-full bg-brand/60" />
                         </motion.div>
                     </div>
 
                     {/* Shift rows */}
-                    <div className="space-y-4">
+                    <div className="gap-y-4">
                         {shifts.map((shift, i) => (
                             <motion.div
                                 key={shift.old}
@@ -89,7 +89,7 @@ export function SkillsShiftDiagram() {
                                     className="w-12 flex items-center justify-center"
                                 >
                                     <div className="h-px w-full bg-gradient-to-r from-muted-foreground/20 to-brand/40" />
-                                    <svg className="w-4 h-4 text-brand/60 -ml-1 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <svg className="size-4 text-brand/60 -ml-1 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </motion.div>
@@ -112,15 +112,15 @@ export function SkillsShiftDiagram() {
                         className="mt-6 bg-brand/5 dark:bg-brand/10 rounded-lg p-4 border border-brand/20"
                     >
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg className="w-4 h-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <div className="size-8 rounded-full bg-brand/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg className="size-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                                     <circle cx="9" cy="7" r="4" />
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                 </svg>
                             </div>
-                            <div className="space-y-1">
+                            <div className="gap-y-1">
                                 <p className="text-sm font-semibold text-foreground">
                                     Talent pools expand
                                 </p>
@@ -133,8 +133,8 @@ export function SkillsShiftDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Paradigm Shift</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Paradigm Shift</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     The shift from credentials to skills-based signals
                 </span>

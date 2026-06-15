@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -28,7 +28,7 @@ export function TrustChoiceGrid() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Trust comparison
                     </span>
                 </div>
@@ -42,13 +42,13 @@ export function TrustChoiceGrid() {
                         viewport={{ once: true }}
                         className="grid grid-cols-3 gap-4 pb-3 border-b border-border/30"
                     >
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/60">
+                        <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                             Dimension
                         </div>
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-center">
+                        <div className="text-xs font-mono uppercase tracking-wider text-center">
                             <span className="px-2 py-1 rounded bg-foreground/5 text-foreground">Human</span>
                         </div>
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-center">
+                        <div className="text-xs font-mono uppercase tracking-wider text-center">
                             <span className="px-2 py-1 rounded bg-brand/10 text-brand">Algorithm</span>
                         </div>
                     </motion.div>
@@ -92,8 +92,8 @@ export function TrustChoiceGrid() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Trust Asymmetry</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Trust Asymmetry</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     How recruiters respond to human vs algorithm recommendations
                 </span>

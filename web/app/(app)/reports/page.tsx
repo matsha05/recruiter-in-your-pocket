@@ -9,7 +9,7 @@ import { AppPageIntro } from "@/components/layout/AppPageIntro";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Report History — Recruiter in Your Pocket",
+  title: "Report History  -  Recruiter in Your Pocket",
   description: "View, revisit, and manage your saved resume and LinkedIn reports.",
 };
 
@@ -54,7 +54,7 @@ export default async function ReportsPage() {
                 href="/extension"
                 className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
               >
-                <Chrome className="h-4 w-4" />
+                <Chrome className="size-4" />
                 Extension
               </Link>
               <Link
@@ -62,7 +62,7 @@ export default async function ReportsPage() {
                 className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
               >
                 Get another report
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="size-4" />
               </Link>
             </div>
           }
@@ -74,8 +74,8 @@ export default async function ReportsPage() {
 
         {items.length === 0 ? (
           <div className="rounded-2xl border border-border/60 bg-card p-8 text-center shadow-sm">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand/10">
-              <History className="h-6 w-6 text-brand" />
+            <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-brand/10">
+              <History className="size-6 text-brand" />
             </div>
             <h2 className="font-display text-2xl text-foreground">No saved reports yet</h2>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
@@ -91,7 +91,7 @@ export default async function ReportsPage() {
                 className="group rounded-2xl border border-border/60 bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-md"
               >
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="space-y-2">
+                  <div className="gap-y-2">
                     <div className="flex items-center gap-2">
                       <ScoreBadge score={report.score ?? 0} />
                       <span className="text-xs text-muted-foreground">
@@ -110,7 +110,7 @@ export default async function ReportsPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <FileText className="h-4 w-4" />
+                    <FileText className="size-4" />
                     <span className="group-hover:text-foreground">Open report</span>
                   </div>
                 </div>

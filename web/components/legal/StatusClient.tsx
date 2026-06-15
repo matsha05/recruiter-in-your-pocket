@@ -70,10 +70,10 @@ export default function StatusClient() {
     >
       <section className="rounded-2xl bg-white p-6 shadow-sm">
         <div className="flex items-start gap-3">
-          <div className={`mt-1 flex h-10 w-10 items-center justify-center rounded-full ${summary?.status === "operational" ? "bg-emerald-50" : "bg-amber-50"}`}>
-            {summary?.status === "operational" ? <CheckCircle2 className="h-5 w-5 text-emerald-600" /> : <AlertTriangle className="h-5 w-5 text-amber-600" />}
+          <div className={`mt-1 flex size-10 items-center justify-center rounded-full ${summary?.status === "operational" ? "bg-emerald-50" : "bg-amber-50"}`}>
+            {summary?.status === "operational" ? <CheckCircle2 className="size-5 text-emerald-600" /> : <AlertTriangle className="size-5 text-amber-600" />}
           </div>
-          <div className="space-y-1">
+          <div className="gap-y-1">
             <h2 className="font-display text-xl text-slate-900">
               {summary?.title || "Checking current status"}
             </h2>
@@ -102,15 +102,15 @@ export default function StatusClient() {
 
       <section className="rounded-2xl bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
-          <CheckCircle2 className="h-4 w-4 text-slate-400" />
+          <CheckCircle2 className="size-4 text-slate-400" />
           <h2 className="font-display text-lg text-slate-900">Customer-facing systems</h2>
         </div>
-        <div className="space-y-3">
+        <div className="gap-y-3">
           {services.map((service) => (
             <div key={service.name} className="rounded-xl border border-slate-100 p-4">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-semibold text-slate-800">{service.name}</p>
-                <span className={`rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${
+                <span className={`rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-wide ${
                   service.status === "operational"
                     ? "bg-emerald-50 text-emerald-700"
                     : "bg-amber-50 text-amber-700"
@@ -127,10 +127,10 @@ export default function StatusClient() {
 
       <section className="rounded-2xl bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
-          <AlertTriangle className="h-4 w-4 text-slate-400" />
+          <AlertTriangle className="size-4 text-slate-400" />
           <h2 className="font-display text-lg text-slate-900">Current incidents</h2>
         </div>
-        <div className="space-y-3">
+        <div className="gap-y-3">
           {incidents.map((incident) => (
             <div key={incident} className="rounded-xl border border-amber-100 bg-amber-50/60 p-4">
               <p className="text-sm text-amber-800">{incident}</p>
@@ -142,7 +142,7 @@ export default function StatusClient() {
 
       <section className="rounded-2xl bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
-          <Activity className="h-4 w-4 text-slate-400" />
+          <Activity className="size-4 text-slate-400" />
           <h2 className="font-display text-lg text-slate-900">Support and trust</h2>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">

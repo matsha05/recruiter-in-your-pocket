@@ -28,13 +28,14 @@ export type AccountExportPayload = {
     reports: any[];
     passes: any[];
     user_usage: any[];
+    user_profiles: any[];
     saved_jobs: any[];
     billing_receipts: any[];
   };
   warnings: Array<{ table: string; error: string }>;
 };
 
-const EXPORT_TABLES = ["reports", "passes", "user_usage", "saved_jobs", "billing_receipts"] as const;
+const EXPORT_TABLES = ["reports", "passes", "user_usage", "user_profiles", "saved_jobs", "billing_receipts"] as const;
 
 async function safeRead(admin: AdminClient, table: string, userId: string): Promise<AccountExportSection> {
   try {
@@ -73,6 +74,7 @@ export async function buildAccountExportPayload(
       reports: byTable.reports || [],
       passes: byTable.passes || [],
       user_usage: byTable.user_usage || [],
+      user_profiles: byTable.user_profiles || [],
       saved_jobs: byTable.saved_jobs || [],
       billing_receipts: byTable.billing_receipts || [],
     },

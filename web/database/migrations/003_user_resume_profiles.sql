@@ -1,6 +1,7 @@
 -- Migration: Add resume match profile columns to users table
 -- Purpose: Store resume-derived features for instant job matching (Tier 1)
--- Privacy note: We store embeddings and derived features, NOT raw resume text
+-- Privacy note: initial profile fields store embeddings and derived features.
+-- A later migration adds resume_text for matching; keep privacy copy aligned with that.
 
 -- Enable pgvector extension for embedding storage
 CREATE EXTENSION IF NOT EXISTS vector;
@@ -13,7 +14,7 @@ CREATE TABLE IF NOT EXISTS user_profiles (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id UUID NOT NULL UNIQUE REFERENCES auth.users(id) ON DELETE CASCADE,
   
-  -- Resume-derived features (NOT raw text)
+  -- Resume-derived features
   skills_index JSONB DEFAULT '[]'::jsonb,  -- Normalized skills with weights
   seniority_signals JSONB DEFAULT '{}'::jsonb,  -- Years, level, role patterns
   resume_embedding vector(1536),  -- OpenAI text-embedding-3-small dimension

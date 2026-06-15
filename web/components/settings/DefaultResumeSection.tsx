@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { FileText, Upload, Check, Loader2, Target, RefreshCw, ShieldCheck, X } from "lucide-react";
+import { FileText, Upload, Check, Loader2, Target, RefreshCw, ShieldCheck, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { InsightSparkleIcon } from "@/components/icons";
@@ -25,6 +25,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     const [isDragOver, setIsDragOver] = useState(false);
     const [fileName, setFileName] = useState<string | null>(null);
     const [pendingText, setPendingText] = useState<string | null>(null);
+    const [isRemoving, setIsRemoving] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const fetchProfile = useCallback(async () => {
@@ -51,8 +52,6 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             return;
         }
 
-        setFileName(file.name);
-
         // Accept .txt files directly
         if (file.type === "text/plain" || file.name.endsWith(".txt")) {
             const text = await file.text();
@@ -61,6 +60,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 setFileName(null);
                 return;
             }
+            setFileName(file.name);
             setPendingText(text);
             await saveResume(text);
             return;
@@ -98,6 +98,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                     return;
                 }
 
+                setFileName(file.name);
                 setPendingText(text);
                 await saveResume(text);
             } catch (error: any) {
@@ -112,6 +113,30 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
         toast.error("Please upload a PDF, DOCX, or TXT file.");
         setFileName(null);
+    };
+
+    const removeResume = async () => {
+        if (!window.confirm("Remove your default resume profile? Saved reports stay in history, but extension match scores will stop until you add another resume.")) {
+            return;
+        }
+
+        setIsRemoving(true);
+        try {
+            const res = await fetch("/api/user/default-resume", { method: "DELETE" });
+            const data = await res.json();
+            if (!data.success) {
+                throw new Error(data.error || "Failed to remove resume");
+            }
+            toast.success("Default resume removed");
+            setProfile({ hasResume: false });
+            setFileName(null);
+            setPendingText(null);
+        } catch (error: any) {
+            console.error("[DefaultResume] Remove error:", error);
+            toast.error(error.message || "Failed to remove resume");
+        } finally {
+            setIsRemoving(false);
+        }
     };
 
     const saveResume = async (text: string) => {
@@ -169,8 +194,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
         return (
             <section className={cn("bg-card border border-border/60 rounded p-6", className)}>
                 <div className="flex items-center gap-3 text-muted-foreground">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-sm">Loading...</span>
+                    <Loader2 className="size-4 animate-spin" />
+                    <span className="text-sm">Loading…</span>
                 </div>
             </section>
         );
@@ -182,8 +207,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             <section className={cn("relative overflow-hidden bg-success/5 border border-success/20 rounded p-6", className)}>
                 <div className="flex items-start gap-4">
                     {/* Icon */}
-                    <div className="w-12 h-12 rounded bg-success/10 flex items-center justify-center shrink-0">
-                        <Check className="w-5 h-5 text-success" />
+                    <div className="size-12 rounded bg-success/10 flex items-center justify-center shrink-0">
+                        <Check className="size-5 text-success" />
                     </div>
 
                     <div className="flex-1 min-w-0">
@@ -201,12 +226,12 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                         {/* Stats */}
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm mb-3">
                             <span className="flex items-center gap-1.5">
-                                <Target className="w-3.5 h-3.5 text-success" />
+                                <Target className="size-3.5 text-success" />
                                 <strong>{profile.skillsCount}</strong> skills
                             </span>
                             {profile.hasEmbedding && (
                                 <span className="flex items-center gap-1.5 text-warning">
-                                    <InsightSparkleIcon className="w-3.5 h-3.5" />
+                                    <InsightSparkleIcon className="size-3.5" />
                                     Semantic matching on
                                 </span>
                             )}
@@ -215,15 +240,28 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                             </span>
                         </div>
 
-                        {/* Change button */}
-                            <button
+                        {/* Change / remove controls */}
+                        <div className="flex flex-wrap items-center gap-3">
+                            <button type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                disabled={isSaving}
+                                disabled={isSaving || isRemoving}
                                 className="text-sm text-success hover:text-success/80 font-medium inline-flex items-center gap-1.5 transition-colors"
                             >
-                            <RefreshCw className={cn("w-3.5 h-3.5", isSaving && "animate-spin")} />
-                            {isSaving ? "Updating..." : "Change Resume"}
+                            <RefreshCw className={cn("size-3.5", isSaving && "animate-spin")} />
+                            {isSaving ? "Updating…" : "Change Resume"}
                         </button>
+                            <button type="button"
+                                onClick={removeResume}
+                                disabled={isSaving || isRemoving}
+                                className="text-sm text-muted-foreground hover:text-destructive font-medium inline-flex items-center gap-1.5 transition-colors"
+                            >
+                                <Trash2 className={cn("size-3.5", isRemoving && "animate-pulse")} />
+                                {isRemoving ? "Removing…" : "Remove"}
+                            </button>
+                        </div>
+                        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                            Stored until you replace or remove it. We keep raw resume text for matching, plus derived skills, seniority signals, and a short preview.
+                        </p>
                     </div>
                 </div>
 
@@ -245,13 +283,13 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     return (
         <section className={cn("bg-card border border-border/60 rounded p-6", className)}>
             <div className="flex items-start gap-4 mb-5">
-                <div className="w-12 h-12 rounded bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0">
-                    <FileText className="w-5 h-5 text-brand" />
+                <div className="size-12 rounded bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0">
+                    <FileText className="size-5 text-brand" />
                 </div>
                 <div>
                     <h3 className="font-semibold text-foreground mb-1">Upload Your Resume</h3>
                     <p className="text-sm text-muted-foreground">
-                        Get instant match scores when you capture jobs. No credits needed.
+                        Get instant match scores when you capture jobs. No report run needed.
                     </p>
                 </div>
             </div>
@@ -272,13 +310,13 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 <div className="py-8 text-center">
                     {isSaving ? (
                         <div className="flex flex-col items-center gap-2">
-                            <Loader2 className="w-8 h-8 text-brand animate-spin" />
-                            <p className="text-sm font-medium text-foreground">Indexing skills...</p>
+                            <Loader2 className="size-8 text-brand animate-spin" />
+                            <p className="text-sm font-medium text-foreground">Indexing skills…</p>
                             {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}
                         </div>
                     ) : (
                         <>
-                            <Upload className="w-8 h-8 text-muted-foreground/50 mx-auto mb-2" />
+                            <Upload className="size-8 text-muted-foreground/50 mx-auto mb-2" />
                             <p className="text-sm font-medium text-foreground mb-1">
                                 Drop your resume here
                             </p>
@@ -292,8 +330,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
             {/* Privacy note */}
             <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground/70">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>We extract skills only. Raw text is not stored.</span>
+                <ShieldCheck className="size-3.5" />
+                <span>Saved as your default resume for matching until you replace or remove it.</span>
             </div>
 
             <input

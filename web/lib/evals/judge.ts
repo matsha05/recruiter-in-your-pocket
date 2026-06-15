@@ -13,7 +13,7 @@
 // JUDGE RUBRIC
 // ============================================
 
-export const JUDGE_RUBRIC = `You are a Quality Evaluator for an AI resume feedback system. Your job is to grade the feedback output against a strict rubric.
+const JUDGE_RUBRIC = `You are a Quality Evaluator for an AI resume feedback system. Your job is to grade the feedback output against a strict rubric.
 
 ## RUBRIC DIMENSIONS
 

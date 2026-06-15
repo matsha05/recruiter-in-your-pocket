@@ -52,7 +52,8 @@ export async function GET(req: NextRequest) {
 
         // Transform to extension format
         const savedJobs = (jobs || []).map(job => ({
-            id: job.external_id || job.id,
+            id: job.id,
+            externalId: job.external_id,
             title: job.title,
             company: job.company,
             location: job.location,

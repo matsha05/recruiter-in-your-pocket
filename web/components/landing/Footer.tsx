@@ -3,7 +3,7 @@ import { PocketMark } from "@/components/icons";
 import { FOOTER_NAV } from "@/lib/navigation";
 
 /**
- * Footer — Editor's Desk style
+ * Footer  -  Editor's Desk style
  *
  * Minimal, warm, with personality tagline.
  * Clean single-row layout, no heavy multi-column grids.
@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="mx-auto flex max-w-[var(--page-max)] flex-col items-start justify-between gap-6 md:flex-row md:items-end">
                 <div className="flex max-w-[27rem] flex-col gap-2">
                     <div className="flex items-center gap-2 text-sm text-slate-500">
-                        <PocketMark className="h-4.5 w-4.5 text-brand/70" />
+                        <PocketMark className="size-4.5 text-brand/70" />
                         <span>© 2026 Recruiter in Your Pocket</span>
                     </div>
                     <p className="text-sm leading-6 text-slate-500">

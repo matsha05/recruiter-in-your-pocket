@@ -27,9 +27,9 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
     const alignment = data.job_alignment;
     if (!alignment) {
         return (
-            <section className="space-y-6">
+            <section className="gap-y-6">
                 <ReportSectionHeader
-                    icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
+                    icon={<RoleTargetIcon className="size-4 text-brand" />}
                     number="06"
                     title="Role Fit"
                     subtitle="Where this story fits now, and where it stretches."
@@ -56,14 +56,14 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
 
     // Detect if JD match data exists (either from user input OR from sample data)
     const jdMatchScore = alignment.jd_match_score ?? 0;
-    const hasJdMatchData = alignment.jd_match_score !== undefined || Boolean(alignment.jd_match_summary);
+    const hasJdMatchData = hasJobDescription && (alignment.jd_match_score !== undefined || Boolean(alignment.jd_match_summary));
     const jdKeywords = alignment.jd_keywords;
     const hasJdKeywords = Boolean(
         (jdKeywords?.total_count ?? 0) > 0 ||
         (jdKeywords?.matched?.length ?? 0) > 0 ||
         (jdKeywords?.missing?.length ?? 0) > 0
     );
-    const showJdSection = hasJobDescription || hasJdMatchData || hasJdKeywords;
+    const showJdSection = hasJobDescription && (hasJdMatchData || hasJdKeywords);
 
     // Build footer metadata string
     const footerParts: string[] = [];
@@ -78,9 +78,9 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
 
     if (!primaryRole && !positioning) {
         return (
-            <section className="space-y-6">
+            <section className="gap-y-6">
                 <ReportSectionHeader
-                    icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
+                    icon={<RoleTargetIcon className="size-4 text-brand" />}
                     number="06"
                     title="Role Fit"
                     subtitle="Where this story fits now, and where it stretches."
@@ -93,9 +93,9 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
     }
 
     return (
-        <section className="space-y-8">
+        <section className="gap-y-8">
             <ReportSectionHeader
-                icon={<RoleTargetIcon className="w-4 h-4 text-brand" />}
+                icon={<RoleTargetIcon className="size-4 text-brand" />}
                 number="06"
                 title="Role Fit"
                 subtitle="Where this story fits now, and where it stretches."
@@ -103,9 +103,9 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
 
             {isGated ? (
                 // GATED STATE: Show teaser with locked overlay
-                <div className="rounded border border-border bg-card p-6 space-y-4">
+                <div className="rounded border border-border bg-card p-6 gap-y-4">
                     <div className="flex items-center gap-3 text-muted-foreground">
-                        <Lock className="w-5 h-5" />
+                        <Lock className="size-5" />
                         <div>
                             <p className="text-sm font-medium text-foreground">
                                 We mapped where this resume fits best
@@ -145,7 +145,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             }}
                             className="w-full"
                         >
-                            <InsightSparkleIcon className="w-4 h-4 mr-2" />
+                            <InsightSparkleIcon className="size-4 mr-2" />
                             Unlock Role Fit
                         </Button>
                     )}
@@ -164,7 +164,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                     }`}>
                                     {jdMatchScore}%
                                     {jdMatchScore >= SCORE_THRESHOLDS.STRONG && (
-                                        <InsightSparkleIcon className="inline-block w-5 h-5 ml-2 text-success" />
+                                        <InsightSparkleIcon className="inline-block size-5 ml-2 text-success" />
                                     )}
                                 </div>
                                 <div className="text-left">
@@ -210,17 +210,17 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Matched Keywords */}
                                 {jdKeywords?.matched && jdKeywords.matched.length > 0 && (
-                                    <div className="space-y-3">
+                                    <div className="gap-y-3">
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-success">
                                             Signals present
                                         </h4>
-                                        <ul className="space-y-1">
+                                        <ul className="gap-y-1">
                                             {jdKeywords.matched.map((keyword, idx) => (
                                                 <li
-                                                    key={idx}
+                                                    key={keyword}
                                                     className="flex items-start gap-2 text-sm text-muted-foreground"
                                                 >
-                                                    <span className="mt-2 h-1 w-1 rounded-full bg-success" />
+                                                    <span className="mt-2 size-1 rounded-full bg-success" />
                                                     <span>{keyword}</span>
                                                 </li>
                                             ))}
@@ -230,17 +230,17 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
 
                                 {/* Missing Keywords */}
                                 {jdKeywords?.missing && jdKeywords.missing.length > 0 && (
-                                    <div className="space-y-3">
+                                    <div className="gap-y-3">
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-destructive">
                                             Signals missing
                                         </h4>
-                                        <ul className="space-y-1">
+                                        <ul className="gap-y-1">
                                             {jdKeywords.missing.map((keyword, idx) => (
                                                 <li
-                                                    key={idx}
+                                                    key={keyword}
                                                     className="flex items-start gap-2 text-sm text-muted-foreground"
                                                 >
-                                                    <span className="mt-2 h-1 w-1 rounded-full bg-destructive" />
+                                                    <span className="mt-2 size-1 rounded-full bg-destructive" />
                                                     <span>{keyword}</span>
                                                 </li>
                                             ))}
@@ -252,7 +252,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             {/* Actionable Hint - What to do next */}
                             {jdKeywords?.missing && jdKeywords.missing.length > 0 && (
                                 <div className="mt-4 flex items-start gap-2 p-3 rounded bg-brand/5 border border-brand/10">
-                                    <InsightSparkleIcon className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                                    <InsightSparkleIcon className="size-4 text-brand flex-shrink-0 mt-0.5" />
                                     <p className="text-xs text-muted-foreground">
                                         <span className="font-medium text-foreground">Next move:</span> Add these missing signals to your experience bullets. Section 04 has rewrites that can help.
                                     </p>
@@ -262,7 +262,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     )}
 
                     {/* The Declaration */}
-                    <div className="text-center space-y-4 mb-6">
+                    <div className="text-center gap-y-4 mb-6">
                         {primaryRole && (
                             <h3 className="text-3xl md:text-4xl font-display font-semibold text-foreground tracking-tight">
                                 {primaryRole}
@@ -277,7 +277,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     </div>
 
                     {/* Supporting Roles - De-emphasized Footer */}
-                    <div className="border-t border-border/40 pt-6 space-y-2 text-center text-sm">
+                    <div className="border-t border-border/40 pt-6 gap-y-2 text-center text-sm">
                         {otherFitRoles.length > 0 && (
                             <p className="text-muted-foreground">
                                 <span className="text-foreground/70 font-medium">Also fits:</span>{' '}

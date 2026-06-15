@@ -75,7 +75,7 @@ export const EDGE_CASES = [
 ] as const;
 
 // Format variations for realistic diversity
-export const FORMAT_VARIATIONS = [
+const FORMAT_VARIATIONS = [
     "with_summary",         // Has a summary/objective section
     "no_summary",           // Jumps straight to experience
     "with_skills",          // Has a dedicated skills section
@@ -350,7 +350,7 @@ function pickRandomFormatHints(): FormatVariation[] {
     return hints;
 }
 
-export async function generateSyntheticResume(
+async function generateSyntheticResume(
     spec: SyntheticResumeSpec
 ): Promise<GeneratedResume> {
     // Add random format hints if not specified

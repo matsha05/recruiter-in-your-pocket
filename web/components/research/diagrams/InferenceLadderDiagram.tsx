@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -13,28 +13,28 @@ export function InferenceLadderDiagram() {
     const steps = [
         {
             number: 1, text: "Error spotted", icon: (
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10" /><path d="m15 9-6 6M9 9l6 6" />
                 </svg>
             )
         },
         {
             number: 2, text: "Inference: low conscientiousness", icon: (
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                 </svg>
             )
         },
         {
             number: 3, text: "Risk assessment rises", icon: (
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" />
                 </svg>
             )
         },
         {
             number: 4, text: "Screening threshold tightens", icon: (
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
             )
@@ -52,14 +52,14 @@ export function InferenceLadderDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         The inference cascade
                     </span>
                 </div>
 
                 <div className="p-6">
                     {/* Ladder steps */}
-                    <div className="space-y-3">
+                    <div className="gap-y-3">
                         {steps.map((step, i) => (
                             <motion.div
                                 key={step.number}
@@ -69,7 +69,7 @@ export function InferenceLadderDiagram() {
                                 viewport={{ once: true }}
                                 className="flex items-center gap-4"
                             >
-                                <div className={`w-10 h-10 rounded-lg border-2 flex items-center justify-center shrink-0 ${i === 0
+                                <div className={`size-10 rounded-lg border-2 flex items-center justify-center shrink-0 ${i === 0
                                         ? "border-rose-500/50 bg-rose-500/10 text-rose-600 dark:text-rose-400"
                                         : i === steps.length - 1
                                             ? "border-rose-500/30 bg-rose-500/5 text-rose-500/70"
@@ -97,7 +97,7 @@ export function InferenceLadderDiagram() {
                                         viewport={{ once: true }}
                                         className="absolute right-6 text-muted-foreground/30"
                                     >
-                                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                             <path d="M19 12H5M12 19l-7-7 7-7" />
                                         </svg>
                                     </motion.div>
@@ -130,8 +130,8 @@ export function InferenceLadderDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — The Ladder</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  The Ladder</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     How small errors translate into higher perceived risk
                 </span>

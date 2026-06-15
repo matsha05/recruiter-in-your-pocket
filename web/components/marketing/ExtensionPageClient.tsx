@@ -57,7 +57,7 @@ export default function ExtensionPageClient() {
       >
         <section className="px-6 pb-14 md:px-8 md:pb-16">
           <div className="mx-auto grid max-w-[var(--page-max)] gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="space-y-6">
+            <div className="gap-y-6">
               <p className="editorial-kicker text-slate-400">
                 {extensionStoreContent.page.eyebrow}
               </p>
@@ -87,7 +87,7 @@ export default function ExtensionPageClient() {
                   (item, index) => (
                     <span key={item} className="inline-flex items-center gap-2">
                       <span
-                        className="h-2.5 w-2.5 rounded-full"
+                        className="size-2.5 rounded-full"
                         style={{ backgroundColor: browserDots[index] ?? "hsl(var(--brand))" }}
                       />
                       {item}
@@ -104,14 +104,14 @@ export default function ExtensionPageClient() {
                   className="landing-btn-primary"
                 >
                   {primaryCtaLabel}
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="size-4" />
                 </Link>
                 <Link href={secondaryCtaHref} className="landing-btn-secondary">
                   {secondaryCtaLabel}
                 </Link>
               </div>
 
-              <div className="max-w-[37rem] space-y-3 border-t border-slate-200/80 pt-4">
+              <div className="max-w-[37rem] gap-y-3 border-t border-slate-200/80 pt-4">
                 <p className="text-sm leading-6 text-slate-600">
                   {extensionStoreContent.page.disclosure}
                 </p>
@@ -133,8 +133,8 @@ export default function ExtensionPageClient() {
 
               {!installReady ? (
                 <p className="text-sm text-slate-500">
-                  The Chrome Web Store link is not wired up yet, so this page currently routes
-                  people to the privacy docs first.
+                  Chrome Web Store review is pending. Privacy and security details are visible
+                  first so the install path is clear before it goes live.
                 </p>
               ) : null}
             </div>
@@ -150,7 +150,7 @@ export default function ExtensionPageClient() {
                     Built to save the role fast, then get out of the way.
                   </p>
                 </div>
-                <span className="rounded-full border border-brand/20 bg-brand/10 px-3 py-1 font-medium text-brand" style={{ fontSize: "11px" }}>
+                <span className="rounded-full border border-brand/20 bg-brand/10 px-3 py-1 font-medium text-brand" style={{ fontSize: "12px" }}>
                   LinkedIn + Indeed
                 </span>
               </div>
@@ -163,14 +163,14 @@ export default function ExtensionPageClient() {
                         {browserDots.map((color) => (
                           <span
                             key={color}
-                            className="h-2.5 w-2.5 rounded-full"
+                            className="size-2.5 rounded-full"
                             style={{ backgroundColor: color }}
                           />
                         ))}
                       </div>
                       <span
                         className="font-medium uppercase text-slate-400"
-                        style={{ fontSize: "11px", letterSpacing: "0.18em" }}
+                        style={{ fontSize: "12px", letterSpacing: "0" }}
                       >
                         Supported job page
                       </span>
@@ -183,7 +183,7 @@ export default function ExtensionPageClient() {
                       <div>
                         <p
                           className="font-semibold uppercase text-slate-400"
-                          style={{ fontSize: "11px", letterSpacing: "0.18em" }}
+                          style={{ fontSize: "12px", letterSpacing: "0" }}
                         >
                           Example role
                         </p>
@@ -197,7 +197,7 @@ export default function ExtensionPageClient() {
                           Mercury · San Francisco · Hybrid
                         </p>
                       </div>
-                      <span className="rounded-full bg-slate-900 px-3 py-1 font-medium text-white" style={{ fontSize: "11px" }}>
+                      <span className="rounded-full bg-slate-900 px-3 py-1 font-medium text-white" style={{ fontSize: "12px" }}>
                         Saveable
                       </span>
                     </div>
@@ -213,7 +213,7 @@ export default function ExtensionPageClient() {
                       ))}
                     </div>
 
-                    <div className="mt-5 space-y-3">
+                    <div className="mt-5 gap-y-3">
                       <div className="h-2.5 w-[88%] rounded-full bg-slate-200" />
                       <div className="h-2.5 w-full rounded-full bg-slate-100" />
                       <div className="h-2.5 w-[92%] rounded-full bg-slate-100" />
@@ -229,7 +229,7 @@ export default function ExtensionPageClient() {
                       </div>
                       <div className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white">
                         Save job
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRight className="size-4" />
                       </div>
                     </div>
                   </div>
@@ -241,24 +241,24 @@ export default function ExtensionPageClient() {
                 >
                   <p
                     className="font-semibold uppercase text-white/45"
-                    style={{ fontSize: "11px", letterSpacing: "0.18em" }}
+                    style={{ fontSize: "12px", letterSpacing: "0" }}
                   >
                     RIYP popup
                   </p>
-                  <h3 className="mt-2 font-display leading-none tracking-tight" style={{ fontSize: "2.1rem" }}>
+                  <h3 className="mt-2 font-display leading-none tracking-tight text-white" style={{ fontSize: "2.1rem" }}>
                     Saved.
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-white/72">
                     Enough context to triage the role now. The deeper report can wait until it matters.
                   </p>
 
-                  <div className="mt-5 space-y-2.5">
+                  <div className="mt-5 gap-y-2.5">
                     {extensionStoreContent.page.highlights.map((item) => (
                       <div
                         key={item}
                         className="flex items-start gap-2.5 border-t border-white/10 pt-2.5 text-sm text-white/80 first:border-t-0 first:pt-0"
                       >
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-teal-300" />
+                        <Check className="mt-0.5 size-4 shrink-0 text-teal-300" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -272,7 +272,7 @@ export default function ExtensionPageClient() {
 
               <div className="mt-5 grid gap-3 border-t border-slate-200/80 pt-4 md:grid-cols-3">
                 <div className="flex items-start gap-3">
-                  <Chrome className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                  <Chrome className="mt-0.5 size-4 shrink-0 text-brand" />
                   <div>
                     <p className="text-sm font-medium text-slate-800">Only on supported job pages</p>
                     <p className="mt-1 text-sm leading-6 text-slate-500">
@@ -281,7 +281,7 @@ export default function ExtensionPageClient() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                  <ShieldCheck className="mt-0.5 size-4 shrink-0 text-brand" />
                   <div>
                     <p className="text-sm font-medium text-slate-800">Nothing happens in the background</p>
                     <p className="mt-1 text-sm leading-6 text-slate-500">
@@ -290,7 +290,7 @@ export default function ExtensionPageClient() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Lock className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                  <Lock className="mt-0.5 size-4 shrink-0 text-brand" />
                   <div>
                     <p className="text-sm font-medium text-slate-800">Sign in only if you want sync</p>
                     <p className="mt-1 text-sm leading-6 text-slate-500">
@@ -311,7 +311,7 @@ export default function ExtensionPageClient() {
 
         <section className="border-t border-border/60 px-6 py-14 md:px-8 md:py-16">
           <div className="mx-auto grid max-w-[var(--page-max)] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
-            <div className="space-y-4">
+            <div className="gap-y-4">
               <p className="editorial-kicker text-slate-400">How it works</p>
               <h2
                 className="font-display tracking-tight text-slate-900"
@@ -331,10 +331,10 @@ export default function ExtensionPageClient() {
                   key={step.number}
                   className="grid gap-4 border-b border-slate-200/80 py-6 md:grid-cols-[72px_1fr]"
                 >
-                  <div className="font-semibold uppercase text-slate-300" style={{ fontSize: "11px", letterSpacing: "0.2em" }}>
+                  <div className="font-semibold uppercase text-slate-300" style={{ fontSize: "12px", letterSpacing: "0" }}>
                     {step.number}
                   </div>
-                  <div className="space-y-2">
+                  <div className="gap-y-2">
                     <h3 className="text-lg font-medium tracking-tight text-slate-900">
                       {step.title}
                     </h3>
@@ -353,7 +353,7 @@ export default function ExtensionPageClient() {
 
         <section className="border-t border-border/60 px-6 py-12 md:px-8 md:py-14">
           <div className="mx-auto grid max-w-[var(--page-max)] gap-10 lg:grid-cols-[0.58fr_0.42fr]">
-            <div className="space-y-4">
+            <div className="gap-y-4">
               <p className="editorial-kicker text-slate-400">Trust</p>
               <h2
                 className="font-display tracking-tight text-slate-900"
@@ -367,12 +367,12 @@ export default function ExtensionPageClient() {
               </p>
             </div>
 
-            <div className="space-y-5">
+            <div className="gap-y-5">
               {extensionStoreContent.page.trustPoints.map((item, index) => {
                 const Icon = trustIcons[index] ?? ShieldCheck;
                 return (
                   <div key={item} className="flex items-start gap-3 border-t border-slate-200/80 pt-4 first:border-t-0 first:pt-0">
-                    <Icon className="mt-1 h-4 w-4 shrink-0 text-brand" />
+                    <Icon className="mt-1 size-4 shrink-0 text-brand" />
                     <div>
                       <p className="text-sm font-medium text-slate-800">{item}</p>
                       <p className="mt-1 text-sm leading-6 text-slate-500">

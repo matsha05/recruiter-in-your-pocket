@@ -20,16 +20,16 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
     const gaps = data.gaps?.slice(0, 5) || [];
     const hasLists = strengths.length > 0 || gaps.length > 0;
     const topActions = [
-        ...(data.rewrites || []).slice(0, 2).map((rewrite) => ({
-            text: rewrite.label || `Rewrite: ${rewrite.original?.slice(0, 70)}`,
-            impact: "High"
+        ...(data.top_fixes || []).slice(0, 3).map((fix) => ({
+            text: fix.fix || fix.text || "Strengthen this signal",
+            impact: fix.impact_level === "high" ? "High" : "Medium"
+        })),
+        ...(data.next_steps || []).slice(0, 2).map((step) => ({
+            text: step,
+            impact: "Medium"
         })),
         ...(data.gaps || []).slice(0, 2).map((gap) => ({
             text: `Fix gap: ${gap}`,
-            impact: "Medium"
-        })),
-        ...(data.next_steps || []).slice(0, 1).map((step) => ({
-            text: step,
             impact: "Medium"
         }))
     ].slice(0, 3);
@@ -44,9 +44,9 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
         }));
 
     return (
-        <section className="space-y-8">
+        <section className="gap-y-8">
             <ReportSectionHeader
-                icon={<SignalRadarIcon className="w-4 h-4 text-brand" />}
+                icon={<SignalRadarIcon className="size-4 text-brand" />}
                 number="02"
                 title="Signal Breakdown"
                 subtitle="What landed fast, what felt thin, and what to fix first."
@@ -57,13 +57,13 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     <h3 className="text-xs font-bold uppercase tracking-wider text-foreground mb-3">
                         Next Pass Plan
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className="gap-y-2">
                         {topActions.map((action, i) => (
                             <li key={`${action.text}-${i}`} className="flex items-start justify-between gap-3 text-sm">
                                 <span className="text-foreground/90 leading-relaxed">{action.text}</span>
                                 <span
                                     className={cn(
-                                        "shrink-0 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded",
+                                        "shrink-0 text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded",
                                         action.impact === "High"
                                             ? "bg-success/15 text-success"
                                             : "bg-premium/15 text-premium"
@@ -78,19 +78,19 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
             )}
 
             {evidenceSnapshot.length > 0 && (
-                <div className="rounded border border-border/60 bg-card p-5 space-y-4">
+                <div className="rounded border border-border/60 bg-card p-5 gap-y-4">
                     <div className="flex items-center justify-between">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
                             Evidence Snapshot
                         </h3>
-                        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        <span className="text-xs uppercase tracking-wide text-muted-foreground">
                             Why the score landed here
                         </span>
                     </div>
-                    <div className="space-y-3">
+                    <div className="gap-y-3">
                         {evidenceSnapshot.map((item, index) => (
                             <div key={`${item.evidence}-${index}`} className="rounded border border-border/50 bg-secondary/10 p-4">
-                                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+                                <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
                                     <span>Evidence</span>
                                     {item.section && (
                                         <>
@@ -144,13 +144,13 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
             {hasLists ? (
                 <div className="grid md:grid-cols-2 gap-6">
                     {/* Working */}
-                    <div className="space-y-4">
+                    <div className="gap-y-4">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
                             What lands
                         </h3>
-                        <ul className="space-y-3">
+                        <ul className="gap-y-3">
                             {strengths.length > 0 ? strengths.map((s, i) => (
-                                <li key={i} className="text-sm leading-relaxed text-muted-foreground">
+                                <li key={s} className="text-sm leading-relaxed text-muted-foreground">
                                     {s}
                                 </li>
                             )) : (
@@ -160,13 +160,13 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     </div>
 
                     {/* Missing */}
-                    <div className="space-y-4">
+                    <div className="gap-y-4">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-premium">
                             What is thin
                         </h3>
-                        <ul className="space-y-3">
+                        <ul className="gap-y-3">
                             {gaps.length > 0 ? gaps.map((s, i) => (
-                                <li key={i} className="text-sm leading-relaxed text-muted-foreground">
+                                <li key={s} className="text-sm leading-relaxed text-muted-foreground">
                                     {s}
                                 </li>
                             )) : (

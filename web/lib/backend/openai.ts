@@ -112,6 +112,7 @@ function getMockOpenAIResponse(mode: Mode) {
   }
 
   return {
+    contract_version: "v2",
     score: 86,
     score_label: "Strong",
     score_comment_short: "Clear ownership with real signal; a few scope gaps keep it from landing faster.",
@@ -124,15 +125,35 @@ function getMockOpenAIResponse(mode: Mode) {
       "You read as someone who takes messy work and makes it shippable. You keep momentum and close loops. You operate with structure. What is harder to see is the scale and before/after change. Trajectory is up if you surface scope and outcomes faster.",
     strengths: ["You show ownership instead of vague participation."],
     gaps: ["Scope and measurable outcomes are missing in a few key bullets."],
-    top_fixes: [{
-      fix: "Add scope numbers to your top 2 bullets.",
-      why: "Without scale, recruiters cannot tell how big the work really was.",
-      confidence: "high",
-      evidence: { excerpt: "Improved process across teams.", section: "Work Experience" },
-      impact_level: "high",
-      effort: "moderate",
-      section_ref: "Work Experience"
-    }],
+    top_fixes: [
+      {
+        fix: "Add scope numbers to your top 2 bullets.",
+        why: "Without scale, recruiters cannot tell how big the work really was.",
+        confidence: "high",
+        evidence: { excerpt: "Improved process across teams.", section: "Work Experience" },
+        impact_level: "high",
+        effort: "moderate",
+        section_ref: "Work Experience"
+      },
+      {
+        fix: "Turn one process bullet into a before-and-after result.",
+        why: "A recruiter can see activity, but not what changed because of your work.",
+        confidence: "high",
+        evidence: { excerpt: "Led team of 5 engineers", section: "Work Experience" },
+        impact_level: "high",
+        effort: "quick",
+        section_ref: "Work Experience"
+      },
+      {
+        fix: "Name the system, product, or launch context in the opening line.",
+        why: "Specific context makes the first read feel credible instead of generic.",
+        confidence: "medium",
+        evidence: { excerpt: "Software Engineer", section: "Header" },
+        impact_level: "medium",
+        effort: "quick",
+        section_ref: "Header"
+      }
+    ],
     rewrites: [{ label: "Impact", original: "Improved process across teams.", better: "Led a cross-team process change that sped up delivery and reduced handoff confusion.", enhancement_note: "Add the before-and-after timing so we can see the size of the change." }],
     next_steps: ["Add one before/after metric to your top bullet."],
     subscores: { impact: 82, clarity: 84, story: 80, readability: 83 },
@@ -252,119 +273,6 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
   }
 
   throw lastError;
-}
-
-/**
- * Streaming version of callOpenAIChat.
- * Returns an async generator that yields text chunks as they arrive.
- * The caller is responsible for accumulating and parsing the JSON.
- */
-export async function* callOpenAIChatStreaming(
-  messages: Array<{ role: "system" | "user" | "assistant"; content: string }>,
-  mode: Mode
-): AsyncGenerator<string, void, unknown> {
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-  const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
-  const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 90000);
-
-  console.log(`[OpenAI Streaming] Model: ${OPENAI_MODEL}, Timeout: ${OPENAI_TIMEOUT_MS}ms, Mode: ${mode}`);
-
-  if (!OPENAI_API_KEY) {
-    throw createAppError(
-      "OPENAI_API_KEY_MISSING",
-      "Missing OPENAI_API_KEY. Add it to web/.env.local and restart the dev server.",
-      500
-    );
-  }
-
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), OPENAI_TIMEOUT_MS);
-
-  try {
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: OPENAI_MODEL,
-        temperature: mode === "resume_ideas" ? 0.12 : 0,
-        response_format: { type: "json_object" },
-        stream_options: { include_usage: true },
-        stream: true,
-        messages
-      }),
-      signal: controller.signal
-    });
-
-    if (!res.ok) {
-      const textBody = await res.text();
-      throw createAppError(
-        "OPENAI_HTTP_ERROR",
-        "The model had trouble finishing your report.",
-        res.status >= 500 || res.status === 429 ? 502 : res.status,
-        textBody
-      );
-    }
-
-    if (!res.body) {
-      throw createAppError("OPENAI_NO_STREAM", "No stream body received from OpenAI.", 502);
-    }
-
-    const reader = res.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = "";
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() || "";
-
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed || trimmed === "data: [DONE]") continue;
-        if (!trimmed.startsWith("data: ")) continue;
-
-        try {
-          const json = JSON.parse(trimmed.slice(6));
-          const content = json.choices?.[0]?.delta?.content;
-          if (content) {
-            yield content;
-          }
-        } catch {
-          // Ignore malformed JSON chunks
-        }
-      }
-    }
-
-    // Process any remaining buffer
-    if (buffer.trim() && buffer.trim() !== "data: [DONE]" && buffer.startsWith("data: ")) {
-      try {
-        const json = JSON.parse(buffer.trim().slice(6));
-        const content = json.choices?.[0]?.delta?.content;
-        if (content) yield content;
-      } catch {
-        // Ignore
-      }
-    }
-  } catch (err: any) {
-    if (err?.name === "AbortError") {
-      throw createAppError("OPENAI_TIMEOUT", "OpenAI request timed out.", 504);
-    }
-    if (err?.code) throw err;
-    throw createAppError(
-      "OPENAI_NETWORK_ERROR",
-      "There was a network hiccup while getting your report.",
-      502,
-      err?.message
-    );
-  } finally {
-    clearTimeout(timer);
-  }
 }
 
 export function callOpenAIChatStreamingWithUsage(

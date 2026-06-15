@@ -62,13 +62,13 @@ export default function LinkedInModeSection({
     return (
       <div className="h-full overflow-y-auto bg-muted/10">
         <div data-visual-anchor="workspace-linkedin-empty" className="flex justify-center p-6 md:p-12 min-h-full">
-          <div className="w-full max-w-xl space-y-6">
-            <div className="text-center space-y-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <div className="w-full max-w-xl gap-y-6">
+            <div className="text-center gap-y-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <h1 className="font-display text-4xl md:text-5xl text-foreground tracking-tight">
                 This is what they see.
               </h1>
               <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
-                <Linkedin className="w-5 h-5 text-brand" />
+                <Linkedin className="size-5 text-brand" />
                 <p className="text-lg font-medium">3 seconds on your LinkedIn profile.</p>
               </div>
             </div>
@@ -90,9 +90,9 @@ export default function LinkedInModeSection({
   return (
     <div className="h-full overflow-y-auto bg-body relative group">
       <ReportLayout toc={<LinkedInReportTOC />}>
-        <div className="space-y-6">
+        <div className="gap-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
-            <div className="space-y-1 min-w-0">
+            <div className="gap-y-1 min-w-0">
               <div className="flex items-center gap-3 flex-wrap">
                 <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">
                   {linkedInProfileName || "LinkedIn Report"}
@@ -105,23 +105,23 @@ export default function LinkedInModeSection({
 
             <div className="flex items-center gap-2 shrink-0">
               {hasPaidAccess || freeUsesRemaining > 0 ? (
-                <button
+                <button type="button"
                   onClick={onNewReport}
                   className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="size-4" />
                   <span className="hidden sm:inline">Run Another</span>
                   <span className="sm:hidden">New</span>
                 </button>
               ) : null}
               {!hasPaidAccess && freeUsesRemaining <= 0 && (
-                <button
+                <button type="button"
                   onClick={onUpgrade}
                   className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                 >
                   <span className="hidden sm:inline">Get More Reviews</span>
                   <span className="sm:hidden">Upgrade</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="size-4" />
                 </button>
               )}
             </div>

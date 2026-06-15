@@ -39,6 +39,38 @@ function hashResumeText(text: string) {
   return crypto.createHash("sha256").update(text).digest("hex");
 }
 
+function buildReportTrustMetadata(payload: any) {
+  const topFixes = Array.isArray(payload?.top_fixes) ? payload.top_fixes : [];
+  const evidence = topFixes
+    .map((fix: any) => ({
+      fix: fix?.fix || "",
+      confidence: fix?.confidence || "medium",
+      impact_level: fix?.impact_level || "medium",
+      effort: fix?.effort || "moderate",
+      excerpt: typeof fix?.evidence === "string" ? fix.evidence : fix?.evidence?.excerpt || "",
+      section: typeof fix?.evidence === "string" ? fix?.section_ref || "Resume" : fix?.evidence?.section || fix?.section_ref || "Resume"
+    }))
+    .filter((item: any) => item.fix || item.excerpt);
+
+  const confidenceValues = evidence.map((item: any) => item.confidence);
+  const confidence_band = confidenceValues.includes("low")
+    ? "low"
+    : confidenceValues.includes("medium")
+      ? "medium"
+      : evidence.length > 0
+        ? "high"
+        : null;
+
+  return {
+    evidence_json: evidence.length > 0 ? evidence : null,
+    evidence_version: payload?.contract_version || "v2",
+    evidence_summary: evidence.length > 0
+      ? `${evidence.length} grounded fix${evidence.length === 1 ? "" : "es"} with ${confidence_band || "medium"} overall confidence.`
+      : null,
+    confidence_band
+  };
+}
+
 async function getActivePass(supabase: NonNullable<Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>>>, userId: string) {
   const { data, error } = await supabase
     .from("passes")
@@ -50,6 +82,26 @@ async function getActivePass(supabase: NonNullable<Awaited<ReturnType<typeof may
   if (error) throw error;
   const active = (data || []).find((pass: any) => isPassActive(pass));
   return active || null;
+}
+
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+async function resolveUserSavedJobId(
+  supabase: NonNullable<Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>>>,
+  userId: string,
+  value: string | null
+) {
+  if (!value || !UUID_PATTERN.test(value)) return null;
+
+  const { data, error } = await supabase
+    .from("saved_jobs")
+    .select("id")
+    .eq("id", value)
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  if (error || !data?.id) return null;
+  return data.id as string;
 }
 
 function getBypassPaywall(): boolean {
@@ -84,6 +136,7 @@ export async function POST(request: Request) {
     }
 
     const body = await readJsonWithLimit<any>(request, 128 * 1024);
+    const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
     const validation = validateResumeFeedbackRequest(body);
     if (!validation.ok || !validation.value) {
       const res = NextResponse.json(
@@ -118,6 +171,9 @@ export async function POST(request: Request) {
     const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
     const user = userData.data.user || null;
     const user_id = user?.id;
+    const savedJobId = user && supabase
+      ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
+      : null;
 
     // Determine access
     const cookieStore = await cookies();
@@ -152,7 +208,7 @@ export async function POST(request: Request) {
         {
           ok: false,
           errorCode: "PAYWALL_REQUIRED",
-          message: "You've used your free full report. Upgrade to keep going.",
+          message: "You've used your free report. Paid access adds more reports, saved history, and export.",
           free_uses_remaining: 0,
           free_uses_left: 0,
           access_tier: "preview"
@@ -234,7 +290,7 @@ ${jobDescription}`;
     } else if (mode === "case_negotiation") {
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
-      payload = validateResumeModelPayload(parsedJson);
+      payload = validateResumeModelPayload(parsedJson, text);
       payload = ensureLayoutAndContentFields(payload);
     }
 
@@ -266,10 +322,22 @@ ${jobDescription}`;
           score: payload.score,
           score_label: payload.score_label || null,
           report_json: payload,
+          ...buildReportTrustMetadata(payload),
+          ...(savedJobId ? { saved_job_id: savedJobId } : {}),
           resume_preview: preview,
+          job_description_text: jobDescription || null,
+          target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
           created_at: nowIso()
         });
-        if (error) reportId = null;
+        if (error) {
+          reportId = null;
+        } else if (savedJobId) {
+          await supabase
+            .from("saved_jobs")
+            .update({ latest_report_id: reportId, updated_at: nowIso() })
+            .eq("id", savedJobId)
+            .eq("user_id", user.id);
+        }
       } catch (e) {
         // Don't fail if report saving fails
         reportId = null;

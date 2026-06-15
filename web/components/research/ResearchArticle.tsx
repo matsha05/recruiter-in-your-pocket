@@ -133,7 +133,7 @@ export function ResearchArticle({
                             href="/research"
                             className="group mb-10 inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-600"
                         >
-                            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+                            <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />
                             Research
                         </Link>
 
@@ -175,7 +175,7 @@ export function ResearchArticle({
                     </div>
                 </section>
 
-                {/* ── Key finding — subordinate callout ── */}
+                {/* ── Key finding  -  subordinate callout ── */}
                 <section className="px-6 md:px-8">
                     <div className="mx-auto max-w-3xl pb-10">
                         <div
@@ -221,7 +221,7 @@ export function ResearchArticle({
                 </section>
 
                 <section className="px-6 md:px-8">
-                    <div className="mx-auto max-w-3xl space-y-12 pb-10">
+                    <div className="mx-auto max-w-3xl gap-y-12 pb-10">
 
                         {/* ── Visualization ── */}
                         {visualization && (
@@ -237,7 +237,7 @@ export function ResearchArticle({
 
                         {/* ── FAQ ── */}
                         {faq && faq.length > 0 && (
-                            <section className="space-y-5">
+                            <section className="gap-y-5">
                                 <h2
                                     className="font-display text-slate-900"
                                     style={{ fontSize: "1.35rem", fontWeight: 400, letterSpacing: "-0.02em" }}
@@ -259,7 +259,7 @@ export function ResearchArticle({
 
                         {/* ── Product tie-in ── */}
                         <div
-                            className="rounded-xl bg-white p-6 space-y-4"
+                            className="rounded-xl bg-white p-6 gap-y-4"
                             style={{
                                 boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)",
                             }}
@@ -270,9 +270,9 @@ export function ResearchArticle({
                             >
                                 {productTieIn.title}
                             </h3>
-                            <div className="space-y-3">
+                            <div className="gap-y-3">
                                 {productTieIn.items.map((item, i) => (
-                                    <div key={i} className="flex gap-3.5 items-start">
+                                    <div key={item.title} className="flex gap-3.5 items-start">
                                         <span className="mt-0.5 shrink-0 font-mono text-xs text-slate-300">
                                             {String(i + 1).padStart(2, "0")}
                                         </span>
@@ -287,7 +287,7 @@ export function ResearchArticle({
 
                         {/* ── Further reading (related + sources merged) ── */}
                         {(relatedArticles?.length || sources?.length) && (
-                            <section className="border-t border-slate-100 pt-8 space-y-6">
+                            <section className="border-t border-slate-100 pt-8 gap-y-6">
                                 <h3
                                     className="font-display text-slate-900"
                                     style={{ fontSize: "1.1rem", fontWeight: 500, letterSpacing: "-0.01em" }}
@@ -319,12 +319,12 @@ export function ResearchArticle({
                                 {sources && sources.length > 0 && (
                                     <div className="pt-2">
                                         <p className="mb-3 text-xs font-medium uppercase tracking-wide text-slate-300">Sources</p>
-                                        <ol className="list-decimal space-y-1.5 pl-5 text-xs leading-relaxed text-slate-400">
+                                        <ol className="list-decimal gap-y-1.5 pl-5 text-xs leading-relaxed text-slate-400">
                                             {sources.map((source, index) => {
                                                 const sourceId = source.id ?? `source-${index + 1}`;
                                                 const sourceLabel = [
                                                     source.title,
-                                                    source.publisher ? `— ${source.publisher}` : null,
+                                                    source.publisher ? ` -  ${source.publisher}` : null,
                                                     source.year ? `(${source.year})` : null
                                                 ]
                                                     .filter(Boolean)
@@ -357,7 +357,7 @@ export function ResearchArticle({
                     </div>
                 </section>
 
-                {/* ── CTA — dark strip ── */}
+                {/* ── CTA  -  dark strip ── */}
                 <section
                     className="px-6 py-12 md:px-8 md:py-16"
                     style={{ backgroundColor: "hsl(var(--surface-inverted))" }}

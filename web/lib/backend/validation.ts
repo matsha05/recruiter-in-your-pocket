@@ -1,4 +1,5 @@
 import { createAppError } from "./openai";
+import { assertReportGrounding, ResumeFeedbackResponseSchema } from "@/lib/validation/schemas";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALLOWED_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -120,12 +121,15 @@ export function ensureLayoutAndContentFields(obj: any) {
   return obj;
 }
 
-export function validateResumeModelPayload(obj: any) {
+export function validateResumeModelPayload(obj: any, resumeText?: string) {
   if (!obj || typeof obj !== "object") {
     throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
   }
 
   obj.score = normalizeScore(obj.score, "score");
+  if (typeof obj.contract_version === "undefined") {
+    obj.contract_version = "v2";
+  }
 
   const requiredStrings = [
     "score_label",
@@ -163,7 +167,31 @@ export function validateResumeModelPayload(obj: any) {
     }
   }
 
-  return ensureLayoutAndContentFields(obj);
+  const parsed = ResumeFeedbackResponseSchema.safeParse(obj);
+  if (!parsed.success) {
+    const firstIssue = parsed.error.issues[0];
+    const path = firstIssue?.path?.join(".") || "response";
+    throw createAppError(
+      "OPENAI_RESPONSE_SHAPE_INVALID",
+      `The model response failed the recruiter briefing contract at ${path}.`,
+      502
+    );
+  }
+
+  const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
+  if (resumeText && !isMockOpenAI) {
+    const grounding = assertReportGrounding(parsed.data, resumeText);
+    if (!grounding.ok) {
+      const issue = grounding.missingEvidence[0] || grounding.inventedSpecifics[0] || "response";
+      throw createAppError(
+        "OPENAI_RESPONSE_SHAPE_INVALID",
+        `The model response failed the evidence grounding contract at ${issue}.`,
+        502
+      );
+    }
+  }
+
+  return ensureLayoutAndContentFields(parsed.data);
 }
 
 export function validateResumeIdeasPayload(obj: any) {

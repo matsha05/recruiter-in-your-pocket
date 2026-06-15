@@ -10,11 +10,12 @@
 
 import type { ExtensionMessage, ExtensionResponse, SavedJob } from './messages';
 import {
-    addSavedJob,
+    addSavedJobAndUpdateBadge,
     getSavedJobs as getLocalJobs,
     deleteSavedJob,
     updateBadge,
-    isJobCaptured
+    isJobCaptured,
+    getSavedJobDedupeKey
 } from './storage';
 import {
     captureJob,
@@ -50,8 +51,7 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
                 const savedJob = await captureJob(jd, meta);
 
                 // Also save locally for offline access
-                await addSavedJob(savedJob);
-                await updateBadge();
+                await addSavedJobAndUpdateBadge(savedJob);
 
                 return { success: true, data: savedJob };
             } catch (error) {
@@ -60,12 +60,13 @@ async function handleMessage(message: ExtensionMessage): Promise<ExtensionRespon
 
                 const localJob: SavedJob = {
                     ...meta,
+                    externalId: null,
                     score: null,
                     jdPreview: jd.slice(0, 200),
+                    jobDescription: jd,
                 };
 
-                await addSavedJob(localJob);
-                await updateBadge();
+                await addSavedJobAndUpdateBadge(localJob);
 
                 return { success: true, data: localJob };
             }
@@ -159,12 +160,12 @@ function mergeJobs(apiJobs: SavedJob[], localJobs: SavedJob[]): SavedJob[] {
 
     // Add local jobs first
     for (const job of localJobs) {
-        jobMap.set(job.url, job);
+        jobMap.set(getSavedJobDedupeKey(job), job);
     }
 
     // Overwrite with API jobs (they have scores)
     for (const job of apiJobs) {
-        jobMap.set(job.url, job);
+        jobMap.set(getSavedJobDedupeKey(job), job);
     }
 
     // Sort by captured time, most recent first

@@ -7,6 +7,15 @@ import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+function shouldIgnoreMissingTable(error: { message?: string } | null | undefined) {
+    if (!error?.message) return false;
+    return error.message.includes("does not exist") || error.message.includes("relation");
+}
+
+function throwDeletionError(table: string, error: { message?: string } | null | undefined): never {
+    throw new Error(`Failed to delete ${table}: ${error?.message || "Unknown database error"}`);
+}
+
 /**
  * DELETE /api/account/delete
  * 
@@ -94,13 +103,14 @@ export async function DELETE(request: Request) {
             .delete({ count: "exact" })
             .eq("user_id", userId);
 
-        if (profilesError && !profilesError.message.includes("does not exist")) {
-            logWarn({
-                msg: "account.deletion.table_warning",
+        if (profilesError && !shouldIgnoreMissingTable(profilesError)) {
+            logError({
+                msg: "account.deletion.failed",
                 request_id,
                 user_id: userId,
                 supabase: { table: "user_profiles", error_code: profilesError.code }
             });
+            throwDeletionError("user_profiles", profilesError);
         }
         deletions.push({ table: "user_profiles", count: profilesCount });
 
@@ -110,14 +120,14 @@ export async function DELETE(request: Request) {
             .delete({ count: "exact" })
             .eq("user_id", userId);
 
-        // Ignore error if table doesn't exist yet (extension not built)
-        if (jobsError && !jobsError.message.includes("does not exist")) {
-            logWarn({
-                msg: "account.deletion.table_warning",
+        if (jobsError && !shouldIgnoreMissingTable(jobsError)) {
+            logError({
+                msg: "account.deletion.failed",
                 request_id,
                 user_id: userId,
                 supabase: { table: "saved_jobs", error_code: jobsError.code }
             });
+            throwDeletionError("saved_jobs", jobsError);
         }
         deletions.push({ table: "saved_jobs", count: jobsCount });
 
@@ -139,19 +149,21 @@ export async function DELETE(request: Request) {
         deletions.push({ table: "artifacts", count: artifactsCount });
 
         // 5. Delete user_usage tracking
-        const { error: usageError } = await admin
+        const { error: usageError, count: usageCount } = await admin
             .from("user_usage")
-            .delete()
+            .delete({ count: "exact" })
             .eq("user_id", userId);
 
-        if (usageError && !usageError.message.includes("does not exist")) {
-            logWarn({
-                msg: "account.deletion.table_warning",
+        if (usageError && !shouldIgnoreMissingTable(usageError)) {
+            logError({
+                msg: "account.deletion.failed",
                 request_id,
                 user_id: userId,
                 supabase: { table: "user_usage", error_code: usageError.code }
             });
+            throwDeletionError("user_usage", usageError);
         }
+        deletions.push({ table: "user_usage", count: usageCount });
 
         // 6. Delete account export jobs
         const { error: exportJobsError, count: exportJobsCount } = await admin
@@ -159,13 +171,14 @@ export async function DELETE(request: Request) {
             .delete({ count: "exact" })
             .eq("user_id", userId);
 
-        if (exportJobsError && !exportJobsError.message.includes("does not exist")) {
-            logWarn({
-                msg: "account.deletion.table_warning",
+        if (exportJobsError && !shouldIgnoreMissingTable(exportJobsError)) {
+            logError({
+                msg: "account.deletion.failed",
                 request_id,
                 user_id: userId,
                 supabase: { table: "account_export_jobs", error_code: exportJobsError.code }
             });
+            throwDeletionError("account_export_jobs", exportJobsError);
         }
         deletions.push({ table: "account_export_jobs", count: exportJobsCount });
 
@@ -177,12 +190,13 @@ export async function DELETE(request: Request) {
             .eq("user_id", userId);
 
         if (passesError) {
-            logWarn({
-                msg: "account.deletion.table_warning",
+            logError({
+                msg: "account.deletion.failed",
                 request_id,
                 user_id: userId,
                 supabase: { table: "passes", error_code: passesError.code }
             });
+            throwDeletionError("passes", passesError);
         }
         deletions.push({ table: "passes", count: passesCount });
 

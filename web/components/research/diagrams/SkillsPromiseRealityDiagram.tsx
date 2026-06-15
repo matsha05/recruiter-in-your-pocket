@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -21,7 +21,7 @@ export function SkillsPromiseRealityDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         The Reality Check
                     </span>
                 </div>
@@ -38,8 +38,8 @@ export function SkillsPromiseRealityDiagram() {
                             className="rounded-lg border border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/20 p-4"
                         >
                             <div className="flex items-center gap-2 mb-4">
-                                <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                                    <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <div className="size-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                                    <svg className="size-4 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M12 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
                                         <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" />
                                     </svg>
@@ -48,7 +48,7 @@ export function SkillsPromiseRealityDiagram() {
                                     What They Say
                                 </span>
                             </div>
-                            <ul className="space-y-2">
+                            <ul className="gap-y-2">
                                 <li className="text-sm text-emerald-700/80 dark:text-emerald-300/80 flex items-start gap-2">
                                     <span className="text-emerald-500 mt-1">✓</span>
                                     <span>&quot;Skills matter more than degrees&quot;</span>
@@ -73,8 +73,8 @@ export function SkillsPromiseRealityDiagram() {
                             className="rounded-lg border border-amber-500/30 bg-amber-50 dark:bg-amber-950/20 p-4"
                         >
                             <div className="flex items-center gap-2 mb-4">
-                                <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                                    <svg className="w-4 h-4 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <div className="size-8 rounded-full bg-amber-500/20 flex items-center justify-center">
+                                    <svg className="size-4 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
                                         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                                     </svg>
@@ -83,7 +83,7 @@ export function SkillsPromiseRealityDiagram() {
                                     What Research Shows
                                 </span>
                             </div>
-                            <ul className="space-y-2">
+                            <ul className="gap-y-2">
                                 <li className="text-sm text-amber-700/80 dark:text-amber-300/80 flex items-start gap-2">
                                     <span className="text-amber-500 mt-1">→</span>
                                     <span>Degree requirements persist in practice</span>
@@ -115,8 +115,8 @@ export function SkillsPromiseRealityDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Promise vs Reality</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Promise vs Reality</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Where skills-first claims diverge from hiring behavior
                 </span>

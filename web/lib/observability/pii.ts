@@ -68,8 +68,10 @@ export const FORBIDDEN_KEYS = new Set([
   "secret"
 ]);
 
+const FORBIDDEN_KEY_PATTERN = /(email|phone|ssn|resume|password|secret|token)/;
+
 // Regex patterns for PII detection in string values
-export const PII_PATTERNS = {
+const PII_PATTERNS = {
   // SSN: 123-45-6789
   ssn: /\b\d{3}-\d{2}-\d{4}\b/,
 
@@ -97,15 +99,7 @@ export function containsForbiddenKeys(value: unknown): boolean {
 
     // Case-insensitive partial matches for common PII fields
     const lowerKey = key.toLowerCase();
-    if (
-      lowerKey.includes("email") ||
-      lowerKey.includes("phone") ||
-      lowerKey.includes("ssn") ||
-      lowerKey.includes("resume") ||
-      lowerKey.includes("password") ||
-      lowerKey.includes("secret") ||
-      lowerKey.includes("token")
-    ) {
+    if (FORBIDDEN_KEY_PATTERN.test(lowerKey)) {
       return true;
     }
 
@@ -173,12 +167,7 @@ export function scrubPiiFromObject(obj: unknown): unknown {
     // Replace forbidden keys entirely
     if (
       FORBIDDEN_KEYS.has(key) ||
-      lowerKey.includes("resume") ||
-      lowerKey.includes("email") ||
-      lowerKey.includes("phone") ||
-      lowerKey.includes("password") ||
-      lowerKey.includes("token") ||
-      lowerKey.includes("secret")
+      FORBIDDEN_KEY_PATTERN.test(lowerKey)
     ) {
       result[key] = "[REDACTED]";
     } else {
@@ -192,6 +181,6 @@ export function scrubPiiFromObject(obj: unknown): unknown {
 /**
  * Get the list of forbidden keys for documentation
  */
-export function getForbiddenKeysList(): string[] {
+function getForbiddenKeysList(): string[] {
   return Array.from(FORBIDDEN_KEYS).sort();
 }

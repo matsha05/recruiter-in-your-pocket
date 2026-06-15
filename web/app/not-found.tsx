@@ -8,7 +8,7 @@ export default function NotFound() {
             {/* Simple Header */}
             <header className="h-16 flex items-center justify-between px-6 border-b border-border/10">
                 <Link href="/" className="flex items-center gap-2">
-                    <PocketMark className="w-6 h-6 text-brand" />
+                    <PocketMark className="size-6 text-brand" />
                     <Wordmark className="h-5 text-foreground" />
                 </Link>
             </header>
@@ -36,14 +36,14 @@ export default function NotFound() {
                             href="/"
                             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand text-brand-foreground font-medium rounded-md hover:bg-brand/90 transition-colors"
                         >
-                            <Home className="w-4 h-4" />
+                            <Home className="size-4" />
                             Back to Home
                         </Link>
                         <Link
                             href="/research"
                             className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border/60 bg-background text-foreground font-medium rounded-md hover:bg-accent transition-colors"
                         >
-                            <Search className="w-4 h-4" />
+                            <Search className="size-4" />
                             Browse Research
                         </Link>
                     </div>

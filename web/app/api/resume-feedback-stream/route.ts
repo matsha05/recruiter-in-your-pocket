@@ -46,6 +46,38 @@ function hashResumeText(text: string) {
     return crypto.createHash("sha256").update(text).digest("hex");
 }
 
+function buildReportTrustMetadata(payload: any) {
+    const topFixes = Array.isArray(payload?.top_fixes) ? payload.top_fixes : [];
+    const evidence = topFixes
+        .map((fix: any) => ({
+            fix: fix?.fix || "",
+            confidence: fix?.confidence || "medium",
+            impact_level: fix?.impact_level || "medium",
+            effort: fix?.effort || "moderate",
+            excerpt: typeof fix?.evidence === "string" ? fix.evidence : fix?.evidence?.excerpt || "",
+            section: typeof fix?.evidence === "string" ? fix?.section_ref || "Resume" : fix?.evidence?.section || fix?.section_ref || "Resume"
+        }))
+        .filter((item: any) => item.fix || item.excerpt);
+
+    const confidenceValues = evidence.map((item: any) => item.confidence);
+    const confidence_band = confidenceValues.includes("low")
+        ? "low"
+        : confidenceValues.includes("medium")
+            ? "medium"
+            : evidence.length > 0
+                ? "high"
+                : null;
+
+    return {
+        evidence_json: evidence.length > 0 ? evidence : null,
+        evidence_version: payload?.contract_version || "v2",
+        evidence_summary: evidence.length > 0
+            ? `${evidence.length} grounded fix${evidence.length === 1 ? "" : "es"} with ${confidence_band || "medium"} overall confidence.`
+            : null,
+        confidence_band
+    };
+}
+
 async function getActivePass(supabase: any, userId: string) {
     const { data, error } = await supabase
         .from("passes")
@@ -57,6 +89,22 @@ async function getActivePass(supabase: any, userId: string) {
     if (error) throw error;
     const active = (data || []).find((pass: any) => isPassActive(pass));
     return active || null;
+}
+
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+async function resolveUserSavedJobId(supabase: any, userId: string, value: string | null) {
+    if (!value || !UUID_PATTERN.test(value)) return null;
+
+    const { data, error } = await supabase
+        .from("saved_jobs")
+        .select("id")
+        .eq("id", value)
+        .eq("user_id", userId)
+        .maybeSingle();
+
+    if (error || !data?.id) return null;
+    return data.id as string;
 }
 
 function getBypassPaywall(): boolean {
@@ -117,6 +165,7 @@ export async function POST(request: Request) {
 
     // Track accumulated JSON for final validation
     let accumulatedJson = "";
+    const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
 
     const stream = new ReadableStream({
         async start(controller) {
@@ -171,6 +220,9 @@ export async function POST(request: Request) {
                 const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
                 const user = userData.data.user || null;
                 const user_id = user?.id;
+                const savedJobId = user && supabase
+                    ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
+                    : null;
 
                 const cookieStore = await cookies();
                 const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
@@ -209,7 +261,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "PAYWALL_REQUIRED",
-                        message: "You've used your free full report. Upgrade to keep going."
+                        message: "You've used your free report. Paid access adds more reports, saved history, and export."
                     }) + "\n"));
                     controller.close();
                     logInfo({
@@ -303,7 +355,7 @@ export async function POST(request: Request) {
                         payload = validateCaseNegotiationPayload(parsedJson);
                     } else {
                         // Original legacy modes
-                        payload = validateResumeModelPayload(parsedJson);
+                        payload = validateResumeModelPayload(parsedJson, text);
                         payload = ensureLayoutAndContentFields(payload);
                     }
                 } catch (err: any) {
@@ -343,11 +395,21 @@ export async function POST(request: Request) {
                             score: payload.score,
                             score_label: payload.score_label || null,
                             report_json: payload,
+                            ...buildReportTrustMetadata(payload),
+                            ...(savedJobId ? { saved_job_id: savedJobId } : {}),
                             resume_preview: preview,
                             job_description_text: jobDescription || null,
                             target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
                             created_at: nowIso()
                         });
+
+                        if (savedJobId) {
+                            await supabase
+                                .from("saved_jobs")
+                                .update({ latest_report_id: reportId, updated_at: nowIso() })
+                                .eq("id", savedJobId)
+                                .eq("user_id", user.id);
+                        }
                     } catch {
                         reportId = null;
                     }

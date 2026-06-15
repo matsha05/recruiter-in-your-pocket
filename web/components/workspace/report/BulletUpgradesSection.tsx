@@ -29,16 +29,16 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
 
     if (!data.rewrites || data.rewrites.length === 0) {
         return (
-            <section className="space-y-6">
+            <section className="gap-y-6">
                 <ReportSectionHeader
-                    icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
+                    icon={<TransformArrowIcon className="size-4 text-brand" />}
                     number="04"
                     title="The Red Pen"
                     subtitle="Line-by-line rewrites a recruiter would notice."
                 />
                 <div className="rounded border border-success/20 bg-success/5 p-6 flex items-start gap-4">
-                    <div className="h-10 w-10 rounded bg-success/10 flex items-center justify-center shrink-0">
-                        <InsightSparkleIcon className="h-5 w-5 text-success" />
+                    <div className="size-10 rounded bg-success/10 flex items-center justify-center shrink-0">
+                        <InsightSparkleIcon className="size-5 text-success" />
                     </div>
                     <div>
                         <h3 className="font-display font-medium text-foreground text-lg mb-1">
@@ -67,18 +67,18 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
     };
 
     return (
-        <section className="space-y-8">
+        <section className="gap-y-8">
             <ReportSectionHeader
-                icon={<TransformArrowIcon className="w-4 h-4 text-brand" />}
+                icon={<TransformArrowIcon className="size-4 text-brand" />}
                 number="04"
                 title="The Red Pen"
                 subtitle="Line-by-line rewrites a recruiter would notice."
             />
 
-            <div className="space-y-4">
+            <div className="gap-y-4">
                 {/* System Status Line */}
                 <div className="flex items-center gap-2 px-1">
-                    <div className="h-1.5 w-1.5 rounded-full bg-brand" />
+                    <div className="size-1.5 rounded-full bg-brand" />
                     <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                         {data.rewrites.length} rewrites ready
                     </span>
@@ -94,10 +94,10 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
 
                 {/* Remaining Rewrites */}
                 {remainingRewrites.length > 0 && (
-                    <div className="space-y-6">
+                    <div className="gap-y-6">
                         {isGated ? (
                             // Gated View
-                            <div className="space-y-4">
+                            <div className="gap-y-4">
                                 {/* Blurred Card */}
                                 <RedPenCard
                                     title="Locked Rewrite"
@@ -107,9 +107,9 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                     onUnlock={handleUnlock}
                                 />
 
-                                <div className="rounded border border-premium/20 bg-premium/5 p-4 space-y-3">
-                                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
-                                        <Lock className="h-3.5 w-3.5 text-premium" />
+                                <div className="rounded border border-premium/20 bg-premium/5 p-4 gap-y-3">
+                                    <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
+                                        <Lock className="size-3.5 text-premium" />
                                         Unlock the rest of Red Pen
                                     </div>
                                     <UnlockValueList
@@ -143,7 +143,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                             <>
                                 {visibleRewrites.map((rewrite, i) => (
                                     <RedPenCard
-                                        key={i}
+                                        key={`${rewrite.label}-${rewrite.original}`}
                                         title={rewrite.label || `Rewrite #${i + 2}`}
                                         before={rewrite.original}
                                         after={rewrite.better}
@@ -158,12 +158,12 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                     >
                                         {showAll ? (
                                             <>
-                                                <ChevronUp className="w-4 h-4 mr-2" />
+                                                <ChevronUp className="size-4 mr-2" />
                                                 Show less
                                             </>
                                         ) : (
                                             <>
-                                                <ChevronDown className="w-4 h-4 mr-2" />
+                                                <ChevronDown className="size-4 mr-2" />
                                                 Show {hiddenCount} more
                                             </>
                                         )}

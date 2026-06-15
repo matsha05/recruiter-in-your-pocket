@@ -11,11 +11,9 @@
       - Teal Brand + Slate UI + Gold Premium
     */
 
-    /* Base Tones (Paper & Ink) */
-    --background: 0 0% 98%;
-    /* #FAFAFA */
-    --foreground: 0 0% 7%;
-    /* #111111 */
+    /* Base Tones (Ink + Mineral) */
+    --background: 210 24% 98%;
+    --foreground: 218 36% 10%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 7%;
@@ -27,25 +25,23 @@
     /* Ink */
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 220 5% 96%;
-    --secondary-foreground: 0 0% 7%;
+    --secondary: 210 16% 95%;
+    --secondary-foreground: 218 36% 10%;
 
-    --muted: 220 5% 96%;
-    --muted-foreground: 220 9% 36%;
+    --muted: 210 16% 95%;
+    --muted-foreground: 217 15% 38%;
     /* Accessible muted text */
 
-    --accent: 220 5% 96%;
-    --accent-foreground: 0 0% 7%;
+    --accent: 210 20% 95%;
+    --accent-foreground: 218 36% 10%;
 
     --destructive: 0 72% 44%;
     --destructive-foreground: 0 0% 98%;
 
     /* V2.1 Borders — Modern Editorial: soft gray, not black */
-    --border: 215 20% 88%;
-    /* Slate-200 equivalent #E2E8F0 */
-    --input: 220 10% 90%;
-    --ring: 215 20% 27%;
-    /* Slate-700 */
+    --border: 214 22% 86%;
+    --input: 212 20% 89%;
+    --ring: 215 28% 27%;
 
     --radius-sm: 0.25rem;
     /* 4px - App dense */
@@ -61,8 +57,8 @@
 
     /* V2.1 BRAND PALETTE */
     /* Brand: Teal (Primary CTA, Score) */
-    --brand: 173 84% 24%;
-    /* Teal-700 for AA contrast on white text */
+    --brand: 178 74% 28%;
+    /* Disciplined teal with stronger visible identity */
 
     /* Accent: Slate (UI Chrome) */
     --slate: 215 25% 27%;
@@ -75,8 +71,8 @@
     /* Slate-950 #020617 */
 
     /* Premium: Gold (Unlock moments ONLY) */
-    --premium: 43 96% 44%;
-    /* Amber-600 #D97706 */
+    --premium: 37 52% 45%;
+    /* Aged brass */
 
     /* Semantic Colors */
     --gold: 43 96% 44%;
@@ -138,12 +134,12 @@
     /* Emphasis, active */
 
     /* V3.1 Site-Wide System Primitives */
-    --chrome-line: 215 24% 82%;
-    --surface-quiet: 220 14% 97%;
+    --chrome-line: 214 22% 82%;
+    --surface-quiet: 210 20% 97%;
     --surface-raised: 0 0% 100%;
-    --text-subtle: 220 9% 36%;
-    --paper: 40 23% 97%;
-    --paper-muted: 40 20% 94%;
+    --text-subtle: 217 14% 38%;
+    --paper: 40 21% 96%;
+    --paper-muted: 38 17% 93%;
     --header-height: 3.5rem;
     --header-height-desktop: 4rem;
     --page-max: 78rem;
@@ -186,12 +182,10 @@
     /* Slate-700 equivalent #334155 */
 
     /* V2.1 Dark Brand */
-    --brand: 168 76% 50%;
-    /* Teal-400 #2DD4BF */
+    --brand: 176 63% 54%;
     --slate: 213 27% 60%;
     /* Slate-400 */
-    --premium: 45 93% 55%;
-    /* Amber-400 #FBBF24 */
+    --premium: 38 58% 59%;
 
     /* Inverted Surface (dark sections in light mode) */
     --surface-inverted: 222 47% 11%;
@@ -199,11 +193,11 @@
 
     /* V3.1 Site-Wide System Primitives */
     --chrome-line: 215 22% 33%;
-    --surface-quiet: 220 18% 14%;
+    --surface-quiet: 218 20% 14%;
     --surface-raised: 220 18% 11%;
     --text-subtle: 220 12% 72%;
-    --paper: 220 18% 12%;
-    --paper-muted: 220 18% 15%;
+    --paper: 216 16% 13%;
+    --paper-muted: 216 16% 16%;
   }
 }
 
@@ -460,16 +454,20 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: hsl(var(--muted-foreground) / 0.72);
+    color: hsl(var(--muted-foreground));
   }
 
   .editorial-kicker-strong {
     color: hsl(var(--brand));
   }
 
+  .editorial-kicker-inverted {
+    color: rgb(203 213 225);
+  }
+
   .editorial-meta {
     font-size: 0.75rem;
-    color: hsl(var(--muted-foreground) / 0.78);
+    color: hsl(var(--muted-foreground));
   }
 
   .editorial-copy {
@@ -616,18 +614,18 @@
 
   /* Label mono: uppercase tracking-widest pattern */
   .text-label-mono {
-    @apply font-mono text-[10px] uppercase tracking-widest text-muted-foreground;
+    @apply font-mono text-xs uppercase tracking-widest text-muted-foreground;
   }
 
   /* ==========================================================================
-     SITE HEADER — Editor's Desk style
-     - Warm paper background, minimal chrome
+     SITE HEADER — Recruiter-intelligence chrome
+     - Cooler, sharper, more product-led
      - Used on all marketing/guest pages
      ========================================================================== */
 
   .site-header {
     @apply fixed top-0 left-0 right-0 z-50;
-    background: rgba(250, 250, 248, 0.8);
+    background: rgba(245, 248, 249, 0.82);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid hsl(var(--chrome-line) / 0.45);
@@ -854,9 +852,9 @@
     --landing-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
     @apply relative min-h-screen overflow-x-clip text-slate-900 dark:text-slate-100;
     background:
-      radial-gradient(980px 390px at 102% -6%, rgb(13 148 136 / 0.09), transparent 60%),
-      radial-gradient(760px 300px at -10% -8%, rgb(245 158 11 / 0.08), transparent 58%),
-      linear-gradient(180deg, #fdfbf7 0%, #fffefb 24%, #ffffff 55%, #f8fbfa 76%, #fdfbf7 100%);
+      radial-gradient(980px 390px at 102% -6%, rgb(14 116 144 / 0.1), transparent 60%),
+      radial-gradient(760px 300px at -10% -8%, rgb(140 113 67 / 0.06), transparent 58%),
+      linear-gradient(180deg, #f4f8f9 0%, #fbfcfd 24%, #ffffff 55%, #f5f9f9 76%, #f4f8f9 100%);
   }
 
   .landing-section-pad {
@@ -906,19 +904,19 @@
 
   .landing-frame-hero {
     background:
-      linear-gradient(180deg, rgb(255 253 247 / 0.98), rgb(255 255 255 / 0.98));
+      linear-gradient(180deg, rgb(245 249 250 / 0.98), rgb(255 255 255 / 0.98));
   }
 
   .landing-frame-hero::before {
     opacity: 1;
     background:
-      radial-gradient(90% 62% at 80% 0%, rgb(13 148 136 / 0.12), transparent 68%),
-      radial-gradient(55% 40% at 12% 0%, rgb(251 191 36 / 0.12), transparent 72%);
+      radial-gradient(90% 62% at 80% 0%, rgb(13 148 136 / 0.11), transparent 68%),
+      radial-gradient(55% 40% at 12% 0%, rgb(100 116 139 / 0.1), transparent 72%);
   }
 
   .landing-frame-mist {
     background:
-      linear-gradient(180deg, rgb(247 252 250 / 0.96), rgb(255 255 255 / 0.98));
+      linear-gradient(180deg, rgb(241 247 248 / 0.96), rgb(255 255 255 / 0.98));
   }
 
   .landing-frame-mist::before {
@@ -929,18 +927,18 @@
 
   .landing-frame-paper {
     background:
-      linear-gradient(180deg, rgb(255 255 255 / 0.94), rgb(255 253 247 / 0.95));
+      linear-gradient(180deg, rgb(255 255 255 / 0.94), rgb(252 248 241 / 0.96));
   }
 
   .landing-frame-soft {
     background:
-      linear-gradient(180deg, rgb(247 251 249 / 0.95), rgb(255 249 239 / 0.9));
+      linear-gradient(180deg, rgb(244 248 249 / 0.95), rgb(251 252 253 / 0.92));
   }
 
   .landing-frame-soft::before {
     opacity: 1;
     background:
-      radial-gradient(92% 64% at 8% 0%, rgb(245 158 11 / 0.1), transparent 70%);
+      radial-gradient(92% 64% at 8% 0%, rgb(13 148 136 / 0.08), transparent 70%);
   }
 
   .landing-frame-ink {
@@ -993,16 +991,16 @@
     @apply inline-flex items-center gap-2 rounded-full border px-2.5 py-1;
     width: fit-content;
     border-color: var(--landing-border-default);
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.96), rgb(248 250 252 / 0.92));
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.96), rgb(244 248 249 / 0.92));
     box-shadow: 0 8px 20px -18px rgb(2 6 23 / 0.5);
   }
 
   .landing-section-tag-index {
-    @apply font-mono text-[10px] font-semibold tracking-[0.17em] text-brand;
+    @apply font-mono text-xs font-semibold tracking-wide text-brand;
   }
 
   .landing-section-tag-label {
-    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600;
+    @apply text-xs font-semibold uppercase tracking-wide text-slate-600;
   }
 
   .landing-flow-lg>*+* {
@@ -1066,15 +1064,15 @@
 
   .landing-headline {
     font-family: var(--font-display);
-    font-size: clamp(2.7rem, 5.5vw, 4.2rem);
-    line-height: 0.96;
-    letter-spacing: -0.022em;
+    font-size: clamp(2.8rem, 5.8vw, 4.5rem);
+    line-height: 0.94;
+    letter-spacing: -0.026em;
     font-weight: 400;
   }
 
   .landing-subhead {
-    font-size: clamp(1.01rem, 1.46vw, 1.14rem);
-    line-height: 1.62;
+    font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+    line-height: 1.68;
     color: rgb(51 65 85);
   }
 
@@ -1139,7 +1137,7 @@
   .landing-btn-quiet {
     @apply inline-flex min-h-11 items-center gap-2 rounded-md border px-3.5 py-2 text-sm;
     border-color: var(--landing-border-default);
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.95), rgb(240 253 250 / 0.76));
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.95), rgb(241 247 248 / 0.78));
     color: hsl(var(--brand));
     transition:
       border-color var(--landing-motion-fast) var(--landing-motion-ease),
@@ -1178,8 +1176,8 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(95% 55% at 0% 0%, rgb(13 148 136 / 0.08), transparent 62%),
-      radial-gradient(85% 55% at 100% 0%, rgb(245 158 11 / 0.08), transparent 62%);
+      radial-gradient(95% 55% at 0% 0%, rgb(13 148 136 / 0.06), transparent 62%),
+      radial-gradient(85% 55% at 100% 0%, rgb(51 65 85 / 0.06), transparent 62%);
   }
 
   .landing-card>* {
@@ -1191,7 +1189,7 @@
     @apply rounded-2xl border;
     border-color: rgb(148 163 184 / 0.3);
     background:
-      linear-gradient(180deg, rgb(248 252 251 / 0.84), rgb(255 252 246 / 0.9));
+      linear-gradient(180deg, rgb(247 250 251 / 0.88), rgb(255 255 255 / 0.92));
   }
 
   .landing-card-pad {
@@ -1226,18 +1224,15 @@
     @apply relative overflow-hidden;
     background-image:
       radial-gradient(920px 360px at 14% -8%, rgb(13 148 136 / 0.2), transparent 70%),
-      radial-gradient(760px 320px at 88% 10%, rgb(245 158 11 / 0.14), transparent 72%),
+      radial-gradient(760px 320px at 88% 10%, rgb(140 113 67 / 0.14), transparent 72%),
       linear-gradient(180deg, #071a2b 0%, #051224 52%, #040b16 100%);
   }
 
-  .landing-deep-ink-quote {
-    @apply rounded-2xl border border-white/10 p-6 backdrop-blur-sm;
-    background-color: rgb(255 255 255 / 0.045);
-  }
-
-  .landing-deep-ink-panel {
-    @apply rounded-2xl border border-brand/30 p-6 backdrop-blur-sm md:p-7;
-    background-color: rgb(255 255 255 / 0.04);
+  .landing-trust-quote {
+    @apply rounded-2xl border p-6 backdrop-blur-sm;
+    border-color: rgb(148 163 184 / 0.24);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(244 248 249 / 0.88));
   }
 
   .landing-copy {
@@ -1250,6 +1245,105 @@
 
   .landing-copy-inverted {
     @apply text-[15px] leading-relaxed text-slate-300;
+  }
+
+  .landing-proof-strip {
+    @apply flex flex-col gap-3 rounded-2xl border px-4 py-3 sm:flex-row sm:items-center sm:justify-between;
+    border-color: var(--landing-border-default);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.94), rgb(241 247 248 / 0.86));
+    box-shadow: 0 20px 40px -34px rgb(2 6 23 / 0.22);
+  }
+
+  .landing-proof-strip-items {
+    @apply flex flex-wrap items-center gap-x-3 gap-y-1.5;
+  }
+
+  .landing-proof-strip-item {
+    @apply inline-flex items-center text-label-mono text-muted-foreground;
+    position: relative;
+  }
+
+  .landing-proof-strip-item:not(:last-child)::after {
+    content: "•";
+    margin-left: 0.75rem;
+    color: rgb(13 148 136 / 0.5);
+  }
+
+  .landing-hero-glimpse-shell {
+    @apply relative flex justify-end;
+  }
+
+  .landing-hero-glimpse-shell::before {
+    content: "";
+    position: absolute;
+    right: -4%;
+    top: 1rem;
+    width: 88%;
+    height: 88%;
+    border-radius: 1.5rem;
+    background:
+      radial-gradient(60% 55% at 78% 10%, rgb(13 148 136 / 0.12), transparent 72%),
+      linear-gradient(180deg, rgb(226 232 240 / 0.4), rgb(255 255 255 / 0));
+    filter: blur(4px);
+    pointer-events: none;
+  }
+
+  .landing-hero-glimpse {
+    @apply relative overflow-hidden rounded-[1.4rem];
+    max-width: 34rem;
+    max-height: 35rem;
+    width: 100%;
+    mask-image: linear-gradient(180deg, black 0%, black 84%, transparent 100%);
+  }
+
+  .landing-metric-tile {
+    @apply rounded-2xl border px-4 py-3 text-right;
+    border-color: var(--landing-border-default);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.95), rgb(241 247 248 / 0.85));
+    min-width: 10.5rem;
+  }
+
+  .landing-metric-value {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.4vw, 2.85rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: hsl(var(--foreground));
+  }
+
+  .landing-transformation-block {
+    @apply rounded-2xl border px-4 py-4 md:px-5;
+    border-color: var(--landing-border-default);
+  }
+
+  .landing-transformation-block-before {
+    background:
+      linear-gradient(180deg, rgb(255 249 236 / 0.9), rgb(255 255 255 / 0.96));
+  }
+
+  .landing-transformation-block-after {
+    background:
+      linear-gradient(180deg, rgb(236 248 246 / 0.95), rgb(255 255 255 / 0.98));
+    box-shadow: 0 20px 38px -34px rgb(15 118 110 / 0.3);
+  }
+
+  .landing-transformation-arrow {
+    @apply hidden items-center justify-center text-3xl text-brand lg:flex;
+  }
+
+  .landing-transformation-line {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.65;
+  }
+
+  .landing-diagnosis-band {
+    @apply rounded-2xl border px-4 py-3 md:px-5;
+    border-color: rgb(148 163 184 / 0.28);
+    background:
+      linear-gradient(180deg, rgb(244 248 249 / 0.86), rgb(255 255 255 / 0.95));
   }
 
   .landing-stat-label {
@@ -1327,6 +1421,23 @@
     border-color: var(--landing-border-default);
     background:
       linear-gradient(180deg, rgb(15 23 42 / 0.72), rgb(2 6 23 / 0.86));
+  }
+
+  .dark .landing-proof-strip,
+  .dark .landing-metric-tile,
+  .dark .landing-diagnosis-band,
+  .dark .landing-trust-quote {
+    background: rgb(15 23 42 / 0.82);
+  }
+
+  .dark .landing-transformation-block-before {
+    background:
+      linear-gradient(180deg, rgb(56 43 18 / 0.52), rgb(15 23 42 / 0.9));
+  }
+
+  .dark .landing-transformation-block-after {
+    background:
+      linear-gradient(180deg, rgb(13 148 136 / 0.16), rgb(15 23 42 / 0.9));
   }
 
   .dark .landing-subhead {

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -38,7 +38,7 @@ export function SocialScreeningDiagram() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Platform by purpose
                     </span>
                 </div>
@@ -67,7 +67,7 @@ export function SocialScreeningDiagram() {
                                     }`}>
                                     {platform.name}
                                 </p>
-                                <ul className="space-y-1.5">
+                                <ul className="gap-y-1.5">
                                     {platform.uses.map((use, j) => (
                                         <motion.li
                                             key={use}
@@ -75,7 +75,7 @@ export function SocialScreeningDiagram() {
                                             whileInView={{ opacity: 1 }}
                                             transition={{ duration: 0.3, delay: 0.3 + i * 0.1 + j * 0.05 }}
                                             viewport={{ once: true }}
-                                            className="text-[11px] text-muted-foreground"
+                                            className="text-xs text-muted-foreground"
                                         >
                                             {use}
                                         </motion.li>
@@ -100,8 +100,8 @@ export function SocialScreeningDiagram() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Platform Roles</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Platform Roles</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Different platforms serve different evaluation stages
                 </span>

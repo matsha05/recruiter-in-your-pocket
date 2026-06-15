@@ -81,6 +81,40 @@ function extractCurrentPeriodEndUnix(
     return null;
 }
 
+function asStripeObjectRecord(value: unknown): Record<string, unknown> {
+    return value && typeof value === "object" ? value as Record<string, unknown> : {};
+}
+
+function stringOrNull(value: unknown): string | null {
+    return typeof value === "string" ? value : null;
+}
+
+function numberOrNull(value: unknown): number | null {
+    return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function buildStripeEventAuditPayload(event: Stripe.Event): Record<string, unknown> {
+    const object = asStripeObjectRecord(event.data.object);
+
+    return {
+        event_api_version: event.api_version ?? null,
+        livemode: event.livemode,
+        object: stringOrNull(object.object),
+        object_id: stringOrNull(object.id),
+        object_created: numberOrNull(object.created),
+        amount_total: numberOrNull(object.amount_total),
+        amount_paid: numberOrNull(object.amount_paid),
+        currency: stringOrNull(object.currency),
+        mode: stringOrNull(object.mode),
+        status: stringOrNull(object.status),
+        payment_status: stringOrNull(object.payment_status),
+        customer: stringOrNull(object.customer),
+        subscription: stringOrNull(object.subscription),
+        invoice: stringOrNull(object.invoice),
+        payment_intent: stringOrNull(object.payment_intent),
+    };
+}
+
 async function findUserIdByEmail(admin: any, email: string): Promise<string | null> {
     const perPage = 200;
 
@@ -479,7 +513,7 @@ export async function POST(request: NextRequest) {
             event_id: event.id,
             event_type: event.type,
             processed_at: new Date().toISOString(),
-            payload: JSON.stringify(event.data.object),
+            payload: buildStripeEventAuditPayload(event),
             request_id
         });
     } catch {

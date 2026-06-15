@@ -4,7 +4,7 @@
  * Floating toast with undo action. Auto-dismisses after 5 seconds.
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface UndoToastProps {
     message: string;
@@ -19,26 +19,20 @@ export default function UndoToast({
     onDismiss,
     duration = 5000
 }: UndoToastProps) {
-    const [isVisible, setIsVisible] = useState(true);
-
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisible(false);
-            setTimeout(onDismiss, 200); // Wait for exit animation
-        }, duration);
+        const timer = setTimeout(onDismiss, duration);
 
         return () => clearTimeout(timer);
     }, [duration, onDismiss]);
 
     function handleUndo() {
-        setIsVisible(false);
         onUndo();
     }
 
     return (
-        <div className={`undo-toast ${isVisible ? 'visible' : ''}`}>
+        <div className="undo-toast visible">
             <span className="undo-message">{message}</span>
-            <button className="undo-button" onClick={handleUndo}>
+            <button type="button" className="undo-button" onClick={handleUndo}>
                 Undo
             </button>
         </div>

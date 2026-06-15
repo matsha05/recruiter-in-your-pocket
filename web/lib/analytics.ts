@@ -72,7 +72,7 @@ function isDNT(): boolean {
 /**
  * Track an event with optional properties
  */
-export function trackEvent(name: string, props: Record<string, any> = {}) {
+function trackEvent(name: string, props: Record<string, any> = {}) {
   if (typeof window === "undefined") return;
   if (!ANALYTICS_ENABLED) return;
 
@@ -102,8 +102,6 @@ export function trackEvent(name: string, props: Record<string, any> = {}) {
  * This links their anonymous activity to their user ID
  */
 export function identifyUser(userId: string, traits?: {
-  email?: string;
-  name?: string;
   created_at?: string;
   plan?: string;
   credits_remaining?: number;
@@ -125,15 +123,19 @@ export function identifyUser(userId: string, traits?: {
     mixpanelInstance.identify(userId);
     currentUserId = userId;
 
-    // Set user profile properties (for segmentation in Mixpanel)
+    // Keep analytics pseudonymous: account email/name stay in Supabase, not Mixpanel.
     if (traits) {
-      mixpanelInstance.people.set({
-        $email: traits.email,
-        $name: traits.name,
+      const profile = {
         $created: traits.created_at,
         plan: traits.plan,
         credits_remaining: traits.credits_remaining,
-      });
+      };
+      const definedProfile = Object.fromEntries(
+        Object.entries(profile).filter(([, value]) => value !== undefined)
+      );
+      if (Object.keys(definedProfile).length > 0) {
+        mixpanelInstance.people.set(definedProfile);
+      }
     }
 
     debugLog("[Analytics] User identified:", userId);
@@ -143,7 +145,7 @@ export function identifyUser(userId: string, traits?: {
 /**
  * Update user properties (e.g., after plan change)
  */
-export function setUserProperties(props: Record<string, any>) {
+function setUserProperties(props: Record<string, any>) {
   if (typeof window === "undefined") return;
   if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;
@@ -158,7 +160,7 @@ export function setUserProperties(props: Record<string, any>) {
 /**
  * Increment a numeric user property
  */
-export function incrementUserProperty(prop: string, by: number = 1) {
+function incrementUserProperty(prop: string, by: number = 1) {
   if (typeof window === "undefined") return;
   if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;
@@ -193,7 +195,7 @@ export function resetAnalytics() {
 /**
  * Track a revenue event (purchase)
  */
-export function trackRevenue(amount: number, props?: {
+function trackRevenue(amount: number, props?: {
   product?: string;
   credits?: number;
   currency?: string;
@@ -232,7 +234,7 @@ export function trackRevenue(amount: number, props?: {
 /**
  * Set super properties (attached to all future events)
  */
-export function setSuperProperties(props: Record<string, any>) {
+function setSuperProperties(props: Record<string, any>) {
   if (typeof window === "undefined") return;
   if (!ANALYTICS_ENABLED) return;
   if (isDNT()) return;

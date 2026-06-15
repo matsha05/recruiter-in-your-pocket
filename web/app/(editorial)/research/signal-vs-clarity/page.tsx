@@ -41,11 +41,11 @@ export default function SignalVsClarityPage() {
                         <div className="riyp-figure-frame p-6">
                             <div className="grid md:grid-cols-2 gap-6 text-sm">
                                 <div className="border border-border/40 p-4">
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">Signal view</div>
+                                    <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">Signal view</div>
                                     <p className="text-muted-foreground">Outcome is about signaling quality to overcome uncertainty.</p>
                                 </div>
                                 <div className="border border-brand/30 bg-brand/5 p-4">
-                                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">Clarity view</div>
+                                    <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-2">Clarity view</div>
                                     <p className="text-muted-foreground">Outcome improves because clarity lets recruiters evaluate true ability faster.</p>
                                 </div>
                             </div>

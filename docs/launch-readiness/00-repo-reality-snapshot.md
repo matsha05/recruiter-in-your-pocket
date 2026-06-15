@@ -214,12 +214,14 @@ export async function loadPromptForMode(mode: Mode): Promise<string> { ... }
 
 ## 7. Reliability Gaps (Verified)
 
+**May 2026 update:** The original 2025 snapshot treated evals, calibration, confidence, and the Chrome extension as missing. The current repo now includes a PromptOps eval harness, v2 output contract validation, top-fix confidence/evidence fields, and LinkedIn/Indeed job capture. The remaining risk is not "does this exist?" but whether these systems pass consistently in CI and production-like launch rehearsals.
+
 | Gap | Risk | Priority | How to Verify |
 |:----|:-----|:---------|:--------------|
-| **No eval harness** | Quality regressions undetected | P1 | Check for eval scripts in tests/ |
-| **No calibration dataset** | Score drift after model updates | P1 | Check for labeled fixtures |
+| **Eval harness not consistently green** | Quality regressions can still sneak through if dry runs or paid smoke evals fail | P0 | Run `npm run eval:dry-run` and `npm run eval:smoke` before prompt changes |
+| **Calibration coverage still thin** | Score drift after model updates may miss edge roles | P1 | Expand labeled smoke/golden fixtures and baseline snapshots |
 | **Single prompt version** | No A/B testing capability | P2 | Check prompts.ts for variant support |
-| **No confidence scoring** | Output appears certain when uncertain | P2 | Check resume output schema |
+| **Confidence needs launch proof** | Users may still over-trust weak evidence if UI does not surface uncertainty | P1 | Verify top fixes show confidence, evidence, impact, and effort in report UI |
 | **No timeout fallbacks** | Silent failures on slow LLM calls | P2 | Check streaming error handling |
 | **No retry logic** | Transient failures not recovered | P2 | Check API route error paths |
 
@@ -279,7 +281,7 @@ export async function loadPromptForMode(mode: Mode): Promise<string> { ... }
 | **Resume fixtures** | 37 files | `/tests/resumes/` |
 | **Calibration results** | CSV output | `/tests/calibration_results.csv` (8KB) |
 
-> **Note:** Fixtures exist but no automated eval harness to run them against prompts.
+> **Note:** Fixtures and an automated eval harness now exist; the launch gate is that they pass cleanly and are run before prompt or model changes.
 
 ---
 
@@ -295,13 +297,13 @@ export async function loadPromptForMode(mode: Mode): Promise<string> { ... }
 
 ### ⚠️ Gaps (P1)
 
-1. **No eval harness** — Cannot detect quality regressions
+1. **Eval harness must stay green** — Quality regressions are detectable only if evals become a real shipping gate
 2. **No calibration automation** — Fixtures exist but not used systematically
-3. **No Chrome extension** — Missing primary retention mechanism
+3. **Chrome extension loop needs proof** — LinkedIn/Indeed capture exists, but saved jobs must reliably prefill role-specific reports
 
 ### ⚠️ Gaps (P2)
 
-4. **No confidence scoring** in output schema
+4. **Confidence scoring must remain evidence-backed** in the v2 output schema
 5. **No timeout/retry logic** in streaming routes
 6. **Single prompt version** — no A/B infrastructure
 7. **No output fallback behavior** specification

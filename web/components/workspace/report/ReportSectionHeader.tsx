@@ -38,10 +38,10 @@ export function ReportSectionHeader({
     className
 }: ReportSectionHeaderProps) {
     return (
-        <div className={cn("space-y-2", className)}>
+        <div className={cn("space-y-3", className)}>
             {/* Eyebrow: Number + Title + Optional Badge */}
-            <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+            <div className="flex items-center justify-between gap-3">
+                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     {icon}
                     {number}. {title}
                 </h2>
@@ -49,7 +49,7 @@ export function ReportSectionHeader({
             </div>
 
             {subtitle ? (
-                <p className="font-display font-medium text-xl text-foreground tracking-tight leading-snug">
+                <p className="max-w-2xl font-display text-[1.15rem] font-medium leading-snug tracking-tight text-foreground md:text-[1.25rem]">
                     {subtitle}
                 </p>
             ) : null}

@@ -4,6 +4,7 @@ import { Plus, ArrowRight, Link2, ShieldCheck, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DownloadIcon } from "@/components/ui/download";
+import { EmptyReportIcon } from "@/components/icons";
 import AnalysisScanning from "./AnalysisScanning";
 import { ReportStream } from "./report/ReportStream";
 import { ReportData } from "./report/ReportTypes";
@@ -145,14 +146,14 @@ export default function ReportPanel({
 
             {/* 2. Empty State - Premium, Anxiety-Reducing */}
             {showEmptyState && (
-                <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-8">
+                <div className="flex flex-col items-center justify-center h-full p-8 text-center gap-y-8">
                     {/* Icon - Subtle, Calm */}
-                    <div className="w-16 h-16 rounded bg-secondary/30 border border-border/20 flex items-center justify-center">
-                        <Plus className="w-6 h-6 text-muted-foreground/50" />
+                    <div className="flex size-20 items-center justify-center rounded-xl border border-brand/15 bg-brand/[0.045] text-brand shadow-[0_18px_48px_-36px_hsl(var(--brand))]">
+                        <EmptyReportIcon className="size-12" />
                     </div>
 
                     {/* Copy - Question Headline */}
-                    <div className="space-y-3 max-w-md">
+                    <div className="gap-y-3 max-w-md">
                         <h2 className="font-display text-2xl md:text-3xl text-foreground">
                             What does the first read say?
                         </h2>
@@ -168,7 +169,7 @@ export default function ReportPanel({
 
                     {/* Divider + Example Link */}
                     <div className="pt-4 border-t border-border/30 w-full max-w-xs">
-                        <button
+                        <button type="button"
                             onClick={onNewReport}
                             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
@@ -185,11 +186,11 @@ export default function ReportPanel({
                         toc={<ReportTOC activeId={tocActiveId} />}
                     >
                         {/* Document Meta / Actions Header (Inline for Mobile, handled by Layout context usually but here just content) */}
-                        <div className="space-y-6">
+                        <div className="gap-y-6">
                             {shareEnabled && shareMode && (
                                 <div className="rounded border border-premium/20 bg-premium/5 p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                                        <ShieldCheck className="h-4 w-4 text-premium" />
+                                        <ShieldCheck className="size-4 text-premium" />
                                         <div>
                                             <p className="text-foreground font-medium">Share view is on.</p>
                                             <p className="text-xs text-muted-foreground">
@@ -198,96 +199,98 @@ export default function ReportPanel({
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <button
+                                        <button type="button"
                                             onClick={handleShare}
                                             className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
                                         >
-                                            <Link2 className="h-3.5 w-3.5" />
+                                            <Link2 className="size-3.5" />
                                             Copy link
                                         </button>
-                                        <button
+                                        <button type="button"
                                             onClick={handleExitShare}
                                             className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
                                         >
-                                            <X className="h-3.5 w-3.5" />
+                                            <X className="size-3.5" />
                                             Exit share
                                         </button>
                                     </div>
                                 </div>
                             )}
 
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                                <div className="space-y-1 min-w-0">
+                            <div className="animate-in slide-in-from-bottom-2 fade-in px-1 pb-1 duration-500 sm:px-2">
+                                <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+                                <div className="min-w-0 gap-y-1.5">
                                     <div className="flex items-center gap-3 flex-wrap">
                                         <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">
                                             {displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Report'}
                                         </h1>
                                         {isSample && (
-                                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-muted text-muted-foreground border border-border shrink-0">
+                                            <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-muted text-muted-foreground border border-border shrink-0">
                                                 Example
                                             </span>
                                         )}
                                         {shareEnabled && shareMode && (
-                                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-premium/15 text-premium border border-premium/30 shrink-0">
+                                            <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-premium/15 text-premium border border-premium/30 shrink-0">
                                                 Share View
                                             </span>
                                         )}
                                     </div>
-                                    <p className="text-sm text-muted-foreground">Here&apos;s how your resume comes across first.</p>
+                                    <p className="max-w-xl text-sm text-muted-foreground">Here&apos;s how your resume comes across first.</p>
                                 </div>
 
                                 {/* Action Buttons */}
-                                <div className="flex items-center gap-2 shrink-0">
+                                <div className="flex shrink-0 items-center gap-2">
                                     {isSample && onNewReport && !shareMode && (
-                                        <button
+                                        <button type="button"
                                             onClick={onNewReport}
-                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                            className="flex min-h-11 items-center gap-2 rounded px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90 bg-brand"
                                         >
                                             <span className="hidden sm:inline">Run Your Report</span>
                                             <span className="sm:hidden">Run</span>
-                                            <ArrowRight className="w-4 h-4" />
+                                            <ArrowRight className="size-4" />
                                         </button>
                                     )}
                                     {!isSample && canRunAnother && onNewReport && !shareMode && (
-                                        <button
+                                        <button type="button"
                                             onClick={onNewReport}
-                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
+                                            className="flex min-h-11 items-center gap-2 rounded bg-brand px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
                                         >
-                                            <Plus className="w-4 h-4" />
+                                            <Plus className="size-4" />
                                             <span className="hidden sm:inline">Run Another Report</span>
                                             <span className="sm:hidden">New</span>
                                         </button>
                                     )}
                                     {!isSample && !canRunAnother && onUpgrade && !shareMode && (
-                                        <button
+                                        <button type="button"
                                             onClick={onUpgrade}
-                                            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
+                                            className="flex min-h-11 items-center gap-2 rounded bg-premium px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-premium/90"
                                         >
                                             <span className="hidden sm:inline">Unlock More Reports</span>
                                             <span className="sm:hidden">Upgrade</span>
-                                            <ArrowRight className="w-4 h-4" />
+                                            <ArrowRight className="size-4" />
                                         </button>
                                     )}
 
                                     {canExport && (
-                                        <button
+                                        <button type="button"
                                             onClick={handleExport}
                                             disabled={isExporting}
-                                            className="flex items-center gap-2 px-3 py-2 rounded text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors disabled:opacity-50 min-h-10"
+                                            className="flex min-h-11 items-center gap-2 rounded px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground disabled:opacity-50"
                                         >
                                             <DownloadIcon size={16} />
                                             <span className="hidden sm:inline">{isExporting ? "Exporting..." : "Export PDF"}</span>
                                         </button>
                                     )}
                                     {shareEnabled && !shareMode && (
-                                        <button
+                                        <button type="button"
                                             onClick={handleShare}
-                                            className="flex items-center gap-2 px-3 py-2 rounded text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                                            className="flex min-h-11 items-center gap-2 rounded px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
                                         >
-                                            <Link2 className="h-4 w-4" />
+                                            <Link2 className="size-4" />
                                             <span className="hidden sm:inline">Share Report</span>
                                         </button>
                                     )}
+                                </div>
                                 </div>
                             </div>
 
@@ -314,7 +317,7 @@ export default function ReportPanel({
                                 justUnlocked={justUnlocked}
                                 highlightSection={highlightSection}
                                 hasPaidAccess={hasPaidAccess}
-                                className="max-w-none pb-16" // Extra padding for BottomActionRail
+                                className="max-w-none sm:pb-16"
                             />
                         </div>
                     </ReportLayout>

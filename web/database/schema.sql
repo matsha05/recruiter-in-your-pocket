@@ -41,6 +41,7 @@ create table if not exists reports (
   score integer,
   score_label text,
   report_json jsonb not null default '{}'::jsonb,
+  saved_job_id uuid,
   resume_preview varchar(200),
   name varchar(100),
   job_description_preview varchar(200),
@@ -58,6 +59,7 @@ create table if not exists reports (
 create index if not exists reports_user_created_idx on reports(user_id, created_at desc);
 create index if not exists reports_user_variant_idx on reports(user_id, resume_variant);
 create index if not exists reports_user_target_role_idx on reports(user_id, target_role);
+create index if not exists reports_saved_job_idx on reports(saved_job_id);
 
 -- 4. Passes Table (Entitlements)
 create table if not exists passes (
@@ -100,6 +102,7 @@ create table if not exists saved_jobs (
   source text not null default 'linkedin',
   status text not null default 'saved',
   match_score integer,
+  latest_report_id uuid,
   matched_skills jsonb not null default '[]'::jsonb,
   missing_skills jsonb not null default '[]'::jsonb,
   top_gaps jsonb not null default '[]'::jsonb,
@@ -111,6 +114,7 @@ create table if not exists saved_jobs (
 create unique index if not exists saved_jobs_user_url_idx on saved_jobs(user_id, url);
 create index if not exists saved_jobs_user_captured_idx on saved_jobs(user_id, captured_at desc);
 create index if not exists saved_jobs_user_external_idx on saved_jobs(user_id, external_id);
+create index if not exists saved_jobs_latest_report_idx on saved_jobs(latest_report_id);
 
 -- 7. Billing Receipts Table
 create table if not exists billing_receipts (

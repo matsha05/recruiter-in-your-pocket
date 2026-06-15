@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import type { LandingResearchContent } from "@/components/landing/landingConfig";
 import { LandingSectionHeader, LandingSectionTag } from "@/components/landing/sections/SectionPrimitives";
@@ -31,7 +31,7 @@ export function ResearchSection({ content }: ResearchSectionProps) {
                         className="landing-btn-quiet"
                     >
                         {content.cta.label}
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="size-4" />
                     </Link>
                 )}
             />
@@ -65,7 +65,7 @@ export function ResearchSection({ content }: ResearchSectionProps) {
                         </div>
                         <div className="mt-4 landing-link-inline">
                             {content.featured.ctaLabel}
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
                         </div>
                     </Link>
                 </motion.div>
@@ -90,11 +90,11 @@ export function ResearchSection({ content }: ResearchSectionProps) {
                                     <span className="text-label-mono text-muted-foreground shrink-0">{article.readTime}</span>
                                 </div>
                                 <div className="flex items-start gap-3">
-                                    <div className="mt-0.5 font-mono text-[11px] font-semibold tracking-[0.12em] text-brand/70">
+                                    <div className="mt-0.5 font-mono text-xs font-semibold tracking-wide text-brand/70">
                                         {String(index + 1).padStart(2, "0")}
                                     </div>
-                                    <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center shrink-0">
-                                        <article.icon className="w-4 h-4" />
+                                    <div className="size-8 rounded-md bg-brand/10 text-brand flex items-center justify-center shrink-0">
+                                        <article.icon className="size-4" />
                                     </div>
                                     <div className="min-w-0">
                                         <div className="landing-title-card transition-colors group-hover:text-brand">

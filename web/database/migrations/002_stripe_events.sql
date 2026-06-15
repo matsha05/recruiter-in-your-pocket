@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS stripe_events (
     event_id TEXT NOT NULL UNIQUE,
     event_type TEXT NOT NULL,
     processed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    payload JSONB,
+    payload JSONB, -- Sanitized event summary only; do not store raw Stripe payloads here.
     request_id TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -19,4 +19,4 @@ CREATE INDEX IF NOT EXISTS stripe_events_event_type_idx ON stripe_events(event_t
 
 -- Retention: Keep events for 90 days for audit purposes
 -- (Manual cleanup or automated job)
-COMMENT ON TABLE stripe_events IS 'Audit log for Stripe webhook events. Retained 90 days for debugging.';
+COMMENT ON TABLE stripe_events IS 'Audit log for Stripe webhook events. Stores sanitized event summaries only. Retained 90 days for debugging.';

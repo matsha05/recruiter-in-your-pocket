@@ -63,15 +63,15 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                 data-no-card-click
             >
                 <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-muted text-foreground text-xs border border-border">
-                    <Tag className="w-3 h-3 text-muted-foreground" />
+                    <Tag className="size-3 text-muted-foreground" />
                     {value}
                     {onClear && (
                         <button
+                            type="button"
                             onClick={(e) => { e.stopPropagation(); onClear(); }}
                             className="hover:text-destructive transition-colors ml-0.5"
-                            type="button"
                         >
-                            <X className="w-3 h-3" />
+                            <X className="size-3" />
                         </button>
                     )}
                 </span>
@@ -95,7 +95,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                         type="button"
                         className="inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
                     >
-                        <Tag className="w-3 h-3" />
+                        <Tag className="size-3" />
                         Label this resume
                     </button>
                 </PopoverTrigger>
@@ -175,7 +175,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                 {/* User's existing labels - shown first if they have any */}
                                 {userLabels.length > 0 && (
                                     <div className="py-2 border-b border-border">
-                                        <div className="px-4 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+                                        <div className="px-4 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                                             Your Labels
                                         </div>
                                         {userLabels.map((label) => (
@@ -194,14 +194,14 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                 {/* Helpful hint - only for new users */}
                                 {userLabels.length === 0 && (
                                     <div className="px-4 py-2 flex items-start gap-2 text-xs text-muted-foreground bg-muted/30 border-b border-border">
-                                        <Lightbulb className="w-3.5 h-3.5 mt-0.5 text-brand shrink-0" />
+                                        <Lightbulb className="size-3.5 mt-0.5 text-brand shrink-0" />
                                         <span>Labels help you track progress across different resume versions</span>
                                     </div>
                                 )}
 
                                 {/* Quick labels - minimal, just to get started */}
                                 <div className="py-2">
-                                    <div className="px-4 py-1 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+                                    <div className="px-4 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                                         Quick Pick
                                     </div>
                                     {QUICK_LABELS.map((label) => (

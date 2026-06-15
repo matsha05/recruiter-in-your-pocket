@@ -2,6 +2,7 @@
 
 **Agent:** A2 Product Strategy and Wedge Owner  
 **Date:** 2025-12-28  
+**Status Update:** Refreshed in May 2026 after the quality contract, evidence persistence, and saved-job loop moved from roadmap into implementation.
 **Purpose:** Choose the highest-leverage problem to solve in 2-week sprint
 
 ---
@@ -21,7 +22,7 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 
 **Who this is NOT for (in this sprint):**
 - First-time visitors (onboarding is already strong)
-- Chrome extension users (roadmap for Q1 2026)
+- Chrome extension users without saved job context (the extension now feeds the repeat-use loop; pure extension polish remains separate)
 - Negotiation users (future expansion)
 
 ---
@@ -48,8 +49,8 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 |:----------|:---------------|:--------|:-----|:--------------|
 | Recruiter perspective | ✅ Unique | ❌ ATS focus | ❌ ATS focus | ⚪ Partial |
 | Scoring methodology | ✅ Strong prompt | ⚪ Mechanical | ⚪ Vague | ⚪ Fixed criteria |
-| Quality system | ❌ **Missing** | Unknown | Unknown | Unknown |
-| Confidence transparency | ❌ **Missing** | ❌ | ❌ | ❌ |
+| Quality system | ✅ Eval harness + v2 contract | Unknown | Unknown | Unknown |
+| Confidence transparency | ✅ Top-fix confidence + evidence ledger | ❌ | ❌ | ❌ |
 
 **The gap:** No competitor visibly demonstrates how their scoring works _or_ that quality is systematically measured. RIYP can be first-to-market with a quality system that:
 1. Prevents embarrassing regressions
@@ -137,7 +138,7 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 
 ### Out of Scope for 2-Week Sprint
 
-1. **Chrome extension** — Roadmap for Q1 2026
+1. **Standalone Chrome extension expansion** — Existing LinkedIn/Indeed capture stays in scope only when it improves the saved-job-to-report loop
 2. **Negotiation module** — Future expansion (Month 3-4)
 3. **Auto-apply features** — Not our wedge
 4. **Job tracking/CRM** — Different JTBD
@@ -148,10 +149,10 @@ RIYP cannot detect, prevent, or measure quality regressions in its core AI outpu
 
 ### Explicitly Deferred
 
-1. **Confidence scoring in output** — P2, after eval harness is stable
+1. **Market trend confidence scoring** — P2; report-level top-fix confidence now belongs to the v2 output contract
 2. **Recruiter eye-scan visualization** — P3, nice-to-have polish
 3. **Market trend emails** — P2, retention enhancement
-4. **Chrome extension MVP** — P1 but post-launch
+4. **Chrome extension store polish** — P1 but separate from the core briefing contract
 
 ---
 

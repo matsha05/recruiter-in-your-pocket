@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { PricingCard } from "@/components/shared/PricingCard";
 import type { LandingPricingContent } from "@/components/landing/landingConfig";
@@ -44,14 +44,14 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
 
                     <div className="landing-card-soft landing-card-pad landing-flow-sm">
                         <div className="text-label-mono text-muted-foreground">{content.included.eyebrow}</div>
-                        <div className="space-y-2 landing-copy-muted">
+                        <div className="gap-y-2 landing-copy-muted">
                             {content.included.items.map((item) => (
                                 <p key={item}>{item}</p>
                             ))}
                         </div>
                         <Link href={content.included.cta.href} className="landing-link-inline">
                             {content.included.cta.label}
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="size-4" />
                         </Link>
                     </div>
                 </motion.div>
@@ -93,7 +93,7 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
                     action={(
                         <Link href={content.trust.cta.href} className="landing-link-inline">
                             {content.trust.cta.label}
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="size-4" />
                         </Link>
                     )}
                 />
@@ -101,8 +101,8 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
                 <div className="grid landing-grid-gap md:grid-cols-2 lg:grid-cols-4">
                     {content.trust.items.map((item) => (
                         <div key={item.title} className="landing-card landing-card-pad landing-flow-sm">
-                            <div className="w-8 h-8 rounded-md bg-brand/10 text-brand flex items-center justify-center">
-                                <item.icon className="w-4 h-4" />
+                            <div className="size-8 rounded-md bg-brand/10 text-brand flex items-center justify-center">
+                                <item.icon className="size-4" />
                             </div>
                             <div className="text-base font-medium">{item.title}</div>
                             <div className="landing-copy-muted">{item.copy}</div>

@@ -17,7 +17,7 @@
 import type { LinkedInProfile, LinkedInExperience, LinkedInEducation } from '@/types/linkedin';
 // Note: pdf-parse will need to be installed: npm install pdf-parse @types/pdf-parse
 
-export async function parseLinkedInPdf(buffer: Buffer): Promise<LinkedInProfile> {
+async function parseLinkedInPdf(buffer: Buffer): Promise<LinkedInProfile> {
     // Dynamic import to avoid SSR issues
     const pdfParse = (await import('pdf-parse')).default;
 
@@ -97,7 +97,7 @@ function extractName(lines: string[]): string {
             const looksLikeName = words.every(w =>
                 w.length > 0 &&
                 w[0] === w[0].toUpperCase() &&
-                !w.includes('@')
+                !/@/.test(w)
             );
             if (looksLikeName) {
                 return line;

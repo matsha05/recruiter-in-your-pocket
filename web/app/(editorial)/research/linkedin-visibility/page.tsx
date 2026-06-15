@@ -173,7 +173,7 @@ export default function LinkedInVisibilityPage() {
             <h2 className="research-h2">What Good Headlines Look Like</h2>
             <div className="grid md:grid-cols-2 gap-8 not-prose mt-6">
                 <div className="space-y-3">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Do This</div>
+                    <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60">Do This</div>
                     <ul className="border-t border-border/30 divide-y divide-border/30 text-sm text-muted-foreground">
                         <li className="py-2">Senior PM | B2B SaaS | $4M→$12M ARR | ex-Stripe</li>
                         <li className="py-2">Data Scientist | ML/AI | Python, SQL | Healthcare Tech</li>
@@ -181,7 +181,7 @@ export default function LinkedInVisibilityPage() {
                     </ul>
                 </div>
                 <div className="space-y-3">
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/60">Not This</div>
+                    <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60">Not This</div>
                     <ul className="border-t border-border/30 divide-y divide-border/30 text-sm text-muted-foreground">
                         <li className="py-2 line-through">Product Manager at TechCorp | Building Great Products</li>
                         <li className="py-2 line-through">Passionate data scientist seeking new opportunities</li>

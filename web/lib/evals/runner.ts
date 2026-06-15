@@ -278,11 +278,11 @@ async function processFixture(
 
     // Extract evidence flags
     const evidenceFlags: Array<{ fix_index: number; issue: string }> = [];
-    for (const warn of checkResult.warnings) {
-        if (warn.code === "W_EVIDENCE_PARAPHRASE") {
-            const match = warn.message.match(/Fix (\d+)/);
+    for (const issue of [...checkResult.errors, ...checkResult.warnings]) {
+        if (issue.code === "E_EVIDENCE_NOT_VERBATIM" || issue.code === "W_EVIDENCE_PARAPHRASE") {
+            const match = issue.message.match(/Fix (\d+)/);
             if (match) {
-                evidenceFlags.push({ fix_index: parseInt(match[1]) - 1, issue: "paraphrase" });
+                evidenceFlags.push({ fix_index: parseInt(match[1]) - 1, issue: "not_verbatim" });
             }
         }
     }

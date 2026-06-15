@@ -22,9 +22,12 @@ export type JobStatus = 'saved' | 'interested' | 'applying' | 'interviewing' | '
 
 // Saved job with match score
 export interface SavedJob extends JobMeta {
+    externalId?: string | null;
     score: number | null;
     jdPreview: string; // First 200 chars
+    jobDescription?: string;
     status?: JobStatus;
+    hasResume?: boolean;
 }
 
 // User auth info

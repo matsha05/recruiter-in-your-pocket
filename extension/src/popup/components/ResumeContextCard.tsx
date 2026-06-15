@@ -10,7 +10,7 @@
  * Mirrors the web Jobs section's ResumeContextCard.
  */
 
-import { useState, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 import { API_BASE } from '../../background/api';
 
 interface ResumeProfile {
@@ -25,8 +25,10 @@ interface ResumeContextCardProps {
 }
 
 export default function ResumeContextCard({ className }: ResumeContextCardProps) {
-    const [profile, setProfile] = useState<ResumeProfile | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [profile, setProfile] = useReducer(
+        (_state: ResumeProfile | undefined, nextProfile: ResumeProfile | undefined): ResumeProfile | undefined => nextProfile,
+        undefined as ResumeProfile | undefined
+    );
 
     useEffect(() => {
         fetchProfile();
@@ -56,8 +58,6 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
         } catch (error) {
             console.error('[RIYP] Resume fetch error:', error);
             setProfile({ hasResume: false });
-        } finally {
-            setIsLoading(false);
         }
     }
 
@@ -69,7 +69,7 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
     }
 
     // Loading state
-    if (isLoading) {
+    if (profile === undefined) {
         return (
             <div className={`resume-context-card resume-context-loading ${className || ''}`}>
                 <div className="skeleton" style={{ width: 24, height: 24, borderRadius: '50%' }} />
@@ -81,7 +81,8 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
     // No resume state
     if (!profile?.hasResume) {
         return (
-            <div
+            <button
+                type="button"
                 className={`resume-context-card resume-context-empty ${className || ''}`}
                 onClick={handleChangeResume}
             >
@@ -97,7 +98,7 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
                     <span className="resume-context-subtitle">Add a default resume so saved jobs have fit context</span>
                 </div>
                 <span className="resume-context-arrow">→</span>
-            </div>
+            </button>
         );
     }
 
@@ -133,6 +134,7 @@ export default function ResumeContextCard({ className }: ResumeContextCardProps)
                 </div>
             </div>
             <button
+                type="button"
                 className="resume-context-change"
                 onClick={handleChangeResume}
             >

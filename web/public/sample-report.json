@@ -1,4 +1,5 @@
 {
+  "contract_version": "v2",
   "score": 86,
   "score_label": "Strong",
   "score_comment_short": "You read as someone who takes messy workstreams and makes them shippable.",
@@ -94,38 +95,32 @@
     {
       "label": "Impact",
       "original": "Improved process across teams.",
-      "better": "Ran a cross-team launch with clear owners, decisions, and checkpoints so delivery hit the agreed date.",
-      "enhancement_note": "Add the number of teams involved and users/shipments affected, so the reader can understand the scale of impact."
+      "better": "Improved [process name] across [team count] teams by clarifying owners, decisions, and checkpoints.",
+      "enhancement_note": "Add the process name, team count, and what changed so the improvement is credible."
     },
     {
       "label": "Scope",
       "original": "Supported leadership on projects.",
-      "better": "Supported leadership by running risk reviews and comms for 8 concurrent projects across 3 regions.",
-      "enhancement_note": "Include the project count, total budget, or team size to clarify the scope of your oversight."
+      "better": "Supported leadership on [project type] by running risk reviews and communications for [project count] concurrent projects.",
+      "enhancement_note": "Add project type and project count so recruiters can see the level of responsibility."
     },
     {
       "label": "Clarity",
       "original": "Handled stakeholder updates.",
-      "better": "Kept launches on track by running weekly checklists, risk reviews, and exec stakeholder comms, shipping 12 features on schedule.",
-      "enhancement_note": "Specify the meeting cadence, audience size, or launch count to show the rhythm and scale of your work."
+      "better": "Kept stakeholders aligned through [cadence] updates, risk reviews, and decision tracking for [launch or program].",
+      "enhancement_note": "Add cadence and the launch or program name so the mechanism is visible."
     },
     {
       "label": "Ownership",
       "original": "Managed cross-functional initiatives.",
-      "better": "Led cross-functional initiatives (eng, design, ops) with documented decisions, risks, and next steps, reducing escalations by 40%.",
-      "enhancement_note": "Name the specific functions involved (e.g., 'eng, design, ops') and include any measurable improvement like escalations reduced or cycle time saved."
-    },
-    {
-      "label": "Mechanism",
-      "original": "Built relationships with key partners.",
-      "better": "Built relationships with 5 key partners through weekly syncs and shared roadmap reviews, securing 2 strategic integrations.",
-      "enhancement_note": "Add the partner count and what the partnerships unlocked (e.g., 'revenue, integrations, market access') to show business impact."
+      "better": "Led cross-functional initiatives across [functions] by documenting decisions, risks, and next steps through launch.",
+      "enhancement_note": "Add the functions involved and the outcome so ownership is easier to trust."
     },
     {
       "label": "Before/After",
       "original": "Drove process improvements.",
-      "better": "Drove process improvements that cut sprint-to-release cycle from 6 weeks to 3 weeks while maintaining quality bar.",
-      "enhancement_note": "Include the baseline-to-final numbers (e.g., 'from 6 weeks to 3 weeks') to make the improvement concrete and verifiable."
+      "better": "Drove process improvements that reduced [pain point] from [baseline] to [result] while maintaining quality.",
+      "enhancement_note": "Add the before and after so the line moves from responsibility to result."
     }
   ],
   "section_review": {

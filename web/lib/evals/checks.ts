@@ -7,13 +7,7 @@ import type {
     ErrorCode,
     WarningCode,
     Fixture,
-    BaselineFixture,
-    EVIDENCE_MAX_LENGTH,
-    SCORE_DRIFT_WARN_THRESHOLD,
-    SCORE_DRIFT_ERROR_THRESHOLD,
-    SUBSCORE_DRIFT_WARN_THRESHOLD,
-    MIN_TOP_FIXES,
-    CONCRETE_PATTERNS
+    BaselineFixture
 } from "./types";
 
 import {
@@ -37,11 +31,57 @@ export function normalize(s: string): string {
         .trim();
 }
 
+const concreteMetricPattern = /\b\d+(?:\.\d+)?\s*(?:%|x|×|k|m|b|teams?|users?|customers?|projects?|features?|partners?|regions?|weeks?|months?|years?|hrs?|hours?|days?)?\b/gi;
+
+function stripBracketPlaceholders(s: string): string {
+    return s.replace(/\[[^\]]+\]/g, "");
+}
+
+function escapeRegExp(s: string): string {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function containsLiteral(text: string, value: string): boolean {
+    return new RegExp(escapeRegExp(value)).test(text);
+}
+
+function findUngroundedSpecifics(text: string, resumeText: string): string[] {
+    const normResume = normalize(resumeText);
+    const matches = stripBracketPlaceholders(text).match(concreteMetricPattern) || [];
+    const ungrounded = new Set<string>();
+
+    for (const match of matches) {
+        const numericValue = match.match(/\d+(?:\.\d+)?/)?.[0];
+        if (!numericValue) continue;
+
+        const normMetric = normalize(match);
+        const numberPattern = new RegExp(`\\b${escapeRegExp(numericValue)}\\b`);
+        const isGrounded =
+            (normMetric.length > 0 && containsLiteral(normResume, normMetric)) ||
+            numberPattern.test(normResume);
+
+        if (!isGrounded) {
+            ungrounded.add(match.trim());
+        }
+    }
+
+    return Array.from(ungrounded);
+}
+
+function isAcceptedAbsenceMarker(value: string): boolean {
+    return [
+        "no summary section present",
+        "no job description provided",
+        "no matching job description provided",
+        "no linkedin profile provided"
+    ].includes(normalize(value));
+}
+
 // ============================================
 // SCHEMA VALIDATION
 // ============================================
 
-export function checkSchema(output: unknown, expectedContractVersion: string): CheckResult[] {
+function checkSchema(output: unknown, expectedContractVersion: string): CheckResult[] {
     const results: CheckResult[] = [];
 
     if (!output || typeof output !== "object") {
@@ -60,9 +100,7 @@ export function checkSchema(output: unknown, expectedContractVersion: string): C
         });
     }
 
-    // Required fields - aligned with V2 prompt output schema
-    // V2 uses: score, score_comment_long (not 'summary'), strengths, gaps, top_fixes
-    const requiredFields = ["score", "strengths", "gaps", "top_fixes"];
+    const requiredFields = ["contract_version", "score", "strengths", "gaps", "top_fixes", "subscores"];
     for (const field of requiredFields) {
         if (!(field in obj)) {
             results.push({
@@ -73,7 +111,6 @@ export function checkSchema(output: unknown, expectedContractVersion: string): C
         }
     }
 
-    // Summary can be either 'summary' or 'score_comment_long' (V2)
     if (!("summary" in obj) && !("score_comment_long" in obj)) {
         results.push({
             passed: false,
@@ -105,6 +142,42 @@ export function checkSchema(output: unknown, expectedContractVersion: string): C
         });
     }
 
+    if (Array.isArray(obj.top_fixes)) {
+        obj.top_fixes.forEach((fix, index) => {
+            if (!fix || typeof fix !== "object") {
+                results.push({
+                    passed: false,
+                    code: "E_MISSING_REQUIRED_SECTION",
+                    message: `top_fixes[${index}] is not an object`
+                });
+                return;
+            }
+
+            const item = fix as Record<string, unknown>;
+            if (!["high", "medium", "low"].includes(String(item.confidence || ""))) {
+                results.push({
+                    passed: false,
+                    code: "E_MISSING_REQUIRED_SECTION",
+                    message: `top_fixes[${index}].confidence must be high, medium, or low`
+                });
+            }
+            if (!["high", "medium", "low"].includes(String(item.impact_level || ""))) {
+                results.push({
+                    passed: false,
+                    code: "E_MISSING_REQUIRED_SECTION",
+                    message: `top_fixes[${index}].impact_level must be high, medium, or low`
+                });
+            }
+            if (!["quick", "moderate", "high"].includes(String(item.effort || ""))) {
+                results.push({
+                    passed: false,
+                    code: "E_MISSING_REQUIRED_SECTION",
+                    message: `top_fixes[${index}].effort must be quick, moderate, or high`
+                });
+            }
+        });
+    }
+
     if (results.length === 0) {
         results.push({ passed: true });
     }
@@ -116,7 +189,7 @@ export function checkSchema(output: unknown, expectedContractVersion: string): C
 // SCORE CHECKS
 // ============================================
 
-export function checkScoreRange(
+function checkScoreRange(
     actual: number,
     expected: { min: number; max: number },
     baseline?: BaselineFixture
@@ -171,7 +244,7 @@ export function checkScoreRange(
     return results;
 }
 
-export function checkSubscoreDrift(
+function checkSubscoreDrift(
     actual: Record<string, number> | undefined,
     baseline?: BaselineFixture
 ): CheckResult[] {
@@ -204,7 +277,7 @@ export function checkSubscoreDrift(
 // EVIDENCE CHECKS
 // ============================================
 
-export function checkEvidence(
+function checkEvidence(
     topFixes: Array<{ fix: string; evidence?: { excerpt?: string; section?: string } }>,
     resumeText: string
 ): CheckResult[] {
@@ -218,7 +291,13 @@ export function checkEvidence(
         const evidence = fix.evidence;
 
         if (!evidence?.excerpt) {
-            continue; // Will be caught by E_NO_EVIDENCE if none exist
+            results.push({
+                passed: false,
+                code: "E_NO_EVIDENCE",
+                message: `Fix ${i + 1} is missing evidence excerpt`,
+                details: { fix_index: i }
+            });
+            continue;
         }
 
         hasAnyEvidence = true;
@@ -245,11 +324,11 @@ export function checkEvidence(
 
         // Normalized substring check
         const normExcerpt = normalize(evidence.excerpt);
-        if (normExcerpt.length > 10 && !normResume.includes(normExcerpt)) {
+        if (normExcerpt.length > 10 && !containsLiteral(normResume, normExcerpt) && !isAcceptedAbsenceMarker(evidence.excerpt)) {
             results.push({
                 passed: false,
-                code: "W_EVIDENCE_PARAPHRASE",
-                message: `Fix ${i + 1} evidence not verbatim match after normalization`,
+                code: "E_EVIDENCE_NOT_VERBATIM",
+                message: `Fix ${i + 1} evidence must be a verbatim resume excerpt`,
                 details: { fix_index: i, excerpt_preview: evidence.excerpt.slice(0, 50) }
             });
         }
@@ -275,7 +354,7 @@ export function checkEvidence(
 // SUMMARY STRUCTURE CHECK
 // ============================================
 
-export function checkSummaryStructure(summary: string): CheckResult {
+function checkSummaryStructure(summary: string): CheckResult {
     // Check for: role-level signal + strength + gap
     // This is heuristic: look for sentence count and key phrases
 
@@ -318,7 +397,7 @@ export function checkSummaryStructure(summary: string): CheckResult {
 // PHRASE CHECKS
 // ============================================
 
-export function checkBannedPhrases(
+function checkBannedPhrases(
     output: string,
     globalBanned: string[],
     fixtureBanned: string[] = []
@@ -329,7 +408,7 @@ export function checkBannedPhrases(
     const allBanned = [...globalBanned, ...fixtureBanned];
 
     for (const phrase of allBanned) {
-        if (normalizedOutput.includes(phrase.toLowerCase())) {
+        if (containsLiteral(normalizedOutput, phrase.toLowerCase())) {
             results.push({
                 passed: false,
                 code: "E_BANNED_PHRASE",
@@ -345,7 +424,7 @@ export function checkBannedPhrases(
     return results;
 }
 
-export function checkDiscouragedPhrases(
+function checkDiscouragedPhrases(
     output: string,
     globalDiscouraged: string[]
 ): CheckResult[] {
@@ -353,7 +432,7 @@ export function checkDiscouragedPhrases(
     const normalizedOutput = output.toLowerCase();
 
     for (const phrase of globalDiscouraged) {
-        if (normalizedOutput.includes(phrase.toLowerCase())) {
+        if (containsLiteral(normalizedOutput, phrase.toLowerCase())) {
             results.push({
                 passed: false,
                 code: "W_DISCOURAGED_PHRASE",
@@ -373,7 +452,7 @@ export function checkDiscouragedPhrases(
 // SPECIFICITY CHECK
 // ============================================
 
-export function checkSpecificity(
+function checkSpecificity(
     topFixes: Array<{ fix: string }>
 ): CheckResult[] {
     const results: CheckResult[] = [];
@@ -388,6 +467,46 @@ export function checkSpecificity(
                 code: "W_SPECIFICITY_LOW",
                 message: `Fix ${i + 1} lacks concrete tokens (digits, %, measurable nouns, time bounds)`,
                 details: { fix_index: i, fix_preview: fixText.slice(0, 50) }
+            });
+        }
+    }
+
+    if (results.length === 0) {
+        results.push({ passed: true });
+    }
+
+    return results;
+}
+
+function checkRewriteGrounding(
+    rewrites: Array<{ original?: string; better?: string }>,
+    resumeText: string
+): CheckResult[] {
+    const results: CheckResult[] = [];
+    const normResume = normalize(resumeText);
+
+    for (let i = 0; i < rewrites.length; i++) {
+        const rewrite = rewrites[i];
+        const original = rewrite.original || "";
+        const normOriginal = normalize(original);
+
+        if (normOriginal.length > 10 && !containsLiteral(normResume, normOriginal)) {
+            results.push({
+                passed: false,
+                code: "E_REWRITE_ORIGINAL_NOT_VERBATIM",
+                message: `Rewrite ${i + 1} original must be a verbatim resume excerpt`,
+                details: { rewrite_index: i, original_preview: original.slice(0, 50) }
+            });
+        }
+
+        const better = rewrite.better || "";
+        const ungroundedSpecifics = findUngroundedSpecifics(better, resumeText);
+        if (ungroundedSpecifics.length > 0) {
+            results.push({
+                passed: false,
+                code: "E_REWRITE_INVENTED_SPECIFIC",
+                message: `Rewrite ${i + 1} includes ungrounded specifics: ${ungroundedSpecifics.join(", ")}`,
+                details: { rewrite_index: i, better_preview: better.slice(0, 80), ungrounded_specifics: ungroundedSpecifics }
             });
         }
     }
@@ -470,6 +589,12 @@ export function runAllChecks(input: AllChecksInput): AllChecksResult {
 
         // Specificity
         for (const r of checkSpecificity(obj.top_fixes as any[])) {
+            addResult(r);
+        }
+    }
+
+    if (Array.isArray(obj.rewrites)) {
+        for (const r of checkRewriteGrounding(obj.rewrites as any[], input.resumeText)) {
             addResult(r);
         }
     }

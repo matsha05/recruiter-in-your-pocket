@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import { DiagramFigure, DiagramFrame, DiagramHeader } from "@/components/shared/diagrams/DiagramPrimitives";
 
@@ -58,7 +58,7 @@ export function ReferralCalculator() {
                 <DiagramHeader
                     label="Referral ROI Calculator"
                     rightSlot={(
-                        <span className="text-[10px] uppercase font-mono tracking-wider text-slate-400 bg-white px-2 py-1 rounded border border-slate-200">
+                        <span className="text-xs uppercase font-mono tracking-wider text-slate-400 bg-white px-2 py-1 rounded border border-slate-200">
                             Interactive
                         </span>
                     )}

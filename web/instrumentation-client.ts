@@ -4,17 +4,28 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { launchFlags } from "@/lib/launch/flags";
+import {
+  areSentryLogsEnabled,
+  getSentryDsn,
+  getSentryEnvironment,
+  getSentryRelease,
+  getSentryTracesSampleRate,
+  isSentryEnabled,
+  scrubSentryBreadcrumb,
+  scrubSentryEvent,
+} from "@/lib/observability/sentryConfig";
 
 Sentry.init({
-  dsn: "https://e6b56bddbde9a76bcff473128fee1660@o4510598789988352.ingest.us.sentry.io/4510598790774784",
+  dsn: getSentryDsn(),
+  enabled: isSentryEnabled(),
+  environment: getSentryEnvironment(),
+  release: getSentryRelease(),
 
   // Add optional integrations for additional features
-  integrations: launchFlags.errorReplay ? [Sentry.replayIntegration()] : [],
+  integrations: isSentryEnabled() && launchFlags.errorReplay ? [Sentry.replayIntegration()] : [],
 
-  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-  tracesSampleRate: 1,
-  // Enable logs to be sent to Sentry
-  enableLogs: true,
+  tracesSampleRate: getSentryTracesSampleRate(),
+  enableLogs: areSentryLogsEnabled(),
 
   // Define how likely Replay events are sampled.
   // This sets the sample rate to be 10%. You may want this to be 100% while
@@ -27,6 +38,8 @@ Sentry.init({
   // Enable sending user PII (Personally Identifiable Information)
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
   sendDefaultPii: false,
+  beforeSend: scrubSentryEvent,
+  beforeBreadcrumb: scrubSentryBreadcrumb,
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

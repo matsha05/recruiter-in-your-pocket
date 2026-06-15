@@ -16,10 +16,12 @@ interface IconProps {
 export function PrincipalRecruiterIcon({ className = "", size = 24 }: IconProps) {
     return (
         <svg
+            aria-hidden="true"
             width={size}
             height={size}
             viewBox="0 0 24 24"
             fill="none"
+            focusable="false"
             xmlns="http://www.w3.org/2000/svg"
             className={className}
         >
@@ -47,18 +49,16 @@ export function PrincipalRecruiterIcon({ className = "", size = 24 }: IconProps)
                 cy="11.5"
                 r="3"
                 fill="currentColor"
-                stroke="white" // Knockout effect (assuming white bg, or transparent)
+                stroke="hsl(var(--background))"
                 strokeWidth="2"
             />
             {/* Checkmark inside the badge - implies "Decision Maker" */}
             <path
                 d="M14.5 11.5 L15.2 12.2 L17 10.4"
-                stroke="white" // This would need to be background color ideally, but stroke works for knockout
+                stroke="hsl(var(--background))"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-background" // Attempt to use CSS class for knockout color if possible, fallback to white/bg
-                style={{ stroke: 'var(--background)' }}
             />
         </svg>
     );

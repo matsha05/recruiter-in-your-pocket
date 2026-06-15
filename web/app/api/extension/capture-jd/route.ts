@@ -49,25 +49,46 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Save job to saved_jobs table
-        const { data: savedJob, error: saveError } = await supabase
-            .from('saved_jobs')
-            .upsert({
-                user_id: user.id,
-                external_id: meta.id,
-                title: meta.title,
-                company: meta.company,
-                location: meta.location || null,
-                url: meta.url,
-                jd_text: jd,
-                jd_preview: jd.slice(0, 200),
-                source: meta.source || 'linkedin',
-                captured_at: new Date().toISOString(),
-            }, {
-                onConflict: 'user_id,url',
-            })
-            .select()
-            .single();
+        const source = meta.source || 'linkedin';
+        const externalJobId = typeof meta.id === 'string' && meta.id.trim() ? meta.id.trim() : null;
+        const normalizedIncomingUrl = normalizeJobUrl(meta.url);
+        const savedJobPayload = {
+            user_id: user.id,
+            ...(externalJobId ? { external_id: externalJobId } : {}),
+            title: meta.title,
+            company: meta.company,
+            location: meta.location || null,
+            url: meta.url,
+            jd_text: jd,
+            jd_preview: jd.slice(0, 200),
+            source,
+            captured_at: new Date().toISOString(),
+        };
+
+        const existingSavedJobId = await findExistingSavedJobId({
+            supabase,
+            userId: user.id,
+            source,
+            externalJobId,
+            normalizedUrl: normalizedIncomingUrl,
+        });
+
+        const saveResult = existingSavedJobId
+            ? await supabase
+                .from('saved_jobs')
+                .update(savedJobPayload)
+                .eq('id', existingSavedJobId)
+                .select()
+                .single()
+            : await supabase
+                .from('saved_jobs')
+                .upsert(savedJobPayload, {
+                    onConflict: 'user_id,url',
+                })
+                .select()
+                .single();
+
+        const { data: savedJob, error: saveError } = saveResult;
 
         if (saveError) {
             console.error('[Extension] Save job error:', saveError);
@@ -144,16 +165,20 @@ export async function POST(req: NextRequest) {
             success: true,
             data: {
                 id: savedJob.id,
+                externalId: savedJob.external_id,
                 title: meta.title,
                 company: meta.company,
+                location: meta.location || null,
                 score,
                 hasResume: !!profile,
                 topGaps,
                 matchedSkillsCount: matchedSkills.length,
                 missingSkillsCount: missingSkills.length,
                 url: meta.url,
-                capturedAt: savedJob.captured_at,
+                capturedAt: new Date(savedJob.captured_at).getTime(),
                 jdPreview: savedJob.jd_preview,
+                source: savedJob.source,
+                status: 'saved',
             },
         }, { headers: corsHeaders });
 
@@ -163,5 +188,78 @@ export async function POST(req: NextRequest) {
             { success: false, errorCode: 'INTERNAL_ERROR', error: 'Internal server error' },
             { status: 500, headers: corsHeaders }
         );
+    }
+}
+
+async function findExistingSavedJobId({
+    supabase,
+    userId,
+    source,
+    externalJobId,
+    normalizedUrl,
+}: {
+    supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>;
+    userId: string;
+    source: string;
+    externalJobId: string | null;
+    normalizedUrl: string;
+}): Promise<string | null> {
+    if (externalJobId) {
+        const { data, error } = await supabase
+            .from('saved_jobs')
+            .select('id')
+            .eq('user_id', userId)
+            .eq('source', source)
+            .eq('external_id', externalJobId)
+            .order('captured_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+        if (!error && data?.id) {
+            return data.id;
+        }
+    }
+
+    const { data: candidates, error } = await supabase
+        .from('saved_jobs')
+        .select('id, url')
+        .eq('user_id', userId)
+        .eq('source', source)
+        .order('captured_at', { ascending: false })
+        .limit(100);
+
+    if (error || !candidates) {
+        return null;
+    }
+
+    const existing = candidates.find((job) => normalizeJobUrl(String(job.url ?? '')) === normalizedUrl);
+    return existing?.id ?? null;
+}
+
+function normalizeJobUrl(url: string): string {
+    try {
+        const parsedUrl = new URL(url);
+        parsedUrl.hash = '';
+
+        const params = new URLSearchParams(parsedUrl.search);
+        for (const key of Array.from(params.keys())) {
+            const normalizedKey = key.toLowerCase();
+            if (
+                normalizedKey.startsWith('utm_')
+                || normalizedKey === 'trk'
+                || normalizedKey === 'refid'
+                || normalizedKey === 'ref'
+                || normalizedKey === 'trackingid'
+            ) {
+                params.delete(key);
+            }
+        }
+
+        params.sort();
+        parsedUrl.search = params.toString();
+        parsedUrl.pathname = parsedUrl.pathname.replace(/\/+$/, '');
+        return parsedUrl.toString();
+    } catch {
+        return url.trim();
     }
 }

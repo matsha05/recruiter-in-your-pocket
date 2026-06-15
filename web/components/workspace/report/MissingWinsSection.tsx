@@ -17,7 +17,7 @@ interface MissingWinsSectionProps {
     onUpgrade?: () => void;
 }
 
-// Single neutral card style for all archetypes — let the label provide differentiation
+// Single neutral card style for all archetypes  -  let the label provide differentiation
 const cardStyle = { border: "border-border/60", bg: "bg-card hover:border-border/80" };
 
 export function MissingWinsSection({ data, isGated = false, onUpgrade }: MissingWinsSectionProps) {
@@ -27,9 +27,9 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
     if (questions.length === 0) {
         return (
-            <section className="space-y-6">
+            <section className="gap-y-6">
                 <ReportSectionHeader
-                    icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
+                    icon={<HiddenGemIcon className="size-4 text-brand" />}
                     number="05"
                     title="Missing Wins"
                     subtitle="Wins hiding between the lines."
@@ -54,11 +54,19 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
     };
 
     const answeredCount = answeredIds.size;
+    const progressPercent = questions.length > 0 ? (answeredCount / questions.length) * 100 : 0;
+    const progressCopy = answeredCount === 0
+        ? "The good material is usually hiding in the specifics."
+        : answeredCount === questions.length
+            ? "That is the material recruiters remember."
+            : answeredCount >= Math.ceil(questions.length / 2)
+                ? "Now we're getting somewhere."
+                : `${answeredCount} of ${questions.length} found.`;
 
     return (
-        <section className="space-y-8">
+        <section className="gap-y-8">
             <ReportSectionHeader
-                icon={<HiddenGemIcon className="w-4 h-4 text-brand" />}
+                icon={<HiddenGemIcon className="size-4 text-brand" />}
                 number="05"
                 title="Missing Wins"
                 subtitle="Wins hiding between the lines."
@@ -66,9 +74,9 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
             {isGated ? (
                 // GATED STATE: Show locked preview with teaser
-                <div className="rounded border border-border bg-card p-6 space-y-4">
+                <div className="rounded border border-border bg-card p-6 gap-y-4">
                     <div className="flex items-center gap-3 text-muted-foreground">
-                        <Lock className="w-5 h-5" />
+                        <Lock className="size-5" />
                         <div>
                             <p className="text-sm font-medium text-foreground">
                                 We found {questions.length} win{questions.length > 1 ? 's' : ''} worth surfacing
@@ -108,7 +116,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                             }}
                             className="w-full"
                         >
-                            <InsightSparkleIcon className="w-4 h-4 mr-2" />
+                            <InsightSparkleIcon className="size-4 mr-2" />
                             Unlock Missing Wins
                         </Button>
                     )}
@@ -117,20 +125,25 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                 // FULL ACCESS: Show progress and all questions
                 <>
                     {/* Progress Indicator */}
-                    <div className="flex items-center gap-4">
-                        <div className="flex-1 h-1 bg-secondary rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-brand transition-all duration-500 ease-out"
-                                style={{ width: `${(answeredCount / questions.length) * 100}%` }}
-                            />
+                    <div className="gap-y-3">
+                        <div className="flex items-center gap-4">
+                            <div className="flex-1 h-1 bg-secondary rounded-full overflow-hidden">
+                                <div
+                                    className="h-full bg-brand transition-all duration-500 ease-out"
+                                    style={{ width: `${progressPercent}%` }}
+                                />
+                            </div>
+                            <span className="text-xs font-mono text-muted-foreground">
+                                {answeredCount} / {questions.length}
+                            </span>
                         </div>
-                        <span className="text-xs font-mono text-muted-foreground">
-                            {answeredCount} / {questions.length}
-                        </span>
+                        <p className="text-sm text-muted-foreground">
+                            {progressCopy}
+                        </p>
                     </div>
 
                     {/* Questions Grid */}
-                    <div className="space-y-4">
+                    <div className="gap-y-4">
                         {questions.map((q, i) => {
                             const isAnswered = answeredIds.has(i);
                             // Format archetype label: "TENSION POINT" -> "Tension Point"
@@ -140,18 +153,20 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
                             return (
                                 <div
-                                    key={i}
+                                    key={q.question}
                                     className={cn(
-                                        "group border rounded p-6 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2",
+                                        "group border rounded p-6 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2 transform-gpu",
                                         cardStyle.border,
-                                        isAnswered ? "opacity-50" : cardStyle.bg
+                                        isAnswered
+                                            ? "opacity-55 scale-[0.985] border-border/40 bg-secondary/20"
+                                            : `${cardStyle.bg} hover:-translate-y-0.5`
                                     )}
                                     style={{ animationDelay: `${i * 75}ms` }}
                                 >
                                     <div className="flex items-start justify-between gap-4">
-                                        <div className="flex-1 space-y-3">
+                                        <div className="flex-1 gap-y-3">
                                             {/* Archetype Tag */}
-                                            <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
+                                            <span className="inline-block text-xs font-bold uppercase tracking-wide text-muted-foreground/60">
                                                 {archetypeLabel}
                                             </span>
 
@@ -172,17 +187,17 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                                         </div>
 
                                         {/* Toggle Button */}
-                                        <button
+                                        <button type="button"
                                             onClick={() => toggleAnswered(i)}
                                             className={cn(
-                                                "shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-all",
+                                                "shrink-0 size-11 rounded-full border flex items-center justify-center transition-all duration-300",
                                                 isAnswered
-                                                    ? "bg-success border-success text-white"
+                                                    ? "bg-success border-success text-white shadow-[0_0_0_4px_rgba(16,185,129,0.12)]"
                                                     : "border-border hover:border-success hover:bg-success/10"
                                             )}
                                             aria-label={isAnswered ? "Mark as unanswered" : "Mark as answered"}
                                         >
-                                            <Check className={cn("w-4 h-4", isAnswered ? "opacity-100" : "opacity-0 group-hover:opacity-30")} />
+                                            <Check className={cn("size-4", isAnswered ? "opacity-100" : "opacity-0 group-hover:opacity-30")} />
                                         </button>
                                     </div>
                                 </div>
@@ -192,10 +207,10 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
                     {/* Completion Message */}
                     {answeredCount === questions.length && questions.length > 0 && (
-                        <div className="text-center py-6 space-y-2 animate-in fade-in duration-500">
-                            <p className="text-lg font-medium text-success">All questions answered.</p>
+                        <div className="text-center py-6 gap-y-2 animate-in fade-in duration-500">
+                            <p className="text-lg font-medium text-success">That&apos;s the material recruiters remember.</p>
                             <p className="text-sm text-muted-foreground">
-                                Good. Now put those details back into the resume.
+                                Good. Those belong back on the page.
                             </p>
                         </div>
                     )}

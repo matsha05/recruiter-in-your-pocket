@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "motion/react";
 import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
 
 /**
@@ -47,14 +47,14 @@ export function ATSFunnel() {
             >
                 {/* Header */}
                 <div className="riyp-diagram-head">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
                         Decision rights hierarchy
                     </span>
                 </div>
 
-                <div className="p-6 space-y-4">
+                <div className="p-6 gap-y-4">
                     {/* Funnel Layers */}
-                    <div className="relative space-y-3">
+                    <div className="relative gap-y-3">
                         {layers.map((layer, i) => (
                             <motion.div
                                 key={layer.title}
@@ -73,15 +73,15 @@ export function ATSFunnel() {
                                         : "border-border/40 bg-muted/20 dark:bg-muted/10"
                                         }`}>
                                         {/* Layer indicator */}
-                                        <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white dark:bg-card border border-border/40 shadow-sm flex items-center justify-center">
-                                            <span className="text-[10px] font-mono font-bold text-muted-foreground">
+                                        <div className="absolute -left-3 top-1/2 -translate-y-1/2 size-6 rounded-full bg-white dark:bg-card border border-border/40 shadow-sm flex items-center justify-center">
+                                            <span className="text-xs font-mono font-bold text-muted-foreground">
                                                 {i + 1}
                                             </span>
                                         </div>
 
                                         <div className="ml-2">
                                             <div className="flex items-center gap-2 mb-1">
-                                                <span className={`font-mono text-[9px] uppercase tracking-widest ${layer.intensity === 1
+                                                <span className={`font-mono text-xs uppercase tracking-wide ${layer.intensity === 1
                                                     ? "text-brand/70"
                                                     : "text-muted-foreground/60"
                                                     }`}>
@@ -132,17 +132,17 @@ export function ATSFunnel() {
                         className="bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
                     >
                         <div className="flex items-start gap-3">
-                            <div className="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg className="w-4 h-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <div className="size-8 rounded-full bg-brand/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg className="size-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" />
                                 </svg>
                             </div>
-                            <div className="space-y-1">
+                            <div className="gap-y-1">
                                 <p className="text-sm font-medium text-foreground">
                                     Humans decide
                                 </p>
                                 <p className="text-xs text-muted-foreground leading-relaxed">
-                                    The ATS organizes—humans choose. Understanding this hierarchy explains what you can and can&apos;t optimize for.
+                                    The ATS organizes - humans choose. Understanding this hierarchy explains what you can and can&apos;t optimize for.
                                 </p>
                             </div>
                         </div>
@@ -150,8 +150,8 @@ export function ATSFunnel() {
                 </div>
             </DiagramFrame>
 
-            <figcaption className="mt-4 space-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1 — Decision Rights</span>
+            <figcaption className="mt-4 gap-y-1">
+                <span className="block riyp-figure-kicker">Fig. 1  -  Decision Rights</span>
                 <span className="block text-sm text-foreground/80 font-medium">
                     Where automation operates vs where humans decide
                 </span>

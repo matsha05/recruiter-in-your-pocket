@@ -1,13 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { m as motion, useInView } from "motion/react";
+import { ArrowRight, Receipt, ShieldCheck, Trash2 } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 import Footer from "@/components/landing/Footer";
 
 /**
- * Landing Page: The Editor's Desk — V6 (Pixel-Perfect)
+ * Landing Page: The Editor's Desk  -  V6 (Pixel-Perfect)
  *
  * All 20 design critique items addressed:
  * 1.  Hero dead-space → social proof pill right-aligned
@@ -27,7 +28,7 @@ import Footer from "@/components/landing/Footer";
  * 15. Alignment strategy → left-dominant, centered only for close
  * 16. CTA differentiation → close CTA is larger, has glow
  * 17. Footer personality → tagline + better presence
- * 18. Social proof → "1,200+ resumes reviewed" pill
+ * 18. Proof strip → verified product promises only
  * 19. Nav active state → scroll-spy with intersection observer
  * 20. Staggered reveal → score ring cascade animation
  */
@@ -61,7 +62,7 @@ function Reveal({
     );
 }
 
-/* ─── Editorial markup — inline in prose ─── */
+/* ─── Editorial markup  -  inline in prose ─── */
 function RedPenMarkup({
     original,
     replacement,
@@ -77,7 +78,7 @@ function RedPenMarkup({
             <span
                 className="transition-all duration-700"
                 style={{
-                    textDecoration: inView ? "line-through" : "none",
+                    textDecorationLine: inView ? "line-through" : "none",
                     textDecorationColor: "rgb(148 163 184)",
                     textDecorationThickness: "1.5px",
                     color: inView ? "rgb(148 163 184)" : undefined,
@@ -98,6 +99,66 @@ function RedPenMarkup({
     );
 }
 
+function HeroBriefingCard() {
+    return (
+        <motion.div
+            className="relative hidden lg:block"
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+            <div
+                className="rounded-2xl bg-white p-5"
+                style={{
+                    boxShadow:
+                        "0 0 0 1px rgba(15,23,42,0.06), 0 18px 48px rgba(15,23,42,0.12)",
+                }}
+            >
+                <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
+                    <div className="flex items-center gap-2">
+                        <PocketMark className="size-3.5 text-teal-700" />
+                        <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                            Private recruiter brief
+                        </span>
+                    </div>
+                    <span className="rounded bg-teal-50 px-2 py-1 text-xs font-semibold text-teal-700">
+                        First read
+                    </span>
+                </div>
+
+                <div className="gap-y-4">
+                    <div>
+                        <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">
+                            Recruiter note
+                        </p>
+                        <p className="text-[15px] leading-6 text-slate-700">
+                            You look credible fast. The impact is real, but the scale is buried.
+                        </p>
+                    </div>
+
+                    <div className="rounded-xl bg-amber-50 p-4">
+                        <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-amber-700">
+                            Main drag
+                        </p>
+                        <p className="text-[14px] leading-6 text-slate-700">
+                            &quot;Owned launch operations&quot; needs team size, timeline, and what changed.
+                        </p>
+                    </div>
+
+                    <div className="rounded-xl bg-slate-50 p-4">
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
+                            Stronger line
+                        </p>
+                        <p className="text-[14px] leading-6 text-slate-700">
+                            Led launch operations across [team size], cutting handoff delays by [X%].
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
+
 /* ─── Animated Red Pen (for inside report card) ─── */
 function AnimatedRedPen() {
     const ref = useRef<HTMLDivElement>(null);
@@ -107,14 +168,14 @@ function AnimatedRedPen() {
         <div ref={ref} className="rounded-lg border border-slate-100 p-4" style={{ backgroundColor: "hsl(210 20% 99%)" }}>
             {/* Before */}
             <div className="flex items-center gap-2 mb-2">
-                <span className="font-bold uppercase text-slate-300" style={{ fontSize: "9px", letterSpacing: "0.15em" }}>Original</span>
+                <span className="font-bold uppercase text-slate-500" style={{ fontSize: "12px", letterSpacing: "0" }}>Original</span>
             </div>
             <motion.p
                 className="text-slate-500"
                 style={{
                     fontSize: "13px",
                     lineHeight: 1.65,
-                    textDecoration: inView ? "line-through" : "none",
+                    textDecorationLine: inView ? "line-through" : "none",
                     textDecorationColor: "rgb(203 213 225)",
                     textDecorationThickness: "1.5px",
                 }}
@@ -131,7 +192,7 @@ function AnimatedRedPen() {
                 <div className="h-px flex-1 bg-slate-100" />
                 <motion.span
                     className="text-slate-300"
-                    style={{ fontSize: "10px" }}
+                    style={{ fontSize: "12px" }}
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: 0.6, duration: 0.3 }}
@@ -145,7 +206,7 @@ function AnimatedRedPen() {
             <div className="flex items-center gap-2 mb-2">
                 <motion.span
                     className="font-bold uppercase"
-                    style={{ color: "hsl(var(--brand))", fontSize: "9px", letterSpacing: "0.15em" }}
+                    style={{ color: "hsl(var(--brand))", fontSize: "12px", letterSpacing: "0" }}
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ delay: 0.8, duration: 0.4 }}
@@ -168,7 +229,7 @@ function AnimatedRedPen() {
     );
 }
 
-/* ─── Score ring (SVG-based, draws on scroll) — with staggered reveal ─── */
+/* ─── Score ring (SVG-based, draws on scroll)  -  with staggered reveal ─── */
 function ScoreRing({ score, onComplete }: { score: number; onComplete?: () => void }) {
     const circumference = 2 * Math.PI * 38;
     const offset = circumference - (score / 100) * circumference;
@@ -188,7 +249,7 @@ function ScoreRing({ score, onComplete }: { score: number; onComplete?: () => vo
                     stroke="hsl(215 20% 93%)"
                     strokeWidth="3"
                 />
-                {/* Score arc — draws itself on scroll */}
+                {/* Score arc  -  draws itself on scroll */}
                 <motion.circle
                     ref={ref}
                     cx="48"
@@ -223,7 +284,7 @@ function ScoreRing({ score, onComplete }: { score: number; onComplete?: () => vo
                 </motion.span>
                 <motion.span
                     className="text-slate-400"
-                    style={{ fontSize: "11px" }}
+                    style={{ fontSize: "12px" }}
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ duration: 0.6, delay: 1.0 }}
@@ -277,7 +338,7 @@ function SubscoreRow() {
                     >
                         {sub.score}
                     </span>
-                    <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.1em] text-slate-400">
+                    <span className="mt-1 text-xs font-medium uppercase tracking-[0.1em] text-slate-400">
                         {sub.label}
                     </span>
                 </motion.div>
@@ -292,103 +353,95 @@ export function LandingEditorsDesk() {
         <div data-visual-anchor="landing-home" className="landing-page bg-paper text-slate-900 selection:bg-brand/15">
 
             {/* ═══════════════════════════════════════════════════════
-                SECTION 1 — HERO
+                SECTION 1  -  HERO
                 Fix #1: Social proof pill balances right side
                 Fix #4: Tighter bottom padding
             ═══════════════════════════════════════════════════════ */}
             <section className="relative z-[2] px-6 pt-36 pb-6 md:px-8 md:pt-44 md:pb-10">
-                <div className="mx-auto max-w-[1120px]">
-                    <motion.div
-                        initial={false}
-                        animate={{ opacity: 1 }}
-                        transition={{
-                            duration: 1.2,
-                            ease: [0.25, 0.46, 0.45, 0.94],
-                        }}
-                    >
-                        <h1
-                            id="landing-home-title"
-                            className="font-display max-w-[900px] text-slate-900"
-                            style={{
-                                fontSize: "clamp(3rem, 7.5vw, 6.5rem)",
-                                lineHeight: 1.0,
-                                letterSpacing: "-0.035em",
-                                fontWeight: 400,
+                <div className="mx-auto grid max-w-[1120px] items-end gap-12 lg:grid-cols-[minmax(0,1fr)_380px]">
+                    <div>
+                        <motion.div
+                            initial={false}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                                duration: 1.2,
+                                ease: [0.25, 0.46, 0.45, 0.94],
                             }}
                         >
-                            They&apos;re not reading
-                            <br className="hidden sm:block" /> your resume.
-                        </h1>
-                    </motion.div>
+                            <h1
+                                id="landing-home-title"
+                                className="font-display max-w-[900px] text-slate-900"
+                                style={{
+                                    fontSize: "clamp(3rem, 7.5vw, 6.5rem)",
+                                    lineHeight: 1.0,
+                                    letterSpacing: "-0.035em",
+                                    fontWeight: 400,
+                                }}
+                            >
+                                They&apos;re not reading
+                                <br className="hidden sm:block" /> your resume.
+                            </h1>
+                        </motion.div>
 
-                    <motion.p
-                        className="mt-7 max-w-[440px] text-slate-500 md:mt-8"
-                        style={{ fontSize: "clamp(18px, 2vw, 19px)", lineHeight: 1.7 }}
-                        initial={false}
-                        animate={{ opacity: 1 }}
-                        transition={{
-                            duration: 1,
-                            delay: 0.15,
-                            ease: [0.25, 0.46, 0.45, 0.94],
-                        }}
-                    >
-                        In 7.4 seconds, they&apos;ve already made up their
-                        mind about you. We&apos;ll show you what stands out
-                        first, and what to fix so they keep reading.
-                    </motion.p>
-
-                    <motion.div
-                        className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center md:mt-12"
-                        initial={false}
-                        animate={{ opacity: 1 }}
-                        transition={{
-                            duration: 1,
-                            delay: 0.3,
-                            ease: [0.25, 0.46, 0.45, 0.94],
-                        }}
-                    >
-                        <a
-                            href="/workspace"
-                            className="group inline-flex w-fit items-center gap-2.5 rounded-full bg-slate-900 px-7 py-3.5 font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
-                            style={{ fontSize: "15px" }}
+                        <motion.p
+                            className="mt-7 max-w-[440px] text-slate-500 md:mt-8"
+                            style={{ fontSize: "clamp(18px, 2vw, 19px)", lineHeight: 1.7 }}
+                            initial={false}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                                duration: 1,
+                                delay: 0.15,
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                            }}
                         >
-                            Run Your Free Report
-                            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                        </a>
-                        <span className="text-slate-400" style={{ fontSize: "14px" }}>
-                            No credit card, no catch.
-                        </span>
-                    </motion.div>
+                            Get a private recruiter brief before you send it:
+                            what lands first, what gets skipped, and the exact
+                            lines to fix.
+                        </motion.p>
 
-                    <motion.div
-                        className="mt-10 flex items-center gap-3 md:mt-14"
-                        initial={false}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    >
-                        <div className="flex -space-x-1.5">
-                            {[
-                                "hsl(215 50% 65%)",
-                                "hsl(174 50% 50%)",
-                                "hsl(30 60% 55%)",
-                                "hsl(280 40% 60%)",
-                            ].map((bg, i) => (
-                                <div
-                                    key={i}
-                                    className="h-6 w-6 rounded-full border-2"
-                                    style={{ backgroundColor: bg, borderColor: "hsl(var(--paper))" }}
-                                />
-                            ))}
-                        </div>
-                        <span className="text-slate-400" style={{ fontSize: "13px" }}>
-                            <span className="font-medium text-slate-500">1,200+</span> resumes screened this month
-                        </span>
-                    </motion.div>
+                        <motion.div
+                            className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center md:mt-12"
+                            initial={false}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                                duration: 1,
+                                delay: 0.3,
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                            }}
+                        >
+                            <Link href="/workspace"
+                                className="group inline-flex w-fit items-center gap-2.5 rounded-full bg-slate-900 px-7 py-3.5 font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                                style={{ fontSize: "15px" }}
+                            >
+                                Run Your Free Report
+                                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                            </Link>
+                            <span className="text-slate-400" style={{ fontSize: "14px" }}>
+                                No credit card, no catch.
+                            </span>
+                        </motion.div>
+
+                        <motion.div
+                            className="mt-10 flex flex-wrap items-center gap-3 text-slate-400 md:mt-14"
+                            style={{ fontSize: "13px" }}
+                            initial={false}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        >
+                            <span className="font-medium text-slate-500">First report free</span>
+                            <span>•</span>
+                            <span>No login required</span>
+                            <span>•</span>
+                            <span>Save only if you want history</span>
+                        </motion.div>
+                    </div>
+
+                    <HeroBriefingCard />
                 </div>
             </section>
 
             {/* ═══════════════════════════════════════════════════════
-                SECTION 2 — THE RED-PEN PROSE
+                SECTION 2  -  THE RED-PEN PROSE
                 Fix #3: Kicker label anchors the blockquote
                 Fix #4: Tighter vertical padding
                 Fix #15: Left-aligned (consistent with hero)
@@ -396,7 +449,7 @@ export function LandingEditorsDesk() {
             <section className="relative z-[2] px-6 py-8 md:px-8 md:py-12">
                 <div className="mx-auto max-w-[600px]">
                     <Reveal>
-                        <p className="mb-4 font-semibold uppercase text-slate-300" style={{ fontSize: "10px", letterSpacing: "0.12em" }}>
+                        <p className="mb-4 font-semibold uppercase text-slate-300" style={{ fontSize: "12px", letterSpacing: "0" }}>
                             What you get
                         </p>
                         <div className="border-l-2 border-slate-300 pl-6 md:pl-8">
@@ -407,8 +460,8 @@ export function LandingEditorsDesk() {
                                     lineHeight: 1.8,
                                 }}
                             >
-                                Not a score. Not a checklist. A first-pass
-                                report, line by line.{" "}
+                                Not a generic score. A private first-read brief,
+                                line by line.{" "}
                                 <RedPenMarkup
                                     original="Responsible for managing service deployments"
                                     replacement="Led cross-functional migration across 4 services, reducing deploy time by 40%."
@@ -420,7 +473,7 @@ export function LandingEditorsDesk() {
             </section>
 
             {/* ═══════════════════════════════════════════════════════
-                SECTION 3 — THE REPORT
+                SECTION 3  -  THE REPORT
                 Fix #5: Layered shadow for paper-on-desk feel
                 Fix #6: Contiguous section numbers (01, 02)
                 Fix #7: Subscore row with dividers + color coding
@@ -440,21 +493,21 @@ export function LandingEditorsDesk() {
                                     "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06), 0 24px 56px rgba(0,0,0,0.1)",
                             }}
                         >
-                            {/* Report chrome — two-row header */}
+                            {/* Report chrome  -  two-row header */}
                             <div className="border-b border-slate-100/80 px-6 py-4 md:px-8">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2.5">
-                                        <PocketMark className="h-3.5 w-3.5 text-teal-700" />
+                                        <PocketMark className="size-3.5 text-teal-700" />
                                         <span className="font-medium text-slate-500" style={{ fontSize: "12px", letterSpacing: "-0.01em" }}>
                                             Recruiter Report
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <span className="relative flex h-2 w-2">
-                                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                                            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                                        <span className="relative flex size-2">
+                                            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                                            <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
                                         </span>
-                                        <span className="text-slate-400" style={{ fontSize: "11px" }}>
+                                        <span className="text-slate-400" style={{ fontSize: "12px" }}>
                                             Report ready
                                         </span>
                                     </div>
@@ -463,17 +516,17 @@ export function LandingEditorsDesk() {
                                     <p className="text-[15px] font-semibold tracking-[-0.01em] text-slate-700">
                                         Senior Software Engineer
                                     </p>
-                                    <span className="text-[11px] text-slate-300">
+                                    <span className="text-xs text-slate-500">
                                         Feb 2025
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="px-6 py-6 md:px-8 md:py-7">
+                            <div className="p-6 md:px-8 md:py-7">
                                 {/* ── Section 01 ── */}
                                 <div className="flex items-center gap-2.5">
                                     <div className="h-px w-4 bg-slate-200" />
-                                    <p className="font-semibold uppercase text-slate-400" style={{ fontSize: "10px", letterSpacing: "0.12em" }}>
+                                    <p className="font-semibold uppercase text-slate-400" style={{ fontSize: "12px", letterSpacing: "0" }}>
                                         01. First Read
                                     </p>
                                 </div>
@@ -500,10 +553,10 @@ export function LandingEditorsDesk() {
                                         >
                                             <div className="flex items-center gap-2">
                                                 <span
-                                                    className="inline-block h-1.5 w-1.5 rounded-full"
+                                                    className="inline-block size-1.5 rounded-full"
                                                     style={{ backgroundColor: "hsl(30 80% 55%)" }}
                                                 />
-                                                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-amber-700/80">
+                                                <p className="text-xs font-semibold uppercase tracking-wide text-amber-800">
                                                     Main gap
                                                 </p>
                                             </div>
@@ -520,7 +573,7 @@ export function LandingEditorsDesk() {
                                         <ScoreRing score={72} />
                                         {/* Fix #8: Label, not button */}
                                         <motion.span
-                                            className="text-[10px] font-semibold uppercase tracking-[0.06em]"
+                                            className="text-xs font-semibold uppercase tracking-wide"
                                             style={{ color: "hsl(174 50% 42%)" }}
                                             initial={{ opacity: 0 }}
                                             whileInView={{ opacity: 1 }}
@@ -532,7 +585,7 @@ export function LandingEditorsDesk() {
                                     </div>
                                 </div>
 
-                                {/* ── Subscores Row — staggered + color-coded + dividers ── */}
+                                {/* ── Subscores Row  -  staggered + color-coded + dividers ── */}
                                 <SubscoreRow />
 
                                 {/* ── Divider ── */}
@@ -541,7 +594,7 @@ export function LandingEditorsDesk() {
                                 {/* ── Section 02: The Red Pen (Fix #6: contiguous) ── */}
                                 <div className="flex items-center gap-2.5">
                                     <div className="h-px w-4 bg-slate-200" />
-                                    <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                                         02. The Red Pen
                                     </p>
                                 </div>
@@ -549,8 +602,8 @@ export function LandingEditorsDesk() {
                                 <div className="mt-4">
                                     {/* Priority label */}
                                     <div className="flex items-center gap-2 mb-3">
-                                        <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(var(--brand))" }} />
-                                        <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
+                                        <span className="size-1.5 rounded-full" style={{ backgroundColor: "hsl(var(--brand))" }} />
+                                        <span className="text-xs font-bold uppercase tracking-[0.1em] text-slate-400">
                                             Highest-leverage rewrite
                                         </span>
                                     </div>
@@ -560,7 +613,7 @@ export function LandingEditorsDesk() {
                                 </div>
                             </div>
 
-                            {/* ── Teaser footer: Fix #10 — hint remaining sections ── */}
+                            {/* ── Teaser footer: Fix #10  -  hint remaining sections ── */}
                             <div
                                 className="relative border-t border-slate-50 px-6 py-4 md:px-8"
                                 style={{
@@ -569,20 +622,19 @@ export function LandingEditorsDesk() {
                             >
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
-                                            Showing 2 of 6
+                                        <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                                            Previewing 2 sections
                                         </span>
-                                        <span className="text-[10px] text-slate-200">·</span>
-                                        <span className="text-[10px] text-slate-300 hidden sm:inline">
+                                        <span className="text-xs text-slate-400">·</span>
+                                        <span className="text-xs text-slate-500 hidden sm:inline">
                                             Signal Breakdown · Evidence Ledger · Missing Wins · Role Fit
                                         </span>
                                     </div>
-                                    <a
-                                        href="/workspace"
-                                        className="text-[11px] font-medium text-slate-500 transition-colors hover:text-slate-700"
+                                    <Link href="/workspace"
+                                        className="text-xs font-medium text-slate-500 transition-colors hover:text-slate-700"
                                     >
-                                        See your full report →
-                                    </a>
+                                        Open the full brief →
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -590,8 +642,40 @@ export function LandingEditorsDesk() {
                 </div>
             </section>
 
+            <section className="relative z-[2] px-6 py-10 md:px-8 md:py-14">
+                <div className="mx-auto grid max-w-[960px] gap-4 md:grid-cols-3">
+                    {[
+                        {
+                            icon: ShieldCheck,
+                            title: "Private by default",
+                            copy: "Anonymous reports are not attached to an account. Signed-in history is explicit.",
+                        },
+                        {
+                            icon: Trash2,
+                            title: "Delete saved work",
+                            copy: "Saved reports stay in history until you delete them. Default resumes can be removed from Settings.",
+                        },
+                        {
+                            icon: Receipt,
+                            title: "Free means usable",
+                            copy: "Your first report is a complete in-browser read. Paid access is for the next serious application, revision, or role-specific pass.",
+                        },
+                    ].map((item) => (
+                        <div
+                            key={item.title}
+                            className="rounded-2xl border border-slate-200/80 bg-white p-5"
+                            style={{ boxShadow: "0 0 0 1px rgba(15,23,42,0.03), 0 14px 36px rgba(15,23,42,0.06)" }}
+                        >
+                            <item.icon className="mb-4 size-4 text-teal-700" />
+                            <h3 className="text-sm font-semibold text-slate-800">{item.title}</h3>
+                            <p className="mt-2 text-sm leading-6 text-slate-500">{item.copy}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
             {/* ═══════════════════════════════════════════════════════
-                SECTION 4 — EVIDENCE
+                SECTION 4  -  EVIDENCE
                 Fix #12: Different visual frame (full-width band, no left border)
                 Fix #13: Citation as monospace footnote
                 Fix #14: Background surface shift
@@ -603,7 +687,7 @@ export function LandingEditorsDesk() {
             >
                 <div className="mx-auto max-w-[640px]">
                     <Reveal>
-                        <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                        <p className="mb-5 text-xs font-semibold uppercase tracking-wide text-slate-400">
                             The research
                         </p>
                         <blockquote>
@@ -632,7 +716,7 @@ export function LandingEditorsDesk() {
                                     TheLadders Eye-Tracking Study
                                 </p>
                                 <p
-                                    className="mt-0.5 text-[11px] text-slate-400"
+                                    className="mt-0.5 text-xs text-slate-400"
                                     style={{ fontFamily: "var(--font-mono, ui-monospace, monospace)" }}
                                 >
                                     Confirmed by NBER Working Paper #26587, 2019
@@ -644,7 +728,7 @@ export function LandingEditorsDesk() {
             </section>
 
             {/* ═══════════════════════════════════════════════════════
-                SECTION 5 — CLOSE
+                SECTION 5  -  CLOSE
                 Fix #15: Centered (intentional break from left-aligned flow)
                 Fix #16: CTA is larger, has subtle glow, different label
             ═══════════════════════════════════════════════════════ */}
@@ -670,23 +754,21 @@ export function LandingEditorsDesk() {
                     </Reveal>
                     <Reveal delay={0.15}>
                         <div className="mt-8">
-                            {/* Fix #16: Close CTA — larger, glow, payoff wording */}
-                            <a
-                                href="/workspace"
+                            {/* Fix #16: Close CTA  -  larger, glow, payoff wording */}
+                            <Link href="/workspace"
                                 className="group relative inline-flex items-center gap-3 rounded-full bg-slate-900 px-10 py-[18px] text-[16px] font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
                                 style={{
                                     boxShadow: "0 0 0 1px rgba(0,0,0,0.1), 0 4px 20px rgba(13,115,119,0.2), 0 8px 32px rgba(0,0,0,0.12)",
                                 }}
                             >
                                 Run Your Free Report
-                                <ArrowRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-1" />
-                            </a>
+                                <ArrowRight className="size-[18px] transition-transform duration-300 group-hover:translate-x-1" />
+                            </Link>
                         </div>
                     </Reveal>
                     <Reveal delay={0.2}>
                         <p className="mt-6 text-[13px] text-slate-400">
-                            AES-256 encrypted · No data stored ·
-                            Delete anytime
+                            Encrypted in transit · Anonymous runs are not saved to an account · Delete saved reports anytime
                         </p>
                     </Reveal>
                 </div>

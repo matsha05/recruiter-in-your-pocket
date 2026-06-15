@@ -19,7 +19,7 @@ type ReportDetailClientProps = {
 };
 
 export default function ReportDetailClient({ reportId }: ReportDetailClientProps) {
-  const router = useRouter();
+  const { push } = useRouter();
   const { user } = useAuth();
   const [state, setState] = useState<ReportLoadState>("loading");
   const [report, setReport] = useState<ReportData | null>(null);
@@ -110,11 +110,11 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
     <main data-visual-anchor="report-detail-page" className="flex-1 min-h-0 flex flex-col overflow-hidden bg-body">
       <div className="border-b border-border/40 bg-background/90 px-6 py-4 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3">
-          <button
-            onClick={() => router.push("/workspace")}
+          <button type="button"
+            onClick={() => push("/workspace")}
             className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3.5 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="size-4" />
             Workspace
           </button>
           <Link
@@ -129,8 +129,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       {state === "loading" && (
         <div className="flex flex-1 items-center justify-center px-6 py-10">
           <div className="app-card inline-flex items-center gap-2 px-5 py-4 text-sm text-muted-foreground">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Loading report...
+            <Loader2 className="size-4 animate-spin" />
+            Loading report…
           </div>
         </div>
       )}
@@ -138,7 +138,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       {state === "not_found" && (
         <div className="flex flex-1 items-center justify-center px-6">
           <div className="app-card max-w-md p-8 text-center">
-            <AlertTriangle className="mx-auto h-6 w-6 text-warning" />
+            <AlertTriangle className="mx-auto size-6 text-warning" />
             <h1 className="mt-3 font-display text-2xl text-foreground">Report not found</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               This report does not exist, or you do not have access to it.
@@ -156,13 +156,13 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
       {state === "error" && (
         <div className="flex flex-1 items-center justify-center px-6">
           <div className="app-card max-w-md p-8 text-center">
-            <AlertTriangle className="mx-auto h-6 w-6 text-warning" />
+            <AlertTriangle className="mx-auto size-6 text-warning" />
             <h1 className="mt-3 font-display text-2xl text-foreground">Could not load report</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Try again in a moment. If this keeps happening, restore access from Billing.
             </p>
             <div className="mt-5 flex items-center justify-center gap-2">
-              <button
+              <button type="button"
                 onClick={() => void loadReport()}
                 className="rounded border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
               >
@@ -191,7 +191,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
               meta={
                 <>
                   <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
-                    {report.score ?? "—"}/100
+                    {report.score ?? " - "}/100
                   </span>
                   <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
                     {headerTitle}
@@ -210,7 +210,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
                     href="/extension"
                     className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
                   >
-                    <Chrome className="h-4 w-4" />
+                    <Chrome className="size-4" />
                     Extension
                   </Link>
                 </div>
@@ -228,9 +228,9 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             onExportPdf={handleExportPdf}
             isExporting={isExporting}
             isSample={false}
-            onNewReport={() => router.push("/workspace")}
+            onNewReport={() => push("/workspace")}
             freeUsesRemaining={freeUsesRemaining}
-            onUpgrade={() => router.push("/pricing")}
+            onUpgrade={() => push("/pricing")}
             isGated={false}
             justUnlocked={false}
             highlightSection={null}

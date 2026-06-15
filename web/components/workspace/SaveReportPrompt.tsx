@@ -31,11 +31,11 @@ export default function SaveReportPrompt({
     const score = report?.score || 0;
     const getPersonalizedMessage = () => {
         if (score >= 85) {
-            return "Strong score. Create an account to keep this report and compare future versions.";
+            return "Strong read. Use a verified account to keep this report and compare future versions.";
         } else if (score >= 70) {
-            return `Your score is ${score}. Create an account to keep this report and track the next version.`;
+            return `This report scored ${score}. Save it to a verified account before you close this browser view.`;
         } else {
-            return `Your score is ${score}. Create an account to keep this report and come back after you make the changes.`;
+            return `This report scored ${score}. Save it now if you want the fix list backed up while you revise.`;
         }
     };
 
@@ -64,19 +64,19 @@ export default function SaveReportPrompt({
             <DialogContent className="max-w-[380px] p-6">
                 <DialogHeader className="text-center mb-4">
                     <div className="flex justify-center mb-3">
-                        <div className="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center">
-                            <Bookmark className="w-6 h-6 text-brand" />
+                        <div className="size-12 rounded-full bg-brand/10 flex items-center justify-center">
+                            <Bookmark className="size-6 text-brand" />
                         </div>
                     </div>
                     <DialogTitle className="font-display text-xl font-medium">
-                        Save this report
+                        Keep this report
                     </DialogTitle>
                     <DialogDescription className="text-sm">
                         {getPersonalizedMessage()}
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="space-y-4">
+                <div className="gap-y-4">
                     <div className="rounded border border-brand/20 bg-brand/5 p-3 text-left text-xs text-muted-foreground">
                         {saveReportTrustMessage}
                     </div>
@@ -94,15 +94,15 @@ export default function SaveReportPrompt({
                     >
                         {loading ? (
                             <>
-                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                Opening secure sign-in...
+                                <Loader2 className="size-4 mr-2 animate-spin" />
+                                Opening secure sign-in…
                             </>
                         ) : (
-                            "Sign in to save this report"
+                            "Sign in and keep this report"
                         )}
                     </Button>
 
-                    <button
+                    <button type="button"
                         onClick={() => {
                             Analytics.track('save_prompt_dismissed', { score });
                             onClose();
@@ -113,8 +113,8 @@ export default function SaveReportPrompt({
                     </button>
                 </div>
 
-                <p className="text-center text-[10px] text-muted-foreground/50 mt-4">
-                    Save requires a verified account so your report stays attached to the right owner.
+                <p className="text-center text-xs text-muted-foreground/50 mt-4">
+                    If you skip, this browser view is not backed up to report history.
                 </p>
             </DialogContent>
         </Dialog>

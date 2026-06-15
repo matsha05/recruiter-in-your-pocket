@@ -44,7 +44,7 @@ export function PricingCard({
     const buttonLabel = isFree && allowFreeSelect ? "Run free report" : data.buttonText;
     const isMarketing = context === "marketing";
 
-    // COMPACT variant — modals (always uses app tokens)
+    // COMPACT variant  -  modals (always uses app tokens)
     if (variant === "compact") {
         return (
             <button
@@ -63,8 +63,8 @@ export function PricingCard({
             >
                 {isHighlighted && data.badge && (
                     <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
-                        <span className="text-[9px] uppercase tracking-wider bg-brand text-white px-2 py-0.5 rounded font-bold flex items-center gap-1">
-                            <Sparkles className="w-2.5 h-2.5" />
+                        <span className="text-xs uppercase tracking-wider bg-brand text-white px-2 py-0.5 rounded font-bold flex items-center gap-1">
+                            <Sparkles className="size-2.5" />
                             {data.badge}
                         </span>
                     </div>
@@ -81,7 +81,7 @@ export function PricingCard({
                 )}>
                     {data.label}
                 </span>
-                <span className="text-[10px] text-muted-foreground">{data.period}</span>
+                <span className="text-xs text-muted-foreground">{data.period}</span>
             </button>
         );
     }
@@ -116,13 +116,13 @@ export function PricingCard({
     const badgeNode = isHighlighted && data.badge && (
         <div
             className={cn(
-                "absolute -top-2.5 left-4 text-[10px] font-bold uppercase tracking-[0.14em] px-2 py-0.5 rounded flex items-center gap-1",
+                "absolute -top-2.5 left-4 text-xs font-bold uppercase tracking-wide px-2 py-0.5 rounded flex items-center gap-1",
                 isMarketing
                     ? "bg-slate-900 text-white"
                     : "bg-brand text-white"
             )}
         >
-            <Sparkles className="w-3 h-3" />
+            <Sparkles className="size-3" />
             {data.badge}
         </div>
     );
@@ -172,8 +172,8 @@ export function PricingCard({
         >
             {loading ? (
                 <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Processing...
+                    <Loader2 className="size-4 animate-spin" />
+                    Processing…
                 </>
             ) : (
                 buttonLabel
@@ -190,8 +190,8 @@ export function PricingCard({
         >
             {loading ? (
                 <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Processing...
+                    <Loader2 className="size-4 mr-2 animate-spin" />
+                    Processing…
                 </>
             ) : (
                 buttonLabel
@@ -224,11 +224,11 @@ export function PricingCard({
                 )}>{data.description}</p>
             </div>
 
-            <ul className="space-y-2.5 mb-6 flex-1">
+            <ul className="gap-y-2.5 mb-6 flex-1">
                 {data.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm">
+                    <li key={feature.text} className="flex items-start gap-2.5 text-sm">
                         <Check className={cn(
-                            "w-3.5 h-3.5 mt-0.5 shrink-0",
+                            "size-3.5 mt-0.5 shrink-0",
                             checkColor(i)
                         )} />
                         <span className={featureTextClass(feature.bold)}>

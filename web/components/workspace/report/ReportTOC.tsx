@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
+import { m as motion } from "motion/react"
 import {
     HiddenGemIcon,
     InsightSparkleIcon,
@@ -41,30 +41,30 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
     }
 
     return (
-        <nav className="space-y-4">
-            <div className="space-y-1">
-                <div className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/50">
-                    Navigation
+        <nav className="rounded-2xl border border-border/60 bg-card/80 p-3 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm">
+            <div className="gap-y-1">
+                <div className="px-3 py-2 text-xs font-bold uppercase tracking-wide text-muted-foreground/55">
+                    Report
                 </div>
                 {items.map((item) => {
                     const isActive = activeId === item.id
                     return (
-                        <button
+                        <button type="button"
                             key={item.id}
                             onClick={() => handleScroll(item.id)}
                             className={cn(
-                                "flex items-center gap-3 w-full px-3 py-2 text-sm font-medium rounded transition-all",
+                                "flex min-h-11 w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all",
                                 isActive
-                                    ? "bg-brand/10 text-brand"
-                                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                    ? "bg-brand/10 text-brand shadow-[inset_0_0_0_1px_rgba(13,148,136,0.12)]"
+                                    : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
                             )}
                         >
-                            <item.icon className={cn("w-4 h-4", isActive ? "text-brand" : "text-muted-foreground")} />
+                            <item.icon className={cn("size-4", isActive ? "text-brand" : "text-muted-foreground")} />
                             {item.label}
                             {isActive && (
                                 <motion.div
                                     layoutId="active-toc-pill"
-                                    className="ml-auto w-1.5 h-1.5 rounded-full bg-brand"
+                                    className="ml-auto size-1.5 rounded-full bg-brand"
                                 />
                             )}
                         </button>

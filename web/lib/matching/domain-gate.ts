@@ -12,6 +12,14 @@
 
 import type { ParsedResume, ParsedJD, ParsedRequirement } from './claim-extractor';
 
+function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function containsTerm(text: string, term: string): boolean {
+    return new RegExp(escapeRegExp(term)).test(text);
+}
+
 // ================== TYPES ==================
 
 export interface DomainGateResult {
@@ -142,7 +150,7 @@ const HARD_REQUIREMENT_CATEGORIES = new Set<string>([
 /**
  * Classify text into SOC major group using keyword matching
  */
-export function classifySOCGroup(text: string, domains: string[], titles: string[]): SOCMajorGroup | null {
+function classifySOCGroup(text: string, domains: string[], titles: string[]): SOCMajorGroup | null {
     const lowerText = text.toLowerCase();
     const lowerTitles = titles.map(t => t.toLowerCase()).join(' ');
     const lowerDomains = domains.map(d => d.toLowerCase()).join(' ');
@@ -153,11 +161,11 @@ export function classifySOCGroup(text: string, domains: string[], titles: string
     const scores: Array<{ code: SOCMajorGroup; score: number }> = SOC_GROUPS.map(group => {
         let score = 0;
         for (const keyword of group.keywords) {
-            if (combined.includes(keyword)) {
+            if (containsTerm(combined, keyword)) {
                 // Title matches are worth more
-                if (lowerTitles.includes(keyword)) score += 3;
+                if (containsTerm(lowerTitles, keyword)) score += 3;
                 // Domain matches are worth more
-                else if (lowerDomains.includes(keyword)) score += 2;
+                else if (containsTerm(lowerDomains, keyword)) score += 2;
                 else score += 1;
             }
         }
@@ -174,7 +182,7 @@ export function classifySOCGroup(text: string, domains: string[], titles: string
 /**
  * Get SOC group name for display
  */
-export function getSOCGroupName(code: SOCMajorGroup): string {
+function getSOCGroupName(code: SOCMajorGroup): string {
     return SOC_GROUPS.find(g => g.code === code)?.name || 'Unknown';
 }
 
@@ -438,7 +446,7 @@ function detectSpecialty(text: string, domains: string[], forSOC: SOCMajorGroup)
 
     for (const specialty of specialties) {
         for (const keyword of specialty.keywords) {
-            if (combined.includes(keyword)) {
+            if (containsTerm(combined, keyword)) {
                 return specialty.name;
             }
         }
@@ -555,7 +563,7 @@ function areSpecialtiesAdjacent(socCode: SOCMajorGroup, specialty1: string, spec
  * - Adjacent specialty = 80% (e.g., Data Analytics → Data/ML)
  * - Unrelated specialty = 60% (e.g., Data Analytics → Security)
  */
-export function calculateRoleAlignment(
+function calculateRoleAlignment(
     resumeSOC: SOCMajorGroup | null,
     jdSOC: SOCMajorGroup | null,
     resumeDomains?: string[],
@@ -601,7 +609,7 @@ export function calculateRoleAlignment(
 /**
  * Check if a skill is soft (generic transferable) vs hard (specific)
  */
-export function isSoftSkill(skill: string): boolean {
+function isSoftSkill(skill: string): boolean {
     return SOFT_SKILLS.has(skill.toLowerCase().trim());
 }
 
