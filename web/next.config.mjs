@@ -19,6 +19,7 @@ const nextConfig = {
 };
 
 const uploadSentrySourcemaps = process.env.SENTRY_UPLOAD_SOURCEMAPS === "true";
+const sentryTunnelRoute = process.env.SENTRY_TUNNEL_ROUTE || undefined;
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:
@@ -41,11 +42,9 @@ export default withSentryConfig(nextConfig, {
     disable: !uploadSentrySourcemaps,
   },
 
-  // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-  // side errors will fail.
-  tunnelRoute: "/monitoring",
+  // Sentry tunneling is useful for ad blockers, but it adds proxy routes and server load.
+  // Keep it opt-in so Vercel Git deployments stay on the simplest routing surface.
+  ...(sentryTunnelRoute ? { tunnelRoute: sentryTunnelRoute } : {}),
 
   webpack: {
     // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
