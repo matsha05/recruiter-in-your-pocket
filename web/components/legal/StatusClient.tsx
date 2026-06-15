@@ -7,7 +7,7 @@ import { LegalShell } from "@/components/legal/LegalShell";
 
 type ReadinessCheck = {
   name: string;
-  status: "operational" | "limited";
+  status: "operational" | "limited" | "not_launched";
   message: string;
 };
 
@@ -60,6 +60,13 @@ export default function StatusClient() {
   const services = payload?.services || [];
   const incidents = payload?.incidents || [];
   const summary = payload?.summary;
+  const serviceStatusLabel = (status: ReadinessCheck["status"]) =>
+    status === "not_launched" ? "not launched yet" : status;
+  const serviceStatusClass = (status: ReadinessCheck["status"]) => {
+    if (status === "operational") return "bg-emerald-50 text-emerald-700";
+    if (status === "not_launched") return "bg-slate-100 text-slate-600";
+    return "bg-amber-50 text-amber-700";
+  };
 
   return (
     <LegalShell
@@ -110,12 +117,8 @@ export default function StatusClient() {
             <div key={service.name} className="rounded-xl border border-slate-100 p-4">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-semibold text-slate-800">{service.name}</p>
-                <span className={`rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${
-                  service.status === "operational"
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "bg-amber-50 text-amber-700"
-                }`}>
-                  {service.status}
+                <span className={`rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${serviceStatusClass(service.status)}`}>
+                  {serviceStatusLabel(service.status)}
                 </span>
               </div>
               <p className="mt-2 text-sm text-slate-500">{service.message}</p>

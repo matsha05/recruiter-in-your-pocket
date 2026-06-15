@@ -447,13 +447,14 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   };
 }
 
-export type PublicServiceStatus = "operational" | "limited";
+export type PublicSummaryStatus = "operational" | "limited";
+export type PublicServiceStatus = PublicSummaryStatus | "not_launched";
 
 export type PublicStatusSnapshot = {
   ok: boolean;
   generatedAt: string;
   summary: {
-    status: PublicServiceStatus;
+    status: PublicSummaryStatus;
     title: string;
     message: string;
   };
@@ -471,6 +472,8 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
   const gateStatus = (id: string) => gateMap.get(id) || "pass";
   const toPublicStatus = (status: LaunchGateStatus): PublicServiceStatus =>
     status === "fail" ? "limited" : "operational";
+  const billingLaunched = launchFlags.billingUnlock;
+  const extensionLaunched = launchFlags.extensionSync;
 
   const incidents: string[] = [];
   if (gateStatus("auth") === "fail") {
@@ -491,7 +494,15 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
       title: incidents.length === 0 ? "All core systems operational" : "Some features are limited",
       message:
         incidents.length === 0
-          ? "Review, saved history, billing, and extension-assisted workflows are currently operating normally."
+          ? [
+              "Review and saved history are currently operating normally.",
+              billingLaunched
+                ? "Billing and restore paths are available."
+                : "Billing is not enabled in this environment.",
+              extensionLaunched
+                ? "Extension-assisted workflows are enabled."
+                : "Extension-assisted workflows are not part of this public launch yet.",
+            ].join(" ")
           : "The product is available, but one or more supporting workflows are currently degraded or limited.",
     },
     services: [
@@ -507,13 +518,17 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
       },
       {
         name: "Billing and restore",
-        status: toPublicStatus(gateStatus("billing")),
-        message: "Start paid access, restore purchases, open receipts, and manage renewals.",
+        status: billingLaunched ? toPublicStatus(gateStatus("billing")) : "not_launched",
+        message: billingLaunched
+          ? "Start paid access, restore purchases, open receipts, and manage renewals."
+          : "Billing and restore controls are not enabled in this environment.",
       },
       {
         name: "Extension-assisted workflows",
-        status: toPublicStatus(gateStatus("extension")),
-        message: "Capture supported jobs, reopen them in the studio, and sync saved roles when enabled.",
+        status: extensionLaunched ? toPublicStatus(gateStatus("extension")) : "not_launched",
+        message: extensionLaunched
+          ? "Capture supported jobs, reopen them in the studio, and sync saved roles."
+          : "Extension-assisted workflows are not part of this public launch yet; the web review studio remains available.",
       },
     ],
     incidents,

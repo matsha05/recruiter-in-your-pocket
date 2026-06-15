@@ -27,7 +27,7 @@ import Footer from "@/components/landing/Footer";
  * 15. Alignment strategy → left-dominant, centered only for close
  * 16. CTA differentiation → close CTA is larger, has glow
  * 17. Footer personality → tagline + better presence
- * 18. Social proof → "1,200+ resumes reviewed" pill
+ * 18. Proof pill → free full-report promise near the hero
  * 19. Nav active state → scroll-spy with intersection observer
  * 20. Staggered reveal → score ring cascade animation
  */
@@ -361,27 +361,14 @@ export function LandingEditorsDesk() {
                     </motion.div>
 
                     <motion.div
-                        className="mt-10 flex items-center gap-3 md:mt-14"
+                        className="mt-10 inline-flex items-center gap-2.5 rounded-full border border-slate-200/70 bg-white/60 px-3.5 py-2 shadow-[0_1px_3px_rgba(15,23,42,0.04)] md:mt-14"
                         initial={false}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                     >
-                        <div className="flex -space-x-1.5">
-                            {[
-                                "hsl(215 50% 65%)",
-                                "hsl(174 50% 50%)",
-                                "hsl(30 60% 55%)",
-                                "hsl(280 40% 60%)",
-                            ].map((bg, i) => (
-                                <div
-                                    key={i}
-                                    className="h-6 w-6 rounded-full border-2"
-                                    style={{ backgroundColor: bg, borderColor: "hsl(var(--paper))" }}
-                                />
-                            ))}
-                        </div>
+                        <span className="h-2 w-2 rounded-full bg-brand" />
                         <span className="text-slate-400" style={{ fontSize: "13px" }}>
-                            <span className="font-medium text-slate-500">1,200+</span> resumes screened this month
+                            <span className="font-medium text-slate-500">Full report</span> before checkout
                         </span>
                     </motion.div>
                 </div>
@@ -664,8 +651,10 @@ export function LandingEditorsDesk() {
                         </h2>
                     </Reveal>
                     <Reveal delay={0.08}>
-                        <p className="mx-auto mt-5 max-w-[340px] text-[18px] leading-[1.7] text-slate-500">
+                        <p className="mx-auto mt-5 max-w-[440px] text-[18px] leading-[1.7] text-slate-500">
                             See what they notice first. Fix what is getting skipped.
+                            Paid access is for more reports, saved history, exports,
+                            and role-by-role work.
                         </p>
                     </Reveal>
                     <Reveal delay={0.15}>
@@ -684,9 +673,9 @@ export function LandingEditorsDesk() {
                         </div>
                     </Reveal>
                     <Reveal delay={0.2}>
-                        <p className="mt-6 text-[13px] text-slate-400">
-                            AES-256 encrypted · No data stored ·
-                            Delete anytime
+                        <p className="mx-auto mt-6 max-w-[420px] text-[13px] leading-6 text-slate-400">
+                            Encrypted upload · Anonymous reports are not auto-saved ·
+                            Delete saved reports anytime
                         </p>
                     </Reveal>
                 </div>

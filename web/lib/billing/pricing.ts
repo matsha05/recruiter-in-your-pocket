@@ -49,15 +49,15 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Lifetime",
     price: "$79",
     period: "one-time",
-    description: "Pay once. Keep it forever.",
+    description: "Pay once for long-term access. No recurring billing.",
     buttonText: "Get Lifetime Access",
     badge: "Best Value",
     features: [
       { text: "Everything in Full Access", bold: true },
       { text: "No recurring billing" },
-      { text: "All future updates included" },
-      { text: "Permanent export and history access" },
-      { text: "Long-term access to new features" }
+      { text: "More reports without a monthly plan" },
+      { text: "Export and report history access" },
+      { text: "Use it across future job searches" }
     ]
   }
 };

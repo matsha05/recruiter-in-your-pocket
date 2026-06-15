@@ -183,19 +183,21 @@ export default function PricingPageClient() {
                             ))}
                         </div>
 
-                        <Link
-                            href="/purchase/restore"
-                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
-                        >
-                            Open restore page
-                            <ArrowRight className="h-4 w-4" />
-                        </Link>
-                        <Link
-                            href="/extension"
-                            className="mt-6 ml-3 inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-medium text-slate-700 transition-all hover:bg-white"
-                        >
-                            See extension flow
-                        </Link>
+                        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                            <Link
+                                href="/purchase/restore"
+                                className="inline-flex w-fit items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                            >
+                                Open restore page
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                            <Link
+                                href="/extension"
+                                className="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-medium text-slate-700 transition-all hover:bg-white"
+                            >
+                                See extension flow
+                            </Link>
+                        </div>
                     </div>
                 </section>
 
