@@ -21,7 +21,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
     const hasLists = strengths.length > 0 || gaps.length > 0;
     const topActions = [
         ...(data.top_fixes || []).slice(0, 3).map((fix) => ({
-            text: fix.fix || fix.text || "Strengthen this signal",
+            text: fix.fix || fix.text || "Clarify this part of the resume",
             impact: fix.impact_level === "high" ? "High" : "Medium"
         })),
         ...(data.next_steps || []).slice(0, 2).map((step) => ({
@@ -39,7 +39,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
         .slice(0, 3)
         .map((fix) => ({
             evidence: typeof fix.evidence === "string" ? fix.evidence : fix.evidence?.excerpt || "",
-            action: fix.fix || fix.text || "Strengthen this signal",
+            action: fix.fix || fix.text || "Clarify this part of the resume",
             section: typeof fix.evidence === "string" ? fix.section_ref : fix.evidence?.section || fix.section_ref
         }));
 
@@ -48,14 +48,14 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
             <ReportSectionHeader
                 icon={<SignalRadarIcon className="size-4 text-brand" />}
                 number="02"
-                title="Signal Breakdown"
-                subtitle="What landed fast, what felt thin, and what to fix first."
+                title="What the Resume Shows"
+                subtitle="What is clear, what needs context, and what to change first."
             />
 
             {topActions.length > 0 && (
                 <div className="rounded border border-brand/20 bg-brand/5 p-5">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-foreground mb-3">
-                        Next Pass Plan
+                        Start here
                     </h3>
                     <ul className="gap-y-2">
                         {topActions.map((action, i) => (
@@ -81,10 +81,10 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 <div className="rounded border border-border/60 bg-card p-5 gap-y-4">
                     <div className="flex items-center justify-between">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
-                            Evidence Snapshot
+                            Evidence from the resume
                         </h3>
                         <span className="text-xs uppercase tracking-wide text-muted-foreground">
-                            Why the score landed here
+                            What shaped the review
                         </span>
                     </div>
                     <div className="gap-y-3">
@@ -123,7 +123,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                             )}
                         >
                             <span className={cn(
-                                "font-display font-bold tabular-nums text-3xl tracking-tight",
+                                "font-display riyp-weight-560 tabular-nums text-3xl tracking-tight",
                                 getScoreColor(item.score)
                             )}>
                                 {item.score}
@@ -146,7 +146,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     {/* Working */}
                     <div className="gap-y-4">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
-                            What lands
+                            What is clear
                         </h3>
                         <ul className="gap-y-3">
                             {strengths.length > 0 ? strengths.map((s, i) => (
@@ -162,7 +162,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                     {/* Missing */}
                     <div className="gap-y-4">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-premium">
-                            What is thin
+                            What needs context
                         </h3>
                         <ul className="gap-y-3">
                             {gaps.length > 0 ? gaps.map((s, i) => (
@@ -177,7 +177,7 @@ export function ScoreSummarySection({ data }: { data: ReportData }) {
                 </div>
             ) : (
                 <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    Signal breakdown was not available for this run.
+                    This part of the review was not available for this run.
                 </div>
             )}
         </section>

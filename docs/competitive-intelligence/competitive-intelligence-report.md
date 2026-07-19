@@ -1,5 +1,7 @@
 # Competitive Intelligence Report: AI Resume & Career Tools
 
+> **Historical snapshot:** This December 2025 report contains outdated pricing, scope, and launch recommendations. The active strategy is `docs/competitive-intelligence/decision-memo.md`, updated July 9, 2026. Do not use this report to make current launch decisions.
+
 **Acquisition-Grade Analysis for Recruiter in Your Pocket (RIYP)**
 **Version:** 2.0 (Enhanced 8-Agent Analysis)
 **Last Updated:** 2025-12-27

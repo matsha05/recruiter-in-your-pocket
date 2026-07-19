@@ -2,7 +2,7 @@ import { Variants, Transition, TargetAndTransition } from "framer-motion";
 
 // =============================================================================
 // EASING CURVES
-// Per design-principles.md: cubic-bezier(0.16, 1, 0.3, 1) — snappy
+// Per design-system.md: cubic-bezier(0.16, 1, 0.3, 1), snappy
 // =============================================================================
 
 const TRANSITION_EASE = [0.32, 0.72, 0, 1] as const;

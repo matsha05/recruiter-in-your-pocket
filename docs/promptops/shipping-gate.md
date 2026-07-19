@@ -83,9 +83,9 @@ Before the next prompt release, cut a refreshed baseline that covers the full 20
 
 ## Launch Tie-In
 
-Before any live launch decision:
+Before any live launch decision, and only after model spend is approved:
 
-1. Run `npm run launch:gate:strict`
+1. Run `RIYP_ALLOW_PAID_EVALS=true npm run launch:gate:strict`
 2. Confirm the strict gate ran live smoke and golden evals
 3. Treat any prompt FAIL as an automatic no-go
 
@@ -101,10 +101,11 @@ CI should continue to run the dry-run and preflight checks. Live golden evals re
   run: npm run eval:golden
   env:
     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    RIYP_ALLOW_PAID_EVALS: "true"
 
 - name: Check for failures
   run: |
-    if grep -q "❌ FAIL" tests/fixtures/results/summary_latest.md; then
+    if grep -q "❌ FAIL" tests/fixtures/results/summary_latest_live.md; then
       echo "PromptOps eval failed - blocking merge"
       exit 1
     fi

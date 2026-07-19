@@ -1,327 +1,319 @@
-# Design System V3.0
+# Recruiter in Your Pocket - Lifted Line Design System
 
-Last updated: 2026-02-07  
-Owner: Product Design + Engineering  
-Status: Production spec (single source of truth)
+Last updated: 2026-07-12
+Owner: Product Design + Engineering
+Status: Current production source of truth
+System version: Lifted Line 1.1
 
-## 1. Typography Foundation
+This is the single source of truth for how the approved Lifted Line brand is implemented. It replaces the older teal-first, Instrument-Sans-only, Ink & Paper, Editorial Proof, dossier, and red-pen directions.
 
-Canonical stack:
-- Display: **Sentient**
-- Interface + Data: **Satoshi**
+Related authority:
 
-Runtime loading:
-- `next/font/local` in `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/app/layout.tsx`
-- Local files in:
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/sentient/sentient-400.woff2`
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/sentient/sentient-500.woff2`
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/sentient/sentient-700.woff2`
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/satoshi/satoshi-400.woff2`
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/satoshi/satoshi-500.woff2`
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/satoshi/satoshi-700.woff2`
+- [`brand-system.md`](./brand-system.md): identity, promise, voice posture, and signature grammar
+- [`copy-system.md`](./copy-system.md) and [`voice-and-tone.md`](./voice-and-tone.md): writing system
 
-Token mapping in `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/app/globals.css`:
-- `--font-display` -> `--font-sentient`
-- `--font-body` -> `--font-satoshi`
-- `--font-mono` -> `--font-satoshi` (with tabular numerics where needed)
+If documentation and runtime disagree, the disagreement is a release blocker. Update both in the same change.
 
-### Type Roles
+## 1. System idea
 
-| Role | Desktop | Mobile | Weight | Tracking | Use |
-|---|---:|---:|---:|---:|---|
-| Hero H1 | 72/72 | 50/52 | 500 | -0.030em | Landing primary headline |
-| Section H2 | 52/56 | 36/40 | 500 | -0.022em | Main section headers |
-| Card H3 | 36/40 | 30/34 | 500 | -0.016em | Pricing, trust, research cards |
-| Body L | 24/36 | 20/30 | 400 | -0.004em | Explanatory marketing copy |
-| Body M | 20/30 | 18/28 | 400 | -0.002em | Default body/UI copy |
-| Label | 12/16 | 11/14 | 500 | 0.105em | Overlines, metadata, tags |
+**Lifted Line** makes good work easier to see.
 
-### Typography Guardrails
+The recognizable move is a truthful transformation: vague language becomes specific, hidden scope becomes visible, and evidence moves closer to the claim. We never invent accomplishment or imply a hiring outcome.
 
-- Display font is only for H1/H2/H3 and short signal callouts.
-- Never set long paragraphs in display font.
-- UI controls, table rows, legal copy, and FAQ answers must use body font.
-- Numeric surfaces (score, pricing, metrics) must set `font-variant-numeric: tabular-nums`.
+The product should feel:
 
----
+- bright, not bubbly
+- confident, not grandiose
+- literate, not literary
+- useful, not clinical
+- charming, not cute
+- premium through craft, not luxury theater
 
-## 2. Tokens
+The emotional sequence is: **I feel seen -> I understand the problem -> I know what to do next.**
 
-### Color Tokens
+## 2. Authority and implementation
 
-| Token | Value (Light) | Value (Dark) | Usage |
-|---|---|---|---|
-| `--background` | `hsl(0 0% 98%)` | `hsl(0 0% 7%)` | page background |
-| `--foreground` | `hsl(0 0% 7%)` | `hsl(0 0% 93%)` | primary text |
-| `--brand` | `hsl(173 84% 24%)` | `hsl(168 76% 50%)` | primary CTA, key score |
-| `--premium` | `hsl(43 96% 44%)` | `hsl(45 93% 55%)` | premium moments only |
-| `--success` | `hsl(142 71% 29%)` | same semantic | positive |
-| `--warning` | `hsl(48 96% 53%)` | same semantic | caution |
-| `--destructive` | `hsl(0 72% 44%)` | `hsl(0 62% 31%)` | error |
-| `--border` | `hsl(215 20% 88%)` | `hsl(215 20% 25%)` | structural dividers |
-| `--surface-inverted` | `hsl(222 47% 11%)` | same semantic | deep ink sections |
+Runtime sources:
 
-### Radius Tokens
+- tokens and global roles: `web/app/globals.css`
+- Tailwind semantic aliases: `web/tailwind.config.js`
+- shared controls: `web/components/ui/`
+- evidence and diagram grammar: `web/components/shared/diagrams/`
+- living reference: `/internal/system-lab`
+- automated contract: `web/scripts/qa/design-system-guardrails.mjs`
+
+Rules:
+
+1. Prefer semantic tokens and shared primitives over route-specific styling.
+2. A route may compose the system differently; it may not introduce a competing palette, type system, radius language, or icon family.
+3. New one-off values require a documented visual reason. Repeated values become tokens or primitives.
+4. Public-facing changes must be reviewed at 390, 1024, and 1440 pixels.
+
+The system is the floor for consistency, not a page template. Do not repeat one successful composition across every surface. Bespoke art direction is encouraged when it expresses a product truth, creates a memorable focal moment, and still obeys the shared type, color, accessibility, and evidence meanings.
+
+## 3. Typography
+
+### Families
+
+| Role | Family | Use |
+|---|---|---|
+| Display | **Newsreader Variable** | wordmark, page headlines, verdicts, large evidence, meaningful before-and-after lines |
+| Interface | **Instrument Sans Variable** | navigation, controls, labels, metadata, body copy, dense product UI |
+| Data | system monospace with tabular figures | scores, time, compact indices, machine-readable identifiers only |
+
+Both brand fonts are self-hosted through Fontsource imports in `web/app/layout.tsx`. No runtime font CDN is allowed.
+
+Runtime mapping:
+
+- `--font-display` -> `"Newsreader Variable"`
+- `--font-body` -> `"Instrument Sans Variable"`
+- `--font-mono` -> the system monospace stack
+
+### Type roles
+
+| Role | Desktop guidance | Mobile guidance | Treatment |
+|---|---:|---:|---|
+| Display hero | 64-120px | 50-82px | Newsreader 390-500, tight leading and tracking |
+| Display section | 42-76px | 34-52px | Newsreader 420-520 |
+| Evidence statement | 28-56px | 25-40px | Newsreader; readable before decorative |
+| Body large | 18-22px | 17-20px | Instrument Sans 400-500, 1.5-1.7 line height |
+| Body | 15-18px | 15-17px | Instrument Sans 400-500 |
+| Label | 11-13px | 11-13px | Instrument Sans 650-760; tracked only when genuinely categorical |
+| Data | 12-16px | 12-16px | tabular figures; monospace only when it improves scanning |
+
+Guardrails:
+
+- Newsreader is the brand voice, not an optional editorial mode.
+- Instrument Sans carries explanation and interaction.
+- Do not use browser serif, Times New Roman, or system sans as intentional brand typography.
+- Do not set long paragraphs in Newsreader.
+- Avoid all-caps labels as decoration. Use them for genuine metadata and short categories.
+- Use `text-wrap: balance` for display type and `text-wrap: pretty` for prose where supported.
+
+## 4. Color and surface tokens
+
+The canonical palette is warm white, graphite, iris, pale sky, and sparing apricot or butter. Teal is not the primary brand color.
+
+### Core roles
+
+| Semantic token | Purpose |
+|---|---|
+| `--background` / `--surface-page` | default warm-white page field |
+| `--foreground` / `--text-strong` | primary graphite text |
+| `--text-muted` | secondary explanation and metadata |
+| `--line` | default structural rule |
+| `--brand` / `--brand-strong` | iris action, emphasis, and focus |
+| `--brand-tint` | lifted-word underline and selected evidence treatment |
+| `--surface-sky` / `--surface-proof` | teaching and evidence surfaces |
+| `--accent-apricot` | needs-context cue; never general decoration |
+| `--accent-butter` | evidence-present cue; never general decoration |
+| `--annotation` | consequential edit or omission; use sparingly |
+
+### Surface grammar
+
+- **Warm white** is the default field. It should feel open and optimistic.
+- **Graphite** provides authority without navy dossier theater.
+- **Iris** marks action, selection, focus, and the lifted line.
+- **Pale sky** supports explanation and research teaching moments.
+- **Apricot and butter** are evidence cues, not a confetti palette.
+- Prefer rules, whitespace, typography, and contrast over generic bordered cards.
+- No atmospheric gradients, startup glow, faux paper stacks, red-pen cosplay, or decorative grain used to manufacture character.
+
+Never rely on color alone. Pair semantic color with a label, icon, position, or change in wording.
+
+## 5. Signature evidence grammar
+
+The system uses four recurring meanings:
+
+| Meaning | User question | Visual treatment |
+|---|---|---|
+| Caught attention | What lands quickly? | iris cue plus explicit label |
+| Needs context | What is hard to understand? | apricot cue plus the missing context |
+| Evidence present | What supports the claim? | butter cue plus the actual proof |
+| Strongest next wording | What should I write instead? | lifted underline or pale-sky teaching surface |
+
+These cues must mean the same thing on the homepage, in reports, in the workspace, and in Research. Diagrams may add domain-specific encodings, but they must preserve these meanings.
+
+## 6. Layout and spacing
+
+### Containers
+
+| Surface | Default maximum | Horizontal padding |
+|---|---:|---:|
+| Marketing | 82rem | 1.25rem mobile, 2rem desktop |
+| Editorial and Research | 72rem overall; 42-48rem prose rail | 1.25rem mobile, 2rem desktop |
+| App and reports | 90rem | 1rem mobile, 1.5-2rem desktop |
+
+### Spacing scale
+
+Use the 4px rhythm in `globals.css`: `--space-4`, `--space-8`, `--space-12`, `--space-16`, `--space-20`, `--space-24`, `--space-32`, `--space-40`, `--space-56`, and `--space-72`.
+
+- inside controls: 4-16px
+- inside composed components: 12-32px
+- between related blocks: 24-40px
+- between major sections: 56-96px, chosen optically
+
+Open layouts are preferred to card farms. Use a container when grouping changes meaning, interaction, or elevation - not merely because content exists.
+
+## 7. Shape, borders, and elevation
 
 | Token | Value | Use |
 |---|---:|---|
-| `--radius-sm` | 4px | dense controls |
-| `--radius` | 8px | default cards and inputs |
-| `--radius-lg` | 12px | marketing cards |
-| `--radius-xl` | 12px | legacy alias for marketing cards |
-
-### Spacing Tokens
-
-| Token | Value |
-|---|---:|
-| `--space-4` | 4px |
-| `--space-8` | 8px |
-| `--space-12` | 12px |
-| `--space-16` | 16px |
-| `--space-20` | 20px |
-| `--space-24` | 24px |
-| `--space-32` | 32px |
-| `--space-40` | 40px |
-| `--space-56` | 56px |
-| `--space-72` | 72px |
-
-Rhythm rule:
-- Intra-component spacing uses 4-24px tokens.
-- Intra-section spacing uses 24-40px tokens.
-- Section-to-section spacing uses 56-72px tokens.
-
----
-
-## 3. Motion and States
-
-### Motion Tokens
-
-| Token | Value |
-|---|---|
-| `--ease` | `cubic-bezier(0.16, 1, 0.3, 1)` |
-| `--duration-fast` | `100ms` |
-| `--duration-normal` | `200ms` |
-| `--duration-slow` | `350ms` |
+| `--radius-sm` | 4px | compact controls and evidence labels |
+| `--radius` | 8px | default controls and restrained panels |
+| `--radius-lg` | 12px | major product surfaces |
+| `--radius-xl` | 12px | legacy alias; do not create larger generic cards |
 
 Rules:
-- Animate only `opacity`, `transform`, and color properties.
-- One signature motion moment per screen max.
-- Respect `prefers-reduced-motion`.
 
-### Required Component States
+- The Lifted Line system is mostly rectilinear, with modest softening for interaction.
+- Circles are for compact status, avatars, or icon controls - not every icon.
+- Borders are structural. Shadows indicate real elevation only.
+- Avoid generic white-card-plus-shadow components.
 
-Every interactive component must define:
-1. default
-2. hover
-3. active
-4. focus-visible
-5. disabled
-6. loading
+## 8. Icons and diagrams
 
-As applicable, also define:
-7. selected
-8. selected+hover
-9. selected+focus
-10. error
-11. read-only
-12. pending
+- Use **Phosphor** for new branded and public-facing icon work.
+- Existing Lucide icons may remain until a surface is intentionally migrated.
+- Never mix icon families inside one surface.
+- Use one optical weight per surface and size icons to the surrounding type, not the container.
+- Bespoke illustration, generated imagery, custom SVG, and crafted motion are allowed when they are concept-specific and materially improve the story.
+- Do not use generic blobs, stock SaaS scenes, decorative CSS art, or illustration-shaped filler to manufacture personality.
 
----
+Research visuals must teach a concrete idea. Every figure needs:
 
-## 4. Copy and Tone Contract
+1. a specific claim or question
+2. readable labels
+3. a clear visual encoding
+4. a source or evidence note when applicable
+5. a plain-language takeaway
 
-System voice:
-- trusted recruiter friend
-- warm, direct, specific
-- technical only when useful
+If removing a diagram loses no understanding, the diagram is decoration and should not ship.
 
-Structural contract for major sections:
-1. outcome headline
-2. mechanism sentence
-3. one proof point
-4. one clear CTA
+## 9. Components and composition
 
-Avoid terms:
-- `operator-style`
-- `first-pass filter`
-- `unlock velocity`
-- `AI-powered excellence`
+Required shared categories:
 
-Copy source:
-- `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/docs/copy-system.md`
+- actions: Button, text link, icon button
+- input: field, upload, mode switch, validation, loading and error states
+- navigation: site header, app header, mobile navigation, breadcrumb or back path
+- evidence: cue, finding row, before-and-after line, source row, limitation note
+- page structure: shell, section, header, prose rail, action rail
+- diagrams: frame, title, legend, caption, source, takeaway
+- feedback: empty, loading, success, warning, error, paywall
 
----
+Every interactive component defines, when relevant: default, hover, active, focus-visible, disabled, loading, selected, error, and pending.
 
-## 5. QA Gates (Ship Blockers)
+Shared primitives are the default. A route-specific component is appropriate when its semantics are route-specific, not because recreating a button or card was faster.
 
-Run from `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web`:
+## 10. Surface contracts
+
+### Homepage
+
+- Lead with the candidate's real work and one visible transformation.
+- Show judgment before listing features.
+- Maintain one dominant action and one supporting route.
+
+### Workspace and report
+
+- Put the likely takeaway, exact evidence, and next useful action first.
+- Density may increase, but hierarchy must stay calm.
+- Scores support judgment; they do not replace it.
+
+### Research
+
+- Research is the trust layer, not a blog.
+- Start with a concrete recruiter or hiring claim.
+- Show what the evidence supports, what remains uncertain, and what the reader can do with it.
+- Prefer diagrams, comparisons, annotated processes, and source-backed teaching surfaces when they materially improve understanding.
+- Never expose internal evidence-strength labels as consumer-facing taxonomy.
+
+### Pricing, auth, trust, and legal
+
+- Use the shortest, clearest version of the system.
+- Keep claims factual and traceable to real behavior.
+- Avoid invented urgency, inflated privacy language, and decorative brand performance.
+
+## 11. Motion
+
+Canonical tokens:
+
+- `--duration-fast`: 100ms
+- `--duration-normal`: 200ms
+- `--duration-slow`: 350ms
+- `--ease`: `cubic-bezier(0.16, 1, 0.3, 1)`
+
+Motion should clarify transformation, selection, progress, or continuity. Animate `opacity`, `transform`, and color properties. One signature motion moment per screen is enough. Respect `prefers-reduced-motion` and never loop motion on essential content.
+
+### Signature behavior: Lifted Trace
+
+`web/components/shared/LiftedTrace.tsx` is the canonical cross-surface provenance and process rail. Its segments represent real states, not decoration:
+
+1. source evidence
+2. open question or interpretation
+3. candidate-supplied fact
+4. resolved wording or action
+
+When a segment becomes active or complete, its structural rule moves three pixels off the baseline and fills with iris. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
+
+Rules:
+
+- Drive completion from user actions or real application state.
+- Do not show simulated percentages or mark backend phases complete from elapsed time alone.
+- Homepage teaching sequences may run once; deeper builders remain user-driven.
+- Research figures may render the completed model statically.
+- Reduced motion renders the relevant final state immediately.
+
+## 12. Accessibility and responsive contract
+
+- WCAG AA contrast minimums: 4.5:1 body text, 3:1 large text and essential graphics.
+- Every interactive element has a visible focus state.
+- Touch targets are at least 44px. Compact-looking controls keep the target and reduce visual weight inside it.
+- Meaning never depends on color, hover, or motion alone.
+- Full keyboard completion is required for upload, auth, report navigation, and purchase entry points.
+- Auth and purchase entry points use semantic forms with correct email and one-time-code autocomplete hints.
+- Dense desktop tables become labeled disclosure rows on small screens. Essential answers never require horizontal panning.
+- Test at 390, 1024, and 1440 pixels. Also check 320px for overflow and 200% zoom for critical flows.
+
+Ship blockers include clipped typography, overlapping controls, horizontal overflow, missing states, dead navigation, and layout shift caused by fonts.
+
+## 13. Governance and release gates
+
+For any visual-system change:
+
+1. Update semantic tokens or shared primitives first.
+2. Update this document in the same change.
+3. Add or update the living reference in `/internal/system-lab`.
+4. Verify representative marketing, Research, report, and app surfaces.
+5. Run from `web/`:
 
 ```bash
+npm run qa:design-system
 npm run lint
 npm run build
-npm run test:ui
-npm run qa:design-system
 ```
 
-Minimum release bar:
-- zero lint warnings
-- build passes
-- a11y suite passes on critical routes
-- visual baselines pass for landing, pricing, research, guides, trust, and FAQ
-- design-system guardrail script passes
+Use focused UI tests when the affected surface has interaction.
 
----
+The guardrail must fail for:
 
-## 6. Governance
+- missing Newsreader or Instrument Sans runtime wiring
+- stale teal-first or single-font design-system claims
+- missing Lifted Line semantic tokens
+- external font imports
+- unauthorized hardcoded colors
+- banned public copy patterns
+- increasing arbitrary-value or legacy-palette debt beyond the recorded baseline
 
-Change process:
-1. Update tokens or role map in `globals.css`.
-2. Update this file in same PR.
-3. If font files change, update `public/fonts/manifest.json` and `docs/font-operations.md`.
-4. Run QA gates before merge.
+## 14. Final quality test
 
-No merge if docs and runtime diverge.
+Before shipping, ask:
 
----
+1. Is the most useful thing obvious in three seconds?
+2. Does this make the candidate's real work clearer without inflating it?
+3. Is the copy something a thoughtful human would actually say?
+4. Does every visual teach, orient, or prove something?
+5. Are the system's evidence cues used consistently?
+6. Does this unmistakably belong to the same product as the homepage and report?
 
-## 7. Layout System
-
-### Container Widths
-
-Canonical wrappers:
-- Marketing and pricing sections: `max-w-7xl` with `px-6 md:px-8`
-- Editorial longform (guides/research/legal): `max-w-4xl` with `px-5 md:px-6`
-- Dense app surfaces (`/workspace`, `/jobs`, `/settings`): `max-w-[1440px]` with `px-4 md:px-6`
-
-Layout contract:
-- Use one primary container per section.
-- Avoid nested width constraints unless a content sub-rail is intentional.
-- Keep section rhythm on `--space-56` to `--space-72` intervals.
-- Mobile sections must preserve at least `--space-24` top/bottom breathing room.
-
-### Grid Rules
-
-- Marketing split sections: 12-column grid at desktop, stacked on mobile.
-- Card clusters: 3-up desktop, 2-up tablet, 1-up mobile.
-- No orphan single-column card at desktop unless it is a featured card.
-- Sticky headers/rails must not overlap page content at `320px` viewport width.
-
----
-
-## 8. Component Acceptance Specs
-
-### Hero + Report Artifact
-
-- Hero headline must fit in 2-4 lines desktop and 3-5 lines mobile.
-- Hero support copy max 2 sentences.
-- Artifact must include:
-  1. first-pass verdict
-  2. one critical miss
-  3. evidence-to-rewrite row
-  4. score rows + priority sequence
-- No explanatory copy inside the artifact that repeats what visuals already communicate.
-
-### Pricing Cards
-
-- Three cards only: Free / Monthly / Lifetime.
-- One featured plan at a time (`lifetime` by default).
-- Each card must show:
-  1. price unit
-  2. boundary of value
-  3. primary CTA
-- Avoid copy walls: max 6 bullets per paid card.
-
-### Trust + Legal Cards
-
-- One promise per card.
-- Body copy max 2 lines mobile, 3 lines desktop.
-- Must map to runtime truth in API or settings behavior.
-- No claim without a control path (`settings`, `billing portal`, `support`).
-
-### Guide Diagrams
-
-- Diagrams must communicate in one glance without explanatory paragraphs.
-- Legends and labels must use tokenized type roles.
-- Never rely on color alone for meaning; include labels/icons.
-- If content wraps awkwardly at mobile, switch to stacked card variant.
-
----
-
-## 9. Accessibility and Readability Budgets
-
-Minimum bars:
-- Body text contrast: WCAG AA (4.5:1 minimum)
-- Large text contrast: WCAG AA (3:1 minimum)
-- Focus ring visible on every interactive element
-- Full keyboard completion for:
-  - `/workspace` upload -> run -> paywall -> checkout CTA
-  - `/auth` sign-in + verification
-  - `/settings/billing` restore flow
-
-Readability:
-- Paragraph max width: 65-78 characters on desktop.
-- Default paragraph line-height: 1.5 to 1.7.
-- Avoid more than two paragraph blocks back-to-back without a visual break.
-
-Motion:
-- Respect `prefers-reduced-motion`.
-- No infinite motion loops on essential content.
-
----
-
-## 10. Route-Level Visual QA Matrix
-
-Every release candidate requires snapshots for:
-
-| Route | Desktop 1440 | Tablet 1024 | Mobile 390 |
-|---|---|---|---|
-| `/` | required | required | required |
-| `/pricing` | required | required | required |
-| `/research` | required | required | required |
-| `/guides` | required | required | required |
-| `/guides/offer-negotiation` | required | required | required |
-| `/trust` | required | required | required |
-| `/privacy` | required | required | required |
-| `/terms` | required | required | required |
-| `/faq` | required | required | required |
-
-Failure conditions:
-- clipped type or overlapping cards
-- broken rhythm (section spacing outside token cadence)
-- CTA style drift (non-token colors/radii)
-- inconsistent font stack on any route above
-
----
-
-## 11. Font Operations and Performance
-
-Hard requirements:
-- Fonts are local-only via `next/font/local`.
-- `font-display: swap` behavior must be preserved.
-- No runtime dependency on third-party font CDNs.
-- Font files must exist at:
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/sentient/*`
-  - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/satoshi/*`
-
-Performance budgets:
-- No layout shift attributable to font swap in first viewport.
-- LCP should not regress >100ms from typography changes alone.
-- If LCP regression occurs, reduce weight count before adding new families.
-
-Guardrails:
-- `npm run qa:design-system` fails if required local font files are missing.
-- `npm run qa:design-system` fails if `app/layout.tsx` does not wire Sentient/Satoshi.
-- `npm run qa:design-system` fails if `public/fonts/manifest.json` checksum verification fails.
-- Font operational runbook: `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/docs/font-operations.md`.
-
----
-
-## 12. Exceptions
-
-Allowed hardcoded colors:
-- brand icons in `/web/app/icon.tsx` and `/web/app/apple-icon.tsx`
-- PDF export styling in `/web/lib/backend/pdf.ts`
-- domain-specific chart colors in `/web/app/(editorial)/guides/tools/comp-calculator/page.tsx`
-- LinkedIn brand blue in `/web/components/research/diagrams/LinkedInResumeFlow.tsx`
-
-All other surfaces must use tokens.
+If any answer is no, the surface is not finished.

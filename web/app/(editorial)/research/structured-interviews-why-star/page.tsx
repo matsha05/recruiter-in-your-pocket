@@ -3,8 +3,8 @@ import { ResearchArticle, ArticleInsight, Citation } from "@/components/research
 import { StarStructureDiagram } from "@/components/research/diagrams/StarStructureDiagram";
 
 export const metadata: Metadata = {
-    title: "Structured Interviews Beat Vibes | Hiring Research",
-    description: "Why STAR exists and why structure outperforms intuition.",
+    title: "Why Structured Interviews Are More Reliable | Hiring Research",
+    description: "What interview research explains about consistent questions and scoring, plus the narrower role STAR can play in an answer.",
 };
 
 export default function StructuredInterviewsWhyStarPage() {
@@ -12,46 +12,45 @@ export default function StructuredInterviewsWhyStarPage() {
         <ResearchArticle
             header={{
                 tag: "Interview research",
-                title: "Structured interviews beat vibes: why STAR exists",
-                description: "STAR compresses evidence-based structured interviewing into a format candidates can use.",
-                lastUpdated: "December 2025",
+                title: "Why structured interviews are more reliable",
+                description: "The research advantage comes from job-related questions and consistent scoring. STAR is an answer organizer, not the intervention being validated.",
+                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{
-                subtitle: "The Evidence",
-                stat: "Structured > Unstructured",
+                subtitle: "The mechanism",
+                stat: "Same questions. Same rubric. Better comparison.",
                 statDescription: (
                     <>
-                        Meta-analyses show structured interviews consistently outperform unstructured ones in validity.
+                        Structured interviews constrain the questions and evaluation criteria. Research reviews and OPM guidance associate higher structure with stronger validity, rater reliability, and agreement.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
                     text: "Levashina et al. structured interview review",
-                    href: "https://www.morgeson.com/downloads/levashina_hartwell_morgeson_campion_2014.pdf"
+                    href: "https://apps.it.purdue.edu/sites/Home/DirectoryApi/Files/42d5154c-ccc5-403e-b3ed-edd69e3f6896/Download"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">From rubric to STAR</h2>
+                    <h2 className="research-h2">How STAR borrows from structured interviews</h2>
                     <p className="research-body mb-6">
-                        STAR is a candidate-facing compression of structured interview evidence.
-                        <Citation id="source-1">1</Citation>
+                        Past-behavior questions ask what you actually did in a relevant situation. STAR can keep that answer organized. The evidence below supports the employer&apos;s structured process, not one mandatory response acronym.
                     </p>
                     <StarStructureDiagram />
                 </>
             }
             productTieIn={{
-                title: "How RIYP uses this",
+                title: "How this shows up in your report",
                 items: [
                     {
-                        title: "STAR-aligned bullets",
-                        description: "We identify where action and result are missing and suggest fixes."
+                        title: "Action and result",
+                        description: "We point out where the line leaves your contribution or the outcome unclear."
                     },
                     {
                         title: "Interview bridge",
-                        description: "Strong bullets become immediate interview stories."
+                        description: "A specific bullet gives you facts to develop into an interview story."
                     }
                 ]
             }}
@@ -63,27 +62,27 @@ export default function StructuredInterviewsWhyStarPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "The Structured Employment Interview: Narrative and Quantitative Review",
-                    publisher: "Psychology of Personnel Assessment",
+                    title: "The Structured Employment Interview: Narrative and Quantitative Review of the Research Literature",
+                    publisher: "Personnel Psychology",
                     year: "2014",
-                    href: "https://www.morgeson.com/downloads/levashina_hartwell_morgeson_campion_2014.pdf"
+                    href: "https://apps.it.purdue.edu/sites/Home/DirectoryApi/Files/42d5154c-ccc5-403e-b3ed-edd69e3f6896/Download"
                 },
                 {
                     id: "source-2",
-                    title: "Meta-analytic evidence on interview validity (100 years of research)",
-                    publisher: "University of Baltimore",
-                    year: "2016",
-                    href: "https://home.ubalt.edu/tmitch/645/session%204/Schmidt%20%26%20Oh%20validity%20and%20util%20100%20yrs%20of%20research%20Wk%20PPR%202016.pdf"
+                    title: "Structured Interviews",
+                    publisher: "U.S. Office of Personnel Management",
+                    year: "Current guidance",
+                    href: "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/structured-interviews/"
                 }
             ]}
             faq={[
                 {
                     question: "Is STAR only for interviews?",
-                    answer: "No. STAR compresses structured interview evidence into a resume-friendly format."
+                    answer: "STAR was designed as an answer structure. On a resume, action plus outcome can be useful, but the research cited here did not test STAR-formatted bullets."
                 },
                 {
                     question: "Why do structured interviews perform better?",
-                    answer: "They reduce variance and bias by standardizing questions and evaluation."
+                    answer: "They reduce interviewer discretion by standardizing job-related questions and evaluation."
                 },
                 {
                     question: "How do I apply this to resume bullets?",
@@ -91,52 +90,48 @@ export default function StructuredInterviewsWhyStarPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">Why STAR works on resumes</h2>
+            <h2 className="research-h2">What structured interviews actually structure</h2>
             <p className="research-body mb-6">
-                STAR ensures the reader sees context, action, and result. That is the same structure structured interviews aim to elicit.
+                The employer identifies job-related competencies, asks candidates the same predetermined questions, and evaluates responses against the same standards. That shared process, not an answer acronym, is the research-backed intervention.
                 <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     title="Action + Result"
-                    desc="Recruiter lens: if the result is missing, the story feels incomplete."
+                    desc="An outcome can make the contribution easier to evaluate."
                 />
                 <ArticleInsight
-                    title="Evidence density"
-                    desc="Structured formats increase evidence per line without adding length." 
+                    title="More useful detail"
+                    desc="A clear structure can add context without making the bullet much longer."
                 />
             </div>
 
-            <h2 className="research-h2">What structured interviews measure</h2>
+            <h2 className="research-h2">Use STAR on a resume</h2>
             <p className="research-body mb-6">
-                Structured interviews improve reliability by asking consistent questions and scoring against a rubric.
-                That same structure is what makes STAR readable on a resume.
-                <Citation id="source-1">1</Citation>
-                <Citation id="source-2">2</Citation>
-            </p>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Situation and task define context.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Action shows decision-making and ownership.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Result shows measurable impact and scope.</li>
-            </ul>
-
-            <h2 className="research-h2">Resume translation</h2>
-            <p className="research-body mb-6">
-                Recruiter lens: you only need to make action and result explicit. Situation and task are implied by the role title.
+                Treat STAR as a check, not a template. Make your action visible, add the outcome when you know it, and include only enough context for the result to make sense. Situation and task may already be clear from the role.
             </p>
             <div className="border border-border/40 rounded-md p-4 text-sm text-muted-foreground not-prose mb-6">
-                <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60 mb-2">Example</div>
+                <div className="mb-2 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground/60">Illustrative example</div>
                 <p className="text-foreground">
-                    Built a pricing experiment that lifted conversion and reduced churn drivers, enabling sales to land larger enterprise deals.
+                    Ran a pricing test across three self-serve plans, lifting trial-to-paid conversion from 12% to 16% and adding $1.2M in annualized revenue without increasing 90-day churn.
                 </p>
             </div>
 
-            <h2 className="research-h2">Definition: structured interviewing</h2>
+            <h2 className="research-h2">What structured interviewing means</h2>
             <p className="research-body mb-6">
-                Structured interviewing uses consistent questions and scoring criteria to improve reliability and reduce bias. STAR is a candidate-facing version of that approach.
+                Structured interviewing uses job-related, consistent questions and common scoring criteria. STAR can organize one candidate&apos;s response; it cannot make an employer&apos;s process structured by itself.
                 <Citation id="source-1">1</Citation>
+                <Citation id="source-2">2</Citation>
             </p>
+
+            <h2 className="research-h2">What this evidence does not prove</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>It does not show that every behavioral answer must use the STAR acronym.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>It does not test whether STAR-formatted resume bullets increase interviews or hires.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>It does not make a vague or invented result more credible.</li>
+            </ul>
 
             <h2 className="research-h2">Common pitfalls</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">

@@ -27,13 +27,13 @@ import {
 
 /**
  * CommandPalette - Global command surface (Cmd+K)
- * Per design-principles.md: "Central command surface for pro users. 
+ * Central command surface for frequent users.
  * This is the highest-leverage craft pattern."
  * 
  * Features:
  * - Opens with Cmd+K (or Ctrl+K on Windows)
  * - Opens in 0-90ms (no data fetch on open)
- * - Shows shortcut hints (Satoshi 11px, wide tracking)
+ * - Shows compact shortcut hints in the system mono role
  * - Context-aware actions based on current route
  * - Recent commands (last 8, persisted to localStorage)
  */

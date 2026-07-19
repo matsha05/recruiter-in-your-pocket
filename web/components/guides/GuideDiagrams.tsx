@@ -26,7 +26,7 @@ export function CompStackDiagram() {
         <DiagramFigure className="max-w-2xl">
             <DiagramFrame
                 className="relative border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
@@ -41,7 +41,7 @@ export function CompStackDiagram() {
                                 key={comp.name}
                                 className={`${comp.color} flex items-center justify-center relative`}
                                 style={{ width: `${comp.width}%` }}
-                                initial={{ width: 0 }}
+                                initial={false}
                                 whileInView={{ width: `${comp.width}%` }}
                                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 + i * 0.1 }}
                                 viewport={{ once: true }}
@@ -87,7 +87,7 @@ export function NegotiationTimelineDiagram() {
         <DiagramFigure className="max-w-3xl">
             <DiagramFrame
                 className="relative border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
@@ -105,7 +105,7 @@ export function NegotiationTimelineDiagram() {
                                 <motion.div
                                     key={step.step}
                                     className="relative flex flex-col items-center text-center z-10 flex-1"
-                                    initial={{ opacity: 0, y: 10 }}
+                                    initial={false}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
                                     viewport={{ once: true }}
@@ -126,7 +126,7 @@ export function NegotiationTimelineDiagram() {
                             <motion.div
                                 key={step.step}
                                 className="flex items-start gap-4"
-                                initial={{ opacity: 0, x: -10 }}
+                                initial={false}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.3, delay: i * 0.1 }}
                                 viewport={{ once: true }}
@@ -207,7 +207,7 @@ export function LeverComparisonDiagram() {
         <DiagramFigure className="max-w-5xl">
             <DiagramFrame
                 className="relative border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
@@ -225,7 +225,7 @@ export function LeverComparisonDiagram() {
                             <motion.div
                                 key={industry.name}
                                 className={`rounded-xl border ${colors.bg} ${colors.border} p-4 md:p-5`}
-                                initial={{ opacity: 0, y: 8 }}
+                                initial={false}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.1 + i * 0.08 }}
                                 viewport={{ once: true }}
@@ -292,7 +292,7 @@ export function EquityTruthTable() {
         <figure className="w-full max-w-3xl mx-auto my-10 select-none">
             <motion.div
                 className="relative bg-white dark:bg-card border border-border/40 rounded-xl overflow-hidden shadow-lg shadow-slate-200/30 dark:shadow-none"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
@@ -319,7 +319,7 @@ export function EquityTruthTable() {
                                     <motion.tr
                                         key={row.factor}
                                         className="border-b border-border/20"
-                                        initial={{ opacity: 0, x: -10 }}
+                                        initial={false}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
                                         viewport={{ once: true }}
@@ -343,7 +343,7 @@ export function EquityTruthTable() {
                                 <motion.li
                                     key={flag}
                                     className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
-                                    initial={{ opacity: 0 }}
+                                    initial={false}
                                     whileInView={{ opacity: 1 }}
                                     transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
                                     viewport={{ once: true }}

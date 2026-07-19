@@ -1,29 +1,29 @@
 {
   "contract_version": "v2",
-  "score": 86,
-  "score_label": "Strong",
-  "score_comment_short": "You read as someone who takes messy workstreams and makes them shippable.",
+  "score": 78,
+  "score_label": "Strong foundation",
+  "score_comment_short": "You come across as the person who keeps complicated launches moving. The page just hides how much you were actually carrying.",
   "score_comment_long": "You read as a senior Program Manager who ships, someone who takes messy workstreams and makes them land. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What's harder to see is the exact scope (teams, volume, dollars) and the before/after change you drove. The next step is simple: surface the scale and measurable outcomes that are probably already in your head.",
-  "first_impression": "We read this as a steady Program Manager who keeps messy work moving. What lands fast is the ownership. What is still missing is the size of the work and the before-and-after change you drove.",
+  "first_impression": "You read as a capable Program Manager with real ownership. The missing piece is scale: how many people, which teams, and what changed because you were there.",
   "score_plain": "This is a strong foundation. What's missing is the 'so what', the numbers, the scale, the before-and-after.",
-  "biggest_gap_example": "'Drove program improvements across multiple teams', this is the exact kind of line recruiters skim past because there's no anchor. Which teams? How many? What improved?",
-  "first_impression_takeaway": "Surface the scale.",
+  "biggest_gap_example": "'Led onboarding work across the company, improving productivity' leaves every useful detail off the page: which teams, how many new hires, and what got better.",
+  "first_impression_takeaway": "The work is bigger than the writing.",
   "summary": "You read as a senior Program Manager who ships, someone who takes messy workstreams and makes them land. Your edge is steady ownership: you keep leaders aligned, run the checklist, and make clear calls. You operate with structure and avoid drift even when requirements shift. What's harder to see is the exact scope (teams, volume, dollars) and the before/after change you drove. The next step is simple: surface the scale and measurable outcomes that are probably already in your head.",
   "subscores": {
-    "impact": 82,
-    "clarity": 88,
-    "story": 84,
-    "readability": 90
+    "impact": 72,
+    "clarity": 81,
+    "story": 76,
+    "readability": 86
   },
   "strengths": [
-    "You keep delivery on track when priorities change and still close the loop with stakeholders.",
-    "You use structure (checklists, risk checks, comms) so launches and projects avoid drift.",
-    "You describe decisions you owned instead of hiding behind \"the team.\"",
+    "Ownership is easy to see: you make decisions, name risks, and close the loop.",
+    "The launch work feels real because you show the mechanisms—owners, checkpoints, and risk reviews.",
+    "Your progression suggests steadily larger and messier work, not a string of disconnected jobs.",
     "You show pattern recognition in how you prevent issues from recurring.",
     "Your progression across roles shows increasing scope and responsibility."
   ],
   "gaps": [
-    "Scope (teams, geos, customers, volume, dollars) is often missing.",
+    "The scale is hidden: the resume rarely says which teams, how many people, or how much work was moving.",
     "Before/after impact is implied but not stated; add metrics or clear qualitative change.",
     "Some bullets blend multiple ideas; split them so impact lands.",
     "A few phrases could be more specific to the systems or programs you ran.",
@@ -31,11 +31,11 @@
   ],
   "top_fixes": [
     {
-      "fix": "Add scope numbers to your top 2 bullets (e.g., '8 teams, 50K users')",
-      "why": "Right now your bullets sound real, but the size of the work is invisible. Recruiters can't tell if this was 5 people or 500.",
+      "fix": "Name the teams, weekly volume, and result in the onboarding line.",
+      "why": "The line says you improved onboarding, but not who it served, how often it ran, or what improved. Those details are the proof.",
       "confidence": "high",
       "evidence": {
-        "excerpt": "Drove program improvements across multiple teams.",
+        "excerpt": "Led onboarding work across the company, improving productivity.",
         "section": "Work Experience"
       },
       "impact_level": "high",
@@ -43,8 +43,8 @@
       "section_ref": "Work Experience"
     },
     {
-      "fix": "State one before/after metric in your headline bullet (e.g., 'from 6 weeks to 3 weeks')",
-      "why": "Your strongest bullet describes what you did, but not what changed because of it. That's the difference between 'did work' and 'drove results.'",
+      "fix": "Put the before-and-after result in the launch bullet.",
+      "why": "The mechanics are clear. The outcome is not. A baseline and result would show whether the new launch process actually worked.",
       "confidence": "high",
       "evidence": {
         "excerpt": "Ran a cross-team launch with clear owners and checkpoints.",
@@ -55,8 +55,8 @@
       "section_ref": "Work Experience"
     },
     {
-      "fix": "Add a summary that positions your Program Manager style upfront",
-      "why": "Without a summary, recruiters have to read 3 bullets before they understand who you are. That's too long.",
+      "fix": "Open with the kind of Program Manager you actually are.",
+      "why": "The experience points toward complex launch and operations work, but the page never names that lane. A short summary can make the pattern easier to see.",
       "confidence": "medium",
       "evidence": {
         "excerpt": "(No summary section present)",
@@ -94,21 +94,21 @@
   "rewrites": [
     {
       "label": "Impact",
-      "original": "Improved process across teams.",
-      "better": "Improved [process name] across [team count] teams by clarifying owners, decisions, and checkpoints.",
-      "enhancement_note": "Add the process name, team count, and what changed so the improvement is credible."
+      "original": "Led onboarding work across the company, improving productivity.",
+      "better": "Redesigned 30-day onboarding for 18 weekly hires across Sales, Support, and Operations, cutting ramp time 28%.",
+      "enhancement_note": "The teams, weekly volume, mechanism, and result make the scale visible."
     },
     {
       "label": "Scope",
-      "original": "Supported leadership on projects.",
-      "better": "Supported leadership on [project type] by running risk reviews and communications for [project count] concurrent projects.",
-      "enhancement_note": "Add project type and project count so recruiters can see the level of responsibility."
+      "original": "Ran a cross-team launch with clear owners and checkpoints.",
+      "better": "Led a six-team platform launch from risk review through rollout, cutting unresolved launch blockers from 14 to 3 before release.",
+      "enhancement_note": "The scope and before-and-after result show what the launch system accomplished."
     },
     {
       "label": "Clarity",
-      "original": "Handled stakeholder updates.",
-      "better": "Kept stakeholders aligned through [cadence] updates, risk reviews, and decision tracking for [launch or program].",
-      "enhancement_note": "Add cadence and the launch or program name so the mechanism is visible."
+      "original": "(No summary on the resume.)",
+      "better": "Program Manager who turns complex, cross-functional launches into clear decisions, accountable owners, and calmer execution.",
+      "enhancement_note": "The summary names the lane and operating style without piling on empty adjectives."
     },
     {
       "label": "Ownership",
@@ -125,10 +125,10 @@
   ],
   "section_review": {
     "Summary": {
-      "working": "Clear positioning as an execution-focused PM",
-      "missing": "No mention of product domain, company stage preference, or what makes you different from other PMs",
-      "fix": "Add a line like: 'I thrive in [domain] at [stage] companies, where I can [your edge].'",
-      "grade": "B",
+      "working": "There is no dedicated summary to evaluate.",
+      "missing": "The resume does not open with a positioning statement for this Program Manager profile.",
+      "fix": "Add a short summary that names the role, operating style, and strongest scope.",
+      "grade": "C",
       "priority": "high"
     },
     "Work Experience": {
@@ -214,17 +214,17 @@
   "ideas": {
     "questions": [
       {
-        "question": "What was the hardest tradeoff you made on a launch, and how did you decide?",
+        "question": "Which teams used this onboarding process, how many people went through it each week, and what changed afterward?",
         "archetype": "TENSION POINT",
         "why": "This tells recruiters whether you can make calls under pressure, not just execute tasks."
       },
       {
-        "question": "Which project had the most at stake, and what was your role when things got tense?",
+        "question": "What was happening before the new launch process, and what was measurably different after it?",
         "archetype": "HIGH STAKES",
         "why": "Recruiters look for ownership and composure. Both are hard to fake and memorable."
       },
       {
-        "question": "What's the biggest scope you've managed (teams, geos, budget) that isn't on the page yet?",
+        "question": "Which role should this resume be unmistakably aiming for—and what kind of work do you want to be hired to own?",
         "archetype": "SCALING",
         "why": "Scope is often hidden; surfacing it can jump you to the next tier."
       },
@@ -257,5 +257,5 @@
   "layout_score": 86,
   "layout_band": "strong",
   "layout_notes": "",
-  "content_score": 86
+  "content_score": 85
 }

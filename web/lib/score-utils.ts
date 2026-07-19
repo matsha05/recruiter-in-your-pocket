@@ -2,10 +2,10 @@
  * Score Color Utilities
  * 
  * Centralized score-to-color mapping for consistent semantic colors across the app.
- * Based on the design philosophy scoring thresholds:
- * - 85+ (Exceptional): Success green
- * - 70-84 (Strong): Premium gold
- * - <70 (Needs Work): Destructive red
+ * Canonical first-read score bands:
+ * - 85+ Clear and specific
+ * - 70-84 Mostly clear
+ * - <70 Needs more context
  */
 
 /**
@@ -39,9 +39,9 @@ function getScoreBorder(score: number): string {
  * Returns a score label based on the score value
  */
 export function getScoreLabel(score: number): string {
-    if (score >= 85) return "Exceptional";
-    if (score >= 70) return "Strong";
-    return "Needs Work";
+    if (score >= 85) return "Clear and specific";
+    if (score >= 70) return "Mostly clear";
+    return "Needs more context";
 }
 
 /**

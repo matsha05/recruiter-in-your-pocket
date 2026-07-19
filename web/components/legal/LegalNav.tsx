@@ -1,25 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import { CaretRight } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 interface LegalNavProps {
     className?: string;
 }
 
-/**
- * LegalNav — Editor's Desk style tab bar
- *
- * Clean, horizontal pill-shaped tabs on warm background.
- */
+/** Compact, horizontally scrollable trust navigation. */
 export function LegalNav({ className }: LegalNavProps) {
     const pathname = usePathname();
+    const navRef = useRef<HTMLElement>(null);
+    const activeRef = useRef<HTMLAnchorElement>(null);
+    const [hasMore, setHasMore] = useState(false);
 
     const tabs = [
         { name: "Trust & Security", href: "/trust" },
         { name: "Data Handling", href: "/security" },
-        { name: "Extension", href: "/extension" },
+        ...(isLaunchFlagEnabled("extensionSync") ? [{ name: "Extension", href: "/extension" }] : []),
         { name: "Status", href: "/status" },
         { name: "Methodology", href: "/methodology" },
         { name: "Privacy Policy", href: "/privacy" },
@@ -27,25 +29,40 @@ export function LegalNav({ className }: LegalNavProps) {
         { name: "FAQ", href: "/faq" },
     ];
 
+    useEffect(() => {
+        const nav = navRef.current;
+        if (!nav) return;
+
+        activeRef.current?.scrollIntoView({ block: "nearest", inline: "center" });
+        const update = () => setHasMore(nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 4);
+        update();
+        nav.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        return () => {
+            nav.removeEventListener("scroll", update);
+            window.removeEventListener("resize", update);
+        };
+    }, [pathname]);
+
     return (
-        <div className={cn("flex flex-col items-center", className)}>
+        <div className={cn("relative min-w-0", className)}>
             <nav
-                className="flex w-full max-w-[68rem] flex-wrap items-center gap-1 rounded-xl bg-white p-1.5"
-                style={{
-                    boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03)",
-                }}
+                ref={navRef}
+                className="flex w-full snap-x items-center gap-6 overflow-x-auto border-y border-line py-1 pr-9 [scrollbar-width:none] md:pr-0 [&::-webkit-scrollbar]:hidden"
+                aria-label="Trust and legal pages"
             >
                 {tabs.map((tab) => {
                     const isActive = pathname === tab.href;
                     return (
                         <Link
+                            ref={isActive ? activeRef : undefined}
                             key={tab.href}
                             href={tab.href}
                             className={cn(
-                                "whitespace-nowrap rounded-lg px-3 py-2 text-[12px] font-semibold tracking-[0.01em] transition-all duration-150",
+                                "focus-ring min-h-11 snap-start whitespace-nowrap border-b-2 px-0 py-3 text-[13px] font-semibold transition-colors duration-200",
                                 isActive
-                                    ? "bg-slate-900 text-white"
-                                    : "text-slate-400 hover:bg-slate-50 hover:text-slate-700"
+                                    ? "border-brand text-foreground"
+                                    : "border-transparent text-muted-foreground hover:text-foreground"
                             )}
                         >
                             {tab.name}
@@ -53,6 +70,11 @@ export function LegalNav({ className }: LegalNavProps) {
                     );
                 })}
             </nav>
+            {hasMore ? (
+                <div className="pointer-events-none absolute inset-y-px right-0 flex w-8 items-center justify-end bg-paper" aria-hidden="true">
+                    <CaretRight className="size-4 text-brand" weight="bold" />
+                </div>
+            ) : null}
         </div>
     );
 }

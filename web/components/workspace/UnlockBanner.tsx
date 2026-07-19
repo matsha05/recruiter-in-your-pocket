@@ -64,7 +64,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 Full report unlocked.
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                                Start with the lines that need work, then export when you&apos;re ready.
+                                Start with the highest-impact changes, then export when you&apos;re ready.
                             </p>
                         </div>
 

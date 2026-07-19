@@ -22,7 +22,7 @@ RIYP is NOT a feature because:
 |:----------|:------------------|:-------------|
 | **Positioning** | "AI-powered resume help" | "See what recruiters see in 7.4 seconds" |
 | **Methodology** | Black box scoring | Visible recruiter-grade rubric with evidence |
-| **Pricing** | Subscription commodity | Credit-based + lifetime credits = unique model |
+| **Pricing** | Subscription commodity | One complete report free, then a 30-day five-report pass |
 | **Quality system** | Ad-hoc prompts | Calibrated eval harness + regression gates |
 | **Tone** | Generic AI voice | Editorial human voice with strict constraints |
 

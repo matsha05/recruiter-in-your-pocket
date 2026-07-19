@@ -10,7 +10,7 @@ import { DURATION } from "@/lib/animation"
 
 /**
  * Peek Panel - Non-destructive overlay for evidence, citations, definitions
- * Per design-principles.md Layer Model: "Peek" layer
+ * Supporting evidence overlay within the Lifted Line component system.
  * 
  * Behavior:
  * - Entry: 320ms, opacity 0→1, scale 0.985→1, y 8→0

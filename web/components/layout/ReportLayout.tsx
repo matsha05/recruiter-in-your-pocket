@@ -1,33 +1,24 @@
 import * as React from "react"
-import { cn } from "@/lib/utils"
 
 interface ReportLayoutProps {
     children: React.ReactNode
     toc?: React.ReactNode
 }
 
-/**
- * ReportLayout
- * Implements the "Sticky Nav" pattern from V2.1 Blueprint.
- * - Desktop: Sticky sidebar (TOC) on the right (or left inner).
- * - Mobile: Children render normally, TOC via bottom sheet (to be implemented).
- */
 export function ReportLayout({ children, toc }: ReportLayoutProps) {
     return (
-        <div className="relative mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 md:py-10 lg:px-8">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_248px] md:gap-14">
-                {/* Main Content */}
-                <main className="min-w-0 space-y-10 md:space-y-12">
-                    {children}
-                </main>
-
-                {/* Desktop Sticky TOC */}
-                <aside className="relative hidden md:block">
-                    <div className="sticky top-10 space-y-4 pl-2">
-                        {toc}
-                    </div>
+        <div className="relative mx-auto w-full max-w-6xl px-0 pb-8 sm:px-5 md:pb-14 lg:px-8">
+            {toc && (
+                <aside
+                    aria-label="Report navigation"
+                    className="riyp-border-paper-line sticky top-0 z-40 border-y bg-mineral/95 px-2 backdrop-blur-md sm:px-3 md:px-6"
+                >
+                    {toc}
                 </aside>
-            </div>
+            )}
+            <article className="riyp-report-paper min-w-0 px-5 py-7 sm:px-9 sm:py-10 lg:px-16 lg:py-12">
+                {children}
+            </article>
         </div>
     )
 }

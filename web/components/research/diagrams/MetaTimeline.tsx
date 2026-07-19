@@ -1,120 +1,20 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { EvidenceHeader, EvidenceTable } from "@/components/shared/diagrams/EvidenceVisuals";
 
-/**
- * Meta Timeline / Control Sphere Diagram (v2.0)
- * 
- * Premium upgrade following diagram-visual-spec.md
- * Concentric circles showing controllable vs systemic factors
- */
 export function MetaTimeline() {
     return (
-        <DiagramFigure className="w-full max-w-[420px] mx-auto my-12 group select-none">
-            <DiagramFrame
-                className="riyp-diagram-shell"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                {/* Header */}
-                <div className="riyp-diagram-head">
-                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
-                        Sphere of control
-                    </span>
-                </div>
-
-                <div className="p-6">
-                    {/* Concentric circles visualization */}
-                    <div className="relative size-64 mx-auto">
-                        {/* Outer circle - Systemic */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="absolute inset-0 rounded-full border-2 border-dashed border-muted-foreground/20 bg-muted/10"
-                        />
-
-                        {/* Inner circle - Controllable */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.6 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                            viewport={{ once: true }}
-                            className="absolute inset-12 rounded-full border-2 border-brand/40 bg-brand/5 dark:bg-brand/10"
-                        />
-
-                        {/* Labels */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-                            viewport={{ once: true }}
-                            className="absolute inset-0 flex items-center justify-center"
-                        >
-                            <div className="text-center gap-y-4">
-                                <div className="px-3 py-1 rounded-full bg-brand/10 border border-brand/20">
-                                    <span className="text-xs font-mono uppercase tracking-wider text-brand font-medium">
-                                        Controllable
-                                    </span>
-                                </div>
-                                <div className="gap-y-1">
-                                    <p className="text-xs text-foreground font-medium">Clarity</p>
-                                    <p className="text-xs text-foreground font-medium">Structure</p>
-                                    <p className="text-xs text-foreground font-medium">Proof</p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Outer labels */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
-                            viewport={{ once: true }}
-                            className="absolute -top-2 left-1/2 -translate-x-1/2"
-                        >
-                            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
-                                Systemic
-                            </span>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-                            viewport={{ once: true }}
-                            className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-center"
-                        >
-                            <span className="text-xs text-muted-foreground/60">
-                                Market bias · Gatekeeping · Algorithms
-                            </span>
-                        </motion.div>
-                    </div>
-
-                    {/* Key Insight */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
-                        viewport={{ once: true }}
-                        className="mt-8 bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
-                    >
-                        <p className="text-xs text-muted-foreground leading-relaxed text-center">
-                            Focus on what you can control. A resume can&apos;t fix systemic issues, but it can maximize your signal within the system.
-                        </p>
-                    </motion.div>
-                </div>
+        <DiagramFigure className="max-w-[50rem]" label="Timeline summarizing a meta-analysis of US hiring discrimination field experiments from 1989 through 2015">
+            <DiagramFrame>
+                <EvidenceHeader index="01" label="What the meta-analysis found" title="The overall callback gap persisted, but the trend differed by group." note="The authors synthesized 28 US field experiments representing 55,842 applications to 26,326 positions. Trend analysis focused on 24 studies conducted since 1989." />
+                <EvidenceTable columns={["Finding", "Observed result", "Time trend"]} rows={[
+                    { label: "Black applicants", values: ["White applicants received 36% more callbacks on average", "No significant decline detected since 1989"], emphasis: 0 },
+                    { label: "Latino applicants", values: ["White applicants received 24% more callbacks on average", "Modest evidence of decline"], emphasis: 0 },
+                    { label: "Study scale", values: ["28 experiments · 55,842 applications", "Fieldwork through 2015"] },
+                ]} />
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  Bounded Control</span>
-                <span className="block text-sm text-foreground/80 font-medium">
-                    What resumes can improve vs what they cannot
-                </span>
-            </figcaption>
+            <DiagramCaption kicker="Fig. 1 / Persistence over time" title="The long-run result is not a universal decline; the trends differ by group." description="Quillian et al. (2017), US field experiments with fieldwork through December 2015." />
         </DiagramFigure>
     );
 }

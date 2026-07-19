@@ -107,7 +107,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
   }, [state]);
 
   return (
-    <main data-visual-anchor="report-detail-page" className="flex-1 min-h-0 flex flex-col overflow-hidden bg-body">
+    <div data-visual-anchor="report-detail-page" className="flex-1 min-h-0 flex flex-col overflow-hidden bg-body">
       <div className="border-b border-border/40 bg-background/90 px-6 py-4 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3">
           <button type="button"
@@ -121,7 +121,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             href="/workspace"
             className="text-xs font-medium text-brand hover:underline underline-offset-4"
           >
-            Run another report
+            Start another report
           </Link>
         </div>
       </div>
@@ -225,7 +225,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             report={report}
             isLoading={false}
             hasJobDescription={hasJobDescription}
-            onExportPdf={handleExportPdf}
+            onExportPdf={hasPaidAccess ? handleExportPdf : undefined}
             isExporting={isExporting}
             isSample={false}
             onNewReport={() => push("/workspace")}
@@ -238,6 +238,6 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
           />
         </div>
       )}
-    </main>
+    </div>
   );
 }

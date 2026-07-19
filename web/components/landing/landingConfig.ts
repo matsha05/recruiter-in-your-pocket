@@ -8,7 +8,6 @@ import {
     Trash2,
     Users,
 } from "lucide-react";
-import { SixSecondIcon } from "@/components/icons";
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
 export type LandingIcon = ComponentType<{ className?: string }>;
@@ -147,33 +146,33 @@ export const landingContent: LandingContentConfig = {
     hero: {
         badge: "Based on how recruiters actually decide",
         badgeIcon: BookOpen,
-        title: "In 7.4 seconds, they've already made up their mind about you.",
+        title: "Your resume is making a case. See the case it actually makes.",
         subtitle: "Get your free report first. Add a job description only if you want to see how it lines up with a specific role.",
         stats: [
             {
-                value: "7.4s",
-                label: "That's all you get",
-                sublabel: "Ladders 2018",
+                value: "1",
+                label: "Complete report",
+                sublabel: "Free, no card",
                 highlight: true,
                 valueClassName: "text-[46px] leading-none font-semibold tracking-tight",
             },
             {
-                value: "250+",
-                label: "...are competing with you",
-                sublabel: "Per open role",
+                value: "3",
+                label: "Changes to start with",
+                sublabel: "Ordered by impact",
                 valueClassName: "text-[42px] leading-none font-semibold tracking-tight",
             },
             {
-                value: "3",
-                label: "Fixes you can make tonight",
-                sublabel: "In your first free report",
+                value: "0",
+                label: "Invented achievements",
+                sublabel: "Your facts only",
                 valueClassName: "text-[42px] leading-none font-semibold tracking-tight",
             },
         ],
         bullets: [
             "What stands out first, and what gets missed",
-            "The line that is weakening the first impression, with proof",
-            "Fixes you can use tonight",
+            "Where the reader hesitates, and why",
+            "The highest-impact changes to make next",
         ],
         primaryCta: {
             label: "Run free report",
@@ -187,21 +186,21 @@ export const landingContent: LandingContentConfig = {
         },
         footnote: "First report free. No login required. Save only when you decide to.",
         reportSample: HERO_REPORT_SAMPLE,
-        reportPlaybackSeconds: 7.4,
-        reportLabel: "The first 7.4 seconds",
-        reportSubtitle: "What they see first",
-        reportIcon: SixSecondIcon,
+        reportPlaybackSeconds: 5,
+        reportLabel: "Opening read",
+        reportSubtitle: "What the page communicates",
+        reportIcon: BookOpen,
     },
     evidence: {
         eyebrow: "How it works",
-        title: "Most tools give you advice. We show you the exact line and help you make it stronger.",
-        copy: "You get the line from your resume, why it is not landing yet, and a better version you can actually use.",
+        title: "See the resume a recruiter sees—not the one you meant to write.",
+        copy: "Your report separates what is already working from what is easy to miss, hard to believe, or still making the reader guess.",
         howItWorks: {
             eyebrow: "How the report works",
             steps: [
-                "1. Read your resume the way a recruiter would, fast.",
-                "2. Find the line that makes them hesitate.",
-                "3. Rewrite it for you, starting with what matters most.",
+                "1. Read the resume as a recruiter-style opening review.",
+                "2. Show what landed, what created doubt, and what is missing.",
+                "3. Prioritize the few changes that will improve the whole read.",
             ],
             cta: {
                 label: "See full methodology",
@@ -212,7 +211,7 @@ export const landingContent: LandingContentConfig = {
             {
                 icon: BarChart2,
                 title: "Story Signal",
-                description: "Can someone tell your career story in 10 seconds?",
+                description: "Can someone follow your career story without filling in the gaps?",
                 weight: "35%",
                 citation: "NBER, 2019",
             },
@@ -224,11 +223,11 @@ export const landingContent: LandingContentConfig = {
                 citation: "Bock/Google, 2015",
             },
             {
-                icon: SixSecondIcon,
+                icon: BookOpen,
                 title: "Clarity Signal",
                 description: "Can someone tell what you do quickly?",
                 weight: "20%",
-                citation: "Ladders, 2018",
+                citation: "Recruiter review research",
             },
             {
                 icon: BookOpen,
@@ -251,8 +250,8 @@ export const landingContent: LandingContentConfig = {
         featured: {
             eyebrow: "Featured: Eye-tracking",
             readTime: "4 min read",
-            title: "What recruiters read in the first 7.4 seconds",
-            copy: "What they look at first, what they skip, and what that changes.",
+            title: "How recruiters actually read a resume",
+            copy: "What the best available studies observed, what they did not prove, and what that changes.",
             highlightLabel: "What this changes",
             highlightCopy: "Put your strongest proof near the top, before they move on.",
             ctaLabel: "Read the full research note",
@@ -278,27 +277,21 @@ export const landingContent: LandingContentConfig = {
         ],
     },
     trust: {
-        eyebrow: "From people who hire",
-        title: "Built by people who've read 10,000 resumes.",
-        copy: "Your experience may be stronger than your resume makes it look. We help the right things come through, without hiding how the product works or how your data is handled.",
-        reasonsLabel: "What feels different",
+        eyebrow: "The recruiter behind the report",
+        title: "Built from the hiring side, for the person waiting on the other side.",
+        copy: "Matt Shaw has spent 14 years recruiting and leading hiring teams across OpenAI, Meta, Google, X-Team, and Robert Half. RIYP makes the questions recruiters ask privately useful before you apply.",
+        reasonsLabel: "What the product protects",
         testimonials: [
             {
-                quote: "This feels like the best part of a career coach session, but faster and more concrete.",
-                name: "Jennifer Martinez",
-                role: "Career Coach",
-                company: "Executive coaching practice",
-            },
-            {
-                quote: "This catches the same stuff we flag in hiring debriefs, but with actual rewrites.",
-                name: "Marcus Williams",
-                role: "VP Engineering",
-                company: "Series C Startup",
+                quote: "Most people aren't short on good experience. The resume is just missing the details that make it obvious.",
+                name: "Matt Shaw",
+                role: "Founder",
+                company: "Recruiter in Your Pocket",
             },
         ],
         reasons: [
             "You see what a recruiter is likely to notice first, not generic resume tips.",
-            "Every suggestion links to the exact line on your resume.",
+            "Every recommendation shows the evidence behind it.",
             "Honest, useful feedback. Not robotic.",
             "Clear controls for saving, deleting, billing, and extension capture.",
         ],
@@ -311,8 +304,8 @@ export const landingContent: LandingContentConfig = {
     },
     pricing: {
         eyebrow: "Simple pricing",
-        title: "Start free. Pay when you want more.",
-        copy: "Your first report is free. Not a teaser. Paid plans are for repeated role-specific reports, version history, exports, and a steadier application workflow.",
+        title: "One complete report free. Five more for $29.",
+        copy: "The Job Search Pass is a one-time purchase for an active search: five additional reports over 30 days, with no subscription.",
         included: {
             eyebrow: "Included in every plan",
             items: [

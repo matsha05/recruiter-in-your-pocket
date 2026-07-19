@@ -8,15 +8,15 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 ## Visual Hierarchy (top → bottom)
 
 1. **← Research** — subtle back link
-2. **Meta line** — `TAG · read time · date` (no labels, compressed date)
-3. **Title** — largest element, serif, clear #1
+2. **Meta line** — topic and evidence summary only. Keep internal review dates in structured metadata, not visible article chrome.
+3. **Title** — largest element, Newsreader display typography, clear #1
 4. **Description** — one sentence, explains the article's angle
-5. **Key finding callout** — subordinate to title, warm background box
+5. **Key finding callout** — subordinate to title, pale-sky teaching surface
 6. **Body** — prose sections, h2 headings, visualizations inline
 7. **FAQ** — optional, full sentences
-8. **Product tie-in** — white card with numbered items
+8. **Product tie-in** — pale-sky application rail with numbered items
 9. **Further reading** — related articles + sources merged
-10. **CTA strip** — dark band, single CTA
+10. **CTA strip** — pale-sky band with one Iris action
 
 ---
 
@@ -25,7 +25,7 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 ```tsx
 <ResearchArticle
   header={{
-    tag: "EYE-TRACKING RESEARCH",   // category — uppercase, teal
+    tag: "EYE-TRACKING RESEARCH",   // topic — uppercase, Iris
     title: "How Recruiters Actually Read Resumes",
     description: "Eye tracking research on how recruiters review resumes in real time.",
     readTime: "4 min read",
@@ -33,25 +33,25 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
   }}
   keyFinding={{
     subtitle: "The Key Finding",     // NOT rendered visually — kept for data
-    stat: "7.4 Seconds",             // 2-4 words, the hook
-    statDescription: <>The 2018 update reports an average 7.4 second initial screen.</>,
-    source: { text: "TheLadders Eye-Tracking Update (2018 PDF)", href: "..." },
-    sampleSize: <>30 professional recruiters reviewing 300+ resumes</>,
+    stat: "2,043 resume reviews",    // 2-4 words, the hook
+    statDescription: <>Review time and attention to Experience were associated with advancement decisions in this study.</>,
+    source: { text: "Pina et al., peer-reviewed eye-tracking study (2023)", href: "..." },
+    sampleSize: <>221 recruiters recruited; 24 incomplete sessions removed; 2,043 usable first-round reviews</>,
   }}
   productTieIn={{
-    title: "How RIYP uses this",
+    title: "How this shows up in your report",
     items: [
-      { title: "Signal Detection", description: "We flag the same zones recruiters fixate on." },
+      { title: "First-pass clarity", description: "We flag important experience that may be hard to find quickly." },
     ],
   }}
   sources={[
     { id: "source-1", title: "Study Title", publisher: "Publisher", year: 2018, href: "..." },
   ]}
   relatedArticles={[
-    { title: "How People Scan Text", href: "/research/how-people-scan", tag: "RESEARCH" },
+    { title: "What Recruiters Notice First", href: "/research/how-recruiters-read", tag: "RESEARCH" },
   ]}
   faq={[
-    { question: "Is 7.4 seconds real?", answer: "Yes, updated from the 2012 6-second figure." },
+    { question: "Do recruiters spend six seconds on every resume?", answer: "No. A vendor report popularized that figure, but it is not a universal timer." },
   ]}
 >
   {/* Article body — use h2 for sections, p for prose */}

@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { SiteHeader } from "./SiteHeader";
 import { AppHeader } from "./AppHeader";
@@ -17,13 +18,15 @@ interface HeaderLayoutProps {
  */
 export function HeaderLayout({ children }: HeaderLayoutProps) {
     const { user } = useAuth();
+    const pathname = usePathname();
 
     // Logged-in users get the full app navigation
-    if (user) {
+    if (user && pathname !== "/" && !pathname?.startsWith("/research")) {
         return (
             <div className="min-h-screen flex flex-col bg-background">
+                <a href="#main-content" className="skip-link">Skip to content</a>
                 <AppHeader />
-                <main className="flex-1">{children}</main>
+                <main id="main-content" tabIndex={-1} className="flex-1">{children}</main>
             </div>
         );
     }
@@ -31,8 +34,9 @@ export function HeaderLayout({ children }: HeaderLayoutProps) {
     // Guests get the marketing navigation (fixed position, content needs top padding)
     return (
         <div className="min-h-screen flex flex-col">
+            <a href="#main-content" className="skip-link">Skip to content</a>
             <SiteHeader />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" tabIndex={-1} className="flex-1">{children}</main>
         </div>
     );
 }

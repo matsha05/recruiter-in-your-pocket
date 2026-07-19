@@ -15,27 +15,25 @@ module.exports = {
 				'2xl': '1400px'
 			}
 		},
-		extend: {
+			extend: {
 			fontFamily: {
 				sans: [
-					'var(--font-satoshi)',
+					'var(--font-body)',
 					'ui-sans-serif',
 					'system-ui'
 				],
 				display: [
-					'var(--font-sentient)',
-					'ui-serif',
-					'Georgia',
-					'serif'
+					'var(--font-display)',
+					'ui-sans-serif',
+					'system-ui'
 				],
 				serif: [
-					'var(--font-sentient)',
-					'ui-serif',
-					'Georgia',
-					'serif'
+					'var(--font-display)',
+					'ui-sans-serif',
+					'system-ui'
 				],
 				mono: [
-					'var(--font-satoshi)',
+					'var(--font-mono)',
 					'ui-monospace',
 					'monospace'
 				]
@@ -76,7 +74,25 @@ module.exports = {
 				},
 				brand: {
 					DEFAULT: 'hsl(var(--brand))',
+					strong: 'hsl(var(--brand-strong))',
+					tint: 'hsl(var(--brand-tint))',
 					foreground: 'hsl(0 0% 100%)'
+				},
+				paper: 'hsl(var(--surface-page))',
+				proof: 'hsl(var(--surface-proof))',
+				line: 'hsl(var(--line))',
+				iris: 'hsl(var(--brand))',
+				'surface-sky': 'hsl(var(--surface-sky))',
+				'accent-apricot': 'hsl(var(--accent-apricot))',
+				'accent-butter': 'hsl(var(--accent-butter))',
+				mineral: {
+					DEFAULT: 'hsl(var(--mineral))',
+					strong: 'hsl(var(--mineral-strong))',
+					soft: 'hsl(var(--mineral-soft))'
+				},
+				ink: {
+					DEFAULT: 'hsl(var(--ink))',
+					deep: 'hsl(var(--ink-deep))'
 				},
 				slate: {
 					DEFAULT: 'hsl(var(--slate))',

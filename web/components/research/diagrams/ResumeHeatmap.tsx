@@ -1,117 +1,96 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+
+const studies = [
+    {
+        source: "Pina et al. / 2023",
+        evidence: "Peer-reviewed eye-tracking study",
+        observed: "Among 2,043 usable resume reviews, total review time and Experience-section viewing were associated with advancement decisions.",
+        boundary: "Entry-level computer science resumes in a simulated screen; association does not establish causation.",
+    },
+    {
+        source: "Fritzsche & Brannick / 2002",
+        evidence: "Peer-reviewed judgment study",
+        observed: "Forty recruiters judged 60 actual resumes or corresponding resume profiles; ratings and cue use differed between formats.",
+        boundary: "Shows that the full artifact matters; it does not prescribe one resume layout or reading order.",
+    },
+    {
+        source: "TheLadders / 2012",
+        evidence: "Company-sponsored eye-tracking report",
+        observed: "Popularized an average initial screen of roughly six seconds in its small study.",
+        boundary: "Historical, directional evidence only; not a population estimate or universal recruiter timer.",
+    },
+];
 
 export function ResumeHeatmap() {
     return (
-        <DiagramFigure className="w-full max-w-[420px] mx-auto my-12 group select-none">
-            <DiagramFrame className="riyp-diagram-shell relative w-full aspect-[1/1.4] transition-all duration-500">
+        <DiagramFigure className="max-w-[56rem]" label="Evidence table summarizing three recruiter attention studies and their limits">
+            <DiagramFrame>
+                <EvidenceHeader
+                    index="01"
+                    label="Evidence hierarchy"
+                    title="The stronger studies support a close read, not a countdown."
+                    note="The practical conclusion is modest: make recent work and relevant evidence easy to locate, then keep each claim in context."
+                />
 
-                {/* Premium Resume Skeleton (Matching ScanPattern) */}
-                <div className="absolute inset-0 p-8 gap-y-6 opacity-60">
-                    {/* Header */}
-                    <div className="gap-y-3 mb-8">
-                        <div className="h-8 w-2/3 bg-slate-200 dark:bg-slate-800/80 rounded-md" />
-                        <div className="h-4 w-1/3 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
+                <div className="px-5 py-7 md:px-7 md:py-9">
+                    <div className="hidden md:block">
+                        <table className="w-full border-collapse text-left text-sm">
+                            <caption className="sr-only">Studies of recruiter attention, observed findings, and evidence boundaries</caption>
+                            <thead>
+                                <tr className="border-y border-[hsl(var(--paper-line))] text-xs font-semibold uppercase riyp-track-010 text-slate-500">
+                                    <th scope="col" className="py-3 pr-5">Study</th>
+                                    <th scope="col" className="py-3 pr-5">What it observed</th>
+                                    <th scope="col" className="py-3">What it cannot establish</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {studies.map((study) => (
+                                    <tr key={study.source} className="border-b border-[hsl(var(--paper-line))] align-top">
+                                        <th scope="row" className="w-[12rem] py-5 pr-5">
+                                            <span className="block font-semibold text-teal-900">{study.source}</span>
+                                            <span className="mt-1 block text-xs font-normal leading-5 text-slate-500">{study.evidence}</span>
+                                        </th>
+                                        <td className="py-5 pr-6 leading-6 text-slate-700">{study.observed}</td>
+                                        <td className="py-5 leading-6 text-slate-500">{study.boundary}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
 
-                    {/* Divider */}
-                    <div className="h-px w-full bg-slate-100 dark:bg-slate-800" />
-
-                    {/* Experience Block 1 */}
-                    <div className="gap-y-3 pt-2">
-                        <div className="flex justify-between items-start">
-                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
-                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        </div>
-                        <div className="h-4 w-1/4 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        <div className="gap-y-2 pt-2">
-                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[92%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[98%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                        </div>
-                    </div>
-
-                    {/* Experience Block 2 */}
-                    <div className="gap-y-3 pt-4">
-                        <div className="flex justify-between items-start">
-                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
-                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        </div>
-                        <div className="gap-y-2 pt-2">
-                            <div className="h-2.5 w-[88%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[75%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                        </div>
-                    </div>
-
-                    {/* Experience Block 3 */}
-                    <div className="gap-y-3 pt-4">
-                        <div className="flex justify-between items-start">
-                            <div className="h-5 w-1/4 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
-                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        </div>
-                        <div className="gap-y-2 pt-2">
-                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[65%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                        </div>
-                    </div>
+                    <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))] md:hidden">
+                        {studies.map((study, index) => (
+                            <li key={study.source} className="py-5">
+                                <div className="flex items-baseline gap-3">
+                                    <span className="text-xs tabular-nums text-slate-400">{String(index + 1).padStart(2, "0")}</span>
+                                    <div>
+                                        <h3 className="text-sm font-semibold text-teal-900">{study.source}</h3>
+                                        <p className="mt-1 text-xs leading-5 text-slate-500">{study.evidence}</p>
+                                    </div>
+                                </div>
+                                <dl className="mt-4 space-y-4 pl-8">
+                                    <div>
+                                        <dt className="text-xs font-semibold uppercase riyp-track-010 text-slate-500">Observed</dt>
+                                        <dd className="mt-1 text-sm leading-6 text-slate-700">{study.observed}</dd>
+                                    </div>
+                                    <div>
+                                        <dt className="text-xs font-semibold uppercase riyp-track-010 text-slate-500">Limit</dt>
+                                        <dd className="mt-1 text-sm leading-6 text-slate-600">{study.boundary}</dd>
+                                    </div>
+                                </dl>
+                            </li>
+                        ))}
+                    </ol>
                 </div>
-
-                {/* Heatmap Layer */}
-                <div className="absolute inset-0 mix-blend-multiply dark:mix-blend-screen opacity-90 pointer-events-none">
-
-                    {/* Hotspot 1: Name/Title (Intense Focus) */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute top-6 left-6 w-64 h-32 rounded-[100%] blur-3xl bg-[radial-gradient(circle,rgba(225,29,72,0.8)_0%,rgba(245,158,11,0.5)_40%,transparent_70%)]"
-                    />
-
-                    {/* Hotspot 2: Recent Role (Strong Focus) */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute top-48 left-6 w-56 h-24 rounded-[100%] blur-2xl bg-[radial-gradient(circle,rgba(245,158,11,0.7)_0%,rgba(13,148,136,0.4)_50%,transparent_70%)]"
-                    />
-
-                    {/* Hotspot 3: Scattered Scanning (Lower Focus) */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 2, delay: 0.8 }}
-                        className="absolute top-72 left-8 w-48 h-20 rounded-[100%] blur-2xl bg-[radial-gradient(circle,rgba(13,148,136,0.4)_0%,transparent_70%)]"
-                    />
-
-                    {/* Hotspot 4: Skills (Quick Check) */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 2, delay: 1 }}
-                        className="absolute bottom-12 left-6 w-64 h-16 rounded-[100%] blur-xl bg-[radial-gradient(circle,rgba(13,148,136,0.3)_0%,transparent_60%)]"
-                    />
-                </div>
-
-                {/* Legend/Label */}
-                <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-rose-500/20 rounded-full px-3 py-1 shadow-sm flex items-center gap-2 z-10">
-                    <div className="flex gap-x-0.5">
-                        <div className="size-1.5 rounded-full bg-teal-500" />
-                        <div className="size-1.5 rounded-full bg-amber-500" />
-                        <div className="size-1.5 rounded-full bg-rose-600 animate-pulse" />
-                    </div>
-                    <span className="text-xs font-mono font-medium text-rose-600 uppercase tracking-wider">
-                        Heatmap
-                    </span>
-                </div>
-
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 2  -  Attention Density</span>
-                <span className="block text-sm text-foreground/80 font-medium">Aggregated Recruiter Fixation Points</span>
-            </figcaption>
+            <DiagramCaption
+                kicker="Fig. 1 / Evidence summary"
+                title="Make the important details easy to find. Do not design around a universal six-second rule."
+                description="Source details and direct links appear in the evidence record below."
+            />
         </DiagramFigure>
     );
 }

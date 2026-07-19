@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, ArrowRight, Link2, ShieldCheck, X } from "lucide-react";
+import { Link as LinkIcon, ShieldCheck, X } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DownloadIcon } from "@/components/ui/download";
@@ -11,7 +11,6 @@ import { ReportData } from "./report/ReportTypes";
 import { UnlockBanner } from "./UnlockBanner";
 import { ReportLayout } from "@/components/layout/ReportLayout";
 import { ReportTOC } from "@/components/workspace/report/ReportTOC";
-import { BottomActionRail } from "@/components/ui/bottom-action-rail";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { Analytics } from "@/lib/analytics";
 import { redactReport } from "@/lib/redaction";
@@ -21,6 +20,7 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 interface ReportPanelProps {
     report: ReportData | null;
     isLoading: boolean;
+    isStreaming?: boolean;
     hasJobDescription: boolean;
     onExportPdf?: (overrideReport?: ReportData) => void;
     isExporting?: boolean;
@@ -35,11 +35,14 @@ interface ReportPanelProps {
     analysisStartedAt?: number | null;
     onCancelAnalysis?: () => void;
     onRetryAnalysis?: () => void;
+    comparisonBaseline?: ReportData | null;
+    onStartRevision?: () => void;
 }
 
 export default function ReportPanel({
     report,
     isLoading,
+    isStreaming = false,
     hasJobDescription,
     onExportPdf,
     isExporting = false,
@@ -53,13 +56,14 @@ export default function ReportPanel({
     hasPaidAccess = false,
     analysisStartedAt = null,
     onCancelAnalysis,
-    onRetryAnalysis
+    onRetryAnalysis,
+    comparisonBaseline = null,
+    onStartRevision,
 }: ReportPanelProps) {
 
     const searchParams = useSearchParams();
     const shareEnabled = isLaunchFlagEnabled("publicShareLinks");
     const [shareMode, setShareMode] = useState(false);
-    const [shareToast, setShareToast] = useState<{ message: string; type?: "success" | "info" } | null>(null);
 
     useEffect(() => {
         if (!shareEnabled) {
@@ -70,12 +74,6 @@ export default function ReportPanel({
         setShareMode(shareParam === "1");
     }, [searchParams, shareEnabled]);
 
-    useEffect(() => {
-        if (!shareToast) return;
-        const timer = setTimeout(() => setShareToast(null), 3500);
-        return () => clearTimeout(timer);
-    }, [shareToast]);
-
     const displayReport = useMemo(() => {
         if (!report) return null;
         return shareMode ? redactReport(report) : report;
@@ -83,18 +81,17 @@ export default function ReportPanel({
 
     const tocActiveId = highlightSection
         ? ({
-            evidence_ledger: "section-evidence-ledger",
-            bullet_upgrades: "section-bullet-upgrades",
-            missing_wins: "section-missing-wins",
-            job_alignment: "section-job-alignment"
+            evidence_ledger: "section-first-impression",
+            bullet_upgrades: "section-fixes",
+            missing_wins: "section-fixes",
+            job_alignment: "section-role"
         } as Record<string, string>)[highlightSection]
         : undefined;
 
     // Derived states
     const showEmptyState = !report && !isLoading;
     const showReport = !!report;
-    const canRunAnother = hasPaidAccess || freeUsesRemaining > 0;
-    const canExport = Boolean(onExportPdf);
+    const canExport = !isStreaming && Boolean(onExportPdf);
 
     const handleExport = () => {
         if (!onExportPdf) return;
@@ -119,7 +116,6 @@ export default function ReportPanel({
         navigator.clipboard.writeText(url);
         setShareMode(true);
         window.history.replaceState({}, "", url);
-        setShareToast({ message: "Share link copied", type: "success" });
     };
 
     const handleExitShare = () => {
@@ -128,11 +124,10 @@ export default function ReportPanel({
         url.searchParams.delete("share");
         window.history.replaceState({}, "", url.toString());
         setShareMode(false);
-        setShareToast({ message: "Share mode off", type: "info" });
     };
 
     return (
-        <div className="flex flex-col h-full overflow-y-auto bg-body relative group">
+        <div className="group relative flex h-full flex-col overflow-y-auto bg-mineral">
 
             {/* 1. Loading State - Analysis Theater */}
             {isLoading && (
@@ -146,25 +141,25 @@ export default function ReportPanel({
 
             {/* 2. Empty State - Premium, Anxiety-Reducing */}
             {showEmptyState && (
-                <div className="flex flex-col items-center justify-center h-full p-8 text-center gap-y-8">
+                <div className="flex h-full flex-col items-center justify-center gap-y-8 p-8 text-center">
                     {/* Icon - Subtle, Calm */}
-                    <div className="flex size-20 items-center justify-center rounded-xl border border-brand/15 bg-brand/[0.045] text-brand shadow-[0_18px_48px_-36px_hsl(var(--brand))]">
+                    <div className="flex size-20 items-center justify-center rounded-full border border-brand/20 bg-white/50 text-brand">
                         <EmptyReportIcon className="size-12" />
                     </div>
 
                     {/* Copy - Question Headline */}
                     <div className="gap-y-3 max-w-md">
                         <h2 className="font-display text-2xl md:text-3xl text-foreground">
-                            What does the first read say?
+                            Your report will appear here.
                         </h2>
                         <p className="text-muted-foreground">
-                            Drop your resume and get the recruiter report in under a minute.
+                            Add your resume to see what stands out first.
                         </p>
                     </div>
 
                     {/* Trust Signal */}
                     <p className="text-xs text-muted-foreground/60 font-medium">
-                        First report free · No login required
+                        First report included · No account required
                     </p>
 
                     {/* Divider + Example Link */}
@@ -179,16 +174,22 @@ export default function ReportPanel({
                 </div>
             )}
 
-            {/* 3. The Report Stream (V2 Layout) */}
+            {/* 3. The working report */}
             {showReport && !isLoading && displayReport && (
-                <>
-                    <ReportLayout
-                        toc={<ReportTOC activeId={tocActiveId} />}
-                    >
-                        {/* Document Meta / Actions Header (Inline for Mobile, handled by Layout context usually but here just content) */}
+                <ReportLayout toc={<ReportTOC activeId={tocActiveId} />}>
                         <div className="gap-y-6">
+                            {isStreaming && (
+                                <div
+                                    role="status"
+                                    aria-live="polite"
+                                    className="flex items-start gap-3 border-y border-brand/20 bg-brand/5 px-4 py-3 text-sm leading-6 text-muted-foreground"
+                                >
+                                    <span className="mt-2 size-1.5 shrink-0 animate-pulse rounded-full bg-brand" aria-hidden="true" />
+                                    <p><span className="font-medium text-foreground">Still building your report.</span> You can start reading now; the remaining sections will fill in as they arrive.</p>
+                                </div>
+                            )}
                             {shareEnabled && shareMode && (
-                                <div className="rounded border border-premium/20 bg-premium/5 p-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                <div className="flex flex-col gap-3 border-y border-premium/20 bg-premium/5 p-4 md:flex-row md:items-center md:justify-between">
                                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                         <ShieldCheck className="size-4 text-premium" />
                                         <div>
@@ -203,7 +204,7 @@ export default function ReportPanel({
                                             onClick={handleShare}
                                             className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
                                         >
-                                            <Link2 className="size-3.5" />
+                                            <LinkIcon className="size-3.5" />
                                             Copy link
                                         </button>
                                         <button type="button"
@@ -217,80 +218,35 @@ export default function ReportPanel({
                                 </div>
                             )}
 
-                            <div className="animate-in slide-in-from-bottom-2 fade-in px-1 pb-1 duration-500 sm:px-2">
-                                <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-                                <div className="min-w-0 gap-y-1.5">
-                                    <div className="flex items-center gap-3 flex-wrap">
-                                        <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">
-                                            {displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Report'}
-                                        </h1>
-                                        {isSample && (
-                                            <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-muted text-muted-foreground border border-border shrink-0">
-                                                Example
-                                            </span>
-                                        )}
-                                        {shareEnabled && shareMode && (
-                                            <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm bg-premium/15 text-premium border border-premium/30 shrink-0">
-                                                Share View
-                                            </span>
-                                        )}
-                                    </div>
-                                    <p className="max-w-xl text-sm text-muted-foreground">Here&apos;s how your resume comes across first.</p>
+                            <div className="riyp-border-paper-line animate-in slide-in-from-bottom-2 fade-in flex min-h-12 items-center justify-between gap-4 border-b pb-3 duration-500">
+                                <div className="flex min-w-0 items-center gap-2">
+                                    <span className="text-[10px] font-semibold uppercase riyp-track-015 text-muted-foreground">
+                                        {isSample ? "Example report" : "Your resume review"}
+                                    </span>
+                                    {shareEnabled && shareMode && <span className="text-[10px] font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
                                 </div>
-
-                                {/* Action Buttons */}
-                                <div className="flex shrink-0 items-center gap-2">
-                                    {isSample && onNewReport && !shareMode && (
-                                        <button type="button"
-                                            onClick={onNewReport}
-                                            className="flex min-h-11 items-center gap-2 rounded px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90 bg-brand"
-                                        >
-                                            <span className="hidden sm:inline">Run Your Report</span>
-                                            <span className="sm:hidden">Run</span>
-                                            <ArrowRight className="size-4" />
-                                        </button>
-                                    )}
-                                    {!isSample && canRunAnother && onNewReport && !shareMode && (
-                                        <button type="button"
-                                            onClick={onNewReport}
-                                            className="flex min-h-11 items-center gap-2 rounded bg-brand px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
-                                        >
-                                            <Plus className="size-4" />
-                                            <span className="hidden sm:inline">Run Another Report</span>
-                                            <span className="sm:hidden">New</span>
-                                        </button>
-                                    )}
-                                    {!isSample && !canRunAnother && onUpgrade && !shareMode && (
-                                        <button type="button"
-                                            onClick={onUpgrade}
-                                            className="flex min-h-11 items-center gap-2 rounded bg-premium px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-premium/90"
-                                        >
-                                            <span className="hidden sm:inline">Unlock More Reports</span>
-                                            <span className="sm:hidden">Upgrade</span>
-                                            <ArrowRight className="size-4" />
-                                        </button>
-                                    )}
-
-                                    {canExport && (
+                                <div className="flex shrink-0 items-center gap-1">
+                                    {canExport && !isSample && (
                                         <button type="button"
                                             onClick={handleExport}
                                             disabled={isExporting}
-                                            className="flex min-h-11 items-center gap-2 rounded px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground disabled:opacity-50"
+                                            aria-label={isExporting ? "Exporting report as PDF" : "Export report as PDF"}
+                                            className="flex min-h-11 items-center gap-2 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
                                         >
                                             <DownloadIcon size={16} />
                                             <span className="hidden sm:inline">{isExporting ? "Exporting..." : "Export PDF"}</span>
                                         </button>
                                     )}
-                                    {shareEnabled && !shareMode && (
+                                    {!isStreaming && shareEnabled && !shareMode && !isSample && (
                                         <button type="button"
                                             onClick={handleShare}
-                                            className="flex min-h-11 items-center gap-2 rounded px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+                                            aria-label="Share report"
+                                            className="flex min-h-11 items-center gap-2 px-3 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
                                         >
-                                            <Link2 className="size-4" />
+                                            <LinkIcon className="size-4" />
                                             <span className="hidden sm:inline">Share Report</span>
                                         </button>
                                     )}
-                                </div>
                                 </div>
                             </div>
 
@@ -299,7 +255,7 @@ export default function ReportPanel({
                                 <UnlockBanner
                                     reportId={report.id || 'current'}
                                     onJumpToRewrites={() => {
-                                        const el = document.getElementById('section-bullet-upgrades');
+                                        const el = document.getElementById('section-fixes');
                                         el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                     }}
                                     onDownloadPdf={canExport ? handleExport : (() => { })}
@@ -309,7 +265,7 @@ export default function ReportPanel({
                             <ReportStream
                                 report={displayReport}
                                 isSample={isSample}
-                                onNewReport={onNewReport}
+                                onNewReport={isStreaming ? undefined : onNewReport}
                                 freeUsesRemaining={freeUsesRemaining}
                                 onUpgrade={onUpgrade}
                                 hasJobDescription={hasJobDescription}
@@ -317,21 +273,12 @@ export default function ReportPanel({
                                 justUnlocked={justUnlocked}
                                 highlightSection={highlightSection}
                                 hasPaidAccess={hasPaidAccess}
+                                comparisonBaseline={comparisonBaseline}
+                                onStartRevision={onStartRevision}
                                 className="max-w-none sm:pb-16"
                             />
                         </div>
-                    </ReportLayout>
-
-                    {/* Bottom Action Rail - Raycast Pattern */}
-                        <BottomActionRail
-                            sectionName={displayReport.job_alignment?.role_fit?.best_fit_roles?.[0] || 'Resume Review'}
-                            primaryActionLabel={shareMode ? "Exit Share" : isSample ? "Run Your Report" : canRunAnother ? "Run Another Report" : "Upgrade"}
-                            onPrimaryAction={shareMode ? handleExitShare : isSample || canRunAnother ? onNewReport : onUpgrade}
-                            onExport={canExport ? handleExport : undefined}
-                            onShare={shareEnabled ? (shareMode ? handleShare : handleShare) : undefined}
-                            toast={shareToast}
-                        />
-                </>
+                </ReportLayout>
             )
             }
         </div >

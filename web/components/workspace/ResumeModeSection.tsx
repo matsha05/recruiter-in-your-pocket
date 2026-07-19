@@ -3,6 +3,7 @@ import type { LoadedJobContext } from "@/components/workspace/hooks/useJobContex
 import InputPanel from "@/components/workspace/InputPanel";
 import ReportPanel from "@/components/workspace/ReportPanel";
 import AnalysisScanning from "@/components/workspace/AnalysisScanning";
+import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
 type ResumeModeSectionProps = {
   report: any | null;
@@ -18,7 +19,7 @@ type ResumeModeSectionProps = {
   user: AuthUser | null;
   onSampleReport: () => void;
   loadedJobContext: LoadedJobContext | null;
-  onExportPdf: () => void;
+  onExportPdf?: () => void;
   isExporting: boolean;
   isSample: boolean;
   onNewReport: () => void;
@@ -29,6 +30,8 @@ type ResumeModeSectionProps = {
   analysisStartedAt: number | null;
   onCancelAnalysis: () => void;
   onRetryAnalysis: () => void;
+  comparisonBaseline?: ReportData | null;
+  onStartRevision: () => void;
 };
 
 export default function ResumeModeSection({
@@ -55,7 +58,9 @@ export default function ResumeModeSection({
   hasPaidAccess,
   analysisStartedAt,
   onCancelAnalysis,
-  onRetryAnalysis
+  onRetryAnalysis,
+  comparisonBaseline = null,
+  onStartRevision,
 }: ResumeModeSectionProps) {
   if (!report && isStreaming) {
     return (
@@ -74,7 +79,7 @@ export default function ResumeModeSection({
 
   if (!report) {
     return (
-      <div className="h-full overflow-y-auto bg-muted/10">
+      <div className="h-full overflow-y-auto bg-mineral">
         <InputPanel
           resumeText={resumeText}
           jobDescription={jobDescription}
@@ -87,6 +92,7 @@ export default function ResumeModeSection({
           user={user}
           onSampleReport={onSampleReport}
           loadedJobContext={loadedJobContext}
+          isRevision={Boolean(comparisonBaseline)}
         />
       </div>
     );
@@ -96,6 +102,7 @@ export default function ResumeModeSection({
     <ReportPanel
       report={report}
       isLoading={isLoading}
+      isStreaming={isStreaming}
       hasJobDescription={!!jobDescription.trim()}
       onExportPdf={onExportPdf}
       isExporting={isExporting}
@@ -110,6 +117,8 @@ export default function ResumeModeSection({
       analysisStartedAt={analysisStartedAt}
       onCancelAnalysis={onCancelAnalysis}
       onRetryAnalysis={onRetryAnalysis}
+      comparisonBaseline={comparisonBaseline}
+      onStartRevision={onStartRevision}
     />
   );
 }

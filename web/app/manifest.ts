@@ -4,11 +4,11 @@ export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'Recruiter in Your Pocket',
         short_name: 'Pocket',
-        description: 'See what recruiters see. Get feedback on your resume in seconds.',
+        description: 'See what stands out, what raises a question, and what to fix first.',
         start_url: '/',
         display: 'standalone',
-        background_color: '#FAFAFA',
-        theme_color: '#0D9488', // Brand teal
+        background_color: '#FBFAF7',
+        theme_color: '#4F46E5',
         icons: [
             {
                 src: '/icon/small',

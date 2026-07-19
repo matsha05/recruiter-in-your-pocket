@@ -10,7 +10,7 @@ import { DURATION } from "@/lib/animation"
 
 /**
  * BottomActionRail - Persistent bar at bottom of report pages
- * Per design-principles.md: Raycast Pattern
+ * Persistent mobile action rail.
  * 
  * Layout:
  * - Left: current section name (dense)
@@ -115,6 +115,7 @@ export function BottomActionRail({
                                 })
                                 document.dispatchEvent(event)
                             }}
+                            aria-label="Open command menu"
                             className="flex items-center gap-1.5 px-2 py-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors duration-micro"
                         >
                             <Command className="size-3.5" />
@@ -131,6 +132,7 @@ export function BottomActionRail({
                         variant="ghost"
                         size="sm"
                         onClick={onShare}
+                        aria-label="Share report"
                         className="h-8 px-2"
                     >
                         <Share2 className="size-4" />
@@ -141,6 +143,7 @@ export function BottomActionRail({
                         variant="ghost"
                         size="sm"
                         onClick={onExport}
+                        aria-label="Export report as PDF"
                         className="h-8 px-2"
                     >
                         <Download className="size-4" />

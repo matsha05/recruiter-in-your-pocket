@@ -45,7 +45,7 @@ export default function LinkedInModeSection({
 
   if (!linkedInReport && isStreaming) {
     return (
-      <div className="h-full overflow-y-auto bg-body">
+      <div className="h-full overflow-y-auto bg-mineral">
         <div className="h-full">
           <AnalysisScanning
             mode="linkedin"
@@ -60,17 +60,24 @@ export default function LinkedInModeSection({
 
   if (!linkedInReport) {
     return (
-      <div className="h-full overflow-y-auto bg-muted/10">
-        <div data-visual-anchor="workspace-linkedin-empty" className="flex justify-center p-6 md:p-12 min-h-full">
-          <div className="w-full max-w-xl gap-y-6">
-            <div className="text-center gap-y-2 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <h1 className="font-display text-4xl md:text-5xl text-foreground tracking-tight">
-                This is what they see.
+      <div className="h-full overflow-y-auto bg-mineral">
+        <div data-visual-anchor="workspace-linkedin-empty" className="flex min-h-full justify-center px-5 py-8 md:px-8 md:py-12">
+          <div className="grid w-full max-w-[72rem] items-start gap-10 lg:grid-cols-[minmax(15rem,0.65fr)_minmax(0,1.35fr)] lg:gap-16">
+            <div className="lg:sticky lg:top-24">
+              <p className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase riyp-track-010 text-brand">
+                <Linkedin className="size-4" /> LinkedIn report
+              </p>
+              <h1 className="font-display text-[clamp(2.75rem,6vw,4.6rem)] riyp-weight-520 leading-[0.96] tracking-[-0.04em] text-foreground riyp-stretch-88">
+                See what your profile says first.
               </h1>
-              <div className="flex items-center justify-center gap-2 text-muted-foreground pt-2">
-                <Linkedin className="size-5 text-brand" />
-                <p className="text-lg font-medium">3 seconds on your LinkedIn profile.</p>
-              </div>
+              <p className="mt-5 max-w-[28rem] text-lg leading-8 text-muted-foreground">
+                Export the profile you are actually using. We&apos;ll show what reads clearly, what gets lost, and what to fix first.
+              </p>
+              <dl className="mt-9 border-y border-border/70">
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">01</dt><dd className="text-sm leading-6 text-muted-foreground">Profile-card first impression</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border/50 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">02</dt><dd className="text-sm leading-6 text-muted-foreground">Headline and About clarity</dd></div>
+                <div className="grid grid-cols-[2.5rem_1fr] gap-3 py-4"><dt className="font-mono text-[11px] font-semibold text-brand">03</dt><dd className="text-sm leading-6 text-muted-foreground">Search visibility and next moves</dd></div>
+              </dl>
             </div>
 
             <LinkedInInputPanel
@@ -88,7 +95,7 @@ export default function LinkedInModeSection({
   }
 
   return (
-    <div className="h-full overflow-y-auto bg-body relative group">
+    <div className="group relative h-full overflow-y-auto bg-mineral">
       <ReportLayout toc={<LinkedInReportTOC />}>
         <div className="gap-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -99,7 +106,7 @@ export default function LinkedInModeSection({
                 </h1>
               </div>
               <p className="text-sm text-muted-foreground">
-                This is what a recruiter sees on your LinkedIn profile.
+                A structured read of the profile you uploaded.
               </p>
             </div>
 
@@ -119,8 +126,8 @@ export default function LinkedInModeSection({
                   onClick={onUpgrade}
                   className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                 >
-                  <span className="hidden sm:inline">Get More Reviews</span>
-                  <span className="sm:hidden">Upgrade</span>
+                  <span className="hidden sm:inline">See the Job Search Pass</span>
+                  <span className="sm:hidden">Get pass</span>
                   <ArrowRight className="size-4" />
                 </button>
               )}

@@ -70,8 +70,6 @@ async function createResumeFeedback(resumeText: string, jobDescription?: string)
     mode: "resume"
   });
 
-  console.log("[createResumeFeedback] API response:", result);
-
   if (result.ok) {
     // The backend returns the report data in `data` property
     return {
@@ -98,8 +96,6 @@ export async function streamResumeFeedback(
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
   options?: { signal?: AbortSignal; savedJobId?: string | null }
 ): Promise<{ ok: boolean; report?: any; message?: string; aborted?: boolean; reportId?: string | null }> {
-  console.log("[streamResumeFeedback] Starting...");
-
   let res: Response;
   try {
     res = await fetch("/api/resume-feedback-stream", {
@@ -121,8 +117,6 @@ export async function streamResumeFeedback(
     throw err;
   }
 
-  console.log("[streamResumeFeedback] Response status:", res.status);
-
   if (!res.ok) {
     return { ok: false, message: `HTTP error: ${res.status}` };
   }
@@ -138,9 +132,6 @@ export async function streamResumeFeedback(
   let finalReport: any = null;
   let finalReportId: string | null = null;
   let errorMessage: string | null = null;
-  let chunkCount = 0;
-
-  console.log("[streamResumeFeedback] Starting to read stream...");
 
   while (true) {
     let readResult: ReadableStreamReadResult<Uint8Array>;
@@ -154,7 +145,6 @@ export async function streamResumeFeedback(
     }
     const { done, value } = readResult;
     if (done) {
-      console.log("[streamResumeFeedback] Stream done after", chunkCount, "chunks");
       break;
     }
 
@@ -167,32 +157,22 @@ export async function streamResumeFeedback(
 
       try {
         const event = JSON.parse(line);
-        chunkCount++;
 
         if (event.type === "chunk") {
           accumulatedJson += event.content;
-          // Log progress every 10 chunks
-          if (chunkCount % 10 === 0) {
-            console.log(`[streamResumeFeedback] Received ${chunkCount} chunks, JSON length: ${accumulatedJson.length}`);
-          }
           // Try to parse partial JSON for early display
           const partialReport = tryParsePartialJson(accumulatedJson);
-          if (partialReport) {
-            console.log("[streamResumeFeedback] Parsed partial report with keys:", Object.keys(partialReport));
-          }
           onChunk(accumulatedJson, partialReport);
         } else if (event.type === "complete") {
-          console.log("[streamResumeFeedback] Got complete event");
           finalReport = event.data;
           if (finalReport && event.report_id) {
             finalReport.report_id = event.report_id;
           }
           finalReportId = event.report_id || null;
         } else if (event.type === "error") {
-          console.log("[streamResumeFeedback] Got error event:", event.message);
           errorMessage = event.message;
         } else if (event.type === "meta") {
-          console.log("[streamResumeFeedback] Got meta event:", event);
+          // Reserved for future non-sensitive stream metadata.
         }
       } catch {
         // Ignore malformed lines
@@ -290,8 +270,6 @@ export async function streamLinkedInFeedback(
   onMeta?: (meta: { name?: string; headline?: string; source?: string }) => void,
   options?: { signal?: AbortSignal }
 ): Promise<LinkedInStreamResult & { aborted?: boolean }> {
-  console.log("[streamLinkedInFeedback] Starting...", input.source);
-
   let res: Response;
   try {
     res = await fetch("/api/linkedin-feedback-stream", {
@@ -312,8 +290,6 @@ export async function streamLinkedInFeedback(
     throw err;
   }
 
-  console.log("[streamLinkedInFeedback] Response status:", res.status);
-
   if (!res.ok) {
     return { ok: false, message: `HTTP error: ${res.status}` };
   }
@@ -331,9 +307,6 @@ export async function streamLinkedInFeedback(
   let errorMessage: string | null = null;
   let errorCode: string | null = null;
   let fallback: 'pdf' | undefined = undefined;
-  let chunkCount = 0;
-
-  console.log("[streamLinkedInFeedback] Starting to read stream...");
 
   while (true) {
     let readResult: ReadableStreamReadResult<Uint8Array>;
@@ -347,7 +320,6 @@ export async function streamLinkedInFeedback(
     }
     const { done, value } = readResult;
     if (done) {
-      console.log("[streamLinkedInFeedback] Stream done after", chunkCount, "chunks");
       break;
     }
 
@@ -360,26 +332,19 @@ export async function streamLinkedInFeedback(
 
       try {
         const event = JSON.parse(line);
-        chunkCount++;
 
         if (event.type === "chunk") {
           accumulatedJson += event.content;
-          if (chunkCount % 10 === 0) {
-            console.log(`[streamLinkedInFeedback] Received ${chunkCount} chunks, JSON length: ${accumulatedJson.length}`);
-          }
           const partialReport = tryParsePartialJson(accumulatedJson);
           onChunk(accumulatedJson, partialReport);
         } else if (event.type === "complete") {
-          console.log("[streamLinkedInFeedback] Got complete event");
           finalReport = event.data;
           finalProfile = event.profile;
         } else if (event.type === "error") {
-          console.log("[streamLinkedInFeedback] Got error event:", event.message);
           errorMessage = event.message;
           errorCode = event.errorCode;
           if (event.fallback) fallback = event.fallback;
         } else if (event.type === "meta") {
-          console.log("[streamLinkedInFeedback] Got meta event:", event);
           onMeta?.(event.profile || {});
         }
       } catch {

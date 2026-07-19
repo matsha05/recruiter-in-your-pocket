@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Bookmark, Loader2 } from "lucide-react";
+import { BookmarkSimple } from "@phosphor-icons/react";
 import { Analytics } from "@/lib/analytics";
 import { saveReportTrustMessage } from "@/lib/trust/messages";
 
@@ -62,16 +62,15 @@ export default function SaveReportPrompt({
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogContent className="max-w-[380px] p-6">
-                <DialogHeader className="text-center mb-4">
-                    <div className="flex justify-center mb-3">
-                        <div className="size-12 rounded-full bg-brand/10 flex items-center justify-center">
-                            <Bookmark className="size-6 text-brand" />
-                        </div>
+                <DialogHeader className="mb-5 text-left">
+                    <div className="mb-4 flex items-center gap-3 border-b border-border/70 pb-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+                        <BookmarkSimple aria-hidden="true" className="size-5" weight="duotone" />
+                        <span>Report history</span>
                     </div>
-                    <DialogTitle className="font-display text-xl font-medium">
+                    <DialogTitle className="font-display text-2xl font-medium leading-tight">
                         Keep this report
                     </DialogTitle>
-                    <DialogDescription className="text-sm">
+                    <DialogDescription className="text-sm leading-relaxed">
                         {getPersonalizedMessage()}
                     </DialogDescription>
                 </DialogHeader>
@@ -90,16 +89,9 @@ export default function SaveReportPrompt({
                     <Button
                         className="w-full"
                         onClick={handleSave}
-                        disabled={loading}
+                        isLoading={loading}
                     >
-                        {loading ? (
-                            <>
-                                <Loader2 className="size-4 mr-2 animate-spin" />
-                                Opening secure sign-in…
-                            </>
-                        ) : (
-                            "Sign in and keep this report"
-                        )}
+                        {loading ? "Opening secure sign-in…" : "Sign in and keep this report"}
                     </Button>
 
                     <button type="button"
@@ -107,7 +99,7 @@ export default function SaveReportPrompt({
                             Analytics.track('save_prompt_dismissed', { score });
                             onClose();
                         }}
-                        className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        className="min-h-11 w-full text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                         Maybe later
                     </button>

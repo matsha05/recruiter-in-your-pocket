@@ -1,58 +1,60 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle2, Info } from "lucide-react";
 import { PrincipalRecruiterIcon } from "@/components/icons";
 import { ReportData } from "./ReportTypes";
 import { cn } from "@/lib/utils";
-import { getDialStrokeColor } from "@/lib/score-utils";
 import { Peek, PeekHeader, PeekTitle, PeekDescription, PeekContent } from "@/components/ui/peek";
 import { Button } from "@/components/ui/button";
-
-
-
-function getScoreBand(score: number): { label: string; colorClass: string } {
-    if (score >= 85) return { label: 'High Bar', colorClass: 'bg-success/10 border-success/20 text-success' };
-    if (score >= 70) return { label: 'Solid Foundation', colorClass: 'bg-premium/10 border-premium/20 text-premium' };
-    return { label: 'Needs Clarity', colorClass: 'bg-destructive/10 border-destructive/20 text-destructive' };
-}
+import { getScoreColor, getScoreLabel } from "@/lib/score-utils";
 
 export function FirstImpressionSection({ data }: { data: ReportData }) {
     const [animatedScore, setAnimatedScore] = useState(0);
     const [showBadge, setShowBadge] = useState(false);
     const [showFirstPassNote, setShowFirstPassNote] = useState(false);
-    const [sectionVisible, setSectionVisible] = useState(false);
     const [peekOpen, setPeekOpen] = useState(false);
-    const hasAnimated = useRef(false);
 
     const firstImpressionText = data.first_impression || data.score_comment_long || data.score_comment_short || data.summary;
     const targetScore = data.score || 0;
-    const strokeColor = getDialStrokeColor(targetScore);
-    const scoreBand = data.score_label ? { label: data.score_label, colorClass: getScoreBand(targetScore).colorClass } : getScoreBand(targetScore);
-
-    // Section entrance animation
-    useEffect(() => {
-        const timer = setTimeout(() => setSectionVisible(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
+    const scoreBand = { label: getScoreLabel(targetScore), colorClass: getScoreColor(targetScore) };
+    const primaryFix = data.top_fixes?.find((item) => item.fix || item.text);
+    const primaryAction = primaryFix?.fix || primaryFix?.text;
+    const primaryEvidence = typeof primaryFix?.evidence === "string"
+        ? primaryFix.evidence
+        : primaryFix?.evidence?.excerpt;
+    const primaryEvidenceSection = typeof primaryFix?.evidence === "object"
+        ? primaryFix.evidence.section
+        : undefined;
+    const priorityText = primaryAction || data.biggest_gap_example;
+    const evidenceText = primaryEvidence || (primaryAction ? data.biggest_gap_example : undefined);
+    const whyItMatters = primaryFix?.why
+        || "When a line is vague, the reviewer has to infer your role or the result. Adding the missing detail makes the claim easier to evaluate.";
 
     // Score animation with badge reveal
     useEffect(() => {
-        if (targetScore <= 0 || hasAnimated.current) {
-            if (!hasAnimated.current) {
-                setAnimatedScore(targetScore);
-                setShowBadge(true);
-                setShowFirstPassNote(true);
-            }
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReducedMotion) {
+            setAnimatedScore(targetScore);
+            setShowBadge(true);
+            setShowFirstPassNote(true);
             return;
         }
-        hasAnimated.current = true;
-        const duration = 900;
+
+        if (targetScore <= 0) {
+            setAnimatedScore(targetScore);
+            setShowBadge(true);
+            setShowFirstPassNote(true);
+            return;
+        }
+        setAnimatedScore(0);
+        setShowBadge(false);
+        setShowFirstPassNote(false);
+        const duration = 700;
         const startTime = Date.now();
         let animationFrameId = 0;
         let badgeTimer: ReturnType<typeof setTimeout> | undefined;
-        let noteTimer: ReturnType<typeof setTimeout> | undefined;
 
         const animate = () => {
             const elapsed = Date.now() - startTime;
@@ -64,11 +66,10 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
             if (progress < 1) {
                 animationFrameId = requestAnimationFrame(animate);
             } else {
-                // Show badge after score animation completes
                 badgeTimer = setTimeout(() => {
                     setShowBadge(true);
-                    noteTimer = setTimeout(() => setShowFirstPassNote(true), 140);
-                }, 200);
+                    setShowFirstPassNote(true);
+                }, 100);
             }
         };
         animationFrameId = requestAnimationFrame(animate);
@@ -76,26 +77,18 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
         return () => {
             cancelAnimationFrame(animationFrameId);
             if (badgeTimer) clearTimeout(badgeTimer);
-            if (noteTimer) clearTimeout(noteTimer);
         };
     }, [targetScore]);
 
-    // Calculate stroke dash offset for the dial
-    const circumference = 2 * Math.PI * 60; // r=60
-    const strokeDashoffset = circumference - (circumference * animatedScore) / 100;
-
     return (
-        <section className={cn(
-            "gap-y-5 md:gap-y-6 transition-all duration-500 ease-out",
-            sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}>
+        <section className="gap-y-5 md:gap-y-6">
             {/* Section Header with horizontal line decoration */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="w-6 h-px bg-border" />
                     <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                         <PrincipalRecruiterIcon className="size-4 text-brand" />
-                        01. First Read
+                        01. First read
                     </h2>
                 </div>
                 <Link
@@ -104,40 +97,63 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                     target="_blank"
                     rel="noopener"
                 >
-                    Scoring guide →
+                    <span className="md:hidden">How it works</span>
+                    <span className="hidden md:inline">How this review works</span>
+                    {" →"}
                 </Link>
             </div>
 
-            {/* Main Card - THE Signature Moment */}
-            <div className={cn(
-                "bg-card rounded border border-border/60 overflow-hidden transition-all duration-700 ease-out",
-                sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            )} style={{ transitionDelay: '150ms' }}>
-                <div className="grid md:grid-cols-5">
+            {/* The report's signature moment: score with the judgment and its receipts. */}
+            <div className="riyp-report-rule overflow-hidden border-y">
+                <div className="grid md:grid-cols-[minmax(0,1fr)_12rem]">
+                    <div className="order-1 flex items-end justify-between gap-5 border-b bg-black/[0.018] px-5 py-5 md:order-2 md:flex-col md:items-start md:justify-between md:gap-8 md:border-b-0 md:border-l md:p-7">
+                        <div>
+                            <p className="riyp-type-10px font-bold uppercase riyp-track-015 text-muted-foreground">First-read score</p>
+                            <div className="mt-2 flex items-baseline gap-1.5 md:block">
+                                <p className="font-display text-5xl riyp-weight-560 leading-none riyp-track-n05 tabular-nums text-foreground">{animatedScore}</p>
+                                <p className="text-xs text-muted-foreground md:mt-1">out of 100</p>
+                            </div>
+                        </div>
 
-                    {/* LEFT: THE VERDICT (3 cols) */}
-                    <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 gap-y-6">
-                        <div className="gap-y-3">
-                            <h3 className="text-headline text-foreground">
-                                &quot;Here is what stands out first.&quot;
+                        <div className="max-w-36 text-right md:max-w-none md:text-left">
+                            <div className={cn(
+                                "transition-[opacity,transform] duration-300 ease-out",
+                                showBadge ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-[0.96] opacity-0"
+                            )}>
+                                <span className={cn(
+                                    "inline-flex items-center justify-end gap-1.5 text-xs font-bold uppercase riyp-track-012 md:justify-start",
+                                    scoreBand.colorClass
+                                )}>
+                                    <CheckCircle2 className="size-3" /> {scoreBand.label}
+                                </span>
+                            </div>
+                            <p className={cn(
+                                "mt-2 text-xs leading-5 text-muted-foreground transition-[opacity,transform] duration-300",
+                                showFirstPassNote ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+                            )}>
+                                A document review, not hiring odds.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="riyp-report-rule order-2 flex flex-col py-7 md:order-1 md:py-9 md:pr-10">
+                        <div className="order-2 pt-6 md:order-1 md:pt-0">
+                            <p className="riyp-type-10px font-bold uppercase riyp-track-017 text-brand">Likely takeaway</p>
+
+                            <h3 className="riyp-report-verdict mt-3 max-w-[30ch] font-display riyp-weight-520 text-foreground riyp-stretch-96">
+                                {firstImpressionText}
+                                {data.first_impression_takeaway && (
+                                    <> <span className="font-medium">{data.first_impression_takeaway}</span></>
+                                )}
                             </h3>
                         </div>
 
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                            {firstImpressionText}
-                            {data.first_impression_takeaway && (
-                                <> <span className="font-semibold text-foreground">{data.first_impression_takeaway}</span></>
-                            )}
-                        </p>
-
-                        {/* Main gap - with a small explanation panel */}
-                        {data.biggest_gap_example && (
-                            <div className="p-4 bg-warning/10 border border-warning/20 rounded transition-all duration-300" style={{ transitionDelay: '400ms' }}>
-                                <div className="flex items-center justify-between gap-2 mb-2">
-                                    <div className="flex items-center gap-2">
-                                        <div className="size-2 rounded-full bg-warning" />
-                                        <span className="text-label text-warning">Main gap</span>
-                                    </div>
+                        {priorityText && (
+                            <div className="riyp-border-paper-line order-1 border-b pb-6 md:order-2 md:mt-7 md:border-b-0 md:border-t md:pb-0 md:pt-5">
+                                <div className="mb-2 flex items-center justify-between gap-2">
+                                    <span className="riyp-type-10px font-bold uppercase riyp-track-015 riyp-text-annotation">
+                                        {primaryAction ? "Start here" : "Most important question"}
+                                    </span>
                                     <Peek
                                         open={peekOpen}
                                         onOpenChange={setPeekOpen}
@@ -146,100 +162,45 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                                 variant="ghost"
                                                 size="sm"
                                                 className={cn(
-                                                    "min-h-11 px-3 text-xs transition-all",
+                                                    "min-h-11 px-3 text-xs transition-colors",
                                                     peekOpen
                                                         ? "bg-brand/10 text-brand hover:bg-brand/10 hover:text-brand"
                                                         : "text-muted-foreground hover:text-foreground"
                                                 )}
                                             >
                                                 <Info className="size-3 mr-1" />
-                                                Why this matters
+                                                Why it matters
                                             </Button>
                                         }
                                         side="right"
-                                        title="Why this slows the first impression"
+                                        title="Why this matters"
                                     >
                                         <PeekHeader>
-                                            <PeekTitle>Recruiter Perspective</PeekTitle>
+                                            <PeekTitle>How a reviewer may read it</PeekTitle>
                                             <PeekDescription>
-                                                Why this becomes a pass risk
+                                                The context behind this question
                                             </PeekDescription>
                                         </PeekHeader>
                                         <PeekContent>
                                             <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                                                When a line is vague, we have to guess. Most recruiters do not stop and decode it. They move on.
+                                                {whyItMatters}
                                             </p>
                                         </PeekContent>
                                     </Peek>
                                 </div>
-                                <p className="text-sm text-foreground/90 leading-relaxed">
-                                    {data.biggest_gap_example}
+                                <p className="max-w-[40rem] text-base font-medium leading-6 text-foreground">
+                                    {priorityText}
                                 </p>
+                                {evidenceText && (
+                                    <blockquote className="riyp-border-annotation mt-4 border-l-2 pl-4">
+                                        <p className="riyp-type-10px font-bold uppercase riyp-track-013 text-muted-foreground">
+                                            {primaryEvidenceSection ? `Evidence · ${primaryEvidenceSection}` : "Evidence from the resume"}
+                                        </p>
+                                        <p className="mt-1.5 text-sm leading-6 text-muted-foreground">&ldquo;{evidenceText}&rdquo;</p>
+                                    </blockquote>
+                                )}
                             </div>
                         )}
-                    </div>
-
-                    {/* RIGHT: THE SCORE DIAL (2 cols) */}
-                    <div className="md:col-span-2 p-6 md:p-8 bg-secondary/20 flex flex-col items-center justify-center gap-y-6">
-
-                        {/* Score Dial */}
-                        <div className="text-center gap-y-4">
-                            <div className="relative inline-flex items-center justify-center">
-                                <svg className="size-36 transform -rotate-90">
-                                    {/* Background circle */}
-                                    <circle
-                                        cx="72"
-                                        cy="72"
-                                        r="60"
-                                        stroke="currentColor"
-                                        strokeWidth="3"
-                                        fill="transparent"
-                                        className="text-black/5 dark:text-white/5"
-                                    />
-                                    {/* Animated progress circle */}
-                                    <circle
-                                        cx="72"
-                                        cy="72"
-                                        r="60"
-                                        stroke={strokeColor}
-                                        strokeWidth="3"
-                                        fill="transparent"
-                                        strokeDasharray={circumference}
-                                        strokeDashoffset={strokeDashoffset}
-                                        strokeLinecap="round"
-                                        style={{
-                                            transition: 'stroke-dashoffset 900ms cubic-bezier(0.16, 1, 0.3, 1)'
-                                        }}
-                                    />
-                                </svg>
-                                <div className="absolute inset-0 flex items-center justify-center flex-col">
-                                    <span className="text-5xl font-display font-semibold tracking-tighter tabular-nums">{animatedScore}</span>
-                                    <span className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Score</span>
-                                </div>
-                            </div>
-
-                            {/* Score Band Badge - Delayed reveal */}
-                            <div className={cn(
-                                "transition-all duration-300 ease-out",
-                                showBadge ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-2 scale-[0.96]"
-                            )}>
-                                <span className={cn(
-                                    "inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wider shadow-[0_8px_24px_rgba(15,23,42,0.04)]",
-                                    scoreBand.colorClass
-                                )}>
-                                    <CheckCircle2 className="size-3" /> {scoreBand.label}
-                                </span>
-                            </div>
-
-                            <div className={cn(
-                                "flex items-center justify-center gap-2 text-xs uppercase tracking-wide text-muted-foreground transition-all duration-300",
-                                showFirstPassNote ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                            )}>
-                                <span className="size-1.5 rounded-full bg-brand/70" />
-                                First pass complete
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>

@@ -2,13 +2,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
 
-/**
- * V2.1 Input Component
- * - 4px radius
- * - No border by default, bg-secondary/50
- * - Focus: ring-1 ring-ring (Slate)
- * - Full state coverage: focus, disabled, error, success
- */
+/** Lifted Line input primitive with default, focus, disabled, error, and success states. */
 const inputVariants = cva(
     "flex h-9 w-full rounded-md border bg-secondary/50 px-3 py-1 text-sm transition-all duration-normal ease-snap placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium",
     {

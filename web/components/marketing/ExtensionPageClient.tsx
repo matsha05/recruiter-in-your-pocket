@@ -51,7 +51,7 @@ export default function ExtensionPageClient() {
 
   return (
     <>
-      <main
+      <div
         data-visual-anchor="extension-page"
         className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36"
       >
@@ -394,7 +394,7 @@ export default function ExtensionPageClient() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
       <Footer />
     </>
   );

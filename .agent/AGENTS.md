@@ -17,8 +17,8 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
 
 <stack>
   Frontend: Next.js (App Router), TailwindCSS, Framer Motion.
-  Fonts: Fraunces (display/authority), Geist Sans (UI), Geist Mono (data).
-  Icons: Lucide React (Stroke width 1.5).
+  Fonts: Newsreader Variable (display/authority), Instrument Sans Variable (interface/body), system mono (data only).
+  Icons: Phosphor for branded and public-facing expression. Existing Lucide icons may remain until the surface is intentionally migrated; never mix icon families within one surface.
   Package manager: npm (not yarn, not pnpm).
 </stack>
 
@@ -47,23 +47,27 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
 </oracle>
 
 <design-constitution>
-  Canonical sources of truth:
-  - docs/design-philosophy.md (the "why")
-  - docs/design-principles.md (the "how" - implementation spec)
+  Current sources of truth, rewritten for Lifted Line on 2026-07-11:
+  - docs/brand-system.md (identity, promise, emotional target, and signature grammar)
+  - docs/design-system.md (visual application, production tokens, components, and release contract)
+
+  User override (July 2026): Existing visual designs and design guidance are not sacred. Replace or remove them when they do not serve a world-class product. Preserve product truth, trust, accessibility, and working behavior; do not preserve old aesthetics for their own sake.
   
   Protect the Constitution at all costs. Do not let the app drift into generic territory.
-  When editing UI, reference the docs and ask: "Does this feel like Stripe/Linear/Notion?"
+  Lifted Line is the approved brand direction. Do not revive Ink & Paper, Editorial Proof, teal-first, dossier, or red-pen directions as competing systems.
+  When editing UI, reference the docs and ask: "Does this make the candidate's real work easier to see, and does it unmistakably belong to Lifted Line?"
   SaaS patterns are allowed when they materially improve clarity, conversion, or growth.
 </design-constitution>
 
 <copy-constitution>
-  Canonical sources of truth:
-  - web/docs/copy-guide.md (voice, tone, banned phrases, proofreading checklist)
-  - docs/copy-system.md (structural rules, copy budgets, redline rules)
+  Current sources of truth:
+  - docs/voice-and-tone.md (brand voice, tone boundaries, and research language)
+  - docs/copy-system.md (supporting UI naming, structure, copy budgets, and CTA rules)
 
   Voice: "Sharp recruiter friend" — warm, confident, direct, opinionated.
-  Before writing ANY user-facing copy, read web/docs/copy-guide.md.
-  Before shipping, run the banned-phrases list and proofreading checklist from that doc.
+  Before writing ANY user-facing copy, read docs/voice-and-tone.md.
+  Do not rewrite Matt's tuned backend prompts to make UI language conform; prompt changes require explicit product reasoning and evaluation.
+  Before shipping, run the banned-phrases list and proofreading checklist.
 </copy-constitution>
 
 </riyp-instructions>

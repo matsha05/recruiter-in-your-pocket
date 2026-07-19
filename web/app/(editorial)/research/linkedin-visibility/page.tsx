@@ -1,96 +1,85 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { LinkedInVisibilityDiagram } from "@/components/research/diagrams/LinkedInVisibilityDiagram";
+import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
 export const metadata: Metadata = {
     title: "LinkedIn Profile Visibility Research | Hiring Research",
-    description: "Insights on how keywords, headlines, and profile completeness affect recruiter search results on LinkedIn.",
+    description: "What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose.",
 };
 
 export default function LinkedInVisibilityPage() {
     return (
         <ResearchArticle
             header={{
-                tag: "LinkedIn Optimization",
-                title: "LinkedIn Profile Visibility",
-                description: "What actually affects whether recruiters find your LinkedIn profile? This page synthesizes research on keywords, headlines, and profile optimization from verified industry sources.",
-                lastUpdated: "December 2025",
-                readTime: "5 min read"
+                tag: "LinkedIn discovery",
+                title: "What makes a LinkedIn profile easier to find",
+                description: "LinkedIn documents what its recruiter tools search. That gives us useful advice without pretending to know a secret ranking formula.",
+                lastUpdated: "July 2026",
+                readTime: "4 min read",
+                sourceSummary: "2 current LinkedIn Recruiter help records"
             }}
             keyFinding={{
-                subtitle: "The Key Finding",
-                stat: "Skills-First Search",
+                subtitle: "What the platform confirms",
+                stat: "Profile language feeds recruiter search",
                 statDescription: (
                     <>
-                        LinkedIn reports that skills-first sourcing leads to higher InMail acceptance rates.
-                        <Citation id="source-2">2</Citation>
+                        LinkedIn says its Skills filter uses explicit skills plus skill evidence drawn from headlines, titles, summaries, experience descriptions, and, in some cases, shared resumes.
+                        <Citation id="source-1">1</Citation>
                     </>
                 ),
                 source: {
-                    text: "LinkedIn Talent Blog",
-                    href: "https://www.linkedin.com/business/talent/blog/talent-acquisition/recruiters-who-focus-on-skills-see-better-inmail-rates"
+                    text: "LinkedIn Recruiter Help",
+                    href: "https://www.linkedin.com/help/recruiter/answer/a596630"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">What Drives LinkedIn Visibility</h2>
+                    <h2 className="research-h2">What affects LinkedIn visibility</h2>
                     <p className="research-body mb-6">
-                        Recruiter lens: visibility starts with the fields recruiters see first and search against most often. LinkedIn does not publish exact weights,
-                        so we treat this as an ordinal model rather than a quantitative one.
+                        Visibility begins with recognizable role and skill language. LinkedIn documents the inputs its recruiter tools can use, but not the exact ranking weights, so the useful goal is accurate discoverability, not gaming a score.
+                        <Citation id="source-1">1</Citation>
+                        <Citation id="source-2">2</Citation>
                     </p>
                     <LinkedInVisibilityDiagram />
                 </>
             }
             productTieIn={{
-                title: "How this shapes our LinkedIn analysis",
+                title: "What to change on your profile",
                 items: [
                     {
-                        title: "Headline Analysis",
-                        description: "We identify missing keywords recruiters actually search for and suggest specific rewrites."
+                        title: "Name the role plainly",
+                        description: "Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it."
                     },
                     {
-                        title: "Search Visibility Score",
-                        description: "Based on keyword analysis, not made-up statistics, we show which terms could improve discoverability."
+                        title: "Put skills in context",
+                        description: "List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong."
                     },
                     {
-                        title: "First Impression Section",
-                        description: "We evaluate photo, banner, and headline, the three elements that shape first impressions."
+                        title: "Let experience prove it",
+                        description: "A searchable term can help your profile appear. A specific project, responsibility, or result gives the recruiter a reason to believe the fit."
                     }
                 ]
             }}
             relatedArticles={[
                 { title: "How Recruiters Read Resumes", href: "/research/how-recruiters-read", tag: "Eye-tracking" },
-                { title: "How People Scan Documents", href: "/research/how-people-scan", tag: "Psychology" },
-                { title: "LinkedIn vs Resume", href: "/research/linkedin-vs-resume", tag: "Comparison" }
+                { title: "What Applicant Tracking Systems Do", href: "/research/ats-myths", tag: "Systems" },
+                { title: "What Recruiters Look For Beyond the Resume", href: "/research/social-screening", tag: "Profiles" }
             ]}
             sources={[
                 {
                     id: "source-1",
-                    title: "LinkedIn Newsroom Statistics",
-                    publisher: "LinkedIn",
-                    year: "2024",
-                    href: "https://news.linkedin.com/about-us#Statistics"
+                    title: "Skills filter in Recruiter and Recruiter Lite",
+                    publisher: "LinkedIn Recruiter Help",
+                    year: "2025",
+                    href: "https://www.linkedin.com/help/recruiter/answer/a596630"
                 },
                 {
                     id: "source-2",
-                    title: "Recruiters Who Focus on Skills See Better InMail Rates",
-                    publisher: "LinkedIn Talent Blog",
-                    year: "2024",
-                    href: "https://www.linkedin.com/business/talent/blog/talent-acquisition/recruiters-who-focus-on-skills-see-better-inmail-rates"
-                },
-                {
-                    id: "source-3",
-                    title: "Future of Recruiting 2024",
-                    publisher: "LinkedIn Talent Solutions",
-                    year: "2024",
-                    href: "https://business.linkedin.com/content/dam/me/business/en-us/talent-solutions/resources/pdfs/future-of-recruiting-2024.pdf"
-                },
-                {
-                    id: "source-4",
-                    title: "Social Media Fact Sheet",
-                    publisher: "Pew Research Center",
-                    year: "2024",
-                    href: "https://www.pewresearch.org/internet/fact-sheet/social-media/"
+                    title: "Recruiter and Recruiter Lite search filters and definitions",
+                    publisher: "LinkedIn Recruiter Help",
+                    year: "2026",
+                    href: "https://www.linkedin.com/help/recruiter/answer/a408731"
                 }
             ]}
             faq={[
@@ -100,123 +89,112 @@ export default function LinkedInVisibilityPage() {
                 },
                 {
                     question: "What part of my profile matters most for search?",
-                    answer: "Recruiter lens: headline keywords and skills are the most consistent search inputs."
+                    answer: "LinkedIn confirms that recruiters can filter by titles and skills, and that skill evidence can come from several profile sections. It does not publish a universal weighting for those fields."
                 },
                 {
-                    question: "Should I optimize for InMail response?",
-                    answer: "Yes. Skills-first sourcing is linked to higher InMail acceptance, which makes skills and titles critical."
+                    question: "Should I repeat the same keyword everywhere?",
+                    answer: "No. Use the correct role and skill language where it naturally belongs, then support it with actual experience. Keyword repetition without evidence is not a credible profile."
                 }
             ]}
         >
-            <h2 className="research-h2">Why Headlines Matter Most</h2>
+            <h2 className="research-h2">Start with the fields recruiters can actually search</h2>
             <p className="research-body mb-6">
-                Recruiter lens: the headline is the most visible field in search results, so it is the cleanest place to align role titles and skill keywords.
-                Recruiter searches often start with job titles and skill terms, which makes headline phrasing a practical match point.
-            </p>
-
-            <h2 className="research-h2">Key Research Findings</h2>
-            <p className="text-xs text-muted-foreground mb-4">
-                Statistics sourced from LinkedIn Newsroom, LinkedIn Talent Solutions, and Pew Research.
+                LinkedIn Recruiter includes filters for job title, skills, company, location, seniority, years of experience, and other criteria. Its Skills filter can use skills you list directly and skills inferred from profile text. That makes your headline useful, but not magical: your titles, summary, and experience descriptions also contribute evidence.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
-                <Citation id="source-3">3</Citation>
-                <Citation id="source-4">4</Citation>
             </p>
+
+            <h2 className="research-h2">Where skill evidence can come from</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
-                    title="1 Billion Members"
+                    title="Skills you list"
                     desc={
                         <>
-                            LinkedIn reports over 1 billion members worldwide.
+                            Standardized skills in the Skills section, sometimes connected to experience, education, or endorsements.
                             <Citation id="source-1">1</Citation>
                         </>
                     }
                 />
                 <ArticleInsight
-                    title="32% of US Adults Use LinkedIn"
+                    title="Skills in your profile text"
                     desc={
                         <>
-                            Per Pew Research, nearly a third of American adults are on the platform.
-                            <Citation id="source-4">4</Citation>
-                        </>
-                    }
-                />
-                <ArticleInsight
-                    title="9,000+ Job Applications/Minute"
-                    desc={
-                        <>
-                            LinkedIn reports more than 9,000 job applications per minute.
+                            Skill terms in your headline, summary, titles, experience descriptions, certificates, and courses.
                             <Citation id="source-1">1</Citation>
                         </>
                     }
                 />
                 <ArticleInsight
-                    title="67 Million Companies"
+                    title="Skills inferred from experience"
                     desc={
                         <>
-                            LinkedIn reports more than 67 million companies on the platform.
+                            LinkedIn says it may infer related skills from direct experience. For example, it may treat Tableau experience as evidence of data visualization.
                             <Citation id="source-1">1</Citation>
                         </>
                     }
                 />
                 <ArticleInsight
-                    title="Skills-First InMail Lift"
+                    title="Resume skills, when shared"
                     desc={
                         <>
-                            LinkedIn reports higher InMail acceptance for skills-first sourcing approaches.
-                            <Citation id="source-2">2</Citation>
+                            For members who share resume details for discoverability, Recruiter can surface skills found in that resume.
+                            <Citation id="source-1">1</Citation>
                         </>
                     }
                 />
             </div>
 
-            <h2 className="research-h2">What Good Headlines Look Like</h2>
+            <h2 className="research-h2">What a useful headline looks like</h2>
             <div className="grid md:grid-cols-2 gap-8 not-prose mt-6">
                 <div className="space-y-3">
-                    <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60">Do This</div>
+                    <div className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground/60">Do this</div>
                     <ul className="border-t border-border/30 divide-y divide-border/30 text-sm text-muted-foreground">
-                        <li className="py-2">Senior PM | B2B SaaS | $4M→$12M ARR | ex-Stripe</li>
-                        <li className="py-2">Data Scientist | ML/AI | Python, SQL | Healthcare Tech</li>
-                        <li className="py-2">Engineering Manager | 15+ Engineers | Fintech Scale-ups</li>
+                        <li className="py-2">Senior product manager · B2B SaaS · onboarding and retention</li>
+                        <li className="py-2">Data scientist · forecasting · Python and SQL · healthcare</li>
+                        <li className="py-2">Engineering manager · platform teams · fintech infrastructure</li>
                     </ul>
                 </div>
                 <div className="space-y-3">
-                    <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground/60">Not This</div>
+                    <div className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground/60">Not this</div>
                     <ul className="border-t border-border/30 divide-y divide-border/30 text-sm text-muted-foreground">
-                        <li className="py-2 line-through">Product Manager at TechCorp | Building Great Products</li>
-                        <li className="py-2 line-through">Passionate data scientist seeking new opportunities</li>
+                        <li className="py-2 line-through">Product leader building great products</li>
+                        <li className="py-2 line-through">Passionate problem-solver seeking new opportunities</li>
                         <li className="py-2 line-through">Looking for my next challenge in tech</li>
                     </ul>
                 </div>
             </div>
 
-            <h2 className="research-h2">Important Limitations</h2>
+            <div className="not-prose my-10">
+                <RecruiterSearchDiagram />
+            </div>
+
+            <h2 className="research-h2">What LinkedIn does not tell us</h2>
             <p className="research-body mb-4">
-                Be aware of what we know and don&apos;t know:
+                The documentation explains usable inputs. It does not reveal a universal recipe for ranking first.
             </p>
             <ul className="space-y-2 text-muted-foreground text-sm mb-6">
                 <li className="flex gap-2">
                     <span className="text-muted-foreground/50">•</span>
-                    LinkedIn does not publicly disclose its exact search algorithm. Findings are inferred from observed behavior.
+                    LinkedIn does not publicly disclose exact ranking weights or its complete search-scoring logic.
                 </li>
                 <li className="flex gap-2">
                     <span className="text-muted-foreground/50">•</span>
-                    Reported view increases vary widely across sources and baselines.
+                    LinkedIn&apos;s documentation describes its own products. It is not independent research on hiring outcomes.
                 </li>
                 <li className="flex gap-2">
                     <span className="text-muted-foreground/50">•</span>
-                    Recruiter search behavior likely varies by industry, geography, and role type.
+                    Recruiters choose different filters and search strategies across roles, industries, and markets.
                 </li>
                 <li className="flex gap-2">
                     <span className="text-muted-foreground/50">•</span>
-                    Studies are primarily based on self-reported data, not controlled experiments.
+                    A discoverable profile can earn consideration. It cannot guarantee ranking, outreach, or an interview.
                 </li>
             </ul>
 
-            <h2 className="research-h2">Definition: visibility inputs</h2>
+            <h2 className="research-h2">The practical rule</h2>
             <p className="research-body mb-6">
-                Visibility inputs are the fields recruiters can search and filter by. LinkedIn reports outcomes tied to skills-first searches,
-                but not the weighting of each field.
+                Use the role titles and skills a recruiter would reasonably search for, then make the experience underneath prove them. The platform can connect profile language to a search; a person still has to believe the fit.
+                <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
         </ResearchArticle>

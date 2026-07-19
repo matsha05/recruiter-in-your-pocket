@@ -1,60 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Receipt, RotateCcw, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowsClockwise, Info, Receipt, ShieldCheck } from "@phosphor-icons/react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
 import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
-
-const unlockPoints = [
-    "A fresh recruiter report for each serious application",
-    "Version history tied to your account",
-    "Exports for reports you want to keep",
-    "Specific job-fit reports from pasted roles",
-];
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 const billingPoints = [
     {
         icon: ShieldCheck,
-        title: "Secure checkout",
-        body: "Stripe handles your payment. We never see or store your card number.",
+        title: "Stripe checkout",
+        body: "Stripe handles your card details. We never see or store the card number.",
     },
     {
-        icon: RotateCcw,
-        title: "Easy to manage",
-        body: "Restore access, manage renewals, or cancel from the billing page.",
+        icon: ArrowsClockwise,
+        title: "No renewal",
+        body: "The Job Search Pass is one payment. It ends after 30 days and never auto-renews.",
     },
     {
         icon: Receipt,
-        title: "Access starts immediately",
-        body: "As soon as you pay, paid access turns on for repeated runs, role-fit reports, and your report workspace.",
-    },
-];
-
-const planGuidance = [
-    {
-        label: "Use free when",
-        body: "You want one honest first pass before trusting the product with your job search.",
-    },
-    {
-        label: "Use monthly when",
-        body: "You are actively applying and want reports across several roles without rebuilding context every time.",
-    },
-    {
-        label: "Use lifetime when",
-        body: "You expect to keep tuning your resume for future searches, promotions, and role pivots.",
+        title: "Immediate access",
+        body: "Your five-report pass begins after checkout and can be restored from the same email.",
     },
 ];
 
 export default function PricingPageClient() {
     const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
+    const [paymentCancelled, setPaymentCancelled] = useState(false);
+    const billingEnabled = isLaunchFlagEnabled("billingUnlock");
 
-    async function handleCheckout(tier: "monthly" | "lifetime") {
+    useEffect(() => {
+        setPaymentCancelled(new URLSearchParams(window.location.search).get("payment") === "cancelled");
+    }, []);
+
+    async function handleCheckout() {
+        const tier: PricingTier = "30d";
         try {
             setLoadingTier(tier);
-            Analytics.checkoutStarted(tier, tier === "monthly" ? 9 : 79);
+            Analytics.checkoutStarted(tier, 29);
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -77,195 +63,151 @@ export default function PricingPageClient() {
         }
     }
 
+    if (!billingEnabled) {
+        return (
+            <>
+                <div data-visual-anchor="pricing-page" className="min-h-screen bg-mineral pt-28 text-foreground selection:bg-brand/15 md:pt-36">
+                    <section className="px-6 pb-20 md:px-8 md:pb-28">
+                        <div className="mx-auto max-w-6xl">
+                            <div className="grid gap-10 border-b border-border pb-10 lg:grid-cols-5 lg:items-end">
+                                <div className="lg:col-span-3">
+                                    <p className="mb-5 text-xs font-bold uppercase riyp-track-010 text-brand">Beta access</p>
+                                    <h1 className="max-w-3xl font-display text-5xl riyp-weight-520 leading-none tracking-tight riyp-stretch-88 md:text-7xl lg:text-8xl">
+                                        One complete report is included. Five more are $29.
+                                    </h1>
+                                </div>
+                                <p className="max-w-lg text-lg leading-8 text-muted-foreground lg:col-span-2">
+                                    Checkout is closed while we finish the beta safety checks. When it opens, the Job Search Pass will be one payment for five additional reports over 30 days. It will not renew.
+                                </p>
+                            </div>
+
+                            <div className="mt-10 grid overflow-hidden border-y border-border bg-background/60 md:grid-cols-2">
+                                <div className="border-b border-border p-7 md:border-b-0 md:border-r md:p-9">
+                                    <p className="text-xs font-bold uppercase riyp-track-010 text-brand">First report</p>
+                                    <p className="mt-5 font-display text-5xl riyp-weight-540 tracking-tight">$0</p>
+                                    <p className="mt-2 text-base text-muted-foreground">One complete in-browser report</p>
+                                    <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
+                                        The recruiter takeaway, evidence, questions to answer, and rewrites are all included. No card required.
+                                    </p>
+                                    <Link href="/workspace" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-brand/90 active:scale-95">
+                                        Run your free report
+                                        <ArrowRight className="size-4" />
+                                    </Link>
+                                </div>
+                                <div className="p-7 md:p-9">
+                                    <p className="text-xs font-bold uppercase riyp-track-010 text-brand">Job Search Pass</p>
+                                    <p className="mt-5 font-display text-5xl riyp-weight-540 tracking-tight">$29</p>
+                                    <p className="mt-2 text-base text-muted-foreground">Five additional reports for 30 days</p>
+                                    <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
+                                        One payment for revisions and role comparisons. No subscription and no automatic renewal.
+                                    </p>
+                                    <p role="status" className="mt-7 inline-flex min-h-12 items-center border border-border bg-muted/35 px-5 py-3 text-sm font-semibold text-muted-foreground">
+                                        Checkout opens after beta verification
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <Footer />
+            </>
+        );
+    }
+
     return (
         <>
-            <main data-visual-anchor="pricing-page" className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
-                {/* Hero */}
-                <section className="px-6 pb-8 md:px-8 md:pb-10">
-                    <div className="mx-auto max-w-[600px] text-center">
-                        <p className="editorial-kicker mb-4 text-slate-300">
-                            Pricing
-                        </p>
-                        <h1
-                            id="pricing-page-title"
-                            className="font-display text-slate-900"
-                            style={{
-                                fontSize: "clamp(2.4rem, 6vw, 4rem)",
-                                lineHeight: 1.0,
-                                letterSpacing: "-0.035em",
-                                fontWeight: 400,
-                            }}
-                        >
-                            Start free. Pay when it&apos;s working.
-                        </h1>
-                        <p className="editorial-copy-lg mx-auto mt-5 max-w-[440px] text-slate-500">
-                            Your first report is a complete in-browser read, not a teaser.
-                            Pay only if you want repeated role-specific reports, version history, exports, and a steadier application workflow.
-                        </p>
-                    </div>
-                </section>
-
-                {/* Pricing cards */}
-                <section className="px-6 pb-10 md:px-8 md:pb-14">
-                    <div className="mx-auto max-w-[1060px]">
-                        <div className="mb-5 grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div data-visual-anchor="pricing-page" className="bg-paper pt-28 text-foreground selection:bg-brand/15 md:pt-36">
+                <section className="px-6 pb-16 md:px-8 md:pb-24">
+                    <div className="mx-auto max-w-[1120px]">
+                        <div className="grid gap-10 border-b border-line pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end">
                             <div>
-                                <p className="editorial-kicker mb-3 text-slate-300">
-                                    Choose by workflow
-                                </p>
-                                <h2 className="max-w-[520px] font-display text-[clamp(1.7rem,3vw,2.5rem)] font-normal leading-[1.02] tracking-[-0.03em] text-slate-900">
-                                    One honest free read, then a paid workbench if it earns the seat.
-                                </h2>
+                                <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-brand">Pricing</p>
+                                <h1
+                                    id="pricing-page-title"
+                                    className="max-w-[760px] font-display text-[clamp(3rem,7vw,5.8rem)] riyp-weight-520 leading-[0.94] tracking-[-0.045em] riyp-stretch-88"
+                                >
+                                    One complete report is free. Five more are $29. That&apos;s it.
+                                </h1>
                             </div>
-                            <p className="max-w-[420px] text-sm leading-6 text-slate-500 lg:justify-self-end">
-                                The free report is intentionally useful on its own. Paid access is for momentum:
-                                saving evidence, exporting reports you keep, and comparing the same resume against multiple roles.
+                            <p className="max-w-[34rem] text-pretty text-lg leading-8 text-muted-foreground">
+                                No teaser score and no subscription waiting in the weeds. The Job Search Pass gives you five more complete reports for 30 days.
                             </p>
                         </div>
 
-                        <div className="grid gap-4 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch">
+                        {paymentCancelled ? (
+                            <div role="status" className="mt-8 flex items-start gap-3 border-y border-line bg-surface-sky/45 px-4 py-3 text-base text-foreground">
+                                <Info className="mt-0.5 size-5 shrink-0 text-brand" weight="bold" />
+                                <p><span className="font-semibold">Checkout canceled.</span> Nothing was charged.</p>
+                            </div>
+                        ) : null}
+
+                        <div className="mt-10 grid gap-0 md:grid-cols-2">
                             <PricingCard
                                 tier="free"
                                 context="marketing"
                                 allowFreeSelect
-                                className="lg:min-h-[100%]"
                                 onSelect={() => {
                                     Analytics.track("pricing_run_free_review_clicked", { source: "pricing_page" });
                                     window.location.href = "/workspace";
                                 }}
+                                className="border-b-0 md:border-b md:border-r-0"
                             />
-                            <div className="rounded-[1.75rem] bg-slate-950 p-2 shadow-[0_18px_60px_rgba(15,23,42,0.14)] sm:p-3">
-                                <div className="flex flex-col gap-3 md:grid md:grid-cols-2">
-                                    <PricingCard
-                                        tier="monthly"
-                                        context="marketing"
-                                        className="bg-white/95"
-                                        onSelect={() => handleCheckout("monthly")}
-                                        loading={loadingTier === "monthly"}
-                                    />
-                                    <PricingCard
-                                        tier="lifetime"
-                                        context="marketing"
-                                        className="bg-white"
-                                        onSelect={() => handleCheckout("lifetime")}
-                                        loading={loadingTier === "lifetime"}
-                                    />
-                                </div>
-                            </div>
+                            <PricingCard
+                                tier="30d"
+                                context="marketing"
+                                onSelect={handleCheckout}
+                                loading={loadingTier === "30d"}
+                            />
                         </div>
 
-                        <div className="mt-4 grid gap-3 md:grid-cols-3">
-                            {planGuidance.map((item) => (
-                                <div key={item.label} className="rounded-2xl border border-slate-200/70 bg-white/55 p-4">
-                                    <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                                        {item.label}
-                                    </p>
-                                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                                        {item.body}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
+                        <p className="mt-5 text-base leading-6 text-muted-foreground">
+                            One payment. Five additional reports. Access ends 30 days after purchase. No automatic renewal. Taxes may apply at checkout.
+                        </p>
                     </div>
                 </section>
 
-                {/* What you unlock */}
-                <section className="px-6 pb-8 md:px-8 md:pb-12">
-                    <div className="mx-auto max-w-[560px]">
-                        <div
-                            className="rounded-2xl bg-white p-6 md:p-8"
-                            style={{
-                                boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)",
-                            }}
-                        >
-                            <p className="editorial-kicker mb-4 text-slate-300">
-                                What paid access adds
+                <section className="border-y border-line bg-surface-sky/45 px-6 py-14 md:px-8 md:py-20">
+                    <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.65fr_1.35fr]">
+                        <div>
+                            <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-brand">Billing clarity</p>
+                            <h2 className="max-w-sm font-display text-[clamp(2.2rem,4vw,3.5rem)] riyp-weight-560 leading-[1.02] tracking-[-0.035em] riyp-stretch-94">
+                                The terms, in plain language.
+                            </h2>
+                            <p className="mt-4 max-w-sm text-lg leading-7 text-muted-foreground">
+                                The price, expiration date, and included reports stay visible before checkout.
                             </p>
-                            <ul className="gap-y-3">
-                                {unlockPoints.map((point) => (
-                                    <li key={point} className="flex items-start gap-2.5 text-sm leading-6 text-slate-600">
-                                        <span className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-brand" />
-                                        <span>{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                        </div>
+
+                        <div className="divide-y divide-line border-y border-line">
+                            {billingPoints.map((item) => (
+                                <div key={item.title} className="grid gap-3 py-5 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                                    <div className="flex items-center gap-2 text-base font-semibold text-foreground">
+                                        <item.icon className="size-4 text-brand" weight="bold" />
+                                        {item.title}
+                                    </div>
+                                    <p className="text-lg leading-7 text-muted-foreground">{item.body}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
 
-                {/* Billing clarity  -  warm sand section */}
-                <section
-                    className="px-6 py-12 md:px-8 md:py-16"
-                    style={{ backgroundColor: "hsl(var(--paper-muted))" }}
-                >
-                    <div className="mx-auto max-w-[640px]">
-                        <p className="editorial-kicker mb-5 text-slate-400">
-                            Billing clarity
-                        </p>
-                        <h2
-                            className="font-display text-slate-900"
-                            style={{
-                                fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
-                                lineHeight: 1.1,
-                                letterSpacing: "-0.02em",
-                                fontWeight: 400,
-                            }}
-                        >
-                            Billing is simple
-                        </h2>
-                        <p className="mt-3 max-w-[420px] text-base leading-7 text-slate-500">
-                            Paid access starts right away. If checkout and access ever get out of sync, Restore Access checks Stripe and reconnects your purchase.
-                        </p>
-
-                        <div className="mt-8 gap-y-3">
-                            {billingPoints.map((item) => (
-                                <div
-                                    key={item.title}
-                                    className="rounded-lg bg-white p-4"
-                                    style={{
-                                        boxShadow: "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03)",
-                                    }}
-                                >
-                                    <div className="flex items-center gap-2">
-                                        <item.icon className="size-4 text-brand" />
-                                        <h3 className="text-sm font-semibold text-slate-700">{item.title}</h3>
-                                    </div>
-                                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500">{item.body}</p>
-                                </div>
-                            ))}
+                <section className="px-6 py-12 md:px-8 md:py-16">
+                    <div className="mx-auto flex max-w-[1120px] flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <h2 className="font-display text-3xl riyp-weight-560 tracking-[-0.025em] riyp-stretch-96">Already paid?</h2>
+                            <p className="mt-2 text-lg text-muted-foreground">Restore an existing purchase or open billing settings.</p>
                         </div>
-
                         <Link
                             href="/purchase/restore"
-                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-slate-800 active:scale-[0.97]"
+                            className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 self-start rounded-md border border-line px-5 py-3 text-base font-semibold text-foreground transition-[background-color,border-color,transform] duration-200 hover:border-brand/45 hover:bg-brand/5 active:scale-[0.99]"
                         >
-                            Open restore page
-                            <ArrowRight className="size-4" />
-                        </Link>
-                        <Link
-                            href="/extension"
-                            className="mt-6 ml-3 inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-medium text-slate-700 transition-all hover:bg-white"
-                        >
-                            See extension flow
+                            Restore access
+                            <ArrowRight className="size-4" weight="bold" />
                         </Link>
                     </div>
                 </section>
-
-                {/* Support note */}
-                <section className="px-6 py-10 md:px-8 md:py-12">
-                    <div className="mx-auto max-w-[600px] text-center">
-                        <p className="text-sm text-slate-400">
-                            Need invoices, receipts, or procurement help?{" "}
-                            <Link
-                                href="mailto:support@recruiterinyourpocket.com"
-                                className="text-slate-600 underline underline-offset-4 hover:text-slate-900"
-                            >
-                                support@recruiterinyourpocket.com
-                            </Link>
-                        </p>
-                    </div>
-                </section>
-            </main>
+            </div>
             <Footer />
         </>
     );

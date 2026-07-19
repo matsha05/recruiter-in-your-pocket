@@ -10,10 +10,9 @@ import {
     Search,
     Filter,
     ExternalLink,
-    MoreHorizontal,
     Trash2,
-    ArrowUpRight
 } from 'lucide-react';
+import { toast } from 'sonner';
 import ResumeContextCard from './ResumeContextCard';
 import ConfirmModal from '@/components/shared/ConfirmModal';
 import { AppPageIntro } from '@/components/layout/AppPageIntro';
@@ -60,6 +59,7 @@ export default function JobsClient() {
     const { user, isLoading: authLoading } = useAuth();
     const [jobs, setJobs] = useState<Job[]>([]);
     const [loading, setLoading] = useState(true);
+    const [loadError, setLoadError] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<JobStatus | 'all'>('all');
     const [refreshKey, setRefreshKey] = useState(0);
@@ -74,32 +74,37 @@ export default function JobsClient() {
         if (authLoading) return;
         if (!user) {
             setJobs([]);
+            setLoadError(null);
             setLoading(false);
             return;
         }
 
         async function fetchJobs() {
+            setLoading(true);
+            setLoadError(null);
             try {
                 const res = await fetch('/api/extension/saved-jobs');
-                if (res.ok) {
-                    const data = await res.json();
-                    // Map API response to our Job type
-                    const mappedJobs: Job[] = (data.jobs || []).map((j: any) => ({
-                        id: j.id,
-                        external_id: j.externalId,
-                        title: j.title,
-                        company: j.company,
-                        location: j.location,
-                        url: j.url,
-                        source: j.source || 'linkedin',
-                        status: j.status || 'saved',
-                        match_score: j.score,
-                        captured_at: j.capturedAt,
-                    }));
-                    setJobs(mappedJobs);
+                if (!res.ok) {
+                    throw new Error('We could not load your saved jobs.');
                 }
+                const data = await res.json();
+                // Map API response to our Job type
+                const mappedJobs: Job[] = (data.jobs || []).map((j: any) => ({
+                    id: j.id,
+                    external_id: j.externalId,
+                    title: j.title,
+                    company: j.company,
+                    location: j.location,
+                    url: j.url,
+                    source: j.source || 'linkedin',
+                    status: j.status || 'saved',
+                    match_score: j.score,
+                    captured_at: j.capturedAt,
+                }));
+                setJobs(mappedJobs);
             } catch (err) {
                 console.error('Failed to fetch jobs:', err);
+                setLoadError(err instanceof Error ? err.message : 'We could not load your saved jobs.');
             } finally {
                 setLoading(false);
             }
@@ -124,7 +129,7 @@ export default function JobsClient() {
     // Handle open original
     const handleOpenOriginal = useCallback((e: React.MouseEvent, job: Job) => {
         e.stopPropagation();
-        window.open(job.url, '_blank');
+        window.open(job.url, '_blank', 'noopener,noreferrer');
     }, []);
 
     // Open delete modal
@@ -147,9 +152,13 @@ export default function JobsClient() {
                 setJobs(prev => prev.filter(j => j.id !== jobToDelete.id));
                 setDeleteModalOpen(false);
                 setJobToDelete(null);
+                toast.success('Job removed');
+            } else {
+                throw new Error('We could not delete that job.');
             }
         } catch (err) {
             console.error('Failed to delete job:', err);
+            toast.error(err instanceof Error ? err.message : 'We could not delete that job.');
         } finally {
             setDeleteLoading(false);
         }
@@ -206,8 +215,10 @@ export default function JobsClient() {
             <div className="app-card flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between md:px-5">
                 {/* Search */}
                 <div className="relative flex-1 max-w-md">
+                    <label htmlFor="jobs-search" className="sr-only">Search saved jobs</label>
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                     <input
+                        id="jobs-search"
                         type="text"
                         placeholder="Search jobs…"
                         value={searchQuery}
@@ -218,11 +229,12 @@ export default function JobsClient() {
 
                 {/* Status Filter */}
                 <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    <label htmlFor="jobs-status-filter" className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                         <Filter className="size-3.5" />
                         Status
-                    </span>
+                    </label>
                     <select
+                        id="jobs-status-filter"
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value as JobStatus | 'all')}
                         className="h-9 px-3 rounded border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
@@ -246,6 +258,18 @@ export default function JobsClient() {
                 {loading ? (
                     <div className="p-10 text-center text-muted-foreground">
                         Loading jobs…
+                    </div>
+                ) : loadError ? (
+                    <div className="p-10 text-center" role="alert">
+                        <p className="text-sm font-medium text-foreground">Saved jobs are unavailable right now.</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{loadError}</p>
+                        <button
+                            type="button"
+                            onClick={() => setRefreshKey((key) => key + 1)}
+                            className="mt-4 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                        >
+                            Try again
+                        </button>
                     </div>
                 ) : filteredJobs.length === 0 ? (
                     <EmptyState hasJobs={jobs.length > 0} signedIn={Boolean(user)} />
@@ -295,64 +319,69 @@ interface JobRowProps {
 }
 
 function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
-    const score = job.match_score ?? 0;
     const statusConfig = STATUS_CONFIG[job.status];
     const capturedDate = new Date(job.captured_at);
     const timeAgo = getTimeAgo(capturedDate);
 
     return (
-        <div
-            className="group flex items-center gap-4 p-4 hover:bg-muted/20 cursor-pointer transition-all"
-            onClick={onClick}
-        >
-            {/* Score Dial */}
-            <ScoreDial score={score} />
+        <article className="group flex items-center gap-2 p-2 transition-colors hover:bg-muted/20 sm:gap-4 sm:p-4">
+            <button
+                type="button"
+                onClick={onClick}
+                aria-label={`Open ${job.title} at ${job.company}`}
+                className="flex min-w-0 flex-1 items-center gap-3 rounded-lg p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:gap-4"
+            >
+                {/* Score Dial */}
+                <ScoreDial score={job.match_score} />
 
-            {/* Job Info */}
-            <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-foreground truncate">
-                        {job.title}
-                    </h3>
-                    <span className={cn(
-                        "px-2.5 py-0.5 text-xs font-medium rounded shrink-0",
-                        statusConfig.bgColor,
-                        statusConfig.color
-                    )}>
-                        {statusConfig.label}
-                    </span>
+                {/* Job Info */}
+                <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                        <h3 className="truncate font-medium text-foreground">
+                            {job.title}
+                        </h3>
+                        <span className={cn(
+                            "shrink-0 rounded px-2.5 py-0.5 text-xs font-medium",
+                            statusConfig.bgColor,
+                            statusConfig.color
+                        )}>
+                            {statusConfig.label}
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span>{job.company}</span>
+                        {job.location && (
+                            <>
+                                <span className="text-border">•</span>
+                                <span className="truncate">{job.location}</span>
+                            </>
+                        )}
+                        <span className="text-border">•</span>
+                        <span className="text-xs opacity-70">{timeAgo}</span>
+                    </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span>{job.company}</span>
-                    {job.location && (
-                        <>
-                            <span className="text-border">•</span>
-                            <span className="truncate">{job.location}</span>
-                        </>
-                    )}
-                    <span className="text-border">•</span>
-                    <span className="text-xs opacity-70">{timeAgo}</span>
-                </div>
-            </div>
+            </button>
 
             {/* Actions */}
-            <div className="flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-1 opacity-70 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
                 <button type="button"
                     onClick={onOpenOriginal}
-                    className="p-2 rounded hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                    className="rounded p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                     title="Open original posting"
+                    aria-label={`Open the original posting for ${job.title}`}
                 >
                     <ExternalLink className="size-4" />
                 </button>
                 <button type="button"
                     onClick={onDelete}
-                    className="p-2 rounded hover:bg-destructive/10 text-muted-foreground hover:text-destructive transition-colors"
+                    className="rounded p-2 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
                     title="Delete job"
+                    aria-label={`Delete ${job.title}`}
                 >
                     <Trash2 className="size-4" />
                 </button>
             </div>
-        </div>
+        </article>
     );
 }
 
@@ -360,22 +389,26 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
 // SCORE DIAL COMPONENT
 // =============================================================================
 
-function ScoreDial({ score }: { score: number }) {
+function ScoreDial({ score }: { score: number | null }) {
     const radius = 18;
     const circumference = 2 * Math.PI * radius;
-    const progress = (score / 100) * circumference;
+    const progress = ((score ?? 0) / 100) * circumference;
     const offset = circumference - progress;
-    const scoreClass = getScoreClass(score);
+    const scoreClass = score === null ? 'neutral' : getScoreClass(score);
 
     const colors = {
         success: { stroke: 'stroke-success', text: 'text-success' },
         premium: { stroke: 'stroke-premium', text: 'text-premium' },
         destructive: { stroke: 'stroke-destructive', text: 'text-destructive' },
+        neutral: { stroke: 'stroke-muted-foreground/25', text: 'text-muted-foreground' },
     };
 
     return (
-        <div className="relative size-12 shrink-0">
-            <svg className="size-full -rotate-90" viewBox="0 0 48 48">
+        <div
+            className="relative size-12 shrink-0"
+            aria-label={score === null ? 'Match score not available' : `Match score ${score} out of 100`}
+        >
+            <svg aria-hidden="true" className="size-full -rotate-90" viewBox="0 0 48 48">
                 <circle
                     cx="24"
                     cy="24"
@@ -401,7 +434,7 @@ function ScoreDial({ score }: { score: number }) {
                 "absolute inset-0 flex items-center justify-center text-sm font-semibold",
                 colors[scoreClass].text
             )}>
-                {score > 0 ? score : ' - '}
+                {score === null ? '—' : score}
             </div>
         </div>
     );
@@ -422,8 +455,8 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
 
     if (!signedIn) {
         return (
-            <div className="gap-y-5 p-16 text-center">
-                <div className="mx-auto flex size-20 items-center justify-center rounded-2xl border border-border/60 bg-background">
+            <div className="gap-y-5 border-y border-border bg-card p-16 text-center">
+                <div className="mx-auto flex size-20 items-center justify-center rounded-md border border-border bg-mineral">
                     <Briefcase className="size-8 text-brand/60" />
                 </div>
                 <div className="gap-y-3">
@@ -435,19 +468,19 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
                 <div className="flex items-center justify-center gap-3">
                     <Link
                         href="/auth?from=jobs"
-                        className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-deep"
                     >
                         Sign In
                     </Link>
                     <Link
                         href="/workspace"
-                        className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
                     >
                         Open Workspace
                     </Link>
                     <Link
                         href="/extension"
-                        className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
                     >
                         Install extension
                     </Link>
@@ -457,11 +490,11 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
     }
 
     return (
-        <div className="p-16 text-center gap-y-6">
+        <div className="gap-y-6 border-y border-border bg-card p-16 text-center">
             {/* Visual illustration */}
-            <div className="relative size-20 mx-auto">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/10 to-brand/5 animate-pulse" />
-                <div className="absolute inset-2 rounded-xl bg-card border border-border/40 flex items-center justify-center">
+            <div className="relative mx-auto size-20">
+                <div className="absolute inset-0 rounded-md border border-brand/20 bg-mineral" />
+                <div className="absolute inset-2 flex items-center justify-center rounded-sm bg-card">
                     <Briefcase className="size-8 text-brand/60" />
                 </div>
             </div>
@@ -474,13 +507,13 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
             <div className="flex items-center justify-center gap-3">
                 <Link
                     href="/extension"
-                    className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-deep"
                 >
                     Install extension
                 </Link>
                 <Link
                     href="/workspace"
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
                 >
                     Get report manually
                 </Link>

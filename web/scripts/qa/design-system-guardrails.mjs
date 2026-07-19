@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import crypto from "node:crypto";
 
 const ROOT = process.cwd();
 
@@ -19,14 +18,46 @@ const PRODUCTION_SCOPE_DIRS = [
   "lib",
 ];
 
+const SYSTEM_NAME = "Lifted Line 1.1";
+
+// Compatibility-first lock: these are the measured July 12 Lifted Line 1.1
+// baselines after the cross-surface launch migration. New work may reduce this
+// debt, but cannot silently increase it.
+const DESIGN_DEBT_BUDGETS = {
+  arbitraryClasses: 631,
+  legacyPaletteClasses: 809,
+  inlineStyleProps: 69,
+  rawButtons: 94,
+  rawInputs: 13,
+};
+
+const RESEARCH_SYSTEM_FILES = [
+  "components/research/ResearchClient.tsx",
+  "components/research/ResearchArticle.tsx",
+  "components/shared/diagrams/DiagramPrimitives.tsx",
+  "components/shared/diagrams/EvidenceVisuals.tsx",
+];
+
+const LEGACY_PALETTE_PATTERN = /\b(?:text|bg|border|ring|outline|decoration|divide|from|via|to)-(?:teal|emerald|cyan|indigo|violet|purple|slate|gray|zinc|neutral|stone|rose|amber|yellow|orange|blue|sky)-(?:50|100|200|300|400|500|600|700|800|900|950)(?:\/[0-9]{1,3})?\b/g;
+
 const HEX_ALLOWLIST = new Set([
   "app/globals.css",
   "app/manifest.ts",
   "app/icon.tsx",
   "app/apple-icon.tsx",
+  // Next ImageResponse requires inline, literal styles and cannot consume the
+  // runtime CSS token sheet. Values here must mirror the canonical palette.
+  "app/opengraph-image.tsx",
   "app/(editorial)/guides/tools/comp-calculator/page.tsx",
   "components/research/diagrams/LinkedInResumeFlow.tsx",
   "lib/backend/pdf.ts",
+]);
+
+const INLINE_STYLE_EXCLUSIONS = new Set([
+  // Satori renders metadata images from inline style objects by contract.
+  "app/opengraph-image.tsx",
+  "app/icon.tsx",
+  "app/apple-icon.tsx",
 ]);
 
 const ARBITRARY_CLASS_EXCLUDED_PREFIXES = [
@@ -36,7 +67,6 @@ const ARBITRARY_CLASS_EXCLUDED_PREFIXES = [
   "app/preview/",
   "components/internal/",
   "components/landing-showcase/",
-  "components/research/diagrams/",
 ];
 
 const NON_PRODUCT_PREFIXES = [
@@ -48,13 +78,13 @@ const NON_PRODUCT_PREFIXES = [
   "components/landing-showcase/",
 ];
 
-const REQUIRED_LOCAL_FONT_FILES = [
-  "public/fonts/sentient/sentient-400.woff2",
-  "public/fonts/sentient/sentient-500.woff2",
-  "public/fonts/sentient/sentient-700.woff2",
-  "public/fonts/satoshi/satoshi-400.woff2",
-  "public/fonts/satoshi/satoshi-500.woff2",
-  "public/fonts/satoshi/satoshi-700.woff2",
+// Model instructions and evaluation language are product logic, not public UI
+// copy. Keep brand cleanup from silently rewriting Matt's tuned prompts.
+const COPY_GUARDRAIL_EXCLUDED_PREFIXES = [
+  "app/api/",
+  "lib/backend/prompts.ts",
+  "lib/evals/",
+  "lib/matching/",
 ];
 
 const BANNED_COPY_PATTERNS = [
@@ -71,6 +101,12 @@ const BANNED_COPY_PATTERNS = [
   { label: "stand out from the crowd", regex: /\bstand out from the crowd\b/i },
   { label: "land your dream job", regex: /\bland your dream job\b/i },
   { label: "transform your resume", regex: /\btransform your resume\b/i },
+  { label: "browse by decision", regex: /\bbrowse by decision\b/i },
+  { label: "internal RIYP acronym", regex: /\b(?:how|what) RIYP\b/i },
+  { label: "recruiter lens label", regex: /\brecruiter lens\b/i },
+  { label: "definition heading", regex: /\bDefinition:/i },
+  { label: "bounded control", regex: /\bbounded control\b/i },
+  { label: "signal density", regex: /\bsignal density\b/i },
 ];
 
 function normalize(relativePath) {
@@ -114,6 +150,11 @@ function countMatches(source, regex) {
   return matches ? matches.length : 0;
 }
 
+function countRawTextInputs(source) {
+  const inputs = source.match(/<input\b[^>]*>/g) ?? [];
+  return inputs.filter((input) => !/\btype=["'](?:range|file|checkbox|radio|hidden)["']/.test(input)).length;
+}
+
 function findViolations(files) {
   const violations = {
     externalFontImport: [],
@@ -121,6 +162,10 @@ function findViolations(files) {
     hardcodedHex: [],
     bannedTerms: [],
     arbitraryClassCount: 0,
+    legacyPaletteClassCount: 0,
+    inlineStylePropCount: 0,
+    rawButtonCount: 0,
+    rawInputCount: 0,
   };
 
   for (const file of files) {
@@ -138,7 +183,7 @@ function findViolations(files) {
       violations.externalFontImport.push(file);
     }
 
-    if (!file.startsWith("app/preview/") && /(Fraunces|Geist)/.test(source)) {
+    if (!file.startsWith("app/preview/") && /(Fraunces|Geist|Sentient|Satoshi)/.test(source)) {
       violations.legacyFontBranding.push(file);
     }
 
@@ -146,31 +191,74 @@ function findViolations(files) {
       violations.hardcodedHex.push(file);
     }
 
-    for (const pattern of BANNED_COPY_PATTERNS) {
-      if (pattern.regex.test(source)) {
-        violations.bannedTerms.push(`${file} -> "${pattern.label}"`);
+    if (!COPY_GUARDRAIL_EXCLUDED_PREFIXES.some((prefix) => file.startsWith(prefix))) {
+      for (const pattern of BANNED_COPY_PATTERNS) {
+        if (pattern.regex.test(source)) {
+          violations.bannedTerms.push(`${file} -> "${pattern.label}"`);
+        }
       }
     }
 
     if (file.endsWith(".tsx") && !isArbitraryClassExcluded(file)) {
       violations.arbitraryClassCount += countMatches(
         source,
-        /\b(text|bg|border|rounded|p|px|py|m|mt|mb|ml|mr|gap|tracking|leading)-\[[^\]]+\]/g
+        /\b(?:text|bg|border|rounded|p|px|py|m|mt|mb|ml|mr|gap|tracking|leading|min-w|max-w|min-h|max-h|w|h|size|grid-cols|grid-rows|shadow|translate-x|translate-y|top|right|bottom|left|z)-\[[^\]]+\]/g
       );
+
+      violations.legacyPaletteClassCount += countMatches(
+        source,
+        LEGACY_PALETTE_PATTERN
+      );
+      if (!INLINE_STYLE_EXCLUSIONS.has(file)) {
+        violations.inlineStylePropCount += countMatches(source, /style=\{\{/g);
+      }
+      violations.rawButtonCount += countMatches(source, /<button\b/g);
+      violations.rawInputCount += countRawTextInputs(source);
     }
   }
 
   return violations;
 }
 
+function validateResearchSystem() {
+  const errors = [];
+
+  for (const file of RESEARCH_SYSTEM_FILES) {
+    const source = fs.readFileSync(path.join(ROOT, file), "utf8");
+    LEGACY_PALETTE_PATTERN.lastIndex = 0;
+    if (LEGACY_PALETTE_PATTERN.test(source)) {
+      errors.push(`${file} still uses direct palette classes`);
+    }
+  }
+
+  for (const file of walk(path.join(ROOT, "components", "research"))) {
+    const relative = path.relative(ROOT, file);
+    if (!file.endsWith(".tsx")) continue;
+    const source = fs.readFileSync(file, "utf8");
+    if (source.includes('from "lucide-react"') || source.includes("from 'lucide-react'")) {
+      errors.push(`${relative} still imports Lucide`);
+    }
+  }
+
+  return errors;
+}
+
 function validateDocs() {
   const designSystemDoc = path.join(ROOT, "..", "docs", "design-system.md");
   const content = fs.readFileSync(designSystemDoc, "utf8");
+  const brandSystemDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "brand-system.md"), "utf8");
+  const voiceAndToneDoc = fs.readFileSync(path.join(ROOT, "..", "docs", "voice-and-tone.md"), "utf8");
+  const agentInstructions = fs.readFileSync(path.join(ROOT, "..", ".agent", "AGENTS.md"), "utf8");
   const missing = [];
 
   const requiredStrings = [
-    "Sentient",
-    "Satoshi",
+    SYSTEM_NAME,
+    "Newsreader Variable",
+    "Instrument Sans",
+    "--brand-strong",
+    "--surface-sky",
+    "--accent-apricot",
+    "--accent-butter",
     "--font-display",
     "--font-body",
     "--space-4",
@@ -184,92 +272,95 @@ function validateDocs() {
     }
   }
 
+  if (!brandSystemDoc.includes("The direction: Lifted Line")) {
+    missing.push("brand-system.md -> The direction: Lifted Line");
+  }
+  if (!voiceAndToneDoc.includes("plainspoken expertise")) {
+    missing.push("voice-and-tone.md -> plainspoken expertise");
+  }
+  if (!agentInstructions.includes("Lifted Line is the approved brand direction")) {
+    missing.push(".agent/AGENTS.md -> Lifted Line approved direction");
+  }
+
+  const staleClaims = [
+    "Display, interface, and data: **Instrument Sans Variable**",
+    "Teal should feel precise and fresh",
+    "Fonts: Sentient",
+    "Fonts: Fraunces",
+  ];
+  for (const claim of staleClaims) {
+    if ([content, brandSystemDoc, voiceAndToneDoc, agentInstructions].some((doc) => doc.includes(claim))) {
+      missing.push(`stale design-system claim -> ${claim}`);
+    }
+  }
+
   return missing;
 }
 
-function validateFontStack() {
-  const missingFiles = [];
-  for (const file of REQUIRED_LOCAL_FONT_FILES) {
-    const absolute = path.join(ROOT, file);
-    if (!fs.existsSync(absolute)) {
-      missingFiles.push(file);
-    }
-  }
-
-  const layoutPath = path.join(ROOT, "app", "layout.tsx");
-  const layoutSource = fs.readFileSync(layoutPath, "utf8");
-  const layoutErrors = [];
-
-  if (!layoutSource.includes("next/font/local")) {
-    layoutErrors.push('`app/layout.tsx` must use `next/font/local`.');
-  }
-
-  if (!layoutSource.includes("--font-sentient") || !layoutSource.includes("--font-satoshi")) {
-    layoutErrors.push("Missing font variable wiring for Sentient/Satoshi in `app/layout.tsx`.");
-  }
-
-  const expectedFontPaths = [
-    "/fonts/sentient/sentient-400.woff2",
-    "/fonts/sentient/sentient-500.woff2",
-    "/fonts/sentient/sentient-700.woff2",
-    "/fonts/satoshi/satoshi-400.woff2",
-    "/fonts/satoshi/satoshi-500.woff2",
-    "/fonts/satoshi/satoshi-700.woff2",
-  ];
-
-  for (const fontPath of expectedFontPaths) {
-    if (!layoutSource.includes(fontPath)) {
-      layoutErrors.push(`Missing local font source in layout: ${fontPath}`);
-    }
-  }
-
-  return { missingFiles, layoutErrors };
-}
-
-function sha256File(filePath) {
-  const data = fs.readFileSync(filePath);
-  return crypto.createHash("sha256").update(data).digest("hex");
-}
-
-function validateFontManifest() {
-  const manifestPath = path.join(ROOT, "public", "fonts", "manifest.json");
+function validateRuntimeSystem() {
+  const globalsSource = fs.readFileSync(path.join(ROOT, "app", "globals.css"), "utf8");
+  const tailwindSource = fs.readFileSync(path.join(ROOT, "tailwind.config.js"), "utf8");
   const errors = [];
 
-  if (!fs.existsSync(manifestPath)) {
-    errors.push("Missing font manifest: public/fonts/manifest.json");
-    return errors;
+  const requiredTokenDefinitions = [
+    '--font-display: "Newsreader Variable"',
+    '--font-body: "Instrument Sans Variable"',
+    "--brand-strong:",
+    "--brand-tint:",
+    "--surface-sky:",
+    "--surface-proof:",
+    "--accent-apricot:",
+    "--accent-butter:",
+    "--text-muted:",
+    "--line:",
+  ];
+
+  for (const token of requiredTokenDefinitions) {
+    if (!globalsSource.includes(token)) errors.push(`globals.css missing ${token}`);
   }
 
-  let manifest;
-  try {
-    manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-  } catch (error) {
-    errors.push(`Invalid font manifest JSON: ${error instanceof Error ? error.message : String(error)}`);
-    return errors;
+  const forbiddenRuntimeClaims = [
+    "Brand: Teal",
+    "V2.1 Brand: Teal",
+    "Sentient (Display)",
+    "Satoshi (Interface)",
+  ];
+  for (const claim of forbiddenRuntimeClaims) {
+    if (globalsSource.includes(claim)) errors.push(`globals.css contains stale claim: ${claim}`);
   }
 
-  if (!Array.isArray(manifest.files) || manifest.files.length === 0) {
-    errors.push("Font manifest must contain a non-empty `files` array.");
-    return errors;
-  }
-
-  for (const entry of manifest.files) {
-    const filePath = path.join(ROOT, entry.path ?? "");
-    if (!entry.path || !entry.sha256) {
-      errors.push(`Font manifest entry missing path or sha256: ${JSON.stringify(entry)}`);
-      continue;
-    }
-    if (!fs.existsSync(filePath)) {
-      errors.push(`Font manifest file missing on disk: ${entry.path}`);
-      continue;
-    }
-    const actualSha = sha256File(filePath);
-    if (actualSha !== entry.sha256) {
-      errors.push(`Font checksum mismatch for ${entry.path}`);
+  for (const token of ["brand", "paper", "line", "iris", "surface-sky", "accent-apricot", "accent-butter"]) {
+    if (!tailwindSource.includes(`${token}:`) && !tailwindSource.includes(`'${token}':`)) {
+      errors.push(`tailwind.config.js missing ${token} semantic alias`);
     }
   }
 
   return errors;
+}
+
+function validateFontStack() {
+  const layoutPath = path.join(ROOT, "app", "layout.tsx");
+  const layoutSource = fs.readFileSync(layoutPath, "utf8");
+  const packageJson = JSON.parse(fs.readFileSync(path.join(ROOT, "package.json"), "utf8"));
+  const layoutErrors = [];
+  const dependencyErrors = [];
+
+  if (!layoutSource.includes('@fontsource-variable/instrument-sans/standard.css')) {
+    layoutErrors.push("Missing Instrument Sans variable font import in `app/layout.tsx`.");
+  }
+  if (!layoutSource.includes('@fontsource-variable/newsreader')) {
+    layoutErrors.push("Missing Newsreader variable font import in `app/layout.tsx`.");
+  }
+  if (!layoutSource.includes('@fontsource-variable/newsreader/standard-italic.css')) {
+    layoutErrors.push("Missing Newsreader variable italic import in `app/layout.tsx`.");
+  }
+
+  const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
+  for (const dependency of ["@fontsource-variable/instrument-sans", "@fontsource-variable/newsreader"]) {
+    if (!dependencies[dependency]) dependencyErrors.push(`Missing font dependency: ${dependency}`);
+  }
+
+  return { dependencyErrors, layoutErrors };
 }
 
 function printList(label, list) {
@@ -287,8 +378,9 @@ function main() {
   const files = walk(ROOT);
   const violations = findViolations(files);
   const missingDocTokens = validateDocs();
+  const runtimeSystemErrors = validateRuntimeSystem();
   const fontValidation = validateFontStack();
-  const fontManifestErrors = validateFontManifest();
+  const researchSystemErrors = validateResearchSystem();
 
   const errors = [];
 
@@ -308,26 +400,51 @@ function main() {
     errors.push("Banned copy terms found in production surfaces.");
   }
 
-  if (violations.arbitraryClassCount > 280) {
+  if (violations.arbitraryClassCount > DESIGN_DEBT_BUDGETS.arbitraryClasses) {
     errors.push(
-      `Arbitrary Tailwind class usage too high (${violations.arbitraryClassCount}). Keep <= 280 in production scope.`
+      `Arbitrary Tailwind class debt increased (${violations.arbitraryClassCount}). Keep <= ${DESIGN_DEBT_BUDGETS.arbitraryClasses} while migrating to semantic recipes.`
     );
+  }
+
+  if (violations.legacyPaletteClassCount > DESIGN_DEBT_BUDGETS.legacyPaletteClasses) {
+    errors.push(`Direct Tailwind palette debt increased (${violations.legacyPaletteClassCount}). Keep <= ${DESIGN_DEBT_BUDGETS.legacyPaletteClasses}.`);
+  }
+
+  if (violations.inlineStylePropCount > DESIGN_DEBT_BUDGETS.inlineStyleProps) {
+    errors.push(`Inline style debt increased (${violations.inlineStylePropCount}). Keep <= ${DESIGN_DEBT_BUDGETS.inlineStyleProps}.`);
+  }
+
+  if (violations.rawButtonCount > DESIGN_DEBT_BUDGETS.rawButtons) {
+    errors.push(`Raw button count increased (${violations.rawButtonCount}). Use the shared Button primitive unless semantics require otherwise.`);
+  }
+
+  if (violations.rawInputCount > DESIGN_DEBT_BUDGETS.rawInputs) {
+    errors.push(`Raw input count increased (${violations.rawInputCount}). Use the shared Input primitive unless semantics require otherwise.`);
   }
 
   if (missingDocTokens.length > 0) {
     errors.push("Design-system docs missing required tokens/commands.");
   }
 
-  if (fontValidation.missingFiles.length > 0) {
-    errors.push("Required local Sentient/Satoshi font files are missing.");
+  if (runtimeSystemErrors.length > 0) {
+    errors.push("Lifted Line runtime contract is incomplete or stale.");
+  }
+
+  if (fontValidation.dependencyErrors.length > 0) {
+    errors.push("Required self-hosted font packages are missing.");
+  }
+
+  if (researchSystemErrors.length > 0) {
+    errors.push("Research system lock is incomplete.");
   }
 
   if (fontValidation.layoutErrors.length > 0) {
     errors.push("Font stack wiring in app/layout.tsx is incomplete.");
   }
 
-  if (fontManifestErrors.length > 0) {
-    errors.push("Font manifest validation failed.");
+  if (runtimeSystemErrors.length > 0) {
+    console.error("\nRuntime design-system issues:");
+    for (const issue of runtimeSystemErrors) console.error(`- ${issue}`);
   }
 
   printList("External font import violations", violations.externalFontImport);
@@ -342,9 +459,9 @@ function main() {
     }
   }
 
-  if (fontValidation.missingFiles.length > 0) {
-    console.error("\nMissing local font files:");
-    for (const file of fontValidation.missingFiles) {
+  if (fontValidation.dependencyErrors.length > 0) {
+    console.error("\nMissing font dependencies:");
+    for (const file of fontValidation.dependencyErrors) {
       console.error(`- ${file}`);
     }
   }
@@ -356,15 +473,12 @@ function main() {
     }
   }
 
-  if (fontManifestErrors.length > 0) {
-    console.error("\nFont manifest issues:");
-    for (const issue of fontManifestErrors) {
-      console.error(`- ${issue}`);
-    }
-  }
-
   console.log(`\nDesign-system guardrail summary`);
   console.log(`- Arbitrary class count: ${violations.arbitraryClassCount}`);
+  console.log(`- Legacy palette class count: ${violations.legacyPaletteClassCount}`);
+  console.log(`- Inline style prop count: ${violations.inlineStylePropCount}`);
+  console.log(`- Raw button count: ${violations.rawButtonCount}`);
+  console.log(`- Raw input count: ${violations.rawInputCount}`);
   console.log(`- External font imports: ${violations.externalFontImport.length}`);
   console.log(`- Legacy font references: ${violations.legacyFontBranding.length}`);
   console.log(`- Hardcoded hex violations: ${violations.hardcodedHex.length}`);

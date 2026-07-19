@@ -1,11 +1,11 @@
-/* Premium Popup Styles — OpenAI/Notion/Linear tier */
+/* RIYP extension — compact recruiter intelligence surface. */
 
 .popup-container {
     display: flex;
     flex-direction: column;
     height: 100%;
     min-height: 480px;
-    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background-subtle)) 100%);
+    background: hsl(var(--background-subtle));
 }
 
 /* ============= HEADER ============= */
@@ -27,7 +27,7 @@
 .popup-logo-mark {
     width: 26px;
     height: 26px;
-    background: linear-gradient(135deg, hsl(var(--brand)) 0%, hsl(170 75% 35%) 100%);
+    background: hsl(var(--brand));
     border-radius: var(--radius);
     display: flex;
     align-items: center;
@@ -41,7 +41,8 @@
 
 .popup-logo-text {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 620;
+    font-stretch: 91%;
     font-size: 14px;
     color: hsl(var(--foreground));
     letter-spacing: -0.02em;
@@ -118,8 +119,8 @@
     position: absolute;
     inset: 0;
     border-radius: 16px;
-    background: linear-gradient(135deg, hsl(var(--brand) / 0.12) 0%, hsl(var(--brand) / 0.05) 100%);
-    animation: pulse 2.5s ease-in-out infinite;
+    background: hsl(var(--brand) / 0.08);
+    border: 1px solid hsl(var(--brand) / 0.18);
 }
 
 .empty-illustration-inner {
@@ -189,7 +190,7 @@
 .empty-state-icon {
     width: 56px;
     height: 56px;
-    background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--background-subtle)) 100%);
+    background: hsl(var(--background-subtle));
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius-lg);
     display: flex;
@@ -206,7 +207,8 @@
 
 .empty-state-title {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 560;
+    font-stretch: 96%;
     font-size: 15px;
     color: hsl(var(--foreground));
     letter-spacing: -0.02em;
@@ -284,7 +286,7 @@
     align-items: center;
     justify-content: center;
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 560;
     font-size: 12px;
     font-feature-settings: 'tnum';
     letter-spacing: -0.02em;
@@ -363,15 +365,14 @@
 }
 
 .btn-primary {
-    background: linear-gradient(180deg, hsl(var(--brand)) 0%, hsl(173 80% 26%) 100%);
+    background: hsl(var(--brand));
     color: white;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.1), inset 0 1px 0 0 rgb(255 255 255 / 0.1);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(180deg, hsl(173 80% 34%) 0%, hsl(173 80% 28%) 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.12), inset 0 1px 0 0 rgb(255 255 255 / 0.1);
+    background: hsl(173 80% 25%);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.1);
 }
 
 .btn-primary:active {
@@ -480,7 +481,8 @@
 
 .onboarding-title {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 560;
+    font-stretch: 94%;
     font-size: 20px;
     color: hsl(var(--foreground));
     margin: 0 0 6px;
@@ -530,7 +532,8 @@
 .onboarding-feature strong {
     display: block;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 560;
+    font-stretch: 96%;
     color: hsl(var(--foreground));
     margin-bottom: 2px;
     letter-spacing: -0.01em;

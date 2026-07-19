@@ -12,11 +12,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import { UnlockValueList } from "@/components/shared/UnlockValueList";
-import { RefreshCw } from "lucide-react";
+import { ArrowClockwise } from "@phosphor-icons/react";
 import { Analytics } from "@/lib/analytics";
 import { getUnlockContext, type UnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 interface PaywallModalProps {
     isOpen: boolean;
@@ -26,60 +26,60 @@ interface PaywallModalProps {
 }
 
 const DEFAULT_UNLOCK_COPY = {
-    label: "Paid Access",
-    title: "Run the next role-specific report",
-    subtitle: "Your completed free report stays visible. Paid access is for repeated recruiter reports across the jobs, versions, and LinkedIn updates you actually plan to send.",
+    label: "Job Search Pass",
+    title: "Run another report",
+    subtitle: "Your free report stays available. The Job Search Pass adds five more complete reports for the next 30 days.",
     bullets: [
-        "Fresh reports for serious applications",
-        "Role-fit runs for specific jobs",
-        "Resume and LinkedIn iterations",
-        "Version history and exports for reports you keep"
+        "5 additional full reports",
+        "Reviews tailored to a job posting",
+        "Side-by-side revision comparisons",
+        "Saved history and PDF exports"
     ]
 };
 
 const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
     evidence_ledger: {
         label: "Evidence Ledger",
-        title: "Keep going with evidence",
-        subtitle: "Your free report stays visible. Paid access lets you keep using evidence-led reports across roles and versions.",
+        title: "See the rest of the evidence",
+        subtitle: "Your free report stays available. The Job Search Pass adds five more reports for other roles or revisions.",
         bullets: [
-            "Every run grounded in the line behind it",
-            "Confidence and impact on each call",
-            "Rewrites tied to your actual resume",
-            "Keep a history of reports you use"
+            "The resume line behind each recommendation",
+            "Confidence and effort labels",
+            "Suggested rewrites tied to the resume",
+            "Saved report history"
         ]
     },
     bullet_upgrades: {
-        label: "Red Pen",
-        title: "Keep using Red Pen",
-        subtitle: "Run more recruiter-grade rewrites without losing your completed free report.",
+        label: "Suggested rewrites",
+        title: "See all suggested rewrites",
+        subtitle: "Your free report stays available. The Job Search Pass adds more reports for the revisions you want to compare.",
         bullets: [
-            "More bullet rewrites across versions",
-            "Phrasing a recruiter would notice",
-            "Why each change lands harder",
-            "Fresh reports for different roles"
+            "More rewrites across resume versions",
+            "The original beside every suggestion",
+            "Why each change may help",
+            "Reports for different roles"
         ]
     },
     missing_wins: {
-        label: "Missing Wins",
-        title: "Find the missing wins",
-        subtitle: "Use paid access when you want repeated passes on the wins that are still buried.",
+        label: "Details to add",
+        title: "See all questions to answer",
+        subtitle: "The Job Search Pass gives you five more reports to answer the open questions, revise, and compare the new read.",
         bullets: [
-            "All missing-win prompts",
-            "Why each one matters",
-            "Track them as you add them back in",
-            "Keep report versions together"
+            "All questions raised by the resume",
+            "Why each detail matters",
+            "A clear place to start",
+            "Saved report versions"
         ]
     },
     job_alignment: {
-        label: "Role Fit",
-        title: "Run role-fit briefs",
-        subtitle: "Compare the resume against specific jobs whenever you want a closer read.",
+        label: "Fit for the role",
+        title: "See the full role comparison",
+        subtitle: "Compare the resume with specific job postings and keep each report with the application it supports.",
         bullets: [
-            "Your best-fit roles and stretch paths",
-            "Job match score and missing signals",
-            "A positioning statement you can reuse",
-            "Save this report for later"
+            "Relevant experience and open gaps",
+            "Job match score and missing details",
+            "A role-specific positioning suggestion",
+            "Saved report history"
         ]
     },
     export_pdf: {
@@ -90,7 +90,7 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
             "PDF export for saved reports",
             "Export without re-running",
             "Restore access if anything looks locked",
-            "Fresh reports when you need them"
+            "More reports when you need them"
         ]
     }
 };
@@ -100,7 +100,6 @@ export default function PaywallModal({
     onClose
 }: PaywallModalProps) {
     const { user } = useAuth();
-    const [selectedTier, setSelectedTier] = useState<PricingTier>("monthly");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [restoreLoading, setRestoreLoading] = useState(false);
@@ -108,6 +107,7 @@ export default function PaywallModal({
     const [unlockContext, setUnlockContext] = useState<UnlockContext | null>(null);
 
     const isLoggedIn = !!user;
+    const billingEnabled = isLaunchFlagEnabled("billingUnlock");
 
     useEffect(() => {
         if (!isOpen) return;
@@ -132,19 +132,19 @@ export default function PaywallModal({
         const checkoutEmail = isLoggedIn ? user.email : email.trim();
 
         if (!checkoutEmail) {
-            setError("Please enter your email");
+            setError("Enter the email address you want to use for billing.");
             setLoading(false);
             return;
         }
 
         try {
             const unlockSection = unlockContext?.section || null;
-            Analytics.checkoutStarted(selectedTier, selectedTier === "monthly" ? 9 : 79);
+            Analytics.checkoutStarted("30d", 29);
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    tier: selectedTier,
+                    tier: "30d",
                     email: checkoutEmail,
                     source: "paywall",
                     idempotencyKey: crypto.randomUUID(),
@@ -157,12 +157,12 @@ export default function PaywallModal({
             if (result.ok && result.url) {
                 window.location.href = result.url;
             } else {
-                Analytics.track("checkout_start_failed", { source: "paywall", tier: selectedTier });
-                setError(result.message || "Failed to start checkout");
+                Analytics.track("checkout_start_failed", { source: "paywall", tier: "30d" });
+                setError(result.message || "Checkout could not start. Try again or restore an existing purchase.");
             }
         } catch (err: any) {
-            Analytics.track("checkout_start_failed", { source: "paywall", tier: selectedTier });
-            setError(err.message || "Something went wrong");
+            Analytics.track("checkout_start_failed", { source: "paywall", tier: "30d" });
+            setError(err.message || "Checkout could not start. Try again or restore an existing purchase.");
         } finally {
             setLoading(false);
         }
@@ -182,9 +182,31 @@ export default function PaywallModal({
         window.location.href = "/purchase/restore";
     };
 
+    if (!billingEnabled) {
+        return (
+            <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+                <DialogContent className="max-w-md p-7">
+                    <DialogHeader className="text-center">
+                        <p className="mx-auto mb-2 text-xs font-bold uppercase riyp-track-010 text-brand">Private preview</p>
+                        <DialogTitle className="font-display text-2xl font-medium">
+                            You&apos;ve reached the preview limit
+                        </DialogTitle>
+                        <DialogDescription className="mx-auto max-w-sm text-sm leading-6">
+                            Paid access is not open yet. Your existing report stays available, and we will make the next step clear before checkout ever enters the picture.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="mt-5 border-y border-border/70 py-4 text-sm leading-6 text-muted-foreground">
+                        We&apos;re deliberately keeping this preview small while the report experience is still being tuned.
+                    </div>
+                    <Button className="mt-5 w-full" onClick={onClose}>Back to my report</Button>
+                </DialogContent>
+            </Dialog>
+        );
+    }
+
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-            <DialogContent className="max-w-[400px] p-6">
+            <DialogContent className="max-w-[440px] p-6 sm:p-7">
                 <DialogHeader className="text-center mb-4">
                     <DialogTitle className="font-display text-xl font-medium">
                         {unlockCopy.title}
@@ -197,9 +219,9 @@ export default function PaywallModal({
                     </p>
                 </DialogHeader>
 
-                <div className="rounded border border-border/60 bg-secondary/10 p-4 gap-y-3 mb-5">
+                <div className="mb-5 gap-y-3 border-y border-line bg-surface-sky/45 px-4 py-4">
                     <div className="flex items-center justify-between text-xs uppercase tracking-wide text-muted-foreground">
-                        <span>Unlocks now</span>
+                        <span>Included with the pass</span>
                         <span className="text-foreground/80">{unlockCopy.label}</span>
                     </div>
                     <UnlockValueList items={unlockCopy.bullets} dense />
@@ -209,39 +231,38 @@ export default function PaywallModal({
                         </p>
                     )}
                     <p className="text-xs text-muted-foreground">
-                        Your completed free report stays visible. Upgrade only when you want another pass for a real application, a revised resume, or a LinkedIn/profile update.
+                        Your free report stays available. Buy the pass only when you want to revise, compare, or review more roles.
                     </p>
                 </div>
 
-                {/* Tier Selection - Compact Cards */}
-                <div className="grid grid-cols-2 gap-3 mb-5">
-                    <PricingCard
-                        tier="monthly"
-                        variant="compact"
-                        selected={selectedTier === "monthly"}
-                        onSelect={() => setSelectedTier("monthly")}
-                    />
-                    <PricingCard
-                        tier="lifetime"
-                        variant="compact"
-                        selected={selectedTier === "lifetime"}
-                        onSelect={() => setSelectedTier("lifetime")}
-                    />
+                <div className="mb-5 grid grid-cols-[0.8fr_1.2fr] border-y border-line py-4">
+                    <div>
+                        <p className="font-display text-4xl riyp-weight-520 tracking-[-0.03em] text-foreground">$29</p>
+                        <p className="mt-1 text-xs font-semibold uppercase riyp-track-010 text-brand">One payment</p>
+                    </div>
+                    <div className="border-l border-line pl-4 text-sm leading-6 text-muted-foreground">
+                        Five additional reports over 30 days. No automatic renewal.
+                    </div>
                 </div>
 
-                {/* Checkout Section */}
-                <div className="bg-secondary/10 rounded p-4 border border-border/40 mb-3">
+                <form
+                    className="mb-3 border border-line bg-background p-4"
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        void handleCheckout();
+                    }}
+                >
                     {isLoggedIn ? (
                         <>
                             <p className="text-sm text-muted-foreground mb-3 text-center">
-                                Upgrading <strong className="text-foreground">{user.email}</strong>
+                                Continue with <strong className="text-foreground">{user.email}</strong>
                             </p>
                             <Button
+                                type="submit"
                                 className="w-full"
-                                onClick={handleCheckout}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `Start Paid Access - ${selectedTier === "monthly" ? "$9/mo" : "$79"}`}
+                                {loading ? "Opening checkout…" : "Continue to Stripe · $29 once"}
                             </Button>
                         </>
                     ) : (
@@ -252,22 +273,24 @@ export default function PaywallModal({
                             <Input
                                 id="checkout-email"
                                 type="email"
+                                autoComplete="email"
+                                inputMode="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
                                 className="mb-3"
                             />
                             <Button
+                                type="submit"
                                 className="w-full"
-                                onClick={handleCheckout}
                                 disabled={!email.trim()}
                                 isLoading={loading}
                             >
-                                {loading ? "Processing..." : `Continue to Secure Checkout`}
+                                {loading ? "Opening checkout…" : "Continue to Stripe checkout"}
                             </Button>
                         </>
                     )}
-                </div>
+                </form>
 
                 <Button
                     variant="ghost"
@@ -275,8 +298,8 @@ export default function PaywallModal({
                     onClick={handleRestore}
                     isLoading={restoreLoading}
                 >
-                    {!restoreLoading && <RefreshCw className="size-4 mr-2" />}
-                    Restore Access / Manage Billing
+                    {!restoreLoading && <ArrowClockwise className="mr-2 size-4" weight="bold" />}
+                    Restore purchase or manage billing
                 </Button>
 
                 {error && (
@@ -286,7 +309,7 @@ export default function PaywallModal({
                 )}
 
                 <p className="text-center text-xs text-muted-foreground/50 uppercase tracking-wide">
-                    Secure checkout by Stripe · Cancel anytime · All receipts in billing
+                    Stripe handles payment · No automatic renewal
                 </p>
             </DialogContent>
         </Dialog>

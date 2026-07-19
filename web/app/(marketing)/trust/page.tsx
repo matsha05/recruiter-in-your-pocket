@@ -1,7 +1,7 @@
 import TrustClient from "@/components/legal/TrustClient";
 
 export const metadata = {
-    title: "Trust & Security — Recruiter in Your Pocket",
+    title: "Trust and Security",
     description: "How we handle data, security, billing controls, and product methodology.",
 };
 

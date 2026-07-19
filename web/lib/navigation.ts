@@ -11,7 +11,9 @@ import {
     Library,
     Chrome,
     BookOpen,
+    FileClock,
 } from "lucide-react";
+import { launchFlags } from "@/lib/launch/flags";
 
 // ============================================================================
 // STUDIO NAVIGATION (Sidebar + Mobile Nav for authenticated app)
@@ -24,12 +26,18 @@ export interface NavItem {
     description?: string;
 }
 
-export const STUDIO_NAV: NavItem[] = [
+const STUDIO_NAV_ITEMS: NavItem[] = [
     {
         label: "The Studio",
         href: "/workspace",
         icon: FileText,
         description: "Review your resume",
+    },
+    {
+        label: "Reports",
+        href: "/reports",
+        icon: FileClock,
+        description: "Saved reports and versions",
     },
     {
         label: "Jobs",
@@ -58,6 +66,10 @@ export const STUDIO_NAV: NavItem[] = [
     // Settings is now accessed via UserNav dropdown (premium pattern)
 ];
 
+export const STUDIO_NAV: NavItem[] = STUDIO_NAV_ITEMS.filter(
+    (item) => launchFlags.extensionSync || (item.href !== "/extension" && item.href !== "/jobs")
+);
+
 // ============================================================================
 // MARKETING NAVIGATION (SiteHeader, Footer)
 // ============================================================================
@@ -77,11 +89,11 @@ const MARKETING_NAV = {
     product: [
         { label: "Pricing", href: "/pricing" },
         { label: "Workspace", href: "/workspace" },
-        { label: "Extension", href: "/extension" },
+        ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
     ],
     research: [
         { label: "How Recruiters Read", href: "/research/how-recruiters-read" },
-        { label: "The 7-Second Scan", href: "/research/how-people-scan" },
+        { label: "How We Score", href: "/research/how-we-score" },
         { label: "Research Hub", href: "/research" },
     ],
     resources: [
@@ -105,7 +117,7 @@ const MARKETING_NAV = {
 export const FOOTER_NAV = {
     pillLinks: [
         { label: "Pricing", href: "/pricing" },
-        { label: "Extension", href: "/extension" },
+        ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
         { label: "Research", href: "/research" },
         { label: "Resources", href: "/resources" },
     ],

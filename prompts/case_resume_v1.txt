@@ -1,0 +1,1 @@
+../web/prompts/case_resume_v1.txt

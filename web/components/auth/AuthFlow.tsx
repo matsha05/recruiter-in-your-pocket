@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, ArrowRight, Check, Mail } from "lucide-react";
+import { ArrowRight, Check, CircleNotch, EnvelopeSimple } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -172,11 +172,18 @@ export function AuthFlow({
       }
       finishAuth();
     } catch (err: any) {
-      setError(err?.message || "Something went wrong. Please try again.");
+      setError(err?.message || "Could not save your name. Try again.");
     } finally {
       setLoading(false);
     }
   }, [finishAuth, firstName]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (step === "email") void handleSendCode("otp");
+    if (step === "code") void verifyCode();
+    if (step === "name") void handleSaveName();
+  };
 
   const stepTitle = useMemo(() => {
     if (step === "email") return copy.headline;
@@ -207,12 +214,12 @@ export function AuthFlow({
   }, [copy.subtext, email, step]);
 
   const outerClass = variant === "page"
-    ? "bg-paper min-h-screen px-6 pb-16 pt-28 md:px-8"
+    ? "min-h-screen bg-paper px-4 pb-16 pt-24 text-foreground selection:bg-brand/15 sm:px-5 sm:pt-28 md:px-8 md:pb-20 md:pt-36"
     : "";
 
   const panelClass = cn(
     "gap-y-5",
-    variant === "page" && "rounded-[28px] border border-slate-200 bg-white/95 p-8 shadow-[0_24px_56px_-40px_rgba(15,23,42,0.22)]"
+    variant === "page" && "border border-line bg-background p-5 sm:p-6 md:p-8"
   );
 
   return (
@@ -223,52 +230,46 @@ export function AuthFlow({
       <div
         className={cn(
           "w-full gap-y-6",
-          variant === "page" && "mx-auto grid max-w-[72rem] gap-12 lg:grid-cols-[minmax(0,1fr)_27rem] lg:items-start",
+          variant === "page" && "mx-auto grid max-w-[70rem] gap-8 sm:gap-12 lg:grid-cols-[minmax(0,0.9fr)_30rem] lg:items-start lg:gap-16",
           variant === "modal" && "max-w-none"
         )}
       >
         {variant === "page" ? (
-          <div className="gap-y-8 pt-6">
+          <div className="gap-y-10 pt-2 lg:pt-6">
             <div className="gap-y-4">
-              <div className="editorial-kicker text-slate-400">Secure sign-in</div>
+              <div className="text-xs font-semibold uppercase riyp-track-010 text-brand">Secure sign-in</div>
               <h1
-                className="font-display max-w-[34rem] text-slate-950"
-                style={{
-                  fontSize: "clamp(3rem, 6.5vw, 5rem)",
-                  lineHeight: 0.98,
-                  letterSpacing: "-0.04em",
-                  fontWeight: 400,
-                }}
+                className="max-w-[31rem] text-balance font-display text-[clamp(2.7rem,11vw,4.8rem)] riyp-weight-520 leading-[0.96] tracking-[-0.04em] text-foreground riyp-stretch-90"
               >
                 {stepTitle}
               </h1>
-              <div className="max-w-[32rem] text-base leading-8 text-slate-500">
+              <div className="max-w-[32rem] text-pretty text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
                 {stepSubtitle}
               </div>
             </div>
 
-            <div className="max-w-[34rem] gap-y-4 border-t border-slate-200/85 pt-6">
+            <div className="hidden max-w-[36rem] gap-y-5 border-t border-line pt-6 md:grid">
               {step === "email" ? (
                 <>
-                  <p className="text-[1.02rem] leading-8 text-slate-700">
-                    Sign in is for saved history, billing controls, and synced jobs. Anonymous reports stay separate unless you choose otherwise.
+                  <p className="text-[1.02rem] leading-8 text-foreground/85">
+                    Sign in is for report history and role context you choose to keep. Anonymous reports stay separate unless you choose otherwise.
                   </p>
                   <div className="grid gap-4 sm:grid-cols-3">
                     {[
                       { label: "Reports", value: "Keep versions in one place." },
-                      { label: "Billing", value: "Reach receipts and restores fast." },
-                      { label: "Saved jobs", value: "Sync extension history only if you want it." },
+                      { label: "Privacy", value: "Anonymous work stays separate." },
+                      { label: "Role context", value: "Keep the jobs that matter with the report." },
                     ].map((item) => (
-                      <div key={item.label} className="border-t border-slate-200/80 pt-3">
-                        <p className="text-xs font-medium uppercase tracking-wide text-slate-400">{item.label}</p>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">{item.value}</p>
+                      <div key={item.label} className="border-t border-line pt-3">
+                        <p className="text-xs font-semibold uppercase riyp-track-008 text-brand">{item.label}</p>
+                        <p className="mt-2 text-base leading-6 text-muted-foreground">{item.value}</p>
                       </div>
                     ))}
                   </div>
                 </>
               ) : (
-                <div className="max-w-[28rem] border-t border-slate-200/80 pt-4">
-                  <p className="text-sm leading-7 text-slate-600">
+                <div className="max-w-[28rem] border-t border-line pt-4">
+                  <p className="text-base leading-7 text-muted-foreground">
                     One quick step and you&apos;re back in. We keep the flow short on purpose.
                   </p>
                 </div>
@@ -283,7 +284,7 @@ export function AuthFlow({
             <p className="text-sm text-muted-foreground">{stepSubtitle}</p>
             {step === "email" ? (
               <div className="mx-auto max-w-sm rounded-xl border border-brand/20 bg-brand/5 px-4 py-3 text-left text-xs leading-5 text-muted-foreground">
-                Sign-in is only for durable history, billing controls, and synced saved jobs. Anonymous reports are not silently attached to an account.
+                Sign-in is only for report history and role context you choose to keep. Anonymous reports are not silently attached to an account.
               </div>
             ) : null}
           </div>
@@ -291,17 +292,14 @@ export function AuthFlow({
 
         <div className={cn(variant === "page" ? "gap-y-5" : "max-w-md gap-y-5", variant === "modal" && "max-w-none")}>
           {variant === "page" ? (
-            <div className="gap-y-2">
-              <div className="text-xs font-medium uppercase tracking-wide text-slate-400">
+            <div>
+              <div className="text-xs font-semibold uppercase riyp-track-008 text-brand">
                 {step === "email" ? "Enter your email" : step === "code" ? "Enter your code" : step === "link" ? "Check your link" : "Finish setup"}
               </div>
-              <p className="text-sm text-slate-500">
-                {step === "email" ? "We&apos;ll send a one-time code. No password to remember." : "A short sign-in flow, then you&apos;re back where you left off."}
-              </p>
             </div>
           ) : null}
 
-          <div className={panelClass}>
+          <form className={panelClass} onSubmit={handleSubmit} noValidate>
           {error && (
             <div className="p-3 text-sm text-center text-destructive bg-destructive/10 rounded border border-destructive/20">
               {error}
@@ -313,15 +311,16 @@ export function AuthFlow({
               <div className="gap-y-2">
                 <Label htmlFor="auth-email" className="sr-only">Email address</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground/60" />
+                  <EnvelopeSimple className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/60" weight="bold" />
                   <Input
                     id="auth-email"
                     type="email"
+                    autoComplete="email"
+                    inputMode="email"
                     placeholder="name@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleSendCode()}
-                    autoFocus
+                    autoFocus={variant === "modal"}
                     className="h-12 pl-10 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/40"
                   />
                 </div>
@@ -329,10 +328,10 @@ export function AuthFlow({
                   We&apos;ll email a one-time code so you can save securely without a password.
                 </p>
               </div>
-              <Button onClick={() => handleSendCode("otp")} disabled={loading} className="w-full h-12 text-base font-medium">
-                {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
-                Email secure sign-in code
-                {!loading && <ArrowRight className="ml-2 size-4" />}
+              <Button type="submit" variant="brand" disabled={loading} className="min-h-12 w-full whitespace-normal px-4 text-base font-medium">
+                {loading && <CircleNotch className="mr-2 size-4 animate-spin" weight="bold" />}
+                Send sign-in code
+                {!loading && <ArrowRight className="ml-2 size-4" weight="bold" />}
               </Button>
               {showMagicLinkFallback && (
                 <button
@@ -353,6 +352,9 @@ export function AuthFlow({
                 <Input
                   id="auth-code"
                   type="text"
+                  autoComplete="one-time-code"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   placeholder="00000000"
                   className="h-14 font-mono tracking-wide text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
                   value={code}
@@ -360,14 +362,13 @@ export function AuthFlow({
                     const value = e.target.value.replace(/\D/g, "").slice(0, 8);
                     setCode(value);
                   }}
-                  onKeyDown={(e) => e.key === "Enter" && verifyCode()}
-                  autoFocus
+                  autoFocus={variant === "modal"}
                 />
               </div>
-              <Button onClick={verifyCode} disabled={loading || code.length !== 8} className="w-full h-12 text-base font-medium">
-                {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
+              <Button type="submit" variant="brand" disabled={loading || code.length !== 8} className="h-12 w-full text-base font-medium">
+                {loading && <CircleNotch className="mr-2 size-4 animate-spin" weight="bold" />}
                 Verify Code
-                {!loading && <Check className="ml-2 size-4" />}
+                {!loading && <Check className="ml-2 size-4" weight="bold" />}
               </Button>
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <button
@@ -449,19 +450,20 @@ export function AuthFlow({
                 <Input
                   id="auth-name"
                   type="text"
+                  autoComplete="given-name"
                   placeholder="Jane"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleSaveName()}
                   autoFocus
                   className="h-12 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40"
                 />
               </div>
-              <Button onClick={handleSaveName} disabled={loading || !firstName.trim()} className="w-full h-12 text-base font-medium">
-                {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
+              <Button type="submit" variant="brand" disabled={loading || !firstName.trim()} className="h-12 w-full text-base font-medium">
+                {loading && <CircleNotch className="mr-2 size-4 animate-spin" weight="bold" />}
                 Continue
               </Button>
               <Button
+                type="button"
                 variant="ghost"
                 className="w-full text-muted-foreground hover:text-foreground"
                 onClick={() => finishAuth()}
@@ -470,12 +472,14 @@ export function AuthFlow({
               </Button>
             </div>
           )}
-        </div>
+          </form>
 
           <div className={cn("gap-y-2", variant === "page" ? "pt-1" : "text-center")}>
-            <div className="text-xs text-muted-foreground/60 uppercase tracking-wide font-medium">
-              Secure Login • No Password Required
-            </div>
+            {variant === "modal" ? (
+              <div className="text-xs font-medium text-muted-foreground">
+                Secure sign-in. No password required.
+              </div>
+            ) : null}
             {variant === "page" ? (
               <p className="text-xs text-muted-foreground">
                 Questions about privacy or billing? <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</Link> · <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link> · <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">Support</a>

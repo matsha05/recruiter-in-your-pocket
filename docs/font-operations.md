@@ -1,46 +1,45 @@
-# Font Operations V1.0
+# Lifted Line Font Operations
 
-Last updated: 2026-02-07
+Last updated: 2026-07-11
 Owner: Design + Frontend
-Scope: Runtime typography integrity for Sentient/Satoshi stack
+Scope: Runtime typography integrity for Lifted Line
 
-## 1. Operational Hardening Checklist
+## Runtime stack
 
-1. **Self-hosting complete**
-   - All production font binaries are local WOFF2 files under:
-     - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/sentient`
-     - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/satoshi`
-   - No runtime dependency on Google Fonts or Fontshare CSS.
+- Display and expressive evidence: `Newsreader Variable` normal and true italic
+- Interface and body: `Instrument Sans Variable`
+- Data: system monospace only when tabular scanning benefits
+- Source: self-hosted Fontsource packages bundled by the application
+- License: SIL Open Font License 1.1
+- No runtime dependency on Google Fonts, Fontshare, or another font CDN
 
-2. **Provenance + license tracking complete**
-   - Manifest file with source metadata and SHA-256 checksums:
-     - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/public/fonts/manifest.json`
-   - Source registry (Fontshare API records):
-     - Satoshi: `id=20e9fcdc-1e41-4559-a43d-1ede0adc8896`, `license_type=itf_ffl`
-     - Sentient: `id=297238ab-7a3e-44e0-af29-056f778c2728`, `license_type=itf_ffl`
-
-3. **Automated enforcement complete**
-   - `npm run qa:design-system` validates:
-     - required local font files exist
-     - `app/layout.tsx` uses `next/font/local` for Sentient/Satoshi
-     - no external font imports in production scope
-     - manifest checksum integrity
-
-## 2. Runtime Wiring
-
-Canonical runtime entrypoint:
+Canonical entrypoint:
 - `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web/app/layout.tsx`
 
-Required variables:
-- `--font-sentient`
-- `--font-satoshi`
+Required packages:
+- `@fontsource-variable/instrument-sans`
+- `@fontsource-variable/newsreader`
 
 Token mapping:
-- `--font-display: var(--font-sentient), ui-serif, Georgia, serif`
-- `--font-body: var(--font-satoshi), ui-sans-serif, system-ui`
-- `--font-mono: var(--font-satoshi), ui-monospace, SFMono-Regular, Menlo, monospace`
+- `--font-display: "Newsreader Variable", Georgia, ui-serif, serif`
+- `--font-body: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif`
+- `--font-mono: ui-monospace, SFMono-Regular, Menlo, monospace`
 
-## 3. Verification Commands
+Required imports:
+- `@fontsource-variable/instrument-sans/standard.css`
+- `@fontsource-variable/newsreader`
+- `@fontsource-variable/newsreader/standard-italic.css`
+
+## Automated enforcement
+
+`npm run qa:design-system` verifies:
+
+- both Fontsource packages are declared as dependencies
+- `app/layout.tsx` imports Instrument Sans, Newsreader normal, and Newsreader italic
+- production code does not load fonts from a third-party runtime URL
+- the design-system source of truth names the active families and tokens
+
+## Verification
 
 Run from `/Users/matsha05/Desktop/dev/recruiter-in-your-pocket/web`:
 
@@ -50,17 +49,13 @@ npm run lint
 npm run build
 ```
 
-Runtime sanity (optional):
-- Check landing response headers include local preloaded font assets:
-  - `/_next/static/media/satoshi_*.woff2`
-  - `/_next/static/media/sentient_*.woff2`
+In a production build, verify that both families are emitted as local `/_next/static/` assets and that the first viewport has no font-driven layout shift.
 
-## 4. Change Control
+## Change control
 
-If any font file is replaced:
-1. Update the file in `public/fonts/...`.
-2. Recompute SHA-256 and update `public/fonts/manifest.json`.
-3. Re-run `npm run qa:design-system`.
-4. Update `docs/design-system.md` and this file in the same PR.
+When changing the family:
 
-No merge if checksum manifest and binaries drift.
+1. Confirm the package source and license.
+2. Update `app/layout.tsx`, `app/globals.css`, `docs/design-system.md`, and this runbook together.
+3. Update the design-system guardrail rather than leaving it pinned to an obsolete stack.
+4. Run the full verification sequence above.

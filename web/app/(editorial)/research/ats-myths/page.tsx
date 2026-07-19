@@ -4,42 +4,39 @@ import { ATSFunnel } from "@/components/research/diagrams/ATSFunnel";
 
 export const metadata: Metadata = {
     title: "ATS: How Applicant Tracking Systems Actually Work | Hiring Research",
-    description: "Understanding how ATS systems store, rank, and surface candidates.",
+    description: "What current Greenhouse and Lever documentation shows about resume parsing and what it does not prove.",
 };
 
 export default function ATSMythsPage() {
     return (
         <ResearchArticle
             header={{
-                tag: "Industry research",
-                title: "ATS: How They Actually Work",
-                description: "How ATS platforms store and surface candidates, and where human review shapes outcomes.",
-                lastUpdated: "December 2025",
-                readTime: "4 min read"
+                tag: "Platform documentation",
+                title: "What applicant tracking systems do",
+                description: "What current platform documentation says about parsing, extracted fields, and the formatting that can get lost.",
+                lastUpdated: "July 2026",
+                readTime: "5 min read"
             }}
             keyFinding={{
-                subtitle: "The Reality",
-                stat: "Selection Procedure",
+                subtitle: "The useful distinction",
+                stat: "Parsing extracts. Employers decide what happens next.",
                 statDescription: (
                     <>
-                        Automated hiring tools are treated as selection procedures, which triggers requirements around job-relatedness and adverse impact.
-                        Automation varies widely and often complements human review rather than replacing it.
+                        Greenhouse and Lever document resume parsing as the extraction of readable information into candidate fields. Parsing trouble can lose or scramble information; it is not proof of one universal rejection score.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
-                        <Citation id="source-3">3</Citation>
                     </>
                 ),
                 source: {
-                    text: "EEOC guidance on software, algorithms, and AI",
-                    href: "https://data.aclum.org/storage/2025/01/EOCC_www_eeoc_gov_laws_guidance_select-issues-assessing-adverse-impact-software-algorithms-and-artificial.pdf"
+                    text: "Greenhouse and Lever parser documentation",
+                    href: "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">Decision Rights Map</h2>
+                    <h2 className="research-h2">From a file to a recruiter record</h2>
                     <p className="research-body mb-6">
-                        ATS platforms store and route information, while screening logic and human review can both shape outcomes.
-                        This map shows where automation is possible, not guaranteed.
+                        The parser reads the file, extracts information such as contact details and work history, and places it into structured fields. Employer rules, searches, filters, and human review happen after that and vary by system and company.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
@@ -47,15 +44,15 @@ export default function ATSMythsPage() {
                 </>
             }
             productTieIn={{
-                title: "How we optimize for this",
+                title: "How this shows up in your report",
                 items: [
                     {
-                        title: "Clarity over Keywords",
-                        description: "We focus on clear, standard language so both the parser AND the human understand you."
+                        title: "A parser-safe baseline",
+                        description: "We look for selectable text, familiar section headings, and a reading order that survives extraction."
                     },
                     {
-                        title: "No \"Beat the Bot\" Tricks",
-                        description: "We don't sell fear. We sell standard, readable formatting."
+                        title: "No magic-score theater",
+                        description: "We do not pretend every employer uses the same software, configuration, filters, or ranking logic."
                     }
                 ]
             }}
@@ -67,41 +64,41 @@ export default function ATSMythsPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "Select Issues: Assessing Adverse Impact in Software, Algorithms, and AI Used in Employment Selection Procedures",
-                    publisher: "EEOC",
-                    year: "2023",
-                    href: "https://data.aclum.org/storage/2025/01/EOCC_www_eeoc_gov_laws_guidance_select-issues-assessing-adverse-impact-software-algorithms-and-artificial.pdf"
+                    title: "Unsuccessful resume parse",
+                    publisher: "Greenhouse Support",
+                    year: "2026",
+                    href: "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse"
                 },
                 {
                     id: "source-2",
-                    title: "An Auditing Imperative for Automated Hiring Systems",
-                    publisher: "Harvard Journal of Law & Technology",
-                    year: "2021",
-                    href: "https://jolt.law.harvard.edu/assets/articlePDFs/v34/5.-Ajunwa-An-Auditing-Imperative-for-Automated-Hiring-Systems.pdf"
+                    title: "Understanding Resume Parsing",
+                    publisher: "Lever Help Center",
+                    year: "2025",
+                    href: "https://help.lever.co/hc/en-us/articles/20087345054749-Understanding-resume-parsing"
                 },
                 {
                     id: "source-3",
-                    title: "Data-Driven Discrimination at Work",
-                    publisher: "North Carolina Journal of Law & Technology",
-                    year: "2017",
-                    href: "https://scholarship.law.unc.edu/cgi/viewcontent.cgi?article=1001&context=aidr_collection"
+                    title: "Employment Tests and Selection Procedures",
+                    publisher: "EEOC",
+                    year: "2007",
+                    href: "https://www.eeoc.gov/laws/guidance/employment-tests-and-selection-procedures"
                 },
                 {
                     id: "source-4",
-                    title: "The Ethics of AI in Recruiting",
-                    publisher: "Journal of Business Ethics",
-                    year: "2022",
-                    href: "https://d-nb.info/125914027X/34"
+                    title: "Candidate and prospect filters",
+                    publisher: "Greenhouse Support",
+                    year: "2026",
+                    href: "https://support.greenhouse.io/hc/en-us/articles/360043184152-Candidate-and-prospect-filters"
                 }
             ]}
             faq={[
                 {
                     question: "Do ATS systems automatically reject resumes?",
-                    answer: "Automation varies. Some tools apply eligibility rules, but many systems are primarily workflow engines with humans making final choices."
+                    answer: "Some employer workflows can filter or reject based on configured rules. The parser itself is the extraction step, and there is no single behavior shared by every ATS and employer."
                 },
                 {
                     question: "Is keyword stuffing useful?",
-                    answer: "No. Over-optimized keyword blocks can reduce clarity for humans and can be flagged by screening logic."
+                    answer: "No. Use the language of the role where it truthfully describes your experience, but do not stuff hidden or repetitive keyword blocks into the file."
                 },
                 {
                     question: "What is the best ATS-safe format?",
@@ -109,23 +106,20 @@ export default function ATSMythsPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">What an ATS actually does</h2>
+            <h2 className="research-h2">What the parser actually does</h2>
             <p className="research-body mb-6">
-                Most ATS systems function as workflow engines. They store candidate data, support filtering, and enable recruiters to search.
-                Automation can sit on top of this workflow, but it is not uniform across employers or tools.
+                Current Greenhouse and Lever documentation describes parsers that extract readable information from a resume and populate candidate fields such as contact information and work history.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
-                <Citation id="source-4">4</Citation>
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 not-prose not-prose my-8">
+            <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
-                    title="Eligibility Filters"
+                    title="Stored-data filters"
                     desc={
                         <>
-                            Explicit eligibility rules like work authorization or required credentials can filter candidates before review.
-                            <Citation id="source-1">1</Citation>
-                            <Citation id="source-2">2</Citation>
+                            Recruiters can filter stored applications by fields such as status, source, education, and custom application data. That is separate from whether the resume text parsed correctly.
+                            <Citation id="source-4">4</Citation>
                         </>
                     }
                 />
@@ -133,29 +127,25 @@ export default function ATSMythsPage() {
                     title="Search & Discovery"
                     desc={
                         <>
-                            Recruiters use filters and keyword search to surface candidates from the database.
-                            <Citation id="source-1">1</Citation>
-                            <Citation id="source-2">2</Citation>
+                            Once information is stored, recruiters may search, filter, and review it according to the employer&apos;s workflow.
+                            <Citation id="source-4">4</Citation>
                         </>
                     }
                 />
             </div>
 
-            <h2 className="research-h2">Why the auto-reject myth persists</h2>
+            <h2 className="research-h2">What can actually break</h2>
             <p className="research-body">
-                ATS workflows can feel opaque, so candidates assume resumes are automatically rejected. The evidence we have shows ATS platforms
-                are primarily workflow systems with varying levels of automation. Human review still matters, but the rules and models used can
-                shape who gets seen first.
+                Greenhouse lists image-based resumes, graphics, word art, complex tables, headers, footers, text boxes, and columned layouts among formatting patterns that can produce unsuccessful or partial parsing. Lever notes that image files are not parseable and recommends checking whether the document text can be highlighted.
                 <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
-                <Citation id="source-3">3</Citation>
             </p>
 
-            <h2 className="research-h2">Definition: selection procedures</h2>
+            <h2 className="research-h2">Parsing is not the whole selection process</h2>
             <p className="research-body mb-6">
-                A selection procedure is any tool or process that influences who advances in hiring. Under EEOC guidance, software and algorithms can
-                fall under this definition, which raises obligations around job-relatedness and adverse impact.
-                <Citation id="source-1">1</Citation>
+                ATS products can also expose search and filter tools, and employer workflows differ by configuration. When software influences employment decisions, EEOC guidance says employers still need to consider job-relatedness and adverse impact.
+                <Citation id="source-4">4</Citation>
+                <Citation id="source-3">3</Citation>
             </p>
 
             <h2 className="research-h2">Practical takeaways</h2>

@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import { m as motion, AnimatePresence } from "motion/react";
-import { FileText, AlertCircle, CloudUpload } from "lucide-react";
+import { FileText, UploadSimple, WarningCircle } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -13,8 +13,8 @@ interface ResumeDropzoneProps {
     className?: string;
     /** 
      * Variant controls the visual style:
-     * - "hero": Premium glass effect, tall, centered (for landing page)
-     * - "compact": Dashed border, smaller (for workspace)
+     * - "hero": Compact landing-page upload prompt
+     * - "compact": Source-desk upload treatment for the workspace
      */
     variant?: "hero" | "compact";
     /** For compact variant: show file name when uploaded */
@@ -121,14 +121,14 @@ export function ResumeDropzone({
                                 exit={{ opacity: 0, y: 6 }}
                                 className="text-xs text-muted-foreground"
                             >
-                                Scanning for signals. Verdict in seconds.
+                                Building your first-read report.
                             </motion.div>
                         )}
                     </AnimatePresence>
 
                     {error && (
-                        <div className="flex items-center gap-2 text-xs text-destructive bg-destructive/10 px-3 py-2 rounded border border-destructive/20">
-                            <AlertCircle className="size-3" />
+                        <div className="flex items-center gap-2 border border-destructive/20 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                            <WarningCircle className="size-3" />
                             {error}
                         </div>
                     )}
@@ -140,77 +140,73 @@ export function ResumeDropzone({
     return (
         <div className={cn("w-full", className)}>
             {displayFileName ? (
-                <div className="animate-in fade-in slide-in-from-top-2 flex items-center justify-between rounded-xl border border-brand/15 bg-brand/5 p-4">
-                    <span className="flex items-center gap-3 text-sm font-medium text-brand">
-                        <div className="flex size-9 items-center justify-center rounded-lg border border-brand/20 bg-white/70">
-                            <FileText className="size-4" />
-                        </div>
-                        <span className="min-w-0 truncate text-foreground">{displayFileName}</span>
+                <div className="animate-in fade-in slide-in-from-top-2 flex min-h-40 items-center justify-between gap-4 border border-brand/25 bg-brand/5 p-5 sm:p-6">
+                    <span className="flex min-w-0 items-center gap-4 text-sm font-medium text-brand">
+                        <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand/10">
+                            <FileText className="size-5" weight="duotone" />
+                        </span>
+                        <span className="min-w-0">
+                            <span className="block truncate text-base font-medium text-foreground">{displayFileName}</span>
+                            <span className="mt-1 block text-xs font-normal text-muted-foreground">Ready for a first read</span>
+                        </span>
                     </span>
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="h-10 rounded-lg px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    className="min-h-11 shrink-0 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                         onClick={handleRemoveFile}
                     >
                         Remove
                     </Button>
                 </div>
             ) : (
-                <div className="gap-y-5">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                        <div className="gap-y-1">
-                            <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
-                                Upload resume
-                            </div>
-                            <div className="text-sm text-muted-foreground">PDF or DOCX</div>
-                        </div>
-                        <Button
-                            variant="brand"
-                            size="sm"
-                            onClick={open}
-                            disabled={isProcessing}
-                            className="min-h-11 min-w-[6.5rem] rounded-lg px-4"
-                        >
-                            Select file
-                        </Button>
-                    </div>
+                <div>
                     <div
                         {...getRootProps()}
                         className={cn(
-                            "relative flex min-h-[11.5rem] cursor-pointer flex-col items-center justify-center gap-4 rounded-xl border border-dashed px-5 py-8 text-center transition-all duration-300",
+                            "group relative flex min-h-60 cursor-pointer flex-col items-center justify-center border border-dashed px-5 py-8 text-center transition-all duration-200 sm:min-h-72",
                             isDragActive
-                                ? "border-brand/45 bg-brand/5"
-                                : "border-border/45 hover:border-brand/35 hover:bg-brand/5",
+                                ? "border-brand/55 bg-brand/5"
+                                : "border-border/55 bg-paper-muted/45 hover:border-brand/45 hover:bg-brand/5",
                             isDragReject && "border-destructive/50 bg-destructive/5",
                             isProcessing && "opacity-50 cursor-not-allowed"
                         )}
                     >
                         <input {...getInputProps()} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
 
-                        <div className="flex size-14 items-center justify-center rounded-xl border border-border/70 bg-background text-muted-foreground transition-all duration-300">
-                            <CloudUpload className="size-6" strokeWidth={1.5} />
+                        <span className="flex size-14 items-center justify-center rounded-full bg-brand/10 text-brand transition-transform duration-200 group-hover:-translate-y-0.5">
+                            <UploadSimple className="size-7" weight="duotone" />
+                        </span>
+
+                        <div className="mt-5">
+                            <p className="font-display text-2xl riyp-weight-520 leading-tight text-foreground">
+                                Drop your resume here
+                            </p>
+                            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                                PDF or DOCX · 10 MB max
+                            </p>
                         </div>
 
-                        <div className="gap-y-1.5">
-                            <div className="text-base font-medium text-foreground">
-                                Drop your resume here
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                                No login required
-                            </div>
-                        </div>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                open();
+                            }}
+                            disabled={isProcessing}
+                            className="mt-5 min-h-11 border-brand/30 bg-paper px-5 text-foreground hover:border-brand/55 hover:bg-paper"
+                        >
+                            Choose a file
+                        </Button>
 
                         {error && (
-                            <div className="flex items-center gap-2 rounded-lg border border-destructive/20 bg-destructive/10 px-3 py-2 text-xs text-destructive">
-                                <AlertCircle className="size-3" />
+                            <div className="flex items-center gap-2 border border-destructive/20 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                                <WarningCircle className="size-3" />
                                 {error}
                             </div>
                         )}
-                    </div>
-                    <div className="max-w-[36rem] text-sm leading-7 text-muted-foreground">
-                        We use your upload to generate feedback. Anonymous runs are not stored automatically.
-                        Signed-in runs keep report history you can delete from Reports or Settings.
                     </div>
                 </div>
             )}

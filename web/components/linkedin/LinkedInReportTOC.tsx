@@ -33,9 +33,12 @@ export function LinkedInReportTOC({ activeId }: LinkedInReportTOCProps) {
     }
 
     return (
-        <nav className="gap-y-4">
-            <div className="gap-y-1">
-                <div className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/50">
+        <nav
+            aria-label="LinkedIn report sections"
+            className="overflow-x-auto rounded-2xl border border-border/60 bg-card/90 p-2 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm md:p-3"
+        >
+            <div className="flex min-w-max gap-1 md:block md:min-w-0 md:space-y-1">
+                <div className="hidden px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/50 md:block">
                     Navigation
                 </div>
                 {items.map((item) => {
@@ -45,7 +48,7 @@ export function LinkedInReportTOC({ activeId }: LinkedInReportTOCProps) {
                             key={item.id}
                             onClick={() => handleScroll(item.id)}
                             className={cn(
-                                "flex items-center gap-3 w-full px-3 py-2 text-sm font-medium rounded transition-all",
+                                "flex min-h-10 shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all md:min-h-11 md:w-full md:gap-3",
                                 isActive
                                     ? "bg-brand/10 text-brand"
                                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -56,7 +59,7 @@ export function LinkedInReportTOC({ activeId }: LinkedInReportTOCProps) {
                             {isActive && (
                                 <motion.div
                                     layoutId="active-linkedin-toc-pill"
-                                    className="ml-auto size-1.5 rounded-full bg-brand"
+                                    className="ml-1 size-1.5 rounded-full bg-brand md:ml-auto"
                                 />
                             )}
                         </button>

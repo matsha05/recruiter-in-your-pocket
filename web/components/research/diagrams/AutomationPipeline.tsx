@@ -1,167 +1,24 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { EvidenceHeader, ProcessRail } from "@/components/shared/diagrams/EvidenceVisuals";
 
-/**
- * Automation Pipeline Diagram (v2.0)
- * 
- * Premium upgrade following diagram-visual-spec.md
- * Type E: Process/Pipeline with connected stages and risk indicators
- * 
- * Shows where automation can introduce bias in hiring
- */
 export function AutomationPipeline() {
-    const steps = [
-        {
-            stage: "Sourcing",
-            automation: "Ad Delivery",
-            risk: "Old ads only shown to certain demographics",
-            riskLevel: 0.4,
-        },
-        {
-            stage: "Screening",
-            automation: "Resume Parsing",
-            risk: "Non-standard formats parsed incorrectly",
-            riskLevel: 0.6,
-        },
-        {
-            stage: "Selection",
-            automation: "Ranking",
-            risk: "Bias against gaps or 'non-target' schools",
-            riskLevel: 0.8,
-        },
-        {
-            stage: "Interview",
-            automation: "AI Scoring",
-            risk: "Standardized questions with biased grading",
-            riskLevel: 1,
-            highlight: true,
-        }
-    ];
-
     return (
-        <DiagramFigure className="w-full max-w-[680px] mx-auto my-12 group select-none">
-            <DiagramFrame
-                className="riyp-diagram-shell"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                {/* Header */}
-                <div className="riyp-diagram-head">
-                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
-                        Automation risk cascade
-                    </span>
-                </div>
-
-                <div className="p-6 overflow-x-auto">
-                    {/* Pipeline */}
-                    <div className="relative min-w-[600px]">
-                        {/* Connection Line */}
-                        <motion.div
-                            className="absolute top-12 left-8 right-8 h-0.5 bg-gradient-to-r from-muted/40 via-amber-400/40 to-rose-400/60 z-0"
-                            initial={{ scaleX: 0, transformOrigin: "left" }}
-                            whileInView={{ scaleX: 1 }}
-                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                            viewport={{ once: true }}
-                        />
-
-                        <div className="relative z-10 flex items-stretch gap-3">
-                            {steps.map((s, i) => (
-                                <motion.div
-                                    key={s.stage}
-                                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.12 }}
-                                    viewport={{ once: true }}
-                                    className="flex-1"
-                                >
-                                    <div className={`h-full flex flex-col rounded-lg p-4 border transition-all ${s.highlight
-                                        ? "border-rose-400/50 bg-gradient-to-br from-rose-50 to-rose-100/50 dark:from-rose-950/30 dark:to-rose-900/20"
-                                        : "border-border/40 bg-white dark:bg-card"
-                                        } shadow-sm`}>
-                                        {/* Stage number */}
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <div className={`size-6 rounded-full flex items-center justify-center text-xs font-mono font-bold ${s.highlight
-                                                ? "bg-rose-400/20 text-rose-600 dark:text-rose-400"
-                                                : "bg-muted/30 text-muted-foreground"
-                                                }`}>
-                                                {i + 1}
-                                            </div>
-                                            <span className={`font-mono text-xs uppercase tracking-wide ${s.highlight ? "text-rose-600/80 dark:text-rose-400/80" : "text-muted-foreground/60"
-                                                }`}>
-                                                {s.stage}
-                                            </span>
-                                        </div>
-
-                                        {/* Automation */}
-                                        <p className={`text-sm font-semibold mb-2 ${s.highlight ? "text-rose-700 dark:text-rose-300" : "text-foreground"
-                                            }`}>
-                                            {s.automation}
-                                        </p>
-
-                                        {/* Risk */}
-                                        <div className="mt-auto">
-                                            <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
-                                                {s.risk}
-                                            </p>
-                                            {/* Risk bar */}
-                                            <div className="h-1 bg-muted/30 dark:bg-muted/20 rounded-full overflow-hidden">
-                                                <motion.div
-                                                    initial={{ width: 0 }}
-                                                    whileInView={{ width: `${s.riskLevel * 100}%` }}
-                                                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.5 + i * 0.12 }}
-                                                    viewport={{ once: true }}
-                                                    className={`h-full rounded-full ${s.riskLevel >= 0.8
-                                                        ? "bg-gradient-to-r from-rose-400 to-rose-500"
-                                                        : s.riskLevel >= 0.5
-                                                            ? "bg-gradient-to-r from-amber-400 to-amber-500"
-                                                            : "bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/50"
-                                                        }`}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Key Takeaway */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-                        viewport={{ once: true }}
-                        className="mt-6 bg-muted/30 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
-                    >
-                        <div className="flex items-start gap-3">
-                            <div className="size-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0 mt-0.5">
-                                <svg className="size-4 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div className="gap-y-1">
-                                <p className="text-sm font-medium text-foreground">
-                                    Bias compounds downstream
-                                </p>
-                                <p className="text-xs text-muted-foreground leading-relaxed">
-                                    Each automation handoff can amplify bias from the previous stage. The human interview is where the most damage occurs.
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
+        <DiagramFigure className="max-w-[50rem]" label="Hiring pipeline showing where automation can introduce or amplify bias">
+            <DiagramFrame>
+                <EvidenceHeader index="01" label="Before a person reviews the resume" title="Bias can enter earlier than the human review." note="Data, rules, and automated filters can all affect who appears in the final group." />
+                <ProcessRail
+                    steps={[
+                        { label: "Sourcing", title: "Who sees the role", detail: "Ad delivery can shape the pool before applications exist.", tone: "caution" },
+                        { label: "Parsing", title: "What gets understood", detail: "Non-standard structures can be read unevenly.", tone: "caution" },
+                        { label: "Ranking", title: "Who rises", detail: "Gaps, schools, titles, and other proxies can inherit old patterns.", tone: "risk" },
+                        { label: "Assessment", title: "Who advances", detail: "Automated scoring can make a narrow definition of fit look objective.", tone: "risk" },
+                    ]}
+                    footer={<><strong className="text-[hsl(var(--annotation))]">Earlier filters matter.</strong> A human reviewer may only see the candidates who made it through every previous step.</>}
+                />
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  Risk Cascade</span>
-                <span className="block text-sm text-foreground/80 font-medium">
-                    Automation handoffs where bias can compound
-                </span>
-            </figcaption>
+            <DiagramCaption kicker="Fig. 1 / Before the human review" title="Automation does not remove judgment. It can shape the pool before a person sees it." />
         </DiagramFigure>
     );
 }

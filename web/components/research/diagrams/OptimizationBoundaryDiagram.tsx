@@ -1,138 +1,20 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { ComparisonField, EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 
-/**
- * Optimization Boundary Diagram (v2.0)
- * 
- * Unique diagram for bias-limits-optimization page
- * Shows what you CAN control vs what you CANNOT
- * Different from MetaTimeline (which is for discrimination page)
- */
 export function OptimizationBoundaryDiagram() {
-    const controllable = [
-        { item: "Writing clarity", icon: "✓" },
-        { item: "Evidence & proof", icon: "✓" },
-        { item: "Structure & formatting", icon: "✓" },
-        { item: "Keyword alignment", icon: "✓" },
-    ];
-
-    const uncontrollable = [
-        { item: "Algorithmic bias", icon: "×" },
-        { item: "Market conditions", icon: "×" },
-        { item: "Recruiter preferences", icon: "×" },
-        { item: "Company culture fit", icon: "×" },
-    ];
-
     return (
-        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <DiagramFrame
-                className="riyp-diagram-shell"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                {/* Header */}
-                <div className="riyp-diagram-head">
-                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
-                        Bounded optimization
-                    </span>
-                </div>
-
-                <div className="p-6 grid md:grid-cols-2 gap-4">
-                    {/* Controllable */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-4"
-                    >
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="size-6 rounded-full bg-brand/20 flex items-center justify-center">
-                                <svg className="size-3.5 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <polyline points="20 6 9 17 4 12" />
-                                </svg>
-                            </div>
-                            <span className="text-xs font-mono uppercase tracking-wider text-brand">
-                                You control
-                            </span>
-                        </div>
-                        <ul className="gap-y-2">
-                            {controllable.map((item, i) => (
-                                <motion.li
-                                    key={item.item}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
-                                    viewport={{ once: true }}
-                                    className="flex items-center gap-2 text-sm text-foreground"
-                                >
-                                    <span className="text-brand text-xs">✓</span>
-                                    {item.item}
-                                </motion.li>
-                            ))}
-                        </ul>
-                    </motion.div>
-
-                    {/* Uncontrollable */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                        viewport={{ once: true }}
-                        className="rounded-lg border border-border/30 bg-muted/10 p-4"
-                    >
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="size-6 rounded-full bg-muted-foreground/10 flex items-center justify-center">
-                                <svg className="size-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M18 6L6 18M6 6l12 12" />
-                                </svg>
-                            </div>
-                            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground/70">
-                                Outside control
-                            </span>
-                        </div>
-                        <ul className="gap-y-2">
-                            {uncontrollable.map((item, i) => (
-                                <motion.li
-                                    key={item.item}
-                                    initial={{ opacity: 0, x: 10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.3, delay: 0.4 + i * 0.05 }}
-                                    viewport={{ once: true }}
-                                    className="flex items-center gap-2 text-sm text-muted-foreground"
-                                >
-                                    <span className="text-muted-foreground/50 text-xs">×</span>
-                                    {item.item}
-                                </motion.li>
-                            ))}
-                        </ul>
-                    </motion.div>
-                </div>
-
-                {/* Key takeaway */}
-                <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-                    viewport={{ once: true }}
-                    className="mx-6 mb-6 bg-muted/20 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
-                >
-                    <p className="text-xs text-muted-foreground leading-relaxed text-center">
-                        <span className="font-medium text-foreground">Focus:</span> Maximize signal within your control. A resume can&apos;t fix bias, but it can prevent avoidable noise.
-                    </p>
-                </motion.div>
+        <DiagramFigure className="max-w-[46rem]" label="Boundary between resume factors a candidate can improve and hiring factors outside the candidate's control">
+            <DiagramFrame>
+                <EvidenceHeader index="01" label="What a resume can change" title="Make the work easier to understand. Do not confuse that with controlling the outcome." note="A clear resume can answer avoidable questions. It cannot erase market conditions, bias, or another person's preferences." />
+                <ComparisonField
+                    left={{ eyebrow: "Inside your control", title: "What you can make clearer", tone: "teal", items: ["Writing clarity", "Specific evidence", "Structure and formatting", "Language relevant to the role"] }}
+                    right={{ eyebrow: "Outside your control", title: "Conditions you cannot fix", tone: "quiet", items: ["Structural or algorithmic bias", "Market timing", "Reviewer preference", "The final candidate pool"] }}
+                    verdict={<><strong className="text-slate-950">Keep the promise honest:</strong> make your experience easy to understand without pretending the resume controls the whole outcome.</>}
+                />
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  The Boundary</span>
-                <span className="block text-sm text-foreground/80 font-medium">
-                    What resumes can improve vs what they cannot
-                </span>
-            </figcaption>
+            <DiagramCaption kicker="Fig. 1 / What a resume can change" title="A better resume can answer avoidable questions. It cannot make the hiring decision." />
         </DiagramFigure>
     );
 }

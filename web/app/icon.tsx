@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 // Route segment config
 export const runtime = "nodejs";
@@ -24,21 +26,23 @@ export function generateImageMetadata() {
     ];
 }
 
-// Generate icons for all sizes
-export default function Icon({ id }: { id: string }) {
+// Generate the Lifted Line mark for all sizes.
+export default async function Icon({ id }: { id: Promise<string> }) {
     const sizes: Record<string, { size: number; iconSize: number; radius: number }> = {
         small: { size: 32, iconSize: 20, radius: 6 },
         medium: { size: 192, iconSize: 128, radius: 24 },
         large: { size: 512, iconSize: 340, radius: 64 },
     };
 
-    const { size, iconSize, radius } = sizes[id] || sizes.small;
+    const resolvedId = await id;
+    const { size, iconSize, radius } = sizes[resolvedId] || sizes.small;
+    const newsreader = await readFile(join(process.cwd(), "public", "assets", "fonts", "newsreader-display-medium.ttf"));
 
     return new ImageResponse(
         (
             <div
                 style={{
-                    background: "#0D9488", // Brand teal
+                    background: "#4F46E5",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -47,53 +51,27 @@ export default function Icon({ id }: { id: string }) {
                     borderRadius: `${radius}px`,
                 }}
             >
-                <svg
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                <div
+                    style={{
+                        width: iconSize,
+                        height: iconSize,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#FBFAF7",
+                        fontFamily: "Newsreader",
+                    }}
                 >
-                    {/* PocketMark - Outer container */}
-                    <rect
-                        x="4"
-                        y="4"
-                        width="16"
-                        height="16"
-                        rx="4"
-                        stroke="white"
-                        strokeWidth="1.5"
-                        fill="none"
-                    />
-
-                    {/* Pocket fold line */}
-                    <path
-                        d="M4 10 L20 10"
-                        stroke="white"
-                        strokeWidth="1.5"
-                    />
-
-                    {/* Abstract P - Stem */}
-                    <path
-                        d="M9 13.5 L9 17"
-                        stroke="white"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                    />
-                    {/* Abstract P - Bowl */}
-                    <path
-                        d="M9 13.5 H12 C13.6569 13.5 15 14.8431 15 16.5 C15 16.7761 14.7761 17 14.5 17 H9"
-                        stroke="white"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        fill="none"
-                    />
-                </svg>
+                    <span style={{ display: "flex", fontSize: iconSize * 0.68, lineHeight: 0.74 }}>R</span>
+                    <span style={{ display: "flex", width: iconSize * 0.56, height: Math.max(2, iconSize * 0.055), marginTop: iconSize * 0.08, background: "#F6CF46" }} />
+                </div>
             </div>
         ),
         {
             width: size,
             height: size,
+            fonts: [{ name: "Newsreader", data: newsreader, style: "normal", weight: 500 }],
         }
     );
 }

@@ -4,6 +4,8 @@ import { useState, useEffect, useMemo } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { ScoreProgressChart } from "@/components/workspace/ScoreProgressChart";
 import { TrendingUp, BarChart3, Target, AlertTriangle, Star, ArrowLeft } from "lucide-react";
+import { EmptyReportIcon } from "@/components/icons";
+import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import Link from "next/link";
 
 interface Analytics {
@@ -77,7 +79,7 @@ export default function DashboardPage() {
                     <BarChart3 className="size-12 mx-auto text-muted-foreground" />
                     <h1 className="text-2xl font-display text-foreground">Sign in to view your progress</h1>
                     <p className="text-muted-foreground max-w-md">
-                        Track your progress, see score trends, and identify patterns across your resume reports.
+                        Compare resume versions and revisit the written findings from each report.
                     </p>
                     <Link
                         href="/workspace"
@@ -117,7 +119,9 @@ export default function DashboardPage() {
         return (
             <div className="min-h-screen flex items-center justify-center bg-body p-6">
                 <div className="text-center gap-y-4">
-                    <BarChart3 className="size-12 mx-auto text-muted-foreground" />
+                    <div className="mx-auto flex size-20 items-center justify-center rounded-xl border border-brand/15 bg-brand/[0.045] text-brand">
+                        <EmptyReportIcon className="size-12" />
+                    </div>
                     <h1 className="text-2xl font-display text-foreground">No reports yet</h1>
                     <p className="text-muted-foreground max-w-md">
                         Get your first resume report to start tracking your progress.
@@ -126,7 +130,7 @@ export default function DashboardPage() {
                         href="/workspace"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded bg-brand text-white hover:bg-brand/90 transition-colors"
                     >
-                        Get Your Report
+                        Review my resume
                     </Link>
                 </div>
             </div>
@@ -134,20 +138,19 @@ export default function DashboardPage() {
     }
 
     return (
-        <div className="min-h-screen bg-body">
-            {/* Header */}
-            <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-                <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-                    <Link href="/workspace" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                        <ArrowLeft className="size-4" />
-                        <span className="text-sm">Back to Workspace</span>
-                    </Link>
-                    <h1 className="font-display text-lg font-semibold text-foreground">Your Progress</h1>
-                    <div className="w-20" /> {/* Spacer */}
-                </div>
-            </header>
-
-            <main className="max-w-5xl mx-auto px-6 py-8 gap-y-8">
+        <div className="min-h-screen bg-mineral">
+            <main className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-10">
+                <AppPageIntro
+                    eyebrow="Progress"
+                    title="What changed between versions"
+                    description="Compare your report history, see whether the written findings are getting clearer, and revisit the patterns that keep showing up."
+                    actions={
+                        <Link href="/workspace" className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40">
+                            <ArrowLeft className="size-4" />
+                            Back to workspace
+                        </Link>
+                    }
+                />
                 {/* Variant Filter Tabs */}
                 {analytics.variants.length > 0 && (
                     <div className="flex flex-wrap gap-2">
@@ -177,36 +180,36 @@ export default function DashboardPage() {
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {/* Total Reviews */}
-                    <div className="bg-card border border-border rounded p-6">
+                    <div className="border-y border-border bg-card px-1 py-5 md:px-5">
                         <div className="flex items-center gap-3 mb-2">
                             <BarChart3 className="size-5 text-brand" />
                             <span className="text-sm text-muted-foreground">
                                 {filterVariant ? `${filterVariant} Reviews` : 'Total Reviews'}
                             </span>
                         </div>
-                        <p className="text-3xl font-display font-bold text-foreground">
+                        <p className="font-display text-3xl riyp-weight-560 tabular-nums text-foreground">
                             {filterVariant ? filteredStats.total : analytics.totalReviews}
                         </p>
                     </div>
 
                     {/* Average Score */}
-                    <div className="bg-card border border-border rounded p-6">
+                    <div className="border-y border-border bg-card px-1 py-5 md:px-5">
                         <div className="flex items-center gap-3 mb-2">
                             <Target className="size-5 text-brand" />
                             <span className="text-sm text-muted-foreground">Average Score</span>
                         </div>
-                        <p className="text-3xl font-display font-bold text-foreground">
+                        <p className="font-display text-3xl riyp-weight-560 tabular-nums text-foreground">
                             {filterVariant ? filteredStats.avg : analytics.averageScore}
                         </p>
                     </div>
 
                     {/* Improvement */}
-                    <div className="bg-card border border-border rounded p-6">
+                    <div className="border-y border-border bg-card px-1 py-5 md:px-5">
                         <div className="flex items-center gap-3 mb-2">
                             <TrendingUp className="size-5 text-brand" />
                             <span className="text-sm text-muted-foreground">Score Change</span>
                         </div>
-                        <p className={`text-3xl font-display font-bold ${(filterVariant ? filteredStats.improvement : analytics.scoreImprovement) > 0 ? 'text-green-500' :
+                        <p className={`font-display text-3xl riyp-weight-560 tabular-nums ${(filterVariant ? filteredStats.improvement : analytics.scoreImprovement) > 0 ? 'text-success' :
                                 (filterVariant ? filteredStats.improvement : analytics.scoreImprovement) < 0 ? 'text-destructive' :
                                     'text-foreground'
                             }`}>
@@ -217,7 +220,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Score Progress Chart */}
-                <div className="bg-card border border-border rounded p-6">
+                <div className="border-y border-border bg-card p-6">
                     <ScoreProgressChart scores={filteredScoreHistory} />
                 </div>
 

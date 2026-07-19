@@ -33,8 +33,8 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                 <ReportSectionHeader
                     icon={<TransformArrowIcon className="size-4 text-brand" />}
                     number="04"
-                    title="The Red Pen"
-                    subtitle="Line-by-line rewrites a recruiter would notice."
+                    title="Suggested Rewrites"
+                    subtitle="Line edits based on the facts already in your resume."
                 />
                 <div className="rounded border border-success/20 bg-success/5 p-6 flex items-start gap-4">
                     <div className="size-10 rounded bg-success/10 flex items-center justify-center shrink-0">
@@ -42,10 +42,10 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                     </div>
                     <div>
                         <h3 className="font-display font-medium text-foreground text-lg mb-1">
-                            Your bullets already land
+                            No rewrite is needed here
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                            Nothing here felt vague or soft. The verbs are clear and the outcomes are doing their job.
+                            The existing lines are specific enough to understand without another rewrite.
                         </p>
                     </div>
                 </div>
@@ -71,8 +71,8 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
             <ReportSectionHeader
                 icon={<TransformArrowIcon className="size-4 text-brand" />}
                 number="04"
-                title="The Red Pen"
-                subtitle="Line-by-line rewrites a recruiter would notice."
+                title="Suggested Rewrites"
+                subtitle="Keep the original beside every suggestion and verify each fact."
             />
 
             <div className="gap-y-4">
@@ -110,12 +110,12 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                 <div className="rounded border border-premium/20 bg-premium/5 p-4 gap-y-3">
                                     <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
                                         <Lock className="size-3.5 text-premium" />
-                                        Unlock the rest of Red Pen
+                                        See the remaining rewrites
                                     </div>
                                     <UnlockValueList
                                         items={[
                                             "The rest of the rewrites",
-                                            "Why each change lands harder",
+                                            "Why each change may help",
                                             "Export the full report"
                                         ]}
                                         dense
@@ -127,14 +127,14 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                                             onClick={handleUnlock}
                                             className="w-full"
                                         >
-                                            Unlock Full Red Pen
+                                            See all suggested rewrites
                                         </Button>
                                     )}
                                 </div>
 
                                 <div className="text-center">
                                     <p className="text-xs text-muted-foreground">
-                                        {remainingRewrites.length} more line{remainingRewrites.length > 1 ? 's' : ''} we would tighten.
+                                        {remainingRewrites.length} more suggested rewrite{remainingRewrites.length > 1 ? 's' : ''}.
                                     </p>
                                 </div>
                             </div>

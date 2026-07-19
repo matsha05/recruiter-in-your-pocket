@@ -4,10 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "@/components/shared/UserNav";
-import ThemeToggle from "@/components/shared/ThemeToggle";
 import { PocketMark, Wordmark } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "./MobileNav";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 const APP_NAV = [
     { label: "Studio", href: "/workspace" },
@@ -16,7 +16,7 @@ const APP_NAV = [
     { label: "Extension", href: "/extension" },
     { label: "Research", href: "/research" },
     { label: "Resources", href: "/resources" },
-];
+].filter((item) => isLaunchFlagEnabled("extensionSync") || (item.href !== "/extension" && item.href !== "/jobs"));
 
 export function AppHeader() {
     const pathname = usePathname();
@@ -32,7 +32,7 @@ export function AppHeader() {
     return (
         <header className="app-shell-header">
             <div className="app-shell-inner">
-                <Link href="/" className="group flex shrink-0 items-center gap-2.5">
+                <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 w-11 shrink-0 items-center justify-center gap-2.5 rounded-md sm:w-auto sm:justify-start">
                     <PocketMark className="size-6 text-brand transition-transform group-hover:scale-105" />
                     <Wordmark className="hidden h-5 text-foreground sm:block md:h-[22px]" />
                 </Link>
@@ -55,7 +55,6 @@ export function AppHeader() {
                     <div className="hidden md:block app-shell-divider" />
 
                     <div className="flex items-center gap-1.5">
-                        <ThemeToggle />
                         {user ? (
                             <div className="hidden md:block">
                                 <UserNav user={user} onSignOut={signOut} />

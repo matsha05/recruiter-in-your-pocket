@@ -120,14 +120,14 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                     </button>
                 </div>
 
-                {/* Score Hero */}
+                {/* Review score summary */}
                 <div className="px-6 py-8 border-b border-border bg-muted/20 shrink-0">
                     <div className="flex items-center justify-center gap-10">
                         {/* Before */}
                         <div className="text-center">
                             <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2 font-medium">Before</p>
                             <span className={cn(
-                                "font-display text-6xl font-bold tabular-nums tracking-tight",
+                                "font-display text-6xl riyp-weight-560 tabular-nums tracking-tight",
                                 getScoreColor(older.score)
                             )}>
                                 {older.score}
@@ -157,7 +157,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                         <div className="text-center">
                             <p className="text-xs uppercase tracking-wide text-muted-foreground mb-2 font-medium">After</p>
                             <span className={cn(
-                                "font-display text-6xl font-bold tabular-nums tracking-tight",
+                                "font-display text-6xl riyp-weight-560 tabular-nums tracking-tight",
                                 getScoreColor(newer.score)
                             )}>
                                 {newer.score}
@@ -173,21 +173,21 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                         !isImprovement && !isDecline && "text-muted-foreground"
                     )}>
                         {isImprovement
-                            ? "Your resume is getting stronger."
+                            ? "The newer version is clearer in this review."
                             : isDecline
-                                ? "Review your recent edits."
-                                : "No change in overall score."}
+                                ? "Some recent edits may have made the resume less clear."
+                                : "The overall review score did not change."}
                     </p>
                 </div>
 
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto">
 
-                    {/* Signal Breakdown */}
+                    {/* Review breakdown */}
                     {(older.report.subscores || newer.report.subscores) && (
                         <div className="p-5 border-b border-border">
                             <h3 className="text-xs uppercase tracking-wide text-muted-foreground mb-4 font-semibold">
-                                Signal Breakdown
+                                What changed
                             </h3>
                             <div className="gap-y-3">
                                 <SubscoreRow

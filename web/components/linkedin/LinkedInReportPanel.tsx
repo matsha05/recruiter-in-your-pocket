@@ -1,13 +1,19 @@
 'use client';
 
 import Link from "next/link";
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, CheckCircle2, AlertCircle, Plus, ArrowRight, Copy, Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { getScoreColor, getDialStrokeColor } from '@/lib/score-utils';
-import { PrincipalRecruiterIcon, SignalRadarIcon, TransformArrowIcon, HiddenGemIcon, InsightSparkleIcon } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import type { LinkedInReport } from '@/types/linkedin';
+import React from "react";
+import { AlertCircle, ArrowRight, Check, Copy, Plus } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+    HiddenGemIcon,
+    InsightSparkleIcon,
+    PrincipalRecruiterIcon,
+    RoleTargetIcon,
+    SignalRadarIcon,
+    TransformArrowIcon,
+} from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import type { LinkedInReport } from "@/types/linkedin";
 
 interface LinkedInReportPanelProps {
     report: LinkedInReport;
@@ -28,549 +34,375 @@ export function LinkedInReportPanel({
     onNewReport,
     freeUsesRemaining = 1,
     hasPaidAccess = false,
-    onUpgrade
+    onUpgrade,
 }: LinkedInReportPanelProps) {
-    const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['first-impression', 'headline', 'top-fixes']));
-    const [animatedScore, setAnimatedScore] = useState(0);
-
-    // Animate score on mount
-    useEffect(() => {
-        const duration = 1500;
-        const start = 0;
-        const end = report.score || 0;
-        const startTime = Date.now();
-
-        const animate = () => {
-            const now = Date.now();
-            const progress = Math.min((now - startTime) / duration, 1);
-            const ease = 1 - Math.pow(1 - progress, 3);
-            setAnimatedScore(Math.round(start + (end - start) * ease));
-            if (progress < 1) requestAnimationFrame(animate);
-        };
-        requestAnimationFrame(animate);
-    }, [report.score]);
-
-    const toggleSection = (section: string) => {
-        setExpandedSections(prev => {
-            const next = new Set(prev);
-            if (next.has(section)) {
-                next.delete(section);
-            } else {
-                next.add(section);
-            }
-            return next;
-        });
-    };
-
     const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
+    const score = Math.round(report.score || 0);
+    const subscores = [
+        { key: "visibility", label: "Visibility", score: report.subscores?.visibility },
+        { key: "first-impression", label: "First read", score: report.subscores?.first_impression },
+        { key: "content", label: "Content", score: report.subscores?.content_quality },
+        { key: "completeness", label: "Completeness", score: report.subscores?.completeness },
+    ];
 
     return (
-        <div className="gap-y-12">
-
-            {/* Hero Card - Matches Resume FirstImpressionSection */}
-            <section className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                {/* Section Header with horizontal line decoration */}
-                <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-3">
-                        <div className="w-6 h-px bg-border" />
-                        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                            <PrincipalRecruiterIcon className="size-4 text-brand" />
-                            LinkedIn First Impression
-                        </h2>
+        <div className="space-y-12">
+            <section className="border-y riyp-border-paper-line" aria-labelledby="linkedin-report-verdict">
+                <div className="flex flex-col gap-4 border-b riyp-border-paper-line bg-paper-muted px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex min-w-0 items-center gap-3">
+                        <span className="flex size-8 shrink-0 items-center justify-center border border-ink font-display text-sm text-ink">in</span>
+                        <div className="min-w-0">
+                            <p className="riyp-type-10px font-semibold uppercase riyp-track-017 text-ink">LinkedIn first read</p>
+                            <p className="mt-1 truncate text-xs text-muted-foreground">
+                                {profileName || "Profile report"}{profileHeadline ? ` · ${profileHeadline}` : ""}
+                            </p>
+                        </div>
                     </div>
-                    <Link href="/research/linkedin-visibility"
-                        className="text-xs text-muted-foreground/60 hover:text-brand transition-colors font-medium"
+                    <Link
+                        href="/research/linkedin-visibility"
+                        className="focus-ring inline-flex min-h-11 items-center border-b border-brand/50 text-xs font-semibold text-muted-foreground transition-colors hover:text-brand"
                         target="_blank"
                         rel="noopener"
                     >
-                        How we score →
+                        Method and limits
                     </Link>
                 </div>
 
-                {/* Main Card - THE Signature Moment */}
-                <div className="bg-card rounded border border-border/60 overflow-hidden">
-                    <div className="grid md:grid-cols-5">
-
-                        {/* LEFT: THE VERDICT (3 cols) */}
-                        <div className="md:col-span-3 p-6 md:p-8 border-r border-border/40 gap-y-6">
-                            <div className="gap-y-3">
-                                <h3 className="text-headline text-foreground">
-                                    &quot;Here is what I noticed…&quot;
-                                </h3>
-                            </div>
-
-                            <p className="text-base text-muted-foreground leading-relaxed">
-                                {report.score_comment_long || report.score_comment_short || report.first_impression?.profile_card_verdict}
+                <div className="grid md:grid-cols-[minmax(0,1fr)_12rem]">
+                    <div className="px-5 py-8 sm:px-7 md:border-r md:riyp-border-paper-line md:px-9 md:py-10">
+                        <p className="riyp-type-10px font-semibold uppercase riyp-track-017 text-brand">What comes through first</p>
+                        <h2 id="linkedin-report-verdict" className="mt-5 max-w-[18ch] font-display riyp-display-report riyp-weight-520 riyp-leading-098 riyp-track-n04 text-ink riyp-stretch-88">
+                            {report.first_impression?.profile_card_verdict || report.score_comment_short || "Your positioning needs a clearer lead."}
+                        </h2>
+                        {(report.score_comment_long || report.score_comment_short) && (
+                            <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">
+                                {report.score_comment_long || report.score_comment_short}
                             </p>
+                        )}
+                    </div>
 
-                            {/* Subscores Grid */}
-                            <div className="grid grid-cols-2 gap-3 pt-4">
-                                {[
-                                    { key: 'visibility', label: 'Visibility', score: report.subscores?.visibility },
-                                    { key: 'first_impression', label: 'First Impression', score: report.subscores?.first_impression },
-                                    { key: 'content_quality', label: 'Content', score: report.subscores?.content_quality },
-                                    { key: 'completeness', label: 'Completeness', score: report.subscores?.completeness },
-                                ].map((item) => item.score !== undefined && (
-                                    <div
-                                        key={item.key}
-                                        className="bg-secondary/20 border border-border/40 p-3 rounded flex flex-col items-center justify-center text-center gap-0.5"
-                                    >
-                                        <span className={cn(
-                                            "font-display font-bold tabular-nums text-2xl tracking-tight",
-                                            getScoreColor(item.score)
-                                        )}>
-                                            {item.score}
-                                        </span>
-                                        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                                            {item.label}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
+                    <div className="flex items-center justify-between gap-5 border-t riyp-border-paper-line bg-paper-muted px-5 py-6 md:block md:border-t-0 md:px-6 md:py-10 md:text-center">
+                        <div>
+                            <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Review score</p>
+                            <p className="mt-3 font-display text-4xl riyp-weight-560 leading-none tabular-nums riyp-track-n04 text-ink">{score}<span className="ml-1 text-lg text-muted-foreground">/100</span></p>
                         </div>
-
-                        {/* RIGHT: THE SCORE DIAL (2 cols) */}
-                        <div className="md:col-span-2 p-6 md:p-8 bg-secondary/20 flex flex-col items-center justify-center gap-y-6">
-                            {/* Score Dial */}
-                            <div className="text-center gap-y-4">
-                                <div className="relative inline-flex items-center justify-center">
-                                    <svg className="size-36 transform -rotate-90">
-                                        <circle
-                                            cx="72" cy="72" r="60"
-                                            stroke="currentColor"
-                                            strokeWidth="3"
-                                            fill="transparent"
-                                            className="text-black/5 dark:text-white/5"
-                                        />
-                                        <circle
-                                            cx="72" cy="72" r="60"
-                                            stroke={getDialStrokeColor(report.score || 0)}
-                                            strokeWidth="3"
-                                            fill="transparent"
-                                            strokeDasharray={377}
-                                            strokeDashoffset={377 - (377 * animatedScore) / 100}
-                                            strokeLinecap="round"
-                                            className="transition-all duration-1000 ease-out"
-                                        />
-                                    </svg>
-                                    <div className="absolute inset-0 flex items-center justify-center flex-col">
-                                        <span className="text-5xl font-display font-bold tracking-tighter tabular-nums">{animatedScore}</span>
-                                        <span className="text-label text-muted-foreground">Score</span>
-                                    </div>
-                                </div>
-
-                                {/* Score Band Badge */}
-                                <div className="transition-all duration-300 ease-out">
-                                    <span className={cn(
-                                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-sm border text-xs font-bold uppercase tracking-wider",
-                                        (report.score || 0) >= 85 ? "bg-success/10 border-success/20 text-success" :
-                                            (report.score || 0) >= 70 ? "bg-premium/10 border-premium/20 text-premium" :
-                                                "bg-destructive/10 border-destructive/20 text-destructive"
-                                    )}>
-                                        <CheckCircle2 className="size-3" /> {report.score_label || 'Needs Work'}
-                                    </span>
-                                </div>
-                            </div>
+                        <div className="md:mt-5">
+                            <p className="text-sm font-semibold text-brand">{report.score_label || "Needs work"}</p>
+                            <p className="mt-2 max-w-[11rem] text-xs leading-5 text-muted-foreground">Organizes this review. It is not a hiring prediction.</p>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent animate-in fade-in duration-700" />
-
-            {/* 01. Profile First Impression */}
-            <section id="linkedin-first-impression" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
-                <ReportSectionHeader
-                    icon={<PrincipalRecruiterIcon className="size-4 text-brand" />}
-                    number="01"
-                    title="Profile First Impression"
-                    subtitle="What I noticed in 3 seconds on your profile card."
-                />
-
-                <div className="mt-6 gap-y-6">
-                    <p className="font-display text-xl text-foreground leading-relaxed">
-                        &quot;{report.first_impression?.profile_card_verdict}&quot;
-                    </p>
-
-                    <div className="grid grid-cols-3 gap-4 p-4 bg-secondary/20 rounded border border-border/40">
-                        <div className="text-center">
-                            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-2">Photo</span>
-                            <StatusBadge status={report.first_impression?.photo_status || 'unknown'} />
-                        </div>
-                        <div className="text-center">
-                            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-2">Banner</span>
-                            <StatusBadge status={report.first_impression?.banner_status || 'unknown'} />
-                        </div>
-                        <div className="text-center">
-                            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-2">Headline</span>
-                            <StatusBadge status={report.first_impression?.headline_verdict || 'generic'} />
-                        </div>
-                    </div>
-
-                    {report.first_impression?.visibility_estimate && (
-                        <p className="text-sm text-muted-foreground">
-                            <span className="font-medium text-foreground">Visibility:</span> {report.first_impression.visibility_estimate}
-                        </p>
-                    )}
-                </div>
-            </section>
-
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-            {/* 02. Headline Analysis */}
-            <section id="linkedin-headline" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
-                <ReportSectionHeader
-                    icon={<TransformArrowIcon className="size-4 text-brand" />}
-                    number="02"
-                    title="Headline Analysis"
-                    subtitle="The 120 characters that decide if recruiters click."
-                />
-
-                <div className="mt-6 gap-y-6">
-                    {/* Current Headline */}
-                    <div className="p-4 bg-muted/30 rounded border border-border/40">
-                        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-2">Current</span>
-                        <p className="text-foreground font-medium">{report.headline_analysis?.current}</p>
-                    </div>
-
-                    <p className="text-sm text-foreground">{report.headline_analysis?.verdict}</p>
-
-                    {/* Issues */}
-                    {report.headline_analysis?.issues?.length > 0 && (
-                        <ul className="gap-y-2">
-                            {report.headline_analysis.issues.map((issue, i) => (
-                                <li key={issue} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                    <AlertCircle className="size-4 text-warning shrink-0 mt-0.5" />
-                                    {issue}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-
-                    {/* Suggested Rewrite */}
-                    {report.headline_analysis?.rewrite && (
-                        <CopyableSuggestionCard
-                            label="Suggested"
-                            content={report.headline_analysis.rewrite}
-                            note={report.headline_analysis.why_better}
-                        />
-                    )}
-                </div>
-            </section>
-
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-            {/* 03. About Section */}
-            <section id="linkedin-about" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
-                <ReportSectionHeader
-                    icon={<InsightSparkleIcon className="size-4 text-brand" />}
-                    number="03"
-                    title="About Section"
-                    subtitle="Your opening hook, the 2 seconds that matter."
-                />
-
-                <div className="mt-6 gap-y-6">
-                    <div className="flex items-center gap-3">
-                        <span className="text-sm text-muted-foreground">Hook Strength:</span>
-                        <HookStrengthBadge strength={report.about_analysis?.hook_strength || 'missing'} />
-                    </div>
-
-                    {report.about_analysis?.hook_verdict && (
-                        <p className="text-sm text-foreground">{report.about_analysis.hook_verdict}</p>
-                    )}
-
-                    {report.about_analysis?.full_verdict && (
-                        <p className="text-sm text-muted-foreground">{report.about_analysis.full_verdict}</p>
-                    )}
-
-                    {report.about_analysis?.rewrite_suggestion && (
-                        <CopyableSuggestionCard
-                            label="Suggested Opening"
-                            content={report.about_analysis.rewrite_suggestion}
-                        />
-                    )}
-                </div>
-            </section>
-
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-            {/* 04. Search Visibility */}
-            <section id="linkedin-visibility" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
-                <ReportSectionHeader
-                    icon={<SignalRadarIcon className="size-4 text-brand" />}
-                    number="04"
-                    title="Search Visibility"
-                    subtitle="Keywords that help recruiters find you."
-                />
-
-                <div className="mt-6 gap-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {/* Keywords Present */}
-                        <div className="gap-y-3">
-                            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">Present</h4>
-                            <div className="flex flex-wrap gap-2">
-                                {report.search_visibility?.keywords_present?.map((kw, i) => (
-                                    <span key={kw} className="text-xs px-2.5 py-1 bg-success/10 text-success rounded border border-success/20">
-                                        {kw}
-                                    </span>
-                                ))}
-                                {(!report.search_visibility?.keywords_present || report.search_visibility.keywords_present.length === 0) && (
-                                    <span className="text-xs text-muted-foreground">None detected</span>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Keywords Missing */}
-                        <div className="gap-y-3">
-                            <h4 className="text-xs font-bold uppercase tracking-wider text-warning">Missing</h4>
-                            <div className="flex flex-wrap gap-2">
-                                {report.search_visibility?.keywords_missing?.map((kw, i) => (
-                                    <span key={kw} className="text-xs px-2.5 py-1 bg-warning/10 text-warning rounded border border-warning/20">
-                                        {kw}
-                                    </span>
-                                ))}
-                                {(!report.search_visibility?.keywords_missing || report.search_visibility.keywords_missing.length === 0) && (
-                                    <span className="text-xs text-muted-foreground">None identified</span>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-
-                    {report.search_visibility?.recommendation && (
-                        <p className="text-sm text-muted-foreground">{report.search_visibility.recommendation}</p>
-                    )}
-                </div>
-            </section>
-
-            {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-            {/* 05. Quick Wins */}
-            <section id="linkedin-quick-wins" className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-500">
-                <ReportSectionHeader
-                    icon={<HiddenGemIcon className="size-4 text-brand" />}
-                    number="05"
-                    title="Quick Wins"
-                    subtitle="High-impact changes you can make today."
-                />
-
-                <div className="mt-6 gap-y-4">
-                    {report.top_fixes?.map((fix, i) => (
-                        <div key={fix.fix} className="p-4 bg-card border border-border/60 rounded">
-                            <p className="text-sm font-medium text-foreground mb-2">{fix.fix}</p>
-                            <p className="text-xs text-muted-foreground">{fix.why}</p>
+                <div className="grid grid-cols-2 border-t riyp-border-paper-line md:grid-cols-4 md:divide-x md:divide-[hsl(var(--paper-line))]">
+                    {subscores.map((item) => (
+                        <div key={item.key} className="border-b riyp-border-paper-line px-4 py-4 odd:border-r md:border-b-0 md:border-r-0">
+                            <p className="font-display text-2xl riyp-weight-560 tabular-nums text-ink">{item.score ?? "—"}</p>
+                            <p className="mt-1 riyp-type-10px font-semibold uppercase riyp-track-014 text-muted-foreground">{item.label}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
-            {/* Experience Rewrites (if present) */}
-            {report.experience_rewrites?.length > 0 && (
-                <>
-                    <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+            <section id="linkedin-first-impression">
+                <ReportSectionHeader
+                    icon={<PrincipalRecruiterIcon className="size-4 text-brand" />}
+                    number="01"
+                    title="Likely takeaway"
+                    subtitle="What the uploaded profile communicates before someone reads deeper."
+                />
 
-                    <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-600">
-                        <ReportSectionHeader
-                            icon={<TransformArrowIcon className="size-4 text-brand" />}
-                            number="06"
-                            title="Experience Red Pen"
-                            subtitle="Copy-paste upgrades for your experience bullets."
-                        />
+                <div className="mt-7 space-y-7">
+                    {report.first_impression?.profile_card_verdict && (
+                        <p className="max-w-[34ch] font-display riyp-display-report-quote riyp-weight-520 riyp-leading-112 riyp-track-n025 text-ink riyp-stretch-96">
+                            “{report.first_impression.profile_card_verdict}”
+                        </p>
+                    )}
 
-                        <div className="mt-6 gap-y-6">
-                            {report.experience_rewrites.map((rewrite, i) => (
-                                <div key={`${rewrite.company}-${rewrite.original}`} className="gap-y-3 pb-6 border-b border-border/40 last:border-0 last:pb-0">
-                                    <span className="text-xs font-medium text-muted-foreground">{rewrite.company}</span>
-                                    <div className="p-3 bg-destructive/5 rounded border-l-2 border-destructive/40">
-                                        <p className="text-sm text-muted-foreground line-through">{rewrite.original}</p>
-                                    </div>
-                                    <div className="p-3 bg-success/5 rounded border-l-2 border-success/40">
-                                        <p className="text-sm text-foreground">{rewrite.better}</p>
-                                    </div>
-                                    {rewrite.enhancement_note && (
-                                        <p className="text-xs text-muted-foreground italic">{rewrite.enhancement_note}</p>
-                                    )}
-                                </div>
-                            ))}
+                    <div className="grid border-y riyp-border-paper-line md:grid-cols-3 md:divide-x md:divide-[hsl(var(--paper-line))]">
+                        <ProfileSignal label="Photo" status={report.first_impression?.photo_status || "unknown"} note={report.first_impression?.photo_note} />
+                        <ProfileSignal label="Banner" status={report.first_impression?.banner_status || "unknown"} note={report.first_impression?.banner_note} />
+                        <ProfileSignal label="Headline" status={report.first_impression?.headline_verdict || "generic"} />
+                    </div>
+
+                    {report.first_impression?.visibility_estimate && (
+                        <div className="border-l-2 border-brand pl-5">
+                            <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Visibility note</p>
+                            <p className="mt-2 text-sm leading-6 text-muted-foreground">{report.first_impression.visibility_estimate}</p>
                         </div>
-                    </section>
-                </>
+                    )}
+                </div>
+            </section>
+
+            <section id="linkedin-headline" className="border-t riyp-border-paper-line pt-10">
+                <ReportSectionHeader
+                    icon={<TransformArrowIcon className="size-4 text-brand" />}
+                    number="02"
+                    title="Headline"
+                    subtitle="The line that frames the rest of the profile."
+                />
+
+                <div className="mt-7 space-y-7">
+                    <div className="border-y riyp-border-paper-line bg-paper-muted px-5 py-5">
+                        <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Current</p>
+                        <p className="mt-3 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{report.headline_analysis?.current || "No headline was available in the upload."}</p>
+                    </div>
+
+                    {report.headline_analysis?.verdict && <p className="max-w-2xl text-sm leading-6 text-foreground">{report.headline_analysis.verdict}</p>}
+
+                    {report.headline_analysis?.issues?.length > 0 && (
+                        <ul className="divide-y divide-[hsl(var(--paper-line))] border-y riyp-border-paper-line">
+                            {report.headline_analysis.issues.map((issue, index) => (
+                                <li key={`${issue}-${index}`} className="grid grid-cols-[2rem_1fr] gap-3 py-3 text-sm leading-6 text-muted-foreground">
+                                    <span className="font-mono riyp-type-10px font-semibold riyp-text-annotation">{String(index + 1).padStart(2, "0")}</span>
+                                    <span>{issue}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+
+                    {report.headline_analysis?.rewrite && (
+                        <CopyableSuggestionCard label="Stronger when accurate" content={report.headline_analysis.rewrite} note={report.headline_analysis.why_better} />
+                    )}
+                </div>
+            </section>
+
+            <section id="linkedin-about" className="border-t riyp-border-paper-line pt-10">
+                <ReportSectionHeader
+                    icon={<InsightSparkleIcon className="size-4 text-brand" />}
+                    number="03"
+                    title="About section"
+                    subtitle="Whether the opening earns a deeper read and the rest supports it."
+                />
+
+                <div className="mt-7 space-y-6">
+                    <div className="flex flex-wrap items-center gap-3 border-y riyp-border-paper-line py-4">
+                        <span className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Opening strength</span>
+                        <HookStrengthBadge strength={report.about_analysis?.hook_strength || "missing"} />
+                    </div>
+                    {report.about_analysis?.hook_verdict && <p className="max-w-2xl text-sm leading-6 text-foreground">{report.about_analysis.hook_verdict}</p>}
+                    {report.about_analysis?.full_verdict && <p className="max-w-2xl text-sm leading-6 text-muted-foreground">{report.about_analysis.full_verdict}</p>}
+                    {report.about_analysis?.rewrite_suggestion && <CopyableSuggestionCard label="Suggested opening" content={report.about_analysis.rewrite_suggestion} />}
+                </div>
+            </section>
+
+            <section id="linkedin-visibility" className="border-t riyp-border-paper-line pt-10">
+                <ReportSectionHeader
+                    icon={<SignalRadarIcon className="size-4 text-brand" />}
+                    number="04"
+                    title="Search visibility"
+                    subtitle="Language that supports the roles you want to be found for."
+                />
+
+                <div className="mt-7 space-y-7">
+                    <div className="grid border-y riyp-border-paper-line md:grid-cols-2 md:divide-x md:divide-[hsl(var(--paper-line))]">
+                        <KeywordLedger label="Already present" keywords={report.search_visibility?.keywords_present || []} tone="present" />
+                        <KeywordLedger label="Worth considering" keywords={report.search_visibility?.keywords_missing || []} tone="missing" />
+                    </div>
+                    {report.search_visibility?.recommendation && (
+                        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">{report.search_visibility.recommendation}</p>
+                    )}
+                    <p className="text-xs leading-5 text-muted-foreground">Add keywords only when they truthfully describe your work. Search behavior varies by recruiter, query, and platform changes.</p>
+                </div>
+            </section>
+
+            <section id="linkedin-positioning" className="border-t riyp-border-paper-line pt-10">
+                <ReportSectionHeader
+                    icon={<RoleTargetIcon className="size-4 text-brand" />}
+                    number="05"
+                    title="Positioning"
+                    subtitle="The roles this profile currently supports—and the story it needs to reinforce."
+                />
+
+                <div className="mt-7 grid gap-7 md:grid-cols-[0.75fr_1.25fr]">
+                    <div>
+                        <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Best-supported roles</p>
+                        <ul className="mt-4 divide-y divide-[hsl(var(--paper-line))] border-y riyp-border-paper-line">
+                            {(report.role_fit?.best_fit_roles || []).map((role, index) => (
+                                <li key={`${role}-${index}`} className="py-3 font-display text-xl riyp-weight-520 text-ink">{role}</li>
+                            ))}
+                            {(!report.role_fit?.best_fit_roles || report.role_fit.best_fit_roles.length === 0) && <li className="py-3 text-sm text-muted-foreground">No clear role cluster was identified.</li>}
+                        </ul>
+                    </div>
+                    <div className="space-y-6">
+                        {report.role_fit?.current_positioning && (
+                            <div><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">Current read</p><p className="mt-3 text-sm leading-6 text-foreground">{report.role_fit.current_positioning}</p></div>
+                        )}
+                        {report.role_fit?.positioning_suggestion && (
+                            <div className="border-l-2 border-brand pl-5"><p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Sharpen the through-line</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{report.role_fit.positioning_suggestion}</p></div>
+                        )}
+                    </div>
+                </div>
+            </section>
+
+            <section id="linkedin-quick-wins" className="border-t riyp-border-paper-line pt-10">
+                <ReportSectionHeader
+                    icon={<HiddenGemIcon className="size-4 text-brand" />}
+                    number="06"
+                    title="Priority edits"
+                    subtitle="The changes most likely to improve clarity first."
+                />
+
+                <div className="mt-7 border-y riyp-border-paper-line">
+                    {report.top_fixes?.map((fix, index) => (
+                        <div key={`${fix.fix}-${index}`} className="grid gap-3 border-b riyp-border-paper-line py-5 last:border-b-0 sm:grid-cols-[2.25rem_minmax(0,0.8fr)_minmax(0,1.2fr)_6rem] sm:items-start">
+                            <span className="font-mono riyp-type-10px font-semibold riyp-text-annotation">{String(index + 1).padStart(2, "0")}</span>
+                            <p className="text-sm font-semibold text-ink">{fix.fix}</p>
+                            <p className="text-sm leading-6 text-muted-foreground">{fix.why}</p>
+                            <p className="riyp-type-10px font-semibold uppercase riyp-track-012 text-brand">{fix.effort}</p>
+                        </div>
+                    ))}
+                    {(!report.top_fixes || report.top_fixes.length === 0) && <p className="py-5 text-sm text-muted-foreground">No priority edits were returned for this profile.</p>}
+                </div>
+            </section>
+
+            {report.experience_rewrites?.length > 0 && (
+                <section className="border-t riyp-border-paper-line pt-10">
+                    <ReportSectionHeader
+                        icon={<TransformArrowIcon className="size-4 text-brand" />}
+                        number="07"
+                        title="Suggested rewrites"
+                        subtitle="Clearer versions of lines that leave useful details buried."
+                    />
+
+                    <div className="mt-7 space-y-9">
+                        {report.experience_rewrites.map((rewrite, index) => (
+                            <div key={`${rewrite.company}-${rewrite.original}-${index}`} className="border-b riyp-border-paper-line pb-8 last:border-b-0 last:pb-0">
+                                <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">{rewrite.company}</p>
+                                <p className="mt-4 text-sm leading-6 text-muted-foreground line-through decoration-[hsl(var(--annotation))] decoration-2">{rewrite.original}</p>
+                                <div className="mt-5 border-l-2 border-brand pl-5">
+                                    <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">Stronger when verified</p>
+                                    <p className="mt-2 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{rewrite.better}</p>
+                                </div>
+                                {rewrite.enhancement_note && <p className="mt-4 text-xs leading-5 text-muted-foreground">{rewrite.enhancement_note}</p>}
+                            </div>
+                        ))}
+                        <p className="text-xs leading-5 text-muted-foreground">Use suggested language only when every detail is factually accurate.</p>
+                    </div>
+                </section>
             )}
 
-            {/* Report Footer - "What's next?" */}
-            <div className="pt-8 gap-y-6">
-                <div className="h-px bg-gradient-to-r from-brand/20 via-brand/40 to-brand/20" />
-
-                <div className="text-center gap-y-6">
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                        What&apos;s next?
-                    </h3>
-
-                    {isSample ? (
-                        <div className="gap-y-3">
-                            <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                                This is what a recruiter sees. Ready to see yours?
-                            </p>
-                            {onNewReport && (
-                                <Button
-                                    variant="brand"
-                                    size="lg"
-                                    onClick={onNewReport}
-                                >
-                                    Get Your Free Report
-                                    <ArrowRight className="size-4 ml-2" />
-                                </Button>
-                            )}
-                        </div>
-                    ) : isExhausted && onUpgrade ? (
-                        <div className="gap-y-3">
-                            <p className="text-sm text-muted-foreground">
-                                That was your free report. Want to run another version?
-                            </p>
-                            <Button
-                                variant="premium"
-                                onClick={onUpgrade}
-                            >
-                                <InsightSparkleIcon className="size-4 mr-2" />
-                                Get More Reports
-                            </Button>
-                        </div>
-                    ) : onNewReport ? (
-                        <div className="gap-y-3">
-                            <p className="text-sm text-muted-foreground">
+            <footer className="border-t border-brand pt-8">
+                <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+                    <div>
+                        <p className="riyp-type-10px font-semibold uppercase riyp-track-016 text-brand">Next move</p>
+                        <h3 className="mt-3 max-w-[22ch] font-display text-3xl leading-tight text-ink">
+                            {isSample ? "See what your own profile communicates." : "Make one meaningful edit, then compare the next version."}
+                        </h3>
+                        {!isSample && !isExhausted && (
+                            <p className="mt-3 text-sm text-muted-foreground">
                                 {hasPaidAccess
-                                    ? "Paid access is active. Iterate profile versions until the score stabilizes."
+                                    ? "Paid access is active."
                                     : freeUsesRemaining > 0
-                                    ? `You have ${freeUsesRemaining} free report${freeUsesRemaining > 1 ? 's' : ''} remaining.`
-                                    : 'Ready to analyze another version?'}
+                                      ? `${freeUsesRemaining} free report${freeUsesRemaining > 1 ? "s" : ""} remaining.`
+                                      : "Run another report when you are ready."}
                             </p>
-                            <Button
-                                variant="brand"
-                                onClick={onNewReport}
-                            >
-                                <Plus className="size-4 mr-2" />
-                                Run Another
-                            </Button>
-                        </div>
+                        )}
+                    </div>
+
+                    {isSample && onNewReport ? (
+                        <Button variant="brand" size="lg" onClick={onNewReport}>Review my profile <ArrowRight className="ml-2 size-4" /></Button>
+                    ) : isExhausted && onUpgrade ? (
+                        <Button variant="premium" onClick={onUpgrade}>See the Job Search Pass <ArrowRight className="ml-2 size-4" /></Button>
+                    ) : onNewReport ? (
+                        <Button variant="brand" onClick={onNewReport}><Plus className="mr-2 size-4" />Review another profile</Button>
                     ) : null}
                 </div>
+            </footer>
+        </div>
+    );
+}
+
+function ReportSectionHeader({ icon, number, title, subtitle }: { icon: React.ReactNode; number: string; title: string; subtitle: string }) {
+    return (
+        <div className="grid gap-3 sm:grid-cols-[3rem_1fr]">
+            <span className="pt-1 font-mono riyp-type-10px font-semibold riyp-text-annotation">{number}</span>
+            <div>
+                <p className="flex items-center gap-2 riyp-type-10px font-semibold uppercase riyp-track-016 text-brand">{icon}{title}</p>
+                <h2 className="mt-3 max-w-[29ch] font-display riyp-display-report-section riyp-weight-560 riyp-leading-104 riyp-track-n03 text-ink riyp-stretch-94">{subtitle}</h2>
             </div>
         </div>
     );
 }
 
-// --- Helper Components ---
-
-function ReportSectionHeader({
-    icon,
-    number,
-    title,
-    subtitle
-}: {
-    icon: React.ReactNode;
-    number: string;
-    title: string;
-    subtitle: string;
-}) {
+function ProfileSignal({ label, status, note }: { label: string; status: string; note?: string }) {
     return (
-        <div className="gap-y-2">
-            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-                {icon}
-                {number}. {title}
-            </h2>
-            <p className="font-display font-medium text-xl text-foreground tracking-tight leading-snug">{subtitle}</p>
+        <div className="border-b riyp-border-paper-line px-4 py-5 last:border-b-0 md:border-b-0 md:px-5">
+            <p className="riyp-type-10px font-semibold uppercase riyp-track-015 text-muted-foreground">{label}</p>
+            <div className="mt-3"><StatusBadge status={status} /></div>
+            {note && <p className="mt-3 text-xs leading-5 text-muted-foreground">{note}</p>}
         </div>
     );
 }
 
 function StatusBadge({ status }: { status: string }) {
-    const configs: Record<string, { bg: string; text: string; border: string; label: string }> = {
-        professional: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Professional" },
-        adequate: { bg: "bg-brand/10", text: "text-brand", border: "border-brand/20", label: "Adequate" },
-        needs_work: { bg: "bg-warning/10", text: "text-warning", border: "border-warning/20", label: "Needs Work" },
-        missing: { bg: "bg-destructive/10", text: "text-destructive", border: "border-destructive/20", label: "Missing" },
-        branded: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Branded" },
-        generic: { bg: "bg-warning/10", text: "text-warning", border: "border-warning/20", label: "Generic" },
-        differentiated: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Differentiated" },
-        keyword_rich: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Keyword Rich" },
-        unknown: { bg: "bg-muted", text: "text-muted-foreground", border: "border-border/40", label: "Unknown" },
+    const configs: Record<string, { color: string; label: string }> = {
+        professional: { color: "text-success", label: "Professional" },
+        adequate: { color: "text-brand", label: "Adequate" },
+        needs_work: { color: "text-warning", label: "Needs work" },
+        missing: { color: "text-destructive", label: "Missing" },
+        branded: { color: "text-success", label: "Branded" },
+        generic: { color: "text-warning", label: "Generic" },
+        differentiated: { color: "text-success", label: "Differentiated" },
+        keyword_rich: { color: "text-success", label: "Keyword rich" },
+        unknown: { color: "text-muted-foreground", label: "Not available in PDF" },
     };
-
     const config = configs[status] || configs.unknown;
-
-    return (
-        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text, config.border)}>
-            {config.label}
-        </span>
-    );
+    return <span className={cn("text-sm font-semibold", config.color)}>{config.label}</span>;
 }
 
 function HookStrengthBadge({ strength }: { strength: string }) {
-    const configs: Record<string, { bg: string; text: string; border: string; label: string }> = {
-        strong: { bg: "bg-success/10", text: "text-success", border: "border-success/20", label: "Strong Hook" },
-        adequate: { bg: "bg-brand/10", text: "text-brand", border: "border-brand/20", label: "Adequate" },
-        weak: { bg: "bg-warning/10", text: "text-warning", border: "border-warning/20", label: "Weak" },
-        missing: { bg: "bg-destructive/10", text: "text-destructive", border: "border-destructive/20", label: "Missing" },
+    const configs: Record<string, { color: string; label: string }> = {
+        strong: { color: "text-success", label: "Strong opening" },
+        adequate: { color: "text-brand", label: "Clear, not distinctive" },
+        weak: { color: "text-warning", label: "Needs a sharper lead" },
+        missing: { color: "text-destructive", label: "Missing" },
     };
-
     const config = configs[strength] || configs.missing;
+    return <span className={cn("text-sm font-semibold", config.color)}>{config.label}</span>;
+}
 
+function KeywordLedger({ label, keywords, tone }: { label: string; keywords: string[]; tone: "present" | "missing" }) {
     return (
-        <span className={cn("text-xs px-2.5 py-1 rounded border", config.bg, config.text, config.border)}>
-            {config.label}
-        </span>
+        <div className="px-5 py-5">
+            <p className={cn("riyp-type-10px font-semibold uppercase riyp-track-015", tone === "present" ? "text-brand" : "riyp-text-annotation")}>{label}</p>
+            {keywords.length > 0 ? (
+                <ul className="mt-4 divide-y divide-[hsl(var(--paper-line))]">
+                    {keywords.map((keyword, index) => <li key={`${keyword}-${index}`} className="py-2 text-sm text-ink">{keyword}</li>)}
+                </ul>
+            ) : <p className="mt-4 text-sm text-muted-foreground">None identified.</p>}
+        </div>
     );
 }
 
-
-
 function CopyableSuggestionCard({ label, content, note }: { label: string; content: string; note?: string }) {
-    const [copied, setCopied] = React.useState(false);
+    const [copyState, setCopyState] = React.useState<"idle" | "copied" | "error">("idle");
 
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(content);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
-            console.error('Failed to copy:', err);
+            setCopyState("copied");
+            window.setTimeout(() => setCopyState("idle"), 2000);
+        } catch {
+            setCopyState("error");
         }
     };
 
     return (
-        <div className="group p-4 bg-success/5 rounded border border-success/20">
-            <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-success">{label}</span>
-                <button type="button"
+        <div className="border-y border-brand/40 bg-paper-muted px-5 py-5">
+            <div className="flex items-center justify-between gap-4">
+                <span className="riyp-type-10px font-semibold uppercase riyp-track-015 text-brand">{label}</span>
+                <button
+                    type="button"
                     onClick={handleCopy}
-                    className={cn(
-                        "flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider transition-all",
-                        copied
-                            ? "bg-success/10 text-success"
-                            : "bg-muted/50 text-muted-foreground hover:bg-success/10 hover:text-success opacity-0 group-hover:opacity-100"
-                    )}
+                    className="focus-ring inline-flex min-h-11 items-center gap-2 px-2 text-xs font-semibold text-muted-foreground transition-colors hover:text-brand"
+                    aria-live="polite"
                 >
-                    {copied ? (
-                        <>
-                            <Check className="size-3" />
-                            Copied
-                        </>
-                    ) : (
-                        <>
-                            <Copy className="size-3" />
-                            Copy
-                        </>
-                    )}
+                    {copyState === "copied" ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
+                    {copyState === "copied" ? "Copied" : copyState === "error" ? "Copy failed" : "Copy"}
                 </button>
             </div>
-            <p className="text-foreground font-medium">{content}</p>
-            {note && (
-                <p className="text-xs text-muted-foreground mt-2">{note}</p>
-            )}
+            <p className="mt-3 font-display text-2xl riyp-weight-520 leading-snug text-ink riyp-stretch-98">{content}</p>
+            {note && <p className="mt-3 text-xs leading-5 text-muted-foreground">{note}</p>}
         </div>
     );
 }

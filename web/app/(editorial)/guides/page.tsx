@@ -2,10 +2,6 @@ import Link from "next/link";
 import { ArrowRight, Clock3, ShieldCheck, Sparkles } from "lucide-react";
 import Footer from "@/components/landing/Footer";
 
-/** Paper shadow matching all Editor's Desk cards */
-const paperShadow =
-    "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
-
 const playbooks = [
     {
         title: "Offer Negotiation Playbook",
@@ -37,8 +33,8 @@ const researchLinks = [
         href: "/research/referral-advantage",
     },
     {
-        title: "Salary Anchors",
-        href: "/research/salary-anchors",
+        title: "Salary History and Anchoring",
+        href: "/research/salary-history-bans",
     },
     {
         title: "Structured Interviews Beat Vibes",
@@ -49,25 +45,17 @@ const researchLinks = [
 export default function GuidesPage() {
     return (
         <>
-            <main className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
+            <div className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
 
                 {/* ── Hero ── */}
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
-                    <div className="mx-auto max-w-[720px]">
+                    <div className="mx-auto max-w-[72rem]">
                         <div className="max-w-[46rem]">
-                            <div className="editorial-kicker inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-400">
+                            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase riyp-track-010 text-teal-800">
                                 <Sparkles className="size-3.5 text-brand" />
                                 Practical career advice
                             </div>
-                            <h1
-                                className="mt-5 font-display text-slate-900"
-                                style={{
-                                    fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
-                                    lineHeight: 1.0,
-                                    letterSpacing: "-0.035em",
-                                    fontWeight: 400,
-                                }}
-                            >
+                            <h1 className="mt-5 max-w-[18ch] font-display text-[clamp(3rem,6vw,5.5rem)] riyp-weight-520 leading-[0.96] tracking-[-0.04em] text-slate-950 riyp-stretch-88">
                                 Scripts, strategy, and tools for big career conversations
                             </h1>
                             <p className="editorial-copy-lg mt-5 max-w-[41rem] text-slate-500">
@@ -79,21 +67,13 @@ export default function GuidesPage() {
 
                 {/* ── Guide cards ── */}
                 <section className="px-6 pb-10 md:px-8 md:pb-14">
-                    <div className="mx-auto max-w-[720px]">
+                    <div className="mx-auto max-w-[72rem]">
                         <div className="mb-6 flex items-center justify-between">
                             <div>
-                                <p className="editorial-kicker text-slate-400">
+                                <p className="text-xs font-semibold uppercase riyp-track-010 text-teal-800">
                                     Guides
                                 </p>
-                                <h2
-                                    className="mt-1 font-display text-slate-900"
-                                    style={{
-                                        fontSize: "clamp(1.4rem, 3vw, 1.75rem)",
-                                        lineHeight: 1.1,
-                                        letterSpacing: "-0.025em",
-                                        fontWeight: 400,
-                                    }}
-                                >
+                                <h2 className="mt-2 font-display text-[clamp(2rem,4vw,3.5rem)] riyp-weight-540 leading-[1] tracking-[-0.035em] text-slate-950 riyp-stretch-92">
                                     Choose your guide
                                 </h2>
                             </div>
@@ -111,32 +91,23 @@ export default function GuidesPage() {
                                 <Link
                                     key={guide.title}
                                     href={guide.href}
-                                    className="group rounded-2xl bg-white p-6 block transition-all duration-200 hover:-translate-y-0.5"
-                                    style={{ boxShadow: paperShadow }}
+                                    className="group block border-y border-slate-300 bg-white p-6 transition-colors hover:bg-mineral"
                                 >
                                     <div className="flex items-center justify-between gap-3">
-                                            <span className="editorial-kicker text-slate-400">
+                                            <span className="text-xs font-semibold uppercase riyp-track-010 text-slate-500">
                                                 {guide.subtitle}
                                             </span>
-                                        <span className="editorial-kicker inline-flex items-center gap-1.5 text-slate-400">
+                                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase riyp-track-010 text-slate-500">
                                             <Clock3 className="size-3.5" />
                                             {guide.readTime}
                                         </span>
                                     </div>
-                                    <h3
-                                        className="mt-4 font-display text-slate-900 transition-colors group-hover:text-slate-600"
-                                        style={{
-                                            fontSize: "clamp(1.4rem, 3vw, 1.75rem)",
-                                            lineHeight: 1.1,
-                                            letterSpacing: "-0.02em",
-                                            fontWeight: 400,
-                                        }}
-                                    >
+                                    <h3 className="mt-4 font-display text-[clamp(1.5rem,3vw,2rem)] riyp-weight-560 leading-[1.08] tracking-[-0.025em] text-slate-950 riyp-stretch-96 transition-colors group-hover:text-teal-900">
                                         {guide.title}
                                     </h3>
                                     <ul className="mt-4 gap-y-2.5">
                                         {guide.points.map((point) => (
-                                            <li key={point} className="flex items-center gap-2.5 text-sm leading-6 text-slate-500">
+                                            <li key={point} className="flex items-center gap-2.5 text-base leading-7 text-slate-600">
                                                 <span className="inline-block size-1.5 rounded-full bg-brand" />
                                                 {point}
                                             </li>
@@ -151,33 +122,22 @@ export default function GuidesPage() {
                         </div>
 
                         {/* Compensation Calculator card */}
-                        <div
-                            className="mt-5 rounded-2xl bg-white p-6"
-                            style={{ boxShadow: paperShadow }}
-                        >
+                        <div className="mt-5 border-y border-slate-300 bg-white p-6">
                             <div className="flex flex-wrap items-end justify-between gap-3">
                                 <div>
-                                    <p className="editorial-kicker text-slate-400">
+                                    <p className="text-xs font-semibold uppercase riyp-track-010 text-teal-800">
                                         Tool
                                     </p>
-                                    <h3
-                                        className="mt-1 font-display text-slate-900"
-                                        style={{
-                                            fontSize: "clamp(1.4rem, 3vw, 1.75rem)",
-                                            lineHeight: 1.1,
-                                            letterSpacing: "-0.02em",
-                                            fontWeight: 400,
-                                        }}
-                                    >
+                                    <h3 className="mt-2 font-display text-[clamp(1.5rem,3vw,2rem)] riyp-weight-560 leading-[1.08] tracking-[-0.025em] text-slate-950 riyp-stretch-96">
                                         Compensation Calculator
                                     </h3>
-                                    <p className="mt-2 max-w-[42rem] text-sm leading-6 text-slate-500">
+                                    <p className="mt-2 max-w-[42rem] text-base leading-7 text-slate-600">
                                         Compare multiple offers side by side, see what equity is really worth, and figure out what actually matters to you over 1 and 4 years.
                                     </p>
                                 </div>
                                 <Link
                                     href="/resources/tools/comp-calculator"
-                                    className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+                                    className="inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-deep"
                                 >
                                     Open calculator
                                     <ArrowRight className="size-4" />
@@ -192,23 +152,15 @@ export default function GuidesPage() {
                     className="px-6 py-14 md:px-8 md:py-20"
                     style={{ backgroundColor: "hsl(var(--surface-inverted))" }}
                 >
-                    <div className="mx-auto max-w-[720px] grid items-start gap-8 lg:grid-cols-[1.02fr_0.98fr]">
+                    <div className="mx-auto grid max-w-[72rem] items-start gap-10 lg:grid-cols-[1.02fr_0.98fr]">
                         <div>
-                            <p className="editorial-kicker editorial-kicker-inverted">
+                            <p className="text-xs font-semibold uppercase riyp-track-010 riyp-text-teal-bright">
                                 The philosophy
                             </p>
-                            <h2
-                                className="mt-3 font-display text-white"
-                                style={{
-                                    fontSize: "clamp(1.6rem, 4vw, 2.2rem)",
-                                    lineHeight: 1.1,
-                                    letterSpacing: "-0.03em",
-                                    fontWeight: 400,
-                                }}
-                            >
+                            <h2 className="mt-3 max-w-[14ch] font-display text-[clamp(2.5rem,5vw,4.5rem)] riyp-weight-540 leading-[0.98] tracking-[-0.04em] text-white riyp-stretch-90">
                                 Written from the recruiter&apos;s side of the table
                             </h2>
-                            <p className="mt-4 max-w-[42rem] text-sm leading-6 text-slate-300">
+                            <p className="mt-5 max-w-[42rem] text-base leading-7 text-slate-300">
                                 Most career advice is either vague or weirdly theatrical. These guides stay grounded in how hiring actually works, what companies respond to, and what is actually worth saying.
                             </p>
                         </div>
@@ -237,21 +189,13 @@ export default function GuidesPage() {
 
                 {/* ── Connected research ── */}
                 <section className="px-6 py-14 md:px-8 md:py-20">
-                    <div className="mx-auto max-w-[720px]">
+                    <div className="mx-auto max-w-[72rem]">
                         <div className="mb-6 flex items-center justify-between">
                             <div>
-                                <p className="editorial-kicker text-slate-400">
+                                <p className="text-xs font-semibold uppercase riyp-track-010 text-teal-800">
                                     Connected research
                                 </p>
-                                <h2
-                                    className="mt-1 font-display text-slate-900"
-                                    style={{
-                                        fontSize: "clamp(1.4rem, 3vw, 1.75rem)",
-                                        lineHeight: 1.1,
-                                        letterSpacing: "-0.025em",
-                                        fontWeight: 400,
-                                    }}
-                                >
+                                <h2 className="mt-2 font-display text-[clamp(2rem,4vw,3.5rem)] riyp-weight-540 leading-[1] tracking-[-0.035em] text-slate-950 riyp-stretch-92">
                                     Evidence behind the playbooks
                                 </h2>
                             </div>
@@ -269,21 +213,12 @@ export default function GuidesPage() {
                                 <Link
                                     key={item.title}
                                     href={item.href}
-                                    className="group rounded-2xl bg-white p-6 transition-all duration-200 hover:-translate-y-0.5"
-                                    style={{ boxShadow: paperShadow }}
+                                    className="group border-y border-slate-300 bg-white p-6 transition-colors hover:bg-mineral"
                                 >
                                     <div className="mb-3 inline-flex size-8 items-center justify-center rounded-lg" style={{ backgroundColor: "rgba(13,115,119,0.08)" }}>
                                         <ShieldCheck className="size-4 text-brand" />
                                     </div>
-                                    <h3
-                                        className="font-display text-slate-900 transition-colors group-hover:text-slate-600"
-                                        style={{
-                                            fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)",
-                                            lineHeight: 1.1,
-                                            letterSpacing: "-0.02em",
-                                            fontWeight: 400,
-                                        }}
-                                    >
+                                    <h3 className="font-display text-2xl riyp-weight-560 leading-[1.08] tracking-[-0.025em] text-slate-950 riyp-stretch-96 transition-colors group-hover:text-teal-900">
                                         {item.title}
                                     </h3>
                                     <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-500 group-hover:text-slate-700 transition-colors">
@@ -295,7 +230,7 @@ export default function GuidesPage() {
                         </div>
                     </div>
                 </section>
-            </main>
+            </div>
             <Footer />
         </>
     );

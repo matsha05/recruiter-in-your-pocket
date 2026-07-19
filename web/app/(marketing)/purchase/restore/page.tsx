@@ -3,14 +3,13 @@ import PurchaseRestoreClient from "@/components/purchase/PurchaseRestoreClient";
 
 function PurchaseRestoreFallback() {
   return (
-    <main className="min-h-[calc(100vh-64px)] bg-background px-6 py-16">
-      <div className="mx-auto max-w-3xl space-y-6">
-        <section className="rounded-xl border border-border/50 bg-card p-8">
-          <h1 className="font-display text-3xl tracking-tight text-foreground">Restore purchase access</h1>
-          <p className="mt-3 text-sm text-muted-foreground">Loading billing tools…</p>
-        </section>
+    <div className="min-h-[calc(100vh-64px)] bg-paper px-5 pb-20 pt-28 md:px-8 md:pt-36">
+      <div className="mx-auto max-w-3xl border-y border-line py-8 md:py-10">
+        <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Billing help</p>
+        <h1 className="mt-4 font-display text-5xl riyp-weight-520 tracking-[-0.04em] text-foreground">Restore purchase access</h1>
+        <p className="mt-4 text-base leading-7 text-muted-foreground">Loading billing tools…</p>
       </div>
-    </main>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ type ReportDetailPageProps = {
 };
 
 export const metadata: Metadata = {
-  title: "Report — Recruiter in Your Pocket",
+  title: "Report",
   description: "Detailed report view with evidence-backed recruiter feedback.",
 };
 

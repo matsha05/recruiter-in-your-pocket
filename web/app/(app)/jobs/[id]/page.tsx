@@ -9,7 +9,7 @@ interface JobDetailPageProps {
 export async function generateMetadata({ params }: JobDetailPageProps): Promise<Metadata> {
     const resolvedParams = await params;
     return {
-        title: `Job Details — Recruiter in Your Pocket`,
+        title: "Job Details",
         description: 'View match insights and take action on this job.',
     };
 }

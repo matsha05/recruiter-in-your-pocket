@@ -4,7 +4,7 @@ import { ImpactFormulaDiagram } from "@/components/research/diagrams/ImpactFormu
 
 export const metadata: Metadata = {
     title: "Quantifying Impact: The Laszlo Bock Formula | Hiring Research",
-    description: "Google's former SVP of People Operations on why numbers matter and how to find them when you think you don't have any.",
+    description: "A practical resume formula from Google's former people leader, plus what research does and does not validate about it.",
 };
 
 export default function QuantifyingImpactPage() {
@@ -12,17 +12,17 @@ export default function QuantifyingImpactPage() {
         <ResearchArticle
             header={{
                 tag: "Resume writing",
-                title: "Quantifying Impact: The Laszlo Bock Formula",
-                description: "A structured formula for turning responsibilities into quantified impact.",
-                lastUpdated: "December 2025",
+                title: "Show what changed, and your part in it.",
+                description: "A practical way to turn a responsibility into a specific, supportable result.",
+                lastUpdated: "July 2026",
                 readTime: "5 min read"
             }}
             keyFinding={{
-                subtitle: "The Formula",
+                subtitle: "Practitioner guidance",
                 stat: "X → Y → Z",
                 statDescription: (
                     <>
-                        Accomplished [X] as measured by [Y], by doing [Z]. Start with impact, prove it, then explain how.
+                        Accomplished [X] as measured by [Y], by doing [Z]. Start with the result, add scale, then explain how.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
@@ -35,22 +35,22 @@ export default function QuantifyingImpactPage() {
                 <>
                     <h2 className="research-h2">The formula visualized</h2>
                     <p className="research-body mb-6">
-                        Lead with the result, prove it with a metric, then explain your method.
+                        Lead with the result, give it context with a metric or concrete detail, then explain your method.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <ImpactFormulaDiagram />
                 </>
             }
             productTieIn={{
-                title: "How Recruiter in Your Pocket uses this",
+                title: "How this shows up in your report",
                 items: [
                     {
-                        title: "Impact Detection",
-                        description: "We identify bullets that lack measurable outcomes and suggest where numbers could go."
+                        title: "Missing context",
+                        description: "We point out when a bullet names the activity but not what changed or how much work was involved."
                     },
                     {
-                        title: "Before/After Rewrites",
-                        description: "We show you how to transform vague responsibilities into quantified accomplishments."
+                        title: "Fact-protective rewrites",
+                        description: "We ask for the missing result or scale instead of inventing a number for you."
                     }
                 ]
             }}
@@ -63,23 +63,16 @@ export default function QuantifyingImpactPage() {
                 {
                     id: "source-1",
                     title: "My personal formula for a better resume",
-                    publisher: "LinkedIn (Laszlo Bock)",
+                    publisher: "Laszlo Bock on LinkedIn (practitioner guidance)",
                     year: "2014",
                     href: "https://www.linkedin.com/pulse/20140929001534-24454816-my-personal-formula-for-a-better-resume"
                 },
                 {
                     id: "source-2",
-                    title: "Algorithmic Writing Assistance Increases Hiring",
+                    title: "Algorithmic Writing Assistance on Jobseekers' Resumes Increases Hires",
                     publisher: "NBER Working Paper",
                     year: "2023",
                     href: "https://www.nber.org/system/files/working_papers/w30886/w30886.pdf"
-                },
-                {
-                    id: "source-3",
-                    title: "TheLadders Eye-Tracking Study (2018 Update)",
-                    publisher: "TheLadders",
-                    year: "2018",
-                    href: "https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf"
                 }
             ]}
             faq={[
@@ -89,27 +82,26 @@ export default function QuantifyingImpactPage() {
                 },
                 {
                     question: "Is the XYZ formula the only format?",
-                    answer: "No. It is a high-signal template that forces clarity, but other formats can work if they surface results early."
+                    answer: "No. It is one way to make the result, action, and context visible. Any clear, accurate format can work."
                 },
                 {
                     question: "Does this matter for every role?",
-                    answer: "Yes. Every role produces outcomes. The form of the metric changes, but the principle stays the same."
+                    answer: "Most roles produce outcomes, but not every useful result has a clean number. Use a metric when it adds honest context."
                 }
             ]}
         >
             <h2 className="research-h2">Why numbers work</h2>
             <p className="research-body mb-6">
-                Numbers do three things that words cannot: they prove scale, enable comparison, and signal
-                that you track your own performance. &quot;Improved customer satisfaction&quot; is a claim.
-                &quot;Increased NPS from 42 to 67&quot; is evidence.
+                Numbers can show scale and make comparisons easier, but only when the number is accurate and meaningful.
+                &quot;Improved customer satisfaction&quot; is vague. &quot;Increased NPS from 42 to 67&quot; gives the reader a specific result to evaluate.
             </p>
             <p className="research-body mb-6">
                 Bock&apos;s insight was that most candidates undersell themselves by describing responsibilities
-                instead of results. The formula forces you to lead with the outcome, not the activity.
+                instead of results. The formula encourages you to lead with the outcome, not the activity.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                Evidence from a large field experiment shows that improving writing quality can increase hiring outcomes without reducing employer satisfaction.
+                A separate field experiment with nearly half a million jobseekers found that algorithmic writing assistance improved measurable writing quality and increased hires by 8%, without evidence of lower employer satisfaction. It tested broad writing assistance, not Bock&apos;s formula, quantified bullets, or one specific rewrite pattern.
                 <Citation id="source-2">2</Citation>
             </p>
 
@@ -136,7 +128,10 @@ export default function QuantifyingImpactPage() {
                 />
             </div>
 
-            <h2 className="research-h2">The before and after</h2>
+            <h2 className="research-h2">An illustrative before and after</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+                The facts and numbers below belong to the example. A real rewrite must use details you can support.
+            </p>
             <p className="research-body mb-6">
                 <strong>Before:</strong> &quot;Responsible for managing social media accounts and creating content.&quot;
             </p>
@@ -145,15 +140,20 @@ export default function QuantifyingImpactPage() {
                 data-driven content calendar that increased engagement rate from 2% to 8%.&quot;
             </p>
             <p className="research-body">
-                Same job. Completely different impression. The second version answers the question every
-                recruiter is asking: &quot;What will this person do for us?&quot;
+                The second version gives the reader a clearer result to evaluate.
             </p>
 
-            <h2 className="research-h2">Definition: evidence density</h2>
+            <h2 className="research-h2">Give the reader enough context</h2>
             <p className="research-body mb-6">
-                Evidence density is the amount of measurable proof packed into a line. Higher density reduces scan time and increases credibility.
-                <Citation id="source-3">3</Citation>
+                A number without context can still mislead. &quot;Cut time by 40%&quot; is more useful when the reader can tell what process changed, from what baseline, and what you actually did. The goal is not maximum numerals; it is a claim another person can understand and defend.
             </p>
+
+            <h2 className="research-h2">What the evidence does not prove</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Bock&apos;s X–Y–Z formula is experienced practitioner guidance, not a controlled trial.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The NBER experiment studied an online labor market and bundled several forms of writing help.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Neither source justifies inventing a metric or forcing a number into every bullet.</li>
+            </ul>
         </ResearchArticle>
     );
 }

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PricingPageClient from "@/components/marketing/PricingPageClient";
 
 export const metadata: Metadata = {
-  title: "Pricing — Recruiter in Your Pocket",
+  title: "Pricing",
   description:
-    "Your first recruiter report is free. Paid plans add more reports, exports, saved history, and LinkedIn iterations."
+    "Your first complete recruiter-style report is free. The $29 Job Search Pass adds five reports for 30 days with no automatic renewal."
 };
 
 export default function PricingPage() {

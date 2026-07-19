@@ -27,6 +27,7 @@ import { cn } from "@/lib/utils";
 import { getTierLabel, isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 import { Analytics } from "@/lib/analytics";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 type Tab = "account" | "matching" | "billing";
 
@@ -111,6 +112,8 @@ async function fetchReceiptsRequest(): Promise<ReceiptRecord[]> {
 export default function SettingsClient({ initialTab = "account" }: SettingsClientProps) {
     const { user, refreshUser, isLoading: authLoading } = useAuth();
     const queryClient = useQueryClient();
+    const billingEnabled = isLaunchFlagEnabled("billingUnlock");
+    const visibleTabs = billingEnabled ? TABS : TABS.filter((tab) => tab.id !== "billing");
 
     const [activeTab, setActiveTab] = useState<Tab>(initialTab);
     const [isCheckoutLoading, setIsCheckoutLoading] = useState<PricingTier | null>(null);
@@ -136,7 +139,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     } = useQuery({
         queryKey: ["settings", "passes"],
         queryFn: fetchPassesRequest,
-        enabled: Boolean(user?.email),
+        enabled: billingEnabled && Boolean(user?.email),
         staleTime: 30_000,
     });
 
@@ -148,13 +151,13 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     } = useQuery({
         queryKey: ["settings", "receipts"],
         queryFn: fetchReceiptsRequest,
-        enabled: activeTab === "billing" && Boolean(user?.email),
+        enabled: billingEnabled && activeTab === "billing" && Boolean(user?.email),
         staleTime: 30_000,
     });
 
     useEffect(() => {
-        setActiveTab(initialTab);
-    }, [initialTab]);
+        setActiveTab(!billingEnabled && initialTab === "billing" ? "account" : initialTab);
+    }, [billingEnabled, initialTab]);
 
     useEffect(() => {
         profileForm.reset({ displayName: user?.firstName || "" });
@@ -282,6 +285,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     }
 
     async function handleCheckout(tier: PricingTier, emailOverride?: string) {
+        if (tier !== "30d") return;
         const email = user?.email || emailOverride || guestCheckoutForm.getValues("guestEmail").trim();
         if (!email) {
             setShowEmailInput(tier);
@@ -290,7 +294,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
         try {
             setIsCheckoutLoading(tier);
-            Analytics.checkoutStarted(tier, tier === "monthly" ? 9 : 79);
+            Analytics.checkoutStarted(tier, 29);
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -416,7 +420,9 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                         anchor="settings-page"
                         eyebrow="Settings"
                         title="Settings"
-                        description="Sign in to manage your account, billing, and matching defaults. We keep these controls simple so you can verify and change things yourself."
+                        description={billingEnabled
+                            ? "Sign in to manage your account, billing, and matching defaults. We keep these controls simple so you can verify and change things yourself."
+                            : "Sign in to manage your account and matching defaults. We keep these controls simple so you can verify and change things yourself."}
                     />
 
                     <section className="app-card app-card-highlight p-8 text-center md:p-10">
@@ -425,7 +431,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             Sign in to open settings
                         </h2>
                         <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-muted-foreground">
-                            Signed-in settings give you data export, billing restore, account deletion, and the default resume used by matching features.
+                            Signed-in settings give you data export, account deletion, and the default resume used by matching features.
                         </p>
                         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                             <Link
@@ -491,7 +497,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     aria-label="Settings sections"
                     className="app-card mb-8 inline-flex items-center gap-0.5 p-1.5"
                 >
-                    {TABS.map(({ id, label, href, icon: Icon }) => (
+                    {visibleTabs.map(({ id, label, href, icon: Icon }) => (
                         <Link
                             key={id}
                             href={href}
@@ -638,18 +644,20 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             )}
                                             Restore Access
                                         </button>
-                                        <button type="button"
-                                            onClick={handleOpenBillingPortal}
-                                            disabled={isPortalLoading}
-                                            className="px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors disabled:opacity-50 inline-flex items-center gap-2"
-                                        >
-                                            {isPortalLoading ? (
-                                                <Loader2 className="size-4 animate-spin" />
-                                            ) : (
-                                                <ExternalLink className="size-4" />
-                                            )}
-                                            Manage Billing
-                                        </button>
+                                        {(user?.membership === "monthly" || user?.membership === "lifetime") && (
+                                            <button type="button"
+                                                onClick={handleOpenBillingPortal}
+                                                disabled={isPortalLoading}
+                                                className="px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors disabled:opacity-50 inline-flex items-center gap-2"
+                                            >
+                                                {isPortalLoading ? (
+                                                    <Loader2 className="size-4 animate-spin" />
+                                                ) : (
+                                                    <ExternalLink className="size-4" />
+                                                )}
+                                                Manage legacy plan
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
 
@@ -662,13 +670,12 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             </section>
 
                             <section>
-                                <h2 className="text-lg font-medium text-foreground mb-1">Upgrade</h2>
+                                <h2 className="text-lg font-medium text-foreground mb-1">Job Search Pass</h2>
                                 <p className="text-sm text-muted-foreground mb-5">
-                                    Keep iterating by role with full evidence ledgers, Red Pen rewrites, and export access.
+                                    Five more complete reports for 30 days. One payment, no automatic renewal.
                                 </p>
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    <PricingCard tier="monthly" onSelect={() => handleCheckout("monthly")} loading={isCheckoutLoading === "monthly"} />
-                                    <PricingCard tier="lifetime" onSelect={() => handleCheckout("lifetime")} loading={isCheckoutLoading === "lifetime"} />
+                                <div className="grid gap-4">
+                                    <PricingCard tier="30d" onSelect={() => handleCheckout("30d")} loading={isCheckoutLoading === "30d"} />
                                 </div>
                             </section>
 
@@ -813,8 +820,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             <section className="rounded-xl border border-border/50 bg-muted/20 p-4">
                                 <p className="text-xs text-muted-foreground flex items-start gap-2">
                                     <ShieldAlert className="size-4 mt-0.5 shrink-0" />
-                                    Billing portal includes card updates, invoices/receipts, and subscription cancellation.
-                                    If you paid with a different email, use Restore Access first.
+                                    Job Search Passes do not renew. Receipts stay available here. If you paid with a different email, use Restore Access first.
                                 </p>
                             </section>
                         </div>

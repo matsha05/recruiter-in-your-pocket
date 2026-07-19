@@ -226,12 +226,12 @@ interface GuideNumberedSectionProps {
 export function GuideNumberedSection({ number, title, children, id }: GuideNumberedSectionProps) {
     return (
         <section id={id} className="scroll-mt-24">
-            <div className="flex items-start gap-6 mb-6">
-                <div className="shrink-0 size-14 rounded-xl bg-muted/50 border border-border/30 flex items-center justify-center">
-                    <span className="text-2xl font-display font-bold text-foreground">{number}</span>
+            <div className="mb-6 flex items-start gap-6 border-t border-border pt-6">
+                <div className="flex size-14 shrink-0 items-center justify-center border border-border bg-mineral">
+                    <span className="font-display text-2xl riyp-weight-560 tabular-nums text-foreground">{number}</span>
                 </div>
                 <div className="pt-2">
-                    <h2 className="font-display text-2xl font-medium text-foreground">{title}</h2>
+                    <h2 className="font-display text-[clamp(1.8rem,3vw,2.5rem)] riyp-weight-560 leading-[1.08] tracking-[-0.03em] text-foreground riyp-stretch-94">{title}</h2>
                 </div>
             </div>
             <div className="pl-0 lg:pl-20">
@@ -285,7 +285,7 @@ import { Calculator } from "lucide-react";
 export function EmployerMathCallout() {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}

@@ -9,7 +9,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 
 /**
  * Command - Base cmdk wrapper with RIYP styling
- * Per design-principles.md: Command Palette is the "nervous system"
+ * Command palette primitives for fast navigation.
  */
 const Command = React.forwardRef<
     React.ElementRef<typeof CommandPrimitive>,
@@ -133,7 +133,7 @@ CommandSeparator.displayName = CommandPrimitive.Separator.displayName
 
 /**
  * CommandItem - Individual command with hover/active states
- * Per design-principles.md: Three-State List Selection
+ * Three-state list selection.
  */
 const CommandItem = React.forwardRef<
     React.ElementRef<typeof CommandPrimitive.Item>,
@@ -160,7 +160,7 @@ const CommandItem = React.forwardRef<
 CommandItem.displayName = CommandPrimitive.Item.displayName
 
 /**
- * CommandShortcut - Keyboard shortcut hint (Satoshi 11px with wide tracking)
+ * CommandShortcut - Keyboard shortcut hint in the system mono role
  */
 const CommandShortcut = ({
     className,

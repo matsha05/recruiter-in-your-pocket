@@ -1,56 +1,65 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
-import { TrustChoiceGrid } from "@/components/research/diagrams/TrustChoiceGrid";
 
 export const metadata: Metadata = {
-    title: "Recruiters trust humans more than algorithms | Hiring Research",
-    description: "Why recruiters often trust human judgment over opaque algorithms.",
+    title: "What Recruiters Trust and What They Follow | Hiring Research",
+    description: "A resume-screening experiment found a gap between recruiters' stated trust and their response to algorithmic advice.",
 };
 
 export default function HumanVsAlgorithmPage() {
     return (
         <ResearchArticle
             header={{
-                tag: "Algorithmic aversion",
-                title: "Recruiters trust humans more than algorithms",
-                description: "How algorithmic aversion shapes recruiter trust and decision-making.",
-                lastUpdated: "December 2025",
+                tag: "Human + algorithmic judgment",
+                title: "What recruiters trust and what they follow",
+                description: "In a resume-screening experiment, recruiters said they trusted human advice more. Their choices told a more complicated story.",
+                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{
-                subtitle: "The Trust Gap",
-                stat: "Human Preference",
+                subtitle: "The uncomfortable finding",
+                stat: "Higher trust in humans. More influence from the algorithm.",
                 statDescription: (
                     <>
-                        The study finds lower tolerance for algorithm errors than for human errors in recruiter contexts.
+                        In an experiment with 694 professionals involved in recruitment, participants rated human recommendations as more trustworthy. Yet an inconsistent algorithmic recommendation still pulled evaluations toward the less-suitable resume.
                         <Citation id="source-1">1</Citation>
                     </>
                 ),
                 source: {
-                    text: "Lacroux & Martin-Lacroux (2022)",
+                    text: "Lacroux & Martin-Lacroux (2022), experiment",
                     href: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.895997/full"
-                }
+                },
+                sampleSize: "694 professionals involved in recruitment"
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">The Error Penalty Curve</h2>
+                    <h2 className="research-h2">What people said versus what they did</h2>
                     <p className="research-body mb-6">
-                        Recruiters generally prefer human recommendations. When an algorithm makes a mistake, trust drops faster than when a human makes the same mistake.
+                        This was not a study of trust recovering after repeated mistakes. It compared recommendations from a human expert and a fictional algorithmic decision-support system, including recommendations that favored the less-suitable resume.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <TrustChoiceGrid />
+                    <div className="grid sm:grid-cols-2 gap-4 not-prose">
+                        <ArticleInsight
+                            title="What they reported"
+                            desc="Human recommendations were rated as more trustworthy, including when the recommendation was inconsistent."
+                        />
+                        <ArticleInsight
+                            title="What changed their choices"
+                            desc="Compared with the control group, the inconsistent algorithmic recommendation influenced evaluations; the inconsistent human recommendation did not."
+                        />
+                    </div>
                 </>
             }
             productTieIn={{
-                title: "What this changes in RIYP",
+                title: "How this shows up in your report",
                 items: [
                     {
-                        title: "We prioritize clarity over &apos;perfect scores&apos;",
-                        description: "Because a human is reading, clarity and signal strength matter more than gaming a specific score."
+                        title: "No all-knowing score",
+                        description: "A number is useful only when you can trace it back to the resume and the criteria. It cannot stand in for an employer's decision."
                     },
                     {
-                        title: "Human-first decision model",
-                        description: "We model the heuristic, context-heavy judgment recruiters actually use."
+                        title: "Show the judgment behind the output",
+                        description: "We surface the evidence behind feedback so you can accept, reject, or refine it instead of obeying a black box."
                     }
                 ]
             }}
@@ -62,58 +71,60 @@ export default function HumanVsAlgorithmPage() {
             sources={[
                 {
                     id: "source-1",
-                    title: "Algorithm Aversion in Recruitment",
+                    title: "Should I Trust the Artificial Intelligence to Recruit? Recruiters' Perceptions and Behavior When Faced With Algorithm-Based Recommendation Systems During Resume Screening",
                     publisher: "Frontiers in Psychology",
                     year: "2022",
                     href: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.895997/full"
-                },
-                {
-                    id: "source-2",
-                    title: "Data-Driven Discrimination at Work",
-                    publisher: "North Carolina Journal of Law & Technology",
-                    year: "2017",
-                    href: "https://scholarship.law.unc.edu/cgi/viewcontent.cgi?article=1001&context=aidr_collection"
                 }
             ]}
             faq={[
                 {
-                    question: "Why do recruiters distrust algorithms?",
-                    answer: "The study shows lower tolerance for algorithm errors than human errors, which creates an aversion effect."
-                },
-                {
                     question: "Does this mean scores are useless?",
-                    answer: "No. Scores can help structure evaluation, but the final decision still leans on human trust signals."
+                    answer: "No. A score is useful only when you can see what drove it and what to change. It is a starting point for the review, not objective truth."
                 },
                 {
                     question: "How should candidates respond?",
-                    answer: "Aim for clarity and credibility so a human reviewer feels confident in the story."
+                    answer: "Make your evidence easy to inspect: clear role context, specific ownership, supportable outcomes, and no claims you cannot defend."
                 }
             ]}
         >
-            <h2 className="research-h2">Where automation breaks recruiter judgment</h2>
+            <h2 className="research-h2">The result was not simple algorithm aversion</h2>
             <p className="research-body mb-6">
-                The study reveals a phenomenon known as &quot;algorithm aversion.&quot; Even when algorithms perform well, people are quicker to lose trust in them after a mistake compared to a human making the same mistake.
+                Participants reviewed two resume summaries for an HR manager role. They received either no recommendation or a recommendation from a human expert or algorithmic system; some recommendations favored the less-suitable candidate. Recruiters trusted the human source more, but the inconsistent algorithm still affected their evaluations.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                Governance pressures around auditing and explainability further reinforce why human judgment remains central in high-stakes decisions.
-                <Citation id="source-2">2</Citation>
+                That gap matters. Stated skepticism is not the same as resistance in the moment. A tool can look less trustworthy and still change a decision.
+                <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                Recruiter lens: optimizing only for a score can miss the trust signals that humans look for. The end user is a person who values consistency, narrative, and credibility.
+                For a candidate-facing product, the honest response is not &quot;humans good, algorithms bad.&quot; It is to make automated feedback inspectable, bounded, and easy to challenge.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
-                    title="Trust is Fragile"
-                    desc="Recruiter lens: manipulation signals are hard to recover from once trust is lost."
+                    title="Small experimental effects"
+                    desc={
+                        <>
+                            The authors reported small effects and cautioned that the task was subjective and difficult to isolate from participants&apos; own judgments.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
+                />
+                <ArticleInsight
+                    title="One simulated hiring task"
+                    desc={
+                        <>
+                            Participants judged two resume summaries for one HR manager role; this does not establish how every recruiter or production system behaves.
+                            <Citation id="source-1">1</Citation>
+                        </>
+                    }
                 />
             </div>
 
-            <h2 className="research-h2">Definition: algorithm aversion</h2>
+            <h2 className="research-h2">What this means in practice</h2>
             <p className="research-body mb-6">
-                Algorithm aversion is the tendency to reject algorithmic recommendations after observing errors, even when the algorithm performs well on average.
-                <Citation id="source-1">1</Citation>
+                <strong>RIYP interpretation:</strong> use automated feedback as a second set of eyes, not a verdict. Ask what evidence produced the judgment, whether the advice fits the role, and what would change the conclusion. If the system cannot answer those questions, confidence should stay limited.
             </p>
         </ResearchArticle>
     );

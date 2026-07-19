@@ -440,7 +440,7 @@ function WorkspaceReturnScene() {
               />
               <ReportCard
                 title="What gets lost"
-                body="The strongest outcomes sit too low, so the six-second read underweights scope."
+                body="The strongest outcomes sit too low, so the opening read underweights scope."
               />
               <ReportCard
                 title="Rewrite direction"

@@ -23,6 +23,7 @@ import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
+import type { ReportData } from "@/components/workspace/report/ReportTypes";
 
 const SAVED_JOB_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -31,7 +32,7 @@ function getPersistedSavedJobId(jobContext: LoadedJobContext | null) {
 }
 
 export default function WorkspaceClient() {
-    const { push } = useRouter();
+    const { push, replace } = useRouter();
     const searchParams = useSearchParams();
     const getSearchParam = searchParams.get.bind(searchParams);
     const { user, refreshUser } = useAuth();
@@ -40,11 +41,13 @@ export default function WorkspaceClient() {
     const [isLoading, setIsLoading] = useState(false);
     const [isStreaming, setIsStreaming] = useState(false);
     const [report, setReport] = useState<any>(null);
+    const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
     const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
     const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
     const [lastLinkedInPdf, setLastLinkedInPdf] = useState<string | null>(null);
+    const linkedInReviewEnabled = isLaunchFlagEnabled("linkedInReview");
 
     // Mode switcher state (Resume vs LinkedIn)
     const [reviewMode, setReviewMode] = useState<ReviewMode>('resume');
@@ -106,6 +109,7 @@ export default function WorkspaceClient() {
     useSampleReport({
         searchParams,
         report,
+        skipSample,
         setReport
     });
 
@@ -223,7 +227,7 @@ export default function WorkspaceClient() {
 
     const handleRun = useCallback(async () => {
         if (!resumeText.trim()) {
-            toast.error("Add your resume first", { description: "Upload a file or paste the resume text before running the brief." });
+            toast.error("Add your resume first", { description: "Upload a file or paste the resume text before creating the report." });
             return;
         }
         const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
@@ -324,19 +328,31 @@ export default function WorkspaceClient() {
     handleRunRef.current = handleRun;
 
     const handleNewReport = useCallback(() => {
+        handleCancelAnalysis(true);
         setSkipSample(true);
         setResumeText("");
         setJobDescription("");
         setReport(null);
+        setComparisonBaseline(null);
         // Clear LinkedIn state too
         setLinkedInReport(null);
         setLinkedInProfileName('');
         setLinkedInProfileHeadline('');
-        // Remove sample param so it doesn't auto-load again
-        if (window?.history) {
-            window.history.replaceState({}, "", "/workspace");
-        }
-    }, []);
+        // Use the Next router so useSearchParams updates before the sample hook can reload.
+        replace("/workspace", { scroll: false });
+    }, [handleCancelAnalysis, replace]);
+
+    const handleStartRevision = useCallback(() => {
+        if (!report) return;
+        handleCancelAnalysis(true);
+        setComparisonBaseline(report as ReportData);
+        setSkipSample(true);
+        setResumeText("");
+        setJobDescription("");
+        setReport(null);
+        setLoadedJobContext(null);
+        replace("/workspace?revision=1", { scroll: false });
+    }, [handleCancelAnalysis, replace, report]);
 
     const handleResumeSample = useCallback(async () => {
         try {
@@ -413,7 +429,11 @@ export default function WorkspaceClient() {
     useCommandAction((action: CommandAction) => {
         switch (action) {
             case 'export-pdf':
-                if (report) handleExportPdf();
+                if (report && hasPaidAccess) {
+                    handleExportPdf();
+                } else if (report) {
+                    setIsPaywallOpen(true);
+                }
                 break;
             case 'copy-link':
                 // Copy current URL to clipboard
@@ -435,6 +455,12 @@ export default function WorkspaceClient() {
 
     const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
     const effectiveUsesRemaining = hasPaidAccess ? Math.max(freeUsesRemaining, 1) : freeUsesRemaining;
+
+    useEffect(() => {
+        if (!linkedInReviewEnabled && reviewMode !== "resume") {
+            setReviewMode("resume");
+        }
+    }, [linkedInReviewEnabled, reviewMode]);
 
     useEffect(() => {
         if (!hasPaidAccess) return;
@@ -481,14 +507,12 @@ export default function WorkspaceClient() {
                 aria-label="Workspace"
                 data-visual-anchor="workspace-shell"
                 data-workspace-mode={reviewMode}
-                className="h-full flex flex-col bg-body overflow-hidden"
+                className="flex h-[calc(100dvh-var(--header-height))] flex-col overflow-hidden bg-body md:h-[calc(100dvh-var(--header-height-desktop))]"
             >
-                <h1 className="sr-only">Resume Workspace  -  Analyze Your Resume</h1>
-
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
                     {/* Mode Switcher - show only when no report is displayed */}
-                    {!report && !linkedInReport && (
-                        <div className="flex justify-center py-4 bg-body border-b border-border">
+                    {linkedInReviewEnabled && !report && !linkedInReport && (
+                        <div className="flex items-center justify-end border-b border-border bg-body px-5 py-2 md:px-8">
                             <ModeSwitcher
                                 mode={reviewMode}
                                 onModeChange={setReviewMode}
@@ -498,7 +522,7 @@ export default function WorkspaceClient() {
                     )}
 
                     {/* Content Area - Mode-aware */}
-                    {reviewMode === 'resume' ? (
+                    {!linkedInReviewEnabled || reviewMode === 'resume' ? (
                         <ResumeModeSection
                             report={report}
                             isLoading={isLoading}
@@ -513,7 +537,7 @@ export default function WorkspaceClient() {
                             user={user}
                             onSampleReport={handleResumeSample}
                             loadedJobContext={loadedJobContext}
-                            onExportPdf={handleExportPdf}
+                            onExportPdf={hasPaidAccess ? handleExportPdf : undefined}
                             isExporting={isExporting}
                             isSample={isSampleReport}
                             onNewReport={handleNewReport}
@@ -524,6 +548,8 @@ export default function WorkspaceClient() {
                             analysisStartedAt={analysisStartedAt}
                             onCancelAnalysis={() => handleCancelAnalysis()}
                             onRetryAnalysis={handleRetryAnalysis}
+                            comparisonBaseline={comparisonBaseline}
+                            onStartRevision={handleStartRevision}
                         />
                     ) : (
                         <LinkedInModeSection

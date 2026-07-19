@@ -1,108 +1,21 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { EvidenceHeader, EvidenceTable } from "@/components/shared/diagrams/EvidenceVisuals";
 
-/**
- * Referral Quantified Diagram (v2.0)
- * 
- * Unique diagram for referral-advantage-quantified page
- * Shows the empirical evidence: callback rates and conversion
- */
 export function ReferralQuantifiedDiagram() {
-    const stats = [
-        { metric: "Callback rate", referral: "~40%", nonReferral: "~4%", factor: "10×" },
-        { metric: "Hire conversion", referral: "Higher", nonReferral: "Baseline", factor: " - " },
-        { metric: "Time to hire", referral: "Faster", nonReferral: "Standard", factor: " - " },
-    ];
-
     return (
-        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <DiagramFrame
-                className="riyp-diagram-shell"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                {/* Header */}
-                <div className="riyp-diagram-head">
-                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
-                        Field evidence
-                    </span>
-                </div>
-
-                <div className="p-6">
-                    {/* Table header */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="grid grid-cols-4 gap-3 pb-3 border-b border-border/30"
-                    >
-                        <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
-                            Metric
-                        </div>
-                        <div className="text-xs font-mono uppercase tracking-wider text-center">
-                            <span className="px-2 py-1 rounded bg-brand/10 text-brand">Referral</span>
-                        </div>
-                        <div className="text-xs font-mono uppercase tracking-wider text-center">
-                            <span className="px-2 py-1 rounded bg-muted-foreground/10 text-muted-foreground">Non-Referral</span>
-                        </div>
-                        <div className="text-xs font-mono uppercase tracking-wider text-center text-muted-foreground/60">
-                            Lift
-                        </div>
-                    </motion.div>
-
-                    {/* Table rows */}
-                    <div className="divide-y divide-border/20">
-                        {stats.map((row, i) => (
-                            <motion.div
-                                key={row.metric}
-                                initial={{ opacity: 0, y: 10 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.08 }}
-                                viewport={{ once: true }}
-                                className="grid grid-cols-4 gap-3 py-3"
-                            >
-                                <div className="text-sm text-muted-foreground">
-                                    {row.metric}
-                                </div>
-                                <div className="text-sm font-medium text-brand text-center">
-                                    {row.referral}
-                                </div>
-                                <div className="text-sm text-muted-foreground text-center">
-                                    {row.nonReferral}
-                                </div>
-                                <div className="text-sm font-mono font-medium text-emerald-600 dark:text-emerald-400 text-center">
-                                    {row.factor}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* Key insight */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-                        viewport={{ once: true }}
-                        className="mt-6 bg-brand/5 dark:bg-brand/10 rounded-lg p-4 border border-brand/20"
-                    >
-                        <p className="text-xs text-muted-foreground leading-relaxed text-center">
-                            <span className="font-medium text-brand">Referrals reduce uncertainty.</span> Hiring managers trust signals from known sources.
-                        </p>
-                    </motion.div>
-                </div>
+        <DiagramFigure className="max-w-[46rem]" label="Study-specific comparison of referred and non-referred candidate outcomes">
+            <DiagramFrame>
+                <EvidenceHeader index="01" label="What the experiments found" title="Referrals carried information about performance and persistence." note="Three field experiments in one online labor market; these are observed differences in that setting, not universal hiring rates." />
+                <EvidenceTable columns={["Observed outcome", "Difference", "What it suggests"]} rows={[
+                    { label: "Submitted work on time", values: ["+11 percentage points", "Referrals contained information about follow-through"], emphasis: 0 },
+                    { label: "Continued the job", values: ["+20 percentage points", "Referrals contained information about persistence"], emphasis: 0 },
+                    { label: "Job performance", values: ["Higher", "The signal extended beyond visible worker characteristics"], emphasis: 0 },
+                ]} />
+                <p className="border-t border-line px-5 py-4 text-xs leading-5 text-muted-foreground md:px-7">Pallais &amp; Sands studied 1,266 workers in an online labor market. Role, company, relationship strength, and labor conditions can materially change the effect.</p>
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  The Numbers</span>
-                <span className="block text-sm text-foreground/80 font-medium">
-                    Empirical evidence from field experiments
-                </span>
-            </figcaption>
+            <DiagramCaption kicker="Fig. 1 / The observed difference" title="A useful referral can reveal information a resume does not carry." description="Pallais & Sands, Journal of Political Economy (2016); summary by J-PAL." />
         </DiagramFigure>
     );
 }

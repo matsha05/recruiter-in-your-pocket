@@ -3,9 +3,9 @@
 Elite resume studio that shows candidates how recruiters read them in the first seconds.
 
 ## Product Wedge
-- Recruiter First Impression: score, verdict, critical miss
-- Red Pen rewrites with before and after
-- Signal analysis with subscores and gaps
+- Recruiter First Read: score, likely takeaway, open question, and first move
+- Evidence-led bullet upgrades with honest before and after examples
+- Story, Impact, Clarity, and Readability diagnostics
 
 ## Monorepo Layout
 - `web/` - Next.js App Router web app and API routes
@@ -23,7 +23,7 @@ Elite resume studio that shows candidates how recruiters read them in the first 
 - Chrome extension: Vite + CRXJS
 
 ## Local Development
-Prereqs: Node 20, npm
+Prereqs: Node 24, npm
 
 1) Install deps
 `npm install`
@@ -53,10 +53,8 @@ Load `extension/dist` in `chrome://extensions` (Developer Mode).
 
 ## Design and Research
 - `docs/brand-system.md`
-- `docs/visual-direction.md`
-- `docs/homepage-story-arc.md`
-- `docs/brand-implementation-plan.md`
-- `docs/design-philosophy.md`
-- `docs/design-principles.md`
 - `docs/design-system.md`
+- `docs/voice-and-tone.md`
+- `docs/copy-system.md`
+- `docs/homepage-story-arc.md`
 - `docs/research-ui-contract.md`

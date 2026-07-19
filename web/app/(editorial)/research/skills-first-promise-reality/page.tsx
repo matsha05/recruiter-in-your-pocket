@@ -14,22 +14,21 @@ export default function SkillsFirstPromiseRealityPage() {
                 tag: "Industry trends",
                 title: "Skills-first hiring: promise vs reality",
                 description: "Skills-first expands talent pools, but adoption is uneven across employers.",
-                lastUpdated: "December 2025",
+                lastUpdated: "July 2026",
                 readTime: "4 min read"
             }}
             keyFinding={{
-                subtitle: "The Tension",
-                stat: "Expansion, Not Assurance",
+                subtitle: "Policy versus practice",
+                stat: "Fewer than 1 in 700 hires",
                 statDescription: (
                     <>
-                        LinkedIn reports skills-first approaches expand the talent pool, while other research shows adoption gaps.
+                        A 2024 Harvard Business School and Burning Glass Institute analysis estimated that removing degree requirements created incremental opportunity for fewer than one in 700 annual hires.
                         <Citation id="source-1">1</Citation>
-                        <Citation id="source-3">3</Citation>
                     </>
                 ),
                 source: {
-                    text: "LinkedIn Economic Graph (2025)",
-                    href: "https://economicgraph.linkedin.com/content/dam/me/economicgraph/en-us/PDF/skills-based-hiring-march-2025.pdf"
+                    text: "HBS + Burning Glass Institute (2024)",
+                    href: "https://www.hbs.edu/ris/Publication%2520Files/Skills-Based%2520Hiring_80b90afa-f6b5-4de9-b7f8-5d8232ce20e2.pdf"
                 }
             }}
             visualization={
@@ -37,50 +36,43 @@ export default function SkillsFirstPromiseRealityPage() {
                     <h2 className="research-h2">Policy vs practice</h2>
                     <p className="research-body mb-6">
                         Skills-first is a direction, not a guarantee. The gap between stated policy and actual hiring shows why evidence still matters.
-                        <Citation id="source-3">3</Citation>
+                        <Citation id="source-1">1</Citation>
                     </p>
                     <SkillsPromiseRealityDiagram />
                 </>
             }
             productTieIn={{
-                title: "How RIYP responds",
+                title: "How this shows up in your report",
                 items: [
                     {
                         title: "Evidence-first bullets",
-                        description: "We push candidates to prove skills with outcomes, not just lists."
+                        description: "We connect important skills to the real projects, decisions, scope, and outcomes on the page."
                     },
                     {
                         title: "Skills alignment",
-                        description: "We map resume language to job-posting skill terms so you show up in skills-first searches."
+                        description: "We help you use the employer's language where it accurately describes your experience."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "The Skills-Based Hiring Shift", href: "/research/skills-based-hiring", tag: "Trends" },
+                { title: "What Applicant Tracking Systems Do", href: "/research/ats-myths", tag: "Systems" },
                 { title: "LinkedIn Visibility", href: "/research/linkedin-visibility", tag: "LinkedIn" },
                 { title: "Quantifying Impact", href: "/research/quantifying-impact", tag: "Writing" }
             ]}
             sources={[
                 {
                     id: "source-1",
+                    title: "Skills-Based Hiring: The Long Road from Pronouncements to Practice",
+                    publisher: "Harvard Business School and Burning Glass Institute",
+                    year: "2024",
+                    href: "https://www.hbs.edu/ris/Publication%2520Files/Skills-Based%2520Hiring_80b90afa-f6b5-4de9-b7f8-5d8232ce20e2.pdf"
+                },
+                {
+                    id: "source-2",
                     title: "Skills-Based Hiring: The Big Picture",
                     publisher: "LinkedIn Economic Graph",
                     year: "2025",
                     href: "https://economicgraph.linkedin.com/content/dam/me/economicgraph/en-us/PDF/skills-based-hiring-march-2025.pdf"
-                },
-                {
-                    id: "source-2",
-                    title: "Future of Recruiting 2024",
-                    publisher: "LinkedIn Talent Solutions",
-                    year: "2024",
-                    href: "https://business.linkedin.com/content/dam/me/business/en-us/talent-solutions/resources/pdfs/future-of-recruiting-2024.pdf"
-                },
-                {
-                    id: "source-3",
-                    title: "Companies aren't keeping commitments to hire non-college grads, study suggests",
-                    publisher: "Business Insider",
-                    year: "2024",
-                    href: "https://www.businessinsider.com/companies-arent-keeping-commitment-hiring-non-college-graduates-study-2024-2"
                 }
             ]}
             faq={[
@@ -90,7 +82,7 @@ export default function SkillsFirstPromiseRealityPage() {
                 },
                 {
                     question: "How should I write for skills-first hiring?",
-                    answer: "Align your resume to the exact skill language in the job post and show outcomes that prove those skills."
+                    answer: "Use the job post's skill language when it accurately describes your experience, then connect it to real work."
                 },
                 {
                     question: "What is the risk of over-optimizing?",
@@ -100,48 +92,49 @@ export default function SkillsFirstPromiseRealityPage() {
         >
             <h2 className="research-h2">What this means for candidates</h2>
             <p className="research-body mb-6">
-                Skills-first does not remove competition. It raises the bar for evidence. Your resume must show measurable proof that you have those skills.
+                Skills-first does not remove competition or old filters. LinkedIn documents growing use of skills language on its platform, while the HBS analysis shows that changed postings have not consistently translated into changed hires.
+                <Citation id="source-1">1</Citation>
                 <Citation id="source-2">2</Citation>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
                 <ArticleInsight
                     title="Use the job's vocabulary"
-                    desc="Recruiter lens: skills-first searches reward exact terminology."
+                    desc="Use the employer's wording when it accurately describes your experience."
                 />
                 <ArticleInsight
                     title="Show the skill"
-                    desc="Quantify outcomes so the skill is not just claimed, it is demonstrated."
+                    desc="Connect the skill to a real project, decision, result, or useful measure of scope."
                 />
             </div>
 
             <h2 className="research-h2">Where skills-first is strongest</h2>
             <p className="research-body mb-6">
-                Recruiter lens: skills-first is more common in roles where output is measurable and skills map clearly to outcomes.
-                It is weaker in roles where signal is subjective or seniority is hard to compare.
+                The HBS report found that nearly all measured hiring change came from 37% of the firms that removed degree requirements. About 45% showed no meaningful hiring change, and roughly one-fifth made short-term gains that later reversed.
+                <Citation id="source-1">1</Citation>
             </p>
 
             <h2 className="research-h2">How to translate skills into proof</h2>
             <p className="research-body mb-6">
-                Skills-first does not mean skills-only. The strongest resumes connect each skill to a concrete outcome.
-                <Citation id="source-1">1</Citation>
+                Treat &quot;skills-first&quot; as permission to make relevant ability unmistakable, not as proof that credentials no longer matter. Connect important skills to projects, scope, and outcomes a reviewer can inspect.
             </p>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Pair each skill with a measurable result.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Pair important skills with a project, decision, or result.</li>
                 <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Anchor skills in the context of a real project.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use the same wording as the job description when possible.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Use the job description&apos;s wording only when it accurately describes your experience.</li>
             </ul>
 
-            <h2 className="research-h2">Definition: promise vs reality</h2>
+            <h2 className="research-h2">What has actually changed</h2>
             <p className="research-body mb-6">
-                The promise is a broader talent pool. The reality is that many teams still hire with old filters. Candidates need both skills evidence and clear role alignment.
-                <Citation id="source-3">3</Citation>
+                The promise is a broader talent pool. In practice, many employers that removed degree language did not materially change who they hired. Candidates still need clear evidence of relevant work and role alignment.
+                <Citation id="source-1">1</Citation>
             </p>
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Employer adoption varies by industry, size, and role level.</li>
-                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Surveys capture intent and policy, not every hiring decision.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>The HBS analysis studied 11,300 employer-and-occupation combinations at large US firms with observable hiring before and after degree requirements changed.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>LinkedIn&apos;s findings describe activity on its own platform and are not independent causal evidence.</li>
+                <li className="flex gap-2"><span className="text-muted-foreground/50">•</span>Adoption varies by employer, occupation, and market; a changed job ad does not guarantee a changed hiring decision.</li>
             </ul>
         </ResearchArticle>
     );

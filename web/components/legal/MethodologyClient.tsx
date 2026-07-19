@@ -1,33 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, BarChart3, PenSquare, Target, ShieldCheck } from "lucide-react";
+import { ChartBar, PencilSimpleLine, ShieldCheck, Target, WarningCircle } from "@phosphor-icons/react";
 import { LEGAL_LAST_UPDATED } from "@/lib/legal/dataHandling";
 import { LegalShell } from "@/components/legal/LegalShell";
-
-/** Paper shadow matching all Editor's Desk cards */
-const paperShadow =
-    "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
 
 const rubric = [
     {
         name: "Story",
-        weight: "35%",
+        role: "Career context",
         detail: "Does your career path make sense when someone reads it quickly?",
     },
     {
         name: "Impact",
-        weight: "30%",
+        role: "Results and scope",
         detail: "Do your bullets show real results, numbers, scope, and outcomes, not just responsibilities?",
     },
     {
         name: "Clarity",
-        weight: "20%",
+        role: "Specificity",
         detail: "Can a recruiter tell what you do, how senior you are, and why you matter without re-reading?",
     },
     {
         name: "Readability",
-        weight: "15%",
+        role: "Ease of reading",
         detail: "Is the document easy to scan quickly?",
     },
 ];
@@ -35,116 +31,97 @@ const rubric = [
 export default function MethodologyClient() {
     return (
         <LegalShell
+            pageKey="methodology"
             eyebrow="Methodology"
-            title="How the recruiter signal works"
-            description="The score is a recruiter-style clarity signal guided by impact, relevance, evidence, and polish. It is not a prediction formula."
+            title="How the resume review works"
+            description="The review looks at four parts of your resume. The first-read score keeps the result easy to scan, while the written findings show what drove it."
             lastUpdated={LEGAL_LAST_UPDATED}
         >
-            <section
-                className="rounded-2xl bg-white p-6 md:p-8"
-                style={{ boxShadow: paperShadow }}
-            >
-                <h2 className="mb-3 font-display text-slate-900" style={{ fontSize: "1.35rem", fontWeight: 500, letterSpacing: "-0.015em" }}>
-                    A calibrated first-read signal, not a hiring prediction
+            <section className="border-y border-line bg-surface-sky/35 px-6 py-7 md:px-8 md:py-9">
+                <h2 className="mb-3 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
+                    What the score means
                 </h2>
-                <p className="text-[14px] leading-[1.75] text-slate-500">
-                    RIYP estimates how clearly your resume lands when someone has to skim quickly. The dimensions below guide the model and calibration reviews, but the score is not strict math and does not guarantee interviews, offers, or ATS outcomes.
+                <p className="text-[1.0625rem] leading-8 text-muted-foreground">
+                    Recruiter in Your Pocket reviews how clearly your resume communicates when someone reads it quickly. The score helps compare the four parts of the review and shows which areas need attention. It does not estimate your chances of getting an interview or offer.
                 </p>
             </section>
 
             {/* Rubric card */}
-            <section
-                className="rounded-2xl bg-white p-6 md:p-8"
-                style={{ boxShadow: paperShadow }}
-            >
-                <h2 className="mb-4 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <BarChart3 className="size-4 text-slate-400" />
-                    First-read guidance rubric
+            <section className="border-t border-line py-7 md:py-9">
+                <h2 className="mb-4 flex items-center gap-2 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
+                    <ChartBar className="size-5 text-brand" weight="bold" />
+                    What the review considers
                 </h2>
-                <p className="mb-4 text-[13px] leading-[1.65] text-slate-500">
-                    These weights guide attention. They are not a literal formula, and report confidence can move down when the resume does not provide enough evidence.
+                <p className="mb-6 text-base leading-7 text-muted-foreground">
+                    These dimensions organize the evidence in the report. The overall score is a whole-document judgment, not a mechanical average. When the resume does not provide enough detail, the report names what is missing instead of making an assumption.
                 </p>
-                <div className="gap-y-3">
-                    {rubric.map((item) => (
-                        <div key={item.name} className="rounded-lg border border-slate-100 bg-slate-50/50 px-4 py-3">
-                            <div className="flex items-center justify-between gap-2">
-                                <p className="text-sm font-semibold text-slate-700">{item.name}</p>
-                                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{item.weight}</p>
+                <div className="border-y border-line">
+                    {rubric.map((item, index) => (
+                        <div key={item.name} className="grid gap-3 border-b border-line py-5 last:border-b-0 sm:grid-cols-[3rem_10rem_1fr] sm:items-start">
+                            <span className="font-mono text-xs tabular-nums text-brand">0{index + 1}</span>
+                            <div>
+                                <p className="text-base font-semibold text-foreground">{item.name}</p>
+                                <p className="mt-1 text-xs font-semibold uppercase riyp-track-008 text-muted-foreground">{item.role}</p>
                             </div>
-                            <p className="mt-1.5 text-[14px] leading-[1.65] text-slate-500">{item.detail}</p>
+                            <p className="text-base leading-7 text-muted-foreground">{item.detail}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
             {/* Focus and rewrites */}
-            <section className="grid gap-4 md:grid-cols-2">
-                <div
-                    className="rounded-2xl bg-white p-6"
-                    style={{ boxShadow: paperShadow }}
-                >
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                        <Target className="size-4 text-slate-400" />
+            <section className="grid border-y border-line md:grid-cols-2">
+                <div className="border-b border-line p-6 md:border-b-0 md:border-r md:p-7">
+                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                        <Target className="size-4 text-brand" weight="bold" />
                         What the feedback focuses on
                     </h3>
-                    <p className="text-[14px] leading-[1.65] text-slate-500">
+                    <p className="text-[15px] leading-7 text-muted-foreground">
                         We tell you what&apos;s weakening your resume, what to rewrite first, and where your positioning could be stronger.
                     </p>
                 </div>
-                <div
-                    className="rounded-2xl bg-white p-6"
-                    style={{ boxShadow: paperShadow }}
-                >
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                        <PenSquare className="size-4 text-slate-400" />
+                <div className="border-b border-line p-6 md:p-7">
+                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                        <PencilSimpleLine className="size-4 text-brand" weight="bold" />
                         How we write rewrites
                     </h3>
-                    <p className="text-[14px] leading-[1.65] text-slate-500">
+                    <p className="text-[15px] leading-7 text-muted-foreground">
                         Rewrites focus on real results and tighter language, not inflated claims or generic filler.
                     </p>
                 </div>
-                <div
-                    className="rounded-2xl bg-white p-6"
-                    style={{ boxShadow: paperShadow }}
-                >
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                        <ShieldCheck className="size-4 text-slate-400" />
+                <div className="border-b border-line p-6 md:border-b-0 md:border-r md:border-t md:p-7">
+                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                        <ShieldCheck className="size-4 text-brand" weight="bold" />
                         How we handle uncertainty
                     </h3>
-                    <p className="text-[14px] leading-[1.65] text-slate-500">
-                        We surface confidence directly in evidence-heavy sections so weaker recommendations are framed honestly instead of sounding certain when the input is thin.
+                    <p className="text-[15px] leading-7 text-muted-foreground">
+                        The report shows when a finding is less certain because the resume does not provide enough context.
                     </p>
                 </div>
-                <div
-                    className="rounded-2xl bg-white p-6"
-                    style={{ boxShadow: paperShadow }}
-                >
-                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                        <ShieldCheck className="size-4 text-slate-400" />
+                <div className="p-6 md:border-t md:border-line md:p-7">
+                    <h3 className="mb-2 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                        <ShieldCheck className="size-4 text-brand" weight="bold" />
                         What evidence means
                     </h3>
-                    <p className="text-[14px] leading-[1.65] text-slate-500">
+                    <p className="text-[15px] leading-7 text-muted-foreground">
                         Evidence excerpts should quote the resume directly. If a recommendation depends on missing context, the report should ask for that detail instead of inventing it.
                     </p>
                 </div>
             </section>
 
             {/* Limits */}
-            <section
-                className="rounded-2xl border border-slate-100 p-6"
-                style={{ backgroundColor: "hsl(40 20% 97%)" }}
-            >
-                <h3 className="mb-3 flex items-center gap-2 text-[15px] font-semibold text-slate-700">
-                    <AlertTriangle className="size-4 text-amber-500" />
+            <section className="border-y border-line bg-proof px-6 py-7">
+                <h3 className="mb-3 flex items-center gap-2 text-[15px] font-semibold text-foreground">
+                    <WarningCircle className="size-4 text-accent-apricot" weight="fill" />
                     Limits and responsible use
                 </h3>
-                <ul className="gap-y-2 text-[14px] leading-[1.65] text-slate-500">
-                    <li>1. Scores estimate how strong your resume signal is. They don&apos;t guarantee interviews or offers.</li>
+                <ul className="gap-y-2 text-[15px] leading-7 text-muted-foreground">
+                    <li>1. The score summarizes this resume review. It does not predict interviews or offers.</li>
                     <li>2. Industry and role context can shift what matters most in any given report.</li>
                     <li>3. Always double-check the rewrites for accuracy and tone before using them.</li>
                     <li>
                         4. For deeper research references, see{" "}
-                        <Link href="/research/how-we-score" className="text-slate-700 underline underline-offset-4 hover:text-slate-900">
+                        <Link href="/research/how-we-score" className="text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">
                             the full methodology article
                         </Link>.
                     </li>

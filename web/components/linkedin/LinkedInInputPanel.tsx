@@ -107,12 +107,19 @@ export function LinkedInInputPanel({
             const paid = Number(user?.paidUsesLeft || 0);
             return `${paid} paid report${paid === 1 ? '' : 's'} remaining`;
         }
-        if (freeUsesRemaining > 0) return '1 free report available';
-        return 'Upgrade to continue';
+        if (freeUsesRemaining > 0) return 'First report included';
+        return 'A Job Search Pass is required for another report';
     };
 
     return (
-        <div className="overflow-hidden rounded-2xl border border-border/45 bg-white shadow-[0_20px_48px_-40px_rgba(15,23,42,0.18)] dark:bg-card">
+        <div className="overflow-hidden border border-[hsl(var(--paper-line))] bg-paper shadow-[0_1.75rem_4rem_-3.25rem_rgba(15,23,42,0.48)]">
+            <div className="flex items-center justify-between gap-5 border-b border-[hsl(var(--paper-line))] bg-paper-muted px-6 py-4 md:px-8">
+                <div className="flex items-center gap-3">
+                    <span className="flex size-7 items-center justify-center border border-ink font-display text-sm text-ink">in</span>
+                    <span className="text-[10px] font-semibold uppercase riyp-track-010 text-ink">Profile source</span>
+                </div>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-brand">LinkedIn / 01</span>
+            </div>
             <div className="gap-y-6 p-6 md:gap-y-7 md:p-8">
                 {!pdfFile ? (
                     <div className="gap-y-5">
@@ -130,7 +137,7 @@ export function LinkedInInputPanel({
                                 size="sm"
                                 onClick={openFileDialog}
                                 disabled={isLoading}
-                                className="min-h-11 min-w-[6.5rem] rounded-lg px-4"
+                                className="min-h-11 min-w-[6.5rem] px-4"
                             >
                                 Select file
                             </Button>
@@ -145,7 +152,7 @@ export function LinkedInInputPanel({
                             onDrop={handleDrop}
                             onClick={openFileDialog}
                             className={cn(
-                                'group relative flex min-h-[11.5rem] cursor-pointer flex-col items-center justify-center gap-4 rounded-xl border border-dashed px-5 py-8 text-center transition-all duration-300',
+                                'group relative flex min-h-[11.5rem] cursor-pointer flex-col items-center justify-center gap-4 border border-dashed px-5 py-8 text-center transition-colors duration-200',
                                 isDragging
                                     ? 'border-brand/45 bg-brand/5'
                                     : 'border-border/45 hover:border-brand/35 hover:bg-brand/5',
@@ -163,7 +170,7 @@ export function LinkedInInputPanel({
 
                             <div
                                 className={cn(
-                                    'flex size-14 items-center justify-center rounded-xl border border-border/70 bg-background text-muted-foreground transition-all duration-300',
+                                    'flex size-12 items-center justify-center border border-border/70 bg-paper text-muted-foreground transition-colors duration-200',
                                     isDragging && 'border-brand/35 bg-brand/10 text-brand'
                                 )}
                             >
@@ -177,9 +184,9 @@ export function LinkedInInputPanel({
                         </div>
                     </div>
                 ) : (
-                    <div className="animate-in fade-in slide-in-from-top-2 flex items-center justify-between rounded-xl border border-brand/15 bg-brand/5 p-4">
+                    <div className="animate-in fade-in slide-in-from-top-2 flex items-center justify-between border border-brand/25 bg-paper-muted p-4">
                         <span className="flex items-center gap-3 text-sm font-medium text-brand">
-                            <div className="flex size-9 items-center justify-center rounded-lg bg-brand/10">
+                            <div className="flex size-9 items-center justify-center border border-brand/25 bg-paper">
                                 <FileText className="size-4" />
                             </div>
                             <div className="min-w-0">
@@ -199,7 +206,7 @@ export function LinkedInInputPanel({
                         <Button
                             variant="ghost"
                             size="sm"
-                            className="h-10 rounded-lg px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                            className="h-10 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                             onClick={handleRemoveFile}
                         >
                             Remove
@@ -208,7 +215,7 @@ export function LinkedInInputPanel({
                 )}
 
                 {parseError && (
-                    <p className="rounded-lg border border-destructive/20 bg-destructive/10 px-3 py-2 text-center text-sm text-destructive">
+                    <p className="border-l-2 border-destructive bg-destructive/5 px-3 py-2 text-center text-sm text-destructive">
                         {parseError}
                     </p>
                 )}
@@ -219,7 +226,7 @@ export function LinkedInInputPanel({
                             href="https://www.linkedin.com/in/me"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border/45 px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-brand/35 hover:bg-brand/5 hover:text-foreground"
+                            className="inline-flex min-h-11 items-center gap-1.5 border-b border-border px-1 py-2 text-sm text-muted-foreground transition-colors hover:border-brand hover:text-foreground"
                         >
                             Open your LinkedIn profile
                             <ExternalLink className="size-3.5" />
@@ -237,7 +244,7 @@ export function LinkedInInputPanel({
                 )}
             </div>
 
-            <div className="border-t border-border/40 bg-secondary/20 p-6 md:p-8">
+            <div className="border-t border-[hsl(var(--paper-line))] bg-paper-muted p-6 md:p-8">
                 <Button
                     variant="brand"
                     size="lg"
@@ -247,17 +254,17 @@ export function LinkedInInputPanel({
                     isLoading={isLoading}
                 >
                     {isLoading ? (
-                        'Running Analysis...'
+                        'Creating your report…'
                     ) : (
                         <span className="flex items-center gap-2">
-                            See What They See <ArrowRight className="size-4" />
+                            Get my report <ArrowRight className="size-4" />
                         </span>
                     )}
                 </Button>
 
                 <div className="mt-4 flex flex-col items-center gap-2.5 text-center">
                     <TrustBadges variant="inline" className="flex-wrap justify-center gap-x-3 gap-y-1 text-xs" />
-                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground/70">
+                    <p className="text-xs font-medium text-muted-foreground/70">
                         {getRunHint()}
                     </p>
                     <p className="text-xs text-muted-foreground">

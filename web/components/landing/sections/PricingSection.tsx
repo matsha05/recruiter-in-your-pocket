@@ -15,8 +15,8 @@ import { SCROLL_REVEAL_VARIANTS, SCROLL_REVEAL_FAST } from "@/lib/animation";
 
 type PricingSectionProps = {
     content: LandingPricingContent;
-    loadingTier: "monthly" | "lifetime" | null;
-    onCheckout: (tier: "monthly" | "lifetime") => void;
+    loadingTier: "30d" | null;
+    onCheckout: (tier: "30d") => void;
     onFreeSelect: () => void;
 };
 
@@ -57,27 +57,22 @@ export function PricingSection({ content, loadingTier, onCheckout, onFreeSelect 
                 </motion.div>
 
                 <motion.div
-                    className="rounded-2xl border border-border/55 bg-gradient-to-b from-white/90 to-amber-50/45 p-3.5 shadow-[0_24px_48px_-34px_rgba(2,6,23,0.36)] dark:from-slate-900/60 dark:to-slate-900/40 sm:p-4"
+                    className="border border-border/55 bg-background/80 p-3.5 shadow-[0_24px_48px_-34px_rgba(2,6,23,0.24)] sm:p-4"
                     variants={SCROLL_REVEAL_FAST}
                     initial={prefersReducedMotion ? false : "hidden"}
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.15 }}
                 >
-                    <div className="grid gap-4 sm:grid-cols-2 lg:gap-5 xl:grid-cols-3">
+                    <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
                         <PricingCard
                             tier="free"
                             allowFreeSelect
                             onSelect={onFreeSelect}
                         />
                         <PricingCard
-                            tier="monthly"
-                            onSelect={() => onCheckout("monthly")}
-                            loading={loadingTier === "monthly"}
-                        />
-                        <PricingCard
-                            tier="lifetime"
-                            onSelect={() => onCheckout("lifetime")}
-                            loading={loadingTier === "lifetime"}
+                            tier="30d"
+                            onSelect={() => onCheckout("30d")}
+                            loading={loadingTier === "30d"}
                         />
                     </div>
                 </motion.div>

@@ -1,8 +1,9 @@
 import type { ComponentType } from "react";
-import { CheckCircle2, Lock, Receipt, ShieldCheck, Trash2 } from "lucide-react";
-import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
+import type { IconProps } from "@phosphor-icons/react";
+import { CheckCircle, LockKey, Receipt, ShieldCheck, Trash } from "@phosphor-icons/react";
+import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
 
-export type LegalIcon = ComponentType<{ className?: string }>;
+export type LegalIcon = ComponentType<IconProps>;
 
 export type LegalInline =
   | { type: "text"; value: string }
@@ -74,20 +75,20 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           {
             icon: ShieldCheck,
             title: "Evidence, not promises",
-            body: "Scores estimate your resume's hiring signal. They don't guarantee outcomes.",
+            body: "The first-read score summarizes this document review. The report shows the evidence behind it and never promises a hiring outcome.",
           },
           {
-            icon: Lock,
+            icon: LockKey,
             title: "Clear data handling",
             body: "How we store and process your report data and extension capture data is documented clearly on our Security and Privacy pages.",
           },
           {
             icon: Receipt,
             title: "Simple billing",
-            body: "Checkout, invoices, renewals, cancellation, and restore paths are all handled through Stripe-backed billing flows.",
+            body: "When paid access is open, Stripe handles checkout and card details. The only offer is a $29 Job Search Pass: five reports over 30 days, with no renewal.",
           },
           {
-            icon: Trash2,
+            icon: Trash,
             title: "You control deletion",
             body: "Saved reports can be deleted from report history. Deleting your account removes reports, saved jobs, default resume profile, and usage history from our database.",
           },
@@ -97,7 +98,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         type: "checklist",
         title: "Things you can verify yourself",
         items: TRUST_PROMISES,
-        icon: CheckCircle2,
+        icon: CheckCircle,
         variant: "soft",
       },
       {
@@ -124,7 +125,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
     eyebrow: "Privacy policy",
     title: "How we handle your data",
     description: "What data flows through the product, why it's there, and how you can remove or export it.",
-    lastUpdated: LEGAL_LAST_UPDATED,
+    lastUpdated: PRIVACY_LAST_UPDATED,
     sections: [
       {
         type: "card",
@@ -133,7 +134,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "This policy covers resume and LinkedIn inputs, account info, usage data, extension capture data, analytics metadata, and billing events processed by the web app.",
+              value: "This policy covers resume and LinkedIn inputs, account info, usage data, extension capture data, background job data, analytics metadata, and billing events processed by the web app.",
             },
           ],
         ],
@@ -151,7 +152,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "OpenAI generates reports, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Stripe manages card data on their systems. We never have access to it.",
+              value: "OpenAI generates reports, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs and PDF generation when those features are used. Stripe manages card data on its systems. We never have access to it.",
             },
           ],
         ],
@@ -228,7 +229,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: "Your first report is free. Paid plans give you repeated use, history, and exports. Stripe handles billing and invoices. If you paid but your access looks locked, try " },
+            { type: "text", value: "Your first report is free. When paid access is open, one $29 Job Search Pass adds five reports for 30 days. Stripe handles billing and receipts. If you already paid but your access looks locked, try " },
             { type: "link", label: "Restore Access", href: "/purchase/restore" },
             { type: "text", value: " before reaching out to support. Refunds are reviewed case by case." },
           ],
@@ -295,7 +296,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               },
               {
                 q: "Is my data used to train public models?",
-                a: "No. We use OpenAI's API, which doesn't train public models on your content.",
+                a: "No. We do not opt your data into model training, and OpenAI API data is not used to train OpenAI models by default. OpenAI may retain abuse-monitoring logs containing customer content for up to 30 days.",
               },
               {
                 q: "How do I delete my data?",
@@ -311,12 +312,12 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
                 a: "Yes. One complete report, free, no credit card.",
               },
               {
-                q: "What is monthly vs lifetime?",
-                a: "Monthly ($9/mo) is great while you're actively job hunting - cancel anytime. Lifetime ($79 one-time) is there if you want long-term access with no recurring charges.",
+                q: "What is the Job Search Pass?",
+                a: "When paid access is open, it is a $29 one-time purchase for five additional complete reports. The pass expires 30 days after purchase and never renews automatically.",
               },
               {
                 q: "How do I restore access and get receipts?",
-                a: "Go to Settings > Billing, or use the Restore Access page. Stripe handles all your invoices and receipts.",
+                a: "When billing controls are available, go to Settings > Billing or use Restore Access with the email used at checkout. Stripe processes the payment; receipts stay in billing history.",
               },
             ],
           },

@@ -1,373 +1,135 @@
 # Recruiter in Your Pocket — Brand System
 
-Last updated: 2026-03-21
+Last updated: 2026-07-12
+
 Owner: Product + Design
-Status: Canonical brand direction for visual expression and narrative
 
-This document is the source of truth for what RIYP should feel like.
+Status: Current brand source of truth
 
-It sharpens, but does not replace:
-- `docs/design-philosophy.md`
-- `docs/design-principles.md`
-- `docs/copy-system.md`
-- `web/docs/copy-guide.md`
+Authority: This document owns brand identity, promise, emotional target, voice posture, and the signature Lifted Line grammar. [`design-system.md`](./design-system.md) owns cross-surface visual application and the production implementation contract. [`voice-and-tone.md`](./voice-and-tone.md) owns the writing voice.
 
-## 1. Executive Decision
+## The direction: Lifted Line
 
-RIYP is not an editorial brand with a resume product attached.
+Recruiter in Your Pocket is the sharp, generous friend who knows hiring from the inside. We show people what their resume already proves, where the proof gets lost, and the smallest honest change that makes it easier to see.
 
-RIYP is a recruiter-intelligence brand.
+The brand is built around one recognizable move: **a line gets lifted**. A vague line becomes specific. Hidden scope becomes visible. The work does not get inflated; it gets easier to recognize.
 
-The core experience should feel like a private recruiter briefing in product form:
-- sharp
-- calm
-- high-trust
-- exact
-- humane
+## What we promise
 
-Editorial still matters, but only as the proof layer.
+We do not promise a job, an interview, an ATS score, or a prediction. We promise a private, useful first read:
 
-Use editorial for:
-- research
-- methodology
-- longform explainers
-- evidence-heavy reference surfaces
+- what landed
+- what needs context
+- what to fix first
+- why that recommendation is credible
 
-Do not use editorial as the dominant mood for:
-- the homepage
-- shared chrome
-- the workspace
-- pricing and trust pages
+## How the brand should feel
 
-## 2. The Brand In One Sentence
+- bright, not bubbly
+- confident, not grandiose
+- literate, not literary
+- useful, not clinical
+- charming, not cute
+- precise, not mechanical
+- premium through craft, not luxury theater
 
-Recruiter in Your Pocket shows candidates what a recruiter sees first, what is creating drag, and what to fix next.
+The emotional arc is: **I feel seen → I understand the problem → I know what to do next.**
 
-## 3. The Brand Promise
+## Voice
 
-We do not promise outcomes.
-We promise clarity.
+Write like the smartest, kindest recruiter a candidate could ask privately.
 
-The promise is:
-- you will understand how your resume reads on first pass
-- you will see the exact line or pattern creating friction
-- you will leave with a clearer, stronger next move
-
-## 4. The Emotional Arc
-
-Every important surface should move through this order:
-
-1. Tension
-2. Recognition
-3. Proof
-4. Intervention
-5. Relief
-6. Control
-
-The user should feel:
-- exposed, but not shamed
-- sharpened, not marketed at
-- relieved, not entertained
-- guided, not coached
-- in control, not processed
-
-## 5. Archetype Hierarchy
-
-### Primary Archetype
-
-Private recruiter briefing
-
-This makes the product feel:
-- specific
-- intimate
-- useful
-- high-stakes
-- premium
-
-### Supporting Archetypes
-
-Decision instrument
-- precise
-- calm
-- controlled
-
-Research-backed explainability layer
-- cited
-- evidence-rich
-- credible
-
-### Wrong Archetypes
-
-Editorial magazine
-- too lifestyle-coded
-- too detached from utility
-
-Career coach
-- too motivational
-- too soft
-- too generic
-
-ATS optimizer
-- too mechanical
-- too commodity-like
-- too crowded
-
-Broad job-search operating system
-- too sprawling
-- too feature-led
-- too interchangeable
-
-## 6. Personality Sliders
-
-Use these to judge whether a screen is on-brand.
-
-| Dimension | Target | Why |
-|---|---:|---|
-| Warm / Cold | 58 / 42 | Human enough to trust, but cooler than the old system |
-| Sharp / Soft | 82 / 18 | Judgment needs edge |
-| Calm / Energetic | 68 / 32 | Composure beats hype |
-| Premium / Casual | 78 / 22 | Premium through control, not ornament |
-| Precise / Expressive | 70 / 30 | Expression should never outrun clarity |
-| Dense / Airy | 58 / 42 | More instrument than poster |
-| Human / Institutional | 74 / 26 | Trusted expert, not HR software |
-
-If a screen gets warmer, softer, airier, or more decorative than this, it will drift back toward editorial boutique branding.
-If it gets greyer, colder, or more system-heavy than this, it will drift toward generic B2B tooling.
-
-## 7. World-Class Rules
-
-### 7.1 Singular Point Of View
-
-The strongest idea must be obvious in under 3 seconds:
-
-See what a recruiter sees first.
-
-The brand should not lead with:
-- AI
-- optimization
-- research volume
-- feature breadth
-
-### 7.2 One Dominant Object
-
-Every important surface needs one obvious focal object.
-
-Examples:
-- homepage: the report object
-- workspace: the input action or first-pass state
-- report: the verdict or first impression section
-- research: the lead figure or highlighted finding
-
-### 7.3 Compression
-
-The brand should state one strong thing, then prove it.
+Good copy names the real thing quickly, then helps. It can smile, but it must earn the smile through truth and usefulness.
 
 Prefer:
-- one sharp headline
-- one proof strip
-- one exact example
-- one decisive CTA
+
+- “You did the work. Let’s make sure they see it.”
+- “The useful part, first.”
+- “Advice with receipts.”
+- “Nothing new was invented. The scope is simply easier to find.”
+- “This line has a real result hiding inside it.”
 
 Avoid:
-- stacked reassurance
-- competing metrics
-- feature inventory above the fold
-- equal-weight card farms
 
-### 7.4 Controlled Character
+- generic career encouragement
+- corporate HR language
+- clever labels that require decoding
+- claims about a candidate’s future
+- fake certainty, fake urgency, and unsupported social proof
+- copy that talks about the product more than the user’s work
 
-Character should arrive through:
-- phrasing
-- timing
-- typography
-- composition
-- exactness
+## Visual character
 
-It should not arrive through:
-- office jokes
-- mascot-adjacent whimsy
-- novelty chrome
-- decorative paper theater on every page
+The visual world is warm white, graphite, iris, pale sky, and sparing apricot or butter. It is modern and optimistic without becoming colorful SaaS wallpaper.
 
-## 8. Visual Mood Decision
+Typography carries the authority:
 
-The approved mood is:
-- sharp + calm
-- composed bold
-- cooler neutrals
-- disciplined visible teal
-- rare premium warmth
-- high contrast
-- typography-led character
+- **Newsreader Variable** for wordmark, display headlines, verdicts, and large evidence statements
+- **Instrument Sans** for navigation, controls, labels, metadata, and body copy
 
-The rejected mood is:
-- light editorial by default
-- warm paper everywhere
-- desk metaphors carrying the brand
-- soft boutique luxury
-- startup glow
+Newsreader is not “editorial mode.” It is the brand’s human voice. Instrument Sans is the product’s clarity.
 
-In practice:
-- the homepage should feel headline-led and high-control
-- the product should feel slightly denser and more instrument-like
-- research can remain warmer and more editorial as a support mode
+The system is a recognizable grammar, not a template. Major surfaces may use bespoke illustration, image-making, motion, or unusual composition when the idea is specific to the product and the execution improves understanding or emotional impact. Custom craft is welcome. Generic decoration is not.
 
-## 9. Signature Brand Moves
+## Signature grammar
 
-These are the moves that should make RIYP feel unmistakable.
+The Lifted Line system uses four evidence cues:
 
-### Move 1: The Briefing Object
+1. **Caught attention** — the action reads quickly.
+2. **Needs context** — scope, ownership, or outcome is missing.
+3. **Evidence present** — a claim has proof behind it.
+4. **Strongest next wording** — the clearest honest version of the line.
 
-The artifact should feel like a decisive product object, not a decorative mock.
+Use these cues across the homepage, reports, workspace, and Research. Phosphor icons support the grammar, but they are not the full art direction. Do not create ornamental symbols, fake annotations, or decorative diagrams that carry no meaning.
 
-It should show:
-- verdict
-- one friction point
-- one rewrite
-- one evidence row
+### The Lifted Trace
 
-### Move 2: The Transformation Moment
+The signature behavior is a structural line that carries a real claim through the product logic:
 
-The unforgettable move is not “red pen” theater.
-It is the precise transformation from weaker line to stronger line.
+**what is on the page -> what remains open -> the candidate's fact -> clearer wording**
 
-It should feel:
-- obvious in under 2 seconds
-- exact, not theatrical
-- confident, not magical
+Each completed segment lifts slightly from the baseline. The movement is functional: it shows where the recommendation came from and which fact changed the read. It is not a loading gimmick, a decorative underline, or proof that unfinished work is complete.
 
-### Move 3: The First-Pass Highlight
+Use the same behavior in the homepage proof, report edit flow, analysis work map, and Research process figures. Loading states may show the map, but must not fake completion percentages or backend milestones the product does not actually receive.
 
-RIYP needs a clear visual language for what gets noticed first.
+## Surface rules
 
-Use:
-- priority ordering
-- exact labels
-- highlighted evidence
-- sequence cues
+### Homepage
 
-### Move 4: Calm Trust
+Lead with the human truth and one interactive transformation. Show the product’s judgment before listing features.
 
-Trust should feel matter-of-fact.
+### Workspace and reports
 
-No defensive legal theater.
-No oversized security-branding energy.
-No repetitive reassurance loops.
+Prioritize the likely takeaway, the exact evidence, and the next action. The interface can be denser than marketing, but it must remain calm and humane.
 
-### Move 5: Disciplined Accent
+### Research
 
-Teal should be visible enough to feel branded, but disciplined enough to stay premium.
+Research is the trust layer, not a blog. Start with a concrete recruiter claim, show the source, say what it supports, and state the limitation. Diagrams must teach something specific.
 
-## 10. Reference Cues
+### Trust
 
-These are cues, not mimicry targets.
+Privacy language should be short and factual. No security theater. Never imply we store less, know more, or predict more than the product actually does.
 
-### [Linear](https://linear.app/)
-Use for:
-- composure
-- exactness
-- interaction discipline
-- system confidence
+## Hard noes
 
-Do not copy:
-- dark-first posture
-- product category feel
+- teal as the primary brand color
+- navy-and-paper dossier theater
+- gradients used as atmosphere
+- card farms with equal visual weight
+- Times New Roman or browser-serif fallbacks presented as intentional typography
+- red-pen cosplay
+- “AI magic” language
+- dashboards that hide the most useful judgment behind scores
+- novelty at the expense of comprehension
 
-### [Stripe](https://stripe.com/)
-Use for:
-- trust density
-- control
-- seriousness without deadness
+## Quality test
 
-Do not copy:
-- infrastructure posture
-- enterprise breadth cues
+Before shipping a surface, ask:
 
-### [Notion](https://www.notion.com/)
-Use for:
-- compressed homepage messaging
-- narrative clarity
-- legible proof
+1. Is the most useful thing obvious in three seconds?
+2. Does this make the candidate’s real work clearer without inflating it?
+3. Is the copy something a thoughtful human would actually say?
+4. Does every diagram or visual teach a concrete idea?
+5. Does this unmistakably belong to the same product as the homepage and report?
 
-Do not copy:
-- playful breadth
-- friendly-productivity looseness
-
-### Category Contrast
-
-Use direct competitors as anti-pattern checks:
-- [Jobscan](https://www.jobscan.co/) for ATS-first commodity language
-- [Simplify](https://simplify.jobs/) for process-scale sprawl
-- [Huntr](https://huntr.co/) for feature multiplication
-- [Rezi](https://www.rezi.ai/) for AI-builder posture
-- [Teal](https://www.tealhq.com/) for category breadth
-
-RIYP should feel narrower, sharper, and more inevitable than all of them.
-
-## 11. Approved Visual Defaults
-
-- Headline-led hero
-- Artifact as supporting proof in viewport one
-- `7.4 seconds` in the proof layer, not as the main brand engine
-- Serif used selectively for authority
-- Satoshi as the functional workhorse
-- Monochrome expert imagery as the default founder-photo posture
-- Layered depth rather than flatness or heavy paper texture
-- Precision-instrument surfaces across core product and marketing
-
-## 12. What To Keep
-
-- The name `Recruiter in Your Pocket`
-- The recruiter-first point of view
-- `Sentient` + `Satoshi`
-- Teal as the brand accent
-- The report as the core product noun
-- The “what stands out / what gets missed / what to fix first” framing
-- Research as a trust moat
-- Premium through restraint
-
-## 13. What To Remove Or Retire
-
-- `Editor's Desk` as public-facing system language
-- novelty desk or drawer metaphors in shared chrome
-- “light editorial” as the default atmosphere
-- playful footer gimmicks that weaken authority
-- `review` as the primary noun where `report` is more accurate
-- warm paper as the site-wide climate
-
-## 14. Decision Summary
-
-If a future design choice is ambiguous, default to this hierarchy:
-
-1. Clarity of promise
-2. Recruiter-grade authority
-3. Composed bold visual character
-4. Premium restraint
-5. Editorial warmth only where proof calls for it
-
-- "Editor's Desk" as the umbrella design language
-- desk, drawer, and stationery metaphors as brand-defining moves
-- excessive warmth on core product surfaces
-- whimsical footer personality as a major expression layer
-- `review` as a competing noun when `report` is the intended standard
-- using `7.4 seconds` as the whole identity rather than a signature proof point
-
-## 15. Non-Negotiables
-
-Do not ship visual work that:
-- looks like generic AI SaaS
-- looks like a lifestyle editorial product
-- looks like a university career-center tool
-- hides the core product artifact
-- puts research above the product truth
-- turns the brand more playful than precise
-
-## 16. Final Brand Test
-
-Before shipping a major surface, ask:
-
-1. Does this feel like a recruiter-grade instrument, or like a stylish content brand?
-2. Is the strongest idea visible before the user reads the whole page?
-3. Does the product feel more exact than decorative?
-4. Does the warmth reduce anxiety without lowering authority?
-5. If the logo disappeared, would this still feel specifically like RIYP?
+If any answer is no, it is not finished.

@@ -67,5 +67,5 @@ The dedicated `first_impression` field should feel like the signature moment, no
 
 ## Canonical Reference
 
-- Voice and product copy guide: `web/docs/copy-guide.md`
+- Voice guide: `docs/voice-and-tone.md`
 - Structural naming and system rules: `docs/copy-system.md`

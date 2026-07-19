@@ -244,18 +244,21 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                                 if (e.key === 'Escape') setIsRenaming(false);
                                             }}
                                             className="h-6 px-1.5 text-sm font-medium border border-border rounded bg-background focus:outline-none focus:ring-1 focus:ring-brand"
+                                            aria-label="Resume filename"
                                             autoFocus
                                         />
                                         <button type="button"
                                             onClick={handleRename}
                                             disabled={isSaving}
                                             className="p-1 text-success hover:bg-success/10 rounded"
+                                            aria-label="Save resume filename"
                                         >
                                             <Check className="size-3" />
                                         </button>
                                         <button type="button"
                                             onClick={() => setIsRenaming(false)}
                                             className="p-1 text-muted-foreground hover:bg-muted rounded"
+                                            aria-label="Cancel resume rename"
                                         >
                                             <X className="size-3" />
                                         </button>
@@ -272,6 +275,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                                             }}
                                             className="p-1 text-muted-foreground hover:text-foreground hover:bg-muted rounded transition-colors"
                                             title="Rename"
+                                            aria-label="Rename resume"
                                         >
                                             <Pencil className="size-3" />
                                         </button>
@@ -301,6 +305,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                         onClick={() => fileInputRef.current?.click()}
                         disabled={isSaving}
                         className="text-xs text-muted-foreground hover:text-foreground font-medium inline-flex items-center gap-1.5 transition-colors"
+                        aria-label="Upload a different resume"
                     >
                         <RefreshCw className={cn("size-3", isSaving && "animate-spin")} />
                         {isSaving ? "Updating…" : "Change"}
@@ -316,6 +321,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                         if (file) handleFile(file);
                     }}
                     className="hidden"
+                    aria-label="Choose a replacement resume"
                 />
             </div>
         );
@@ -360,7 +366,19 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
             onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
             onDragLeave={() => setIsDragOver(false)}
             onDrop={handleDrop}
-            onClick={() => fileInputRef.current?.click()}
+            onClick={() => {
+                if (!isSaving) fileInputRef.current?.click();
+            }}
+            onKeyDown={(event) => {
+                if (!isSaving && (event.key === 'Enter' || event.key === ' ')) {
+                    event.preventDefault();
+                    fileInputRef.current?.click();
+                }
+            }}
+            role="button"
+            tabIndex={isSaving ? -1 : 0}
+            aria-disabled={isSaving}
+            aria-label="Upload resume for job matching"
         >
             {isSaving ? (
                 <div className="flex items-center gap-3">
@@ -395,6 +413,7 @@ export default function ResumeContextCard({ className, onResumeUpdated }: Resume
                     if (file) handleFile(file);
                 }}
                 className="hidden"
+                aria-label="Choose a resume for job matching"
             />
         </div>
     );

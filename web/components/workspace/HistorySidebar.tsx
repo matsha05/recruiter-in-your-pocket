@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Trash2, Clock, TrendingUp, FileText, Pencil, AlertTriangle, Check } from "lucide-react";
+import { Trash2, Clock, TrendingUp, Pencil, AlertTriangle, Check } from "lucide-react";
+import { EmptyReportIcon } from "@/components/icons";
 import {
     Sheet,
     SheetContent,
@@ -197,10 +198,10 @@ export default function HistorySidebar({
                     <SheetHeader className="px-6 py-5 border-b border-border/60">
                         <div className="flex items-center gap-3">
                             <div className="size-8 rounded-md bg-brand/10 flex items-center justify-center">
-                                <FileText className="size-4 text-brand" />
+                                <EmptyReportIcon className="size-4 text-brand" />
                             </div>
                             <SheetTitle className="font-display text-lg font-semibold">
-                                Your Reports
+                                Saved reports
                             </SheetTitle>
                         </div>
                     </SheetHeader>
@@ -214,17 +215,17 @@ export default function HistorySidebar({
                                     <TrendingUp className="size-8 text-brand" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                                    Track your progress
+                                    Save reports you want to revisit
                                 </h3>
                                 <p className="text-sm text-muted-foreground mb-8 max-w-[240px]">
-                                    Log in to save your analyses and watch your score improve over time.
+                                    Log in to keep reports, compare resume versions, and return to your edits later.
                                 </p>
                                 <Button
                                     variant="brand"
                                     className="w-full max-w-[200px]"
                                     onClick={onSignIn}
                                 >
-                                    Log In to Save
+                                    Log in to save reports
                                 </Button>
                             </div>
                         ) : loading ? (
@@ -248,14 +249,14 @@ export default function HistorySidebar({
                         ) : reports.length === 0 ? (
                             /* Empty state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
-                                <div className="size-16 rounded-full bg-secondary/50 flex items-center justify-center mb-6">
-                                    <FileText className="size-8 text-muted-foreground" />
+                                <div className="mb-6 flex size-20 items-center justify-center rounded-xl border border-brand/15 bg-brand/[0.045] text-brand">
+                                    <EmptyReportIcon className="size-12" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
                                     No reports yet
                                 </h3>
                                 <p className="text-sm text-muted-foreground max-w-[240px]">
-                                    Run your first analysis to start tracking your resume&apos;s progress.
+                                    Complete a review, then save it if you want to return to it later.
                                 </p>
                             </div>
                         ) : (
@@ -465,7 +466,6 @@ export default function HistorySidebar({
                                                 <div className="flex items-start justify-between mb-3">
                                                     <ScoreBadge
                                                         score={report.score}
-                                                        label={report.scoreLabel}
                                                         size="md"
                                                     />
 

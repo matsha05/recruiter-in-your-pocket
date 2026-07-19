@@ -24,7 +24,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://recruiterinyourpocket.com/sitemap.xml",
-    host: "https://recruiterinyourpocket.com",
+    sitemap: "https://www.recruiterinyourpocket.com/sitemap.xml",
+    host: "https://www.recruiterinyourpocket.com",
   };
 }

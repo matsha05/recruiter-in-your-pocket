@@ -1,0 +1,159 @@
+.root {
+    margin-bottom: 3rem;
+    border-block: 1px solid hsl(var(--brand) / 0.35);
+    background: hsl(var(--brand) / 0.045);
+    padding: 2rem 1.25rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.kicker,
+.detailLabel,
+.cardLabel {
+    font-size: 0.6875rem;
+    font-weight: 650;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.kicker,
+.currentLabel {
+    color: hsl(var(--brand));
+}
+
+.cardLabel,
+.detailLabel {
+    color: hsl(var(--muted-foreground));
+}
+
+.title {
+    max-width: 15ch;
+    margin-top: 0.75rem;
+    color: hsl(var(--foreground));
+    font-family: var(--font-display);
+    font-size: clamp(2.35rem, 6vw, 4.6rem);
+    font-weight: 520;
+    letter-spacing: -0.04em;
+    line-height: 0.94;
+}
+
+.intro {
+    max-width: 24rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1px;
+    margin-top: 2rem;
+    background: hsl(var(--paper-line));
+}
+
+.card {
+    background: hsl(var(--paper));
+    padding: 1.25rem;
+}
+
+.currentTag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.currentTag svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.changedIcon {
+    color: hsl(var(--brand));
+}
+
+.sameIcon {
+    color: hsl(var(--annotation));
+}
+
+.headline {
+    margin-top: 1rem;
+    color: hsl(var(--foreground));
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 520;
+    line-height: 1.25;
+}
+
+.previousHeadline {
+    color: hsl(var(--foreground) / 0.8);
+}
+
+.details {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+    border-top: 1px solid hsl(var(--paper-line));
+    padding-top: 1.25rem;
+}
+
+.detailText {
+    margin-top: 0.5rem;
+    color: hsl(var(--foreground) / 0.75);
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+.current .detailText {
+    color: hsl(var(--foreground));
+}
+
+.current .detail:last-child .detailText {
+    font-weight: 500;
+}
+
+.arrow {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: hsl(var(--paper-muted));
+    color: hsl(var(--brand));
+}
+
+.arrow svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .root {
+        padding: 2.5rem 2rem;
+    }
+
+    .header {
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-between;
+    }
+
+    .card {
+        padding: 1.75rem;
+    }
+
+    .headline {
+        font-size: 1.875rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr);
+    }
+
+    .arrow {
+        display: flex;
+    }
+}

@@ -1,126 +1,20 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { ComparisonField, EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
 
-/**
- * Skills Promise vs Reality Diagram (v2.1)
- * 
- * Clearer side-by-side comparison showing the gap between
- * what companies say vs what research shows they do
- */
 export function SkillsPromiseRealityDiagram() {
     return (
-        <DiagramFigure className="w-full max-w-[560px] mx-auto my-12 group select-none">
-            <DiagramFrame
-                className="riyp-diagram-shell"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                {/* Header */}
-                <div className="riyp-diagram-head">
-                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
-                        The Reality Check
-                    </span>
-                </div>
-
-                <div className="p-6">
-                    {/* Two-column comparison */}
-                    <div className="grid md:grid-cols-2 gap-4">
-                        {/* What they say */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="rounded-lg border border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/20 p-4"
-                        >
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="size-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                                    <svg className="size-4 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M12 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" />
-                                    </svg>
-                                </div>
-                                <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">
-                                    What They Say
-                                </span>
-                            </div>
-                            <ul className="gap-y-2">
-                                <li className="text-sm text-emerald-700/80 dark:text-emerald-300/80 flex items-start gap-2">
-                                    <span className="text-emerald-500 mt-1">✓</span>
-                                    <span>&quot;Skills matter more than degrees&quot;</span>
-                                </li>
-                                <li className="text-sm text-emerald-700/80 dark:text-emerald-300/80 flex items-start gap-2">
-                                    <span className="text-emerald-500 mt-1">✓</span>
-                                    <span>&quot;We hire based on ability&quot;</span>
-                                </li>
-                                <li className="text-sm text-emerald-700/80 dark:text-emerald-300/80 flex items-start gap-2">
-                                    <span className="text-emerald-500 mt-1">✓</span>
-                                    <span>&quot;Wider talent pools&quot;</span>
-                                </li>
-                            </ul>
-                        </motion.div>
-
-                        {/* What research shows */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                            viewport={{ once: true }}
-                            className="rounded-lg border border-amber-500/30 bg-amber-50 dark:bg-amber-950/20 p-4"
-                        >
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="size-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                                    <svg className="size-4 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                                    </svg>
-                                </div>
-                                <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">
-                                    What Research Shows
-                                </span>
-                            </div>
-                            <ul className="gap-y-2">
-                                <li className="text-sm text-amber-700/80 dark:text-amber-300/80 flex items-start gap-2">
-                                    <span className="text-amber-500 mt-1">→</span>
-                                    <span>Degree requirements persist in practice</span>
-                                </li>
-                                <li className="text-sm text-amber-700/80 dark:text-amber-300/80 flex items-start gap-2">
-                                    <span className="text-amber-500 mt-1">→</span>
-                                    <span>Old filters still dominate hiring</span>
-                                </li>
-                                <li className="text-sm text-amber-700/80 dark:text-amber-300/80 flex items-start gap-2">
-                                    <span className="text-amber-500 mt-1">→</span>
-                                    <span>Adoption lags stated commitment</span>
-                                </li>
-                            </ul>
-                        </motion.div>
-                    </div>
-
-                    {/* Key insight */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-                        viewport={{ once: true }}
-                        className="mt-6 bg-muted/20 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
-                    >
-                        <p className="text-xs text-muted-foreground leading-relaxed text-center">
-                            <span className="font-semibold text-foreground">The gap is real.</span> Skills-first messaging has outpaced skills-first hiring. Write for both worlds.
-                        </p>
-                    </motion.div>
-                </div>
+        <DiagramFigure className="max-w-[47rem]" label="Comparison between skills-first hiring promises and observed hiring practices">
+            <DiagramFrame>
+                <EvidenceHeader index="01" label="Policy and practice" title="Removing a degree requirement is not the same as changing who gets hired." note="In the 2024 HBS and Burning Glass analysis, nearly all observed hiring change came from 37% of the firms that removed degree requirements." />
+                <ComparisonField
+                    left={{ eyebrow: "What hiring promises", title: "Ability over pedigree", tone: "teal", items: ["Skills matter more than degrees", "Potential widens the talent pool", "Demonstrated ability should lead"] }}
+                    right={{ eyebrow: "What practice still does", title: "Old proxies remain", tone: "quiet", items: ["Degree screens persist", "Familiar titles still reassure", "Adoption trails stated intent"] }}
+                    verdict={<><strong className="text-foreground">Write for both:</strong> name the relevant skill, then show where you used it and what changed.</>}
+                />
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  Promise vs Reality</span>
-                <span className="block text-sm text-foreground/80 font-medium">
-                    Where skills-first claims diverge from hiring behavior
-                </span>
-            </figcaption>
+            <DiagramCaption kicker="Fig. 1 / Policy versus practice" title="The promise is real. The hiring change is still concentrated in a minority of employers." description="Harvard Business School and Burning Glass Institute (2024)." />
         </DiagramFigure>
     );
 }

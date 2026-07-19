@@ -9,22 +9,24 @@ export function isSampleParamEnabled(value: string | null) {
 type SampleReportOptions = {
   searchParams: ReadonlyURLSearchParams;
   report: unknown | null;
+  skipSample?: boolean;
   setReport: Dispatch<SetStateAction<any>>;
 };
 
 export function useSampleReport({
   searchParams,
   report,
+  skipSample = false,
   setReport
 }: SampleReportOptions) {
   useEffect(() => {
     const sampleParam = searchParams.get("sample");
 
-    if (isSampleParamEnabled(sampleParam) && !report) {
+    if (isSampleParamEnabled(sampleParam) && !report && !skipSample) {
       fetch("/sample-report.json")
         .then((res) => res.json())
         .then((data) => setReport(data))
         .catch((err) => console.error("Failed to load sample report:", err));
     }
-  }, [searchParams, report, setReport]);
+  }, [searchParams, report, skipSample, setReport]);
 }

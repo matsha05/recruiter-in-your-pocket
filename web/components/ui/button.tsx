@@ -4,15 +4,12 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { m as motion, HTMLMotionProps } from "motion/react"
 import { BUTTON_TAP } from "@/lib/animation"
-import { Loader2 } from "lucide-react"
+import { CircleNotch } from "@phosphor-icons/react"
 
 /**
- * V2.1 Button Component
- * - 4px radius (uses --radius token)
- * - brand variant for primary CTAs (Teal)
- * - premium variant for unlock moments (Gold)
- * - Snappy transition timing
- * - Full state coverage: hover, active, focus, disabled, loading
+ * Lifted Line button primitive.
+ * Brand actions use iris; studio actions use graphite. Legacy premium remains
+ * available for paid-product moments until those surfaces are migrated.
  */
 const buttonVariants = cva(
     "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
@@ -31,10 +28,10 @@ const buttonVariants = cva(
                     "hover:bg-secondary/80 hover:text-secondary-foreground active:bg-secondary/90",
                 link:
                     "text-slate-muted underline-offset-4 hover:underline hover:text-foreground",
-                // V2.1 Brand: Teal primary CTA
+                // Lifted Line primary CTA: iris
                 brand:
-                    "bg-brand text-white shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_14px_30px_-20px_rgb(13_148_136_/0.65)] hover:bg-brand/92 hover:shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_20px_34px_-22px_rgb(13_148_136_/0.72)] active:bg-brand/82 active:scale-[0.98] font-medium",
-                // V2.1 Premium: Gold unlock moments
+                    "bg-brand text-white hover:bg-brand/92 active:bg-brand/82 active:scale-[0.98] font-medium",
+                // Legacy paid-product emphasis; do not use as a general brand accent
                 premium:
                     "bg-premium text-white shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_14px_30px_-20px_rgb(217_119_6_/0.6)] hover:bg-premium/92 hover:shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_20px_34px_-22px_rgb(217_119_6_/0.68)] active:bg-premium/82 active:scale-[0.98] font-medium",
                 // Studio: Minimal ink/paper
@@ -42,11 +39,11 @@ const buttonVariants = cva(
                     "bg-foreground text-background hover:opacity-90 active:opacity-80 active:scale-[0.98] dark:bg-foreground dark:text-background font-medium tracking-tight",
             },
             size: {
-                default: "h-9 px-4 py-2",
-                sm: "h-8 px-3 text-xs",
-                lg: "h-10 px-6",
-                xl: "h-12 px-8 text-base",
-                icon: "size-9",
+                default: "min-h-11 px-4 py-2",
+                sm: "min-h-11 px-3 py-2 text-xs",
+                lg: "min-h-12 px-6 py-3",
+                xl: "min-h-12 px-8 py-3 text-base",
+                icon: "size-11",
             },
         },
         defaultVariants: {
@@ -77,7 +74,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
             <>
                 {isLoading && (
-                    <Loader2 className="size-4 animate-spin" />
+                    <CircleNotch aria-hidden="true" className="size-4 animate-spin" weight="bold" />
                 )}
                 {isLoading ? <span className="opacity-70">{children}</span> : children}
             </>

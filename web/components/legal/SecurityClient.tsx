@@ -1,13 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Lock, ShieldCheck } from "lucide-react";
+import { CheckCircle, LockKey, ShieldCheck } from "@phosphor-icons/react";
 import { DATA_HANDLING_ROWS, LEGAL_LAST_UPDATED, TRUST_PROMISES } from "@/lib/legal/dataHandling";
 import { LegalShell } from "@/components/legal/LegalShell";
-
-/** Paper shadow matching all Editor's Desk cards */
-const paperShadow =
-    "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
 
 export default function SecurityClient() {
     return (
@@ -19,66 +15,77 @@ export default function SecurityClient() {
             lastUpdated={LEGAL_LAST_UPDATED}
             contentClassName="max-w-5xl"
         >
-            <section
-                className="rounded-2xl bg-white p-6 md:p-8 overflow-x-auto"
-                style={{ boxShadow: paperShadow }}
-            >
-                <h2 className="mb-4 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <Lock className="size-4 text-slate-400" />
-                    What we store and why
+            <section className="border-y border-line bg-surface-sky/30 p-5 sm:p-6 md:p-8" aria-labelledby="security-data-table-title">
+                <h2 className="mb-5 flex items-center gap-2 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
+                    <LockKey className="size-5 text-brand" weight="bold" />
+                    <span id="security-data-table-title">What we store and why</span>
                 </h2>
-                <table className="min-w-[860px] w-full text-sm">
+                <div className="divide-y divide-line md:hidden">
+                    {DATA_HANDLING_ROWS.map((row) => (
+                        <article key={row.dataType} className="py-5 first:pt-1 last:pb-1">
+                            <h3 className="text-base font-semibold leading-6 text-foreground">{row.dataType}</h3>
+                            <dl className="mt-4 grid gap-4">
+                                {[
+                                    ["Purpose", row.purpose],
+                                    ["Retention", row.retention],
+                                    ["Your control", row.userControl],
+                                    ["Processor", row.processor],
+                                ].map(([label, value]) => (
+                                    <div key={label} className="grid gap-1">
+                                        <dt className="text-[10px] font-semibold uppercase riyp-track-010 text-brand">{label}</dt>
+                                        <dd className="text-sm leading-6 text-muted-foreground">{value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </article>
+                    ))}
+                </div>
+                <table className="hidden w-full table-fixed text-sm md:table">
                     <thead>
-                        <tr className="border-b border-slate-100 text-left">
-                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Data type</th>
-                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Purpose</th>
-                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Retention</th>
-                            <th className="py-2 pr-3 text-xs font-semibold uppercase tracking-wide text-slate-400">Your control</th>
-                            <th className="py-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Processor</th>
+                        <tr className="border-b border-line text-left">
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase riyp-track-008 text-muted-foreground">Data type</th>
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase riyp-track-008 text-muted-foreground">Purpose</th>
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase riyp-track-008 text-muted-foreground">Retention</th>
+                            <th className="py-2 pr-3 text-xs font-semibold uppercase riyp-track-008 text-muted-foreground">Your control</th>
+                            <th className="py-2 text-xs font-semibold uppercase riyp-track-008 text-muted-foreground">Processor</th>
                         </tr>
                     </thead>
                     <tbody>
                         {DATA_HANDLING_ROWS.map((row) => (
-                            <tr key={row.dataType} className="border-b border-slate-50 align-top">
-                                <td className="py-3 pr-3 font-medium text-slate-700">{row.dataType}</td>
-                                <td className="py-3 pr-3 text-[14px] leading-[1.65] text-slate-500">{row.purpose}</td>
-                                <td className="py-3 pr-3 text-[14px] leading-[1.65] text-slate-500">{row.retention}</td>
-                                <td className="py-3 pr-3 text-[14px] leading-[1.65] text-slate-500">{row.userControl}</td>
-                                <td className="py-3 text-[14px] leading-[1.65] text-slate-500">{row.processor}</td>
+                            <tr key={row.dataType} className="border-b border-line/70 align-top">
+                                <td className="py-4 pr-3 font-medium text-foreground">{row.dataType}</td>
+                                <td className="py-4 pr-3 text-[14px] leading-6 text-muted-foreground">{row.purpose}</td>
+                                <td className="py-4 pr-3 text-[14px] leading-6 text-muted-foreground">{row.retention}</td>
+                                <td className="py-4 pr-3 text-[14px] leading-6 text-muted-foreground">{row.userControl}</td>
+                                <td className="py-4 text-[14px] leading-6 text-muted-foreground">{row.processor}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </section>
 
-            <section
-                className="rounded-2xl border border-slate-100 p-6"
-                style={{ backgroundColor: "hsl(40 20% 97%)" }}
-            >
-                <h2 className="mb-3 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <ShieldCheck className="size-4 text-slate-400" />
+            <section className="border-t border-line py-7 md:py-9">
+                <h2 className="mb-4 flex items-center gap-2 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
+                    <ShieldCheck className="size-5 text-brand" weight="bold" />
                     What we commit to
                 </h2>
-                <ul className="gap-y-2.5 text-[14px] leading-[1.65] text-slate-500">
+                <ul className="grid gap-x-8 gap-y-3 text-[15px] leading-7 text-muted-foreground md:grid-cols-2">
                     {TRUST_PROMISES.map((line) => (
                         <li key={line} className="flex items-start gap-2">
-                            <span className="mt-2 inline-block size-1.5 rounded-full bg-slate-300" />
+                            <CheckCircle className="mt-1 size-4 shrink-0 text-brand" weight="bold" />
                             <span>{line}</span>
                         </li>
                     ))}
                 </ul>
             </section>
 
-            <section
-                className="rounded-2xl border border-slate-100 p-6"
-                style={{ backgroundColor: "hsl(40 20% 99%)" }}
-            >
-                <h2 className="mb-3 flex items-center gap-2 font-display text-slate-900" style={{ fontSize: "1.15rem", fontWeight: 500, letterSpacing: "-0.01em" }}>
-                    <ShieldCheck className="size-4 text-slate-400" />
+            <section className="border-y border-line bg-proof px-6 py-7 md:px-8">
+                <h2 className="mb-3 flex items-center gap-2 font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
+                    <ShieldCheck className="size-5 text-brand" weight="bold" />
                     Responsible disclosure
                 </h2>
-                <p className="text-[14px] leading-[1.65] text-slate-500">
-                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-slate-900">support@recruiterinyourpocket.com</a> with steps to reproduce it. Our canonical disclosure instructions are also published at <Link href="/.well-known/security.txt" className="underline underline-offset-4 hover:text-slate-900">/.well-known/security.txt</Link>.
+                <p className="text-[15px] leading-7 text-muted-foreground">
+                    If you discover a security issue, please email <a href="mailto:support@recruiterinyourpocket.com" className="text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">support@recruiterinyourpocket.com</a> with steps to reproduce it. The same disclosure instructions are published at <Link href="/.well-known/security.txt" className="text-foreground underline decoration-brand/45 underline-offset-4 hover:text-brand">/.well-known/security.txt</Link>.
                 </p>
             </section>
         </LegalShell>

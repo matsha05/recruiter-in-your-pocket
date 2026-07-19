@@ -1,18 +1,15 @@
 "use client";
 
-import { Check, Loader2, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Check, CircleNotch } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { PRICING_PLANS } from "@/lib/billing/pricing";
+import { cn } from "@/lib/utils";
 
-// Pricing tiers: free, monthly ($9), lifetime ($79)
-export type PricingTier = "free" | "monthly" | "lifetime";
+export type PricingTier = "free" | "30d";
 
 interface PricingCardProps {
     tier: PricingTier;
     variant?: "full" | "compact";
-    /** "app" = in-app surfaces (settings, modals) using app-card tokens.
-     *  "marketing" = Editor's Desk warm-paper pages using white card + paper shadow + slate CTAs. */
     context?: "app" | "marketing";
     selected?: boolean;
     onSelect?: () => void;
@@ -22,10 +19,6 @@ interface PricingCardProps {
 }
 
 const TIER_DATA = PRICING_PLANS;
-
-/** Paper shadow matching all Editor's Desk cards */
-const paperShadow =
-    "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
 
 export function PricingCard({
     tier,
@@ -38,13 +31,13 @@ export function PricingCard({
     className,
 }: PricingCardProps) {
     const data = TIER_DATA[tier];
-    const isHighlighted = tier === "lifetime";
     const isFree = tier === "free";
+    const isFeatured = tier === "30d";
     const disableForFree = isFree && !allowFreeSelect;
-    const buttonLabel = isFree && allowFreeSelect ? "Run free report" : data.buttonText;
+    const buttonLabel = isFree && allowFreeSelect ? "Get the free report" : data.buttonText;
     const isMarketing = context === "marketing";
+    const isFeaturedMarketing = isMarketing && isFeatured;
 
-    // COMPACT variant  -  modals (always uses app tokens)
     if (variant === "compact") {
         return (
             <button
@@ -52,196 +45,103 @@ export function PricingCard({
                 onClick={onSelect}
                 disabled={loading || disableForFree}
                 className={cn(
-                    "app-card p-4 text-center flex flex-col items-center justify-center relative overflow-hidden",
-                    selected
-                        ? "ring-2 ring-brand/35 border-transparent"
-                        : "hover:border-brand/30",
-                    isHighlighted && "app-card-highlight",
-                    disableForFree && "opacity-50 cursor-not-allowed",
+                    "app-card relative flex min-h-32 flex-col items-center justify-center overflow-hidden p-4 text-center",
+                    selected ? "border-brand/60 ring-2 ring-brand/20" : "hover:border-brand/35",
+                    isFeatured && "app-card-highlight",
+                    disableForFree && "cursor-not-allowed opacity-50",
                     className
                 )}
             >
-                {isHighlighted && data.badge && (
-                    <div className="absolute -top-0.5 right-0 left-0 flex justify-center">
-                        <span className="text-xs uppercase tracking-wider bg-brand text-white px-2 py-0.5 rounded font-bold flex items-center gap-1">
-                            <Sparkles className="size-2.5" />
-                            {data.badge}
-                        </span>
-                    </div>
+                {data.badge && (
+                    <span className="absolute inset-x-0 top-0 flex items-center justify-center bg-brand px-2 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-white">
+                        {data.badge}
+                    </span>
                 )}
-                <span className={cn(
-                    "text-2xl font-display font-medium mt-1",
-                    isHighlighted ? "text-brand" : "text-foreground"
-                )}>
-                    {data.price}
-                </span>
-                <span className={cn(
-                    "text-xs font-medium uppercase tracking-wider mt-1",
-                    isHighlighted ? "text-brand" : "text-muted-foreground"
-                )}>
-                    {data.label}
-                </span>
+                <span className="mt-2 font-display text-3xl font-medium text-foreground">{data.price}</span>
+                <span className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">{data.label}</span>
                 <span className="text-xs text-muted-foreground">{data.period}</span>
             </button>
         );
     }
 
-    // ─── FULL variant ────────────────────────────────────────────────────
-    // Marketing context: white card, paper shadow, slate-900 dark pill CTAs
-    // App context: original app-card tokens, teal brand CTAs
-
-    // ── Card wrapper classes ──
-    const cardClass = isMarketing
-        ? cn(
-            "rounded-2xl bg-white p-6 flex flex-col relative transition-all duration-200 hover:-translate-y-0.5",
-            isHighlighted && "ring-1 ring-slate-900/10",
-            className
-        )
-        : cn(
-            "app-card p-6 flex flex-col relative",
-            isHighlighted && "app-card-highlight ring-1 ring-brand/35",
-            className
-        );
-
-    // ── Card inline style (shadow) ──
-    const cardStyle = isMarketing
-        ? {
-            boxShadow: isHighlighted
-                ? `0 0 0 1px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08)`
-                : paperShadow
-        }
-        : undefined;
-
-    // ── Badge ──
-    const badgeNode = isHighlighted && data.badge && (
-        <div
-            className={cn(
-                "absolute -top-2.5 left-4 text-xs font-bold uppercase tracking-wide px-2 py-0.5 rounded flex items-center gap-1",
-                isMarketing
-                    ? "bg-slate-900 text-white"
-                    : "bg-brand text-white"
-            )}
-        >
-            <Sparkles className="size-3" />
-            {data.badge}
-        </div>
+    const cardClass = cn(
+        "relative flex h-full flex-col border p-6 md:p-7",
+        isMarketing
+            ? isFeatured
+                ? "rounded-none border-foreground bg-foreground text-background"
+                : "rounded-none border-line bg-transparent"
+            : isFeatured
+                ? "app-card app-card-highlight rounded-xl border-brand/40"
+                : "app-card rounded-xl",
+        className
     );
 
-    // ── Label color ──
-    const labelClass = cn(
-        "text-xs font-bold uppercase tracking-wider mb-1",
-        isMarketing
-            ? (isHighlighted ? "text-slate-900" : "text-slate-400")
-            : (isHighlighted ? "text-brand" : "text-muted-foreground")
+    const featureTextClass = (bold?: boolean) => cn(
+        "leading-6",
+        isFeaturedMarketing
+            ? bold ? "font-medium text-background" : "text-background/72"
+            : bold ? "font-medium text-foreground" : "text-muted-foreground"
     );
 
-    // ── Price color ──
-    const priceClass = cn(
-        "text-3xl font-display font-medium",
-        isMarketing ? "text-slate-900" : "text-foreground"
-    );
-
-    // ── Check icon color ──
-    const checkColor = (featureIndex: number) =>
-        isMarketing
-            ? (featureIndex === 0 && isHighlighted ? "text-slate-900" : "text-slate-300")
-            : (featureIndex === 0 && isHighlighted ? "text-brand" : "text-muted-foreground/50");
-
-    // ── Feature text color ──
-    const featureTextClass = (bold?: boolean) =>
-        isMarketing
-            ? (bold ? "font-medium text-slate-700" : "text-slate-500")
-            : (bold ? "font-medium text-foreground" : "text-muted-foreground");
-
-    // ── CTA button ──
-    const buttonNode = (
+    const marketingButton = (
         <button
             type="button"
             onClick={onSelect}
             disabled={loading || disableForFree}
             className={cn(
-                "w-full flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200",
-                isMarketing
-                    ? isHighlighted
-                        ? "bg-slate-900 text-white hover:bg-slate-800 active:scale-[0.98]"
-                        : isFree
-                            ? "bg-transparent text-slate-500 border border-slate-200 hover:bg-slate-50 hover:text-slate-700 active:scale-[0.98]"
-                            : "bg-transparent text-slate-900 border border-slate-200 hover:bg-slate-50 active:scale-[0.98]"
-                    : "" // app context uses the Button component below
+                "flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border px-5 py-3 text-base font-semibold transition-[background-color,color,border-color,transform] duration-150 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50",
+                isFeatured
+                    ? "border-background bg-background text-foreground hover:border-surface-sky hover:bg-surface-sky"
+                    : "border-line bg-transparent text-foreground hover:border-brand/45 hover:bg-brand/5"
             )}
         >
-            {loading ? (
-                <>
-                    <Loader2 className="size-4 animate-spin" />
-                    Processing…
-                </>
-            ) : (
-                buttonLabel
-            )}
+            {loading ? <CircleNotch className="size-4 animate-spin" weight="bold" /> : null}
+            {loading ? "Opening checkout..." : buttonLabel}
         </button>
     );
 
-    const appButtonNode = (
+    const appButton = (
         <Button
-            variant={isHighlighted ? "brand" : isFree ? "ghost" : "outline"}
+            variant={isFeatured ? "brand" : isFree ? "ghost" : "outline"}
             className="w-full"
             onClick={onSelect}
             disabled={loading || disableForFree}
         >
-            {loading ? (
-                <>
-                    <Loader2 className="size-4 mr-2 animate-spin" />
-                    Processing…
-                </>
-            ) : (
-                buttonLabel
-            )}
+            {loading ? <CircleNotch className="mr-2 size-4 animate-spin" weight="bold" /> : null}
+            {loading ? "Opening checkout..." : buttonLabel}
         </Button>
     );
 
     return (
-        <div className={cardClass} style={cardStyle}>
-            {badgeNode}
-
-            <div className="mb-5">
-                <div className={labelClass}>
+        <article className={cardClass}>
+            <div className="mb-6">
+                <div className={cn(
+                    "mb-3 text-xs font-bold uppercase tracking-[0.14em]",
+                    isFeaturedMarketing ? "text-brand-tint" : isFeatured ? "text-brand" : "text-muted-foreground"
+                )}>
                     {data.label}
                 </div>
-                <div className="flex items-baseline gap-1">
-                    <span className={priceClass}>
+                <div className="flex items-end gap-2">
+                    <span className={cn("font-display text-5xl font-medium leading-none tracking-[-0.035em]", isFeaturedMarketing ? "text-background" : "text-foreground")}>
                         {data.price}
                     </span>
-                    {data.period && (
-                        <span className={cn(
-                            "text-sm",
-                            isMarketing ? "text-slate-400" : "text-muted-foreground"
-                        )}>{data.period}</span>
-                    )}
+                    {data.period ? <span className={cn("pb-1 text-base", isFeaturedMarketing ? "text-background/72" : "text-muted-foreground")}>{data.period}</span> : null}
                 </div>
-                <p className={cn(
-                    "text-sm mt-1",
-                    isMarketing ? "text-slate-500" : "text-muted-foreground"
-                )}>{data.description}</p>
+                <p className={cn("mt-4 text-lg leading-7", isFeaturedMarketing ? "text-background/72" : "text-muted-foreground")}>{data.description}</p>
             </div>
 
-            <ul className="gap-y-2.5 mb-6 flex-1">
-                {data.features.map((feature, i) => (
-                    <li key={feature.text} className="flex items-start gap-2.5 text-sm">
-                        <Check className={cn(
-                            "size-3.5 mt-0.5 shrink-0",
-                            checkColor(i)
-                        )} />
-                        <span className={featureTextClass(feature.bold)}>
-                            {feature.text}
-                        </span>
+            <ul className="mb-7 flex-1 space-y-3">
+                {data.features.map((feature) => (
+                    <li key={feature.text} className="flex items-start gap-3 text-base">
+                        <Check className={cn("mt-1 size-4 shrink-0", isFeaturedMarketing ? "text-brand-tint" : isFeatured ? "text-brand" : "text-muted-foreground")} weight="bold" />
+                        <span className={featureTextClass(feature.bold)}>{feature.text}</span>
                     </li>
                 ))}
             </ul>
 
-            {isMarketing ? buttonNode : appButtonNode}
-        </div>
+            {isMarketing ? marketingButton : appButton}
+        </article>
     );
 }
 
-// Export tier data for use elsewhere
 export { TIER_DATA };

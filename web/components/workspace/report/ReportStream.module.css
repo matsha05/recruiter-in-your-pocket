@@ -1,0 +1,68 @@
+.revisionSection {
+    border-bottom: 1px solid hsl(var(--paper-line));
+    padding-block: 3rem;
+}
+
+.revisionPanel {
+    display: grid;
+    gap: 1.75rem;
+    background: hsl(var(--brand) / 0.055);
+    padding: 1.75rem 1.25rem;
+}
+
+.revisionTitle {
+    max-width: 16ch;
+    margin-top: 1rem;
+    color: hsl(var(--foreground));
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 5vw, 3.8rem);
+    font-weight: 520;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+}
+
+.revisionCopy {
+    max-width: 40rem;
+    margin-top: 1rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+
+.revisionNote {
+    max-width: 17rem;
+    margin-top: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .revisionSection {
+        padding-block: 4rem;
+    }
+
+    .revisionPanel {
+        padding: 2.25rem 2rem;
+    }
+
+    .revisionCopy {
+        font-size: 1rem;
+        line-height: 1.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .revisionPanel {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+    }
+
+    .revisionAction {
+        text-align: right;
+    }
+
+    .revisionNote {
+        margin-left: auto;
+    }
+}

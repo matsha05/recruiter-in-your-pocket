@@ -1,8 +1,8 @@
 # Recruiter in Your Pocket — Homepage Story Arc
 
-Last updated: 2026-03-21
+Last updated: 2026-07-11
 Owner: Product + Design
-Status: Canonical homepage narrative and visual arc
+Status: Current Lifted Line homepage narrative
 
 This document defines how the homepage should tell the story.
 
@@ -14,7 +14,7 @@ The homepage is not:
 
 The homepage is:
 - the sharpest expression of the brand
-- the fastest path to understanding the wedge
+- the fastest path to understanding the first-read report
 - the emotional bridge from anxiety to action
 
 ## 1. Core Narrative
@@ -22,9 +22,9 @@ The homepage is:
 The homepage should tell one story:
 
 Your resume is being judged quickly.
-We show you what a recruiter sees first.
-We show the exact line creating drag.
-We make the stronger version obvious.
+We reconstruct what a recruiter understands, misses, and questions.
+We show the evidence behind that read.
+We prioritize the few changes that will improve the whole impression.
 You stay in control.
 
 Everything else is support.
@@ -46,7 +46,7 @@ The user should feel:
 
 The user should feel:
 - “That rewrite is obviously better.”
-- “They can show me exactly where the drag is.”
+- “They can show me exactly why the read breaks down.”
 
 ### Part 4: Trust
 
@@ -70,36 +70,36 @@ In one viewport, the hero must communicate:
 1. the problem
 2. the wedge
 3. the product is real
-4. the next action
+4. the report covers the whole first read, not a single sentence
+5. the next action
 
 ### 3.2 Hero Structure
 
 Approved structure:
-- one small framing tag
-- one decisive headline
-- one sentence of mechanism
-- one direct primary CTA
-- one restrained secondary trust or methodology link
-- one narrow proof strip
-- one artifact glimpse, supporting the headline
+- one small framing line
+- one decisive, human headline
+- one sentence explaining the report
+- one direct primary CTA and one sample route
+- one short privacy and free-use line
+- one concrete recommendation shown in motion
 
 ### 3.3 Hero Visual Recipe
 
-#### Left Column
+#### Copy column
 - framing tag
 - dominant headline
 - mechanism line
 - primary CTA
 - secondary CTA
-- one support line or proof strip
+- short privacy and free-use line
 
-#### Right Column
-- partial or restrained report object
-- one visible verdict
-- one visible fix
-- one visible evidence cue
+#### Transformation column
+- one candidate bullet with an evidence gap
+- the missing facts made visible
+- a stronger version built from those facts
+- an explicit label that this is one recommendation from a broader report
 
-The object should prove the product is real without stealing the first impression from the headline.
+The transformation proves that the product gives concrete, usable advice. It must never imply that the entire product is a line-rewriting tool.
 
 ### 3.4 Hero Copy Territory
 
@@ -113,30 +113,22 @@ Lead from one territory only:
 - See what a recruiter sees first.
 - The first-pass picture of you, made visible.
 
-#### Territory C: Specific Fix
-- Find the line that is costing you.
-- See what weakens the first impression, then fix it.
+#### Territory C: Decision Clarity
+- See what is working, where belief breaks, and what to change first.
+- Understand the read before you rewrite the resume.
 
-### 3.5 Hero Proof Strip
+### 3.5 Hero trust line
 
-Use one minimal strip that reinforces action and control.
-
-Approved ingredients:
-- first report free
-- no login required
-- save only if you want to
-
-`7.4 seconds` should not lead the hero.
-It belongs in the proof layer after interest is established.
+Keep it literal: first report free, no account required. Do not turn privacy or research into a row of decorative badges.
 
 ## 4. Visual Arc Of The Page
 
 ### Opening
 
 Tone:
-- cooler
-- sharper
-- higher contrast
+- bright
+- warm-white
+- typographically decisive
 
 Purpose:
 - establish seriousness
@@ -179,31 +171,13 @@ Purpose:
 Visual priority:
 - highest
 
-### 2. Mechanism + Transformation
+### 2. Report + Research Proof
 
 Purpose:
-- show how the judgment works
-- show the line-level transformation
+- show how the judgment appears in the report
+- show why the advice is grounded
 
-Best content:
-- before line
-- why it drags
-- stronger rewrite
-- signal logic in plain English
-
-This is the most important section after the hero.
-
-### 3. Research As Proof
-
-Purpose:
-- support the product’s authority
-
-Best content:
-- one featured note
-- two or three concise supporting links
-- one clear takeaway per note
-
-This section should feel supportive, not expansive.
+Best content: a few concrete report findings beside a concise explanation of how Research informs the product. This is proof, not a feature grid or a miniature blog.
 
 ### 4. Trust And Control
 

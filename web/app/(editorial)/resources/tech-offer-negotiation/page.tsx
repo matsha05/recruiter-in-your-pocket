@@ -1,1 +1,1 @@
-export { default } from "../../guides/tech-offer-negotiation/page";
+export { default, metadata } from "../../guides/tech-offer-negotiation/page";

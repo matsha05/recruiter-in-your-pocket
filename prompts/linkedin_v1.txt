@@ -1,0 +1,1 @@
+../web/prompts/linkedin_v1.txt

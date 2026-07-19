@@ -116,11 +116,11 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         <ReportSectionHeader
           icon={<InsightSparkleIcon className="size-4 text-brand" />}
           number="03"
-          title="Evidence Ledger"
-          subtitle="Every fix tied to the line that triggered it."
+          title="Evidence Behind the Review"
+          subtitle="Each recommendation points back to the resume."
         />
         <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-          No evidence ledger for this run. Add more detail, then run it again.
+          There was not enough evidence to build this section. Add more detail, then run the review again.
         </div>
       </section>
     );
@@ -134,8 +134,8 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
       <ReportSectionHeader
         icon={<InsightSparkleIcon className="size-4 text-brand" />}
         number="03"
-        title="Evidence Ledger"
-        subtitle="Every fix tied to the line that triggered it."
+        title="Evidence Behind the Review"
+        subtitle="Each recommendation points back to the resume."
       />
 
       <div className="gap-y-6">
@@ -220,14 +220,14 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                   {hiddenCount} more fixes waiting
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Unlock the rest of the evidence and fixes.
+                  The Job Search Pass adds five complete reports for revisions and role comparisons.
                 </p>
               </div>
             </div>
             <UnlockValueList
               items={[
                 "Confidence on each call",
-                "The fix tied to each line",
+                "The evidence behind each recommendation",
                 "Save and export reports"
               ]}
               dense
@@ -245,7 +245,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                 }}
               >
                 <InsightSparkleIcon className="size-4 mr-2" />
-                Unlock the Evidence Ledger
+                See all evidence and recommendations
               </Button>
             )}
           </div>

@@ -1,139 +1,21 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { EvidenceHeader, ProcessRail } from "@/components/shared/diagrams/EvidenceVisuals";
 
-/**
- * LinkedIn Visibility Diagram (v2.0)
- * 
- * Shows inputs (what you control) vs outcomes (what LinkedIn reports)
- * for profile discoverability
- */
 export function LinkedInVisibilityDiagram() {
-    const inputs = [
-        "Headline keywords & titles",
-        "Skills & endorsements",
-        "Experience descriptions",
-        "Profile completeness"
-    ];
-
-    const outputs = [
-        "Higher InMail acceptance",
-        "Skills-first search priority",
-        "Role-aligned discovery"
-    ];
-
     return (
-        <DiagramFigure className="w-full max-w-[520px] mx-auto my-12 group select-none">
-            <DiagramFrame
-                className="riyp-diagram-shell"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                {/* Header */}
-                <div className="riyp-diagram-head">
-                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
-                        Visibility equation
-                    </span>
-                </div>
-
-                <div className="p-6">
-                    <div className="flex items-stretch gap-4">
-                        {/* Inputs */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="flex-1 rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-4"
-                        >
-                            <div className="flex items-center gap-2 mb-3">
-                                <div className="size-6 rounded-full bg-brand/20 flex items-center justify-center">
-                                    <svg className="size-3 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                    </svg>
-                                </div>
-                                <span className="text-xs font-mono uppercase tracking-wider text-brand">
-                                    You control
-                                </span>
-                            </div>
-                            <ul className="gap-y-2">
-                                {inputs.map((item, i) => (
-                                    <motion.li
-                                        key={item}
-                                        initial={{ opacity: 0 }}
-                                        whileInView={{ opacity: 1 }}
-                                        transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
-                                        viewport={{ once: true }}
-                                        className="text-xs text-foreground flex items-center gap-2"
-                                    >
-                                        <span className="text-brand">→</span>
-                                        {item}
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </motion.div>
-
-                        {/* Arrow */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 0.3, delay: 0.5 }}
-                            viewport={{ once: true }}
-                            className="flex items-center"
-                        >
-                            <svg className="size-6 text-muted-foreground/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                        </motion.div>
-
-                        {/* Outputs */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                            viewport={{ once: true }}
-                            className="flex-1 rounded-lg border border-blue-500/30 bg-blue-500/5 dark:bg-blue-500/10 p-4"
-                        >
-                            <div className="flex items-center gap-2 mb-3">
-                                <div className="size-6 rounded-full bg-blue-500/20 flex items-center justify-center">
-                                    <svg className="size-3 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
-                                    </svg>
-                                </div>
-                                <span className="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                                    LinkedIn reports
-                                </span>
-                            </div>
-                            <ul className="gap-y-2">
-                                {outputs.map((item, i) => (
-                                    <motion.li
-                                        key={item}
-                                        initial={{ opacity: 0 }}
-                                        whileInView={{ opacity: 1 }}
-                                        transition={{ duration: 0.3, delay: 0.5 + i * 0.05 }}
-                                        viewport={{ once: true }}
-                                        className="text-xs text-foreground flex items-center gap-2"
-                                    >
-                                        <span className="text-blue-500">✓</span>
-                                        {item}
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    </div>
-                </div>
+        <DiagramFigure className="max-w-[48rem]" label="LinkedIn visibility path from profile language to recruiter discovery">
+            <DiagramFrame>
+                <EvidenceHeader index="01" label="How recruiters find you" title="Use clear role language before clever wording." note="Your headline, titles, and skills help a recruiter recognize a possible match. The platform and the search still affect what appears." />
+                <ProcessRail steps={[
+                    { label: "You control", title: "Role language", detail: "Headline, titles, skills, and experience phrasing.", tone: "focus" },
+                    { label: "Platform", title: "Index and match", detail: "The system connects profile fields to a search.", tone: "context" },
+                    { label: "Recruiter", title: "Open and assess", detail: "A recognizable fit earns the deeper read.", tone: "focus" },
+                    { label: "Possible outcome", title: "Discovery and outreach", detail: "Visibility can improve; no single field guarantees it.", tone: "caution" },
+                ]} footer={<><strong className="text-slate-900">Focus on what you can change.</strong> Make your target role and relevant skills easy to recognize. No profile field can guarantee ranking.</>} />
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  Visibility Model</span>
-                <span className="block text-sm text-foreground/80 font-medium">
-                    Inputs vs LinkedIn-reported sourcing outcomes
-                </span>
-            </figcaption>
+            <DiagramCaption kicker="Fig. 1 / Recruiter search" title="A clear profile can help recruiters find you. It cannot guarantee where you appear." />
         </DiagramFigure>
     );
 }

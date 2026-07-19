@@ -3,7 +3,7 @@ export type AuthContext = "default" | "report" | "settings" | "paywall" | "histo
 const AUTH_COPY: Record<AuthContext, { headline: string; subtext: string }> = {
   default: {
     headline: "Pick up where you left off",
-    subtext: "Use secure sign-in to reach your reports, history, and saved job context."
+    subtext: "Use secure sign-in to reach your reports, privacy settings, and saved role context."
   },
   report: {
     headline: "Save this report",

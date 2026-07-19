@@ -1,10 +1,10 @@
-# Copy System
+# Copy Operations
 
-> Canonical voice guide: [`web/docs/copy-guide.md`](../web/docs/copy-guide.md)
+> Canonical voice guide: [`voice-and-tone.md`](./voice-and-tone.md)
 
 This document is the operating system around that guide. It covers naming, structure, and the small rules that keep the product voice from drifting.
 
-Last updated: 2026-03-10
+Last updated: 2026-07-11
 Owner: Product + Design
 
 ## 1. Product Naming
@@ -26,14 +26,14 @@ If the user is looking at the generated output, call it a `report`.
 ## 2. Canonical Report Structure
 
 Generated report sections should stay in this order:
-1. `First Read`
-2. `Signal Breakdown`
-3. `Evidence Ledger`
-4. `Red Pen`
-5. `Missing Wins`
-6. `Role Fit`
+1. `Likely Takeaway`
+2. `What the Resume Shows`
+3. `Evidence`
+4. `Suggested Rewrites`
+5. `Details to Add`
+6. `Fit for the Role`
 
-If a new section is added, it should sound like it belongs in this sequence.
+These are UI labels. Internal schema and prompt field names may remain stable; do not rewrite Matt's tuned backend prompt merely to match display copy.
 
 ## 3. Copy Budgets
 

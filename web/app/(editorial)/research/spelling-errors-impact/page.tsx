@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { ResearchArticle, ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDiagram";
+import { InferenceLadderDiagram } from "@/components/research/diagrams/InferenceLadderDiagram";
 
 export const metadata: Metadata = {
-    title: "Spelling errors carry real weight in recruiter judgment | Hiring Research",
-    description: "How form and content shape first impressions in screening.",
+    title: "How Spelling Errors Changed Recruiter Ratings | Hiring Research",
+    description: "What one 2023 experiment with 445 hiring professionals found about spelling errors and interview-probability ratings.",
 };
 
 export default function SpellingErrorsPage() {
@@ -12,52 +13,50 @@ export default function SpellingErrorsPage() {
         <ResearchArticle
             header={{
                 tag: "Screening heuristics",
-                title: "Spelling errors carry real weight in recruiter judgment",
-                description: "Practical research that makes the product feel like a recruiter wrote it.",
-                lastUpdated: "December 2025",
-                readTime: "3 min read"
+                title: "How spelling errors changed recruiter ratings",
+                description: "A recruiter experiment gives us a useful answer and a reason not to panic over one typo.",
+                lastUpdated: "July 2026",
+                readTime: "4 min read"
             }}
             keyFinding={{
-                subtitle: "The Penalty",
-                stat: "Error Penalty",
+                subtitle: "The clearest result",
+                stat: "Five errors: −18.5 points on the interview rating",
                 statDescription: (
                     <>
-                        Spelling and grammar errors measurably reduce interview chances and trigger negative inferences.
+                        In the 2023 experiment, hiring professionals assigned graduate resumes containing five spelling errors an 18.5 percentage-point lower interview-probability rating than error-free resumes.
                         <Citation id="source-1">1</Citation>
-                        <Citation id="source-2">2</Citation>
                     </>
                 ),
                 source: {
-                    text: "Sterkens et al. (2023) PLOS ONE synthesis",
-                    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10075394/"
+                    text: "Sterkens et al. (2023), 445 hiring professionals",
+                    href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280"
                 }
             }}
             visualization={
                 <>
-                    <h2 className="research-h2">Form vs. Content</h2>
+                    <h2 className="research-h2">What the experiment actually tested</h2>
                     <p className="research-body mb-6">
-                        Evidence suggests errors are interpreted as signals of lower conscientiousness and weaker written communication, which affects screening outcomes.
+                        Recruiters evaluated otherwise comparable resumes with zero, two, or five spelling errors across eight occupations. The penalty was clearest at five errors; the study does not establish that one typo ruins an application.
                         <Citation id="source-1">1</Citation>
-                        <Citation id="source-2">2</Citation>
                     </p>
                     <ErrorImpactDiagram />
                 </>
             }
             productTieIn={{
-                title: "What this changes in RIYP",
+                title: "How this shows up in your report",
                 items: [
                     {
-                        title: "Dedicated &apos;Error Pass&apos;",
-                        description: "In Top Fixes, we prioritize a dedicated error check before deep content analysis."
+                        title: "Run a separate spelling pass",
+                        description: "Your report is not a spell-checker. Use a dedicated spelling and consistency check after the content review."
                     },
                     {
-                        title: "Visual Credibility",
-                        description: "We enforce consistent formatting because inconsistency reads as &apos;error&apos; to the scanning eye."
+                        title: "No catastrophe language",
+                        description: "One typo is worth fixing. It is not evidence that your whole application is doomed."
                     }
                 ]
             }}
             relatedArticles={[
-                { title: "How People Scan", href: "/research/how-people-scan", tag: "Psychology" },
+                { title: "Clear Writing Changes How Evidence Is Judged", href: "/research/writing-quality-hire-probability", tag: "Writing" },
                 { title: "How Recruiters Read", href: "/research/how-recruiters-read", tag: "Research" },
                 { title: "Resume Length Myths", href: "/research/resume-length-myths", tag: "Structure" }
             ]}
@@ -65,33 +64,19 @@ export default function SpellingErrorsPage() {
                 {
                     id: "source-1",
                     title: "Costly mistakes: Evidence on spelling errors in résumés",
-                    publisher: "PLOS ONE (via PMC)",
+                    publisher: "PLOS ONE",
                     year: "2023",
-                    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10075394/"
-                },
-                {
-                    id: "source-2",
-                    title: "Costly mistakes: Evidence on spelling errors in résumés (working paper)",
-                    publisher: "EconStor",
-                    year: "2021",
-                    href: "https://www.econstor.eu/bitstream/10419/235907/1/GLO-DP-0899.pdf"
-                },
-                {
-                    id: "source-3",
-                    title: "Do Recruiters Infer Applicant Personality from Resumes?",
-                    publisher: "International Journal of Selection and Assessment",
-                    year: "2017",
-                    href: "https://onlinelibrary.wiley.com/doi/10.1111/ijsa.12179"
+                    href: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280"
                 }
             ]}
             faq={[
                 {
                     question: "Do a few typos really matter?",
-                    answer: "The research suggests that even small errors can create negative trait inferences that reduce interview chances."
+                    answer: "The strongest result here concerns five errors, not one. Fix any error you find, but do not treat a single typo as a proven automatic rejection."
                 },
                 {
                     question: "Is grammar more important than content?",
-                    answer: "Content still matters, but form errors can block the content from being evaluated at all."
+                    answer: "No. Relevant experience still matters. Repeated errors can create a preventable penalty around otherwise strong content."
                 },
                 {
                     question: "What is the fastest fix?",
@@ -99,31 +84,31 @@ export default function SpellingErrorsPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">Errors act as a gate</h2>
+            <h2 className="research-h2">The penalty grows when errors become a pattern</h2>
             <p className="research-body mb-6">
-                In large resume stacks, screening shortcuts rule. Errors are interpreted as signals, not as isolated mistakes.
-                The evidence links them to lower interview probabilities and to negative trait inferences.
+                In the 2023 study, hiring professionals evaluated fictitious resumes with a randomized number of spelling errors. They assigned the five-error version a lower interview-probability rating than the error-free version.
                 <Citation id="source-1">1</Citation>
-                <Citation id="source-2">2</Citation>
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
+            <div className="not-prose my-8">
                 <ArticleInsight
-                    title="The 'Conscientiousness' Signal"
+                    title="What recruiters inferred"
                     desc={
                         <>
-                            Recruiters view spelling not as a literacy test, but as a proxy for attention to detail and professional care.
+                            Recruiters associated repeated errors with lower communication ability, learning ability, mental ability, and conscientiousness. Those are inferences, not proof about the applicant.
                             <Citation id="source-1">1</Citation>
-                            <Citation id="source-2">2</Citation>
                         </>
                     }
                 />
             </div>
 
-            <h2 className="research-h2">Definition: form errors</h2>
+            <div className="not-prose my-10">
+                <InferenceLadderDiagram />
+            </div>
+
+            <h2 className="research-h2">What this does and does not justify</h2>
             <p className="research-body mb-6">
-                Form errors include spelling mistakes, grammar mistakes, inconsistent formatting, and layout artifacts that signal carelessness.
-                These errors are processed quickly and often shape the initial decision.
+                It justifies a careful spelling pass. It does not justify pretending one typo always ends the process, extending the result to every language or labor market, or treating error-free writing as proof of job performance.
                 <Citation id="source-1">1</Citation>
             </p>
 

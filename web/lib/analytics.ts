@@ -11,7 +11,7 @@
  */
 
 const TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
-const ANALYTICS_ENABLED = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS !== "false";
+const ANALYTICS_ENABLED = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true";
 
 let mixpanelInstance: any = null;
 let initPromise: Promise<void> | null = null;

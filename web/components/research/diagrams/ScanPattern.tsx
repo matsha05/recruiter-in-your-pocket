@@ -1,154 +1,76 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { ArrowRight } from "@phosphor-icons/react";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { EvidenceHeader } from "@/components/shared/diagrams/EvidenceVisuals";
+
+const transferSteps = [
+    {
+        index: "01",
+        label: "Eye tracking",
+        title: "Experience earns attention",
+        body: "In the 2023 study, longer viewing of the Experience section was associated with resumes moving forward.",
+    },
+    {
+        index: "02",
+        label: "Whole document",
+        title: "Context changes judgment",
+        body: "Recruiters used cues differently when they saw real resumes instead of stripped-down candidate profiles.",
+    },
+    {
+        index: "03",
+        label: "Practical takeaway",
+        title: "Make orientation easy",
+        body: "Use stable headings, visible role information, and a predictable reading order so evidence is easier to find.",
+    },
+];
+
+const notEstablished = [
+    "Every resume is read in an F-pattern",
+    "One layout works best for every role",
+    "A two-column layout always fails",
+];
 
 export function ScanPattern() {
-    // Saccade path: More realistic eye movement with slight vertical adjustments
-    // The "F" pattern: Top horizontal, lower horizontal, then vertical scan down left
-    const pathSegments = [
-        "M 40 50 L 280 50",   // Top scan
-        "M 40 50 L 40 120",   // Down left
-        "M 40 120 L 220 120", // Second horizontal scan
-        "M 40 120 L 40 500"   // Vertical scan down the side
-    ];
-
-    // Combined for the trail
-    const fullPath = "M 40 50 L 280 50 L 40 50 L 40 120 L 220 120 L 40 120 L 40 500";
-
     return (
-        <DiagramFigure className="w-full max-w-[420px] mx-auto my-12 group select-none">
-            <DiagramFrame className="riyp-diagram-shell relative w-full aspect-[1/1.4] transition-all duration-500">
+        <DiagramFigure className="max-w-[56rem]" label="What general scanning research can and cannot tell us about resume design">
+            <DiagramFrame>
+                <EvidenceHeader
+                    index="01"
+                    label="What carries over"
+                    title="Give the reader a clear route from role to evidence."
+                    note="The research does not establish one scan path. It does show that attention and judgment depend on what the full document makes available."
+                />
 
-                {/* Premium Resume Skeleton */}
-                <div className="absolute inset-0 p-8 gap-y-6 opacity-80">
-                    {/* Header */}
-                    <div className="gap-y-3 mb-8">
-                        <div className="h-8 w-2/3 bg-slate-200 dark:bg-slate-800/80 rounded-md" />
-                        <div className="h-4 w-1/3 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
-                    </div>
+                <div className="px-5 py-7 md:px-7 md:py-9">
+                    <ol className="grid border-y border-[hsl(var(--paper-line))] lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+                        {transferSteps.map((step, index) => (
+                            <li key={step.index} className="contents">
+                                <div className="border-b border-[hsl(var(--paper-line))] px-4 py-5 last:border-b-0 lg:border-b-0">
+                                    <div className="flex items-center justify-between gap-4">
+                                        <span className="text-xs tabular-nums text-slate-400">{step.index}</span>
+                                        <span className="text-[0.65rem] font-semibold uppercase riyp-track-010 text-teal-800">{step.label}</span>
+                                    </div>
+                                    <h3 className="mt-5 font-display text-2xl riyp-weight-560 leading-tight tracking-[-0.025em] text-slate-950 riyp-stretch-96">{step.title}</h3>
+                                    <p className="mt-3 text-sm leading-6 text-slate-600">{step.body}</p>
+                                </div>
+                                {index < transferSteps.length - 1 ? <ArrowRight className="mx-2 hidden size-4 self-center text-slate-400 lg:block" aria-hidden="true" /> : null}
+                            </li>
+                        ))}
+                    </ol>
 
-                    {/* Divider */}
-                    <div className="h-px w-full bg-slate-100 dark:bg-slate-800" />
-
-                    {/* Experience Block 1 */}
-                    <div className="gap-y-3 pt-2">
-                        <div className="flex justify-between items-start">
-                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
-                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        </div>
-                        <div className="h-4 w-1/4 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        <div className="gap-y-2 pt-2">
-                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[92%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[98%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                        </div>
-                    </div>
-
-                    {/* Experience Block 2 */}
-                    <div className="gap-y-3 pt-4 opacity-90">
-                        <div className="flex justify-between items-start">
-                            <div className="h-5 w-1/3 bg-slate-200 dark:bg-slate-800/80 rounded-sm hover:ring-2 hover:ring-indigo-500/10 transition-all" />
-                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        </div>
-                        <div className="gap-y-2 pt-2">
-                            <div className="h-2.5 w-[88%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[75%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                        </div>
-                    </div>
-
-                    {/* Experience Block 3 */}
-                    <div className="gap-y-3 pt-4 opacity-75">
-                        <div className="flex justify-between items-start">
-                            <div className="h-5 w-1/4 bg-slate-200 dark:bg-slate-800/80 rounded-sm" />
-                            <div className="h-4 w-20 bg-slate-100 dark:bg-slate-800/50 rounded-sm" />
-                        </div>
-                        <div className="gap-y-2 pt-2">
-                            <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                            <div className="h-2.5 w-[65%] bg-slate-100 dark:bg-slate-800/40 rounded-sm" />
-                        </div>
-                    </div>
-
-                    {/* Skills Section */}
-                    <div className="pt-6 opacity-60">
-                        <div className="h-4 w-1/6 bg-slate-200 dark:bg-slate-800/80 rounded-sm mb-3" />
-                        <div className="flex flex-wrap gap-2">
-                            {["one", "two", "three", "four", "five"].map((slot) => (
-                                <div key={slot} className="h-6 w-16 bg-slate-100 dark:bg-slate-800/50 rounded-md" />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* SVG Overlay */}
-                <svg className="absolute inset-0 size-full pointer-events-none overflow-visible" viewBox="0 0 420 588" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="scanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="hsl(var(--brand))" stopOpacity="1" />
-                            <stop offset="100%" stopColor="hsl(var(--premium))" stopOpacity="0.8" />
-                        </linearGradient>
-                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                            <feMerge>
-                                <feMergeNode in="coloredBlur" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                    </defs>
-
-                    {/* The Path Trace */}
-                    <motion.path
-                        d={fullPath}
-                        stroke="url(#scanGradient)"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        fill="none"
-                        filter="url(#glow)"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        whileInView={{ pathLength: 1, opacity: 1 }}
-                        transition={{ duration: 2.5, ease: "easeInOut", delay: 0.5 }}
-                        viewport={{ once: true }}
-                    />
-                </svg>
-
-                {/* The "Eye" Tracker Dot */}
-                <motion.div
-                    className="absolute size-8 -ml-4 -mt-4 rounded-full z-20 flex items-center justify-center"
-                    style={{
-                        offsetPath: `path("${fullPath}")`,
-                    }}
-                    initial={{ offsetDistance: "0%", opacity: 0, scale: 0 }}
-                    whileInView={{
-                        offsetDistance: "100%",
-                        opacity: [0, 1, 1, 1, 0],
-                        scale: [0.5, 1, 1, 1, 0.5]
-                    }}
-                    transition={{
-                        duration: 2.5,
-                        ease: "easeInOut",
-                        delay: 0.5,
-                        times: [0, 0.1, 0.8, 0.95, 1]
-                    }}
-                    viewport={{ once: true }}
-                >
-                    <div className="size-3 bg-white rounded-full shadow-[0_0_10px_rgba(13,148,136,0.8)] z-20" />
-                    <div className="absolute size-full bg-brand/30 rounded-full animate-ping" />
-                </motion.div>
-
-                {/* Meta Labels */}
-                <div className="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm border border-brand/20 rounded-full px-3 py-1 shadow-sm flex items-center gap-2 z-10">
-                    <div className="size-1.5 rounded-full bg-brand animate-pulse" />
-                    <span className="text-xs font-mono font-medium text-brand uppercase tracking-wider">
-                        Eye Tracking
-                    </span>
+                    <aside className="mt-7 grid gap-4 border-l-2 border-[hsl(var(--annotation))] bg-slate-50 px-5 py-5 md:grid-cols-[12rem_1fr] md:items-start" aria-label="Claims the cited research does not establish">
+                        <h3 className="text-xs font-semibold uppercase riyp-track-010 text-[hsl(var(--annotation))]">Not established</h3>
+                        <ul className="grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-3">
+                            {notEstablished.map((claim) => <li key={claim}>{claim}</li>)}
+                        </ul>
+                    </aside>
                 </div>
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  Gaze Plot</span>
-                <span className="block text-sm text-foreground/80 font-medium">Typical &apos;F-Pattern&apos; Scanning Behavior</span>
-            </figcaption>
+            <DiagramCaption
+                kicker="Fig. 1 / What carries over"
+                title="Make recent experience easy to enter and useful evidence easy to follow."
+            />
         </DiagramFigure>
     );
 }

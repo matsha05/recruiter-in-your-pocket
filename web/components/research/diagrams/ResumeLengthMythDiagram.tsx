@@ -1,95 +1,21 @@
 "use client";
 
-import { m as motion } from "motion/react";
-import { DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { DiagramCaption, DiagramFigure, DiagramFrame } from "@/components/shared/diagrams/DiagramPrimitives";
+import { EvidenceHeader, EvidenceTable } from "@/components/shared/diagrams/EvidenceVisuals";
 
-/**
- * Resume Length Myth Diagram (v2.0)
- * 
- * Unique diagram for resume-length-myths article
- * Shows the real rule: length should match experience level
- */
 export function ResumeLengthMythDiagram() {
-    const levels = [
-        { years: "0-5 years", pages: "1 page", note: "Tight, focused", highlight: false },
-        { years: "5-10 years", pages: "1-2 pages", note: "Earn page 2", highlight: true },
-        { years: "10+ years", pages: "2 pages", note: "Depth expected", highlight: false },
-    ];
-
     return (
-        <DiagramFigure className="w-full max-w-[480px] mx-auto my-12 group select-none">
-            <DiagramFrame
-                className="riyp-diagram-shell"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                {/* Header */}
-                <div className="riyp-diagram-head">
-                    <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground/70">
-                        Length guidelines
-                    </span>
-                </div>
-
-                <div className="p-6">
-                    <div className="gap-y-3">
-                        {levels.map((level, i) => (
-                            <motion.div
-                                key={level.years}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.1 }}
-                                viewport={{ once: true }}
-                                className={`rounded-lg p-4 border ${level.highlight
-                                        ? "border-brand/30 bg-brand/5 dark:bg-brand/10"
-                                        : "border-border/30 bg-muted/10"
-                                    }`}
-                            >
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className={`text-sm font-medium ${level.highlight ? "text-brand" : "text-foreground"
-                                            }`}>
-                                            {level.years}
-                                        </p>
-                                        <p className="text-xs text-muted-foreground mt-0.5">
-                                            {level.note}
-                                        </p>
-                                    </div>
-                                    <div className={`px-3 py-1.5 rounded-lg ${level.highlight
-                                            ? "bg-brand/10 text-brand"
-                                            : "bg-muted/30 text-muted-foreground"
-                                        }`}>
-                                        <span className="text-sm font-mono font-medium">
-                                            {level.pages}
-                                        </span>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* Key insight */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-                        viewport={{ once: true }}
-                        className="mt-6 bg-muted/20 dark:bg-muted/10 rounded-lg p-4 border border-border/20"
-                    >
-                        <p className="text-xs text-muted-foreground leading-relaxed text-center">
-                            <span className="font-medium text-foreground">The real rule:</span> Match length to experience depth, not arbitrary page limits.
-                        </p>
-                    </motion.div>
-                </div>
+        <DiagramFigure className="max-w-[44rem]" label="Working guideline relating resume length to experience depth">
+            <DiagramFrame>
+                <EvidenceHeader index="01" label="Choosing a length" title="Use the space you need. Make every line useful." note="Relevant experience matters more than a universal one-page rule." />
+                <EvidenceTable columns={["Career depth", "Useful range", "Editorial test"]} rows={[
+                    { label: "Early career", values: ["Usually 1 page", "Can every line help this application?"] },
+                    { label: "Mid career", values: ["Often 1–2 pages", "Does page one create a reason to continue?"], emphasis: 0 },
+                    { label: "Senior / complex scope", values: ["Often 2 pages", "Is the added depth relevant, not merely complete?"] },
+                ]} />
+                <p className="border-t border-[hsl(var(--paper-line))] px-5 py-4 text-xs leading-5 text-slate-500 md:px-7"><strong className="text-slate-700">Working guideline, not law.</strong> Role, geography, field, and career history can change the right answer.</p>
             </DiagramFrame>
-
-            <figcaption className="mt-4 gap-y-1">
-                <span className="block riyp-figure-kicker">Fig. 1  -  Length Logic</span>
-                <span className="block text-sm text-foreground/80 font-medium">
-                    Resume length should scale with experience
-                </span>
-            </figcaption>
+            <DiagramCaption kicker="Fig. 1 / Resume length" title="Choose the length based on what the reader needs to evaluate you." />
         </DiagramFigure>
     );
 }

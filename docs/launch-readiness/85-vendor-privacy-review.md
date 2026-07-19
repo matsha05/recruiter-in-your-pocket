@@ -1,6 +1,6 @@
 # RIYP Vendor and Privacy Review
 
-**Last Updated:** March 7, 2026  
+**Last Updated:** July 11, 2026
 **Status:** Required for launch
 
 This is the launch-facing vendor truth table. If a processor is used in production, it must appear here and match the public privacy/security copy.
@@ -13,6 +13,8 @@ This is the launch-facing vendor truth table. If a processor is used in producti
 | Sentry | Error monitoring | Scrubbed error metadata, route context, sanitized breadcrumbs | Approved with strict scrubbing | Default PII disabled. Browser replay remains off unless explicitly approved. |
 | Mixpanel | Product analytics | Session-level event and funnel metadata | Approved behind kill switch | Must respect launch flag and Do Not Track handling. |
 | Vercel | Hosting and runtime | Platform diagnostics and deployment metadata | Approved | Platform logs must continue to avoid raw resume or JD payloads. |
+| Upstash | Shared rate limiting, request idempotency, and short-lived checkout caching | Hashed request and IP identifiers, idempotency keys, short-lived checkout session metadata | Approved with short retention | Keep keys pseudonymous, enforce short TTLs, and never cache raw resume or JD text. |
+| Inngest | Background account exports and optional asynchronous PDF generation | Job identifiers, account identity, account-export payloads, and report content when asynchronous PDF generation is used | Approved with payload review | Keep event and run-history retention explicit. Prefer internal identifiers over full payloads whenever possible. |
 
 ## Launch Review Questions
 

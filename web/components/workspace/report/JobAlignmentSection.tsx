@@ -31,8 +31,8 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 <ReportSectionHeader
                     icon={<RoleTargetIcon className="size-4 text-brand" />}
                     number="06"
-                    title="Role Fit"
-                    subtitle="Where this story fits now, and where it stretches."
+                    title="Fit for the Role"
+                    subtitle="How the resume compares with the job posting you added."
                 />
                 <div className="rounded border border-border/60 bg-card p-5 text-sm text-muted-foreground">
                     {hasJobDescription
@@ -82,11 +82,11 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                 <ReportSectionHeader
                     icon={<RoleTargetIcon className="size-4 text-brand" />}
                     number="06"
-                    title="Role Fit"
-                    subtitle="Where this story fits now, and where it stretches."
+                    title="Fit for the Role"
+                    subtitle="How the resume compares with the job posting you added."
                 />
                 <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    Role fit is still blurry from the current text. Add clearer signals on role, level, scope, and outcomes.
+                    The current resume does not provide enough context on role, level, scope, and outcomes to assess fit clearly.
                 </div>
             </section>
         );
@@ -97,8 +97,8 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
             <ReportSectionHeader
                 icon={<RoleTargetIcon className="size-4 text-brand" />}
                 number="06"
-                title="Role Fit"
-                subtitle="Where this story fits now, and where it stretches."
+                title="Fit for the Role"
+                subtitle="How the resume compares with the job posting you added."
             />
 
             {isGated ? (
@@ -146,7 +146,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                             className="w-full"
                         >
                             <InsightSparkleIcon className="size-4 mr-2" />
-                            Unlock Role Fit
+                            See the full role comparison
                         </Button>
                     )}
                 </div>
@@ -157,7 +157,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     {showJdSection && hasJdMatchData && (
                         <div className="text-center mb-8 pb-6 border-b border-border/40">
                             <div className="inline-flex items-center gap-4">
-                                <div className={`text-6xl md:text-7xl font-display font-bold transition-all duration-500 ${jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'text-success' :
+                                <div className={`font-display text-6xl riyp-weight-560 tabular-nums transition-all duration-500 md:text-7xl ${jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'text-success' :
                                     jdMatchScore >= SCORE_THRESHOLDS.MODERATE ? 'text-brand' :
                                         jdMatchScore >= SCORE_THRESHOLDS.WEAK ? 'text-warning' :
                                             'text-destructive'
@@ -254,7 +254,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 <div className="mt-4 flex items-start gap-2 p-3 rounded bg-brand/5 border border-brand/10">
                                     <InsightSparkleIcon className="size-4 text-brand flex-shrink-0 mt-0.5" />
                                     <p className="text-xs text-muted-foreground">
-                                        <span className="font-medium text-foreground">Next move:</span> Add these missing signals to your experience bullets. Section 04 has rewrites that can help.
+                                        <span className="font-medium text-foreground">Next move:</span> Add the missing details to the relevant experience bullets. The suggested rewrites can help.
                                     </p>
                                 </div>
                             )}
@@ -293,7 +293,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                         )}
 
                         {footerMeta && (
-                            <p className="text-xs text-muted-foreground/60 pt-2 font-mono">
+                            <p className="pt-2 text-xs text-muted-foreground/60">
                                 {footerMeta}
                             </p>
                         )}

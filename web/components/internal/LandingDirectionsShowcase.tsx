@@ -157,7 +157,7 @@ const directions: Direction[] = [
       "More whitespace. Softer surfaces. Less product noise. The trust comes from restraint and a more personal tone.",
     callouts: ["Calm", "Luxury", "Service-led"],
     stats: [
-      { value: "7.4 seconds", label: "of recruiter attention" },
+      { value: "Opening read", label: "before the deeper review" },
       { value: "One page", label: "one impression" },
       { value: "Clear next move", label: "before you apply" },
     ],
@@ -464,7 +464,7 @@ function RecruiterSlatePreview({ direction }: { direction: Direction }) {
             <div className="flex items-center justify-between border-b border-slate-200 pb-4">
               <div>
                 <p className="text-xs uppercase tracking-wide text-slate-500">Free report preview</p>
-                <p className="mt-1 font-display text-2xl tracking-tight">The first 7.4 seconds</p>
+                <p className="mt-1 font-display text-2xl tracking-tight">The opening read</p>
               </div>
               <div className="rounded-full bg-teal-50 px-4 py-2 text-right">
                 <div className="font-display text-3xl text-teal-700">87</div>

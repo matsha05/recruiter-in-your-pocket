@@ -31,11 +31,11 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                 <ReportSectionHeader
                     icon={<HiddenGemIcon className="size-4 text-brand" />}
                     number="05"
-                    title="Missing Wins"
-                    subtitle="Wins hiding between the lines."
+                    title="Details to Add"
+                    subtitle="Questions the current resume does not answer."
                 />
                 <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    No missing wins surfaced in this run. Either the story is complete, or the resume needs more detail.
+                    This review did not find a specific missing detail to ask about.
                 </div>
             </section>
         );
@@ -56,20 +56,20 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
     const answeredCount = answeredIds.size;
     const progressPercent = questions.length > 0 ? (answeredCount / questions.length) * 100 : 0;
     const progressCopy = answeredCount === 0
-        ? "The good material is usually hiding in the specifics."
+        ? "Answer only with details you can verify."
         : answeredCount === questions.length
-            ? "That is the material recruiters remember."
+            ? "You have reviewed every question."
             : answeredCount >= Math.ceil(questions.length / 2)
-                ? "Now we're getting somewhere."
-                : `${answeredCount} of ${questions.length} found.`;
+                ? "You have reviewed more than half of the questions."
+                : `${answeredCount} of ${questions.length} reviewed.`;
 
     return (
         <section className="gap-y-8">
             <ReportSectionHeader
                 icon={<HiddenGemIcon className="size-4 text-brand" />}
                 number="05"
-                title="Missing Wins"
-                subtitle="Wins hiding between the lines."
+                title="Details to Add"
+                subtitle="Questions the current resume does not answer."
             />
 
             {isGated ? (
@@ -82,7 +82,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                                 We found {questions.length} win{questions.length > 1 ? 's' : ''} worth surfacing
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                These are the details that make recruiters stop and pay attention.
+                                Add only details you know to be accurate and relevant to the role.
                             </p>
                         </div>
                     </div>
@@ -117,7 +117,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                             className="w-full"
                         >
                             <InsightSparkleIcon className="size-4 mr-2" />
-                            Unlock Missing Wins
+                            See all questions
                         </Button>
                     )}
                 </div>
@@ -208,7 +208,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                     {/* Completion Message */}
                     {answeredCount === questions.length && questions.length > 0 && (
                         <div className="text-center py-6 gap-y-2 animate-in fade-in duration-500">
-                            <p className="text-lg font-medium text-success">That&apos;s the material recruiters remember.</p>
+                            <p className="text-lg font-medium text-success">That detail gives the reader useful context.</p>
                             <p className="text-sm text-muted-foreground">
                                 Good. Those belong back on the page.
                             </p>

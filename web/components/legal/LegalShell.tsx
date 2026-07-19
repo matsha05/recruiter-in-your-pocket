@@ -15,11 +15,7 @@ type LegalShellProps = {
     contentClassName?: string;
 };
 
-/**
- * LegalShell — Editor's Desk style
- *
- * Warm paper background, clean typography, minimal chrome.
- */
+/** Lifted Line shell for factual trust and legal surfaces. */
 export function LegalShell({
     pageKey,
     eyebrow,
@@ -31,46 +27,42 @@ export function LegalShell({
 }: LegalShellProps) {
     return (
         <>
-            <main data-visual-anchor={pageKey ? `legal-${pageKey}` : undefined} className="bg-paper pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
+            <div data-visual-anchor={pageKey ? `legal-${pageKey}` : undefined} className="bg-paper pt-28 text-foreground selection:bg-brand/15 md:pt-36">
                 {/* Hero */}
-                <section className="px-6 pb-8 md:px-8 md:pb-10">
-                    <div className="mx-auto max-w-[800px]">
+                <section className="px-5 pb-10 md:px-8 md:pb-14">
+                    <div className="mx-auto max-w-[72rem]">
                         <LegalNav className="mb-8 md:mb-10" />
-                        <div className="mx-auto max-w-[640px] text-center">
-                            <p className="editorial-kicker mb-4">
+                        <div className="grid gap-5 border-t border-line pt-7 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-12">
+                            <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
                                 {eyebrow}
                             </p>
-                            <h1
-                                id={pageKey ? `legal-${pageKey}-title` : undefined}
-                                className="font-display text-slate-900"
-                                style={{
-                                    fontSize: "clamp(2rem, 5vw, 3.2rem)",
-                                    lineHeight: 1.0,
-                                    letterSpacing: "-0.03em",
-                                    fontWeight: 400,
-                                }}
-                            >
-                                {title}
-                            </h1>
-                            <p className="mx-auto mt-4 max-w-[480px] text-base leading-7 text-slate-500">
-                                {description}
-                            </p>
-                            {lastUpdated && (
-                                <p className="mt-3 text-xs text-slate-500">
-                                    Last updated {lastUpdated}
+                            <div>
+                                <h1
+                                    id={pageKey ? `legal-${pageKey}-title` : undefined}
+                                    className="max-w-[18ch] text-balance font-display text-[clamp(3rem,6vw,5.4rem)] riyp-weight-520 leading-[0.94] tracking-[-0.045em] text-foreground riyp-stretch-90"
+                                >
+                                    {title}
+                                </h1>
+                                <p className="mt-5 max-w-[42rem] text-pretty text-lg leading-8 text-muted-foreground">
+                                    {description}
                                 </p>
-                            )}
+                                {lastUpdated && (
+                                    <p className="mt-4 text-xs font-medium text-muted-foreground">
+                                        Last updated {lastUpdated}
+                                    </p>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Content */}
-                <section className="px-6 pb-12 md:px-8 md:pb-16">
-                    <div className={cn("mx-auto max-w-[720px] space-y-4", contentClassName)}>
+                <section className="px-5 pb-16 md:px-8 md:pb-24">
+                    <div className={cn("mx-auto max-w-[48rem] space-y-2", contentClassName)}>
                         {children}
                     </div>
                 </section>
-            </main>
+            </div>
             <Footer />
         </>
     );

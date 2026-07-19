@@ -2,26 +2,19 @@ import type { Metadata } from "next";
 import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
 
 export const metadata: Metadata = {
-  title: "Recruiter in Your Pocket — Free Recruiter Report on Your Resume",
-  description: "Get a free recruiter report on your resume. Clear feedback, stronger bullets, and the fixes worth making first.",
+  title: "See What a Recruiter Sees First",
+  description: "Get a clear first-pass review of what stands out, what needs more context, and what to change before you apply.",
   openGraph: {
-    title: "See How Recruiters Actually Read Your Resume",
-    description: "Get a free recruiter report on your resume. Real feedback, not a generic score. Your first report is free.",
-    url: "https://recruiterinyourpocket.com/",
+    title: "See What a Recruiter Sees First",
+    description: "Get a clear first-pass review of what stands out, what needs more context, and what to change before you apply.",
+    url: "https://www.recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
-    images: [{
-      url: "https://recruiterinyourpocket.com/assets/og-image.png",
-      width: 1200,
-      height: 630,
-      alt: "Recruiter in Your Pocket - See what recruiters see"
-    }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "See How Recruiters Actually Read Your Resume",
-    description: "Get a free recruiter report on your resume. Real feedback, not a generic score. Your first report is free.",
-    images: ["https://recruiterinyourpocket.com/assets/og-image.png"],
+    title: "See What a Recruiter Sees First",
+    description: "Get a clear first-pass review of what stands out, what needs more context, and what to change before you apply.",
   },
 };
 

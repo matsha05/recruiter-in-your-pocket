@@ -6,6 +6,21 @@ export const workspaceTrustMessage = {
     "Anonymous reports are not attached to an account unless you choose to sign in and save them. Signed-in reports save the report output, evidence excerpts, a short resume preview, and any job description you add until you delete them.",
 };
 
+export const workspaceTrustPoints = [
+  {
+    title: "Anonymous by default",
+    detail: "RIYP does not save raw resume text from an anonymous report.",
+  },
+  {
+    title: "Used for this report",
+    detail: "OpenAI's API processes the text. API data is not used to train OpenAI models by default; abuse-monitoring logs may be kept for up to 30 days.",
+  },
+  {
+    title: "You stay in control",
+    detail: "If you sign in and save a report, you can delete it—or your account—at any time.",
+  },
+] as const;
+
 export const saveReportTrustMessage =
   "We only save reports to verified signed-in accounts. Saved history includes the report output, evidence excerpts, a short resume preview, and any job description you added.";
 
@@ -13,6 +28,6 @@ export const extensionDisclosureMessage =
   "The extension only reads supported job pages when you ask it to capture a role. Sign-in is only required if you want synced history across devices.";
 
 const billingTrustMessage = {
-  summary: "Stripe handles checkout, receipts, renewals, and cancellation.",
+  summary: "Stripe handles checkout, card details, and receipts. The Job Search Pass does not renew.",
   support: "Support and restore paths stay visible before and after payment.",
 };

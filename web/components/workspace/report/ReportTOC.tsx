@@ -1,76 +1,77 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { m as motion } from "motion/react"
-import {
-    HiddenGemIcon,
-    InsightSparkleIcon,
-    PrincipalRecruiterIcon,
-    RoleTargetIcon,
-    SignalRadarIcon,
-    TransformArrowIcon
-} from "@/components/icons"
-
-interface TOCItem {
-    id: string
-    label: string
-    icon: React.ElementType
-    score?: number
-}
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 interface ReportTOCProps {
-    activeId?: string
+    activeId?: string;
 }
 
+const REPORT_TOC_ITEMS = [
+    { id: "section-first-impression", label: "The read" },
+    { id: "section-fixes", label: "Fix these first" },
+    { id: "section-keep", label: "Keep these" },
+    { id: "section-role", label: "Role direction" },
+] as const;
+
 export function ReportTOC({ activeId }: ReportTOCProps) {
-    const items: TOCItem[] = [
-        { id: "section-first-impression", label: "First Read", icon: PrincipalRecruiterIcon },
-        { id: "section-score-summary", label: "Signal Breakdown", icon: SignalRadarIcon },
-        { id: "section-evidence-ledger", label: "Evidence Ledger", icon: InsightSparkleIcon },
-        { id: "section-bullet-upgrades", label: "Red Pen", icon: TransformArrowIcon },
-        { id: "section-missing-wins", label: "Missing Wins", icon: HiddenGemIcon },
-        { id: "section-job-alignment", label: "Role Fit", icon: RoleTargetIcon },
-    ]
+    const [visibleId, setVisibleId] = React.useState(REPORT_TOC_ITEMS[0].id as string);
+    const buttonRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
+
+    React.useEffect(() => {
+        const sections = REPORT_TOC_ITEMS
+            .map((item) => document.getElementById(item.id))
+            .filter((section): section is HTMLElement => Boolean(section));
+        if (!sections.length || typeof IntersectionObserver === "undefined") return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+                if (visible?.target.id) setVisibleId(visible.target.id);
+            },
+            { rootMargin: "-22% 0px -66% 0px", threshold: [0.05, 0.2, 0.5] }
+        );
+        sections.forEach((section) => observer.observe(section));
+        return () => observer.disconnect();
+    }, []);
 
     const handleScroll = (id: string) => {
-        const el = document.getElementById(id)
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "center" })
-        }
-    }
+        const element = document.getElementById(id);
+        if (!element) return;
+        setVisibleId(id);
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        element.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+    };
+
+    const selectedId = activeId || visibleId;
+
+    React.useEffect(() => {
+        buttonRefs.current[selectedId]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }, [selectedId]);
 
     return (
-        <nav className="rounded-2xl border border-border/60 bg-card/80 p-3 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm">
-            <div className="gap-y-1">
-                <div className="px-3 py-2 text-xs font-bold uppercase tracking-wide text-muted-foreground/55">
-                    Report
-                </div>
-                {items.map((item) => {
-                    const isActive = activeId === item.id
-                    return (
-                        <button type="button"
-                            key={item.id}
-                            onClick={() => handleScroll(item.id)}
-                            className={cn(
-                                "flex min-h-11 w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all",
-                                isActive
-                                    ? "bg-brand/10 text-brand shadow-[inset_0_0_0_1px_rgba(13,148,136,0.12)]"
-                                    : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
-                            )}
-                        >
-                            <item.icon className={cn("size-4", isActive ? "text-brand" : "text-muted-foreground")} />
-                            {item.label}
-                            {isActive && (
-                                <motion.div
-                                    layoutId="active-toc-pill"
-                                    className="ml-auto size-1.5 rounded-full bg-brand"
-                                />
-                            )}
-                        </button>
-                    )
-                })}
-            </div>
+        <nav aria-label="Resume report sections" className="mx-auto grid max-w-4xl grid-cols-2 gap-x-1 py-2 sm:flex sm:items-center sm:overflow-x-auto sm:py-1.5 [&::-webkit-scrollbar]:hidden">
+            {REPORT_TOC_ITEMS.map((item) => {
+                const active = selectedId === item.id;
+                return (
+                    <button
+                        type="button"
+                        ref={(element) => { buttonRefs.current[item.id] = element; }}
+                        key={item.id}
+                        onClick={() => handleScroll(item.id)}
+                        aria-current={active ? "location" : undefined}
+                        className={cn(
+                            "focus-ring relative min-h-11 shrink-0 rounded-sm px-2 text-xs font-semibold transition-colors sm:px-4 sm:text-sm",
+                            active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                        )}
+                    >
+                        {item.label}
+                        <span className={cn("absolute inset-x-3 bottom-0 h-0.5 bg-brand transition-opacity", active ? "opacity-100" : "opacity-0")} />
+                    </button>
+                );
+            })}
         </nav>
-    )
+    );
 }

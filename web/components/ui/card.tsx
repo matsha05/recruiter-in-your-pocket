@@ -5,12 +5,7 @@ import { m as motion, useReducedMotion, HTMLMotionProps } from "motion/react"
 import { cn } from "@/lib/utils"
 import { CARD_HOVER, CARD_TAP } from "@/lib/animation"
 
-/**
- * V2.1 Card Component
- * - 4px radius (rounded = --radius)
- * - No heavy shadows
- * - Border uses --border with opacity
- */
+/** Lifted Line structural panel. Prefer open layout unless grouping changes meaning. */
 const Card = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>

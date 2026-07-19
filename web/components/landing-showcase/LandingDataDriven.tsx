@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { m as motion, useInView } from "motion/react";
-import { Lock, Shield, Trash2, ArrowRight, Check, ExternalLink, BookOpen, BarChart2, Users, FileText, Award, Quote, Star, TrendingUp, Clock, Target } from "lucide-react";
+import { Lock, Shield, Trash2, ArrowRight, Check, ExternalLink, BookOpen, BarChart2, Users, FileText, Award, TrendingUp, Target } from "lucide-react";
 import { PocketMark } from "@/components/icons";
 
 /**
@@ -55,7 +55,7 @@ function ProgressBar({ value, label, delay = 0 }: { value: number; label: string
                     className="h-full bg-teal-600 rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: isInView ? `${value}%` : 0 }}
-                    transition={{ duration: 7.4, delay: delay, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1.2, delay: delay, ease: [0.16, 1, 0.3, 1] }}
                 />
             </div>
         </div>
@@ -110,29 +110,29 @@ export function LandingDataDriven() {
                                 Methodology grounded in recruiting science
                             </div>
 
-                            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.05] mb-6">
+                            <h1 className="mb-6 font-display text-5xl riyp-weight-520 leading-[1.05] tracking-tight riyp-stretch-90 md:text-6xl lg:text-7xl">
                                 Understand how you're <span className="text-teal-600">actually</span> being evaluated
                             </h1>
 
                             <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-lg">
-                                Recruiters spend an average of <strong>7.4 seconds</strong> on initial resume review. We use eye-tracking research and hiring data to show you exactly what they see  -  and miss.
+                                See what the resume communicates, where a recruiter has to guess, and which changes are worth making first.
                             </p>
 
                             {/* Key stat callout */}
                             <div className="flex items-center gap-6 p-4 rounded-xl bg-slate-50 border border-slate-200 mb-8">
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-teal-600 font-mono"><CountUp end={7.4} decimals={1} suffix="s" duration={7400} /></div>
-                                    <div className="text-xs text-slate-500 mt-1">Avg. review time</div>
+                                    <div className="text-3xl font-bold text-teal-600 font-mono"><CountUp end={1} /></div>
+                                    <div className="text-xs text-slate-500 mt-1">Complete report free</div>
                                 </div>
                                 <div className="w-px h-12 bg-slate-200" />
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-rose-600">75%</div>
-                                    <div className="text-xs text-slate-500 mt-1">Rejected in &lt;10s</div>
+                                    <div className="text-3xl font-bold text-rose-600">3</div>
+                                    <div className="text-xs text-slate-500 mt-1">Priorities to start</div>
                                 </div>
                                 <div className="w-px h-12 bg-slate-200" />
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-slate-900">250+</div>
-                                    <div className="text-xs text-slate-500 mt-1">Apps per role</div>
+                                    <div className="text-3xl font-bold text-slate-900">0</div>
+                                    <div className="text-xs text-slate-500 mt-1">Invented wins</div>
                                 </div>
                             </div>
 
@@ -179,9 +179,7 @@ export function LandingDataDriven() {
 
                             {/* Citation */}
                             <div className="text-center">
-                                <span className="text-xs text-slate-400">Scoring methodology based on </span>
-                                <Citation source="Ladders" year="2018" />
-                                <span className="text-xs text-slate-400"> eye-tracking study</span>
+                                <span className="text-xs text-slate-400">The report shows its evidence and keeps research limits visible.</span>
                             </div>
                         </motion.div>
                     </div>
@@ -194,9 +192,9 @@ export function LandingDataDriven() {
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white text-xs text-slate-600 mb-4">
                             <FileText className="size-3.5" />
-                            The 6-Second Signal Model™
+                            Recruiter opening-read framework
                         </div>
-                        <h2 className="font-display text-3xl md:text-4xl font-normal tracking-tight mb-4">
+                        <h2 className="mb-4 font-display text-3xl riyp-weight-560 tracking-tight riyp-stretch-96 md:text-4xl">
                             How we analyze your resume
                         </h2>
                         <p className="text-slate-600 max-w-2xl mx-auto">
@@ -265,7 +263,7 @@ export function LandingDataDriven() {
                 <div className="max-w-6xl mx-auto">
                     <div className="flex items-center justify-between mb-10">
                         <div>
-                            <h2 className="font-display text-3xl font-normal tracking-tight mb-2">
+                            <h2 className="mb-2 font-display text-3xl riyp-weight-560 tracking-tight riyp-stretch-96">
                                 Built on how recruiters decide
                             </h2>
                             <p className="text-slate-600">Research-backed guidance behind our methodology.</p>
@@ -280,8 +278,8 @@ export function LandingDataDriven() {
                         {[
                             {
                                 category: "Eye-tracking Research",
-                                title: "How Recruiters Skim in 7.4 Seconds",
-                                description: "Where attention goes first and which fields decide the pass.",
+                                title: "How recruiters actually read a resume",
+                                description: "What peer-reviewed studies observed, what they did not prove, and what candidates can use.",
                                 readTime: "4 min",
                                 icon: BookOpen,
                             },
@@ -325,54 +323,18 @@ export function LandingDataDriven() {
                 </div>
             </section>
 
-            {/* Social Proof with Data */}
+            {/* Founder authority */}
             <section className="px-6 py-20 bg-slate-900">
                 <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-white">
-                            What people are saying
-                        </h2>
-                    </div>
-
-                    {/* Testimonials */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {[
-                            {
-                                quote: "Executive coaches charge $500+ for a resume review that's half this good. This is what I actually tell my clients  -  except I couldn't automate my brain. Somehow you did.",
-                                name: "Jennifer Martinez",
-                                role: "Career Coach",
-                                company: "$450/hr clients",
-                            },
-                            {
-                                quote: "I've reviewed thousands of resumes as a hiring manager. This tool catches what we actually look for.",
-                                name: "Marcus Williams",
-                                role: "VP Engineering",
-                                company: "Series C Startup",
-                            },
-                        ].map((testimonial, i) => (
-                            <motion.div
-                                key={testimonial.name}
-                                className="p-6 rounded-xl border border-white/20 bg-white/10"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                            >
-                                <Quote className="size-8 text-teal-400 mb-4" />
-                                <p className="text-xl text-white leading-relaxed mb-6">
-                                    "{testimonial.quote}"
-                                </p>
-                                <div className="flex items-center gap-3">
-                                    <div className="size-10 rounded-full bg-teal-500/30 flex items-center justify-center text-teal-400 font-bold">
-                                        {testimonial.name.charAt(0)}
-                                    </div>
-                                    <div>
-                                        <div className="font-bold text-white">{testimonial.name}</div>
-                                        <div className="text-base text-slate-200">{testimonial.role} · {testimonial.company}</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                    <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:items-end">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-300">The recruiter behind the report</p>
+                        <div>
+                            <h2 className="font-display text-4xl tracking-tight text-white md:text-6xl">Built from the hiring side.</h2>
+                            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Matt Shaw has spent 14 years recruiting and leading hiring teams across OpenAI, Meta, Google, X-Team, and Robert Half. RIYP makes the questions recruiters ask privately useful before you apply.</p>
+                            <a href="https://www.linkedin.com/in/mattrshaw" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal-300 underline underline-offset-4">
+                                Meet Matt on LinkedIn <ArrowRight className="size-4" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -381,7 +343,7 @@ export function LandingDataDriven() {
             <section className="px-6 py-20">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="font-display text-3xl font-normal tracking-tight mb-4">
+                        <h2 className="mb-4 font-display text-3xl riyp-weight-560 tracking-tight riyp-stretch-96">
                             Transparent pricing
                         </h2>
                         <p className="text-slate-600">

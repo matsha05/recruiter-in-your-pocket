@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 
@@ -9,6 +10,7 @@ type AppProvidersProps = {
 };
 
 export function AppProviders({ children }: AppProvidersProps) {
+  const pathname = usePathname();
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -26,9 +28,17 @@ export function AppProviders({ children }: AppProvidersProps) {
       })
   );
 
+  const isIsolatedSystemLab = pathname === "/internal/system-lab";
+
+  useEffect(() => {
+    document.documentElement.removeAttribute("data-theme");
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>{children}</AuthProvider>
+      {isIsolatedSystemLab ? children : <AuthProvider>{children}</AuthProvider>}
     </QueryClientProvider>
   );
 }

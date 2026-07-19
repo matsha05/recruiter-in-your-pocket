@@ -1,89 +1,61 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
-import {
-    CheckCircle2,
-    FileText,
-    Gauge,
-    Loader2,
-    Search,
-    Sparkles,
-    UserRound
-} from "lucide-react";
-import { SixSecondIcon } from "@/components/icons";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { LockKey } from "@phosphor-icons/react";
+import { LiftedTrace, type LiftedTraceItem } from "@/components/shared/LiftedTrace";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type AnalysisMode = "resume" | "linkedin";
 
-type AnalysisStep = {
+type AnalysisStep = LiftedTraceItem & {
     id: string;
-    label: string;
-    detail: string;
-    durationMs: number;
-    icon: ComponentType<{ className?: string }>;
 };
 
 const RESUME_STEPS: AnalysisStep[] = [
     {
         id: "normalize",
-        label: "Reading your resume",
-        detail: "Sections, roles, and layout cues",
-        durationMs: 6000,
-        icon: FileText
+        label: "Read the page",
+        detail: "Sections, roles, dates, and visible structure",
     },
     {
         id: "evidence",
-        label: "Finding proof of impact",
-        detail: "Metrics, outcomes, and scope",
-        durationMs: 12000,
-        icon: Search
+        label: "Find the evidence",
+        detail: "Results, decisions, scope, and ownership",
     },
     {
-        id: "scoring",
-        label: "Scoring what a recruiter would notice",
-        detail: "What stands out, what falls flat",
-        durationMs: 9000,
-        icon: Gauge
+        id: "review",
+        label: "Check the read",
+        detail: "What is clear, easy to miss, or still open",
     },
     {
-        id: "rewrites",
-        label: "Writing your action items",
-        detail: "Rewrites, gaps, and next steps",
-        durationMs: 9000,
-        icon: Sparkles
-    }
+        id: "prioritize",
+        label: "Order the work",
+        detail: "The few changes that matter most on this document",
+    },
 ];
 
 const LINKEDIN_STEPS: AnalysisStep[] = [
     {
         id: "ingest",
-        label: "Reading your profile",
-        detail: "Headline, experience, and signals",
-        durationMs: 6000,
-        icon: UserRound
+        label: "Read the profile",
+        detail: "Headline, experience, and visible details",
     },
     {
         id: "evidence",
-        label: "Finding proof of impact",
-        detail: "Achievements, keywords, and clarity",
-        durationMs: 12000,
-        icon: Search
+        label: "Find the evidence",
+        detail: "Achievements, skills, and role context",
     },
     {
-        id: "scoring",
-        label: "Scoring what a recruiter would notice",
-        detail: "Clarity, relevance, differentiation",
-        durationMs: 9000,
-        icon: Gauge
+        id: "review",
+        label: "Check the read",
+        detail: "What is clear, easy to miss, or still open",
     },
     {
-        id: "rewrites",
-        label: "Writing your action items",
-        detail: "Headline and positioning upgrades",
-        durationMs: 9000,
-        icon: Sparkles
-    }
+        id: "prioritize",
+        label: "Order the work",
+        detail: "The few changes that matter most on this profile",
+    },
 ];
 
 const LONG_WAIT_MS = 45_000;
@@ -101,7 +73,7 @@ export default function AnalysisScanning({
     startedAt = null,
     onCancel,
     onRetry,
-    className
+    className,
 }: AnalysisScanningProps) {
     const startRef = useRef<number>(0);
     const [elapsedMs, setElapsedMs] = useState(0);
@@ -116,122 +88,72 @@ export default function AnalysisScanning({
     }, [startedAt]);
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        const timer = window.setInterval(() => {
             setElapsedMs(Date.now() - startRef.current);
         }, 250);
-        return () => clearInterval(timer);
+        return () => window.clearInterval(timer);
     }, []);
 
     const steps = useMemo(() => (mode === "linkedin" ? LINKEDIN_STEPS : RESUME_STEPS), [mode]);
-    const totalMs = steps.reduce((sum, step) => sum + step.durationMs, 0);
-    const progress = Math.min(95, Math.max(4, (elapsedMs / totalMs) * 100));
     const isSlow = elapsedMs > LONG_WAIT_MS;
-
-    const activeIndex = useMemo(() => {
-        let acc = 0;
-        for (let i = 0; i < steps.length; i += 1) {
-            acc += steps[i].durationMs;
-            if (elapsedMs < acc) return i;
-        }
-        return steps.length - 1;
-    }, [elapsedMs, steps]);
-
-    const headline =
-        mode === "linkedin" ? "Analyzing your LinkedIn profile" : "Analyzing your resume";
+    const subject = mode === "linkedin" ? "profile" : "resume";
 
     return (
-        <div className={cn("flex flex-col items-center justify-center h-full p-8 animate-in fade-in duration-500", className)}>
-            <div className="w-full max-w-xl gap-y-8">
-                <div className="text-center gap-y-2">
-                    <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
-                        Analysis in progress
+        <div className={cn("flex min-h-full items-center bg-mineral px-4 py-10 sm:px-7 sm:py-14", className)}>
+            <section className="mx-auto w-full max-w-4xl" aria-labelledby="analysis-title" aria-busy="true">
+                <header className="grid gap-5 md:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] md:items-end md:gap-12">
+                    <div>
+                        <p className="riyp-track-015 text-xs font-bold uppercase text-brand">Building your report</p>
+                        <h2 id="analysis-title" className="mt-3 max-w-[15ch] font-display text-[clamp(2.8rem,7vw,5.4rem)] riyp-weight-520 leading-[0.92] tracking-[-0.05em] text-foreground">
+                            A careful read, in four passes.
+                        </h2>
                     </div>
-                    <h2 className="font-display text-3xl md:text-4xl text-foreground tracking-tight">
-                        {headline}
-                    </h2>
-                    <p className="text-sm text-muted-foreground">
-                        We read the evidence first, then tell you what to do with it. You&apos;ll see the first insight as soon as it&apos;s ready.
+                    <p className="max-w-xl text-base leading-7 text-muted-foreground">
+                        We read the {subject}, find the evidence, check what comes through, and put the useful actions in order.
                     </p>
-                </div>
+                </header>
 
-                <div className="rounded-xl border border-border/60 bg-card p-5 gap-y-4">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <span>Progress</span>
-                        <span>{Math.round(progress)}%</span>
+                <div className="riyp-report-paper mt-9 overflow-hidden border-y sm:mt-11">
+                    <div className="flex items-end justify-between gap-6 border-b border-line px-5 py-4 sm:px-8 sm:py-5">
+                        <div>
+                            <p className="riyp-track-012 text-[0.65rem] font-bold uppercase text-muted-foreground">Review map</p>
+                            <p className="mt-1 font-display text-2xl riyp-weight-520 tracking-[-0.025em] text-foreground">What the report is checking</p>
+                        </div>
+                        <p className="riyp-track-012 text-[0.65rem] font-bold uppercase text-brand">In progress</p>
                     </div>
-                    <div className="h-2 rounded-full bg-secondary/70 overflow-hidden">
-                        <div
-                            className="h-full bg-brand transition-all duration-300 ease-out"
-                            style={{ width: `${progress}%` }}
+
+                    <div className="px-5 py-7 sm:px-8 sm:py-9">
+                        <LiftedTrace
+                            items={steps}
+                            progress={0}
+                            ariaLabel={`Four parts of the review for this ${subject}`}
                         />
                     </div>
 
-                    <ul className="gap-y-3 pt-2">
-                        {steps.map((step, index) => {
-                            const isComplete = index < activeIndex;
-                            const isActive = index === activeIndex;
-                            const Icon = step.icon;
-                            return (
-                                <li key={step.id} className="flex items-start gap-3">
-                                    <div
-                                        className={cn(
-                                            "mt-0.5 size-7 rounded-full border flex items-center justify-center",
-                                            isComplete && "border-success/40 bg-success/10 text-success",
-                                            isActive && "border-brand/40 bg-brand/10 text-brand",
-                                            !isComplete && !isActive && "border-border/40 text-muted-foreground"
-                                        )}
-                                    >
-                                        {isComplete ? (
-                                            <CheckCircle2 className="size-4" />
-                                        ) : isActive ? (
-                                            <Loader2 className="size-4 animate-spin" />
-                                        ) : (
-                                            <Icon className="size-4" />
-                                        )}
-                                    </div>
-                                    <div className="gap-y-0.5">
-                                        <p className={cn(
-                                            "text-sm font-medium",
-                                            isActive ? "text-foreground" : "text-muted-foreground"
-                                        )}>
-                                            {step.label}
-                                        </p>
-                                        <p className="text-xs text-muted-foreground">
-                                            {step.detail}
-                                        </p>
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    <div className="grid gap-2 border-t border-line bg-surface-sky px-5 py-4 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:px-8 sm:py-5">
+                        <p className="riyp-track-010 text-[0.65rem] font-bold uppercase text-brand">Four passes</p>
+                        <p className="text-sm leading-6 text-foreground">This is the shape of the review, not a completion estimate.</p>
+                    </div>
                 </div>
 
-                <p className="text-xs text-muted-foreground/70 flex items-center justify-center gap-1.5">
-                    <SixSecondIcon className="size-3.5" />
-                    Typical time: 20–30 seconds
-                </p>
+                <div className="mt-5 flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+                    <LockKey className="mt-1 size-4 shrink-0 text-brand" weight="duotone" aria-hidden="true" />
+                    <p>Keep this tab open. Your report will replace this screen as soon as the review is ready.</p>
+                </div>
 
-                {isSlow && (
-                    <div className="rounded-xl border border-warning/30 bg-warning/10 p-4 text-sm text-center gap-y-3">
-                        <p className="font-medium text-warning">Taking longer than usual.</p>
-                        <p className="text-xs text-muted-foreground">
-                            You can keep waiting or retry. Retrying may consume another report if the current run completes.
-                        </p>
-                        <div className="flex flex-wrap items-center justify-center gap-2">
-                            {onRetry && (
-                                <Button variant="outline" size="sm" onClick={onRetry}>
-                                    Retry
-                                </Button>
-                            )}
-                            {onCancel && (
-                                <Button variant="ghost" size="sm" onClick={onCancel}>
-                                    Stop
-                                </Button>
-                            )}
+                {isSlow ? (
+                    <aside className="mt-7 border-y border-warning/35 bg-warning/10 px-5 py-4 sm:flex sm:items-center sm:justify-between sm:gap-6" aria-label="Review taking longer than usual">
+                        <div>
+                            <p className="font-medium text-foreground">This is taking longer than usual.</p>
+                            <p className="mt-1 text-xs leading-5 text-muted-foreground">You can keep waiting or retry. A retry may use another report if this review finishes in the background.</p>
                         </div>
-                    </div>
-                )}
-            </div>
+                        <div className="mt-4 flex shrink-0 gap-2 sm:mt-0">
+                            {onRetry ? <Button variant="outline" size="sm" onClick={onRetry}>Retry</Button> : null}
+                            {onCancel ? <Button variant="ghost" size="sm" onClick={onCancel}>Stop</Button> : null}
+                        </div>
+                    </aside>
+                ) : null}
+            </section>
         </div>
     );
 }

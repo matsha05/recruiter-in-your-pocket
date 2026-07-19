@@ -1,99 +1,152 @@
-# RIYP Go/No-Go Launch Program
+# RIYP Controlled Paid Beta Launch Program
 
-**Last Updated:** March 7, 2026  
+**Last updated:** July 19, 2026
 **Status:** Active source of truth
+**Owner and sole product tester:** Matt Shaw
 
-This document replaces any older static "GO" verdict in the repo. A launch decision is valid only when the current runtime readiness page, the launch gate command, and the rehearsal checklist all agree.
+This program supersedes older launch plans that required the Chrome extension, recurring or lifetime pricing, a fixed date, or paid model evaluations before the product was otherwise ready.
 
-## Command Surface
+## Launch Decision
 
-Run these from the repo root:
+RIYP will launch first as a controlled, web-only paid beta.
 
-```bash
-npm run launch:autopilot
-npm run launch:gate
-npm run launch:gate:strict
-npm run launch:env-report
-npm run launch:rehearsal
-```
+The promise is simple: upload or paste a resume, optionally add a job, and get the first-read brief a strong recruiter would want you to see.
 
-`launch:autopilot`
-- Runs the environment report, launch gate, rehearsal artifact generation, and Playwright launch smoke coverage.
-- Writes `docs/launch-readiness/generated/launch-autopilot-latest.json` and `.md`.
+### In scope
 
-`launch:gate`
-- Standard preflight.
-- Runs lint, typecheck, security tests, web build, extension build, root contract tests, and eval dry-run.
-- Writes `docs/launch-readiness/generated/go-no-go-latest.json`.
+- Resume upload and paste
+- Optional job context
+- Recruiter brief and sample report
+- First report included
+- One non-renewing $29 Job Search Pass with five additional reports over 30 days
+- Authentication and report history
+- PDF export
+- Billing restore and customer portal
+- Account export and deletion
+- Privacy, security, methodology, support, and configuration status pages
 
-`launch:gate:strict`
-- Required before any live launch decision.
-- Includes live smoke and golden evals when `OPENAI_API_KEY` is present.
-- Fails immediately if strict launch evals cannot run.
+### Held back
 
-`launch:rehearsal`
-- Generates the human rehearsal checklist used in the final launch meeting.
+- Chrome extension and saved-jobs navigation
+- Lifetime plan
+- Public report sharing
+- Guest report persistence
+- Error replay
+- Broad launch campaigns, Product Hunt, or paid acquisition
+- Live model evals until Matt explicitly authorizes API spend
 
-`launch:env-report`
-- Captures the current launch flags and required environment variables without exposing secrets.
-- Writes `docs/launch-readiness/generated/launch-env-report.json` and `.md`.
+The held-back surfaces must remain disabled, absent from navigation and search discovery, and safe if reached directly.
 
-## Required Evidence
+## Product Standard
 
-All of the following must be green before launch:
+The launch experience should feel like a calm editorial product, not a generic AI dashboard.
 
-| Gate | Evidence | Source |
-|:-----|:---------|:-------|
-| Trust and security | `launch:gate:strict` passes, `/api/ready` reports no blockers, status/privacy/security pages are live | CLI + runtime |
-| Auth and identity | Fresh account returns to workspace, anonymous report does not create durable ownership | rehearsal |
-| Billing and unlocks | Test checkout, restore, receipts, and portal work | rehearsal |
-| Extension | Sign-in opens the real auth path, captured jobs persist across reopen and second profile | rehearsal |
-| PromptOps quality | Golden eval passes against baseline with zero FAIL fixtures | strict gate |
-| Docs and incident readiness | Vendor review, runbook, rollback controls, and launch checklist are current | docs |
+Every launch-critical screen must meet these standards:
+
+1. The next action is obvious within five seconds.
+2. The product explains data handling where trust is needed, without repeating itself.
+3. Empty, loading, success, error, paywall, and recovery states are complete.
+4. Mobile is designed as a primary experience, not a compressed desktop layout.
+5. Marketing claims match the actual runtime and billing behavior.
+6. Private or unfinished surfaces do not compete for attention.
+7. Motion communicates state and never hides content.
+8. Keyboard navigation, focus treatment, contrast, and reduced-motion behavior pass automated and manual review.
+
+## Release Gates
+
+### Gate 1: Zero-spend release candidate
+
+No external model calls are allowed.
+
+- Lint, typecheck, build, security tests, contract tests, and browser smoke tests pass.
+- Eval dry-run is labeled as fixture validation and never represented as model-quality evidence.
+- Live eval commands refuse to run without `RIYP_ALLOW_PAID_EVALS=true`.
+- Production flags fail closed.
+- Shared hosted rate limiting is configured.
+- Stripe webhook handling is idempotent and covered by replay tests.
+- No resume text, job description, email address, LinkedIn URL, or raw report is written to application logs.
+- Production security headers are present.
+
+### Gate 2: Preview rehearsal
+
+Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
+
+- The ordered database migration set is verified through migration 014 and applied to the preview database.
+- Job Search Pass checkout uses Stripe test mode.
+- Webhook delivery, retry, restore, portal, and entitlement behavior work.
+- Anonymous and signed-in storage behavior matches public copy.
+- Account export and deletion work on the same test account.
+- Desktop and mobile visual review has no launch-blocking defects.
+
+### Gate 3: Final live quality proof
+
+This gate remains intentionally blocked until Matt authorizes a small API budget.
+
+- Set `RIYP_ALLOW_PAID_EVALS=true` only for the approved run.
+- Run the smoke and golden eval suites against the launch model and prompt.
+- Manually inspect at least one thin resume, one strong resume, and one job-targeted resume.
+- Reject the launch if results are generic, unsupported, unstable, or materially worse than the sample report.
+- Disable paid eval authorization immediately after evidence is captured.
+
+### Gate 4: Controlled beta release
+
+- All earlier gates pass.
+- `/api/ready` reports no launch blockers in the hosted environment.
+- The public site and deployed application come from the same reviewed release candidate.
+- Rollback controls have been tested.
+- Matt records a final `GO` decision with the tested release identifier.
+
+## Commercial Plan
+
+Start with a small founder-led cohort rather than a public splash.
+
+- Invite 10 to 25 people who are actively applying or revising a resume.
+- Make the first complete report included and keep one $29 Job Search Pass: five additional reports, one payment, 30-day expiration.
+- Describe the product as a recruiter first-read brief, not an AI resume grader.
+- Personally follow up after the first report with three questions: what felt immediately useful, what felt untrustworthy, and what almost stopped you.
+- Track activation, report completion, paywall reach, purchase, return use, and support demand. Keep analytics off until the privacy implementation is deliberately approved.
+- Expand only after the first cohort can complete the core journey without live help and the product produces consistently useful reports.
 
 ## Go/No-Go Rule
 
-Launch is `GO` only when:
+The beta is `GO` only when:
 
-1. `npm run launch:gate:strict` exits `0`
-2. `/api/ready` reports `goNoGo: true`
-3. The final rehearsal completes with evidence captured for every step
-4. No marketed feature is enabled behind a flag unless it is fully working and reviewed
+1. The zero-spend release gate passes.
+2. The complete preview rehearsal passes.
+3. The explicitly authorized live quality proof passes.
+4. The hosted readiness endpoint reports no blockers.
+5. No public claim describes a disabled or unverified capability as live.
 
-Launch is automatically `NO-GO` if any of the following are true:
+Any missing item is a `NO-GO`, not a judgment call.
 
-- Any critical launch-gate command fails
-- `NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS=true`
-- `NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE=true`
-- `NEXT_PUBLIC_ENABLE_ERROR_REPLAY=true` without explicit privacy sign-off
-- Billing is enabled without Stripe webhook verification configured
-- Extension sync is enabled without exact extension origins configured
+## Rollback Controls
 
-## Launch-Day Workflow
-
-1. Run `npm run launch:gate:strict`
-2. Run `npm run launch:autopilot:strict` when you want the machine-readable rollup plus browser smoke checks
-2. Open the internal launch page at `/launch`
-3. Confirm `/api/ready` shows no blockers
-4. Run the rehearsal checklist on a clean browser profile
-5. Record the timestamp, operator, and verdict in the launch thread
-
-## Rollback Standard
-
-If any launch-critical surface regresses, prefer disabling the affected surface before rolling back the whole product:
-
-| Surface | Control |
-|:--------|:--------|
-| Extension sync | `NEXT_PUBLIC_ENABLE_EXTENSION_SYNC=false` |
+| Surface | Safe state |
+|:--|:--|
 | Billing unlock | `NEXT_PUBLIC_ENABLE_BILLING_UNLOCK=false` |
+| Extension sync | `NEXT_PUBLIC_ENABLE_EXTENSION_SYNC=false` |
 | Analytics | `NEXT_PUBLIC_ENABLE_ANALYTICS=false` |
 | Error replay | `NEXT_PUBLIC_ENABLE_ERROR_REPLAY=false` |
 | Guest save | `NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE=false` |
 | Public share | `NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS=false` |
+| Paid evals | `RIYP_ALLOW_PAID_EVALS=false` |
 
-## References
+## Operating Commands
 
-- `docs/launch-readiness/85-vendor-privacy-review.md`
-- `docs/launch-readiness/90-incident-runbook.md`
-- `docs/launch-readiness/95-launch-rehearsal.md`
-- `docs/promptops/shipping-gate.md`
+Run from the repository root:
+
+```bash
+npm run launch:env-report
+npm run launch:gate
+npm run launch:rehearsal
+```
+
+`npm run launch:gate:strict` remains the final live-quality gate. It must fail while paid evaluations are not explicitly authorized. That failure is an intentional spend control, not a release-candidate defect.
+
+## Current Blockers
+
+- Confirm hosted environment variables, including shared Upstash rate limiting.
+- Replay the full migration set cleanly, then apply and verify migrations through 014 in preview.
+- Complete Stripe test-mode purchase, webhook replay, restore, and portal rehearsal.
+- Reconcile the deployed public site with this release candidate.
+- Complete the final live quality proof after explicit spend authorization.

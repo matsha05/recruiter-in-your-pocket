@@ -3,18 +3,21 @@
 import Link from "next/link";
 import { useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { CheckCircle2, Loader2, AlertTriangle, RefreshCw } from "lucide-react";
+import {
+  ArrowClockwise,
+  ArrowRight,
+  CheckCircle,
+  CircleNotch,
+  Warning,
+} from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
 import { usePaymentConfirmation } from "@/hooks/usePaymentConfirmation";
 import { saveUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 import Footer from "@/components/landing/Footer";
 
-/** Paper shadow matching all Editor's Desk cards */
-const paperShadow =
-  "0 0 0 1px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)";
-
 export default function PurchaseConfirmedClient() {
   const searchParams = useSearchParams();
-    const getSearchParam = searchParams.get.bind(searchParams);
+  const getSearchParam = searchParams.get.bind(searchParams);
   const sessionId = getSearchParam("session_id");
   const tier = getSearchParam("tier");
   const source = getSearchParam("source");
@@ -28,10 +31,10 @@ export default function PurchaseConfirmedClient() {
 
   const unlockLabel = useMemo(() => {
     const map: Record<UnlockSection, string> = {
-      evidence_ledger: "Evidence Ledger",
-      bullet_upgrades: "The Red Pen",
-      missing_wins: "Missing Wins",
-      job_alignment: "Role Positioning",
+      evidence_ledger: "Evidence behind the review",
+      bullet_upgrades: "Suggested rewrites",
+      missing_wins: "Details to add",
+      job_alignment: "Fit for the role",
       export_pdf: "Export",
     };
     if (!unlock) return null;
@@ -52,99 +55,91 @@ export default function PurchaseConfirmedClient() {
     saveUnlockContext({ section: normalized });
   }, [unlock]);
 
+  const isWaiting = state.status === "checking" || state.status === "pending";
+  const isProblem = state.status === "error" || state.status === "missing";
+
   return (
     <>
-      <main className="bg-paper px-6 pb-16 pt-28 text-slate-900 selection:bg-brand/15 md:pt-36">
-        <div className="mx-auto max-w-2xl">
-          <div
-            className="rounded-2xl bg-white p-8 md:p-10"
-            style={{ boxShadow: paperShadow }}
-          >
-            <div className="flex items-center gap-3">
-              {state.status === "unlocked" && <CheckCircle2 className="size-6 text-emerald-600" />}
-              {(state.status === "checking" || state.status === "pending") && (
-                <Loader2 className="size-6 animate-spin text-slate-400" />
-              )}
-              {(state.status === "error" || state.status === "missing") && (
-                <AlertTriangle className="size-6 text-amber-500" />
-              )}
+      <div
+        data-visual-anchor="purchase-confirmed"
+        className="bg-paper px-5 pb-20 pt-28 text-foreground selection:bg-brand/15 md:px-8 md:pt-36"
+      >
+        <section className="mx-auto max-w-[64rem]" aria-labelledby="purchase-confirmed-title">
+          <header className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16">
+            <div>
+              <p className="text-xs font-semibold uppercase riyp-track-012 text-brand">Payment</p>
+              <div className="mt-5 flex items-center gap-3 text-sm font-semibold text-foreground">
+                {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
+                {isWaiting ? <CircleNotch className="size-5 animate-spin text-brand" weight="bold" /> : null}
+                {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
+                <span>{isWaiting ? "Confirming with Stripe" : state.status === "unlocked" ? "Access confirmed" : "Needs attention"}</span>
+              </div>
+            </div>
+            <div>
               <h1
-                className="font-display text-slate-900"
-                style={{
-                  fontSize: "clamp(1.6rem, 4vw, 2rem)",
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.025em",
-                  fontWeight: 400,
-                }}
+                id="purchase-confirmed-title"
+                className="max-w-[16ch] text-balance font-display text-[clamp(3rem,7vw,6.5rem)] riyp-weight-520 leading-[0.92] tracking-[-0.05em] riyp-stretch-90"
               >
                 {state.title}
               </h1>
+              <p className="mt-5 max-w-[40rem] text-pretty text-lg leading-8 text-muted-foreground">{state.message}</p>
+            </div>
+          </header>
+
+          <div className="grid gap-8 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+            <div className="text-sm leading-6 text-muted-foreground">
+              {unlockLabel && state.status !== "missing" ? (
+                <p>
+                  We kept your place in <span className="font-semibold text-foreground">{unlockLabel}</span>.
+                </p>
+              ) : null}
+              {state.status !== "missing" ? (
+                <p className="mt-3 text-xs">
+                  Confirmation reference {sessionSuffix || "pending"}
+                  {attempt > 1 ? ` · check ${attempt}` : ""}
+                </p>
+              ) : null}
             </div>
 
-            <p className="mt-4 text-sm leading-7 text-slate-500">{state.message}</p>
-
-            {unlockLabel && state.status !== "missing" && (
-              <p className="mt-3 text-xs text-slate-400">
-                We saved your place in <span className="text-slate-700 font-medium">{unlockLabel}</span>.
+            <div className="border-y border-line bg-surface-sky/45 px-5 py-6 sm:px-7 sm:py-7">
+              <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">
+                {state.status === "unlocked" ? "Ready when you are" : "Next step"}
               </p>
-            )}
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                {state.status === "unlocked" ? (
+                  <Button asChild variant="brand" size="lg">
+                    <Link href="/workspace">Open the studio <ArrowRight className="size-4" weight="bold" /></Link>
+                  </Button>
+                ) : (
+                  <Button type="button" variant="brand" size="lg" onClick={() => window.location.reload()}>
+                    <ArrowClockwise className="size-4" weight="bold" /> Check again
+                  </Button>
+                )}
 
-            {state.status !== "missing" && (
-              <p className="mt-3 text-xs text-slate-400">
-                Attempt {attempt || 1} · Session <span className="font-mono">{sessionSuffix}</span>
-              </p>
-            )}
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              {state.status === "unlocked" ? (
-                <Link
-                  href="/workspace"
-                  className="rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
-                >
-                  Open Workspace
-                </Link>
-              ) : (
-                <button type="button"
-                  onClick={() => window.location.reload()}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
-                >
-                  <RefreshCw className="size-4" />
-                  Check Again
-                </button>
-              )}
-
-              <Link
-                href="/purchase/restore"
-                className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                Restore Access
-              </Link>
-              <Link
-                href="/settings/billing"
-                className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                Billing Settings
-              </Link>
-              {state.status === "error" && (
-                <Link
-                  href="/pricing"
-                  className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
-                >
-                  Back to Pricing
-                </Link>
-              )}
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/purchase/restore">Restore access</Link>
+                </Button>
+                <Button asChild variant="ghost" size="lg">
+                  <Link href="/settings/billing">Billing settings</Link>
+                </Button>
+                {state.status === "error" ? (
+                  <Button asChild variant="ghost" size="lg">
+                    <Link href="/pricing">Back to pricing</Link>
+                  </Button>
+                ) : null}
+              </div>
             </div>
-
-            <p className="mt-8 text-xs text-slate-400">
-              Need help now? Email{" "}
-              <Link href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-2 text-slate-500 hover:text-slate-700">
-                support@recruiterinyourpocket.com
-              </Link>
-              {" "}and include your checkout email.
-            </p>
           </div>
-        </div>
-      </main>
+
+          <p className="border-t border-line pt-6 text-sm leading-6 text-muted-foreground">
+            Need help? Email{" "}
+            <a href="mailto:support@recruiterinyourpocket.com" className="font-semibold text-foreground underline decoration-brand/40 underline-offset-4 hover:text-brand">
+              support@recruiterinyourpocket.com
+            </a>{" "}
+            from the address used at checkout.
+          </p>
+        </section>
+      </div>
       <Footer />
     </>
   );

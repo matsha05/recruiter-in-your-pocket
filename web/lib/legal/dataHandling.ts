@@ -1,4 +1,5 @@
-export const LEGAL_LAST_UPDATED = "March 7, 2026";
+export const LEGAL_LAST_UPDATED = "July 12, 2026";
+export const PRIVACY_LAST_UPDATED = "July 12, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -12,7 +13,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Resume upload text (analysis input)",
     purpose: "Generate recruiter-style feedback, scoring, and rewrite guidance.",
-    retention: "Processed to generate results. Raw input is not stored for anonymous runs.",
+    retention: "RIYP does not store raw input for anonymous runs. OpenAI may retain API abuse-monitoring logs containing customer content for up to 30 days by default.",
     userControl: "Sign in to save your history, or delete your account in Settings.",
     processor: "OpenAI, Supabase"
   },
@@ -54,9 +55,16 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Usage, reliability, and abuse-prevention metadata",
     purpose: "Rate limiting, reliability diagnostics, billing state, and product health.",
-    retention: "Retained for product operation and security needs.",
+    retention: "Rate-limit and idempotency records are short-lived. Other operational records are retained for product and security needs.",
     userControl: "Deleting your account removes app-level history.",
-    processor: "Supabase, Sentry, Vercel"
+    processor: "Supabase, Sentry, Vercel, Upstash"
+  },
+  {
+    dataType: "Background job events and results",
+    purpose: "Generate account exports and, when used, PDF files without keeping the request open.",
+    retention: "Retained under Inngest's configured event and run-history windows. Completed account exports stored in Supabase expire after seven days.",
+    userControl: "Background export work starts only when you request it. You can delete your account and its app-level export records in Settings.",
+    processor: "Inngest, Supabase"
   },
   {
     dataType: "Product analytics and conversion telemetry",
@@ -67,9 +75,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Billing events and invoices",
-    purpose: "Charge processing, receipts, subscription lifecycle, and dispute handling.",
+    purpose: "Charge processing, receipts, purchase restoration, refunds, and dispute handling.",
     retention: "Managed under Stripe billing retention policies.",
-    userControl: "Manage billing and receipts in Stripe portal.",
+    userControl: "View receipts and restore purchases from Billing settings.",
     processor: "Stripe"
   }
 ];
@@ -79,15 +87,9 @@ export const TRUST_PROMISES = [
   "Anonymous reports are not saved to an account automatically.",
   "Signed-in reports save report output, evidence excerpts, a short resume preview, and any job description you add. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
-  "Payment info is handled by Stripe. We never see your card.",
-  "We don't sell your data.",
-  "We don't use your data to train AI models.",
-  "Browser session replay stays off by default.",
-  "Scores estimate your resume's hiring signal. They don't predict hiring outcomes.",
+  "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",
+  "The first-read score summarizes this resume review. It does not predict hiring outcomes.",
   "Your first full report is free. No credit card needed.",
-  "You see exactly what you're unlocking before you pay.",
-  "If payment goes through but access looks locked, restore it from Billing.",
-  "All receipts and invoices are available in Billing.",
-  "You can export your data from Settings when export controls are enabled.",
-  "Security reports can be sent using the disclosure instructions on our Security and Status pages."
+  "A Job Search Pass is one payment for five additional reports over 30 days. It does not renew, and you can restore it from Billing.",
+  "Security reports can be sent using the disclosure instructions on our Security page."
 ];

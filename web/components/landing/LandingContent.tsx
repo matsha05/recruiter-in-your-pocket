@@ -12,12 +12,12 @@ import { LandingSectionFrame } from "@/components/landing/sections/SectionPrimit
 import { Analytics } from "@/lib/analytics";
 
 export default function LandingContent() {
-    const [checkoutLoading, setCheckoutLoading] = useState<"monthly" | "lifetime" | null>(null);
+    const [checkoutLoading, setCheckoutLoading] = useState<"30d" | null>(null);
 
-    async function handleCheckout(tier: "monthly" | "lifetime") {
+    async function handleCheckout(tier: "30d") {
         setCheckoutLoading(tier);
         try {
-            Analytics.checkoutStarted(tier, tier === "monthly" ? 9 : 79);
+            Analytics.checkoutStarted(tier, 29);
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

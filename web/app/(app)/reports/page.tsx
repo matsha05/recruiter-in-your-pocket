@@ -1,16 +1,18 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { FileText, History, ArrowRight, Chrome } from "lucide-react";
+import { FileText, ArrowRight, Chrome } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { ScoreBadge } from "@/components/shared/ScoreBadge";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
+import { EmptyReportIcon } from "@/components/icons";
+import { launchFlags } from "@/lib/launch/flags";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Report History  -  Recruiter in Your Pocket",
-  description: "View, revisit, and manage your saved resume and LinkedIn reports.",
+  title: "Report History",
+  description: "View, revisit, and manage your saved resume reports.",
 };
 
 export default async function ReportsPage() {
@@ -50,13 +52,15 @@ export default async function ReportsPage() {
           }
           actions={
             <div className="flex flex-wrap items-center gap-2">
-              <Link
-                href="/extension"
-                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
-              >
-                <Chrome className="size-4" />
-                Extension
-              </Link>
+              {launchFlags.extensionSync ? (
+                <Link
+                  href="/extension"
+                  className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                >
+                  <Chrome className="size-4" />
+                  Extension
+                </Link>
+              ) : null}
               <Link
                 href="/workspace"
                 className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
@@ -69,13 +73,16 @@ export default async function ReportsPage() {
         />
 
         <div className="rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
-          Signed-in reports stay attached to this account until you delete them. Extension-saved jobs can send role context back into the studio when you want a fresh comparison.
+          Signed-in reports stay attached to this account until you delete them.
+          {launchFlags.extensionSync
+            ? " Extension-saved jobs can send role context back into the studio when you want a fresh comparison."
+            : " Add a role in the workspace whenever you want a targeted comparison."}
         </div>
 
         {items.length === 0 ? (
-          <div className="rounded-2xl border border-border/60 bg-card p-8 text-center shadow-sm">
-            <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-brand/10">
-              <History className="size-6 text-brand" />
+          <div className="border-y border-border bg-card p-8 text-center">
+            <div className="mx-auto mb-4 flex size-20 items-center justify-center rounded-md border border-brand/20 bg-mineral text-brand">
+              <EmptyReportIcon className="size-12" />
             </div>
             <h2 className="font-display text-2xl text-foreground">No saved reports yet</h2>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
@@ -83,12 +90,12 @@ export default async function ReportsPage() {
             </p>
           </div>
         ) : (
-          <div className="grid gap-4">
+          <div className="divide-y divide-border border-y border-border bg-card">
             {items.map((report) => (
               <Link
                 key={report.id}
                 href={`/reports/${report.id}`}
-                className="group rounded-2xl border border-border/60 bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-md"
+                className="group block p-5 transition-colors hover:bg-mineral"
               >
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div className="gap-y-2">

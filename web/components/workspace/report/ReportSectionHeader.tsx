@@ -8,8 +8,8 @@ import { ReactNode } from "react";
  * 
  * A systemized header component for all report sections.
  * Typography follows V3 design system:
- * - Eyebrow: text-sm uppercase tracking-wider (Satoshi)
- * - Subtitle: font-display text-xl (Sentient) - the recruiter-voice hook
+ * - Eyebrow: compact Instrument Sans label treatment
+ * - Subtitle: narrowed Instrument Sans display treatment for recruiter judgment
  * 
  * Usage:
  *   <ReportSectionHeader

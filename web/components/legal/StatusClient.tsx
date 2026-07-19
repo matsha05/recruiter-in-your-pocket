@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Activity, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { CheckCircle, Pulse, WarningCircle } from "@phosphor-icons/react";
 import Link from "next/link";
 import { LegalShell } from "@/components/legal/LegalShell";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 type ReadinessCheck = {
   name: string;
-  status: "operational" | "limited";
+  status: "configured" | "limited";
   message: string;
 };
 
@@ -15,7 +16,7 @@ type ReadinessPayload = {
   ok: boolean;
   generatedAt: string;
   summary?: {
-    status: "operational" | "limited";
+    status: "configured" | "limited";
     title: string;
     message: string;
   };
@@ -43,8 +44,8 @@ export default function StatusClient() {
             generatedAt: new Date().toISOString(),
             summary: {
               status: "limited",
-              title: "Status temporarily unavailable",
-              message: "Could not load the current public status summary.",
+              title: "Configuration status unavailable",
+              message: "Could not load the launch configuration snapshot.",
             },
             services: [],
             incidents: [],
@@ -65,97 +66,99 @@ export default function StatusClient() {
     <LegalShell
       pageKey="status"
       eyebrow="Status"
-      title="Current product status"
-      description="A customer-facing summary of the systems you rely on before, during, and after a report."
+      title="Launch configuration status"
+      description="A transparent configuration snapshot. Real-time uptime monitoring is not published yet."
     >
-      <section className="rounded-2xl bg-white p-6 shadow-sm">
+      <section className="border-y border-line bg-surface-sky/35 p-6 md:p-8">
         <div className="flex items-start gap-3">
-          <div className={`mt-1 flex size-10 items-center justify-center rounded-full ${summary?.status === "operational" ? "bg-emerald-50" : "bg-amber-50"}`}>
-            {summary?.status === "operational" ? <CheckCircle2 className="size-5 text-emerald-600" /> : <AlertTriangle className="size-5 text-amber-600" />}
+          <div className={`mt-1 flex size-10 items-center justify-center rounded-full ${summary?.status === "configured" ? "bg-brand/10 text-brand" : "bg-accent-apricot/25 text-foreground"}`}>
+            {summary?.status === "configured" ? <CheckCircle className="size-5" weight="fill" /> : <WarningCircle className="size-5" weight="fill" />}
           </div>
           <div className="gap-y-1">
-            <h2 className="font-display text-xl text-slate-900">
+            <h2 className="font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">
               {summary?.title || "Checking current status"}
             </h2>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               {payload?.generatedAt
                 ? `Last checked ${new Date(payload.generatedAt).toLocaleString()}.`
                 : "Checking current status."}
             </p>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted-foreground">
               {summary?.message || "We use this page to summarize the customer-facing systems that matter most."}
             </p>
           </div>
         </div>
         <div className="mt-5 flex flex-wrap items-center gap-2">
-          <Link href="/trust" className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
+          <Link href="/trust" className="focus-ring inline-flex min-h-11 items-center rounded-md border border-line px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand/45 hover:bg-brand/5">
             Trust overview
           </Link>
-          <Link href="/security" className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
+          <Link href="/security" className="focus-ring inline-flex min-h-11 items-center rounded-md border border-line px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand/45 hover:bg-brand/5">
             Security details
           </Link>
-          <Link href="/extension" className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
-            Extension install flow
-          </Link>
+          {isLaunchFlagEnabled("extensionSync") && (
+            <Link href="/extension" className="focus-ring inline-flex min-h-11 items-center rounded-md border border-line px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand/45 hover:bg-brand/5">
+              Extension install flow
+            </Link>
+          )}
         </div>
       </section>
 
-      <section className="rounded-2xl bg-white p-6 shadow-sm">
+      <section className="border-t border-line py-7 md:py-9">
         <div className="mb-4 flex items-center gap-2">
-          <CheckCircle2 className="size-4 text-slate-400" />
-          <h2 className="font-display text-lg text-slate-900">Customer-facing systems</h2>
+          <CheckCircle className="size-5 text-brand" weight="bold" />
+          <h2 className="font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">Customer-facing systems</h2>
         </div>
-        <div className="gap-y-3">
+        <div className="border-y border-line">
           {services.map((service) => (
-            <div key={service.name} className="rounded-xl border border-slate-100 p-4">
+            <div key={service.name} className="grid gap-3 border-b border-line py-5 last:border-b-0 sm:grid-cols-[minmax(10rem,0.7fr)_minmax(0,1.3fr)] sm:items-start">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-semibold text-slate-800">{service.name}</p>
-                <span className={`rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-wide ${
-                  service.status === "operational"
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "bg-amber-50 text-amber-700"
+                <p className="text-sm font-semibold text-foreground">{service.name}</p>
+                <span className={`rounded-sm px-2 py-1 text-xs font-semibold uppercase riyp-track-008 ${
+                  service.status === "configured"
+                    ? "bg-brand/10 text-brand-strong"
+                    : "bg-accent-apricot/30 text-foreground"
                 }`}>
                   {service.status}
                 </span>
               </div>
-              <p className="mt-2 text-sm text-slate-500">{service.message}</p>
+              <p className="text-sm leading-6 text-muted-foreground">{service.message}</p>
             </div>
           ))}
-          {services.length === 0 ? <p className="text-sm text-slate-500">System status is not available yet.</p> : null}
+          {services.length === 0 ? <p className="py-5 text-sm text-muted-foreground">System status is not available yet.</p> : null}
         </div>
       </section>
 
-      <section className="rounded-2xl bg-white p-6 shadow-sm">
+      <section className="border-y border-line bg-proof px-6 py-7 md:px-8">
         <div className="mb-4 flex items-center gap-2">
-          <AlertTriangle className="size-4 text-slate-400" />
-          <h2 className="font-display text-lg text-slate-900">Current incidents</h2>
+          <WarningCircle className="size-5 text-accent-apricot" weight="fill" />
+          <h2 className="font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">Known configuration limitations</h2>
         </div>
         <div className="gap-y-3">
           {incidents.map((incident) => (
-            <div key={incident} className="rounded-xl border border-amber-100 bg-amber-50/60 p-4">
-              <p className="text-sm text-amber-800">{incident}</p>
+            <div key={incident} className="border-l-2 border-accent-apricot pl-4">
+              <p className="text-sm leading-6 text-foreground/85">{incident}</p>
             </div>
           ))}
-          {incidents.length === 0 ? <p className="text-sm text-slate-500">No customer-facing incidents are reported right now.</p> : null}
+          {incidents.length === 0 ? <p className="text-sm text-muted-foreground">No configuration blockers were detected. This does not prove live availability.</p> : null}
         </div>
       </section>
 
-      <section className="rounded-2xl bg-white p-6 shadow-sm">
+      <section className="border-t border-line py-7 md:py-9">
         <div className="mb-4 flex items-center gap-2">
-          <Activity className="size-4 text-slate-400" />
-          <h2 className="font-display text-lg text-slate-900">Support and trust</h2>
+          <Pulse className="size-5 text-brand" weight="bold" />
+          <h2 className="font-display text-2xl riyp-weight-560 tracking-[-0.025em] text-foreground">Support and trust</h2>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-slate-100 p-4">
-            <p className="text-sm font-semibold text-slate-800">Support</p>
-            <p className="mt-2 text-sm text-slate-500">
+          <div className="border-t border-line pt-4">
+            <p className="text-sm font-semibold text-foreground">Support</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Need help with billing, restore, or product issues? Email support@recruiterinyourpocket.com.
             </p>
           </div>
-          <div className="rounded-xl border border-slate-100 p-4">
-            <p className="text-sm font-semibold text-slate-800">Security and privacy</p>
-            <p className="mt-2 text-sm text-slate-500">
-              Our public trust pages explain data handling, security posture, and how extension capture works before you install it.
+          <div className="border-t border-line pt-4">
+            <p className="text-sm font-semibold text-foreground">Security and privacy</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Our public trust pages explain data handling, security posture, retention, and deletion before you run a report.
             </p>
           </div>
         </div>

@@ -13,15 +13,15 @@ interface ModeSwitcherProps {
 
 export function ModeSwitcher({ mode, onModeChange, disabled }: ModeSwitcherProps) {
     return (
-        <div className="inline-flex items-center gap-0.5 p-1 rounded bg-muted/60 border border-border/80">
+        <div className="inline-flex items-center border-b border-border/80">
             <button type="button"
                 onClick={() => onModeChange('resume')}
                 disabled={disabled}
                 className={cn(
-                    "relative flex items-center gap-2 px-5 py-2.5 rounded text-sm font-medium transition-colors duration-200",
+                    "relative flex min-h-10 items-center gap-2 px-4 py-2 text-sm font-medium transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-[-1px] after:h-0.5 after:origin-center after:transition-transform",
                     mode === 'resume'
-                        ? "bg-background text-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+                        ? "text-foreground after:scale-x-100 after:bg-brand"
+                        : "text-muted-foreground after:scale-x-0 hover:text-foreground hover:after:scale-x-100 hover:after:bg-border",
                     disabled && "opacity-50 cursor-not-allowed"
                 )}
                 aria-pressed={mode === 'resume'}
@@ -33,10 +33,10 @@ export function ModeSwitcher({ mode, onModeChange, disabled }: ModeSwitcherProps
                 onClick={() => onModeChange('linkedin')}
                 disabled={disabled}
                 className={cn(
-                    "relative flex items-center gap-2 px-5 py-2.5 rounded text-sm font-medium transition-colors duration-200",
+                    "relative flex min-h-10 items-center gap-2 px-4 py-2 text-sm font-medium transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-[-1px] after:h-0.5 after:origin-center after:transition-transform",
                     mode === 'linkedin'
-                        ? "bg-background text-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+                        ? "text-foreground after:scale-x-100 after:bg-brand"
+                        : "text-muted-foreground after:scale-x-0 hover:text-foreground hover:after:scale-x-100 hover:after:bg-border",
                     disabled && "opacity-50 cursor-not-allowed"
                 )}
                 aria-pressed={mode === 'linkedin'}

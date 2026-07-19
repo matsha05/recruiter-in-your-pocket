@@ -39,7 +39,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
     if (sortedScores.length === 1) {
         return (
             <div className={`text-center ${className}`}>
-                <div className="text-5xl font-display font-bold text-foreground mb-2">
+                <div className="mb-2 font-display text-5xl riyp-weight-560 tabular-nums text-foreground">
                     {sortedScores[0].score}
                 </div>
                 <p className="text-sm text-muted-foreground">Your first report</p>
@@ -52,7 +52,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
             {/* Summary Header */}
             <div className="flex items-center justify-between mb-4">
                 <div>
-                    <h3 className="text-sm font-semibold text-foreground">Score Trend</h3>
+                    <h3 className="text-sm font-semibold text-foreground">Review score history</h3>
                     <p className="text-xs text-muted-foreground">
                         {sortedScores.length} reports tracked
                     </p>
@@ -116,9 +116,9 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                 <div className={`mt-4 text-center text-sm ${improvement > 0 ? 'text-green-600' : 'text-destructive'
                     }`}>
                     {improvement > 0 ? (
-                        <><Check className="inline size-4 mr-1" /> Your resume improved {improvement} points since your first report</>
+                        <><Check className="inline size-4 mr-1" /> The latest version scored {improvement} points higher in this review</>
                     ) : (
-                        `Score decreased by ${Math.abs(improvement)} points. Review recent changes.`
+                        `The latest version scored ${Math.abs(improvement)} points lower. Review the written findings before changing it again.`
                     )}
                 </div>
             )}
