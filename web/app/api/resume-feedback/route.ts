@@ -14,6 +14,8 @@ import {
   buildResumeRepairMessages,
   isRepairableResumeResponseError,
 } from "@/lib/llm/reportRepair";
+import { buildResumeEvidenceCatalog } from "@/lib/llm/evidence-canonicalizer";
+import { resolveOpenAIModel } from "@/lib/llm/model-config";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import {
   ensureLayoutAndContentFields,
@@ -257,6 +259,12 @@ ${text}`;
 
 USER RESUME:
 ${text}`;
+      if (mode === "resume") {
+        userPrompt += `
+
+SOURCE CATALOG (reference only; copy source text after each tag and never output the tags):
+${buildResumeEvidenceCatalog(text)}`;
+      }
       if (hasJobDescription && jobDescription) {
         userPrompt += `
 
@@ -265,7 +273,7 @@ ${jobDescription}`;
       }
     }
 
-    const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const model = resolveOpenAIModel(mode);
     const messages = [
       { role: "system" as const, content: JSON_INSTRUCTION },
       { role: "system" as const, content: systemPrompt },

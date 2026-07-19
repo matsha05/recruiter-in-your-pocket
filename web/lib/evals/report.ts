@@ -27,6 +27,10 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     lines.push(`**Prompt Version:** ${run.metadata.prompt_version_hash}`);
     lines.push(`**Contract Version:** ${run.metadata.contract_version}`);
     lines.push(`**Execution Mode:** ${isDryRun ? "Dry run (no model calls)" : "Live model evaluation"}`);
+    if (!isDryRun) lines.push(`**Model:** ${run.metadata.model}`);
+    if (!isDryRun && run.metadata.incomplete_retry_reasoning_effort) {
+        lines.push(`**Incomplete-response retry:** ${run.metadata.incomplete_retry_reasoning_effort} reasoning`);
+    }
     if (isDryRun) {
         lines.push("");
         lines.push("> This report validates fixture files and configuration only. It is not evidence of model output quality.");
@@ -51,7 +55,11 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     lines.push(`| Metric | Value |`);
     lines.push(`|:-------|:------|`);
     lines.push(`| API Calls | ${run.metadata.calls_made} |`);
-    lines.push(`| Actual Cost | $${run.metadata.actual_cost_usd.toFixed(4)} |`);
+    lines.push(`| Token-calculated API Cost | $${run.metadata.actual_cost_usd.toFixed(6)} |`);
+    lines.push(`| Input Tokens | ${run.metadata.token_usage.prompt_tokens.toLocaleString("en-US")} |`);
+    lines.push(`| Cached Input Tokens | ${(run.metadata.token_usage.cached_prompt_tokens || 0).toLocaleString("en-US")} |`);
+    lines.push(`| Output Tokens | ${run.metadata.token_usage.completion_tokens.toLocaleString("en-US")} |`);
+    lines.push(`| Reasoning Tokens | ${(run.metadata.token_usage.reasoning_tokens || 0).toLocaleString("en-US")} |`);
     lines.push(`| Budget | $${run.metadata.budget_usd.toFixed(2)} |`);
     lines.push("");
 
@@ -242,7 +250,10 @@ export function printSummary(run: EvalRunOutput): void {
     console.log(`Tier: ${run.metadata.tier}`);
     console.log(`Fixtures: ${run.summary.total}`);
     console.log(`Mode: ${isDryRun ? "dry run; no model calls" : "live model evaluation"}`);
-    console.log(`Cost: $${run.metadata.actual_cost_usd.toFixed(4)}`);
+    console.log(`Cost: $${run.metadata.actual_cost_usd.toFixed(6)} (from returned token usage)`);
+    if (!isDryRun) {
+        console.log(`Tokens: ${run.metadata.token_usage.prompt_tokens} input, ${run.metadata.token_usage.completion_tokens} output, ${run.metadata.token_usage.reasoning_tokens || 0} reasoning`);
+    }
     console.log("");
     console.log(`${isDryRun ? "VALIDATED" : "✅ PASS"}: ${run.summary.passed}`);
     console.log(`⚠️  WARN: ${run.summary.warned}`);

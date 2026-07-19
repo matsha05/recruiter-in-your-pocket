@@ -5,9 +5,21 @@ export type VisualRoute = {
   fullPage?: boolean;
   viewport?: { width: number; height: number };
   mockKey?: "jobs-list" | "job-detail" | "report-detail";
+  requires?: "extensionSync" | "linkedInReview";
 };
 
-export const visualRoutes: VisualRoute[] = [
+function isEnabled(value: string | undefined) {
+  return ["1", "true", "yes", "on"].includes(String(value || "").trim().toLowerCase());
+}
+
+const enabledVisualFeatures = {
+  extensionSync:
+    isEnabled(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC) &&
+    Boolean(process.env.RIYP_EXTENSION_ORIGINS?.trim()),
+  linkedInReview: isEnabled(process.env.NEXT_PUBLIC_ENABLE_LINKEDIN_REVIEW),
+};
+
+const configuredVisualRoutes: VisualRoute[] = [
   {
     name: "landing-desktop",
     path: "/",
@@ -43,6 +55,13 @@ export const visualRoutes: VisualRoute[] = [
     fullPage: true,
   },
   {
+    name: "pricing-mobile",
+    path: "/pricing",
+    waitFor: "[data-visual-anchor='pricing-page']",
+    fullPage: true,
+    viewport: { width: 390, height: 844 },
+  },
+  {
     name: "auth",
     path: "/auth",
     waitFor: "[data-visual-anchor='auth-page']",
@@ -53,12 +72,20 @@ export const visualRoutes: VisualRoute[] = [
     path: "/extension",
     waitFor: "[data-visual-anchor='extension-page']",
     fullPage: true,
+    requires: "extensionSync",
   },
   {
     name: "trust",
     path: "/trust",
     waitFor: "[data-visual-anchor='legal-trust']",
     fullPage: true,
+  },
+  {
+    name: "trust-mobile",
+    path: "/trust",
+    waitFor: "[data-visual-anchor='legal-trust']",
+    fullPage: true,
+    viewport: { width: 390, height: 844 },
   },
   {
     name: "faq",
@@ -73,16 +100,31 @@ export const visualRoutes: VisualRoute[] = [
     fullPage: true,
   },
   {
+    name: "workspace-empty-mobile",
+    path: "/workspace",
+    waitFor: "[data-visual-anchor='workspace-resume-empty']",
+    fullPage: true,
+    viewport: { width: 390, height: 844 },
+  },
+  {
     name: "workspace-sample",
     path: "/workspace?sample=true",
     waitFor: "#section-first-impression",
     fullPage: true,
   },
   {
+    name: "workspace-sample-mobile",
+    path: "/workspace?sample=true",
+    waitFor: "#section-first-impression",
+    fullPage: true,
+    viewport: { width: 390, height: 844 },
+  },
+  {
     name: "workspace-linkedin",
     path: "/workspace?mode=linkedin",
     waitFor: "[data-visual-anchor='workspace-linkedin-empty']",
     fullPage: true,
+    requires: "linkedInReview",
   },
   {
     name: "jobs-list",
@@ -90,6 +132,7 @@ export const visualRoutes: VisualRoute[] = [
     waitFor: "[data-visual-anchor='jobs-page']",
     fullPage: true,
     mockKey: "jobs-list",
+    requires: "extensionSync",
   },
   {
     name: "job-detail",
@@ -97,12 +140,21 @@ export const visualRoutes: VisualRoute[] = [
     waitFor: "[data-visual-anchor='job-detail-page']",
     fullPage: true,
     mockKey: "job-detail",
+    requires: "extensionSync",
   },
   {
     name: "report-detail",
     path: "/reports/sample-report-id-0001",
     waitFor: "[data-visual-anchor='report-detail-page']",
     fullPage: true,
+    mockKey: "report-detail",
+  },
+  {
+    name: "report-detail-mobile",
+    path: "/reports/sample-report-id-0001",
+    waitFor: "[data-visual-anchor='report-detail-page']",
+    fullPage: true,
+    viewport: { width: 390, height: 844 },
     mockKey: "report-detail",
   },
   {
@@ -130,3 +182,7 @@ export const visualRoutes: VisualRoute[] = [
     fullPage: true,
   },
 ];
+
+export const visualRoutes = configuredVisualRoutes.filter(
+  (route) => !route.requires || enabledVisualFeatures[route.requires]
+);

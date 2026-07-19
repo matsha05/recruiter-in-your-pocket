@@ -7,7 +7,8 @@ const env = { ...process.env };
 const buildIdPath = path.join(cwd, ".next", "BUILD_ID");
 
 if (!existsSync(buildIdPath) || env.FORCE_NEXT_BUILD === "1" || env.FORCE_NEXT_BUILD === "true") {
-  const build = spawnSync("npm", ["run", "build"], {
+  const nextBin = path.join(cwd, "node_modules", "next", "dist", "bin", "next");
+  const build = spawnSync(process.execPath, [nextBin, "build", "--webpack"], {
     cwd,
     env,
     stdio: "inherit",
@@ -15,6 +16,16 @@ if (!existsSync(buildIdPath) || env.FORCE_NEXT_BUILD === "1" || env.FORCE_NEXT_B
 
   if (build.status !== 0) {
     process.exit(build.status || 1);
+  }
+
+  const postbuild = spawnSync(process.execPath, [path.join(cwd, "scripts", "ensure-next-build-package.cjs")], {
+    cwd,
+    env,
+    stdio: "inherit",
+  });
+
+  if (postbuild.status !== 0) {
+    process.exit(postbuild.status || 1);
   }
 }
 

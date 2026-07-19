@@ -66,12 +66,24 @@ function ensureWebBuild() {
     return;
   }
 
-  const r = spawnSync("npm", ["run", "build"], {
+  const nextBin = path.join(webDir, "node_modules", "next", "dist", "bin", "next");
+  const r = spawnSync(process.execPath, [nextBin, "build", "--webpack"], {
     cwd: webDir,
     stdio: "inherit",
     env: withLaunchTestDefaults(process.env),
   });
   if (r.status !== 0) throw new Error("Failed to build web app");
+
+  const postbuild = spawnSync(
+    process.execPath,
+    [path.join(webDir, "scripts", "ensure-next-build-package.cjs")],
+    {
+      cwd: webDir,
+      stdio: "inherit",
+      env: withLaunchTestDefaults(process.env),
+    }
+  );
+  if (postbuild.status !== 0) throw new Error("Failed to validate web build output");
   if (!existsSync(buildIdPath)) {
     throw new Error("Build completed but BUILD_ID is missing");
   }

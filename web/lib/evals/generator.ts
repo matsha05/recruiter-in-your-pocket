@@ -40,7 +40,7 @@ export const SENIORITY_LEVELS = [
 export const QUALITY_TIERS = [
     "elite",      // 90+ score expected - specific metrics, clear impact
     "strong",     // 80-89 score expected - good foundation, some specificity
-    "foundation", // 70-79 score expected - decent but generic
+    "foundation", // 60-69 score expected - generic duties with little evidence
     "weak",       // 50-69 score expected - vague, lacks impact
 ] as const;
 
@@ -269,7 +269,7 @@ function getExpectedScoreRange(spec: SyntheticResumeSpec): [number, number] {
     const baseRanges: Record<QualityTier, [number, number]> = {
         elite: [88, 98],
         strong: [78, 88],
-        foundation: [68, 78],
+        foundation: [60, 69],
         weak: [45, 68],
     };
 

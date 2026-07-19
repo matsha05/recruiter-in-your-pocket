@@ -12,8 +12,13 @@ import type {
 import {
     containsExactEvidence,
     findAlreadySatisfiedFix,
+    findBiggestGapContradictions,
+    findFixEvidenceMismatch,
+    findNonActionableFix,
+    findRewriteFidelityIssues,
     findUnsupportedAgencyUpgrade,
-    findUnsupportedOutcomeClaims
+    findUnsupportedOutcomeClaims,
+    isAcceptedAbsenceMarker,
 } from "../llm/grounding";
 
 import {
@@ -72,15 +77,6 @@ function findUngroundedSpecifics(text: string, resumeText: string): string[] {
     }
 
     return Array.from(ungrounded);
-}
-
-function isAcceptedAbsenceMarker(value: string): boolean {
-    return [
-        "no summary section present",
-        "no job description provided",
-        "no matching job description provided",
-        "no linkedin profile provided"
-    ].includes(normalize(value));
 }
 
 // ============================================
@@ -329,7 +325,7 @@ function checkEvidence(
 
         // Normalized substring check
         const normExcerpt = normalize(evidence.excerpt);
-        if (normExcerpt.length > 10 && !containsExactEvidence(resumeText, evidence.excerpt) && !isAcceptedAbsenceMarker(evidence.excerpt)) {
+        if (normExcerpt.length > 10 && !containsExactEvidence(resumeText, evidence.excerpt) && !isAcceptedAbsenceMarker(evidence.excerpt, resumeText)) {
             results.push({
                 passed: false,
                 code: "E_EVIDENCE_NOT_VERBATIM",
@@ -344,6 +340,26 @@ function checkEvidence(
                 passed: false,
                 code: "E_FIX_ALREADY_SATISFIED",
                 message: `Fix ${i + 1} contradicts the resume: ${alreadySatisfied.join(", ")}`,
+                details: { fix_index: i }
+            });
+        }
+
+        const mismatch = findFixEvidenceMismatch(fix.fix, evidence.excerpt, resumeText);
+        if (mismatch.length > 0) {
+            results.push({
+                passed: false,
+                code: "E_FIX_EVIDENCE_MISMATCH",
+                message: `Fix ${i + 1} is not supported by its evidence: ${mismatch.join(", ")}`,
+                details: { fix_index: i }
+            });
+        }
+
+        const nonActionable = findNonActionableFix(fix.fix);
+        if (nonActionable.length > 0) {
+            results.push({
+                passed: false,
+                code: "E_FIX_NOT_ACTIONABLE",
+                message: `Fix ${i + 1} is not executable: ${nonActionable.join(", ")}`,
                 details: { fix_index: i }
             });
         }
@@ -387,10 +403,10 @@ function checkSummaryStructure(summary: string): CheckResult {
     const hasRoleSignal = /\b(read as|come across as|present as|appear as|senior|mid[-\s]?level|entry|lead|manager|director|engineer|pm|designer)\b/i.test(summary);
 
     // Check for strength indicator
-    const hasStrength = /\b(capable|credible|clear|strong|show|demonstrate|visible|evident|ownership|impact|growth|leadership|range|foundation|focus(?:es|ed)? on|experience (?:spans|includes))\b/i.test(summary);
+    const hasStrength = /\b(capable|credible|clear|strong(?:est)?|strengths?|show|demonstrate|visible|evident|ownership|impact|growth|leadership|range|foundation|focus(?:es|ed)? on|experience (?:spans|includes))\b/i.test(summary);
 
     // Check for gap indicator
-    const hasGap = /\b(harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|missing|unclear|vague|could|needs|lacks|gap|thin|holds? (?:it|this) back)\b/i.test(summary);
+    const hasGap = /\b(harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|missing|unclear|vague|could|needs|lacks?|gaps?|weakness(?:es)?|thin|holds? (?:it|this) back)\b/i.test(summary);
 
     if (!hasRoleSignal || !hasStrength || !hasGap) {
         const missing: string[] = [];
@@ -544,6 +560,21 @@ function checkRewriteGrounding(
                 details: { rewrite_index: i, original_preview: original.slice(0, 80), unsupported_outcomes: unsupportedOutcomes }
             });
         }
+
+        const fidelityIssues = findRewriteFidelityIssues(original, better, resumeText);
+        for (const issue of fidelityIssues) {
+            const code: ErrorCode = issue.startsWith("rewrite no longer")
+                ? "E_REWRITE_SOURCE_DRIFT"
+                : issue.startsWith("rewrite makes no material change")
+                    ? "E_REWRITE_NO_MATERIAL_CHANGE"
+                    : "E_REWRITE_DROPPED_EVIDENCE";
+            results.push({
+                passed: false,
+                code,
+                message: `Rewrite ${i + 1} failed source fidelity: ${issue}`,
+                details: { rewrite_index: i, original_preview: original.slice(0, 80) }
+            });
+        }
     }
 
     if (results.length === 0) {
@@ -553,16 +584,27 @@ function checkRewriteGrounding(
     return results;
 }
 
-function checkBiggestGapEvidence(value: string, resumeText: string): CheckResult {
+function checkBiggestGapEvidence(value: string, resumeText: string): CheckResult[] {
+    const results: CheckResult[] = [];
     const quote = value.match(/["“]([^"”]+)["”]/)?.[1];
     if (!quote || !containsExactEvidence(resumeText, quote)) {
-        return {
+        results.push({
             passed: false,
             code: "E_BIGGEST_GAP_NOT_VERBATIM",
             message: "biggest_gap_example must contain an exact quote from the resume"
-        };
+        });
+        return results;
     }
-    return { passed: true };
+    const contradictions = findBiggestGapContradictions(value, resumeText);
+    if (contradictions.length > 0) {
+        results.push({
+            passed: false,
+            code: "E_BIGGEST_GAP_CONTRADICTS_SOURCE",
+            message: `biggest_gap_example contradicts its quote: ${contradictions.join(", ")}`,
+        });
+    }
+    if (results.length === 0) results.push({ passed: true });
+    return results;
 }
 
 // ============================================
@@ -611,6 +653,14 @@ export function runAllChecks(input: AllChecksInput): AllChecksResult {
 
     const obj = input.output as Record<string, unknown>;
 
+    if (/\[?SOURCE_\d{3}\]?/i.test(JSON.stringify(obj))) {
+        addResult({
+            passed: false,
+            code: "E_SOURCE_TAG_LEAK",
+            message: "Output exposes an internal SOURCE catalog tag",
+        });
+    }
+
     // Score checks
     for (const r of checkScoreRange(
         obj.score as number,
@@ -647,7 +697,9 @@ export function runAllChecks(input: AllChecksInput): AllChecksResult {
     }
 
     if (typeof obj.biggest_gap_example === "string") {
-        addResult(checkBiggestGapEvidence(obj.biggest_gap_example, input.resumeText));
+        for (const r of checkBiggestGapEvidence(obj.biggest_gap_example, input.resumeText)) {
+            addResult(r);
+        }
     }
 
     // Summary structure

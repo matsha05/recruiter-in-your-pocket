@@ -295,8 +295,8 @@
             "path": "golden/synth_sales_executive_mid_foundation_1766960226693.txt",
             "tier": "golden",
             "expected_score": {
-                "min": 68,
-                "max": 78
+                "min": 60,
+                "max": 69
             },
             "expected_band": "foundation",
             "tags": [
@@ -311,8 +311,8 @@
             "path": "golden/synth_hr_manager_director_foundation_1766960245321.txt",
             "tier": "golden",
             "expected_score": {
-                "min": 68,
-                "max": 78
+                "min": 60,
+                "max": 69
             },
             "expected_band": "foundation",
             "tags": [

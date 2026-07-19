@@ -122,7 +122,7 @@ Options:
   --tier <tier>           smoke | golden | bulk (default: golden)
   --baseline <path>       Path to baseline JSON for regression comparison
   --budget-usd <amount>   Hard cost cap in USD (default: 5.00)
-  --max-calls <n>         Maximum API calls (default: 100)
+  --max-calls <n>         Maximum provider calls, including incomplete-response retry and repair (default: 100)
   --concurrency <n>       Parallel requests (default: 3)
   --dry-run               Parse fixtures only, no API calls
   --prompt-version <v>    Override prompt version hash

@@ -11,6 +11,7 @@ import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 type ReportLoadState = "loading" | "ready" | "not_found" | "error";
 
@@ -206,13 +207,15 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
                   >
                     All saved reports
                   </Link>
-                  <Link
-                    href="/extension"
-                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
-                  >
-                    <Chrome className="size-4" />
-                    Extension
-                  </Link>
+                  {isLaunchFlagEnabled("extensionSync") ? (
+                    <Link
+                      href="/extension"
+                      className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                    >
+                      <Chrome className="size-4" />
+                      Extension
+                    </Link>
+                  ) : null}
                 </div>
               }
             />

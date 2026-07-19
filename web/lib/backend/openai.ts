@@ -1,20 +1,18 @@
 import { getOpenAIResponseFormat } from "@/lib/llm/response-format";
+import {
+  getChatCompletionTuning,
+  increaseReasoningEffort,
+  resolveOpenAIModel,
+  resolveReasoningEffortForMode,
+  type ReasoningEffort,
+} from "@/lib/llm/model-config";
+import { normalizeTokenUsage, type TokenUsage } from "@/lib/llm/cost";
+import { createAppError, type AppError } from "./errors";
+
+export { createAppError } from "./errors";
+export type { AppError } from "./errors";
 
 type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
-
-export type AppError = Error & {
-  code?: string;
-  httpStatus?: number;
-  internal?: unknown;
-};
-
-export function createAppError(code: string, message: string, httpStatus: number, internal?: unknown): AppError {
-  const err = new Error(message) as AppError;
-  err.code = code;
-  err.httpStatus = httpStatus;
-  if (internal !== undefined) err.internal = internal;
-  return err;
-}
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -125,8 +123,16 @@ function getMockOpenAIResponse(mode: Mode) {
     first_impression_takeaway: "Show the scale.",
     summary:
       "You read as someone who takes messy work and makes it shippable. You keep momentum and close loops. You operate with structure. What is harder to see is the scale and before/after change. Trajectory is up if you surface scope and outcomes faster.",
-    strengths: ["You show ownership instead of vague participation."],
-    gaps: ["Scope and measurable outcomes are missing in a few key bullets."],
+    strengths: [
+      "You show ownership instead of vague participation.",
+      "Your cross-functional work is easy to identify.",
+      "The progression from coordination to execution reads clearly."
+    ],
+    gaps: [
+      "Scope and measurable outcomes are missing in a few key bullets.",
+      "The strongest work needs clearer before-and-after context.",
+      "Role and product context should appear earlier in the first read."
+    ],
     top_fixes: [
       {
         fix: "Add scope numbers to your top 2 bullets.",
@@ -157,7 +163,11 @@ function getMockOpenAIResponse(mode: Mode) {
       }
     ],
     rewrites: [{ label: "Impact", original: "Improved process across teams.", better: "Led a cross-team process change that sped up delivery and reduced handoff confusion.", enhancement_note: "Add the before-and-after timing so we can see the size of the change." }],
-    next_steps: ["Add one before/after metric to your top bullet."],
+    next_steps: [
+      "Add one before/after metric to your top bullet.",
+      "Name the scale of the most important cross-functional launch.",
+      "Move the clearest outcome into the first third of the page."
+    ],
     subscores: { impact: 82, clarity: 84, story: 80, readability: 83 },
     section_review: {
       Summary: { grade: "B", priority: "Medium", working: "Clear identity statement.", missing: "Scope is vague.", fix: "Add 1 scope detail (team/users) in the first line." },
@@ -169,10 +179,10 @@ function getMockOpenAIResponse(mode: Mode) {
       jd_match_score: 0,
       jd_match_summary: "No job description provided.",
       jd_keywords: { matched: [], missing: [], match_count: 0, total_count: 0 },
-      strongly_aligned: ["Ownership", "Execution"],
-      underplayed: ["Scale context"],
+      strongly_aligned: ["Ownership", "Execution", "Cross-functional coordination"],
+      underplayed: ["Scale context", "Measurable process improvement"],
       missing: ["Named metrics"],
-      role_fit: { best_fit_roles: ["Software Engineer"], stretch_roles: ["Tech Lead"], seniority_read: "Senior IC", industry_signals: ["Tech"], company_stage_fit: "Growth to public" },
+      role_fit: { best_fit_roles: ["Program Manager", "Product Operations Manager", "Launch Operations Lead"], stretch_roles: ["Senior Program Manager"], seniority_read: "Experienced operator", industry_signals: ["B2B SaaS"], company_stage_fit: "Growth to public" },
       positioning_suggestion: "Lead with the biggest system or product you owned, then add one hard metric so scale is obvious."
     },
     ideas: {
@@ -187,10 +197,15 @@ function getMockOpenAIResponse(mode: Mode) {
   };
 }
 
-export async function callOpenAIChat(messages: Array<{ role: "system" | "user" | "assistant"; content: string }>, mode: Mode) {
+export async function callOpenAIChat(
+  messages: Array<{ role: "system" | "user" | "assistant"; content: string }>,
+  mode: Mode,
+  model?: string,
+) {
   const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-  const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const OPENAI_MODEL = resolveOpenAIModel(mode, model);
+  const baseReasoningEffort = resolveReasoningEffortForMode(mode, OPENAI_MODEL);
   const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 90000); // 90s - large prompt needs time
   const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 1);   // 1 retry only
   const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);
@@ -228,7 +243,12 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
           },
           body: JSON.stringify({
             model: OPENAI_MODEL,
-            temperature: mode === "resume_ideas" ? 0.12 : 0,
+            ...getChatCompletionTuning(OPENAI_MODEL, {
+              temperature: mode === "resume_ideas" ? 0.12 : 0,
+              reasoningEffort: attempt > 0
+                ? increaseReasoningEffort(baseReasoningEffort)
+                : baseReasoningEffort,
+            }),
             response_format: getOpenAIResponseFormat(mode),
             messages
           })
@@ -287,7 +307,9 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
       }
     } catch (err: any) {
       lastError = err;
-      const retryable = err?.code === "OPENAI_TIMEOUT" || err?.code === "OPENAI_NETWORK_ERROR";
+      const retryable = err?.code === "OPENAI_TIMEOUT"
+        || err?.code === "OPENAI_NETWORK_ERROR"
+        || err?.code === "OPENAI_RESPONSE_INCOMPLETE";
       if (retryable && attempt < OPENAI_MAX_RETRIES) {
         if (OPENAI_RETRY_BACKOFF_MS > 0) await sleep(OPENAI_RETRY_BACKOFF_MS * (attempt + 1));
         continue;
@@ -301,22 +323,24 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
 
 export function callOpenAIChatStreamingWithUsage(
   messages: Array<{ role: "system" | "user" | "assistant"; content: string }>,
-  mode: Mode
+  mode: Mode,
+  reasoningEffort?: ReasoningEffort,
+  model?: string,
 ): {
   stream: AsyncGenerator<string, void, unknown>;
-  usagePromise: Promise<{ prompt_tokens: number; completion_tokens: number } | null>;
+  usagePromise: Promise<TokenUsage | null>;
 } {
-  let resolveUsage!: (v: { prompt_tokens: number; completion_tokens: number } | null) => void;
-  const usagePromise = new Promise<{ prompt_tokens: number; completion_tokens: number } | null>((resolve) => {
+  let resolveUsage!: (v: TokenUsage | null) => void;
+  const usagePromise = new Promise<TokenUsage | null>((resolve) => {
     resolveUsage = resolve;
   });
 
   async function* wrapped(): AsyncGenerator<string, void, unknown> {
-    let usage: { prompt_tokens: number; completion_tokens: number } | null = null;
+    let usage: TokenUsage | null = null;
     try {
       const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
       const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-      const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+      const OPENAI_MODEL = resolveOpenAIModel(mode, model);
       const OPENAI_TIMEOUT_MS = Number(process.env.OPENAI_TIMEOUT_MS || 90000);
 
       if (USE_MOCK_OPENAI) {
@@ -352,7 +376,10 @@ export function callOpenAIChatStreamingWithUsage(
           },
           body: JSON.stringify({
             model: OPENAI_MODEL,
-            temperature: mode === "resume_ideas" ? 0.12 : 0,
+            ...getChatCompletionTuning(OPENAI_MODEL, {
+              temperature: mode === "resume_ideas" ? 0.12 : 0,
+              reasoningEffort: resolveReasoningEffortForMode(mode, OPENAI_MODEL, reasoningEffort),
+            }),
             response_format: getOpenAIResponseFormat(mode),
             stream_options: { include_usage: true },
             stream: true,
@@ -415,13 +442,7 @@ export function callOpenAIChatStreamingWithUsage(
               if (choice?.finish_reason === "stop") sawStop = true;
               const content = choice?.delta?.content;
               if (content) yield content;
-              if (json.usage?.prompt_tokens !== undefined || json.usage?.completion_tokens !== undefined) {
-                const prompt = Number(json.usage?.prompt_tokens);
-                const completion = Number(json.usage?.completion_tokens);
-                if (Number.isFinite(prompt) && Number.isFinite(completion)) {
-                  usage = { prompt_tokens: prompt, completion_tokens: completion };
-                }
-              }
+              if (json.usage) usage = normalizeTokenUsage(json);
             } catch (err: any) {
               if (err?.code) throw err;
               // Ignore malformed transport chunks; final payload validation still runs.

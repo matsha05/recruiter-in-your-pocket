@@ -60,6 +60,21 @@ function sectionFor(fix?: Fix) {
     return typeof fix.evidence === "string" ? fix.section_ref : fix.evidence.section || fix.section_ref;
 }
 
+function workingDraftFor(original?: string) {
+    if (!original) return "Add [verified detail] to this line.";
+    const clean = original.trim().replace(/^[-•*]\s+/, "").replace(/[.;]\s*$/, "");
+    return `${clean}; [verified detail].`;
+}
+
+function applyVerifiedFactToDraft(draft: string, fact: string) {
+    if (/\[[^\]]+\]/.test(draft)) {
+        return draft.replace(/\[[^\]]+\]/, fact);
+    }
+    const cleanDraft = draft.trim().replace(/[.;]\s*$/, "");
+    const cleanFact = fact.trim().replace(/^[.;]\s*/, "").replace(/[.;]\s*$/, "");
+    return `${cleanDraft}; ${cleanFact}.`;
+}
+
 function FixCanvas({
     fix,
     rewrite,
@@ -75,14 +90,14 @@ function FixCanvas({
     locked?: boolean;
     onUnlock?: () => void;
 }) {
-    const suggestedLine = rewrite?.better || "Add the missing detail, then rewrite this line in your own words.";
+    const original = evidenceFor(fix) || rewrite?.original;
+    const suggestedLine = rewrite?.better || workingDraftFor(original);
     const [draft, setDraft] = useState(suggestedLine);
     const [editing, setEditing] = useState(false);
     const [copied, setCopied] = useState(false);
     const [answer, setAnswer] = useState("");
     const [answerApplied, setAnswerApplied] = useState(false);
     const [dismissed, setDismissed] = useState(false);
-    const original = evidenceFor(fix) || rewrite?.original;
     const action = fix.fix || fix.text || "Make this part of the resume more specific";
     const traceProgress = answerApplied
         ? draft.trim() !== suggestedLine.trim() ? 100 : 82
@@ -99,6 +114,7 @@ function FixCanvas({
     const handleUseAnswer = () => {
         const cleanAnswer = answer.trim().replace(/\s+/g, " ");
         if (!cleanAnswer) return;
+        setDraft((current) => applyVerifiedFactToDraft(current, cleanAnswer));
         setAnswerApplied(true);
         setEditing(true);
     };
@@ -209,7 +225,7 @@ function FixCanvas({
                             <div>
                                 <p className="text-[10px] font-semibold uppercase riyp-track-015 text-brand">Try this</p>
                                 <p className="mt-1 text-xs text-muted-foreground">
-                                    {answerApplied ? "Your fact stays visible while you edit. Work it in naturally; keep only what you can verify." : "A working draft. Keep only details you can verify."}
+                                    {answerApplied ? "Your verified fact is now in the draft. Edit the sentence until it sounds like you." : "A working draft. Replace every bracket with a fact you can verify."}
                                 </p>
                             </div>
                             <div className="flex items-center gap-1">

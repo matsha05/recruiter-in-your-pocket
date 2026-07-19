@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { runJson } from "@/lib/llm/orchestrator";
+import { resolveOpenAIModel } from "@/lib/llm/model-config";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import { validateResumeIdeasPayload, validateResumeIdeasRequest } from "@/lib/backend/validation";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
@@ -142,7 +143,7 @@ export async function POST(request: Request) {
 USER INPUT:
 ${text}`;
 
-    const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const model = resolveOpenAIModel("resume_ideas");
     await markGenerationProviderCallStarted(accessReservation);
     const { parsed } = await runJson<any>({
       ctx: { request_id, route, user_id },

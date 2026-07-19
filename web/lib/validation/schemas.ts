@@ -2,9 +2,14 @@ import { z } from "zod";
 import {
     containsExactEvidence,
     findAlreadySatisfiedFix,
+    findBiggestGapContradictions,
+    findFixEvidenceMismatch,
+    findNonActionableFix,
+    findRewriteFidelityIssues,
     findUnsupportedAgencyUpgrade,
-    findUnsupportedOutcomeClaims
-} from "@/lib/llm/grounding";
+    findUnsupportedOutcomeClaims,
+    isAcceptedAbsenceMarker,
+} from "../llm/grounding";
 
 /**
  * Central Zod schemas for API request/response validation.
@@ -104,10 +109,10 @@ export type CheckoutRequest = z.infer<typeof CheckoutRequestSchema>;
  * Rewrite item schema
  */
 const RewriteSchema = z.object({
-    label: z.string(),
-    original: z.string(),
-    better: z.string(),
-    enhancement_note: z.string()
+    label: z.string().min(1),
+    original: z.string().min(1),
+    better: z.string().min(1),
+    enhancement_note: z.string().regex(/^Add\b/, "enhancement_note must begin with Add")
 });
 
 const ConfidenceSchema = z.enum(["high", "medium", "low"]);
@@ -129,22 +134,29 @@ const TopFixSchema = z.object({
     section_ref: z.string().min(1)
 });
 
+function sentenceCount(value: string) {
+    return value.split(/[.!?]+(?:\s+|$)/).filter(part => part.trim().length > 0).length;
+}
+
+function wordCount(value: string) {
+    return value.trim().split(/\s+/).filter(Boolean).length;
+}
+
+const BoundedStringSchema = (minSentences: number, maxSentences: number, field: string) =>
+    z.string().min(1).refine(
+        value => {
+            const count = sentenceCount(value);
+            return count >= minSentences && count <= maxSentences;
+        },
+        `${field} must contain ${minSentences}-${maxSentences} sentences`,
+    );
+
 function normalizeForEvidence(value: string) {
     return value
         .toLowerCase()
         .replace(/[^\w\d%\s]/g, "")
         .replace(/\s+/g, " ")
         .trim();
-}
-
-function isAcceptedAbsenceMarker(value: string) {
-    const normalizedValue = normalizeForEvidence(value);
-    return [
-        "no summary section present",
-        "no job description provided",
-        "no matching job description provided",
-        "no linkedin profile provided"
-    ].includes(normalizedValue);
 }
 
 const concreteMetricPattern = /\b\d+(?:\.\d+)?\s*(?:%|x|×|k|m|b|teams?|users?|customers?|projects?|features?|partners?|regions?|weeks?|months?|years?|hrs?|hours?|days?)?\b/gi;
@@ -191,12 +203,20 @@ export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText
 
     for (const [index, fix] of report.top_fixes.entries()) {
         const excerpt = normalizeForEvidence(fix.evidence.excerpt);
-        if (excerpt.length > 10 && !containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt)) {
+        if (excerpt.length > 10 && !containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt, resumeText)) {
             missingEvidence.push(`top_fixes[${index}].evidence.excerpt`);
         }
         const alreadySatisfied = findAlreadySatisfiedFix(fix.fix, fix.evidence.excerpt, resumeText);
         if (alreadySatisfied.length > 0) {
             inventedSpecifics.push(`top_fixes[${index}].fix contradicted by resume: ${alreadySatisfied.join(", ")}`);
+        }
+        const evidenceMismatch = findFixEvidenceMismatch(fix.fix, fix.evidence.excerpt, resumeText);
+        if (evidenceMismatch.length > 0) {
+            inventedSpecifics.push(`top_fixes[${index}].evidence mismatch: ${evidenceMismatch.join(", ")}`);
+        }
+        const nonActionable = findNonActionableFix(fix.fix);
+        if (nonActionable.length > 0) {
+            inventedSpecifics.push(`top_fixes[${index}].fix not actionable: ${nonActionable.join(", ")}`);
         }
     }
 
@@ -217,11 +237,24 @@ export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText
         if (unsupportedOutcomes.length > 0) {
             inventedSpecifics.push(`rewrites[${index}].better unsupported outcomes: ${unsupportedOutcomes.join(", ")}`);
         }
+        const fidelityIssues = findRewriteFidelityIssues(rewrite.original, rewrite.better, resumeText);
+        if (fidelityIssues.length > 0) {
+            inventedSpecifics.push(`rewrites[${index}].better fidelity: ${fidelityIssues.join(", ")}`);
+        }
     }
 
     const quotedGap = report.biggest_gap_example.match(/["“]([^"”]+)["”]/)?.[1];
     if (!quotedGap || !containsExactEvidence(resumeText, quotedGap)) {
         missingEvidence.push("biggest_gap_example.quote");
+    } else {
+        const gapContradictions = findBiggestGapContradictions(report.biggest_gap_example, resumeText);
+        if (gapContradictions.length > 0) {
+            inventedSpecifics.push(`biggest_gap_example contradicted by resume: ${gapContradictions.join(", ")}`);
+        }
+    }
+
+    if (/\[?SOURCE_\d{3}\]?/i.test(JSON.stringify(report))) {
+        inventedSpecifics.push("response exposes an internal SOURCE catalog tag");
     }
 
     if (missingEvidence.length > 0 || inventedSpecifics.length > 0) {
@@ -253,26 +286,37 @@ const SectionReviewItemSchema = z.object({
 export const ResumeFeedbackResponseSchema = z.object({
     contract_version: z.literal("v2"),
     score: z.number().transform(n => Math.min(100, Math.max(0, Math.round(n)))),
-    score_label: z.string(),
-    score_comment_short: z.string(),
-    score_comment_long: z.string(),
-    score_plain: z.string(),
-    first_impression: z.string(),
-    biggest_gap_example: z.string(),
-    first_impression_takeaway: z.string(),
-    summary: z.string(),
-    strengths: z.array(z.string()),
-    gaps: z.array(z.string()),
-    rewrites: z.array(RewriteSchema),
-    top_fixes: z.array(TopFixSchema).min(3),
-    next_steps: z.array(z.string()),
+    score_label: z.string().min(1).refine(value => wordCount(value) <= 3, "score_label must be 1-3 words"),
+    score_comment_short: z.string().min(1).refine(value => wordCount(value) <= 16, "score_comment_short must be at most 16 words"),
+    score_comment_long: BoundedStringSchema(2, 4, "score_comment_long"),
+    score_plain: BoundedStringSchema(1, 2, "score_plain"),
+    first_impression: BoundedStringSchema(1, 3, "first_impression"),
+    biggest_gap_example: z.string().min(1),
+    first_impression_takeaway: z.string().min(1).refine(value => {
+        const count = wordCount(value);
+        return count >= 2 && count <= 6;
+    }, "first_impression_takeaway must be 2-6 words"),
+    summary: BoundedStringSchema(3, 5, "summary").refine(
+        value => value.startsWith("You read as"),
+        "summary must begin with You read as",
+    ),
+    strengths: z.array(z.string().min(1)).min(3).max(5),
+    gaps: z.array(z.string().min(1)).min(3).max(5),
+    rewrites: z.array(RewriteSchema).max(3),
+    top_fixes: z.array(TopFixSchema).min(1).max(3),
+    next_steps: z.array(z.string().min(1)).min(3).max(5),
     subscores: z.object({
         impact: z.number().int().min(0).max(100),
         clarity: z.number().int().min(0).max(100),
         story: z.number().int().min(0).max(100),
         readability: z.number().int().min(0).max(100)
-    }).optional(),
-    section_review: z.record(z.string(), SectionReviewItemSchema).optional(),
+    }),
+    section_review: z.object({
+        Summary: SectionReviewItemSchema,
+        "Work Experience": SectionReviewItemSchema,
+        Skills: SectionReviewItemSchema,
+        Education: SectionReviewItemSchema,
+    }),
     // Optional layout fields
     layout_score: z.number().nullable().optional(),
     layout_band: z.string().optional(),
@@ -280,26 +324,42 @@ export const ResumeFeedbackResponseSchema = z.object({
     content_score: z.number().optional(),
     // Job alignment (optional)
     job_alignment: z.object({
-        jd_match_score: z.number().int().min(0).max(100).optional(),
-        jd_match_summary: z.string().optional(),
+        jd_match_score: z.number().int().min(0).max(100),
+        jd_match_summary: z.string(),
         jd_keywords: z.object({
-            matched: z.array(z.string()).optional(),
-            missing: z.array(z.string()).optional(),
-            match_count: z.number().int().optional(),
-            total_count: z.number().int().optional()
-        }).optional(),
-        strongly_aligned: z.array(z.string()),
-        underplayed: z.array(z.string()),
-        missing: z.array(z.string()),
+            matched: z.array(z.string()).max(20),
+            missing: z.array(z.string()).max(20),
+            match_count: z.number().int().min(0),
+            total_count: z.number().int().min(0)
+        }),
+        strongly_aligned: z.array(z.string()).min(3).max(5),
+        underplayed: z.array(z.string()).min(2).max(4),
+        missing: z.array(z.string()).min(1).max(3),
         role_fit: z.object({
-            best_fit_roles: z.array(z.string()).optional(),
-            stretch_roles: z.array(z.string()).optional(),
-            seniority_read: z.string().optional(),
-            industry_signals: z.array(z.string()).optional(),
-            company_stage_fit: z.string().optional()
-        }).optional(),
-        positioning_suggestion: z.string().optional()
-    }).passthrough().optional()
+            best_fit_roles: z.array(z.string()).min(3).max(5),
+            stretch_roles: z.array(z.string()).min(1).max(3),
+            seniority_read: z.string(),
+            industry_signals: z.array(z.string()).max(8),
+            company_stage_fit: z.string()
+        }),
+        positioning_suggestion: z.string()
+    }).passthrough(),
+    ideas: z.object({
+        questions: z.array(z.object({
+            question: z.string().min(1),
+            archetype: z.enum([
+                "TENSION POINT",
+                "SCALING",
+                "QUALITY UNDER PRESSURE",
+                "IMPROVEMENT",
+                "CROSS-FUNCTIONAL COMPLEXITY",
+                "END-TO-END OWNERSHIP",
+                "DOMAIN LIFT",
+                "HIGH STAKES",
+            ]),
+            why: z.string().min(1),
+        })).length(5),
+    }),
 }).passthrough();
 export type ResumeFeedbackResponse = z.infer<typeof ResumeFeedbackResponseSchema>;
 

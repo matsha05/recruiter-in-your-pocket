@@ -85,6 +85,9 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                     <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile navigation">
                                         <MobileSiteLink href="/#how-it-works">How it works</MobileSiteLink>
                                         <MobileSiteLink href="/pricing">Pricing</MobileSiteLink>
+                                        {isLaunchFlagEnabled("extensionSync") && (
+                                            <MobileSiteLink href="/extension">Extension</MobileSiteLink>
+                                        )}
                                         {showResearchLink && <MobileSiteLink href="/research">Research</MobileSiteLink>}
                                         {showResourcesLink && <MobileSiteLink href="/resources">Resources</MobileSiteLink>}
                                         <div className="my-5 h-px bg-slate-300" />

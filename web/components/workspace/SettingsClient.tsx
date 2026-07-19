@@ -475,13 +475,15 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     }
                     actions={
                         <div className="flex flex-wrap items-center gap-2">
-                            <Link
-                                href="/extension"
-                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
-                            >
-                                <Chrome className="size-4" />
-                                Extension
-                            </Link>
+                            {isLaunchFlagEnabled("extensionSync") ? (
+                                <Link
+                                    href="/extension"
+                                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                                >
+                                    <Chrome className="size-4" />
+                                    Extension
+                                </Link>
+                            ) : null}
                             <Link
                                 href="/security"
                                 className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"

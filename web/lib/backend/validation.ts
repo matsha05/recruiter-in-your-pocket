@@ -1,6 +1,8 @@
-import { createAppError } from "./openai";
-import { assertReportGrounding, ResumeFeedbackResponseSchema } from "@/lib/validation/schemas";
-import { getScoreLabel } from "@/lib/score-utils";
+import { createAppError } from "./errors";
+import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../validation/schemas";
+import { getScoreLabel } from "../score-utils";
+import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
+import { calibrateResumeScore } from "../llm/resume-score-calibration";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALLOWED_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -123,9 +125,19 @@ export function ensureLayoutAndContentFields(obj: any) {
   return obj;
 }
 
-export function validateResumeModelPayload(obj: any, resumeText?: string) {
+export function validateResumeModelPayload(
+  obj: any,
+  resumeText?: string,
+  options: { forceGrounding?: boolean } = {},
+) {
   if (!obj || typeof obj !== "object") {
     throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
+  }
+
+  const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
+  const shouldGround = Boolean(resumeText && (options.forceGrounding || !isMockOpenAI));
+  if (resumeText && shouldGround) {
+    obj = canonicalizeResumeReportEvidence(obj, resumeText).report;
   }
 
   obj.score = normalizeScore(obj.score, "score");
@@ -180,8 +192,7 @@ export function validateResumeModelPayload(obj: any, resumeText?: string) {
     );
   }
 
-  const isMockOpenAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
-  if (resumeText && !isMockOpenAI) {
+  if (resumeText && shouldGround) {
     const grounding = assertReportGrounding(parsed.data, resumeText);
     if (!grounding.ok) {
       const issue = grounding.missingEvidence[0] || grounding.inventedSpecifics[0] || "response";
@@ -194,7 +205,10 @@ export function validateResumeModelPayload(obj: any, resumeText?: string) {
     }
   }
 
-  return ensureLayoutAndContentFields(parsed.data);
+  const calibrated = resumeText && shouldGround
+    ? calibrateResumeScore(parsed.data, resumeText).report
+    : parsed.data;
+  return ensureLayoutAndContentFields(calibrated);
 }
 
 export function validateResumeIdeasPayload(obj: any) {

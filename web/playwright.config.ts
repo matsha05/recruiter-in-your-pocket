@@ -13,12 +13,13 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   webServer: process.env.PLAYWRIGHT_SKIP_WEB_SERVER === "1" ? undefined : {
-    command: "node scripts/launch-smoke-server.cjs",
+    command: `"${process.execPath}" scripts/launch-smoke-server.cjs`,
     url: "http://127.0.0.1:3100",
-    reuseExistingServer: true,
+    reuseExistingServer: false,
     timeout: 240_000,
     env: {
       ...process.env,
+      FORCE_NEXT_BUILD: process.env.FORCE_NEXT_BUILD || "1",
       USE_MOCK_OPENAI: process.env.USE_MOCK_OPENAI || "1",
       SKIP_DB_READY_CHECK: process.env.SKIP_DB_READY_CHECK || "1",
       SESSION_SECRET: process.env.SESSION_SECRET || "playwright-session-secret",
@@ -29,6 +30,14 @@ export default defineConfig({
       NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: process.env.NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE || "false",
       NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: process.env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS || "false",
       NEXT_PUBLIC_ENABLE_ERROR_REPLAY: process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY || "false",
+      RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
+      RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
+      // Keep browser contracts hermetic even if the launch shell contains
+      // credentials for a hosted Redis instance.
+      UPSTASH_REDIS_REST_URL: "",
+      UPSTASH_REDIS_REST_TOKEN: "",
+      KV_REST_API_URL: "",
+      KV_REST_API_TOKEN: "",
     },
   },
   projects: [

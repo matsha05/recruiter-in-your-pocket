@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import JobDetailClient from '@/components/jobs/JobDetailClient';
+import { launchFlags } from '@/lib/launch/flags';
 
 interface JobDetailPageProps {
     params: Promise<{ id: string }>;
@@ -15,6 +16,8 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
 }
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
+    if (!launchFlags.extensionSync) notFound();
+
     const resolvedParams = await params;
 
     return (

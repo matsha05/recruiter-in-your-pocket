@@ -90,6 +90,11 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
+
+    const verifiedFact = "Six product, operations, and support partners used the launch cadence";
+    await page.getByLabel("Answer the factual question for fix 1").fill(verifiedFact);
+    await page.getByRole("button", { name: "Keep this fact" }).first().click();
+    await expect(page.getByLabel("Edit suggested line 1")).toHaveValue(new RegExp(verifiedFact));
   });
 
   test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {
@@ -116,8 +121,12 @@ test.describe("launch red-team journeys", () => {
   });
 
   test("8. jobs tracker stays outside the public preview", async ({ request }) => {
-    const jobsResponse = await request.get("/jobs");
+    const [jobsResponse, jobDetailResponse] = await Promise.all([
+      request.get("/jobs"),
+      request.get("/jobs/sample-job-id"),
+    ]);
     expect(jobsResponse.status()).toBe(404);
+    expect(jobDetailResponse.status()).toBe(404);
   });
 
   test("9. settings keeps sensitive controls behind a sign-in gate", async ({ page }) => {

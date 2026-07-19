@@ -2,6 +2,8 @@
  * PromptOps Eval Harness - Type Definitions
  */
 
+import type { TokenUsage } from "../llm/cost";
+
 // ============================================
 // FAILURE CODES
 // ============================================
@@ -18,8 +20,15 @@ export type ErrorCode =
     | "E_REWRITE_INVENTED_SPECIFIC"
     | "E_REWRITE_OWNERSHIP_INFLATION"
     | "E_REWRITE_OUTCOME_INFLATION"
+    | "E_REWRITE_SOURCE_DRIFT"
+    | "E_REWRITE_NO_MATERIAL_CHANGE"
+    | "E_REWRITE_DROPPED_EVIDENCE"
     | "E_FIX_ALREADY_SATISFIED"
+    | "E_FIX_EVIDENCE_MISMATCH"
+    | "E_FIX_NOT_ACTIONABLE"
+    | "E_SOURCE_TAG_LEAK"
     | "E_BIGGEST_GAP_NOT_VERBATIM"
+    | "E_BIGGEST_GAP_CONTRADICTS_SOURCE"
     | "E_BANNED_PHRASE"
     | "E_SCORE_EXTREME";
 
@@ -109,6 +118,11 @@ export interface FixtureResult {
     subscores?: Record<string, number>;
     subscore_drifts?: Record<string, number>;
     evidence_flags?: Array<{ fix_index: number; issue: string }>;
+    usage?: TokenUsage;
+    cost_usd?: number;
+    latency_ms?: number;
+    provider_calls?: number;
+    response_model?: string;
     raw_output?: unknown;
     judge_result?: {
         evidence_score: number;
@@ -128,13 +142,18 @@ export interface EvalRunMetadata {
     timestamp: string;
     execution_mode: "dry_run" | "live";
     model: string;
-    temperature: number;
-    top_p: number;
+    temperature: number | null;
+    top_p: number | null;
+    reasoning_effort: string | null;
+    incomplete_retry_reasoning_effort?: string | null;
+    max_completion_tokens: number | null;
     prompt_version_hash: string;
     contract_version: string;
     tier: "smoke" | "golden" | "bulk";
     budget_usd: number;
     actual_cost_usd: number;
+    token_usage: TokenUsage;
+    pricing_basis: "published_standard_token_rates" | "none";
     calls_made: number;
     max_calls: number;
     concurrency: number;
@@ -181,12 +200,13 @@ export const EVIDENCE_MAX_LENGTH = 140;
 export const SCORE_DRIFT_WARN_THRESHOLD = 5;
 export const SCORE_DRIFT_ERROR_THRESHOLD = 12;
 export const SUBSCORE_DRIFT_WARN_THRESHOLD = 10;
-export const MIN_TOP_FIXES = 3;
+export const MIN_TOP_FIXES = 1;
 
 export const CONCRETE_PATTERNS = [
     /\d+/,                                          // Digits
     /%/,                                            // Percentages
-    /\b(team|users|revenue|pipeline|budget|ARR|MRR|NPS)\b/i,  // Measurable nouns
+    /\b(team|users|revenue|pipeline|budget|ARR|MRR|NPS|projects?|customers?|partners?|regions?|features?|volume|throughput|headcount)\b/i,  // Measurable nouns
+    /\b(cycle[- ]?time|time[- ]?to[- ]?\w+|project count|conversion|retention|adoption|savings?|cost|quality|accuracy|latency)\b/i, // Measurable dimensions
     /\b(Q[1-4]|20\d{2}|weekly|monthly|annually)\b/i,          // Time bounds
     /\[[^\]]+\]/,                                               // Bracket placeholders like [X%], [specific metric]
 ];

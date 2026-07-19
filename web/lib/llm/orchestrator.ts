@@ -1,7 +1,8 @@
 import { logError, logInfo } from "@/lib/observability/logger";
-import { estimateCostUsd } from "./cost";
+import { estimateCostUsd, normalizeTokenUsage, type TokenUsage } from "./cost";
 import type { LlmRunContext, LlmTask, LlmTelemetry } from "./types";
 import { callOpenAIChat, callOpenAIChatStreamingWithUsage, extractJsonFromText } from "@/lib/backend/openai";
+import type { ReasoningEffort } from "./model-config";
 
 type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
 
@@ -18,14 +19,6 @@ function outcomeFromError(err: any): LlmTelemetry["outcome"] {
   }
   if (code.startsWith("OPENAI_RESPONSE_")) return "schema_invalid";
   return "internal_error";
-}
-
-function getUsageFromResponse(data: any): { prompt_tokens: number; completion_tokens: number } | null {
-  const usage = data?.usage;
-  const prompt = Number(usage?.prompt_tokens);
-  const completion = Number(usage?.completion_tokens);
-  if (!Number.isFinite(prompt) || !Number.isFinite(completion)) return null;
-  return { prompt_tokens: prompt, completion_tokens: completion };
 }
 
 export async function runJson<T>({
@@ -55,11 +48,11 @@ export async function runJson<T>({
   });
 
   try {
-    const data = await callOpenAIChat(messages, mode);
+    const data = await callOpenAIChat(messages, mode, model);
     const raw = data?.choices?.[0]?.message?.content;
     const parsed = extractJsonFromText(raw) as T;
 
-    const usage = getUsageFromResponse(data);
+    const usage = normalizeTokenUsage(data);
     const latency_ms = Date.now() - startedAt;
     const tokens_in = usage?.prompt_tokens || 0;
     const tokens_out = usage?.completion_tokens || 0;
@@ -120,7 +113,8 @@ export async function* streamJson({
   model,
   prompt_version,
   schema_version,
-  messages
+  messages,
+  reasoning_effort,
 }: {
   ctx: LlmRunContext;
   task: LlmTask;
@@ -129,6 +123,7 @@ export async function* streamJson({
   prompt_version: string;
   schema_version: string;
   messages: Messages;
+  reasoning_effort?: ReasoningEffort;
 }): AsyncGenerator<{ type: "chunk"; content: string } | { type: "done"; telemetry: LlmTelemetry }, void, void> {
   const startedAt = Date.now();
   logInfo({
@@ -139,10 +134,10 @@ export async function* streamJson({
     llm: { task, model, prompt_version, schema_version }
   });
 
-  let usage: { prompt_tokens: number; completion_tokens: number } | null = null;
+  let usage: TokenUsage | null = null;
 
   try {
-    const { stream, usagePromise } = callOpenAIChatStreamingWithUsage(messages, mode);
+    const { stream, usagePromise } = callOpenAIChatStreamingWithUsage(messages, mode, reasoning_effort, model);
     for await (const chunk of stream) {
       yield { type: "chunk", content: chunk };
     }
@@ -192,4 +187,3 @@ export async function* streamJson({
     throw err;
   }
 }
-

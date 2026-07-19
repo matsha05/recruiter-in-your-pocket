@@ -52,8 +52,8 @@ export const RESUME_REPORT_JSON_SCHEMA = {
     gaps: stringList(3, 5),
     rewrites: {
       type: "array",
-      minItems: 3,
-      maxItems: 5,
+      minItems: 0,
+      maxItems: 3,
       items: {
         type: "object",
         properties: {
@@ -68,8 +68,8 @@ export const RESUME_REPORT_JSON_SCHEMA = {
     },
     top_fixes: {
       type: "array",
-      minItems: 3,
-      maxItems: 5,
+      minItems: 1,
+      maxItems: 3,
       items: {
         type: "object",
         properties: {
