@@ -45,8 +45,9 @@ tests/
     results/
       .gitignore
       baseline_v1.json          # committed baseline
-      summary_latest.md         # committed or copied artifact
-      {timestamp}_run.json      # gitignored run output
+      summary_latest_dry_run.md # latest fixture validation; no model calls
+      summary_latest_live.md    # latest real model-quality evidence
+      {timestamp}_{mode}_run.json # gitignored run output
   resumes/
     smoke/
     golden/
@@ -68,7 +69,7 @@ Committed:
 
 * `tests/fixtures/results/baseline_*.json`
 * `tests/fixtures/calibration.json`
-* small markdown summaries if desired (`summary_latest.md`)
+* small markdown summaries (`summary_latest_dry_run.md`, `summary_latest_live.md`)
 
 Ignored:
 
@@ -126,9 +127,9 @@ In reports we separate:
 
 ```bash
 npm run eval:dry-run    # Parse fixtures only
-npm run eval:smoke      # Fast sanity check (5 fixtures)
-npm run eval:golden     # Full anchor validation (20-40 fixtures)
-npm run eval:bulk       # Weekly stress test (200+ fixtures)
+RIYP_ALLOW_PAID_EVALS=true npm run eval:smoke  # Explicitly approved paid run
+RIYP_ALLOW_PAID_EVALS=true npm run eval:golden # Explicitly approved paid run
+RIYP_ALLOW_PAID_EVALS=true npm run eval:bulk   # Explicitly approved paid run
 ```
 
 ### Key flags
@@ -148,14 +149,14 @@ npm run eval:bulk       # Weekly stress test (200+ fixtures)
 # Dry run
 npm run eval:dry-run
 
-# Smoke
-npm run eval:smoke
+# Smoke, only after model spend is approved
+RIYP_ALLOW_PAID_EVALS=true npm run eval:smoke
 
 # Golden vs baseline
-npm run eval:golden -- --baseline tests/fixtures/results/baseline_v1.json
+RIYP_ALLOW_PAID_EVALS=true npm run eval:golden -- --baseline tests/fixtures/results/baseline_v1.json
 
 # Bulk weekly run
-npm run eval:bulk -- --baseline tests/fixtures/results/baseline_v1.json
+RIYP_ALLOW_PAID_EVALS=true npm run eval:bulk -- --baseline tests/fixtures/results/baseline_v1.json
 ```
 
 ---
@@ -169,17 +170,17 @@ npm run eval:bulk -- --baseline tests/fixtures/results/baseline_v1.json
 
 2. **Run smoke suite**
    ```bash
-   npm run eval:smoke
+   RIYP_ALLOW_PAID_EVALS=true npm run eval:smoke
    ```
 
 3. **Run golden suite vs baseline**
    ```bash
-   npm run eval:golden -- --baseline tests/fixtures/results/baseline_v1.json
+   RIYP_ALLOW_PAID_EVALS=true npm run eval:golden -- --baseline tests/fixtures/results/baseline_v1.json
    ```
 
 4. **Review the report**
    ```bash
-   cat tests/fixtures/results/summary_latest.md
+   cat tests/fixtures/results/summary_latest_live.md
    ```
 
 5. **Decide**: If clean, deploy. If warnings, review flagged cases.
@@ -197,6 +198,7 @@ npm run eval:bulk -- --baseline tests/fixtures/results/baseline_v1.json
 | bulk | 200+ | $2-8 |
 
 Runner aborts if `--budget-usd` exceeded or `--max-calls` reached.
+The runner also aborts every live run unless `RIYP_ALLOW_PAID_EVALS=true` is set deliberately.
 
 ---
 

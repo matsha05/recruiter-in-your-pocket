@@ -26,9 +26,15 @@ function normalizeFlag(value, fallback = false) {
 }
 
 function runCommand(id, label, options) {
+  const childEnv = { ...process.env, ...(options.env || {}) };
+  // `npm --call` exports this implementation detail. Passing it into the
+  // nested `npx tsc` command makes npm parse the outer call a second time.
+  delete childEnv.npm_config_call;
+  delete childEnv.NPM_CONFIG_CALL;
+
   const child = spawnSync(options.command, options.args, {
     cwd: options.cwd,
-    env: options.env || process.env,
+    env: childEnv,
     encoding: "utf8",
     stdio: "pipe",
   });
@@ -81,13 +87,21 @@ function addInfo(id, label, details) {
   });
 }
 
-const analyticsEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_ANALYTICS, true);
-const billingEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK, true);
-const extensionEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC, true);
+function hasSharedRedis() {
+  return Boolean(
+    (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) ||
+    (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)
+  );
+}
+
+const analyticsEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_ANALYTICS, false);
+const billingEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK, false);
+const extensionEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC, false);
 const guestSaveEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE, false);
 const shareEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS, false);
 const replayEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY, false);
 const hasLiveEvalKey = Boolean(process.env.OPENAI_API_KEY);
+const paidEvalsAllowed = normalizeFlag(process.env.RIYP_ALLOW_PAID_EVALS, false);
 
 checkFile("go_no_go_doc", "Go/no-go program doc", "docs/launch-readiness/80-go-no-go-program.md");
 checkFile("vendor_review_doc", "Vendor privacy review doc", "docs/launch-readiness/85-vendor-privacy-review.md");
@@ -120,6 +134,14 @@ checkCondition(
 );
 
 checkCondition(
+  "shared_rate_limit",
+  "Shared production rate limiting",
+  hasSharedRedis(),
+  "Upstash Redis is configured for cross-instance rate limiting and idempotency.",
+  "A compatible UPSTASH_REDIS_REST_* or KV_REST_API_* credential pair is required before paid beta traffic."
+);
+
+checkCondition(
   "analytics_flag",
   "Analytics launch flag",
   !analyticsEnabled || Boolean(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN),
@@ -140,10 +162,25 @@ checkCondition(
 checkCondition(
   "billing_flag",
   "Billing launch flag",
-  !billingEnabled || Boolean(process.env.STRIPE_SECRET_KEY && process.env.STRIPE_WEBHOOK_SECRET && process.env.STRIPE_PRICE_ID_MONTHLY && process.env.STRIPE_PRICE_ID_LIFETIME),
-  billingEnabled ? "Billing enabled with core Stripe env configured." : "Billing unlock intentionally disabled.",
-  "Billing is enabled but core Stripe env is incomplete."
+  !billingEnabled || Boolean(
+    process.env.STRIPE_SECRET_KEY &&
+    process.env.STRIPE_WEBHOOK_SECRET &&
+    process.env.STRIPE_PRICE_ID_30D &&
+    process.env.STRIPE_PRODUCT_ID_30D
+  ),
+  billingEnabled ? "Billing enabled with the Job Search Pass Stripe environment configured." : "Billing unlock intentionally disabled.",
+  "Billing is enabled but the canonical Stripe price/product pair or core Stripe env is incomplete."
 );
+
+if (strict) {
+  checkCondition(
+    "paid_beta_billing_enabled",
+    "Paid beta billing enabled",
+    billingEnabled,
+    "Billing is explicitly enabled for the paid beta.",
+    "NEXT_PUBLIC_ENABLE_BILLING_UNLOCK=true is required for the strict paid-beta gate."
+  );
+}
 
 checkCondition(
   "extension_flag",
@@ -223,7 +260,7 @@ runCommand("eval_dry_run", "Eval dry run", {
   passMessage: "Eval dry run passed.",
 });
 
-if (hasLiveEvalKey) {
+if (hasLiveEvalKey && paidEvalsAllowed) {
   runCommand("eval_smoke", "Live smoke eval", {
     command: "npm",
     args: ["run", "eval:smoke", "--", "--baseline", "../tests/fixtures/baselines/v2_baseline.json"],
@@ -244,14 +281,22 @@ if (hasLiveEvalKey) {
   }
 } else if (strict) {
   checkCondition(
-    "live_eval_key",
-    "OPENAI key for live evals",
+    "live_eval_authorization",
+    "Live eval authorization",
     false,
     "",
-    "OPENAI_API_KEY is required for strict go/no-go eval gates."
+    !paidEvalsAllowed
+      ? "RIYP_ALLOW_PAID_EVALS=true is required before the strict gate may spend money on live evaluations."
+      : "OPENAI_API_KEY is required for strict go/no-go eval gates."
   );
 } else {
-  addInfo("live_eval_key", "OPENAI key for live evals", "OPENAI_API_KEY is not set, so live smoke/golden evals were skipped.");
+  addInfo(
+    "live_eval_authorization",
+    "Live eval authorization",
+    paidEvalsAllowed
+      ? "OPENAI_API_KEY is not set, so live smoke/golden evals were skipped."
+      : "Paid evaluations are intentionally disabled; only zero-spend fixture validation ran."
+  );
 }
 
 const blockers = results.filter((result) => result.status === "fail");

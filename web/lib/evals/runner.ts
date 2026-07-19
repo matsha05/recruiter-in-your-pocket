@@ -24,9 +24,14 @@ import { runJudge, type JudgeResult } from "./judge";
 // ============================================
 
 const COST_PER_CALL_USD = 0.025; // Conservative estimate for gpt-4o-mini
+const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
 
 function estimateCost(calls: number): number {
     return calls * COST_PER_CALL_USD;
+}
+
+function paidEvalsExplicitlyAllowed(): boolean {
+    return TRUE_VALUES.has(String(process.env.RIYP_ALLOW_PAID_EVALS || "").trim().toLowerCase());
 }
 
 // ============================================
@@ -64,6 +69,12 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
     }
 
     console.log(`   Running ${fixtures.length} fixtures for tier "${options.tier}"`);
+
+    if (!options.dryRun && !paidEvalsExplicitlyAllowed()) {
+        throw new Error(
+            "Live evaluations are disabled. Set RIYP_ALLOW_PAID_EVALS=true only after approving model spend."
+        );
+    }
 
     // Load baseline if provided
     let baseline: Baseline | null = null;
@@ -161,6 +172,7 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
     const metadata: EvalRunMetadata = {
         run_id: runId,
         timestamp: new Date().toISOString(),
+        execution_mode: options.dryRun ? "dry_run" : "live",
         model: process.env.OPENAI_MODEL || "gpt-4o-mini",
         temperature: 0,
         top_p: 1,
@@ -402,12 +414,20 @@ async function saveResults(output: EvalRunOutput, options: EvalOptions): Promise
     }
 
     // Save JSON
-    const jsonPath = path.join(resultsDir, `${output.metadata.timestamp.replace(/[:.]/g, "-")}_run.json`);
+    const jsonPath = path.join(
+        resultsDir,
+        `${output.metadata.timestamp.replace(/[:.]/g, "-")}_${output.metadata.execution_mode}_run.json`
+    );
     await writeFile(jsonPath, JSON.stringify(output, null, 2));
     console.log(`\n📄 Results saved: ${jsonPath}`);
 
     // Save markdown summary
-    const mdPath = path.join(resultsDir, "summary_latest.md");
+    const mdPath = path.join(
+        resultsDir,
+        output.metadata.execution_mode === "dry_run"
+            ? "summary_latest_dry_run.md"
+            : "summary_latest_live.md"
+    );
     await writeFile(mdPath, generateMarkdownReport(output));
     console.log(`📄 Summary saved: ${mdPath}`);
 }

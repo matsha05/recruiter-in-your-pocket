@@ -2,6 +2,7 @@
 const assert = require("assert");
 
 process.env.USE_MOCK_OPENAI = "1";
+process.env.SESSION_SECRET = process.env.SESSION_SECRET || "contract-test-session-secret";
 const { startNextServer } = require("../scripts/next_server");
 let next = null;
 
@@ -36,6 +37,7 @@ async function run() {
     assert.ok(Array.isArray(validPayload.data.questions), "Data should have questions array");
     assert.ok(Array.isArray(validPayload.data.notes), "Data should have notes array");
     assert.ok(typeof validPayload.data.how_to_use === "string", "Data should have how_to_use string");
+    assert.match(validResponse.headers["set-cookie"] || "", /rip_free_meta=/, "successful anonymous ideas should consume the signed free cookie");
 
     // Test empty text validation
     const emptyResponse = await request("POST", "/api/resume-ideas", {
@@ -71,4 +73,3 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

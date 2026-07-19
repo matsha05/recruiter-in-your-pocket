@@ -1,0 +1,33 @@
+# Local dependencies and generated build output
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+.turbo/
+**/.turbo/
+*.tsbuildinfo
+
+# Local preview, test, and design-review artifacts
+output/
+web/output/
+/extension/
+.playwright-cli/
+.playwright-mcp/
+web/test-results/
+web/playwright-report/
+tests/
+landing-*.png
+tmp-*.png
+riyp-*.png
+
+# Local metadata and secrets
+.git/
+.vercel/
+**/.vercel/
+.env
+.env.*
+*.log
+.DS_Store
+
+# Large generated data not needed by the current web preview
+web/lib/matching/onet-skill-embeddings.json

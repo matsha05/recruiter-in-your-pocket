@@ -17,8 +17,9 @@ export function getConfiguredExtensionOrigins() {
 }
 
 export const requestedLaunchFlags = {
-  analytics: parseFlag(process.env.NEXT_PUBLIC_ENABLE_ANALYTICS, true),
-  billingUnlock: parseFlag(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK, true),
+  analytics: parseFlag(process.env.NEXT_PUBLIC_ENABLE_ANALYTICS, false),
+  billingUnlock: parseFlag(process.env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK, false),
+  linkedInReview: parseFlag(process.env.NEXT_PUBLIC_ENABLE_LINKEDIN_REVIEW, false),
   extensionSync: parseFlag(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC, false),
   guestReportSave: parseFlag(process.env.NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE, false),
   publicShareLinks: parseFlag(process.env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS, false),

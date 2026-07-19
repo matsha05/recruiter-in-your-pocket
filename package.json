@@ -18,14 +18,18 @@
     "launch:autopilot": "node scripts/launch-autopilot.cjs",
     "launch:autopilot:strict": "node scripts/launch-autopilot.cjs --strict",
     "launch:redteam": "npm run test:redteam-journeys --prefix web",
+    "simulate:cohort": "node scripts/simulate-founder-cohort.cjs",
+    "test:cohort-simulation": "node tests/founder-cohort-simulation.test.js",
     "assets:chrome-web-store": "npm run assets:chrome-web-store --prefix web",
-    "test": "node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
+    "test": "node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && npm run test:pdf-export --prefix web && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
     "test:ready": "node tests/test_ready_and_auth.js",
     "eval:dry-run": "npm run eval:dry-run --prefix web",
     "eval:smoke": "npm run eval:smoke --prefix web",
     "eval:golden": "npm run eval:golden --prefix web",
     "calibrate": "node scripts/calibrate_score.js",
-    "migrate": "node scripts/migrate.js"
+    "migrate": "node scripts/migrate.js",
+    "migrate:check": "node scripts/migrate.js --check",
+    "migrate:replay-check": "node scripts/migrate.js --replay-check"
   },
   "keywords": [
     "resume",
@@ -49,7 +53,6 @@
     "lucide-react": "^0.561.0",
     "mammoth": "^1.11.0",
     "multer": "^2.0.2",
-    "nodemailer": "^7.0.11",
     "pdf-parse": "^1.1.1",
     "pg": "^8.11.5",
     "puppeteer": "^22.15.0",
@@ -58,11 +61,12 @@
     "stripe": "^14.25.0"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.4.6",
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.11",
-    "xlsx": "^0.18.5"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   }
 }

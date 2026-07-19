@@ -4,6 +4,7 @@ import { maybeCreateSupabaseServerClient } from "../supabase/serverClient";
 import { loadPromptForMode } from "../backend/prompts";
 import { getConfiguredExtensionOrigins, launchFlags, requestedLaunchFlags } from "./flags";
 import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUrl";
+import { isRedisRestConfigured } from "../redis/config";
 import {
   LAUNCH_GATE_DEFINITIONS,
   REQUIRED_LAUNCH_DOCS,
@@ -213,9 +214,14 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   const requiredEnv = [
     "SESSION_SECRET",
     "NEXT_PUBLIC_SUPABASE_URL",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
   ];
   const missingEnv = requiredEnv.filter((key) => !process.env[key]);
+  if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY && !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    missingEnv.push("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  }
+  if (!process.env.SUPABASE_SECRET_KEY && !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    missingEnv.push("SUPABASE_SECRET_KEY or SUPABASE_SERVICE_ROLE_KEY");
+  }
   const mock = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   if (!mock && !process.env.OPENAI_API_KEY) {
     missingEnv.push("OPENAI_API_KEY");
@@ -226,6 +232,18 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     "runtime_env",
     missingEnv.length === 0 ? "ok" : "missing",
     missingEnv.length === 0 ? "Core runtime environment is configured." : `Missing env: ${missingEnv.join(", ")}`
+  );
+
+  const sharedRateLimitConfigured = isRedisRestConfigured();
+  addCheck(
+    checks,
+    "shared_rate_limit",
+    sharedRateLimitConfigured ? "ok" : hostedRuntime ? "missing" : "disabled",
+    sharedRateLimitConfigured
+      ? "Shared rate limiting and idempotency are configured."
+      : hostedRuntime
+        ? "A compatible Upstash or Vercel KV REST credential pair is required for paid beta traffic."
+        : "Shared rate limiting is not configured in this local environment."
   );
 
   addCheck(
@@ -247,8 +265,8 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     const missingBilling = [
       "STRIPE_SECRET_KEY",
       "STRIPE_WEBHOOK_SECRET",
-      "STRIPE_PRICE_ID_MONTHLY",
-      "STRIPE_PRICE_ID_LIFETIME",
+      "STRIPE_PRICE_ID_30D",
+      "STRIPE_PRODUCT_ID_30D",
     ].filter((key) => !process.env[key]);
     addCheck(
       checks,
@@ -265,8 +283,22 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
         : "STRIPE_WEBHOOK_SECRET is required for billing go/no-go."
     );
   } else {
-    addCheck(checks, "billing_unlock", "disabled", "Billing unlock is disabled by launch flag.");
-    addCheck(checks, "billing_webhook", "disabled", "Stripe webhook is disabled because billing is disabled.");
+    addCheck(
+      checks,
+      "billing_unlock",
+      hostedRuntime ? "missing" : "disabled",
+      hostedRuntime
+        ? "Billing unlock must be explicitly enabled for the paid beta."
+        : "Billing unlock is disabled by launch flag in this local environment."
+    );
+    addCheck(
+      checks,
+      "billing_webhook",
+      hostedRuntime ? "missing" : "disabled",
+      hostedRuntime
+        ? "Stripe webhook configuration is required for the paid beta."
+        : "Stripe webhook is disabled because billing is disabled."
+    );
   }
 
   const extensionOrigins = getConfiguredExtensionOrigins();
@@ -447,7 +479,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   };
 }
 
-export type PublicServiceStatus = "operational" | "limited";
+export type PublicServiceStatus = "configured" | "limited";
 
 export type PublicStatusSnapshot = {
   ok: boolean;
@@ -470,7 +502,7 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
   const gateMap = new Map(snapshot.gates.map((gate) => [gate.id, gate.status]));
   const gateStatus = (id: string) => gateMap.get(id) || "pass";
   const toPublicStatus = (status: LaunchGateStatus): PublicServiceStatus =>
-    status === "fail" ? "limited" : "operational";
+    status === "fail" ? "limited" : "configured";
 
   const incidents: string[] = [];
   if (gateStatus("auth") === "fail") {
@@ -487,34 +519,36 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
     ok: snapshot.ok,
     generatedAt: snapshot.generatedAt,
     summary: {
-      status: incidents.length === 0 ? "operational" : "limited",
-      title: incidents.length === 0 ? "All core systems operational" : "Some features are limited",
+      status: incidents.length === 0 ? "configured" : "limited",
+      title: incidents.length === 0 ? "Core launch checks configured" : "Some features are limited",
       message:
         incidents.length === 0
-          ? "Review, saved history, billing, and extension-assisted workflows are currently operating normally."
-          : "The product is available, but one or more supporting workflows are currently degraded or limited.",
+          ? "This page reports configuration readiness, not real-time uptime. Contact support if a workflow is unavailable."
+          : "One or more required configurations are incomplete. This page does not provide real-time uptime monitoring.",
     },
     services: [
       {
         name: "Review studio",
         status: toPublicStatus(gateStatus("quality")),
-        message: "Run recruiter-grade reviews, reopen reports, and continue the core analysis workflow.",
+        message: "Required review assets and configuration are present; live availability is not measured here.",
       },
       {
         name: "Account and saved history",
         status: toPublicStatus(gateStatus("auth")),
-        message: "Sign in, save reviews, and reopen report history tied to your account.",
+        message: "Required account configuration is present; live availability is not measured here.",
       },
       {
         name: "Billing and restore",
         status: toPublicStatus(gateStatus("billing")),
-        message: "Start paid access, restore purchases, open receipts, and manage renewals.",
+        message: "Required billing configuration is present when paid access is enabled.",
       },
-      {
-        name: "Extension-assisted workflows",
-        status: toPublicStatus(gateStatus("extension")),
-        message: "Capture supported jobs, reopen them in the studio, and sync saved roles when enabled.",
-      },
+      ...(launchFlags.extensionSync
+        ? [{
+            name: "Extension-assisted workflows",
+            status: toPublicStatus(gateStatus("extension")),
+            message: "Extension sync reports configured status only when the private beta is enabled.",
+          }]
+        : []),
     ],
     incidents,
   };

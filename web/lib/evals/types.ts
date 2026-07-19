@@ -122,6 +122,7 @@ export interface FixtureResult {
 export interface EvalRunMetadata {
     run_id: string;
     timestamp: string;
+    execution_mode: "dry_run" | "live";
     model: string;
     temperature: number;
     top_p: number;

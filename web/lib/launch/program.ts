@@ -40,7 +40,7 @@ export const ROLLBACK_CONTROLS: RollbackControl[] = [
   {
     surface: "Extension sync",
     envVar: "NEXT_PUBLIC_ENABLE_EXTENSION_SYNC",
-    defaultState: "enabled",
+    defaultState: "disabled",
     reason: "Disable extension/server sync if auth, origin, or saved-job consistency regresses.",
   },
   {
@@ -58,13 +58,19 @@ export const ROLLBACK_CONTROLS: RollbackControl[] = [
   {
     surface: "Billing unlock and restore",
     envVar: "NEXT_PUBLIC_ENABLE_BILLING_UNLOCK",
-    defaultState: "enabled",
+    defaultState: "disabled",
     reason: "Disable purchases quickly if Stripe config, webhook handling, or unlock correctness regresses.",
+  },
+  {
+    surface: "LinkedIn review",
+    envVar: "NEXT_PUBLIC_ENABLE_LINKEDIN_REVIEW",
+    defaultState: "disabled",
+    reason: "Blocked from enablement until its generation route uses the atomic access-reservation lifecycle.",
   },
   {
     surface: "Third-party analytics",
     envVar: "NEXT_PUBLIC_ENABLE_ANALYTICS",
-    defaultState: "enabled",
+    defaultState: "disabled",
     reason: "Disable analytics if privacy review, telemetry quality, or vendor posture changes.",
   },
   {
@@ -117,6 +123,20 @@ export const VENDOR_REVIEW_ITEMS: VendorReviewItem[] = [
     dataClasses: "Runtime metadata, deployment health, and platform diagnostics.",
     launchDecision: "Approved",
     reviewNotes: "Platform logs must continue to avoid raw resume or job-description payloads.",
+  },
+  {
+    vendor: "Upstash",
+    purpose: "Shared rate limiting, request idempotency, and short-lived checkout-session caching.",
+    dataClasses: "Hashed request and IP identifiers, idempotency keys, and short-lived checkout session metadata.",
+    launchDecision: "Approved with short retention",
+    reviewNotes: "Keep keys pseudonymous, use the shortest practical TTL, and never cache raw resume or job-description text.",
+  },
+  {
+    vendor: "Inngest",
+    purpose: "Background account-export jobs and optional asynchronous PDF generation.",
+    dataClasses: "Job identifiers, account identity, account-export payloads, and report content when asynchronous PDF generation is used.",
+    launchDecision: "Approved with payload review",
+    reviewNotes: "Keep event and run-history retention explicit. Avoid sending full report or account payloads when an internal identifier is sufficient.",
   },
 ];
 
@@ -188,13 +208,13 @@ export const LAUNCH_GATE_DEFINITIONS = [
     id: "trust",
     label: "Trust and security",
     description: "Privacy posture, public trust surfaces, and safe defaults for monitoring.",
-    checks: ["runtime_env", "public_trust_surfaces", "analytics_configuration", "error_replay"],
+    checks: ["runtime_env", "shared_rate_limit", "public_trust_surfaces", "analytics_configuration", "error_replay"],
   },
   {
     id: "auth",
     label: "Auth and identity",
     description: "Account flows return users to the right surface and never create ownership silently.",
-    checks: ["auth_callback", "guest_report_save"],
+    checks: ["database", "auth_callback", "guest_report_save"],
   },
   {
     id: "billing",

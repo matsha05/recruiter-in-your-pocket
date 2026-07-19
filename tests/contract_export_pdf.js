@@ -34,7 +34,9 @@ async function request(method, url, body = null) {
 
 async function run() {
   try {
-    // Test valid request with mock report data
+    // PDF export is a paid, authenticated route. Payload-shape behavior is
+    // covered by web/tests/pdf-export.test.ts; this integration contract
+    // verifies the production authorization boundary.
     const mockReport = {
       score: 85,
       score_label: "Strong",
@@ -49,40 +51,25 @@ async function run() {
       report: mockReport
     });
 
-    // PDF export might fail if Chromium isn't available, but we should get a proper error response
-    if (validResponse.status === 200) {
-      // If successful, should return PDF buffer
-      assert.ok(Buffer.isBuffer(validResponse.body), "Response should be a buffer");
-      assert.ok(validResponse.body.length > 0, "PDF buffer should not be empty");
-      assert.strictEqual(
-        validResponse.headers["content-type"],
-        "application/pdf",
-        "Should have PDF content type"
-      );
-      assert.ok(
-        validResponse.headers["content-disposition"]?.includes("resume-review.pdf"),
-        "Should have PDF filename in content-disposition"
-      );
-    } else {
-      // If PDF generation fails (e.g., Chromium not available), should get proper error
-      assert.ok([400, 500].includes(validResponse.status), "Should return 400 or 500 on failure");
-      const errorPayload = JSON.parse(validResponse.body.toString());
-      assert.strictEqual(errorPayload.ok, false, "Error response should have ok: false");
-      assert.ok(errorPayload.errorCode, "Error response should have errorCode");
-    }
+    assert.strictEqual(validResponse.status, 401, "Signed-out PDF export should return 401");
+    const validPayload = JSON.parse(validResponse.body.toString());
+    assert.strictEqual(validPayload.ok, false, "Unauthorized response should have ok: false");
+    assert.strictEqual(validPayload.errorCode, "UNAUTHORIZED", "Should have UNAUTHORIZED code");
+    assert.ok(validResponse.headers["x-request-id"], "Unauthorized response should include a request ID");
 
-    // Test invalid/missing report data
+    // Authorization runs before payload parsing so malformed requests cannot
+    // probe the paid export surface while signed out.
     const invalidResponse = await request("POST", "/api/export-pdf", {
       report: {}
     });
-    assert.strictEqual(invalidResponse.status, 400, "Invalid report should return 400");
+    assert.strictEqual(invalidResponse.status, 401, "Signed-out invalid report should return 401");
     const invalidPayload = JSON.parse(invalidResponse.body.toString());
     assert.strictEqual(invalidPayload.ok, false, "Response should have ok: false");
-    assert.strictEqual(invalidPayload.errorCode, "INVALID_PAYLOAD", "Should have INVALID_PAYLOAD code");
+    assert.strictEqual(invalidPayload.errorCode, "UNAUTHORIZED", "Should have UNAUTHORIZED code");
 
-    // Test missing body
+    // Missing-body requests are protected by the same boundary.
     const noBodyResponse = await request("POST", "/api/export-pdf", null);
-    assert.strictEqual(noBodyResponse.status, 400, "Missing body should return 400");
+    assert.strictEqual(noBodyResponse.status, 401, "Signed-out missing body should return 401");
 
     console.log("Contract tests for /api/export-pdf passed.");
   } finally {
@@ -94,4 +81,3 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

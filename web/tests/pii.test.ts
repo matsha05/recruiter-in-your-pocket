@@ -14,6 +14,7 @@ import {
     scrubPiiFromObject,
     FORBIDDEN_KEYS
 } from '../lib/observability/pii';
+import { logError, logInfo } from '../lib/observability/logger';
 
 // Test utility
 function test(name: string, fn: () => void | boolean) {
@@ -30,6 +31,22 @@ function test(name: string, fn: () => void | boolean) {
         console.log(`   Error: ${err.message}`);
         return false;
     }
+}
+
+function captureConsole(method: 'log' | 'error', fn: () => void): string {
+    const original = console[method];
+    let captured = '';
+    console[method] = ((...args: unknown[]) => {
+        captured = args.map(String).join(' ');
+    }) as typeof console[typeof method];
+
+    try {
+        fn();
+    } finally {
+        console[method] = original as typeof console[typeof method];
+    }
+
+    return captured;
 }
 
 console.log('\n=== P0 Bundle 2: PII Boundary Tests ===\n');
@@ -77,6 +94,34 @@ if (test('Does NOT flag safe keys', () => {
         status: 200,
         latency_ms: 150
     }) === false;
+})) passed++; else failed++;
+
+if (test('Allows numeric token counts only at the llm telemetry path', () => {
+    return containsForbiddenKeys({
+        llm: { tokens_in: 1200, tokens_out: 340 }
+    }) === false;
+})) passed++; else failed++;
+
+if (test('Allows conventional error class names only at err.name', () => {
+    return containsForbiddenKeys({
+        err: { name: 'ValidationError', message: 'Response validation failed' }
+    }) === false;
+})) passed++; else failed++;
+
+if (test('Still blocks token-like keys outside the safe telemetry path', () => {
+    return containsForbiddenKeys({ tokens_in: 1200 }) === true;
+})) passed++; else failed++;
+
+if (test('Still blocks non-numeric token values at the safe telemetry path', () => {
+    return containsForbiddenKeys({ llm: { tokens_in: 'private-token' } }) === true;
+})) passed++; else failed++;
+
+if (test('Still blocks personal names outside err.name', () => {
+    return containsForbiddenKeys({ user: { name: 'Jane Doe' } }) === true;
+})) passed++; else failed++;
+
+if (test('Blocks err.name values that do not look like error classes', () => {
+    return containsForbiddenKeys({ err: { name: 'Jane Doe', message: 'Failed' } }) === true;
 })) passed++; else failed++;
 
 // --- PII Pattern Detection ---
@@ -145,6 +190,74 @@ if (test('scrubPiiFromObject scrubs nested PII', () => {
         }
     }) as any;
     return result.data.user.email === '[REDACTED]' && result.data.user.id === '123';
+})) passed++; else failed++;
+
+if (test('scrubPiiFromObject preserves safe structured telemetry', () => {
+    const result = scrubPiiFromObject({
+        llm: { tokens_in: 1200, tokens_out: 340 },
+        err: { name: 'ValidationError', message: 'Response validation failed' }
+    }) as any;
+    return result.llm.tokens_in === 1200 &&
+        result.llm.tokens_out === 340 &&
+        result.err.name === 'ValidationError';
+})) passed++; else failed++;
+
+if (test('scrubPiiFromObject redacts unsafe path collisions and string PII', () => {
+    const result = scrubPiiFromObject({
+        tokens_in: 1200,
+        err: { name: 'Jane Doe', message: 'Contact jane@example.com' }
+    }) as any;
+    return result.tokens_in === '[REDACTED]' &&
+        result.err.name === '[REDACTED]' &&
+        result.err.message === 'Contact [REDACTED-EMAIL]';
+})) passed++; else failed++;
+
+// --- Logger Integration ---
+
+console.log('\n--- Structured Logger PII Boundary ---\n');
+
+if (test('Logger emits safe LLM token telemetry and err.name', () => {
+    const output = captureConsole('error', () => {
+        logError({
+            msg: 'llm.response.validation_failed',
+            llm: { tokens_in: 1200, tokens_out: 340 },
+            err: { name: 'ValidationError', message: 'Response validation failed' }
+        });
+    });
+    const parsed = JSON.parse(output);
+    return parsed.msg === 'llm.response.validation_failed' &&
+        parsed.llm.tokens_in === 1200 &&
+        parsed.llm.tokens_out === 340 &&
+        parsed.err.name === 'ValidationError';
+})) passed++; else failed++;
+
+if (test('Logger still blocks records containing forbidden keys', () => {
+    const output = captureConsole('error', () => {
+        logError({
+            msg: 'unsafe.record',
+            err: { name: 'ValidationError', message: 'Failed' },
+            email: 'jane@example.com'
+        } as any);
+    });
+    const parsed = JSON.parse(output);
+    return parsed.msg === 'log.pii_blocked' &&
+        !output.includes('jane@example.com') &&
+        !output.includes('unsafe.record');
+})) passed++; else failed++;
+
+if (test('Logger redacts PII embedded in otherwise safe strings', () => {
+    const output = captureConsole('log', () => {
+        logInfo({
+            msg: 'request.note',
+            source: 'Contact jane@example.com or 555-123-4567'
+        });
+    });
+    const parsed = JSON.parse(output);
+    return parsed.msg === 'request.note' &&
+        parsed.source.includes('[REDACTED-EMAIL]') &&
+        parsed.source.includes('[REDACTED-PHONE]') &&
+        !output.includes('jane@example.com') &&
+        !output.includes('555-123-4567');
 })) passed++; else failed++;
 
 // --- Forbidden Keys Coverage ---

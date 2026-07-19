@@ -1,13 +1,13 @@
-# Historical PromptOps Fixture Validation Report
+# PromptOps Fixture Validation Report
 
-> This March 2026 artifact made zero model calls. It proves only that the fixture files existed; it is not evidence of model output quality.
-
-**Run ID:** eval_1772908055887
-**Timestamp:** 2026-03-07T18:27:35.892Z
+**Run ID:** eval_1784462291860
+**Timestamp:** 2026-07-19T11:58:11.862Z
 **Tier:** golden
 **Prompt Version:** v1
 **Contract Version:** v2
 **Execution Mode:** Dry run (no model calls)
+
+> This report validates fixture files and configuration only. It is not evidence of model output quality.
 
 ## Summary
 

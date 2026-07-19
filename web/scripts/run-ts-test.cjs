@@ -1,6 +1,13 @@
 const fs = require("fs");
+const Module = require("module");
 const path = require("path");
 const ts = require("typescript");
+
+const originalLoad = Module._load;
+Module._load = function loadTestModule(request, parent, isMain) {
+  if (request === "server-only") return {};
+  return originalLoad.call(this, request, parent, isMain);
+};
 
 require.extensions[".ts"] = function registerTs(module, filename) {
   const source = fs.readFileSync(filename, "utf8");

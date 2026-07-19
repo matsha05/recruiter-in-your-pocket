@@ -17,7 +17,15 @@ function withLaunchTestDefaults(env) {
     NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: env.NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE || "false",
     NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS || "false",
     NEXT_PUBLIC_ENABLE_ERROR_REPLAY: env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY || "false",
+    RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
+    RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
     SKIP_DB_READY_CHECK: env.SKIP_DB_READY_CHECK || "1",
+    // Contract tests must remain hermetic even when the parent launch shell
+    // carries real or placeholder hosted Redis credentials.
+    UPSTASH_REDIS_REST_URL: "",
+    UPSTASH_REDIS_REST_TOKEN: "",
+    KV_REST_API_URL: "",
+    KV_REST_API_TOKEN: "",
   };
 }
 

@@ -10,7 +10,7 @@ test.describe("launch smoke", () => {
 
     const payload = await status.json();
     expect(payload.ok).toBe(true);
-    expect(payload.summary.status).toBe("operational");
+    expect(payload.summary.status).toBe("configured");
     expect(Array.isArray(payload.services)).toBe(true);
   });
 
@@ -27,7 +27,7 @@ test.describe("launch smoke", () => {
     await page.goto("/status", { waitUntil: "domcontentloaded" });
     await page.waitForSelector("[data-visual-anchor='legal-status']", { timeout: 30_000 });
 
-    await expect(page.getByRole("heading", { name: /current product status/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /launch configuration status/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /customer-facing systems/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /support and trust/i })).toBeVisible();
   });
@@ -37,7 +37,6 @@ test.describe("launch smoke", () => {
       ["/", "[data-visual-anchor='landing-home']"],
       ["/pricing", "[data-visual-anchor='pricing-page']"],
       ["/auth", "[data-visual-anchor='auth-page']"],
-      ["/extension", "[data-visual-anchor='extension-page']"],
       ["/trust", "[data-visual-anchor='legal-trust']"],
       ["/security", "[data-visual-anchor='legal-security']"],
       ["/privacy", "[data-visual-anchor='legal-privacy']"],
@@ -48,5 +47,36 @@ test.describe("launch smoke", () => {
       await page.goto(route, { waitUntil: "domcontentloaded" });
       await page.waitForSelector(selector, { timeout: 30_000 });
     }
+  });
+
+  test("public typography uses the branded font stack", async ({ page }) => {
+    await page.goto("/research", { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+
+    const typography = await page.evaluate(() => {
+      const body = getComputedStyle(document.body).fontFamily;
+      const heading = getComputedStyle(document.querySelector("h1")!).fontFamily;
+      return { body, heading };
+    });
+
+    expect(typography.body).toContain("Instrument Sans Variable");
+    expect(typography.heading).toContain("Newsreader Variable");
+    expect(typography.body).not.toMatch(/Times New Roman|Times/i);
+    expect(typography.heading).not.toMatch(/Times New Roman|Times/i);
+    expect(typography.heading).not.toMatch(/Times New Roman|Times/i);
+  });
+
+  test("private beta surfaces stay out of the public launch", async ({ page, request }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("link", { name: "Extension", exact: true })).toHaveCount(0);
+
+    await page.goto("/pricing", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("heading", { name: /lifetime/i })).toHaveCount(0);
+
+    const extension = await request.get("/extension");
+    expect(extension.status()).toBe(404);
+
+    const jobs = await request.get("/jobs");
+    expect(jobs.status()).toBe(404);
   });
 });

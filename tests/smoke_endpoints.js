@@ -8,6 +8,10 @@ async function run() {
   try {
     const healthRes = await fetch(`${next.baseUrl}/api/health`);
     assert.strictEqual(healthRes.status, 200);
+    assert.strictEqual(healthRes.headers.get("x-content-type-options"), "nosniff");
+    assert.strictEqual(healthRes.headers.get("x-frame-options"), "DENY");
+    assert.strictEqual(healthRes.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
+    assert.match(healthRes.headers.get("permissions-policy") || "", /camera=\(\)/);
     assert.strictEqual((await healthRes.json()).ok, true);
 
     const readyRes = await fetch(`${next.baseUrl}/api/ready`);

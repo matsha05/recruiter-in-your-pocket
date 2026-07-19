@@ -2,16 +2,17 @@
 const assert = require("assert");
 
 process.env.USE_MOCK_OPENAI = "1";
+process.env.SESSION_SECRET = process.env.SESSION_SECRET || "contract-test-session-secret";
 const { startNextServer } = require("../scripts/next_server");
 let next = null;
 
-async function request(method, url, body = null) {
+async function request(method, url, body = null, extraHeaders = {}) {
   if (!next) next = await startNextServer();
   const fullUrl = `${next.baseUrl}${url}`;
 
   const response = await fetch(fullUrl, {
     method,
-    headers: body ? { "Content-Type": "application/json" } : {},
+    headers: body ? { "Content-Type": "application/json", ...extraHeaders } : extraHeaders,
     body: body ? JSON.stringify(body) : undefined
   });
 
@@ -29,13 +30,33 @@ async function run() {
     const validResponse = await request("POST", "/api/resume-feedback", {
       text: "Software Engineer\nGoogle\nLed team of 5 engineers",
       mode: "resume"
-    });
+    }, { "x-forwarded-for": "192.0.2.10" });
     assert.strictEqual(validResponse.status, 200, `Expected 200, got ${validResponse.status}: ${validResponse.body}`);
     const validPayload = JSON.parse(validResponse.body);
     assert.strictEqual(validPayload.ok, true, "Response should have ok: true");
     assert.ok(validPayload.data, "Response should have data field");
     assert.ok(typeof validPayload.data.score === "number", "Data should have score field");
     assert.ok(Array.isArray(validPayload.data.strengths), "Data should have strengths array");
+
+    // Streaming access is resolved before ReadableStream.start, so its signed
+    // anonymous usage cookie must be attached to the actual response.
+    const streamResponse = await request("POST", "/api/resume-feedback-stream", {
+      text: "Software Engineer\nGoogle\nLed team of 5 engineers",
+      mode: "resume"
+    }, { "x-forwarded-for": "192.0.2.11" });
+    assert.strictEqual(streamResponse.status, 200);
+    assert.match(streamResponse.body, /"type":"complete"/);
+    assert.match(streamResponse.headers["set-cookie"] || "", /rip_free_meta=/);
+
+    const signedFreeCookie = (streamResponse.headers["set-cookie"] || "").split(";")[0];
+    const exhaustedStreamResponse = await request(
+      "POST",
+      "/api/resume-feedback-stream",
+      { text: "A second resume request", mode: "resume" },
+      { Cookie: signedFreeCookie, "x-forwarded-for": "192.0.2.11" }
+    );
+    assert.strictEqual(exhaustedStreamResponse.status, 200, "stream errors remain event-framed for API compatibility");
+    assert.match(exhaustedStreamResponse.body, /"errorCode":"PAYWALL_REQUIRED"/);
 
     // Test empty text validation
     const emptyResponse = await request("POST", "/api/resume-feedback", {
@@ -82,4 +103,3 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

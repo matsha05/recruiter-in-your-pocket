@@ -16,15 +16,21 @@ import type {
 
 export function generateMarkdownReport(run: EvalRunOutput): string {
     const lines: string[] = [];
+    const isDryRun = run.metadata.execution_mode === "dry_run";
 
     // Header
-    lines.push("# PromptOps Eval Report");
+    lines.push(isDryRun ? "# PromptOps Fixture Validation Report" : "# PromptOps Live Eval Report");
     lines.push("");
     lines.push(`**Run ID:** ${run.metadata.run_id}`);
     lines.push(`**Timestamp:** ${run.metadata.timestamp}`);
     lines.push(`**Tier:** ${run.metadata.tier}`);
     lines.push(`**Prompt Version:** ${run.metadata.prompt_version_hash}`);
     lines.push(`**Contract Version:** ${run.metadata.contract_version}`);
+    lines.push(`**Execution Mode:** ${isDryRun ? "Dry run (no model calls)" : "Live model evaluation"}`);
+    if (isDryRun) {
+        lines.push("");
+        lines.push("> This report validates fixture files and configuration only. It is not evidence of model output quality.");
+    }
     lines.push("");
 
     // Summary
@@ -33,10 +39,10 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     lines.push(`| Metric | Value |`);
     lines.push(`|:-------|:------|`);
     lines.push(`| Total Fixtures | ${run.summary.total} |`);
-    lines.push(`| ✅ Passed | ${run.summary.passed} |`);
+    lines.push(`| ${isDryRun ? "Validated" : "✅ Passed"} | ${run.summary.passed} |`);
     lines.push(`| ⚠️ Warned | ${run.summary.warned} |`);
     lines.push(`| ❌ Failed | ${run.summary.failed} |`);
-    lines.push(`| Pass Rate | ${((run.summary.passed / run.summary.total) * 100).toFixed(1)}% |`);
+    lines.push(`| ${isDryRun ? "Fixture Validation Rate" : "Pass Rate"} | ${((run.summary.passed / run.summary.total) * 100).toFixed(1)}% |`);
     lines.push("");
 
     // Cost
@@ -78,15 +84,23 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     // Passed (summary only)
     const passed = run.results.filter(r => r.status === "PASS");
     if (passed.length > 0) {
-        lines.push("## ✅ Passed");
+        lines.push(isDryRun ? "## Validated Fixtures" : "## ✅ Passed");
         lines.push("");
-        lines.push(`${passed.length} fixtures passed all checks.`);
+        lines.push(
+            isDryRun
+                ? `${passed.length} fixture files were found. Their model outputs were not evaluated.`
+                : `${passed.length} fixtures passed all checks.`
+        );
         lines.push("");
         lines.push("<details>");
         lines.push("<summary>Expand to see fixture IDs</summary>");
         lines.push("");
         for (const result of passed) {
-            lines.push(`- ${result.fixture_id} (score: ${result.actual_score})`);
+            lines.push(
+                isDryRun
+                    ? `- ${result.fixture_id}`
+                    : `- ${result.fixture_id} (score: ${result.actual_score})`
+            );
         }
         lines.push("</details>");
         lines.push("");
@@ -219,16 +233,18 @@ function generateDiffReport(
 // ============================================
 
 export function printSummary(run: EvalRunOutput): void {
+    const isDryRun = run.metadata.execution_mode === "dry_run";
     console.log("");
     console.log("========================================");
-    console.log("         PROMPTOPS EVAL REPORT          ");
+    console.log(isDryRun ? "   PROMPTOPS FIXTURE VALIDATION REPORT  " : "       PROMPTOPS LIVE EVAL REPORT       ");
     console.log("========================================");
     console.log("");
     console.log(`Tier: ${run.metadata.tier}`);
     console.log(`Fixtures: ${run.summary.total}`);
+    console.log(`Mode: ${isDryRun ? "dry run; no model calls" : "live model evaluation"}`);
     console.log(`Cost: $${run.metadata.actual_cost_usd.toFixed(4)}`);
     console.log("");
-    console.log(`✅ PASS: ${run.summary.passed}`);
+    console.log(`${isDryRun ? "VALIDATED" : "✅ PASS"}: ${run.summary.passed}`);
     console.log(`⚠️  WARN: ${run.summary.warned}`);
     console.log(`❌ FAIL: ${run.summary.failed}`);
     console.log("");
