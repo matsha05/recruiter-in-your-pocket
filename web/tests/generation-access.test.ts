@@ -429,6 +429,17 @@ for (const source of [feedbackRoute, streamRoute, ideasRoute]) {
 assert.ok(streamRoute.indexOf("reserveGenerationAccess({") < streamRoute.indexOf("new ReadableStream"));
 assert.match(streamRoute, /response\.cookies\.set\(/);
 assert.doesNotMatch(streamRoute, /cookieStore\.set\(/);
+const streamLoopIndex = streamRoute.indexOf("for await (const ev of streamJson");
+const streamValidationIndex = streamRoute.indexOf("payload = validateResumeModelPayload");
+const streamCommitIndex = streamRoute.indexOf("await commitGenerationAccess");
+const streamDeliveryIndex = streamRoute.indexOf("for (const content of validatedChunks)");
+assert.ok(streamLoopIndex > -1 && streamValidationIndex > streamLoopIndex);
+assert.ok(streamCommitIndex > streamValidationIndex);
+assert.ok(
+  streamDeliveryIndex > streamCommitIndex,
+  "streamed model content must not be delivered before validation and entitlement commit"
+);
+assert.match(streamRoute, /if \(!reservationCommitted\) \{[\s\S]+releaseGenerationAccess/);
 assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
 const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');
 assert.ok(linkedInFlagIndex > -1, "LinkedIn generation must enforce its launch flag server-side");

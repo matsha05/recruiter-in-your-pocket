@@ -10,6 +10,10 @@ import {
   parseFreeCookie
 } from "@/lib/backend/freeCookie";
 import { runJson } from "@/lib/llm/orchestrator";
+import {
+  buildResumeRepairMessages,
+  isRepairableResumeResponseError,
+} from "@/lib/llm/reportRepair";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import {
   ensureLayoutAndContentFields,
@@ -262,20 +266,22 @@ ${jobDescription}`;
     }
 
     const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const messages = [
+      { role: "system" as const, content: JSON_INSTRUCTION },
+      { role: "system" as const, content: systemPrompt },
+      { role: "user" as const, content: userPrompt }
+    ];
     await markGenerationProviderCallStarted(accessReservation);
-    const { parsed: parsedJson } = await runJson<any>({
+    const initialRun = await runJson<any>({
       ctx: { request_id, user_id, route },
       task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
       mode,
       model,
       prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
       schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
-      messages: [
-        { role: "system", content: JSON_INSTRUCTION },
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt }
-      ]
+      messages
     });
+    const parsedJson = initialRun.parsed;
 
     let payload: any;
     if (mode === "resume_ideas") {
@@ -287,8 +293,32 @@ ${jobDescription}`;
     } else if (mode === "case_negotiation") {
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
-      payload = validateResumeModelPayload(parsedJson, text);
-      payload = ensureLayoutAndContentFields(payload);
+      try {
+        payload = validateResumeModelPayload(parsedJson, text);
+        payload = ensureLayoutAndContentFields(payload);
+      } catch (err: any) {
+        if (mode !== "resume" || !isRepairableResumeResponseError(err)) throw err;
+
+        logWarn({
+          msg: "llm.response.repair_started",
+          request_id,
+          route,
+          user_id,
+          err: { name: err?.name || "ValidationError", message: err?.message || "Response validation failed" }
+        });
+        const repaired = await runJson<any>({
+          ctx: { request_id, user_id, route },
+          task: "resume_feedback",
+          mode: "resume",
+          model,
+          prompt_version: "resume_v2_repair",
+          schema_version: "report_v1",
+          messages: buildResumeRepairMessages(messages, initialRun.raw, err),
+        });
+        payload = validateResumeModelPayload(repaired.parsed, text);
+        payload = ensureLayoutAndContentFields(payload);
+        logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
+      }
     }
 
     // Entitlement mutation happens only after the provider payload passes the
@@ -409,9 +439,10 @@ ${jobDescription}`;
         : code === "OPENAI_NETWORK_ERROR"
           ? "Connection hiccup. Try again in a moment."
           : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
-            code === "OPENAI_RESPONSE_SHAPE_INVALID" ||
             code === "OPENAI_RESPONSE_NOT_JSON"
             ? "I couldn't read the response cleanly. Try again."
+            : code === "OPENAI_RESPONSE_SHAPE_INVALID"
+              ? "The report did not pass its evidence check. Your report credit was restored; please try again."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";
 
     logError({

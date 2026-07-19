@@ -3,13 +3,12 @@ import crypto from "crypto";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { inngest } from "@/lib/inngest/client";
-import { buildAccountExportPayload } from "@/lib/backend/accountExport";
+import { runInlineExportJob } from "@/lib/backend/accountExportJob";
 import {
-  accountExportExpiresAt,
   expireAccountExportResults,
   resolveAccountExportAccess,
 } from "@/lib/backend/accountExportRetention";
-import { hashForLogs, logError } from "@/lib/observability/logger";
+import { hashForLogs } from "@/lib/observability/logger";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 
 export const runtime = "nodejs";
@@ -20,6 +19,10 @@ const EXPORT_CREATE_LIMIT = 3;
 const EXPORT_CREATE_WINDOW_MS = 60 * 60 * 1000;
 const EXPORT_READ_LIMIT = 120;
 const EXPORT_READ_WINDOW_MS = 10 * 60 * 1000;
+
+function isAsyncAccountExportEnabled(): boolean {
+  return /^(1|true|yes|on)$/i.test(process.env.ACCOUNT_EXPORT_ASYNC_ENABLED?.trim() || "");
+}
 
 type ExportJobStatus = "pending" | "running" | "completed" | "failed" | "expired";
 
@@ -52,53 +55,6 @@ function rateLimitedResponse(resetMs: number) {
   );
   response.headers.set("retry-after", String(Math.ceil(resetMs / 1000)));
   return response;
-}
-
-async function runInlineExportJob(admin: any, jobId: string, user: any) {
-  await admin
-    .from("account_export_jobs")
-    .update({
-      status: "running",
-      started_at: new Date().toISOString(),
-      error_message: null,
-    })
-    .eq("id", jobId)
-    .eq("user_id", user.id);
-
-  try {
-    const payload = await buildAccountExportPayload(admin, user);
-    await admin
-      .from("account_export_jobs")
-      .update({
-        status: "completed",
-        completed_at: new Date().toISOString(),
-        expires_at: accountExportExpiresAt(),
-        result_json: payload,
-        error_message: null,
-      })
-      .eq("id", jobId)
-      .eq("user_id", user.id);
-  } catch (err: any) {
-    logError({
-      msg: "account.export.inline_failed",
-      user_id: user.id,
-      outcome: "internal_error",
-      err: {
-        name: err?.name || "ExportError",
-        message: err?.message || "Export generation failed",
-      },
-    });
-    await admin
-      .from("account_export_jobs")
-      .update({
-        status: "failed",
-        completed_at: new Date().toISOString(),
-        error_message: "Export generation failed",
-      })
-      .eq("id", jobId)
-      .eq("user_id", user.id);
-    throw err;
-  }
 }
 
 export async function POST(_request: Request) {
@@ -136,31 +92,42 @@ export async function POST(_request: Request) {
       return NextResponse.json({ ok: false, message: "Could not create export job." }, { status: 500 });
     }
 
-    try {
-      await inngest.send({
-        name: "account/export.requested",
-        data: {
-          jobId,
-          userId: user.id,
-          userEmail: user.email || null,
-        },
-      });
-    } catch {
-      // Fallback keeps export functional when Inngest is unavailable locally.
+    if (isAsyncAccountExportEnabled()) {
+      try {
+        await inngest.send({
+          name: "account/export.requested",
+          data: {
+            jobId,
+            userId: user.id,
+            userEmail: user.email || null,
+          },
+        });
+      } catch {
+        // Provider failures fall back to the same bounded, user-scoped export.
+        await runInlineExportJob(admin, jobId, user);
+      }
+    } else {
+      // Inline is the launch-safe default. An accepted background event is not
+      // proof that a worker is registered, and a silently pending privacy
+      // export is worse than the small amount of synchronous work here.
       await runInlineExportJob(admin, jobId, user);
     }
 
-    const { data: job } = await admin
+    const { data: job, error: jobError } = await admin
       .from("account_export_jobs")
       .select("id, status, format, requested_at, started_at, completed_at, expires_at, error_message")
       .eq("id", jobId)
       .eq("user_id", user.id)
       .maybeSingle();
 
+    if (jobError || !job) {
+      return NextResponse.json({ ok: false, message: "Could not confirm export status." }, { status: 500 });
+    }
+
     return NextResponse.json(
       {
         ok: true,
-        job: job ? serializeJob(job) : { id: jobId, status: "pending", format: "json" },
+        job: serializeJob(job),
       },
       { status: 202 }
     );

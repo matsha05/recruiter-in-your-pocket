@@ -90,6 +90,13 @@ function parseArgs(): EvalOptions {
                 }
                 break;
 
+            case "--limit":
+                if (next) {
+                    options.limit = parseInt(next, 10);
+                    i++;
+                }
+                break;
+
             case "--with-judge":
                 options.withJudge = true;
                 break;
@@ -120,12 +127,14 @@ Options:
   --dry-run               Parse fixtures only, no API calls
   --prompt-version <v>    Override prompt version hash
   --filter <term>         Filter fixtures by ID or tag
+  --limit <n>             Run only the first n fixtures after filtering
   --help, -h              Show this help
 
 Examples:
   npm run eval:smoke
   npm run eval:golden -- --baseline tests/fixtures/results/baseline_v1.json
   npm run eval:bulk -- --budget-usd 10
+  npm run eval:golden -- --filter synthetic --limit 8
   npm run eval -- --dry-run
 `);
 }

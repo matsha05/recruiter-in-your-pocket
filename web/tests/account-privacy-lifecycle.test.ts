@@ -164,8 +164,16 @@ async function run() {
   assert.match(inngestSource, /id: "expire-account-export-results"/);
   assert.match(inngestSource, /\{ cron: "17 \* \* \* \*" \}/);
   assert.match(deleteRouteSource, /buildAuthDeletionPendingResponse\(deletions, canceledSubscriptions\)/);
-  assert.match(deleteRouteSource, /select\("tier, price_id, stripe_subscription_id"\)/);
-  assert.match(deleteRouteSource, /pass\.stripe_subscription_id \|\| pass\.price_id/);
+  assert.match(
+    deleteRouteSource,
+    /select\("tier, checkout_session_id, stripe_payment_intent_id, stripe_subscription_id"\)/
+  );
+  assert.match(deleteRouteSource, /billing_entitlement_blocks/);
+  assert.match(deleteRouteSource, /reason: "account_deleted"/);
+  assert.match(deleteRouteSource, /delete_generation_access_reservations_for_user/);
+  assert.match(deleteRouteSource, /\.map\(\(pass: any\) => pass\.stripe_subscription_id\)/);
+  assert.doesNotMatch(deleteRouteSource, /stripe\.customers\.list/);
+  assert.doesNotMatch(deleteRouteSource, /pass\.stripe_subscription_id \|\| pass\.price_id/);
   assert.doesNotMatch(deleteRouteSource, /Even if auth deletion fails, data is already deleted/);
 
   console.log("account privacy lifecycle tests passed");

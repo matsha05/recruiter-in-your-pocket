@@ -2,7 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createEmbedding } from "@/lib/matching/embedding-service";
 import { extractSkillsFromText, extractSeniority } from "@/lib/matching/skill-engine";
+import { hashForLogs } from "@/lib/observability/logger";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
+import { readJsonWithLimit } from "@/lib/security/requestBody";
 import crypto from "crypto";
+
+const MAX_RESUME_CHARACTERS = 30_000;
+const MAX_FILENAME_CHARACTERS = 255;
 
 // POST: Save default resume profile
 export async function POST(request: NextRequest) {
@@ -17,9 +23,25 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const { resumeText, filename } = await request.json();
+        const writeLimit = await rateLimitAsync(
+            `user:${hashForLogs(user.id)}:default-resume-write`,
+            5,
+            60 * 60 * 1000,
+        );
+        if (!writeLimit.ok) {
+            const response = NextResponse.json(
+                { success: false, error: "Too many resume updates. Try again later." },
+                { status: 429 },
+            );
+            response.headers.set("retry-after", String(Math.ceil(writeLimit.resetMs / 1000)));
+            return response;
+        }
 
-        if (!resumeText || typeof resumeText !== "string") {
+        const body = await readJsonWithLimit<any>(request, 128 * 1024);
+        const resumeText = typeof body?.resumeText === "string" ? body.resumeText.trim() : "";
+        const filename = body?.filename;
+
+        if (!resumeText) {
             return NextResponse.json(
                 { success: false, error: "Resume text is required" },
                 { status: 400 }
@@ -31,6 +53,76 @@ export async function POST(request: NextRequest) {
                 { success: false, error: "Resume text too short (minimum 100 characters)" },
                 { status: 400 }
             );
+        }
+
+        if (resumeText.length > MAX_RESUME_CHARACTERS) {
+            return NextResponse.json(
+                { success: false, error: "Resume text is too long (maximum 30,000 characters)" },
+                { status: 400 }
+            );
+        }
+
+        if (
+            filename !== undefined &&
+            filename !== null &&
+            (typeof filename !== "string" || filename.trim().length > MAX_FILENAME_CHARACTERS)
+        ) {
+            return NextResponse.json(
+                { success: false, error: "Filename must be 255 characters or fewer" },
+                { status: 400 }
+            );
+        }
+
+        const normalizedFilename = typeof filename === "string" && filename.trim()
+            ? filename.trim()
+            : null;
+        const resumeHash = crypto
+            .createHash("sha256")
+            .update(resumeText)
+            .digest("hex");
+
+        // Avoid another paid embedding call when the stored resume body is
+        // unchanged. Filename-only updates remain cheap and idempotent.
+        const { data: existingProfile, error: existingProfileError } = await supabase
+            .from("user_profiles")
+            .select("resume_hash, resume_preview, resume_filename, resume_updated_at, skills_index, resume_embedding")
+            .eq("user_id", user.id)
+            .maybeSingle();
+        if (existingProfileError) {
+            return NextResponse.json(
+                { success: false, error: "Failed to verify the saved resume" },
+                { status: 500 }
+            );
+        }
+
+        if (existingProfile?.resume_hash === resumeHash) {
+            const nextFilename = normalizedFilename ?? existingProfile.resume_filename ?? null;
+            if (nextFilename !== existingProfile.resume_filename) {
+                const { error: filenameError } = await supabase
+                    .from("user_profiles")
+                    .update({ resume_filename: nextFilename })
+                    .eq("user_id", user.id);
+                if (filenameError) {
+                    return NextResponse.json(
+                        { success: false, error: "Failed to update the resume filename" },
+                        { status: 500 }
+                    );
+                }
+            }
+
+            return NextResponse.json({
+                success: true,
+                data: {
+                    resumePreview: existingProfile.resume_preview,
+                    resumeFilename: nextFilename,
+                    updatedAt: existingProfile.resume_updated_at,
+                    skillsCount: Array.isArray(existingProfile.skills_index)
+                        ? existingProfile.skills_index.length
+                        : 0,
+                    hasEmbedding: existingProfile.resume_embedding !== null,
+                    unchanged: true,
+                },
+            });
         }
 
         // 1. Extract skills using shared multi-industry engine (250+ patterns)
@@ -51,11 +143,7 @@ export async function POST(request: NextRequest) {
             embedding = embeddingResult.embedding;
         }
 
-        // 4. Compute hash and preview
-        const resumeHash = crypto
-            .createHash("sha256")
-            .update(resumeText)
-            .digest("hex");
+        // 4. Compute preview
         const resumePreview = resumeText.slice(0, 200).replace(/\s+/g, " ").trim();
 
         // 5. Upsert user profile (including full resume text for matching)
@@ -64,7 +152,7 @@ export async function POST(request: NextRequest) {
             .upsert({
                 user_id: user.id,
                 resume_text: resumeText,  // CRITICAL: Save full text for matching
-                resume_filename: filename || null,  // Store filename for display
+                resume_filename: normalizedFilename,  // Store filename for display
                 skills_index: skillsIndex,
                 seniority_signals: senioritySignals,
                 resume_embedding: embedding,
@@ -101,11 +189,19 @@ export async function POST(request: NextRequest) {
                 hasEmbedding: embedding !== null,
             },
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error("[DefaultResume] Error:", error);
+        const requestStatus = Number(error?.httpStatus);
         return NextResponse.json(
-            { success: false, error: "Internal server error" },
-            { status: 500 }
+            {
+                success: false,
+                error: requestStatus === 413
+                    ? "Request body too large"
+                    : requestStatus === 400
+                        ? "Invalid request body"
+                        : "Internal server error",
+            },
+            { status: requestStatus === 400 || requestStatus === 413 ? requestStatus : 500 }
         );
     }
 }
@@ -188,11 +284,15 @@ export async function PATCH(request: NextRequest) {
             );
         }
 
-        const { filename } = await request.json();
+        const { filename } = await readJsonWithLimit<any>(request, 16 * 1024);
 
-        if (!filename || typeof filename !== "string") {
+        if (
+            !filename ||
+            typeof filename !== "string" ||
+            filename.trim().length > MAX_FILENAME_CHARACTERS
+        ) {
             return NextResponse.json(
-                { success: false, error: "Filename is required" },
+                { success: false, error: "Filename is required and must be 255 characters or fewer" },
                 { status: 400 }
             );
         }
@@ -211,11 +311,19 @@ export async function PATCH(request: NextRequest) {
         }
 
         return NextResponse.json({ success: true });
-    } catch (error) {
+    } catch (error: any) {
         console.error("[DefaultResume] Error:", error);
+        const requestStatus = Number(error?.httpStatus);
         return NextResponse.json(
-            { success: false, error: "Internal server error" },
-            { status: 500 }
+            {
+                success: false,
+                error: requestStatus === 413
+                    ? "Request body too large"
+                    : requestStatus === 400
+                        ? "Invalid request body"
+                        : "Internal server error",
+            },
+            { status: requestStatus === 400 || requestStatus === 413 ? requestStatus : 500 }
         );
     }
 }

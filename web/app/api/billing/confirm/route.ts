@@ -2,10 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
-  getTierDefaults,
   isPassActive,
   toStoredPassTier
 } from "@/lib/billing/entitlements";
+import {
+  getTierDefaultsForCheckout,
+  isCheckoutPaymentSettled,
+  paymentIntentIdForSession,
+  stripeId,
+} from "@/lib/billing/checkoutFulfillment";
 import { buildConfirmResponse, type UnlockConfirmResponse } from "@/lib/billing/unlockStateMachine";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { createStripeClient } from "@/lib/billing/stripeClient";
@@ -14,6 +19,9 @@ import {
   validateStripeCheckoutSession,
   type ApprovedStripeOffer,
 } from "@/lib/billing/stripeOffers";
+import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
+import { hashForLogs, logError } from "@/lib/observability/logger";
 
 const stripe = createStripeClient();
 
@@ -70,9 +78,17 @@ async function ensurePassForCheckoutSession(
   session: Stripe.Checkout.Session,
   offer: ApprovedStripeOffer
 ) {
+  const { data: block, error: blockError } = await admin
+    .from("billing_entitlement_blocks")
+    .select("checkout_session_id")
+    .eq("checkout_session_id", session.id)
+    .maybeSingle();
+  if (blockError) throw blockError;
+  if (block?.checkout_session_id) return null;
+
   const existing = await admin
     .from("passes")
-    .select("id, tier, uses_remaining, expires_at")
+    .select("id, tier, uses_remaining, expires_at, revoked_at")
     .eq("checkout_session_id", session.id)
     .limit(1)
     .maybeSingle();
@@ -103,7 +119,11 @@ async function ensurePassForCheckoutSession(
     }
   }
 
-  const { usesRemaining, expiresAt } = getTierDefaults(storedTier, { subscriptionPeriodEndUnix });
+  const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(
+    storedTier,
+    session,
+    subscriptionPeriodEndUnix,
+  );
   const passId = crypto.randomUUID();
 
   const { error: insertError } = await admin.from("passes").insert({
@@ -111,18 +131,20 @@ async function ensurePassForCheckoutSession(
     user_id: userId,
     tier: storedTier,
     uses_remaining: usesRemaining,
-    purchased_at: new Date().toISOString(),
+    purchased_at: purchasedAt,
     expires_at: expiresAt,
     price_id: offer.priceId,
     stripe_subscription_id: subscriptionId,
     checkout_session_id: session.id,
+    stripe_payment_intent_id: paymentIntentIdForSession(session),
+    stripe_customer_id: stripeId(session.customer),
     created_at: new Date().toISOString(),
   });
 
   if (insertError) {
     const fallback = await admin
       .from("passes")
-      .select("id, tier, uses_remaining, expires_at")
+      .select("id, tier, uses_remaining, expires_at, revoked_at")
       .eq("checkout_session_id", session.id)
       .limit(1)
       .maybeSingle();
@@ -161,9 +183,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const ipLimit = await rateLimitAsync(`ip:${hashForLogs(ip)}:billing-confirm`, 30, 10 * 60 * 1000);
+    if (!ipLimit.ok) {
+      return response(
+        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many confirmation attempts." }),
+        429,
+      );
+    }
+
+    const body = await readJsonWithLimit<any>(req, 16 * 1024);
     const sessionId = typeof body?.sessionId === "string" ? body.sessionId.trim() : "";
-    if (!sessionId) {
+    if (!/^cs_(?:test_|live_)?[A-Za-z0-9]{8,200}$/.test(sessionId)) {
       return response(
         buildConfirmResponse({
           state: "checkout_incomplete",
@@ -171,6 +202,18 @@ export async function POST(req: NextRequest) {
           pending: false,
         }),
         400
+      );
+    }
+
+    const sessionLimit = await rateLimitAsync(
+      `stripe-session:${hashForLogs(sessionId)}:billing-confirm`,
+      12,
+      10 * 60 * 1000,
+    );
+    if (!sessionLimit.ok) {
+      return response(
+        buildConfirmResponse({ state: "fulfillment_pending", message: "Too many confirmation attempts." }),
+        429,
       );
     }
 
@@ -222,13 +265,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (checkoutSession.payment_status !== "paid") {
+    if (!isCheckoutPaymentSettled(checkoutSession.payment_status)) {
       return response(
         buildConfirmResponse({
-          state: "not_paid",
+          state: "fulfillment_pending",
           status,
         }),
-        409
+        202
       );
     }
 
@@ -244,15 +287,47 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const { data: entitlementBlock, error: entitlementBlockError } = await supabaseAdmin
+      .from("billing_entitlement_blocks")
+      .select("reason")
+      .eq("checkout_session_id", sessionId)
+      .maybeSingle();
+    if (entitlementBlockError) {
+      return response(
+        buildConfirmResponse({
+          state: "fulfillment_pending",
+          status,
+          message: "We could not verify this purchase yet.",
+        }),
+        202,
+      );
+    }
+    if (entitlementBlock?.reason) {
+      return response(
+        buildConfirmResponse({
+          state: "checkout_incomplete",
+          status: "reversed",
+          message: "This purchase is no longer eligible for access.",
+          pending: false,
+        }),
+        409,
+      );
+    }
+
     const { data, error } = await supabaseAdmin
       .from("passes")
-      .select("id, tier, uses_remaining, expires_at")
+      .select("id, tier, uses_remaining, expires_at, revoked_at")
       .eq("checkout_session_id", sessionId)
       .limit(1)
       .maybeSingle();
 
     if (error) {
-      console.error("[billing.confirm] query failed:", error.message);
+      logError({
+        msg: "billing.confirm.query_failed",
+        outcome: "provider_error",
+        supabase: { table: "passes", op: "select", error_code: error.code },
+        err: { name: "SupabaseError", message: error.message },
+      });
       return response(
         buildConfirmResponse({
           state: "fulfillment_pending",
@@ -291,7 +366,22 @@ export async function POST(req: NextRequest) {
       200
     );
   } catch (error: any) {
-    console.error("[billing.confirm] error:", error?.message);
+    logError({
+      msg: "billing.confirm.failed",
+      outcome: "provider_error",
+      err: { name: error?.name || "BillingConfirmError", message: error?.message || "Confirmation failed" },
+    });
+    const requestStatus = Number(error?.httpStatus);
+    if (requestStatus === 400 || requestStatus === 413) {
+      return response(
+        buildConfirmResponse({
+          state: "checkout_incomplete",
+          message: requestStatus === 413 ? "Request body too large." : "Invalid request body.",
+          pending: false,
+        }),
+        requestStatus,
+      );
+    }
     return response(
       buildConfirmResponse({
         state: "fulfillment_pending",

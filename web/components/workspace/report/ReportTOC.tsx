@@ -16,6 +16,7 @@ const REPORT_TOC_ITEMS = [
 
 export function ReportTOC({ activeId }: ReportTOCProps) {
     const [visibleId, setVisibleId] = React.useState(REPORT_TOC_ITEMS[0].id as string);
+    const navRef = React.useRef<HTMLElement | null>(null);
     const buttonRefs = React.useRef<Record<string, HTMLButtonElement | null>>({});
 
     React.useEffect(() => {
@@ -48,11 +49,17 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
     const selectedId = activeId || visibleId;
 
     React.useEffect(() => {
-        buttonRefs.current[selectedId]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+        const nav = navRef.current;
+        const button = buttonRefs.current[selectedId];
+        if (!nav || !button || nav.scrollWidth <= nav.clientWidth) return;
+
+        const targetLeft = button.offsetLeft - (nav.clientWidth - button.clientWidth) / 2;
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        nav.scrollTo({ left: Math.max(0, targetLeft), behavior: reducedMotion ? "auto" : "smooth" });
     }, [selectedId]);
 
     return (
-        <nav aria-label="Resume report sections" className="mx-auto grid max-w-4xl grid-cols-2 gap-x-1 py-2 sm:flex sm:items-center sm:overflow-x-auto sm:py-1.5 [&::-webkit-scrollbar]:hidden">
+        <nav ref={navRef} aria-label="Resume report sections" className="mx-auto grid max-w-4xl grid-cols-2 gap-x-1 py-2 sm:flex sm:items-center sm:overflow-x-auto sm:py-1.5 [&::-webkit-scrollbar]:hidden">
             {REPORT_TOC_ITEMS.map((item) => {
                 const active = selectedId === item.id;
                 return (

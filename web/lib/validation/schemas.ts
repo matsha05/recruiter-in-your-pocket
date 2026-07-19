@@ -1,4 +1,10 @@
 import { z } from "zod";
+import {
+    containsExactEvidence,
+    findAlreadySatisfiedFix,
+    findUnsupportedAgencyUpgrade,
+    findUnsupportedOutcomeClaims
+} from "@/lib/llm/grounding";
 
 /**
  * Central Zod schemas for API request/response validation.
@@ -180,26 +186,42 @@ function findUngroundedSpecifics(text: string, sourceText: string) {
 }
 
 export function assertReportGrounding(report: ResumeFeedbackResponse, resumeText: string) {
-    const normalizedResume = normalizeForEvidence(resumeText);
     const missingEvidence: string[] = [];
     const inventedSpecifics: string[] = [];
 
     for (const [index, fix] of report.top_fixes.entries()) {
         const excerpt = normalizeForEvidence(fix.evidence.excerpt);
-        if (excerpt.length > 10 && !containsLiteral(normalizedResume, excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt)) {
+        if (excerpt.length > 10 && !containsExactEvidence(resumeText, fix.evidence.excerpt) && !isAcceptedAbsenceMarker(fix.evidence.excerpt)) {
             missingEvidence.push(`top_fixes[${index}].evidence.excerpt`);
+        }
+        const alreadySatisfied = findAlreadySatisfiedFix(fix.fix, fix.evidence.excerpt, resumeText);
+        if (alreadySatisfied.length > 0) {
+            inventedSpecifics.push(`top_fixes[${index}].fix contradicted by resume: ${alreadySatisfied.join(", ")}`);
         }
     }
 
     for (const [index, rewrite] of report.rewrites.entries()) {
         const original = normalizeForEvidence(rewrite.original);
-        if (original.length > 10 && !containsLiteral(normalizedResume, original)) {
+        if (original.length > 10 && !containsExactEvidence(resumeText, rewrite.original)) {
             missingEvidence.push(`rewrites[${index}].original`);
         }
         const ungroundedSpecifics = findUngroundedSpecifics(rewrite.better, resumeText);
         if (ungroundedSpecifics.length > 0) {
             inventedSpecifics.push(`rewrites[${index}].better: ${ungroundedSpecifics.join(", ")}`);
         }
+        const unsupportedAgency = findUnsupportedAgencyUpgrade(rewrite.original, rewrite.better, resumeText);
+        if (unsupportedAgency.length > 0) {
+            inventedSpecifics.push(`rewrites[${index}].better unsupported ownership: ${unsupportedAgency.join(", ")}`);
+        }
+        const unsupportedOutcomes = findUnsupportedOutcomeClaims(rewrite.original, rewrite.better, resumeText);
+        if (unsupportedOutcomes.length > 0) {
+            inventedSpecifics.push(`rewrites[${index}].better unsupported outcomes: ${unsupportedOutcomes.join(", ")}`);
+        }
+    }
+
+    const quotedGap = report.biggest_gap_example.match(/["“]([^"”]+)["”]/)?.[1];
+    if (!quotedGap || !containsExactEvidence(resumeText, quotedGap)) {
+        missingEvidence.push("biggest_gap_example.quote");
     }
 
     if (missingEvidence.length > 0 || inventedSpecifics.length > 0) {

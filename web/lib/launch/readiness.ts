@@ -5,6 +5,7 @@ import { loadPromptForMode } from "../backend/prompts";
 import { getConfiguredExtensionOrigins, launchFlags, requestedLaunchFlags } from "./flags";
 import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUrl";
 import { isRedisRestConfigured } from "../redis/config";
+import { liveEvalMeetsLaunchBar, readLiveEvalEvidence } from "./evalEvidence";
 import {
   LAUNCH_GATE_DEFINITIONS,
   REQUIRED_LAUNCH_DOCS,
@@ -383,6 +384,19 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     );
   }
 
+  const liveEvalEvidence = readLiveEvalEvidence(repoRoot);
+  const liveEvalReady = liveEvalMeetsLaunchBar(liveEvalEvidence);
+  addCheck(
+    checks,
+    "live_model_eval",
+    liveEvalReady ? "ok" : "missing",
+    liveEvalReady && liveEvalEvidence
+      ? `Live eval ${liveEvalEvidence.runId} passed the launch bar: ${liveEvalEvidence.passed}/${liveEvalEvidence.total} pass, ${liveEvalEvidence.failed} fail.`
+      : liveEvalEvidence
+        ? `Latest live eval ${liveEvalEvidence.runId} is below launch bar: ${liveEvalEvidence.passed}/${liveEvalEvidence.total} pass, ${liveEvalEvidence.warned} warn, ${liveEvalEvidence.failed} fail.`
+        : "A current live model eval is required. Dry-run fixture validation is not launch evidence."
+  );
+
   const hasRequiredDocs = REQUIRED_LAUNCH_DOCS.every((relativePath) => existsSync(path.join(repoRoot, relativePath)));
   addCheck(
     checks,
@@ -505,6 +519,9 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
     status === "fail" ? "limited" : "configured";
 
   const incidents: string[] = [];
+  if (gateStatus("quality") === "fail") {
+    incidents.push("The review studio remains limited while report quality is being calibrated against the launch bar.");
+  }
   if (gateStatus("auth") === "fail") {
     incidents.push("Account sign-in, saved history, or secure return flows may be temporarily limited.");
   }
@@ -515,41 +532,44 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
     incidents.push("Extension sync may be limited while local capture and studio review remain available.");
   }
 
+  const services: PublicStatusSnapshot["services"] = [
+    {
+      name: "Review studio",
+      status: toPublicStatus(gateStatus("quality")),
+      message: "Required review assets and configuration are present; live availability is not measured here.",
+    },
+    {
+      name: "Account and saved history",
+      status: toPublicStatus(gateStatus("auth")),
+      message: "Required account configuration is present; live availability is not measured here.",
+    },
+    {
+      name: "Billing and restore",
+      status: toPublicStatus(gateStatus("billing")),
+      message: "Required billing configuration is present when paid access is enabled.",
+    },
+    ...(launchFlags.extensionSync
+      ? [{
+          name: "Extension-assisted workflows",
+          status: toPublicStatus(gateStatus("extension")),
+          message: "Extension sync reports configured status only when the private beta is enabled.",
+        }]
+      : []),
+  ];
+  const ok = services.every((service) => service.status === "configured") && incidents.length === 0;
+
   return {
-    ok: snapshot.ok,
+    ok,
     generatedAt: snapshot.generatedAt,
     summary: {
-      status: incidents.length === 0 ? "configured" : "limited",
-      title: incidents.length === 0 ? "Core launch checks configured" : "Some features are limited",
+      status: ok ? "configured" : "limited",
+      title: ok ? "Core launch checks configured" : "Some features are limited",
       message:
-        incidents.length === 0
+        ok
           ? "This page reports configuration readiness, not real-time uptime. Contact support if a workflow is unavailable."
           : "One or more required configurations are incomplete. This page does not provide real-time uptime monitoring.",
     },
-    services: [
-      {
-        name: "Review studio",
-        status: toPublicStatus(gateStatus("quality")),
-        message: "Required review assets and configuration are present; live availability is not measured here.",
-      },
-      {
-        name: "Account and saved history",
-        status: toPublicStatus(gateStatus("auth")),
-        message: "Required account configuration is present; live availability is not measured here.",
-      },
-      {
-        name: "Billing and restore",
-        status: toPublicStatus(gateStatus("billing")),
-        message: "Required billing configuration is present when paid access is enabled.",
-      },
-      ...(launchFlags.extensionSync
-        ? [{
-            name: "Extension-assisted workflows",
-            status: toPublicStatus(gateStatus("extension")),
-            message: "Extension sync reports configured status only when the private beta is enabled.",
-          }]
-        : []),
-    ],
+    services,
     incidents,
   };
 }

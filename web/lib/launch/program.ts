@@ -232,6 +232,6 @@ export const LAUNCH_GATE_DEFINITIONS = [
     id: "quality",
     label: "PromptOps quality",
     description: "Prompt changes stay behind eval baselines and executable shipping rules.",
-    checks: ["prompt_assets", "eval_harness", "launch_runbooks"],
+    checks: ["prompt_assets", "eval_harness", "live_model_eval", "launch_runbooks"],
   },
 ];

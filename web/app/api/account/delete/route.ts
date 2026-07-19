@@ -39,26 +39,12 @@ function shouldCancelSubscription(status: Stripe.Subscription.Status) {
     return status !== "canceled" && status !== "incomplete_expired";
 }
 
-async function cancelActiveSubscriptions(email: string | null, subscriptionIds: string[]) {
+async function cancelActiveSubscriptions(subscriptionIds: string[]) {
     if (!stripe) {
         throw new Error("Stripe is not configured to cancel an active subscription");
     }
 
     const subscriptions = new Map<string, Stripe.Subscription>();
-
-    if (email) {
-        const customers = await stripe.customers.list({ email: email.toLowerCase(), limit: 10 });
-        for (const customer of customers.data) {
-            const customerSubscriptions = await stripe.subscriptions.list({
-                customer: customer.id,
-                status: "all",
-                limit: 100,
-            });
-            for (const subscription of customerSubscriptions.data) {
-                subscriptions.set(subscription.id, subscription);
-            }
-        }
-    }
 
     for (const subscriptionId of subscriptionIds) {
         if (!subscriptions.has(subscriptionId)) {
@@ -142,7 +128,7 @@ export async function DELETE(request: Request) {
         // record. Otherwise the user could lose access while Stripe keeps charging.
         const { data: localPasses, error: localPassesError } = await admin
             .from("passes")
-            .select("tier, price_id, stripe_subscription_id")
+            .select("tier, checkout_session_id, stripe_payment_intent_id, stripe_subscription_id")
             .eq("user_id", userId);
 
         if (localPassesError) {
@@ -153,11 +139,22 @@ export async function DELETE(request: Request) {
         let canceledSubscriptions = 0;
         if (monthlyPasses.length > 0) {
             const subscriptionIds = monthlyPasses
-                .map((pass: any) => pass.stripe_subscription_id || pass.price_id)
+                .map((pass: any) => pass.stripe_subscription_id)
                 .filter((value: unknown): value is string => typeof value === "string" && value.startsWith("sub_"));
 
+            if (subscriptionIds.length !== monthlyPasses.length) {
+                return NextResponse.json(
+                    {
+                        ok: false,
+                        errorCode: "BILLING_CANCELLATION_FAILED",
+                        message: "We could not verify every subscription, so your account was not deleted. Please contact support.",
+                    },
+                    { status: 502 }
+                );
+            }
+
             try {
-                canceledSubscriptions = await cancelActiveSubscriptions(user.email || null, subscriptionIds);
+                canceledSubscriptions = await cancelActiveSubscriptions([...new Set(subscriptionIds)]);
             } catch (billingError: any) {
                 logError({
                     msg: "account.deletion.subscription_cancel_failed",
@@ -178,6 +175,25 @@ export async function DELETE(request: Request) {
                     { status: 502 }
                 );
             }
+        }
+
+        const entitlementBlocks = (localPasses || [])
+            .filter((pass: any) => typeof pass.checkout_session_id === "string" && pass.checkout_session_id)
+            .map((pass: any) => ({
+                checkout_session_id: pass.checkout_session_id,
+                stripe_payment_intent_id:
+                    typeof pass.stripe_payment_intent_id === "string"
+                        ? pass.stripe_payment_intent_id
+                        : null,
+                reason: "account_deleted",
+                updated_at: new Date().toISOString(),
+            }));
+
+        if (entitlementBlocks.length > 0) {
+            const { error: blockError } = await admin
+                .from("billing_entitlement_blocks")
+                .upsert(entitlementBlocks, { onConflict: "checkout_session_id" });
+            if (blockError) throwDeletionError("billing entitlement blocks", blockError);
         }
 
         // Delete in order (foreign key dependencies)
@@ -285,7 +301,19 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "account_export_jobs", count: exportJobsCount });
 
-        // 7. Delete passes (credit records) - we keep Stripe records but delete our local pass records
+        // 7. Delete in-flight generation reservations before their parent passes.
+        // This keeps account deletion retryable even after a paid report has
+        // reserved or consumed access.
+        const { error: reservationDeleteError } = await admin.rpc(
+            "delete_generation_access_reservations_for_user",
+            { p_user_id: userId }
+        );
+        if (reservationDeleteError) {
+            throwDeletionError("generation access reservations", reservationDeleteError);
+        }
+
+        // 8. Delete passes (credit records). Stripe retains the authoritative
+        // payment record and the anonymous block ledger prevents restoration.
         // Note: This is acceptable because Stripe has the authoritative payment record
         const { error: passesError, count: passesCount } = await admin
             .from("passes")
@@ -303,7 +331,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "passes", count: passesCount });
 
-        // 8. Delete cases (if any)
+        // 9. Delete cases (if any)
         const { error: casesError, count: casesCount } = await admin
             .from("cases")
             .delete({ count: "exact" })
@@ -314,7 +342,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "cases", count: casesCount });
 
-        // 9. Delete the user from auth (this is the final step)
+        // 10. Delete the user from auth (this is the final step)
         // Note: This requires admin privileges
         const { error: authDeleteError } = await admin.auth.admin.deleteUser(userId);
 

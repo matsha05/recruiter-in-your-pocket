@@ -10,7 +10,7 @@ Run this against a production-like preview in a clean browser profile. Use Strip
 
 - Record the release identifier and preview URL.
 - Confirm the extension, analytics, error replay, guest save, public share, and paid eval flags are off.
-- Confirm the ordered migration set has replayed cleanly and the preview database is current through migration 014.
+- Confirm the ordered migration set has replayed cleanly and the preview database is current through migration 016.
 - Confirm the shared hosted rate limiter is configured.
 - Open a desktop browser and a mobile viewport.
 
@@ -54,7 +54,7 @@ Pass when account state is predictable and no report appears under the wrong ide
 - Confirm access unlocks once, even if the webhook is replayed three times.
 - Retry the webhook after a simulated transient failure.
 - Confirm billing restore and the customer portal work.
-- Cancel in Stripe test mode and confirm the product reflects the expected access window.
+- Refund the test purchase and confirm access is revoked without later restore or webhook replay resurrecting it.
 
 Pass when billing is idempotent, recoverable, and understandable.
 
@@ -62,7 +62,8 @@ Pass when billing is idempotent, recoverable, and understandable.
 
 - Export the account data and inspect the contents.
 - Delete the same account.
-- Confirm reports, billing linkage, and other user-owned records are removed or anonymized as promised.
+- Confirm reports, billing linkage, generation reservations, and other user-owned records are removed or anonymized as promised.
+- Confirm an opaque reversal or deletion guard can remain without retaining the deleted user's product identity.
 - Confirm a later sign-in does not resurrect deleted product data.
 
 Pass when the trust promise survives a real destructive workflow.

@@ -53,8 +53,16 @@ test.describe("launch red-team journeys", () => {
     const statusResponse = await request.get("/api/status");
     expect(statusResponse.ok()).toBeTruthy();
     const statusJson = await statusResponse.json();
-    expect(statusJson.ok).toBe(true);
     expect(Array.isArray(statusJson.services)).toBe(true);
+    expect(Array.isArray(statusJson.incidents)).toBe(true);
+
+    const hasLimitedService = statusJson.services.some(
+      (service: { status: string }) => service.status === "limited"
+    );
+    const expectedOk = !hasLimitedService && statusJson.incidents.length === 0;
+
+    expect(statusJson.ok).toBe(expectedOk);
+    expect(statusJson.summary.status).toBe(expectedOk ? "configured" : "limited");
 
     const securityTxt = await request.get("/.well-known/security.txt");
     expect(securityTxt.ok()).toBeTruthy();

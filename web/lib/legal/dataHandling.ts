@@ -1,5 +1,5 @@
-export const LEGAL_LAST_UPDATED = "July 12, 2026";
-export const PRIVACY_LAST_UPDATED = "July 12, 2026";
+export const LEGAL_LAST_UPDATED = "July 19, 2026";
+export const PRIVACY_LAST_UPDATED = "July 19, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -30,13 +30,6 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
     retention: "Stored until you replace it, remove it, or delete your account. Includes raw resume text for matching plus derived skills, seniority signals, embeddings, hash, and preview.",
     userControl: "Replace or remove it in Settings > Matching, or delete your account.",
     processor: "Supabase, OpenAI (embeddings)"
-  },
-  {
-    dataType: "LinkedIn profile input",
-    purpose: "Generate profile feedback and recommendations for your LinkedIn.",
-    retention: "Saved in your report history when you're signed in.",
-    userControl: "Delete individual reports in History, or delete your account in Settings.",
-    processor: "OpenAI, Supabase"
   },
   {
     dataType: "Captured jobs and job descriptions",
@@ -76,9 +69,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Billing events and invoices",
     purpose: "Charge processing, receipts, purchase restoration, refunds, and dispute handling.",
-    retention: "Managed under Stripe billing retention policies.",
-    userControl: "View receipts and restore purchases from Billing settings.",
-    processor: "Stripe"
+    retention: "Stripe retains authoritative billing records under its policies. RIYP keeps limited receipt and entitlement metadata for reconciliation, security, and reversal handling.",
+    userControl: "View receipts and restore purchases from Billing settings. Account deletion removes user-linked app billing records; opaque reversal identifiers may remain to prevent access from being re-granted.",
+    processor: "Stripe, Supabase"
   }
 ];
 

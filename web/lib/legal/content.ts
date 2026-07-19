@@ -134,7 +134,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "This policy covers resume and LinkedIn inputs, account info, usage data, extension capture data, background job data, analytics metadata, and billing events processed by the web app.",
+              value: "This policy covers resume inputs, account info, usage data, extension capture data, background job data, analytics metadata, and billing events processed by the web app.",
             },
           ],
         ],
@@ -196,7 +196,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "By using Recruiter in Your Pocket, you agree to these terms. The service provides resume and LinkedIn reports and guidance to help you improve, but it doesn't guarantee hiring outcomes.",
+              value: "By using Recruiter in Your Pocket, you agree to these terms. The service provides resume reports and guidance to help you improve, but it doesn't guarantee hiring outcomes.",
             },
           ],
         ],

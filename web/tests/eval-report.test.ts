@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { generateMarkdownReport } from "../lib/evals/report";
 import type { EvalRunOutput } from "../lib/evals/types";
+import { liveEvalMeetsLaunchBar, parseLiveEvalEvidence } from "../lib/launch/evalEvidence";
 
 function buildRun(executionMode: "dry_run" | "live"): EvalRunOutput {
   return {
@@ -44,5 +45,28 @@ const liveReport = generateMarkdownReport(buildRun("live"));
 assert.match(liveReport, /^# PromptOps Live Eval Report/m);
 assert.match(liveReport, /Live model evaluation/);
 assert.match(liveReport, /fixture_1 \(score: 82\)/);
+
+const passingEvidence = parseLiveEvalEvidence(generateMarkdownReport({
+  ...buildRun("live"),
+  summary: { total: 8, passed: 8, warned: 0, failed: 0 },
+  results: Array.from({ length: 8 }, (_, index) => ({
+    fixture_id: `fixture_${index + 1}`,
+    status: "PASS" as const,
+    errors: [],
+    warnings: [],
+    actual_score: 82,
+    expected_range: [75, 90] as [number, number],
+  })),
+}));
+assert.equal(passingEvidence?.total, 8);
+assert.equal(liveEvalMeetsLaunchBar(passingEvidence), true);
+
+const failingEvidence = parseLiveEvalEvidence(generateMarkdownReport({
+  ...buildRun("live"),
+  summary: { total: 8, passed: 7, warned: 0, failed: 1 },
+  results: [],
+}));
+assert.equal(liveEvalMeetsLaunchBar(failingEvidence), false);
+assert.equal(parseLiveEvalEvidence(dryRunReport), null);
 
 console.log("eval-report tests passed");

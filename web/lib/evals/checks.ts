@@ -9,6 +9,12 @@ import type {
     Fixture,
     BaselineFixture
 } from "./types";
+import {
+    containsExactEvidence,
+    findAlreadySatisfiedFix,
+    findUnsupportedAgencyUpgrade,
+    findUnsupportedOutcomeClaims
+} from "../llm/grounding";
 
 import {
     EVIDENCE_MAX_LENGTH as MAX_LEN,
@@ -282,7 +288,6 @@ function checkEvidence(
     resumeText: string
 ): CheckResult[] {
     const results: CheckResult[] = [];
-    const normResume = normalize(resumeText);
 
     let hasAnyEvidence = false;
 
@@ -324,12 +329,22 @@ function checkEvidence(
 
         // Normalized substring check
         const normExcerpt = normalize(evidence.excerpt);
-        if (normExcerpt.length > 10 && !containsLiteral(normResume, normExcerpt) && !isAcceptedAbsenceMarker(evidence.excerpt)) {
+        if (normExcerpt.length > 10 && !containsExactEvidence(resumeText, evidence.excerpt) && !isAcceptedAbsenceMarker(evidence.excerpt)) {
             results.push({
                 passed: false,
                 code: "E_EVIDENCE_NOT_VERBATIM",
                 message: `Fix ${i + 1} evidence must be a verbatim resume excerpt`,
                 details: { fix_index: i, excerpt_preview: evidence.excerpt.slice(0, 50) }
+            });
+        }
+
+        const alreadySatisfied = findAlreadySatisfiedFix(fix.fix, evidence.excerpt, resumeText);
+        if (alreadySatisfied.length > 0) {
+            results.push({
+                passed: false,
+                code: "E_FIX_ALREADY_SATISFIED",
+                message: `Fix ${i + 1} contradicts the resume: ${alreadySatisfied.join(", ")}`,
+                details: { fix_index: i }
             });
         }
     }
@@ -360,11 +375,11 @@ function checkSummaryStructure(summary: string): CheckResult {
 
     const sentences = summary.split(/[.!?]+/).filter(s => s.trim().length > 0);
 
-    if (sentences.length < 2 || sentences.length > 5) {
+    if (sentences.length < 3 || sentences.length > 5) {
         return {
             passed: false,
             code: "W_SUMMARY_STRUCTURE",
-            message: `Summary has ${sentences.length} sentences (expected 2-3)`
+            message: `Summary has ${sentences.length} sentences (expected 3-5)`
         };
     }
 
@@ -372,10 +387,10 @@ function checkSummaryStructure(summary: string): CheckResult {
     const hasRoleSignal = /\b(read as|come across as|present as|appear as|senior|mid[-\s]?level|entry|lead|manager|director|engineer|pm|designer)\b/i.test(summary);
 
     // Check for strength indicator
-    const hasStrength = /\b(clear|strong|solid|show|demonstrate|visible|evident|effective)\b/i.test(summary);
+    const hasStrength = /\b(capable|credible|clear|strong|show|demonstrate|visible|evident|ownership|impact|growth|leadership|range|foundation|focus(?:es|ed)? on|experience (?:spans|includes))\b/i.test(summary);
 
     // Check for gap indicator
-    const hasGap = /\b(harder to see|missing|unclear|vague|could|needs|lacks|gap|thin)\b/i.test(summary);
+    const hasGap = /\b(harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|missing|unclear|vague|could|needs|lacks|gap|thin|holds? (?:it|this) back)\b/i.test(summary);
 
     if (!hasRoleSignal || !hasStrength || !hasGap) {
         const missing: string[] = [];
@@ -483,14 +498,13 @@ function checkRewriteGrounding(
     resumeText: string
 ): CheckResult[] {
     const results: CheckResult[] = [];
-    const normResume = normalize(resumeText);
 
     for (let i = 0; i < rewrites.length; i++) {
         const rewrite = rewrites[i];
         const original = rewrite.original || "";
         const normOriginal = normalize(original);
 
-        if (normOriginal.length > 10 && !containsLiteral(normResume, normOriginal)) {
+        if (normOriginal.length > 10 && !containsExactEvidence(resumeText, original)) {
             results.push({
                 passed: false,
                 code: "E_REWRITE_ORIGINAL_NOT_VERBATIM",
@@ -509,6 +523,27 @@ function checkRewriteGrounding(
                 details: { rewrite_index: i, better_preview: better.slice(0, 80), ungrounded_specifics: ungroundedSpecifics }
             });
         }
+
+        const unsupportedAgency = findUnsupportedAgencyUpgrade(original, better, resumeText);
+        if (unsupportedAgency.length > 0) {
+            results.push({
+                passed: false,
+                code: "E_REWRITE_OWNERSHIP_INFLATION",
+                message: `Rewrite ${i + 1} upgrades unsupported ownership: ${unsupportedAgency.join(", ")}`,
+                details: { rewrite_index: i, original_preview: original.slice(0, 80), unsupported_agency: unsupportedAgency }
+            });
+        }
+
+
+        const unsupportedOutcomes = findUnsupportedOutcomeClaims(original, better, resumeText);
+        if (unsupportedOutcomes.length > 0) {
+            results.push({
+                passed: false,
+                code: "E_REWRITE_OUTCOME_INFLATION",
+                message: `Rewrite ${i + 1} adds unsupported outcomes: ${unsupportedOutcomes.join(", ")}`,
+                details: { rewrite_index: i, original_preview: original.slice(0, 80), unsupported_outcomes: unsupportedOutcomes }
+            });
+        }
     }
 
     if (results.length === 0) {
@@ -516,6 +551,18 @@ function checkRewriteGrounding(
     }
 
     return results;
+}
+
+function checkBiggestGapEvidence(value: string, resumeText: string): CheckResult {
+    const quote = value.match(/["“]([^"”]+)["”]/)?.[1];
+    if (!quote || !containsExactEvidence(resumeText, quote)) {
+        return {
+            passed: false,
+            code: "E_BIGGEST_GAP_NOT_VERBATIM",
+            message: "biggest_gap_example must contain an exact quote from the resume"
+        };
+    }
+    return { passed: true };
 }
 
 // ============================================
@@ -597,6 +644,10 @@ export function runAllChecks(input: AllChecksInput): AllChecksResult {
         for (const r of checkRewriteGrounding(obj.rewrites as any[], input.resumeText)) {
             addResult(r);
         }
+    }
+
+    if (typeof obj.biggest_gap_example === "string") {
+        addResult(checkBiggestGapEvidence(obj.biggest_gap_example, input.resumeText));
     }
 
     // Summary structure

@@ -3,10 +3,15 @@ import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
-  getTierDefaults,
   isPassActive,
   toStoredPassTier
 } from "@/lib/billing/entitlements";
+import {
+  getTierDefaultsForCheckout,
+  isCheckoutPaymentSettled,
+  paymentIntentIdForSession,
+  stripeId,
+} from "@/lib/billing/checkoutFulfillment";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
 import { createStripeClient } from "@/lib/billing/stripeClient";
@@ -15,6 +20,7 @@ import {
   getLaunchStripeOffer,
   validateStripeCheckoutSession,
 } from "@/lib/billing/stripeOffers";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 
 const stripe = createStripeClient();
 
@@ -57,6 +63,20 @@ export async function POST() {
       );
     }
 
+    const restoreLimit = await rateLimitAsync(
+      `user:${hashForLogs(user.id)}:billing-restore`,
+      3,
+      60 * 60 * 1000,
+    );
+    if (!restoreLimit.ok) {
+      const response = NextResponse.json(
+        { ok: false, restored: 0, message: "Too many restore attempts. Try again later." },
+        { status: 429 },
+      );
+      response.headers.set("retry-after", String(Math.ceil(restoreLimit.resetMs / 1000)));
+      return response;
+    }
+
     const admin = createSupabaseAdminClient();
     if (!admin) {
       return NextResponse.json(
@@ -81,7 +101,7 @@ export async function POST() {
 
     const { data: existingForUser, error: existingError } = await admin
       .from("passes")
-      .select("id, tier, uses_remaining, expires_at")
+      .select("id, tier, uses_remaining, expires_at, revoked_at")
       .eq("user_id", user.id);
 
     if (existingError) {
@@ -137,6 +157,21 @@ export async function POST() {
       });
     }
 
+
+    const { data: blockedSessions, error: blockedSessionsError } = await admin
+      .from("billing_entitlement_blocks")
+      .select("checkout_session_id")
+      .in("checkout_session_id", sessionIds);
+    if (blockedSessionsError) {
+      return NextResponse.json(
+        { ok: false, restored: 0, message: "Failed to verify purchase eligibility." },
+        { status: 500 },
+      );
+    }
+    const blockedSessionIds = new Set(
+      (blockedSessions || []).map((row: any) => row.checkout_session_id),
+    );
+
     const { data: existingPasses } = await admin
       .from("passes")
       .select("checkout_session_id")
@@ -151,6 +186,7 @@ export async function POST() {
     const inserts: any[] = [];
     for (const sessionId of sessionIds) {
       if (existingSessionIds.has(sessionId)) continue;
+      if (blockedSessionIds.has(sessionId)) continue;
 
       const sessionSummary = sessionsById.get(sessionId);
       if (!sessionSummary) continue;
@@ -170,7 +206,7 @@ export async function POST() {
         continue;
       }
 
-      if (session.payment_status !== "paid") continue;
+      if (!isCheckoutPaymentSettled(session.payment_status)) continue;
 
       const validation = validateStripeCheckoutSession(session);
       if (!validation.ok) {
@@ -208,17 +244,44 @@ export async function POST() {
 
       if (storedTier === "monthly" && session.mode !== "subscription") continue;
 
-      const { usesRemaining, expiresAt } = getTierDefaults(storedTier, { subscriptionPeriodEndUnix });
+      const paymentIntentId = paymentIntentIdForSession(session);
+      if (paymentIntentId) {
+        try {
+          const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId, {
+            expand: ["latest_charge"],
+          });
+          const latestCharge = paymentIntent.latest_charge;
+          if (
+            latestCharge &&
+            typeof latestCharge !== "string" &&
+            (latestCharge.refunded || latestCharge.disputed)
+          ) {
+            continue;
+          }
+        } catch {
+          // Restoration must fail closed when reversal state cannot be checked.
+          continue;
+        }
+      }
+
+      const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(
+        storedTier,
+        session,
+        subscriptionPeriodEndUnix,
+      );
+      if (Date.parse(expiresAt) <= Date.now()) continue;
       inserts.push({
         id: crypto.randomUUID(),
         user_id: user.id,
         tier: storedTier,
         uses_remaining: usesRemaining,
-        purchased_at: new Date().toISOString(),
+        purchased_at: purchasedAt,
         expires_at: expiresAt,
         price_id: validation.offer.priceId,
         stripe_subscription_id: subscriptionId,
         checkout_session_id: sessionId,
+        stripe_payment_intent_id: paymentIntentId,
+        stripe_customer_id: stripeId(session.customer),
         created_at: new Date().toISOString()
       });
     }
@@ -246,7 +309,7 @@ export async function POST() {
 
     const { data: updatedPasses } = await admin
       .from("passes")
-      .select("id, tier, uses_remaining, expires_at")
+      .select("id, tier, uses_remaining, expires_at, revoked_at")
       .eq("user_id", user.id);
     const activeAfter = (updatedPasses || []).filter((pass: any) => isPassActive(pass)).length;
 

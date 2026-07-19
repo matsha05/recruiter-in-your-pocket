@@ -18,6 +18,7 @@ import type {
 import { runAllChecks } from "./checks";
 import { generateMarkdownReport, printSummary } from "./report";
 import { runJudge, type JudgeResult } from "./judge";
+import { RESUME_REPORT_RESPONSE_FORMAT } from "../llm/response-format";
 
 // ============================================
 // COST ESTIMATION
@@ -66,6 +67,13 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
             f.id.includes(options.fixtureFilter!) ||
             f.tags.some(t => t.includes(options.fixtureFilter!))
         );
+    }
+
+    if (options.limit !== undefined) {
+        if (!Number.isInteger(options.limit) || options.limit <= 0) {
+            throw new Error("--limit must be a positive integer.");
+        }
+        fixtures = fixtures.slice(0, options.limit);
     }
 
     console.log(`   Running ${fixtures.length} fixtures for tier "${options.tier}"`);
@@ -377,7 +385,7 @@ Include contract_version: "v2" in your response.
         body: JSON.stringify({
             model: OPENAI_MODEL,
             temperature: 0,
-            response_format: { type: "json_object" },
+            response_format: RESUME_REPORT_RESPONSE_FORMAT,
             messages
         })
     });
@@ -388,7 +396,14 @@ Include contract_version: "v2" in your response.
     }
 
     const data = await res.json();
-    const content = data?.choices?.[0]?.message?.content;
+    const choice = data?.choices?.[0];
+    if (choice?.message?.refusal) {
+        throw new Error(`OpenAI refused the report: ${choice.message.refusal}`);
+    }
+    if (choice?.finish_reason !== "stop") {
+        throw new Error(`OpenAI report ended with finish_reason=${choice?.finish_reason || "missing"}`);
+    }
+    const content = choice?.message?.content;
 
     if (!content) {
         throw new Error("No content in OpenAI response");

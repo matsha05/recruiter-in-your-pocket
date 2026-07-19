@@ -29,6 +29,7 @@ export async function createEmbedding(text: string): Promise<EmbeddingResult | n
                 model: "text-embedding-3-small",
                 input: text.slice(0, 8000), // Limit input
             }),
+            signal: AbortSignal.timeout(10_000),
         });
 
         if (!response.ok) {

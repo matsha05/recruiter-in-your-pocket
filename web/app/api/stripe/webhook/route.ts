@@ -5,9 +5,14 @@ import { logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { readTextWithLimit } from "@/lib/security/requestBody";
 import {
-    getTierDefaults,
     toStoredPassTier,
 } from "@/lib/billing/entitlements";
+import {
+    getTierDefaultsForCheckout,
+    isCheckoutPaymentSettled,
+    paymentIntentIdForSession,
+    stripeId,
+} from "@/lib/billing/checkoutFulfillment";
 import { createStripeClient } from "@/lib/billing/stripeClient";
 import {
     STRIPE_CHECKOUT_SESSION_EXPAND,
@@ -287,6 +292,19 @@ async function upsertPassForCheckout(
     context: UserResolutionContext
 ): Promise<void> {
     const storedTier = toStoredPassTier(offer.tier);
+    const paymentIntentId = paymentIntentIdForSession(session);
+    const customerId = stripeId(session.customer);
+
+    const { data: entitlementBlock, error: entitlementBlockError } = await admin
+        .from("billing_entitlement_blocks")
+        .select("checkout_session_id, reason")
+        .eq("checkout_session_id", session.id)
+        .maybeSingle();
+
+    if (entitlementBlockError) throw entitlementBlockError;
+    if (entitlementBlock?.checkout_session_id) {
+        throw new Error(`Checkout entitlement is blocked: ${entitlementBlock.reason || "reversed"}`);
+    }
 
     let subscriptionId: string | null = null;
     let subscriptionPeriodEndUnix: number | null = null;
@@ -310,9 +328,11 @@ async function upsertPassForCheckout(
         }
     }
 
-    const { usesRemaining, expiresAt } = getTierDefaults(storedTier, {
-        subscriptionPeriodEndUnix
-    });
+    const { usesRemaining, expiresAt, purchasedAt } = getTierDefaultsForCheckout(
+        storedTier,
+        session,
+        subscriptionPeriodEndUnix,
+    );
 
     // 1) Idempotency by checkout session id.
     const { data: existingBySession } = await admin
@@ -355,7 +375,11 @@ async function upsertPassForCheckout(
                     expires_at: expiresAt,
                     price_id: offer.priceId,
                     stripe_subscription_id: subscriptionId,
-                    checkout_session_id: session.id
+                    checkout_session_id: session.id,
+                    stripe_payment_intent_id: paymentIntentId,
+                    stripe_customer_id: customerId,
+                    revoked_at: null,
+                    revocation_reason: null
                 })
                 .eq("id", existingSubPass.id);
 
@@ -372,11 +396,13 @@ async function upsertPassForCheckout(
             user_id: userId,
             tier: storedTier,
             uses_remaining: usesRemaining,
-            purchased_at: new Date().toISOString(),
+            purchased_at: purchasedAt,
             expires_at: expiresAt,
             price_id: offer.priceId,
             stripe_subscription_id: subscriptionId,
             checkout_session_id: session.id,
+            stripe_payment_intent_id: paymentIntentId,
+            stripe_customer_id: customerId,
             created_at: new Date().toISOString()
         });
 
@@ -392,6 +418,102 @@ async function upsertPassForCheckout(
         user_id: userId,
         stripe: { session_id: session.id }
     });
+}
+
+async function linkStripeCustomerToUser(
+    session: Stripe.Checkout.Session,
+    userId: string,
+    context: UserResolutionContext,
+) {
+    const customerId = stripeId(session.customer);
+    if (!customerId) return;
+
+    try {
+        await stripe!.customers.update(customerId, {
+            metadata: {
+                riyp_app: "recruiter-in-your-pocket",
+                riyp_user_id: userId,
+            },
+        });
+    } catch (err: any) {
+        logWarn({
+            msg: "stripe.webhook.customer_link_failed",
+            request_id: context.request_id,
+            route: context.route,
+            method: context.method,
+            path: context.path,
+            outcome: "provider_error",
+            stripe: { customer_id: customerId },
+            err: { name: err?.name || "StripeError", message: err?.message || "Could not link customer" },
+        });
+    }
+}
+
+async function paymentIntentIdForReversal(object: Record<string, unknown>): Promise<string | null> {
+    const direct = stripeId(object.payment_intent);
+    if (direct) return direct;
+
+    const chargeId = stripeId(object.charge) || (object.object === "charge" ? stripeId(object.id) : null);
+    if (!chargeId) return null;
+
+    const charge = await stripe!.charges.retrieve(chargeId);
+    return stripeId(charge.payment_intent);
+}
+
+async function revokeEntitlementForReversal(
+    admin: any,
+    object: Record<string, unknown>,
+    reason: "refund" | "dispute",
+) {
+    const paymentIntentId = await paymentIntentIdForReversal(object);
+    if (!paymentIntentId) throw new Error("Reversal did not identify a payment intent");
+
+    const { data: localPasses, error: localPassesError } = await admin
+        .from("passes")
+        .select("checkout_session_id")
+        .eq("stripe_payment_intent_id", paymentIntentId);
+    if (localPassesError) throw localPassesError;
+
+    const sessionIds = new Set<string>(
+        (localPasses || [])
+            .map((pass: any) => pass.checkout_session_id)
+            .filter((id: unknown): id is string => typeof id === "string" && id.startsWith("cs_")),
+    );
+
+    const sessions = await stripe!.checkout.sessions.list({ payment_intent: paymentIntentId, limit: 100 });
+    for (const session of sessions.data) sessionIds.add(session.id);
+    if (sessionIds.size === 0) throw new Error("Reversal did not identify a checkout session");
+
+    const now = new Date().toISOString();
+    const blockRows = [...sessionIds].map(checkoutSessionId => ({
+        checkout_session_id: checkoutSessionId,
+        stripe_payment_intent_id: paymentIntentId,
+        reason,
+        updated_at: now,
+    }));
+    const { error: blockError } = await admin
+        .from("billing_entitlement_blocks")
+        .upsert(blockRows, { onConflict: "checkout_session_id" });
+    if (blockError) throw blockError;
+
+    const revocationPatch = {
+        uses_remaining: 0,
+        expires_at: now,
+        revoked_at: now,
+        revocation_reason: reason,
+        updated_at: now,
+    };
+    const byIntent = await admin
+        .from("passes")
+        .update(revocationPatch)
+        .eq("stripe_payment_intent_id", paymentIntentId);
+    if (byIntent.error) throw byIntent.error;
+
+    const bySession = await admin
+        .from("passes")
+        .update(revocationPatch)
+        .in("checkout_session_id", [...sessionIds]);
+    if (bySession.error) throw bySession.error;
 }
 
 async function syncSubscriptionStatus(
@@ -591,7 +713,7 @@ export async function POST(request: NextRequest) {
                 throw new Error(`Checkout session validation failed: ${validation.reason}`);
             }
 
-            if (session.payment_status !== "paid") {
+            if (!isCheckoutPaymentSettled(session.payment_status)) {
                 logInfo({
                     msg: "stripe.webhook.checkout_not_paid",
                     request_id,
@@ -635,6 +757,7 @@ export async function POST(request: NextRequest) {
                     validation.offer,
                     context
                 );
+                await linkStripeCustomerToUser(session, userId, context);
 
                 // Invoice events can arrive before checkout.session.completed.
                 // At that point the checkout email may not have an RIYP user yet,
@@ -659,6 +782,22 @@ export async function POST(request: NextRequest) {
                 outcome: "provider_error",
                 stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
             });
+        }
+
+        if (event.type === "refund.created" || event.type === "charge.refunded") {
+            await revokeEntitlementForReversal(
+                supabaseAdmin,
+                asStripeObjectRecord(event.data.object),
+                "refund",
+            );
+        }
+
+        if (event.type === "charge.dispute.created") {
+            await revokeEntitlementForReversal(
+                supabaseAdmin,
+                asStripeObjectRecord(event.data.object),
+                "dispute",
+            );
         }
 
         if (event.type === "customer.subscription.updated" || event.type === "customer.subscription.deleted") {

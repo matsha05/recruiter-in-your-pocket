@@ -188,7 +188,8 @@ export function validateResumeModelPayload(obj: any, resumeText?: string) {
       throw createAppError(
         "OPENAI_RESPONSE_SHAPE_INVALID",
         `The model response failed the evidence grounding contract at ${issue}.`,
-        502
+        502,
+        { grounding }
       );
     }
   }

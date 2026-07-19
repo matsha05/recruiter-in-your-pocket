@@ -1,7 +1,7 @@
 # PromptOps Shipping Gate
 
-**Last Updated:** 2026-03-07  
-**Status:** ENFORCED
+**Last Updated:** 2026-07-19
+**Status:** ENFORCED, CURRENTLY NO-GO
 
 ---
 
@@ -88,6 +88,16 @@ Before any live launch decision, and only after model spend is approved:
 1. Run `RIYP_ALLOW_PAID_EVALS=true npm run launch:gate:strict`
 2. Confirm the strict gate ran live smoke and golden evals
 3. Treat any prompt FAIL as an automatic no-go
+
+### Latest live evidence
+
+- Run: `eval_1784470075604`
+- Model: `gpt-4o-mini`
+- Corpus: 8 stored synthetic golden resumes
+- Result: 0 PASS, 1 WARN, 7 FAIL
+- Decision: public paid launch blocked
+
+The scoring bands were mostly calibrated, but the reports still paraphrased evidence, requested facts that were already present, and introduced unsupported causal outcomes. The runtime now withholds invalid drafts, attempts one bounded repair, and restores the report credit if the replacement still fails. That recovery path is not a substitute for rerunning the live gate on the intended launch model.
 
 ---
 

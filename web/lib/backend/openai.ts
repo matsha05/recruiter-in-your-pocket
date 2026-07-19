@@ -1,3 +1,5 @@
+import { getOpenAIResponseFormat } from "@/lib/llm/response-format";
+
 type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
 
 export type AppError = Error & {
@@ -227,7 +229,7 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
           body: JSON.stringify({
             model: OPENAI_MODEL,
             temperature: mode === "resume_ideas" ? 0.12 : 0,
-            response_format: { type: "json_object" },
+            response_format: getOpenAIResponseFormat(mode),
             messages
           })
         },
@@ -254,8 +256,30 @@ export async function callOpenAIChat(messages: Array<{ role: "system" | "user" |
       }
 
       try {
-        return JSON.parse(textBody);
+        const data = JSON.parse(textBody);
+        const choice = data?.choices?.[0];
+
+        if (choice?.message?.refusal) {
+          throw createAppError(
+            "OPENAI_RESPONSE_REFUSAL",
+            "The model could not complete this report safely.",
+            502,
+            choice.message.refusal
+          );
+        }
+
+        if (choice?.finish_reason !== "stop") {
+          throw createAppError(
+            "OPENAI_RESPONSE_INCOMPLETE",
+            "The model stopped before the report was complete.",
+            502,
+            choice?.finish_reason || "missing_finish_reason"
+          );
+        }
+
+        return data;
       } catch (parseErr: any) {
+        if (parseErr?.code) throw parseErr;
         throw createAppError("OPENAI_RESPONSE_NOT_JSON", "The model responded in an unreadable format.", 502, {
           parseError: parseErr?.message,
           body: textBody
@@ -329,7 +353,7 @@ export function callOpenAIChatStreamingWithUsage(
           body: JSON.stringify({
             model: OPENAI_MODEL,
             temperature: mode === "resume_ideas" ? 0.12 : 0,
-            response_format: { type: "json_object" },
+            response_format: getOpenAIResponseFormat(mode),
             stream_options: { include_usage: true },
             stream: true,
             messages
@@ -354,6 +378,7 @@ export function callOpenAIChatStreamingWithUsage(
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
+        let sawStop = false;
 
         while (true) {
           const { done, value } = await reader.read();
@@ -370,7 +395,25 @@ export function callOpenAIChatStreamingWithUsage(
 
             try {
               const json = JSON.parse(trimmed.slice(6));
-              const content = json.choices?.[0]?.delta?.content;
+              const choice = json.choices?.[0];
+              if (choice?.delta?.refusal) {
+                throw createAppError(
+                  "OPENAI_RESPONSE_REFUSAL",
+                  "The model could not complete this report safely.",
+                  502,
+                  choice.delta.refusal
+                );
+              }
+              if (choice?.finish_reason && choice.finish_reason !== "stop") {
+                throw createAppError(
+                  "OPENAI_RESPONSE_INCOMPLETE",
+                  "The model stopped before the report was complete.",
+                  502,
+                  choice.finish_reason
+                );
+              }
+              if (choice?.finish_reason === "stop") sawStop = true;
+              const content = choice?.delta?.content;
               if (content) yield content;
               if (json.usage?.prompt_tokens !== undefined || json.usage?.completion_tokens !== undefined) {
                 const prompt = Number(json.usage?.prompt_tokens);
@@ -379,10 +422,20 @@ export function callOpenAIChatStreamingWithUsage(
                   usage = { prompt_tokens: prompt, completion_tokens: completion };
                 }
               }
-            } catch {
-              // Ignore malformed JSON chunks
+            } catch (err: any) {
+              if (err?.code) throw err;
+              // Ignore malformed transport chunks; final payload validation still runs.
             }
           }
+        }
+
+        if (!sawStop) {
+          throw createAppError(
+            "OPENAI_RESPONSE_INCOMPLETE",
+            "The model stream ended before the report was complete.",
+            502,
+            "missing_finish_reason"
+          );
         }
       } finally {
         clearTimeout(timer);

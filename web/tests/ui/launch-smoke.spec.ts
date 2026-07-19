@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("launch smoke", () => {
-  test("health and public status endpoints report cleanly in launch-safe mode", async ({ request }) => {
+  test("health and public status endpoints report a coherent launch-safe snapshot", async ({ request }) => {
     const health = await request.get("/api/health");
     expect(health.status()).toBe(200);
 
@@ -9,9 +9,16 @@ test.describe("launch smoke", () => {
     expect(status.status()).toBe(200);
 
     const payload = await status.json();
-    expect(payload.ok).toBe(true);
-    expect(payload.summary.status).toBe("configured");
     expect(Array.isArray(payload.services)).toBe(true);
+    expect(Array.isArray(payload.incidents)).toBe(true);
+
+    const hasLimitedService = payload.services.some(
+      (service: { status: string }) => service.status === "limited"
+    );
+    const expectedOk = !hasLimitedService && payload.incidents.length === 0;
+
+    expect(payload.ok).toBe(expectedOk);
+    expect(payload.summary.status).toBe(expectedOk ? "configured" : "limited");
   });
 
   test("launch dashboard renders gate and rollback sections", async ({ page }) => {

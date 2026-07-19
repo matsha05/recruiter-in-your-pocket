@@ -62,6 +62,17 @@ function normalizeUnlockSection(input: unknown): UnlockSection | null {
     return allowed.includes(trimmed as UnlockSection) ? (trimmed as UnlockSection) : null;
 }
 
+async function findReusableCustomerId(email: string, userId: string): Promise<string | null> {
+    if (!stripe) return null;
+    const customers = await stripe.customers.list({ email: email.toLowerCase(), limit: 10 });
+    const matching = customers.data.find((customer) => (
+        !customer.deleted &&
+        customer.metadata?.riyp_app === "recruiter-in-your-pocket" &&
+        customer.metadata?.riyp_user_id === userId
+    ));
+    return matching?.id || null;
+}
+
 export async function POST(request: Request) {
     const request_id = getRequestId(request);
     const { method, path } = routeLabel(request);
@@ -206,6 +217,9 @@ export async function POST(request: Request) {
         const storedTier = toStoredPassTier(requestedTier);
 
         const baseUrl = getAppUrlForRequest(request);
+        const reusableCustomerId = userId && checkoutEmail
+            ? await findReusableCustomerId(checkoutEmail, userId)
+            : null;
 
         const mode = "payment" as const;
         const successUrl = new URL(`${baseUrl}/purchase/confirmed`);
@@ -231,8 +245,12 @@ export async function POST(request: Request) {
                         quantity: 1
                     }
                 ],
-                ...(checkoutEmail ? { customer_email: checkoutEmail } : {}),
-                customer_creation: "always",
+                ...(reusableCustomerId
+                    ? { customer: reusableCustomerId }
+                    : {
+                        ...(checkoutEmail ? { customer_email: checkoutEmail } : {}),
+                        customer_creation: "always" as const,
+                    }),
                 billing_address_collection: "required",
                 automatic_tax: { enabled: true },
                 success_url: stripeSuccessUrl,

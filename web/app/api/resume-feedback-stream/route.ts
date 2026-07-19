@@ -9,7 +9,11 @@ import {
     makeFreeCookie,
     parseFreeCookie
 } from "@/lib/backend/freeCookie";
-import { streamJson } from "@/lib/llm/orchestrator";
+import { runJson, streamJson } from "@/lib/llm/orchestrator";
+import {
+    buildResumeRepairMessages,
+    isRepairableResumeResponseError,
+} from "@/lib/llm/reportRepair";
 import { extractJsonFromText } from "@/lib/backend/openai";
 import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/prompts";
 import {
@@ -289,6 +293,7 @@ export async function POST(request: Request) {
     // signed anonymous hold cookie be attached to the actual Response.
     const encoder = new TextEncoder();
     let accumulatedJson = "";
+    let reservationCommitted = false;
 
     const stream = new ReadableStream({
         async start(controller) {
@@ -365,6 +370,7 @@ export async function POST(request: Request) {
                 ];
 
                 const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+                const validatedChunks: string[] = [];
                 await markGenerationProviderCallStarted(grantedReservation);
                 for await (const ev of streamJson({
                     ctx: { request_id, user_id, route },
@@ -377,7 +383,7 @@ export async function POST(request: Request) {
                 })) {
                     if (ev.type === "chunk") {
                         accumulatedJson += ev.content;
-                        controller.enqueue(encoder.encode(JSON.stringify({ type: "chunk", content: ev.content }) + "\n"));
+                        validatedChunks.push(ev.content);
                     }
                 }
 
@@ -400,20 +406,65 @@ export async function POST(request: Request) {
                         payload = ensureLayoutAndContentFields(payload);
                     }
                 } catch (err: any) {
-                    logError({
-                        msg: "llm.response.validation_failed",
-                        request_id,
-                        route,
-                        user_id,
-                        http: { body_bytes: accumulatedJson?.length || 0 },
-                        err: { name: err?.name || "ValidationError", message: err?.message || "Response validation failed" }
-                    });
-                    const validationError = new Error("Could not parse the response. Please try again.") as Error & { code: string };
-                    validationError.code = "OPENAI_RESPONSE_PARSE_ERROR";
-                    throw validationError;
+                    if (mode === "resume" && isRepairableResumeResponseError(err)) {
+                        logWarn({
+                            msg: "llm.response.repair_started",
+                            request_id,
+                            route,
+                            user_id,
+                            http: { body_bytes: accumulatedJson?.length || 0 },
+                            err: { name: err?.name || "ValidationError", message: err?.message || "Response validation failed" }
+                        });
+
+                        try {
+                            const repaired = await runJson<any>({
+                                ctx: { request_id, user_id, route },
+                                task: "resume_feedback",
+                                mode: "resume",
+                                model,
+                                prompt_version: "resume_v2_repair",
+                                schema_version: "report_v1",
+                                messages: buildResumeRepairMessages(messages, accumulatedJson, err),
+                            });
+                            payload = validateResumeModelPayload(repaired.parsed, text);
+                            payload = ensureLayoutAndContentFields(payload);
+                            accumulatedJson = repaired.raw;
+                            validatedChunks.length = 0;
+                            validatedChunks.push(repaired.raw);
+                            logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
+                        } catch (repairErr: any) {
+                            logError({
+                                msg: "llm.response.repair_failed",
+                                request_id,
+                                route,
+                                user_id,
+                                err: {
+                                    name: repairErr?.name || "ValidationError",
+                                    message: repairErr?.message || "Response repair failed",
+                                    code: repairErr?.code,
+                                }
+                            });
+                            const validationError = new Error("The report did not pass its evidence check. Your report credit was restored; please try again.") as Error & { code: string };
+                            validationError.code = "OPENAI_RESPONSE_SHAPE_INVALID";
+                            throw validationError;
+                        }
+                    } else {
+                        logError({
+                            msg: "llm.response.validation_failed",
+                            request_id,
+                            route,
+                            user_id,
+                            http: { body_bytes: accumulatedJson?.length || 0 },
+                            err: { name: err?.name || "ValidationError", message: err?.message || "Response validation failed" }
+                        });
+                        const validationError = new Error("Could not parse the response. Please try again.") as Error & { code: string };
+                        validationError.code = "OPENAI_RESPONSE_PARSE_ERROR";
+                        throw validationError;
+                    }
                 }
 
                 await commitGenerationAccess(grantedReservation, reservationAdmin);
+                reservationCommitted = true;
 
                 const newFreeUsed = grantedReservation.anonymousCookieMeta?.used
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
@@ -457,6 +508,14 @@ export async function POST(request: Request) {
                     }
                 }
 
+                // Model content is buffered until it has passed the complete
+                // response contract and the entitlement is committed. This
+                // prevents a caller from receiving useful output and then
+                // forcing a delivery error that refunds the same credit.
+                for (const content of validatedChunks) {
+                    controller.enqueue(encoder.encode(JSON.stringify({ type: "chunk", content }) + "\n"));
+                }
+
                 // Send the final complete message
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "complete",
@@ -481,25 +540,27 @@ export async function POST(request: Request) {
                 });
 
             } catch (err: any) {
-                try {
-                    await releaseGenerationAccess(
-                        grantedReservation,
-                        reservationAdmin,
-                        releaseReasonForError(err)
-                    );
-                } catch (releaseErr: any) {
-                    logError({
-                        msg: "billing.access_release_failed",
-                        request_id,
-                        route,
-                        user_id,
-                        outcome: "internal_error",
-                        err: {
-                            name: releaseErr?.name || "GenerationAccessError",
-                            message: releaseErr?.message || "Access release failed",
-                            code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
-                        },
-                    });
+                if (!reservationCommitted) {
+                    try {
+                        await releaseGenerationAccess(
+                            grantedReservation,
+                            reservationAdmin,
+                            releaseReasonForError(err)
+                        );
+                    } catch (releaseErr: any) {
+                        logError({
+                            msg: "billing.access_release_failed",
+                            request_id,
+                            route,
+                            user_id,
+                            outcome: "internal_error",
+                            err: {
+                                name: releaseErr?.name || "GenerationAccessError",
+                                message: releaseErr?.message || "Access release failed",
+                                code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
+                            },
+                        });
+                    }
                 }
 
                 const code = err?.code || "INTERNAL_SERVER_ERROR";

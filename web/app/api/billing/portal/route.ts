@@ -4,21 +4,24 @@ import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
 import { createStripeClient } from "@/lib/billing/stripeClient";
+import { readJsonWithLimit } from "@/lib/security/requestBody";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
+import { hashForLogs, logError } from "@/lib/observability/logger";
 
 const stripe = createStripeClient();
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-async function resolveCustomerIdByEmail(email: string): Promise<string | null> {
+async function resolveCustomerIdByEmail(email: string, userId: string): Promise<string | null> {
   if (!stripe) return null;
 
-  const directLookup = await stripe.customers.list({ email, limit: 1 });
-  if (directLookup.data.length > 0) {
-    return directLookup.data[0].id;
-  }
-
-  return null;
+  const directLookup = await stripe.customers.list({ email, limit: 10 });
+  return directLookup.data.find((customer) => (
+    !customer.deleted &&
+    customer.metadata?.riyp_app === "recruiter-in-your-pocket" &&
+    customer.metadata?.riyp_user_id === userId
+  ))?.id || null;
 }
 
 export async function POST(req: Request) {
@@ -32,13 +35,9 @@ export async function POST(req: Request) {
     }
 
     let returnTo: "settings" | "restore" = "settings";
-    try {
-      const body = await req.json();
-      if (body?.returnTo === "restore") {
-        returnTo = "restore";
-      }
-    } catch {
-      // Body is optional.
+    const body = await readJsonWithLimit<any>(req, 16 * 1024);
+    if (body?.returnTo === "restore") {
+      returnTo = "restore";
     }
 
     const supabase = await createSupabaseServerClient();
@@ -49,7 +48,32 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, message: "Please log in first." }, { status: 401 });
     }
 
-    let customerId = await resolveCustomerIdByEmail(user.email.toLowerCase());
+    const portalLimit = await rateLimitAsync(
+      `user:${hashForLogs(user.id)}:billing-portal`,
+      10,
+      10 * 60 * 1000,
+    );
+    if (!portalLimit.ok) {
+      const response = NextResponse.json(
+        { ok: false, message: "Too many billing portal requests. Try again shortly." },
+        { status: 429 },
+      );
+      response.headers.set("retry-after", String(Math.ceil(portalLimit.resetMs / 1000)));
+      return response;
+    }
+
+    const { data: customerPasses } = await supabase
+      .from("passes")
+      .select("stripe_customer_id")
+      .eq("user_id", user.id)
+      .not("stripe_customer_id", "is", null)
+      .order("created_at", { ascending: false })
+      .limit(1);
+    let customerId = customerPasses?.[0]?.stripe_customer_id || null;
+
+    if (!customerId) {
+      customerId = await resolveCustomerIdByEmail(user.email.toLowerCase(), user.id);
+    }
 
     if (!customerId) {
       // Fallback: try from latest checkout session id stored in passes.
@@ -96,7 +120,18 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true, url: portal.url });
   } catch (err: any) {
-    console.error("[billing.portal] error:", err?.message);
+    logError({
+      msg: "billing.portal.failed",
+      outcome: "provider_error",
+      err: { name: err?.name || "BillingPortalError", message: err?.message || "Portal failed" },
+    });
+    const requestStatus = Number(err?.httpStatus);
+    if (requestStatus === 400 || requestStatus === 413) {
+      return NextResponse.json(
+        { ok: false, message: requestStatus === 413 ? "Request body too large." : "Invalid request body." },
+        { status: requestStatus },
+      );
+    }
     return NextResponse.json({ ok: false, message: "Failed to open billing portal." }, { status: 500 });
   }
 }

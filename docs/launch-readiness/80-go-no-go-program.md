@@ -33,7 +33,7 @@ The promise is simple: upload or paste a resume, optionally add a job, and get t
 - Guest report persistence
 - Error replay
 - Broad launch campaigns, Product Hunt, or paid acquisition
-- Live model evals until Matt explicitly authorizes API spend
+- Additional live model evals beyond the approved July 19 quality run
 
 The held-back surfaces must remain disabled, absent from navigation and search discovery, and safe if reached directly.
 
@@ -71,7 +71,7 @@ No external model calls are allowed.
 
 Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
-- The ordered database migration set is verified through migration 014 and applied to the preview database.
+- The ordered database migration set is verified through migration 016 and applied to the preview database.
 - Job Search Pass checkout uses Stripe test mode.
 - Webhook delivery, retry, restore, portal, and entitlement behavior work.
 - Anonymous and signed-in storage behavior matches public copy.
@@ -80,9 +80,9 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
-This gate remains intentionally blocked until Matt authorizes a small API budget.
+Matt authorized a $0.20, eight-resume stored-fixture run on July 19. It completed with 0 PASS, 1 WARN, and 7 FAIL, so this gate is currently blocked on quality rather than budget approval.
 
-- Set `RIYP_ALLOW_PAID_EVALS=true` only for the approved run.
+- Set `RIYP_ALLOW_PAID_EVALS=true` only for an explicitly approved run.
 - Run the smoke and golden eval suites against the launch model and prompt.
 - Manually inspect at least one thin resume, one strong resume, and one job-targeted resume.
 - Reject the launch if results are generic, unsupported, unstable, or materially worse than the sample report.
@@ -145,8 +145,7 @@ npm run launch:rehearsal
 
 ## Current Blockers
 
+- Rerun the eight-resume live quality proof on the intended launch model and reach 0 FAIL with at least a 90% PASS rate.
 - Confirm hosted environment variables, including shared Upstash rate limiting.
-- Replay the full migration set cleanly, then apply and verify migrations through 014 in preview.
-- Complete Stripe test-mode purchase, webhook replay, restore, and portal rehearsal.
-- Reconcile the deployed public site with this release candidate.
-- Complete the final live quality proof after explicit spend authorization.
+- Reconcile and rehearse a fresh preview deployment from this release candidate.
+- Keep production billing disabled until the quality gate and final preview rehearsal both pass.

@@ -16,6 +16,10 @@ export type ErrorCode =
     | "E_EVIDENCE_NOT_VERBATIM"
     | "E_REWRITE_ORIGINAL_NOT_VERBATIM"
     | "E_REWRITE_INVENTED_SPECIFIC"
+    | "E_REWRITE_OWNERSHIP_INFLATION"
+    | "E_REWRITE_OUTCOME_INFLATION"
+    | "E_FIX_ALREADY_SATISFIED"
+    | "E_BIGGEST_GAP_NOT_VERBATIM"
     | "E_BANNED_PHRASE"
     | "E_SCORE_EXTREME";
 
@@ -165,6 +169,7 @@ export interface EvalOptions {
     dryRun: boolean;
     promptVersion?: string;
     fixtureFilter?: string;
+    limit?: number;
     withJudge?: boolean;
 }
 

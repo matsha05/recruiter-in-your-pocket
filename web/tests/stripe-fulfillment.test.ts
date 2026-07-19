@@ -11,6 +11,11 @@ import {
   completeStripeEvent,
   type StripeEventRpcClient,
 } from "../lib/billing/stripeEventLease";
+import {
+  getTierDefaultsForCheckout,
+  isCheckoutPaymentSettled,
+} from "../lib/billing/checkoutFulfillment";
+import { isPassActive } from "../lib/billing/entitlements";
 
 const offerEnv = {
   STRIPE_PRICE_ID_30D: "price_job_search_pass",
@@ -43,6 +48,20 @@ const approved = validateStripeCheckoutSession(checkoutSession(), offerEnv);
 assert.equal(approved.ok, true, "the exact $29 price/product pair is approved");
 assert.equal(approved.ok && approved.offer.tier, "30d", "price data, not metadata fallback, selects the tier");
 assert.equal(getLaunchStripeOffer(offerEnv)?.expectedUnitAmount, 2_900);
+
+assert.equal(isCheckoutPaymentSettled("paid"), true);
+assert.equal(isCheckoutPaymentSettled("no_payment_required"), true);
+assert.equal(isCheckoutPaymentSettled("unpaid"), false);
+const purchaseCreated = Date.parse("2026-04-01T12:00:00.000Z") / 1000;
+const anchoredPass = getTierDefaultsForCheckout("30d", { created: purchaseCreated } as any);
+assert.equal(anchoredPass.purchasedAt, "2026-04-01T12:00:00.000Z");
+assert.equal(anchoredPass.expiresAt, "2026-05-01T12:00:00.000Z");
+assert.equal(anchoredPass.usesRemaining, 5);
+assert.equal(
+  isPassActive({ tier: "30d", uses_remaining: 5, expires_at: "2099-01-01T00:00:00.000Z", revoked_at: "2026-04-02T00:00:00.000Z" }),
+  false,
+  "a reversal remains inactive even when credits and expiry look active",
+);
 
 const unknownPrice = validateStripeCheckoutSession(
   checkoutSession({
@@ -211,6 +230,22 @@ for (const source of fulfillmentRouteSources) {
 }
 assert.match(fulfillmentRouteSources[2], /claimStripeEvent/);
 assert.match(fulfillmentRouteSources[2], /completeStripeEvent/);
+assert.match(fulfillmentRouteSources[0], /billing_entitlement_blocks/);
+assert.match(fulfillmentRouteSources[0], /status: "reversed"/);
+assert.match(fulfillmentRouteSources[0], /This purchase is no longer eligible for access/);
+assert.match(fulfillmentRouteSources[1], /billing_entitlement_blocks/);
+assert.match(fulfillmentRouteSources[2], /billing_entitlement_blocks/);
+assert.match(fulfillmentRouteSources[1], /getTierDefaultsForCheckout/);
+assert.match(fulfillmentRouteSources[2], /getTierDefaultsForCheckout/);
+
+const migration016 = fs.readFileSync(
+  path.join(process.cwd(), "database", "migrations", "016_billing_reversals_and_deletion_safety.sql"),
+  "utf8",
+);
+assert.match(migration016, /CREATE TABLE IF NOT EXISTS public\.billing_entitlement_blocks/i);
+assert.match(migration016, /CHECK \(reason IN \('account_deleted', 'refund', 'dispute'\)\)/i);
+assert.match(migration016, /REVOKE ALL ON TABLE public\.billing_entitlement_blocks FROM PUBLIC, anon, authenticated/i);
+assert.match(migration016, /delete_generation_access_reservations_for_user/i);
 
 assertAtomicLeaseBehavior()
   .then(() => console.log("Stripe fulfillment behavior contracts passed"))

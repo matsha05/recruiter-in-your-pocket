@@ -16,6 +16,7 @@ export type PassLike = {
   tier?: string | null;
   expires_at?: string | null;
   uses_remaining?: number | null;
+  revoked_at?: string | null;
 };
 
 const UNLIMITED_PASS_TIERS = new Set<string>(["monthly", "lifetime"]);
@@ -74,6 +75,7 @@ export function isUnlimitedPassTier(tier: string | null | undefined): boolean {
 
 export function isPassActive(pass: PassLike | null | undefined, now = new Date()): boolean {
   if (!pass?.tier || !pass?.expires_at) return false;
+  if (pass.revoked_at) return false;
 
   const expiresAt = Date.parse(pass.expires_at);
   if (Number.isNaN(expiresAt) || expiresAt <= now.getTime()) return false;
@@ -139,7 +141,7 @@ export function getTierDefaults(
   if (tier === "90d") {
     return {
       usesRemaining: 15,
-      expiresAt: new Date(nowMs + 365 * 24 * 60 * 60 * 1000).toISOString()
+      expiresAt: new Date(nowMs + 90 * 24 * 60 * 60 * 1000).toISOString()
     };
   }
 
