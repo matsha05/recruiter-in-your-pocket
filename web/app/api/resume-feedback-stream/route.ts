@@ -4,7 +4,6 @@ import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import crypto from "crypto";
 import {
     FREE_COOKIE,
-    FREE_RUN_LIMIT,
     freeCookieOptions,
     getCurrentMonthKey,
     makeFreeCookie,
@@ -17,6 +16,7 @@ import {
     ensureLayoutAndContentFields,
     validateResumeFeedbackRequest,
     validateResumeModelPayload,
+    validateResumeIdeasPayload,
     validateCaseResumePayload,
     validateCaseInterviewPayload,
     validateCaseNegotiationPayload
@@ -31,7 +31,18 @@ import {
     wrapUserContent,
     INJECTION_RESISTANCE_SUFFIX
 } from "@/lib/security/inputSanitization";
-import { getNextUsesRemaining, isPassActive, shouldConsumePassCredit } from "@/lib/billing/entitlements";
+import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import {
+    assertGenerationAccessDependencies,
+    assertGenerationAuthLookup,
+    commitGenerationAccess,
+    markGenerationProviderCallStarted,
+    releaseGenerationAccess,
+    releaseReasonForError,
+    reserveGenerationAccess,
+    type GenerationAccessReservation,
+    type GenerationAccessRpcClient,
+} from "@/lib/billing/generationAccess";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -78,19 +89,6 @@ function buildReportTrustMetadata(payload: any) {
     };
 }
 
-async function getActivePass(supabase: any, userId: string) {
-    const { data, error } = await supabase
-        .from("passes")
-        .select("id, tier, expires_at, uses_remaining, created_at")
-        .eq("user_id", userId)
-        .gt("expires_at", nowIso())
-        .order("created_at", { ascending: false })
-        .limit(10);
-    if (error) throw error;
-    const active = (data || []).find((pass: any) => isPassActive(pass));
-    return active || null;
-}
-
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 async function resolveUserSavedJobId(supabase: any, userId: string, value: string | null) {
@@ -107,8 +105,19 @@ async function resolveUserSavedJobId(supabase: any, userId: string, value: strin
     return data.id as string;
 }
 
-function getBypassPaywall(): boolean {
-    return String(process.env.BYPASS_PAYWALL || "").toLowerCase() === "true";
+function streamHeaders(requestId: string) {
+    return {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
+        "x-request-id": requestId,
+    };
+}
+
+function singleStreamEventResponse(requestId: string, event: Record<string, unknown>) {
+    return new NextResponse(`${JSON.stringify(event)}\n`, {
+        headers: streamHeaders(requestId),
+    });
 }
 
 export async function POST(request: Request) {
@@ -160,38 +169,130 @@ export async function POST(request: Request) {
         return res;
     }
 
-    // Create encoder for streaming response
-    const encoder = new TextEncoder();
+    const validation = validateResumeFeedbackRequest(body);
+    if (!validation.ok || !validation.value) {
+        logInfo({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: 400,
+            latency_ms: Date.now() - startedAt,
+            outcome: "validation_error"
+        });
+        return singleStreamEventResponse(request_id, {
+            type: "error",
+            errorCode: "VALIDATION_ERROR",
+            message: validation.message,
+        });
+    }
 
-    // Track accumulated JSON for final validation
-    let accumulatedJson = "";
+    const { text, mode, jobDescription } = validation.value;
     const requestedSavedJobId = typeof body?.savedJobId === "string" ? body.savedJobId : null;
+    let supabase: Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>> = null;
+    let user: any = null;
+    let savedJobId: string | null = null;
+    let accessReservation: GenerationAccessReservation | null = null;
+    let reservationAdmin: GenerationAccessRpcClient | null = null;
+    let bypass = false;
+    let user_id: string | undefined;
+
+    try {
+        supabase = await maybeCreateSupabaseServerClient();
+        const admin = createSupabaseAdminClient();
+        reservationAdmin = admin;
+        assertGenerationAccessDependencies({
+            authClientAvailable: Boolean(supabase),
+            adminClientAvailable: Boolean(admin),
+        });
+
+        const userData = supabase
+            ? await supabase.auth.getUser()
+            : { data: { user: null }, error: null };
+        assertGenerationAuthLookup("error" in userData ? userData.error : null);
+        user = userData.data.user || null;
+        user_id = user?.id ? hashForLogs(user.id) : undefined;
+        savedJobId = user && supabase
+            ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
+            : null;
+
+        const cookieStore = await cookies();
+        const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
+        const freeMeta = freeParsed || {
+            used: 0,
+            last_free_ts: null,
+            reset_month: getCurrentMonthKey(),
+            needs_reset: true,
+        };
+
+        bypass = isDevelopmentPaywallBypassEnabled();
+        accessReservation = await reserveGenerationAccess({
+            userId: user?.id || null,
+            admin,
+            reportKind: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
+            bypass,
+            freeMeta,
+            anonymousIdentityHash: hashForLogs(ip),
+        });
+
+        if (accessReservation.access === "preview") {
+            logInfo({
+                msg: "http.request.completed",
+                request_id,
+                route,
+                method,
+                path,
+                status: 402,
+                latency_ms: Date.now() - startedAt,
+                outcome: "provider_error",
+                user_id,
+            });
+            return singleStreamEventResponse(request_id, {
+                type: "error",
+                errorCode: "PAYWALL_REQUIRED",
+                message: "You've used your free report. Paid access adds more reports, saved history, and export.",
+            });
+        }
+    } catch (err: any) {
+        const code = err?.code || "ACCESS_DEPENDENCY_UNAVAILABLE";
+        const message = err?.message || "Report access is temporarily unavailable. Please try again in a moment.";
+        logError({
+            msg: "http.request.completed",
+            request_id,
+            route,
+            method,
+            path,
+            status: err?.httpStatus || 503,
+            latency_ms: Date.now() - startedAt,
+            outcome: "internal_error",
+            err: { name: err?.name || "GenerationAccessError", message, code: String(code) },
+        });
+        return singleStreamEventResponse(request_id, { type: "error", errorCode: code, message });
+    }
+
+    if (!accessReservation) {
+        return singleStreamEventResponse(request_id, {
+            type: "error",
+            errorCode: "ACCESS_RESERVATION_FAILED",
+            message: "Report access could not be reserved. Please try again.",
+        });
+    }
+
+    const grantedReservation = accessReservation;
+    const access = grantedReservation.access;
+    const accessTier = grantedReservation.accessTier;
+    const activePass = grantedReservation.activePass;
+    const freeUsesRemaining = grantedReservation.freeUsesRemaining;
+
+    // Access is fully resolved before ReadableStream.start. This lets the
+    // signed anonymous hold cookie be attached to the actual Response.
+    const encoder = new TextEncoder();
+    let accumulatedJson = "";
 
     const stream = new ReadableStream({
         async start(controller) {
             try {
-                const validation = validateResumeFeedbackRequest(body);
-                if (!validation.ok || !validation.value) {
-                    controller.enqueue(encoder.encode(JSON.stringify({
-                        type: "error",
-                        errorCode: "VALIDATION_ERROR",
-                        message: validation.message
-                    }) + "\n"));
-                    controller.close();
-                    logInfo({
-                        msg: "http.request.completed",
-                        request_id,
-                        route,
-                        method,
-                        path,
-                        status: 400,
-                        latency_ms: Date.now() - startedAt,
-                        outcome: "validation_error"
-                    });
-                    return;
-                }
-
-                const { text, mode, jobDescription } = validation.value;
                 const hasJobDescription = Boolean(jobDescription && jobDescription.length > 50);
 
                 // Sanitize user inputs for prompt injection protection
@@ -213,69 +314,6 @@ export async function POST(request: Request) {
                             json_injection: sanitizedResume.hadJsonInjection || (sanitizedJobDesc?.hadJsonInjection || false)
                         }
                     });
-                }
-
-                // Access control check
-                const supabase = await maybeCreateSupabaseServerClient();
-                const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
-                const user = userData.data.user || null;
-                const user_id = user?.id;
-                const savedJobId = user && supabase
-                    ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
-                    : null;
-
-                const cookieStore = await cookies();
-                const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
-                const freeMeta = freeParsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
-
-                const bypass = getBypassPaywall();
-                const activePass = user && supabase ? await getActivePass(supabase, user.id) : null;
-
-                // Determine free uses remaining
-                // For logged-in users: check database (deletion-proof)
-                // For anonymous users: check cookie (can be cleared, accepted trade-off)
-                let freeUsesRemaining = 0;
-                let userUsageRecord: { free_report_used_at: string | null } | null = null;
-
-                if (user && supabase) {
-                    // Check database for logged-in users
-                    const { data: usageData } = await supabase
-                        .from('user_usage')
-                        .select('free_report_used_at')
-                        .eq('user_id', user.id)
-                        .maybeSingle();
-
-                    userUsageRecord = usageData;
-                    // If no record or no free_report_used_at, they have 1 free remaining
-                    freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
-                } else {
-                    // Anonymous: use cookie
-                    const freeUsed = freeMeta.used || 0;
-                    freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - freeUsed);
-                }
-
-                const accessTier = bypass ? "pass_full" : activePass ? "pass_full" : freeUsesRemaining > 0 ? "free_full" : "preview";
-                const access = accessTier === "preview" ? "preview" : "full";
-
-                if (access === "preview") {
-                    controller.enqueue(encoder.encode(JSON.stringify({
-                        type: "error",
-                        errorCode: "PAYWALL_REQUIRED",
-                        message: "You've used your free report. Paid access adds more reports, saved history, and export."
-                    }) + "\n"));
-                    controller.close();
-                    logInfo({
-                        msg: "http.request.completed",
-                        request_id,
-                        route,
-                        method,
-                        path,
-                        status: 402,
-                        latency_ms: Date.now() - startedAt,
-                        outcome: "provider_error",
-                        user_id
-                    });
-                    return;
                 }
 
                 // Send initial metadata
@@ -327,6 +365,7 @@ export async function POST(request: Request) {
                 ];
 
                 const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+                await markGenerationProviderCallStarted(grantedReservation);
                 for await (const ev of streamJson({
                     ctx: { request_id, user_id, route },
                     task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
@@ -347,7 +386,9 @@ export async function POST(request: Request) {
                 try {
                     const parsedJson = extractJsonFromText(accumulatedJson);
 
-                    if (mode === "case_resume") {
+                    if (mode === "resume_ideas") {
+                        payload = validateResumeIdeasPayload(parsedJson);
+                    } else if (mode === "case_resume") {
                         payload = validateCaseResumePayload(parsedJson);
                     } else if (mode === "case_interview") {
                         payload = validateCaseInterviewPayload(parsedJson);
@@ -359,23 +400,24 @@ export async function POST(request: Request) {
                         payload = ensureLayoutAndContentFields(payload);
                     }
                 } catch (err: any) {
-                    console.error("[stream] Validation error:", err.message, "Raw JSON length:", accumulatedJson?.length || 0);
-                    controller.enqueue(encoder.encode(JSON.stringify({
-                        type: "error",
-                        errorCode: "OPENAI_RESPONSE_PARSE_ERROR",
-                        message: "Could not parse the response. Please try again."
-                    }) + "\n"));
-                    controller.close();
-                    return;
+                    logError({
+                        msg: "llm.response.validation_failed",
+                        request_id,
+                        route,
+                        user_id,
+                        http: { body_bytes: accumulatedJson?.length || 0 },
+                        err: { name: err?.name || "ValidationError", message: err?.message || "Response validation failed" }
+                    });
+                    const validationError = new Error("Could not parse the response. Please try again.") as Error & { code: string };
+                    validationError.code = "OPENAI_RESPONSE_PARSE_ERROR";
+                    throw validationError;
                 }
 
-                // Handle free run counting and report saving
-                // shouldIncrementFree: true if using free tier (not bypass, not pass, has free remaining)
-                const shouldIncrementFree = !bypass && !activePass && freeUsesRemaining > 0;
-                const newFreeUsed = shouldIncrementFree ? 1 : 0; // For DB-backed tracking: 1 = used, 0 = not used
-                const newFreeRemaining = shouldIncrementFree ? 0 : freeUsesRemaining;
+                await commitGenerationAccess(grantedReservation, reservationAdmin);
 
-                console.log(`[stream] Free usage debug: bypass=${bypass}, activePass=${!!activePass}, freeUsesRemaining=${freeUsesRemaining}, shouldIncrementFree=${shouldIncrementFree}, user=${user?.id}`);
+                const newFreeUsed = grantedReservation.anonymousCookieMeta?.used
+                    ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
+                const newFreeRemaining = freeUsesRemaining;
 
                 let reportId: string | null = null;
                 if (user && supabase && mode === "resume") {
@@ -425,61 +467,6 @@ export async function POST(request: Request) {
                     free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining
                 }) + "\n"));
 
-                // CONSUME PASS CREDIT
-                // Unlimited plans do not consume per-review credits.
-                if (activePass && shouldConsumePassCredit(activePass)) {
-                    try {
-                        const admin = createSupabaseAdminClient();
-                        if (!admin) throw new Error("Supabase admin client not configured");
-
-                        const newUsesRemaining = getNextUsesRemaining(activePass);
-                        await admin
-                            .from("passes")
-                            .update({ uses_remaining: newUsesRemaining })
-                            .eq("id", activePass.id);
-
-                        console.log(`[stream] Consumed 1 credit from pass ${activePass.id}. Remaining: ${newUsesRemaining}`);
-                    } catch (passErr) {
-                        console.error("[stream] Failed to consume pass credit:", passErr);
-                    }
-                }
-
-                // PERSIST FREE RUN COUNTER
-                // For logged-in users: update database (deletion-proof)
-                // For anonymous users: try cookie (best-effort, can be cleared)
-                if (shouldIncrementFree) {
-                    if (user && supabase) {
-                        // Database persistence for logged-in users
-                        try {
-                            const admin = createSupabaseAdminClient();
-                            if (admin) {
-                                await admin
-                                    .from('user_usage')
-                                    .upsert({
-                                        user_id: user.id,
-                                        free_report_used_at: nowIso()
-                                    }, { onConflict: 'user_id' });
-                                console.log(`[stream] Free run consumed for user ${user.id}`);
-                            }
-                        } catch (dbErr) {
-                            console.error("[stream] Failed to persist free usage to database:", dbErr);
-                        }
-                    } else {
-                        // Cookie persistence for anonymous users (best-effort)
-                        try {
-                            const newFreeMeta = {
-                                used: 1,
-                                last_free_ts: nowIso(),
-                                reset_month: getCurrentMonthKey()
-                            };
-                            cookieStore.set(FREE_COOKIE, makeFreeCookie(newFreeMeta), freeCookieOptions());
-                            console.log(`[stream] Free run consumed (anonymous)`);
-                        } catch (cookieErr) {
-                            console.error("[stream] Failed to update free cookie:", cookieErr);
-                        }
-                    }
-                }
-
                 controller.close();
                 logInfo({
                     msg: "http.request.completed",
@@ -494,6 +481,27 @@ export async function POST(request: Request) {
                 });
 
             } catch (err: any) {
+                try {
+                    await releaseGenerationAccess(
+                        grantedReservation,
+                        reservationAdmin,
+                        releaseReasonForError(err)
+                    );
+                } catch (releaseErr: any) {
+                    logError({
+                        msg: "billing.access_release_failed",
+                        request_id,
+                        route,
+                        user_id,
+                        outcome: "internal_error",
+                        err: {
+                            name: releaseErr?.name || "GenerationAccessError",
+                            message: releaseErr?.message || "Access release failed",
+                            code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
+                        },
+                    });
+                }
+
                 const code = err?.code || "INTERNAL_SERVER_ERROR";
                 const message = code === "OPENAI_TIMEOUT"
                     ? "This is taking longer than usual. Try again in a moment."
@@ -501,12 +509,17 @@ export async function POST(request: Request) {
                         ? "Connection hiccup. Try again in a moment."
                         : err?.message || "Something went wrong. Please try again.";
 
-                controller.enqueue(encoder.encode(JSON.stringify({
-                    type: "error",
-                    errorCode: code,
-                    message
-                }) + "\n"));
-                controller.close();
+                try {
+                    controller.enqueue(encoder.encode(JSON.stringify({
+                        type: "error",
+                        errorCode: code,
+                        message
+                    }) + "\n"));
+                    controller.close();
+                } catch {
+                    // The client already closed the stream. The entitlement
+                    // release above remains the authoritative cleanup.
+                }
 
                 logError({
                     msg: "http.request.completed",
@@ -523,12 +536,17 @@ export async function POST(request: Request) {
         }
     });
 
-    return new Response(stream, {
-        headers: {
-            "Content-Type": "text/event-stream",
-            "Cache-Control": "no-cache",
-            "Connection": "keep-alive",
-            "x-request-id": request_id
-        }
+    const response = new NextResponse(stream, {
+        headers: streamHeaders(request_id),
     });
+
+    if (grantedReservation.anonymousCookieMeta) {
+        response.cookies.set(
+            FREE_COOKIE,
+            makeFreeCookie(grantedReservation.anonymousCookieMeta),
+            freeCookieOptions()
+        );
+    }
+
+    return response;
 }

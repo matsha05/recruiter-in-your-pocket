@@ -4,15 +4,18 @@ import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
   getTierDefaults,
   isPassActive,
-  resolveRequestedTierFromSession,
   toStoredPassTier
 } from "@/lib/billing/entitlements";
 import { buildConfirmResponse, type UnlockConfirmResponse } from "@/lib/billing/unlockStateMachine";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { createStripeClient } from "@/lib/billing/stripeClient";
+import {
+  STRIPE_CHECKOUT_SESSION_EXPAND,
+  validateStripeCheckoutSession,
+  type ApprovedStripeOffer,
+} from "@/lib/billing/stripeOffers";
 
-const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
-  : null;
+const stripe = createStripeClient();
 
 export const runtime = "nodejs";
 
@@ -64,7 +67,8 @@ function extractCurrentPeriodEndUnix(
 
 async function ensurePassForCheckoutSession(
   admin: any,
-  session: Stripe.Checkout.Session
+  session: Stripe.Checkout.Session,
+  offer: ApprovedStripeOffer
 ) {
   const existing = await admin
     .from("passes")
@@ -85,12 +89,7 @@ async function ensurePassForCheckoutSession(
   const userId = metadataUserId || (email ? await findUserIdByEmail(admin, email) : null);
   if (!userId) return null;
 
-  const requestedTier = resolveRequestedTierFromSession({
-    metadataTier: session.metadata?.tier,
-    passTier: session.metadata?.pass_tier,
-    mode: session.mode,
-  });
-  const storedTier = toStoredPassTier(requestedTier);
+  const storedTier = toStoredPassTier(offer.tier);
 
   let subscriptionId: string | null = null;
   let subscriptionPeriodEndUnix: number | null = null;
@@ -114,7 +113,8 @@ async function ensurePassForCheckoutSession(
     uses_remaining: usesRemaining,
     purchased_at: new Date().toISOString(),
     expires_at: expiresAt,
-    price_id: subscriptionId,
+    price_id: offer.priceId,
+    stripe_subscription_id: subscriptionId,
     checkout_session_id: session.id,
     created_at: new Date().toISOString(),
   });
@@ -176,7 +176,9 @@ export async function POST(req: NextRequest) {
 
     let checkoutSession: Stripe.Checkout.Session;
     try {
-      checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
+      checkoutSession = await stripe.checkout.sessions.retrieve(sessionId, {
+        expand: [...STRIPE_CHECKOUT_SESSION_EXPAND],
+      });
     } catch (err: any) {
       const invalidRequest =
         err instanceof Stripe.errors.StripeInvalidRequestError ||
@@ -196,6 +198,19 @@ export async function POST(req: NextRequest) {
       throw err;
     }
     const status = checkoutSession.status || null;
+    const validation = validateStripeCheckoutSession(checkoutSession);
+
+    if (!validation.ok) {
+      return response(
+        buildConfirmResponse({
+          state: "checkout_incomplete",
+          status: "ineligible",
+          message: "This checkout session is not eligible for Recruiter in Your Pocket access.",
+          pending: false,
+        }),
+        422
+      );
+    }
 
     if (status !== "complete") {
       return response(
@@ -247,7 +262,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const pass = data?.id ? data : await ensurePassForCheckoutSession(supabaseAdmin, checkoutSession);
+    const pass = data?.id
+      ? data
+      : await ensurePassForCheckoutSession(supabaseAdmin, checkoutSession, validation.offer);
 
     if (!pass?.id) {
       return response(

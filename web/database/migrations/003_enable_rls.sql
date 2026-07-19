@@ -42,5 +42,11 @@ CREATE POLICY "Users can delete artifacts of their cases" ON public.artifacts
     EXISTS (SELECT 1 FROM public.cases WHERE cases.id = artifacts.case_id AND cases.user_id = auth.uid())
   );
 
--- Fix handle_new_user function search path
-ALTER FUNCTION public.handle_new_user() SET search_path = public;
+-- Older projects may have this auth trigger helper; fresh projects do not.
+-- Harden it only when it exists so the migration remains replayable.
+DO $$
+BEGIN
+  IF to_regprocedure('public.handle_new_user()') IS NOT NULL THEN
+    ALTER FUNCTION public.handle_new_user() SET search_path = public;
+  END IF;
+END $$;

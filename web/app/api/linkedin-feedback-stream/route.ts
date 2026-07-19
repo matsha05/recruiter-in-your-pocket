@@ -27,6 +27,8 @@ import { parseLinkedInText } from "@/lib/linkedin/pdf-parser";
 import { fetchLinkedInProfile, isValidLinkedInUrl, isBrightDataConfigured } from "@/lib/linkedin/bright-data";
 import type { LinkedInProfile } from "@/types/linkedin";
 import { getNextUsesRemaining, isPassActive, shouldConsumePassCredit } from "@/lib/billing/entitlements";
+import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,10 +48,6 @@ async function getActivePass(supabase: any, userId: string) {
     if (error) throw error;
     const active = (data || []).find((pass: any) => isPassActive(pass));
     return active || null;
-}
-
-function getBypassPaywall(): boolean {
-    return String(process.env.BYPASS_PAYWALL || "").toLowerCase() === "true";
 }
 
 /**
@@ -140,6 +138,19 @@ export async function POST(request: Request) {
     const startedAt = Date.now();
     logInfo({ msg: "http.request.started", request_id, route, method, path, feature: "linkedin" });
 
+    if (!isLaunchFlagEnabled("linkedInReview")) {
+        const res = NextResponse.json(
+            {
+                ok: false,
+                errorCode: "FEATURE_DISABLED",
+                message: "LinkedIn review is temporarily unavailable."
+            },
+            { status: 503 }
+        );
+        res.headers.set("x-request-id", request_id);
+        return res;
+    }
+
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
     const rl = await rateLimitAsync(`ip:${hashForLogs(ip)}:${path}`, 20, 60_000);
     if (!rl.ok) {
@@ -211,7 +222,7 @@ export async function POST(request: Request) {
                 const freeParsed = parseFreeCookie(cookieStore.get(FREE_COOKIE)?.value);
                 const freeMeta = freeParsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
 
-                const bypass = getBypassPaywall();
+                const bypass = isDevelopmentPaywallBypassEnabled();
                 const activePass = user && supabase ? await getActivePass(supabase, user.id) : null;
 
                 let freeUsesRemaining = 0;
@@ -238,7 +249,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "PAYWALL_REQUIRED",
-                        message: "You've used your free report. Upgrade to continue."
+                        message: "You've used your free report. A Job Search Pass is required to run another."
                     }) + "\n"));
                     controller.close();
                     return;

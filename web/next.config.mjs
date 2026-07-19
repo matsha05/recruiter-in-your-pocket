@@ -1,9 +1,47 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import { fileURLToPath } from "url";
 
+const isDevelopment = process.env.NODE_ENV === "development";
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "connect-src 'self' https://api-js.mixpanel.com https://*.mixpanel.com https://*.supabase.co wss://*.supabase.co https://*.ingest.sentry.io https://*.ingest.us.sentry.io https://*.vercel-insights.com",
+  "worker-src 'self' blob:",
+  "media-src 'self' data: blob:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  "manifest-src 'self'",
+].join("; ");
+
+const securityHeaders = [
+  { key: "Content-Security-Policy", value: contentSecurityPolicy },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+  { key: "X-DNS-Prefetch-Control", value: "off" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
+  },
   async redirects() {
     return [
       {
@@ -18,6 +56,13 @@ const nextConfig = {
     BASELINE_BROWSER_MAPPING_IGNORE_OLD_DATA: "true",
   },
   outputFileTracingRoot: fileURLToPath(new URL(".", import.meta.url)),
+  outputFileTracingIncludes: {
+    "/*": [
+      "./prompts/**/*.txt",
+      "./public/assets/fonts/newsreader-latin-variable.ttf",
+      "./public/assets/fonts/instrument-sans-latin-variable.ttf",
+    ],
+  },
   turbopack: {
     // Keep Next's root inside web/ even with a monorepo lockfile.
     root: fileURLToPath(new URL(".", import.meta.url))

@@ -5,6 +5,7 @@ import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/log
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
+import { safeAuthRedirect } from "@/lib/auth/utils";
 
 type AuthDeliveryMode = "otp" | "magic_link";
 
@@ -49,7 +50,7 @@ export async function POST(request: NextRequest) {
         const body = await readJsonWithLimit<any>(request, 16 * 1024);
         const email = body?.email;
         const mode = normalizeMode(body?.mode);
-        const nextParam = typeof body?.next === "string" && body.next.startsWith("/") ? body.next : "/workspace";
+        const nextParam = safeAuthRedirect(typeof body?.next === "string" ? body.next : null, "/workspace");
 
         if (!email || typeof email !== "string") {
             const res = NextResponse.json(

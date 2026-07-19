@@ -1970,7 +1970,7 @@ export function quickMatch(
     }
 
     // Apply seniority penalty
-    score = Math.max(0, score - seniorityPenalty);
+    score = Math.max(0, Math.min(100, score - seniorityPenalty));
 
     // Cap rule: if requiredCoverage < 50%, cap final score at requiredCoverage
     if (requiredTotalWeight > 0 && requiredCoverage < 50) {

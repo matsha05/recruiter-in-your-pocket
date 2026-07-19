@@ -89,13 +89,12 @@ export function parseFreeCookie(raw: string | undefined | null): ParsedFreeMeta 
 }
 
 export function freeCookieOptions() {
-  const maxAgeMs = FREE_COOKIE_DAYS * 24 * 60 * 60 * 1000;
+  const maxAgeSeconds = FREE_COOKIE_DAYS * 24 * 60 * 60;
   return {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax" as const,
-    maxAge: maxAgeMs,
+    maxAge: maxAgeSeconds,
     path: "/"
   };
 }
-

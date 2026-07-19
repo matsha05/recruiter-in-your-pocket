@@ -10,16 +10,32 @@ function isAbsoluteHttpUrl(value: string | undefined | null) {
   }
 }
 
+function normalizeHttpOrigin(value: string | undefined | null) {
+  if (!isAbsoluteHttpUrl(value)) return null;
+
+  const parsed = new URL(value!);
+  if (parsed.username || parsed.password) return null;
+  return parsed.origin;
+}
+
+function getVercelDeploymentUrl() {
+  const value = process.env.VERCEL_URL?.trim();
+  if (!value) return null;
+
+  return normalizeHttpOrigin(value.includes("://") ? value : `https://${value}`);
+}
+
 export function getConfiguredAppUrl() {
-  if (isAbsoluteHttpUrl(process.env.NEXT_PUBLIC_APP_URL)) {
-    return process.env.NEXT_PUBLIC_APP_URL!;
+  const configuredUrl = normalizeHttpOrigin(process.env.NEXT_PUBLIC_APP_URL);
+  const deploymentUrl = getVercelDeploymentUrl();
+
+  // A preview must return to its own deployment, even when Preview inherited
+  // the production NEXT_PUBLIC_APP_URL value in Vercel project settings.
+  if (process.env.VERCEL_ENV === "preview") {
+    return deploymentUrl || configuredUrl;
   }
 
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-
-  return null;
+  return configuredUrl || deploymentUrl;
 }
 
 function resolveRequestOrigin(request: Request | NextRequest) {
@@ -32,11 +48,31 @@ function resolveRequestOrigin(request: Request | NextRequest) {
     requestUrl.host;
 
   const candidate = `${forwardedProto}://${forwardedHost}`;
-  return isAbsoluteHttpUrl(candidate) ? candidate : null;
+  return normalizeHttpOrigin(candidate);
+}
+
+function isLocalOrigin(value: string | null) {
+  if (!value) return false;
+  const hostname = new URL(value).hostname;
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "[::1]";
 }
 
 export function getAppUrlForRequest(request: Request | NextRequest) {
-  return getConfiguredAppUrl() || resolveRequestOrigin(request) || "http://localhost:3000";
+  const requestOrigin = resolveRequestOrigin(request);
+  const configuredUrl = normalizeHttpOrigin(process.env.NEXT_PUBLIC_APP_URL);
+  const deploymentUrl = getVercelDeploymentUrl();
+
+  if (process.env.VERCEL_ENV === "preview") {
+    return deploymentUrl || requestOrigin || configuredUrl || "http://localhost:3000";
+  }
+
+  // Local development should never send an auth or billing return path to a
+  // production URL accidentally copied into the local environment.
+  if (process.env.VERCEL_ENV !== "production" && isLocalOrigin(requestOrigin)) {
+    return requestOrigin!;
+  }
+
+  return configuredUrl || deploymentUrl || requestOrigin || "http://localhost:3000";
 }
 
 export function isHostedProductionRuntime() {
@@ -46,4 +82,3 @@ export function isHostedProductionRuntime() {
         !process.env.NEXT_PUBLIC_APP_URL.includes("localhost"))
   );
 }
-

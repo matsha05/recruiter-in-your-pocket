@@ -4,7 +4,6 @@ import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
 import crypto from "crypto";
 import {
   FREE_COOKIE,
-  FREE_RUN_LIMIT,
   freeCookieOptions,
   getCurrentMonthKey,
   makeFreeCookie,
@@ -26,7 +25,18 @@ import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
-import { getNextUsesRemaining, isPassActive, shouldConsumePassCredit } from "@/lib/billing/entitlements";
+import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import {
+  assertGenerationAccessDependencies,
+  assertGenerationAuthLookup,
+  commitGenerationAccess,
+  markGenerationProviderCallStarted,
+  releaseGenerationAccess,
+  releaseReasonForError,
+  reserveGenerationAccess,
+  type GenerationAccessReservation,
+  type GenerationAccessRpcClient,
+} from "@/lib/billing/generationAccess";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -71,19 +81,6 @@ function buildReportTrustMetadata(payload: any) {
   };
 }
 
-async function getActivePass(supabase: NonNullable<Awaited<ReturnType<typeof maybeCreateSupabaseServerClient>>>, userId: string) {
-  const { data, error } = await supabase
-    .from("passes")
-    .select("id, tier, expires_at, uses_remaining, created_at")
-    .eq("user_id", userId)
-    .gt("expires_at", nowIso())
-    .order("expires_at", { ascending: false })
-    .limit(10);
-  if (error) throw error;
-  const active = (data || []).find((pass: any) => isPassActive(pass));
-  return active || null;
-}
-
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 async function resolveUserSavedJobId(
@@ -104,15 +101,13 @@ async function resolveUserSavedJobId(
   return data.id as string;
 }
 
-function getBypassPaywall(): boolean {
-  return String(process.env.BYPASS_PAYWALL || "").toLowerCase() === "true";
-}
-
 export async function POST(request: Request) {
   const request_id = getRequestId(request);
   const { method, path } = routeLabel(request);
   const route = `${method} ${path}`;
   const startedAt = Date.now();
+  let accessReservation: GenerationAccessReservation | null = null;
+  let reservationAdmin: GenerationAccessRpcClient | null = null;
   logInfo({ msg: "http.request.started", request_id, route, method, path });
 
   try {
@@ -165,12 +160,20 @@ export async function POST(request: Request) {
     const { text, mode, jobDescription } = validation.value;
     const hasJobDescription = Boolean(jobDescription && jobDescription.length > 50);
 
-    // Supabase is optional for anonymous usage of the workspace.
-    // If it's not configured locally, treat the user as anonymous and skip pass checks/report saving.
     const supabase = await maybeCreateSupabaseServerClient();
-    const userData = supabase ? await supabase.auth.getUser() : { data: { user: null } };
+    const admin = createSupabaseAdminClient();
+    reservationAdmin = admin;
+    assertGenerationAccessDependencies({
+      authClientAvailable: Boolean(supabase),
+      adminClientAvailable: Boolean(admin),
+    });
+
+    const userData = supabase
+      ? await supabase.auth.getUser()
+      : { data: { user: null }, error: null };
+    assertGenerationAuthLookup("error" in userData ? userData.error : null);
     const user = userData.data.user || null;
-    const user_id = user?.id;
+    const user_id = user?.id ? hashForLogs(user.id) : undefined;
     const savedJobId = user && supabase
       ? await resolveUserSavedJobId(supabase, user.id, requestedSavedJobId)
       : null;
@@ -181,27 +184,20 @@ export async function POST(request: Request) {
     const freeMeta =
       freeParsed || { used: 0, last_free_ts: null, reset_month: getCurrentMonthKey(), needs_reset: true };
 
-    const bypass = getBypassPaywall();
-    const activePass = user && supabase ? await getActivePass(supabase, user.id) : null;
-    const freeUsed = freeMeta.used || 0;
-    let freeUsesRemaining = 0;
-    let loggedInFreeAlreadyUsed = false;
+    const bypass = isDevelopmentPaywallBypassEnabled();
+    accessReservation = await reserveGenerationAccess({
+      userId: user?.id || null,
+      admin,
+      reportKind: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
+      bypass,
+      freeMeta,
+      anonymousIdentityHash: hashForLogs(ip),
+    });
 
-    if (user && supabase) {
-      const { data: usageData } = await supabase
-        .from("user_usage")
-        .select("free_report_used_at")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-      loggedInFreeAlreadyUsed = Boolean(usageData?.free_report_used_at);
-      freeUsesRemaining = loggedInFreeAlreadyUsed ? 0 : 1;
-    } else {
-      freeUsesRemaining = Math.max(0, FREE_RUN_LIMIT - freeUsed);
-    }
-
-    const accessTier = bypass ? "pass_full" : activePass ? "pass_full" : freeUsesRemaining > 0 ? "free_full" : "preview";
-    const access = accessTier === "preview" ? "preview" : "full";
+    const activePass = accessReservation.activePass;
+    const freeUsesRemaining = accessReservation.freeUsesRemaining;
+    const accessTier = accessReservation.accessTier;
+    const access = accessReservation.access;
 
     if (access === "preview") {
       return NextResponse.json(
@@ -266,6 +262,7 @@ ${jobDescription}`;
     }
 
     const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    await markGenerationProviderCallStarted(accessReservation);
     const { parsed: parsedJson } = await runJson<any>({
       ctx: { request_id, user_id, route },
       task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
@@ -294,14 +291,13 @@ ${jobDescription}`;
       payload = ensureLayoutAndContentFields(payload);
     }
 
-    // Increment free run counter only when using free tier (no pass) and not bypassing
-    const shouldIncrementFree = !bypass && !activePass && freeUsesRemaining > 0;
-    const newFreeUsed = user
-      ? (loggedInFreeAlreadyUsed || shouldIncrementFree ? 1 : 0)
-      : (shouldIncrementFree ? freeUsed + 1 : freeUsed);
-    const newFreeRemaining = shouldIncrementFree
-      ? Math.max(0, freeUsesRemaining - 1)
-      : freeUsesRemaining;
+    // Entitlement mutation happens only after the provider payload passes the
+    // canonical validator, and before any successful response is exposed.
+    await commitGenerationAccess(accessReservation, admin);
+
+    const newFreeUsed = accessReservation.anonymousCookieMeta?.used
+      ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : freeMeta.used || 0);
+    const newFreeRemaining = freeUsesRemaining;
 
     // Save report if user is logged in and mode is resume
     let reportId: string | null = null;
@@ -358,53 +354,15 @@ ${jobDescription}`;
       data: payload
     };
 
-    // Consume credit-based passes consistently (non-stream path).
-    if (activePass && shouldConsumePassCredit(activePass) && user) {
-      try {
-        const admin = createSupabaseAdminClient();
-        if (admin) {
-          await admin
-            .from("passes")
-            .update({ uses_remaining: getNextUsesRemaining(activePass) })
-            .eq("id", activePass.id);
-        }
-      } catch {
-        // Do not fail response if pass consumption fails.
-      }
-    }
-
-    // Persist logged-in free-use consumption in DB so clearing cookies cannot bypass limits.
-    if (shouldIncrementFree && user) {
-      try {
-        const admin = createSupabaseAdminClient();
-        if (admin) {
-          await admin
-            .from("user_usage")
-            .upsert(
-              {
-                user_id: user.id,
-                free_report_used_at: nowIso(),
-                updated_at: nowIso(),
-              },
-              { onConflict: "user_id" }
-            );
-        }
-      } catch {
-        // Do not fail response if free-use persistence fails.
-      }
-    }
-
     const res = NextResponse.json(responseBody);
     res.headers.set("x-request-id", request_id);
 
-    // Persist free-run cookie if we incremented, or if cookie was missing/invalid/month-reset.
-    if (!user && !bypass && !activePass && (shouldIncrementFree || !freeParsed || freeMeta.needs_reset)) {
-      const newMeta = {
-        used: newFreeUsed,
-        last_free_ts: shouldIncrementFree ? nowIso() : freeMeta.last_free_ts || null,
-        reset_month: getCurrentMonthKey()
-      };
-      res.cookies.set(FREE_COOKIE, makeFreeCookie(newMeta), freeCookieOptions());
+    if (accessReservation.anonymousCookieMeta) {
+      res.cookies.set(
+        FREE_COOKIE,
+        makeFreeCookie(accessReservation.anonymousCookieMeta),
+        freeCookieOptions()
+      );
     }
 
     logInfo({
@@ -420,6 +378,28 @@ ${jobDescription}`;
     });
     return res;
   } catch (err: any) {
+    if (accessReservation) {
+      try {
+        await releaseGenerationAccess(
+          accessReservation,
+          reservationAdmin,
+          releaseReasonForError(err)
+        );
+      } catch (releaseErr: any) {
+        logError({
+          msg: "billing.access_release_failed",
+          request_id,
+          route,
+          outcome: "internal_error",
+          err: {
+            name: releaseErr?.name || "GenerationAccessError",
+            message: releaseErr?.message || "Access release failed",
+            code: String(releaseErr?.code || "ACCESS_RELEASE_FAILED"),
+          },
+        });
+      }
+    }
+
     const status = err?.httpStatus || 500;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
 

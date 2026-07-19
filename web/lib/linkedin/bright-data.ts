@@ -6,6 +6,7 @@
  */
 
 import type { LinkedInProfile } from '@/types/linkedin';
+import { logError, logInfo, logWarn } from '@/lib/observability/logger';
 
 const BRIGHT_DATA_API_KEY = process.env.BRIGHT_DATA_API_KEY;
 const BRIGHT_DATA_ENDPOINT = 'https://api.brightdata.com/datasets/v3/linkedin/person';
@@ -21,12 +22,22 @@ export function isBrightDataConfigured(): boolean {
  * Extract LinkedIn handle from URL
  */
 function extractLinkedInHandle(url: string): string | null {
-    // Handle various LinkedIn URL formats:
-    // - https://www.linkedin.com/in/johnsmith
-    // - https://linkedin.com/in/johnsmith/
-    // - http://www.linkedin.com/in/johnsmith?param=value
-    const match = url.match(/linkedin\.com\/in\/([^\/\?\s]+)/i);
-    return match ? match[1] : null;
+    try {
+        const parsed = new URL(url);
+        const hostname = parsed.hostname.toLowerCase();
+        if (parsed.protocol !== 'https:' || (hostname !== 'linkedin.com' && hostname !== 'www.linkedin.com')) {
+            return null;
+        }
+
+        const match = parsed.pathname.match(/^\/in\/([^/]+)\/?$/i);
+        return match ? decodeURIComponent(match[1]) : null;
+    } catch {
+        return null;
+    }
+}
+
+function canonicalLinkedInUrl(handle: string): string {
+    return `https://www.linkedin.com/in/${encodeURIComponent(handle)}`;
 }
 
 /**
@@ -49,18 +60,20 @@ export function isValidLinkedInUrl(url: string): boolean {
 export async function fetchLinkedInProfile(profileUrl: string): Promise<LinkedInProfile | null> {
     // Check if Bright Data is configured
     if (!isBrightDataConfigured()) {
-        console.log('[bright-data] API key not configured, returning null for PDF fallback');
+        logInfo({ msg: 'linkedin.provider_unavailable', feature: 'bright_data', outcome: 'provider_error' });
         return null;
     }
 
     const handle = extractLinkedInHandle(profileUrl);
     if (!handle) {
-        console.error('[bright-data] Invalid LinkedIn URL:', profileUrl);
+        logWarn({ msg: 'linkedin.url_invalid', feature: 'bright_data', outcome: 'validation_error' });
         return null;
     }
 
     try {
-        console.log('[bright-data] Fetching profile for handle:', handle);
+        logInfo({ msg: 'linkedin.fetch_started', feature: 'bright_data' });
+
+        const canonicalUrl = canonicalLinkedInUrl(handle);
 
         const response = await fetch(BRIGHT_DATA_ENDPOINT, {
             method: 'POST',
@@ -69,21 +82,33 @@ export async function fetchLinkedInProfile(profileUrl: string): Promise<LinkedIn
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                url: profileUrl,
+                url: canonicalUrl,
                 include: ['name', 'headline', 'about', 'experience', 'education', 'skills', 'certifications'],
             }),
+            signal: AbortSignal.timeout(15_000),
         });
 
         if (!response.ok) {
-            console.error('[bright-data] API error:', response.status, response.statusText);
+            logWarn({
+                msg: 'linkedin.provider_failed',
+                feature: 'bright_data',
+                status: response.status,
+                outcome: 'provider_error'
+            });
             return null;
         }
 
         const data = await response.json();
-        return transformBrightDataResponse(data, profileUrl);
+        return transformBrightDataResponse(data, canonicalUrl);
 
     } catch (error) {
-        console.error('[bright-data] Fetch error:', error);
+        const err = error instanceof Error ? error : new Error('Unknown LinkedIn provider error');
+        logError({
+            msg: 'linkedin.fetch_failed',
+            feature: 'bright_data',
+            outcome: 'provider_error',
+            err: { name: err.name, message: err.message, stack: err.stack }
+        });
         return null;
     }
 }

@@ -5,14 +5,18 @@ import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import {
   getTierDefaults,
   isPassActive,
-  resolveRequestedTierFromSession,
   toStoredPassTier
 } from "@/lib/billing/entitlements";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
+import { createStripeClient } from "@/lib/billing/stripeClient";
+import {
+  STRIPE_CHECKOUT_SESSION_EXPAND,
+  getLaunchStripeOffer,
+  validateStripeCheckoutSession,
+} from "@/lib/billing/stripeOffers";
 
-const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
-  : null;
+const stripe = createStripeClient();
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -68,6 +72,13 @@ export async function POST() {
       );
     }
 
+    if (!getLaunchStripeOffer()) {
+      return NextResponse.json(
+        { ok: false, restored: 0, message: "The billing offer catalog is not configured." },
+        { status: 500 }
+      );
+    }
+
     const { data: existingForUser, error: existingError } = await admin
       .from("passes")
       .select("id, tier, uses_remaining, expires_at")
@@ -106,7 +117,12 @@ export async function POST() {
           if (session.id) sessionsById.set(session.id, session);
         }
       } catch (err: any) {
-        console.warn("[billing.restore] failed to list sessions for customer", customer.id, err?.message);
+        logWarn({
+          msg: "billing.restore.sessions_failed",
+          stripe: { customer_id: hashForLogs(customer.id) },
+          outcome: "provider_error",
+          err: { name: err?.name || "StripeError", message: err?.message || "Failed to list checkout sessions" }
+        });
       }
     }
 
@@ -136,27 +152,61 @@ export async function POST() {
     for (const sessionId of sessionIds) {
       if (existingSessionIds.has(sessionId)) continue;
 
-      const session = sessionsById.get(sessionId);
-      if (!session) continue;
+      const sessionSummary = sessionsById.get(sessionId);
+      if (!sessionSummary) continue;
 
-      const requestedTier = resolveRequestedTierFromSession({
-        metadataTier: session.metadata?.tier,
-        passTier: session.metadata?.pass_tier,
-        mode: session.mode,
-      });
-      const storedTier = toStoredPassTier(requestedTier);
+      let session: Stripe.Checkout.Session;
+      try {
+        session = await stripe.checkout.sessions.retrieve(sessionId, {
+          expand: [...STRIPE_CHECKOUT_SESSION_EXPAND],
+        });
+      } catch (err: any) {
+        logWarn({
+          msg: "billing.restore.session_lookup_failed",
+          stripe: { session_id: hashForLogs(sessionId) },
+          outcome: "provider_error",
+          err: { name: err?.name || "StripeError", message: err?.message || "Failed to retrieve checkout session" }
+        });
+        continue;
+      }
+
+      if (session.payment_status !== "paid") continue;
+
+      const validation = validateStripeCheckoutSession(session);
+      if (!validation.ok) {
+        logWarn({
+          msg: "billing.restore.session_rejected",
+          stripe: { session_id: hashForLogs(sessionId) },
+          outcome: "validation_error",
+          err: { name: "UnapprovedCheckoutSession", message: validation.reason }
+        });
+        continue;
+      }
+
+      const storedTier = toStoredPassTier(validation.offer.tier);
 
       let subscriptionId: string | null = null;
       let subscriptionPeriodEndUnix: number | null = null;
-      if (typeof session.subscription === "string" && session.subscription) {
-        subscriptionId = session.subscription;
+      if (session.mode === "subscription") {
+        subscriptionId = typeof session.subscription === "string"
+          ? session.subscription
+          : session.subscription?.id || null;
+        if (!subscriptionId) continue;
+
         try {
           const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+          if (subscription.status !== "active" && subscription.status !== "trialing") {
+            continue;
+          }
           subscriptionPeriodEndUnix = extractCurrentPeriodEndUnix(subscription);
         } catch {
-          // Best-effort; fallback defaults below.
+          continue;
         }
+
+        if (!subscriptionPeriodEndUnix || subscriptionPeriodEndUnix * 1000 <= Date.now()) continue;
       }
+
+      if (storedTier === "monthly" && session.mode !== "subscription") continue;
 
       const { usesRemaining, expiresAt } = getTierDefaults(storedTier, { subscriptionPeriodEndUnix });
       inserts.push({
@@ -166,21 +216,32 @@ export async function POST() {
         uses_remaining: usesRemaining,
         purchased_at: new Date().toISOString(),
         expires_at: expiresAt,
-        price_id: subscriptionId,
+        price_id: validation.offer.priceId,
+        stripe_subscription_id: subscriptionId,
         checkout_session_id: sessionId,
         created_at: new Date().toISOString()
       });
     }
 
-    if (inserts.length > 0) {
-      const { error: insertError } = await admin.from("passes").insert(inserts);
+    let restored = 0;
+    for (const pass of inserts) {
+      const { error: insertError } = await admin.from("passes").insert(pass);
       if (insertError) {
-        console.error("[billing.restore] insert failed:", insertError.message);
+        // The webhook or another restore request may have won the unique
+        // checkout-session race. That is a successful idempotent outcome.
+        if (insertError.code === "23505") continue;
+        logError({
+          msg: "billing.restore.insert_failed",
+          supabase: { table: "passes", op: "insert", error_code: insertError.code },
+          outcome: "provider_error",
+          err: { name: "SupabaseError", message: insertError.message }
+        });
         return NextResponse.json(
           { ok: false, restored: 0, message: "Failed to restore purchases." },
           { status: 500 }
         );
       }
+      restored += 1;
     }
 
     const { data: updatedPasses } = await admin
@@ -191,17 +252,21 @@ export async function POST() {
 
     return NextResponse.json({
       ok: true,
-      restored: inserts.length,
+      restored,
       active_before: activeBefore,
       active_after: activeAfter,
-      message: inserts.length > 0
+      message: restored > 0
         ? "Access restored successfully."
         : activeAfter > 0
           ? "Access is already active."
           : "No additional purchases were found to restore."
     });
   } catch (err: any) {
-    console.error("[billing.restore] error:", err?.message);
+    logError({
+      msg: "billing.restore.failed",
+      outcome: "provider_error",
+      err: { name: err?.name || "BillingRestoreError", message: err?.message || "Failed to restore access" }
+    });
     return NextResponse.json(
       { ok: false, restored: 0, message: "Failed to restore access." },
       { status: 500 }

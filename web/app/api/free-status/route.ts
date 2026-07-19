@@ -9,6 +9,8 @@ import {
   parseFreeCookie
 } from "@/lib/backend/freeCookie";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
+import { hashForLogs, logError, logWarn } from "@/lib/observability/logger";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,7 +18,7 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     // Dev bypass for testing
-    if (String(process.env.BYPASS_PAYWALL || "").toLowerCase() === "true") {
+    if (isDevelopmentPaywallBypassEnabled()) {
       return NextResponse.json({
         ok: true,
         free_uses_left: 99,
@@ -43,7 +45,13 @@ export async function GET() {
       // If no record or no free_report_used_at, they have 1 free remaining
       freeUsesRemaining = (!usageData || !usageData.free_report_used_at) ? 1 : 0;
 
-      console.log(`[free-status] user=${user.id}, usageData=${JSON.stringify(usageData)}, error=${error?.message}, freeUsesRemaining=${freeUsesRemaining}`);
+      if (error) {
+        logWarn({
+          msg: "free_status.query_failed",
+          user_id: hashForLogs(user.id),
+          supabase: { table: "user_usage", op: "select", error_code: error.code },
+        });
+      }
 
       return NextResponse.json({
         ok: true,
@@ -81,7 +89,12 @@ export async function GET() {
       return res;
     }
   } catch (error) {
-    console.error("API /free-status error:", error);
+    const err = error instanceof Error ? error : new Error("Unknown free-status error");
+    logError({
+      msg: "free_status.failed",
+      route: "GET /api/free-status",
+      err: { name: err.name, message: err.message, stack: err.stack },
+    });
     return NextResponse.json({ ok: false, free_uses_left: 0, free_uses_remaining: 0 }, { status: 500 });
   }
 }

@@ -1,83 +1,90 @@
 import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
-import { normalizeReportForPdf, type ReportForPdf } from "@/lib/reports/pdf-export";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import type { ReportForPdf } from "../reports/pdf-export";
 
 /**
- * Editorial-Grade PDF Generator
+ * Lifted Line PDF generator
  * 
  * Design principles:
- * 1. Wide margins (25mm) for pen annotations
- * 2. Checkboxes on action items for physical tick-off
- * 3. Self-explanatory context header
- * 4. Page breaks between major sections
- * 5. Vector branding (inline SVG)
+ * 1. Written recruiter verdict before the numeric summary
+ * 2. Stable evidence colors instead of traffic-light scoring
+ * 3. Newsreader for judgment and Instrument Sans for explanation
+ * 4. Page-safe sections and printable action checkboxes
  */
-
-function validateReportForPdf(report: any): report is ReportForPdf {
-  return normalizeReportForPdf(report) !== null;
-}
 
 function escapeHtml(str: string) {
   return String(str || "")
+    .replace(/[\u2010-\u2015\u2212]/g, "-")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
 
-// PocketMark logo SVG for PDF header - inline for reliability
-const POCKET_MARK_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
-  <rect x="4" y="4" width="16" height="16" rx="4" stroke="#0d9488" stroke-width="1.5" fill="none"/>
-  <path d="M4 10 L20 10" stroke="#0d9488" stroke-width="1.5"/>
-  <path d="M9 13.5 L9 17" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M9 13.5 H12 C13.6569 13.5 15 14.8431 15 16.5 C15 16.7761 14.7761 17 14.5 17 H9" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-</svg>`;
+const NEWSREADER_TTF = readFileSync(
+  join(process.cwd(), "public", "assets", "fonts", "newsreader-latin-variable.ttf")
+).toString("base64");
 
-// Combined brand header with logo + wordmark
-const BRAND_HEADER = `<span style="display: inline-flex; align-items: center;">${POCKET_MARK_SVG}<span style="font-family: 'Sentient', Georgia, serif; font-size: 18pt; font-weight: 500; letter-spacing: -0.02em;">Recruiter in Your Pocket</span></span>`;
-
-function getScoreColor(score: number): string {
-  if (score >= 85) return "#22c55e"; // --success (green)
-  if (score >= 70) return "#d97706"; // --warning (amber)
-  return "#dc2626"; // --destructive (red)
-}
+const INSTRUMENT_SANS_TTF = readFileSync(
+  join(process.cwd(), "public", "assets", "fonts", "instrument-sans-latin-variable.ttf")
+).toString("base64");
 
 function getSubscoreBar(value: number | undefined): string {
   if (value === undefined) return "";
-  const color = getScoreColor(value);
-  const width = Math.min(100, Math.max(0, value));
-  return `<div style="height: 4px; background: #e5e5e5; border-radius: 2px; margin-top: 4px;">
-    <div style="height: 100%; width: ${width}%; background: ${color}; border-radius: 2px;"></div>
-  </div>`;
+  const width = Math.min(99, Math.max(0, value));
+  return `<div class="metric-track"><div class="metric-fill" style="width: ${width}%;"></div></div>`;
 }
 
-async function renderReportHtml(report: ReportForPdf) {
+function firstSentence(value: string): string {
+  const normalized = String(value || "").trim();
+  if (!normalized) return "Your recruiter first read";
+  const match = normalized.match(/^(.+?[.!?])(?:\s|$)/);
+  const sentence = match?.[1] || normalized;
+  return sentence.length > 220 ? `${sentence.slice(0, 217).trimEnd()}...` : sentence;
+}
+
+export function renderReportHtml(report: ReportForPdf) {
   const generatedOn =
     typeof report.generated_on === "string" && report.generated_on.trim()
       ? report.generated_on
       : new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-
-  const scoreColor = getScoreColor(report.score);
+  const verdict = report.score_comment_short || firstSentence(report.summary);
+  const showSummary = report.summary.trim() !== verdict.trim();
 
   // Checkbox action items
   const checkboxListHtml = (items: string[] = []) =>
-    items.map((i) => `<li><span class="checkbox">☐</span> ${escapeHtml(i)}</li>`).join("");
+    items.map((item) => `<li><span class="checkbox" aria-hidden="true"></span><span>${escapeHtml(item)}</span></li>`).join("");
 
-  // Regular list items
-  const listHtml = (items: string[] = []) =>
-    items.map((i) => `<li><span>${escapeHtml(i)}</span></li>`).join("");
+  const signalListHtml = (items: string[] = [], tone: "lands" | "context") =>
+    items.map((item) => `<li><span class="signal-marker ${tone}" aria-hidden="true"></span><span>${escapeHtml(item)}</span></li>`).join("");
 
-  // Top fixes with checkboxes
+  // Top fixes carry the action and the reason together.
   const topFixesHtml = (fixes: ReportForPdf["top_fixes"] = []) =>
-    fixes.map((f) => f?.fix || f?.text ? `<li><span class="checkbox">☐</span> ${escapeHtml(f.fix || f.text || "")}</li>` : "").join("");
+    fixes.map((fix, index) => {
+      const action = fix?.fix || fix?.text;
+      if (!action) return "";
+      return `<li class="priority-item">
+        <span class="priority-number">${String(index + 1).padStart(2, "0")}</span>
+        <span class="priority-copy">
+          <strong>${escapeHtml(action)}</strong>
+          ${fix.why ? `<span>${escapeHtml(fix.why)}</span>` : ""}
+        </span>
+      </li>`;
+    }).join("");
 
   // Rewrites with page-break protection
   const rewriteHtml = (rewrites: ReportForPdf["rewrites"] = []) =>
     rewrites
-      .map((r) => {
+      .map((r, index) => {
         if (!r) return "";
         return `
           <div class="rewrite-card">
+            <div class="rewrite-heading">
+              <span>Rewrite ${String(index + 1).padStart(2, "0")}</span>
+              ${r.label ? `<span>${escapeHtml(r.label)}</span>` : ""}
+            </div>
             <div class="rewrite-grid">
               <div class="col original">
                 <div class="col-label">Before</div>
@@ -88,7 +95,7 @@ async function renderReportHtml(report: ReportForPdf) {
                 <div class="content">${escapeHtml(r.better)}</div>
               </div>
             </div>
-            ${r.enhancement_note ? `<div class="note"><strong>Why:</strong> ${escapeHtml(r.enhancement_note)}</div>` : ""}
+            ${r.enhancement_note ? `<div class="note"><strong>Why this is stronger</strong><span>${escapeHtml(r.enhancement_note)}</span></div>` : ""}
           </div>`;
       })
       .join("");
@@ -98,42 +105,43 @@ async function renderReportHtml(report: ReportForPdf) {
     <div class="subscores-grid">
       <div class="subscore">
         <div class="subscore-label">Story</div>
-        <div class="subscore-value">${report.subscores.story ?? "—"}</div>
+        <div class="subscore-value">${report.subscores.story ?? "Not scored"}</div>
         ${getSubscoreBar(report.subscores.story)}
       </div>
       <div class="subscore">
         <div class="subscore-label">Impact</div>
-        <div class="subscore-value">${report.subscores.impact ?? "—"}</div>
+        <div class="subscore-value">${report.subscores.impact ?? "Not scored"}</div>
         ${getSubscoreBar(report.subscores.impact)}
       </div>
       <div class="subscore">
         <div class="subscore-label">Clarity</div>
-        <div class="subscore-value">${report.subscores.clarity ?? "—"}</div>
+        <div class="subscore-value">${report.subscores.clarity ?? "Not scored"}</div>
         ${getSubscoreBar(report.subscores.clarity)}
       </div>
       <div class="subscore">
         <div class="subscore-label">Readability</div>
-        <div class="subscore-value">${report.subscores.readability ?? "—"}</div>
+        <div class="subscore-value">${report.subscores.readability ?? "Not scored"}</div>
         ${getSubscoreBar(report.subscores.readability)}
       </div>
     </div>
   ` : "";
 
-  // Job alignment section - comprehensive version matching web report
+  // Job alignment uses a teaching surface, not a separate score palette.
   const jobAlignmentHtml = report.job_alignment ? `
-    <section class="section">
-      <h2>Where You Compete</h2>
+    <section class="section alignment-section">
+      <div class="section-kicker">Positioning</div>
+      <h2>Where you compete</h2>
       
       ${report.job_alignment.role_fit?.best_fit_roles?.length ? `
         <div class="tag-row">
-          <span class="tag-label">Best Fit Roles:</span>
+          <span class="tag-label">Best-fit roles</span>
           ${report.job_alignment.role_fit.best_fit_roles.map(r => `<span class="tag">${escapeHtml(r)}</span>`).join("")}
         </div>
       ` : ""}
       
       ${report.job_alignment.role_fit?.stretch_roles?.length ? `
         <div class="tag-row">
-          <span class="tag-label">Stretch Roles:</span>
+          <span class="tag-label">Stretch roles</span>
           ${report.job_alignment.role_fit.stretch_roles.map(r => `<span class="tag tag-stretch">${escapeHtml(r)}</span>`).join("")}
         </div>
       ` : ""}
@@ -146,203 +154,285 @@ async function renderReportHtml(report: ReportForPdf) {
       
       <div class="alignment-meta">
         ${report.job_alignment.role_fit?.seniority_read ? `
-          <span class="meta-item"><strong>Seniority:</strong> ${escapeHtml(report.job_alignment.role_fit.seniority_read)}</span>
+          <span class="meta-item"><strong>Seniority</strong> ${escapeHtml(report.job_alignment.role_fit.seniority_read)}</span>
         ` : ""}
         ${report.job_alignment.role_fit?.company_stage_fit ? `
-          <span class="meta-item"><strong>Company Stage:</strong> ${escapeHtml(report.job_alignment.role_fit.company_stage_fit)}</span>
+          <span class="meta-item"><strong>Company stage</strong> ${escapeHtml(report.job_alignment.role_fit.company_stage_fit)}</span>
         ` : ""}
         ${report.job_alignment.role_fit?.industry_signals?.length ? `
-          <span class="meta-item"><strong>Industries:</strong> ${report.job_alignment.role_fit.industry_signals.map(s => escapeHtml(s)).join(" · ")}</span>
+          <span class="meta-item"><strong>Industries</strong> ${report.job_alignment.role_fit.industry_signals.map(s => escapeHtml(s)).join(", ")}</span>
         ` : ""}
       </div>
     </section>
   ` : "";
 
   return `<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Resume Audit — Recruiter in Your Pocket</title>
+  <title>Recruiter first-read report | Recruiter in Your Pocket</title>
   <style>
+    @font-face {
+      font-family: "Newsreader Variable";
+      src: url(data:font/ttf;base64,${NEWSREADER_TTF}) format("truetype");
+      font-style: normal;
+      font-weight: 200 800;
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: "Instrument Sans Variable";
+      src: url(data:font/ttf;base64,${INSTRUMENT_SANS_TTF}) format("truetype");
+      font-style: normal;
+      font-weight: 400 700;
+      font-stretch: 75% 100%;
+      font-display: block;
+    }
+
     :root {
-      /* Aligned with site's globals.css */
-      --foreground: #121212; /* Matches 0 0% 7% */
-      --muted: #6b7280; /* Slate-500 */
-      --border: #e5e7eb; /* Matches input */
-      --surface: #ffffff;
-      --wash: #fafafa; /* Matches background */
-      --brand: #0d9488; /* Teal-600 - site's brand */
-      --success: #22c55e; /* Green for good scores */
-      --success-bg: #f0fdf4;
-      --warning: #d97706; /* Amber for medium scores */
-      --destructive: #dc2626; /* Red for low scores */
+      --page: #fbfaf7;
+      --ink: #171827;
+      --muted: #62677a;
+      --soft: #8b8fa0;
+      --line: #d9d9e1;
+      --control-line: #bbbcc8;
+      --iris: #4f46e5;
+      --iris-strong: #3730a3;
+      --iris-tint: #c7c4ff;
+      --sky: #dcecff;
+      --sky-strong: #b8dcff;
+      --proof: #f5f3ee;
+      --apricot: #ff8a66;
+      --butter: #f6cf46;
+      --butter-soft: #fff8dc;
+      --white: #ffffff;
     }
 
     @page {
       size: A4;
-      margin: 25mm;
+      margin: 18mm 17mm 16mm;
+      background: var(--page);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--page); }
     
     body {
-      font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--foreground);
-      background: var(--surface);
-      font-size: 11pt;
-      line-height: 1.65;
+      font-family: "Instrument Sans Variable", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--page);
+      font-size: 9.5pt;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums;
     }
 
-    /* Header */
     header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 32px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid var(--foreground);
-    }
-
-    .brand-block {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      align-items: flex-end;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--ink);
     }
 
     .brand-wordmark {
-      color: var(--foreground);
+      font-family: "Newsreader Variable", serif;
+      color: var(--ink);
+      font-size: 18pt;
+      font-weight: 470;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      font-optical-sizing: auto;
     }
 
     .tagline {
-      font-size: 9pt;
+      margin-top: 5px;
+      font-size: 7.2pt;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 500;
+      letter-spacing: 0.11em;
+      font-weight: 680;
     }
 
     .date {
-      font-size: 9pt;
+      font-size: 8pt;
       color: var(--muted);
       text-align: right;
     }
 
-    /* Context Intro */
-    .intro {
-      background: var(--wash);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 16px 20px;
-      margin-bottom: 28px;
-      font-size: 10pt;
-      color: var(--muted);
+    .hero {
+      background: var(--sky);
+      border-top: 4px solid var(--iris);
+      padding: 22px 24px 21px;
+      margin-bottom: 18px;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
-    /* Score Block */
-    .score-block {
-      display: flex;
-      gap: 32px;
-      margin-bottom: 28px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid var(--border);
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 112px;
+      gap: 25px;
+      align-items: stretch;
     }
 
-    .score-main {
-      text-align: center;
-      min-width: 100px;
-    }
-
-    .score-value {
-      font-family: "Sentient", Georgia, serif;
-      font-size: 54pt;
-      font-weight: 600;
-      line-height: 1.1;
-      color: ${scoreColor};
-      letter-spacing: -0.02em;
-    }
-
-    .score-label {
-      font-size: 8pt;
+    .section-kicker {
+      color: var(--iris-strong);
+      font-size: 7.2pt;
+      font-weight: 720;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-top: 8px;
-      font-weight: 600;
+      margin-bottom: 7px;
     }
 
-    .score-summary {
-      flex: 1;
+    h1,
+    h2 {
+      font-family: "Newsreader Variable", serif;
+      font-optical-sizing: auto;
+      color: var(--ink);
+    }
+
+    h1 {
+      font-size: 24pt;
+      font-weight: 470;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      max-width: 470px;
+    }
+
+    .hero-summary {
+      color: var(--muted);
+      font-size: 9.3pt;
+      line-height: 1.58;
+      margin-top: 13px;
+      max-width: 500px;
+    }
+
+    .score-card {
+      border-left: 1px solid var(--sky-strong);
+      padding-left: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .recruiter-note {
-      font-family: "Sentient", Georgia, serif;
-      font-size: 13pt;
-      font-style: italic;
-      color: var(--foreground);
-      border-left: 3px solid ${scoreColor};
-      padding-left: 16px;
-      margin-bottom: 12px;
-      line-height: 1.5;
+    .score-value {
+      font-family: "Newsreader Variable", serif;
+      font-size: 45pt;
+      font-weight: 520;
+      line-height: 0.88;
+      color: var(--ink);
+      letter-spacing: -0.045em;
+      font-optical-sizing: auto;
     }
 
-    .summary-text {
-      font-size: 10pt;
+    .score-name {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
       color: var(--muted);
-      line-height: 1.6;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
 
-    /* Subscores */
+    .score-band {
+      color: var(--iris-strong);
+      font-size: 8.2pt;
+      line-height: 1.3;
+      font-weight: 680;
+      margin-top: 9px;
+    }
+
+    .score-scale {
+      color: var(--soft);
+      font-size: 7pt;
+      margin-top: 4px;
+    }
+
+    .score-note {
+      border-top: 1px solid var(--sky-strong);
+      color: var(--muted);
+      font-size: 7.6pt;
+      line-height: 1.45;
+      margin-top: 17px;
+      padding-top: 10px;
+    }
+
+    .score-note strong {
+      color: var(--ink);
+      font-weight: 680;
+    }
+
     .subscores-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 28px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .subscore {
-      text-align: center;
-    }
-
-    .subscore-label {
-      font-size: 8pt;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .subscore-value {
-      font-family: "Sentient", Georgia, serif;
-      font-size: 22pt;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    /* Sections */
-    .section {
-      margin-bottom: 24px;
+      gap: 0;
+      margin-bottom: 22px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      break-inside: avoid;
       page-break-inside: avoid;
     }
 
-    h2 {
-      font-family: "Sentient", Georgia, serif;
-      font-size: 13pt;
-      font-weight: 500;
-      color: var(--foreground);
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-      letter-spacing: -0.01em;
+    .subscore {
+      padding: 11px 13px 12px;
+      border-right: 1px solid var(--line);
     }
 
-    /* Lists */
+    .subscore:last-child { border-right: 0; }
+
+    .subscore-label {
+      font-size: 7pt;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 680;
+      margin-bottom: 3px;
+    }
+
+    .subscore-value {
+      font-family: "Newsreader Variable", serif;
+      font-size: 18pt;
+      font-weight: 520;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-optical-sizing: auto;
+    }
+
+    .metric-track {
+      height: 3px;
+      background: var(--iris-tint);
+      margin-top: 7px;
+      overflow: hidden;
+    }
+
+    .metric-fill {
+      height: 100%;
+      background: var(--iris);
+    }
+
+    .section {
+      margin-bottom: 22px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 11px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-size: 16pt;
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.018em;
+    }
+
     ul { 
       list-style: none;
       margin: 0;
@@ -350,50 +440,149 @@ async function renderReportHtml(report: ReportForPdf) {
     }
     
     li {
-      margin-bottom: 8px;
-      padding-left: 0;
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      font-size: 10pt;
+      gap: 9px;
+      font-size: 8.8pt;
+      line-height: 1.48;
+      margin-bottom: 8px;
     }
 
     .checkbox {
-      font-size: 12pt;
-      line-height: 1.2;
-      color: var(--muted);
-    }
-    
-    .strengths li::before {
-      content: "✓";
-      color: var(--moss);
-      font-weight: bold;
-      margin-right: 8px;
+      width: 10px;
+      height: 10px;
+      border: 1.25px solid var(--iris);
+      flex: 0 0 10px;
+      margin-top: 2px;
     }
 
-    .gaps li::before {
-      content: "!";
-      color: var(--gold);
-      font-weight: bold;
-      margin-right: 8px;
+    .signal-marker {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 8px;
+      margin-top: 3px;
+      border-radius: 50%;
     }
 
-    /* Two-column grid */
+    .signal-marker.lands { background: var(--iris); }
+    .signal-marker.context { background: var(--apricot); }
+
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 28px;
+      gap: 13px;
+      margin-bottom: 22px;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
-    /* Rewrites */
-    .rewrite-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      margin-bottom: 16px;
-      overflow: hidden;
+    .signal-panel {
+      padding: 16px 17px 13px;
+      border-top: 3px solid;
+    }
+
+    .signal-panel.lands {
+      background: var(--sky);
+      border-color: var(--iris);
+    }
+
+    .signal-panel.context {
+      background: var(--proof);
+      border-color: var(--apricot);
+    }
+
+    .signal-panel h2 {
+      font-size: 14pt;
+      margin-bottom: 11px;
+    }
+
+    .priority-section {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: baseline;
+      column-gap: 13px;
+      background: var(--butter-soft);
+      border-top: 3px solid var(--butter);
+      padding: 12px 17px 8px;
+      break-inside: avoid;
       page-break-inside: avoid;
+    }
+
+    .priority-section > .section-kicker {
+      margin-bottom: 7px;
+    }
+
+    .priority-section > .section-header {
+      margin-bottom: 7px;
+      padding: 0;
+      border: 0;
+    }
+
+    .priority-section > .priority-list {
+      grid-column: 1 / -1;
+    }
+
+    .priority-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 22px;
+    }
+
+    .priority-item {
+      border-top: 1px solid rgba(164, 117, 0, 0.22);
+      padding: 5px 0;
+      margin: 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .priority-number {
+      color: var(--iris-strong);
+      font-size: 7pt;
+      font-weight: 720;
+      letter-spacing: 0.08em;
+      flex: 0 0 20px;
+      padding-top: 2px;
+    }
+
+    .priority-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .priority-copy strong {
+      color: var(--ink);
+      font-size: 8.8pt;
+      line-height: 1.35;
+    }
+
+    .priority-copy span {
+      color: var(--muted);
+      font-size: 7.8pt;
+      line-height: 1.4;
+    }
+
+    .rewrite-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--iris);
+      margin-bottom: 9px;
+      overflow: hidden;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .rewrite-heading {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 6px 11px;
+      border-bottom: 1px solid var(--line);
     }
     
     .rewrite-grid {
@@ -402,96 +591,114 @@ async function renderReportHtml(report: ReportForPdf) {
     }
     
     .col {
-      padding: 14px 16px;
+      padding: 10px 12px 11px;
     }
     
     .col.original {
-      background: var(--wash);
-      border-right: 1px solid var(--border);
+      background: var(--proof);
+      border-right: 1px solid var(--line);
+    }
+
+    .col.better {
+      background: var(--sky);
     }
     
     .col-label {
-      font-size: 8pt;
+      font-size: 7pt;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
+      letter-spacing: 0.09em;
+      margin-bottom: 7px;
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 700;
     }
     
     .content {
-      font-size: 10pt;
-      color: var(--foreground);
-      line-height: 1.5;
+      font-size: 9pt;
+      color: var(--ink);
+      line-height: 1.48;
+    }
+
+    .better .content {
+      font-family: "Newsreader Variable", serif;
+      font-size: 10.5pt;
+      line-height: 1.38;
+      font-weight: 480;
+      font-optical-sizing: auto;
     }
 
     .note {
-      padding: 12px 16px;
-      background: var(--moss-bg);
-      font-size: 9pt;
-      color: #14532d;
-      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 12px;
+      padding: 7px 11px 8px;
+      background: var(--butter-soft);
+      border-top: 1px solid var(--line);
+      font-size: 7.8pt;
+      color: var(--muted);
     }
 
-    /* Tags */
+    .note strong {
+      color: var(--ink);
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
     .tag-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 6px;
+      margin-bottom: 10px;
     }
 
     .tag-label {
-      font-size: 9pt;
+      font-size: 7.5pt;
       color: var(--muted);
-      font-weight: 500;
+      font-weight: 680;
+      margin-right: 4px;
     }
 
     .tag {
       display: inline-block;
-      padding: 4px 10px;
-      background: var(--wash);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 9pt;
-      font-weight: 500;
-    }
-
-    .seniority-read {
-      font-size: 10pt;
-      color: var(--foreground);
-      font-style: italic;
+      padding: 3px 7px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--sky-strong);
+      border-radius: 2px;
+      font-size: 7.5pt;
+      font-weight: 600;
     }
 
     .tag-stretch {
       background: transparent;
-      border-style: dashed;
+      border-color: var(--control-line);
     }
 
     .positioning-suggestion {
-      margin: 16px 0;
-      padding: 16px;
-      background: var(--wash);
-      border-left: 3px solid var(--brand);
-      border-radius: 0 4px 4px 0;
+      margin: 13px 0;
+      padding: 13px 15px;
+      background: rgba(255, 255, 255, 0.62);
+      border-left: 3px solid var(--iris);
     }
 
     .positioning-suggestion p {
+      font-family: "Newsreader Variable", serif;
       font-size: 10pt;
-      line-height: 1.6;
-      color: var(--foreground);
+      line-height: 1.45;
+      color: var(--ink);
+      font-weight: 470;
+      font-optical-sizing: auto;
       margin: 0;
     }
 
     .alignment-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      font-size: 9pt;
+      gap: 13px;
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid var(--sky-strong);
+      font-size: 7.6pt;
       color: var(--muted);
     }
 
@@ -500,17 +707,25 @@ async function renderReportHtml(report: ReportForPdf) {
     }
 
     .meta-item strong {
-      color: var(--foreground);
+      color: var(--ink);
+      margin-right: 4px;
     }
 
-    /* Footer */
+    .alignment-section {
+      background: var(--sky);
+      border-top: 3px solid var(--iris);
+      padding: 17px 19px 15px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
     footer {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
+      margin-top: 28px;
+      padding-top: 11px;
+      border-top: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
-      font-size: 8pt;
+      font-size: 7pt;
       color: var(--muted);
     }
   </style>
@@ -518,68 +733,82 @@ async function renderReportHtml(report: ReportForPdf) {
 <body>
   <header>
     <div class="brand-block">
-      <div class="brand-wordmark">${BRAND_HEADER}</div>
-      <div class="tagline">Confidential Resume Audit</div>
+      <div class="brand-wordmark">Recruiter in Your Pocket</div>
+      <div class="tagline">Private recruiter report</div>
     </div>
     <div class="date">${escapeHtml(generatedOn)}</div>
   </header>
 
-  <div class="intro">
-    <strong>How to use this document:</strong> This is what a recruiter sees in the first 7.4 seconds. 
-    Use the checkboxes to track your fixes. Share with a mentor for feedback.
-  </div>
-
-  <div class="score-block">
-    <div class="score-main">
-      <div class="score-value">${Math.round(report.score || 0)}</div>
-      <div class="score-label">${escapeHtml(report.score_label || "Recruiter Impact Score")}</div>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="section-kicker">Recruiter first read</div>
+        <h1>${escapeHtml(verdict)}</h1>
+        ${showSummary ? `<p class="hero-summary">${escapeHtml(report.summary)}</p>` : ""}
+      </div>
+      <div class="score-card">
+        <div class="score-name">First-read score</div>
+        <div class="score-value">${Math.round(report.score || 0)}</div>
+        <div class="score-band">${escapeHtml(report.score_label || "Needs more context")}</div>
+        <div class="score-scale">out of 99</div>
+      </div>
     </div>
-    <div class="score-summary">
-      <div class="summary-text">${escapeHtml(report.summary)}</div>
+    <div class="score-note">
+      <strong>What this means:</strong> a quick summary of this document's clarity. It is not an ATS ranking or a prediction about interviews.
     </div>
-  </div>
+  </section>
 
   ${subscoresHtml}
 
   <div class="two-col">
-    <div class="section">
-      <h2>What's Working</h2>
-      <ul class="strengths">${listHtml(report.strengths)}</ul>
-    </div>
-    <div class="section">
-      <h2>Missed Opportunities</h2>
-      <ul class="gaps">${listHtml(report.gaps)}</ul>
-    </div>
+    <section class="signal-panel lands">
+      <div class="section-kicker">Caught attention</div>
+      <h2>What lands</h2>
+      <ul>${signalListHtml(report.strengths, "lands")}</ul>
+    </section>
+    <section class="signal-panel context">
+      <div class="section-kicker">Needs context</div>
+      <h2>What stays unclear</h2>
+      <ul>${signalListHtml(report.gaps, "context")}</ul>
+    </section>
   </div>
 
   ${report.top_fixes?.length ? `
-    <section class="section">
-      <h2>Priority Fixes</h2>
-      <ul>${topFixesHtml(report.top_fixes)}</ul>
+    <section class="section priority-section">
+      <div class="section-kicker">Evidence-backed priorities</div>
+      <div class="section-header"><h2>Start here</h2></div>
+      <ul class="priority-list">${topFixesHtml(report.top_fixes)}</ul>
     </section>
   ` : ""}
 
-  <section class="section">
-    <h2>The Work — Bullet Upgrades</h2>
-    ${rewriteHtml(report.rewrites)}
-  </section>
+  ${report.rewrites.length ? `
+    <section class="section">
+      <div class="section-kicker">Strongest next wording</div>
+      <div class="section-header"><h2>Bullet upgrades</h2></div>
+      ${rewriteHtml(report.rewrites)}
+    </section>
+  ` : ""}
 
   ${Array.isArray(report.missing_wins) && report.missing_wins.length ? `
     <section class="section">
-      <h2>Undersold Wins</h2>
+      <div class="section-kicker">Evidence to recover</div>
+      <div class="section-header"><h2>Wins that are still hiding</h2></div>
       <ul>${checkboxListHtml(report.missing_wins)}</ul>
     </section>
   ` : ""}
 
   ${jobAlignmentHtml}
 
-  <section class="section">
-    <h2>Next Steps</h2>
-    <ul>${checkboxListHtml(report.next_steps)}</ul>
-  </section>
+  ${report.next_steps.length ? `
+    <section class="section">
+      <div class="section-kicker">Working list</div>
+      <div class="section-header"><h2>Next steps</h2></div>
+      <ul>${checkboxListHtml(report.next_steps)}</ul>
+    </section>
+  ` : ""}
 
   <footer>
-    <div>Generated by Recruiter in Your Pocket Studio</div>
+    <div>Generated by Recruiter in Your Pocket</div>
     <div>recruiterinyourpocket.com</div>
   </footer>
 </body>
@@ -597,7 +826,7 @@ function isServerlessEnv() {
 }
 
 export async function generatePdfBuffer(report: ReportForPdf): Promise<Buffer> {
-  const html = await renderReportHtml(report);
+  const html = renderReportHtml(report);
 
   const isServerless = isServerlessEnv();
   const isVercel = Boolean(process.env.VERCEL);
@@ -641,11 +870,12 @@ export async function generatePdfBuffer(report: ReportForPdf): Promise<Buffer> {
     }
 
     await page.setContent(html, { waitUntil: "networkidle0", timeout: 30000 });
+    await page.evaluate(() => document.fonts.ready);
     const pdfBuffer = await page.pdf({
-      format: "A4",
       printBackground: true,
       displayHeaderFooter: false,
-      margin: { top: "25mm", right: "25mm", bottom: "25mm", left: "25mm" }
+      preferCSSPageSize: true,
+      margin: { top: "0", right: "0", bottom: "0", left: "0" }
     });
     return Buffer.from(pdfBuffer);
   } finally {

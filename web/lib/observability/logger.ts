@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import type { OutcomeCategory } from "./outcomes";
-import { containsForbiddenKeys } from "./pii";
+import { containsForbiddenKeys, scrubPiiFromObject } from "./pii";
 
 export type LogLevel = "info" | "warn" | "error";
 
@@ -92,7 +92,10 @@ function log(level: LogLevel, record: Omit<LogRecord, "ts" | "level" | "service"
     return;
   }
 
-  const { msg, ...rest } = record;
+  // Forbidden-key records are blocked above. Pattern scrubbing is a second
+  // boundary for PII embedded in otherwise valid strings such as err.message.
+  const safeRecord = scrubPiiFromObject(record) as typeof record;
+  const { msg, ...rest } = safeRecord;
   const full: LogRecord = {
     ts: new Date().toISOString(),
     level,

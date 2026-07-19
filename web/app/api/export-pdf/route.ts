@@ -5,6 +5,9 @@ import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/log
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { normalizeReportForPdf } from "@/lib/reports/pdf-export";
+import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { isPassActive } from "@/lib/billing/entitlements";
+import { isDevelopmentPaywallBypassEnabled } from "@/lib/billing/access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,6 +39,37 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    if (!isDevelopmentPaywallBypassEnabled()) {
+      const supabase = await createSupabaseServerClient();
+      const { data: authData, error: authError } = await supabase.auth.getUser();
+      const user = authData.user;
+
+      if (authError || !user) {
+        const res = NextResponse.json(
+          { ok: false, errorCode: "UNAUTHORIZED", message: "Sign in with a paid account to export a PDF." },
+          { status: 401 }
+        );
+        res.headers.set("x-request-id", request_id);
+        return res;
+      }
+
+      const { data: passes, error: passesError } = await supabase
+        .from("passes")
+        .select("tier, uses_remaining, expires_at")
+        .eq("user_id", user.id);
+
+      if (passesError) throw passesError;
+      const hasPaidAccess = (passes || []).some((pass: any) => isPassActive(pass));
+      if (!hasPaidAccess) {
+        const res = NextResponse.json(
+          { ok: false, errorCode: "PAID_ACCESS_REQUIRED", message: "PDF export is included with paid access." },
+          { status: 402 }
+        );
+        res.headers.set("x-request-id", request_id);
+        return res;
+      }
+    }
+
     const body = await readJsonWithLimit<any>(request, 256 * 1024);
     const payload = normalizeReportForPdf(body?.report || body || {});
 

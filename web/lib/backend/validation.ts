@@ -1,5 +1,6 @@
 import { createAppError } from "./openai";
 import { assertReportGrounding, ResumeFeedbackResponseSchema } from "@/lib/validation/schemas";
+import { getScoreLabel } from "@/lib/score-utils";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALLOWED_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -114,6 +115,7 @@ export function ensureLayoutAndContentFields(obj: any) {
   );
 
   obj.score = normalizeScore(obj.score, "score");
+  obj.score_label = getScoreLabel(obj.score);
   obj.layout_score = normalizedLayoutScore;
   obj.layout_band = typeof obj.layout_band === "string" ? obj.layout_band : "unknown";
   obj.layout_notes = typeof obj.layout_notes === "string" ? obj.layout_notes : "";

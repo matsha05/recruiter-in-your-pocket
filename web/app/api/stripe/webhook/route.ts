@@ -3,16 +3,26 @@ import Stripe from "stripe";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { readTextWithLimit } from "@/lib/security/requestBody";
 import {
     getTierDefaults,
-    resolveRequestedTierFromSession,
     toStoredPassTier,
-    type RequestedPricingTier,
 } from "@/lib/billing/entitlements";
+import { createStripeClient } from "@/lib/billing/stripeClient";
+import {
+    STRIPE_CHECKOUT_SESSION_EXPAND,
+    isUnrelatedStripeCheckout,
+    validateStripeCheckoutSession,
+    type ApprovedStripeOffer,
+} from "@/lib/billing/stripeOffers";
+import {
+    claimStripeEvent,
+    completeStripeEvent,
+    failStripeEvent,
+    rejectStripeEvent,
+} from "@/lib/billing/stripeEventLease";
 
-const stripe = process.env.STRIPE_SECRET_KEY
-    ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
-    : null;
+const stripe = createStripeClient();
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -33,14 +43,6 @@ function getEmailFromCheckoutSession(session: Stripe.Checkout.Session): string |
     if (customerEmail && typeof customerEmail === "string") return customerEmail.toLowerCase();
 
     return null;
-}
-
-function resolveTier(session: Stripe.Checkout.Session): RequestedPricingTier {
-    return resolveRequestedTierFromSession({
-        metadataTier: session.metadata?.tier,
-        passTier: session.metadata?.pass_tier,
-        mode: session.mode,
-    });
 }
 
 function toIsoFromUnix(value: unknown): string | null {
@@ -165,9 +167,11 @@ async function resolveUserIdForInvoice(
 async function upsertBillingReceipt(
     admin: any,
     invoice: Stripe.Invoice,
-    context: UserResolutionContext
+    context: UserResolutionContext,
+    knownUserId?: string,
+    knownCheckoutSessionId?: string
 ) {
-    const userId = await resolveUserIdForInvoice(admin, invoice, context);
+    const userId = knownUserId || await resolveUserIdForInvoice(admin, invoice, context);
     if (!userId) {
         logWarn({
             msg: "stripe.webhook.invoice_user_not_resolved",
@@ -187,7 +191,7 @@ async function upsertBillingReceipt(
         user_id: userId,
         stripe_invoice_id: invoice.id,
         stripe_customer_id: typeof invoice.customer === "string" ? invoice.customer : null,
-        checkout_session_id: (invoice as any).checkout_session || null,
+        checkout_session_id: knownCheckoutSessionId || (invoice as any).checkout_session || null,
         invoice_number: invoice.number || null,
         status: invoice.status || null,
         currency: invoice.currency || null,
@@ -279,10 +283,10 @@ async function upsertPassForCheckout(
     admin: any,
     session: Stripe.Checkout.Session,
     userId: string,
-    tier: RequestedPricingTier,
+    offer: ApprovedStripeOffer,
     context: UserResolutionContext
 ): Promise<void> {
-    const storedTier = toStoredPassTier(tier);
+    const storedTier = toStoredPassTier(offer.tier);
 
     let subscriptionId: string | null = null;
     let subscriptionPeriodEndUnix: number | null = null;
@@ -338,7 +342,7 @@ async function upsertPassForCheckout(
             .from("passes")
             .select("id")
             .eq("user_id", userId)
-            .eq("price_id", subscriptionId)
+            .eq("stripe_subscription_id", subscriptionId)
             .limit(1)
             .maybeSingle();
 
@@ -349,6 +353,8 @@ async function upsertPassForCheckout(
                     tier: storedTier,
                     uses_remaining: usesRemaining,
                     expires_at: expiresAt,
+                    price_id: offer.priceId,
+                    stripe_subscription_id: subscriptionId,
                     checkout_session_id: session.id
                 })
                 .eq("id", existingSubPass.id);
@@ -368,7 +374,8 @@ async function upsertPassForCheckout(
             uses_remaining: usesRemaining,
             purchased_at: new Date().toISOString(),
             expires_at: expiresAt,
-            price_id: subscriptionId,
+            price_id: offer.priceId,
+            stripe_subscription_id: subscriptionId,
             checkout_session_id: session.id,
             created_at: new Date().toISOString()
         });
@@ -407,7 +414,7 @@ async function syncSubscriptionStatus(
             expires_at: expiresAt,
             uses_remaining: isActive ? 9_999 : 0
         })
-        .eq("price_id", subscriptionId)
+        .eq("stripe_subscription_id", subscriptionId)
         .eq("tier", "monthly");
 
     if (error) {
@@ -458,7 +465,25 @@ export async function POST(request: NextRequest) {
         return new NextResponse("Database not configured", { status: 500, headers: { "x-request-id": request_id } });
     }
 
-    const body = await request.text();
+    let body: string;
+    try {
+        body = await readTextWithLimit(request, 512 * 1024);
+    } catch (err: any) {
+        const status = err?.httpStatus === 413 ? 413 : 400;
+        logWarn({
+            msg: "stripe.webhook.payload_rejected",
+            request_id,
+            route,
+            method,
+            path,
+            outcome: "validation_error",
+            http: { body_bytes: Number(request.headers.get("content-length") || 0) || undefined }
+        });
+        return new NextResponse(
+            status === 413 ? "Payload too large" : "Invalid payload",
+            { status, headers: { "x-request-id": request_id } }
+        );
+    }
     const sig = request.headers.get("stripe-signature");
 
     if (!sig) {
@@ -490,68 +515,150 @@ export async function POST(request: NextRequest) {
         return new NextResponse("Webhook signature invalid", { status: 400, headers: { "x-request-id": request_id } });
     }
 
-    // Idempotency at event level.
-    const { data: existingEvent } = await supabaseAdmin
-        .from("stripe_events")
-        .select("id")
-        .eq("event_id", event.id)
-        .maybeSingle();
+    let claim;
+    try {
+        claim = await claimStripeEvent(supabaseAdmin as any, {
+            eventId: event.id,
+            eventType: event.type,
+            payload: buildStripeEventAuditPayload(event),
+            requestId: request_id,
+        });
+    } catch (err: any) {
+        logError({
+            msg: "stripe.webhook.idempotency_failed",
+            request_id,
+            route,
+            method,
+            path,
+            outcome: "internal_error",
+            stripe: { event_id: event.id, event_type: event.type },
+            err: { name: err?.name || "Error", message: err?.message || "Could not claim event" }
+        });
+        return new NextResponse("Processing Error", { status: 500, headers: { "x-request-id": request_id } });
+    }
 
-    if (existingEvent) {
+    if (!claim.claimed || !claim.leaseToken) {
         logInfo({
             msg: "stripe.webhook.event_already_processed",
             request_id,
             route,
             outcome: "success",
-            stripe: { event_id: event.id, event_type: event.type }
+            stripe: { event_id: event.id, event_type: event.type },
+            feature: `stripe_event_claim:${claim.reason}`
         });
         return NextResponse.json({ received: true }, { headers: { "x-request-id": request_id } });
     }
 
-    try {
-        await supabaseAdmin.from("stripe_events").insert({
-            event_id: event.id,
-            event_type: event.type,
-            processed_at: new Date().toISOString(),
-            payload: buildStripeEventAuditPayload(event),
-            request_id
-        });
-    } catch {
-        // Non-blocking. Table may not exist in all environments.
-    }
+    const leaseToken = claim.leaseToken;
 
     const context: UserResolutionContext = { request_id, route, method, path };
 
     try {
-        if (event.type === "checkout.session.completed") {
-            const session = event.data.object as Stripe.Checkout.Session;
-            const email = getEmailFromCheckoutSession(session);
+        if (
+            event.type === "checkout.session.completed" ||
+            event.type === "checkout.session.async_payment_succeeded"
+        ) {
+            const eventSession = event.data.object as Stripe.Checkout.Session;
+            const session = await stripe.checkout.sessions.retrieve(eventSession.id, {
+                expand: [...STRIPE_CHECKOUT_SESSION_EXPAND],
+            });
+            const validation = validateStripeCheckoutSession(session);
 
-            if (!email) {
-                logError({
-                    msg: "stripe.webhook.missing_email",
+            if (!validation.ok) {
+                if (isUnrelatedStripeCheckout(validation)) {
+                    await rejectStripeEvent(
+                        supabaseAdmin as any,
+                        event.id,
+                        leaseToken,
+                        validation.reason
+                    );
+                    logWarn({
+                        msg: "stripe.webhook.checkout_rejected",
+                        request_id,
+                        route,
+                        method,
+                        path,
+                        outcome: "validation_error",
+                        feature: `checkout_validation:${validation.reason}`,
+                        stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
+                    });
+                    return NextResponse.json(
+                        { received: true },
+                        { headers: { "x-request-id": request_id } }
+                    );
+                }
+
+                throw new Error(`Checkout session validation failed: ${validation.reason}`);
+            }
+
+            if (session.payment_status !== "paid") {
+                logInfo({
+                    msg: "stripe.webhook.checkout_not_paid",
                     request_id,
                     route,
                     method,
                     path,
-                    outcome: "validation_error",
+                    outcome: "success",
                     stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
                 });
-                return new NextResponse("No email found", { status: 400, headers: { "x-request-id": request_id } });
+            } else {
+                const email = getEmailFromCheckoutSession(session);
+
+                if (!email) {
+                    logError({
+                        msg: "stripe.webhook.missing_email",
+                        request_id,
+                        route,
+                        method,
+                        path,
+                        outcome: "validation_error",
+                        stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
+                    });
+                    throw new Error("No email found for completed checkout session");
+                }
+
+                const { userId, wasCreated } = await findOrCreateUserId(
+                    supabaseAdmin,
+                    email,
+                    session.metadata?.user_id || null,
+                    context
+                );
+
+                if (wasCreated) {
+                    await maybeSendOtp(supabaseAdmin, email, context);
+                }
+
+                await upsertPassForCheckout(
+                    supabaseAdmin,
+                    session,
+                    userId,
+                    validation.offer,
+                    context
+                );
+
+                // Invoice events can arrive before checkout.session.completed.
+                // At that point the checkout email may not have an RIYP user yet,
+                // so reconcile the one-time receipt again after user creation.
+                if (session.invoice) {
+                    const invoice = typeof session.invoice === "string"
+                        ? await stripe.invoices.retrieve(session.invoice)
+                        : session.invoice;
+                    await upsertBillingReceipt(supabaseAdmin, invoice, context, userId, session.id);
+                }
             }
+        }
 
-            const { userId, wasCreated } = await findOrCreateUserId(
-                supabaseAdmin,
-                email,
-                session.metadata?.user_id || null,
-                context
-            );
-
-            if (wasCreated) {
-                await maybeSendOtp(supabaseAdmin, email, context);
-            }
-
-            await upsertPassForCheckout(supabaseAdmin, session, userId, resolveTier(session), context);
+        if (event.type === "checkout.session.async_payment_failed") {
+            const session = event.data.object as Stripe.Checkout.Session;
+            logWarn({
+                msg: "stripe.webhook.checkout_async_payment_failed",
+                request_id,
+                route,
+                method,
+                path,
+                outcome: "provider_error",
+                stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
+            });
         }
 
         if (event.type === "customer.subscription.updated" || event.type === "customer.subscription.deleted") {
@@ -570,6 +677,8 @@ export async function POST(request: NextRequest) {
             await upsertBillingReceipt(supabaseAdmin, invoice, context);
         }
 
+        await completeStripeEvent(supabaseAdmin as any, event.id, leaseToken);
+
         logInfo({
             msg: "stripe.webhook.completed",
             request_id,
@@ -581,6 +690,20 @@ export async function POST(request: NextRequest) {
             stripe: { event_id: event.id, event_type: event.type }
         });
     } catch (err: any) {
+        try {
+            await failStripeEvent(supabaseAdmin as any, event.id, leaseToken, err);
+        } catch (stateError: any) {
+            logWarn({
+                msg: "stripe.webhook.failure_state_write_failed",
+                request_id,
+                route,
+                method,
+                path,
+                outcome: "internal_error",
+                stripe: { event_id: event.id, event_type: event.type },
+                err: { name: stateError?.name || "Error", message: stateError?.message || "Could not record failure" }
+            });
+        }
         logError({
             msg: "stripe.webhook.fulfillment.failed",
             request_id,

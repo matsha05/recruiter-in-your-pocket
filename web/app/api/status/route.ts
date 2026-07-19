@@ -8,15 +8,16 @@ export async function GET() {
   try {
     const snapshot = await getPublicStatusSnapshot();
     return NextResponse.json(snapshot, { status: 200 });
-  } catch (err: any) {
+  } catch (err) {
+    console.error("[Status] Could not build the public status snapshot", err);
     return NextResponse.json(
       {
         ok: false,
         generatedAt: new Date().toISOString(),
         summary: {
           status: "limited",
-          title: "Status temporarily unavailable",
-          message: err?.message || "We could not load the public status summary right now.",
+          title: "Configuration status unavailable",
+          message: "We could not load the launch configuration snapshot right now.",
         },
         services: [],
         incidents: [],

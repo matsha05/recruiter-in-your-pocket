@@ -1,14 +1,13 @@
 import "server-only";
 import { Redis } from "@upstash/redis";
+import { getRedisRestConfig } from "./config";
 
 /**
  * Upstash Redis client for rate limiting, idempotency, and short-lived state.
  * 
- * Environment variables required:
- * - UPSTASH_REDIS_REST_URL
- * - UPSTASH_REDIS_REST_TOKEN
- * 
- * These are automatically configured when using Vercel + Upstash integration.
+ * Supported environment pairs:
+ * - UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN
+ * - KV_REST_API_URL + KV_REST_API_TOKEN (legacy Vercel Marketplace alias)
  */
 
 let redis: Redis | null = null;
@@ -16,26 +15,15 @@ let redis: Redis | null = null;
 export function getRedisClient(): Redis | null {
     if (redis) return redis;
 
-    const url = process.env.UPSTASH_REDIS_REST_URL;
-    const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+    const config = getRedisRestConfig();
 
-    if (!url || !token) {
+    if (!config) {
         if (process.env.NODE_ENV === "production") {
-            console.warn("[Redis] UPSTASH_REDIS_REST_URL or UPSTASH_REDIS_REST_TOKEN not configured");
+            console.warn("[Redis] No compatible REST credential pair is configured");
         }
         return null;
     }
 
-    redis = new Redis({ url, token });
+    redis = new Redis({ url: config.url, token: config.token });
     return redis;
-}
-
-/**
- * Check if Redis is available and configured
- */
-function isRedisConfigured(): boolean {
-    return Boolean(
-        process.env.UPSTASH_REDIS_REST_URL &&
-        process.env.UPSTASH_REDIS_REST_TOKEN
-    );
 }

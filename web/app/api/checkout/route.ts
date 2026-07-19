@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import {
-    getCheckoutModeForTier,
     getTierLabel,
     normalizeRequestedTier,
     toStoredPassTier
@@ -14,20 +12,11 @@ import {
 import { getOrSetCache } from "@/lib/redis/idempotency";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
+import { createStripeClient } from "@/lib/billing/stripeClient";
+import { getLaunchStripeOffer } from "@/lib/billing/stripeOffers";
 
 // Initialize Stripe
-const stripe = process.env.STRIPE_SECRET_KEY
-    ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-11-17.clover" })
-    : null;
-
-// Pricing tiers: monthly subscription ($9) and lifetime one-time ($79)
-const PRICE_IDS = {
-    "monthly": process.env.STRIPE_PRICE_ID_MONTHLY || "price_MONTHLY_PLACEHOLDER",
-    "lifetime": process.env.STRIPE_PRICE_ID_LIFETIME || "price_LIFETIME_PLACEHOLDER",
-    // Legacy one-time pricing (deprecated, kept for existing purchases)
-    "24h": process.env.STRIPE_PRICE_ID_24H || "price_1SeJLJK3nCOONJJ0g2JncGeY",
-    "30d": process.env.STRIPE_PRICE_ID_30D || "price_1SeJLsK3nCOONJJ0mrQIVesj",
-};
+const stripe = createStripeClient();
 
 type CheckoutSource = "landing" | "pricing" | "paywall" | "settings" | "workspace" | "unknown";
 type UnlockSection = "evidence_ledger" | "bullet_upgrades" | "missing_wins" | "job_alignment" | "export_pdf";
@@ -58,11 +47,6 @@ function isValidEmail(email: unknown): email is string {
     const trimmed = email.trim();
     if (!trimmed || trimmed.length > 320) return false;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
-}
-
-function isInvalidPriceId(priceId: string | undefined) {
-    if (!priceId) return true;
-    return priceId.includes("MISSING") || priceId.includes("PLACEHOLDER");
 }
 
 function normalizeUnlockSection(input: unknown): UnlockSection | null {
@@ -151,15 +135,24 @@ export async function POST(request: Request) {
             return res;
         }
 
+        if (requestedTier !== "30d") {
+            const res = NextResponse.json(
+                { ok: false, message: "That offer is no longer available. Choose the Job Search Pass instead." },
+                { status: 400 }
+            );
+            res.headers.set("x-request-id", request_id);
+            return res;
+        }
+
         // Check if user is already logged in (optional). If so, bind purchase to that account email.
         let userId: string | null = null;
         let checkoutEmail: string | undefined = undefined;
         try {
             const supabase = await createSupabaseServerClient();
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session?.user) {
-                userId = session.user.id;
-                checkoutEmail = session.user.email || undefined;
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                userId = user.id;
+                checkoutEmail = user.email || undefined;
             }
         } catch {
             // Ignore - user will be created/linked in webhook
@@ -185,9 +178,9 @@ export async function POST(request: Request) {
             checkoutEmail = body.email.trim();
         }
 
-        const priceId = PRICE_IDS[requestedTier as keyof typeof PRICE_IDS];
+        const launchOffer = getLaunchStripeOffer();
 
-        if (isInvalidPriceId(priceId)) {
+        if (!launchOffer) {
             logError({
                 msg: "checkout.invalid_price_id",
                 request_id,
@@ -195,7 +188,11 @@ export async function POST(request: Request) {
                 method,
                 path,
                 outcome: "internal_error",
-                err: { name: "ConfigError", message: `Missing price ID for tier ${requestedTier}`, code: "STRIPE_PRICE_ID_MISSING" }
+                err: {
+                    name: "ConfigError",
+                    message: "The canonical Job Search Pass price/product pair is incomplete",
+                    code: "STRIPE_OFFER_CATALOG_INCOMPLETE"
+                }
             });
             const res = NextResponse.json(
                 { ok: false, message: "This plan is currently unavailable." },
@@ -210,8 +207,7 @@ export async function POST(request: Request) {
 
         const baseUrl = getAppUrlForRequest(request);
 
-        const mode = getCheckoutModeForTier(requestedTier);
-        const isSubscription = mode === "subscription";
+        const mode = "payment" as const;
         const successUrl = new URL(`${baseUrl}/purchase/confirmed`);
         successUrl.searchParams.set("session_id", "{CHECKOUT_SESSION_ID}");
         successUrl.searchParams.set("tier", requestedTier);
@@ -219,20 +215,27 @@ export async function POST(request: Request) {
         if (unlockSection) {
             successUrl.searchParams.set("unlock", unlockSection);
         }
+        // Stripe replaces this token only when the braces are left literal.
+        // URLSearchParams percent-encodes them, which sends customers back with
+        // the text "{CHECKOUT_SESSION_ID}" instead of the completed session ID.
+        const stripeSuccessUrl = successUrl
+            .toString()
+            .replace("%7BCHECKOUT_SESSION_ID%7D", "{CHECKOUT_SESSION_ID}");
 
         const createCheckoutSession = async () => {
             const checkoutSession = await stripe.checkout.sessions.create({
                 mode,
-                payment_method_types: ["card"],
                 line_items: [
                     {
-                        price: priceId,
+                        price: launchOffer.priceId,
                         quantity: 1
                     }
                 ],
                 ...(checkoutEmail ? { customer_email: checkoutEmail } : {}),
+                customer_creation: "always",
                 billing_address_collection: "required",
-                success_url: successUrl.toString(),
+                automatic_tax: { enabled: true },
+                success_url: stripeSuccessUrl,
                 cancel_url: getCancelUrl(baseUrl, checkoutSource),
                 metadata: {
                     email: checkoutEmail || "",
@@ -243,19 +246,11 @@ export async function POST(request: Request) {
                     source: checkoutSource,
                     unlock_section: unlockSection || ""
                 },
-                ...(isSubscription
-                    ? {}
-                    : {
-                        invoice_creation: { enabled: true as const }
-                    }),
+                invoice_creation: { enabled: true },
                 allow_promotion_codes: true,
                 custom_text: {
                     submit: {
-                        message: requestedTier === "lifetime"
-                            ? `You're getting Lifetime Access. Pay once for long-term access.`
-                            : isSubscription
-                                ? `You're subscribing to ${tierLabel}. Cancel anytime.`
-                                : `You're getting ${tierLabel}. We'll activate it right after checkout.`
+                        message: "You're getting five additional reports for 30 days. This is a one-time payment and will not renew."
                     }
                 }
             }, idempotencyKey ? { idempotencyKey: `checkout:${idempotencyKey}` } : undefined);
@@ -306,25 +301,33 @@ export async function POST(request: Request) {
             status: 200,
             latency_ms: Date.now() - startedAt,
             outcome: "success",
-            user_id: userId || undefined
+            user_id: userId ? hashForLogs(userId) : undefined
         });
         return res;
 
     } catch (err: any) {
+        const status = err?.httpStatus === 413 ? 413 : err?.httpStatus === 400 ? 400 : 500;
         logError({
             msg: "http.request.completed",
             request_id,
             route,
             method,
             path,
-            status: 500,
+            status,
             latency_ms: Date.now() - startedAt,
             outcome: "internal_error",
             err: { name: err?.name || "Error", message: err?.message || "Checkout failed", stack: err?.stack }
         });
         const res = NextResponse.json(
-            { ok: false, message: err?.message || "Checkout failed" },
-            { status: 500 }
+            {
+                ok: false,
+                message: status === 413
+                    ? "Checkout request is too large."
+                    : status === 400
+                        ? "Checkout request is invalid."
+                        : "Checkout could not be started. Try again shortly."
+            },
+            { status }
         );
         res.headers.set("x-request-id", request_id);
         return res;

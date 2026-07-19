@@ -5,6 +5,20 @@ type Bucket = { windowStartMs: number; count: number };
 
 const localBuckets = new Map<string, Bucket>();
 
+function allowsExplicitLocalFallback(): boolean {
+  const explicitTestFallback = ["1", "true"].includes(
+    String(process.env.RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK || "").toLowerCase()
+  );
+  const mockOnly = ["1", "true"].includes(
+    String(process.env.USE_MOCK_OPENAI || "").toLowerCase()
+  );
+  const localAppUrl = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i.test(
+    String(process.env.NEXT_PUBLIC_APP_URL || "")
+  );
+
+  return explicitTestFallback && mockOnly && localAppUrl;
+}
+
 export type RateLimitResult =
   | { ok: true; remaining: number; resetMs: number }
   | { ok: false; remaining: 0; resetMs: number };
@@ -24,20 +38,18 @@ export async function rateLimitAsync(
 
   if (redis) {
     try {
-      const redisKey = `ratelimit:${key}`;
-      const windowSec = Math.ceil(windowMs / 1000);
+      const nowMs = Date.now();
+      const windowBucket = Math.floor(nowMs / windowMs);
+      const redisKey = `ratelimit:${key}:${windowBucket}`;
+      const resetMs = windowMs - (nowMs % windowMs);
 
-      // Atomic increment + set expiry
-      const count = await redis.incr(redisKey);
-
-      // Set expiry only on first request of the window
-      if (count === 1) {
-        await redis.expire(redisKey, windowSec);
-      }
-
-      // Get TTL for reset time
-      const ttl = await redis.ttl(redisKey);
-      const resetMs = ttl > 0 ? ttl * 1000 : windowMs;
+      // MULTI keeps the counter and expiry together. The bucketed key makes the
+      // window reset deterministic even if a previous key survives too long.
+      const [count] = await redis
+        .multi()
+        .incr(redisKey)
+        .pexpire(redisKey, windowMs * 2)
+        .exec();
 
       if (count > limit) {
         return { ok: false, remaining: 0, resetMs };
@@ -45,12 +57,18 @@ export async function rateLimitAsync(
 
       return { ok: true, remaining: Math.max(0, limit - count), resetMs };
     } catch (err) {
-      // Fall through to in-memory on Redis error
-      console.warn("[RateLimit] Redis error, falling back to in-memory:", err);
+      console.warn("[RateLimit] Redis error:", err);
+      if (process.env.NODE_ENV === "production" && !allowsExplicitLocalFallback()) {
+        return { ok: false, remaining: 0, resetMs: windowMs };
+      }
     }
   }
 
-  // In-memory fallback (per-instance, less reliable in serverless)
+  if (process.env.NODE_ENV === "production" && !allowsExplicitLocalFallback()) {
+    return { ok: false, remaining: 0, resetMs: windowMs };
+  }
+
+  // Local development remains usable without external infrastructure.
   return rateLimitSync(key, limit, windowMs, Date.now());
 }
 

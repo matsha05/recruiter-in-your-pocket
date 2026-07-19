@@ -69,6 +69,30 @@ export const FORBIDDEN_KEYS = new Set([
 ]);
 
 const FORBIDDEN_KEY_PATTERN = /(email|phone|ssn|resume|password|secret|token)/;
+const FORBIDDEN_KEYS_LOWER = new Set(
+  Array.from(FORBIDDEN_KEYS, (key) => key.toLowerCase())
+);
+
+// These fields collide with intentionally broad PII key rules, but are safe
+// only at these exact structured-log paths and with these narrow value types.
+// Do not add generic key-name exceptions here.
+const SAFE_TELEMETRY_FIELDS: Record<string, (value: unknown) => boolean> = {
+  "llm.tokens_in": (value) => Number.isSafeInteger(value) && Number(value) >= 0,
+  "llm.tokens_out": (value) => Number.isSafeInteger(value) && Number(value) >= 0,
+  "err.name": (value) =>
+    typeof value === "string" &&
+    /^(?:Error|[A-Za-z][A-Za-z0-9_.:-]{0,63}(?:Error|Exception))$/.test(value),
+};
+
+function isSafeTelemetryField(path: string[], value: unknown): boolean {
+  const validator = SAFE_TELEMETRY_FIELDS[path.join(".").toLowerCase()];
+  return validator ? validator(value) : false;
+}
+
+function isForbiddenKey(key: string): boolean {
+  const lowerKey = key.toLowerCase();
+  return FORBIDDEN_KEYS_LOWER.has(lowerKey) || FORBIDDEN_KEY_PATTERN.test(lowerKey);
+}
 
 // Regex patterns for PII detection in string values
 const PII_PATTERNS = {
@@ -89,22 +113,23 @@ const PII_PATTERNS = {
  * Check if an object contains any keys from the forbidden list
  * Used by logger to block entire log entries with PII
  */
-export function containsForbiddenKeys(value: unknown): boolean {
+export function containsForbiddenKeys(value: unknown, path: string[] = []): boolean {
   if (!value || typeof value !== "object") return false;
-  if (Array.isArray(value)) return value.some(containsForbiddenKeys);
+  if (Array.isArray(value)) {
+    return value.some((item, index) => containsForbiddenKeys(item, [...path, String(index)]));
+  }
 
   for (const [key, v] of Object.entries(value as Record<string, unknown>)) {
-    // Direct key match
-    if (FORBIDDEN_KEYS.has(key)) return true;
+    const fieldPath = [...path, key];
 
-    // Case-insensitive partial matches for common PII fields
-    const lowerKey = key.toLowerCase();
-    if (FORBIDDEN_KEY_PATTERN.test(lowerKey)) {
-      return true;
-    }
+    // Safe telemetry exceptions are path- and type-specific. A `name` field
+    // anywhere except err.name, for example, remains forbidden.
+    if (isSafeTelemetryField(fieldPath, v)) continue;
+
+    if (isForbiddenKey(key)) return true;
 
     // Recursively check nested objects
-    if (containsForbiddenKeys(v)) return true;
+    if (containsForbiddenKeys(v, fieldPath)) return true;
   }
 
   return false;
@@ -147,7 +172,7 @@ export function scrubPiiFromString(str: string): string {
  * Recursively scrub PII from an object
  * Used for external service payloads (analytics, Sentry)
  */
-export function scrubPiiFromObject(obj: unknown): unknown {
+export function scrubPiiFromObject(obj: unknown, path: string[] = []): unknown {
   if (!obj) return obj;
 
   if (typeof obj === "string") {
@@ -157,21 +182,20 @@ export function scrubPiiFromObject(obj: unknown): unknown {
   if (typeof obj !== "object") return obj;
 
   if (Array.isArray(obj)) {
-    return obj.map(scrubPiiFromObject);
+    return obj.map((item, index) => scrubPiiFromObject(item, [...path, String(index)]));
   }
 
   const result: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
-    const lowerKey = key.toLowerCase();
+    const fieldPath = [...path, key];
 
-    // Replace forbidden keys entirely
-    if (
-      FORBIDDEN_KEYS.has(key) ||
-      FORBIDDEN_KEY_PATTERN.test(lowerKey)
-    ) {
+    if (isSafeTelemetryField(fieldPath, value)) {
+      result[key] = value;
+    } else if (isForbiddenKey(key)) {
+      // Replace forbidden keys entirely.
       result[key] = "[REDACTED]";
     } else {
-      result[key] = scrubPiiFromObject(value);
+      result[key] = scrubPiiFromObject(value, fieldPath);
     }
   }
 

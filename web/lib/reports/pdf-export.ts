@@ -1,3 +1,5 @@
+import { getScoreLabel } from "../score-utils";
+
 export type ReportForPdf = {
   score: number;
   summary: string;
@@ -26,7 +28,7 @@ export type ReportForPdf = {
 function clampScore(value: unknown): number | null {
   const numeric = typeof value === "number" ? value : Number(value);
   if (!Number.isFinite(numeric)) return null;
-  return Math.max(0, Math.min(100, Math.round(numeric)));
+  return Math.max(0, Math.min(99, Math.round(numeric)));
 }
 
 function asTrimmedString(value: unknown): string | null {
@@ -171,7 +173,7 @@ export function normalizeReportForPdf(report: unknown): ReportForPdf | null {
     gaps: asStringArray(candidate.gaps),
     rewrites: asRewrites(candidate.rewrites),
     next_steps: deriveNextSteps(candidate, top_fixes),
-    score_label: asTrimmedString(candidate.score_label) || "Recruiter Impact Score",
+    score_label: getScoreLabel(score),
     score_comment_short: asTrimmedString(candidate.score_comment_short) || undefined,
     generated_on: asTrimmedString(candidate.generated_on) || undefined,
     missing_wins: asStringArray(candidate.missing_wins),

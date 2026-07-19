@@ -7,7 +7,11 @@ export function getSupabaseUrl(): string {
 }
 
 export function getSupabaseAnonKey(): string {
-  return process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || missing("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  return (
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    missing("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY")
+  );
 }
 
 export function getOptionalSupabaseUrl(): string | null {
@@ -15,5 +19,9 @@ export function getOptionalSupabaseUrl(): string | null {
 }
 
 export function getOptionalSupabaseAnonKey(): string | null {
-  return process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || null;
+  return (
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    null
+  );
 }

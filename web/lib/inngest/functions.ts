@@ -1,6 +1,10 @@
 import { inngest } from "@/lib/inngest/client";
 import { generatePdfBuffer } from "@/lib/backend/pdf";
 import { buildAccountExportPayload } from "@/lib/backend/accountExport";
+import {
+    accountExportExpiresAt,
+    expireAccountExportResults,
+} from "@/lib/backend/accountExportRetention";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { logError, logInfo } from "@/lib/observability/logger";
 
@@ -117,14 +121,13 @@ const exportAccountDataJob = inngest.createFunction(
 
             await step.run("persist-export-result", async () => {
                 const now = new Date();
-                const expiresAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString();
 
                 const { error } = await admin
                     .from("account_export_jobs")
                     .update({
                         status: "completed",
                         completed_at: now.toISOString(),
-                        expires_at: expiresAt,
+                        expires_at: accountExportExpiresAt(now),
                         result_json: payload,
                         error_message: null,
                     })
@@ -147,7 +150,7 @@ const exportAccountDataJob = inngest.createFunction(
                     .update({
                         status: "failed",
                         completed_at: new Date().toISOString(),
-                        error_message: error?.message || "Export failed",
+                        error_message: "Export generation failed",
                     })
                     .eq("id", jobId)
                     .eq("user_id", userId);
@@ -165,9 +168,44 @@ const exportAccountDataJob = inngest.createFunction(
 );
 
 /**
+ * Hourly retention enforcement for completed account export payloads. The job
+ * metadata remains visible so users can see that an export expired, while the
+ * resume/report snapshot and any future file references are removed.
+ */
+const expireAccountExportResultsJob = inngest.createFunction(
+    {
+        id: "expire-account-export-results",
+        retries: 3,
+        cancelOn: [],
+    },
+    { cron: "17 * * * *" },
+    async ({ step }) => {
+        return step.run("clear-expired-export-results", async () => {
+            const admin = createSupabaseAdminClient();
+            if (!admin) {
+                throw new Error("Supabase admin client not configured");
+            }
+
+            const expiredCount = await expireAccountExportResults(admin);
+            logInfo({
+                msg: "account.export.retention_completed",
+                supabase: {
+                    table: "account_export_jobs",
+                    op: "expire_results",
+                    rows: expiredCount,
+                },
+            });
+
+            return { ok: true, expiredCount };
+        });
+    }
+);
+
+/**
  * All Inngest functions to register with the serve handler
  */
 export const inngestFunctions = [
     generatePdfJob,
     exportAccountDataJob,
+    expireAccountExportResultsJob,
 ];

@@ -4,18 +4,24 @@ import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { inngest } from "@/lib/inngest/client";
 import { buildAccountExportPayload } from "@/lib/backend/accountExport";
+import {
+  accountExportExpiresAt,
+  expireAccountExportResults,
+  resolveAccountExportAccess,
+} from "@/lib/backend/accountExportRetention";
+import { hashForLogs, logError } from "@/lib/observability/logger";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const EXPORT_TTL_DAYS = 7;
 const EXPORT_LOOKBACK_LIMIT = 10;
+const EXPORT_CREATE_LIMIT = 3;
+const EXPORT_CREATE_WINDOW_MS = 60 * 60 * 1000;
+const EXPORT_READ_LIMIT = 120;
+const EXPORT_READ_WINDOW_MS = 10 * 60 * 1000;
 
 type ExportJobStatus = "pending" | "running" | "completed" | "failed" | "expired";
-
-function addDays(now: Date, days: number): string {
-  return new Date(now.getTime() + days * 24 * 60 * 60 * 1000).toISOString();
-}
 
 function serializeJob(job: any) {
   return {
@@ -28,6 +34,24 @@ function serializeJob(job: any) {
     expires_at: job.expires_at || null,
     error_message: job.error_message || null,
   };
+}
+
+async function enforceExportRateLimit(userId: string, action: "create" | "read") {
+  const isCreate = action === "create";
+  return rateLimitAsync(
+    `user:${hashForLogs(userId)}:account-export:${action}`,
+    isCreate ? EXPORT_CREATE_LIMIT : EXPORT_READ_LIMIT,
+    isCreate ? EXPORT_CREATE_WINDOW_MS : EXPORT_READ_WINDOW_MS
+  );
+}
+
+function rateLimitedResponse(resetMs: number) {
+  const response = NextResponse.json(
+    { ok: false, errorCode: "RATE_LIMITED", message: "Too many export requests. Try again shortly." },
+    { status: 429 }
+  );
+  response.headers.set("retry-after", String(Math.ceil(resetMs / 1000)));
+  return response;
 }
 
 async function runInlineExportJob(admin: any, jobId: string, user: any) {
@@ -48,19 +72,28 @@ async function runInlineExportJob(admin: any, jobId: string, user: any) {
       .update({
         status: "completed",
         completed_at: new Date().toISOString(),
-        expires_at: addDays(new Date(), EXPORT_TTL_DAYS),
+        expires_at: accountExportExpiresAt(),
         result_json: payload,
         error_message: null,
       })
       .eq("id", jobId)
       .eq("user_id", user.id);
   } catch (err: any) {
+    logError({
+      msg: "account.export.inline_failed",
+      user_id: user.id,
+      outcome: "internal_error",
+      err: {
+        name: err?.name || "ExportError",
+        message: err?.message || "Export generation failed",
+      },
+    });
     await admin
       .from("account_export_jobs")
       .update({
         status: "failed",
         completed_at: new Date().toISOString(),
-        error_message: err?.message || "Export failed",
+        error_message: "Export generation failed",
       })
       .eq("id", jobId)
       .eq("user_id", user.id);
@@ -68,7 +101,7 @@ async function runInlineExportJob(admin: any, jobId: string, user: any) {
   }
 }
 
-export async function POST() {
+export async function POST(_request: Request) {
   try {
     const supabase = await createSupabaseServerClient();
     const { data: authData } = await supabase.auth.getUser();
@@ -77,6 +110,9 @@ export async function POST() {
     if (!user?.id) {
       return NextResponse.json({ ok: false, message: "Please log in first." }, { status: 401 });
     }
+
+    const rateLimit = await enforceExportRateLimit(user.id, "create");
+    if (!rateLimit.ok) return rateLimitedResponse(rateLimit.resetMs);
 
     const admin = createSupabaseAdminClient();
     if (!admin) {
@@ -128,8 +164,8 @@ export async function POST() {
       },
       { status: 202 }
     );
-  } catch (err: any) {
-    return NextResponse.json({ ok: false, message: err?.message || "Export request failed." }, { status: 500 });
+  } catch {
+    return NextResponse.json({ ok: false, message: "Export request failed." }, { status: 500 });
   }
 }
 
@@ -143,10 +179,17 @@ export async function GET(request: Request) {
       return NextResponse.json({ ok: false, message: "Please log in first." }, { status: 401 });
     }
 
+    const rateLimit = await enforceExportRateLimit(user.id, "read");
+    if (!rateLimit.ok) return rateLimitedResponse(rateLimit.resetMs);
+
     const admin = createSupabaseAdminClient();
     if (!admin) {
       return NextResponse.json({ ok: false, message: "Export is temporarily unavailable." }, { status: 500 });
     }
+
+    // Enforce retention on every authenticated read as a backstop to the
+    // scheduled cleanup. If cleanup cannot be confirmed, no export is served.
+    await expireAccountExportResults(admin, { userId: user.id });
 
     const url = new URL(request.url);
     const jobId = url.searchParams.get("jobId");
@@ -188,14 +231,22 @@ export async function GET(request: Request) {
       return NextResponse.json({ ok: true, job: serializeJob(job) });
     }
 
-    if (job.status !== "completed") {
+    const access = resolveAccountExportAccess(job);
+    if (access === "expired") {
+      return NextResponse.json(
+        { ok: false, errorCode: "EXPORT_EXPIRED", message: "This export has expired. Request a new one.", job: serializeJob(job) },
+        { status: 410 }
+      );
+    }
+
+    if (access === "not_ready") {
       return NextResponse.json(
         { ok: false, message: "Export is not ready yet.", job: serializeJob(job) },
         { status: 409 }
       );
     }
 
-    if (!job.result_json) {
+    if (access === "missing") {
       return NextResponse.json(
         { ok: false, message: "Export completed without downloadable content.", job: serializeJob(job) },
         { status: 500 }
@@ -208,9 +259,10 @@ export async function GET(request: Request) {
       headers: {
         "content-type": "application/json; charset=utf-8",
         "content-disposition": `attachment; filename=\"${filename}\"`,
+        "cache-control": "private, no-store, max-age=0",
       },
     });
-  } catch (err: any) {
-    return NextResponse.json({ ok: false, message: err?.message || "Export failed." }, { status: 500 });
+  } catch {
+    return NextResponse.json({ ok: false, message: "Export failed." }, { status: 500 });
   }
 }

@@ -1,4 +1,4 @@
-export type PricingTierId = "free" | "monthly" | "lifetime";
+export type PricingTierId = "free" | "30d";
 
 export type PricingFeature = { text: string; bold?: boolean };
 
@@ -19,45 +19,31 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     label: "Free",
     price: "$0",
     period: "1 report",
-    description: "Get one full in-browser report before you pay a thing.",
-    buttonText: "Current Plan",
+    description: "Review one resume in the browser before you decide whether you need more.",
+    buttonText: "Included",
     features: [
       { text: "1 full in-browser resume report", bold: true },
-      { text: "Recruiter first-impression verdict" },
-      { text: "Evidence Ledger + Red Pen rewrites" },
-      { text: "Role alignment when you add a job" },
+      { text: "A likely recruiter takeaway" },
+      { text: "Evidence behind each recommendation" },
+      { text: "Suggested rewrites using your facts" },
+      { text: "Role comparison when you add a job posting" },
       { text: "No login or credit card required" }
     ]
   },
-  monthly: {
-    id: "monthly",
-    label: "Full Access",
-    price: "$9",
-    period: "/month",
-    description: "Run repeated role-specific reports while you're actively applying.",
-    buttonText: "Start Monthly",
+  "30d": {
+    id: "30d",
+    label: "Job Search Pass",
+    price: "$29",
+    period: "one-time · 30 days",
+    description: "Five more complete reports for the stretch when your resume is actually changing.",
+    buttonText: "Get the Job Search Pass",
+    badge: "Best for an active search",
     features: [
-      { text: "More resume + LinkedIn reports for each role", bold: true },
-      { text: "Evidence Ledger + Red Pen on every run" },
-      { text: "Role matching + Missing Wins" },
-      { text: "Version history and export for reports you keep" },
-      { text: "Cancel anytime in billing portal" }
+      { text: "5 additional full reports", bold: true },
+      { text: "Compare revised resumes and opening reads" },
+      { text: "Review different versions against specific roles" },
+      { text: "PDF exports, plus saved history when signed in" },
+      { text: "One payment. Access expires after 30 days." }
     ]
   },
-  lifetime: {
-    id: "lifetime",
-    label: "Lifetime",
-    price: "$79",
-    period: "one-time",
-    description: "Pay once for long-term access.",
-    buttonText: "Get Lifetime Access",
-    badge: "Pay Once",
-    features: [
-      { text: "Everything in Full Access", bold: true },
-      { text: "No recurring billing" },
-      { text: "Product updates included while the service operates" },
-      { text: "Long-term report workspace access" },
-      { text: "Access to new resume features as they ship" }
-    ]
-  }
 };

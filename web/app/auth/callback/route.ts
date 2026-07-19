@@ -1,11 +1,12 @@
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { getSupabaseUrl, getSupabaseAnonKey } from "../../../lib/env";
+import { safeAuthRedirect } from "../../../lib/auth/utils";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") || "/workspace";
+  const next = safeAuthRedirect(searchParams.get("next"), "/workspace");
 
   if (!code) {
     return NextResponse.redirect(`${origin}/auth?error=missing_code`);
@@ -16,17 +17,16 @@ export async function GET(request: Request) {
 
   const supabase = createServerClient(getSupabaseUrl(), getSupabaseAnonKey(), {
     cookies: {
-      get(name: string) {
-        return request.headers.get("cookie")
-          ?.split("; ")
-          .find((c) => c.startsWith(`${name}=`))
-          ?.split("=")[1];
+      getAll() {
+        return request.cookies.getAll();
       },
-      set(name: string, value: string, options: any) {
-        response.cookies.set({ name, value, ...options });
-      },
-      remove(name: string, options: any) {
-        response.cookies.set({ name, value: "", ...options });
+      setAll(cookiesToSet, cacheHeaders) {
+        cookiesToSet.forEach(({ name, value, options }) => {
+          response.cookies.set(name, value, options);
+        });
+        Object.entries(cacheHeaders).forEach(([name, value]) => {
+          response.headers.set(name, value);
+        });
       },
     },
   });
@@ -34,9 +34,8 @@ export async function GET(request: Request) {
   const { error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
-    return NextResponse.redirect(`${origin}/auth?error=${encodeURIComponent(error.message)}`);
+    return NextResponse.redirect(`${origin}/auth?error=exchange_failed`);
   }
 
   return response;
 }
-

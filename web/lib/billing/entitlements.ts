@@ -97,7 +97,7 @@ export function getNextUsesRemaining(pass: PassLike): number {
 export function getTierLabel(tier: string | null | undefined): string {
   if (tier === "monthly") return "Full Access Monthly";
   if (tier === "lifetime") return "Lifetime Access";
-  if (tier === "30d") return "Active Job Search Pack";
+  if (tier === "30d") return "Job Search Pass";
   if (tier === "90d") return "Extended Pack";
   return "Single Report";
 }
@@ -132,7 +132,7 @@ export function getTierDefaults(
   if (tier === "30d") {
     return {
       usesRemaining: 5,
-      expiresAt: new Date(nowMs + 365 * 24 * 60 * 60 * 1000).toISOString()
+      expiresAt: new Date(nowMs + 30 * 24 * 60 * 60 * 1000).toISOString()
     };
   }
 

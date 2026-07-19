@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
+import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { logInfo, logError, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { createStripeClient } from "@/lib/billing/stripeClient";
+import {
+    buildAuthDeletionPendingResponse,
+    buildIncompleteAccountDeletionResponse,
+    type AccountDeletionRecord,
+} from "@/lib/backend/accountDeletion";
+
+const stripe = createStripeClient();
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,8 +21,60 @@ function shouldIgnoreMissingTable(error: { message?: string } | null | undefined
     return error.message.includes("does not exist") || error.message.includes("relation");
 }
 
+function shouldIgnoreMissingUserIdColumn(error: { message?: string } | null | undefined) {
+    if (!error?.message) return false;
+    const message = error.message.toLowerCase();
+    return (
+        message.includes("user_id") &&
+        (message.includes("does not exist") || message.includes("could not find")) &&
+        (message.includes("column") || message.includes("schema cache"))
+    );
+}
+
 function throwDeletionError(table: string, error: { message?: string } | null | undefined): never {
     throw new Error(`Failed to delete ${table}: ${error?.message || "Unknown database error"}`);
+}
+
+function shouldCancelSubscription(status: Stripe.Subscription.Status) {
+    return status !== "canceled" && status !== "incomplete_expired";
+}
+
+async function cancelActiveSubscriptions(email: string | null, subscriptionIds: string[]) {
+    if (!stripe) {
+        throw new Error("Stripe is not configured to cancel an active subscription");
+    }
+
+    const subscriptions = new Map<string, Stripe.Subscription>();
+
+    if (email) {
+        const customers = await stripe.customers.list({ email: email.toLowerCase(), limit: 10 });
+        for (const customer of customers.data) {
+            const customerSubscriptions = await stripe.subscriptions.list({
+                customer: customer.id,
+                status: "all",
+                limit: 100,
+            });
+            for (const subscription of customerSubscriptions.data) {
+                subscriptions.set(subscription.id, subscription);
+            }
+        }
+    }
+
+    for (const subscriptionId of subscriptionIds) {
+        if (!subscriptions.has(subscriptionId)) {
+            const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+            subscriptions.set(subscription.id, subscription);
+        }
+    }
+
+    let canceled = 0;
+    for (const subscription of subscriptions.values()) {
+        if (!shouldCancelSubscription(subscription.status)) continue;
+        await stripe.subscriptions.cancel(subscription.id);
+        canceled += 1;
+    }
+
+    return canceled;
 }
 
 /**
@@ -77,8 +138,50 @@ export async function DELETE(request: Request) {
             );
         }
 
+        // Cancel recurring billing before removing the local entitlement or auth
+        // record. Otherwise the user could lose access while Stripe keeps charging.
+        const { data: localPasses, error: localPassesError } = await admin
+            .from("passes")
+            .select("tier, price_id, stripe_subscription_id")
+            .eq("user_id", userId);
+
+        if (localPassesError) {
+            throwDeletionError("passes", localPassesError);
+        }
+
+        const monthlyPasses = (localPasses || []).filter((pass: any) => pass.tier === "monthly");
+        let canceledSubscriptions = 0;
+        if (monthlyPasses.length > 0) {
+            const subscriptionIds = monthlyPasses
+                .map((pass: any) => pass.stripe_subscription_id || pass.price_id)
+                .filter((value: unknown): value is string => typeof value === "string" && value.startsWith("sub_"));
+
+            try {
+                canceledSubscriptions = await cancelActiveSubscriptions(user.email || null, subscriptionIds);
+            } catch (billingError: any) {
+                logError({
+                    msg: "account.deletion.subscription_cancel_failed",
+                    request_id,
+                    user_id: userId,
+                    outcome: "provider_error",
+                    err: {
+                        name: billingError?.name || "Error",
+                        message: billingError?.message || "Failed to cancel subscription",
+                    },
+                });
+                return NextResponse.json(
+                    {
+                        ok: false,
+                        errorCode: "BILLING_CANCELLATION_FAILED",
+                        message: "We could not cancel your subscription, so your account was not deleted. Please try again or contact support.",
+                    },
+                    { status: 502 }
+                );
+            }
+        }
+
         // Delete in order (foreign key dependencies)
-        const deletions: { table: string; count: number | null }[] = [];
+        const deletions: AccountDeletionRecord[] = [];
 
         // 1. Delete all reports
         const { error: reportsError, count: reportsCount } = await admin
@@ -137,14 +240,14 @@ export async function DELETE(request: Request) {
             .delete({ count: "exact" })
             .eq("user_id", userId);
 
-        // Ignore if artifacts doesn't have user_id column
-        if (artifactsError && !artifactsError.message.includes("column") && !artifactsError.message.includes("does not exist")) {
-            logWarn({
-                msg: "account.deletion.table_warning",
-                request_id,
-                user_id: userId,
-                supabase: { table: "artifacts", error_code: artifactsError.code }
-            });
+        // Older schemas may not have this table/user_id path. Any other failure
+        // means deletion is incomplete and must not be reported as success.
+        if (
+            artifactsError &&
+            !shouldIgnoreMissingUserIdColumn(artifactsError) &&
+            !shouldIgnoreMissingTable(artifactsError)
+        ) {
+            throwDeletionError("artifacts", artifactsError);
         }
         deletions.push({ table: "artifacts", count: artifactsCount });
 
@@ -206,13 +309,8 @@ export async function DELETE(request: Request) {
             .delete({ count: "exact" })
             .eq("user_id", userId);
 
-        if (casesError && !casesError.message.includes("does not exist")) {
-            logWarn({
-                msg: "account.deletion.table_warning",
-                request_id,
-                user_id: userId,
-                supabase: { table: "cases", error_code: casesError.code }
-            });
+        if (casesError && !shouldIgnoreMissingTable(casesError)) {
+            throwDeletionError("cases", casesError);
         }
         deletions.push({ table: "cases", count: casesCount });
 
@@ -227,8 +325,12 @@ export async function DELETE(request: Request) {
                 user_id: userId,
                 err: { name: "AuthError", message: authDeleteError.message }
             });
-            // Even if auth deletion fails, data is already deleted
-            // User can try again or contact support
+
+            // Keep the auth session intact so the same user can retry this
+            // idempotent route. Never claim complete deletion while the auth
+            // identity still exists.
+            const pending = buildAuthDeletionPendingResponse(deletions, canceledSubscriptions);
+            return NextResponse.json(pending.body, { status: pending.status });
         }
 
         logInfo({
@@ -242,7 +344,8 @@ export async function DELETE(request: Request) {
         return NextResponse.json({
             ok: true,
             message: "Your account and all associated data have been deleted.",
-            deletions
+            deletions,
+            canceled_subscriptions: canceledSubscriptions,
         });
 
     } catch (err: any) {
@@ -256,9 +359,7 @@ export async function DELETE(request: Request) {
             err: { name: err?.name || "Error", message: err?.message || "Unknown error" }
         });
 
-        return NextResponse.json(
-            { ok: false, errorCode: "INTERNAL_ERROR", message: "Account deletion failed. Please try again or contact support." },
-            { status: 500 }
-        );
+        const incomplete = buildIncompleteAccountDeletionResponse();
+        return NextResponse.json(incomplete.body, { status: incomplete.status });
     }
 }
