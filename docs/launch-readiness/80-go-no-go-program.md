@@ -145,7 +145,8 @@ npm run launch:rehearsal
 
 ## Current Blockers
 
-- Add migrations 015 and 016 to the ordered runner, prove a clean replay, and confirm the preview database is current through migration 016.
-- Reconcile and rehearse a fresh preview deployment from the exact release candidate.
-- Configure and validate the canonical Stripe product id in hosted environments.
-- Keep production billing disabled until the final preview rehearsal passes.
+- Complete the signed-in preview rehearsal with a disposable account: sign-in return path, saved report history, sign-out, and restore after sign-in.
+- Complete one Stripe test-mode Job Search Pass purchase, webhook replay and retry, receipt, restore, portal, refund, and entitlement-revocation cycle.
+- Export and permanently delete the same disposable account, then verify a later sign-in does not resurrect product data.
+- Run remote CI against the exact reviewed release after the branch is explicitly authorized for push.
+- Keep production billing disabled until those rehearsals pass and Matt records the final `GO` for the release identifier.

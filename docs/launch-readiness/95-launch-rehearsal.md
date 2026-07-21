@@ -102,3 +102,27 @@ Record:
 - Final verdict: `GO` or `NO-GO`
 
 Any failed section means `NO-GO` until it is fixed and rerun.
+
+## July 20 Release-Candidate Record
+
+- Release identifier: `2d5699d14ad39186b6fb03caaaa4239fd2a67b33`
+- Preview deployment: `dpl_9WrckTMG1zWViGJE3QEbxxBe7soz`
+- Preview URL: `https://rip-nextjs-frontend-mwz9n2w3y-matts-projects-59b2b24d.vercel.app`
+- Browser: Chrome desktop review completed on the immediately preceding visual candidate. The release-candidate diff contains only hosted prompt/eval readiness code and no UI files.
+- Hosted build: ready, with Sentry release artifacts tied to the exact commit.
+- Hosted public status: HTTP 200, `ok: true`, all three public service groups configured, and no incidents.
+- Hosted health: HTTP 200, `ok: true`.
+- Protected readiness: an anonymous request returns a generic HTTP 404 and exposes no internal launch detail.
+- Live quality proof: `eval_1784502145848`, pinned `gpt-5-nano-2025-08-07`, 8 PASS, 0 WARN, 0 FAIL, $0.009 token-calculated cost. Hosted readiness now binds this evidence to the exact model and SHA-256 hashes of both deployed resume prompts.
+- Automated verification: lint, typecheck, optimized build, security suite, backend contracts, release-integrity tests, migration manifest, clean migration replay, extension build, and dry-run fixture validation passed.
+- Local gate note: the root shell correctly reports `NO-GO` when preview-only app URL and shared Redis credentials are absent. The hosted preview reports those launch configurations as present.
+
+### Remaining rehearsal work
+
+- Create and use a disposable account through sign-in, saved history, sign-out, and return.
+- Complete the Stripe test purchase, webhook replay/retry, receipt, restore, portal, refund, and revocation cycle.
+- Export and permanently delete that same account, then verify no data resurrection.
+- Run remote CI after the branch is authorized for push.
+- Record Matt's final `GO` and explicitly authorize production promotion.
+
+Current verdict: `NO-GO` for production. The code and visual product are release-candidate ready; the remaining blockers are the real signed-in, billing, destructive-data, remote-CI, and final-authorization rehearsals above. Production billing remains disabled.
