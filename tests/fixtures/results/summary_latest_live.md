@@ -7,6 +7,8 @@
 **Contract Version:** v2
 **Execution Mode:** Live model evaluation
 **Model:** gpt-5-nano-2025-08-07
+**Resume prompt SHA-256:** 4ef8b64d737794eb713cd7466b4b0adc57bb4c46b7d5ab56bdd1bd275e8a3de0
+**Resume ideas prompt SHA-256:** 6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7
 **Incomplete-response retry:** medium reasoning
 
 ## Summary

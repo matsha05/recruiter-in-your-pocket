@@ -2,10 +2,12 @@ import path from "path";
 import { existsSync, readFileSync } from "fs";
 import { maybeCreateSupabaseServerClient } from "../supabase/serverClient";
 import { loadPromptForMode } from "../backend/prompts";
+import { resolveOpenAIModel } from "../llm/model-config";
 import { getConfiguredExtensionOrigins, launchFlags, requestedLaunchFlags } from "./flags";
 import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUrl";
 import { isRedisRestConfigured } from "../redis/config";
-import { liveEvalMeetsLaunchBar, readLiveEvalEvidence } from "./evalEvidence";
+import { liveEvalMatchesCandidate, readLiveEvalEvidence } from "./evalEvidence";
+import { BUNDLED_LIVE_EVAL_EVIDENCE } from "./liveEvalBaseline";
 import {
   LAUNCH_GATE_DEFINITIONS,
   REQUIRED_LAUNCH_DOCS,
@@ -359,8 +361,8 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
       : "Error replay remains disabled by default."
   );
 
-  await loadPromptForMode("resume");
-  await loadPromptForMode("resume_ideas");
+  const resumePrompt = await loadPromptForMode("resume");
+  const resumeIdeasPrompt = await loadPromptForMode("resume_ideas");
   addCheck(checks, "prompt_assets", "ok", "Prompt assets are readable.");
 
   const goldenFixtureCount = getGoldenFixtureCount();
@@ -384,16 +386,21 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     );
   }
 
-  const liveEvalEvidence = readLiveEvalEvidence(repoRoot);
-  const liveEvalReady = liveEvalMeetsLaunchBar(liveEvalEvidence);
+  const liveEvalEvidence = readLiveEvalEvidence(repoRoot) || BUNDLED_LIVE_EVAL_EVIDENCE;
+  const launchModel = resolveOpenAIModel("resume");
+  const liveEvalReady = liveEvalMatchesCandidate(liveEvalEvidence, {
+    model: launchModel,
+    resumePrompt,
+    resumeIdeasPrompt,
+  });
   addCheck(
     checks,
     "live_model_eval",
     liveEvalReady ? "ok" : "missing",
     liveEvalReady && liveEvalEvidence
-      ? `Live eval ${liveEvalEvidence.runId} passed the launch bar: ${liveEvalEvidence.passed}/${liveEvalEvidence.total} pass, ${liveEvalEvidence.failed} fail.`
+      ? `Live eval ${liveEvalEvidence.runId} matches ${launchModel} and the deployed prompts: ${liveEvalEvidence.passed}/${liveEvalEvidence.total} pass, ${liveEvalEvidence.failed} fail.`
       : liveEvalEvidence
-        ? `Latest live eval ${liveEvalEvidence.runId} is below launch bar: ${liveEvalEvidence.passed}/${liveEvalEvidence.total} pass, ${liveEvalEvidence.warned} warn, ${liveEvalEvidence.failed} fail.`
+        ? `Live eval ${liveEvalEvidence.runId} is below the launch bar or does not match the deployed model and prompts. Run the live eval again for ${launchModel}.`
         : "A current live model eval is required. Dry-run fixture validation is not launch evidence."
   );
 

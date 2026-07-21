@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { generateMarkdownReport } from "../lib/evals/report";
 import type { EvalRunOutput } from "../lib/evals/types";
-import { liveEvalMeetsLaunchBar, parseLiveEvalEvidence } from "../lib/launch/evalEvidence";
+import {
+  liveEvalMatchesCandidate,
+  liveEvalMeetsLaunchBar,
+  parseLiveEvalEvidence,
+} from "../lib/launch/evalEvidence";
+import { BUNDLED_LIVE_EVAL_EVIDENCE } from "../lib/launch/liveEvalBaseline";
+import { loadPromptForMode } from "../lib/backend/prompts";
 
 function buildRun(executionMode: "dry_run" | "live"): EvalRunOutput {
   return {
@@ -73,4 +79,29 @@ const failingEvidence = parseLiveEvalEvidence(generateMarkdownReport({
 assert.equal(liveEvalMeetsLaunchBar(failingEvidence), false);
 assert.equal(parseLiveEvalEvidence(dryRunReport), null);
 
-console.log("eval-report tests passed");
+async function runCandidateBindingTests() {
+  const resumePrompt = await loadPromptForMode("resume");
+  const resumeIdeasPrompt = await loadPromptForMode("resume_ideas");
+  assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
+    model: "gpt-5-nano-2025-08-07",
+    resumePrompt,
+    resumeIdeasPrompt,
+  }), true);
+  assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
+    model: "gpt-4o-mini",
+    resumePrompt,
+    resumeIdeasPrompt,
+  }), false);
+  assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
+    model: "gpt-5-nano-2025-08-07",
+    resumePrompt: `${resumePrompt}\nchanged`,
+    resumeIdeasPrompt,
+  }), false);
+}
+
+runCandidateBindingTests()
+  .then(() => console.log("eval-report tests passed"))
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
