@@ -11,7 +11,7 @@ import type { ReportForPdf } from "../reports/pdf-export";
  * Design principles:
  * 1. Written recruiter verdict before the numeric summary
  * 2. Stable evidence colors instead of traffic-light scoring
- * 3. Newsreader for judgment and Instrument Sans for explanation
+ * 3. Space Grotesk for judgment and Instrument Sans for explanation
  * 4. Page-safe sections and printable action checkboxes
  */
 
@@ -23,8 +23,8 @@ function escapeHtml(str: string) {
     .replace(/>/g, "&gt;");
 }
 
-const NEWSREADER_TTF = readFileSync(
-  join(process.cwd(), "public", "assets", "fonts", "newsreader-latin-variable.ttf")
+const SPACE_GROTESK_TTF = readFileSync(
+  join(process.cwd(), "public", "assets", "fonts", "space-grotesk-latin-variable.ttf")
 ).toString("base64");
 
 const INSTRUMENT_SANS_TTF = readFileSync(
@@ -173,8 +173,8 @@ export function renderReportHtml(report: ReportForPdf) {
   <title>Recruiter first-read report | Recruiter in Your Pocket</title>
   <style>
     @font-face {
-      font-family: "Newsreader Variable";
-      src: url(data:font/ttf;base64,${NEWSREADER_TTF}) format("truetype");
+      font-family: "Space Grotesk Variable";
+      src: url(data:font/ttf;base64,${SPACE_GROTESK_TTF}) format("truetype");
       font-style: normal;
       font-weight: 200 800;
       font-display: block;
@@ -190,21 +190,21 @@ export function renderReportHtml(report: ReportForPdf) {
     }
 
     :root {
-      --page: #fbfaf7;
-      --ink: #171827;
-      --muted: #62677a;
-      --soft: #8b8fa0;
-      --line: #d9d9e1;
-      --control-line: #bbbcc8;
-      --iris: #4f46e5;
-      --iris-strong: #3730a3;
-      --iris-tint: #c7c4ff;
-      --sky: #dcecff;
-      --sky-strong: #b8dcff;
-      --proof: #f5f3ee;
-      --apricot: #ff8a66;
-      --butter: #f6cf46;
-      --butter-soft: #fff8dc;
+      --page: #f7f5ef;
+      --ink: #071722;
+      --muted: #596570;
+      --soft: #7c878e;
+      --line: #ccd2d1;
+      --control-line: #aeb8b7;
+      --iris: #007fa3;
+      --iris-strong: #006784;
+      --iris-tint: #d8f4fb;
+      --sky: #e8f8fc;
+      --sky-strong: #25bfea;
+      --proof: #efede7;
+      --apricot: #007fa3;
+      --butter: #c8f238;
+      --butter-soft: #f3fad9;
       --white: #ffffff;
     }
 
@@ -238,7 +238,7 @@ export function renderReportHtml(report: ReportForPdf) {
     }
 
     .brand-wordmark {
-      font-family: "Newsreader Variable", serif;
+      font-family: "Space Grotesk Variable", Arial, sans-serif;
       color: var(--ink);
       font-size: 18pt;
       font-weight: 470;
@@ -289,7 +289,7 @@ export function renderReportHtml(report: ReportForPdf) {
 
     h1,
     h2 {
-      font-family: "Newsreader Variable", serif;
+      font-family: "Space Grotesk Variable", Arial, sans-serif;
       font-optical-sizing: auto;
       color: var(--ink);
     }
@@ -319,7 +319,7 @@ export function renderReportHtml(report: ReportForPdf) {
     }
 
     .score-value {
-      font-family: "Newsreader Variable", serif;
+      font-family: "Space Grotesk Variable", Arial, sans-serif;
       font-size: 45pt;
       font-weight: 520;
       line-height: 0.88;
@@ -392,7 +392,7 @@ export function renderReportHtml(report: ReportForPdf) {
     }
 
     .subscore-value {
-      font-family: "Newsreader Variable", serif;
+      font-family: "Space Grotesk Variable", Arial, sans-serif;
       font-size: 18pt;
       font-weight: 520;
       line-height: 1.1;
@@ -619,7 +619,7 @@ export function renderReportHtml(report: ReportForPdf) {
     }
 
     .better .content {
-      font-family: "Newsreader Variable", serif;
+      font-family: "Space Grotesk Variable", Arial, sans-serif;
       font-size: 10.5pt;
       line-height: 1.38;
       font-weight: 480;
@@ -682,7 +682,7 @@ export function renderReportHtml(report: ReportForPdf) {
     }
 
     .positioning-suggestion p {
-      font-family: "Newsreader Variable", serif;
+      font-family: "Space Grotesk Variable", Arial, sans-serif;
       font-size: 10pt;
       line-height: 1.45;
       color: var(--ink);

@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { LockKey } from "@phosphor-icons/react";
-import { LiftedTrace, type LiftedTraceItem } from "@/components/shared/LiftedTrace";
+import { Check, CircleNotch, LockKey } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type AnalysisMode = "resume" | "linkedin";
 
-type AnalysisStep = LiftedTraceItem & {
+type AnalysisStep = {
     id: string;
+    label: string;
+    detail: string;
 };
 
 const RESUME_STEPS: AnalysisStep[] = [
@@ -99,12 +100,12 @@ export default function AnalysisScanning({
     const subject = mode === "linkedin" ? "profile" : "resume";
 
     return (
-        <div className={cn("flex min-h-full items-center bg-mineral px-4 py-10 sm:px-7 sm:py-14", className)}>
-            <section className="mx-auto w-full max-w-4xl" aria-labelledby="analysis-title" aria-busy="true">
+        <div className={cn("analysis-stage flex min-h-full items-start bg-mineral px-4 py-10 sm:px-7", className)}>
+            <section className="analysis-shell mx-auto w-full" aria-labelledby="analysis-title" aria-busy="true">
                 <header className="grid gap-5 md:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] md:items-end md:gap-12">
                     <div>
                         <p className="riyp-track-015 text-xs font-bold uppercase text-brand">Building your report</p>
-                        <h2 id="analysis-title" className="mt-3 max-w-[15ch] font-display text-[clamp(2.8rem,7vw,5.4rem)] riyp-weight-520 leading-[0.92] tracking-[-0.05em] text-foreground">
+                        <h2 id="analysis-title" className="analysis-title mt-3 font-display font-semibold tracking-[-0.055em] text-foreground">
                             A careful read, in four passes.
                         </h2>
                     </div>
@@ -113,32 +114,43 @@ export default function AnalysisScanning({
                     </p>
                 </header>
 
-                <div className="riyp-report-paper mt-9 overflow-hidden border-y sm:mt-11">
-                    <div className="flex items-end justify-between gap-6 border-b border-line px-5 py-4 sm:px-8 sm:py-5">
-                        <div>
-                            <p className="riyp-track-012 text-[0.65rem] font-bold uppercase text-muted-foreground">Review map</p>
-                            <p className="mt-1 font-display text-2xl riyp-weight-520 tracking-[-0.025em] text-foreground">What the report is checking</p>
-                        </div>
-                        <p className="riyp-track-012 text-[0.65rem] font-bold uppercase text-brand">In progress</p>
+                <div className="mt-9 overflow-hidden border border-line bg-paper sm:mt-11">
+                    <div className="grid min-h-16 items-center gap-3 border-b border-line px-5 sm:grid-cols-[14rem_1fr_auto] sm:px-8">
+                        <p className="riyp-track-012 text-sm font-bold uppercase text-brand">Review map</p>
+                        <p className="text-base text-muted-foreground">What the report is checking</p>
+                        <p className="riyp-track-012 text-sm font-bold uppercase text-brand">In progress</p>
                     </div>
 
-                    <div className="px-5 py-7 sm:px-8 sm:py-9">
-                        <LiftedTrace
-                            items={steps}
-                            progress={0}
-                            ariaLabel={`Four parts of the review for this ${subject}`}
-                        />
-                    </div>
+                    <ol aria-label={`Four parts of the review for this ${subject}`} className="px-5 sm:px-8">
+                        {steps.map((step, index) => (
+                            <li key={step.id} className="analysis-review-row grid items-center gap-4 border-b border-line last:border-b-0 sm:grid-cols-[3rem_12rem_1fr]">
+                                <span className="flex size-9 items-center justify-center rounded-full" aria-hidden="true">
+                                    {index === 0 ? (
+                                        <span className="flex size-9 items-center justify-center rounded-full border border-citron text-foreground"><Check className="size-5 text-brand" weight="bold" /></span>
+                                    ) : index === 1 ? (
+                                        <CircleNotch className="size-9 animate-spin text-cyan-bright" weight="bold" />
+                                    ) : (
+                                        <span className="size-9 rounded-full border border-muted-foreground" />
+                                    )}
+                                </span>
+                                <p className="font-display text-xl font-semibold text-foreground">{step.label}</p>
+                                <p className="text-base leading-6 text-muted-foreground">{step.detail}</p>
+                            </li>
+                        ))}
+                    </ol>
 
-                    <div className="grid gap-2 border-t border-line bg-surface-sky px-5 py-4 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:px-8 sm:py-5">
-                        <p className="riyp-track-010 text-[0.65rem] font-bold uppercase text-brand">Four passes</p>
-                        <p className="text-sm leading-6 text-foreground">This is the shape of the review, not a completion estimate.</p>
+                    <div className="grid gap-2 border-t border-line px-5 py-4 sm:grid-cols-[8rem_1fr] sm:items-baseline sm:px-8">
+                        <p className="riyp-track-010 text-sm font-bold uppercase text-brand">Four passes</p>
+                        <p className="text-base leading-6 text-muted-foreground">This is the shape of the review, not a completion estimate.</p>
                     </div>
                 </div>
 
-                <div className="mt-5 flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
-                    <LockKey className="mt-1 size-4 shrink-0 text-brand" weight="duotone" aria-hidden="true" />
-                    <p>Keep this tab open. Your report will replace this screen as soon as the review is ready.</p>
+                <div className="mt-10 flex flex-col items-center gap-5">
+                    <div className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+                        <LockKey className="mt-1 size-4 shrink-0 text-citron" weight="duotone" aria-hidden="true" />
+                        <p>Keep this tab open. Your report will replace this screen as soon as the review is ready.</p>
+                    </div>
+                    {!isSlow && onCancel ? <Button variant="outline" size="sm" onClick={onCancel} className="min-w-36 border-foreground bg-transparent text-foreground">Stop</Button> : null}
                 </div>
 
                 {isSlow ? (

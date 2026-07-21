@@ -9,7 +9,7 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
 <riyp-instructions>
 
 <identity>
-  Product: An elite, digital career studio. Not a "tool."
+  Product: A recruiter-first software product. Never frame it as a consultancy, agency, or editorial service.
   Core Promise: "See what they see."
   Wedge: The "Recruiter First Impression" (Score + Verdict + Critical Miss).
   Hosting: Vercel. Next.js App Router.
@@ -17,7 +17,7 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
 
 <stack>
   Frontend: Next.js (App Router), TailwindCSS, Framer Motion.
-  Fonts: Newsreader Variable (display/authority), Instrument Sans Variable (interface/body), system mono (data only).
+  Fonts: Space Grotesk Variable (display/authority/actions), Instrument Sans Variable (interface/body/technical labels). No third branded font.
   Icons: Phosphor for branded and public-facing expression. Existing Lucide icons may remain until the surface is intentionally migrated; never mix icon families within one surface.
   Package manager: npm (not yarn, not pnpm).
 </stack>
@@ -47,7 +47,7 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
 </oracle>
 
 <design-constitution>
-  Current sources of truth, rewritten for Lifted Line on 2026-07-11:
+  Current sources of truth, rewritten for Lifted Line 2.0 on 2026-07-20:
   - docs/brand-system.md (identity, promise, emotional target, and signature grammar)
   - docs/design-system.md (visual application, production tokens, components, and release contract)
 
@@ -55,6 +55,7 @@ READ ~/Desktop/dev/agent-scripts/AGENTS.md BEFORE ANYTHING (skip if missing).
   
   Protect the Constitution at all costs. Do not let the app drift into generic territory.
   Lifted Line is the approved brand direction. Do not revive Ink & Paper, Editorial Proof, teal-first, dossier, or red-pen directions as competing systems.
+  Approved reference images are pixel-fidelity targets, not mood boards. Match their typography, color, spacing, borders, radii, composition, and responsive behavior before handoff. Extend that same visual grammar across connected public surfaces, including every Research index, article, figure, and diagram; do not leave secondary routes on a legacy design system.
   When editing UI, reference the docs and ask: "Does this make the candidate's real work easier to see, and does it unmistakably belong to Lifted Line?"
   SaaS patterns are allowed when they materially improve clarity, conversion, or growth.
 </design-constitution>

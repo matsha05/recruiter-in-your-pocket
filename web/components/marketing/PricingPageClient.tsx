@@ -66,42 +66,42 @@ export default function PricingPageClient() {
     if (!billingEnabled) {
         return (
             <>
-                <div data-visual-anchor="pricing-page" className="min-h-screen bg-mineral pt-28 text-foreground selection:bg-brand/15 md:pt-36">
-                    <section className="px-6 pb-20 md:px-8 md:pb-28">
-                        <div className="mx-auto max-w-6xl">
-                            <div className="grid gap-10 border-b border-border pb-10 lg:grid-cols-5 lg:items-end">
-                                <div className="lg:col-span-3">
+                <div data-visual-anchor="pricing-page" className="pricing-beta-page bg-mineral text-foreground selection:bg-brand/15">
+                    <section className="px-6 pb-12 md:px-8">
+                        <div className="pricing-rail mx-auto">
+                            <div className="pricing-hero-grid grid gap-10 border-b-2 border-cyan-bright pb-11 lg:items-end">
+                                <div>
                                     <p className="mb-5 text-xs font-bold uppercase riyp-track-010 text-brand">Beta access</p>
-                                    <h1 className="max-w-3xl font-display text-5xl riyp-weight-520 leading-none tracking-tight riyp-stretch-88 md:text-7xl lg:text-8xl">
-                                        One complete report is included. Five more are $29.
+                                    <h1 className="max-w-3xl text-balance font-display text-[clamp(2.75rem,5.8vw,5.1rem)] font-semibold leading-[0.96] tracking-[-0.05em]">
+                                        One complete report is <span className="riyp-marker">included.</span> Five more are $29.
                                     </h1>
                                 </div>
-                                <p className="max-w-lg text-lg leading-8 text-muted-foreground lg:col-span-2">
+                                <p className="max-w-lg text-lg leading-8 text-muted-foreground lg:mb-2">
                                     Checkout is closed while we finish the beta safety checks. When it opens, the Job Search Pass will be one payment for five additional reports over 30 days. It will not renew.
                                 </p>
                             </div>
 
                             <div className="mt-10 grid overflow-hidden border-y border-border bg-background/60 md:grid-cols-2">
-                                <div className="border-b border-border p-7 md:border-b-0 md:border-r md:p-9">
+                                <div className="border-b border-border p-7 md:border-b-0 md:border-r md:px-8 md:py-0">
                                     <p className="text-xs font-bold uppercase riyp-track-010 text-brand">First report</p>
-                                    <p className="mt-5 font-display text-5xl riyp-weight-540 tracking-tight">$0</p>
+                                    <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete in-browser report</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         The recruiter takeaway, evidence, questions to answer, and rewrites are all included. No card required.
                                     </p>
-                                    <Link href="/workspace" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-brand/90 active:scale-95">
+                                    <Link href="/workspace" className="pricing-primary-cta mt-7 inline-flex items-center justify-center gap-2 rounded-md bg-foreground py-3 font-semibold text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98] [&_svg]:text-citron">
                                         Run your free report
                                         <ArrowRight className="size-4" />
                                     </Link>
                                 </div>
-                                <div className="p-7 md:p-9">
+                                <div className="p-7 md:px-8 md:py-0">
                                     <p className="text-xs font-bold uppercase riyp-track-010 text-brand">Job Search Pass</p>
-                                    <p className="mt-5 font-display text-5xl riyp-weight-540 tracking-tight">$29</p>
+                                    <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$29</p>
                                     <p className="mt-2 text-base text-muted-foreground">Five additional reports for 30 days</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         One payment for revisions and role comparisons. No subscription and no automatic renewal.
                                     </p>
-                                    <p role="status" className="mt-7 inline-flex min-h-12 items-center border border-border bg-muted/35 px-5 py-3 text-sm font-semibold text-muted-foreground">
+                                    <p role="status" className="pricing-disabled-cta mt-7 inline-flex items-center border border-border bg-muted/35 py-3 font-semibold text-muted-foreground">
                                         Checkout opens after beta verification
                                     </p>
                                 </div>
@@ -119,14 +119,14 @@ export default function PricingPageClient() {
             <div data-visual-anchor="pricing-page" className="bg-paper pt-28 text-foreground selection:bg-brand/15 md:pt-36">
                 <section className="px-6 pb-16 md:px-8 md:pb-24">
                     <div className="mx-auto max-w-[1120px]">
-                        <div className="grid gap-10 border-b border-line pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end">
+                        <div className="grid gap-10 border-b-2 border-cyan-bright pb-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.7fr)] lg:items-end">
                             <div>
                                 <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-brand">Pricing</p>
                                 <h1
                                     id="pricing-page-title"
-                                    className="max-w-[760px] font-display text-[clamp(3rem,7vw,5.8rem)] riyp-weight-520 leading-[0.94] tracking-[-0.045em] riyp-stretch-88"
+                                    className="max-w-[760px] text-balance font-display text-[clamp(2.75rem,5.8vw,5.1rem)] font-semibold leading-[0.96] tracking-[-0.05em]"
                                 >
-                                    One complete report is free. Five more are $29. That&apos;s it.
+                                    One complete report is <span className="riyp-marker">included.</span> Five more are $29.
                                 </h1>
                             </div>
                             <p className="max-w-[34rem] text-pretty text-lg leading-8 text-muted-foreground">

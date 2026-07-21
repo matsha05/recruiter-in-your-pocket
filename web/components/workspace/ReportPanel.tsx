@@ -218,12 +218,12 @@ export default function ReportPanel({
                                 </div>
                             )}
 
-                            <div className="riyp-border-paper-line animate-in slide-in-from-bottom-2 fade-in flex min-h-12 items-center justify-between gap-4 border-b pb-3 duration-500">
+                            <div className="animate-in slide-in-from-bottom-2 fade-in flex min-h-12 items-center justify-between gap-4 border-b border-citron pb-3 duration-500">
                                 <div className="flex min-w-0 items-center gap-2">
-                                    <span className="text-[10px] font-semibold uppercase riyp-track-015 text-muted-foreground">
+                                    <span className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume review"}
                                     </span>
-                                    {shareEnabled && shareMode && <span className="text-[10px] font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
+                                    {shareEnabled && shareMode && <span className="text-[11px] font-semibold uppercase riyp-track-015 text-premium">Share view</span>}
                                 </div>
                                 <div className="flex shrink-0 items-center gap-1">
                                     {canExport && !isSample && (

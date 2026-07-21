@@ -114,7 +114,7 @@ export default function SystemLab() {
 
           <div className="mt-10 grid border-y border-line lg:grid-cols-[0.9fr_1.1fr]">
             <div className="border-b border-line py-8 lg:border-b-0 lg:border-r lg:pr-10">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Newsreader / human voice</p>
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Space Grotesk / product voice</p>
               <p className="mt-6 max-w-[13ch] font-display text-5xl font-normal leading-[0.98] tracking-[-0.04em] md:text-7xl">
                 You did the work. Let&apos;s make sure they see it.
               </p>

@@ -32,6 +32,8 @@ const MIGRATIONS = [
   ["012_generation_access_reservations", "web/database/migrations/012_generation_access_reservations.sql"],
   ["013_database_advisor_hardening", "web/database/migrations/013_database_advisor_hardening.sql"],
   ["014_atomic_stripe_event_leases", "web/database/migrations/014_atomic_stripe_event_leases.sql"],
+  ["015_account_export_database_cron", "web/database/migrations/015_account_export_database_cron.sql"],
+  ["016_billing_reversals_and_deletion_safety", "web/database/migrations/016_billing_reversals_and_deletion_safety.sql"],
 ];
 
 function loadLocalEnvironment() {
@@ -108,12 +110,27 @@ async function verifyCleanReplay(manifest) {
       LANGUAGE SQL
       STABLE
       AS 'SELECT NULL::UUID';
+
+      -- PGlite does not bundle Supabase's pg_cron extension. This provider
+      -- stub preserves parse and execution coverage for migration 015 while
+      -- the hosted-environment gate separately verifies the real extension.
+      CREATE SCHEMA cron;
+      CREATE FUNCTION cron.schedule(job_name TEXT, schedule TEXT, command TEXT)
+      RETURNS BIGINT
+      LANGUAGE SQL
+      AS 'SELECT 1::BIGINT';
     `);
 
     for (const migration of manifest) {
+      const replaySql = migration.id === "015_account_export_database_cron"
+        ? migration.sql.replace(
+          /CREATE EXTENSION IF NOT EXISTS pg_cron WITH SCHEMA pg_catalog;\s*/i,
+          "",
+        )
+        : migration.sql;
       await db.exec("BEGIN");
       try {
-        await db.exec(migration.sql);
+        await db.exec(replaySql);
         await db.exec("COMMIT");
       } catch (error) {
         await db.exec("ROLLBACK");

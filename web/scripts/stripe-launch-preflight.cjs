@@ -25,6 +25,7 @@ const args = new Set(process.argv.slice(2));
 const remote = args.has("--remote");
 const expectedModeArg = [...args].find((arg) => arg.startsWith("--mode="));
 const expectedMode = expectedModeArg?.split("=")[1] || null;
+const appUrlArg = [...args].find((arg) => arg.startsWith("--app-url="));
 
 const failures = [];
 const warnings = [];
@@ -45,6 +46,16 @@ function fail(message) {
 function warn(message) {
   warnings.push(message);
   console.warn(`WARN  ${message}`);
+}
+
+function webhookTargetsApp(endpointUrl, expectedUrl) {
+  try {
+    const endpoint = new URL(endpointUrl);
+    const expected = new URL(expectedUrl);
+    return endpoint.origin === expected.origin && endpoint.pathname === expected.pathname;
+  } catch {
+    return false;
+  }
 }
 
 function requireValue(name, alternatives = []) {
@@ -77,7 +88,15 @@ if (webhookSecret && !webhookSecret.startsWith("whsec_")) fail("STRIPE_WEBHOOK_S
 if (priceId && !priceId.startsWith("price_")) fail("STRIPE_PRICE_ID_30D is not a Stripe Price ID");
 if (productId && !productId.startsWith("prod_")) fail("STRIPE_PRODUCT_ID_30D is not a Stripe Product ID");
 
-const appUrl = value("NEXT_PUBLIC_APP_URL");
+const appUrl = (appUrlArg?.slice("--app-url=".length) || value("NEXT_PUBLIC_APP_URL")).replace(/\/$/, "");
+let webhookUrl = CANONICAL_WEBHOOK_URL;
+if (appUrl) {
+  try {
+    webhookUrl = new URL("/api/stripe/webhook", appUrl).toString();
+  } catch {
+    fail("The app URL must be an absolute http or https URL");
+  }
+}
 if (inferredMode === "live") {
   if (appUrl !== CANONICAL_APP_URL) fail(`NEXT_PUBLIC_APP_URL must equal ${CANONICAL_APP_URL} for live billing`);
   else pass("Production app URL is canonical");
@@ -134,11 +153,11 @@ async function runRemoteChecks() {
   if (price.livemode !== (inferredMode === "live")) fail("Stripe price mode does not match the configured secret key");
   else pass("Stripe price mode matches the secret key");
 
-  const canonicalWebhook = webhooks.data.find((endpoint) => endpoint.url === CANONICAL_WEBHOOK_URL);
+  const canonicalWebhook = webhooks.data.find((endpoint) => webhookTargetsApp(endpoint.url, webhookUrl));
   if (!canonicalWebhook) {
-    fail(`No webhook endpoint points directly to ${CANONICAL_WEBHOOK_URL}`);
+    fail(`No webhook endpoint points directly to ${webhookUrl}`);
   } else {
-    pass("Canonical www webhook endpoint exists with no redirect");
+    pass(`Webhook endpoint exists for ${appUrl || CANONICAL_APP_URL}`);
     if (canonicalWebhook.status !== "enabled") fail("Canonical webhook endpoint is disabled");
     else pass("Canonical webhook endpoint is enabled");
 

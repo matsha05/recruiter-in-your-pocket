@@ -8,9 +8,12 @@ import {
     CheckCircle,
     ClipboardText,
     Copy,
+    CornersOut,
+    BracketsAngle,
     LockKey,
     MinusCircle,
     PencilSimple,
+    PaperPlaneTilt,
     Target,
 } from "@phosphor-icons/react";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
@@ -73,6 +76,15 @@ function applyVerifiedFactToDraft(draft: string, fact: string) {
     const cleanDraft = draft.trim().replace(/[.;]\s*$/, "");
     const cleanFact = fact.trim().replace(/^[.;]\s*/, "").replace(/[.;]\s*$/, "");
     return `${cleanDraft}; ${cleanFact}.`;
+}
+
+function MarkedTakeaway({ text }: { text: string }) {
+    const match = text.match(/\bbigger\b/i);
+    if (!match || match.index === undefined) return <>{text}</>;
+
+    const start = match.index;
+    const end = start + match[0].length;
+    return <>{text.slice(0, start)}<span className="riyp-marker">{text.slice(start, end)}</span>{text.slice(end)}</>;
 }
 
 function FixCanvas({
@@ -186,7 +198,7 @@ function FixCanvas({
 
                     {original && (
                         <div className="riyp-border-annotation mt-7 border-l-2 pl-4 sm:pl-5">
-                            <p className="text-[10px] font-semibold uppercase riyp-track-015 text-muted-foreground">
+                            <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
                                 {sectionFor(fix) ? `On the page · ${sectionFor(fix)}` : "On the page"}
                             </p>
                             <p className="mt-2 font-display text-xl leading-7 text-foreground/85 sm:text-2xl sm:leading-8">
@@ -197,13 +209,13 @@ function FixCanvas({
 
                     <div className="mt-7 grid gap-px bg-[hsl(var(--paper-line))] sm:grid-cols-2">
                         <div className="bg-accent-apricot/20 p-5 sm:p-6">
-                            <p className="riyp-text-annotation text-[10px] font-semibold uppercase riyp-track-015">What is missing</p>
+                            <p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">What is missing</p>
                             <p className="mt-3 text-[0.95rem] leading-6 text-foreground/80">
                                 {fix.why || "The resume asks the reader to guess at the scope, the decision, or the result."}
                             </p>
                         </div>
                         <div className="bg-accent-butter/20 p-5 sm:p-6">
-                            <p className="text-[10px] font-semibold uppercase riyp-track-015 text-foreground/60">Answer before you edit</p>
+                            <p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/60">Answer before you edit</p>
                             <p className="mt-3 text-[0.95rem] font-medium leading-6 text-foreground">
                                 {question?.question || "What specific detail would make this claim easier to believe?"}
                             </p>
@@ -223,7 +235,7 @@ function FixCanvas({
                     <div className="mt-px bg-brand/[0.065] p-5 sm:p-7">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
-                                <p className="text-[10px] font-semibold uppercase riyp-track-015 text-brand">Try this</p>
+                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Try this</p>
                                 <p className="mt-1 text-xs text-muted-foreground">
                                     {answerApplied ? "Your verified fact is now in the draft. Edit the sentence until it sounds like you." : "A working draft. Replace every bracket with a fact you can verify."}
                                 </p>
@@ -248,7 +260,7 @@ function FixCanvas({
                         </div>
                         {answerApplied ? (
                             <div className="mt-5 border-l-2 border-brand/45 bg-paper/70 px-4 py-3">
-                                <p className="text-[10px] font-semibold uppercase riyp-track-015 text-brand">Fact to preserve</p>
+                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Fact to preserve</p>
                                 <p className="mt-2 text-sm font-medium leading-6 text-foreground">{answer.trim()}</p>
                             </div>
                         ) : null}
@@ -307,35 +319,35 @@ export function ReportStream({
     return (
         <div className={cn("mx-auto max-w-[58rem] pb-16", className)}>
             {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
-            <section id="section-first-impression" className="scroll-mt-36 pb-10 pt-2 sm:pb-14 sm:pt-6">
+            <section id="section-first-impression" className="scroll-mt-36 pb-10 pt-2 sm:pb-14 sm:pt-8">
                 <div className="flex items-center justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4">
                     <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">The read</p>
-                    <p className="font-mono text-[10px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
+                    <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
                 </div>
 
-                <div className="pt-8 sm:pt-12">
-                    <div className="border-l-2 border-brand pl-5 sm:pl-7">
-                        <h1 className="max-w-[16ch] font-display text-[clamp(2.8rem,8vw,6.6rem)] riyp-weight-520 leading-[0.88] tracking-[-0.05em] text-foreground riyp-stretch-90">
-                            {report.first_impression_takeaway || "Make the proof easier to see."}
+                <div className="pt-8 sm:pt-6">
+                    <div className="border-l-2 border-cyan-bright pl-5 sm:pl-12">
+                        <h1 className="report-opening-title font-display font-semibold tracking-[-0.055em] text-foreground">
+                            <MarkedTakeaway text={report.first_impression_takeaway || "Make the proof easier to see."} />
                         </h1>
-                        <p className="mt-6 max-w-[43rem] text-lg leading-8 text-foreground/80 sm:text-xl sm:leading-9">
-                            {report.score_comment_short || report.first_impression || report.summary}
-                        </p>
                     </div>
+                    <p className="mt-5 max-w-[43rem] text-lg leading-8 text-foreground/80 sm:text-xl sm:leading-9">
+                        {report.score_comment_short || report.first_impression || report.summary}
+                    </p>
                 </div>
 
-                <div className="mt-9 grid border-y border-[hsl(var(--paper-line))] sm:grid-cols-3 sm:divide-x sm:divide-[hsl(var(--paper-line))]">
-                    <div className="border-b border-[hsl(var(--paper-line))] bg-accent-butter/20 px-5 py-5 sm:border-b-0 sm:px-6 sm:py-7">
-                        <p className="text-[10px] font-semibold uppercase riyp-track-015 text-foreground/55">What lands</p>
-                        <p className="mt-3 text-sm font-medium leading-6 text-foreground">{strengths[0] || "The core of your experience is easy to follow."}</p>
+                <div className="mt-4 grid border-y border-[hsl(var(--paper-line))] sm:grid-cols-3 sm:divide-x sm:divide-[hsl(var(--paper-line))]">
+                    <div className="report-evidence-tile border-b border-[hsl(var(--paper-line))] bg-accent-butter/20 px-5 py-5 sm:border-b-0 sm:px-6 sm:py-7">
+                        <div className="flex items-center gap-3 text-brand"><CornersOut className="size-5" weight="bold" aria-hidden="true" /><p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/55">What lands</p></div>
+                        <p className="mt-3 text-base font-medium leading-6 text-foreground">{strengths[0] || "The core of your experience is easy to follow."}</p>
                     </div>
-                    <div className="border-b border-[hsl(var(--paper-line))] bg-accent-apricot/20 px-5 py-5 sm:border-b-0 sm:px-6 sm:py-7">
-                        <p className="riyp-text-annotation text-[10px] font-semibold uppercase riyp-track-015">Where doubt creeps in</p>
-                        <p className="mt-3 text-sm font-medium leading-6 text-foreground">{report.gaps?.[0] || report.biggest_gap_example || "The scale and result need more proof."}</p>
+                    <div className="report-evidence-tile border-b border-[hsl(var(--paper-line))] bg-paper px-5 py-5 sm:border-b-0 sm:px-6 sm:py-7">
+                        <div className="flex items-center gap-3 text-brand"><BracketsAngle className="size-5" weight="bold" aria-hidden="true" /><p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">Where doubt creeps in</p></div>
+                        <p className="mt-3 text-base font-medium leading-6 text-foreground">{report.gaps?.[0] || report.biggest_gap_example || "The scale and result need more proof."}</p>
                     </div>
-                    <div className="bg-brand/[0.065] px-5 py-5 sm:px-6 sm:py-7">
-                        <p className="text-[10px] font-semibold uppercase riyp-track-015 text-brand">Fix first</p>
-                        <p className="mt-3 text-sm font-medium leading-6 text-foreground">{primaryFix?.fix || primaryFix?.text || "Make the strongest part of the story more specific."}</p>
+                    <div className="report-evidence-tile bg-surface-sky px-5 py-5 sm:px-6 sm:py-7">
+                        <div className="flex items-center gap-3 text-cyan-bright"><PaperPlaneTilt className="size-5" weight="bold" aria-hidden="true" /><p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Fix first</p></div>
+                        <p className="mt-3 text-base font-medium leading-6 text-foreground">{primaryFix?.fix || primaryFix?.text || "Make the strongest part of the story more specific."}</p>
                     </div>
                 </div>
 
@@ -355,6 +367,16 @@ export function ReportStream({
                         </Button>
                     </div>
                 )}
+
+                <div className="mt-4 flex items-end justify-between gap-6 border-t border-foreground/70 pt-5">
+                    <div>
+                        <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">The evidence</p>
+                        <p className="mt-2 text-sm text-muted-foreground">The specifics that support this read.</p>
+                    </div>
+                    <button type="button" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand" onClick={() => document.getElementById("section-fixes")?.scrollIntoView({ behavior: "smooth", block: "start" })}>
+                        See all evidence <ArrowRight className="size-4" weight="bold" />
+                    </button>
+                </div>
             </section>
 
             <section id="section-fixes" className="scroll-mt-36 border-t border-foreground/80 pt-6">
@@ -395,7 +417,7 @@ export function ReportStream({
                         <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
                             {strengths.map((strength, index) => (
                                 <li key={strength} className="grid grid-cols-[2rem_1fr] gap-3 py-5">
-                                    <span className="font-mono text-[10px] font-semibold text-brand">0{index + 1}</span>
+                                    <span className="riyp-tabular-label text-[11px] font-semibold text-brand">0{index + 1}</span>
                                     <p className="text-base leading-7 text-foreground/85">{strength}</p>
                                 </li>
                             ))}
@@ -420,7 +442,7 @@ export function ReportStream({
                             </p>
                         </div>
                         <div className="border-l-2 border-brand/30 pl-5">
-                            <p className="text-[10px] font-semibold uppercase riyp-track-015 text-muted-foreground">Best fit now</p>
+                            <p className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">Best fit now</p>
                             <ul className="mt-4 space-y-3">
                                 {(roleFit?.best_fit_roles || []).slice(0, 3).map((role) => (
                                     <li key={role} className="text-sm font-medium leading-6 text-foreground">{role}</li>

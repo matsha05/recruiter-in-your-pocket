@@ -39,7 +39,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByTestId("landing-primary-cta")).toBeVisible();
     await page.getByTestId("landing-primary-cta").click();
     await expect(page).toHaveURL(/\/workspace$/);
-    await expect(page.getByRole("heading", { name: /Let’s see what lands/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Let's see what lands/i })).toBeVisible();
   });
 
   test("2. public trust surfaces publish readiness and disclosure details", async ({ page, request }) => {
@@ -76,8 +76,9 @@ test.describe("launch red-team journeys", () => {
   });
 
   test("3. example report path feels complete and returns users to a fresh run", async ({ page }) => {
-    await page.goto("/workspace");
-    await page.getByTestId("workspace-sample-report").click();
+    // The approved workspace reference deliberately keeps its empty state focused
+    // on starting a real review. Public sample CTAs deep-link into this mode.
+    await page.goto("/workspace?sample=1");
     await expect(page.getByText("Example report", { exact: true })).toBeVisible({ timeout: 15_000 });
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await page.getByTestId("sample-start-report").click();

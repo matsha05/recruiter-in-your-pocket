@@ -36,17 +36,17 @@ export function ReferralCalculator() {
                         <RangeControl id="referral-rate" label="Referral callback rate" value={referralRate} onChange={setReferralRate} min={10} max={90} step={5} display={`${referralRate}%`} accent />
                     </div>
 
-                    <div className="border-t border-[hsl(var(--paper-line))] pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
-                        <div className="riyp-evidence-label text-slate-500">Applications per callback</div>
+                    <div className="border-t border-line pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
+                        <div className="riyp-evidence-label text-muted-foreground">Applications per callback</div>
                         <div className="mt-7 space-y-7">
                             <ModelBar label={`Cold / ${coldRate}%`} value={`${stats.coldAppsNeeded}`} width={stats.coldWidth} />
                             <ModelBar label={`Referred / ${referralRate}%`} value={`${stats.referralAppsNeeded}`} width={stats.referralWidth} accent />
                         </div>
-                        <dl className="mt-9 grid grid-cols-2 border-y border-[hsl(var(--paper-line))]">
-                            <div className="py-4 pr-4"><dt className="riyp-evidence-label text-slate-500">Time difference</dt><dd className="mt-2 font-display text-3xl text-slate-950">{stats.hoursSaved}h</dd></div>
-                            <div className="border-l border-[hsl(var(--paper-line))] py-4 pl-4"><dt className="riyp-evidence-label text-slate-500">Time equivalent</dt><dd className="mt-2 font-display text-3xl text-slate-950">{formatCurrency(stats.timeEquivalent)}</dd></div>
+                        <dl className="mt-9 grid grid-cols-2 border-y border-line">
+                            <div className="py-4 pr-4"><dt className="riyp-evidence-label text-muted-foreground">Time difference</dt><dd className="mt-2 font-display text-3xl text-foreground">{stats.hoursSaved}h</dd></div>
+                            <div className="border-l border-line py-4 pl-4"><dt className="riyp-evidence-label text-muted-foreground">Time equivalent</dt><dd className="mt-2 font-display text-3xl text-foreground">{formatCurrency(stats.timeEquivalent)}</dd></div>
                         </dl>
-                        <p className="mt-4 text-xs leading-5 text-slate-500">At these assumptions, the model avoids {stats.appsSaved} applications. “Time equivalent” values the modeled hours at salary ÷ 2,080; it is not money earned or saved.</p>
+                        <p className="mt-4 text-xs leading-5 text-muted-foreground">At these assumptions, the model avoids {stats.appsSaved} applications. “Time equivalent” values the modeled hours at salary ÷ 2,080; it is not money earned or saved.</p>
                     </div>
                 </div>
             </DiagramFrame>
@@ -58,8 +58,8 @@ export function ReferralCalculator() {
 function RangeControl({ id, label, value, onChange, min, max, step, display, accent }: { id: string; label: string; value: number; onChange: (value: number) => void; min: number; max: number; step: number; display: string; accent?: boolean }) {
     return (
         <div>
-            <div className="flex items-baseline justify-between gap-4"><label htmlFor={id} className="text-sm font-medium text-slate-700">{label}</label><output htmlFor={id} className={accent ? "font-mono text-xs font-bold text-teal-900" : "font-mono text-xs font-bold text-slate-600"}>{display}</output></div>
-            <input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-800 focus-visible:ring-offset-2" />
+            <div className="flex items-baseline justify-between gap-4"><label htmlFor={id} className="text-sm font-medium text-foreground/80">{label}</label><output htmlFor={id} className={accent ? "text-xs font-bold text-brand tabular-nums" : "text-xs font-bold text-muted-foreground tabular-nums"}>{display}</output></div>
+            <input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} className="mt-3 h-2 w-full cursor-pointer appearance-none bg-line accent-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2" />
         </div>
     );
 }
@@ -67,8 +67,8 @@ function RangeControl({ id, label, value, onChange, min, max, step, display, acc
 function ModelBar({ label, value, width, accent }: { label: string; value: string; width: string; accent?: boolean }) {
     return (
         <div>
-            <div className="flex items-baseline justify-between gap-4 text-xs"><span className={accent ? "font-semibold text-teal-900" : "text-slate-600"}>{label}</span><span className="font-display text-2xl text-slate-950">{value}</span></div>
-            <div className="mt-2 h-2 w-full bg-slate-200"><div className={accent ? "h-full bg-teal-800 transition-[width] duration-200 ease-out" : "h-full bg-slate-500 transition-[width] duration-200 ease-out"} style={{ width }} /></div>
+            <div className="flex items-baseline justify-between gap-4 text-xs"><span className={accent ? "font-semibold text-brand" : "text-muted-foreground"}>{label}</span><span className="font-display text-2xl text-foreground">{value}</span></div>
+            <div className="mt-2 h-2 w-full bg-line"><div className={accent ? "h-full bg-cyan-bright transition-[width] duration-200 ease-out" : "h-full bg-muted-foreground transition-[width] duration-200 ease-out"} style={{ width }} /></div>
         </div>
     );
 }

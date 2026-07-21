@@ -49,7 +49,7 @@ assertTraceIncludes(
 );
 assertTraceIncludes(
   path.join(nextDir, "server", "app", "api", "export-pdf", "route.js.nft.json"),
-  "/public/assets/fonts/newsreader-latin-variable.ttf"
+  "/public/assets/fonts/space-grotesk-latin-variable.ttf"
 );
 assertTraceIncludes(
   path.join(nextDir, "server", "app", "api", "export-pdf", "route.js.nft.json"),

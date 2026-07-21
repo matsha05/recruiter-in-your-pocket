@@ -59,7 +59,8 @@ const nextConfig = {
   outputFileTracingIncludes: {
     "/*": [
       "./prompts/**/*.txt",
-      "./public/assets/fonts/newsreader-latin-variable.ttf",
+      "./public/assets/fonts/space-grotesk-latin-variable.ttf",
+      "./public/assets/fonts/space-grotesk-bold.ttf",
       "./public/assets/fonts/instrument-sans-latin-variable.ttf",
     ],
   },

@@ -227,7 +227,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                 <p className="text-xs font-medium text-foreground mb-2.5">Working</p>
                                 <ul className="gap-y-3">
                                     {(older.report.strengths || []).slice(0, 3).map((s, i) => (
-                                        <li key={s} className="text-[13px] text-muted-foreground leading-[1.6]">
+                                        <li key={s} className="text-sm text-muted-foreground leading-[1.6]">
                                             {firstSentence(s)}
                                         </li>
                                     ))}
@@ -242,7 +242,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                 <p className="text-xs font-medium text-foreground/80 mb-2.5">Gaps</p>
                                 <ul className="gap-y-3">
                                     {(older.report.gaps || []).slice(0, 3).map((g, i) => (
-                                        <li key={g} className="text-[13px] text-muted-foreground leading-[1.6]">
+                                        <li key={g} className="text-sm text-muted-foreground leading-[1.6]">
                                             {firstSentence(g)}
                                         </li>
                                     ))}
@@ -264,7 +264,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                 <p className="text-xs font-medium text-foreground mb-2.5">Working</p>
                                 <ul className="gap-y-3">
                                     {(newer.report.strengths || []).slice(0, 3).map((s, i) => (
-                                        <li key={s} className="text-[13px] text-foreground/80 leading-[1.6]">
+                                        <li key={s} className="text-sm text-foreground/80 leading-[1.6]">
                                             {firstSentence(s)}
                                         </li>
                                     ))}
@@ -279,7 +279,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                 <p className="text-xs font-medium text-foreground/80 mb-2.5">Gaps</p>
                                 <ul className="gap-y-3">
                                     {(newer.report.gaps || []).slice(0, 3).map((g, i) => (
-                                        <li key={g} className="text-[13px] text-foreground/70 leading-[1.6]">
+                                        <li key={g} className="text-sm text-foreground/70 leading-[1.6]">
                                             {firstSentence(g)}
                                         </li>
                                     ))}

@@ -10,7 +10,7 @@ export function SalaryLeverage() {
                 <EvidenceHeader index="01" label="Negotiation anchor" title="The first number frames the conversation." note="Changing the reference point changes what both sides treat as reasonable." />
                 <ComparisonField
                     left={{ eyebrow: "History anchor", title: "What did you make?", tone: "quiet", items: ["Past pay becomes the baseline", "Earlier gaps can carry forward", "The role's value enters late"] }}
-                    right={{ eyebrow: "Role anchor", title: "What is this work worth?", tone: "teal", items: ["Scope and market set the frame", "Expectations become explicit", "Current value matters more than history"] }}
+                    right={{ eyebrow: "Role anchor", title: "What is this work worth?", tone: "insight", items: ["Scope and market set the frame", "Expectations become explicit", "Current value matters more than history"] }}
                     verdict="Salary-history rules vary by location. When you can, discuss the role, the market range, and the value of the work instead of letting past pay set the offer."
                 />
             </DiagramFrame>

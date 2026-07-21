@@ -1,7 +1,7 @@
 # PromptOps Shipping Gate
 
-**Last Updated:** 2026-07-19
-**Status:** ENFORCED, CURRENTLY NO-GO
+**Last Updated:** 2026-07-20
+**Status:** ENFORCED, CURRENT RELEASE CANDIDATE PASS
 
 ---
 
@@ -94,10 +94,12 @@ Before any live launch decision, and only after model spend is approved:
 - Run: `eval_1784470075604`
 - Model: `gpt-4o-mini`
 - Corpus: 8 stored synthetic golden resumes
-- Result: 0 PASS, 1 WARN, 7 FAIL
-- Decision: public paid launch blocked
+- Superseded result: 0 PASS, 1 WARN, 7 FAIL
+- Final pinned GPT-5 nano result: 8 PASS, 0 WARN, 0 FAIL (`eval_1784502145848`)
+- Token-calculated API cost: $0.009 across 9 calls
+- Decision: prompt and model gate passes for the pinned release candidate
 
-The scoring bands were mostly calibrated, but the reports still paraphrased evidence, requested facts that were already present, and introduced unsupported causal outcomes. The runtime now withholds invalid drafts, attempts one bounded repair, and restores the report credit if the replacement still fails. That recovery path is not a substitute for rerunning the live gate on the intended launch model.
+The earlier GPT-4o mini run exposed evidence paraphrasing, requests for facts already present, and unsupported causal outcomes. Those defects were hardened in the prompt and runtime, then the live gate was rerun on the pinned launch model. The runtime also withholds invalid drafts, attempts one bounded repair, and restores the report credit if the replacement still fails. Any prompt or launch-model change reopens this gate.
 
 ---
 

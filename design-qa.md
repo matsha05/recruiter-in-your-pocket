@@ -1,61 +1,62 @@
-# Design QA: Lifted Line
+# Lifted Line 2.0 - Final Design QA
 
-## Source and implementation
+Date: 2026-07-20
 
-The approved visual source and local browser captures were reviewed during the
-implementation pass. Those machine-local artifacts are intentionally not stored
-in the repository; this file records the durable findings and states that were
-verified.
+Result: **PASS**
 
-## Viewport and state
+## Scope
 
-- Desktop comparison: 1481 × 1054 captured pixels, signed out, initial homepage state
-- Mobile: 390 × 844, signed out, initial homepage state
-- Report: sample Program Manager report at `/workspace?sample=1`
-- Research: initial `/research` state
+- Approved seven-state reference set: landing desktop, landing mobile, workspace default, workspace error, workspace analysis, report, and pricing
+- Research hub at 390, 1024, and 1440 pixels
+- Every canonical Research article at 390, 1024, and 1440 pixels
+- Every Research figure and diagram through the shared figure primitives and route-level visual audit
+- Connected public shells: Resources, guides, auth, trust, legal, header, footer, and primary CTA treatment
 
-## Comparison history
+## Reference match
 
-### Iteration 1
+- Space Grotesk Variable carries display, verdict, price, and action hierarchy.
+- Instrument Sans Variable carries navigation, body, controls, labels, and technical metadata.
+- The public system is consistently ink, chalk, citron, deep cyan, bright-cyan rules, and pale-cyan teaching surfaces.
+- Headers, wordmark, controls, borders, radii, action treatment, and footer now follow the approved reference images across public surfaces.
+- Research no longer relies on the retired serif, iris, teal-first, legacy palette utilities, or scoped compatibility mappings.
+- Research figures use one shared report-like grammar: claim, readable encoding, caption, source context, and takeaway or limit.
 
-- Implemented the warm-white, graphite, iris, pale-sky, apricot, and butter system.
-- Installed and loaded Newsreader Variable; retained Instrument Sans for interface text.
-- Built the interactive before-and-after Lifted Line demonstration and cross-surface evidence grammar.
+## Issues found and resolved
 
-### Iteration 2
+- Removed a findings-tab effect that scrolled the Research hub past its opening on first load.
+- Replaced the last Research diagram legacy-palette utilities with semantic Lifted Line tokens.
+- Corrected a low-contrast secondary page number in the resume-length figure.
+- Replaced cyan-filled Research CTAs with the approved ink action and citron directional cue.
+- Tightened Research display weights so the hub and article hierarchy match the reference character.
+- Updated the Research UI and article contracts so documentation no longer describes the retired serif-and-iris system.
 
-- The first implementation made the hero too tall: the headline wrapped to five lines and pushed the product and Research proof below the fold.
-- Reduced headline width and scale, tightened hero and demo spacing, and rebalanced the desktop grid.
+## Severity review
 
-### Iteration 3
+- P0: none
+- P1: none
+- P2: none
 
-- Compared the approved source and revised implementation in one side-by-side image.
-- Confirmed that the implementation preserves the source’s hierarchy, palette, typography, interactive transformation, and visible proof surfaces.
-- Confirmed Research and the sample report use the same type, iris action language, evidence rules, and warm neutral field.
+## Verification
 
-## Focused evidence
+- `npm run qa:design-system` - passed
+- `npm run lint` - passed
+- `npm run build` - passed; 87 routes generated
+- Playwright public launch, baseline accessibility, and Research system suite - 27 passed
+- Destructive and recovery journey suite - 11 passed
+- Research browser-error audit across the hub and every canonical article - passed
+- Research-specific responsive contract - hub and every canonical article passed at 390, 1024, and 1440 pixels
+- Research-specific accessibility - hub and every canonical article passed with no serious or critical Axe violations
+- Legacy Research redirects - all canonical destinations passed
+- `npm run test:pdf-export` - passed
+- `npm run test:billing-pricing` - passed
 
-The full-view comparison includes the hero and first proof row, so a separate crop would not add diagnostic value. The homepage hero, Lifted Line interaction, report preview, and Research preview are all visible together.
+## Visual evidence
 
-## Interactions tested
+- Reference-to-Research comparison: `output/design-qa/2026-07-20-research-system/approved-compare-reference-to-research.png`
+- Reference-to-article comparison: `output/design-qa/2026-07-20-research-system/approved-compare-reference-to-article.png`
+- Research figure system contact sheet: `output/design-qa/2026-07-20-research-system/figure-system-contact-sheet.png`
+- Core seven-state comparisons: `output/design-qa/2026-07-20-final/approved-compare-*.png`
 
-- Original/stronger-version tabs switch content and selected state.
-- Primary homepage call to action routes to the product.
-- Research and shared navigation routes render.
-- Sample report loads with realistic content.
-- Mobile homepage has no horizontal overflow.
+## Non-blocking maintenance note
 
-## Console
-
-- Checked key homepage, Research, and report states for browser errors and warnings.
-
-## Findings
-
-- P0: 0
-- P1: 0
-- P2: 0
-- Intentional difference: the implementation uses a more legible split hero at the final viewport and keeps all claims supportable; it does not add fabricated timing or social proof.
-
-## Final result
-
-passed
+- The build reports that `caniuse-lite` is seven months old. It does not affect this visual or functional result, but the browser database should be refreshed in a dependency-maintenance change.

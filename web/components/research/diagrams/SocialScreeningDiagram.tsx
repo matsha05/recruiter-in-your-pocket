@@ -12,7 +12,7 @@ export function SocialScreeningDiagram() {
                     left={{
                         eyebrow: "Reasonable to verify",
                         title: "Facts tied to the work",
-                        tone: "teal",
+                        tone: "insight",
                         items: ["Titles and dates", "Published work or portfolio pieces", "Professional credentials and links"],
                     }}
                     right={{
@@ -21,7 +21,7 @@ export function SocialScreeningDiagram() {
                         tone: "quiet",
                         items: ["Personality from a post", "Future performance from interests", "Professionalism from an incomplete profile"],
                     }}
-                    verdict={<><strong className="text-slate-950">The boundary:</strong> keep public facts accurate. Do not mistake a cleaned-up feed for a valid job assessment.</>}
+                    verdict={<><strong className="text-foreground">The boundary:</strong> keep public facts accurate. Do not mistake a cleaned-up feed for a valid job assessment.</>}
                 />
             </DiagramFrame>
             <DiagramCaption kicker="Fig. 1 / Evidence and inference" title="Online screening can change a judgment. That does not make every judgment valid." description="Baker, Grimm & Ofek-Shanny (2024); SIOP Social Media and Selection white paper." />

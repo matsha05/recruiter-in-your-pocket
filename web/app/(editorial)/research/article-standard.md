@@ -9,14 +9,14 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 
 1. **← Research** — subtle back link
 2. **Meta line** — topic and evidence summary only. Keep internal review dates in structured metadata, not visible article chrome.
-3. **Title** — largest element, Newsreader display typography, clear #1
+3. **Title** — largest element, Space Grotesk display typography, clear #1
 4. **Description** — one sentence, explains the article's angle
-5. **Key finding callout** — subordinate to title, pale-sky teaching surface
+5. **Key finding callout** — subordinate to title, pale-cyan teaching surface with an ink rule
 6. **Body** — prose sections, h2 headings, visualizations inline
 7. **FAQ** — optional, full sentences
 8. **Product tie-in** — pale-sky application rail with numbered items
 9. **Further reading** — related articles + sources merged
-10. **CTA strip** — pale-sky band with one Iris action
+10. **CTA strip** — pale-cyan band with one ink action and citron directional cue
 
 ---
 
@@ -25,7 +25,7 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 ```tsx
 <ResearchArticle
   header={{
-    tag: "EYE-TRACKING RESEARCH",   // topic — uppercase, Iris
+    tag: "EYE-TRACKING RESEARCH",   // topic — uppercase, deep cyan
     title: "How Recruiters Actually Read Resumes",
     description: "Eye tracking research on how recruiters review resumes in real time.",
     readTime: "4 min read",
@@ -79,3 +79,12 @@ Every article lives in `/app/(editorial)/research/[slug]/page.tsx`.
 - **Don't** make the key finding compete with the title — it's a supporting callout, not a headline
 - **Don't** use generic subtitle text like "The Pattern" or "The Mechanism" — the stat speaks for itself
 - **Don't** separate Related Research and Sources into two sections — use "Further reading"
+- **Don't** add a serif, iris, teal-first palette, gradients, glass, or an article-specific card language
+- **Don't** use legacy palette utilities; use the semantic Lifted Line tokens
+- **Don't** ship a figure without a claim, readable encoding, caption, source context, and plain-language limit or takeaway
+
+---
+
+## Reference fidelity
+
+Research is part of the same product shown in the approved Lifted Line reference images. Match the shared header, typography, color, rules, radii, buttons, and footer exactly. Validate every article at 390, 1024, and 1440 pixels; do not approve only a representative route.

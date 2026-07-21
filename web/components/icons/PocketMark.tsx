@@ -1,11 +1,7 @@
 /**
  * Pocket Mark
  * 
- * A custom brand mark/ligature for "Pocket" that can be used
- * as a favicon-size glyph or wordmark accent.
- * 
- * Design: Abstract "P" that suggests a pocket/fold, with the
- * negative space creating implied depth.
+ * Shield-pocket monogram used at compact sizes.
  */
 
 interface IconProps {
@@ -18,46 +14,27 @@ export function PocketMark({ className = "", size = 24 }: IconProps) {
         <svg
             width={size}
             height={size}
-            viewBox="0 0 24 24"
+            viewBox="0 0 32 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={className}
         >
-            {/* Outer container - rounded rectangle suggesting "pocket" */}
-            <rect
-                x="4"
-                y="4"
-                width="16"
-                height="16"
-                rx="4"
+            <path
+                d="M3 3H29V24.5L16 33L3 24.5V3Z"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="2"
+                strokeLinejoin="miter"
                 fill="none"
             />
-
-            {/* Inner fold line - the "pocket" detail */}
-            <path
-                d="M4 10 L20 10"
-                stroke="currentColor"
-                strokeWidth="1.5"
-            />
-
-            {/* Abstract "P" form - Geometric Refinement */}
-            {/* Stem */}
-            <path
-                d="M9 13.5 L9 17"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-            />
-            {/* Bowl - Perfect Arc */}
-            <path
-                d="M9 13.5 H12 C13.6569 13.5 15 14.8431 15 16.5 C15 16.7761 14.7761 17 14.5 17 H9"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                fill="none"
-            />
+            <text
+                x="16"
+                y="23"
+                fill="currentColor"
+                fontFamily="Space Grotesk Variable, sans-serif"
+                fontSize="17"
+                fontWeight="650"
+                textAnchor="middle"
+            >R</text>
         </svg>
     );
 }

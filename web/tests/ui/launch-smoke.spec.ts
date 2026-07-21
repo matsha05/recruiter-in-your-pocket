@@ -67,7 +67,7 @@ test.describe("launch smoke", () => {
     });
 
     expect(typography.body).toContain("Instrument Sans Variable");
-    expect(typography.heading).toContain("Newsreader Variable");
+    expect(typography.heading).toContain("Space Grotesk Variable");
     expect(typography.body).not.toMatch(/Times New Roman|Times/i);
     expect(typography.heading).not.toMatch(/Times New Roman|Times/i);
     expect(typography.heading).not.toMatch(/Times New Roman|Times/i);

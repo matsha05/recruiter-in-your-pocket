@@ -20,7 +20,7 @@ interface SiteHeaderProps {
 export function SiteHeader({ showResearchLink = true, showResourcesLink = true }: SiteHeaderProps) {
     const pathname = usePathname();
     const { user, signOut } = useAuth();
-    const isInkHeader = false;
+    const isInkHeader = true;
 
     const isMarketingActive = (href: string) => pathname === href || pathname?.startsWith(`${href}/`);
     const isStudioActive = pathname === "/workspace" || pathname?.startsWith("/workspace/") || pathname === "/reports" || pathname?.startsWith("/reports/");
@@ -28,13 +28,14 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
     return (
         <header className={cn("site-header", isInkHeader && "site-header-ink")}>
             <div className="app-shell-inner">
-                <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 w-11 shrink-0 items-center justify-center gap-2.5 rounded-md sm:w-auto sm:justify-start">
-                    <PocketMark className={cn("size-5 sm:hidden", isInkHeader ? "text-[hsl(var(--teal-bright))]" : "text-brand")} />
-                    <Wordmark className={cn("hidden h-5 transition-transform group-hover:scale-[1.01] sm:block md:h-[22px]", isInkHeader ? "text-[hsl(var(--cream))]" : "text-foreground")} />
+                <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-3 rounded-md">
+                    <PocketMark className="size-9 text-background sm:hidden" />
+                    <span className="font-display text-lg font-semibold leading-[0.92] tracking-[-0.045em] text-background sm:hidden">Recruiter in<br />Your Pocket</span>
+                    <Wordmark className="site-wordmark hidden text-background transition-transform group-hover:scale-[1.01] sm:inline-flex" />
                 </Link>
 
                 <nav className="flex items-center gap-8">
-                    <div className="hidden items-center gap-6 md:flex">
+                    <div className="hidden items-center gap-7 lg:flex">
                         <SiteNavLink href="/#how-it-works">How it works</SiteNavLink>
                         <SiteNavLink href="/pricing" active={isMarketingActive("/pricing")}>Pricing</SiteNavLink>
                         {isLaunchFlagEnabled("extensionSync") && (
@@ -54,8 +55,8 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             <Link
                                 href="/auth"
                                 className={cn(
-                                    "focus-ring hidden min-h-11 items-center whitespace-nowrap rounded-md px-2 text-[13px] font-medium transition-colors sm:inline-flex",
-                                    isInkHeader ? "text-slate-300 hover:text-[hsl(var(--cream))]" : "text-slate-600 hover:text-slate-900"
+                                    "focus-ring hidden min-h-12 items-center whitespace-nowrap rounded-md px-2 text-sm font-medium transition-colors sm:inline-flex",
+                                    "text-background/70 hover:text-background"
                                 )}
                             >
                                 Log in
@@ -63,22 +64,21 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                             <Link
                                 href="/workspace"
                                 className={cn(
-                                    "focus-ring inline-flex min-h-11 items-center rounded-md border px-3 py-2 text-[13px] font-semibold transition-colors sm:px-4",
-                                    isInkHeader
-                                        ? "border-[hsl(var(--cream))] text-[hsl(var(--cream))] hover:bg-[hsl(var(--cream))] hover:text-ink"
-                                        : "border-brand bg-brand text-white hover:border-[hsl(244_70%_45%)] hover:bg-[hsl(244_70%_45%)]"
+                                    "site-header-cta focus-ring inline-flex min-h-12 items-center whitespace-nowrap rounded-md border py-2 font-semibold transition-colors",
+                                    "border-citron bg-citron text-foreground hover:border-citron/85 hover:bg-citron/85"
                                 )}
                             >
-                                <span>See my first read</span>
+                                <span className="sm:hidden">First read</span>
+                                <span className="hidden sm:inline">See my first read</span>
                             </Link>
                             <Sheet>
                                 <SheetTrigger asChild>
-                                    <button type="button" aria-label="Open navigation" className={cn("focus-ring inline-flex size-11 items-center justify-center rounded-md transition-colors md:hidden", isInkHeader ? "text-slate-200 hover:bg-white/10 hover:text-white" : "text-slate-700 hover:bg-slate-200/70 hover:text-slate-950")}>
+                                    <button type="button" aria-label="Open navigation" className="focus-ring inline-flex size-11 items-center justify-center rounded-md border border-background/30 text-background transition-colors hover:bg-white/10 lg:hidden">
                                         <List className="size-5" weight="bold" />
                                     </button>
                                 </SheetTrigger>
-                                <SheetContent side="right" className="w-[min(88vw,22rem)] bg-mineral">
-                                    <SheetHeader className="border-b border-slate-300 pb-5 text-left">
+                                <SheetContent side="right" className="w-[min(88vw,22rem)] bg-background">
+                                    <SheetHeader className="border-b border-border pb-5 text-left">
                                         <SheetTitle className="font-display text-2xl riyp-weight-620 tracking-[-0.04em] text-slate-950 riyp-stretch-91">Recruiter in Your Pocket</SheetTitle>
                                         <SheetDescription className="sr-only">Navigate to the main areas of Recruiter in Your Pocket.</SheetDescription>
                                     </SheetHeader>
@@ -92,7 +92,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                         {showResourcesLink && <MobileSiteLink href="/resources">Resources</MobileSiteLink>}
                                         <div className="my-5 h-px bg-slate-300" />
                                         <MobileSiteLink href="/auth">Log in</MobileSiteLink>
-                                        <Link href="/workspace" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-md bg-brand px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[hsl(244_70%_45%)]">
+                                        <Link href="/workspace" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-md bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90">
                                             See my first read
                                         </Link>
                                     </nav>

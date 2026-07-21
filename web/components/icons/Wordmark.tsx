@@ -1,7 +1,7 @@
 /**
  * RIYP wordmark.
  *
- * The wordmark uses Newsreader, the Lifted Line display voice, while remaining
+ * The wordmark uses Space Grotesk, the Lifted Line display voice, while remaining
  * quiet enough to coexist with dense product navigation.
  */
 

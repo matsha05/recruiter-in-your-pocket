@@ -8,11 +8,11 @@ import { CircleNotch } from "@phosphor-icons/react"
 
 /**
  * Lifted Line button primitive.
- * Brand actions use iris; studio actions use graphite. Legacy premium remains
+ * Brand actions use ink with citron directional accents. Legacy premium remains
  * available for paid-product moments until those surfaces are migrated.
  */
 const buttonVariants = cva(
-    "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
     {
         variants: {
             variant: {
@@ -28,9 +28,9 @@ const buttonVariants = cva(
                     "hover:bg-secondary/80 hover:text-secondary-foreground active:bg-secondary/90",
                 link:
                     "text-slate-muted underline-offset-4 hover:underline hover:text-foreground",
-                // Lifted Line primary CTA: iris
+                // Recruiter-first primary CTA: ink; arrow/icon picks up citron
                 brand:
-                    "bg-brand text-white hover:bg-brand/92 active:bg-brand/82 active:scale-[0.98] font-medium",
+                    "bg-foreground text-background hover:bg-foreground/90 active:bg-foreground/82 active:scale-[0.98] font-medium [&_svg]:text-citron",
                 // Legacy paid-product emphasis; do not use as a general brand accent
                 premium:
                     "bg-premium text-white shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_14px_30px_-20px_rgb(217_119_6_/0.6)] hover:bg-premium/92 hover:shadow-[inset_0_1px_0_rgb(255_255_255_/0.2),0_20px_34px_-22px_rgb(217_119_6_/0.68)] active:bg-premium/82 active:scale-[0.98] font-medium",

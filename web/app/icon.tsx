@@ -36,13 +36,13 @@ export default async function Icon({ id }: { id: Promise<string> }) {
 
     const resolvedId = await id;
     const { size, iconSize, radius } = sizes[resolvedId] || sizes.small;
-    const newsreader = await readFile(join(process.cwd(), "public", "assets", "fonts", "newsreader-display-medium.ttf"));
+    const spaceGrotesk = await readFile(join(process.cwd(), "public", "assets", "fonts", "space-grotesk-bold.ttf"));
 
     return new ImageResponse(
         (
             <div
                 style={{
-                    background: "#4F46E5",
+                    background: "#071722",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -59,19 +59,19 @@ export default async function Icon({ id }: { id: Promise<string> }) {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#FBFAF7",
-                        fontFamily: "Newsreader",
+                        color: "#F7F5EF",
+                        fontFamily: "Space Grotesk",
                     }}
                 >
                     <span style={{ display: "flex", fontSize: iconSize * 0.68, lineHeight: 0.74 }}>R</span>
-                    <span style={{ display: "flex", width: iconSize * 0.56, height: Math.max(2, iconSize * 0.055), marginTop: iconSize * 0.08, background: "#F6CF46" }} />
+                    <span style={{ display: "flex", width: iconSize * 0.56, height: Math.max(2, iconSize * 0.055), marginTop: iconSize * 0.08, background: "#C8F238" }} />
                 </div>
             </div>
         ),
         {
             width: size,
             height: size,
-            fonts: [{ name: "Newsreader", data: newsreader, style: "normal", weight: 500 }],
+            fonts: [{ name: "Space Grotesk", data: spaceGrotesk, style: "normal", weight: 700 }],
         }
     );
 }

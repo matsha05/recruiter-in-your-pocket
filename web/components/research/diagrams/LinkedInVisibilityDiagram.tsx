@@ -13,7 +13,7 @@ export function LinkedInVisibilityDiagram() {
                     { label: "Platform", title: "Index and match", detail: "The system connects profile fields to a search.", tone: "context" },
                     { label: "Recruiter", title: "Open and assess", detail: "A recognizable fit earns the deeper read.", tone: "focus" },
                     { label: "Possible outcome", title: "Discovery and outreach", detail: "Visibility can improve; no single field guarantees it.", tone: "caution" },
-                ]} footer={<><strong className="text-slate-900">Focus on what you can change.</strong> Make your target role and relevant skills easy to recognize. No profile field can guarantee ranking.</>} />
+                ]} footer={<><strong className="text-foreground">Focus on what you can change.</strong> Make your target role and relevant skills easy to recognize. No profile field can guarantee ranking.</>} />
             </DiagramFrame>
             <DiagramCaption kicker="Fig. 1 / Recruiter search" title="A clear profile can help recruiters find you. It cannot guarantee where you appear." />
         </DiagramFigure>

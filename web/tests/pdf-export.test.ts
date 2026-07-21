@@ -62,8 +62,8 @@ assert.deepEqual(canonicalCeiling?.subscores, { story: 99, impact: 99, clarity: 
 
 const pdfRendererSource = readFileSync(path.join(process.cwd(), "lib", "backend", "pdf.ts"), "utf8");
 assert.match(pdfRendererSource, /Instrument Sans/);
-assert.match(pdfRendererSource, /Newsreader Variable/);
-assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Georgia/);
+assert.match(pdfRendererSource, /Space Grotesk Variable/);
+assert.doesNotMatch(pdfRendererSource, /Sentient|Satoshi|Fraunces|Georgia|Newsreader/);
 
 const renderedHtml = renderReportHtml(normalizedSample!);
 assert.match(renderedHtml, /^<!DOCTYPE html>/);
@@ -93,7 +93,7 @@ for (const tag of ["html", "head", "style", "body", "section", "div", "span", "u
 
 const nextConfigSource = readFileSync(path.join(process.cwd(), "next.config.mjs"), "utf8");
 const postbuildSource = readFileSync(path.join(process.cwd(), "scripts", "ensure-next-build-package.cjs"), "utf8");
-for (const font of ["newsreader-latin-variable.ttf", "instrument-sans-latin-variable.ttf"]) {
+for (const font of ["space-grotesk-latin-variable.ttf", "instrument-sans-latin-variable.ttf"]) {
   assert.match(nextConfigSource, new RegExp(font.replace(".", "\\.")), `${font} should be included in output tracing`);
   assert.match(postbuildSource, new RegExp(font.replace(".", "\\.")), `${font} should be asserted after build`);
 }

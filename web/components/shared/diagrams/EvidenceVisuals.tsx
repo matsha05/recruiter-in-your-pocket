@@ -19,7 +19,7 @@ export function EvidenceHeader({ index = "01", label, title, note, className }: 
                 <h3 className="riyp-evidence-title mt-3 max-w-[22ch] text-foreground">{title}</h3>
                 {note ? <p className="mt-3 max-w-[42rem] text-sm leading-6 text-muted-foreground">{note}</p> : null}
             </div>
-            <span className="font-mono text-[0.625rem] tracking-[0.14em] text-muted-foreground">FIG {index}</span>
+            <span className="text-[0.625rem] font-semibold tracking-[0.14em] text-muted-foreground tabular-nums">FIG {index}</span>
         </DiagramHeader>
     );
 }
@@ -34,8 +34,8 @@ export type ProcessStep = {
 const toneClasses: Record<NonNullable<ProcessStep["tone"]>, string> = {
     context: "border-line text-muted-foreground",
     focus: "border-brand text-brand",
-    risk: "border-accent-apricot text-foreground",
-    caution: "border-accent-butter text-foreground",
+    risk: "border-brand text-brand",
+    caution: "border-citron text-foreground",
 };
 
 export function ProcessRail({ steps, footer }: { steps: ProcessStep[]; footer?: ReactNode }) {
@@ -46,7 +46,7 @@ export function ProcessRail({ steps, footer }: { steps: ProcessStep[]; footer?: 
                     const tone = step.tone ?? "context";
                     return (
                         <li key={`${step.label}-${step.title}`} className="relative border-l border-line py-5 pl-6 first:pt-0 last:pb-0 md:border-l-0 md:border-t md:px-4 md:pb-0 md:pt-7 md:first:pl-0 md:last:pr-0">
-                            <span className={cn("absolute -left-[5px] top-6 size-[9px] rounded-full border-2 bg-paper md:-top-[5px] md:left-4 md:first:left-0", toneClasses[tone])} aria-hidden="true" />
+                            <span className={cn("absolute -left-[5px] top-6 size-[9px] border-2 bg-paper md:-top-[5px] md:left-4 md:first:left-0", toneClasses[tone])} aria-hidden="true" />
                             <div className={cn("riyp-evidence-label", toneClasses[tone].split(" ").at(-1))}>{step.label}</div>
                             <div className="mt-2 font-display text-xl riyp-weight-560 leading-tight tracking-tight text-foreground riyp-stretch-98">{step.title}</div>
                             <p className="mt-2 text-xs leading-5 text-muted-foreground">{step.detail}</p>
@@ -64,14 +64,14 @@ type ComparisonSide = {
     eyebrow: string;
     title: string;
     items: string[];
-    tone?: "quiet" | "teal" | "red" | "brass";
+    tone?: "quiet" | "insight" | "risk" | "complete";
 };
 
 const comparisonTone: Record<NonNullable<ComparisonSide["tone"]>, string> = {
     quiet: "bg-paper text-foreground",
-    teal: "bg-brand text-white",
-    red: "bg-accent-apricot text-foreground",
-    brass: "bg-accent-butter text-foreground",
+    insight: "bg-surface-sky text-foreground",
+    risk: "bg-surface-proof text-foreground",
+    complete: "bg-citron/20 text-foreground",
 };
 
 export function ComparisonField({ left, right, verdict }: { left: ComparisonSide; right: ComparisonSide; verdict?: ReactNode }) {
@@ -80,15 +80,14 @@ export function ComparisonField({ left, right, verdict }: { left: ComparisonSide
             <div className="grid md:grid-cols-2">
                 {[left, right].map((side, index) => {
                     const tone = side.tone ?? "quiet";
-                    const inverted = tone !== "quiet";
                     return (
                         <section key={side.eyebrow} className={cn("min-h-full px-5 py-7 md:px-7 md:py-9", index === 0 && "border-b border-line md:border-b-0 md:border-r", comparisonTone[tone])}>
-                            <div className={cn("riyp-evidence-label", inverted && tone === "teal" ? "text-white/75" : "text-muted-foreground")}>{side.eyebrow}</div>
-                            <h4 className={cn("mt-3 font-display text-3xl riyp-weight-560 leading-[0.98] tracking-tight riyp-stretch-96", inverted && tone === "teal" ? "text-white" : "text-foreground")}>{side.title}</h4>
-                            <ul className={cn("mt-6 divide-y", inverted && tone === "teal" ? "divide-white/20" : "divide-line")}>
+                            <div className={cn("riyp-evidence-label", tone === "insight" ? "text-brand" : "text-muted-foreground")}>{side.eyebrow}</div>
+                            <h4 className="mt-3 font-display text-3xl riyp-weight-560 leading-[0.98] tracking-tight text-foreground riyp-stretch-96">{side.title}</h4>
+                            <ul className="mt-6 divide-y divide-line">
                                 {side.items.map((item) => (
-                                    <li key={item} className={cn("flex gap-3 py-3 text-sm leading-6", inverted && tone === "teal" ? "text-white/85" : "text-muted-foreground")}>
-                                        <span className={cn("mt-[0.7rem] h-px w-4 shrink-0", inverted && tone === "teal" ? "bg-white/60" : "bg-brand")} aria-hidden="true" />
+                                    <li key={item} className="flex gap-3 py-3 text-sm leading-6 text-muted-foreground">
+                                        <span className={cn("mt-[0.7rem] h-0.5 w-4 shrink-0", tone === "complete" ? "bg-citron" : "bg-cyan-bright")} aria-hidden="true" />
                                         {item}
                                     </li>
                                 ))}
@@ -119,7 +118,7 @@ export function SequenceTrace({ steps, direction = "down" }: { steps: TraceStep[
                     <li key={`${step.label}-${step.title}`} className="grid grid-cols-[2.5rem_1fr] gap-4 md:grid-cols-[3rem_0.72fr_1.28fr] md:gap-6">
                         <div className="relative flex justify-center">
                             {index < ordered.length - 1 ? <span className="absolute bottom-0 top-8 w-px bg-line" aria-hidden="true" /> : null}
-                            <span className={cn("relative z-10 flex size-8 items-center justify-center rounded-full border bg-paper font-mono text-[0.65rem] font-bold", toneClasses[tone])}>{String(index + 1).padStart(2, "0")}</span>
+                            <span className={cn("relative z-10 flex size-8 items-center justify-center border bg-paper text-[0.65rem] font-bold tabular-nums", toneClasses[tone])}>{String(index + 1).padStart(2, "0")}</span>
                         </div>
                         <div className="pb-7 md:pb-8">
                             <div className={cn("riyp-evidence-label", toneClasses[tone].split(" ").at(-1))}>{step.label}</div>
@@ -153,7 +152,7 @@ export function FrameworkStrip({ steps, connector = "+", example }: { steps: Fra
                     </div>
                 ))}
             </div>
-            {example ? <div className="mt-8 border-l-2 border-accent-apricot bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground">{example}</div> : null}
+            {example ? <div className="mt-8 border-l-2 border-cyan-bright bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground">{example}</div> : null}
         </div>
     );
 }

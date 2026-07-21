@@ -18,13 +18,13 @@ const PRODUCTION_SCOPE_DIRS = [
   "lib",
 ];
 
-const SYSTEM_NAME = "Lifted Line 1.1";
+const SYSTEM_NAME = "Lifted Line 2.0";
 
 // Compatibility-first lock: these are the measured July 12 Lifted Line 1.1
 // baselines after the cross-surface launch migration. New work may reduce this
 // debt, but cannot silently increase it.
 const DESIGN_DEBT_BUDGETS = {
-  arbitraryClasses: 631,
+  arbitraryClasses: 615,
   legacyPaletteClasses: 809,
   inlineStyleProps: 69,
   rawButtons: 94,
@@ -183,7 +183,7 @@ function findViolations(files) {
       violations.externalFontImport.push(file);
     }
 
-    if (!file.startsWith("app/preview/") && /(Fraunces|Geist|Sentient|Satoshi)/.test(source)) {
+    if (!file.startsWith("app/preview/") && /(Fraunces|Geist|Newsreader|Sentient|Satoshi)/.test(source)) {
       violations.legacyFontBranding.push(file);
     }
 
@@ -253,9 +253,11 @@ function validateDocs() {
 
   const requiredStrings = [
     SYSTEM_NAME,
-    "Newsreader Variable",
+    "Space Grotesk Variable",
     "Instrument Sans",
     "--brand-strong",
+    "--citron",
+    "--cyan-bright",
     "--surface-sky",
     "--accent-apricot",
     "--accent-butter",
@@ -287,6 +289,7 @@ function validateDocs() {
     "Teal should feel precise and fresh",
     "Fonts: Sentient",
     "Fonts: Fraunces",
+    "Newsreader Variable",
   ];
   for (const claim of staleClaims) {
     if ([content, brandSystemDoc, voiceAndToneDoc, agentInstructions].some((doc) => doc.includes(claim))) {
@@ -303,7 +306,7 @@ function validateRuntimeSystem() {
   const errors = [];
 
   const requiredTokenDefinitions = [
-    '--font-display: "Newsreader Variable"',
+    '--font-display: "Space Grotesk Variable"',
     '--font-body: "Instrument Sans Variable"',
     "--brand-strong:",
     "--brand-tint:",
@@ -348,15 +351,12 @@ function validateFontStack() {
   if (!layoutSource.includes('@fontsource-variable/instrument-sans/standard.css')) {
     layoutErrors.push("Missing Instrument Sans variable font import in `app/layout.tsx`.");
   }
-  if (!layoutSource.includes('@fontsource-variable/newsreader')) {
-    layoutErrors.push("Missing Newsreader variable font import in `app/layout.tsx`.");
-  }
-  if (!layoutSource.includes('@fontsource-variable/newsreader/standard-italic.css')) {
-    layoutErrors.push("Missing Newsreader variable italic import in `app/layout.tsx`.");
+  if (!layoutSource.includes('import "@fontsource-variable/space-grotesk"')) {
+    layoutErrors.push("Missing Space Grotesk variable font import in `app/layout.tsx`.");
   }
 
   const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
-  for (const dependency of ["@fontsource-variable/instrument-sans", "@fontsource-variable/newsreader"]) {
+  for (const dependency of ["@fontsource-variable/instrument-sans", "@fontsource-variable/space-grotesk"]) {
     if (!dependencies[dependency]) dependencyErrors.push(`Missing font dependency: ${dependency}`);
   }
 

@@ -115,7 +115,7 @@ export function ResearchArticle({
                 />
             ) : null}
 
-            <div className="lift-page research-page bg-paper text-foreground selection:bg-brand/15">
+            <div className="lift-page research-page bg-paper text-foreground selection:bg-brand/15" data-visual-anchor="research-article">
                 <header className="border-b border-line bg-paper px-6 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28">
                     <div className="mx-auto max-w-[72rem]">
                         <Link
@@ -133,7 +133,7 @@ export function ResearchArticle({
                                     {header.readTime ? <><span className="text-line">/</span><span className="font-medium text-muted-foreground">{header.readTime}</span></> : null}
                                     {sources?.length ? <><span className="text-line">/</span><span className="font-medium text-muted-foreground">{header.sourceSummary ?? "Direct sources linked"}</span></> : null}
                                 </div>
-                                <h1 className="mt-5 max-w-[16ch] font-display text-[clamp(2.75rem,5.5vw,5.5rem)] riyp-weight-520 leading-[0.97] tracking-[-0.04em] text-foreground riyp-stretch-86 [text-wrap:balance]">
+                                <h1 className="mt-5 max-w-[16ch] font-display text-[clamp(2.75rem,5.5vw,5.5rem)] riyp-weight-620 leading-[0.97] tracking-[-0.04em] text-foreground riyp-stretch-91 [text-wrap:balance]">
                                     {header.title}
                                 </h1>
                                 <p className="mt-6 max-w-[42rem] text-base leading-7 text-muted-foreground md:text-lg md:leading-8">
@@ -203,7 +203,7 @@ export function ResearchArticle({
                                 ) : null}
 
                                 <section className="relative mt-16 border-y border-line bg-surface-sky px-6 py-8" aria-labelledby="product-translation-title">
-                                    <span className="absolute left-0 top-8 h-16 w-[3px] bg-accent-apricot" aria-hidden="true" />
+                                    <span className="absolute left-0 top-8 h-16 w-[3px] bg-cyan-bright" aria-hidden="true" />
                                     <h2 id="product-translation-title" className="font-display text-3xl riyp-weight-560 leading-tight tracking-tight text-foreground riyp-stretch-96">{productTieIn.title}</h2>
                                     <div className="mt-7 divide-y divide-line border-t border-line">
                                         {productTieIn.items.map((item, index) => (
@@ -269,9 +269,9 @@ export function ResearchArticle({
                             <p className="riyp-type-0625 font-bold uppercase riyp-track-016 text-brand">Apply it to your resume</p>
                             <h2 className="mt-4 max-w-[15ch] font-display riyp-display-section-lg riyp-weight-540 riyp-leading-094 riyp-track-n04 text-foreground riyp-stretch-90">{cta.title}</h2>
                         </div>
-                        <Link href={cta.href} className="focus-ring inline-flex min-h-14 items-center justify-between gap-8 rounded-sm border border-brand bg-brand px-6 py-4 text-sm font-semibold text-white transition-colors hover:border-brand-strong hover:bg-brand-strong">
+                        <Link href={cta.href} className="focus-ring inline-flex min-h-14 items-center justify-between gap-8 rounded-sm border border-foreground bg-foreground px-6 py-4 font-display text-sm font-semibold text-background transition-colors hover:bg-foreground/90">
                             {cta.buttonText}
-                            <ArrowRight className="size-5" />
+                            <ArrowRight className="size-5 text-citron" weight="bold" />
                         </Link>
                     </div>
                 </section>
@@ -284,7 +284,7 @@ export function ResearchArticle({
 export function ArticleInsight({ title, desc }: { title: string; desc: ReactNode }) {
     return (
         <aside className="relative my-8 border-y border-line bg-proof py-5 pl-6 pr-5">
-            <span className="absolute left-0 top-5 h-10 w-[3px] bg-accent-apricot" aria-hidden="true" />
+            <span className="absolute left-0 top-5 h-10 w-[3px] bg-cyan-bright" aria-hidden="true" />
             <div className="riyp-type-0625 font-bold uppercase riyp-track-015 text-foreground">{title}</div>
             <div className="mt-2 text-sm leading-7 text-muted-foreground">{desc}</div>
         </aside>

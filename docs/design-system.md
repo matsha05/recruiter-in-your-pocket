@@ -1,11 +1,11 @@
 # Recruiter in Your Pocket - Lifted Line Design System
 
-Last updated: 2026-07-12
+Last updated: 2026-07-20
 Owner: Product Design + Engineering
 Status: Current production source of truth
-System version: Lifted Line 1.1
+System version: Lifted Line 2.0
 
-This is the single source of truth for how the approved Lifted Line brand is implemented. It replaces the older teal-first, Instrument-Sans-only, Ink & Paper, Editorial Proof, dossier, and red-pen directions.
+This is the single source of truth for how the approved Lifted Line brand is implemented. It replaces the older serif-led, teal-first, Instrument-Sans-only, Ink & Paper, Editorial Proof, dossier, and red-pen directions.
 
 Related authority:
 
@@ -57,42 +57,43 @@ The system is the floor for consistency, not a page template. Do not repeat one 
 
 | Role | Family | Use |
 |---|---|---|
-| Display | **Newsreader Variable** | wordmark, page headlines, verdicts, large evidence, meaningful before-and-after lines |
+| Display | **Space Grotesk Variable** | wordmark, page headlines, verdicts, prices, major evidence, and primary actions |
 | Interface | **Instrument Sans Variable** | navigation, controls, labels, metadata, body copy, dense product UI |
-| Data | system monospace with tabular figures | scores, time, compact indices, machine-readable identifiers only |
+| Technical | **Instrument Sans Variable** with tabular figures | scores, time, compact indices, and machine-readable identifiers |
 
 Both brand fonts are self-hosted through Fontsource imports in `web/app/layout.tsx`. No runtime font CDN is allowed.
 
 Runtime mapping:
 
-- `--font-display` -> `"Newsreader Variable"`
+- `--font-display` -> `"Space Grotesk Variable"`
 - `--font-body` -> `"Instrument Sans Variable"`
-- `--font-mono` -> the system monospace stack
+- `--font-mono` -> `"Instrument Sans Variable"` with tabular figures; no third branded font
 
 ### Type roles
 
 | Role | Desktop guidance | Mobile guidance | Treatment |
 |---|---:|---:|---|
-| Display hero | 64-120px | 50-82px | Newsreader 390-500, tight leading and tracking |
-| Display section | 42-76px | 34-52px | Newsreader 420-520 |
-| Evidence statement | 28-56px | 25-40px | Newsreader; readable before decorative |
+| Display hero | 64-88px | 48-66px | Space Grotesk 620-680, tight leading and tracking |
+| Display section | 42-68px | 34-52px | Space Grotesk 600-680 |
+| Evidence statement | 28-56px | 25-40px | Space Grotesk; readable before decorative |
 | Body large | 18-22px | 17-20px | Instrument Sans 400-500, 1.5-1.7 line height |
 | Body | 15-18px | 15-17px | Instrument Sans 400-500 |
 | Label | 11-13px | 11-13px | Instrument Sans 650-760; tracked only when genuinely categorical |
-| Data | 12-16px | 12-16px | tabular figures; monospace only when it improves scanning |
+| Technical | 12-16px | 12-16px | Instrument Sans with tabular figures and deliberate spacing |
 
 Guardrails:
 
-- Newsreader is the brand voice, not an optional editorial mode.
+- Space Grotesk carries the brand voice without making the product look like a consultancy or publication.
 - Instrument Sans carries explanation and interaction.
-- Do not use browser serif, Times New Roman, or system sans as intentional brand typography.
-- Do not set long paragraphs in Newsreader.
+- Exactly two families appear in branded product surfaces.
+- Do not use browser serif, Times New Roman, or a third mono family as intentional brand typography.
+- Do not set long paragraphs in Space Grotesk.
 - Avoid all-caps labels as decoration. Use them for genuine metadata and short categories.
 - Use `text-wrap: balance` for display type and `text-wrap: pretty` for prose where supported.
 
 ## 4. Color and surface tokens
 
-The canonical palette is warm white, graphite, iris, pale sky, and sparing apricot or butter. Teal is not the primary brand color.
+The canonical palette is chalk, ink, citron, and cyan. Citron owns decisive action and progress; cyan owns recruiter insight and active state. Neither is general decoration.
 
 ### Core roles
 
@@ -102,20 +103,22 @@ The canonical palette is warm white, graphite, iris, pale sky, and sparing apric
 | `--foreground` / `--text-strong` | primary graphite text |
 | `--text-muted` | secondary explanation and metadata |
 | `--line` | default structural rule |
-| `--brand` / `--brand-strong` | iris action, emphasis, and focus |
-| `--brand-tint` | lifted-word underline and selected evidence treatment |
-| `--surface-sky` / `--surface-proof` | teaching and evidence surfaces |
-| `--accent-apricot` | needs-context cue; never general decoration |
-| `--accent-butter` | evidence-present cue; never general decoration |
-| `--annotation` | consequential edit or omission; use sparingly |
+| `--brand` / `--brand-strong` | readable deep cyan for recruiter insight, links, and focused state |
+| `--brand-tint` | pale cyan teaching and selected-state treatment |
+| `--citron` | acquisition, selection, completion, and the single marker gesture |
+| `--cyan-bright` | tiny icons, active indicators, and 2px rules only |
+| `--surface-sky` / `--surface-proof` | restrained teaching and evidence surfaces |
+| `--accent-apricot` / `--accent-butter` | compatibility aliases mapped to cyan and citron while older surfaces migrate |
+| `--annotation` | consequential edit or omission, mapped to readable deep cyan |
 
 ### Surface grammar
 
-- **Warm white** is the default field. It should feel open and optimistic.
-- **Graphite** provides authority without navy dossier theater.
-- **Iris** marks action, selection, focus, and the lifted line.
-- **Pale sky** supports explanation and research teaching moments.
-- **Apricot and butter** are evidence cues, not a confetti palette.
+- **Chalk `#F7F5EF`** is the default field.
+- **Ink `#071722`** provides authority and anchors all header and primary-action chrome.
+- **Citron `#C8F238`** marks acquisition, selection, or completion. Use no more than one marker gesture per screen.
+- **Deep cyan `#007FA3`** is the readable recruiter-insight color.
+- **Bright cyan `#25BFEA`** is reserved for small indicators and 2px rules.
+- **Error `#B42318`** uses the pale `#FEF3F2` recovery surface and always includes plain-language next action.
 - Prefer rules, whitespace, typography, and contrast over generic bordered cards.
 - No atmospheric gradients, startup glow, faux paper stacks, red-pen cosplay, or decorative grain used to manufacture character.
 
@@ -127,10 +130,10 @@ The system uses four recurring meanings:
 
 | Meaning | User question | Visual treatment |
 |---|---|---|
-| Caught attention | What lands quickly? | iris cue plus explicit label |
-| Needs context | What is hard to understand? | apricot cue plus the missing context |
-| Evidence present | What supports the claim? | butter cue plus the actual proof |
-| Strongest next wording | What should I write instead? | lifted underline or pale-sky teaching surface |
+| Caught attention | What lands quickly? | citron completion cue plus explicit label |
+| Needs context | What is hard to understand? | cyan cue plus the missing context |
+| Evidence present | What supports the claim? | restrained citron tint plus the actual proof |
+| Strongest next wording | What should I write instead? | one shallow citron marker or pale-cyan teaching surface |
 
 These cues must mean the same thing on the homepage, in reports, in the workspace, and in Research. Diagrams may add domain-specific encodings, but they must preserve these meanings.
 
@@ -170,6 +173,9 @@ Rules:
 - Circles are for compact status, avatars, or icon controls - not every icon.
 - Borders are structural. Shadows indicate real elevation only.
 - Avoid generic white-card-plus-shadow components.
+- Marketing headers are 72px; product headers are 64px.
+- Marketing and product chrome use ink. Header acquisition CTAs use citron; in-page primary CTAs use ink with a citron directional icon.
+- Motion is 120-180ms and must honor reduced-motion preferences.
 
 ## 8. Icons and diagrams
 
@@ -254,7 +260,7 @@ Motion should clarify transformation, selection, progress, or continuity. Animat
 3. candidate-supplied fact
 4. resolved wording or action
 
-When a segment becomes active or complete, its structural rule moves three pixels off the baseline and fills with iris. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
+When a segment becomes active or complete, its structural rule moves three pixels off the baseline: bright cyan for the active segment, citron for completed segments. On narrow screens the same sequence becomes a vertical rail. Labels remain visible without motion or color.
 
 Rules:
 
@@ -297,7 +303,7 @@ Use focused UI tests when the affected surface has interaction.
 
 The guardrail must fail for:
 
-- missing Newsreader or Instrument Sans runtime wiring
+- missing Space Grotesk or Instrument Sans runtime wiring
 - stale teal-first or single-font design-system claims
 - missing Lifted Line semantic tokens
 - external font imports

@@ -12,14 +12,14 @@ export const size = {
 };
 export const contentType = "image/png";
 
-// Apple Touch Icon - Lifted Line mark on iris.
+// Apple Touch Icon - Lifted Line mark on ink.
 export default async function Icon() {
-    const newsreader = await readFile(join(process.cwd(), "public", "assets", "fonts", "newsreader-display-medium.ttf"));
+    const spaceGrotesk = await readFile(join(process.cwd(), "public", "assets", "fonts", "space-grotesk-bold.ttf"));
     return new ImageResponse(
         (
             <div
                 style={{
-                    background: "#4F46E5",
+                    background: "#071722",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -36,18 +36,18 @@ export default async function Icon() {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#FBFAF7",
-                        fontFamily: "Newsreader",
+                        color: "#F7F5EF",
+                        fontFamily: "Space Grotesk",
                     }}
                 >
                     <span style={{ display: "flex", fontSize: 82, lineHeight: 0.74 }}>R</span>
-                    <span style={{ display: "flex", width: 68, height: 7, marginTop: 10, background: "#F6CF46" }} />
+                    <span style={{ display: "flex", width: 68, height: 7, marginTop: 10, background: "#C8F238" }} />
                 </div>
             </div>
         ),
         {
             ...size,
-            fonts: [{ name: "Newsreader", data: newsreader, style: "normal", weight: 500 }],
+            fonts: [{ name: "Space Grotesk", data: spaceGrotesk, style: "normal", weight: 700 }],
         }
     );
 }

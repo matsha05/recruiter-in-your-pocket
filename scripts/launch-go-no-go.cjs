@@ -231,6 +231,20 @@ runCommand("web_security", "Security tests", {
   passMessage: "Security tests passed.",
 });
 
+runCommand("migration_manifest", "Database migration manifest", {
+  command: "npm",
+  args: ["run", "migrate:check"],
+  cwd: repoRoot,
+  passMessage: "Database migration manifest includes every ordered migration.",
+});
+
+runCommand("migration_replay", "Clean database migration replay", {
+  command: "npm",
+  args: ["run", "migrate:replay-check"],
+  cwd: repoRoot,
+  passMessage: "Database migrations replayed cleanly from an empty schema.",
+});
+
 runCommand("web_build", "Web build", {
   command: "npm",
   args: ["run", "build"],
@@ -300,8 +314,10 @@ if (hasLiveEvalKey && paidEvalsAllowed) {
 }
 
 const blockers = results.filter((result) => result.status === "fail");
-const criticalBlockers = blockers.filter((result) => result.severity === "critical");
-const goNoGo = criticalBlockers.length === 0;
+// A launch gate must never print GO while any check is visibly failing. The
+// severity still helps triage the blocker, but it does not turn a failure into
+// an advisory result.
+const goNoGo = blockers.length === 0;
 
 const payload = {
   generatedAt: new Date().toISOString(),

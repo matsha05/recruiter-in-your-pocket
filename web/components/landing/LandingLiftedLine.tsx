@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -268,46 +267,27 @@ function ResearchProof() {
     );
 }
 
-function FounderProof() {
+function CredibilityBand() {
     const career = ["Robert Half", "Google", "Meta", "X-Team", "OpenAI"];
 
     return (
-        <section className="lift-founder" aria-labelledby="lift-founder-title">
-            <div className="lift-shell lift-founder-grid">
-                <div className="lift-founder-portrait">
-                    <Image
-                        src="/assets/founder-portrait-print.png"
-                        alt="Matt Shaw, founder of Recruiter in Your Pocket"
-                        fill
-                        sizes="(max-width: 959px) 100vw, 34vw"
-                        className="lift-founder-image"
-                    />
-                    <p>Matt Shaw · Founder</p>
+        <section className="lift-credibility" aria-labelledby="lift-credibility-title">
+            <div className="lift-shell lift-credibility-grid">
+                <div className="lift-credibility-copy">
+                    <p className="lift-kicker">Recruiting judgment, made repeatable</p>
+                    <h2 id="lift-credibility-title">Built from 14 years inside recruiting and hiring teams.</h2>
+                    <p>RIYP turns the questions recruiters ask privately into a product you can use before you apply: what lands, where the reader has to guess, and what to make clearer next.</p>
                 </div>
 
-                <div className="lift-founder-story">
-                    <p className="lift-kicker">The recruiter behind the report</p>
-                    <h2 id="lift-founder-title">It&apos;s hard to see the story<br /><em>when you lived every line.</em></h2>
-                    <div className="lift-founder-copy">
-                        <p>I&apos;m Matt Shaw. I&apos;ve spent 14 years recruiting and leading hiring teams across OpenAI, Meta, Google, X-Team, and Robert Half. I kept seeing the same frustrating thing: excellent people leaving their best evidence trapped in their own heads.</p>
-                        <p>Recruiter in Your Pocket turns the questions recruiters ask privately into a report you can use before you apply: what lands, where the reader has to guess, and what to make clearer next.</p>
-                    </div>
-
-                    <blockquote>
-                        “Most people aren&apos;t short on good experience. The resume is just missing the details that make it obvious.”
-                    </blockquote>
-
-                    <div className="lift-founder-career" aria-label="Matt Shaw's recruiting and people leadership experience">
-                        <p>Recruiting + people leadership since 2012</p>
-                        <ol>
-                            {career.map((company) => <li key={company}>{company}</li>)}
-                        </ol>
-                    </div>
-
-                    <a className="lift-founder-link" href="https://www.linkedin.com/in/mattrshaw" target="_blank" rel="noopener noreferrer">
-                        Meet Matt on LinkedIn <ArrowRight aria-hidden="true" />
-                    </a>
-                    <p className="lift-founder-disclosure">Recruiter in Your Pocket is an independent project. Company names identify Matt&apos;s work history; no current or former employer sponsors or endorses it.</p>
+                <div className="lift-credibility-proof">
+                    <p className="lift-credibility-label">Experience across</p>
+                    <ol aria-label="Selected recruiting and people leadership experience">
+                        {career.map((company) => <li key={company}>{company}</li>)}
+                    </ol>
+                    <Link className="lift-credibility-link" href="/methodology">
+                        See how the report works <ArrowRight aria-hidden="true" />
+                    </Link>
+                    <p className="lift-credibility-disclosure">Recruiter in Your Pocket is independent. Company names identify the founder&apos;s work history; no current or former employer sponsors or endorses it.</p>
                 </div>
             </div>
         </section>
@@ -322,7 +302,7 @@ export function LandingLiftedLine() {
                     <div className="lift-hero-grid">
                         <div className="lift-hero-copy">
                             <p className="lift-kicker">Recruiter feedback, before you apply</p>
-                            <h1 id="landing-home-title">You did the work.<br /><em>Let&apos;s make sure they see it.</em></h1>
+                            <h1 id="landing-home-title">You did the work.<br />Let&apos;s make sure they <span className="riyp-marker riyp-marker-block">see it.</span></h1>
                             <p className="lift-hero-deck">Your private recruiter-style report shows what they understand, where they hesitate, and the changes that will make the biggest difference.</p>
                             <div className="lift-actions">
                                 <Link href="/workspace" data-testid="landing-primary-cta" className="lift-button-primary">See my first read <ArrowRight aria-hidden="true" weight="bold" /></Link>
@@ -340,7 +320,7 @@ export function LandingLiftedLine() {
                     <div className="lift-practice-heading">
                         <div>
                             <p className="lift-kicker">From question to revision</p>
-                            <h2 id="lift-practice-title">The report finds the missing detail.<br /><em>You decide what is true.</em></h2>
+                            <h2 id="lift-practice-title">The report finds the missing detail.<span>You decide what is true.</span></h2>
                         </div>
                         <p>Answer in your own words, keep the fact beside the draft, then run the new resume and compare the read. Nothing gets invented for you.</p>
                     </div>
@@ -348,14 +328,14 @@ export function LandingLiftedLine() {
                 </div>
             </section>
 
-            <FounderProof />
-
             <section id="how-it-works" className="lift-proof-section" aria-label="Report and research preview">
                 <div className="lift-shell lift-proof-grid">
                     <ReportProof />
                     <ResearchProof />
                 </div>
             </section>
+
+            <CredibilityBand />
 
             <section className="lift-close" aria-labelledby="lift-close-title">
                 <div className="lift-shell lift-close-grid">

@@ -1,4 +1,4 @@
-# Research UI Contract (v4.0)
+# Research UI Contract (v5.0 - Lifted Line)
 
 Applies to: Research hub and all Hiring Research Library articles.
 
@@ -20,7 +20,7 @@ Design intent:
 - Required: every featured claim must link directly to its primary study or current platform documentation.
 - Not allowed: evidence-strength badges, apology labels, card grids, or a long column of undifferentiated prose.
 
-### Research Articles (Documents)
+### Research Articles (Evidence records)
 - Purpose: credibility and clarity.
 - Form: editorial prose with a key finding, figures, and sources.
 - Allowed: lead figure, inline diagrams, and short motion moments tied to the insight.
@@ -47,25 +47,28 @@ They should not feel like:
 ## 3. Visual Language
 
 ### Typography and Layout
-- Headlines and large findings use Newsreader Variable; body, labels, controls, and data use Instrument Sans.
+- Headlines and large findings use Space Grotesk Variable; body, labels, controls, and data use Instrument Sans.
+- Use the exact type roles, weights, tracking, and leading defined in `docs/design-system.md`. Research does not have a separate editorial font system.
 - Favor whitespace, clear sectioning, and tight editorial hierarchy.
 - Use lists and rules to structure reading flow.
-- Embrace layout rhythm. A research page can feel designed without feeling busy.
+- Use the same rectilinear report grammar as the approved homepage and report references: ink structural chrome, warm chalk fields, pale-cyan teaching surfaces, and one restrained citron completion cue where it carries meaning.
 
 ### Color Contract
 Primary palette:
 - `--foreground` for text and primary strokes
 - `--muted` for supporting text and labels
 - `--border` for dividers and figure frames
-- `--brand` (Iris) for action, active evidence, and key findings
-- `--sky` for explanatory fields and evidence stages
-- `--annotation` for risk, errors, and corrected folklore
+- `--brand` (deep cyan) for recruiter insight, action, active evidence, and key findings
+- `--cyan-bright` for small active indicators and 2px rules only
+- `--citron` for acquisition, selection, and completed evidence
+- `--surface-sky` for explanatory fields and evidence stages
+- `--annotation` for consequential edits or omissions; it maps to readable deep cyan
 
 Allowable accent usage:
-- Iris for emphasis, highlights, and data focus.
+- Deep cyan for readable emphasis, links, and data focus.
+- Citron for a single completed or selected state, never as general decoration.
 - Heatmaps are allowed only when raw spatial data is available; illustrative attention maps are prohibited.
-- Subtle gradients are allowed inside figures only, never as page backgrounds.
-- Tiny accent colors are allowed for annotation callouts if they map to meaning.
+- Gradients are not part of the Lifted Line reference system and should not be introduced for atmosphere.
 
 Research content should remain mostly warm white and graphite, with pale sky used to distinguish diagrams and proof fields.
 
@@ -105,7 +108,7 @@ Figures are the primary place where visual expression is encouraged.
 - Axis labels: Instrument Sans, 10px, uppercase, `--muted`, with tabular numerics where numbers appear.
 - Data labels: Instrument Sans, 11px, `--foreground`, with tabular numerics where numbers appear.
 - Figure caption: Instrument Sans, 12px, `--muted`.
-- Key conclusion callout: Newsreader Variable, 24 to 32px, with Instrument Sans supporting detail.
+- Key conclusion callout: Space Grotesk Variable, 24 to 40px, with Instrument Sans supporting detail.
 
 ### Figure Labeling
 Every figure must include:
@@ -153,6 +156,12 @@ Citation content and source quality follow `docs/source-quality.md`. Figure stru
 - Product tie-in
 - Sources and notes
 
+### Cross-surface fidelity
+- The approved landing, workspace, report, and pricing reference images are visual contracts, not inspiration.
+- Research must use the same header height, wordmark treatment, font pairing, ink/chalk/cyan/citron palette, line weight, radius language, action treatment, and footer as those references.
+- The research index and every article must be checked at 390, 1024, and 1440 pixels.
+- Shared article and diagram primitives are the source of truth. Route-level overrides may explain a specific idea, but may not introduce a competing visual system.
+
 ---
 
 ## 8. Prohibited UI Patterns
@@ -198,8 +207,11 @@ Before merge, every research page must pass:
 - Figures are labeled and captioned
 - Motion is purposeful and non-looping
 - All claims are cited
-- No premium color usage
+- No retired serif, iris, teal-first, premium-color, gradient, or glass treatment
 - Any anecdotal callout is labeled and qualitative
+- No legacy palette utility relies on a scoped compatibility override
+- No horizontal overflow at 320 or 390 pixels
+- Header, footer, CTA, and article shell match the approved Lifted Line references
 
 Restraint is still the baseline. Use visual craft to deepen understanding, not to decorate.
 

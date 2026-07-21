@@ -15,7 +15,7 @@ export function ATSFunnel() {
                         { label: "Recruiter", title: "Build the shortlist", detail: "Context, comparison, and role judgment.", tone: "focus" },
                         { label: "Hiring team", title: "Interview and decide", detail: "Evidence is weighed; the final call is human.", tone: "focus" },
                     ]}
-                    footer={<><strong className="text-slate-900">Write for both:</strong> use a layout the software can read, then make the experience clear to the person reviewing it.</>}
+                    footer={<><strong className="text-foreground">Write for both:</strong> use a layout the software can read, then make the experience clear to the person reviewing it.</>}
                 />
             </DiagramFrame>
             <DiagramCaption kicker="Fig. 1 / Software and people" title="The system handles information. The employer decides how it affects the process." />

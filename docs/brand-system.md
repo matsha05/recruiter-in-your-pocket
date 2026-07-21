@@ -1,6 +1,6 @@
 # Recruiter in Your Pocket — Brand System
 
-Last updated: 2026-07-12
+Last updated: 2026-07-20
 
 Owner: Product + Design
 
@@ -60,14 +60,14 @@ Avoid:
 
 ## Visual character
 
-The visual world is warm white, graphite, iris, pale sky, and sparing apricot or butter. It is modern and optimistic without becoming colorful SaaS wallpaper.
+The visual world is chalk, ink, citron, and cyan. It is crisp, product-led, and specific without looking like a consultancy deck, an editorial publication, or colorful SaaS wallpaper.
 
 Typography carries the authority:
 
-- **Newsreader Variable** for wordmark, display headlines, verdicts, and large evidence statements
+- **Space Grotesk Variable** for wordmark, display headlines, prices, verdicts, and primary actions
 - **Instrument Sans** for navigation, controls, labels, metadata, and body copy
 
-Newsreader is not “editorial mode.” It is the brand’s human voice. Instrument Sans is the product’s clarity.
+Space Grotesk gives the product its opinion and recognizability. Instrument Sans gives it clarity and restraint. No third branded font or decorative serif is part of the system.
 
 The system is a recognizable grammar, not a template. Major surfaces may use bespoke illustration, image-making, motion, or unusual composition when the idea is specific to the product and the execution improves understanding or emotional impact. Custom craft is welcome. Generic decoration is not.
 
@@ -112,9 +112,10 @@ Privacy language should be short and factual. No security theater. Never imply w
 
 ## Hard noes
 
-- teal as the primary brand color
+- teal, cobalt, royal blue, purple, or peach as primary brand colors
 - navy-and-paper dossier theater
 - gradients used as atmosphere
+- more than one marker gesture on a screen
 - card farms with equal visual weight
 - Times New Roman or browser-serif fallbacks presented as intentional typography
 - red-pen cosplay

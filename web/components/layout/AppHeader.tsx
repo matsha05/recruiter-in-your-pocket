@@ -33,8 +33,9 @@ export function AppHeader() {
         <header className="app-shell-header">
             <div className="app-shell-inner">
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 w-11 shrink-0 items-center justify-center gap-2.5 rounded-md sm:w-auto sm:justify-start">
-                    <PocketMark className="size-6 text-brand transition-transform group-hover:scale-105" />
-                    <Wordmark className="hidden h-5 text-foreground sm:block md:h-[22px]" />
+                    <PocketMark className="size-9 text-background sm:hidden" />
+                    <span className="font-display text-lg font-semibold leading-[0.92] tracking-[-0.045em] text-background sm:hidden">Recruiter in<br />Your Pocket</span>
+                    <Wordmark className="site-wordmark hidden text-background sm:inline-flex" />
                 </Link>
 
                 <nav className="flex items-center gap-1 md:gap-2">

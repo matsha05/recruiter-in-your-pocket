@@ -78,6 +78,9 @@ module.exports = {
 					tint: 'hsl(var(--brand-tint))',
 					foreground: 'hsl(0 0% 100%)'
 				},
+				citron: 'hsl(var(--citron))',
+				'cyan-bright': 'hsl(var(--cyan-bright))',
+				'error-surface': 'hsl(5 85.71% 97.25%)',
 				paper: 'hsl(var(--surface-page))',
 				proof: 'hsl(var(--surface-proof))',
 				line: 'hsl(var(--line))',

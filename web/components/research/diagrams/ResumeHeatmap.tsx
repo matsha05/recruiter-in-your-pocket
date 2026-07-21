@@ -40,7 +40,7 @@ export function ResumeHeatmap() {
                         <table className="w-full border-collapse text-left text-sm">
                             <caption className="sr-only">Studies of recruiter attention, observed findings, and evidence boundaries</caption>
                             <thead>
-                                <tr className="border-y border-[hsl(var(--paper-line))] text-xs font-semibold uppercase riyp-track-010 text-slate-500">
+                                <tr className="border-y border-line text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">
                                     <th scope="col" className="py-3 pr-5">Study</th>
                                     <th scope="col" className="py-3 pr-5">What it observed</th>
                                     <th scope="col" className="py-3">What it cannot establish</th>
@@ -48,37 +48,37 @@ export function ResumeHeatmap() {
                             </thead>
                             <tbody>
                                 {studies.map((study) => (
-                                    <tr key={study.source} className="border-b border-[hsl(var(--paper-line))] align-top">
+                                    <tr key={study.source} className="border-b border-line align-top">
                                         <th scope="row" className="w-[12rem] py-5 pr-5">
-                                            <span className="block font-semibold text-teal-900">{study.source}</span>
-                                            <span className="mt-1 block text-xs font-normal leading-5 text-slate-500">{study.evidence}</span>
+                                            <span className="block font-semibold text-brand">{study.source}</span>
+                                            <span className="mt-1 block text-xs font-normal leading-5 text-muted-foreground">{study.evidence}</span>
                                         </th>
-                                        <td className="py-5 pr-6 leading-6 text-slate-700">{study.observed}</td>
-                                        <td className="py-5 leading-6 text-slate-500">{study.boundary}</td>
+                                        <td className="py-5 pr-6 leading-6 text-foreground/80">{study.observed}</td>
+                                        <td className="py-5 leading-6 text-muted-foreground">{study.boundary}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
 
-                    <ol className="divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))] md:hidden">
+                    <ol className="divide-y divide-line border-y border-line md:hidden">
                         {studies.map((study, index) => (
                             <li key={study.source} className="py-5">
                                 <div className="flex items-baseline gap-3">
-                                    <span className="text-xs tabular-nums text-slate-400">{String(index + 1).padStart(2, "0")}</span>
+                                    <span className="text-xs tabular-nums text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
                                     <div>
-                                        <h3 className="text-sm font-semibold text-teal-900">{study.source}</h3>
-                                        <p className="mt-1 text-xs leading-5 text-slate-500">{study.evidence}</p>
+                                        <h3 className="text-sm font-semibold text-brand">{study.source}</h3>
+                                        <p className="mt-1 text-xs leading-5 text-muted-foreground">{study.evidence}</p>
                                     </div>
                                 </div>
                                 <dl className="mt-4 space-y-4 pl-8">
                                     <div>
-                                        <dt className="text-xs font-semibold uppercase riyp-track-010 text-slate-500">Observed</dt>
-                                        <dd className="mt-1 text-sm leading-6 text-slate-700">{study.observed}</dd>
+                                        <dt className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Observed</dt>
+                                        <dd className="mt-1 text-sm leading-6 text-foreground/80">{study.observed}</dd>
                                     </div>
                                     <div>
-                                        <dt className="text-xs font-semibold uppercase riyp-track-010 text-slate-500">Limit</dt>
-                                        <dd className="mt-1 text-sm leading-6 text-slate-600">{study.boundary}</dd>
+                                        <dt className="text-xs font-semibold uppercase riyp-track-010 text-muted-foreground">Limit</dt>
+                                        <dd className="mt-1 text-sm leading-6 text-muted-foreground">{study.boundary}</dd>
                                     </div>
                                 </dl>
                             </li>

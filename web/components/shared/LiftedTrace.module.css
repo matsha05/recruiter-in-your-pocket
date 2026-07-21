@@ -36,10 +36,14 @@
   right: 0;
   left: 0;
   height: 2px;
-  background: hsl(var(--brand));
+  background: hsl(var(--cyan-bright));
   transform: translateY(-3px) scaleX(var(--trace-segment-progress, 0));
   transform-origin: left center;
   transition: transform var(--duration-slow) var(--ease);
+}
+
+.item[data-state="complete"] .segment {
+  background: hsl(var(--citron));
 }
 
 .meta {
@@ -49,8 +53,8 @@
 }
 
 .index {
-  color: hsl(var(--brand-strong));
-  font-family: var(--font-display);
+  color: hsl(var(--brand));
+  font-family: var(--font-body);
   font-size: 0.92rem;
   font-variant-numeric: tabular-nums;
   font-weight: 520;

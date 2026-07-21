@@ -1,6 +1,6 @@
 # RIYP Controlled Paid Beta Launch Program
 
-**Last updated:** July 19, 2026
+**Last updated:** July 20, 2026
 **Status:** Active source of truth
 **Owner and sole product tester:** Matt Shaw
 
@@ -39,7 +39,7 @@ The held-back surfaces must remain disabled, absent from navigation and search d
 
 ## Product Standard
 
-The launch experience should feel like a calm editorial product, not a generic AI dashboard.
+The launch experience should feel like a distinctive recruiter product, not a consultancy, content publication, or generic AI dashboard. The Lifted Line system should bring character through its dark shell, paper-like work surfaces, recruiter markup, and precise lime/cyan signal colors without obscuring the product's next action.
 
 Every launch-critical screen must meet these standards:
 
@@ -80,7 +80,7 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
-Matt authorized a $0.20, eight-resume stored-fixture run on July 19. It completed with 0 PASS, 1 WARN, and 7 FAIL, so this gate is currently blocked on quality rather than budget approval.
+Matt authorized the stored-fixture quality work on July 19. After prompt and model hardening, the final pinned `gpt-5-nano-2025-08-07` run completed with 8 PASS, 0 WARN, and 0 FAIL at a token-calculated API cost of $0.009. This gate is satisfied for the current prompt and model pair; any prompt or launch-model change reopens it.
 
 - Set `RIYP_ALLOW_PAID_EVALS=true` only for an explicitly approved run.
 - Run the smoke and golden eval suites against the launch model and prompt.
@@ -145,7 +145,7 @@ npm run launch:rehearsal
 
 ## Current Blockers
 
-- Rerun the eight-resume live quality proof on the intended launch model and reach 0 FAIL with at least a 90% PASS rate.
-- Confirm hosted environment variables, including shared Upstash rate limiting.
-- Reconcile and rehearse a fresh preview deployment from this release candidate.
-- Keep production billing disabled until the quality gate and final preview rehearsal both pass.
+- Add migrations 015 and 016 to the ordered runner, prove a clean replay, and confirm the preview database is current through migration 016.
+- Reconcile and rehearse a fresh preview deployment from the exact release candidate.
+- Configure and validate the canonical Stripe product id in hosted environments.
+- Keep production billing disabled until the final preview rehearsal passes.

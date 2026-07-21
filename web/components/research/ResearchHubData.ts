@@ -1,0 +1,272 @@
+// Shared content and routing data for the Research hub.
+// Keeping this separate lets the interactive surface stay focused on behavior and composition.
+
+export type ResearchArticle = {
+    id: string;
+    title: string;
+    description: string;
+    readTime: string;
+    href: string;
+    note?: string;
+};
+
+type ResearchCategory = {
+    descriptor: string;
+    id: string;
+    navLabel: string;
+    title: string;
+    subtitle: string;
+    articles: ResearchArticle[];
+};
+
+export const categories: ResearchCategory[] = [
+    {
+        descriptor: "What recruiters may notice first.",
+        id: "attention",
+        navLabel: "First impressions",
+        title: "What recruiters notice first",
+        subtitle: "Research on first-pass attention, page length, structure, and visible errors.",
+        articles: [
+            {
+                id: "how-recruiters-read",
+                title: "What Recruiters Notice First—and What the Studies Actually Show",
+                description: "What eye-tracking research observed, what it did not prove, and why structure still matters.",
+                readTime: "6 min read",
+                href: "/research/how-recruiters-read",
+                note: "Start here",
+            },
+            {
+                id: "resume-length-myths",
+                title: "Should a Resume Be One Page?",
+                description: "When one page is enough, and when a second page is worth it.",
+                readTime: "6 min read",
+                href: "/research/resume-length-myths",
+            },
+            {
+                id: "spelling-errors-impact",
+                title: "How Spelling Mistakes Affect Recruiter Judgment",
+                description: "What controlled studies found about errors and recruiter evaluation.",
+                readTime: "5 min read",
+                href: "/research/spelling-errors-impact",
+            },
+        ],
+    },
+    {
+        descriptor: "How to make your experience clear and credible.",
+        id: "writing",
+        navLabel: "Writing",
+        title: "Clearer writing and stronger evidence",
+        subtitle: "Research and practical guidance on bullets, context, outcomes, and structure.",
+        articles: [
+            {
+                id: "quantifying-impact",
+                title: "How to Describe a Result Without Making One Up",
+                description: "How to connect what you did, the scope of the work, and what changed without manufacturing a metric.",
+                readTime: "7 min read",
+                href: "/research/quantifying-impact",
+            },
+            {
+                id: "writing-quality-hire-probability",
+                title: "How Writing Quality Affects Evaluation",
+                description: "What research suggests about writing quality and perceived competence.",
+                readTime: "6 min read",
+                href: "/research/writing-quality-hire-probability",
+            },
+            {
+                id: "star-method",
+                title: "When the STAR Method Helps",
+                description: "A simple way to add context, action, and results to an interview answer or resume bullet.",
+                readTime: "5 min read",
+                href: "/research/star-method",
+            },
+            {
+                id: "structured-interviews-why-star",
+                title: "Why Are Structured Interviews More Reliable?",
+                description: "Why evidence beats charisma in evaluation.",
+                readTime: "6 min read",
+                href: "/research/structured-interviews-why-star",
+            },
+            {
+                id: "how-we-score",
+                title: "How We Review Your Resume",
+                description: "What the report looks for, how the score is used, and what it cannot tell you.",
+                readTime: "5 min read",
+                href: "/research/how-we-score",
+                note: "Methodology",
+            },
+        ],
+    },
+    {
+        descriptor: "What gets you found before someone opens the resume.",
+        id: "visibility",
+        navLabel: "Getting found",
+        title: "Search, LinkedIn, and referrals",
+        subtitle: "What affects whether a recruiter finds you before they ever open the resume.",
+        articles: [
+            {
+                id: "linkedin-visibility",
+                title: "What Makes a LinkedIn Profile Easier to Find",
+                description: "What the platform publishes, what you control, and what remains private.",
+                readTime: "5 min read",
+                href: "/research/linkedin-visibility",
+            },
+            {
+                id: "social-screening",
+                title: "What Recruiters Look For Beyond the Resume",
+                description: "How public profiles help recruiters find candidates, review work, and check professional claims.",
+                readTime: "6 min read",
+                href: "/research/social-screening",
+            },
+            {
+                id: "referral-advantage",
+                title: "What a Referral Changes",
+                description: "Why an application can be evaluated differently when someone adds context.",
+                readTime: "6 min read",
+                href: "/research/referral-advantage",
+            },
+        ],
+    },
+    {
+        descriptor: "What the resume cannot control.",
+        id: "systems",
+        navLabel: "Hiring systems",
+        title: "ATS, bias, and the hiring process",
+        subtitle: "Where the resume can help, where it cannot, and how the rest of the hiring process shapes the outcome.",
+        articles: [
+            {
+                id: "ats-myths",
+                title: "What Applicant Tracking Systems Do",
+                description: "How ATS software stores, searches, and routes applications—and what it usually does not do.",
+                readTime: "6 min read",
+                href: "/research/ats-myths",
+            },
+            {
+                id: "automation-and-bias",
+                title: "Hiring Algorithms, Equity, and Bias",
+                description: "Why automated systems can reproduce bad inputs.",
+                readTime: "6 min read",
+                href: "/research/automation-and-bias",
+            },
+            {
+                id: "human-vs-algorithm",
+                title: "Why Algorithmic Mistakes Lose Trust Faster",
+                description: "Why people judge mistakes differently when software makes them.",
+                readTime: "5 min read",
+                href: "/research/human-vs-algorithm",
+            },
+            {
+                id: "hiring-discrimination-meta-analysis",
+                title: "What Hiring Studies Show About Discrimination",
+                description: "What resume advice cannot fix about bias in hiring.",
+                readTime: "6 min read",
+                href: "/research/hiring-discrimination-meta-analysis",
+            },
+            {
+                id: "skills-first-promise-reality",
+                title: "Skills-First Hiring: Promise vs Reality",
+                description: "The gap between what employers say they value and how they actually hire.",
+                readTime: "7 min read",
+                href: "/research/skills-first-promise-reality",
+            },
+            {
+                id: "salary-history-bans",
+                title: "Salary History Bans and Negotiation Leverage",
+                description: "Why the rules around disclosure matter.",
+                readTime: "5 min read",
+                href: "/research/salary-history-bans",
+            },
+        ],
+    },
+];
+
+export type FindingVisual = "spelling" | "parser" | "artifact" | "judgment";
+
+export const featuredFindings: Array<{
+    index: string;
+    slug: string;
+    navLabel: string;
+    question: string;
+    conclusion: string;
+    sourceName: string;
+    sourceDetail: string;
+    sourceHref: string;
+    sourceLabel: string;
+    reportUse: string;
+    href: string;
+    visual: FindingVisual;
+}> = [
+    {
+        index: "01",
+        slug: "spelling-mistakes",
+        navLabel: "Spelling",
+        question: "Do spelling mistakes actually change the decision?",
+        conclusion: "Yes—when they pile up. In a 2023 experiment, resumes with five spelling errors received an 18.5 percentage-point lower interview probability than error-free versions.",
+        sourceName: "Sterkens et al., PLOS ONE (2023)",
+        sourceDetail: "Factorial survey experiment with 445 genuine recruiters evaluating resumes across eight occupations.",
+        sourceHref: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283280",
+        sourceLabel: "Read the study",
+        reportUse: "We flag visible errors because they can cast doubt on otherwise strong work—not because one typo predicts job performance.",
+        href: "/research/spelling-errors-impact",
+        visual: "spelling",
+    },
+    {
+        index: "02",
+        slug: "ats-parsing",
+        navLabel: "ATS parsing",
+        question: "What does an ATS do with the file?",
+        conclusion: "It extracts text into fields. Greenhouse and Lever both document parsing failures caused by image files and hard-to-read formatting. Neither describes one universal score that decides every application.",
+        sourceName: "Greenhouse + Lever product documentation (2025–2026)",
+        sourceDetail: "Current operational documentation for two widely used applicant-tracking systems.",
+        sourceHref: "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse",
+        sourceLabel: "Read Greenhouse documentation",
+        reportUse: "We check for selectable text, conventional sections, and a reading order that survives extraction.",
+        href: "/research/ats-myths",
+        visual: "parser",
+    },
+    {
+        index: "03",
+        slug: "whole-resume",
+        navLabel: "Whole resume",
+        question: "Can a score or keyword profile stand in for the real resume?",
+        conclusion: "Not safely. Recruiters changed how they judged candidates—and which cues they used—when they saw actual resumes instead of stripped-down profiles.",
+        sourceName: "Fritzsche & Brannick, JOOP (2002)",
+        sourceDetail: "Forty recruiters judged 60 actual resumes or corresponding resume profiles.",
+        sourceHref: "https://stars.library.ucf.edu/facultybib2000/3203/",
+        sourceLabel: "Read the study record",
+        reportUse: "The written first read comes before the score. We keep role progression, ownership, and context attached to the evidence.",
+        href: "/research/how-we-score",
+        visual: "artifact",
+    },
+    {
+        index: "04",
+        slug: "human-judgment",
+        navLabel: "Human judgment",
+        question: "Do recruiters treat algorithmic advice like expert judgment?",
+        conclusion: "No. In a 694-person resume-screening experiment, recruiting professionals trusted human expert recommendations more than algorithmic recommendations.",
+        sourceName: "Lacroux & Martin-Lacroux, Frontiers in Psychology (2022)",
+        sourceDetail: "Experiment with 694 professionals involved in screening job applications.",
+        sourceHref: "https://pubmed.ncbi.nlm.nih.gov/35874355/",
+        sourceLabel: "Read the study",
+        reportUse: "We show the evidence and reasoning behind a recommendation instead of asking you to trust a black-box verdict.",
+        href: "/research/human-vs-algorithm",
+        visual: "judgment",
+    },
+];
+
+export const evidenceGaps = [
+    {
+        claim: "Every recruiter spends exactly six seconds on a resume.",
+        correction: "Treat the opening as high-value space, but do not write for a stopwatch. No study establishes one universal timer or scan path.",
+        href: "/research/how-recruiters-read",
+    },
+    {
+        claim: "An ATS rejects a resume because it does not reach a magic score.",
+        correction: "Make the file easy to parse and the evidence easy to find. There is no universal ATS score shared across employers and platforms.",
+        href: "/research/ats-myths",
+    },
+    {
+        claim: "A resume should always fit on one page.",
+        correction: "Use the space your relevant evidence needs. The real rule is that page two must earn the read.",
+        href: "/research/resume-length-myths",
+    },
+];

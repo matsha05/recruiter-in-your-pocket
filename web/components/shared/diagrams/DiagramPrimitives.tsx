@@ -12,7 +12,7 @@ type DiagramFigureProps = {
 
 export function DiagramFigure({ children, className, label }: DiagramFigureProps) {
   return (
-    <figure aria-label={label} className={cn("riyp-figure mx-auto my-12 w-full", className)}>
+    <figure aria-label={label} className={cn("riyp-figure mx-auto my-14 w-full md:my-16", className)}>
       {children}
     </figure>
   );
@@ -46,7 +46,7 @@ export function DiagramHeader({ label, className, rightSlot, children }: Diagram
           {label}
         </span>
       )}
-      {rightSlot ? <div className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-muted-foreground">{rightSlot}</div> : null}
+      {rightSlot ? <div className="text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground tabular-nums">{rightSlot}</div> : null}
     </div>
   );
 }
@@ -68,13 +68,13 @@ export function DiagramCaption({
 }: DiagramCaptionProps) {
   const alignClass = align === "center" ? "text-center" : "text-left";
   return (
-    <figcaption className={cn("mt-4 border-t border-line pt-3", alignClass, className)}>
+    <figcaption className={cn("mt-4 grid gap-1 border-t border-line pt-3 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-x-6", alignClass, className)}>
       {kicker ? <span className="block riyp-figure-kicker">{kicker}</span> : null}
       {title ? (
         <span className="block text-sm font-semibold leading-6 text-foreground">{title}</span>
       ) : null}
       {description ? (
-        <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{description}</span>
+        <span className="block text-xs leading-5 text-muted-foreground md:col-start-2">{description}</span>
       ) : null}
     </figcaption>
   );

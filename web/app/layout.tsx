@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/instrument-sans/standard.css";
-import "@fontsource-variable/newsreader";
-import "@fontsource-variable/newsreader/standard-italic.css";
+import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Analytics } from "@vercel/analytics/next";
