@@ -31,7 +31,7 @@ export const LAUNCH_OWNERS: LaunchOwner[] = [
   { surface: "Launch command", owner: "Matt", backup: "Support inbox", channel: "support@recruiterinyourpocket.com" },
   { surface: "Auth and identity", owner: "Matt", backup: "Support inbox", channel: "support@recruiterinyourpocket.com" },
   { surface: "Billing and unlocks", owner: "Matt", backup: "Stripe dashboard + support inbox", channel: "support@recruiterinyourpocket.com" },
-  { surface: "Extension sync", owner: "Matt", backup: "Status page + support inbox", channel: "support@recruiterinyourpocket.com" },
+  { surface: "Held-back surfaces", owner: "Matt", backup: "Launch flags + status page", channel: "docs/launch-readiness/80-go-no-go-program.md" },
   { surface: "AI quality and prompt changes", owner: "Matt", backup: "PromptOps shipping gate", channel: "docs/promptops/shipping-gate.md" },
   { surface: "Trust and security disclosures", owner: "Matt", backup: "Security mailbox", channel: "security@recruiterinyourpocket.com" },
 ];
@@ -142,6 +142,12 @@ export const VENDOR_REVIEW_ITEMS: VendorReviewItem[] = [
 
 export const LAUNCH_REHEARSAL_STEPS: RehearsalStep[] = [
   {
+    id: "public_promise",
+    title: "Public promise matches the shipped product",
+    surface: "Marketing and trust",
+    evidence: "Verify the homepage, pricing, research, legal, support, and status surfaces while confirming extension and Jobs navigation remain absent.",
+  },
+  {
     id: "anonymous_review",
     title: "Anonymous review completes cleanly",
     surface: "Web",
@@ -160,18 +166,6 @@ export const LAUNCH_REHEARSAL_STEPS: RehearsalStep[] = [
     evidence: "Save a report while signed in, refresh, and confirm it appears in /reports and opens successfully.",
   },
   {
-    id: "extension_auth",
-    title: "Extension auth opens the real web flow",
-    surface: "Extension",
-    evidence: "Install the unpacked extension, click sign in, and confirm the popup leads to the real auth path.",
-  },
-  {
-    id: "extension_sync",
-    title: "Saved jobs survive reopen and cross-device use",
-    surface: "Extension + web",
-    evidence: "Capture a job, reopen the popup, and verify the same job appears when the same account is opened in a second browser profile.",
-  },
-  {
     id: "billing_unlock",
     title: "Purchase, restore, receipts, and portal all work",
     surface: "Billing",
@@ -181,7 +175,19 @@ export const LAUNCH_REHEARSAL_STEPS: RehearsalStep[] = [
     id: "export_delete",
     title: "Export and delete flows work end to end",
     surface: "Account controls",
-    evidence: "Export account data, then delete the same account and confirm reports and saved jobs are removed from product surfaces.",
+    evidence: "Export account data, then delete the same account and confirm reports, billing linkage, and other user-owned records are removed or anonymized as promised.",
+  },
+  {
+    id: "accessibility_visuals",
+    title: "Core surfaces hold together across input modes and viewports",
+    surface: "Accessibility and visual quality",
+    evidence: "Complete the journey by keyboard and review 390, 768, 1280, and 1440 px layouts with increased text size and reduced motion.",
+  },
+  {
+    id: "operational_recovery",
+    title: "Rollback and diagnostic controls fail safely",
+    surface: "Operations",
+    evidence: "Exercise billing disablement, held-back route protection, health and status responses, and one simulated generation incident before restoring the candidate configuration.",
   },
 ];
 
@@ -224,8 +230,8 @@ export const LAUNCH_GATE_DEFINITIONS = [
   },
   {
     id: "extension",
-    label: "Extension launch",
-    description: "Extension auth and sync can only ship when exact origins and explicit toggles are correct.",
+    label: "Held-back surfaces",
+    description: "Extension sync and public sharing remain unavailable unless exact origins and explicit toggles are deliberately enabled.",
     checks: ["extension_sync", "public_share_links"],
   },
   {

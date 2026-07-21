@@ -1,27 +1,35 @@
-import path from "path";
-import { readFile } from "fs/promises";
+import caseInterviewPrompt from "../../prompts/case_interview_v1.txt";
+import caseNegotiationPrompt from "../../prompts/case_negotiation_v1.txt";
+import caseResumePrompt from "../../prompts/case_resume_v1.txt";
+import linkedinPrompt from "../../prompts/linkedin_v1.txt";
+import linkedinV2Prompt from "../../prompts/linkedin_v2.txt";
+import resumeIdeasPrompt from "../../prompts/resume_ideas_v1.txt";
+import resumePrompt from "../../prompts/resume_v2.txt";
 
 type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin" | "linkedin_v2";
 
 const promptCache = new Map<string, string>();
 
-function promptPathForMode(mode: Mode): string {
-  // Resolve from web/ directory at runtime
-  if (mode === "linkedin") return path.join(process.cwd(), "prompts", "linkedin_v1.txt");
-  if (mode === "linkedin_v2") return path.join(process.cwd(), "prompts", "linkedin_v2.txt");
-  if (mode === "case_negotiation") return path.join(process.cwd(), "prompts", "case_negotiation_v1.txt");
-  if (mode === "case_resume") return path.join(process.cwd(), "prompts", "case_resume_v1.txt");
-  if (mode === "case_interview") return path.join(process.cwd(), "prompts", "case_interview_v1.txt");
-  return path.join(process.cwd(), "prompts", mode === "resume" ? "resume_v2.txt" : "resume_ideas_v1.txt");
-}
+const promptByMode: Record<Mode, string> = {
+  resume: resumePrompt,
+  resume_ideas: resumeIdeasPrompt,
+  case_resume: caseResumePrompt,
+  case_interview: caseInterviewPrompt,
+  case_negotiation: caseNegotiationPrompt,
+  linkedin: linkedinPrompt,
+  linkedin_v2: linkedinV2Prompt,
+};
 
 export async function loadPromptForMode(mode: Mode): Promise<string> {
-  const filePath = promptPathForMode(mode);
-  const cached = promptCache.get(filePath);
+  const cached = promptCache.get(mode);
   if (cached) return cached;
 
-  const content = (await readFile(filePath, "utf8")).trim();
-  promptCache.set(filePath, content);
+  const content = promptByMode[mode].trim();
+  if (!content) {
+    throw new Error(`Prompt asset for ${mode} is empty.`);
+  }
+
+  promptCache.set(mode, content);
   return content;
 }
 

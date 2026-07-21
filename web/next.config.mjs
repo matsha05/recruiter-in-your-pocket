@@ -34,6 +34,13 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.txt$/,
+      type: "asset/source",
+    });
+    return config;
+  },
   async headers() {
     return [
       {
@@ -58,7 +65,6 @@ const nextConfig = {
   outputFileTracingRoot: fileURLToPath(new URL(".", import.meta.url)),
   outputFileTracingIncludes: {
     "/*": [
-      "./prompts/**/*.txt",
       "./public/assets/fonts/space-grotesk-latin-variable.ttf",
       "./public/assets/fonts/space-grotesk-bold.ttf",
       "./public/assets/fonts/instrument-sans-latin-variable.ttf",

@@ -34,7 +34,7 @@
     "test:critical-coverage": "c8 --all --include='lib/matching/skill-engine.ts' --reporter=text --reporter=json-summary --check-coverage --lines=70 --functions=65 --branches=60 node scripts/run-ts-test.cjs tests/matching-engine.test.ts",
     "test:redis-config": "node scripts/run-ts-test.cjs tests/redis-config.test.ts",
     "test:supabase-config": "node scripts/run-ts-test.cjs tests/supabase-config.test.ts",
-    "test:backend-contracts": "node scripts/run-ts-test.cjs tests/backend-contracts.test.ts",
+    "test:backend-contracts": "node scripts/run-ts-test.cjs tests/backend-contracts.test.ts && node scripts/run-ts-test.cjs tests/prompt-assets.test.ts",
     "test:llm-contract": "node scripts/run-ts-test.cjs tests/llm-response-contract.test.ts",
     "test:privacy-lifecycle": "node scripts/run-ts-test.cjs tests/account-privacy-lifecycle.test.ts && node scripts/run-ts-test.cjs tests/account-export-job.test.ts",
     "test:vendor-privacy": "node scripts/run-ts-test.cjs tests/vendor-privacy.test.ts",

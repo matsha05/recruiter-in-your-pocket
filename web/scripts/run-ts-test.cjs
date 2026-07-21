@@ -25,6 +25,10 @@ require.extensions[".ts"] = function registerTs(module, filename) {
   module._compile(outputText, filename);
 };
 
+require.extensions[".txt"] = function registerTextAsset(module, filename) {
+  module.exports = fs.readFileSync(filename, "utf8");
+};
+
 const input = process.argv[2];
 if (!input) {
   console.error("Usage: node scripts/run-ts-test.cjs <path-to-test.ts>");

@@ -8,15 +8,13 @@ const outputDir = path.join(repoRoot, "docs", "launch-readiness", "generated");
 mkdirSync(outputDir, { recursive: true });
 
 const steps = [
-  ["Anonymous review", "Open the workspace in an incognito browser, run a review, confirm the report renders, and confirm anonymous output does not create an account."],
-  ["Account creation", "Create a fresh account through the web auth flow and verify return-to-workspace works."],
-  ["Report persistence", "Save the report while signed in, refresh, and confirm it appears in /reports."],
-  ["Extension auth", "Install the unpacked extension, open the popup, and verify sign-in opens the real auth flow."],
-  ["Extension capture", "Capture a LinkedIn job, refresh the popup, and confirm the job remains present."],
-  ["Cross-device sync", "Open the same account in a second browser profile and confirm saved jobs appear there."],
-  ["Purchase", "Complete a billing flow in test mode, confirm unlocks land, and verify restore + receipts + billing portal."],
-  ["Export", "Export account data and verify the package includes reports and settings metadata."],
-  ["Delete account", "Delete the account and confirm reports, saved jobs, and app data are removed from the product surface."],
+  ["Public promise", "Verify the homepage, pricing, research, legal, support, and status surfaces, and confirm held-back product areas remain absent."],
+  ["Anonymous first report", "Run upload and paste reviews in a clean profile, inspect the complete report, and confirm anonymous output does not create an account."],
+  ["Account and history", "Create a fresh account, verify return-to-workspace, save a report, sign out and back in, and reopen it from history."],
+  ["Job Search Pass", "Complete a Stripe test checkout, replay and retry the webhook, then verify unlock, restore, receipts, portal, refund, and revocation."],
+  ["Export and deletion", "Export the same disposable account, inspect the package, delete the account, and confirm user-owned product data does not return."],
+  ["Accessibility and visuals", "Complete the core journey by keyboard and review 390, 768, 1280, and 1440 px layouts with increased text size and reduced motion."],
+  ["Operational recovery", "Exercise billing disablement, held-back route protection, health and status responses, and one simulated generation incident."],
 ];
 
 const markdown = [
