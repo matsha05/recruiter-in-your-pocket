@@ -127,4 +127,12 @@ Any failed section means `NO-GO` until it is fixed and rerun.
 - Run remote CI after the branch is authorized for push.
 - Record Matt's final `GO` and explicitly authorize production promotion.
 
+## July 28 Luna Promotion Record
+
+- User authorization: production promotion explicitly authorized in the active launch task.
+- Launch model: `gpt-5.6-luna`, low reasoning, 24K completion ceiling.
+- Live quality proof: `eval_1785271781375`, 23 golden fixtures, 22 PASS, 1 WARN, 0 FAIL, 95.7% pass rate, $0.287278 token-calculated cost.
+- Candidate binding: resume prompt SHA-256 `dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950`; resume-ideas prompt SHA-256 `6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7`.
+- Production deployment: authorized with this main-branch release; target alias `https://www.recruiterinyourpocket.com`.
+
 Current verdict: `NO-GO` for production. The code and visual product are release-candidate ready; the remaining blockers are the real signed-in, billing, destructive-data, remote-CI, and final-authorization rehearsals above. Production billing remains disabled.

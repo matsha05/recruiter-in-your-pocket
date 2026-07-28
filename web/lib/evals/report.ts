@@ -28,6 +28,12 @@ export function generateMarkdownReport(run: EvalRunOutput): string {
     lines.push(`**Contract Version:** ${run.metadata.contract_version}`);
     lines.push(`**Execution Mode:** ${isDryRun ? "Dry run (no model calls)" : "Live model evaluation"}`);
     if (!isDryRun) lines.push(`**Model:** ${run.metadata.model}`);
+    if (!isDryRun && run.metadata.resume_prompt_sha256) {
+        lines.push(`**Resume prompt SHA-256:** ${run.metadata.resume_prompt_sha256}`);
+    }
+    if (!isDryRun && run.metadata.resume_ideas_prompt_sha256) {
+        lines.push(`**Resume ideas prompt SHA-256:** ${run.metadata.resume_ideas_prompt_sha256}`);
+    }
     if (!isDryRun && run.metadata.incomplete_retry_reasoning_effort) {
         lines.push(`**Incomplete-response retry:** ${run.metadata.incomplete_retry_reasoning_effort} reasoning`);
     }

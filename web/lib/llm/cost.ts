@@ -14,11 +14,21 @@ type ModelPrice = {
 
 const MODEL_PRICING_USD: Record<string, ModelPrice> = {
   // Standard API pricing per 1M text tokens, verified against OpenAI model
-  // pages on 2026-07-19. Snapshot aliases inherit their family price below.
+  // pages on 2026-07-28. Snapshot aliases inherit their family price below.
   "gpt-5-nano": {
     input_per_million_usd: 0.05,
     cached_input_per_million_usd: 0.005,
     output_per_million_usd: 0.4,
+  },
+  "gpt-5.6-luna": {
+    input_per_million_usd: 1,
+    cached_input_per_million_usd: 0.1,
+    output_per_million_usd: 6,
+  },
+  "gpt-5.6-terra": {
+    input_per_million_usd: 2.5,
+    cached_input_per_million_usd: 0.25,
+    output_per_million_usd: 15,
   },
   "gpt-4o-mini": {
     input_per_million_usd: 0.15,
@@ -34,6 +44,8 @@ const MODEL_PRICING_USD: Record<string, ModelPrice> = {
 
 function pricingKey(model: string) {
   const normalized = model.trim().toLowerCase();
+  if (/^gpt-5\.6-luna(?:-|$)/.test(normalized)) return "gpt-5.6-luna";
+  if (/^gpt-5\.6-terra(?:-|$)/.test(normalized)) return "gpt-5.6-terra";
   if (/^gpt-5-nano(?:-|$)/.test(normalized)) return "gpt-5-nano";
   if (/^gpt-4o-mini(?:-|$)/.test(normalized)) return "gpt-4o-mini";
   if (/^gpt-4\.1-mini(?:-|$)/.test(normalized)) return "gpt-4.1-mini";

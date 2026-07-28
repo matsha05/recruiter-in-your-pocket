@@ -17,21 +17,25 @@ export type ScoreCalibration = {
 
 function resumeBullets(resumeText: string) {
   return resumeText
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter((line) => /^[-•*]\s+\S/.test(line));
+    .split(/(?=[•●]\s)|(?=^[-*]\s)/m)
+    .map((line) => line.replace(/\s*\r?\n\s*/g, " ").trim())
+    .filter((line) => /^[-•●*]\s+\S/.test(line));
 }
 
 function hasOutcomeEvidence(line: string) {
   return /\d+(?:\.\d+)?\s*%|\$\s*\d|\b\d+(?:\.\d+)?\s*[kmb]\+?\b|\bfrom\s+(?:hours?|days?|weeks?|months?)\s+to\s+(?:minutes?|hours?|days?|weeks?)\b/i.test(line);
 }
 
+function hasQualitativeOutcomeEvidence(line: string) {
+  return /\b(?:achieved|closed|doubled|generated|grew|improved|increased|promoted|ranked|reduced|saved|scaled|streamlin(?:e|ed|ing))\b/i.test(line);
+}
+
 function beginsAsGenericDuty(line: string) {
-  return /^[-•*]\s+(?:was responsible for|duties included|supported|assisted|helped|contributed|participated|worked on|played a role|engaged in)\b/i.test(line);
+  return /^[-•●*]\s+(?:was responsible for|duties included|supported|assisted|helped|contributed|participated|worked on|played a role|engaged in)\b/i.test(line);
 }
 
 function hasOwnershipEvidence(line: string) {
-  return /^[-•*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|architected|owned|directed|headed|mentored|decided|partnered|collaborated)\b/i.test(line);
+  return /^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|architected|owned|directed|headed|mentored|decided|partnered|collaborated)\b/i.test(line);
 }
 
 function clampScore(value: number) {
@@ -47,6 +51,7 @@ export function calibrateResumeScore<T extends ScoreableReport>(
     : 0;
   const bullets = resumeBullets(resumeText);
   const outcomeBulletCount = bullets.filter(hasOutcomeEvidence).length;
+  const qualitativeOutcomeBulletCount = bullets.filter(hasQualitativeOutcomeEvidence).length;
   const ownershipBulletCount = bullets.filter(hasOwnershipEvidence).length;
   const genericDutyCount = bullets.filter(beginsAsGenericDuty).length;
   const bulletCount = bullets.length;
@@ -61,9 +66,18 @@ export function calibrateResumeScore<T extends ScoreableReport>(
   } else if (bulletCount >= 5 && outcomeBulletCount >= 8 && outcomeDensity >= 0.6) {
     calibratedScore = Math.max(calibratedScore, 88);
     calibratedScore = Math.min(calibratedScore, 95);
+  } else if (outcomeBulletCount >= 5 && outcomeDensity >= 0.2) {
+    calibratedScore = Math.max(calibratedScore, 84);
+    calibratedScore = Math.min(calibratedScore, 89);
+  } else if (outcomeBulletCount >= 5) {
+    calibratedScore = Math.max(calibratedScore, 80);
+    calibratedScore = Math.min(calibratedScore, 88);
   } else if (outcomeBulletCount >= 3) {
     calibratedScore = Math.max(calibratedScore, 78);
     calibratedScore = Math.min(calibratedScore, 88);
+  } else if (bulletCount >= 8 && qualitativeOutcomeBulletCount >= 2) {
+    calibratedScore = Math.max(calibratedScore, 68);
+    calibratedScore = Math.min(calibratedScore, 78);
   }
 
   if (bulletCount >= 8 && outcomeBulletCount === 0 && genericDutyDensity >= 0.45) {

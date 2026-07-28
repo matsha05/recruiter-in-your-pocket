@@ -3,6 +3,7 @@
  */
 
 import type { TokenUsage } from "../llm/cost";
+import type { ReasoningEffort } from "../llm/model-config";
 
 // ============================================
 // FAILURE CODES
@@ -38,6 +39,7 @@ export type WarningCode =
     | "W_EVIDENCE_PARAPHRASE"
     | "W_SUMMARY_STRUCTURE"
     | "W_SPECIFICITY_LOW"
+    | "W_MECHANICAL_COPY"
     | "W_DISCOURAGED_PHRASE";
 
 export type FailureCode = ErrorCode | WarningCode;
@@ -148,6 +150,8 @@ export interface EvalRunMetadata {
     incomplete_retry_reasoning_effort?: string | null;
     max_completion_tokens: number | null;
     prompt_version_hash: string;
+    resume_prompt_sha256?: string;
+    resume_ideas_prompt_sha256?: string;
     contract_version: string;
     tier: "smoke" | "golden" | "bulk";
     budget_usd: number;
@@ -181,15 +185,19 @@ export interface EvalRunOutput {
 
 export interface EvalOptions {
     tier: "smoke" | "golden" | "bulk";
+    model?: string;
+    reasoningEffort?: ReasoningEffort;
     baseline?: string;
     budgetUsd: number;
     maxCalls: number;
+    maxCompletionTokens?: number;
     concurrency: number;
     dryRun: boolean;
     promptVersion?: string;
     fixtureFilter?: string;
     limit?: number;
     withJudge?: boolean;
+    outputLabel?: string;
 }
 
 // ============================================

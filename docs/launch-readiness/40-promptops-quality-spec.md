@@ -78,7 +78,7 @@ Before merging ANY prompt change:
   score_comment_long: string;       // 2-3 sentences
 
   // Summary
-  summary: string;                  // 3-5 sentences, starts with "You read as..."
+  summary: string;                  // 3-5 sentences, opens with a resume-specific role, result, or tension
 
   // Lists
   strengths: string[];              // 3-5 items
@@ -276,10 +276,10 @@ Score Label: "High Bar"
 Score Comment: "Clear ownership of outcomes with specific metrics. 
 Recruiters will see a PM who ships and measures impact."
 
-Summary: "You read as a senior PM who has shipped products at scale. 
-Your bullets show you understand the difference between activity 
-and outcomes. What's harder to see is how you navigated the 
-hard trade-offs—the why behind the what."
+Summary: "Three launches with measurable adoption put this firmly in
+senior product territory. The work shows delivery at scale and a habit
+of measuring what changed. The decision-making is less visible, so we
+still cannot see what you cut or prioritized when the plan moved."
 
 Top Fix 1: "Add decision context to your launch bullets"
 - Impact: High
@@ -290,7 +290,7 @@ Top Fix 1: "Add decision context to your launch bullets"
 
 **Why it passes:**
 - Score matches expected band
-- Summary uses correct "You read as..." opening
+- Summary opens with a fact that changes the read
 - Tone is calm, direct, grounded
 - Fixes cite evidence and explain impact
 - No corporate language or filler
@@ -304,9 +304,10 @@ Score Label: "Needs Clarity"
 Score Comment: "Solid foundation with real campaigns. Numbers are 
 thin—adding scale would make this competitive."
 
-Summary: "You read as an early-career marketer who has touched 
-real campaigns. You have the vocabulary but the scope is hard to 
-see. Recruiters will wonder about the size of what you managed."
+Summary: "The campaign work gives you a legitimate entry point into
+marketing. The language is right, but the audience size and your part
+in the work are still missing. Until those details appear, the campaigns
+read more like exposure than ownership."
 
 Top Fix 1: "Quantify your top campaign"
 - Impact: High
@@ -330,10 +331,10 @@ Score Label: "Solid Foundation"
 Score Comment: "Your transferable skills are visible. The story 
 needs tightening to make the connection explicit."
 
-Summary: "You read as someone making a deliberate career move. 
-Your previous experience shows leadership and problem-solving. 
-What's harder to see is how those skills translate directly 
-to the roles you're targeting now."
+Summary: "The leadership thread survives the career change, which is
+the part worth protecting. The resume shows problem-solving and team
+responsibility in the earlier work. It still needs a direct bridge to the
+target role so the move feels intentional rather than unexplained."
 
 Top Fix 1: "Add a positioning summary at the top"
 - Impact: High

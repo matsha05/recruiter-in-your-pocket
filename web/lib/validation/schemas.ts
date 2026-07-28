@@ -296,10 +296,7 @@ export const ResumeFeedbackResponseSchema = z.object({
         const count = wordCount(value);
         return count >= 2 && count <= 6;
     }, "first_impression_takeaway must be 2-6 words"),
-    summary: BoundedStringSchema(3, 5, "summary").refine(
-        value => value.startsWith("You read as"),
-        "summary must begin with You read as",
-    ),
+    summary: BoundedStringSchema(3, 5, "summary"),
     strengths: z.array(z.string().min(1)).min(3).max(5),
     gaps: z.array(z.string().min(1)).min(3).max(5),
     rewrites: z.array(RewriteSchema).max(3),

@@ -138,7 +138,7 @@ function checkSpecificity(output: ResumeFeedback, resumeText: string): CheckResu
 
 | Check | Rule | Fail Condition |
 |:------|:-----|:---------------|
-| Summary opening | Starts with "You read as..." | Does not match |
+| Summary opening | Starts with a resume-specific role, result, number, progression, or tension | Starts with legacy or meta-template language such as "You read as" or "The page supports" |
 | Banned phrases | List of corporate language | Any matches |
 | Em-dash ban | No "—" characters | Any present |
 

@@ -25,6 +25,7 @@ import {
   calculateCostUsd,
   normalizeTokenUsage,
 } from "../lib/llm/cost";
+import { findMechanicalCopyIssues } from "../lib/evals/checks";
 import {
   getChatCompletionTuning,
   getTuningMetadata,
@@ -153,6 +154,15 @@ assert.deepEqual(
   ["ownership already present in cited bullet"],
 );
 assert.deepEqual(
+  findAlreadySatisfiedFix(
+    "Add [KPI change] or [adoption result] to the AI platform success-framework bullet.",
+    "Built an adoption framework with KPIs and reported progress monthly.",
+    "Built an adoption framework with KPIs and reported progress monthly.\nSkills: Python, AWS",
+  ),
+  [],
+  "a platform mentioned as the subject is not a request to add a missing tool",
+);
+assert.deepEqual(
   findBiggestGapContradictions(
     '"I built a campaign that grew leads 70% year-over-year" is strong but add ownership detail and timeframe.',
     "I built a campaign that grew leads 70% year-over-year.",
@@ -182,6 +192,16 @@ assert.deepEqual(
 assert.deepEqual(
   findNonActionableFix("Lead this cited bullet with its existing 10M+ transaction-record scale and result."),
   [],
+);
+assert.deepEqual(
+  findNonActionableFix("Lead the summary with its strongest existing result."),
+  [],
+  "existing-result edits should remain actionable after copy naturalization",
+);
+assert.deepEqual(
+  findNonActionableFix("Replace the generic opening with [target product lane], [target role level], and one verified result."),
+  [],
+  "replace-with instructions are actionable",
 );
 assert.deepEqual(
   findRewriteFidelityIssues(
@@ -271,7 +291,7 @@ assert.equal(
 assert.equal((normalizedRepairOutput.report as any).first_impression_takeaway, "Tie early actions to outcomes");
 assert.equal(
   (normalizedRepairOutput.report as any).top_fixes[0].fix,
-  "Add [measurable result] to this cited bullet and connect it to the stated responsibility.",
+  "Add [measurable result] to the budgeting bullet and connect it to the work already named.",
   "a rewrite sentence in a top-fix slot must become a concrete edit instruction",
 );
 
@@ -285,7 +305,7 @@ const partialFixRepair = canonicalizeResumeReportEvidence({
 }, "- Designed portals serving 200,000 monthly users.");
 assert.equal(
   (partialFixRepair.report as any).top_fixes[0].fix,
-  "Add [measurable result] to this cited bullet and connect it to the stated responsibility.",
+  "Add [measurable result] to the experience bullet and connect it to the work already named.",
 );
 assert.doesNotMatch((partialFixRepair.report as any).top_fixes[0].why, /score/i);
 
@@ -368,6 +388,25 @@ assert.equal(
   (normalizedLanguage.report as any).top_fixes[0].evidence.excerpt,
   "Strategic initiatives were listed verbatim.",
   "verbatim evidence must never be style-normalized",
+);
+
+const cappedShortVerdict = canonicalizeResumeReportEvidence({
+  score_comment_short: "Long CPA tenure is clear, but the work section lacks enough detail for CFO or Controller hiring.",
+}, "Practicing Certified Public Accountant");
+assert.equal(
+  (cappedShortVerdict.report as any).score_comment_short,
+  "Long CPA tenure is clear, but the work section lacks enough detail for CFO or Controller.",
+  "minor word-limit overages should be corrected deterministically",
+);
+
+const duplicateSummaryGapRepair = canonicalizeResumeReportEvidence({
+  summary: "Managing eight staff establishes senior leadership. The strongest results are measurable. The practical question is how much financial authority you held. One thing is still unresolved: your financial responsibility is not quantified.",
+  gaps: ["Your financial responsibility is not quantified."],
+}, "● Managed eight staff and led weekly services.");
+assert.equal(
+  (duplicateSummaryGapRepair.report as any).summary,
+  "Managing eight staff establishes senior leadership. The strongest results are measurable. The practical question is how much financial authority you held.",
+  "a human gap sentence should not be followed by a templated duplicate",
 );
 
 const earlyCareerFixes = canonicalizeResumeReportEvidence({
@@ -506,8 +545,99 @@ const clutteredFixRepair = canonicalizeResumeReportEvidence({
 }, "Work Experience\n- Supported HR strategies across several departments.");
 assert.equal(
   (clutteredFixRepair.report as any).top_fixes[0].fix,
-  "Rewrite this cited bullet by adding [specific scope] and [measurable result].",
+  "Add [specific scope] and [measurable result] to the HR bullet.",
 );
+
+const genericExistingResultRepair = canonicalizeResumeReportEvidence({
+  top_fixes: [
+    {
+      fix: "Lead the summary with its strongest existing result.",
+      why: "Make the opening stronger.",
+      confidence: "medium",
+      evidence: { excerpt: "Summary line.", section: "Summary" },
+      impact_level: "low",
+      effort: "quick",
+      section_ref: "Summary",
+    },
+    {
+      fix: "Add [team size] to the hiring bullet.",
+      why: "Show the scale of the work.",
+      confidence: "high",
+      evidence: { excerpt: "- Led hiring across teams.", section: "Work Experience" },
+      impact_level: "high",
+      effort: "quick",
+      section_ref: "Work Experience",
+    },
+  ],
+}, "Summary\nSummary line.\nWork Experience\n- Led hiring across teams.");
+assert.equal(
+  (genericExistingResultRepair.report as any).top_fixes.length,
+  1,
+  JSON.stringify((genericExistingResultRepair.report as any).top_fixes),
+);
+assert.match((genericExistingResultRepair.report as any).top_fixes[0].fix, /team size/i);
+
+const lateGenericExistingResultRepair = canonicalizeResumeReportEvidence({
+  top_fixes: [
+    {
+      fix: "Move its existing result to the start of the bullet.",
+      why: "The result should be easier to see.",
+      confidence: "medium",
+      evidence: { excerpt: "- Helped ship new product updates.", section: "Work Experience" },
+      impact_level: "medium",
+      effort: "quick",
+      section_ref: "Work Experience",
+    },
+    {
+      fix: "Add [customer count] to the product-updates bullet.",
+      why: "Show the scale of the work.",
+      confidence: "high",
+      evidence: { excerpt: "- Analyzed customer feedback.", section: "Work Experience" },
+      impact_level: "high",
+      effort: "quick",
+      section_ref: "Work Experience",
+    },
+  ],
+}, "Work Experience\n- Helped ship new product updates.\n- Analyzed customer feedback.");
+assert.equal((lateGenericExistingResultRepair.report as any).top_fixes.length, 1);
+assert.match((lateGenericExistingResultRepair.report as any).top_fixes[0].fix, /customer count/i);
+
+const crossFieldDuplicateRepair = canonicalizeResumeReportEvidence({
+  top_fixes: [{
+    fix: "Add [team size] to the hiring bullet.",
+    why: "Show the scale of the work.",
+    confidence: "high",
+    evidence: { excerpt: "- Led hiring across teams.", section: "Work Experience" },
+    impact_level: "high",
+    effort: "quick",
+    section_ref: "Work Experience",
+  }],
+  next_steps: [
+    "Choose one target job description and compare the current resume against it.",
+    "Rewrite the weakest bullet with a verified scope or outcome.",
+    "Add [team size] to the hiring bullet.",
+  ],
+}, "Work Experience\n- Led hiring across teams.");
+assert.notEqual(
+  (crossFieldDuplicateRepair.report as any).next_steps[2],
+  (crossFieldDuplicateRepair.report as any).top_fixes[0].fix,
+);
+assert.equal(new Set((crossFieldDuplicateRepair.report as any).next_steps).size, 3);
+
+const repeatedIdeaQuestionRepair = canonicalizeResumeReportEvidence({
+  ideas: {
+    questions: [{
+      question: "Which departments did you coordinate between at Greenfield Logistics, and what did you coordinate?",
+      archetype: "CROSS-FUNCTIONAL COMPLEXITY",
+      why: "Show the coordination involved.",
+    }],
+  },
+}, "Work Experience\n- Coordinated with different departments to support daily operations.");
+assert.equal(
+  (repeatedIdeaQuestionRepair.report as any).ideas.questions[0].question,
+  "Which departments did you coordinate between at Greenfield Logistics, and what result followed?",
+);
+assert.deepEqual(findMechanicalCopyIssues((repeatedIdeaQuestionRepair.report as any).ideas), []);
 
 const careerBreakFixRepair = canonicalizeResumeReportEvidence({
   top_fixes: [{
@@ -579,6 +709,25 @@ const exceptionalResume = Array.from(
   (_, index) => `- Led project ${index + 1}, increasing adoption by ${30 + index}%.`,
 ).join("\n");
 assert.equal(calibrateResumeScore({ score: 88 }, exceptionalResume).report.score, 92);
+const blackCircleStrongResume = [
+  ...Array.from({ length: 5 }, (_, index) => `● Led initiative ${index + 1}, increasing adoption by ${20 + index}%.`),
+  ...Array.from({ length: 15 }, (_, index) => `● Coordinated priority workstream ${index + 1} across the organization.`),
+].join("\n");
+assert.equal(
+  calibrateResumeScore({ score: 72 }, blackCircleStrongResume).report.score,
+  84,
+  "black-circle bullets must participate in evidence-density calibration",
+);
+const qualitativeOutcomeResume = [
+  "● Achieved a clean external compliance report.",
+  "● Implemented new processes as the organization doubled in size.",
+  ...Array.from({ length: 6 }, (_, index) => `● Negotiated commercial agreement ${index + 1}.`),
+].join("\n");
+assert.equal(
+  calibrateResumeScore({ score: 64 }, qualitativeOutcomeResume).report.score,
+  68,
+  "clear qualitative outcomes should keep an otherwise duty-heavy resume at the top of mixed clarity",
+);
 const exceptionalRepair = canonicalizeResumeReportEvidence({
   summary: "You read as a senior leader. The work shows repeated results. A material gap is the lack of explicit personal contribution. Strengthen by surfacing your direct actions.",
   gaps: [
@@ -644,6 +793,24 @@ assert.deepEqual(
   [],
   "bracketed outcomes remain explicit candidate prompts",
 );
+assert.deepEqual(
+  findUnsupportedOutcomeClaims(
+    "Provided guidance for application deployments.",
+    "Provided guidance across [application scope]; deployment result: [measurable result].",
+  ),
+  [],
+  "a labelled bracket placeholder does not assert an outcome",
+);
+
+const contributionGapLine = "- I collaborated on Agile teams serving 50K+ users, improving satisfaction by 15%.";
+const contributionGap = canonicalizeResumeReportEvidence({
+  biggest_gap_example: `"${contributionGapLine}" shows the result but not your specific contribution.`,
+}, contributionGapLine).report as any;
+assert.equal(
+  contributionGap.biggest_gap_example,
+  `"${contributionGapLine}" shows the result but not your specific contribution.`,
+  "a contribution gap must not be flattened into a false missing-outcome claim",
+);
 
 const repairError = Object.assign(new Error("grounding failed"), {
   code: "OPENAI_RESPONSE_SHAPE_INVALID",
@@ -674,6 +841,22 @@ assert.deepEqual(getChatCompletionTuning("gpt-5-nano", { reasoningEffort: "low" 
   reasoning_effort: "low",
   verbosity: "low",
 });
+assert.deepEqual(getChatCompletionTuning("gpt-5.6-luna", { reasoningEffort: "low" }), {
+  reasoning_effort: "low",
+  verbosity: "low",
+});
+assert.deepEqual(getChatCompletionTuning("gpt-5.6-luna", { reasoningEffort: "none" }), {
+  reasoning_effort: "none",
+  verbosity: "low",
+});
+assert.deepEqual(getChatCompletionTuning("gpt-5-nano", { reasoningEffort: "none" }), {
+  reasoning_effort: "low",
+  verbosity: "low",
+});
+assert.deepEqual(getChatCompletionTuning("gpt-5.6-terra", { reasoningEffort: "low" }), {
+  reasoning_effort: "low",
+  verbosity: "medium",
+});
 assert.equal(increaseReasoningEffort("low"), "medium");
 assert.equal(increaseReasoningEffort("medium"), "high");
 assert.deepEqual(getTuningMetadata(getChatCompletionTuning("gpt-5-nano")), {
@@ -685,7 +868,7 @@ assert.deepEqual(getTuningMetadata(getChatCompletionTuning("gpt-5-nano")), {
 assert.deepEqual(getChatCompletionTuning("gpt-4o-mini", { temperature: 0 }), {
   temperature: 0,
 });
-assert.equal(resolveOpenAIModel("resume"), process.env.OPENAI_RESUME_MODEL || "gpt-5-nano-2025-08-07");
+assert.equal(resolveOpenAIModel("resume"), process.env.OPENAI_RESUME_MODEL || "gpt-5.6-luna");
 assert.equal(resolveReasoningEffortForMode("resume", "gpt-5-nano"), "low");
 
 const nanoUsage = normalizeTokenUsage({
@@ -713,6 +896,64 @@ assert.equal(
   calculateCostUsd("unknown-model", nanoUsage),
   null,
   "unknown prices must not be reported as zero cost",
+);
+assert.equal(
+  calculateCostUsd("gpt-5.6-luna", nanoUsage),
+  0.0184,
+  "Luna cost must use its published standard token rates",
+);
+assert.equal(
+  calculateCostUsd("gpt-5.6-terra", nanoUsage),
+  0.046,
+  "Terra cost must use its published standard token rates",
+);
+
+assert.deepEqual(
+  findMechanicalCopyIssues({
+    summary: "There is a credible finance story here. The work shows a clear progression. The client mix is still missing.",
+    gaps: ["The page does not name the industries served, which limits the read."],
+  }),
+  [],
+);
+assert.deepEqual(
+  findMechanicalCopyIssues({
+    top_fixes: [
+      { section_ref: "Meta, Talent Acquisition Leader (AI and ML SWE)" },
+      { section_ref: "Meta, Talent Acquisition Leader (AI and ML SWE)" },
+    ],
+  }),
+  [],
+  "repeated structural labels are not repeated prose",
+);
+assert.ok(
+  findMechanicalCopyIssues({ summary: "You read as... an independent CPA. The work is broad. The client mix is missing." })
+    .some((issue) => issue.includes("ellipsis")),
+);
+assert.ok(
+  findMechanicalCopyIssues({
+    summary: "The title supports senior management, but the work is harder to assess, which makes the story harder to assess.",
+  }).some((issue) => issue.includes("repeats the clause")),
+);
+assert.deepEqual(
+  findMechanicalCopyIssues({
+    strengths: ["Progression from Junior Software Developer to Software Developer to Software Engineer makes the level trajectory clear."],
+  }),
+  [],
+  "career progression language should not be treated as accidental clause repetition",
+);
+assert.deepEqual(
+  findMechanicalCopyIssues({
+    seniority_read: "The resume supports an Enterprise Account Executive profile, with recent Enterprise Account Executive experience.",
+    positioning_suggestion: "Position around information security hiring. Lead with the information security hiring result.",
+  }),
+  [],
+  "repeated factual role and recruiting-domain labels are not mechanical copy",
+);
+assert.ok(
+  findMechanicalCopyIssues({
+    summary: "The client mix is still missing, so the level remains difficult to judge.",
+    gaps: ["The client mix is still missing, so the level remains difficult to judge."],
+  }).some((issue) => issue.includes("repeats a full sentence")),
 );
 
 console.log("llm-response-contract tests passed");

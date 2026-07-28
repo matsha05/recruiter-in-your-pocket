@@ -21,6 +21,8 @@ function buildRun(executionMode: "dry_run" | "live"): EvalRunOutput {
       reasoning_effort: null,
       max_completion_tokens: null,
       prompt_version_hash: "test",
+      resume_prompt_sha256: "a".repeat(64),
+      resume_ideas_prompt_sha256: "b".repeat(64),
       contract_version: "v2",
       tier: "golden",
       budget_usd: 0,
@@ -55,6 +57,8 @@ const liveReport = generateMarkdownReport(buildRun("live"));
 assert.match(liveReport, /^# PromptOps Live Eval Report/m);
 assert.match(liveReport, /Live model evaluation/);
 assert.match(liveReport, /fixture_1 \(score: 82\)/);
+assert.match(liveReport, /Resume prompt SHA-256:\*\* a{64}/);
+assert.match(liveReport, /Resume ideas prompt SHA-256:\*\* b{64}/);
 
 const passingEvidence = parseLiveEvalEvidence(generateMarkdownReport({
   ...buildRun("live"),
@@ -83,7 +87,7 @@ async function runCandidateBindingTests() {
   const resumePrompt = await loadPromptForMode("resume");
   const resumeIdeasPrompt = await loadPromptForMode("resume_ideas");
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5-nano-2025-08-07",
+    model: "gpt-5.6-luna",
     resumePrompt,
     resumeIdeasPrompt,
   }), true);
@@ -93,7 +97,7 @@ async function runCandidateBindingTests() {
     resumeIdeasPrompt,
   }), false);
   assert.equal(liveEvalMatchesCandidate(BUNDLED_LIVE_EVAL_EVIDENCE, {
-    model: "gpt-5-nano-2025-08-07",
+    model: "gpt-5.6-luna",
     resumePrompt: `${resumePrompt}\nchanged`,
     resumeIdeasPrompt,
   }), false);

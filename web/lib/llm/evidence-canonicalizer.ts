@@ -221,8 +221,56 @@ function ensureAddNote(value: string) {
   return `Add this detail: ${trimmed[0].toLowerCase()}${trimmed.slice(1)}.`;
 }
 
+function humanBulletReference(source: string, section = "") {
+  if (/\bsummary\b/i.test(section)) return "summary";
+  if (/\b(?:skills?|additional information|software|tools?)\b/i.test(section)) {
+    return /\b(?:quickbooks|peachtree|sap|excel|software|system|platform|tool)\b/i.test(source)
+      ? "accounting-tools line"
+      : "skills line";
+  }
+  const topics: Array<[RegExp, string]> = [
+    [/\bfull[- ]cycle recruiting\b/i, "full-cycle recruiting"],
+    [/\b(?:recruiting|hiring|talent acquisition)\b/i, "hiring"],
+    [/\b(?:human resources|hr strateg(?:y|ies)|employee relations)\b/i, "HR"],
+    [/\b(?:financial statements?|financial reports?|reporting)\b/i, "financial reporting"],
+    [/\b(?:budget|forecast)\b/i, "budgeting"],
+    [/\b(?:migration|warehouse)\b/i, "migration"],
+    [/\b(?:mentor|coached?|training)\b/i, "mentoring"],
+    [/\bonboarding\b/i, "onboarding"],
+    [/\b(?:customer|client)\b/i, "customer"],
+    [/\b(?:inventory|stocking|merchandising)\b/i, "inventory"],
+    [/\b(?:compliance|audit|soc 2)\b/i, "compliance"],
+    [/\b(?:contract|agreement|legal)\b/i, "legal"],
+    [/\b(?:roadmap|product)\b/i, "product"],
+    [/\b(?:user interview|research)\b/i, "research"],
+    [/\b(?:campaign|marketing)\b/i, "marketing"],
+    [/\b(?:sales|pipeline|quota)\b/i, "sales"],
+    [/\b(?:curriculum|literacy|student|classroom)\b/i, "teaching"],
+    [/\b(?:volunteer|ministry|pastoral|congregation)\b/i, "ministry"],
+    [/\b(?:project|program)\b/i, "project"],
+    [/\b(?:operations?|process)\b/i, "operations"],
+    [/\b(?:team|budget)\b/i, "team-and-budget"],
+  ];
+  const topic = topics.find(([pattern]) => pattern.test(source))?.[1] || "experience";
+  return `${topic} bullet`;
+}
+
+function humanizeFixReference(value: string, source: string, section = "") {
+  const reference = `the ${humanBulletReference(source, section)}`;
+  return value
+    .replace(/\bthis (?:cited )?(?:bullet|line)\b/gi, reference)
+    .replace(/\bthe cited (?:bullet|line)\b/gi, reference);
+}
+
 function safeActionableFix(fix: string, evidenceExcerpt: string, resumeText: string) {
   const source = sourceContextFor(evidenceExcerpt, resumeText);
+  const conciseExistingEvidenceFix = fix
+    .replace(/\bwith the quantified\b/i, "with the existing")
+    .replace(/\s+using \[measurable result\]\.?$/i, ".");
+  if (
+    conciseExistingEvidenceFix !== fix
+    && findNonActionableFix(conciseExistingEvidenceFix).length === 0
+  ) return conciseExistingEvidenceFix;
   const isClutteredRewrite = /(?:->|→)|^\s*(?:bullet|line|section)\s+to\s+(?:rewrite|replace|change)\b|\b(?:bullet|line)\s*[-:]\s*add\b|\badd explicit outcome for\b/i.test(fix)
     || /\bimprove\b[^.]{0,80}\b(?:bullet|line)\b[^.]{0,50}\bsurface (?:a )?measurable impact\b/i.test(fix)
     || (/^[^"“]{0,90}["“][^"”]{25,}["”]/.test(fix) && /\b(?:rewrite|add|replace|change)\b/i.test(fix))
@@ -231,20 +279,20 @@ function safeActionableFix(fix: string, evidenceExcerpt: string, resumeText: str
     return "Name one real recent course or personal project and the [completed artifact] it produced.";
   }
   if (/\b(?:marketing and sales|outreach initiatives?|sales campaigns?)\b/i.test(source)) {
-    return "Add [campaign scope] and [measurable result] to this cited bullet.";
+    return "Add [campaign scope] and [measurable result] to the marketing-and-sales bullet.";
   }
   if (findNonActionableFix(fix).length === 0 && !isClutteredRewrite) return fix;
   if (hasGroundedOutcome(source)) {
     const metrics = groundedMetricTokens(source);
     if (metrics.length > 0) {
-      return `Move its existing ${metrics.join(" and ")} evidence to the front of this cited bullet.`;
+      return `Put the existing ${metrics.join(" and ")} detail at the front of this bullet.`;
     }
-    return "Move the existing outcome in this cited bullet into the opening clause.";
+    return "Move the existing result into the opening clause of this bullet.";
   }
   if (hasGroundedScope(source)) {
-    return "Add [measurable result] to this cited bullet and connect it to the stated responsibility.";
+    return "Add [measurable result] to this bullet and connect it to the work already named.";
   }
-  return "Rewrite this cited bullet by adding [specific scope] and [measurable result].";
+  return "Add [specific scope] and [measurable result] to this bullet.";
 }
 
 function ensureConcreteFixPlaceholder(fix: string) {
@@ -263,30 +311,33 @@ function ensureConcreteFixPlaceholder(fix: string) {
 
 function surfaceExistingEvidenceFix(fix: string, evidenceExcerpt: string, resumeText: string) {
   const source = sourceContextFor(evidenceExcerpt, resumeText);
+  const explicitlyReusesExistingEvidence = /\bwith the quantified\b[^.]{0,100}\bresults?\b/i.test(fix)
+    || /\b(?:replace|move|surface|lead|put)\b[^.]{0,100}\bexisting\b/i.test(fix);
+  if (explicitlyReusesExistingEvidence) return fix;
   const asksForScope = /\[(?:specific )?scope\]|\b(team size|project scope|scope detail|(?:existing )?scope)\b/i.test(fix);
   const asksForOutcome = /\[(?:measurable )?(?:result|outcome|impact)\]|\b(measurable result|measurable outcome|quantified outcome)\b/i.test(fix);
   if (asksForScope && hasGroundedScope(source) && asksForOutcome && !hasGroundedOutcome(source)) {
-    return "Add [measurable result] to this cited bullet and connect it to the stated responsibility.";
+    return "Add [measurable result] to this bullet and connect it to the work already named.";
   }
   if (asksForOutcome && hasGroundedOutcome(source) && asksForScope && !hasGroundedScope(source)) {
-    return "Add [specific scope] to this cited bullet while preserving the existing evidence.";
+    return "Add [specific scope] to this bullet without losing the result already on the page.";
   }
   const satisfied = findAlreadySatisfiedFix(fix, evidenceExcerpt, resumeText);
   if (satisfied.length === 0) return fix;
   if (satisfied.some((item) => item.includes("named tools"))) {
-    return "Move the existing named tools in this cited bullet into the opening clause.";
+    return "Move the existing named tools into the opening clause of this bullet.";
   }
   if (hasGroundedScope(source) && !hasGroundedOutcome(source)) {
-    return "Add [measurable result] to this cited bullet and connect it to the stated responsibility.";
+    return "Add [measurable result] to this bullet and connect it to the work already named.";
   }
   if (hasGroundedOutcome(source) && !hasGroundedScope(source)) {
-    return "Add [specific scope] to this cited bullet while preserving the existing evidence.";
+    return "Add [specific scope] to this bullet without losing the result already on the page.";
   }
   const metrics = groundedMetricTokens(source);
   if (metrics.length > 0) {
-    return `Move its existing ${metrics.join(" and ")} evidence to the front of this cited bullet.`;
+    return `Put the existing ${metrics.join(" and ")} detail at the front of this bullet.`;
   }
-  return "Move the existing scope and outcome in this cited bullet into the opening clause.";
+  return "Move the existing size and result into the opening clause of this bullet.";
 }
 
 function capSummarySentences(value: string) {
@@ -333,7 +384,7 @@ function normalizeTakeaway(value: string) {
 
 function weakExperienceLine(sourceText: string) {
   return sourceLines(sourceText).find((line) => {
-    if (!/^[-•*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
+    if (!/^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
       return false;
     }
     return !hasGroundedOutcome(line) && !hasGroundedScope(line);
@@ -342,7 +393,7 @@ function weakExperienceLine(sourceText: string) {
 
 function outcomelessExperienceLine(sourceText: string, excludedEvidence: Set<string>) {
   const candidates = sourceLines(sourceText).filter((line) => {
-    if (!/^[-•*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
+    if (!/^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line)) {
       return false;
     }
     if (hasGroundedOutcome(line)) return false;
@@ -353,7 +404,7 @@ function outcomelessExperienceLine(sourceText: string, excludedEvidence: Set<str
 
 function earliestExperienceLine(sourceText: string) {
   return sourceLines(sourceText).filter((line) =>
-    /^[-•*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line),
+    /^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|supported|assisted|helped|contributed|participated|collaborated|partnered|coordinated|maintained|worked|conducted|mentored|owned|directed|prepared|provided|responded|used|was responsible|duties included)\b/i.test(line),
   ).at(-1) || null;
 }
 
@@ -385,8 +436,8 @@ function deduplicateAbsenceFixes(topFixes: any[], resumeText: string, changes: s
     const replacementLine = outcomelessExperienceLine(resumeText, usedEvidence);
     if (!replacementLine) return;
     const excerpt = bestExactWindow(replacementLine, replacementLine, 140);
-    fix.fix = "Add [measurable result] to this cited bullet and connect it to the stated responsibility.";
-    fix.why = "The bullet shows responsibility or scope but not the result a recruiter can evaluate.";
+    fix.fix = "Add [measurable result] to this bullet and connect it to the work already named.";
+    fix.why = "The responsibility is clear, but the page never tells us what changed.";
     fix.confidence = "medium";
     fix.evidence = { excerpt, section: "Work Experience" };
     fix.impact_level = "medium";
@@ -427,8 +478,8 @@ function deduplicateFixInstructions(topFixes: any[], changes: string[]) {
     }
     const existingEvidence = String(result[existingIndex]?.evidence?.excerpt || "");
     const currentEvidence = String(fix?.evidence?.excerpt || "");
-    const existingEvidenceScore = Number(/^[-•*]\s/.test(existingEvidence)) * 1000 + existingEvidence.length;
-    const currentEvidenceScore = Number(/^[-•*]\s/.test(currentEvidence)) * 1000 + currentEvidence.length;
+    const existingEvidenceScore = Number(/^[-•●*]\s/.test(existingEvidence)) * 1000 + existingEvidence.length;
+    const currentEvidenceScore = Number(/^[-•●*]\s/.test(currentEvidence)) * 1000 + currentEvidence.length;
     if (currentEvidenceScore > existingEvidenceScore) {
       result[existingIndex] = fix;
     }
@@ -447,7 +498,16 @@ function dropLowValueOptionalFixes(topFixes: any[], changes: string[], noJobDesc
     const isOptionalEducationAbsence = evidenceMarker === "no education section present";
     const isOptionalCredential = /\b(certifications?|courses?|awards?)\b/i.test(text)
       || (isLowPriority && /^education$/i.test(String(fix?.evidence?.section || "").trim()));
-    if (!isPadding && !(noJobDescription && isOptionalEducationAbsence) && (!isOptionalCredential || !isLowPriority)) return true;
+    const isLowValueSkillsLine = /\b(?:skills?|additional information|software)\b/i.test(String(fix?.evidence?.section || ""))
+      && fix?.impact_level !== "high";
+    const isGenericExistingResultFix = /^Lead the .+ with (?:its|the) strongest existing result(?: using \[[^\]]+\])?\.?$/i.test(String(fix?.fix || "").trim());
+    if (
+      !isPadding
+      && !(noJobDescription && isOptionalEducationAbsence)
+      && (!isOptionalCredential || !isLowPriority)
+      && !isLowValueSkillsLine
+      && !isGenericExistingResultFix
+    ) return true;
     changes.push(`top_fixes[${index}].dropped_low_value_optional`);
     return false;
   });
@@ -463,9 +523,9 @@ function replaceSoleOptionalEducationFix(topFixes: any[], resumeText: string, ch
   topFixes[0] = {
     ...topFixes[0],
     fix: hasGroundedScope(weakLine)
-      ? "Add [measurable result] to this cited bullet and connect it to the stated responsibility."
-      : "Rewrite this cited bullet by adding [specific scope] and [measurable result].",
-    why: "This cited line is still too general for a recruiter to place the impact.",
+      ? "Add [measurable result] to this bullet and connect it to the work already named."
+      : "Add [specific scope] and [measurable result] to this bullet.",
+    why: "This line is still too general to show how much weight the work should carry.",
     confidence: "medium",
     evidence: { excerpt: bestExactWindow(weakLine, weakLine, 140), section: "Work Experience" },
     impact_level: "high",
@@ -651,12 +711,12 @@ function normalizeSectionReviewPresence(report: any, resumeText: string, changes
       item.missing = String(item.missing).replace(/(?:education (?:section )?(?:is )?missing|missing education)[;,]?\s*/ig, "").trim();
       if (!item.missing) item.missing = "Some bullets do not yet show verified scope or results.";
       item.fix = Number(report?.score) >= 80
-        ? "Rewrite the highest-priority cited bullet with verified scope or results."
-        : "Rewrite the highest-priority cited bullet with [specific scope] and [measurable result].";
+        ? "Rewrite the highest-priority weak bullet with verified scope or results."
+        : "Rewrite the highest-priority weak bullet with [specific scope] and [measurable result].";
       changed = true;
     }
     if (/\badd (?:a )?second outcome\b/i.test(String(item.fix || ""))) {
-      item.fix = "Add one verified result to the cited earlier-role bullet.";
+      item.fix = "Add one verified result to the earlier-role bullet already identified.";
       changed = true;
     }
     if (/\bwhere possible\b/i.test(String(item.fix || ""))) {
@@ -687,7 +747,7 @@ function normalizeSectionReviewPresence(report: any, resumeText: string, changes
     work.missing = Number(report?.score) >= 80
       ? "Some lower-signal bullets do not yet show verified scope or results."
       : "Most bullets do not yet show verified scope or results.";
-    work.fix = "Rewrite the highest-priority cited bullet with [specific scope] and [measurable result].";
+    work.fix = "Rewrite the highest-priority weak bullet with [specific scope] and [measurable result].";
     changes.push("section_review.Work Experience.evidence_consistency");
   }
   if (work && workNeedsEvidence && Number(report?.score) < 70) {
@@ -836,7 +896,7 @@ function normalizeAdviceLists(report: any, resumeText: string, changes: string[]
       }
       if (/\brequest concrete project details\b/i.test(normalizedStep)) {
         changes.push(`next_steps[${index}].direct_voice`);
-        return "Add the real project, process, or volume behind the highest-priority cited bullet.";
+        return "Add the real project, process, or volume behind the highest-priority weak bullet.";
       }
       if (/\bownership verbs\b/i.test(normalizedStep)) {
         changes.push(`next_steps[${index}].ownership_safety`);
@@ -861,7 +921,7 @@ function normalizeAdviceLists(report: any, resumeText: string, changes: string[]
         }
         return /\b(?:Python|R|SQL|AWS|Java|Figma|Excel|CRM|HRIS|Microsoft Office)\b/i.test(resumeText)
           ? "Connect the most relevant existing tools to the two strongest experience outcomes."
-          : "Name only tools you have actually used and connect each to a work example.";
+          : "Use the next pass on the experience bullet with the weakest verified result.";
       }
       if (/\b(?:leadership or ownership moments|ownership language|ownership verbs?)\b/i.test(normalizedStep)) {
         changes.push(`next_steps[${index}].ownership_safety`);
@@ -992,6 +1052,22 @@ function normalizeDuplicateAdvice(report: any, resumeText: string, changes: stri
   ];
   report.gaps = replaceDuplicateAdvice(report.gaps, gapFallbacks, "gaps", changes);
   report.next_steps = replaceDuplicateAdvice(report.next_steps, stepFallbacks, "next_steps", changes);
+  if (Array.isArray(report.next_steps) && Array.isArray(report.top_fixes)) {
+    const topFixMarkers = new Set(report.top_fixes.map((fix: any) => normalize(String(fix?.fix || ""))));
+    const usedStepMarkers = new Set(report.next_steps.map((step: any) => normalize(String(step || ""))));
+    report.next_steps = report.next_steps.map((step: any, index: number) => {
+      if (typeof step !== "string" || !topFixMarkers.has(normalize(step))) return step;
+      const replacement = stepFallbacks.find((candidate) => {
+        const marker = normalize(candidate);
+        return !topFixMarkers.has(marker) && !usedStepMarkers.has(marker);
+      });
+      if (!replacement) return step;
+      usedStepMarkers.delete(normalize(step));
+      usedStepMarkers.add(normalize(replacement));
+      changes.push(`next_steps[${index}].top_fix_deduplicated`);
+      return replacement;
+    });
+  }
   if (Array.isArray(report.next_steps)) {
     let sawToolStep = false;
     report.next_steps = report.next_steps.map((step: any, index: number) => {
@@ -1016,7 +1092,7 @@ function normalizeDuplicateAdvice(report: any, resumeText: string, changes: stri
       return "The first scan does not prioritize the strongest role-relevant results.";
     });
     report.gaps = report.gaps
-      .map((gap: any) => typeof gap === "string" ? gap.replace(/^[-•*]\s*/, "").trim() : gap)
+      .map((gap: any) => typeof gap === "string" ? gap.replace(/^[-•●*]\s*/, "").trim() : gap)
       .slice(0, 3);
   }
 }
@@ -1132,34 +1208,52 @@ function normalizeCareerBreakAdvice(report: any, resumeText: string, changes: st
   }
 }
 
+function normalizeIdeaQuestionRepetition(report: any, changes: string[]) {
+  const questions = report?.ideas?.questions;
+  if (!Array.isArray(questions)) return;
+  questions.forEach((item: any, index: number) => {
+    if (typeof item?.question !== "string") return;
+    const repeatedVerb = item.question.match(/^(.+\bdid you ([a-z]+)\b.+),\s*and (?:what|how) did you \2\??$/i);
+    if (!repeatedVerb) return;
+    item.question = `${repeatedVerb[1]}, and what result followed?`;
+    changes.push(`ideas.questions[${index}].repeated_verb`);
+  });
+}
+
 function normalizeSummaryStructure(report: any, changes: string[]) {
   if (typeof report?.summary !== "string" || !report.summary.trim()) return;
+  const appendedGapPattern = /^(?:One material gap is that\b|One thing is still unresolved:)/i;
   const originalSentences = report.summary.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
   let patternSentences = originalSentences.filter((sentence: string) =>
     !/^(?:Expected next step|Fast path|Strengthen (?:this )?by|Surface and quantify|We should)\b/i.test(sentence),
   );
   const hasEarlierGapSentence = patternSentences.some((sentence: string) =>
-    !/^One material gap is that\b/i.test(sentence)
-    && /\b(?:lack of|absence of|missing|unclear|lacks?|does not)\b/i.test(sentence),
+    !appendedGapPattern.test(sentence)
+    && /\b(?:lack of|absence of|missing|unclear|unresolved|question|lacks?|does not|do not|without|stops? at|limits?|leaves?)\b/i.test(sentence),
   );
   if (hasEarlierGapSentence) {
     patternSentences = patternSentences.filter((sentence: string) =>
-      !/^One material gap is that\s*[-•*]?\s*post[- ]break\b/i.test(sentence),
+      !appendedGapPattern.test(sentence),
     );
   }
   if (patternSentences.length >= 3 && patternSentences.length !== originalSentences.length) {
     report.summary = patternSentences.join(" ");
     changes.push("summary.removed_prescriptive_appendix");
   }
-  const hasGap = /\b(harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|absence of|missing|unclear|vague|could|needs|lacks?|does not|gaps?|weakness(?:es)?|thin|holds? (?:it|this) back)\b/i.test(report.summary);
+  const hasGap = /\b(open question|(?:practical|remaining|main|real) question|unresolved|remains? (?:unclear|unknown|unanswered)|harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|absence of|missing|unclear|vague|could|needs|lacks?|does not|without|limits?|leaves?|stops? at|buried|uneven|not obvious|gaps?|weakness(?:es)?|thin|holds? (?:it|this) back)\b/i.test(report.summary);
   if (hasGap) return;
   const firstGap = Array.isArray(report.gaps)
     ? report.gaps.find((gap: unknown) => typeof gap === "string" && gap.trim())
     : null;
   if (typeof firstGap !== "string") return;
-  const gap = firstGap.trim().replace(/^[-•*]\s*/, "").replace(/;\s*(?:e\.g\.|for example)[\s\S]*$/i, "").replace(/[.!]+$/, "");
+  const gap = firstGap.trim().replace(/^[-•●*]\s*/, "").replace(/;\s*(?:e\.g\.|for example)[\s\S]*$/i, "").replace(/[.!]+$/, "");
   const lowerGap = gap ? `${gap[0].toLowerCase()}${gap.slice(1)}` : "one material evidence gap";
-  const gapSentence = `One material gap is that ${lowerGap}, which makes the current story harder to assess.`;
+  const gapLeadIns = [
+    "The missing piece is this",
+    "A recruiter will still have to infer one thing",
+    "The part that still needs an answer is this",
+  ];
+  const gapSentence = `${gapLeadIns[gap.length % gapLeadIns.length]}: ${lowerGap}.`;
   const sentences = report.summary.match(/[^.!?]+(?:[.!?]+|$)/g)?.map((sentence: string) => sentence.trim()).filter(Boolean) || [];
   if (sentences.length >= 5) sentences[sentences.length - 1] = gapSentence;
   else sentences.push(gapSentence);
@@ -1181,11 +1275,11 @@ function normalizeOptionalAdviceFields(report: any, changes: string[]) {
 }
 
 function normalizeEvidenceRichReport(report: any, resumeText: string, changes: string[]) {
-  const bullets = sourceLines(resumeText).filter((line) => /^[-•*]\s+\S/.test(line));
+  const bullets = sourceLines(resumeText).filter((line) => /^[-•●*]\s+\S/.test(line));
   if (bullets.length < 8) return;
   const outcomeDensity = bullets.filter(hasGroundedOutcome).length / bullets.length;
   const ownershipDensity = bullets.filter((line) =>
-    /^[-•*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|architected|owned|directed|headed|mentored|decided|partnered|collaborated)\b/i.test(line),
+    /^[-•●*]\s+(?:I\s+)?(?:led|managed|built|created|developed|designed|implemented|architected|owned|directed|headed|mentored|decided|partnered|collaborated)\b/i.test(line),
   ).length / bullets.length;
   if (outcomeDensity < 0.8 || ownershipDensity < 0.65) return;
 
@@ -1310,7 +1404,7 @@ function inferredSeniority(resumeText: string) {
 }
 
 function inferredIndustrySignals(resumeText: string) {
-  const headingText = sourceLines(resumeText).filter((line) => !/^[-•*]\s/.test(line)).join("\n");
+  const headingText = sourceLines(resumeText).filter((line) => !/^[-•●*]\s/.test(line)).join("\n");
   const candidates: Array<[RegExp, string, string]> = [
     [/\bSaaS\b/i, "SaaS", resumeText],
     [/\bhealth(?:care)?|hospital|patient\b/i, "Healthcare", resumeText],
@@ -1390,6 +1484,27 @@ function normalizeNoJdAlignment(report: any, resumeText: string, changes: string
 }
 
 function normalizeTopFixRationales(topFixes: any[], resumeText: string, changes: string[]) {
+  const missingBothRationales = [
+    "This line tells us the task, but leaves both the size of the work and the result unanswered.",
+    "The work is clear, but the page gives us no way to judge its size or effect.",
+    "As written, this reads like a duty because neither the scale nor the result is visible.",
+  ];
+  const missingResultRationales = [
+    "This line tells us what you handled, but not what changed.",
+    "The responsibility is clear; the result is still missing.",
+    "We can see the work, but not the difference it made.",
+  ];
+  const missingScopeRationales = [
+    "The result is worth keeping, but we cannot see how large or complex the work was.",
+    "The change is clear; adding the size of the work would give it proper weight.",
+    "We can see what changed, but not the scale behind it.",
+  ];
+  const buriedResultRationales = [
+    "The proof is already here. Put the number first so it does not get buried.",
+    "This is a good result, but the sentence makes us wait for it.",
+    "The number carries the bullet. Give it the first position.",
+  ];
+
   topFixes.forEach((fix, index) => {
     let instruction = String(fix?.fix || "");
     const evidence = String(fix?.evidence?.excerpt || "");
@@ -1397,17 +1512,18 @@ function normalizeTopFixRationales(topFixes: any[], resumeText: string, changes:
     if (evidenceMarker.startsWith("no ") && evidenceMarker.endsWith(" section present")) return;
     const source = sourceContextFor(evidence, resumeText);
     let rationale: string | null = null;
-    if (/^Move (?:its|the) existing\b/i.test(instruction)) {
+    if (/^(?:Move|Put) (?:its|the) existing\b/i.test(instruction)) {
       const metrics = groundedMetricTokens(source);
       const scopeMetric = metrics[0]?.replace(/\bteam of (\d+)\b/i, "team-of-$1").replace(/\btransaction\b/i, "transaction-record");
+      const reference = humanBulletReference(source, String(fix?.evidence?.section || ""));
       fix.fix = metrics.length >= 2
-        ? `Lead this cited bullet with its existing ${scopeMetric} scope and ${metrics[1]} result.`
+        ? `Lead the ${reference} with the existing ${scopeMetric} scope and ${metrics[1]} result.`
         : metrics.length === 1
-          ? `Lead this cited bullet with its existing ${scopeMetric} scale and result.`
-        : "Lead this cited bullet with its existing scope and result.";
+          ? `Lead the ${reference} with the existing ${scopeMetric} scale and result.`
+          : `Lead the ${reference} with its strongest existing result.`;
       instruction = fix.fix;
       changes.push(`top_fixes[${index}].fix.naturalized_existing_evidence`);
-      rationale = "The evidence is credible; leading with it will make the scale and result land faster.";
+      rationale = buriedResultRationales[index % buriedResultRationales.length];
     } else if (/\brecent course or personal project\b/i.test(instruction)) {
       rationale = "A named recent artifact provides current evidence without inventing post-break employment.";
       if (fix.confidence === "high") {
@@ -1415,11 +1531,11 @@ function normalizeTopFixRationales(topFixes: any[], resumeText: string, changes:
         changes.push(`top_fixes[${index}].confidence.repaired`);
       }
     } else if (/\[measurable result\]|\[result\]/i.test(instruction) && /\[(?:specific )?scope\]/i.test(instruction)) {
-      rationale = "The cited line names the work, but not the scope or result a recruiter can evaluate.";
+      rationale = missingBothRationales[index % missingBothRationales.length];
     } else if (/\[measurable result\]|\[result\]/i.test(instruction) && !hasGroundedOutcome(source)) {
-      rationale = "The cited line shows the responsibility, but not what changed because of it.";
+      rationale = missingResultRationales[index % missingResultRationales.length];
     } else if (/\[(?:specific )?scope\]/i.test(instruction) && hasGroundedOutcome(source)) {
-      rationale = "The result is visible, but the size of the work is not; scope will make the outcome easier to place.";
+      rationale = missingScopeRationales[index % missingScopeRationales.length];
     }
     if (rationale && rationale !== fix.why) {
       fix.why = rationale;
@@ -1444,8 +1560,9 @@ function alignStrongBulletFixWithGap(report: any, resumeText: string, changes: s
   const first = report.top_fixes[strongFixIndex];
   const hasScope = hasGroundedScope(gapLine);
   first.fix = hasScope
-    ? "Add [measurable result] to this cited bullet and connect it to the stated work."
-    : "Add [specific scope] and [measurable result] to this cited bullet.";
+    ? "Add [measurable result] to this bullet and connect it to the work already named."
+    : "Add [specific scope] and [measurable result] to this bullet.";
+  first.fix = humanizeFixReference(first.fix, gapLine, "Work Experience");
   first.why = hasScope
     ? "The line shows the size of the work, but not what changed because of it."
     : "The line shows useful activity, but the reader still has to guess at both scale and result.";
@@ -1476,7 +1593,7 @@ function safeBiggestGap(value: string, sourceText: string) {
     }
     return `"${quote}" already shows mechanism, scope, and outcome; no material evidence gap is visible in the supplied resume.`;
   }
-  const hasExplanation = /\b(?:missing|lacks?|unclear|hard to|cannot|can not|needs?|underplays?|buries|already backed|remaining opportunity)\b/i.test(
+  const hasExplanation = /\b(?:missing|lacks?|unclear|hard to|cannot|can not|does not|but not|not your|not the|needs?|underplays?|buries|already backed|remaining opportunity)\b/i.test(
     value.replace(/["“][^"”]+["”]/g, ""),
   );
   if (quote && !hasExplanation) {
@@ -1548,6 +1665,24 @@ const GENERATED_LANGUAGE_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\bhigher level\b/gi, "higher-level"],
   [/\bstronger ownership language and concrete outcomes tied to improvements or efficiencies\b/gi, "clearer contribution language and verified outcomes tied to improvements or efficiencies"],
   [/\band mentors with measurable results\b/gi, "and quantify the results of your mentoring"],
+  [/\bthis cited bullet\b/gi, "this bullet"],
+  [/\bthe cited bullet\b/gi, "the bullet"],
+  [/\bthis cited line\b/gi, "this line"],
+  [/\bthe cited line\b/gi, "the line"],
+  [/\brole-level signal\b/gi, "role level"],
+  [/\bpersonal mechanism\b/gi, "specific contribution"],
+  [/\bthe material gap is\b/gi, "the open question is"],
+  [/\bmaterial gap\b/gi, "important gap"],
+  [/\bharder to place\b/gi, "harder to judge"],
+  [/\bthe page currently supports\b/gi, "the resume currently points to"],
+  [/\bthe page supports\b/gi, "the resume points to"],
+  [/\bthe evidence supports\b/gi, "the resume points to"],
+  [/\byour strongest pattern is\b/gi, "the consistent thread is"],
+  [/\bthe strongest pattern is\b/gi, "across the resume, the work centers on"],
+  [/\byour clearest pattern is\b/gi, "across the resume, the work centers on"],
+  [/\byour clearest strength is\b/gi, "the clearest advantage is"],
+  [/\bthe open question is\b/gi, "what remains unclear is"],
+  [/\bthe unresolved question is\b/gi, "what remains unresolved is"],
 ];
 
 function normalizeGeneratedLanguage(value: any, changes: string[], path: string[] = []): any {
@@ -1598,6 +1733,13 @@ function naturalizeRewrite(value: string) {
     natural = `${natural[0].toUpperCase()}${natural.slice(1)}`;
   }
   return natural;
+}
+
+function capWords(value: string, maxWords: number) {
+  const words = value.trim().split(/\s+/).filter(Boolean);
+  if (words.length <= maxWords) return value.trim();
+  const capped = words.slice(0, maxWords).join(" ").replace(/[,;:]$/, "");
+  return /[.!?]$/.test(capped) ? capped : `${capped}.`;
 }
 
 function rewriteSafetyIssues(original: string, better: string, sourceText: string) {
@@ -1683,6 +1825,15 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
           fix.fix = concrete;
           changes.push(`top_fixes[${index}].fix.concrete_placeholder`);
         }
+        const naturalReference = humanizeFixReference(
+          fix.fix,
+          sourceContextFor(evidenceExcerpt, resumeText),
+          String(fix?.evidence?.section || ""),
+        );
+        if (naturalReference !== fix.fix) {
+          fix.fix = naturalReference;
+          changes.push(`top_fixes[${index}].fix.human_reference`);
+        }
       }
       normalizeEducationAbsenceFix(fix, changes, index);
     });
@@ -1750,7 +1901,10 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
 
   if (typeof copy.summary === "string" && copy.summary.includes("\n")) {
     const firstParagraph = copy.summary.split(/\n+/)[0]?.trim();
-    if (firstParagraph?.startsWith("You read as")) {
+    const firstParagraphSentences = firstParagraph
+      ? firstParagraph.match(/[^.!?]+(?:[.!?]+|$)/g)?.filter(Boolean).length || 0
+      : 0;
+    if (firstParagraph && firstParagraphSentences >= 3) {
       copy.summary = firstParagraph;
       changes.push("summary.removed_labelled_appendix");
     }
@@ -1812,6 +1966,7 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
   alignStrongBulletFixWithGap(copy, resumeText, changes);
   if (Array.isArray(copy.top_fixes)) {
     normalizeTopFixRationales(copy.top_fixes, resumeText, changes);
+    copy.top_fixes = dropLowValueOptionalFixes(copy.top_fixes, changes, isNoJobDescription(copy));
   }
   normalizeAdviceLists(copy, resumeText, changes);
   normalizeCareerBreakAdvice(copy, resumeText, changes);
@@ -1823,7 +1978,15 @@ export function canonicalizeResumeReportEvidence<T>(report: T, resumeText: strin
   normalizeDuplicateAdvice(copy, resumeText, changes);
   normalizeEvidenceRichReport(copy, resumeText, changes);
   normalizeNoJdAlignment(copy, resumeText, changes);
+  normalizeIdeaQuestionRepetition(copy, changes);
   normalizeGeneratedLanguage(copy, changes);
+  if (typeof copy.score_comment_short === "string") {
+    const capped = capWords(copy.score_comment_short, 16);
+    if (capped !== copy.score_comment_short) {
+      copy.score_comment_short = capped;
+      changes.push("score_comment_short.capped_words");
+    }
+  }
 
   return { report: copy as T, changes, unresolved };
 }

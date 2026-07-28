@@ -14,6 +14,13 @@ function removeBracketPlaceholders(value: string) {
   return value.replace(/\[[^\]]+\]/g, "");
 }
 
+function removeOutcomePlaceholderClauses(value: string) {
+  return value.replace(
+    /\b(?:deployment\s+)?(?:result|outcome|impact|change)\s*:\s*\[[^\]]+\]/gi,
+    "",
+  );
+}
+
 function normalizeForLookup(value: string) {
   return value.toLowerCase().replace(/\s+/g, " ").trim();
 }
@@ -96,7 +103,9 @@ export function findAlreadySatisfiedFix(
     || /\b(?:team|group|organization|department)\s+of\s+\d[\d,]*(?:\.\d+)?\b/i.test(sourceLine);
   if (asksForGenericScope && lineHasScope) findings.push("scope already present in cited bullet");
 
-  const asksForTools = /\b(add|include|name|mention|list|highlight)\b[^.]{0,60}\b(tool|tools|software|framework|frameworks|platform|platforms|technology|technologies)\b/i.test(fix);
+  const asksForTools = /\[(?:tool|software|framework|platform|technology)(?: name)?\]/i.test(fix)
+    || /\b(?:name|mention|list|highlight)\b[^.]{0,60}\b(?:tool|tools|software|frameworks?|platforms?|technologies|technology stack)\b/i.test(fix)
+    || /\b(?:add|include)\b[^.]{0,60}\b(?:tool name|named tools?|software used|framework name|platform name|technology stack)\b/i.test(fix);
   const resumeHasNamedToolList = /\b(?:tools?|software|platforms?|prototyping|analytics|stack)\b[^\n]{0,80}\([^)]+(?:,|\|)[^)]+\)/i.test(resumeText)
     || /\b(Figma|Sketch|Python|TensorFlow|PyTorch|Spark|AWS|Marketo|HubSpot|Salesforce|Workday|SAP|Oracle|Tableau|Power BI)\b/i.test(resumeText);
   if (asksForTools && resumeHasNamedToolList) findings.push("named tools already present in resume");
@@ -124,7 +133,7 @@ export function findAlreadySatisfiedFix(
   return findings;
 }
 
-const FIX_TARGET_PATTERN = /\[[^\]]+\]|\d|%|\b(team size|budget|revenue|pipeline|cycle[- ]?time|timeframe|conversion|adoption|retention|tool name|named tools?|system name|user count|customer count|region count|project count|cost|savings|accuracy|volume|frequency|baseline|before and after|existing scope|existing outcome|opening clause|opening line|first bullet|top bullet|summary section|skills section|education section|job title|ownership verb)\b|["“][^"”]{4,}["”]/i;
+const FIX_TARGET_PATTERN = /\[[^\]]+\]|\d|%|\b(team size|budget|revenue|pipeline|cycle[- ]?time|timeframe|conversion|adoption|retention|tool name|named tools?|system name|user count|customer count|region count|project count|cost|savings|accuracy|volume|frequency|baseline|before and after|existing scope|existing outcome|existing result|opening clause|opening line|first bullet|top bullet|summary|skills section|education section|job title|ownership verb|(?:this|the|hiring|experience|recruiting|budgeting|mentoring|customer|project|product|operations|marketing|sales|teaching|ministry|compliance|legal|research|migration|inventory|HR) bullet)\b|["“][^"”]{4,}["”]/i;
 
 export function findNonActionableFix(fix: string): string[] {
   const findings: string[] = [];
@@ -139,7 +148,7 @@ export function findNonActionableFix(fix: string): string[] {
     /\b(rewrite|replace|change|shorten|combine)\b/i.test(fix)
     && (
       isLabelWithoutDirection
-      || !/\b(?:by|to)\b\s+(?!(?:rewrite|replace|change|shorten|combine)\b)\S+/i.test(fix)
+      || !/\b(?:by|to|with)\b\s+(?!(?:rewrite|replace|change|shorten|combine)\b)\S+/i.test(fix)
     )
   ) {
     findings.push("does not say how to change the cited text");
@@ -303,7 +312,7 @@ export function findUnsupportedOutcomeClaims(original: string, rewrite: string, 
   outcomePattern.lastIndex = 0;
 
   const matches = Array.from(
-    removeBracketPlaceholders(rewrite).matchAll(outcomePattern),
+    removeBracketPlaceholders(removeOutcomePlaceholderClauses(rewrite)).matchAll(outcomePattern),
     match => match[0].toLowerCase(),
   );
   outcomePattern.lastIndex = 0;

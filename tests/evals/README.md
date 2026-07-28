@@ -117,6 +117,7 @@ In reports we separate:
 | `W_SUBSCORE_DRIFT` | Subscores drift > ±10 vs baseline |
 | `W_SUMMARY_STRUCTURE` | Missing role-level signal OR strength OR gap |
 | `W_SPECIFICITY_LOW` | Top fixes lack concrete tokens |
+| `W_MECHANICAL_COPY` | Repeated sentence, repeated clause, or prose ellipsis makes the report sound generated |
 | `W_DISCOURAGED_PHRASE` | Matches discouraged phrase list |
 
 ---
@@ -137,11 +138,15 @@ RIYP_ALLOW_PAID_EVALS=true npm run eval:bulk   # Explicitly approved paid run
 | Flag | Default | Description |
 |:-----|:--------|:------------|
 | `--tier` | golden | smoke / golden / bulk |
+| `--model` | configured launch model | Explicit model for an isolated eval run |
+| `--reasoning-effort` | model default | Explicit reasoning effort for model comparisons |
 | `--baseline` | none | Path to baseline JSON |
 | `--budget-usd` | 5.00 | Hard cost cap |
 | `--max-calls` | 100 | Max API calls |
+| `--max-completion-tokens` | 24000 | Per-call completion ceiling used by the budget guard |
 | `--concurrency` | 3 | Parallel requests |
 | `--dry-run` | false | No API calls |
+| `--output-label` | latest live/dry-run | Preserve a named summary without replacing launch evidence |
 
 ### Examples
 

@@ -1,4 +1,4 @@
-export type ReasoningEffort = "minimal" | "low" | "medium" | "high";
+export type ReasoningEffort = "none" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max";
 export type LlmMode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin";
 
 type ChatCompletionTuningOptions = {
@@ -14,35 +14,45 @@ export type ChatCompletionTuning = {
   max_completion_tokens?: number;
 };
 
-const ORIGINAL_GPT_5_PATTERN = /^gpt-5(?:-(?:mini|nano))?(?:-\d{4}-\d{2}-\d{2})?$/;
+const GPT_5_REASONING_PATTERN = /^gpt-5(?:\.\d+)?(?:-(?:sol|terra|luna|mini|nano))?(?:-\d{4}-\d{2}-\d{2})?$/;
 
-export function isOriginalGpt5Model(model: string) {
-  return ORIGINAL_GPT_5_PATTERN.test(model.trim().toLowerCase());
+export function isGpt5ReasoningModel(model: string) {
+  return GPT_5_REASONING_PATTERN.test(model.trim().toLowerCase());
 }
 
 export function parseReasoningEffort(value: unknown): ReasoningEffort | undefined {
   const normalized = String(value || "").trim().toLowerCase();
-  if (["minimal", "low", "medium", "high"].includes(normalized)) {
+  if (["none", "minimal", "low", "medium", "high", "xhigh", "max"].includes(normalized)) {
     return normalized as ReasoningEffort;
   }
   return undefined;
 }
 
 export function increaseReasoningEffort(value: ReasoningEffort): ReasoningEffort {
-  if (value === "minimal") return "low";
+  if (value === "none" || value === "minimal") return "low";
   if (value === "low") return "medium";
-  return "high";
+  if (value === "medium") return "high";
+  return value;
 }
 
 export function defaultReasoningEffortForModel(model: string): ReasoningEffort {
-  return /^gpt-5-nano(?:-|$)/i.test(model.trim()) ? "low" : "medium";
+  return /^gpt-5(?:\.\d+)?-(?:nano|luna)(?:-|$)/i.test(model.trim()) ? "low" : "medium";
+}
+
+function reasoningEffortForModel(model: string, effort: ReasoningEffort): ReasoningEffort {
+  if (/^gpt-5(?:-(?:mini|nano))?(?:-\d{4}-\d{2}-\d{2})?$/i.test(model.trim())) {
+    return ["minimal", "low", "medium", "high"].includes(effort)
+      ? effort
+      : defaultReasoningEffortForModel(model);
+  }
+  return effort;
 }
 
 export function resolveOpenAIModel(mode: LlmMode, explicitModel?: string) {
   const explicit = String(explicitModel || "").trim();
   if (explicit) return explicit;
   if (mode === "resume") {
-    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-5-nano-2025-08-07";
+    return String(process.env.OPENAI_RESUME_MODEL || "").trim() || "gpt-5.6-luna";
   }
   return String(process.env.OPENAI_MODEL || "").trim() || "gpt-4o-mini";
 }
@@ -70,13 +80,13 @@ export function getChatCompletionTuning(
     ? Number(options.maxCompletionTokens)
     : undefined;
 
-  if (isOriginalGpt5Model(model)) {
+  if (isGpt5ReasoningModel(model)) {
+    const reasoningEffort = options.reasoningEffort
+      || parseReasoningEffort(process.env.OPENAI_REASONING_EFFORT)
+      || defaultReasoningEffortForModel(model);
     return {
-      reasoning_effort:
-        options.reasoningEffort
-        || parseReasoningEffort(process.env.OPENAI_REASONING_EFFORT)
-        || defaultReasoningEffortForModel(model),
-      verbosity: /^gpt-5-nano(?:-|$)/i.test(model.trim()) ? "low" : "medium",
+      reasoning_effort: reasoningEffortForModel(model, reasoningEffort),
+      verbosity: /^gpt-5(?:\.\d+)?-(?:nano|luna)(?:-|$)/i.test(model.trim()) ? "low" : "medium",
       ...(maxCompletionTokens ? { max_completion_tokens: maxCompletionTokens } : {}),
     };
   }

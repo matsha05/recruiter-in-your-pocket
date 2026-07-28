@@ -4,6 +4,7 @@
 
 import { readFile, writeFile, mkdir } from "fs/promises";
 import { existsSync } from "fs";
+import { createHash } from "node:crypto";
 import * as path from "path";
 import type {
     EvalOptions,
@@ -26,12 +27,11 @@ import {
     type TokenUsage,
 } from "../llm/cost";
 import {
-    defaultReasoningEffortForModel,
     getChatCompletionTuning,
     getTuningMetadata,
     increaseReasoningEffort,
-    parseReasoningEffort,
     resolveOpenAIModel,
+    resolveReasoningEffortForMode,
     type ReasoningEffort,
 } from "../llm/model-config";
 import { buildResumeEvidenceCatalog } from "../llm/evidence-canonicalizer";
@@ -47,14 +47,14 @@ import { validateResumeModelPayload } from "../backend/validation";
 
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
 const EVAL_INPUT_TOKEN_CEILING = 20_000;
-const EVAL_MAX_COMPLETION_TOKENS = 24_000;
+const DEFAULT_EVAL_MAX_COMPLETION_TOKENS = 24_000;
 const MAX_PROVIDER_CALLS_PER_FIXTURE = 4;
 
-function estimateCostCeiling(model: string, calls: number): number {
+function estimateCostCeiling(model: string, calls: number, maxCompletionTokens: number): number {
     const perCall = estimateMaximumCostUsd(
         model,
         EVAL_INPUT_TOKEN_CEILING,
-        EVAL_MAX_COMPLETION_TOKENS,
+        maxCompletionTokens,
     );
     if (perCall === null) {
         throw new Error(`No verified pricing is configured for model "${model}". Refusing a live eval without a truthful budget ceiling.`);
@@ -66,6 +66,10 @@ function paidEvalsExplicitlyAllowed(): boolean {
     return TRUE_VALUES.has(String(process.env.RIYP_ALLOW_PAID_EVALS || "").trim().toLowerCase());
 }
 
+function sha256(value: string) {
+    return createHash("sha256").update(value, "utf8").digest("hex");
+}
+
 // ============================================
 // RUNNER
 // ============================================
@@ -73,12 +77,26 @@ function paidEvalsExplicitlyAllowed(): boolean {
 export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
     const startTime = Date.now();
     const runId = `eval_${Date.now()}`;
-    const model = resolveOpenAIModel("resume");
+    const model = resolveOpenAIModel("resume", options.model);
+    const reasoningEffort = options.reasoningEffort
+        || resolveReasoningEffortForMode("resume", model);
+    const maxCompletionTokens = options.maxCompletionTokens
+        ?? DEFAULT_EVAL_MAX_COMPLETION_TOKENS;
+    if (!Number.isInteger(maxCompletionTokens) || maxCompletionTokens <= 0) {
+        throw new Error("--max-completion-tokens must be a positive integer.");
+    }
     const tuning = getChatCompletionTuning(model, {
         temperature: 0,
-        maxCompletionTokens: EVAL_MAX_COMPLETION_TOKENS,
+        maxCompletionTokens,
+        reasoningEffort,
     });
     const tuningMetadata = getTuningMetadata(tuning);
+    const [resumePromptFile, resumeIdeasPromptFile] = await Promise.all([
+        readFile(path.resolve(process.cwd(), "prompts/resume_v2.txt"), "utf8"),
+        readFile(path.resolve(process.cwd(), "prompts/resume_ideas_v1.txt"), "utf8"),
+    ]);
+    const resumePrompt = resumePromptFile.trim();
+    const resumeIdeasPrompt = resumeIdeasPromptFile.trim();
 
     console.log(`\n🚀 Starting eval run: ${runId}`);
     console.log(`   Tier: ${options.tier}`);
@@ -87,6 +105,8 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
     console.log(`   Concurrency: ${options.concurrency}`);
     console.log(`   Dry run: ${options.dryRun}`);
     console.log(`   Model: ${model}`);
+    console.log(`   Reasoning effort: ${reasoningEffort}`);
+    console.log(`   Max completion tokens: ${maxCompletionTokens}`);
 
     // Load calibration data
     const calibrationPath = path.resolve(process.cwd(), "../tests/fixtures/calibration.json");
@@ -135,11 +155,14 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
 
     // Check budget
     const maximumProviderCalls = fixtures.length * MAX_PROVIDER_CALLS_PER_FIXTURE;
-    const estimatedCost = options.dryRun ? 0 : estimateCostCeiling(model, maximumProviderCalls);
+    const estimatedCost = options.dryRun
+        ? 0
+        : estimateCostCeiling(model, fixtures.length, maxCompletionTokens);
     if (estimatedCost > options.budgetUsd) {
         throw new Error(
-            `Estimated cost $${estimatedCost.toFixed(2)} exceeds budget $${options.budgetUsd}. ` +
-            `Reduce fixtures or increase --budget-usd.`
+            `One provider call per fixture can cost up to $${estimatedCost.toFixed(2)}, ` +
+            `which exceeds budget $${options.budgetUsd}. Reduce fixtures, lower ` +
+            `--max-completion-tokens, or increase --budget-usd.`
         );
     }
 
@@ -182,9 +205,15 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
             const batch = fixtures.slice(i, i + options.concurrency);
 
             // Check budget before batch
-            if (actualCost + estimateCostCeiling(model, batch.length * MAX_PROVIDER_CALLS_PER_FIXTURE) > options.budgetUsd) {
-                console.error(`\n❌ Budget exceeded. Stopping at ${callsMade} calls.`);
-                break;
+            if (actualCost + estimateCostCeiling(
+                model,
+                batch.length * MAX_PROVIDER_CALLS_PER_FIXTURE,
+                maxCompletionTokens,
+            ) > options.budgetUsd) {
+                throw new Error(
+                    `Budget guard stopped the run before fixture ${i + 1}. ` +
+                    `Completed ${results.length}/${fixtures.length} fixtures and made ${callsMade} calls.`,
+                );
             }
 
             const batchResults = await Promise.all(
@@ -192,7 +221,8 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
                     fixture,
                     calibrationData,
                     baseline,
-                    options
+                    options,
+                    { model, reasoningEffort, maxCompletionTokens },
                 ))
             );
 
@@ -241,6 +271,8 @@ export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
             ? increaseReasoningEffort(tuning.reasoning_effort)
             : null,
         prompt_version_hash: options.promptVersion || "v1",
+        resume_prompt_sha256: sha256(resumePrompt),
+        resume_ideas_prompt_sha256: sha256(resumeIdeasPrompt),
         contract_version: calibrationData.contract_version,
         tier: options.tier,
         budget_usd: options.budgetUsd,
@@ -290,6 +322,12 @@ type AnalysisApiResult = ProviderCallMetrics & {
 
 type EvalApiError = Error & { code?: string; metrics?: ProviderCallMetrics };
 
+type EvalProviderConfig = {
+    model: string;
+    reasoningEffort: ReasoningEffort;
+    maxCompletionTokens: number;
+};
+
 function captureFailedCallMetrics(target: ProviderCallMetrics[], error: unknown) {
     const metrics = (error as EvalApiError | null)?.metrics;
     if (metrics) target.push(metrics);
@@ -298,16 +336,15 @@ function captureFailedCallMetrics(target: ProviderCallMetrics[], error: unknown)
 async function runProviderGeneration(
     messages: ChatMessage[],
     metrics: ProviderCallMetrics[],
+    providerConfig: EvalProviderConfig,
 ): Promise<AnalysisApiResult> {
     for (let attempt = 0; attempt < 2; attempt++) {
         try {
             const result = await callAnalysisAPI(
                 messages,
+                providerConfig,
                 attempt > 0
-                    ? increaseReasoningEffort(
-                        parseReasoningEffort(process.env.OPENAI_REASONING_EFFORT)
-                        || defaultReasoningEffortForModel(resolveOpenAIModel("resume")),
-                    )
+                    ? increaseReasoningEffort(providerConfig.reasoningEffort)
                     : undefined,
             );
             metrics.push(result);
@@ -377,7 +414,8 @@ async function processFixture(
     fixture: CalibrationData["fixtures"][0],
     calibrationData: CalibrationData,
     baseline: Baseline | null,
-    options: EvalOptions
+    options: EvalOptions,
+    providerConfig: EvalProviderConfig,
 ): Promise<FixtureResult> {
     const resumePath = path.resolve(process.cwd(), `../tests/resumes/${fixture.path}`);
 
@@ -400,7 +438,7 @@ async function processFixture(
     const providerMetrics: ProviderCallMetrics[] = [];
     let initialResult: AnalysisApiResult;
     try {
-        initialResult = await runProviderGeneration(messages, providerMetrics);
+        initialResult = await runProviderGeneration(messages, providerMetrics, providerConfig);
     } catch (err: any) {
         return failedFixtureResult(fixture, `API call failed: ${err.message}`, undefined, providerMetrics);
     }
@@ -423,6 +461,7 @@ async function processFixture(
             repairedResult = await runProviderGeneration(
                 buildResumeRepairMessages(messages, initialResult.raw, err),
                 providerMetrics,
+                providerConfig,
             );
         } catch (repairCallError: any) {
             return failedFixtureResult(
@@ -585,10 +624,11 @@ function evalApiError(
 
 async function callAnalysisAPI(
     messages: ChatMessage[],
+    providerConfig: EvalProviderConfig,
     reasoningEffort?: ReasoningEffort,
 ): Promise<AnalysisApiResult> {
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-    const OPENAI_MODEL = resolveOpenAIModel("resume");
+    const OPENAI_MODEL = providerConfig.model;
 
     if (!OPENAI_API_KEY) {
         throw new Error("OPENAI_API_KEY environment variable is required");
@@ -605,8 +645,8 @@ async function callAnalysisAPI(
             model: OPENAI_MODEL,
             ...getChatCompletionTuning(OPENAI_MODEL, {
                 temperature: 0,
-                maxCompletionTokens: EVAL_MAX_COMPLETION_TOKENS,
-                reasoningEffort,
+                maxCompletionTokens: providerConfig.maxCompletionTokens,
+                reasoningEffort: reasoningEffort || providerConfig.reasoningEffort,
             }),
             response_format: RESUME_REPORT_RESPONSE_FORMAT,
             messages
@@ -678,6 +718,10 @@ async function callAnalysisAPI(
 async function saveResults(output: EvalRunOutput, options: EvalOptions): Promise<void> {
     const resultsDir = path.resolve(process.cwd(), "../tests/fixtures/results");
 
+    if (options.outputLabel && !/^[a-z0-9_-]+$/i.test(options.outputLabel)) {
+        throw new Error("--output-label may contain only letters, numbers, underscores, and hyphens.");
+    }
+
     // Ensure directory exists
     if (!existsSync(resultsDir)) {
         await mkdir(resultsDir, { recursive: true });
@@ -692,12 +736,12 @@ async function saveResults(output: EvalRunOutput, options: EvalOptions): Promise
     console.log(`\n📄 Results saved: ${jsonPath}`);
 
     // Save markdown summary
-    const mdPath = path.join(
-        resultsDir,
-        output.metadata.execution_mode === "dry_run"
+    const mdFilename = options.outputLabel
+        ? `summary_${options.outputLabel}.md`
+        : output.metadata.execution_mode === "dry_run"
             ? "summary_latest_dry_run.md"
-            : "summary_latest_live.md"
-    );
+            : "summary_latest_live.md";
+    const mdPath = path.join(resultsDir, mdFilename);
     await writeFile(mdPath, generateMarkdownReport(output));
     console.log(`📄 Summary saved: ${mdPath}`);
 }

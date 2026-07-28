@@ -66,9 +66,10 @@ Correction rules:
 10. If recommending a genuinely absent section, use only the matching marker: "No summary section present", "No skills section present", or "No education section present". Never cite an unrelated bullet.
 11. Re-score from the evidence on the page. Senior titles, tenure, and progression alone do not justify 70+. A resume made mostly of generic duties with no quantified outcomes belongs from 55 to 68.
 12. Return one to three distinct top fixes, three strengths, three gaps, and three next steps. Never pad top fixes or cite the same source bullet twice. Return zero to three rewrites; omit rewrites that do not materially improve a weak bullet. Keep the JSON concise.
-13. Recheck every field rule from the original system prompt, including sentence counts, word limits, the required "You read as..." summary opening, five ideas questions, and enhancement_note beginning with "Add".
+13. Recheck every field rule from the original system prompt, including sentence counts, word limits, a natural resume-specific summary opening, five ideas questions, and enhancement_note beginning with "Add".
 14. Never expose SOURCE_### catalog tags in any field. Use human section names such as "Work Experience" instead.
 15. Write rewrites as natural resume bullets. Never output literal "Mechanism:", "Scope:", or "Outcome:" labels.
+16. Remove evaluator jargon and canned phrasing. Never write "cited bullet", "cited line", "role-level signal", "personal mechanism", "material gap", or "harder to place". Do not repeat a complete sentence across fields.
 
 Audit findings: ${repairIssueSummary(error)}`,
     },

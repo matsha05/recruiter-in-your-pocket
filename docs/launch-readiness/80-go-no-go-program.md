@@ -80,7 +80,7 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
-Matt authorized the stored-fixture quality work on July 19. After prompt and model hardening, the final pinned `gpt-5-nano-2025-08-07` run completed with 8 PASS, 0 WARN, and 0 FAIL at a token-calculated API cost of $0.009. This gate is satisfied for the current prompt and model pair; any prompt or launch-model change reopens it.
+Matt authorized the stored-fixture quality work and the July 28 Luna bake-off. The final candidate-bound `gpt-5.6-luna` run (`eval_1785271781375`) completed with 22 PASS, 1 WARN, and 0 FAIL across all 23 golden fixtures at a token-calculated API cost of $0.287278. Its 95.7% pass rate clears the 90% launch bar, and the bundled evidence binds the exact model and prompt hashes. Any prompt or launch-model change reopens this gate.
 
 - Set `RIYP_ALLOW_PAID_EVALS=true` only for an explicitly approved run.
 - Run the smoke and golden eval suites against the launch model and prompt.

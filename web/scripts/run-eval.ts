@@ -16,6 +16,7 @@ config({ path: ".env.local" });
 
 import { runEval } from "../lib/evals/runner";
 import type { EvalOptions } from "../lib/evals/types";
+import { parseReasoningEffort } from "../lib/llm/model-config";
 
 // ============================================
 // CLI ARGUMENT PARSING
@@ -37,6 +38,22 @@ function parseArgs(): EvalOptions {
         const next = args[i + 1];
 
         switch (arg) {
+            case "--model":
+                if (next) {
+                    options.model = next;
+                    i++;
+                }
+                break;
+
+            case "--reasoning-effort":
+                if (next) {
+                    const effort = parseReasoningEffort(next);
+                    if (!effort) throw new Error(`Unsupported reasoning effort: ${next}`);
+                    options.reasoningEffort = effort;
+                    i++;
+                }
+                break;
+
             case "--tier":
                 if (next && ["smoke", "golden", "bulk"].includes(next)) {
                     options.tier = next as "smoke" | "golden" | "bulk";
@@ -61,6 +78,13 @@ function parseArgs(): EvalOptions {
             case "--max-calls":
                 if (next) {
                     options.maxCalls = parseInt(next);
+                    i++;
+                }
+                break;
+
+            case "--max-completion-tokens":
+                if (next) {
+                    options.maxCompletionTokens = parseInt(next, 10);
                     i++;
                 }
                 break;
@@ -101,6 +125,13 @@ function parseArgs(): EvalOptions {
                 options.withJudge = true;
                 break;
 
+            case "--output-label":
+                if (next) {
+                    options.outputLabel = next;
+                    i++;
+                }
+                break;
+
             case "--help":
             case "-h":
                 printHelp();
@@ -119,15 +150,19 @@ Usage:
   npx tsx scripts/run-eval.ts [options]
 
 Options:
+  --model <model>         Explicit model for this run; does not change production defaults
+  --reasoning-effort <e> none | minimal | low | medium | high | xhigh | max
   --tier <tier>           smoke | golden | bulk (default: golden)
   --baseline <path>       Path to baseline JSON for regression comparison
   --budget-usd <amount>   Hard cost cap in USD (default: 5.00)
   --max-calls <n>         Maximum provider calls, including incomplete-response retry and repair (default: 100)
+  --max-completion-tokens Maximum completion tokens per provider call (default: 24000)
   --concurrency <n>       Parallel requests (default: 3)
   --dry-run               Parse fixtures only, no API calls
   --prompt-version <v>    Override prompt version hash
   --filter <term>         Filter fixtures by ID or tag
   --limit <n>             Run only the first n fixtures after filtering
+  --output-label <slug>   Preserve a named summary instead of overwriting summary_latest_live.md
   --help, -h              Show this help
 
 Examples:

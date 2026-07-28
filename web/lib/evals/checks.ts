@@ -56,6 +56,33 @@ function containsLiteral(text: string, value: string): boolean {
     return new RegExp(escapeRegExp(value)).test(text);
 }
 
+function generatedLanguageForPhraseChecks(output: unknown): string {
+    const values: string[] = [];
+
+    function visit(value: unknown, path: string[]) {
+        if (typeof value === "string") {
+            const joined = path.join(".");
+            if (joined.endsWith("evidence.excerpt") || /(?:^|\.)rewrites\.\d+\.original$/.test(joined)) return;
+            values.push(joined === "biggest_gap_example"
+                ? value.replace(/["“][^"”]+["”]/g, "")
+                : value);
+            return;
+        }
+        if (Array.isArray(value)) {
+            value.forEach((item, index) => visit(item, [...path, String(index)]));
+            return;
+        }
+        if (value && typeof value === "object") {
+            for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+                visit(child, [...path, key]);
+            }
+        }
+    }
+
+    visit(output, []);
+    return values.join("\n");
+}
+
 function findUngroundedSpecifics(text: string, resumeText: string): string[] {
     const normResume = normalize(resumeText);
     const matches = stripBracketPlaceholders(text).match(concreteMetricPattern) || [];
@@ -400,13 +427,13 @@ function checkSummaryStructure(summary: string): CheckResult {
     }
 
     // Check for role-level signal (common patterns)
-    const hasRoleSignal = /\b(read as|come across as|present as|appear as|senior|mid[-\s]?level|entry|lead|manager|director|engineer|pm|designer)\b/i.test(summary);
+    const hasRoleSignal = /\b(read as|come across as|present as|appear as|page supports|positions? you|career story|roles?|target|fit|senior|mid[-\s]?level|entry|lead|manager|director|engineer|pm|designer|teacher|counsel|pastor|analyst|recruiter|executive|controller|cfo|accounting|consulting)\b/i.test(summary);
 
     // Check for strength indicator
-    const hasStrength = /\b(capable|credible|clear|strong(?:est)?|strengths?|show|demonstrate|visible|evident|ownership|impact|growth|leadership|range|foundation|focus(?:es|ed)? on|experience (?:spans|includes))\b/i.test(summary);
+    const hasStrength = /\b(capable|credible|believable|clear(?:est)?|useful|strong(?:est)?|strengths?|show|demonstrate|visible|evident|ownership|impact|results?|outcomes?|scale|quantified|measurable|value|worth keeping|quota|revenue|adoption|reduction|increase|improvement|growth|leadership|range|foundation|focus(?:es|ed)? on|experience (?:spans|includes))\b/i.test(summary);
 
     // Check for gap indicator
-    const hasGap = /\b(harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|missing|unclear|vague|could|needs|lacks?|gaps?|weakness(?:es)?|thin|holds? (?:it|this) back)\b/i.test(summary);
+    const hasGap = /\b(open question|(?:practical|remaining|main|real|hiring) question|unresolved|remains? (?:unclear|unknown|unanswered)|harder to see|hard to (?:assess|gauge|place|see)|difficult to (?:assess|gauge|place|see)|lack of|missing|unclear|vague|could|needs|lacks?|does not|do not|without|limits?|leaves?|stops? at|gaps?|weakness(?:es)?|thin|holds? (?:it|this) back)\b/i.test(summary);
 
     if (!hasRoleSignal || !hasStrength || !hasGap) {
         const missing: string[] = [];
@@ -480,6 +507,89 @@ function checkDiscouragedPhrases(
 }
 
 // ============================================
+// HUMAN COPY CHECK
+// ============================================
+
+export function findMechanicalCopyIssues(output: unknown): string[] {
+    const prose: Array<{ path: string; value: string }> = [];
+
+    function visit(value: unknown, path: string[]) {
+        if (typeof value === "string") {
+            const joined = path.join(".");
+            const isSourceText = joined.endsWith("evidence.excerpt")
+                || /(?:^|\.)rewrites\.\d+\.original$/.test(joined)
+                || joined === "biggest_gap_example";
+            const isRequiredBoilerplate = joined.startsWith("section_review.")
+                || joined === "job_alignment.role_fit.company_stage_fit"
+                || joined === "job_alignment.missing.0"
+                || joined.endsWith(".section_ref")
+                || joined.endsWith(".evidence.section")
+                || joined.endsWith(".label")
+                || joined.endsWith(".confidence")
+                || joined.endsWith(".impact_level")
+                || joined.endsWith(".effort")
+                || joined.endsWith(".archetype");
+            if (!isSourceText && !isRequiredBoilerplate) prose.push({ path: joined, value });
+            return;
+        }
+        if (Array.isArray(value)) {
+            value.forEach((item, index) => visit(item, [...path, String(index)]));
+            return;
+        }
+        if (value && typeof value === "object") {
+            for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+                visit(child, [...path, key]);
+            }
+        }
+    }
+
+    visit(output, []);
+    const issues: string[] = [];
+    const sentences = new Map<string, string>();
+
+    for (const item of prose) {
+        if (/\.\.\./.test(item.value)) {
+            issues.push(`${item.path} uses an ellipsis as connective tissue`);
+        }
+
+        const normalized = item.value.toLowerCase().replace(/[^a-z0-9' -]+/g, " ").replace(/\s+/g, " ").trim();
+        const repeatedClause = normalized.match(/\b([a-z][a-z'-]+(?:\s+[a-z][a-z'-]+){2,5})\b.{0,140}\b\1\b/i)?.[1];
+        const trailingWord = repeatedClause?.split(/\s+/).at(-1);
+        const isProgressionPhrase = Boolean(trailingWord && ["to", "from", "through", "into"].includes(trailingWord));
+        const isRepeatedRoleOrDomainLabel = Boolean(trailingWord && [
+            "manager", "director", "executive", "engineer", "designer", "recruiter",
+            "hiring", "recruiting",
+        ].includes(trailingWord));
+        if (repeatedClause && !isProgressionPhrase && !isRepeatedRoleOrDomainLabel) {
+            issues.push(`${item.path} repeats the clause "${repeatedClause}"`);
+        }
+
+        for (const sentence of item.value.split(/(?<=[.!?])\s+/)) {
+            const key = normalize(sentence);
+            if (key.split(/\s+/).length < 7) continue;
+            const priorPath = sentences.get(key);
+            if (priorPath && priorPath !== item.path) {
+                issues.push(`${item.path} repeats a full sentence from ${priorPath}`);
+            } else if (!priorPath) {
+                sentences.set(key, item.path);
+            }
+        }
+    }
+
+    return Array.from(new Set(issues));
+}
+
+function checkMechanicalCopy(output: unknown): CheckResult[] {
+    const issues = findMechanicalCopyIssues(output);
+    if (issues.length === 0) return [{ passed: true }];
+    return issues.map((issue) => ({
+        passed: false,
+        code: "W_MECHANICAL_COPY" as const,
+        message: issue,
+    }));
+}
+
+// ============================================
 // SPECIFICITY CHECK
 // ============================================
 
@@ -490,7 +600,13 @@ function checkSpecificity(
 
     for (let i = 0; i < topFixes.length; i++) {
         const fixText = topFixes[i].fix;
-        const hasConcreteToken = PATTERNS.some(p => p.test(fixText));
+        const namesConcreteSkillGroup = /\bskills?\s+section\b/i.test(fixText)
+            && (fixText.match(/,/g) || []).length >= 2;
+        const namesConcreteRemoval = /^(?:remove|delete)\b/i.test(fixText)
+            && /["“][^"”]+["”]|\b(?:line|entry|phrase|label|header|headline|section)\b/i.test(fixText);
+        const hasConcreteToken = PATTERNS.some(p => p.test(fixText))
+            || namesConcreteSkillGroup
+            || namesConcreteRemoval;
 
         if (!hasConcreteToken) {
             results.push({
@@ -708,11 +824,14 @@ export function runAllChecks(input: AllChecksInput): AllChecksResult {
     }
 
     // Phrase checks - serialize output for phrase checking
-    const outputStr = JSON.stringify(obj);
+    const outputStr = generatedLanguageForPhraseChecks(obj);
     for (const r of checkBannedPhrases(outputStr, input.globalBanned, input.fixture.banned_phrases)) {
         addResult(r);
     }
     for (const r of checkDiscouragedPhrases(outputStr, input.globalDiscouraged)) {
+        addResult(r);
+    }
+    for (const r of checkMechanicalCopy(obj)) {
         addResult(r);
     }
 
