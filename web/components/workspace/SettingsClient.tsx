@@ -122,9 +122,17 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     const { user, refreshUser, isLoading: authLoading } = useAuth();
     const queryClient = useQueryClient();
     const billingEnabled = isLaunchFlagEnabled("billingUnlock");
-    const visibleTabs = billingEnabled ? TABS : TABS.filter((tab) => tab.id !== "billing");
+    const matchingEnabled = isLaunchFlagEnabled("extensionSync");
+    const visibleTabs = TABS.filter((tab) => {
+        if (tab.id === "billing") return billingEnabled;
+        if (tab.id === "matching") return matchingEnabled;
+        return true;
+    });
+    const requestedTabIsHidden =
+        (!billingEnabled && initialTab === "billing") ||
+        (!matchingEnabled && initialTab === "matching");
 
-    const [activeTab, setActiveTab] = useState<Tab>(initialTab);
+    const [activeTab, setActiveTab] = useState<Tab>(requestedTabIsHidden ? "account" : initialTab);
     const [isCheckoutLoading, setIsCheckoutLoading] = useState<PricingTier | null>(null);
     const [showEmailInput, setShowEmailInput] = useState<PricingTier | null>(null);
     const [isPortalLoading, setIsPortalLoading] = useState(false);
@@ -166,8 +174,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     });
 
     useEffect(() => {
-        setActiveTab(!billingEnabled && initialTab === "billing" ? "account" : initialTab);
-    }, [billingEnabled, initialTab]);
+        setActiveTab(requestedTabIsHidden ? "account" : initialTab);
+    }, [initialTab, requestedTabIsHidden]);
 
     useEffect(() => {
         profileForm.reset({ displayName: user?.firstName || "" });
@@ -450,8 +458,8 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                         eyebrow="Settings"
                         title="Settings"
                         description={billingEnabled
-                            ? "Sign in to manage your account, billing, and matching defaults. We keep these controls simple so you can verify and change things yourself."
-                            : "Sign in to manage your account and matching defaults. We keep these controls simple so you can verify and change things yourself."}
+                            ? "Sign in to manage your account and billing. We keep these controls simple so you can verify and change things yourself."
+                            : "Sign in to manage your account. We keep these controls simple so you can verify and change things yourself."}
                     />
 
                     <section className="app-card app-card-highlight p-8 text-center md:p-10">
@@ -460,7 +468,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                             Sign in to open settings
                         </h2>
                         <p className="mx-auto mt-3 max-w-lg text-sm leading-7 text-muted-foreground">
-                            Signed-in settings give you data export, account deletion, and the default resume used by matching features.
+                            Signed-in settings give you profile controls, data export, purchase history, and account deletion.
                         </p>
                         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                             <Link

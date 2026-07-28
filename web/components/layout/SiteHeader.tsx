@@ -47,10 +47,13 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
 
                     {authLoading ? (
                         <div
-                            className="hidden h-12 w-36 shrink-0 border border-background/15 bg-background/5 sm:block"
+                            className="hidden h-12 w-36 shrink-0 items-center justify-center gap-2 border border-background/15 bg-background/5 text-xs font-medium text-background/55 sm:flex"
                             role="status"
                             aria-label="Checking account status"
-                        />
+                        >
+                            <span className="size-1.5 animate-pulse rounded-full bg-citron motion-reduce:animate-none" aria-hidden="true" />
+                            Account
+                        </div>
                     ) : user ? (
                         <div className="flex items-center gap-4">
                             <Link

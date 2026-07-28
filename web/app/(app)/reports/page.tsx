@@ -1,12 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { AlertTriangle, FileText, ArrowRight, Chrome, ChartNoAxesCombined } from "lucide-react";
+import { AlertTriangle, ArrowRight, Chrome, ChartNoAxesCombined } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
-import { ScoreBadge } from "@/components/shared/ScoreBadge";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
-import { EmptyReportIcon } from "@/components/icons";
 import { launchFlags } from "@/lib/launch/flags";
+import { ReportHistoryList } from "@/components/reports/ReportHistoryList";
 
 export const dynamic = "force-dynamic";
 
@@ -124,51 +123,17 @@ export default async function ReportsPage() {
               </Link>
             </div>
           </div>
-        ) : items.length === 0 ? (
-          <div className="border-y border-border bg-card p-8 text-center">
-            <div className="mx-auto mb-4 flex size-20 items-center justify-center border border-cyan-bright/35 bg-surface-sky text-brand">
-              <EmptyReportIcon className="size-12" />
-            </div>
-            <h2 className="font-display text-2xl text-foreground">No saved reports yet</h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-              Get a report from the workspace and save it while signed in to build your history.
-            </p>
-          </div>
         ) : (
-          <div className="divide-y divide-border border-y border-border bg-card">
-            {items.map((report) => (
-              <Link
-                key={report.id}
-                href={`/reports/${report.id}`}
-                className="group block p-5 transition-colors hover:bg-mineral"
-              >
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="gap-y-2">
-                    <div className="flex items-center gap-2">
-                      <ScoreBadge score={report.score ?? 0} />
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(report.created_at).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <div>
-                      <h2 className="font-display text-xl text-foreground">
-                        {report.name || report.target_role || "Saved report"}
-                      </h2>
-                      {report.resume_preview ? (
-                        <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-                          {report.resume_preview}
-                        </p>
-                      ) : null}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <FileText className="size-4" />
-                    <span className="group-hover:text-foreground">Open report</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <ReportHistoryList
+            initialReports={items.map((report) => ({
+              id: report.id,
+              score: report.score,
+              resumePreview: report.resume_preview,
+              name: report.name,
+              targetRole: report.target_role,
+              createdAt: report.created_at,
+            }))}
+          />
         )}
       </div>
     </section>

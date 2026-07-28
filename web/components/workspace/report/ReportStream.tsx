@@ -9,6 +9,7 @@ import {
     ClipboardText,
     Copy,
     CornersOut,
+    EnvelopeSimple,
     BracketsAngle,
     LockKey,
     MinusCircle,
@@ -52,6 +53,20 @@ const fixTrace = [
     { label: "Your fact" },
     { label: "Clearer wording" },
 ];
+
+const BETA_FEEDBACK_HREF = `mailto:support@recruiterinyourpocket.com?subject=${encodeURIComponent(
+    "Paid beta report feedback",
+)}&body=${encodeURIComponent(
+    [
+        "What felt immediately useful?",
+        "",
+        "What felt untrustworthy, generic, or wrong?",
+        "",
+        "What almost stopped you from finishing?",
+        "",
+        "Optional: Did the score feel like a document review, or did it mean something else to you?",
+    ].join("\n"),
+)}`;
 
 function evidenceFor(fix?: Fix) {
     if (!fix?.evidence) return undefined;
@@ -504,6 +519,32 @@ export function ReportStream({
                             <p className={styles.revisionNote}>
                                 {isExhausted ? "Another report requires paid access." : "The comparison stays in this browser visit."}
                             </p>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {!isSample && (
+                <section className={styles.feedbackSection} aria-labelledby="beta-feedback-title">
+                    <div className={styles.feedbackRule} aria-hidden="true" />
+                    <div className={styles.feedbackContent}>
+                        <div>
+                            <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">A note for the beta</p>
+                            <h2 id="beta-feedback-title" className={styles.feedbackTitle}>
+                                What did this report get right—or miss?
+                            </h2>
+                            <p className={styles.feedbackCopy}>
+                                This is a small paid beta, and I read every note—especially the blunt ones. Tell me what felt useful, what felt off, and what nearly stopped you.
+                            </p>
+                        </div>
+                        <div className={styles.feedbackAction}>
+                            <Button asChild variant="outline" size="lg" className="border-foreground/35 bg-paper hover:border-brand/45 hover:bg-brand/5">
+                                <a href={BETA_FEEDBACK_HREF}>
+                                    Send a two-minute note
+                                    <EnvelopeSimple className="ml-1 size-4 text-brand" weight="bold" />
+                                </a>
+                            </Button>
+                            <p className={styles.feedbackNote}>Three prompts open in your email. Your resume is never attached.</p>
                         </div>
                     </div>
                 </section>

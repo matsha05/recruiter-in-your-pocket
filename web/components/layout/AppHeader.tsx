@@ -75,10 +75,12 @@ export function AppHeader() {
                     <div className="flex items-center gap-1.5">
                         {authLoading ? (
                             <span
-                                className="hidden size-11 border border-background/15 bg-background/5 md:block"
+                                className="hidden size-11 items-center justify-center border border-background/15 bg-background/5 md:flex"
                                 role="status"
                                 aria-label="Checking account status"
-                            />
+                            >
+                                <span className="size-1.5 animate-pulse rounded-full bg-citron motion-reduce:animate-none" aria-hidden="true" />
+                            </span>
                         ) : user ? (
                             <div className="hidden md:block">
                                 <UserNav user={user} onSignOut={signOut} />
