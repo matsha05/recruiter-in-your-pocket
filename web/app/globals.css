@@ -1942,7 +1942,7 @@
   }
 
   .pricing-rail {
-    max-width: 85.3125rem;
+    max-width: 70rem;
   }
 
   .pricing-hero-grid {
@@ -2497,7 +2497,7 @@
 
   @media (min-width: 1024px) {
     .pricing-hero-grid {
-      grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.7fr);
     }
 
     .analysis-stage {

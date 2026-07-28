@@ -1,4 +1,4 @@
-const { existsSync, writeFileSync } = require("fs");
+const { existsSync, readFileSync, writeFileSync } = require("fs");
 const { spawn, spawnSync } = require("child_process");
 const path = require("path");
 const net = require("net");
@@ -77,7 +77,11 @@ function ensureWebBuild() {
   const localContractBuildMarker = path.join(webDir, ".next", ".launch-test-build");
   const hasProductionBuild = existsSync(buildIdPath);
   const forceRequested = process.env.FORCE_NEXT_BUILD === "1" || process.env.FORCE_NEXT_BUILD === "true";
-  const shouldForce = forceRequested && !existsSync(localContractBuildMarker);
+  const currentBuildId = hasProductionBuild ? readFileSync(buildIdPath, "utf8").trim() : "";
+  const markedBuildId = existsSync(localContractBuildMarker)
+    ? readFileSync(localContractBuildMarker, "utf8").trim()
+    : "";
+  const shouldForce = forceRequested && (!currentBuildId || markedBuildId !== currentBuildId);
 
   if (!shouldForce && hasProductionBuild) {
     return;
@@ -105,7 +109,11 @@ function ensureWebBuild() {
     throw new Error("Build completed but BUILD_ID is missing");
   }
   if (forceRequested) {
-    writeFileSync(localContractBuildMarker, `${new Date().toISOString()}\n`, "utf8");
+    writeFileSync(
+      localContractBuildMarker,
+      `${readFileSync(buildIdPath, "utf8").trim()}\n`,
+      "utf8"
+    );
   }
 }
 

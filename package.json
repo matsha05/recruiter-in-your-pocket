@@ -21,7 +21,7 @@
     "simulate:cohort": "node scripts/simulate-founder-cohort.cjs",
     "test:cohort-simulation": "node tests/founder-cohort-simulation.test.js",
     "assets:chrome-web-store": "npm run assets:chrome-web-store --prefix web",
-    "test": "node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && npm run test:pdf-export --prefix web && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
+    "test": "node tests/next_server_marker.test.js && node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && npm run test:pdf-export --prefix web && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
     "test:ready": "node tests/test_ready_and_auth.js",
     "eval:dry-run": "npm run eval:dry-run --prefix web",
     "eval:smoke": "npm run eval:smoke --prefix web",

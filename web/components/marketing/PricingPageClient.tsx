@@ -76,13 +76,13 @@ export default function PricingPageClient() {
                                         One complete report is <span className="riyp-marker riyp-marker-block">included.</span><br className="sm:hidden" /> Five more are $29.
                                     </h1>
                                 </div>
-                                <p className="max-w-lg text-lg leading-8 text-muted-foreground lg:mb-2 lg:-translate-y-5">
+                                <p className="max-w-lg text-pretty text-lg leading-8 text-muted-foreground lg:mb-2">
                                     Checkout is closed while we finish the beta safety checks. When it opens, the Job Search Pass will be one payment for five additional reports over 30 days. It will not renew.
                                 </p>
                             </div>
 
                             <div className="mt-10 grid overflow-hidden border-y border-border bg-background/60 md:grid-cols-2">
-                                <div className="border-b border-border p-7 md:border-b-0 md:border-r md:px-8 md:py-0">
+                                <div className="border-b border-border p-7 md:border-b-0 md:border-r md:px-8 md:py-8">
                                     <p className="text-xs font-bold uppercase riyp-track-010 text-brand">First report</p>
                                     <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$0</p>
                                     <p className="mt-2 text-base text-muted-foreground">One complete in-browser report</p>
@@ -94,7 +94,7 @@ export default function PricingPageClient() {
                                         <ArrowRight className="size-4" />
                                     </Link>
                                 </div>
-                                <div className="p-7 md:px-8 md:py-0">
+                                <div className="p-7 md:px-8 md:py-8">
                                     <p className="text-xs font-bold uppercase riyp-track-010 text-brand">Job Search Pass</p>
                                     <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$29</p>
                                     <p className="mt-2 text-base text-muted-foreground">Five additional reports for 30 days</p>
