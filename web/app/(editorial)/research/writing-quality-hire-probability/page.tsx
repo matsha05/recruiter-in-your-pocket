@@ -100,7 +100,7 @@ export default function WritingQualityHireProbabilityPage() {
                     }
                 />
                 <ArticleInsight
-                    title="Polish Is Not Enough"
+                    title="Polish Alone Does Not Close the Gap"
                     desc="Elegant phrasing without proof does not move the decision."
                 />
             </div>

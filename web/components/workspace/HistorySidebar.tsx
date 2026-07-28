@@ -52,6 +52,7 @@ export default function HistorySidebar({
 }: HistorySidebarProps) {
     const [reports, setReports] = useState<HistoryReport[]>([]);
     const [loading, setLoading] = useState(false);
+    const [loadError, setLoadError] = useState<string | null>(null);
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null); // For confirmation dialog
     const [renamingId, setRenamingId] = useState<string | null>(null);
@@ -84,13 +85,13 @@ export default function HistorySidebar({
                 body: JSON.stringify({ name: editName.trim() })
             });
             const data = await res.json();
-            if (data.ok) {
-                setReports(prev => prev.map(r =>
-                    r.id === reportId ? { ...r, name: editName.trim() || undefined } : r
-                ));
-            }
+            if (!res.ok || !data.ok) throw new Error(data.message || "Failed to rename report");
+            setReports(prev => prev.map(r =>
+                r.id === reportId ? { ...r, name: editName.trim() || undefined } : r
+            ));
         } catch (error) {
             console.error("Failed to rename report:", error);
+            toast.error(error instanceof Error ? error.message : "Failed to rename report");
         } finally {
             setRenamingId(null);
             setEditName("");
@@ -105,13 +106,13 @@ export default function HistorySidebar({
                 body: JSON.stringify({ resume_variant: variant })
             });
             const data = await res.json();
-            if (data.ok) {
-                setReports(prev => prev.map(r =>
-                    r.id === reportId ? { ...r, resumeVariant: variant } : r
-                ));
-            }
+            if (!res.ok || !data.ok) throw new Error(data.message || "Failed to update resume label");
+            setReports(prev => prev.map(r =>
+                r.id === reportId ? { ...r, resumeVariant: variant } : r
+            ));
         } catch (error) {
             console.error("Failed to update variant:", error);
+            toast.error(error instanceof Error ? error.message : "Failed to update resume label");
         }
     };
 
@@ -122,14 +123,15 @@ export default function HistorySidebar({
 
     const fetchReports = async () => {
         setLoading(true);
+        setLoadError(null);
         try {
             const res = await fetch("/api/reports");
-            const data = await res.json();
-            if (data.ok && Array.isArray(data.reports)) {
-                setReports(data.reports);
-            }
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data.ok || !Array.isArray(data.reports)) throw new Error(data.message || "Saved reports could not be loaded");
+            setReports(data.reports);
         } catch (error) {
             console.error("Failed to fetch reports:", error);
+            setLoadError(error instanceof Error ? error.message : "Saved reports could not be loaded");
         } finally {
             setLoading(false);
         }
@@ -190,6 +192,7 @@ export default function HistorySidebar({
             return dateStr;
         }
     };
+    const visibleReports = reports.filter((report) => !filterVariant || report.resumeVariant === filterVariant);
 
     return (
         <>
@@ -211,7 +214,7 @@ export default function HistorySidebar({
                         {!user?.email ? (
                             /* Logged out state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
-                                <div className="size-16 rounded-full bg-brand/10 flex items-center justify-center mb-6">
+                                <div className="mb-6 flex size-16 items-center justify-center rounded-sm bg-brand/10">
                                     <TrendingUp className="size-8 text-brand" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
@@ -230,7 +233,8 @@ export default function HistorySidebar({
                             </div>
                         ) : loading ? (
                             /* Skeleton loading state */
-                            <div className="p-4 gap-y-3">
+                            <div className="p-4 gap-y-3" role="status" aria-live="polite">
+                                <span className="sr-only">Loading saved reports…</span>
                                 {["first", "second", "third"].map((slot) => (
                                     <div key={slot} className="p-4 rounded border border-border/60 bg-card gap-y-3">
                                         <div className="flex items-start justify-between">
@@ -246,10 +250,18 @@ export default function HistorySidebar({
                                     </div>
                                 ))}
                             </div>
+                        ) : loadError ? (
+                            <div className="m-4 border-l-2 border-destructive bg-error-surface p-5" role="alert">
+                                <h3 className="font-display text-lg font-semibold text-destructive">Saved reports could not load</h3>
+                                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}. This is not an empty history.</p>
+                                <Button type="button" variant="outline" className="mt-4" onClick={() => void fetchReports()}>
+                                    Try again
+                                </Button>
+                            </div>
                         ) : reports.length === 0 ? (
                             /* Empty state */
                             <div className="flex flex-col items-center justify-center h-full px-8 text-center">
-                                <div className="mb-6 flex size-20 items-center justify-center rounded-xl border border-brand/15 bg-brand/[0.045] text-brand">
+                                <div className="mb-6 flex size-20 items-center justify-center border border-cyan-bright/35 bg-surface-sky text-brand">
                                     <EmptyReportIcon className="size-12" />
                                 </div>
                                 <h3 className="font-display text-xl font-semibold text-foreground mb-2">
@@ -273,10 +285,11 @@ export default function HistorySidebar({
                                                 setIsCompareMode(!isCompareMode);
                                                 setSelectedForCompare([]);
                                             }}
-                                            className={`text-xs font-medium px-2 py-1 rounded transition-colors ${isCompareMode
+                                            className={`min-h-11 px-3 text-xs font-medium transition-colors ${isCompareMode
                                                 ? 'bg-brand text-white'
                                                 : 'text-brand hover:bg-brand/10'
                                                 }`}
+                                            aria-pressed={isCompareMode}
                                         >
                                             {isCompareMode ? 'Cancel' : 'Compare'}
                                         </button>
@@ -285,13 +298,14 @@ export default function HistorySidebar({
 
                                 {/* Label filter chips */}
                                 {existingLabels.length > 0 && (
-                                    <div className="flex flex-wrap gap-2 px-2 pb-2">
+                                    <div className="flex flex-wrap gap-2 px-2 pb-2" aria-label="Filter reports by resume label">
                                         <button type="button"
                                             onClick={() => setFilterVariant(null)}
-                                            className={`text-xs px-2 py-1 rounded transition-colors ${filterVariant === null
+                                            className={`min-h-11 px-3 text-xs transition-colors ${filterVariant === null
                                                 ? 'bg-foreground text-background'
                                                 : 'bg-muted text-muted-foreground hover:bg-muted/80'
                                                 }`}
+                                            aria-pressed={filterVariant === null}
                                         >
                                             All
                                         </button>
@@ -299,21 +313,25 @@ export default function HistorySidebar({
                                             <button type="button"
                                                 key={v}
                                                 onClick={() => setFilterVariant(v)}
-                                                className={`text-xs px-2 py-1 rounded transition-colors ${filterVariant === v
+                                                className={`min-h-11 px-3 text-xs transition-colors ${filterVariant === v
                                                     ? 'bg-foreground text-background'
                                                     : 'bg-muted text-muted-foreground hover:bg-muted/80'
                                                     }`}
+                                                aria-pressed={filterVariant === v}
                                             >
                                                 {v}
                                             </button>
                                         ))}
                                     </div>
                                 )}
+                                <span className="sr-only" role="status" aria-live="polite">
+                                    {visibleReports.length} report{visibleReports.length === 1 ? "" : "s"} shown.
+                                </span>
 
                                 {/* Compare action bar */}
                                 {isCompareMode && (
-                                    <div className="p-2 bg-muted/50 rounded flex items-center justify-between">
-                                        <span className="text-xs text-muted-foreground">
+                                    <div className="flex items-center justify-between border-l-2 border-brand bg-brand/5 p-3">
+                                        <span className="text-xs text-muted-foreground" aria-live="polite">
                                             Select 2 reports to compare ({selectedForCompare.length}/2)
                                         </span>
                                         {selectedForCompare.length === 2 && (
@@ -328,7 +346,10 @@ export default function HistorySidebar({
                                                         ]);
                                                         const [dataA, dataB] = await Promise.all([resA.json(), resB.json()]);
 
-                                                        if (dataA.ok && dataB.ok) {
+                                                        if (!resA.ok || !resB.ok || !dataA.ok || !dataB.ok) {
+                                                            throw new Error(dataA.message || dataB.message || "Reports could not be compared");
+                                                        }
+                                                        {
                                                             const reportInfoA = reports.find(r => r.id === selectedForCompare[0]);
                                                             const reportInfoB = reports.find(r => r.id === selectedForCompare[1]);
 
@@ -360,12 +381,13 @@ export default function HistorySidebar({
                                                         }
                                                     } catch (err) {
                                                         console.error('Failed to load reports for comparison:', err);
+                                                        toast.error(err instanceof Error ? err.message : "Reports could not be compared");
                                                     } finally {
                                                         setLoadingComparison(false);
                                                     }
                                                 }}
                                                 disabled={loadingComparison}
-                                                className="text-xs font-medium text-white bg-brand px-3 py-1 rounded hover:bg-brand/90 disabled:opacity-50"
+                                                className="min-h-11 bg-foreground px-3 py-2 text-xs font-medium text-background hover:bg-foreground/90 disabled:opacity-50"
                                             >
                                                 {loadingComparison ? 'Loading...' : 'Compare →'}
                                             </button>
@@ -374,49 +396,48 @@ export default function HistorySidebar({
                                 )}
 
                                 {/* Report cards */}
-                                {reports
-                                    .filter(r => !filterVariant || r.resumeVariant === filterVariant)
-                                    .map((report) => {
+                                {visibleReports.map((report) => {
                                         const isSelected = selectedForCompare.includes(report.id);
 
                                         return (
                                             <CardInteractive
                                                 key={report.id}
-                                                onClick={(e) => {
-                                                    // Skip if click originated from interactive element
-                                                    const target = e.target as HTMLElement;
-                                                    if (target.closest('[data-no-card-click]')) return;
-
-                                                    if (renamingId === report.id) return;
-
-                                                    if (isCompareMode) {
-                                                        // Toggle selection
-                                                        if (isSelected) {
-                                                            setSelectedForCompare(prev => prev.filter(id => id !== report.id));
-                                                        } else if (selectedForCompare.length < 2) {
-                                                            setSelectedForCompare(prev => [...prev, report.id]);
-                                                        }
-                                                    } else {
-                                                        onLoadReport?.(report.id);
-                                                    }
-                                                }}
                                                 className={`group relative p-4 ${isCompareMode && isSelected ? 'ring-2 ring-brand' : ''}`}
                                             >
+                                                {!isCompareMode ? (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => onLoadReport?.(report.id)}
+                                                        className="focus-ring absolute inset-0 z-0 text-left"
+                                                        aria-label={`Open ${report.name || `report from ${formatDate(report.createdAt)}`}`}
+                                                    />
+                                                ) : null}
                                                 {/* Compare mode checkbox */}
                                                 {isCompareMode && (
-                                                    <div className="absolute top-2 right-2 z-10">
-                                                        <div className={`size-5 rounded border-2 flex items-center justify-center transition-colors ${isSelected
+                                                    <label className="absolute right-1 top-1 z-20 flex size-11 cursor-pointer items-center justify-center">
+                                                        <input
+                                                            type="checkbox"
+                                                            className="peer sr-only"
+                                                            checked={isSelected}
+                                                            disabled={!isSelected && selectedForCompare.length >= 2}
+                                                            onChange={() => {
+                                                                if (isSelected) setSelectedForCompare(prev => prev.filter(id => id !== report.id));
+                                                                else setSelectedForCompare(prev => [...prev, report.id]);
+                                                            }}
+                                                            aria-label={`Compare ${report.name || `report from ${formatDate(report.createdAt)}`}`}
+                                                        />
+                                                        <span className={`flex size-6 items-center justify-center border-2 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-brand ${isSelected
                                                             ? 'bg-brand border-brand text-white'
                                                             : 'border-muted-foreground/30 bg-card'
                                                             }`}>
                                                             {isSelected && <Check className="size-3" />}
-                                                        </div>
-                                                    </div>
+                                                        </span>
+                                                    </label>
                                                 )}
                                                 {/* Version name (editable) */}
                                                 {renamingId === report.id ? (
                                                     <div
-                                                        className="mb-3"
+                                                        className="relative z-20 mb-3"
                                                         onClick={(e) => e.stopPropagation()}
                                                     >
                                                         <input
@@ -429,6 +450,7 @@ export default function HistorySidebar({
                                                             }}
                                                             onBlur={() => handleRename(report.id)}
                                                             placeholder="Name this version..."
+                                                            aria-label={`Name ${report.name || `report from ${formatDate(report.createdAt)}`}`}
                                                             className="w-full px-2 py-1 text-sm font-medium border border-brand rounded bg-card focus:outline-none focus:ring-1 focus:ring-brand"
                                                             autoFocus
                                                         />
@@ -444,7 +466,8 @@ export default function HistorySidebar({
                                                                 setEditName(report.name || '');
                                                                 setRenamingId(report.id);
                                                             }}
-                                                            className="opacity-0 group-hover:opacity-100 p-1 hover:bg-muted rounded"
+                                                            className="relative z-20 inline-flex size-11 items-center justify-center opacity-0 transition-opacity hover:bg-muted group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100"
+                                                            aria-label={`Rename ${report.name}`}
                                                         >
                                                             <Pencil className="size-3 text-muted-foreground" />
                                                         </button>
@@ -456,7 +479,7 @@ export default function HistorySidebar({
                                                             setEditName('');
                                                             setRenamingId(report.id);
                                                         }}
-                                                        className="mb-3 text-xs text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                                                        className="relative z-20 mb-3 min-h-11 text-xs text-muted-foreground opacity-0 transition-opacity hover:text-foreground group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100"
                                                     >
                                                         + Add name
                                                     </button>
@@ -475,7 +498,7 @@ export default function HistorySidebar({
                                                         size="sm"
                                                         onClick={(e) => handleDeleteClick(e, report.id)}
                                                         disabled={deletingId === report.id}
-                                                        className="opacity-0 group-hover:opacity-100 hover:text-destructive hover:bg-destructive/10"
+                                                        className="relative z-20 opacity-0 hover:bg-destructive/10 hover:text-destructive group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100"
                                                         aria-label="Delete report"
                                                     >
                                                         {deletingId === report.id ? (
@@ -488,8 +511,7 @@ export default function HistorySidebar({
 
                                                 {/* Label & Role Tags */}
                                                 <div
-                                                    data-no-card-click
-                                                    className="flex flex-wrap items-center gap-2 mb-3"
+                                                    className="relative z-20 mb-3 flex flex-wrap items-center gap-2"
                                                 >
                                                     <ResumeLabel
                                                         value={report.resumeVariant}
@@ -544,7 +566,7 @@ export default function HistorySidebar({
                 <DialogContent className="max-w-[360px]">
                     <DialogHeader>
                         <div className="flex items-center gap-3 mb-2">
-                            <div className="size-10 rounded-full bg-destructive/10 flex items-center justify-center">
+                            <div className="flex size-10 items-center justify-center rounded-sm bg-destructive/10">
                                 <AlertTriangle className="size-5 text-destructive" />
                             </div>
                             <DialogTitle className="font-display">Delete Report?</DialogTitle>

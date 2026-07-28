@@ -1,4 +1,4 @@
-const { existsSync } = require("fs");
+const { existsSync, writeFileSync } = require("fs");
 const { spawn, spawnSync } = require("child_process");
 const path = require("path");
 const net = require("net");
@@ -7,16 +7,18 @@ const repoRoot = path.join(__dirname, "..");
 const webDir = path.join(repoRoot, "web");
 
 function withLaunchTestDefaults(env) {
-  return {
+  const testEnv = {
     ...env,
-    USE_MOCK_OPENAI: env.USE_MOCK_OPENAI || "1",
-    NEXT_PUBLIC_APP_URL: env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
-    NEXT_PUBLIC_ENABLE_ANALYTICS: env.NEXT_PUBLIC_ENABLE_ANALYTICS || "false",
-    NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: env.NEXT_PUBLIC_ENABLE_BILLING_UNLOCK || "false",
-    NEXT_PUBLIC_ENABLE_EXTENSION_SYNC: env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC || "false",
-    NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: env.NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE || "false",
-    NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS || "false",
-    NEXT_PUBLIC_ENABLE_ERROR_REPLAY: env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY || "false",
+    USE_MOCK_OPENAI: "1",
+    NEXT_PUBLIC_APP_URL: "http://localhost:3000",
+    VERCEL_ENV: "development",
+    VERCEL_URL: "",
+    NEXT_PUBLIC_ENABLE_ANALYTICS: "false",
+    NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "false",
+    NEXT_PUBLIC_ENABLE_EXTENSION_SYNC: "false",
+    NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false",
+    NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false",
+    NEXT_PUBLIC_ENABLE_ERROR_REPLAY: "false",
     RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
     RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
     SKIP_DB_READY_CHECK: env.SKIP_DB_READY_CHECK || "1",
@@ -27,6 +29,19 @@ function withLaunchTestDefaults(env) {
     KV_REST_API_URL: "",
     KV_REST_API_TOKEN: "",
   };
+
+  // Vercel env pulls can represent sensitive values as empty strings. An empty
+  // inherited variable overrides Next's local env loading, so remove only the
+  // empty runtime secrets and let the test fixture environment provide them.
+  for (const key of [
+    "SUPABASE_SECRET_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+  ]) {
+    if (!testEnv[key]) delete testEnv[key];
+  }
+
+  return testEnv;
 }
 
 function wait(ms) {
@@ -59,8 +74,10 @@ async function waitForHealth(baseUrl, maxWaitMs = 30000) {
 
 function ensureWebBuild() {
   const buildIdPath = path.join(webDir, ".next", "BUILD_ID");
+  const localContractBuildMarker = path.join(webDir, ".next", ".launch-test-build");
   const hasProductionBuild = existsSync(buildIdPath);
-  const shouldForce = process.env.FORCE_NEXT_BUILD === "1" || process.env.FORCE_NEXT_BUILD === "true";
+  const forceRequested = process.env.FORCE_NEXT_BUILD === "1" || process.env.FORCE_NEXT_BUILD === "true";
+  const shouldForce = forceRequested && !existsSync(localContractBuildMarker);
 
   if (!shouldForce && hasProductionBuild) {
     return;
@@ -86,6 +103,9 @@ function ensureWebBuild() {
   if (postbuild.status !== 0) throw new Error("Failed to validate web build output");
   if (!existsSync(buildIdPath)) {
     throw new Error("Build completed but BUILD_ID is missing");
+  }
+  if (forceRequested) {
+    writeFileSync(localContractBuildMarker, `${new Date().toISOString()}\n`, "utf8");
   }
 }
 

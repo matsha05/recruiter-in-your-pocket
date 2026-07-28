@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { sendAuthOtpEmail } from "@/lib/auth/otpEmail";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { logError, logInfo, logWarn } from "@/lib/observability/logger";
+import { captureOperationalError } from "@/lib/observability/operations";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
 import { readTextWithLimit } from "@/lib/security/requestBody";
 import {
@@ -39,6 +41,16 @@ type UserResolutionContext = {
     method: string;
     path: string;
 };
+
+class EntitlementBlockedError extends Error {
+    readonly reason: string;
+
+    constructor(reason: string) {
+        super(`Checkout entitlement is blocked: ${reason}`);
+        this.name = "EntitlementBlockedError";
+        this.reason = reason;
+    }
+}
 
 function getEmailFromCheckoutSession(session: Stripe.Checkout.Session): string | null {
     const metadataEmail = session.metadata?.email;
@@ -260,8 +272,9 @@ async function findOrCreateUserId(
 }
 
 async function maybeSendOtp(admin: any, email: string, context: UserResolutionContext) {
-    const { error } = await admin.auth.signInWithOtp({ email: email.toLowerCase() });
-    if (error) {
+    try {
+        await sendAuthOtpEmail(admin, email);
+    } catch {
         logWarn({
             msg: "stripe.webhook.otp_send_failed",
             request_id: context.request_id,
@@ -269,7 +282,7 @@ async function maybeSendOtp(admin: any, email: string, context: UserResolutionCo
             method: context.method,
             path: context.path,
             outcome: "provider_error",
-            err: { name: "OtpError", message: error.message }
+            err: { name: "OtpError", message: "auth_email_delivery_failed" }
         });
         return;
     }
@@ -303,7 +316,7 @@ async function upsertPassForCheckout(
 
     if (entitlementBlockError) throw entitlementBlockError;
     if (entitlementBlock?.checkout_session_id) {
-        throw new Error(`Checkout entitlement is blocked: ${entitlementBlock.reason || "reversed"}`);
+        throw new EntitlementBlockedError(entitlementBlock.reason || "reversed");
     }
 
     let subscriptionId: string | null = null;
@@ -739,24 +752,46 @@ export async function POST(request: NextRequest) {
                     throw new Error("No email found for completed checkout session");
                 }
 
-                const { userId, wasCreated } = await findOrCreateUserId(
+                const { userId } = await findOrCreateUserId(
                     supabaseAdmin,
                     email,
                     session.metadata?.user_id || null,
                     context
                 );
+                const isGuestCheckout = !session.metadata?.user_id;
 
-                if (wasCreated) {
-                    await maybeSendOtp(supabaseAdmin, email, context);
+                try {
+                    await upsertPassForCheckout(
+                        supabaseAdmin,
+                        session,
+                        userId,
+                        validation.offer,
+                        context
+                    );
+                } catch (error) {
+                    if (!(error instanceof EntitlementBlockedError)) throw error;
+
+                    await rejectStripeEvent(
+                        supabaseAdmin as any,
+                        event.id,
+                        leaseToken,
+                        `entitlement_blocked:${error.reason}`
+                    );
+                    logWarn({
+                        msg: "stripe.webhook.checkout_entitlement_blocked",
+                        request_id,
+                        route,
+                        method,
+                        path,
+                        outcome: "validation_error",
+                        feature: `entitlement_blocked:${error.reason}`,
+                        stripe: { event_id: event.id, event_type: event.type, session_id: session.id }
+                    });
+                    return NextResponse.json(
+                        { received: true },
+                        { headers: { "x-request-id": request_id } }
+                    );
                 }
-
-                await upsertPassForCheckout(
-                    supabaseAdmin,
-                    session,
-                    userId,
-                    validation.offer,
-                    context
-                );
                 await linkStripeCustomerToUser(session, userId, context);
 
                 // Invoice events can arrive before checkout.session.completed.
@@ -767,6 +802,13 @@ export async function POST(request: NextRequest) {
                         ? await stripe.invoices.retrieve(session.invoice)
                         : session.invoice;
                     await upsertBillingReceipt(supabaseAdmin, invoice, context, userId, session.id);
+                }
+
+                // A guest may have checked out with either a new or an existing
+                // RIYP email. In both cases, send the same passwordless handoff
+                // after entitlement creation so the buyer can actually use it.
+                if (isGuestCheckout) {
+                    await maybeSendOtp(supabaseAdmin, email, context);
                 }
             }
         }
@@ -829,6 +871,10 @@ export async function POST(request: NextRequest) {
             stripe: { event_id: event.id, event_type: event.type }
         });
     } catch (err: any) {
+        captureOperationalError(err, {
+            operation: "stripe.webhook.fulfillment",
+            tags: { event_type: event.type }
+        });
         try {
             await failStripeEvent(supabaseAdmin as any, event.id, leaseToken, err);
         } catch (stateError: any) {

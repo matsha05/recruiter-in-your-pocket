@@ -72,7 +72,6 @@ export function usePaymentConfirmation({
               source: source || "unknown",
               tier: data?.pass?.tier || tier || "unknown",
               attempt: i + 1,
-              session_suffix: sessionId.slice(-8),
             });
             Analytics.track("unlock_confirm_succeeded", {
               tier: data?.pass?.tier || tier || "unknown",

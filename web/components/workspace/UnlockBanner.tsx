@@ -46,11 +46,11 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
     return (
         <div
             className={cn(
-                "w-full transition-all duration-500 ease-out overflow-hidden mb-8",
+                "mb-8 w-full overflow-hidden transition-all duration-150 ease-out motion-reduce:transition-none",
                 isVisible ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
             )}
         >
-            <div className="relative rounded border border-premium/20 bg-premium/5 p-4 md:p-6 overflow-hidden">
+            <div className="relative overflow-hidden rounded border border-premium/20 bg-premium/5 p-4 md:p-6" role="status" aria-live="polite">
                 {/* Background Sparkle Decoration */}
                 <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
                     <InsightSparkleIcon className="size-16 text-premium" />
@@ -73,7 +73,6 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 variant="premium"
                                 size="sm"
                                 onClick={onJumpToRewrites}
-                                className="h-9"
                             >
                                 Jump to Rewrites
                                 <ArrowRight className="size-3.5 ml-2" />
@@ -82,7 +81,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                                 variant="ghost"
                                 size="sm"
                                 onClick={onDownloadPdf}
-                                className="h-9 text-muted-foreground hover:text-foreground"
+                                className="text-muted-foreground hover:text-foreground"
                             >
                                 <Download className="size-3.5 mr-2" />
                                 Download PDF
@@ -94,7 +93,7 @@ export function UnlockBanner({ reportId, onJumpToRewrites, onDownloadPdf }: Unlo
                         variant="ghost"
                         size="sm"
                         onClick={handleDismiss}
-                        className="size-8 p-0 text-muted-foreground hover:text-foreground"
+                        className="size-11 p-0 text-muted-foreground hover:text-foreground"
                         aria-label="Dismiss banner"
                     >
                         <X className="size-4" />

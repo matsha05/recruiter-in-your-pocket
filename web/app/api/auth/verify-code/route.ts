@@ -24,10 +24,10 @@ export async function POST(request: NextRequest) {
         }
 
         const body = await readJsonWithLimit<any>(request, 16 * 1024);
-        const email = body?.email;
-        const code = body?.code;
+        const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
+        const code = typeof body?.code === "string" ? body.code.trim() : "";
 
-        if (!email || !code) {
+        if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\d{8}$/.test(code)) {
             const res = NextResponse.json(
                 { ok: false, message: "Email and code are required" },
                 { status: 400 }
@@ -37,12 +37,21 @@ export async function POST(request: NextRequest) {
             return res;
         }
 
+        const emailLimit = await rateLimitAsync(`email:${hashForLogs(email)}:${path}`, 8, 10 * 60_000);
+        if (!emailLimit.ok) {
+            const res = NextResponse.json({ ok: false, message: "Too many code attempts. Request a new code and try again later." }, { status: 429 });
+            res.headers.set("x-request-id", request_id);
+            res.headers.set("retry-after", String(Math.ceil(emailLimit.resetMs / 1000)));
+            logWarn({ msg: "http.request.completed", request_id, route, method, path, status: 429, latency_ms: Date.now() - startedAt, outcome: "rate_limited" });
+            return res;
+        }
+
         const supabase = await createSupabaseServerAction();
 
         // Verify OTP code
         const { data, error } = await supabase.auth.verifyOtp({
-            email: email.trim(),
-            token: code.trim(),
+            email,
+            token: code,
             type: "email"
         });
 

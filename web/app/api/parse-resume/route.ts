@@ -8,7 +8,11 @@ import { rateLimitAsync } from "@/lib/security/rateLimit";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+// Keep multipart requests comfortably below Vercel's 4.5 MB function limit.
+const MAX_FILE_SIZE = 4 * 1024 * 1024;
+// A small compressed document can expand into a very large string. Keep the
+// parser response inside the same boundary enforced by the report endpoints.
+const MAX_EXTRACTED_TEXT_LENGTH = 30_000;
 
 function cleanExtractedText(text: string) {
   return String(text || "")
@@ -69,7 +73,7 @@ export async function POST(request: Request) {
 
     if (file.size > MAX_FILE_SIZE) {
       const res = NextResponse.json(
-        { ok: false, errorCode: "FILE_TOO_LARGE", message: "File is too large. Max 10MB." },
+        { ok: false, errorCode: "FILE_TOO_LARGE", message: "File is too large. Max 4 MB." },
         { status: 400 }
       );
       res.headers.set("x-request-id", request_id);
@@ -119,6 +123,20 @@ export async function POST(request: Request) {
       return res;
     }
 
+    if (extractedText.length > MAX_EXTRACTED_TEXT_LENGTH) {
+      const res = NextResponse.json(
+        {
+          ok: false,
+          errorCode: "EXTRACTED_TEXT_TOO_LARGE",
+          message: "This document contains too much text to review safely. Paste only the resume content you want reviewed."
+        },
+        { status: 400 }
+      );
+      res.headers.set("x-request-id", request_id);
+      logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 400, latency_ms: Date.now() - startedAt, outcome: "validation_error" });
+      return res;
+    }
+
     const res = NextResponse.json({ ok: true, text: extractedText, fileName: file.name });
     res.headers.set("x-request-id", request_id);
     logInfo({ msg: "http.request.completed", request_id, route, method, path, status: 200, latency_ms: Date.now() - startedAt, outcome: "success" });
@@ -143,6 +161,4 @@ export async function POST(request: Request) {
     return res;
   }
 }
-
-
 

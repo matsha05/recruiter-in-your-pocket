@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { AlertTriangle, CheckCircle2, ClipboardList, ShieldCheck, Siren, ToggleRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getLaunchReadinessSnapshot } from "@/lib/launch/readiness";
@@ -6,10 +7,24 @@ import { canAccessInternalLaunchSurface, shouldProtectInternalLaunchSurface } fr
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 
 function badgeClass(status: "pass" | "warn" | "fail") {
-  if (status === "pass") return "bg-emerald-50 text-emerald-700";
-  if (status === "warn") return "bg-amber-50 text-amber-700";
-  return "bg-rose-50 text-rose-700";
+  if (status === "pass") return "border-success/35 bg-success/10 text-success";
+  if (status === "warn") return "border-warning/35 bg-warning/10 text-warning-foreground";
+  return "border-destructive/35 bg-error-surface text-destructive";
 }
+
+function LaunchPanel({ icon, title, children }: { icon?: ReactNode; title: string; children: ReactNode }) {
+  return (
+    <section className="border-t border-line bg-background p-5 md:p-6">
+      <div className="mb-5 flex items-center gap-2 text-brand">
+        {icon}
+        <h2 className="font-display text-xl riyp-weight-560 tracking-[-0.025em] text-foreground">{title}</h2>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+const rowClass = "border-t border-line py-4 first:border-t-0 first:pt-0 last:pb-0";
 
 export default async function LaunchPage() {
   if (await shouldProtectInternalLaunchSurface()) {
@@ -21,141 +36,123 @@ export default async function LaunchPage() {
   }
 
   const snapshot = await getLaunchReadinessSnapshot();
+  const hasWarnings = snapshot.gates.some((gate) => gate.status === "warn");
+  const launchLabel = !snapshot.goNoGo ? "NO-GO" : hasWarnings ? "GO WITH WARNINGS" : "GO";
 
   return (
-    <div data-visual-anchor="launch-page" className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
-      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-          <div className="gap-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Launch Command Center</p>
-            <h1 className="font-display text-3xl text-slate-900">Go/no-go launch program</h1>
-            <p className="max-w-2xl text-sm text-slate-600">
-              This page is the working launch room: runtime readiness, gate status, rollback controls, vendor review, and the final rehearsal checklist.
+    <div data-visual-anchor="launch-page" className="min-h-full bg-paper px-4 py-8 text-foreground sm:px-6 lg:px-8 lg:py-12">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
+        <header className="grid gap-6 border-t border-line pt-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Launch command center</p>
+            <h1 className="launch-command-title mt-3 font-display riyp-weight-620 text-foreground riyp-stretch-91">
+              Go or no-go, with receipts.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
+              Runtime readiness, launch gates, rollback controls, vendor review, ownership, and the final rehearsal in one place.
             </p>
+            <p className="mt-3 text-xs text-muted-foreground">Generated {new Date(snapshot.generatedAt).toLocaleString()}.</p>
           </div>
-          <div className={`inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold ${snapshot.goNoGo ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"}`}>
+          <div className={`inline-flex min-h-12 items-center gap-2 border-l-4 px-4 py-2 text-sm font-semibold ${!snapshot.goNoGo ? "border-destructive bg-error-surface text-destructive" : hasWarnings ? "border-warning bg-warning/10 text-warning-foreground" : "border-citron bg-citron/15 text-foreground"}`}>
             {snapshot.goNoGo ? <CheckCircle2 className="size-4" /> : <AlertTriangle className="size-4" />}
-            {snapshot.goNoGo ? "GO" : "NO-GO"}
+            {launchLabel}
           </div>
-        </div>
-        <p className="mt-4 text-sm text-slate-500">Last generated {new Date(snapshot.generatedAt).toLocaleString()}.</p>
-      </section>
+        </header>
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <ShieldCheck className="size-4 text-slate-500" />
-            <h2 className="font-display text-lg text-slate-900">Launch gates</h2>
-          </div>
-          <div className="gap-y-3">
-            {snapshot.gates.map((gate) => (
-              <div key={gate.id} className="rounded-2xl border border-slate-100 p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900">{gate.label}</p>
-                    <p className="mt-1 text-sm text-slate-500">{gate.description}</p>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <LaunchPanel icon={<ShieldCheck className="size-4" />} title="Launch gates">
+            <div>
+              {snapshot.gates.map((gate) => (
+                <div key={gate.id} className={rowClass}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{gate.label}</p>
+                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{gate.description}</p>
+                    </div>
+                    <span className={`riyp-type-0625 riyp-track-012 shrink-0 border px-2 py-1 font-semibold uppercase ${badgeClass(gate.status)}`}>
+                      {gate.status}
+                    </span>
                   </div>
-                  <span className={`rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-wide ${badgeClass(gate.status)}`}>
-                    {gate.status}
-                  </span>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </LaunchPanel>
 
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <Siren className="size-4 text-slate-500" />
-            <h2 className="font-display text-lg text-slate-900">Current blockers</h2>
-          </div>
-          <div className="gap-y-3">
+          <LaunchPanel icon={<Siren className="size-4" />} title="Current blockers">
             {snapshot.blockers.length === 0 ? (
-              <p className="rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-700">No launch blockers are currently reported by the runtime readiness system.</p>
+              <p className="border-l-2 border-success bg-success/10 p-4 text-sm leading-6 text-success">No launch blockers are reported by the runtime readiness system.</p>
             ) : (
-              snapshot.blockers.map((blocker) => (
-                <div key={`${blocker.gateId}-${blocker.check}`} className="rounded-2xl border border-rose-100 bg-rose-50/60 p-4">
-                  <p className="text-sm font-semibold text-rose-800">{blocker.gateLabel}</p>
-                  <p className="mt-1 text-sm text-rose-700">{blocker.message}</p>
-                  <p className="mt-2 text-xs uppercase tracking-wide text-rose-500">{blocker.check.replace(/_/g, " ")}</p>
-                </div>
-              ))
+              <div>
+                {snapshot.blockers.map((blocker) => (
+                  <div key={`${blocker.gateId}-${blocker.check}`} className={`${rowClass} border-l-2 border-l-destructive bg-error-surface px-4`}>
+                    <p className="text-sm font-semibold text-destructive">{blocker.gateLabel}</p>
+                    <p className="mt-1 text-sm leading-6 text-destructive">{blocker.message}</p>
+                    <p className="riyp-type-0625 riyp-track-012 mt-2 uppercase text-destructive/75">{blocker.check.replace(/_/g, " ")}</p>
+                  </div>
+                ))}
+              </div>
             )}
-          </div>
-        </div>
-      </section>
+          </LaunchPanel>
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <ToggleRight className="size-4 text-slate-500" />
-            <h2 className="font-display text-lg text-slate-900">Rollback controls</h2>
-          </div>
-          <div className="gap-y-3">
-            {ROLLBACK_CONTROLS.map((control) => (
-              <div key={control.envVar} className="rounded-2xl border border-slate-100 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold text-slate-900">{control.surface}</p>
-                  <code className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-700">{control.envVar}</code>
+          <LaunchPanel icon={<ToggleRight className="size-4" />} title="Rollback controls">
+            <div>
+              {ROLLBACK_CONTROLS.map((control) => (
+                <div key={control.envVar} className={rowClass}>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-sm font-semibold text-foreground">{control.surface}</p>
+                    <code className="border border-line bg-paper-muted px-2 py-1 text-xs text-muted-foreground">{control.envVar}</code>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{control.reason}</p>
+                  <p className="riyp-type-0625 riyp-track-012 mt-2 uppercase text-muted-foreground">Default {control.defaultState}</p>
                 </div>
-                <p className="mt-2 text-sm text-slate-500">{control.reason}</p>
-                <p className="mt-2 text-xs uppercase tracking-wide text-slate-400">Default: {control.defaultState}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </LaunchPanel>
 
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <ClipboardList className="size-4 text-slate-500" />
-            <h2 className="font-display text-lg text-slate-900">Named owners</h2>
-          </div>
-          <div className="gap-y-3">
-            {LAUNCH_OWNERS.map((owner) => (
-              <div key={owner.surface} className="rounded-2xl border border-slate-100 p-4">
-                <p className="text-sm font-semibold text-slate-900">{owner.surface}</p>
-                <p className="mt-1 text-sm text-slate-600">Primary: {owner.owner}</p>
-                <p className="text-sm text-slate-500">Backup: {owner.backup}</p>
-                <p className="mt-2 text-xs text-slate-400">{owner.channel}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="font-display text-lg text-slate-900">Vendor and privacy review</h2>
-          <div className="mt-4 gap-y-3">
-            {VENDOR_REVIEW_ITEMS.map((item) => (
-              <div key={item.vendor} className="rounded-2xl border border-slate-100 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold text-slate-900">{item.vendor}</p>
-                  <span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600">
-                    {item.launchDecision}
-                  </span>
+          <LaunchPanel icon={<ClipboardList className="size-4" />} title="Named owners">
+            <div>
+              {LAUNCH_OWNERS.map((owner) => (
+                <div key={owner.surface} className={rowClass}>
+                  <p className="text-sm font-semibold text-foreground">{owner.surface}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Primary: {owner.owner}</p>
+                  <p className="text-sm text-muted-foreground">Backup: {owner.backup}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">{owner.channel}</p>
                 </div>
-                <p className="mt-2 text-sm text-slate-500">{item.purpose}</p>
-                <p className="mt-2 text-sm text-slate-600">Data: {item.dataClasses}</p>
-                <p className="mt-2 text-sm text-slate-500">{item.reviewNotes}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </LaunchPanel>
 
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="font-display text-lg text-slate-900">Launch rehearsal</h2>
-          <div className="mt-4 gap-y-3">
-            {LAUNCH_REHEARSAL_STEPS.map((step, index) => (
-              <div key={step.id} className="rounded-2xl border border-slate-100 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Step {index + 1} · {step.surface}</p>
-                <p className="mt-1 text-sm font-semibold text-slate-900">{step.title}</p>
-                <p className="mt-2 text-sm text-slate-500">{step.evidence}</p>
-              </div>
-            ))}
-          </div>
+          <LaunchPanel title="Vendor and privacy review">
+            <div>
+              {VENDOR_REVIEW_ITEMS.map((item) => (
+                <div key={item.vendor} className={rowClass}>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-sm font-semibold text-foreground">{item.vendor}</p>
+                    <span className="riyp-type-0625 riyp-track-012 border border-line bg-paper-muted px-2 py-1 font-semibold uppercase text-muted-foreground">
+                      {item.launchDecision}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.purpose}</p>
+                  <p className="mt-2 text-sm text-foreground">Data: {item.dataClasses}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.reviewNotes}</p>
+                </div>
+              ))}
+            </div>
+          </LaunchPanel>
+
+          <LaunchPanel title="Launch rehearsal">
+            <div>
+              {LAUNCH_REHEARSAL_STEPS.map((step, index) => (
+                <div key={step.id} className={rowClass}>
+                  <p className="riyp-type-0625 riyp-track-012 font-semibold uppercase text-brand">Step {index + 1} · {step.surface}</p>
+                  <p className="mt-1 text-sm font-semibold text-foreground">{step.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{step.evidence}</p>
+                </div>
+              ))}
+            </div>
+          </LaunchPanel>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

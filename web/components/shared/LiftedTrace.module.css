@@ -81,15 +81,15 @@
 }
 
 .compact .item {
-  padding: 0.8rem 0.9rem 0.75rem;
+  padding: 0.925rem 0.9rem 0.875rem;
 }
 
 .compact .index {
-  font-size: 0.78rem;
+  font-size: 0.86rem;
 }
 
 .compact .label {
-  font-size: 0.58rem;
+  font-size: 0.625rem;
 }
 
 .compact .detail {

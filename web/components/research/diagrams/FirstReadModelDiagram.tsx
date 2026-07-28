@@ -94,7 +94,7 @@ export function FirstReadModelDiagram() {
                     />
                 </div>
             </div>
-            <DiagramCaption kicker="Fig. 1 / Score with receipts" title="The number stays visible. The evidence makes it useful." />
+            <DiagramCaption kicker="Fig. 1 / Score and evidence" title="The number stays visible. The evidence makes it useful." />
         </DiagramFigure>
     );
 }

@@ -16,9 +16,10 @@ import * as fs from "fs/promises";
 import { existsSync } from "fs";
 import * as path from "path";
 import { runJudge, formatJudgeSummary, type JudgeResult } from "../lib/evals/judge";
+import { getChatCompletionTuning, resolveOpenAIModel } from "../lib/llm/model-config";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+const OPENAI_MODEL = resolveOpenAIModel("resume");
 
 interface AnalysisResult {
     resumeId: string;
@@ -53,7 +54,10 @@ ${resumeText}
         },
         body: JSON.stringify({
             model: OPENAI_MODEL,
-            temperature: 0,
+            ...getChatCompletionTuning(OPENAI_MODEL, {
+                temperature: 0,
+                maxCompletionTokens: 24_000,
+            }),
             response_format: { type: "json_object" },
             messages: [
                 { role: "system", content: systemPrompt },

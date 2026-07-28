@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { ExternalLink, ChevronDown, Check, Building2, MapPin, Calendar } from "lucide-react";
+import { ArrowSquareOut, Buildings, CalendarBlank, CaretDown, MapPin } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import type { JobDetail, JobStatus } from "@/components/jobs/jobDetailTypes";
 import { STATUS_CONFIG } from "@/components/jobs/jobDetailTypes";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type JobDetailHeaderProps = {
   jobId: string;
@@ -15,16 +22,12 @@ type JobDetailHeaderProps = {
 };
 
 export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHeaderProps) {
-  const [statusMenuOpen, setStatusMenuOpen] = useState(false);
   const [updatingStatus, setUpdatingStatus] = useState(false);
   const statusConfig = STATUS_CONFIG[job.status];
   const capturedDate = new Date(job.captured_at);
 
   const handleStatusSelect = async (statusKey: JobStatus) => {
-    if (statusKey === job.status) {
-      setStatusMenuOpen(false);
-      return;
-    }
+    if (statusKey === job.status) return;
 
     setUpdatingStatus(true);
     try {
@@ -43,7 +46,6 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
       toast.error("Failed to update status");
     } finally {
       setUpdatingStatus(false);
-      setStatusMenuOpen(false);
     }
   };
 
@@ -53,61 +55,61 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
         <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           Saved role
         </p>
-        <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-display font-semibold tracking-tight text-foreground">
-            {job.title}
-          </h1>
-          <div className="relative">
-            <button type="button"
-              onClick={() => setStatusMenuOpen(!statusMenuOpen)}
-              disabled={updatingStatus}
-              className={cn(
-                "inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full transition-colors",
-                statusConfig.bgColor,
-                statusConfig.color,
-                "hover:opacity-80 cursor-pointer"
-              )}
-            >
-              {statusConfig.label}
-              <ChevronDown className="size-3" />
-            </button>
-            {statusMenuOpen && (
-              <div className="absolute top-full left-0 mt-1 w-40 bg-card border border-border rounded shadow-sm z-50">
+        <div className="flex flex-wrap items-center gap-3">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+            Application status
+          </h2>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                disabled={updatingStatus}
+                className={cn(
+                  "inline-flex min-h-11 items-center gap-2 border-l-2 px-3 py-2 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/45",
+                  statusConfig.bgColor,
+                  statusConfig.color,
+                  "cursor-pointer hover:opacity-80 disabled:cursor-wait disabled:opacity-60"
+                )}
+              >
+                {updatingStatus ? "Updating…" : statusConfig.label}
+                <CaretDown className="size-3" weight="bold" aria-hidden="true" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-48 rounded-none border-line bg-background p-1">
+              <DropdownMenuRadioGroup
+                value={job.status}
+                onValueChange={(value) => void handleStatusSelect(value as JobStatus)}
+                aria-label="Application status"
+              >
                 {(Object.keys(STATUS_CONFIG) as JobStatus[]).map((statusKey) => {
                   const config = STATUS_CONFIG[statusKey];
-                  const isSelected = job.status === statusKey;
                   return (
-                    <button type="button"
+                    <DropdownMenuRadioItem
                       key={statusKey}
-                      onClick={() => handleStatusSelect(statusKey)}
-                      className={cn(
-                        "w-full px-3 py-2 text-left text-sm flex items-center justify-between",
-                        "hover:bg-muted transition-colors",
-                        isSelected && "bg-muted/50"
-                      )}
+                      value={statusKey}
+                      className="min-h-11 rounded-none focus:bg-paper-muted"
                     >
                       <span className={config.color}>{config.label}</span>
-                      {isSelected && <Check className="size-4 text-success" />}
-                    </button>
+                    </DropdownMenuRadioItem>
                   );
                 })}
-              </div>
-            )}
-          </div>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <Building2 className="size-4" />
+            <Buildings className="size-4" aria-hidden="true" />
             {job.company}
           </span>
           {job.location && (
             <span className="flex items-center gap-1.5">
-              <MapPin className="size-4" />
+              <MapPin className="size-4" aria-hidden="true" />
               {job.location}
             </span>
           )}
           <span className="flex items-center gap-1.5">
-            <Calendar className="size-4" />
+            <CalendarBlank className="size-4" aria-hidden="true" />
             Captured {capturedDate.toLocaleDateString()}
           </span>
         </div>
@@ -118,9 +120,9 @@ export default function JobDetailHeader({ jobId, job, onJobUpdate }: JobDetailHe
           href={job.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
+          className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
         >
-          <ExternalLink className="size-4" />
+          <ArrowSquareOut className="size-4" aria-hidden="true" />
           View Original
         </a>
       </div>

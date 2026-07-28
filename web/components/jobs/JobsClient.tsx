@@ -181,10 +181,10 @@ export default function JobsClient() {
                 description="Track saved roles, compare fit, and keep the recruiter-grade context next to every application."
                 meta={
                     <>
-                        <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                        <span className="inline-flex items-center border-l-2 border-cyan-bright bg-surface-sky px-3 py-1 text-xs font-medium text-muted-foreground">
                             {activeJobs} active role{activeJobs === 1 ? "" : "s"}
                         </span>
-                        <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
+                        <span className="inline-flex items-center border-l-2 border-line bg-paper-muted px-3 py-1 text-xs font-medium text-muted-foreground">
                             {trackedSources || 1} source{trackedSources === 1 ? "" : "s"}
                         </span>
                     </>
@@ -193,14 +193,14 @@ export default function JobsClient() {
                     <div className="flex flex-wrap items-center gap-2">
                         <Link
                             href="/extension"
-                            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
+                            className="inline-flex min-h-11 items-center gap-2 rounded-md border border-foreground bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-paper-muted"
                         >
                             <Chrome className="size-4" />
                             Install extension
                         </Link>
                         <Link
                             href="/workspace"
-                            className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand/90"
+                            className="inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
                         >
                             Get report
                         </Link>
@@ -223,7 +223,7 @@ export default function JobsClient() {
                         placeholder="Search jobs…"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full h-9 pl-9 pr-4 rounded border border-border bg-background text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
+                        className="min-h-11 w-full rounded border border-border bg-background pl-9 pr-4 text-sm placeholder:text-muted-foreground focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                     />
                 </div>
 
@@ -237,7 +237,7 @@ export default function JobsClient() {
                         id="jobs-status-filter"
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value as JobStatus | 'all')}
-                        className="h-9 px-3 rounded border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand"
+                        className="min-h-11 rounded border border-border bg-background px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                     >
                         <option value="all">All Status</option>
                         <option value="saved">Saved</option>
@@ -249,7 +249,7 @@ export default function JobsClient() {
                 </div>
             </div>
 
-            <div className="rounded-xl border border-brand/15 bg-brand/[0.045] px-4 py-3 text-sm text-muted-foreground">
+            <div className="border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-sm text-muted-foreground">
                 Saved jobs are easiest to build from the extension. Capture a supported role while you browse, then return here when you want to compare fit and move it forward.
             </div>
 
@@ -266,7 +266,7 @@ export default function JobsClient() {
                         <button
                             type="button"
                             onClick={() => setRefreshKey((key) => key + 1)}
-                            className="mt-4 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                            className="mt-4 min-h-11 rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                         >
                             Try again
                         </button>
@@ -324,19 +324,19 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
     const timeAgo = getTimeAgo(capturedDate);
 
     return (
-        <article className="group flex items-center gap-2 p-2 transition-colors hover:bg-muted/20 sm:gap-4 sm:p-4">
+        <article className="group flex flex-col items-stretch gap-2 p-2 transition-colors hover:bg-muted/20 sm:flex-row sm:items-center sm:gap-4 sm:p-4">
             <button
                 type="button"
                 onClick={onClick}
                 aria-label={`Open ${job.title} at ${job.company}`}
-                className="flex min-w-0 flex-1 items-center gap-3 rounded-lg p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:gap-4"
+                className="flex min-w-0 flex-1 items-center gap-3 rounded-md p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 sm:gap-4"
             >
                 {/* Score Dial */}
                 <ScoreDial score={job.match_score} />
 
                 {/* Job Info */}
                 <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                         <h3 className="truncate font-medium text-foreground">
                             {job.title}
                         </h3>
@@ -348,7 +348,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
                             {statusConfig.label}
                         </span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                         <span>{job.company}</span>
                         {job.location && (
                             <>
@@ -363,10 +363,10 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
             </button>
 
             {/* Actions */}
-            <div className="flex items-center gap-1 opacity-70 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
+            <div className="flex w-full items-center justify-end gap-1 border-t border-line px-2 pt-2 opacity-80 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100 sm:w-auto sm:border-0 sm:p-0">
                 <button type="button"
                     onClick={onOpenOriginal}
-                    className="rounded p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                    className="inline-flex size-11 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                     title="Open original posting"
                     aria-label={`Open the original posting for ${job.title}`}
                 >
@@ -374,7 +374,7 @@ function JobRow({ job, onClick, onOpenOriginal, onDelete }: JobRowProps) {
                 </button>
                 <button type="button"
                     onClick={onDelete}
-                    className="rounded p-2 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+                    className="inline-flex size-11 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
                     title="Delete job"
                     aria-label={`Delete ${job.title}`}
                 >
@@ -455,7 +455,7 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
 
     if (!signedIn) {
         return (
-            <div className="gap-y-5 border-y border-border bg-card p-16 text-center">
+            <div className="gap-y-5 border-y border-border bg-card p-8 text-center sm:p-16">
                 <div className="mx-auto flex size-20 items-center justify-center rounded-md border border-border bg-mineral">
                     <Briefcase className="size-8 text-brand/60" />
                 </div>
@@ -465,7 +465,7 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
                         Your job tracker is tied to your account, so we only load saved roles and default resume context after you sign in.
                     </p>
                 </div>
-                <div className="flex items-center justify-center gap-3">
+                <div className="flex flex-wrap items-center justify-center gap-3">
                     <Link
                         href="/auth?from=jobs"
                         className="inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-deep"
@@ -490,7 +490,7 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
     }
 
     return (
-        <div className="gap-y-6 border-y border-border bg-card p-16 text-center">
+        <div className="gap-y-6 border-y border-border bg-card p-8 text-center sm:p-16">
             {/* Visual illustration */}
             <div className="relative mx-auto size-20">
                 <div className="absolute inset-0 rounded-md border border-brand/20 bg-mineral" />
@@ -504,7 +504,7 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
                     Save your first job from LinkedIn or Indeed using the RIYP extension, and we&apos;ll show you how your resume stacks up.
                 </p>
             </div>
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                     href="/extension"
                     className="inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-deep"
@@ -518,7 +518,7 @@ function EmptyState({ hasJobs, signedIn }: { hasJobs: boolean; signedIn: boolean
                     Get report manually
                 </Link>
             </div>
-            <div className="flex items-center justify-center gap-8 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-5 pt-2 sm:gap-8">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
                     <div className="size-2 rounded-full bg-success/40" />
                     <span>Match scoring</span>

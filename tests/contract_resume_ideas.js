@@ -2,6 +2,10 @@
 const assert = require("assert");
 
 process.env.USE_MOCK_OPENAI = "1";
+// The public launch keeps this experimental route off. This contract opts in
+// explicitly so its request/response behavior remains covered without
+// weakening the fail-closed production default.
+process.env.RIYP_ENABLE_RESUME_IDEAS_API = "1";
 process.env.SESSION_SECRET = process.env.SESSION_SECRET || "contract-test-session-secret";
 const { startNextServer } = require("../scripts/next_server");
 let next = null;

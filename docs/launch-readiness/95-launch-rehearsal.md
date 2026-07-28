@@ -2,7 +2,7 @@
 
 **Last updated:** July 19, 2026
 **Tester:** Matt Shaw
-**Status:** Required before controlled paid beta
+**Status:** Required before public launch
 
 Run this against a production-like preview in a clean browser profile. Use Stripe test mode. Capture one screenshot or short note for every section, including failures and confusing moments.
 
@@ -10,7 +10,7 @@ Run this against a production-like preview in a clean browser profile. Use Strip
 
 - Record the release identifier and preview URL.
 - Confirm the extension, analytics, error replay, guest save, public share, and paid eval flags are off.
-- Confirm the ordered migration set has replayed cleanly and the preview database is current through migration 016.
+- Confirm the complete ordered migration set has replayed cleanly and the active Supabase project matches the repository manifest.
 - Confirm the shared hosted rate limiter is configured.
 - Open a desktop browser and a mobile viewport.
 
@@ -81,9 +81,11 @@ Pass when no screen feels like a secondary or unfinished product.
 
 ## 7. Operational Recovery
 
-- Disable billing and confirm the public product fails safely.
+- Disable new purchases with `RIYP_DISABLE_NEW_PURCHASES` and confirm Checkout fails safely while receipts, restore, portal, and refund handling remain available.
+- Disable generation with `RIYP_DISABLE_GENERATION` and confirm provider calls stop before access is consumed.
 - Confirm private extension routes are unavailable while the extension flag is off.
 - Confirm `/api/health`, `/api/ready`, and `/api/status` return honest results.
+- Repoint a disposable preview alias to the prior known-good preview and back; do not touch production aliases or domains.
 - Follow the incident runbook for one simulated report-generation failure.
 - Re-enable only the settings required for the release candidate.
 

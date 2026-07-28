@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { safeAuthRedirect } from "../lib/auth/utils";
+import { normalizeAuthContext, safeAuthRedirect } from "../lib/auth/utils";
 import { getAppUrlForRequest, getConfiguredAppUrl } from "../lib/runtime/appUrl";
 import { PRIVATE_ROUTE_ROBOTS } from "../lib/seo/privateRouteMetadata";
 
@@ -18,6 +18,9 @@ assertEqual(safeAuthRedirect("/%2F%2Fevil.example", fallback), fallback, "reject
 assertEqual(safeAuthRedirect("/\\evil.example", fallback), fallback, "rejects backslash redirect");
 assertEqual(safeAuthRedirect("https://evil.example", fallback), fallback, "rejects absolute redirect");
 assertEqual(safeAuthRedirect("/%E0%A4%A", fallback), fallback, "rejects malformed encoding");
+assertEqual(normalizeAuthContext("reports"), "history", "report history receives its authored sign-in context");
+assertEqual(normalizeAuthContext("purchase"), "paywall", "purchase recovery receives the billing sign-in context");
+assertEqual(normalizeAuthContext("extension"), "extension", "extension sync receives its authored sign-in context");
 assertEqual(PRIVATE_ROUTE_ROBOTS.index, false, "private surfaces opt out of indexing");
 assertEqual(PRIVATE_ROUTE_ROBOTS.follow, false, "private surfaces opt out of link following");
 assertEqual(PRIVATE_ROUTE_ROBOTS.googleBot.index, false, "Googlebot receives the private route policy");
@@ -40,6 +43,8 @@ for (const routeFile of [
 const proxySource = fs.readFileSync(path.resolve(process.cwd(), "proxy.ts"), "utf8");
 const proxyHelperSource = fs.readFileSync(path.resolve(process.cwd(), "lib/supabase/proxy.ts"), "utf8");
 const callbackSource = fs.readFileSync(path.resolve(process.cwd(), "app/auth/callback/route.ts"), "utf8");
+const authProviderSource = fs.readFileSync(path.resolve(process.cwd(), "components/providers/AuthProvider.tsx"), "utf8");
+const authFlowSource = fs.readFileSync(path.resolve(process.cwd(), "components/auth/AuthFlow.tsx"), "utf8");
 
 assertEqual(proxySource.includes("updateSupabaseSession(request)"), true, "proxy refreshes scoped auth sessions");
 assertEqual(proxySource.includes('"/api/:path*"'), true, "API routes receive refreshed auth cookies");
@@ -48,6 +53,10 @@ assertEqual(proxyHelperSource.includes("supabase.auth.getClaims()"), true, "prox
 assertEqual(proxyHelperSource.includes("Object.entries(cacheHeaders)"), true, "proxy forwards anti-caching headers with refreshed cookies");
 assertEqual(callbackSource.includes("getAll()"), true, "auth callback uses the current bulk cookie API");
 assertEqual(callbackSource.includes("error.message"), false, "auth callback does not expose provider errors in the URL");
+assertEqual(authProviderSource.includes("if (!response.ok)"), true, "client sign-out does not hide a server failure");
+assertEqual(authProviderSource.includes('window.location.replace("/")'), true, "client sign-out clears private in-memory state and report history");
+assertEqual(authFlowSource.includes('data?.errorCode === "rate_limited"'), true, "auth explains provider email throttling instead of showing a generic failure");
+assertEqual(authFlowSource.includes("Send a sign-in link instead"), false, "auth does not promise an email mode controlled by the shared Supabase template");
 
 const runtimeKeys = ["NEXT_PUBLIC_APP_URL", "VERCEL_ENV", "VERCEL_URL"] as const;
 const previousRuntime = Object.fromEntries(runtimeKeys.map((key) => [key, process.env[key]]));

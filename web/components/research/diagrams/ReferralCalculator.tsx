@@ -8,7 +8,7 @@ function formatCurrency(value: number) {
     return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 }
 
-export function ReferralCalculator() {
+export function ReferralCalculator({ figureNumber = 1 }: { figureNumber?: number }) {
     const [salary, setSalary] = useState(120000);
     const [coldRate, setColdRate] = useState(2);
     const [referralRate, setReferralRate] = useState(40);
@@ -27,7 +27,7 @@ export function ReferralCalculator() {
     return (
         <DiagramFigure className="max-w-[50rem]" label="Calculator comparing applications per callback with and without a referral">
             <DiagramFrame>
-                <EvidenceHeader index="02" label="Example calculator" title="Try different response rates and see how many applications they imply." note="This is simple arithmetic, not a forecast. Use rates that fit your role, market, and referral strength." />
+                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="Example calculator" title="Try different response rates and see how many applications they imply." note="This is simple arithmetic, not a forecast. Use rates that fit your role, market, and referral strength." />
                 <div className="grid gap-10 px-5 py-7 md:grid-cols-[0.85fr_1.15fr] md:px-7 md:py-9">
                     <div className="space-y-6">
                         <RangeControl id="salary" label="Annual salary" value={salary} onChange={setSalary} min={30000} max={500000} step={5000} display={formatCurrency(salary)} />
@@ -50,7 +50,7 @@ export function ReferralCalculator() {
                     </div>
                 </div>
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 2 / Example calculator" title="Even a small change in response rate can change how many applications you need." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Example calculator`} title="Even a small change in response rate can change how many applications you need." />
         </DiagramFigure>
     );
 }

@@ -11,7 +11,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import { cn } from "@/lib/utils";
 import { getAuthCopy, type AuthContext } from "@/lib/auth/content";
 
-type AuthStep = "email" | "code" | "link" | "name";
+type AuthStep = "email" | "code" | "name";
 
 interface AuthFlowProps {
   variant?: "page" | "modal";
@@ -42,14 +42,31 @@ export function AuthFlow({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(initialError);
   const [resendCooldown, setResendCooldown] = useState(0);
-  const [showMagicLinkFallback, setShowMagicLinkFallback] = useState(false);
   const isVerifyingRef = useRef(false);
+  const errorRef = useRef<HTMLDivElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const codeInputRef = useRef<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (initialError) {
       setError(initialError);
     }
   }, [initialError]);
+
+  useEffect(() => {
+    if (error) errorRef.current?.focus({ preventScroll: true });
+  }, [error]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const frame = window.requestAnimationFrame(() => {
+      if (step === "email") emailInputRef.current?.focus({ preventScroll: true });
+      if (step === "code") codeInputRef.current?.focus({ preventScroll: true });
+      if (step === "name") nameInputRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [isOpen, step]);
 
   const resetFlow = useCallback(() => {
     setStep("email");
@@ -59,7 +76,6 @@ export function AuthFlow({
     setLoading(false);
     setError(null);
     setResendCooldown(0);
-    setShowMagicLinkFallback(false);
     isVerifyingRef.current = false;
   }, []);
 
@@ -77,30 +93,31 @@ export function AuthFlow({
     return () => clearInterval(timer);
   }, [resendCooldown]);
 
-  const handleSendCode = useCallback(async (mode: "otp" | "magic_link" = "otp") => {
+  const handleSendCode = useCallback(async () => {
     if (!email.trim()) {
       setError("Please enter your email");
       return;
     }
     setLoading(true);
     setError(null);
-    setShowMagicLinkFallback(false);
 
     try {
       const res = await fetch("/api/auth/send-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), mode, next: redirectTo || "/workspace" })
+        body: JSON.stringify({ email: email.trim(), next: redirectTo || "/workspace" })
       });
       const data = await res.json();
       if (!data?.ok) {
         if (data?.errorCode === "otp_disabled") {
-          setShowMagicLinkFallback(true);
-          throw new Error(data?.hint || "Email codes are disabled for this project.");
+          throw new Error("Email sign-in is temporarily unavailable. Contact support if you need access now.");
+        }
+        if (data?.errorCode === "rate_limited") {
+          throw new Error(data?.hint || "Too many sign-in emails were sent. Wait before requesting another.");
         }
         throw new Error(data?.message || data?.hint || "Failed to send code");
       }
-      setStep(mode === "magic_link" ? "link" : "code");
+      setStep("code");
       setResendCooldown(30);
     } catch (err: any) {
       setError(err?.message || "Failed to send code");
@@ -180,7 +197,7 @@ export function AuthFlow({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (step === "email") void handleSendCode("otp");
+    if (step === "email") void handleSendCode();
     if (step === "code") void verifyCode();
     if (step === "name") void handleSaveName();
   };
@@ -188,7 +205,6 @@ export function AuthFlow({
   const stepTitle = useMemo(() => {
     if (step === "email") return copy.headline;
     if (step === "code") return "Check your inbox";
-    if (step === "link") return "Check your inbox";
     return "One last thing";
   }, [copy.headline, step]);
 
@@ -198,14 +214,6 @@ export function AuthFlow({
       return (
         <span>
           We sent an 8-digit code to{" "}
-          <span className="text-foreground font-medium">{email || "your email"}</span>
-        </span>
-      );
-    }
-    if (step === "link") {
-      return (
-        <span>
-          We sent a sign-in link to{" "}
           <span className="text-foreground font-medium">{email || "your email"}</span>
         </span>
       );
@@ -283,7 +291,7 @@ export function AuthFlow({
             </h1>
             <p className="text-sm text-muted-foreground">{stepSubtitle}</p>
             {step === "email" ? (
-              <div className="mx-auto max-w-sm rounded-xl border border-brand/20 bg-brand/5 px-4 py-3 text-left text-xs leading-5 text-muted-foreground">
+              <div className="mx-auto max-w-sm border-l-2 border-cyan-bright bg-surface-sky px-4 py-3 text-left text-xs leading-5 text-muted-foreground">
                 Sign-in is only for report history and role context you choose to keep. Anonymous reports are not silently attached to an account.
               </div>
             ) : null}
@@ -294,14 +302,14 @@ export function AuthFlow({
           {variant === "page" ? (
             <div>
               <div className="text-xs font-semibold uppercase riyp-track-008 text-brand">
-                {step === "email" ? "Enter your email" : step === "code" ? "Enter your code" : step === "link" ? "Check your link" : "Finish setup"}
+                {step === "email" ? "Enter your email" : step === "code" ? "Enter your code" : "Finish setup"}
               </div>
             </div>
           ) : null}
 
           <form className={panelClass} onSubmit={handleSubmit} noValidate>
           {error && (
-            <div className="p-3 text-sm text-center text-destructive bg-destructive/10 rounded border border-destructive/20">
+            <div ref={errorRef} id="auth-error" role="alert" tabIndex={-1} className="border-l-2 border-destructive bg-error px-3 py-2 text-center text-sm text-destructive outline-none">
               {error}
             </div>
           )}
@@ -313,18 +321,20 @@ export function AuthFlow({
                 <div className="relative">
                   <EnvelopeSimple className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/60" weight="bold" />
                   <Input
+                    ref={emailInputRef}
                     id="auth-email"
                     type="email"
                     autoComplete="email"
                     inputMode="email"
                     placeholder="name@company.com"
                     value={email}
+                    aria-invalid={Boolean(error)}
+                    aria-describedby={error ? "auth-error auth-email-help" : "auth-email-help"}
                     onChange={(e) => setEmail(e.target.value)}
-                    autoFocus={variant === "modal"}
                     className="h-12 pl-10 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/40"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground">
+                <p id="auth-email-help" className="text-xs text-muted-foreground">
                   We&apos;ll email a one-time code so you can save securely without a password.
                 </p>
               </div>
@@ -333,15 +343,6 @@ export function AuthFlow({
                 Send sign-in code
                 {!loading && <ArrowRight className="ml-2 size-4" weight="bold" />}
               </Button>
-              {showMagicLinkFallback && (
-                <button
-                  type="button"
-                  onClick={() => handleSendCode("magic_link")}
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Send a sign-in link instead
-                </button>
-              )}
             </div>
           )}
 
@@ -350,6 +351,7 @@ export function AuthFlow({
               <div className="gap-y-2">
                 <Label htmlFor="auth-code" className="sr-only">Login code</Label>
                 <Input
+                  ref={codeInputRef}
                   id="auth-code"
                   type="text"
                   autoComplete="one-time-code"
@@ -358,11 +360,12 @@ export function AuthFlow({
                   placeholder="00000000"
                   className="h-14 font-mono tracking-wide text-center text-2xl bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40 placeholder:text-muted-foreground/20"
                   value={code}
+                  aria-invalid={Boolean(error)}
+                  aria-describedby={error ? "auth-error" : undefined}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "").slice(0, 8);
                     setCode(value);
                   }}
-                  autoFocus={variant === "modal"}
                 />
               </div>
               <Button type="submit" variant="brand" disabled={loading || code.length !== 8} className="h-12 w-full text-base font-medium">
@@ -390,56 +393,11 @@ export function AuthFlow({
                     resendCooldown > 0 && "cursor-not-allowed opacity-60"
                   )}
                   disabled={resendCooldown > 0}
-                  onClick={() => handleSendCode("otp")}
+                  onClick={() => handleSendCode()}
                 >
                   {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend code"}
                 </button>
               </div>
-              <button
-                type="button"
-                onClick={() => handleSendCode("magic_link")}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Send a sign-in link instead
-              </button>
-            </div>
-          )}
-
-          {step === "link" && (
-            <div className="gap-y-4">
-              <div className="rounded border border-border/60 bg-secondary/10 p-4 text-sm text-muted-foreground">
-                Click the link in your email to sign in. You can close this tab after it opens.
-              </div>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <button
-                  type="button"
-                  className="hover:text-foreground transition-colors"
-                  onClick={() => {
-                    setStep("email");
-                    setError(null);
-                  }}
-                >
-                  Use a different email
-                </button>
-                <button
-                  type="button"
-                  className={cn(
-                    "hover:text-foreground transition-colors",
-                    resendCooldown > 0 && "cursor-not-allowed opacity-60"
-                  )}
-                  disabled={resendCooldown > 0}
-                  onClick={() => handleSendCode("magic_link")}
-                >
-                  {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend link"}
-                </button>
-              </div>
-              <button
-                type="button"
-                onClick={() => handleSendCode("otp")}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Use an 8-digit code instead
-              </button>
             </div>
           )}
 
@@ -448,13 +406,15 @@ export function AuthFlow({
               <div className="gap-y-2">
                 <Label htmlFor="auth-name" className="sr-only">First name</Label>
                 <Input
+                  ref={nameInputRef}
                   id="auth-name"
                   type="text"
                   autoComplete="given-name"
                   placeholder="Jane"
                   value={firstName}
+                  aria-invalid={Boolean(error)}
+                  aria-describedby={error ? "auth-error" : undefined}
                   onChange={(e) => setFirstName(e.target.value)}
-                  autoFocus
                   className="h-12 text-base bg-secondary/10 border-border/60 focus:ring-brand/20 focus:border-brand/40"
                 />
               </div>
@@ -482,7 +442,7 @@ export function AuthFlow({
             ) : null}
             {variant === "page" ? (
               <p className="text-xs text-muted-foreground">
-                Questions about privacy or billing? <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</Link> · <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link> · <a href="mailto:support@recruiterinyourpocket.com" className="underline underline-offset-4 hover:text-foreground">Support</a>
+                Questions about privacy or billing? <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy</Link> · <Link href="/security" className="underline underline-offset-4 hover:text-foreground">Security</Link> · <Link href="/support" className="underline underline-offset-4 hover:text-foreground">Support</Link>
               </p>
             ) : null}
           </div>

@@ -8,6 +8,7 @@ import { getConfiguredAppUrl, isHostedProductionRuntime } from "../runtime/appUr
 import { isRedisRestConfigured } from "../redis/config";
 import { liveEvalMatchesCandidate, readLiveEvalEvidence } from "./evalEvidence";
 import { BUNDLED_LIVE_EVAL_EVIDENCE } from "./liveEvalBaseline";
+import { configuredDailyGenerationLimit } from "../operations/generationBudget";
 import {
   LAUNCH_GATE_DEFINITIONS,
   REQUIRED_LAUNCH_DOCS,
@@ -217,6 +218,7 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
   const requiredEnv = [
     "SESSION_SECRET",
     "NEXT_PUBLIC_SUPABASE_URL",
+    "RESEND_API_KEY",
   ];
   const missingEnv = requiredEnv.filter((key) => !process.env[key]);
   if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY && !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -247,6 +249,46 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
       : hostedRuntime
         ? "A compatible Upstash or Vercel KV REST credential pair is required for paid beta traffic."
         : "Shared rate limiting is not configured in this local environment."
+  );
+
+  const dailyGenerationLimit = configuredDailyGenerationLimit();
+  addCheck(
+    checks,
+    "generation_cost_control",
+    dailyGenerationLimit && sharedRateLimitConfigured
+      ? "ok"
+      : hostedRuntime
+        ? "missing"
+        : "disabled",
+    dailyGenerationLimit && sharedRateLimitConfigured
+      ? `Atomic daily generation-request safety limit is configured at ${dailyGenerationLimit} request(s).`
+      : hostedRuntime
+        ? "RIYP_MAX_DAILY_GENERATIONS and shared Redis are required for the production generation safety limit."
+        : "The daily provider-call safety limit is not configured in this local environment."
+  );
+
+  const supportDeliveryVerified = isTruthyEnv(process.env.RIYP_SUPPORT_INBOX_VERIFIED);
+  addCheck(
+    checks,
+    "support_delivery",
+    supportDeliveryVerified ? "ok" : hostedRuntime ? "missing" : "disabled",
+    supportDeliveryVerified
+      ? "The primary support inbox has passed a receive-and-reply rehearsal."
+      : hostedRuntime
+        ? "RIYP_SUPPORT_INBOX_VERIFIED must only be enabled after a real receive-and-reply rehearsal."
+        : "Primary support delivery has not been verified in this local environment."
+  );
+
+  const secondaryAlertVerified = isTruthyEnv(process.env.RIYP_SECONDARY_ALERT_VERIFIED);
+  addCheck(
+    checks,
+    "secondary_alert",
+    secondaryAlertVerified ? "ok" : hostedRuntime ? "missing" : "disabled",
+    secondaryAlertVerified
+      ? "A distinct secondary operational alert destination has passed a delivery rehearsal."
+      : hostedRuntime
+        ? "RIYP_SECONDARY_ALERT_VERIFIED must only be enabled after a distinct backup destination receives a test alert."
+        : "A secondary operational alert destination has not been verified in this local environment."
   );
 
   addCheck(
@@ -538,6 +580,9 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
   if (gateStatus("extension") === "fail") {
     incidents.push("Extension sync may be limited while local capture and studio review remain available.");
   }
+  if (gateStatus("trust") === "fail") {
+    incidents.push("Support or operational safeguards are not fully verified for launch traffic.");
+  }
 
   const services: PublicStatusSnapshot["services"] = [
     {
@@ -554,6 +599,11 @@ export async function getPublicStatusSnapshot(): Promise<PublicStatusSnapshot> {
       name: "Billing and restore",
       status: toPublicStatus(gateStatus("billing")),
       message: "Required billing configuration is present when paid access is enabled.",
+    },
+    {
+      name: "Operational safeguards",
+      status: toPublicStatus(gateStatus("trust")),
+      message: "Required privacy, support, cost-control, and monitoring safeguards are configured only after verification.",
     },
     ...(launchFlags.extensionSync
       ? [{

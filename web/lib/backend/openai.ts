@@ -8,6 +8,7 @@ import {
 } from "@/lib/llm/model-config";
 import { normalizeTokenUsage, type TokenUsage } from "@/lib/llm/cost";
 import { createAppError, type AppError } from "./errors";
+import { logInfo } from "@/lib/observability/logger";
 
 export { createAppError } from "./errors";
 export type { AppError } from "./errors";
@@ -117,7 +118,7 @@ function getMockOpenAIResponse(mode: Mode) {
     score_label: "Strong",
     score_comment_short: "Clear ownership with real signal; a few scope gaps keep it from landing faster.",
     score_comment_long: "You read as someone who ships and owns outcomes. Tighten scope and add one before/after metric.",
-    score_plain: "This reads like real work with real ownership. The missing piece is scale, so the best parts do not land fast enough.",
+    score_plain: "This reads like real work with real ownership. The missing piece is scale, so the best parts do not land quickly.",
     first_impression: "We see someone who can take messy work and make it move. We also have to guess at scope in a few key places.",
     biggest_gap_example: "\"Improved process across teams\" is too thin on scope and outcome, so we cannot place the impact.",
     first_impression_takeaway: "Show the scale.",
@@ -210,8 +211,10 @@ export async function callOpenAIChat(
   const OPENAI_MAX_RETRIES = Number(process.env.OPENAI_MAX_RETRIES || 1);   // 1 retry only
   const OPENAI_RETRY_BACKOFF_MS = Number(process.env.OPENAI_RETRY_BACKOFF_MS || 300);
 
-  // Debug logging
-  console.log(`[OpenAI] Model: ${OPENAI_MODEL}, Timeout: ${OPENAI_TIMEOUT_MS}ms, Retries: ${OPENAI_MAX_RETRIES}, Mode: ${mode}`);
+  logInfo({
+    msg: "llm.client.configured",
+    llm: { task: mode, model: OPENAI_MODEL },
+  });
 
   if (USE_MOCK_OPENAI) {
     const mock = getMockOpenAIResponse(mode);

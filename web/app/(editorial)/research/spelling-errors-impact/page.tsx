@@ -39,7 +39,7 @@ export default function SpellingErrorsPage() {
                         Recruiters evaluated otherwise comparable resumes with zero, two, or five spelling errors across eight occupations. The penalty was clearest at five errors; the study does not establish that one typo ruins an application.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <ErrorImpactDiagram />
+                    <ErrorImpactDiagram figureNumber={1} />
                 </>
             }
             productTieIn={{
@@ -103,7 +103,7 @@ export default function SpellingErrorsPage() {
             </div>
 
             <div className="not-prose my-10">
-                <InferenceLadderDiagram />
+                <InferenceLadderDiagram figureNumber={2} />
             </div>
 
             <h2 className="research-h2">What this does and does not justify</h2>

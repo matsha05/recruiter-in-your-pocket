@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import Footer from "@/components/landing/Footer";
 import {
     Checklist,
     Disclosure,
@@ -15,6 +16,7 @@ import {
 export const metadata: Metadata = {
     title: "How to Negotiate a Job Offer",
     description: "A recruiter-grounded guide to reading a job offer, choosing a counter, and making a request that can survive the approval chain.",
+    alternates: { canonical: "/resources/offer-negotiation" },
 };
 
 const quickStart = [
@@ -25,10 +27,11 @@ const quickStart = [
 
 export default function OfferNegotiationGuidePage() {
     return (
-        <main className="bg-background text-foreground">
+        <>
+        <div className="bg-background text-foreground">
             <div className="border-b border-border">
                 <nav aria-label="Breadcrumb" className="mx-auto flex max-w-6xl items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
-                    <Link href="/resources" className="transition-colors hover:text-foreground">Resources</Link>
+                    <Link href="/resources" className="focus-ring inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-foreground">Resources</Link>
                     <CaretRight aria-hidden className="size-3" weight="bold" />
                     <span className="text-foreground">Offer negotiation</span>
                 </nav>
@@ -54,7 +57,7 @@ export default function OfferNegotiationGuidePage() {
                 <div className="mt-14 grid border-y border-border sm:grid-cols-3">
                     {quickStart.map(([title, body], index) => (
                         <div key={title} className="border-b border-border py-6 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0">
-                            <div className="font-mono text-xs text-brand">0{index + 1}</div>
+                            <div className="font-mono text-xs text-ink">0{index + 1}</div>
                             <h2 className="mt-3 font-display text-xl riyp-weight-560">{title}</h2>
                             <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
                         </div>
@@ -80,7 +83,7 @@ export default function OfferNegotiationGuidePage() {
                             ["Counter clearly", "A specific request with a defensible basis is easier to understand and move through an approval chain."],
                         ].map(([title, body], index) => (
                             <div key={title} className="grid gap-2 py-5 sm:grid-cols-[2rem_15rem_1fr] sm:gap-5">
-                                <span className="font-mono text-xs text-brand">{index + 1}</span>
+                                <span className="font-mono text-xs text-ink">{index + 1}</span>
                                 <h3 className="font-semibold text-foreground">{title}</h3>
                                 <p className="text-sm leading-6 text-muted-foreground">{body}</p>
                             </div>
@@ -130,6 +133,8 @@ export default function OfferNegotiationGuidePage() {
                     <p>NACE recommends written offers with material compensation terms and a clear deadline, plus a reasonable amount of time to decide. The appropriate timeline varies by role and employer. See <a href="https://www.naceweb.org/docs/default-source/default-document-library/2024/resources/2024-nace-professional-standards-for-university-relations-and-recruiting-nov-2024.pdf">NACE Professional Standards</a>.</p>
                 </Sources>
             </article>
-        </main>
+        </div>
+            <Footer />
+        </>
     );
 }

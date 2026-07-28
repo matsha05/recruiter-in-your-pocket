@@ -25,7 +25,7 @@ test.describe("launch smoke", () => {
     await page.goto("/launch", { waitUntil: "domcontentloaded" });
     await page.waitForSelector("[data-visual-anchor='launch-page']", { timeout: 30_000 });
 
-    await expect(page.getByRole("heading", { name: /go\/no-go launch program/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /go or no-go, with receipts/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /rollback controls/i })).toBeVisible();
     await expect(page.getByRole("heading", { name: /vendor and privacy review/i })).toBeVisible();
   });
@@ -47,6 +47,7 @@ test.describe("launch smoke", () => {
       ["/trust", "[data-visual-anchor='legal-trust']"],
       ["/security", "[data-visual-anchor='legal-security']"],
       ["/privacy", "[data-visual-anchor='legal-privacy']"],
+      ["/support", "[data-visual-anchor='legal-support']"],
       ["/workspace", "[data-visual-anchor='workspace-resume-empty']"],
     ] as const;
 

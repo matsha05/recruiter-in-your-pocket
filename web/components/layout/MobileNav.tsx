@@ -11,10 +11,10 @@ import { useAuth } from "@/components/providers/AuthProvider";
 import { PocketMark, Wordmark } from "@/components/icons";
 import { STUDIO_NAV, type NavItem } from "@/lib/navigation";
 
-export function MobileNav() {
+export function MobileNav({ workspaceReportVisible = false }: { workspaceReportVisible?: boolean }) {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
-    const { user, signOut } = useAuth();
+    const { user, signOut, isLoading: authLoading } = useAuth();
 
     return (
         <Sheet open={open} onOpenChange={setOpen}>
@@ -52,7 +52,9 @@ export function MobileNav() {
                                 setOpen={setOpen}
                                 active={
                                     item.href === "/workspace"
-                                        ? pathname === "/workspace" || pathname?.startsWith("/workspace/")
+                                        ? (pathname === "/workspace" || pathname?.startsWith("/workspace/")) && !workspaceReportVisible
+                                        : item.href === "/reports" && workspaceReportVisible
+                                            ? true
                                         : pathname === item.href || pathname?.startsWith(`${item.href}/`)
                                 }
                             />
@@ -73,7 +75,11 @@ export function MobileNav() {
                 </div>
 
                 <div className="p-6 border-t border-border/60 bg-background">
-                    {user ? (
+                    {authLoading ? (
+                        <p className="min-h-11 text-sm text-muted-foreground" role="status" aria-live="polite">
+                            Checking account…
+                        </p>
+                    ) : user ? (
                         <div className="gap-y-4">
                             <div className="flex items-center gap-3">
                                 <div className="size-10 rounded bg-brand/10 flex items-center justify-center text-brand font-semibold">
@@ -118,9 +124,9 @@ export function MobileNav() {
                         </div>
                     ) : (
                         <div className="gap-y-2">
-                            <Link href="/auth" onClick={() => setOpen(false)}>
-                                <Button className="min-h-11 w-full" variant="default">Sign In</Button>
-                            </Link>
+                            <Button asChild className="min-h-11 w-full" variant="default">
+                                <Link href="/auth" onClick={() => setOpen(false)}>Sign in</Link>
+                            </Button>
                         </div>
                     )}
                 </div>

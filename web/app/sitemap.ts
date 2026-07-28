@@ -30,7 +30,7 @@ const routes = [
   "/privacy",
   "/terms",
   "/methodology",
-  "/status",
+  "/support",
   "/faq",
 ];
 

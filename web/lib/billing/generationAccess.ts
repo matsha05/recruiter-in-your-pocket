@@ -5,6 +5,7 @@ import {
   type ParsedFreeMeta,
 } from "../backend/freeCookie";
 import { anonymousGenerationAccessBackend } from "./anonymousGenerationAccess";
+import { assertGenerationCapacity } from "../operations/generationBudget";
 
 export type GenerationReportKind = "resume_feedback" | "resume_ideas";
 export type GenerationAccessTier = "free_full" | "pass_full" | "preview";
@@ -372,6 +373,9 @@ export async function commitGenerationAccess(
 export async function markGenerationProviderCallStarted(
   reservation: GenerationAccessReservation
 ) {
+  if (!isMockGenerationProviderEnabled()) {
+    await assertGenerationCapacity();
+  }
   if (reservation.entitlementKind !== "anonymous_free") return;
   await commitGenerationAccess(reservation, null);
   anonymousProviderStarted.add(reservation);

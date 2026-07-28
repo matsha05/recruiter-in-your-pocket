@@ -45,7 +45,7 @@ export default function HowRecruitersReadPage() {
                     <p className="research-body mb-6">
                         Peer-reviewed studies carry the practical conclusion. The company report that popularized the six-second line is included only to explain where that claim came from and why it should not be treated as a rule.
                     </p>
-                    <ResumeHeatmap />
+                    <ResumeHeatmap figureNumber={1} />
                 </>
             }
             productTieIn={{
@@ -106,7 +106,7 @@ export default function HowRecruitersReadPage() {
         >
             <h2 className="research-h2">The six-second line is a reminder, not a law</h2>
             <p className="research-body mb-6">
-                The memorable number comes from a small, company-sponsored eye-tracking report published in 2012. It is useful as category history, but it is not strong enough to carry a universal claim about how every recruiter reads.
+                The memorable number comes from a small, company-sponsored eye-tracking report published in 2012. It is useful as category history, but it cannot support a universal claim about how every recruiter reads.
                 <Citation id="source-3">3</Citation>
             </p>
             <p className="research-body mb-6">
@@ -134,7 +134,7 @@ export default function HowRecruitersReadPage() {
                     title="What you did in recent roles"
                     desc={
                         <>
-                            Give Experience enough context to support a judgment: the work, your part, the scale, and the result when you can verify it.
+                            Give Experience the context needed for a judgment: the work, your part, the scale, and the result when you can verify it.
                             <Citation id="source-1">1</Citation>
                         </>
                     }
@@ -160,7 +160,7 @@ export default function HowRecruitersReadPage() {
             </p>
 
             <div className="not-prose my-10">
-                <ScanPattern />
+                <ScanPattern figureNumber={2} />
             </div>
 
             <h2 className="research-h2">Limitations</h2>

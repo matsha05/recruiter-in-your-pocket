@@ -24,12 +24,12 @@ const studies = [
     },
 ];
 
-export function ResumeHeatmap() {
+export function ResumeHeatmap({ figureNumber = 1 }: { figureNumber?: number }) {
     return (
         <DiagramFigure className="max-w-[56rem]" label="Evidence table summarizing three recruiter attention studies and their limits">
             <DiagramFrame>
                 <EvidenceHeader
-                    index="01"
+                    index={String(figureNumber).padStart(2, "0")}
                     label="Evidence hierarchy"
                     title="The stronger studies support a close read, not a countdown."
                     note="The practical conclusion is modest: make recent work and relevant evidence easy to locate, then keep each claim in context."
@@ -87,7 +87,7 @@ export function ResumeHeatmap() {
                 </div>
             </DiagramFrame>
             <DiagramCaption
-                kicker="Fig. 1 / Evidence summary"
+                kicker={`Fig. ${figureNumber} / Evidence summary`}
                 title="Make the important details easy to find. Do not design around a universal six-second rule."
                 description="Source details and direct links appear in the evidence record below."
             />

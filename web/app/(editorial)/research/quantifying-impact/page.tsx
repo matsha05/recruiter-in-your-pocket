@@ -143,7 +143,7 @@ export default function QuantifyingImpactPage() {
                 The second version gives the reader a clearer result to evaluate.
             </p>
 
-            <h2 className="research-h2">Give the reader enough context</h2>
+            <h2 className="research-h2">Give the reader the context behind the result</h2>
             <p className="research-body mb-6">
                 A number without context can still mislead. &quot;Cut time by 40%&quot; is more useful when the reader can tell what process changed, from what baseline, and what you actually did. The goal is not maximum numerals; it is a claim another person can understand and defend.
             </p>

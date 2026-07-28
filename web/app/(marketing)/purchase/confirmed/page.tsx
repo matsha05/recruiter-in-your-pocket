@@ -1,5 +1,11 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import PurchaseConfirmedClient from "@/components/purchase/PurchaseConfirmedClient";
+
+export const metadata: Metadata = {
+  title: "Purchase Confirmation",
+  description: "Confirm and restore Recruiter in Your Pocket purchase access.",
+};
 
 function PurchaseConfirmedFallback() {
   return (

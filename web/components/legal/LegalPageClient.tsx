@@ -130,7 +130,7 @@ function renderSection(section: LegalSection, index: number) {
               className="border-t border-line bg-transparent py-6"
             >
               <div className="mb-2 flex items-center gap-2">
-                <span className="flex size-8 items-center justify-center rounded-full bg-brand/10 text-brand">
+                <span className="flex size-8 items-center justify-center rounded-sm bg-brand/10 text-brand">
                   <item.icon className="size-4" weight="bold" />
                 </span>
                 <h2 className="text-sm font-semibold text-foreground">{item.title}</h2>

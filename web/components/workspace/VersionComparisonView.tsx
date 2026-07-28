@@ -1,9 +1,10 @@
 "use client";
 
-import { X, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { ReportData } from "./report/ReportTypes";
 import { cn } from "@/lib/utils";
 import { getScoreColor, getScoreLabel } from "@/lib/score-utils";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 interface ComparisonReport {
     id: string;
@@ -40,8 +41,8 @@ function SubscoreRow({ label, before, after }: { label: string; before?: number;
             <div className="flex-1 h-1 bg-muted rounded-full overflow-hidden">
                 <div
                     className={cn(
-                        "h-full rounded-full transition-all duration-300",
-                        improved ? "bg-green-500" : declined ? "bg-destructive" : "bg-brand"
+                        "h-full rounded-full transition-all duration-150 motion-reduce:transition-none",
+                        improved ? "bg-success" : declined ? "bg-destructive" : "bg-brand"
                     )}
                     style={{ width: `${after ?? 0}%` }}
                 />
@@ -53,7 +54,7 @@ function SubscoreRow({ label, before, after }: { label: string; before?: number;
                 <span className="text-muted-foreground/30 mx-1">→</span>
                 <span className={cn(
                     "font-semibold",
-                    improved && "text-green-600",
+                    improved && "text-success",
                     declined && "text-destructive",
                     !improved && !declined && "text-foreground"
                 )}>
@@ -62,7 +63,7 @@ function SubscoreRow({ label, before, after }: { label: string; before?: number;
                 {diff !== 0 && (
                     <span className={cn(
                         "text-xs ml-1",
-                        improved ? "text-green-600" : "text-destructive"
+                        improved ? "text-success" : "text-destructive"
                     )}>
                         {diff > 0 ? '+' : ''}{diff}
                     </span>
@@ -98,27 +99,19 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
     const getLabel = (report: ComparisonReport) => report.name || formatDate(report.createdAt);
 
     return (
-        <div
-            className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4"
-            onClick={(e) => e.target === e.currentTarget && onClose()}
-        >
-            <div className="bg-background border border-border rounded w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col">
+        <Dialog open onOpenChange={(open) => { if (!open) onClose(); }}>
+            <DialogContent className="flex max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-2xl flex-col gap-0 overflow-hidden border-border bg-background p-0">
 
                 {/* Header */}
-                <div className="flex items-center justify-between px-5 py-3 border-b border-border shrink-0">
+                <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-4 pr-16">
                     <div className="flex items-center gap-3">
-                        <h2 className="text-sm font-medium text-foreground">Compare</h2>
+                        <DialogTitle className="text-sm font-medium text-foreground">Compare versions</DialogTitle>
                         <span className="text-xs text-muted-foreground">
                             {getLabel(older)} → {getLabel(newer)}
                         </span>
                     </div>
-                    <button type="button"
-                        onClick={onClose}
-                        className="p-1.5 hover:bg-muted rounded transition-colors"
-                    >
-                        <X className="size-4 text-muted-foreground" />
-                    </button>
                 </div>
+                <DialogDescription className="sr-only">Score and evidence differences between the selected resume report versions.</DialogDescription>
 
                 {/* Review score summary */}
                 <div className="px-6 py-8 border-b border-border bg-muted/20 shrink-0">
@@ -136,10 +129,10 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
 
                         {/* Delta Badge */}
                         <div className={cn(
-                            "flex items-center gap-1.5 px-4 py-2 rounded-full font-semibold",
-                            isImprovement && "bg-green-100 text-green-800",
-                            isDecline && "bg-red-100 text-red-800",
-                            !isImprovement && !isDecline && "bg-muted text-muted-foreground"
+                            "flex items-center gap-1.5 border-l-2 px-4 py-2 font-semibold",
+                            isImprovement && "border-success bg-success/10 text-success",
+                            isDecline && "border-destructive bg-error-surface text-destructive",
+                            !isImprovement && !isDecline && "border-line bg-paper-muted text-muted-foreground"
                         )}>
                             {isImprovement ? (
                                 <TrendingUp className="size-5" />
@@ -168,7 +161,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                     {/* Verdict */}
                     <p className={cn(
                         "text-center text-sm mt-5 font-medium",
-                        isImprovement && "text-green-700",
+                        isImprovement && "text-success",
                         isDecline && "text-destructive",
                         !isImprovement && !isDecline && "text-muted-foreground"
                     )}>
@@ -232,7 +225,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                         </li>
                                     ))}
                                     {(!older.report.strengths?.length) && (
-                                        <li className="text-xs text-muted-foreground/50 italic">None identified</li>
+                                        <li className="text-xs italic text-muted-foreground">None identified</li>
                                     )}
                                 </ul>
                             </div>
@@ -247,7 +240,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                         </li>
                                     ))}
                                     {(!older.report.gaps?.length) && (
-                                        <li className="text-xs text-muted-foreground/50 italic">None identified</li>
+                                        <li className="text-xs italic text-muted-foreground">None identified</li>
                                     )}
                                 </ul>
                             </div>
@@ -269,7 +262,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                         </li>
                                     ))}
                                     {(!newer.report.strengths?.length) && (
-                                        <li className="text-xs text-muted-foreground/50 italic">None identified</li>
+                                        <li className="text-xs italic text-muted-foreground">None identified</li>
                                     )}
                                 </ul>
                             </div>
@@ -284,14 +277,14 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                                         </li>
                                     ))}
                                     {(!newer.report.gaps?.length) && (
-                                        <li className="text-xs text-muted-foreground/50 italic">None identified</li>
+                                        <li className="text-xs italic text-muted-foreground">None identified</li>
                                     )}
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </DialogContent>
+        </Dialog>
     );
 }

@@ -90,7 +90,7 @@ export default function InputPanel({
     return (
         <div
             data-visual-anchor="workspace-resume-empty"
-            className="min-h-full bg-mineral px-4 pb-14 pt-9 sm:px-6 sm:pt-12 lg:pb-20 lg:pt-16"
+            className="min-h-full bg-mineral px-4 pb-12 pt-9 sm:px-6 sm:pt-12 lg:pb-14 lg:pt-12"
         >
             <div className="mx-auto w-full max-w-5xl">
                 <header className="mx-auto max-w-3xl text-center">
@@ -144,7 +144,9 @@ export default function InputPanel({
                                         Upload a file
                                     </button>
                                 </div>
+                                <label htmlFor="workspace-resume-text" className="sr-only">Resume text</label>
                                 <textarea
+                                    id="workspace-resume-text"
                                     ref={pasteInputRef}
                                     data-testid="workspace-resume-text"
                                     value={resumeText}
@@ -194,7 +196,9 @@ export default function InputPanel({
 
                             {showJD && (
                                 <div className="animate-in fade-in slide-in-from-top-1 pb-2">
+                                    <label htmlFor="workspace-job-description" className="sr-only">Job posting</label>
                                     <textarea
+                                        id="workspace-job-description"
                                         data-testid="workspace-job-description"
                                         value={jobDescription}
                                         onChange={(event) => onJobDescChange(event.target.value)}

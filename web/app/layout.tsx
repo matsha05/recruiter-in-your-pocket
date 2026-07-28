@@ -3,17 +3,8 @@ import "@fontsource-variable/instrument-sans/standard.css";
 import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
-import { Analytics } from "@vercel/analytics/next";
-
 import { Toaster } from "@/components/ui/sonner";
 import { CommandPalette } from "@/components/CommandPalette";
-import { isLaunchFlagEnabled } from "@/lib/launch/flags";
-
-function shouldRenderVercelAnalytics() {
-  if (!isLaunchFlagEnabled("analytics")) return false;
-  if (process.env.NEXT_PUBLIC_ENABLE_VERCEL_ANALYTICS === "true") return true;
-  return process.env.VERCEL === "1" || process.env.VERCEL_ENV === "production";
-}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.recruiterinyourpocket.com'),
@@ -58,7 +49,6 @@ export default function RootLayout({
           {children}
           <CommandPalette />
           <Toaster />
-          {shouldRenderVercelAnalytics() ? <Analytics /> : null}
         </AppProviders>
       </body>
     </html>

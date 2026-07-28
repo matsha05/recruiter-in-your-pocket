@@ -68,5 +68,8 @@
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.11",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  },
+  "overrides": {
+    "body-parser": "2.3.0"
   }
 }

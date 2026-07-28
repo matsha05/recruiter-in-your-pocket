@@ -65,7 +65,7 @@ export function BottomActionRail({
         <div
             className={cn(
                 "fixed bottom-0 left-0 right-0 z-40",
-                "border-t border-border/60 bg-background/95 backdrop-blur-sm",
+                "border-t border-border/60 bg-background",
                 "px-4 py-3",
                 "hidden items-center justify-between gap-4 sm:flex",
                 className

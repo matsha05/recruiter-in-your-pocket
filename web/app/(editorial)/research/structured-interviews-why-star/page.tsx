@@ -110,7 +110,7 @@ export default function StructuredInterviewsWhyStarPage() {
 
             <h2 className="research-h2">Use STAR on a resume</h2>
             <p className="research-body mb-6">
-                Treat STAR as a check, not a template. Make your action visible, add the outcome when you know it, and include only enough context for the result to make sense. Situation and task may already be clear from the role.
+                Treat STAR as a check, not a template. Make your action visible, add the outcome when you know it, and include only the context the result needs. Situation and task may already be clear from the role.
             </p>
             <div className="border border-border/40 rounded-md p-4 text-sm text-muted-foreground not-prose mb-6">
                 <div className="mb-2 text-xs font-semibold uppercase riyp-track-010 text-muted-foreground/60">Illustrative example</div>

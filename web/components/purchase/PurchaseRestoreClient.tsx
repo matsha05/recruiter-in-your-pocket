@@ -35,24 +35,29 @@ function formatAmount(cents: number, currency: string | null) {
 export default function PurchaseRestoreClient() {
   const searchParams = useSearchParams();
   const getSearchParam = searchParams.get.bind(searchParams);
-  const { user, refreshUser } = useAuth();
+  const { user, isLoading: authLoading, refreshUser } = useAuth();
   const [isRestoring, setIsRestoring] = useState(false);
   const [isPortalLoading, setIsPortalLoading] = useState(false);
   const [isReceiptsLoading, setIsReceiptsLoading] = useState(false);
   const [restoreMessage, setRestoreMessage] = useState<string | null>(null);
+  const [restoreError, setRestoreError] = useState(false);
   const [receipts, setReceipts] = useState<ReceiptItem[]>([]);
+  const [receiptsState, setReceiptsState] = useState<"idle" | "loaded" | "error">("idle");
+  const [receiptsMessage, setReceiptsMessage] = useState<string | null>(null);
 
   const billingUpdated = getSearchParam("billing") === "updated";
   const signedIn = Boolean(user?.email);
 
   const header = useMemo(() => {
+    if (authLoading) return "Checking your account.";
     if (!signedIn) return "Sign in to restore your purchase.";
     return "Put your access back where it belongs.";
-  }, [signedIn]);
+  }, [authLoading, signedIn]);
 
   async function handleRestore() {
     setIsRestoring(true);
     setRestoreMessage(null);
+    setRestoreError(false);
     try {
       Analytics.track("billing_restore_requested", { source: "purchase_restore_page" });
       const res = await fetch("/api/billing/restore", { method: "POST" });
@@ -61,10 +66,11 @@ export default function PurchaseRestoreClient() {
       await refreshUser();
       setRestoreMessage(data.message || "Restore completed.");
       Analytics.track("billing_restore_succeeded", { restored: data.restored || 0 });
-      toast.success("Access restored");
+      toast.success(data.restored > 0 ? "Access restored" : "Access check complete");
     } catch (err: any) {
       toast.error(err?.message || "Restore failed");
       setRestoreMessage(err?.message || "Restore failed.");
+      setRestoreError(true);
     } finally {
       setIsRestoring(false);
     }
@@ -90,13 +96,22 @@ export default function PurchaseRestoreClient() {
 
   async function handleLoadReceipts() {
     setIsReceiptsLoading(true);
+    setReceiptsMessage(null);
     try {
       const res = await fetch("/api/billing/receipts");
       const data = await res.json();
       if (!data?.ok) throw new Error(data?.message || "Failed to load receipts");
-      setReceipts(Array.isArray(data.receipts) ? data.receipts : []);
+      const nextReceipts = Array.isArray(data.receipts) ? data.receipts : [];
+      setReceipts(nextReceipts);
+      setReceiptsState("loaded");
+      setReceiptsMessage(nextReceipts.length === 0
+        ? "No receipts were found for this account. If you paid with another email, sign in with that email and restore access first."
+        : null);
     } catch (err: any) {
-      toast.error(err?.message || "Failed to load receipts");
+      const message = err?.message || "Failed to load receipts";
+      setReceiptsState("error");
+      setReceiptsMessage(message);
+      toast.error(message);
     } finally {
       setIsReceiptsLoading(false);
     }
@@ -130,14 +145,19 @@ export default function PurchaseRestoreClient() {
           </header>
 
           {(billingUpdated || restoreMessage) ? (
-            <div role="status" className="mt-7 border-y border-line bg-surface-sky/45 px-5 py-4 text-sm leading-6 text-foreground">
+            <div
+              role={restoreError ? "alert" : "status"}
+              className={`mt-7 border-y px-5 py-4 text-sm leading-6 ${restoreError ? "border-destructive bg-error-surface text-destructive" : "border-line bg-surface-sky/45 text-foreground"}`}
+            >
               {restoreMessage || "Billing settings updated."}
             </div>
           ) : null}
 
           <div className="grid gap-8 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div className="text-sm leading-6 text-muted-foreground">
-              {signedIn ? (
+              {authLoading ? (
+                <p role="status">Checking your sign-in before showing billing controls.</p>
+              ) : signedIn ? (
                 <p>Signed in as <span className="font-semibold text-foreground">{user?.email}</span></p>
               ) : (
                 <p>Sign in first so we can attach the restored pass to the correct account.</p>
@@ -147,7 +167,11 @@ export default function PurchaseRestoreClient() {
             <div className="border-y border-line bg-surface-sky/45 px-5 py-6 sm:px-7 sm:py-7">
               <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Choose what you need</p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {!signedIn ? (
+                {authLoading ? (
+                  <Button type="button" variant="brand" size="lg" disabled isLoading>
+                    Checking account…
+                  </Button>
+                ) : !signedIn ? (
                   <>
                     <Button asChild variant="brand" size="lg">
                       <Link href="/auth?from=paywall&next=/purchase/restore">Sign in <ArrowRight className="size-4" weight="bold" /></Link>
@@ -179,7 +203,15 @@ export default function PurchaseRestoreClient() {
             </div>
           </div>
 
-          {receipts.length > 0 ? (
+          {receiptsState === "error" ? (
+            <div role="alert" className="border-y border-destructive bg-error-surface px-5 py-4 text-sm leading-6 text-destructive">
+              <p className="font-semibold">Receipts could not load.</p>
+              <p className="mt-1">{receiptsMessage}</p>
+              <Button type="button" variant="outline" size="sm" className="mt-4" onClick={handleLoadReceipts} disabled={isReceiptsLoading}>
+                Try again
+              </Button>
+            </div>
+          ) : receiptsState === "loaded" ? (
             <section className="border-t border-line pt-8" aria-labelledby="receipt-list-title">
               <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
                 <div>
@@ -187,7 +219,9 @@ export default function PurchaseRestoreClient() {
                   <h2 id="receipt-list-title" className="mt-3 font-display text-3xl riyp-weight-520 tracking-[-0.03em]">Your payment record</h2>
                 </div>
                 <div className="divide-y divide-line border-y border-line">
-                  {receipts.map((item) => (
+                  {receipts.length === 0 ? (
+                    <p role="status" className="py-5 text-sm leading-6 text-muted-foreground">{receiptsMessage}</p>
+                  ) : receipts.map((item) => (
                     <article key={item.id} className="grid gap-3 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
                       <div>
                         <p className="font-semibold text-foreground">{item.number || "Stripe receipt"}</p>

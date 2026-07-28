@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import type { ReviewMode } from "@/components/workspace/ModeSwitcher";
+import { isSampleParamEnabled } from "@/components/workspace/hooks/useSampleReport";
 
 type WorkspaceInitOptions = {
   searchParams: ReadonlyURLSearchParams;
@@ -19,10 +20,19 @@ export function useWorkspaceInit({
   pendingAutoRunRef
 }: WorkspaceInitOptions) {
   useEffect(() => {
+    const sampleRequested = isSampleParamEnabled(searchParams.get("sample"));
     const pendingText = sessionStorage.getItem("pending_resume_text");
     const autoRun = sessionStorage.getItem("pending_auto_run");
 
-    if (pendingText) {
+    if (sampleRequested) {
+      // An explicit sample link should always be deterministic. Clear any
+      // abandoned landing-page handoff so it cannot suppress the sample report.
+      setResumeText("");
+      setSkipSample(false);
+      pendingAutoRunRef.current = false;
+      sessionStorage.removeItem("pending_resume_text");
+      sessionStorage.removeItem("pending_auto_run");
+    } else if (pendingText) {
       setResumeText(pendingText);
       sessionStorage.removeItem("pending_resume_text");
       sessionStorage.removeItem("pending_auto_run");

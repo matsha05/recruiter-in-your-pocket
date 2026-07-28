@@ -6,6 +6,7 @@ import { JSON_INSTRUCTION, baseTone, loadPromptForMode } from "@/lib/backend/pro
 import { validateResumeIdeasPayload, validateResumeIdeasRequest } from "@/lib/backend/validation";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { captureOperationalError } from "@/lib/observability/operations";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
@@ -29,6 +30,7 @@ import {
   type GenerationAccessReservation,
   type GenerationAccessRpcClient,
 } from "@/lib/billing/generationAccess";
+import { isResumeIdeasApiEnabled } from "@/lib/launch/serverFlags";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,6 +44,25 @@ export async function POST(request: Request) {
   let reservationAdmin: GenerationAccessRpcClient | null = null;
   let user_id: string | undefined;
   logInfo({ msg: "http.request.started", request_id, route, method, path });
+
+  if (!isResumeIdeasApiEnabled()) {
+    const res = NextResponse.json(
+      { ok: false, errorCode: "FEATURE_DISABLED", message: "Not found." },
+      { status: 404 },
+    );
+    res.headers.set("x-request-id", request_id);
+    logInfo({
+      msg: "http.request.completed",
+      request_id,
+      route,
+      method,
+      path,
+      status: 404,
+      latency_ms: Date.now() - startedAt,
+      outcome: "not_found",
+    });
+    return res;
+  }
 
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -207,6 +228,16 @@ ${text}`;
 
     const status = err?.httpStatus || 500;
     const code = err?.code || "INTERNAL_SERVER_ERROR";
+    if (
+      status >= 500 &&
+      code !== "GENERATION_PAUSED" &&
+      code !== "GENERATION_BUDGET_EXHAUSTED"
+    ) {
+      captureOperationalError(err, {
+        operation: "generation.resume_ideas",
+        tags: { error_code: String(code) },
+      });
+    }
     const message =
       code === "OPENAI_TIMEOUT"
         ? "This is taking longer than usual. Try again in a moment."

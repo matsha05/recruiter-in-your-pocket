@@ -1,5 +1,11 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import PurchaseRestoreClient from "@/components/purchase/PurchaseRestoreClient";
+
+export const metadata: Metadata = {
+  title: "Restore Purchase",
+  description: "Restore access to a Recruiter in Your Pocket purchase.",
+};
 
 function PurchaseRestoreFallback() {
   return (

@@ -4,6 +4,8 @@ import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { createStripeClient } from "@/lib/billing/stripeClient";
+import { hashForLogs, logError } from "@/lib/observability/logger";
+import { rateLimitAsync } from "@/lib/security/rateLimit";
 
 const stripe = createStripeClient();
 
@@ -34,6 +36,20 @@ export async function GET() {
       return NextResponse.json({ ok: false, receipts: [], message: "Please log in first." }, { status: 401 });
     }
 
+    const receiptLimit = await rateLimitAsync(
+      `user:${hashForLogs(user.id)}:billing-receipts`,
+      20,
+      10 * 60 * 1000,
+    );
+    if (!receiptLimit.ok) {
+      const response = NextResponse.json(
+        { ok: false, receipts: [], message: "Too many receipt requests. Try again shortly." },
+        { status: 429 },
+      );
+      response.headers.set("retry-after", String(Math.ceil(receiptLimit.resetMs / 1000)));
+      return response;
+    }
+
     const admin = createSupabaseAdminClient();
     if (!admin) {
       return NextResponse.json({ ok: false, receipts: [], message: "Database is not configured." }, { status: 500 });
@@ -47,7 +63,14 @@ export async function GET() {
       .order("created_at", { ascending: false })
       .limit(50);
 
-    if (!storedError && Array.isArray(storedReceipts) && storedReceipts.length > 0) {
+    if (storedError) {
+      return NextResponse.json(
+        { ok: false, receipts: [], message: "Failed to load stored receipts." },
+        { status: 500 },
+      );
+    }
+
+    if (Array.isArray(storedReceipts) && storedReceipts.length > 0) {
       const receipts: ReceiptItem[] = storedReceipts.map((receipt: any) => ({
         id: receipt.stripe_invoice_id || receipt.id,
         number: receipt.invoice_number || null,
@@ -67,18 +90,33 @@ export async function GET() {
       return NextResponse.json({ ok: true, receipts: [] });
     }
 
-    const customers = await stripe.customers.list({ email: user.email.toLowerCase(), limit: 1 });
-    const customer = customers.data[0];
-    if (!customer?.id) {
+    const { data: passCustomers, error: passCustomerError } = await supabase
+      .from("passes")
+      .select("stripe_customer_id")
+      .eq("user_id", user.id)
+      .not("stripe_customer_id", "is", null)
+      .order("created_at", { ascending: false })
+      .limit(10);
+
+    if (passCustomerError) {
+      return NextResponse.json({ ok: false, receipts: [], message: "Failed to load billing account links." }, { status: 500 });
+    }
+
+    const customerIds = [...new Set((passCustomers || [])
+      .map((pass: any) => pass.stripe_customer_id)
+      .filter((value: unknown): value is string => typeof value === "string" && value.length > 0))];
+
+    if (customerIds.length === 0) {
       return NextResponse.json({ ok: true, receipts: [] });
     }
 
-    const invoices = await stripe.invoices.list({
-      customer: customer.id,
-      limit: 50
-    });
+    const invoiceLists = await Promise.all(customerIds.map((customer) => stripe.invoices.list({ customer, limit: 50 })));
+    const invoices = invoiceLists
+      .flatMap((list) => list.data)
+      .sort((a, b) => b.created - a.created)
+      .slice(0, 50);
 
-    const receipts: ReceiptItem[] = invoices.data.map((invoice) => ({
+    const receipts: ReceiptItem[] = invoices.map((invoice) => ({
       id: invoice.id,
       number: invoice.number || null,
       status: invoice.status || null,
@@ -91,7 +129,11 @@ export async function GET() {
 
     return NextResponse.json({ ok: true, receipts });
   } catch (err: any) {
-    console.error("[billing.receipts] error:", err?.message);
+    logError({
+      msg: "billing.receipts_failed",
+      outcome: "internal_error",
+      err: { name: err?.name || "Error", message: err?.message || "Failed to load receipts", code: err?.code },
+    });
     return NextResponse.json(
       { ok: false, receipts: [], message: "Failed to load receipts." },
       { status: 500 }

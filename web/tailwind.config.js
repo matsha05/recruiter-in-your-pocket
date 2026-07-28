@@ -120,6 +120,7 @@ module.exports = {
 				},
 				success: 'hsl(var(--success))',
 				warning: 'hsl(var(--warning))',
+				'warning-foreground': 'hsl(var(--warning-foreground))',
 				'status-success': 'hsl(var(--success))',
 				'status-warning': 'hsl(var(--warning))',
 				'status-error': 'hsl(var(--destructive))'

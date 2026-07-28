@@ -67,16 +67,16 @@ export default function PricingPageClient() {
         return (
             <>
                 <div data-visual-anchor="pricing-page" className="pricing-beta-page bg-mineral text-foreground selection:bg-brand/15">
-                    <section className="px-6 pb-12 md:px-8">
+                    <section className="px-6 pb-14 md:px-8">
                         <div className="pricing-rail mx-auto">
-                            <div className="pricing-hero-grid grid gap-10 border-b-2 border-cyan-bright pb-11 lg:items-end">
+                            <div className="pricing-hero-grid grid gap-10 border-b-2 border-cyan-bright pb-10 lg:items-end">
                                 <div>
                                     <p className="mb-5 text-xs font-bold uppercase riyp-track-010 text-brand">Beta access</p>
-                                    <h1 className="max-w-3xl text-balance font-display text-[clamp(2.75rem,5.8vw,5.1rem)] font-semibold leading-[0.96] tracking-[-0.05em]">
-                                        One complete report is <span className="riyp-marker">included.</span> Five more are $29.
+                                    <h1 className="max-w-3xl text-balance font-display text-[clamp(2.55rem,5.8vw,5.1rem)] font-semibold leading-[1.08] tracking-[-0.05em]">
+                                        One complete report is <span className="riyp-marker riyp-marker-block">included.</span><br className="sm:hidden" /> Five more are $29.
                                     </h1>
                                 </div>
-                                <p className="max-w-lg text-lg leading-8 text-muted-foreground lg:mb-2">
+                                <p className="max-w-lg text-lg leading-8 text-muted-foreground lg:mb-2 lg:-translate-y-5">
                                     Checkout is closed while we finish the beta safety checks. When it opens, the Job Search Pass will be one payment for five additional reports over 30 days. It will not renew.
                                 </p>
                             </div>
@@ -89,7 +89,7 @@ export default function PricingPageClient() {
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         The recruiter takeaway, evidence, questions to answer, and rewrites are all included. No card required.
                                     </p>
-                                    <Link href="/workspace" className="pricing-primary-cta mt-7 inline-flex items-center justify-center gap-2 rounded-md bg-foreground py-3 font-semibold text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98] [&_svg]:text-citron">
+                                    <Link href="/workspace" className="pricing-primary-cta mt-10 inline-flex items-center justify-center gap-2 rounded-md bg-foreground py-3 font-semibold text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98] [&_svg]:text-citron">
                                         Run your free report
                                         <ArrowRight className="size-4" />
                                     </Link>
@@ -101,7 +101,7 @@ export default function PricingPageClient() {
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
                                         One payment for revisions and role comparisons. No subscription and no automatic renewal.
                                     </p>
-                                    <p role="status" className="pricing-disabled-cta mt-7 inline-flex items-center border border-border bg-muted/35 py-3 font-semibold text-muted-foreground">
+                                    <p role="status" className="pricing-disabled-cta mt-10 inline-flex items-center border border-border bg-muted/35 py-3 font-semibold text-muted-foreground">
                                         Checkout opens after beta verification
                                     </p>
                                 </div>
@@ -124,9 +124,9 @@ export default function PricingPageClient() {
                                 <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-brand">Pricing</p>
                                 <h1
                                     id="pricing-page-title"
-                                    className="max-w-[760px] text-balance font-display text-[clamp(2.75rem,5.8vw,5.1rem)] font-semibold leading-[0.96] tracking-[-0.05em]"
+                                    className="max-w-[760px] text-balance font-display text-[clamp(2.55rem,5.8vw,5.1rem)] font-semibold leading-[0.96] tracking-[-0.05em]"
                                 >
-                                    One complete report is <span className="riyp-marker">included.</span> Five more are $29.
+                                    One complete report is <span className="riyp-marker riyp-marker-block">included.</span><br className="sm:hidden" /> Five more are $29.
                                 </h1>
                             </div>
                             <p className="max-w-[34rem] text-pretty text-lg leading-8 text-muted-foreground">

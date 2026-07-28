@@ -294,8 +294,8 @@ export function ArticleInsight({ title, desc }: { title: string; desc: ReactNode
 export function Citation({ id, children }: { id: string; children: ReactNode }) {
     const sourceLabel = typeof children === "string" || typeof children === "number" ? children : "reference";
     return (
-        <sup className="relative top-[-0.25em] ml-0.5 inline-flex align-baseline">
-            <a href={`#${id}`} aria-label={`Go to source ${sourceLabel}`} className="focus-ring inline-flex min-h-8 min-w-8 items-center justify-center rounded-sm text-xs font-semibold leading-none tabular-nums text-brand underline decoration-brand/30 underline-offset-2 hover:text-brand-strong">
+        <sup className="relative top-[-0.25em] ml-0.5 inline-flex size-4 align-baseline">
+            <a href={`#${id}`} aria-label={`Go to source ${sourceLabel}`} className="focus-ring absolute left-1/2 top-1/2 inline-flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm text-xs font-semibold leading-none tabular-nums text-brand underline decoration-brand/30 underline-offset-2 hover:text-brand-strong">
                 {children}
             </a>
         </sup>

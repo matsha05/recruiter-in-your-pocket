@@ -122,7 +122,7 @@ export default function StarMethodPage() {
 
             <h2 className="research-h2">STAR on a resume</h2>
             <p className="research-body mb-6">
-                Do not force four labeled parts into a bullet. A useful line usually needs a clear action, enough context to understand it, and an outcome when one is known. Situation and task often live in the role title or surrounding bullets.
+                Do not force four labeled parts into a bullet. A useful line usually needs a clear action, the context needed to understand it, and an outcome when one is known. Situation and task often live in the role title or surrounding bullets.
             </p>
             <p className="text-sm text-muted-foreground mb-4">
                 Illustrative pair. The facts and numbers belong to the example and should never be invented in a real rewrite.

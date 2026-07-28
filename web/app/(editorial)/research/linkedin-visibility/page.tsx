@@ -41,7 +41,7 @@ export default function LinkedInVisibilityPage() {
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
-                    <LinkedInVisibilityDiagram />
+                    <LinkedInVisibilityDiagram figureNumber={1} />
                 </>
             }
             productTieIn={{
@@ -165,7 +165,7 @@ export default function LinkedInVisibilityPage() {
             </div>
 
             <div className="not-prose my-10">
-                <RecruiterSearchDiagram />
+                <RecruiterSearchDiagram figureNumber={2} />
             </div>
 
             <h2 className="research-h2">What LinkedIn does not tell us</h2>

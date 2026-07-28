@@ -113,9 +113,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const signOut = async () => {
         try {
-            await fetch("/api/auth/sign-out", { method: "POST" });
+            const response = await fetch("/api/auth/sign-out", { method: "POST" });
+            if (!response.ok) {
+                throw new Error("The server could not complete sign out.");
+            }
             setUser(null);
             resetAnalytics(); // Clear analytics state
+
+            // A full replacement clears any private report data already held in
+            // client component state and removes the sensitive URL from history.
+            window.location.replace("/");
         } catch (error) {
             console.error("Sign out error:", error);
         }

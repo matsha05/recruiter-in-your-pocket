@@ -36,8 +36,9 @@ export function UserNav({
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <button type="button"
+                    aria-label="Open account menu"
                     className={cn(
-                        "flex items-center justify-center rounded-full hover:ring-2 hover:ring-border/50 transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                        "flex size-11 items-center justify-center rounded-full transition-all hover:ring-2 hover:ring-border/50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                         className
                     )}
                 >

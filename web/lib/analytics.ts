@@ -1,14 +1,14 @@
 /**
  * Analytics Module
- * Professional Mixpanel implementation for SaaS conversion tracking
+ * Privacy-bounded Mixpanel implementation for product decision telemetry.
  * 
  * Capabilities:
- * - User identification with alias (links anonymous → logged-in)
- * - Super properties (attached to all events)
- * - User profile properties (for segmentation)
- * - Revenue tracking
- * - DNT compliance
+ * - Explicit launch kill switch and Do Not Track compliance
+ * - Schema-first event and property allowlists
+ * - No report, resume, job, checkout-session, or export identifiers
  */
+
+import { sanitizeAnalyticsEvent } from "./analyticsPolicy";
 
 const TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
 const ANALYTICS_ENABLED = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true";
@@ -36,7 +36,9 @@ async function initMixpanel() {
     const mixpanel = (await import("mixpanel-browser")).default;
     mixpanel.init(TOKEN, {
       debug: process.env.NODE_ENV !== "production",
-      track_pageview: true,
+      // Automatic pageviews may capture query-string identifiers. RIYP only
+      // emits explicit, schema-approved product events.
+      track_pageview: false,
       persistence: "localStorage",
       ignore_dnt: false, // Respect DNT
       api_host: "https://api-js.mixpanel.com", // Direct API for better reliability
@@ -81,14 +83,20 @@ function trackEvent(name: string, props: Record<string, any> = {}) {
     return;
   }
 
+  const approved = sanitizeAnalyticsEvent(name, props);
+  if (!approved) {
+    debugLog("[Analytics blocked]", name);
+    return;
+  }
+
   ensureInit().then(() => {
     if (mixpanelInstance) {
-      mixpanelInstance.track(name, {
-        ...props,
+      mixpanelInstance.track(approved.name, {
+        ...approved.properties,
         timestamp: new Date().toISOString(),
       });
     } else {
-      debugLog("[Analytics Dev]", name, props);
+      debugLog("[Analytics Dev]", approved.name, approved.properties);
     }
   });
 }
@@ -145,18 +153,6 @@ export function identifyUser(userId: string, traits?: {
 /**
  * Update user properties (e.g., after plan change)
  */
-function setUserProperties(props: Record<string, any>) {
-  if (typeof window === "undefined") return;
-  if (!ANALYTICS_ENABLED) return;
-  if (isDNT()) return;
-
-  ensureInit().then(() => {
-    if (mixpanelInstance) {
-      mixpanelInstance.people.set(props);
-    }
-  });
-}
-
 /**
  * Increment a numeric user property
  */
@@ -234,21 +230,7 @@ function trackRevenue(amount: number, props?: {
 /**
  * Set super properties (attached to all future events)
  */
-function setSuperProperties(props: Record<string, any>) {
-  if (typeof window === "undefined") return;
-  if (!ANALYTICS_ENABLED) return;
-  if (isDNT()) return;
-
-  ensureInit().then(() => {
-    if (mixpanelInstance) {
-      mixpanelInstance.register(props);
-    }
-  });
-}
-
-// ============================================
 // PRE-DEFINED EVENT HELPERS
-// ============================================
 
 export const Analytics = {
   // Funnel events

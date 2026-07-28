@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { ScoreProgressChart } from "@/components/workspace/ScoreProgressChart";
-import { TrendingUp, BarChart3, Target, AlertTriangle, Star, ArrowLeft } from "lucide-react";
+import { TrendingUp, BarChart3, Target, AlertTriangle, Star, ArrowLeft, Check } from "lucide-react";
 import { EmptyReportIcon } from "@/components/icons";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface Analytics {
     totalReviews: number;
@@ -19,28 +20,22 @@ interface Analytics {
 }
 
 export default function DashboardPage() {
-    const { user, signOut } = useAuth();
+    const { user, isLoading: authLoading } = useAuth();
     const [analytics, setAnalytics] = useState<Analytics | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [filterVariant, setFilterVariant] = useState<string | null>(null);
 
-    useEffect(() => {
-        if (user) {
-            fetchAnalytics();
-        } else {
-            setLoading(false);
-        }
-    }, [user]);
-
-    const fetchAnalytics = async () => {
+    const fetchAnalytics = useCallback(async () => {
+        setLoading(true);
+        setError(null);
         try {
             const res = await fetch("/api/analytics");
-            const data = await res.json();
-            if (data.ok) {
+            const data = await res.json().catch(() => null);
+            if (res.ok && data?.ok) {
                 setAnalytics(data.analytics);
             } else {
-                setError(data.message || "Failed to load analytics");
+                setError(data?.message || "We could not load your progress right now.");
             }
         } catch (err) {
             console.error("Analytics fetch error:", err);
@@ -48,7 +43,20 @@ export default function DashboardPage() {
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        if (authLoading) return;
+
+        if (user) {
+            void fetchAnalytics();
+            return;
+        }
+
+        setAnalytics(null);
+        setError(null);
+        setLoading(false);
+    }, [authLoading, fetchAnalytics, user]);
 
     // Filtered score history based on variant selection
     const filteredScoreHistory = useMemo(() => {
@@ -72,74 +80,113 @@ export default function DashboardPage() {
         };
     }, [filteredScoreHistory]);
 
-    if (!user) {
+    if (authLoading || loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-body p-6">
-                <div className="text-center gap-y-4">
-                    <BarChart3 className="size-12 mx-auto text-muted-foreground" />
-                    <h1 className="text-2xl font-display text-foreground">Sign in to view your progress</h1>
-                    <p className="text-muted-foreground max-w-md">
-                        Compare resume versions and revisit the written findings from each report.
-                    </p>
-                    <Link
-                        href="/workspace"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded bg-brand text-white hover:bg-brand/90 transition-colors"
-                    >
-                        Go to Workspace
-                    </Link>
+            <section className="flex flex-1 bg-paper px-5 pb-20 pt-20 md:px-8 md:pb-28 md:pt-28" aria-busy="true" aria-live="polite">
+                <div className="mx-auto w-full max-w-[72rem] border-t border-line pt-7">
+                    <div className="grid animate-pulse gap-10 motion-reduce:animate-none md:grid-cols-[13rem_minmax(0,1fr)] md:gap-12">
+                        <div className="h-3 w-20 bg-brand/20" />
+                        <div className="max-w-[48rem] space-y-5">
+                            <div className="h-16 w-full bg-paper-muted" />
+                            <div className="h-5 w-4/5 bg-paper-muted" />
+                            <p className="sr-only">Loading your progress</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         );
     }
 
-    if (loading) {
+    if (!user) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-body">
-                <div className="animate-pulse gap-y-4 text-center">
-                    <BarChart3 className="size-12 mx-auto text-muted-foreground" />
-                    <p className="text-muted-foreground">Loading your progress…</p>
+            <section className="flex flex-1 bg-paper px-5 pb-20 pt-20 md:px-8 md:pb-28 md:pt-28">
+                <div className="mx-auto w-full max-w-[72rem] border-t border-line pt-7">
+                    <div className="grid gap-10 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-12">
+                        <div>
+                            <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">Progress</p>
+                            <div className="mt-6 flex size-16 items-center justify-center border border-cyan-bright/35 bg-surface-sky text-brand">
+                                <BarChart3 className="size-8" aria-hidden="true" />
+                            </div>
+                        </div>
+                        <div className="max-w-[48rem]">
+                            <h1 className="exception-page-title font-display riyp-weight-620 text-foreground riyp-stretch-91">
+                                Your resume should get clearer with every pass.
+                            </h1>
+                            <p className="mt-6 max-w-[40rem] text-lg leading-8 text-muted-foreground">
+                                Sign in to compare saved versions, revisit the evidence behind each report, and see which findings keep showing up.
+                            </p>
+                            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                                <Link
+                                    href="/auth?from=dashboard&next=/dashboard"
+                                    className="focus-ring inline-flex min-h-13 items-center justify-center gap-3 rounded-md bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
+                                >
+                                    Sign in to view progress
+                                    <ArrowLeft className="size-4 rotate-180 text-citron" aria-hidden="true" />
+                                </Link>
+                                <Link
+                                    href="/workspace"
+                                    className="focus-ring inline-flex min-h-13 items-center justify-center rounded-md border border-foreground bg-paper px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-paper-muted"
+                                >
+                                    Start a new report
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         );
     }
 
     if (error || !analytics) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-body p-6">
-                <div className="text-center gap-y-4">
-                    <AlertTriangle className="size-12 mx-auto text-destructive" />
-                    <h1 className="text-2xl font-display text-foreground">Something went wrong</h1>
-                    <p className="text-muted-foreground">{error || "Could not load analytics"}</p>
+            <section className="flex flex-1 bg-paper px-5 pb-20 pt-20 md:px-8 md:pb-28 md:pt-28">
+                <div className="mx-auto w-full max-w-[72rem] border-t border-line pt-7">
+                    <div className="grid gap-10 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-12">
+                        <div>
+                            <p className="text-xs font-semibold uppercase riyp-track-010 text-destructive">Progress unavailable</p>
+                            <div className="mt-6 flex size-16 items-center justify-center border border-destructive/30 bg-error-surface text-destructive">
+                                <AlertTriangle className="size-8" aria-hidden="true" />
+                            </div>
+                        </div>
+                        <div className="max-w-[48rem]">
+                            <h1 className="exception-page-title font-display riyp-weight-620 text-foreground riyp-stretch-91">Your reports are still here.</h1>
+                            <p role="alert" className="mt-6 max-w-[40rem] text-lg leading-8 text-muted-foreground">{error || "We could not load your progress right now."}</p>
+                            <Button type="button" onClick={() => void fetchAnalytics()} className="mt-9 min-h-13 bg-foreground px-6 py-3 text-sm font-semibold text-background hover:bg-foreground/90">Try again</Button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         );
     }
 
     if (analytics.totalReviews === 0) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-body p-6">
-                <div className="text-center gap-y-4">
-                    <div className="mx-auto flex size-20 items-center justify-center rounded-xl border border-brand/15 bg-brand/[0.045] text-brand">
-                        <EmptyReportIcon className="size-12" />
+            <section className="flex flex-1 bg-paper px-5 pb-20 pt-20 md:px-8 md:pb-28 md:pt-28">
+                <div className="mx-auto w-full max-w-[72rem] border-t border-line pt-7">
+                    <div className="grid gap-10 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-12">
+                        <div>
+                            <p className="text-xs font-semibold uppercase riyp-track-010 text-brand">No history yet</p>
+                            <div className="mt-6 flex size-16 items-center justify-center border border-cyan-bright/35 bg-surface-sky text-brand">
+                                <EmptyReportIcon className="size-9" />
+                            </div>
+                        </div>
+                        <div className="max-w-[48rem]">
+                            <h1 className="exception-page-title font-display riyp-weight-620 text-foreground riyp-stretch-91">The first version sets the baseline.</h1>
+                            <p className="mt-6 max-w-[40rem] text-lg leading-8 text-muted-foreground">Run and save a report. The next version will have something honest to compare against.</p>
+                            <Link href="/workspace" className="focus-ring mt-9 inline-flex min-h-13 items-center gap-3 rounded-md bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90">
+                                Review my resume
+                                <ArrowLeft className="size-4 rotate-180 text-citron" aria-hidden="true" />
+                            </Link>
+                        </div>
                     </div>
-                    <h1 className="text-2xl font-display text-foreground">No reports yet</h1>
-                    <p className="text-muted-foreground max-w-md">
-                        Get your first resume report to start tracking your progress.
-                    </p>
-                    <Link
-                        href="/workspace"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded bg-brand text-white hover:bg-brand/90 transition-colors"
-                    >
-                        Review my resume
-                    </Link>
                 </div>
-            </div>
+            </section>
         );
     }
 
     return (
-        <div className="min-h-screen bg-mineral">
-            <main className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-10">
+        <div className="flex-1 bg-mineral">
+            <div className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-10">
                 <AppPageIntro
                     eyebrow="Progress"
                     title="What changed between versions"
@@ -153,12 +200,13 @@ export default function DashboardPage() {
                 />
                 {/* Variant Filter Tabs */}
                 {analytics.variants.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2" role="group" aria-label="Filter progress by resume label">
                         <button type="button"
                             onClick={() => setFilterVariant(null)}
-                            className={`text-sm px-4 py-2 rounded transition-colors ${filterVariant === null
-                                ? 'bg-foreground text-background'
-                                : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                            aria-pressed={filterVariant === null}
+                            className={`min-h-11 border-b-2 px-4 py-2 text-sm transition-colors ${filterVariant === null
+                                ? 'border-citron bg-foreground text-background'
+                                : 'border-transparent bg-paper-muted text-muted-foreground hover:text-foreground'
                                 }`}
                         >
                             All Resumes
@@ -167,9 +215,10 @@ export default function DashboardPage() {
                             <button type="button"
                                 key={v}
                                 onClick={() => setFilterVariant(v)}
-                                className={`text-sm px-4 py-2 rounded transition-colors ${filterVariant === v
-                                    ? 'bg-foreground text-background'
-                                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                                aria-pressed={filterVariant === v}
+                                className={`min-h-11 border-b-2 px-4 py-2 text-sm transition-colors ${filterVariant === v
+                                    ? 'border-citron bg-foreground text-background'
+                                    : 'border-transparent bg-paper-muted text-muted-foreground hover:text-foreground'
                                     }`}
                             >
                                 {v}
@@ -228,7 +277,7 @@ export default function DashboardPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Common Gaps */}
                     {analytics.commonGaps.length > 0 && (
-                        <div className="bg-card border border-border rounded p-6">
+                        <div className="border-y border-line bg-background p-6">
                             <div className="flex items-center gap-2 mb-4">
                                 <AlertTriangle className="size-5 text-warning" />
                                 <h2 className="font-semibold text-foreground">Recurring Gaps</h2>
@@ -249,15 +298,15 @@ export default function DashboardPage() {
 
                     {/* Top Strengths */}
                     {analytics.topStrengths.length > 0 && (
-                        <div className="bg-card border border-border rounded p-6">
+                        <div className="border-y border-line bg-background p-6">
                             <div className="flex items-center gap-2 mb-4">
-                                <Star className="size-5 text-green-500" />
+                                <Star className="size-5 text-success" />
                                 <h2 className="font-semibold text-foreground">Consistent Strengths</h2>
                             </div>
                             <ul className="gap-y-2">
                                 {analytics.topStrengths.map((strength, i) => (
                                     <li key={strength.text} className="flex items-start gap-2 text-sm">
-                                        <span className="text-green-500">✓</span>
+                                        <Check className="mt-0.5 size-4 shrink-0 text-success" aria-hidden="true" />
                                         <span className="text-foreground/80">{strength.text}</span>
                                         {strength.count > 1 && (
                                             <span className="text-xs text-muted-foreground ml-auto">×{strength.count}</span>
@@ -268,7 +317,7 @@ export default function DashboardPage() {
                         </div>
                     )}
                 </div>
-            </main>
+            </div>
         </div>
     );
 }

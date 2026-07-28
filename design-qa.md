@@ -1,62 +1,71 @@
-# Lifted Line 2.0 - Final Design QA
+# Lifted Line 2.0 - Final Reference Parity QA
 
-Date: 2026-07-20
+Date closed: 2026-07-21
 
-Result: **PASS**
+## Verdict
 
-## Scope
+The redesign passes visual QA on the deployed preview. The design system, approved seven-frame reference set, major product journey, minor routes, responsive variants, and customer-facing failure states now read as one product.
 
-- Approved seven-state reference set: landing desktop, landing mobile, workspace default, workspace error, workspace analysis, report, and pricing
-- Research hub at 390, 1024, and 1440 pixels
-- Every canonical Research article at 390, 1024, and 1440 pixels
-- Every Research figure and diagram through the shared figure primitives and route-level visual audit
-- Connected public shells: Resources, guides, auth, trust, legal, header, footer, and primary CTA treatment
+This is a design and implementation approval. Production launch still requires the separate operational rehearsals listed in the launch gate, especially live auth, Stripe, account deletion/export, and the final production environment switch.
 
-## Reference match
+## Approved source of truth
 
-- Space Grotesk Variable carries display, verdict, price, and action hierarchy.
-- Instrument Sans Variable carries navigation, body, controls, labels, and technical metadata.
-- The public system is consistently ink, chalk, citron, deep cyan, bright-cyan rules, and pale-cyan teaching surfaces.
-- Headers, wordmark, controls, borders, radii, action treatment, and footer now follow the approved reference images across public surfaces.
-- Research no longer relies on the retired serif, iris, teal-first, legacy palette utilities, or scoped compatibility mappings.
-- Research figures use one shared report-like grammar: claim, readable encoding, caption, source context, and takeaway or limit.
+The implementation was checked against:
 
-## Issues found and resolved
+1. `output/design-approval/2026-07-20-pass-2/01-landing-desktop.png`
+2. `output/design-approval/2026-07-20-pass-2/02-landing-mobile.png`
+3. `output/design-approval/2026-07-20-pass-2/03-workspace-default.png`
+4. `output/design-approval/2026-07-20-pass-2/04-workspace-error.png`
+5. `output/design-approval/2026-07-20-pass-2/05-workspace-analysis.png`
+6. `output/design-approval/2026-07-20-pass-2/06-report.png`
+7. `output/design-approval/2026-07-20-pass-2/07-pricing.png`
 
-- Removed a findings-tab effect that scrolled the Research hub past its opening on first load.
-- Replaced the last Research diagram legacy-palette utilities with semantic Lifted Line tokens.
-- Corrected a low-contrast secondary page number in the resume-length figure.
-- Replaced cyan-filled Research CTAs with the approved ink action and citron directional cue.
-- Tightened Research display weights so the hub and article hierarchy match the reference character.
-- Updated the Research UI and article contracts so documentation no longer describes the retired serif-and-iris system.
+The approved written rules in `output/design-approval/2026-07-20-pass-2/approval-notes.md` govern any small rendering differences in the generated frames, including the 72px marketing header and 64px product header.
 
-## Severity review
+## Closed findings
 
-- P0: none
-- P1: none
-- P2: none
+### Marker gesture
 
-## Verification
+- Replaced the rectangular CSS approximation with source-derived bold and shallow citron marker assets.
+- Kept one marker gesture per screen and the shallow treatment on product/report surfaces.
 
-- `npm run qa:design-system` - passed
-- `npm run lint` - passed
-- `npm run build` - passed; 87 routes generated
-- Playwright public launch, baseline accessibility, and Research system suite - 27 passed
-- Destructive and recovery journey suite - 11 passed
-- Research browser-error audit across the hub and every canonical article - passed
-- Research-specific responsive contract - hub and every canonical article passed at 390, 1024, and 1440 pixels
-- Research-specific accessibility - hub and every canonical article passed with no serious or critical Axe violations
-- Legacy Research redirects - all canonical destinations passed
-- `npm run test:pdf-export` - passed
-- `npm run test:billing-pricing` - passed
+### Reference composition
 
-## Visual evidence
+- Matched the landing composition, display scale, whitespace, report-card proportions, color roles, typography, and CTA hierarchy.
+- Compared the approved landing and deployed preview together at 1505x1045.
+- Final evidence: `output/design-qa/2026-07-21-reference-parity/final-preview-landing-comparison.png`.
 
-- Reference-to-Research comparison: `output/design-qa/2026-07-20-research-system/approved-compare-reference-to-research.png`
-- Reference-to-article comparison: `output/design-qa/2026-07-20-research-system/approved-compare-reference-to-article.png`
-- Research figure system contact sheet: `output/design-qa/2026-07-20-research-system/figure-system-contact-sheet.png`
-- Core seven-state comparisons: `output/design-qa/2026-07-20-final/approved-compare-*.png`
+### Major product surfaces
 
-## Non-blocking maintenance note
+- Verified landing, workspace default, upload/error handling, analysis, sample report, pricing, research hub, research article, research diagram, resources, calculator, auth, dashboard, support, status, security, privacy, terms, purchase restore, purchase confirmation, and 404.
+- Verified the deployed sample report at `/workspace?sample=1` on desktop and phone.
 
-- The build reports that `caniuse-lite` is seven months old. It does not affect this visual or functional result, but the browser database should be refreshed in a dependency-maintenance change.
+### Minor surfaces and route behavior
+
+- Verified FAQ, trust, methodology, all settings tabs, reports sign-in routing, legacy guide redirects, both negotiation guides, calculator redirect, sign-in redirect, and disabled extension/jobs routes.
+- Disabled extension and jobs routes return the branded 404 state with correct no-index Page Not Found metadata.
+- Auth, dashboard, settings, restore, confirmation, empty, loading, error, disabled, and signed-out states use the same hierarchy and visual grammar.
+
+### Responsive and constrained layouts
+
+- Verified 1505x1045 desktop, 1146x600 constrained desktop, 853px tablet, 390x844 phone, and a 768x523 200-percent-equivalent viewport.
+- No checked route has horizontal document overflow.
+- The phone support email overflow found during preview QA was fixed and rechecked.
+- No checked route has a broken image.
+
+### Browser and build quality
+
+- Final Vercel preview status: Ready.
+- Clean Chrome sweep across the critical and minor routes produced zero console errors.
+- Final preview build compiled, type-checked, generated all 88 static pages, and deployed successfully.
+- Lint and `git diff --check` pass after the final responsive and metadata fixes.
+
+## Evidence index
+
+- Final preview: `https://rip-nextjs-frontend-j3wanh195-matts-projects-59b2b24d.vercel.app`
+- Landing side-by-side: `output/design-qa/2026-07-21-reference-parity/final-preview-landing-comparison.png`
+- Desktop surface sheet: `output/design-qa/2026-07-21-reference-parity/preview-all-surfaces-contact-sheet.png`
+- Phone surface sheet: `output/design-qa/2026-07-21-reference-parity/preview-phone-contact-sheet.png`
+- Local reference-parity captures: `output/design-qa/2026-07-21-reference-parity/`
+
+Final result: **PASSED**

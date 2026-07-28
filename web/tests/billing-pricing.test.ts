@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import {
   getCheckoutModeForTier,
+  getPassStatus,
+  getPassStatusLabel,
   getTierDefaults,
   getTierLabel,
   normalizeRequestedTier,
@@ -26,6 +28,21 @@ assert.equal(
   legacyExtendedPass.expiresAt,
   "2026-10-10T12:00:00.000Z",
   "legacy 90-day access must not be silently extended to a year",
+);
+
+const futureExpiry = "2026-08-11T12:00:00.000Z";
+assert.equal(getPassStatus({ tier: "30d", uses_remaining: 2, expires_at: futureExpiry }, now), "active");
+assert.equal(getPassStatus({ tier: "30d", uses_remaining: 0, expires_at: futureExpiry }, now), "used");
+assert.equal(getPassStatus({ tier: "30d", uses_remaining: 2, expires_at: "2026-07-11T12:00:00.000Z" }, now), "expired");
+assert.equal(
+  getPassStatusLabel({
+    tier: "30d",
+    uses_remaining: 2,
+    expires_at: futureExpiry,
+    revoked_at: "2026-07-12T13:00:00.000Z",
+    revocation_reason: "refund_created",
+  }, now),
+  "Refunded",
 );
 
 console.log("billing pricing contracts passed");

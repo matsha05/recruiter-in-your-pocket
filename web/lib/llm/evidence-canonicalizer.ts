@@ -465,7 +465,7 @@ function replaceSoleOptionalEducationFix(topFixes: any[], resumeText: string, ch
     fix: hasGroundedScope(weakLine)
       ? "Add [measurable result] to this cited bullet and connect it to the stated responsibility."
       : "Rewrite this cited bullet by adding [specific scope] and [measurable result].",
-    why: "This cited line does not yet give a recruiter enough evidence to place the impact.",
+    why: "This cited line is still too general for a recruiter to place the impact.",
     confidence: "medium",
     evidence: { excerpt: bestExactWindow(weakLine, weakLine, 140), section: "Work Experience" },
     impact_level: "high",
@@ -643,7 +643,7 @@ function normalizeSectionReviewPresence(report: any, resumeText: string, changes
     if (/\b(?:career break|caregiving|return to work)\b/i.test(resumeText) && /\bpost[- ]break\b/i.test(`${item.missing || ""} ${item.fix || ""}`)) {
       item.missing = section === "Summary"
         ? "The opening does not connect recent hands-on evidence to the target role."
-        : "Recent hands-on evidence is not specific enough.";
+        : "Recent hands-on evidence is still too general.";
       item.fix = "Name one real recent course or personal project and the [completed artifact] it produced.";
       changed = true;
     }
@@ -1025,7 +1025,7 @@ function normalizeCareerBreakAdvice(report: any, resumeText: string, changes: st
   if (!/\b(?:career break|caregiving|return to work|return-to-work)\b/i.test(resumeText)) return;
   const availabilityPattern = /\b(?:availability|available within|ready to start|start date|start immediately|immediate contributions?)\b/i;
   const careerAmbiguityPattern = /\b(?:availability|available within|ready to start|start date|start immediately|immediate contributions?|does not quantify post[- ]break impact|post[- ]break impact is not quantified)\b/i;
-  const replacementSentence = "Recent hands-on activity is not specific enough, which makes return-to-work readiness hard to assess.";
+  const replacementSentence = "Recent hands-on activity is still too general, which makes return-to-work readiness hard to assess.";
 
   for (const field of ["first_impression", "summary", "score_comment_long", "score_plain"]) {
     if (typeof report?.[field] !== "string" || !careerAmbiguityPattern.test(report[field])) continue;
@@ -1114,7 +1114,7 @@ function normalizeCareerBreakAdvice(report: any, resumeText: string, changes: st
       if (availabilityPattern.test(`${item.missing || ""} ${item.fix || ""}`)) {
         item.missing = section === "Summary"
           ? "The opening does not connect recent hands-on evidence to the target role."
-          : "Recent hands-on evidence is not specific enough.";
+          : "Recent hands-on evidence is still too general.";
         item.fix = "Name one real recent course or personal project and the [completed artifact] it produced.";
         changes.push(`section_review.${section}.career_break_availability`);
       }

@@ -102,9 +102,11 @@ const shareEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_L
 const replayEnabled = normalizeFlag(process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY, false);
 const hasLiveEvalKey = Boolean(process.env.OPENAI_API_KEY);
 const paidEvalsAllowed = normalizeFlag(process.env.RIYP_ALLOW_PAID_EVALS, false);
+const generationDailyLimit = Number(process.env.RIYP_MAX_DAILY_GENERATIONS);
 
 checkFile("go_no_go_doc", "Go/no-go program doc", "docs/launch-readiness/80-go-no-go-program.md");
 checkFile("vendor_review_doc", "Vendor privacy review doc", "docs/launch-readiness/85-vendor-privacy-review.md");
+checkFile("operational_ownership_doc", "Operational ownership doc", "docs/launch-readiness/87-operational-ownership.md");
 checkFile("incident_runbook_doc", "Incident runbook doc", "docs/launch-readiness/90-incident-runbook.md");
 checkFile("launch_rehearsal_doc", "Launch rehearsal doc", "docs/launch-readiness/95-launch-rehearsal.md");
 
@@ -139,6 +141,39 @@ checkCondition(
   hasSharedRedis(),
   "Upstash Redis is configured for cross-instance rate limiting and idempotency.",
   "A compatible UPSTASH_REDIS_REST_* or KV_REST_API_* credential pair is required before paid beta traffic."
+);
+
+checkCondition(
+  "auth_email_delivery",
+  "Transactional auth email",
+  Boolean(process.env.RESEND_API_KEY),
+  "Resend is configured for exact OTP delivery.",
+  "RESEND_API_KEY is required for the real sign-in code path."
+);
+
+checkCondition(
+  "generation_cost_control",
+  "Atomic generation cost ceiling",
+  Number.isSafeInteger(generationDailyLimit) && generationDailyLimit > 0 && hasSharedRedis(),
+  `Daily generation-request ceiling is ${generationDailyLimit} with shared Redis enforcement.`,
+  "RIYP_MAX_DAILY_GENERATIONS must be a positive integer and shared Redis must be configured."
+);
+
+checkCondition(
+  "support_delivery",
+  "Primary support delivery",
+  normalizeFlag(process.env.RIYP_SUPPORT_INBOX_VERIFIED, false),
+  "The support inbox passed a real receive-and-reply rehearsal.",
+  "RIYP_SUPPORT_INBOX_VERIFIED is not true. Do not claim launch readiness until the real inbox receives and replies to a rehearsal message."
+);
+
+checkCondition(
+  "secondary_alert",
+  "Secondary operational alert",
+  normalizeFlag(process.env.RIYP_SECONDARY_ALERT_VERIFIED, false),
+  "A distinct backup alert destination passed a real delivery rehearsal.",
+  "RIYP_SECONDARY_ALERT_VERIFIED is not true. A second destination, distinct from the primary inbox, still needs a delivery rehearsal.",
+  "important"
 );
 
 checkCondition(
@@ -228,6 +263,19 @@ runCommand("web_security", "Security tests", {
   command: "npm",
   args: ["run", "test:security"],
   cwd: webDir,
+  // Unit and contract tests must never consume production Redis state merely
+  // because the parent launch shell is carrying deploy credentials. The gate
+  // validates hosted Redis above; this child suite exercises deterministic
+  // local fallbacks and explicit configuration parsing instead.
+  env: {
+    NEXT_PUBLIC_APP_URL: "http://localhost:3000",
+    USE_MOCK_OPENAI: "1",
+    RIYP_ALLOW_TEST_RATE_LIMIT_FALLBACK: "true",
+    UPSTASH_REDIS_REST_URL: "",
+    UPSTASH_REDIS_REST_TOKEN: "",
+    KV_REST_API_URL: "",
+    KV_REST_API_TOKEN: "",
+  },
   passMessage: "Security tests passed.",
 });
 
@@ -263,6 +311,11 @@ runCommand("contract_smoke", "Root contract + readiness suite", {
   command: "npm",
   args: ["test"],
   cwd: repoRoot,
+  // The production candidate is intentionally built with production public
+  // variables above. Contract readiness needs a separate local build so those
+  // compile-time NEXT_PUBLIC values cannot make its loopback server masquerade
+  // as the hosted deployment.
+  env: { FORCE_NEXT_BUILD: "1" },
   passMessage: "Root contract suite passed.",
   severity: "important",
 });

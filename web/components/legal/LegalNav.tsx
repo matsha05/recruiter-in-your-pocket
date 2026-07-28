@@ -22,6 +22,7 @@ export function LegalNav({ className }: LegalNavProps) {
         { name: "Trust & Security", href: "/trust" },
         { name: "Data Handling", href: "/security" },
         ...(isLaunchFlagEnabled("extensionSync") ? [{ name: "Extension", href: "/extension" }] : []),
+        { name: "Support", href: "/support" },
         { name: "Status", href: "/status" },
         { name: "Methodology", href: "/methodology" },
         { name: "Privacy Policy", href: "/privacy" },

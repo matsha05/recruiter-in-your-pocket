@@ -25,11 +25,11 @@ function FlowLine({ referred }: { referred?: boolean }) {
     );
 }
 
-export function ReferralFunnelDiagram() {
+export function ReferralFunnelDiagram({ figureNumber = 1 }: { figureNumber?: number }) {
     return (
         <DiagramFigure className="max-w-[48rem]" label="Comparison of cold and referred applications showing where referrer context enters the hiring process">
             <DiagramFrame>
-                <EvidenceHeader index="01" label="What a referral adds" title="The reviewer starts with more context about you." note="A referral does not replace fit. It can explain why your experience deserves a closer look." />
+                <EvidenceHeader index={String(figureNumber).padStart(2, "0")} label="What a referral adds" title="The reviewer starts with more context about you." note="A referral does not replace fit. It can explain why your experience deserves a closer look." />
                 <div className="space-y-8 px-5 py-7 md:px-7 md:py-9">
                     <FlowLine />
                     <div className="border-t border-dashed border-line" />
@@ -37,7 +37,7 @@ export function ReferralFunnelDiagram() {
                 </div>
                 <div className="border-t border-line bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7"><strong className="text-foreground">The advantage is informational:</strong> someone helps interpret the candidate before the screen begins.</div>
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Referral context" title="A referral can help your application get understood. It cannot guarantee the outcome." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Referral context`} title="A referral can help your application get understood. It cannot guarantee the outcome." />
         </DiagramFigure>
     );
 }

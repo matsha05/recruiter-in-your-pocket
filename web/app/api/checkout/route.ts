@@ -14,6 +14,7 @@ import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import { getAppUrlForRequest } from "@/lib/runtime/appUrl";
 import { createStripeClient } from "@/lib/billing/stripeClient";
 import { getLaunchStripeOffer } from "@/lib/billing/stripeOffers";
+import { areNewPurchasesDisabled } from "@/lib/launch/serverFlags";
 
 // Initialize Stripe
 const stripe = createStripeClient();
@@ -116,7 +117,7 @@ export async function POST(request: Request) {
         return res;
     }
 
-    if (!isLaunchFlagEnabled("billingUnlock")) {
+    if (!isLaunchFlagEnabled("billingUnlock") || areNewPurchasesDisabled()) {
         const res = NextResponse.json({ ok: false, message: "Purchases are temporarily unavailable." }, { status: 503 });
         res.headers.set("x-request-id", request_id);
         return res;

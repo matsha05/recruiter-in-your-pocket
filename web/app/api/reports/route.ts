@@ -3,6 +3,7 @@ import crypto from "crypto";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { logError } from "@/lib/observability/logger";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -98,8 +99,12 @@ export async function GET(request: NextRequest) {
     }));
 
     return NextResponse.json({ ok: true, reports });
-  } catch (error) {
-    console.error("API /reports error:", error);
+  } catch (error: any) {
+    logError({
+      msg: "reports.list_failed",
+      outcome: "internal_error",
+      err: { name: error?.name || "Error", message: error?.message || "Failed to list reports", code: error?.code },
+    });
     return NextResponse.json({ ok: false, reports: [] }, { status: 500 });
   }
 }
@@ -150,7 +155,12 @@ export async function POST(request: NextRequest) {
 
     const { error } = await supabase.from("reports").insert(payload);
     if (error) {
-      console.error("Save report failed:", error);
+      logError({
+        msg: "reports.save_failed",
+        outcome: "provider_error",
+        supabase: { table: "reports", op: "insert", error_code: String(error.code || "SAVE_FAILED") },
+        err: { name: "SupabaseError", message: "Report insert failed", code: String(error.code || "SAVE_FAILED") },
+      });
       return NextResponse.json(
         { ok: false, errorCode: "SAVE_FAILED", message: "Could not save this report right now." },
         { status: 500 }
@@ -159,7 +169,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ ok: true, reportId });
   } catch (error: any) {
-    console.error("API POST /reports error:", error);
+    logError({
+      msg: "reports.save_failed",
+      outcome: "internal_error",
+      err: { name: error?.name || "Error", message: error?.message || "Failed to save report", code: error?.code },
+    });
     return NextResponse.json(
       { ok: false, message: error?.message || "Failed to save report" },
       { status: 500 }

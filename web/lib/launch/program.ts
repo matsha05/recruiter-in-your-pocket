@@ -28,15 +28,27 @@ export type RehearsalStep = {
 };
 
 export const LAUNCH_OWNERS: LaunchOwner[] = [
-  { surface: "Launch command", owner: "Matt", backup: "Support inbox", channel: "support@recruiterinyourpocket.com" },
-  { surface: "Auth and identity", owner: "Matt", backup: "Support inbox", channel: "support@recruiterinyourpocket.com" },
-  { surface: "Billing and unlocks", owner: "Matt", backup: "Stripe dashboard + support inbox", channel: "support@recruiterinyourpocket.com" },
+  { surface: "Launch command", owner: "Matt", backup: "Pending verified support destination", channel: "docs/launch-readiness/87-operational-ownership.md" },
+  { surface: "Auth and identity", owner: "Matt", backup: "Pending verified support destination", channel: "docs/launch-readiness/87-operational-ownership.md" },
+  { surface: "Billing and unlocks", owner: "Matt", backup: "Stripe dashboard plus pending secondary alert", channel: "docs/launch-readiness/87-operational-ownership.md" },
   { surface: "Held-back surfaces", owner: "Matt", backup: "Launch flags + status page", channel: "docs/launch-readiness/80-go-no-go-program.md" },
   { surface: "AI quality and prompt changes", owner: "Matt", backup: "PromptOps shipping gate", channel: "docs/promptops/shipping-gate.md" },
   { surface: "Trust and security disclosures", owner: "Matt", backup: "Security mailbox", channel: "security@recruiterinyourpocket.com" },
 ];
 
 export const ROLLBACK_CONTROLS: RollbackControl[] = [
+  {
+    surface: "New purchases",
+    envVar: "RIYP_DISABLE_NEW_PURCHASES",
+    defaultState: "disabled",
+    reason: "Stop new Checkout Sessions without preventing paid customers from restoring access, reading receipts, or opening the billing portal.",
+  },
+  {
+    surface: "Report generation",
+    envVar: "RIYP_DISABLE_GENERATION",
+    defaultState: "disabled",
+    reason: "Stop new model calls immediately if quality, provider health, abuse, or spend exceeds the safe operating envelope.",
+  },
   {
     surface: "Extension sync",
     envVar: "NEXT_PUBLIC_ENABLE_EXTENSION_SYNC",
@@ -66,6 +78,12 @@ export const ROLLBACK_CONTROLS: RollbackControl[] = [
     envVar: "NEXT_PUBLIC_ENABLE_LINKEDIN_REVIEW",
     defaultState: "disabled",
     reason: "Blocked from enablement until its generation route uses the atomic access-reservation lifecycle.",
+  },
+  {
+    surface: "Experimental resume-ideas API",
+    envVar: "RIYP_ENABLE_RESUME_IDEAS_API",
+    defaultState: "disabled",
+    reason: "Keep the hidden generation mode unavailable unless it receives its own launch review and explicit server-side enablement.",
   },
   {
     surface: "Third-party analytics",
@@ -194,6 +212,7 @@ export const LAUNCH_REHEARSAL_STEPS: RehearsalStep[] = [
 export const REQUIRED_LAUNCH_DOCS = [
   "docs/launch-readiness/80-go-no-go-program.md",
   "docs/launch-readiness/85-vendor-privacy-review.md",
+  "docs/launch-readiness/87-operational-ownership.md",
   "docs/launch-readiness/90-incident-runbook.md",
   "docs/launch-readiness/95-launch-rehearsal.md",
   "docs/promptops/shipping-gate.md",
@@ -204,6 +223,7 @@ export const REQUIRED_PUBLIC_TRUST_FILES = [
   "web/app/(marketing)/security/page.tsx",
   "web/app/(marketing)/methodology/page.tsx",
   "web/app/(marketing)/status/page.tsx",
+  "web/app/(marketing)/support/page.tsx",
   "web/app/.well-known/security.txt/route.ts",
   "web/app/robots.ts",
   "web/app/sitemap.ts",
@@ -214,7 +234,7 @@ export const LAUNCH_GATE_DEFINITIONS = [
     id: "trust",
     label: "Trust and security",
     description: "Privacy posture, public trust surfaces, and safe defaults for monitoring.",
-    checks: ["runtime_env", "shared_rate_limit", "public_trust_surfaces", "analytics_configuration", "error_replay"],
+    checks: ["runtime_env", "shared_rate_limit", "generation_cost_control", "support_delivery", "secondary_alert", "public_trust_surfaces", "analytics_configuration", "error_replay"],
   },
   {
     id: "auth",

@@ -27,7 +27,7 @@ const peekVariants = {
 }
 
 const peekTransitionIn = {
-    duration: DURATION.reveal, // 320ms
+    duration: 0.16,
     ease: [0.16, 1, 0.3, 1] as [number, number, number, number], // EASE_SNAP
 }
 
@@ -86,7 +86,7 @@ export function Peek({
                             sideOffset={8}
                             className={cn(
                                 // Base
-                                "z-50 w-full max-w-[420px] rounded border border-border/60 bg-background p-4",
+                                "z-50 w-full max-w-[420px] border border-border bg-background p-4",
                                 // Shadow per design-system.md
                                 "shadow-[0_10px_30px_rgba(0,0,0,0.08)]",
                                 // Responsive: bottom sheet on mobile could be added later
@@ -111,10 +111,10 @@ export function Peek({
                                 {/* Close button */}
                                 {showClose && (
                                     <PopoverPrimitive.Close
-                                        className="absolute right-3 top-3 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                                        className="absolute right-0.5 top-0.5 inline-flex size-11 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                                         aria-label="Close"
                                     >
-                                        <X className="size-4" />
+                                        <X className="size-5" />
                                     </PopoverPrimitive.Close>
                                 )}
 

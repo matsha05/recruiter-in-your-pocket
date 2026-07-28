@@ -16,7 +16,7 @@ export function ReportLayout({ children, toc }: ReportLayoutProps) {
                     {toc}
                 </aside>
             )}
-            <article className="riyp-report-paper mt-6 min-w-0 px-5 py-7 sm:px-8 sm:py-5">
+            <article className="riyp-report-paper mt-4 min-w-0 px-5 py-5 sm:mt-8 sm:px-8 sm:py-7">
                 {children}
             </article>
         </div>

@@ -75,7 +75,7 @@ export default function HowWeScorePage() {
             ]}
             visualization={
                 <>
-                    <h2 className="research-h2">A score with receipts</h2>
+                    <h2 className="research-h2">A score tied to visible evidence</h2>
                     <p className="research-body mb-6">The number is the summary. The four diagnostics and the quoted evidence explain what drove it.</p>
                     <FirstReadModelDiagram />
                 </>
@@ -147,7 +147,7 @@ export default function HowWeScorePage() {
             {/* The Bottom Line */}
             <h2 className="research-h2">How to use the score</h2>
             <p className="research-body mb-6">
-                Start with the written finding that would make the biggest difference. Use the score to see where to begin; do not edit only to raise the number. In a 2023 eye-tracking study, longer review time and attention to the Experience section were associated with resumes moving forward. The study did not test our score. It supports the simpler point that useful evidence needs enough clarity and context to earn a closer look.
+                Start with the written finding that would make the biggest difference. Use the score to see where to begin; do not edit only to raise the number. In a 2023 eye-tracking study, longer review time and attention to the Experience section were associated with resumes moving forward. The study did not test our score. It supports the simpler point that useful evidence needs clarity and context to earn a closer look.
                 <Citation id="source-1">2</Citation>
             </p>
             <p className="research-body">This method helps us review resumes consistently. It is not an ATS hack or a prediction of your chances.</p>

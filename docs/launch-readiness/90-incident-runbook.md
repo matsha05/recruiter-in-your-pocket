@@ -1,6 +1,6 @@
 # RIYP Incident Runbook
 
-**Last Updated:** March 7, 2026  
+**Last Updated:** July 21, 2026
 **Status:** Active
 
 ## Severity Model
@@ -15,9 +15,9 @@
 
 | Surface | Primary | Backup |
 |:--------|:--------|:-------|
-| Launch command | Matt | support@recruiterinyourpocket.com |
-| Auth and identity | Matt | support@recruiterinyourpocket.com |
-| Billing and unlocks | Matt | Stripe dashboard + support |
+| Launch command | Matt | Pending verified secondary destination |
+| Auth and identity | Matt | Pending verified secondary destination |
+| Billing and unlocks | Matt | Stripe Dashboard plus pending secondary destination |
 | Extension sync | Matt | status page + support |
 | AI quality | Matt | PromptOps shipping gate |
 | Trust and security | Matt | security@recruiterinyourpocket.com |
@@ -32,9 +32,10 @@
 
 ### Billing incident
 
-1. Set `NEXT_PUBLIC_ENABLE_BILLING_UNLOCK=false` if unlock correctness is in doubt
-2. Confirm webhook verification and Stripe event delivery
-3. Restore access manually only after the event log is understood
+1. Set `RIYP_DISABLE_NEW_PURCHASES=true` and redeploy to stop new Checkout Sessions while preserving receipts, restore, portal, and refund handling.
+2. Confirm webhook verification, event-lease state, and Stripe delivery history before changing existing access.
+3. If fulfillment itself is unsafe, set `NEXT_PUBLIC_ENABLE_BILLING_UNLOCK=false` only as the broader second-stage containment control.
+4. Restore access manually only after the event log and entitlement block ledger are understood.
 
 ### Extension incident
 
@@ -44,9 +45,20 @@
 
 ### AI quality incident
 
-1. Freeze prompt changes
-2. Run `npm run eval:golden -- --baseline ../tests/fixtures/baselines/v2_baseline.json`
-3. Revert or disable the change if any FAIL fixtures appear
+1. Set `RIYP_DISABLE_GENERATION=true` and redeploy; this must stop provider calls before access is consumed.
+2. Freeze prompt changes.
+3. Run `npm run eval:golden -- --baseline ../tests/fixtures/baselines/v2_baseline.json` only with an explicit cost budget.
+4. Revert the candidate or keep generation paused if any FAIL fixtures appear.
+
+## Deployment Rollback
+
+1. Record the failing deployment ID, the last known-good deployment ID, and the incident start time.
+2. Stop the affected action with the narrow kill switch first when that contains user harm.
+3. For a production rollback, Matt must explicitly authorize `vercel rollback <last-known-good-deployment-id> --yes`.
+4. Verify `/api/health`, `/api/status`, auth return, and the affected workflow after rollback.
+5. Do not re-promote the newer candidate. Fix it on a new immutable preview and repeat the relevant rehearsal.
+
+Preview rehearsal uses a disposable preview alias: point the alias to candidate B, verify it, point it back to candidate A, and verify the exact deployment ID changed. It must never touch the production domain.
 
 ## Public Communication Standard
 

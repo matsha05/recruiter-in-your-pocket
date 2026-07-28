@@ -20,6 +20,7 @@ import { isSampleParamEnabled, useSampleReport } from "@/components/workspace/ho
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
 import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
 import { getUnlockContext, clearUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
+import { takeCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import type { AuthContext } from "@/lib/auth/content";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
@@ -35,6 +36,7 @@ export default function WorkspaceClient() {
     const { push, replace } = useRouter();
     const searchParams = useSearchParams();
     const getSearchParam = searchParams.get.bind(searchParams);
+    const sampleParamEnabled = isSampleParamEnabled(getSearchParam("sample"));
     const { user, refreshUser } = useAuth();
     const [resumeText, setResumeText] = useState("");
     const [jobDescription, setJobDescription] = useState("");
@@ -112,6 +114,16 @@ export default function WorkspaceClient() {
         skipSample,
         setReport
     });
+
+    useEffect(() => {
+        const restored = takeCheckoutWorkspaceState();
+        if (!restored) return;
+        setResumeText(restored.resumeText || "");
+        setJobDescription(restored.jobDescription || "");
+        setReport(restored.report);
+        setSkipSample(true);
+        toast.success("Your report is back", { description: "Checkout did not discard the read you were working from." });
+    }, []);
 
     const { refreshFreeStatus } = useFreeStatus({ refreshUser, setFreeUsesRemaining });
 
@@ -441,8 +453,7 @@ export default function WorkspaceClient() {
                 toast.success('Link copied to clipboard');
                 break;
             case 'upload':
-                // Focus on file input or trigger file dialog
-                toast.info('Drop your resume file to upload');
+                document.querySelector<HTMLInputElement>('[data-testid="workspace-resume-file"]')?.click();
                 break;
             case 'run-analysis':
                 handleRun();
@@ -455,6 +466,15 @@ export default function WorkspaceClient() {
 
     const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
     const effectiveUsesRemaining = hasPaidAccess ? Math.max(freeUsesRemaining, 1) : freeUsesRemaining;
+
+    useEffect(() => {
+        window.dispatchEvent(new CustomEvent("riyp-report-visibility", {
+            detail: { visible: Boolean(report || linkedInReport) }
+        }));
+        return () => {
+            window.dispatchEvent(new CustomEvent("riyp-report-visibility", { detail: { visible: false } }));
+        };
+    }, [report, linkedInReport]);
 
     useEffect(() => {
         if (!linkedInReviewEnabled && reviewMode !== "resume") {
@@ -485,7 +505,8 @@ export default function WorkspaceClient() {
         if (targetId) {
             setTimeout(() => {
                 const el = document.getElementById(targetId);
-                el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                el?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
             }, 350);
         }
 
@@ -499,7 +520,7 @@ export default function WorkspaceClient() {
         };
     }, [hasPaidAccess, report]);
 
-    const isSampleReport = isSampleParamEnabled(getSearchParam("sample")) || (!skipSample && !resumeText.trim());
+    const isSampleReport = sampleParamEnabled || (!skipSample && !resumeText.trim());
 
     return (
         <>
@@ -507,7 +528,7 @@ export default function WorkspaceClient() {
                 aria-label="Workspace"
                 data-visual-anchor="workspace-shell"
                 data-workspace-mode={reviewMode}
-                className="flex h-[calc(100dvh-var(--header-height))] flex-col overflow-hidden bg-body md:h-[calc(100dvh-var(--header-height-desktop))]"
+                className="workspace-product-shell flex flex-col overflow-hidden bg-body"
             >
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
                     {/* Mode Switcher - show only when no report is displayed */}
@@ -595,6 +616,8 @@ export default function WorkspaceClient() {
                 isOpen={isPaywallOpen}
                 onClose={() => setIsPaywallOpen(false)}
                 creditsRemaining={freeUsesRemaining}
+                hasCurrentReport={Boolean(report)}
+                workspaceState={report ? { report, resumeText, jobDescription } : null}
             />
 
             {/* Auth Modal */}

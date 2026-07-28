@@ -26,7 +26,7 @@ interface ResumeDropzoneProps {
     onValidationStateChange?: (hasError: boolean) => void;
 }
 
-const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+const MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024;
 
 function formatMegabytes(bytes: number) {
     return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
@@ -54,7 +54,7 @@ export function ResumeDropzone({
         const selectedFile = acceptedFiles[0] ?? fileRejections[0]?.file;
         if (selectedFile && selectedFile.size > MAX_FILE_SIZE_BYTES) {
             setRejectedFile(selectedFile);
-            setError(`This file is ${formatMegabytes(selectedFile.size)}. Choose a PDF or DOCX under 10 MB.`);
+            setError(`This file is ${formatMegabytes(selectedFile.size)}. Choose a PDF or DOCX under 4 MB.`);
             onValidationStateChange?.(true);
             return;
         }
@@ -65,7 +65,7 @@ export function ResumeDropzone({
             setRejectedFile(rejection.file);
             onValidationStateChange?.(true);
             if (rejection.errors.some((item) => item.code === "file-too-large")) {
-                setError(`This file is ${formatMegabytes(rejection.file.size)}. Choose a PDF or DOCX under 10 MB.`);
+                setError(`This file is ${formatMegabytes(rejection.file.size)}. Choose a PDF or DOCX under 4 MB.`);
             } else if (rejection.errors[0]?.code === "file-invalid-type") {
                 setError("Please upload a PDF or DOCX file.");
             } else {
@@ -99,7 +99,7 @@ export function ResumeDropzone({
         event.stopPropagation();
         setLocalFileName(null);
         setRejectedFile(selectedFile);
-        setError(`This file is ${formatMegabytes(selectedFile.size)}. Choose a PDF or DOCX under 10 MB.`);
+        setError(`This file is ${formatMegabytes(selectedFile.size)}. Choose a PDF or DOCX under 4 MB.`);
         onValidationStateChange?.(true);
     };
 
@@ -147,7 +147,7 @@ export function ResumeDropzone({
                             isDragReject && "border-destructive/50 bg-destructive/5 text-destructive"
                         )}
                     >
-                        <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
+                        <input {...getInputProps()} data-testid="workspace-resume-file" onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
                         <div className="text-sm font-medium">Drop your resume here</div>
                         <div className="text-xs text-muted-foreground mt-1">No login required</div>
                     </div>
@@ -182,7 +182,7 @@ export function ResumeDropzone({
             {displayFileName ? (
                 <div className="animate-in fade-in slide-in-from-top-2 flex min-h-40 items-center justify-between gap-4 border border-brand/25 bg-brand/5 p-5 sm:p-6">
                     <span className="flex min-w-0 items-center gap-4 text-sm font-medium text-brand">
-                        <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand/10">
+                        <span className="flex size-11 shrink-0 items-center justify-center rounded-sm bg-brand/10">
                             <FileText className="size-5" weight="duotone" />
                         </span>
                         <span className="min-w-0">
@@ -263,7 +263,7 @@ export function ResumeDropzone({
                                 Drop your resume here
                             </p>
                             <p className="mt-2 text-lg leading-6 text-muted-foreground">
-                                PDF or DOCX · 10 MB max
+                                PDF or DOCX · 4 MB max
                             </p>
                         </div>
 

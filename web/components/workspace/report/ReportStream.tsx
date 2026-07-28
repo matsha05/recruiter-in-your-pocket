@@ -325,7 +325,7 @@ export function ReportStream({
                     <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
                 </div>
 
-                <div className="pt-8 sm:pt-6">
+                <div className="pt-6 sm:pt-6">
                     <div className="border-l-2 border-cyan-bright pl-5 sm:pl-12">
                         <h1 className="report-opening-title font-display font-semibold tracking-[-0.055em] text-foreground">
                             <MarkedTakeaway text={report.first_impression_takeaway || "Make the proof easier to see."} />
@@ -339,15 +339,15 @@ export function ReportStream({
                 <div className="mt-4 grid border-y border-[hsl(var(--paper-line))] sm:grid-cols-3 sm:divide-x sm:divide-[hsl(var(--paper-line))]">
                     <div className="report-evidence-tile border-b border-[hsl(var(--paper-line))] bg-accent-butter/20 px-5 py-5 sm:border-b-0 sm:px-6 sm:py-7">
                         <div className="flex items-center gap-3 text-brand"><CornersOut className="size-5" weight="bold" aria-hidden="true" /><p className="text-[11px] font-semibold uppercase riyp-track-015 text-foreground/55">What lands</p></div>
-                        <p className="mt-3 text-base font-medium leading-6 text-foreground">{strengths[0] || "The core of your experience is easy to follow."}</p>
+                        <p className="mt-3 text-lg font-medium leading-7 text-foreground">{strengths[0] || "The core of your experience is easy to follow."}</p>
                     </div>
                     <div className="report-evidence-tile border-b border-[hsl(var(--paper-line))] bg-paper px-5 py-5 sm:border-b-0 sm:px-6 sm:py-7">
                         <div className="flex items-center gap-3 text-brand"><BracketsAngle className="size-5" weight="bold" aria-hidden="true" /><p className="riyp-text-annotation text-[11px] font-semibold uppercase riyp-track-015">Where doubt creeps in</p></div>
-                        <p className="mt-3 text-base font-medium leading-6 text-foreground">{report.gaps?.[0] || report.biggest_gap_example || "The scale and result need more proof."}</p>
+                        <p className="mt-3 text-lg font-medium leading-7 text-foreground">{report.gaps?.[0] || report.biggest_gap_example || "The scale and result need more proof."}</p>
                     </div>
                     <div className="report-evidence-tile bg-surface-sky px-5 py-5 sm:px-6 sm:py-7">
                         <div className="flex items-center gap-3 text-cyan-bright"><PaperPlaneTilt className="size-5" weight="bold" aria-hidden="true" /><p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Fix first</p></div>
-                        <p className="mt-3 text-base font-medium leading-6 text-foreground">{primaryFix?.fix || primaryFix?.text || "Make the strongest part of the story more specific."}</p>
+                        <p className="mt-3 text-lg font-medium leading-7 text-foreground">{primaryFix?.fix || primaryFix?.text || "Make the strongest part of the story more specific."}</p>
                     </div>
                 </div>
 
@@ -373,7 +373,10 @@ export function ReportStream({
                         <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">The evidence</p>
                         <p className="mt-2 text-sm text-muted-foreground">The specifics that support this read.</p>
                     </div>
-                    <button type="button" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand" onClick={() => document.getElementById("section-fixes")?.scrollIntoView({ behavior: "smooth", block: "start" })}>
+                    <button type="button" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand" onClick={() => {
+                        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                        document.getElementById("section-fixes")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+                    }}>
                         See all evidence <ArrowRight className="size-4" weight="bold" />
                     </button>
                 </div>

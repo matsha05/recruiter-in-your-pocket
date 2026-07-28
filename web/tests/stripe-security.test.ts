@@ -14,6 +14,10 @@ const stripeClientSource = fs.readFileSync(
   path.resolve(process.cwd(), "lib/billing/stripeClient.ts"),
   "utf8"
 );
+const receiptsSource = fs.readFileSync(
+  path.resolve(process.cwd(), "app/api/billing/receipts/route.ts"),
+  "utf8"
+);
 
 assert.match(
   checkoutSource,
@@ -84,6 +88,21 @@ assert.match(
   stripeClientSource,
   /2026-06-24\.dahlia/,
   "Stripe client is pinned to the API version shipped by the installed SDK"
+);
+assert.match(
+  receiptsSource,
+  /select\("stripe_customer_id"\)/,
+  "receipt recovery uses customer ids bound to the signed-in user's passes"
+);
+assert.doesNotMatch(
+  receiptsSource,
+  /stripe\.customers\.list\(\{\s*email:/,
+  "receipt recovery must not select an arbitrary Stripe customer by shared email"
+);
+assert.match(
+  receiptsSource,
+  /billing-receipts/,
+  "live receipt fallback is rate limited per signed-in user"
 );
 
 console.log("Stripe security contracts passed");

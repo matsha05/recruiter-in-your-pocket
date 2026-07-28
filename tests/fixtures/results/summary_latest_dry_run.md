@@ -1,7 +1,7 @@
 # PromptOps Fixture Validation Report
 
-**Run ID:** eval_1784603931398
-**Timestamp:** 2026-07-21T03:18:51.401Z
+**Run ID:** eval_1785259017973
+**Timestamp:** 2026-07-28T17:16:57.976Z
 **Tier:** golden
 **Prompt Version:** v1
 **Contract Version:** v2
@@ -13,8 +13,8 @@
 
 | Metric | Value |
 |:-------|:------|
-| Total Fixtures | 20 |
-| Validated | 20 |
+| Total Fixtures | 23 |
+| Validated | 23 |
 | ⚠️ Warned | 0 |
 | ❌ Failed | 0 |
 | Fixture Validation Rate | 100.0% |
@@ -33,7 +33,7 @@
 
 ## Validated Fixtures
 
-20 fixture files were found. Their model outputs were not evaluated.
+23 fixture files were found. Their model outputs were not evaluated.
 
 <details>
 <summary>Expand to see fixture IDs</summary>
@@ -58,4 +58,7 @@
 - synth_operations_manager_entry_weak_1
 - synth_project_manager_vp_strong_1
 - synth_product_manager_entry_elite_1
+- career_path_elementary_educator_1
+- career_path_ministry_leader_1
+- frontline_retail_entry_1
 </details>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Check, CircleNotch, LockKey } from "@phosphor-icons/react";
+import { LockKey } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -102,6 +102,11 @@ export default function AnalysisScanning({
     return (
         <div className={cn("analysis-stage flex min-h-full items-start bg-mineral px-4 py-10 sm:px-7", className)}>
             <section className="analysis-shell mx-auto w-full" aria-labelledby="analysis-title" aria-busy="true">
+                <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+                    {isSlow
+                        ? `The ${subject} review is taking longer than usual. You can keep waiting, retry, or stop.`
+                        : `Building your ${subject} report. Keep this tab open.`}
+                </p>
                 <header className="grid gap-5 md:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] md:items-end md:gap-12">
                     <div>
                         <p className="riyp-track-015 text-xs font-bold uppercase text-brand">Building your report</p>
@@ -109,29 +114,31 @@ export default function AnalysisScanning({
                             A careful read, in four passes.
                         </h2>
                     </div>
-                    <p className="max-w-xl text-base leading-7 text-muted-foreground">
+                    <p className="max-w-[23rem] text-lg leading-8 text-muted-foreground">
                         We read the {subject}, find the evidence, check what comes through, and put the useful actions in order.
                     </p>
                 </header>
 
-                <div className="mt-9 overflow-hidden border border-line bg-paper sm:mt-11">
+                <div className="mt-9 overflow-hidden border border-line bg-paper sm:mt-10">
                     <div className="grid min-h-16 items-center gap-3 border-b border-line px-5 sm:grid-cols-[14rem_1fr_auto] sm:px-8">
                         <p className="riyp-track-012 text-sm font-bold uppercase text-brand">Review map</p>
                         <p className="text-base text-muted-foreground">What the report is checking</p>
-                        <p className="riyp-track-012 text-sm font-bold uppercase text-brand">In progress</p>
+                        <p className="riyp-track-012 inline-flex items-center gap-2 text-sm font-bold uppercase text-brand">
+                            <span className="relative flex size-2" aria-hidden="true">
+                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand opacity-35 motion-reduce:hidden" />
+                                <span className="relative inline-flex size-2 rounded-full bg-brand" />
+                            </span>
+                            In progress
+                        </p>
                     </div>
 
                     <ol aria-label={`Four parts of the review for this ${subject}`} className="px-5 sm:px-8">
                         {steps.map((step, index) => (
                             <li key={step.id} className="analysis-review-row grid items-center gap-4 border-b border-line last:border-b-0 sm:grid-cols-[3rem_12rem_1fr]">
                                 <span className="flex size-9 items-center justify-center rounded-full" aria-hidden="true">
-                                    {index === 0 ? (
-                                        <span className="flex size-9 items-center justify-center rounded-full border border-citron text-foreground"><Check className="size-5 text-brand" weight="bold" /></span>
-                                    ) : index === 1 ? (
-                                        <CircleNotch className="size-9 animate-spin text-cyan-bright" weight="bold" />
-                                    ) : (
-                                        <span className="size-9 rounded-full border border-muted-foreground" />
-                                    )}
+                                    <span className="flex size-9 items-center justify-center rounded-full border border-muted-foreground/50 font-mono text-xs font-semibold text-brand">
+                                        {String(index + 1).padStart(2, "0")}
+                                    </span>
                                 </span>
                                 <p className="font-display text-xl font-semibold text-foreground">{step.label}</p>
                                 <p className="text-base leading-6 text-muted-foreground">{step.detail}</p>

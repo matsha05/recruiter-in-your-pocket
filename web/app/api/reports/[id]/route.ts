@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { logError } from "@/lib/observability/logger";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,8 +55,8 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
       targetRole: data.target_role || null,
       resumeVariant: data.resume_variant || null
     });
-  } catch (error) {
-    console.error("API /reports/[id] error:", error);
+  } catch (error: any) {
+    logError({ msg: "reports.detail_failed", outcome: "internal_error", err: { name: error?.name || "Error", message: error?.message || "Failed to fetch report", code: error?.code } });
     return NextResponse.json({ ok: false, report: null, message: "Failed to fetch report" }, { status: 500 });
   }
 }
@@ -91,7 +92,12 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
       .maybeSingle();
 
     if (fetchError) {
-      console.error("Delete report - fetch error:", fetchError);
+      logError({
+        msg: "reports.delete_ownership_check_failed",
+        outcome: "provider_error",
+        supabase: { table: "reports", op: "select", error_code: String(fetchError.code || "DELETE_FETCH_FAILED") },
+        err: { name: "SupabaseError", message: "Report ownership check failed", code: String(fetchError.code || "DELETE_FETCH_FAILED") },
+      });
       return NextResponse.json(
         { ok: false, errorCode: "DELETE_FAILED", message: "Could not verify report ownership." },
         { status: 500 }
@@ -113,7 +119,12 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
       .eq("user_id", user.id);
 
     if (deleteError) {
-      console.error("Delete report - delete error:", deleteError);
+      logError({
+        msg: "reports.delete_failed",
+        outcome: "provider_error",
+        supabase: { table: "reports", op: "delete", error_code: String(deleteError.code || "DELETE_FAILED") },
+        err: { name: "SupabaseError", message: "Report delete failed", code: String(deleteError.code || "DELETE_FAILED") },
+      });
       return NextResponse.json(
         { ok: false, errorCode: "DELETE_FAILED", message: "Could not delete this report." },
         { status: 500 }
@@ -128,7 +139,12 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
       .maybeSingle();
 
     if (stillExists) {
-      console.error("Delete report - report still exists after delete:", reportId);
+      logError({
+        msg: "reports.delete_verification_failed",
+        outcome: "internal_error",
+        supabase: { table: "reports", op: "delete", error_code: "DELETE_VERIFICATION_FAILED" },
+        err: { name: "ReportDeleteError", message: "Report still existed after deletion", code: "DELETE_VERIFICATION_FAILED" },
+      });
       return NextResponse.json(
         { ok: false, errorCode: "DELETE_FAILED", message: "Delete appeared to succeed but report still exists. Check RLS policies." },
         { status: 500 }
@@ -136,8 +152,8 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
     }
 
     return NextResponse.json({ ok: true, message: "Report deleted." });
-  } catch (error) {
-    console.error("API DELETE /reports/[id] error:", error);
+  } catch (error: any) {
+    logError({ msg: "reports.delete_failed", outcome: "internal_error", err: { name: error?.name || "Error", message: error?.message || "Failed to delete report", code: error?.code } });
     return NextResponse.json({ ok: false, message: "Failed to delete report" }, { status: 500 });
   }
 }
@@ -205,7 +221,12 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
       .eq("user_id", user.id);
 
     if (error) {
-      console.error("Update report error:", error);
+      logError({
+        msg: "reports.update_failed",
+        outcome: "provider_error",
+        supabase: { table: "reports", op: "update", error_code: String(error.code || "UPDATE_FAILED") },
+        err: { name: "SupabaseError", message: "Report update failed", code: String(error.code || "UPDATE_FAILED") },
+      });
       return NextResponse.json(
         { ok: false, errorCode: "UPDATE_FAILED", message: "Could not update this report." },
         { status: 500 }
@@ -213,8 +234,8 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
     }
 
     return NextResponse.json({ ok: true, message: "Report updated." });
-  } catch (error) {
-    console.error("API PATCH /reports/[id] error:", error);
+  } catch (error: any) {
+    logError({ msg: "reports.update_failed", outcome: "internal_error", err: { name: error?.name || "Error", message: error?.message || "Failed to update report", code: error?.code } });
     return NextResponse.json({ ok: false, message: "Failed to rename report" }, { status: 500 });
   }
 }

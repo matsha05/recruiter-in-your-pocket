@@ -17,12 +17,19 @@ import { ArrowClockwise } from "@phosphor-icons/react";
 import { Analytics } from "@/lib/analytics";
 import { getUnlockContext, type UnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { saveCheckoutWorkspaceState } from "@/lib/unlock/unlockContext";
+import Link from "next/link";
 
 interface PaywallModalProps {
     isOpen: boolean;
     onClose: () => void;
     creditsRemaining?: number;
     hasCurrentReport?: boolean;
+    workspaceState?: {
+        report: unknown;
+        resumeText: string;
+        jobDescription: string;
+    } | null;
 }
 
 const DEFAULT_UNLOCK_COPY = {
@@ -97,7 +104,8 @@ const CONTEXT_UNLOCK_COPY: Record<UnlockSection, typeof DEFAULT_UNLOCK_COPY> = {
 
 export default function PaywallModal({
     isOpen,
-    onClose
+    onClose,
+    workspaceState = null,
 }: PaywallModalProps) {
     const { user } = useAuth();
     const [email, setEmail] = useState("");
@@ -155,6 +163,9 @@ export default function PaywallModal({
             const result = await res.json();
 
             if (result.ok && result.url) {
+                if (workspaceState?.report) {
+                    saveCheckoutWorkspaceState(workspaceState);
+                }
                 window.location.href = result.url;
             } else {
                 Analytics.track("checkout_start_failed", { source: "paywall", tier: "30d" });
@@ -277,6 +288,8 @@ export default function PaywallModal({
                                 inputMode="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                aria-invalid={Boolean(error)}
+                                aria-describedby={error ? "checkout-error checkout-terms" : "checkout-terms"}
                                 placeholder="you@example.com"
                                 className="mb-3"
                             />
@@ -303,13 +316,13 @@ export default function PaywallModal({
                 </Button>
 
                 {error && (
-                    <div className="text-destructive text-sm text-center mb-3 bg-destructive/10 p-2 rounded">
+                    <div id="checkout-error" role="alert" aria-live="polite" className="mb-3 border-l-2 border-destructive bg-destructive/10 p-2 text-center text-sm text-destructive">
                         {error}
                     </div>
                 )}
 
-                <p className="text-center text-xs text-muted-foreground/50 uppercase tracking-wide">
-                    Stripe handles payment · No automatic renewal
+                <p id="checkout-terms" className="text-center text-xs leading-5 text-muted-foreground">
+                    Stripe handles payment. No automatic renewal. Unused passes are refundable within 14 days; full details are in the <Link href="/terms" className="underline underline-offset-4 hover:text-foreground">Terms</Link>. By continuing, you also agree to the <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">Privacy Policy</Link>. Billing help is available through <Link href="/support" className="underline underline-offset-4 hover:text-foreground">Support</Link>.
                 </p>
             </DialogContent>
         </Dialog>

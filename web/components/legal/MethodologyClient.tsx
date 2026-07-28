@@ -53,7 +53,7 @@ export default function MethodologyClient() {
                     What the review considers
                 </h2>
                 <p className="mb-6 text-base leading-7 text-muted-foreground">
-                    These dimensions organize the evidence in the report. The overall score is a whole-document judgment, not a mechanical average. When the resume does not provide enough detail, the report names what is missing instead of making an assumption.
+                    These dimensions organize the evidence in the report. The overall score is a whole-document judgment, not a mechanical average. When the resume lacks supporting detail, the report names what is missing instead of making an assumption.
                 </p>
                 <div className="border-y border-line">
                     {rubric.map((item, index) => (
@@ -95,7 +95,7 @@ export default function MethodologyClient() {
                         How we handle uncertainty
                     </h3>
                     <p className="text-[15px] leading-7 text-muted-foreground">
-                        The report shows when a finding is less certain because the resume does not provide enough context.
+                        The report shows when a finding is less certain because the resume lacks the context needed to support it.
                     </p>
                 </div>
                 <div className="p-6 md:border-t md:border-line md:p-7">

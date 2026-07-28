@@ -116,7 +116,7 @@ The canonical palette is chalk, ink, citron, and cyan. Citron owns decisive acti
 - **Chalk `#F7F5EF`** is the default field.
 - **Ink `#071722`** provides authority and anchors all header and primary-action chrome.
 - **Citron `#C8F238`** marks acquisition, selection, or completion. Use no more than one marker gesture per screen.
-- **Deep cyan `#007FA3`** is the readable recruiter-insight color.
+- **Deep cyan `#00738F`** is the readable recruiter-insight color. It clears WCAG AA for normal text across every approved light surface, including proof and data tints.
 - **Bright cyan `#25BFEA`** is reserved for small indicators and 2px rules.
 - **Error `#B42318`** uses the pale `#FEF3F2` recovery surface and always includes plain-language next action.
 - Prefer rules, whitespace, typography, and contrast over generic bordered cards.

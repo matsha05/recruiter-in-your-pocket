@@ -143,7 +143,7 @@ export default function ReportPanel({
             {showEmptyState && (
                 <div className="flex h-full flex-col items-center justify-center gap-y-8 p-8 text-center">
                     {/* Icon - Subtle, Calm */}
-                    <div className="flex size-20 items-center justify-center rounded-full border border-brand/20 bg-white/50 text-brand">
+                    <div className="flex size-20 items-center justify-center rounded-sm border border-brand/20 bg-white/50 text-brand">
                         <EmptyReportIcon className="size-12" />
                     </div>
 
@@ -166,7 +166,7 @@ export default function ReportPanel({
                     <div className="pt-4 border-t border-border/30 w-full max-w-xs">
                         <button type="button"
                             onClick={onNewReport}
-                            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                            className="min-h-11 text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
                             Want a sample first? <span className="text-brand hover:underline">View sample →</span>
                         </button>
@@ -202,14 +202,14 @@ export default function ReportPanel({
                                     <div className="flex items-center gap-2">
                                         <button type="button"
                                             onClick={handleShare}
-                                            className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
+                                            className="inline-flex min-h-11 items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
                                         >
                                             <LinkIcon className="size-3.5" />
                                             Copy link
                                         </button>
                                         <button type="button"
                                             onClick={handleExitShare}
-                                            className="inline-flex items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
+                                            className="inline-flex min-h-11 items-center gap-2 rounded border border-border/60 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50"
                                         >
                                             <X className="size-3.5" />
                                             Exit share
@@ -218,7 +218,7 @@ export default function ReportPanel({
                                 </div>
                             )}
 
-                            <div className="animate-in slide-in-from-bottom-2 fade-in flex min-h-12 items-center justify-between gap-4 border-b border-citron pb-3 duration-500">
+                            <div className="animate-in slide-in-from-bottom-2 fade-in flex min-h-12 items-center justify-between gap-4 border-b border-citron pb-3 duration-150 motion-reduce:animate-none">
                                 <div className="flex min-w-0 items-center gap-2">
                                     <span className="text-[11px] font-semibold uppercase riyp-track-015 text-muted-foreground">
                                         {isSample ? "Example report" : "Your resume review"}
@@ -256,7 +256,8 @@ export default function ReportPanel({
                                     reportId={report.id || 'current'}
                                     onJumpToRewrites={() => {
                                         const el = document.getElementById('section-fixes');
-                                        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                                        el?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
                                     }}
                                     onDownloadPdf={canExport ? handleExport : (() => { })}
                                 />

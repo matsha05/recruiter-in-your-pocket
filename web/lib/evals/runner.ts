@@ -31,6 +31,7 @@ import {
     getTuningMetadata,
     increaseReasoningEffort,
     parseReasoningEffort,
+    resolveOpenAIModel,
     type ReasoningEffort,
 } from "../llm/model-config";
 import { buildResumeEvidenceCatalog } from "../llm/evidence-canonicalizer";
@@ -72,7 +73,7 @@ function paidEvalsExplicitlyAllowed(): boolean {
 export async function runEval(options: EvalOptions): Promise<EvalRunOutput> {
     const startTime = Date.now();
     const runId = `eval_${Date.now()}`;
-    const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const model = resolveOpenAIModel("resume");
     const tuning = getChatCompletionTuning(model, {
         temperature: 0,
         maxCompletionTokens: EVAL_MAX_COMPLETION_TOKENS,
@@ -305,7 +306,7 @@ async function runProviderGeneration(
                 attempt > 0
                     ? increaseReasoningEffort(
                         parseReasoningEffort(process.env.OPENAI_REASONING_EFFORT)
-                        || defaultReasoningEffortForModel(process.env.OPENAI_MODEL || "gpt-4o-mini"),
+                        || defaultReasoningEffortForModel(resolveOpenAIModel("resume")),
                     )
                     : undefined,
             );
@@ -587,7 +588,7 @@ async function callAnalysisAPI(
     reasoningEffort?: ReasoningEffort,
 ): Promise<AnalysisApiResult> {
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-    const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const OPENAI_MODEL = resolveOpenAIModel("resume");
 
     if (!OPENAI_API_KEY) {
         throw new Error("OPENAI_API_KEY environment variable is required");

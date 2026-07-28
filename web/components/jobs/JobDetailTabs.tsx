@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import type { ElementType } from "react";
+import { useRef, useState } from "react";
+import type { ElementType, KeyboardEvent } from "react";
 import Link from "next/link";
 import {
   CheckCircle2,
@@ -16,12 +16,13 @@ import type { JobDetail } from "@/components/jobs/jobDetailTypes";
 type TabId = "overview" | "job-description" | "analysis";
 
 type JobDetailTabsProps = {
-  score: number;
+  score: number | null;
   job: JobDetail;
 };
 
 export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
   const [activeTab, setActiveTab] = useState<TabId>("overview");
+  const tabRefs = useRef<Partial<Record<TabId, HTMLButtonElement | null>>>({});
 
   const tabs: { id: TabId; label: string; icon: ElementType }[] = [
     { id: "overview", label: "Overview", icon: InsightSparkleIcon },
@@ -29,16 +30,42 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
     { id: "analysis", label: "Full Analysis", icon: CheckCircle2 }
   ];
 
+  const selectTab = (id: TabId) => {
+    setActiveTab(id);
+    window.requestAnimationFrame(() => tabRefs.current[id]?.focus());
+  };
+
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, currentId: TabId) => {
+    const currentIndex = tabs.findIndex((tab) => tab.id === currentId);
+    let nextIndex: number | null = null;
+
+    if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % tabs.length;
+    if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = tabs.length - 1;
+
+    if (nextIndex == null) return;
+    event.preventDefault();
+    selectTab(tabs[nextIndex].id);
+  };
+
   return (
     <div className="gap-y-6">
       <div className="border-b border-border">
-        <nav className="flex gap-6">
+        <div className="flex gap-5 overflow-x-auto" role="tablist" aria-label="Saved job details">
           {tabs.map(({ id, label, icon: Icon }) => (
             <button type="button"
               key={id}
+              ref={(node) => { tabRefs.current[id] = node; }}
               onClick={() => setActiveTab(id)}
+              onKeyDown={(event) => handleTabKeyDown(event, id)}
+              id={`job-tab-${id}`}
+              role="tab"
+              aria-selected={activeTab === id}
+              aria-controls={`job-panel-${id}`}
+              tabIndex={activeTab === id ? 0 : -1}
               className={cn(
-                "flex items-center gap-2 px-1 py-3 text-sm font-medium border-b-2 -mb-px transition-colors",
+                "-mb-px flex min-h-11 shrink-0 items-center gap-2 border-b-2 px-1 py-3 text-sm font-medium transition-colors",
                 activeTab === id
                   ? "border-brand text-brand"
                   : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
@@ -48,12 +75,12 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
               {label}
             </button>
           ))}
-        </nav>
+        </div>
       </div>
 
       <div className="min-h-[400px]">
         {activeTab === "overview" && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div id="job-panel-overview" role="tabpanel" aria-labelledby="job-tab-overview" tabIndex={0} className="grid grid-cols-1 gap-6 outline-none lg:grid-cols-3">
             <div className="lg:col-span-2 gap-y-4">
               <RecruiterFitSummary
                 score={score}
@@ -64,13 +91,13 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
             </div>
             <div className="gap-y-4">
               <ApplicationReadiness job={job} score={score} />
-              <NextBestActions jobId={job.id} />
+              <NextBestActions jobId={job.id} onReviewJobDescription={() => selectTab("job-description")} />
             </div>
           </div>
         )}
 
         {activeTab === "job-description" && (
-          <div className="border border-border rounded bg-card overflow-hidden">
+          <div id="job-panel-job-description" role="tabpanel" aria-labelledby="job-tab-job-description" tabIndex={0} className="overflow-hidden border-y border-border bg-card outline-none">
             <div className="px-6 py-4 border-b border-border bg-muted/30">
               <h3 className="font-medium text-foreground">Full Job Description</h3>
               <p className="text-sm text-muted-foreground mt-1">
@@ -98,7 +125,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
         )}
 
         {activeTab === "analysis" && (
-          <div className="gap-y-6">
+          <div id="job-panel-analysis" role="tabpanel" aria-labelledby="job-tab-analysis" tabIndex={0} className="gap-y-6 outline-none">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="border border-border rounded bg-card p-6">
                 <h3 className="font-medium text-foreground mb-4">What you already cover</h3>
@@ -107,7 +134,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                     {job.matchedSkills.slice(0, 12).map((skill) => (
                       <span
                         key={skill}
-                        className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-success/10 text-success mr-2 mb-2"
+                        className="mr-2 mb-2 inline-flex items-center border-l-2 border-success bg-success/10 px-2.5 py-1 text-xs font-medium text-success"
                       >
                         {skill}
                       </span>
@@ -125,7 +152,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                     {job.missingSkills.slice(0, 12).map((skill) => (
                       <span
                         key={skill}
-                        className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-destructive/10 text-destructive mr-2 mb-2"
+                        className="mr-2 mb-2 inline-flex items-center border-l-2 border-destructive bg-error-surface px-2.5 py-1 text-xs font-medium text-destructive"
                       >
                         {skill}
                       </span>
@@ -143,7 +170,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
                 <ul className="gap-y-3">
                   {job.topGaps.map((gap, i) => (
                     <li key={gap} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 size-6 rounded-full bg-amber-500/10 text-amber-600 text-xs font-medium flex items-center justify-center">
+                      <span className="flex size-6 flex-shrink-0 items-center justify-center border border-warning/35 bg-warning/10 text-xs font-medium text-warning-foreground">
                         {i + 1}
                       </span>
                       <span className="text-sm text-muted-foreground">{gap}</span>
@@ -154,7 +181,7 @@ export default function JobDetailTabs({ score, job }: JobDetailTabsProps) {
             )}
 
             <ApplicationReadiness job={job} score={score} />
-            <NextBestActions jobId={job.id} />
+            <NextBestActions jobId={job.id} onReviewJobDescription={() => selectTab("job-description")} />
           </div>
         )}
       </div>
@@ -168,17 +195,18 @@ function RecruiterFitSummary({
   missingSkills,
   topGaps
 }: {
-  score: number;
+  score: number | null;
   matchedSkills: string[];
   missingSkills: string[];
   topGaps: string[];
 }) {
   const [expanded, setExpanded] = useState(false);
-  const scoreClass = getScoreClass(score);
+  const scoreClass = score == null ? "neutral" : getScoreClass(score);
   const scoreColors = {
     success: "text-success border-success/20 bg-success/5",
     premium: "text-premium border-premium/20 bg-premium/5",
-    destructive: "text-destructive border-destructive/20 bg-destructive/5"
+    destructive: "text-destructive border-destructive/20 bg-destructive/5",
+    neutral: "text-muted-foreground border-line bg-paper-muted",
   };
 
   const totalSkills = matchedSkills.length + missingSkills.length;
@@ -200,7 +228,7 @@ function RecruiterFitSummary({
             scoreColors[scoreClass]
           )}
         >
-          <span className="text-xl font-bold">{score > 0 ? score : " - "}</span>
+          <span className="text-xl font-bold">{score != null ? score : " - "}</span>
         </div>
       </div>
 
@@ -280,15 +308,17 @@ function RecruiterFitSummary({
   );
 }
 
-function ApplicationReadiness({ job, score }: { job: JobDetail; score: number }) {
+function ApplicationReadiness({ job, score }: { job: JobDetail; score: number | null }) {
   const missingCount = job.missingSkills.length;
   const gapCount = job.topGaps.length;
   const hasJobText = Boolean(job.job_description_text?.trim());
-  const readinessLabel = score >= 75
-    ? "Ready to tailor"
-    : score >= 60
-      ? "Needs a focused pass"
-      : "High-risk stretch";
+  const readinessLabel = score == null
+    ? "Run a role-specific briefing"
+    : score >= 75
+      ? "Ready to tailor"
+      : score >= 60
+        ? "Needs a focused pass"
+        : "High-risk stretch";
 
   return (
     <div className="rounded border border-brand/20 bg-brand/[0.045] p-5">
@@ -302,19 +332,19 @@ function ApplicationReadiness({ job, score }: { job: JobDetail; score: number })
           </h3>
         </div>
         <span className="rounded bg-background/80 px-2 py-1 text-xs font-semibold tabular-nums text-brand">
-          {score > 0 ? `${score}%` : "No score"}
+          {score != null ? `${score}%` : "No score"}
         </span>
       </div>
 
       <div className="gap-y-3 text-sm">
         <ReadinessRow complete={hasJobText} label="Job description captured" />
-        <ReadinessRow complete={score >= 60} label="Quick fit score available" />
+        <ReadinessRow complete={score != null} label={score == null ? "Quick fit score not run" : "Quick fit score available"} />
         <ReadinessRow complete={missingCount + gapCount === 0} label={missingCount + gapCount > 0 ? `${missingCount + gapCount} gaps to resolve` : "No priority gaps detected"} />
       </div>
 
       <Link
         href={`/workspace?job=${job.id}`}
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
+        className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
       >
         Run role-specific briefing
         <ArrowRight className="size-4" />
@@ -336,7 +366,7 @@ function ReadinessRow({ complete, label }: { complete: boolean; label: string })
   );
 }
 
-function NextBestActions({ jobId }: { jobId: string }) {
+function NextBestActions({ jobId, onReviewJobDescription }: { jobId: string; onReviewJobDescription: () => void }) {
   return (
     <div className="border border-border rounded p-6 bg-card gap-y-4">
       <h3 className="font-medium text-foreground">Next best actions</h3>
@@ -352,6 +382,7 @@ function NextBestActions({ jobId }: { jobId: string }) {
           icon={InsightSparkleIcon}
           label="Review job description"
           description="Use the analysis tab to see present and missing signals"
+          onClick={onReviewJobDescription}
         />
       </div>
     </div>
@@ -363,11 +394,13 @@ function ActionButton({
   label,
   description,
   href,
+  onClick,
 }: {
   icon: ElementType;
   label: string;
   description: string;
   href?: string;
+  onClick?: () => void;
 }) {
   const content = (
     <>
@@ -391,14 +424,16 @@ function ActionButton({
   }
 
   return (
-    <div
+    <button
+      type="button"
+      onClick={onClick}
       className={cn(
-        "flex items-center gap-3 p-3 rounded border border-border",
-        "bg-muted/20"
+        "flex min-h-11 w-full items-center gap-3 rounded border border-border p-3 transition-colors",
+        "bg-muted/20 hover:bg-muted/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
       )}
     >
       {content}
-    </div>
+    </button>
   );
 }
 

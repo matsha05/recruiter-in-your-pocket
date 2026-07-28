@@ -108,7 +108,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
             { type: "text", value: "Verify details in " },
             { type: "link", label: "Security", href: "/security" },
             { type: "text", value: " · " },
-            { type: "link", label: "Status", href: "/status" },
+            { type: "link", label: "Support", href: "/support" },
             { type: "text", value: " · " },
             { type: "link", label: "Privacy", href: "/privacy" },
             { type: "text", value: " · " },
@@ -129,19 +129,25 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
     sections: [
       {
         type: "card",
-        title: "1. Scope",
+        title: "1. Who operates the service",
         paragraphs: [
           [
             {
               type: "text",
-              value: "This policy covers resume inputs, account info, usage data, extension capture data, background job data, analytics metadata, and billing events processed by the web app.",
+              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. RIYP is the service operator and controller for personal data collected directly through this website and product. Stripe and the other providers listed below act under their own terms or as processors for the services they provide.",
+            },
+          ],
+          [
+            {
+              type: "text",
+              value: "This policy covers resume inputs, account information, usage data, extension capture data, saved job data, analytics metadata, support requests, and billing events processed by the web app.",
             },
           ],
         ],
       },
       {
         type: "table",
-        title: "2. Data handling table",
+        title: "2. What we collect and why",
         columns: ["Data type", "Purpose", "Retention", "Control"],
         rows: DATA_HANDLING_ROWS,
       },
@@ -164,19 +170,31 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "You can delete reports from report history and delete your account from Settings. We don't sell your data, and anonymous history is not auto-attached to an account.",
+              value: "You can export your account data, delete individual reports, and permanently delete your account from Settings. Account deletion removes user-owned product data from RIYP's application database and cancels any legacy RIYP subscription we can verify. Stripe may retain payment records, and RIYP keeps narrowly scoped deletion and billing-reversal records when needed to prevent restored access, investigate fraud, meet accounting obligations, or comply with law. We don't sell personal data, and anonymous history is not silently attached to an account.",
             },
           ],
         ],
       },
       {
         type: "card",
-        title: "5. Contact",
+        title: "5. Privacy requests",
         paragraphs: [
           [
             {
               type: "text",
-              value: "Questions about this policy can be sent to support@recruiterinyourpocket.com. Security disclosures should follow the instructions on /security or /.well-known/security.txt.",
+              value: "To request access, correction, deletion, portability, restriction, or an appeal where those rights apply, email support@recruiterinyourpocket.com with the subject “Privacy request.” We may verify that you control the account email before releasing or changing personal data. We aim to acknowledge requests within 10 days and complete verified requests within 45 days unless the applicable law permits more time. We will explain any extension or denial and will not discriminate against you for making a privacy request.",
+            },
+          ],
+        ],
+      },
+      {
+        type: "card",
+        title: "6. Contact and complaints",
+        paragraphs: [
+          [
+            {
+              type: "text",
+              value: "Questions, privacy complaints, and authorized-agent requests can be sent to support@recruiterinyourpocket.com. If a privacy concern is not resolved, you may contact the regulator or attorney general available in your jurisdiction. Security disclosures should follow the instructions on /security or /.well-known/security.txt.",
             },
           ],
         ],
@@ -196,7 +214,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "By using Recruiter in Your Pocket, you agree to these terms. The service provides resume reports and guidance to help you improve, but it doesn't guarantee hiring outcomes.",
+              value: "Recruiter in Your Pocket (RIYP, we, or us) is an independent software service operated from Colorado, United States. By using RIYP, you agree to these terms. The service provides resume reports and educational guidance, but it does not provide legal, tax, financial, or employment advice and does not guarantee interviews, offers, or hiring outcomes.",
             },
           ],
         ],
@@ -229,9 +247,14 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
         title: "4. Payment and refunds",
         paragraphs: [
           [
-            { type: "text", value: "Your first report is free. When paid access is open, one $29 Job Search Pass adds five reports for 30 days. Stripe handles billing and receipts. If you already paid but your access looks locked, try " },
+            { type: "text", value: "Your first report is free. When paid access is open, one $29 Job Search Pass adds five paid reports and expires 30 days after purchase. Stripe handles checkout, card data, billing receipts, and refunds on our behalf. If you already paid but your access looks locked, try " },
             { type: "link", label: "Restore Access", href: "/purchase/restore" },
-            { type: "text", value: " before reaching out to support. Refunds are reviewed case by case." },
+            { type: "text", value: " before contacting Support." },
+          ],
+          [
+            { type: "text", value: "You may request a full refund within 14 calendar days of purchase if none of the paid reports has been used. A refund revokes the remaining pass immediately. Duplicate charges, processing errors, and legally required refunds are reviewed regardless of usage. If a paid report was used, we may still issue a full or partial refund when the service failed materially, but completed AI reports are otherwise non-refundable. This policy does not limit rights that cannot be waived under applicable law. Send the request from the checkout email through " },
+            { type: "link", label: "Support", href: "/support" },
+            { type: "text", value: " with the purchase date and receipt identifier." },
           ],
         ],
       },
@@ -256,6 +279,37 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               type: "text",
               value: "These terms are governed by the laws of the State of Colorado.",
             },
+          ],
+        ],
+      },
+      {
+        type: "card",
+        title: "7. Accounts, access, and suspension",
+        paragraphs: [
+          [
+            { type: "text", value: "You are responsible for access to your email account and for activity under your account. We may limit or suspend access when needed to investigate abuse, protect the service, comply with law, or prevent harm. Contact " },
+            { type: "link", label: "Support", href: "/support" },
+            { type: "text", value: " if you believe a restriction was applied in error." },
+          ],
+        ],
+      },
+      {
+        type: "card",
+        title: "8. Ownership and feedback",
+        paragraphs: [
+          [
+            { type: "text", value: "You keep ownership of the resume and job materials you submit. Recruiter in Your Pocket retains ownership of the service, software, brand, templates, and original product content. You may use your report for your own career search. If you send product feedback, you allow us to use it to improve the service without including your confidential resume content in public materials." },
+          ],
+        ],
+      },
+      {
+        type: "card",
+        title: "9. Changes and contact",
+        paragraphs: [
+          [
+            { type: "text", value: "We may update the service or these terms as the product changes. Material revisions will be reflected by the updated date on this page and will apply prospectively unless the law requires otherwise. Questions, billing disputes, privacy requests, and legal notices can be sent through " },
+            { type: "link", label: "Support", href: "/support" },
+            { type: "text", value: "." },
           ],
         ],
       },

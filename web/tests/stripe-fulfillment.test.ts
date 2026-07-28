@@ -235,6 +235,9 @@ assert.match(fulfillmentRouteSources[0], /status: "reversed"/);
 assert.match(fulfillmentRouteSources[0], /This purchase is no longer eligible for access/);
 assert.match(fulfillmentRouteSources[1], /billing_entitlement_blocks/);
 assert.match(fulfillmentRouteSources[2], /billing_entitlement_blocks/);
+assert.match(fulfillmentRouteSources[2], /EntitlementBlockedError/);
+assert.match(fulfillmentRouteSources[2], /rejectStripeEvent/);
+assert.match(fulfillmentRouteSources[2], /entitlement_blocked:/);
 assert.match(fulfillmentRouteSources[1], /getTierDefaultsForCheckout/);
 assert.match(fulfillmentRouteSources[2], /getTierDefaultsForCheckout/);
 

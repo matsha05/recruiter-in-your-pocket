@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import Footer from "@/components/landing/Footer";
 import {
     Checklist,
     Disclosure,
@@ -15,14 +16,16 @@ import {
 export const metadata: Metadata = {
     title: "How to Read and Negotiate a Tech Offer",
     description: "A practical guide to comparing base, bonus, equity, vesting, level, and year-one cash in a tech job offer.",
+    alternates: { canonical: "/resources/tech-offer-negotiation" },
 };
 
 export default function TechOfferNegotiationGuidePage() {
     return (
-        <main className="bg-background text-foreground">
+        <>
+        <div className="bg-background text-foreground">
             <div className="border-b border-border">
                 <nav aria-label="Breadcrumb" className="mx-auto flex max-w-6xl items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
-                    <Link href="/resources" className="transition-colors hover:text-foreground">Resources</Link>
+                    <Link href="/resources" className="focus-ring inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-foreground">Resources</Link>
                     <CaretRight aria-hidden className="size-3" weight="bold" />
                     <span className="text-foreground">Tech offer negotiation</span>
                 </nav>
@@ -52,7 +55,7 @@ export default function TechOfferNegotiationGuidePage() {
                         ["Mark the maybes", "Do not count future refreshers, private-company liquidity, or future share prices as guaranteed pay."],
                     ].map(([title, body], index) => (
                         <div key={title} className="border-b border-border py-6 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0">
-                            <div className="font-mono text-xs text-brand">0{index + 1}</div>
+                            <div className="font-mono text-xs text-ink">0{index + 1}</div>
                             <h2 className="mt-3 font-display text-xl riyp-weight-560">{title}</h2>
                             <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
                         </div>
@@ -133,6 +136,8 @@ export default function TechOfferNegotiationGuidePage() {
                     <p>Negotiation research supports making a considered counter, not promising that every employer expects one or that every request succeeds. See the <a href="https://www.nber.org/papers/w33903">2025 NBER field experiment with US tech job seekers</a>.</p>
                 </Sources>
             </article>
-        </main>
+        </div>
+            <Footer />
+        </>
     );
 }

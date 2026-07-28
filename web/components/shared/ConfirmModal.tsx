@@ -40,7 +40,7 @@ export default function ConfirmModal({
             <DialogContent className="max-w-[380px] p-6">
                 <DialogHeader className="text-center gap-y-3">
                     {/* Icon */}
-                    <div className={`mx-auto size-12 rounded-full flex items-center justify-center ${isDestructive
+                    <div className={`mx-auto size-12 rounded-sm flex items-center justify-center ${isDestructive
                             ? "bg-destructive/10"
                             : "bg-amber-500/10"
                         }`}>

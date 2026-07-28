@@ -112,7 +112,7 @@ export function LinkedInInputPanel({
     };
 
     return (
-        <div className="overflow-hidden border border-[hsl(var(--paper-line))] bg-paper shadow-[0_1.75rem_4rem_-3.25rem_rgba(15,23,42,0.48)]">
+        <div className="overflow-hidden border border-[hsl(var(--paper-line))] bg-paper">
             <div className="flex items-center justify-between gap-5 border-b border-[hsl(var(--paper-line))] bg-paper-muted px-6 py-4 md:px-8">
                 <div className="flex items-center gap-3">
                     <span className="flex size-7 items-center justify-center border border-ink font-display text-sm text-ink">in</span>
@@ -128,7 +128,7 @@ export function LinkedInInputPanel({
                                 <div className="text-xs font-mono uppercase tracking-wide text-muted-foreground">
                                     Upload LinkedIn PDF
                                 </div>
-                                <div className="text-sm text-muted-foreground">
+                                <div id="linkedin-pdf-help" className="text-sm text-muted-foreground">
                                     Export it from LinkedIn, then upload it here.
                                 </div>
                             </div>
@@ -143,7 +143,20 @@ export function LinkedInInputPanel({
                             </Button>
                         </div>
 
-                        <div
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept=".pdf"
+                            onChange={handleFileChange}
+                            className="hidden"
+                            disabled={isLoading}
+                            aria-label="Choose a LinkedIn PDF"
+                        />
+                        <button
+                            type="button"
+                            disabled={isLoading}
+                            aria-describedby="linkedin-pdf-help"
+                            aria-label="Choose or drop a LinkedIn PDF"
                             onDragOver={(e) => {
                                 e.preventDefault();
                                 setIsDragging(true);
@@ -159,15 +172,6 @@ export function LinkedInInputPanel({
                                 isLoading && 'cursor-not-allowed opacity-50'
                             )}
                         >
-                            <input
-                                ref={fileInputRef}
-                                type="file"
-                                accept=".pdf"
-                                onChange={handleFileChange}
-                                className="hidden"
-                                disabled={isLoading}
-                            />
-
                             <div
                                 className={cn(
                                     'flex size-12 items-center justify-center border border-border/70 bg-paper text-muted-foreground transition-colors duration-200',
@@ -181,10 +185,10 @@ export function LinkedInInputPanel({
                                 <div className="text-base font-medium text-foreground">Drop your LinkedIn PDF here</div>
                                 <div className="text-sm text-muted-foreground">LinkedIn &gt; Resources &gt; Save to PDF</div>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 ) : (
-                    <div className="animate-in fade-in slide-in-from-top-2 flex items-center justify-between border border-brand/25 bg-paper-muted p-4">
+                    <div className="animate-in fade-in slide-in-from-top-2 flex items-center justify-between border border-brand/25 bg-paper-muted p-4" role="status" aria-live="polite" aria-atomic="true">
                         <span className="flex items-center gap-3 text-sm font-medium text-brand">
                             <div className="flex size-9 items-center justify-center border border-brand/25 bg-paper">
                                 <FileText className="size-4" />
@@ -206,7 +210,7 @@ export function LinkedInInputPanel({
                         <Button
                             variant="ghost"
                             size="sm"
-                            className="h-10 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                            className="min-h-11 px-3 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                             onClick={handleRemoveFile}
                         >
                             Remove
@@ -215,7 +219,7 @@ export function LinkedInInputPanel({
                 )}
 
                 {parseError && (
-                    <p className="border-l-2 border-destructive bg-destructive/5 px-3 py-2 text-center text-sm text-destructive">
+                    <p className="border-l-2 border-destructive bg-destructive/5 px-3 py-2 text-center text-sm text-destructive" role="alert">
                         {parseError}
                     </p>
                 )}

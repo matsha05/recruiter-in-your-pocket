@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Tag, X, Lightbulb } from "lucide-react";
 import {
     Popover,
@@ -20,6 +20,7 @@ interface ResumeLabelProps {
 const QUICK_LABELS = ["General"];
 
 export function ResumeLabel({ value, existingLabels, onSelect, onClear, className = "" }: ResumeLabelProps) {
+    const inputId = useId();
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState("");
 
@@ -69,7 +70,8 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                         <button
                             type="button"
                             onClick={(e) => { e.stopPropagation(); onClear(); }}
-                            className="hover:text-destructive transition-colors ml-0.5"
+                            aria-label={`Remove ${value} label`}
+                            className="-my-2 -mr-2 ml-0.5 inline-flex size-11 items-center justify-center transition-colors hover:text-destructive"
                         >
                             <X className="size-3" />
                         </button>
@@ -93,7 +95,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                 <PopoverTrigger asChild>
                     <button
                         type="button"
-                        className="inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                        className="inline-flex min-h-11 items-center gap-1.5 rounded px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
                     >
                         <Tag className="size-3" />
                         Label this resume
@@ -109,7 +111,9 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                 >
                     {/* Input */}
                     <div className="p-3 border-b border-border">
+                        <label htmlFor={inputId} className="sr-only">Resume label</label>
                         <input
+                            id={inputId}
                             type="text"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
@@ -148,7 +152,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                         key={label}
                                         type="button"
                                         onClick={() => handleSelect(label)}
-                                        className="w-full px-4 py-2 text-sm text-left hover:bg-muted/50 transition-colors"
+                                    className="min-h-11 w-full px-4 py-2 text-left text-sm transition-colors hover:bg-muted/50"
                                     >
                                         {label}
                                     </button>
@@ -162,7 +166,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                 <button
                                     type="button"
                                     onClick={handleSubmit}
-                                    className="w-full px-4 py-2.5 text-sm text-left text-brand hover:bg-brand/5 transition-colors font-medium"
+                                    className="min-h-11 w-full px-4 py-2.5 text-left text-sm font-medium text-brand transition-colors hover:bg-brand/5"
                                 >
                                     + Create &quot;{inputValue.trim()}&quot;
                                 </button>
@@ -183,7 +187,7 @@ export function ResumeLabel({ value, existingLabels, onSelect, onClear, classNam
                                                 key={label}
                                                 type="button"
                                                 onClick={() => handleSelect(label)}
-                                                className="w-full px-4 py-2 text-sm text-left hover:bg-muted/50 transition-colors"
+                                                className="min-h-11 w-full px-4 py-2 text-left text-sm transition-colors hover:bg-muted/50"
                                             >
                                                 {label}
                                             </button>

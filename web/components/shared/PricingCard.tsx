@@ -71,8 +71,8 @@ export function PricingCard({
                 ? "rounded-none border-foreground bg-foreground text-background"
                 : "rounded-none border-line bg-transparent"
             : isFeatured
-                ? "app-card app-card-highlight rounded-xl border-brand/40"
-                : "app-card rounded-xl",
+                ? "app-card app-card-highlight border-cyan-bright/45"
+                : "app-card",
         className
     );
 
@@ -89,7 +89,7 @@ export function PricingCard({
             onClick={onSelect}
             disabled={loading || disableForFree}
             className={cn(
-                "flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border px-5 py-3 text-base font-semibold transition-[background-color,color,border-color,transform] duration-150 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50",
+                "flex min-h-12 w-full items-center justify-center gap-2 rounded-md border px-5 py-3 text-base font-semibold transition-[background-color,color,border-color,transform] duration-150 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50",
                 isFeatured
                     ? "border-background bg-background text-foreground hover:border-surface-sky hover:bg-surface-sky"
                     : "border-line bg-transparent text-foreground hover:border-brand/45 hover:bg-brand/5"

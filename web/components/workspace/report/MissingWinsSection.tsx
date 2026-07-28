@@ -129,7 +129,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                         <div className="flex items-center gap-4">
                             <div className="flex-1 h-1 bg-secondary rounded-full overflow-hidden">
                                 <div
-                                    className="h-full bg-brand transition-all duration-500 ease-out"
+                                    className="h-full bg-brand transition-all duration-150 ease-out motion-reduce:transition-none"
                                     style={{ width: `${progressPercent}%` }}
                                 />
                             </div>
@@ -155,7 +155,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                                 <div
                                     key={q.question}
                                     className={cn(
-                                        "group border rounded p-6 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2 transform-gpu",
+                                        "group border rounded p-6 transition-all duration-150 animate-in fade-in slide-in-from-bottom-2 transform-gpu motion-reduce:animate-none motion-reduce:transition-none",
                                         cardStyle.border,
                                         isAnswered
                                             ? "opacity-55 scale-[0.985] border-border/40 bg-secondary/20"
@@ -190,7 +190,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
                                         <button type="button"
                                             onClick={() => toggleAnswered(i)}
                                             className={cn(
-                                                "shrink-0 size-11 rounded-full border flex items-center justify-center transition-all duration-300",
+                                                "shrink-0 size-11 rounded-sm border flex items-center justify-center transition-all duration-150 motion-reduce:transition-none",
                                                 isAnswered
                                                     ? "bg-success border-success text-white shadow-[0_0_0_4px_rgba(16,185,129,0.12)]"
                                                     : "border-border hover:border-success hover:bg-success/10"
@@ -207,7 +207,7 @@ export function MissingWinsSection({ data, isGated = false, onUpgrade }: Missing
 
                     {/* Completion Message */}
                     {answeredCount === questions.length && questions.length > 0 && (
-                        <div className="text-center py-6 gap-y-2 animate-in fade-in duration-500">
+                        <div className="text-center py-6 gap-y-2 animate-in fade-in duration-150 motion-reduce:animate-none">
                             <p className="text-lg font-medium text-success">That detail gives the reader useful context.</p>
                             <p className="text-sm text-muted-foreground">
                                 Good. Those belong back on the page.

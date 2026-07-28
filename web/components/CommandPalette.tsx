@@ -8,9 +8,7 @@ import {
     Upload,
     BookOpen,
     Download,
-    Link2,
     Keyboard,
-    Sparkles,
     Clock,
 } from "lucide-react"
 
@@ -98,6 +96,7 @@ function addRecentCommand(command: RecentCommand) {
 export function CommandPalette() {
     const [open, setOpen] = React.useState(false)
     const [recentCommands, setRecentCommands] = React.useState<RecentCommand[]>([])
+    const [workspaceReportVisible, setWorkspaceReportVisible] = React.useState(false)
     const { push } = useRouter()
     const pathname = usePathname()
 
@@ -119,6 +118,14 @@ export function CommandPalette() {
         return () => document.removeEventListener("keydown", down)
     }, [])
 
+    React.useEffect(() => {
+        const handleReportVisibility = (event: Event) => {
+            setWorkspaceReportVisible(Boolean((event as CustomEvent<{ visible?: boolean }>).detail?.visible))
+        }
+        window.addEventListener("riyp-report-visibility", handleReportVisibility)
+        return () => window.removeEventListener("riyp-report-visibility", handleReportVisibility)
+    }, [])
+
     // Run command, add to recents, and close
     const runCommand = React.useCallback((
         command: () => void,
@@ -131,9 +138,23 @@ export function CommandPalette() {
         command()
     }, [])
 
-    // Determine context-aware commands based on current route
+    // Only expose actions when the route has a mounted action listener.
     const isInWorkspace = pathname?.startsWith("/workspace")
-    const isInReport = pathname?.includes("/report")
+    const availableActionIds = React.useMemo(() => {
+        const ids = new Set<string>()
+        if (isInWorkspace) {
+            ids.add("upload")
+            ids.add("keyboard-shortcuts")
+            if (workspaceReportVisible) ids.add("export-pdf")
+        }
+        return ids
+    }, [isInWorkspace, workspaceReportVisible])
+    const visibleRecentCommands = React.useMemo(
+        () => recentCommands
+            .filter((command) => command.id.startsWith("nav:") || availableActionIds.has(command.id))
+            .slice(0, 3),
+        [availableActionIds, recentCommands]
+    )
 
     return (
         <CommandDialog open={open} onOpenChange={setOpen}>
@@ -142,10 +163,10 @@ export function CommandPalette() {
                 <CommandEmpty>No results found.</CommandEmpty>
 
                 {/* Recent Commands */}
-                {recentCommands.length > 0 && (
+                {visibleRecentCommands.length > 0 && (
                     <>
                         <CommandGroup heading="Recent">
-                            {recentCommands.slice(0, 3).map((cmd) => (
+                            {visibleRecentCommands.map((cmd) => (
                                 <CommandItem
                                     key={cmd.id}
                                     onSelect={() => {
@@ -180,7 +201,7 @@ export function CommandPalette() {
                                 <span>Upload Resume</span>
                                 <CommandShortcut>U</CommandShortcut>
                             </CommandItem>
-                            {isInReport && (
+                            {workspaceReportVisible && (
                                 <>
                                     <CommandItem
                                         onSelect={() => runCommand(
@@ -191,26 +212,6 @@ export function CommandPalette() {
                                         <Download className="mr-2 size-4" />
                                         <span>Export PDF</span>
                                         <CommandShortcut>E</CommandShortcut>
-                                    </CommandItem>
-                                    <CommandItem
-                                        onSelect={() => runCommand(
-                                            () => dispatchCommandAction("copy-link"),
-                                            { id: "copy-link", label: "Copy Share Link", icon: "Link2" }
-                                        )}
-                                    >
-                                        <Link2 className="mr-2 size-4" />
-                                        <span>Copy Share Link</span>
-                                        <CommandShortcut>C</CommandShortcut>
-                                    </CommandItem>
-                                    <CommandItem
-                                        onSelect={() => runCommand(
-                                            () => dispatchCommandAction("run-analysis"),
-                                            { id: "run-analysis", label: "Run New Analysis", icon: "Sparkles" }
-                                        )}
-                                    >
-                                        <Sparkles className="mr-2 size-4" />
-                                        <span>Run New Analysis</span>
-                                        <CommandShortcut>⏎</CommandShortcut>
                                     </CommandItem>
                                 </>
                             )}
@@ -253,21 +254,23 @@ export function CommandPalette() {
                     </CommandItem>
                 </CommandGroup>
 
-                <CommandSeparator />
-
-                {/* Help */}
-                <CommandGroup heading="Help">
-                    <CommandItem
-                        onSelect={() => runCommand(
-                            () => dispatchCommandAction("keyboard-shortcuts"),
-                            { id: "keyboard-shortcuts", label: "Keyboard Shortcuts", icon: "Keyboard" }
-                        )}
-                    >
-                        <Keyboard className="mr-2 size-4" />
-                        <span>Keyboard Shortcuts</span>
-                        <CommandShortcut>?</CommandShortcut>
-                    </CommandItem>
-                </CommandGroup>
+                {isInWorkspace ? (
+                    <>
+                        <CommandSeparator />
+                        <CommandGroup heading="Help">
+                            <CommandItem
+                                onSelect={() => runCommand(
+                                    () => dispatchCommandAction("keyboard-shortcuts"),
+                                    { id: "keyboard-shortcuts", label: "Keyboard Shortcuts", icon: "Keyboard" }
+                                )}
+                            >
+                                <Keyboard className="mr-2 size-4" />
+                                <span>Keyboard Shortcuts</span>
+                                <CommandShortcut>?</CommandShortcut>
+                            </CommandItem>
+                        </CommandGroup>
+                    </>
+                ) : null}
             </CommandList>
         </CommandDialog>
     )

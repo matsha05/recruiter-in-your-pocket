@@ -117,7 +117,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
 
                         <div className="max-w-36 text-right md:max-w-none md:text-left">
                             <div className={cn(
-                                "transition-[opacity,transform] duration-300 ease-out",
+                                "transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none",
                                 showBadge ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-[0.96] opacity-0"
                             )}>
                                 <span className={cn(
@@ -128,7 +128,7 @@ export function FirstImpressionSection({ data }: { data: ReportData }) {
                                 </span>
                             </div>
                             <p className={cn(
-                                "mt-2 text-xs leading-5 text-muted-foreground transition-[opacity,transform] duration-300",
+                                "mt-2 text-xs leading-5 text-muted-foreground transition-[opacity,transform] duration-150 motion-reduce:transition-none",
                                 showFirstPassNote ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
                             )}>
                                 A document review, not hiring odds.

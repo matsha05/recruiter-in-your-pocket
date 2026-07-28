@@ -26,17 +26,20 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     const [fileName, setFileName] = useState<string | null>(null);
     const [pendingText, setPendingText] = useState<string | null>(null);
     const [isRemoving, setIsRemoving] = useState(false);
+    const [loadError, setLoadError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const fetchProfile = useCallback(async () => {
+        setLoadError(null);
+        setIsLoading(true);
         try {
             const res = await fetch("/api/user/default-resume");
-            const data = await res.json();
-            if (data.success) {
-                setProfile(data.data);
-            }
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data.success) throw new Error(data.error || "Failed to load the default resume");
+            setProfile(data.data);
         } catch (error) {
             console.error("[DefaultResume] Fetch error:", error);
+            setLoadError(error instanceof Error ? error.message : "Failed to load the default resume");
         } finally {
             setIsLoading(false);
         }
@@ -47,8 +50,8 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     }, [fetchProfile]);
 
     const handleFile = async (file: File) => {
-        if (file.size > 10 * 1024 * 1024) { // 10MB limit
-            toast.error("File too large. Please use a file under 10MB.");
+        if (file.size > 4 * 1024 * 1024) {
+            toast.error("File too large. Please use a file under 4 MB.");
             return;
         }
 
@@ -192,11 +195,24 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
     if (isLoading) {
         return (
-            <section className={cn("bg-card border border-border/60 rounded p-6", className)}>
-                <div className="flex items-center gap-3 text-muted-foreground">
-                    <Loader2 className="size-4 animate-spin" />
+            <section className={cn("app-card p-6", className)} role="status" aria-live="polite">
+                <div className="flex min-h-20 items-center gap-3 text-muted-foreground">
+                    <Loader2 className="size-4 animate-spin motion-reduce:animate-none" />
                     <span className="text-sm">Loading…</span>
                 </div>
+            </section>
+        );
+    }
+
+    if (loadError) {
+        return (
+            <section className={cn("border-l-2 border-destructive bg-error-surface p-6", className)} role="alert">
+                <h3 className="font-semibold text-destructive">Default resume could not load</h3>
+                <p className="mt-2 text-sm leading-6 text-destructive/80">{loadError}. Your saved resume has not been changed.</p>
+                <button type="button" onClick={() => void fetchProfile()} className="mt-4 inline-flex min-h-11 items-center gap-2 border border-destructive/40 bg-background px-4 py-2 text-sm font-medium text-destructive">
+                    <RefreshCw className="size-4" />
+                    Try again
+                </button>
             </section>
         );
     }
@@ -204,17 +220,17 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
     // ===== ACTIVE STATE: Resume saved =====
     if (profile?.hasResume) {
         return (
-            <section className={cn("relative overflow-hidden bg-success/5 border border-success/20 rounded p-6", className)}>
+            <section className={cn("relative overflow-hidden border-l-2 border-success bg-success/5 p-6", className)} aria-busy={isSaving || isRemoving}>
                 <div className="flex items-start gap-4">
                     {/* Icon */}
-                    <div className="size-12 rounded bg-success/10 flex items-center justify-center shrink-0">
+                    <div className="flex size-12 shrink-0 items-center justify-center border border-success/25 bg-success/10">
                         <Check className="size-5 text-success" />
                     </div>
 
                     <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                             <h3 className="font-semibold text-foreground">Resume Locked In</h3>
-                            <span className="text-xs text-success bg-success/10 px-2 py-0.5 rounded-sm font-medium">
+                            <span className="border-l-2 border-success bg-success/10 px-2 py-0.5 text-xs font-medium text-success">
                                 Active
                             </span>
                         </div>
@@ -230,7 +246,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                                 <strong>{profile.skillsCount}</strong> skills
                             </span>
                             {profile.hasEmbedding && (
-                                <span className="flex items-center gap-1.5 text-warning">
+                                <span className="flex items-center gap-1.5 text-warning-foreground">
                                     <InsightSparkleIcon className="size-3.5" />
                                     Semantic matching on
                                 </span>
@@ -245,7 +261,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                             <button type="button"
                                 onClick={() => fileInputRef.current?.click()}
                                 disabled={isSaving || isRemoving}
-                                className="text-sm text-success hover:text-success/80 font-medium inline-flex items-center gap-1.5 transition-colors"
+                                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-success transition-colors hover:text-success/80"
                             >
                             <RefreshCw className={cn("size-3.5", isSaving && "animate-spin")} />
                             {isSaving ? "Updating…" : "Change Resume"}
@@ -253,7 +269,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                             <button type="button"
                                 onClick={removeResume}
                                 disabled={isSaving || isRemoving}
-                                className="text-sm text-muted-foreground hover:text-destructive font-medium inline-flex items-center gap-1.5 transition-colors"
+                                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-destructive"
                             >
                                 <Trash2 className={cn("size-3.5", isRemoving && "animate-pulse")} />
                                 {isRemoving ? "Removing…" : "Remove"}
@@ -268,6 +284,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                 <input
                     ref={fileInputRef}
                     type="file"
+                    aria-label="Choose a replacement default resume file"
                     accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
                     onChange={(e) => {
                         const file = e.target.files?.[0];
@@ -281,9 +298,9 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
 
     // ===== EMPTY STATE: Upload prompt =====
     return (
-        <section className={cn("bg-card border border-border/60 rounded p-6", className)}>
+        <section className={cn("app-card p-6", className)} aria-busy={isSaving}>
             <div className="flex items-start gap-4 mb-5">
-                <div className="size-12 rounded bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0">
+                <div className="flex size-12 shrink-0 items-center justify-center border border-brand/20 bg-brand/10">
                     <FileText className="size-5 text-brand" />
                 </div>
                 <div>
@@ -295,9 +312,12 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             </div>
 
             {/* Drop zone */}
-            <div
+            <button
+                type="button"
+                aria-label="Choose a default resume file"
+                disabled={isSaving}
                 className={cn(
-                    "relative rounded border-2 border-dashed transition-all duration-200 cursor-pointer",
+                    "relative w-full cursor-pointer border-2 border-dashed transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 disabled:cursor-wait",
                     isDragOver
                         ? "border-brand bg-brand/5"
                         : "border-border/50 hover:border-brand/50 hover:bg-muted/30"
@@ -309,7 +329,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             >
                 <div className="py-8 text-center">
                     {isSaving ? (
-                        <div className="flex flex-col items-center gap-2">
+                        <div className="flex flex-col items-center gap-2" role="status" aria-live="polite">
                             <Loader2 className="size-8 text-brand animate-spin" />
                             <p className="text-sm font-medium text-foreground">Indexing skills…</p>
                             {fileName && <p className="text-xs text-muted-foreground">{fileName}</p>}
@@ -326,7 +346,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
                         </>
                     )}
                 </div>
-            </div>
+            </button>
 
             {/* Privacy note */}
             <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground/70">
@@ -337,6 +357,7 @@ export default function DefaultResumeSection({ className }: DefaultResumeSection
             <input
                 ref={fileInputRef}
                 type="file"
+                aria-label="Choose a default resume file"
                 accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
                 onChange={(e) => {
                     const file = e.target.files?.[0];

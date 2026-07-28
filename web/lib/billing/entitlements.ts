@@ -17,7 +17,10 @@ export type PassLike = {
   expires_at?: string | null;
   uses_remaining?: number | null;
   revoked_at?: string | null;
+  revocation_reason?: string | null;
 };
+
+export type PassStatus = "active" | "used" | "expired" | "revoked" | "invalid";
 
 const UNLIMITED_PASS_TIERS = new Set<string>(["monthly", "lifetime"]);
 
@@ -73,16 +76,35 @@ export function isUnlimitedPassTier(tier: string | null | undefined): boolean {
   return UNLIMITED_PASS_TIERS.has(tier);
 }
 
-export function isPassActive(pass: PassLike | null | undefined, now = new Date()): boolean {
-  if (!pass?.tier || !pass?.expires_at) return false;
-  if (pass.revoked_at) return false;
+export function getPassStatus(pass: PassLike | null | undefined, now = new Date()): PassStatus {
+  if (!pass?.tier || !pass?.expires_at) return "invalid";
+  if (pass.revoked_at) return "revoked";
 
   const expiresAt = Date.parse(pass.expires_at);
-  if (Number.isNaN(expiresAt) || expiresAt <= now.getTime()) return false;
+  if (Number.isNaN(expiresAt)) return "invalid";
+  if (expiresAt <= now.getTime()) return "expired";
 
-  if (isUnlimitedPassTier(pass.tier)) return true;
+  if (isUnlimitedPassTier(pass.tier)) return "active";
 
-  return Number(pass.uses_remaining || 0) > 0;
+  return Number(pass.uses_remaining || 0) > 0 ? "active" : "used";
+}
+
+export function getPassStatusLabel(pass: PassLike | null | undefined, now = new Date()): string {
+  const status = getPassStatus(pass, now);
+  if (status === "active") return "Active";
+  if (status === "used") return "Used";
+  if (status === "expired") return "Expired";
+  if (status === "revoked") {
+    const reason = pass?.revocation_reason?.toLowerCase() || "";
+    if (reason.includes("refund")) return "Refunded";
+    if (reason.includes("dispute")) return "Disputed";
+    return "Revoked";
+  }
+  return "Unavailable";
+}
+
+export function isPassActive(pass: PassLike | null | undefined, now = new Date()): boolean {
+  return getPassStatus(pass, now) === "active";
 }
 
 export function shouldConsumePassCredit(pass: PassLike | null | undefined): boolean {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   ArrowClockwise,
@@ -12,10 +12,14 @@ import {
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { usePaymentConfirmation } from "@/hooks/usePaymentConfirmation";
-import { saveUnlockContext, type UnlockSection } from "@/lib/unlock/unlockContext";
+import { saveUnlockContext, scheduleCheckoutWorkspaceExpiry, type UnlockSection } from "@/lib/unlock/unlockContext";
 import Footer from "@/components/landing/Footer";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 export default function PurchaseConfirmedClient() {
+  const { user, isLoading: authLoading, refreshUser } = useAuth();
+  const refreshedEntitlementRef = useRef(false);
+  const [entitlementRefreshing, setEntitlementRefreshing] = useState(false);
   const searchParams = useSearchParams();
   const getSearchParam = searchParams.get.bind(searchParams);
   const sessionId = getSearchParam("session_id");
@@ -55,8 +59,25 @@ export default function PurchaseConfirmedClient() {
     saveUnlockContext({ section: normalized });
   }, [unlock]);
 
+  useEffect(() => {
+    scheduleCheckoutWorkspaceExpiry();
+  }, []);
+
+  useEffect(() => {
+    if (
+      state.status !== "unlocked" ||
+      authLoading ||
+      !user ||
+      refreshedEntitlementRef.current
+    ) return;
+    refreshedEntitlementRef.current = true;
+    setEntitlementRefreshing(true);
+    void refreshUser().finally(() => setEntitlementRefreshing(false));
+  }, [authLoading, refreshUser, state.status, user]);
+
   const isWaiting = state.status === "checking" || state.status === "pending";
   const isProblem = state.status === "error" || state.status === "missing";
+  const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
 
   return (
     <>
@@ -68,7 +89,7 @@ export default function PurchaseConfirmedClient() {
           <header className="grid gap-8 border-b border-line pb-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16">
             <div>
               <p className="text-xs font-semibold uppercase riyp-track-012 text-brand">Payment</p>
-              <div className="mt-5 flex items-center gap-3 text-sm font-semibold text-foreground">
+              <div className="mt-5 flex items-center gap-3 text-sm font-semibold text-foreground" role="status" aria-live="polite">
                 {state.status === "unlocked" ? <CheckCircle className="size-5 text-brand" weight="duotone" /> : null}
                 {isWaiting ? <CircleNotch className="size-5 animate-spin text-brand" weight="bold" /> : null}
                 {isProblem ? <Warning className="size-5 text-warning" weight="duotone" /> : null}
@@ -106,9 +127,21 @@ export default function PurchaseConfirmedClient() {
                 {state.status === "unlocked" ? "Ready when you are" : "Next step"}
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {state.status === "unlocked" ? (
+                {state.status === "unlocked" && (authLoading || entitlementRefreshing) ? (
+                  <Button type="button" variant="brand" size="lg" disabled isLoading>
+                    Refreshing access…
+                  </Button>
+                ) : state.status === "unlocked" && hasPaidAccess ? (
                   <Button asChild variant="brand" size="lg">
                     <Link href="/workspace">Open the studio <ArrowRight className="size-4" weight="bold" /></Link>
+                  </Button>
+                ) : state.status === "unlocked" && user ? (
+                  <Button asChild variant="brand" size="lg">
+                    <Link href="/purchase/restore">Verify purchase access <ArrowRight className="size-4" weight="bold" /></Link>
+                  </Button>
+                ) : state.status === "unlocked" ? (
+                  <Button asChild variant="brand" size="lg">
+                    <Link href="/auth?next=%2Fworkspace&from=paywall">Sign in to use your pass <ArrowRight className="size-4" weight="bold" /></Link>
                   </Button>
                 ) : (
                   <Button type="button" variant="brand" size="lg" onClick={() => window.location.reload()}>
@@ -128,6 +161,16 @@ export default function PurchaseConfirmedClient() {
                   </Button>
                 ) : null}
               </div>
+              {state.status === "unlocked" && !authLoading && !entitlementRefreshing && !user ? (
+                <p className="mt-4 border-l-2 border-cyan-bright px-3 text-sm leading-6 text-muted-foreground">
+                  Sign in with the email used at checkout to use this pass. A passwordless sign-in email may already be in your inbox.
+                </p>
+              ) : null}
+              {state.status === "unlocked" && !authLoading && !entitlementRefreshing && user && !hasPaidAccess ? (
+                <p className="mt-4 border-l-2 border-warning px-3 text-sm leading-6 text-muted-foreground">
+                  Payment is confirmed, but this signed-in account does not show the pass yet. Verify access using the checkout email before running another report.
+                </p>
+              ) : null}
             </div>
           </div>
 

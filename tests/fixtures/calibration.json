@@ -385,6 +385,54 @@
                 "elite",
                 "synthetic"
             ]
+        },
+        {
+            "id": "career_path_elementary_educator_1",
+            "path": "03_teacher.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 74,
+                "max": 88
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "education",
+                "nontraditional",
+                "public_service",
+                "measurable_impact"
+            ]
+        },
+        {
+            "id": "career_path_ministry_leader_1",
+            "path": "04_pastor_ministry.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 76,
+                "max": 90
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "ministry",
+                "nontraditional",
+                "community_leadership",
+                "career_translation"
+            ]
+        },
+        {
+            "id": "frontline_retail_entry_1",
+            "path": "08_entry_level_retail.txt",
+            "tier": "golden",
+            "expected_score": {
+                "min": 70,
+                "max": 84
+            },
+            "expected_band": "strong_foundation",
+            "tags": [
+                "retail",
+                "frontline",
+                "early_career",
+                "hourly_work"
+            ]
         }
     ]
 }

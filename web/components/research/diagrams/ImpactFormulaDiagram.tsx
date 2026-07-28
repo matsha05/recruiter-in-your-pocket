@@ -18,7 +18,7 @@ export function ImpactFormulaDiagram() {
                     example={<><span className="riyp-evidence-label text-brand">In practice</span><p className="mt-2 font-display text-xl leading-snug text-foreground">Cut onboarding time 32% by aligning product, sales, and support.</p></>}
                 />
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Result + scale + method" title="A useful bullet shows the result and gives the reader enough context to understand it." />
+            <DiagramCaption kicker="Fig. 1 / Result + scale + method" title="A useful bullet shows the result and gives the reader the context needed to understand it." />
         </DiagramFigure>
     );
 }

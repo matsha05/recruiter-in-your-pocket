@@ -83,6 +83,9 @@ const inferredMode = secretKey.startsWith("sk_live_")
 
 if (secretKey && inferredMode === "unknown") fail("STRIPE_SECRET_KEY has an unrecognized mode prefix");
 if (secretKey && inferredMode !== "unknown") pass(`Stripe key is in ${inferredMode} mode`);
+if (remote && !["test", "live"].includes(expectedMode || "")) {
+  fail("Remote checks require an explicit --mode=test or --mode=live safety assertion");
+}
 if (expectedMode && expectedMode !== inferredMode) fail(`Expected ${expectedMode} mode but the Stripe key is ${inferredMode}`);
 if (webhookSecret && !webhookSecret.startsWith("whsec_")) fail("STRIPE_WEBHOOK_SECRET is not a webhook signing secret");
 if (priceId && !priceId.startsWith("price_")) fail("STRIPE_PRICE_ID_30D is not a Stripe Price ID");
@@ -120,12 +123,13 @@ async function runRemoteChecks() {
     typescript: true,
   });
 
-  const [account, price, product, webhooks, taxSettings] = await Promise.all([
+  const [account, price, product, webhooks, taxSettings, taxRegistrations] = await Promise.all([
     stripe.accounts.retrieve(),
     stripe.prices.retrieve(priceId),
     stripe.products.retrieve(productId),
     stripe.webhookEndpoints.list({ limit: 100 }),
     stripe.tax.settings.retrieve(),
+    stripe.tax.registrations.list({ limit: 100 }),
   ]);
 
   if (inferredMode === "live") {
@@ -170,6 +174,19 @@ async function runRemoteChecks() {
 
   if (taxSettings.status !== "active") fail(`Stripe Tax status is ${taxSettings.status || "unknown"}, expected active`);
   else pass("Stripe Tax is active for automatic Checkout calculation");
+
+  const currentRegistrations = taxRegistrations.data.filter((registration) => (
+    registration.status === "active" || registration.status === "scheduled"
+  ));
+  if (inferredMode === "test" && currentRegistrations.length === 0) {
+    fail("Stripe Tax sandbox has no active or scheduled registration; automatic-tax behavior cannot be meaningfully rehearsed");
+  } else if (inferredMode === "test") {
+    pass(`Stripe Tax sandbox has ${currentRegistrations.length} active or scheduled registration(s)`);
+  } else if (currentRegistrations.length === 0) {
+    warn("Live Stripe Tax has no active or scheduled registrations. Confirm the business-origin and threshold decision before launch; never add a Stripe registration before registering with the jurisdiction.");
+  } else {
+    pass(`Live Stripe Tax has ${currentRegistrations.length} active or scheduled registration(s)`);
+  }
 }
 
 (async () => {

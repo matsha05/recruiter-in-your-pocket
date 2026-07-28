@@ -38,7 +38,7 @@ export const categories: ResearchCategory[] = [
             {
                 id: "resume-length-myths",
                 title: "Should a Resume Be One Page?",
-                description: "When one page is enough, and when a second page is worth it.",
+                description: "When one page carries the case, and when a second page adds useful depth.",
                 readTime: "6 min read",
                 href: "/research/resume-length-myths",
             },

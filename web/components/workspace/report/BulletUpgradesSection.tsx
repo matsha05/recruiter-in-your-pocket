@@ -45,7 +45,7 @@ export function BulletUpgradesSection({ data, isGated = false, onUpgrade }: Bull
                             No rewrite is needed here
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                            The existing lines are specific enough to understand without another rewrite.
+                            The existing lines are already specific and clear without another rewrite.
                         </p>
                     </div>
                 </div>

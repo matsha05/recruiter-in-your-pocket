@@ -37,7 +37,7 @@ export function RedPenCard({
         try {
             await navigator.clipboard.writeText(after);
             setCopied(true);
-            Analytics.track('sm1_fix_copied', { title });
+            Analytics.track('sm1_fix_copied');
             setTimeout(() => setCopied(false), 1800);
         } catch (err) {
             console.error('Failed to copy:', err);
@@ -66,7 +66,7 @@ export function RedPenCard({
 
                 {/* AFTER Panel */}
                 <div className={cn(
-                    "relative p-5 transition-all duration-300",
+                    "relative p-5 transition-all duration-150 motion-reduce:transition-none",
                     copied ? "bg-brand/10 ring-1 ring-brand/15 shadow-[0_0_0_6px_rgba(13,148,136,0.06)]" : "bg-brand/5"
                 )}>
                     <div className="mb-2 flex items-start justify-between gap-3">
@@ -104,12 +104,12 @@ export function RedPenCard({
                     <div className={cn("relative", isLocked && "select-none")}>
                         <div
                             className={cn(
-                                "relative rounded-md -mx-2 -my-1 px-2 py-1 transition-all duration-300",
+                                "relative rounded-md -mx-2 -my-1 px-2 py-1 transition-all duration-150 motion-reduce:transition-none",
                                 copied && !isLocked && "bg-white/75 shadow-[inset_0_0_0_1px_rgba(13,148,136,0.12)]"
                             )}
                         >
                             <p className={cn(
-                                "relative text-sm font-medium leading-relaxed text-foreground transition-all duration-300",
+                                "relative text-sm font-medium leading-relaxed text-foreground transition-all duration-150 motion-reduce:transition-none",
                                 copied && !isLocked && "scale-[1.01]",
                                 isLocked && "blur-sm opacity-50"
                             )}>

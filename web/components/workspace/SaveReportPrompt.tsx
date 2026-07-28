@@ -81,7 +81,7 @@ export default function SaveReportPrompt({
                     </div>
 
                     {error && (
-                        <div className="text-destructive text-sm text-center bg-destructive/10 p-2 rounded">
+                        <div role="alert" className="border-l-2 border-destructive bg-error px-3 py-2 text-center text-sm text-destructive">
                             {error}
                         </div>
                     )}
@@ -105,7 +105,7 @@ export default function SaveReportPrompt({
                     </button>
                 </div>
 
-                <p className="text-center text-xs text-muted-foreground/50 mt-4">
+                <p className="mt-4 text-center text-xs text-muted-foreground">
                     If you skip, this browser view is not backed up to report history.
                 </p>
             </DialogContent>

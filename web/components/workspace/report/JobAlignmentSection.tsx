@@ -86,7 +86,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     subtitle="How the resume compares with the job posting you added."
                 />
                 <div className="rounded border border-border bg-secondary/10 p-5 text-sm text-muted-foreground">
-                    The current resume does not provide enough context on role, level, scope, and outcomes to assess fit clearly.
+                    The current resume lacks the role, level, scope, and outcome context needed to assess fit clearly.
                 </div>
             </section>
         );
@@ -157,9 +157,9 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                     {showJdSection && hasJdMatchData && (
                         <div className="text-center mb-8 pb-6 border-b border-border/40">
                             <div className="inline-flex items-center gap-4">
-                                <div className={`font-display text-6xl riyp-weight-560 tabular-nums transition-all duration-500 md:text-7xl ${jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'text-success' :
+                                <div className={`font-display text-6xl riyp-weight-560 tabular-nums transition-all duration-150 motion-reduce:transition-none md:text-7xl ${jdMatchScore >= SCORE_THRESHOLDS.STRONG ? 'text-success' :
                                     jdMatchScore >= SCORE_THRESHOLDS.MODERATE ? 'text-brand' :
-                                        jdMatchScore >= SCORE_THRESHOLDS.WEAK ? 'text-warning' :
+                                        jdMatchScore >= SCORE_THRESHOLDS.WEAK ? 'text-warning-foreground' :
                                             'text-destructive'
                                     }`}>
                                     {jdMatchScore}%
@@ -197,7 +197,7 @@ export function JobAlignmentSection({ data, hasJobDescription = false, isGated =
                                 </div>
                                 <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                     <div
-                                        className={`h-full rounded-full transition-all duration-500 ${((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.75 ? 'bg-success' :
+                                        className={`h-full rounded-full transition-all duration-150 motion-reduce:transition-none ${((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.75 ? 'bg-success' :
                                             ((jdKeywords?.match_count || 0) / (jdKeywords?.total_count || 1)) >= 0.5 ? 'bg-brand' :
                                                 'bg-warning'
                                             }`}

@@ -5,9 +5,12 @@ import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer"
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
 
 const MAX_TEXT_LENGTH = 30000;
-const ALLOWED_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
+const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
+// This validator fronts the public resume report endpoints. Other product
+// modes have dedicated routes and must not be reachable by changing JSON.
+const ALLOWED_MODES: readonly Mode[] = ["resume"];
 
-export type Mode = (typeof ALLOWED_MODES)[number];
+export type Mode = (typeof ALL_MODES)[number];
 
 export function validateResumeFeedbackRequest(body: any): {
   ok: boolean;
@@ -36,8 +39,8 @@ export function validateResumeFeedbackRequest(body: any): {
 
   let normalizedMode: Mode = "resume";
   if (mode !== undefined) {
-    if (typeof mode !== "string") fieldErrors.mode = 'Mode must be "resume" or "resume_ideas".';
-    else if (!(ALLOWED_MODES as readonly string[]).includes(mode)) fieldErrors.mode = 'Mode must be "resume" or "resume_ideas".';
+    if (typeof mode !== "string") fieldErrors.mode = 'Mode must be "resume".';
+    else if (!(ALLOWED_MODES as readonly string[]).includes(mode)) fieldErrors.mode = 'Mode must be "resume".';
     else normalizedMode = mode as Mode;
   }
 

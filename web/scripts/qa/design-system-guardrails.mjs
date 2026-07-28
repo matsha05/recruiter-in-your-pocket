@@ -51,6 +51,9 @@ const HEX_ALLOWLIST = new Set([
   "app/(editorial)/guides/tools/comp-calculator/page.tsx",
   "components/research/diagrams/LinkedInResumeFlow.tsx",
   "lib/backend/pdf.ts",
+  // Email clients require inline literal colors. The auth-email contract pins
+  // these literals to the canonical chalk/ink/citron/cyan palette.
+  "lib/auth/otpEmail.ts",
 ]);
 
 const INLINE_STYLE_EXCLUSIONS = new Set([

@@ -196,13 +196,13 @@ export function renderReportHtml(report: ReportForPdf) {
       --soft: #7c878e;
       --line: #ccd2d1;
       --control-line: #aeb8b7;
-      --iris: #007fa3;
+      --iris: #00738f;
       --iris-strong: #006784;
       --iris-tint: #d8f4fb;
       --sky: #e8f8fc;
       --sky-strong: #25bfea;
       --proof: #efede7;
-      --apricot: #007fa3;
+      --apricot: #00738f;
       --butter: #c8f238;
       --butter-soft: #f3fad9;
       --white: #ffffff;

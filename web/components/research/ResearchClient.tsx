@@ -131,7 +131,8 @@ function ResearchLibrary() {
                 })}
             </nav>
 
-            <div aria-live="polite">
+            <div>
+                <span className="sr-only" role="status" aria-live="polite">Showing {activeCategory.title}</span>
                 <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">{activeCategory.descriptor}</p>
                 <h3 className="mt-3 max-w-[28ch] font-display text-[clamp(2.25rem,4vw,3.75rem)] riyp-weight-540 leading-[1] tracking-[-0.035em] text-foreground riyp-stretch-91">{activeCategory.title}</h3>
                 <p className="mt-4 max-w-prose text-base leading-7 text-muted-foreground">{activeCategory.subtitle}</p>
@@ -162,7 +163,7 @@ function FirstReadMap() {
         {
             index: "03",
             label: "The judgment",
-            title: "Is there enough proof to continue?",
+            title: "Does the evidence support a closer look?",
             detail: "The reader weighs relevance, ownership, progression, and results.",
             icon: UserFocus,
         },
@@ -340,7 +341,7 @@ function ResearchEvidenceTrace() {
             <div className="research-evidence-stage-head">
                 <div>
                     <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Four findings worth acting on</p>
-                    <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Strong enough to change what we check—or left out of the headline.</p>
+                    <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">Strong evidence changes what we check. Weak evidence stays out of the headline.</p>
                 </div>
                 <div className="research-evidence-tabs" role="tablist" aria-label="Research findings">
                     {featuredFindings.map((finding, index) => (
@@ -418,12 +419,12 @@ export default function ResearchClient() {
             <ResearchSection density="hero" className="!bg-paper !pb-12 !pt-24 md:!pb-16 md:!pt-32" containerClassName="max-w-screen-xl">
                 <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-end lg:gap-24">
                     <div>
-                        <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Research, with the receipts</p>
+                        <p className="riyp-track-012 text-xs font-semibold uppercase text-brand">Evidence library</p>
                         <h1 className="mt-5 max-w-[8ch] font-display text-[clamp(4.5rem,9vw,9rem)] riyp-weight-620 leading-[0.82] tracking-[-0.07em] text-foreground">Research</h1>
                     </div>
                     <div>
                         <p className="max-w-[18ch] font-display text-[clamp(2.5rem,5vw,5.4rem)] riyp-weight-540 leading-[0.95] tracking-[-0.045em] text-foreground">
-                            There is a lot of resume advice. Some of it is even true.
+                            Resume advice is plentiful. Reliable evidence is harder to find.
                         </p>
                         <p className="mt-7 max-w-2xl text-base leading-8 text-muted-foreground">
                             We track down the studies, platform documentation, and recruiter experiments—then keep the part that changes what you should do.
@@ -450,7 +451,7 @@ export default function ResearchClient() {
             <ResearchSection density="default" className="!bg-proof" containerClassName="max-w-[72rem]">
                 <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
                     <div>
-                        <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">Folklore, retired</p>
+                        <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">Claims under review</p>
                         <h2 className="mt-4 max-w-[11ch] font-display text-[clamp(2.75rem,4.8vw,4.8rem)] riyp-weight-620 leading-[0.97] tracking-[-0.04em] text-foreground">Three resume rules that need to go.</h2>
                         <p className="mt-5 max-w-[34rem] text-base leading-7 text-muted-foreground">Each sounds certain. The research is more specific.</p>
                     </div>
@@ -477,7 +478,7 @@ export default function ResearchClient() {
                 <div className="grid gap-5 md:grid-cols-[16rem_minmax(0,1fr)] md:gap-12">
                     <p className="riyp-track-011 text-xs font-semibold uppercase text-brand">All research</p>
                     <div>
-                        <h2 className="font-display text-[clamp(2.75rem,5vw,5rem)] riyp-weight-620 leading-[0.96] tracking-[-0.04em] text-foreground">Keep digging.</h2>
+                        <h2 className="font-display text-[clamp(2.75rem,5vw,5rem)] riyp-weight-620 leading-[0.96] tracking-[-0.04em] text-foreground">Read the evidence behind the advice.</h2>
                         <p className="mt-5 max-w-prose text-base leading-7 text-muted-foreground">Browse the underlying research on first impressions, writing, getting found, and hiring systems.</p>
                     </div>
                 </div>

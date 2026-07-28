@@ -31,12 +31,12 @@ const notEstablished = [
     "A two-column layout always fails",
 ];
 
-export function ScanPattern() {
+export function ScanPattern({ figureNumber = 1 }: { figureNumber?: number }) {
     return (
         <DiagramFigure className="max-w-[56rem]" label="What general scanning research can and cannot tell us about resume design">
             <DiagramFrame>
                 <EvidenceHeader
-                    index="01"
+                    index={String(figureNumber).padStart(2, "0")}
                     label="What carries over"
                     title="Give the reader a clear route from role to evidence."
                     note="The research does not establish one scan path. It does show that attention and judgment depend on what the full document makes available."
@@ -68,7 +68,7 @@ export function ScanPattern() {
                 </div>
             </DiagramFrame>
             <DiagramCaption
-                kicker="Fig. 1 / What carries over"
+                kicker={`Fig. ${figureNumber} / What carries over`}
                 title="Make recent experience easy to enter and useful evidence easy to follow."
             />
         </DiagramFigure>

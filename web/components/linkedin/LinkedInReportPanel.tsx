@@ -338,10 +338,10 @@ function StatusBadge({ status }: { status: string }) {
     const configs: Record<string, { color: string; label: string }> = {
         professional: { color: "text-success", label: "Professional" },
         adequate: { color: "text-brand", label: "Adequate" },
-        needs_work: { color: "text-warning", label: "Needs work" },
+        needs_work: { color: "text-warning-foreground", label: "Needs work" },
         missing: { color: "text-destructive", label: "Missing" },
         branded: { color: "text-success", label: "Branded" },
-        generic: { color: "text-warning", label: "Generic" },
+        generic: { color: "text-warning-foreground", label: "Generic" },
         differentiated: { color: "text-success", label: "Differentiated" },
         keyword_rich: { color: "text-success", label: "Keyword rich" },
         unknown: { color: "text-muted-foreground", label: "Not available in PDF" },
@@ -354,7 +354,7 @@ function HookStrengthBadge({ strength }: { strength: string }) {
     const configs: Record<string, { color: string; label: string }> = {
         strong: { color: "text-success", label: "Strong opening" },
         adequate: { color: "text-brand", label: "Clear, not distinctive" },
-        weak: { color: "text-warning", label: "Needs a sharper lead" },
+        weak: { color: "text-warning-foreground", label: "Needs a sharper lead" },
         missing: { color: "text-destructive", label: "Missing" },
     };
     const config = configs[strength] || configs.missing;

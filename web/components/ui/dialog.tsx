@@ -29,7 +29,7 @@ const DialogOverlay = React.forwardRef<
         <DialogPrimitive.Overlay
             ref={ref}
             className={cn(
-                "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm",
+                "fixed inset-0 z-50 bg-black/75",
                 className
             )}
             asChild
@@ -68,7 +68,7 @@ const DialogContent = React.forwardRef<
             <DialogPrimitive.Content
                 ref={ref}
                 className={cn(
-                    "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border/60 bg-background p-6 shadow-sm rounded-lg",
+                    "fixed left-[50%] top-[50%] z-50 grid max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 overflow-y-auto rounded-md border border-border bg-background p-6 shadow-sm",
                     className
                 )}
                 asChild
@@ -81,8 +81,8 @@ const DialogContent = React.forwardRef<
                     exit="exit"
                 >
                     {children}
-                    <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-                        <X className="size-4" />
+                    <DialogPrimitive.Close className="absolute right-1.5 top-1.5 inline-flex size-11 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                        <X className="size-5" />
                         <span className="sr-only">Close</span>
                     </DialogPrimitive.Close>
                 </motion.div>

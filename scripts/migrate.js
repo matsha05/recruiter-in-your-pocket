@@ -43,6 +43,44 @@ function loadLocalEnvironment() {
   }
 }
 
+function resolveMigrationTarget() {
+  const connectionString = process.env.SUPABASE_DB_URL;
+  if (!connectionString) {
+    throw new Error(
+      "SUPABASE_DB_URL is required to run hosted migrations. " +
+      "DATABASE_URL is intentionally ignored so a legacy database cannot be migrated by accident."
+    );
+  }
+
+  const expectedProjectRef = process.env.SUPABASE_PROJECT_ID || process.env.RIYP_EXPECTED_SUPABASE_PROJECT_REF;
+  if (!expectedProjectRef) {
+    throw new Error(
+      "SUPABASE_PROJECT_ID (or RIYP_EXPECTED_SUPABASE_PROJECT_REF) is required to verify the migration target."
+    );
+  }
+
+  let target;
+  try {
+    target = new URL(connectionString);
+  } catch {
+    throw new Error("SUPABASE_DB_URL must be a valid PostgreSQL connection URL.");
+  }
+
+  const hostname = target.hostname.toLowerCase();
+  const username = decodeURIComponent(target.username || "").toLowerCase();
+  const normalizedRef = expectedProjectRef.trim().toLowerCase();
+  const isDirectProjectHost = hostname === `db.${normalizedRef}.supabase.co`;
+  const isSupabasePooler = hostname.endsWith(".pooler.supabase.com") && username.endsWith(`.${normalizedRef}`);
+
+  if (!isDirectProjectHost && !isSupabasePooler) {
+    throw new Error(
+      `Refusing migration: SUPABASE_DB_URL does not resolve to expected project ${normalizedRef}.`
+    );
+  }
+
+  return connectionString;
+}
+
 function checksum(sql) {
   return crypto.createHash("sha256").update(sql).digest("hex");
 }
@@ -316,10 +354,7 @@ async function main() {
   }
 
   loadLocalEnvironment();
-  const connectionString = process.env.DATABASE_URL || process.env.SUPABASE_DB_URL;
-  if (!connectionString) {
-    throw new Error("DATABASE_URL or SUPABASE_DB_URL is required to run migrations.");
-  }
+  const connectionString = resolveMigrationTarget();
 
   const client = new Client({ connectionString, connectionTimeoutMillis: 10_000 });
   let locked = false;

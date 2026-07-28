@@ -59,7 +59,7 @@ export default async function OpenGraphImage() {
               <span>First read</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", padding: "20px 22px", background: "#E8F8FC", borderBottom: "1px solid #CCD2D1" }}>
-              <div style={{ display: "flex", color: "#007FA3", fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>Needs context</div>
+              <div style={{ display: "flex", color: "#00738F", fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>Needs context</div>
               <div style={{ display: "flex", marginTop: 10, fontFamily: "Space Grotesk", fontSize: 27, lineHeight: 1.15 }}>
                 Led onboarding work across the company, improving productivity.
               </div>
@@ -75,7 +75,7 @@ export default async function OpenGraphImage() {
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 25, color: "#596570", fontSize: 14 }}>
           <span>Evidence. Context. Your next move.</span>
-          <span style={{ color: "#007FA3", fontWeight: 700 }}>recruiterinyourpocket.com</span>
+          <span style={{ color: "#00738F", fontWeight: 700 }}>recruiterinyourpocket.com</span>
         </div>
       </div>
     ),

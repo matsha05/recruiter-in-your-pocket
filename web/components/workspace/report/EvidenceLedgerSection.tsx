@@ -25,7 +25,7 @@ type LedgerItem = {
 const confidenceStyles: Record<NonNullable<LedgerItem["confidence"]>, string> = {
   high: "bg-brand/10 text-brand",
   medium: "bg-muted/50 text-muted-foreground",
-  low: "bg-warning/10 text-warning"
+  low: "bg-warning/10 text-warning-foreground"
 };
 
 const impactStyles: Record<NonNullable<LedgerItem["impact"]>, string> = {
@@ -37,7 +37,7 @@ const impactStyles: Record<NonNullable<LedgerItem["impact"]>, string> = {
 const effortStyles: Record<NonNullable<LedgerItem["effort"]>, string> = {
   quick: "bg-success/10 text-success",
   moderate: "bg-muted/50 text-muted-foreground",
-  high: "bg-warning/10 text-warning"
+  high: "bg-warning/10 text-warning-foreground"
 };
 
 interface EvidenceLedgerSectionProps {
@@ -119,8 +119,8 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
           title="Evidence Behind the Review"
           subtitle="Each recommendation points back to the resume."
         />
-        <div className="rounded border border-border/60 bg-secondary/10 p-5 text-sm text-muted-foreground">
-          There was not enough evidence to build this section. Add more detail, then run the review again.
+        <div className="border-y border-line bg-paper-muted p-5 text-sm text-muted-foreground">
+          The report could not find supporting evidence for this section. Add more detail, then run the review again.
         </div>
       </section>
     );
@@ -142,7 +142,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         {items.slice(0, visibleCount).map((item, index) => (
           <div
             key={item.id}
-            className="rounded-xl border border-border/60 bg-card p-5 md:p-6"
+            className="border-y border-line bg-background p-5 md:p-6"
           >
             <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
               <div className="gap-y-3">
@@ -155,7 +155,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                     </>
                   )}
                 </div>
-                <div className="rounded border border-border/50 bg-secondary/10 p-4">
+                <div className="border-l-2 border-line bg-paper-muted p-4">
                   <p className="text-sm text-foreground leading-relaxed">
                     “{item.evidence}”
                   </p>
@@ -166,7 +166,7 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                   </p>
                 )}
                 {item.confidence === "low" && (
-                  <p className="rounded border border-warning/20 bg-warning/10 px-3 py-2 text-xs leading-relaxed text-warning">
+                  <p className="border-l-2 border-warning bg-paper-muted px-3 py-2 text-xs leading-relaxed text-warning-foreground">
                     What we need from you: add the missing number, scope, or context before treating this as final.
                   </p>
                 )}
@@ -179,24 +179,24 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
                   </span>
                   <div className="flex flex-wrap items-center gap-2">
                     {item.confidence && (
-                      <span className={cn("text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded", confidenceStyles[item.confidence])}>
+                      <span className={cn("border-l-2 px-2 py-0.5 text-xs font-bold uppercase tracking-wider", confidenceStyles[item.confidence])}>
                         Confidence {item.confidence}
                       </span>
                     )}
                     {item.impact && (
-                      <span className={cn("text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded", impactStyles[item.impact])}>
+                      <span className={cn("border-l-2 px-2 py-0.5 text-xs font-bold uppercase tracking-wider", impactStyles[item.impact])}>
                         Impact {item.impact}
                       </span>
                     )}
                     {item.effort && (
-                      <span className={cn("text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded", effortStyles[item.effort])}>
+                      <span className={cn("border-l-2 px-2 py-0.5 text-xs font-bold uppercase tracking-wider", effortStyles[item.effort])}>
                         Effort {item.effort}
                       </span>
                     )}
                   </div>
                 </div>
 
-                <div className="rounded border border-brand/20 bg-brand/5 p-4">
+                <div className="border-l-2 border-cyan-bright bg-surface-sky p-4">
                   <p className="text-sm font-medium text-foreground leading-relaxed">
                     {item.action}
                   </p>
@@ -211,8 +211,8 @@ export function EvidenceLedgerSection({ data, isGated = false, onUpgrade }: Evid
         ))}
 
         {isGated && hiddenCount > 0 && (
-          <div className="rounded-xl border border-border/60 bg-card p-6 gap-y-4 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/70 to-card" />
+          <div className="relative gap-y-4 overflow-hidden border-y border-line bg-paper-muted p-6">
+            <div className="absolute inset-x-0 bottom-0 h-1 bg-citron" />
             <div className="relative z-10 flex items-center gap-3 text-muted-foreground">
               <Lock className="size-5" />
               <div>

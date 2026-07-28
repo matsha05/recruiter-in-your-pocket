@@ -57,11 +57,11 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                         {sortedScores.length} reports tracked
                     </p>
                 </div>
-                <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold ${improvement > 0
-                    ? 'bg-green-500/10 text-green-600 border border-green-500/20'
+                <div className={`flex items-center gap-2 border-l-2 px-3 py-1 text-sm font-semibold ${improvement > 0
+                    ? 'border-success bg-success/10 text-success'
                     : improvement < 0
-                        ? 'bg-destructive/10 text-destructive border border-destructive/20'
-                        : 'bg-muted text-muted-foreground border border-border'
+                        ? 'border-destructive bg-error-surface text-destructive'
+                        : 'border-line bg-paper-muted text-muted-foreground'
                     }`}>
                     {improvement > 0 ? (
                         <TrendingUp className="size-4" />
@@ -98,7 +98,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
                             </div>
                             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                 <div
-                                    className={`h-full rounded-full transition-all duration-500 ${point.score >= 75 ? 'bg-green-500' :
+                                    className={`h-full rounded-full transition-all duration-150 motion-reduce:transition-none ${point.score >= 75 ? 'bg-success' :
                                         point.score >= 60 ? 'bg-brand' :
                                             point.score >= 45 ? 'bg-warning' :
                                                 'bg-destructive'
@@ -113,7 +113,7 @@ export function ScoreProgressChart({ scores, className = "" }: ScoreProgressChar
 
             {/* Improvement Message */}
             {improvement !== 0 && (
-                <div className={`mt-4 text-center text-sm ${improvement > 0 ? 'text-green-600' : 'text-destructive'
+                <div className={`mt-4 text-center text-sm ${improvement > 0 ? 'text-success' : 'text-destructive'
                     }`}>
                     {improvement > 0 ? (
                         <><Check className="inline size-4 mr-1" /> The latest version scored {improvement} points higher in this review</>

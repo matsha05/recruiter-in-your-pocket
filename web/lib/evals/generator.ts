@@ -289,7 +289,7 @@ function getExpectedScoreRange(spec: SyntheticResumeSpec): [number, number] {
 
 async function callOpenAI(prompt: string, userMessage: string): Promise<string> {
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-    const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    const OPENAI_MODEL = process.env.OPENAI_EVAL_GENERATOR_MODEL || "gpt-4o-mini";
 
     if (!OPENAI_API_KEY) {
         throw new Error("OPENAI_API_KEY environment variable is required");

@@ -71,7 +71,7 @@ export default function StatusClient() {
     >
       <section className="border-y border-line bg-surface-sky/35 p-6 md:p-8">
         <div className="flex items-start gap-3">
-          <div className={`mt-1 flex size-10 items-center justify-center rounded-full ${summary?.status === "configured" ? "bg-brand/10 text-brand" : "bg-accent-apricot/25 text-foreground"}`}>
+          <div className={`mt-1 flex size-10 items-center justify-center rounded-sm ${summary?.status === "configured" ? "bg-brand/10 text-brand" : "bg-accent-apricot/25 text-foreground"}`}>
             {summary?.status === "configured" ? <CheckCircle className="size-5" weight="fill" /> : <WarningCircle className="size-5" weight="fill" />}
           </div>
           <div className="gap-y-1">

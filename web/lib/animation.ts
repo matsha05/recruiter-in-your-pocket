@@ -190,7 +190,7 @@ export const MODAL_OVERLAY_VARIANTS: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: { duration: DURATION.normal }
+        transition: { duration: 0.15 }
     },
     exit: {
         opacity: 0,
@@ -201,13 +201,13 @@ export const MODAL_OVERLAY_VARIANTS: Variants = {
 export const MODAL_CONTENT_VARIANTS: Variants = {
     hidden: {
         opacity: 0,
-        scale: 0.95,
+        scale: 0.985,
         // Note: No y offset - we rely on CSS translate-y-[-50%] for centering
     },
     visible: {
         opacity: 1,
         scale: 1,
-        transition: SPRING_MODAL
+        transition: { duration: 0.16, ease: EASE_SNAP }
     },
     exit: {
         opacity: 0,

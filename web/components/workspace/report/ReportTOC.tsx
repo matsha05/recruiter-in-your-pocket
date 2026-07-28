@@ -59,7 +59,7 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
     }, [selectedId]);
 
     return (
-        <nav ref={navRef} aria-label="Resume report sections" className="mx-auto grid w-full grid-cols-2 gap-x-1 py-1 sm:flex sm:items-center sm:overflow-x-auto sm:py-0 [&::-webkit-scrollbar]:hidden">
+        <nav ref={navRef} aria-label="Resume report sections" className="mx-auto flex w-full snap-x items-center overflow-x-auto py-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {REPORT_TOC_ITEMS.map((item) => {
                 const active = selectedId === item.id;
                 return (
@@ -70,7 +70,7 @@ export function ReportTOC({ activeId }: ReportTOCProps) {
                         onClick={() => handleScroll(item.id)}
                         aria-current={active ? "location" : undefined}
                         className={cn(
-                            "focus-ring relative min-h-11 shrink-0 rounded-sm px-2 text-xs font-semibold transition-colors sm:px-4 sm:text-sm",
+                            "focus-ring relative min-h-14 shrink-0 snap-start rounded-sm px-4 text-sm font-semibold transition-colors sm:text-base",
                             active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                         )}
                     >

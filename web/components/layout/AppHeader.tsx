@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "@/components/shared/UserNav";
 import { PocketMark, Wordmark } from "@/components/icons";
@@ -20,11 +21,27 @@ const APP_NAV = [
 
 export function AppHeader() {
     const pathname = usePathname();
-    const { user, signOut } = useAuth();
+    const { user, signOut, isLoading: authLoading } = useAuth();
+    const [workspaceReportVisible, setWorkspaceReportVisible] = useState(false);
+
+    useEffect(() => {
+        const handleReportVisibility = (event: Event) => {
+            setWorkspaceReportVisible(Boolean((event as CustomEvent<{ visible?: boolean }>).detail?.visible));
+        };
+        window.addEventListener("riyp-report-visibility", handleReportVisibility);
+        return () => window.removeEventListener("riyp-report-visibility", handleReportVisibility);
+    }, []);
+
+    useEffect(() => {
+        if (pathname !== "/workspace") setWorkspaceReportVisible(false);
+    }, [pathname]);
 
     const isActive = (href: string) => {
         if (href === "/workspace") {
-            return pathname === "/workspace" || pathname?.startsWith("/workspace/");
+            return (pathname === "/workspace" || pathname?.startsWith("/workspace/")) && !workspaceReportVisible;
+        }
+        if (href === "/reports") {
+            return workspaceReportVisible || pathname === href || pathname?.startsWith(`${href}/`);
         }
         return pathname === href || pathname?.startsWith(`${href}/`);
     };
@@ -32,7 +49,7 @@ export function AppHeader() {
     return (
         <header className="app-shell-header">
             <div className="app-shell-inner">
-                <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 w-11 shrink-0 items-center justify-center gap-2.5 rounded-md sm:w-auto sm:justify-start">
+                <Link href="/" aria-label="Recruiter in Your Pocket home" className="focus-ring group flex min-h-11 shrink-0 items-center justify-start gap-2.5 rounded-md">
                     <PocketMark className="size-9 text-background sm:hidden" />
                     <span className="font-display text-lg font-semibold leading-[0.92] tracking-[-0.045em] text-background sm:hidden">Recruiter in<br />Your Pocket</span>
                     <Wordmark className="site-wordmark hidden text-background sm:inline-flex" />
@@ -56,12 +73,20 @@ export function AppHeader() {
                     <div className="hidden md:block app-shell-divider" />
 
                     <div className="flex items-center gap-1.5">
-                        {user ? (
+                        {authLoading ? (
+                            <span
+                                className="hidden size-11 border border-background/15 bg-background/5 md:block"
+                                role="status"
+                                aria-label="Checking account status"
+                            />
+                        ) : user ? (
                             <div className="hidden md:block">
                                 <UserNav user={user} onSignOut={signOut} />
                             </div>
-                        ) : null}
-                        <MobileNav />
+                        ) : (
+                            <Link href="/auth" className="app-nav-link hidden md:inline-flex">Log in</Link>
+                        )}
+                        <MobileNav workspaceReportVisible={workspaceReportVisible} />
                     </div>
                 </nav>
             </div>

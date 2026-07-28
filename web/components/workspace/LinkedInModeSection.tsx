@@ -98,7 +98,7 @@ export default function LinkedInModeSection({
     <div className="group relative h-full overflow-y-auto bg-mineral">
       <ReportLayout toc={<LinkedInReportTOC />}>
         <div className="gap-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
+          <div className="flex flex-col justify-between gap-4 px-2 animate-in fade-in slide-in-from-bottom-2 duration-150 motion-reduce:animate-none sm:flex-row sm:items-center">
             <div className="gap-y-1 min-w-0">
               <div className="flex items-center gap-3 flex-wrap">
                 <h1 className="text-xl sm:text-2xl font-display font-semibold text-foreground tracking-tight truncate">

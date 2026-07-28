@@ -33,6 +33,7 @@ import {
 } from "@/lib/backend/validation";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
+import { captureOperationalError } from "@/lib/observability/operations";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
@@ -65,6 +66,13 @@ function nowIso() {
 
 function hashResumeText(text: string) {
     return crypto.createHash("sha256").update(text).digest("hex");
+}
+
+function reportPersistenceError() {
+    const error = new Error("We could not safely save this report. Your report credit was restored; please try again.") as Error & { code: string; httpStatus: number };
+    error.code = "REPORT_PERSISTENCE_FAILED";
+    error.httpStatus = 503;
+    return error;
 }
 
 function buildReportTrustMetadata(payload: any) {
@@ -494,50 +502,91 @@ export async function POST(request: Request) {
                     }
                 }
 
-                await commitGenerationAccess(grantedReservation, reservationAdmin);
-                reservationCommitted = true;
+                let reportId: string | null = null;
+                if (user && supabase && mode === "resume") {
+                    const resumeHash = hashResumeText(text);
+                    let preview = text.slice(0, 200).trim();
+                    const lastSpace = preview.lastIndexOf(" ");
+                    if (lastSpace > 150) preview = preview.slice(0, lastSpace) + "...";
+                    else if (text.length > 200) preview += "...";
+
+                    reportId = crypto.randomUUID();
+
+                    const { error: reportInsertError } = await supabase.from("reports").insert({
+                        id: reportId,
+                        user_id: user.id,
+                        resume_hash: resumeHash,
+                        score: payload.score,
+                        score_label: payload.score_label || null,
+                        report_json: payload,
+                        ...buildReportTrustMetadata(payload),
+                        ...(savedJobId ? { saved_job_id: savedJobId } : {}),
+                        resume_preview: preview,
+                        job_description_text: jobDescription || null,
+                        target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
+                        created_at: nowIso()
+                    });
+
+                    if (reportInsertError) {
+                        reportId = null;
+                        logError({
+                            msg: "report.persistence_failed",
+                            request_id,
+                            route,
+                            user_id,
+                            outcome: "provider_error",
+                            err: { name: "ReportPersistenceError", message: "Report insert failed", code: String(reportInsertError.code || "REPORT_INSERT_FAILED") }
+                        });
+                        throw reportPersistenceError();
+                    }
+
+                    if (savedJobId) {
+                        const { error: jobUpdateError } = await supabase
+                            .from("saved_jobs")
+                            .update({ latest_report_id: reportId, updated_at: nowIso() })
+                            .eq("id", savedJobId)
+                            .eq("user_id", user.id);
+                        if (jobUpdateError) {
+                            logWarn({
+                                msg: "saved_job.report_link_failed",
+                                request_id,
+                                route,
+                                user_id,
+                                outcome: "provider_error",
+                                err: { name: "SavedJobUpdateError", message: "Saved job link update failed", code: String(jobUpdateError.code || "SAVED_JOB_UPDATE_FAILED") }
+                            });
+                        }
+                    }
+                }
+
+                try {
+                    await commitGenerationAccess(grantedReservation, reservationAdmin);
+                    reservationCommitted = true;
+                } catch (commitError) {
+                    if (reportId && user && supabase) {
+                        const { error: rollbackError } = await supabase
+                            .from("reports")
+                            .delete()
+                            .eq("id", reportId)
+                            .eq("user_id", user.id);
+                        if (rollbackError) {
+                            logError({
+                                msg: "report.rollback_failed",
+                                request_id,
+                                route,
+                                user_id,
+                                outcome: "internal_error",
+                                err: { name: "ReportRollbackError", message: "Report rollback failed", code: String(rollbackError.code || "REPORT_ROLLBACK_FAILED") }
+                            });
+                        }
+                        reportId = null;
+                    }
+                    throw commitError;
+                }
 
                 const newFreeUsed = grantedReservation.anonymousCookieMeta?.used
                     ?? (accessTier === "free_full" || (user && freeUsesRemaining === 0) ? 1 : 0);
                 const newFreeRemaining = freeUsesRemaining;
-
-                let reportId: string | null = null;
-                if (user && supabase && mode === "resume") {
-                    try {
-                        const resumeHash = hashResumeText(text);
-                        let preview = text.slice(0, 200).trim();
-                        const lastSpace = preview.lastIndexOf(" ");
-                        if (lastSpace > 150) preview = preview.slice(0, lastSpace) + "...";
-                        else if (text.length > 200) preview += "...";
-
-                        reportId = crypto.randomUUID();
-
-                        await supabase.from("reports").insert({
-                            id: reportId,
-                            user_id: user.id,
-                            resume_hash: resumeHash,
-                            score: payload.score,
-                            score_label: payload.score_label || null,
-                            report_json: payload,
-                            ...buildReportTrustMetadata(payload),
-                            ...(savedJobId ? { saved_job_id: savedJobId } : {}),
-                            resume_preview: preview,
-                            job_description_text: jobDescription || null,
-                            target_role: payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
-                            created_at: nowIso()
-                        });
-
-                        if (savedJobId) {
-                            await supabase
-                                .from("saved_jobs")
-                                .update({ latest_report_id: reportId, updated_at: nowIso() })
-                                .eq("id", savedJobId)
-                                .eq("user_id", user.id);
-                        }
-                    } catch {
-                        reportId = null;
-                    }
-                }
 
                 // Model content is buffered until it has passed the complete
                 // response contract and the entitlement is committed. This
@@ -595,6 +644,12 @@ export async function POST(request: Request) {
                 }
 
                 const code = err?.code || "INTERNAL_SERVER_ERROR";
+                if (code !== "GENERATION_PAUSED" && code !== "GENERATION_BUDGET_EXHAUSTED") {
+                    captureOperationalError(err, {
+                        operation: "generation.resume_feedback_stream",
+                        tags: { error_code: String(code) },
+                    });
+                }
                 const message = code === "OPENAI_TIMEOUT"
                     ? "This is taking longer than usual. Try again in a moment."
                     : code === "OPENAI_NETWORK_ERROR"
