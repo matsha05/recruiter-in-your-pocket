@@ -130,7 +130,16 @@ jobs:
           RIYP_MAX_DAILY_GENERATIONS: "250"
           RIYP_DISABLE_GENERATION: "false"
           RIYP_DISABLE_NEW_PURCHASES: "false"
+          # Synthetic launch-ready support values exercise the gate in CI.
+          # Hosted verification flags remain separately controlled in Vercel.
+          RIYP_SUPPORT_INBOX_VERIFIED: "true"
+          RIYP_SUPPORT_FORWARDING_ENABLED: "true"
+          RIYP_SUPPORT_FORWARD_TO: "operator@example.com"
+          RIYP_SUPPORT_FORWARD_FROM: "noreply@example.com"
+          RIYP_SUPPORT_OPERATOR_EMAILS: "operator@example.com"
+          RIYP_SECONDARY_ALERT_VERIFIED: "true"
           RESEND_API_KEY: "re_test_ci_dummy"
+          RESEND_WEBHOOK_SECRET: "whsec_ci_support_dummy"
           STRIPE_SECRET_KEY: "sk_test_ci_dummy"
           STRIPE_WEBHOOK_SECRET: "whsec_ci_dummy"
           STRIPE_PRICE_ID_30D: "price_ci_job_search_pass"
