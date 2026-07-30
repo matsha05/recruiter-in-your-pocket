@@ -7,7 +7,7 @@ function assert(condition: unknown, message: string) {
   if (!condition) throw new Error(message);
 }
 
-const requiredVendors = ["Upstash", "Inngest"];
+const requiredVendors = ["Upstash", "Inngest", "Resend", "Google (Gmail)"];
 const registeredVendors = new Set(VENDOR_REVIEW_ITEMS.map((item) => item.vendor));
 const processors = DATA_HANDLING_ROWS.map((row) => row.processor).join(" ");
 const publicPrivacyCopy = fs.readFileSync(

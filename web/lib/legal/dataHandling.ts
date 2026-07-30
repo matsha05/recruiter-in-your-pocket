@@ -1,5 +1,5 @@
 export const LEGAL_LAST_UPDATED = "July 19, 2026";
-export const PRIVACY_LAST_UPDATED = "July 19, 2026";
+export const PRIVACY_LAST_UPDATED = "July 29, 2026";
 
 export type DataHandlingRow = {
   dataType: string;
@@ -40,10 +40,17 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Account identity (email, name)",
-    purpose: "Authentication, account access, and support communication.",
+    purpose: "Authentication and account access.",
     retention: "Retained while account is active.",
     userControl: "Update your profile in Settings, or delete your account.",
     processor: "Supabase"
+  },
+  {
+    dataType: "Support communications and attachments",
+    purpose: "Respond to product, account, billing, privacy, and security requests sent to the public support address.",
+    retention: "Kept only as long as reasonably needed to resolve the request, preserve security or billing evidence, meet legal obligations, and maintain support continuity. Provider logs follow their configured retention windows.",
+    userControl: "You choose what to send. You can ask us to delete a support conversation unless we need to retain it for security, fraud prevention, billing, or legal compliance.",
+    processor: "Resend, Google (Gmail)"
   },
   {
     dataType: "Usage, reliability, and abuse-prevention metadata",

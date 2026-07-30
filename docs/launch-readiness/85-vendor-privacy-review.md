@@ -1,6 +1,6 @@
 # RIYP Vendor and Privacy Review
 
-**Last Updated:** July 11, 2026
+**Last Updated:** July 29, 2026
 **Status:** Required for launch
 
 This is the launch-facing vendor truth table. If a processor is used in production, it must appear here and match the public privacy/security copy.
@@ -15,6 +15,8 @@ This is the launch-facing vendor truth table. If a processor is used in producti
 | Vercel | Hosting and runtime | Platform diagnostics and deployment metadata | Approved | Platform logs must continue to avoid raw resume or JD payloads. |
 | Upstash | Shared rate limiting, request idempotency, and short-lived checkout caching | Hashed request and IP identifiers, idempotency keys, short-lived checkout session metadata | Approved with short retention | Keep keys pseudonymous, enforce short TTLs, and never cache raw resume or JD text. |
 | Inngest | Background account exports and optional asynchronous PDF generation | Job identifiers, account identity, account-export payloads, and report content when asynchronous PDF generation is used | Approved with payload review | Keep event and run-history retention explicit. Prefer internal identifiers over full payloads whenever possible. |
+| Resend | Transactional authentication delivery and signed inbound support-email processing | Account email, authentication messages, support-message content, and support attachments | Approved with signed webhooks and recipient allowlisting | Verify raw webhook signatures, forward only the exact public support envelope recipient, and do not log message content or the private forwarding destination. |
+| Google (Gmail) | Private operator mailbox for replying to forwarded support requests | Support-message content, sender address, and support attachments | Approved for founder-operated beta support | Keep the destination private, use the public support identity for replies, and delete support records when no longer reasonably needed. |
 
 ## Launch Review Questions
 

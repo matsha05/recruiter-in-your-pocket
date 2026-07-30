@@ -219,6 +219,9 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
     "SESSION_SECRET",
     "NEXT_PUBLIC_SUPABASE_URL",
     "RESEND_API_KEY",
+    "RESEND_WEBHOOK_SECRET",
+    "RIYP_SUPPORT_FORWARD_TO",
+    "RIYP_SUPPORT_FORWARD_FROM",
   ];
   const missingEnv = requiredEnv.filter((key) => !process.env[key]);
   if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY && !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
@@ -267,13 +270,26 @@ export async function getLaunchReadinessSnapshot(): Promise<LaunchReadinessSnaps
         : "The daily provider-call safety limit is not configured in this local environment."
   );
 
-  const supportDeliveryVerified = isTruthyEnv(process.env.RIYP_SUPPORT_INBOX_VERIFIED);
+  const supportDeliveryConfigured = [
+    process.env.RESEND_API_KEY,
+    process.env.RESEND_WEBHOOK_SECRET,
+    process.env.RIYP_SUPPORT_FORWARD_TO,
+    process.env.RIYP_SUPPORT_FORWARD_FROM,
+  ].every((value) => Boolean(value?.trim()));
+  const supportForwardingEnabled = isTruthyEnv(process.env.RIYP_SUPPORT_FORWARDING_ENABLED);
+  const supportEvidenceRecorded = isTruthyEnv(process.env.RIYP_SUPPORT_INBOX_VERIFIED);
+  const supportDeliveryVerified =
+    supportDeliveryConfigured && supportForwardingEnabled && supportEvidenceRecorded;
   addCheck(
     checks,
     "support_delivery",
     supportDeliveryVerified ? "ok" : hostedRuntime ? "missing" : "disabled",
     supportDeliveryVerified
       ? "The primary support inbox has passed a receive-and-reply rehearsal."
+      : supportEvidenceRecorded && !supportForwardingEnabled
+        ? "Support evidence is recorded, but inbound forwarding is disabled."
+      : supportEvidenceRecorded && !supportDeliveryConfigured
+        ? "Support evidence is recorded, but the signed inbound webhook or forwarding configuration is missing."
       : hostedRuntime
         ? "RIYP_SUPPORT_INBOX_VERIFIED must only be enabled after a real receive-and-reply rehearsal."
         : "Primary support delivery has not been verified in this local environment."

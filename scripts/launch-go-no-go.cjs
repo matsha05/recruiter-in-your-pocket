@@ -162,9 +162,14 @@ checkCondition(
 checkCondition(
   "support_delivery",
   "Primary support delivery",
-  normalizeFlag(process.env.RIYP_SUPPORT_INBOX_VERIFIED, false),
+  normalizeFlag(process.env.RIYP_SUPPORT_INBOX_VERIFIED, false) &&
+    normalizeFlag(process.env.RIYP_SUPPORT_FORWARDING_ENABLED, false) &&
+    Boolean(process.env.RESEND_API_KEY) &&
+    Boolean(process.env.RESEND_WEBHOOK_SECRET) &&
+    Boolean(process.env.RIYP_SUPPORT_FORWARD_TO) &&
+    Boolean(process.env.RIYP_SUPPORT_FORWARD_FROM),
   "The support inbox passed a real receive-and-reply rehearsal.",
-  "RIYP_SUPPORT_INBOX_VERIFIED is not true. Do not claim launch readiness until the real inbox receives and replies to a rehearsal message."
+  "Support requires RIYP_SUPPORT_FORWARDING_ENABLED=true, RESEND_API_KEY, RESEND_WEBHOOK_SECRET, RIYP_SUPPORT_FORWARD_TO, RIYP_SUPPORT_FORWARD_FROM, and RIYP_SUPPORT_INBOX_VERIFIED=true only after a real receive-and-reply rehearsal."
 );
 
 checkCondition(

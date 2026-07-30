@@ -15,7 +15,12 @@ function enabled(value, fallback = false) {
 function safeValue(key) {
   const value = process.env[key];
   if (!value) return "(missing)";
-  if (key.includes("SECRET") || key.includes("KEY") || key.includes("TOKEN")) return "(set)";
+  if (
+    key.includes("SECRET") ||
+    key.includes("KEY") ||
+    key.includes("TOKEN") ||
+    key === "RIYP_SUPPORT_FORWARD_TO"
+  ) return "(set)";
   return value;
 }
 
@@ -33,6 +38,8 @@ const flags = [
   ["NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE", enabled(process.env.NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE, false)],
   ["NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS", enabled(process.env.NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS, false)],
   ["NEXT_PUBLIC_ENABLE_ERROR_REPLAY", enabled(process.env.NEXT_PUBLIC_ENABLE_ERROR_REPLAY, false)],
+  ["RIYP_SUPPORT_FORWARDING_ENABLED", enabled(process.env.RIYP_SUPPORT_FORWARDING_ENABLED, false)],
+  ["RIYP_SUPPORT_INBOX_VERIFIED", enabled(process.env.RIYP_SUPPORT_INBOX_VERIFIED, false)],
 ];
 
 const envRows = [
@@ -44,6 +51,10 @@ const envRows = [
   "SUPABASE_SECRET_KEY",
   "SUPABASE_SERVICE_ROLE_KEY",
   "OPENAI_API_KEY",
+  "RESEND_API_KEY",
+  "RESEND_WEBHOOK_SECRET",
+  "RIYP_SUPPORT_FORWARD_TO",
+  "RIYP_SUPPORT_FORWARD_FROM",
   "STRIPE_SECRET_KEY",
   "STRIPE_WEBHOOK_SECRET",
   "STRIPE_PRICE_ID_30D",
