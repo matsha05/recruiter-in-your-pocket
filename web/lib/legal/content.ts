@@ -158,7 +158,7 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
           [
             {
               type: "text",
-              value: "OpenAI generates reports, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs and PDF generation when those features are used. Stripe manages card data on its systems. We never have access to it.",
+              value: "OpenAI generates reports, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting, Sentry handles error monitoring, and Mixpanel handles product analytics when enabled. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs and PDF generation when those features are used. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
             },
           ],
         ],

@@ -156,6 +156,20 @@ export const VENDOR_REVIEW_ITEMS: VendorReviewItem[] = [
     launchDecision: "Approved with payload review",
     reviewNotes: "Keep event and run-history retention explicit. Avoid sending full report or account payloads when an internal identifier is sufficient.",
   },
+  {
+    vendor: "Resend",
+    purpose: "Transactional authentication delivery and signed inbound support-email processing.",
+    dataClasses: "Account email, authentication message content, support-message content, and support attachments.",
+    launchDecision: "Approved with signed webhooks and recipient allowlisting",
+    reviewNotes: "Verify inbound signatures, forward only the exact public support envelope recipient, and never log message content or the private forwarding destination.",
+  },
+  {
+    vendor: "Google (Gmail)",
+    purpose: "Private operator mailbox for responding to forwarded support requests.",
+    dataClasses: "Support-message content, sender address, and support attachments.",
+    launchDecision: "Approved for founder-operated beta support",
+    reviewNotes: "Keep the private mailbox address server-only, use the public support identity for replies, and delete support records when they are no longer reasonably needed.",
+  },
 ];
 
 export const LAUNCH_REHEARSAL_STEPS: RehearsalStep[] = [
