@@ -78,10 +78,54 @@ test.describe("launch red-team journeys", () => {
   test("3. example report path feels complete and returns users to a fresh run", async ({ page }) => {
     // The approved workspace reference deliberately keeps its empty state focused
     // on starting a real review. Public sample CTAs deep-link into this mode.
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.route("**/sample-report.json", async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 750));
+      await route.continue();
+    });
     await page.goto("/workspace?sample=1");
+    await expect(page.locator("[data-visual-anchor='workspace-resume-empty']")).toHaveCount(0);
     await expect(page.getByText("Example report", { exact: true })).toBeVisible({ timeout: 15_000 });
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
-    await page.getByTestId("sample-start-report").click();
+
+    const sampleCta = page.getByTestId("sample-start-report");
+    await expect(sampleCta).toHaveText(/Get my free report/i);
+    expect(await sampleCta.evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= window.innerHeight;
+    })).toBe(true);
+
+    const reportNavigation = page.getByRole("navigation", { name: "Resume report sections" });
+    const navigationBoxes = await reportNavigation.getByRole("button").evaluateAll((buttons) => buttons.map((button) => {
+      const rect = button.getBoundingClientRect();
+      return { left: rect.left, right: rect.right, top: Math.round(rect.top) };
+    }));
+    expect(navigationBoxes).toHaveLength(4);
+    expect(new Set(navigationBoxes.map((box) => box.top)).size).toBe(2);
+    for (const box of navigationBoxes) {
+      expect(box.left).toBeGreaterThanOrEqual(0);
+      expect(box.right).toBeLessThanOrEqual(390);
+    }
+
+    const firstRead = page.locator("#section-first-impression");
+    await expect(firstRead.getByText("Clarity summary: 78/100", { exact: true })).toBeVisible();
+    await expect(firstRead.getByText("Not a prediction of interviews or offers.", { exact: true })).toBeVisible();
+
+    const firstFix = page.locator("#section-fix-1");
+    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await firstFix.getByRole("button", { name: "Edit" }).click();
+    await firstFix.getByLabel("Edit suggested line 1").fill(
+      "Redesigned onboarding using the program length, audience, teams, and outcome I verified.",
+    );
+    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+
+    await firstFix.getByLabel("Answer the factual question for fix 1").fill(
+      "Thirty-day program; 18 weekly hires; Sales, Support, and Operations; 28% shorter ramp time.",
+    );
+    await firstFix.getByRole("button", { name: "Keep this fact" }).click();
+    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+
+    await sampleCta.click();
     await expect(page).toHaveURL(/\/workspace$/);
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
   });
@@ -95,7 +139,8 @@ test.describe("launch red-team journeys", () => {
     const verifiedFact = "Six product, operations, and support partners used the launch cadence";
     await page.getByLabel("Answer the factual question for fix 1").fill(verifiedFact);
     await page.getByRole("button", { name: "Keep this fact" }).first().click();
-    await expect(page.getByLabel("Edit suggested line 1")).toHaveValue(new RegExp(verifiedFact));
+    await expect(page.getByText("Fact to preserve").first()).toBeVisible();
+    await expect(page.getByText(verifiedFact, { exact: true }).first()).toBeVisible();
   });
 
   test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {

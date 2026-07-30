@@ -85,7 +85,7 @@ export function SiteHeader({ showResearchLink = true, showResourcesLink = true }
                                     "border-citron bg-citron text-foreground hover:border-citron/85 hover:bg-citron/85"
                                 )}
                             >
-                                See my first read
+                                Get my free report
                             </Link>
                         </div>
                     )}
@@ -158,7 +158,7 @@ function SiteMobileMenu({
                             <MobileSiteLink href="/auth">Log in</MobileSiteLink>
                             <SheetClose asChild>
                                 <Link href="/workspace" className="focus-ring mt-4 inline-flex min-h-12 items-center justify-center rounded-md bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90">
-                                    See my first read
+                                    Get my free report
                                 </Link>
                             </SheetClose>
                         </>

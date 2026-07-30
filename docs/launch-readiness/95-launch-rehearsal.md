@@ -135,4 +135,27 @@ Any failed section means `NO-GO` until it is fixed and rerun.
 - Candidate binding: resume prompt SHA-256 `dcfecbf6ad919950f69d6a12d8e0db3a46d3268a836c22771cbd5b425312a950`; resume-ideas prompt SHA-256 `6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7`.
 - Production deployment: authorized with this main-branch release; target alias `https://www.recruiterinyourpocket.com`.
 
-Current verdict: `NO-GO` for production. The code and visual product are release-candidate ready; the remaining blockers are the real signed-in, billing, destructive-data, remote-CI, and final-authorization rehearsals above. Production billing remains disabled.
+Current verdict: `NO-GO` for broad promotion. The code and visual product were release-candidate ready at the time of this record; the remaining blockers were the real signed-in, billing, destructive-data, remote-CI, and final-authorization rehearsals above. Production billing was later enabled, so its current state must be verified directly rather than inferred from this historical record.
+
+## July 29 Feedback-Hardening Record
+
+- Candidate: local `codex/launch-hardening` worktree; bind the final commit and preview deployment after the complete gate passes.
+- Homepage: concrete first-read explanation, free/sample actions, founder identity and profile, explicit AI role, employer non-endorsement, and compensation-calculator entry point are implemented.
+- Sample report: unsupported metrics were replaced with candidate-supplied placeholders. The sample is server-seeded so the upload state cannot flash first, and placeholder rewrites cannot be copied until verified facts replace every bracket.
+- Mobile: pricing actions are above the fold with an honest disabled state when billing is closed; the sample report navigation wraps into two rows.
+- Score: the product now says `Clarity summary` and explicitly states that it is not a prediction of interviews or offers.
+- Cost control: every production report-generation chat attempt has a non-overridable 8,000 completion-token ceiling, and provider retries are clamped to at most one.
+- Deletion: RIYP's cached `billing_receipts` are explicitly removed before the final auth-user deletion. Stripe remains the authoritative retained financial record.
+- SEO: the homepage has a canonical URL and current structured data, the sitemap excludes the noindex workspace and includes the compensation calculator, synthetic `lastModified` values were removed, stale research aliases are permanent redirects, and public example rewrites no longer invent metrics.
+- Support rehearsal: a uniquely tagged message was sent to `support@recruiterinyourpocket.com`, but no inbound copy arrived. Authoritative DNS has no root-domain MX record, so the support address is not currently capable of receiving mail.
+- Live status: `/api/status` correctly remains `limited` and identifies operational safeguards as incomplete.
+
+### Remaining blockers
+
+- Choose the support destination, configure inbound MX and forwarding, then complete outside-send → receive → reply → receive-reply and secondary-alert rehearsals.
+- Run the full billing lifecycle only in an isolated Stripe test-mode + disposable Supabase/Redis preview. The local Stripe key is live-mode and must not be used for this rehearsal.
+- Rehearse a real free report and destructive account lifecycle against that same disposable preview.
+- Deploy the exact candidate, submit the homepage and status page in Search Console, request recrawls or removals as needed, and verify the exact-domain result after Google reindexes it.
+- Pass remote CI on the exact commit and bind the resulting preview/deployment evidence before any broad promotion.
+
+Current verdict: `NO-GO` for broad promotion until the remaining blockers above are proven on the release-bound preview.

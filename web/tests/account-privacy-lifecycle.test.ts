@@ -130,14 +130,22 @@ async function run() {
   assert.equal(rows[2].result_json, null);
   assert.equal(rows[3].status, "completed", "request-time cleanup cannot mutate another user");
 
-  const partial = buildAuthDeletionPendingResponse([{ table: "reports", count: 2 }], 1);
+  const completedAppDeletions = [
+    { table: "reports", count: 2 },
+    { table: "billing_receipts", count: 1 },
+  ];
+  const partial = buildAuthDeletionPendingResponse(completedAppDeletions, 1);
   assert.equal(partial.status, 503, "auth deletion failure is not a success response");
   assert.equal(partial.body.ok, false);
   assert.equal(partial.body.errorCode, "AUTH_DELETION_PENDING");
   assert.equal(partial.body.deletion_status, "auth_removal_pending");
   assert.equal(partial.body.retryable, true, "auth deletion failure must explicitly support retry");
   assert.doesNotMatch(partial.body.message, /all associated data have been deleted/i);
-  assert.deepEqual(partial.body.deletions, [{ table: "reports", count: 2 }]);
+  assert.deepEqual(
+    partial.body.deletions,
+    completedAppDeletions,
+    "pending auth removal still reports that RIYP's cached billing receipts were deleted"
+  );
 
   const incomplete = buildIncompleteAccountDeletionResponse();
   assert.equal(incomplete.body.ok, false);
@@ -171,6 +179,21 @@ async function run() {
   assert.match(deleteRouteSource, /billing_entitlement_blocks/);
   assert.match(deleteRouteSource, /reason: "account_deleted"/);
   assert.match(deleteRouteSource, /delete_generation_access_reservations_for_user/);
+  assert.match(
+    deleteRouteSource,
+    /from\("billing_receipts"\)[\s\S]*?\.delete\(\{ count: "exact" \}\)[\s\S]*?\.eq\("user_id", userId\)/,
+    "account deletion explicitly removes RIYP's cached billing receipt rows"
+  );
+  assert.match(
+    deleteRouteSource,
+    /deletions\.push\(\{ table: "billing_receipts", count: billingReceiptsCount \}\)/,
+    "billing receipt deletion is included in success and pending-auth receipts"
+  );
+  assert.ok(
+    deleteRouteSource.indexOf('.from("billing_receipts")') <
+      deleteRouteSource.indexOf("admin.auth.admin.deleteUser(userId)"),
+    "cached billing receipts are removed even when the final auth deletion remains pending"
+  );
   assert.match(deleteRouteSource, /\.map\(\(pass: any\) => pass\.stripe_subscription_id\)/);
   assert.doesNotMatch(deleteRouteSource, /stripe\.customers\.list/);
   assert.doesNotMatch(deleteRouteSource, /pass\.stripe_subscription_id \|\| pass\.price_id/);

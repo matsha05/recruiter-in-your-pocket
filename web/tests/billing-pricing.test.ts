@@ -23,7 +23,8 @@ assert.equal(getCheckoutModeForTier("30d"), "payment", "Job Search Pass is a one
 assert.equal(getTierLabel("30d"), "Job Search Pass");
 assert.equal(normalizeRequestedTier("pack"), "30d", "legacy pack receipts still normalize safely");
 assert.equal(PRICING_PLANS["30d"].price, "$29");
-assert.match(PRICING_PLANS["30d"].description, /Five more complete reports/);
+assert.match(PRICING_PLANS["30d"].description, /Five careful recruiter-style reports/);
+assert.match(PRICING_PLANS["30d"].description, /applications that matter most/);
 assert.equal(
   legacyExtendedPass.expiresAt,
   "2026-10-10T12:00:00.000Z",

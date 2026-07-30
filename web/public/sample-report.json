@@ -95,20 +95,20 @@
     {
       "label": "Impact",
       "original": "Led onboarding work across the company, improving productivity.",
-      "better": "Redesigned 30-day onboarding for 18 weekly hires across Sales, Support, and Operations, cutting ramp time 28%.",
-      "enhancement_note": "The teams, weekly volume, mechanism, and result make the scale visible."
+      "better": "Redesigned [program length] onboarding for [number of hires] across [teams], improving [verified outcome].",
+      "enhancement_note": "Add the program length, number of hires, teams, and verified outcome before using this line."
     },
     {
       "label": "Scope",
       "original": "Ran a cross-team launch with clear owners and checkpoints.",
-      "better": "Led a six-team platform launch from risk review through rollout, cutting unresolved launch blockers from 14 to 3 before release.",
-      "enhancement_note": "The scope and before-and-after result show what the launch system accomplished."
+      "better": "Ran a [team count]-team launch with clear owners and checkpoints; outcome: [verified before-and-after result].",
+      "enhancement_note": "Add the team count and verified before-and-after result before using this line."
     },
     {
       "label": "Clarity",
       "original": "(No summary on the resume.)",
       "better": "Program Manager who turns complex, cross-functional launches into clear decisions, accountable owners, and calmer execution.",
-      "enhancement_note": "The summary names the lane and operating style without piling on empty adjectives."
+      "enhancement_note": "Add this only if it accurately reflects the role and operating style you want to target."
     },
     {
       "label": "Ownership",

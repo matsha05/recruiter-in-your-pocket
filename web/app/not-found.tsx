@@ -32,7 +32,7 @@ export default function NotFound() {
                                     href="/workspace"
                                     className="focus-ring inline-flex min-h-13 items-center justify-center gap-3 rounded-md bg-foreground px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
                                 >
-                                    See my first read
+                                    Get my free report
                                     <ArrowRight className="size-4 text-citron" weight="bold" />
                                 </Link>
                                 <Link

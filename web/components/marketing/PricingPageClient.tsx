@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowsClockwise, Info, Receipt, ShieldCheck } from "@phosphor-icons/react";
+import { ArrowRight, ArrowsClockwise, Info, LockKey, Receipt, ShieldCheck } from "@phosphor-icons/react";
 import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
 import Footer from "@/components/landing/Footer";
+import { Button } from "@/components/ui/button";
 import { Analytics } from "@/lib/analytics";
 import { toast } from "sonner";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
@@ -26,6 +27,58 @@ const billingPoints = [
         body: "Your five-report pass begins after checkout and can be restored from the same email.",
     },
 ];
+
+function PricingHeroActions({
+    billingEnabled,
+    checkoutLoading,
+    onCheckout,
+}: {
+    billingEnabled: boolean;
+    checkoutLoading: boolean;
+    onCheckout: () => void;
+}) {
+    return (
+        <nav aria-label="Pricing actions" className="mt-7 grid max-w-[34rem] gap-3 sm:grid-cols-2 lg:hidden">
+            <Link
+                href="/workspace"
+                data-testid="pricing-hero-free-action"
+                onClick={() => Analytics.track("pricing_run_free_review_clicked", { source: "pricing_hero" })}
+                className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-md bg-foreground px-4 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90 [&_svg]:text-citron"
+            >
+                Get my free report
+                <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" weight="bold" />
+            </Link>
+
+            {billingEnabled ? (
+                <Button
+                    type="button"
+                    data-testid="pricing-hero-paid-action"
+                    onClick={onCheckout}
+                    disabled={checkoutLoading}
+                    variant="outline"
+                    className="focus-ring group flex min-h-14 items-center justify-between gap-4 rounded-md border border-foreground bg-background/75 px-4 py-3 text-left text-sm font-semibold text-foreground transition-colors hover:bg-background disabled:cursor-not-allowed disabled:opacity-60 [&_svg]:text-brand"
+                >
+                    {checkoutLoading ? "Opening checkout..." : "Get 5 reports · $29"}
+                    <ArrowRight aria-hidden="true" className="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" weight="bold" />
+                </Button>
+            ) : (
+                <Button
+                    type="button"
+                    disabled
+                    data-testid="pricing-hero-paid-action"
+                    variant="outline"
+                    className="flex min-h-14 cursor-not-allowed items-center justify-between gap-4 rounded-md border border-border bg-muted/35 px-4 py-3 text-left text-muted-foreground"
+                >
+                    <span>
+                        <span className="block text-sm font-semibold">5 careful reports · $29</span>
+                        <span className="mt-0.5 block text-xs leading-4">Checkout opens after beta verification</span>
+                    </span>
+                    <LockKey aria-hidden="true" className="size-4 shrink-0" weight="bold" />
+                </Button>
+            )}
+        </nav>
+    );
+}
 
 export default function PricingPageClient() {
     const [loadingTier, setLoadingTier] = useState<PricingTier | null>(null);
@@ -66,7 +119,7 @@ export default function PricingPageClient() {
     if (!billingEnabled) {
         return (
             <>
-                <div data-visual-anchor="pricing-page" className="pricing-beta-page bg-mineral text-foreground selection:bg-brand/15">
+                <div data-visual-anchor="pricing-page" className="pricing-beta-page !pt-28 bg-mineral text-foreground selection:bg-brand/15 lg:!pt-[9.5rem]">
                     <section className="px-6 pb-14 md:px-8">
                         <div className="pricing-rail mx-auto">
                             <div className="pricing-hero-grid grid gap-10 border-b-2 border-cyan-bright pb-10 lg:items-end">
@@ -75,9 +128,14 @@ export default function PricingPageClient() {
                                     <h1 className="max-w-3xl text-balance font-display text-[clamp(2.55rem,5.8vw,5.1rem)] font-semibold leading-[1.08] tracking-[-0.05em]">
                                         One complete report is <span className="riyp-marker riyp-marker-block">included.</span><br className="sm:hidden" /> Five more are $29.
                                     </h1>
+                                    <PricingHeroActions
+                                        billingEnabled={false}
+                                        checkoutLoading={false}
+                                        onCheckout={handleCheckout}
+                                    />
                                 </div>
                                 <p className="max-w-lg text-pretty text-lg leading-8 text-muted-foreground lg:mb-2">
-                                    Checkout is closed while we finish the beta safety checks. When it opens, the Job Search Pass will be one payment for five additional reports over 30 days. It will not renew.
+                                    Checkout is closed while we finish the beta safety checks. When it opens, the Job Search Pass will give you five careful recruiter-style reports for the revisions and applications that matter most. One payment, 30 days, no renewal.
                                 </p>
                             </div>
 
@@ -97,9 +155,9 @@ export default function PricingPageClient() {
                                 <div className="p-7 md:px-8 md:py-8">
                                     <p className="text-xs font-bold uppercase riyp-track-010 text-brand">Job Search Pass</p>
                                     <p className="pricing-price mt-5 font-display riyp-weight-540 tracking-tight">$29</p>
-                                    <p className="mt-2 text-base text-muted-foreground">Five additional reports for 30 days</p>
+                                    <p className="mt-2 text-base text-muted-foreground">Five careful reports for 30 days</p>
                                     <p className="mt-3 max-w-2xl text-lg leading-7 text-muted-foreground">
-                                        One payment for revisions and role comparisons. No subscription and no automatic renewal.
+                                        For the resume revisions and applications that matter most. No subscription and no automatic renewal.
                                     </p>
                                     <p role="status" className="pricing-disabled-cta mt-10 inline-flex items-center border border-border bg-muted/35 py-3 font-semibold text-muted-foreground">
                                         Checkout opens after beta verification
@@ -128,9 +186,14 @@ export default function PricingPageClient() {
                                 >
                                     One complete report is <span className="riyp-marker riyp-marker-block">included.</span><br className="sm:hidden" /> Five more are $29.
                                 </h1>
+                                <PricingHeroActions
+                                    billingEnabled
+                                    checkoutLoading={loadingTier === "30d"}
+                                    onCheckout={handleCheckout}
+                                />
                             </div>
                             <p className="max-w-[34rem] text-pretty text-lg leading-8 text-muted-foreground">
-                                No teaser score and no subscription waiting in the weeds. The Job Search Pass gives you five more complete reports for 30 days.
+                                No teaser score and no subscription waiting in the weeds. The Job Search Pass gives you five careful recruiter-style reports for important revisions and applications.
                             </p>
                         </div>
 
@@ -161,7 +224,7 @@ export default function PricingPageClient() {
                         </div>
 
                         <p className="mt-5 text-base leading-6 text-muted-foreground">
-                            One payment. Five additional reports. Access ends 30 days after purchase. No automatic renewal. Taxes may apply at checkout.
+                            One payment. Five careful reports. Access ends 30 days after purchase. No automatic renewal. Taxes may apply at checkout.
                         </p>
                     </div>
                 </section>

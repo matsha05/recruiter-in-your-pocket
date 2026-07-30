@@ -3,7 +3,6 @@ import { launchFlags } from "@/lib/launch/flags";
 
 const routes = [
   "",
-  "/workspace",
   "/pricing",
   ...(launchFlags.extensionSync ? ["/extension"] : []),
   "/research",
@@ -25,6 +24,7 @@ const routes = [
   "/research/structured-interviews-why-star",
   "/research/writing-quality-hire-probability",
   "/resources",
+  "/resources/tools/comp-calculator",
   "/trust",
   "/security",
   "/privacy",
@@ -35,11 +35,9 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   return routes.map((route) => ({
     url: `https://www.recruiterinyourpocket.com${route}`,
-    lastModified: now,
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/workspace" || route === "/research" ? 0.8 : 0.6,
+    priority: route === "" ? 1 : route === "/research" || route === "/resources/tools/comp-calculator" ? 0.8 : 0.6,
   }));
 }

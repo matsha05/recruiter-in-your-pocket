@@ -35,7 +35,7 @@ interface PaywallModalProps {
 const DEFAULT_UNLOCK_COPY = {
     label: "Job Search Pass",
     title: "Run another report",
-    subtitle: "Your free report stays available. The Job Search Pass adds five more complete reports for the next 30 days.",
+    subtitle: "Your free report stays available. The Job Search Pass adds five careful recruiter-style reports for the revisions and applications that matter most.",
     bullets: [
         "5 additional full reports",
         "Reviews tailored to a job posting",
@@ -252,7 +252,7 @@ export default function PaywallModal({
                         <p className="mt-1 text-xs font-semibold uppercase riyp-track-010 text-brand">One payment</p>
                     </div>
                     <div className="border-l border-line pl-4 text-sm leading-6 text-muted-foreground">
-                        Five additional reports over 30 days. No automatic renewal.
+                        Five careful reports over 30 days. No automatic renewal.
                     </div>
                 </div>
 

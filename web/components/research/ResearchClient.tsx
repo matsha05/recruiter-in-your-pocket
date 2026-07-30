@@ -490,7 +490,7 @@ export default function ResearchClient() {
                         <p className="mt-2 max-w-[46rem] text-base leading-7 text-muted-foreground">Your report uses the same evidence standards to show what is clear, what needs more context, and what to fix first.</p>
                     </div>
                     <Link href="/workspace" className="focus-ring inline-flex min-h-12 shrink-0 items-center gap-5 rounded-sm bg-foreground px-5 py-3 font-display text-sm font-semibold text-background transition-colors hover:bg-foreground/90">
-                        See my first read <ArrowRight className="size-4 text-citron" weight="bold" />
+                        Get my free report <ArrowRight className="size-4 text-citron" weight="bold" />
                     </Link>
                 </div>
             </ResearchSection>

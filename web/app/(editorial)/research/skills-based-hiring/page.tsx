@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function SkillsBasedHiringRedirect() {
-    redirect("/research/skills-first-promise-reality");
+    permanentRedirect("/research/skills-first-promise-reality");
 }

@@ -72,10 +72,12 @@ async function cancelActiveSubscriptions(subscriptionIds: string[]) {
  * - All reports (analysis results, score history)
  * - All saved_jobs (extension job descriptions)
  * - All artifacts (case-related data)
+ * - Cached billing receipt rows and their local customer linkage
  * - User record
  * 
  * Does NOT delete:
- * - Payment records (legal requirement - handled by Stripe)
+ * - Stripe's authoritative payment, invoice, and tax records. Those remain in
+ *   Stripe under the applicable financial-record retention policy.
  */
 export async function DELETE(request: Request) {
     const request_id = getRequestId(request);
@@ -301,7 +303,28 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "account_export_jobs", count: exportJobsCount });
 
-        // 7. Delete in-flight generation reservations before their parent passes.
+        // 7. Delete RIYP's cached receipt copies and user-linked billing
+        // metadata. Stripe remains the authoritative system for payment,
+        // invoice, and tax records that must be retained independently.
+        // Do this before auth deletion so a temporary auth-removal failure does
+        // not leave hosted invoice links or Stripe customer ids in RIYP.
+        const { error: billingReceiptsError, count: billingReceiptsCount } = await admin
+            .from("billing_receipts")
+            .delete({ count: "exact" })
+            .eq("user_id", userId);
+
+        if (billingReceiptsError) {
+            logError({
+                msg: "account.deletion.failed",
+                request_id,
+                user_id: userId,
+                supabase: { table: "billing_receipts", error_code: billingReceiptsError.code }
+            });
+            throwDeletionError("billing_receipts", billingReceiptsError);
+        }
+        deletions.push({ table: "billing_receipts", count: billingReceiptsCount });
+
+        // 8. Delete in-flight generation reservations before their parent passes.
         // This keeps account deletion retryable even after a paid report has
         // reserved or consumed access.
         const { error: reservationDeleteError } = await admin.rpc(
@@ -312,7 +335,7 @@ export async function DELETE(request: Request) {
             throwDeletionError("generation access reservations", reservationDeleteError);
         }
 
-        // 8. Delete passes (credit records). Stripe retains the authoritative
+        // 9. Delete passes (credit records). Stripe retains the authoritative
         // payment record and the anonymous block ledger prevents restoration.
         // Note: This is acceptable because Stripe has the authoritative payment record
         const { error: passesError, count: passesCount } = await admin
@@ -331,7 +354,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "passes", count: passesCount });
 
-        // 9. Delete cases (if any)
+        // 10. Delete cases (if any)
         const { error: casesError, count: casesCount } = await admin
             .from("cases")
             .delete({ count: "exact" })
@@ -342,7 +365,7 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "cases", count: casesCount });
 
-        // 10. Delete the user from auth (this is the final step)
+        // 11. Delete the user from auth (this is the final step)
         // Note: This requires admin privileges
         const { error: authDeleteError } = await admin.auth.admin.deleteUser(userId);
 

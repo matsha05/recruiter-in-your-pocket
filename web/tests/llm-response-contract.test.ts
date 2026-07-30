@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import {
   getOpenAIResponseFormat,
   RESUME_REPORT_JSON_SCHEMA,
@@ -28,9 +30,13 @@ import {
 import { findMechanicalCopyIssues } from "../lib/evals/checks";
 import {
   getChatCompletionTuning,
+  getProductionChatCompletionTuning,
   getTuningMetadata,
   increaseReasoningEffort,
+  PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS,
+  PRODUCTION_OPENAI_MAX_RETRIES,
   resolveOpenAIModel,
+  resolveProductionOpenAIRetryLimit,
   resolveReasoningEffortForMode,
 } from "../lib/llm/model-config";
 
@@ -868,6 +874,69 @@ assert.deepEqual(getTuningMetadata(getChatCompletionTuning("gpt-5-nano")), {
 assert.deepEqual(getChatCompletionTuning("gpt-4o-mini", { temperature: 0 }), {
   temperature: 0,
 });
+assert.equal(Number.isInteger(PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS), true);
+assert.ok(PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS > 0);
+assert.ok(PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS <= 8_000);
+assert.equal(PRODUCTION_OPENAI_MAX_RETRIES, 1);
+assert.equal(resolveProductionOpenAIRetryLimit(undefined), 1);
+assert.equal(resolveProductionOpenAIRetryLimit("not-a-number"), 1);
+assert.equal(resolveProductionOpenAIRetryLimit(-2), 0);
+assert.equal(resolveProductionOpenAIRetryLimit(0), 0);
+assert.equal(resolveProductionOpenAIRetryLimit(1), 1);
+assert.equal(
+  resolveProductionOpenAIRetryLimit(50),
+  1,
+  "environment configuration must not raise the production retry ceiling",
+);
+assert.equal(
+  getProductionChatCompletionTuning("gpt-5.6-luna", { reasoningEffort: "low" }).max_completion_tokens,
+  PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS,
+  "production reasoning-model requests must cap output tokens",
+);
+assert.equal(
+  getProductionChatCompletionTuning("gpt-4o-mini", { temperature: 0 }).max_completion_tokens,
+  PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS,
+  "production non-reasoning-model requests must cap output tokens",
+);
+assert.equal(
+  (getProductionChatCompletionTuning as any)("gpt-5.6-luna", {
+    maxCompletionTokens: PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS * 10,
+  }).max_completion_tokens,
+  PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS,
+  "callers must not be able to raise the production output-token ceiling",
+);
+
+const openAIBackendSource = fs.readFileSync(
+  path.resolve(process.cwd(), "lib/backend/openai.ts"),
+  "utf8",
+);
+const nonStreamingRequestSource = openAIBackendSource.slice(
+  openAIBackendSource.indexOf("export async function callOpenAIChat("),
+  openAIBackendSource.indexOf("export function callOpenAIChatStreamingWithUsage("),
+);
+const streamingRequestSource = openAIBackendSource.slice(
+  openAIBackendSource.indexOf("export function callOpenAIChatStreamingWithUsage("),
+);
+assert.match(
+  nonStreamingRequestSource,
+  /getProductionChatCompletionTuning\(OPENAI_MODEL,/,
+  "all non-streaming attempts, including repair and retry attempts, must use the production ceiling",
+);
+assert.match(
+  nonStreamingRequestSource,
+  /resolveProductionOpenAIRetryLimit\(process\.env\.OPENAI_MAX_RETRIES \?\? 1\)/,
+  "production retry configuration must be clamped before any provider loop",
+);
+assert.match(
+  streamingRequestSource,
+  /getProductionChatCompletionTuning\(OPENAI_MODEL,/,
+  "all main streaming attempts must use the production ceiling",
+);
+assert.doesNotMatch(
+  openAIBackendSource,
+  /getChatCompletionTuning\(/,
+  "the production OpenAI backend must not retain an uncapped tuning path",
+);
 assert.equal(resolveOpenAIModel("resume"), process.env.OPENAI_RESUME_MODEL || "gpt-5.6-luna");
 assert.equal(resolveReasoningEffortForMode("resume", "gpt-5-nano"), "low");
 

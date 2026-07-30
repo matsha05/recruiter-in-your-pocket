@@ -7,6 +7,8 @@ type ChatCompletionTuningOptions = {
   reasoningEffort?: ReasoningEffort;
 };
 
+type ProductionChatCompletionTuningOptions = Omit<ChatCompletionTuningOptions, "maxCompletionTokens">;
+
 export type ChatCompletionTuning = {
   temperature?: number;
   reasoning_effort?: ReasoningEffort;
@@ -15,6 +17,18 @@ export type ChatCompletionTuning = {
 };
 
 const GPT_5_REASONING_PATTERN = /^gpt-5(?:\.\d+)?(?:-(?:sol|terra|luna|mini|nano))?(?:-\d{4}-\d{2}-\d{2})?$/;
+
+// July 28 Luna/low-reasoning release evidence (23 single-call reports) averaged
+// 1,961 and maxed at 2,232 completion tokens, including reasoning. An 8k cap
+// leaves more than 3.5x observed headroom without preserving the old 24k risk.
+export const PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS = 8_000;
+export const PRODUCTION_OPENAI_MAX_RETRIES = 1;
+
+export function resolveProductionOpenAIRetryLimit(value: unknown): number {
+  const configured = Number(value);
+  if (!Number.isInteger(configured)) return PRODUCTION_OPENAI_MAX_RETRIES;
+  return Math.max(0, Math.min(configured, PRODUCTION_OPENAI_MAX_RETRIES));
+}
 
 export function isGpt5ReasoningModel(model: string) {
   return GPT_5_REASONING_PATTERN.test(model.trim().toLowerCase());
@@ -95,6 +109,16 @@ export function getChatCompletionTuning(
     temperature: options.temperature ?? 0,
     ...(maxCompletionTokens ? { max_completion_tokens: maxCompletionTokens } : {}),
   };
+}
+
+export function getProductionChatCompletionTuning(
+  model: string,
+  options: ProductionChatCompletionTuningOptions = {},
+): ChatCompletionTuning {
+  return getChatCompletionTuning(model, {
+    ...options,
+    maxCompletionTokens: PRODUCTION_OPENAI_MAX_COMPLETION_TOKENS,
+  });
 }
 
 export function getTuningMetadata(tuning: ChatCompletionTuning) {

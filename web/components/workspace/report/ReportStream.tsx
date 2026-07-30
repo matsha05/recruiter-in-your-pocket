@@ -23,7 +23,6 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@/lib/analytics";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
-import { getScoreLabel } from "@/lib/score-utils";
 import { ReadComparison } from "./ReadComparison";
 import styles from "./ReportStream.module.css";
 
@@ -31,7 +30,6 @@ interface ReportStreamProps {
     report: ReportData;
     className?: string;
     isSample?: boolean;
-    onNewReport?: () => void;
     freeUsesRemaining?: number;
     onUpgrade?: () => void;
     hasJobDescription?: boolean;
@@ -84,15 +82,6 @@ function workingDraftFor(original?: string) {
     return `${clean}; [verified detail].`;
 }
 
-function applyVerifiedFactToDraft(draft: string, fact: string) {
-    if (/\[[^\]]+\]/.test(draft)) {
-        return draft.replace(/\[[^\]]+\]/, fact);
-    }
-    const cleanDraft = draft.trim().replace(/[.;]\s*$/, "");
-    const cleanFact = fact.trim().replace(/^[.;]\s*/, "").replace(/[.;]\s*$/, "");
-    return `${cleanDraft}; ${cleanFact}.`;
-}
-
 function MarkedTakeaway({ text }: { text: string }) {
     const match = text.match(/\bbigger\b/i);
     if (!match || match.index === undefined) return <>{text}</>;
@@ -126,13 +115,27 @@ function FixCanvas({
     const [answerApplied, setAnswerApplied] = useState(false);
     const [dismissed, setDismissed] = useState(false);
     const action = fix.fix || fix.text || "Make this part of the resume more specific";
+    const requiresCandidateFacts = /\[[^\]]+\]/.test(suggestedLine);
+    const hasUnresolvedFactPlaceholders = /\[[^\]]+\]/.test(draft);
+    const copyBlocked = hasUnresolvedFactPlaceholders || (requiresCandidateFacts && !answerApplied);
     const traceProgress = answerApplied
         ? draft.trim() !== suggestedLine.trim() ? 100 : 82
         : answer.trim() ? 68 : 50;
+    let copyGuidance = "A working draft based on the facts already in your resume.";
+    if (hasUnresolvedFactPlaceholders && answerApplied) {
+        copyGuidance = "Your supporting facts are saved. Replace every bracket with the matching fact before copying.";
+    } else if (hasUnresolvedFactPlaceholders) {
+        copyGuidance = "We don’t invent accomplishments. Add the supporting facts, keep them, then replace every bracket before copying.";
+    } else if (requiresCandidateFacts && !answerApplied) {
+        copyGuidance = "Confirm the supporting facts below before copying this quantified rewrite.";
+    } else if (answerApplied) {
+        copyGuidance = "Your verified fact is preserved. Edit the sentence until it sounds like you.";
+    }
 
     useEffect(() => setDraft(suggestedLine), [suggestedLine]);
 
     const handleCopy = async () => {
+        if (copyBlocked) return;
         await navigator.clipboard.writeText(draft);
         setCopied(true);
         window.setTimeout(() => setCopied(false), 1600);
@@ -141,7 +144,6 @@ function FixCanvas({
     const handleUseAnswer = () => {
         const cleanAnswer = answer.trim().replace(/\s+/g, " ");
         if (!cleanAnswer) return;
-        setDraft((current) => applyVerifiedFactToDraft(current, cleanAnswer));
         setAnswerApplied(true);
         setEditing(true);
     };
@@ -251,9 +253,7 @@ function FixCanvas({
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div>
                                 <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Try this</p>
-                                <p className="mt-1 text-xs text-muted-foreground">
-                                    {answerApplied ? "Your verified fact is now in the draft. Edit the sentence until it sounds like you." : "A working draft. Replace every bracket with a fact you can verify."}
-                                </p>
+                                <p className="mt-1 text-xs text-muted-foreground">{copyGuidance}</p>
                             </div>
                             <div className="flex items-center gap-1">
                                 <button
@@ -266,10 +266,16 @@ function FixCanvas({
                                 <button
                                     type="button"
                                     onClick={handleCopy}
-                                    className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75"
+                                    disabled={copyBlocked}
+                                    aria-label={copyBlocked ? "Add verified facts before copying" : copied ? "Copied" : "Copy suggested line"}
+                                    className="inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-semibold text-brand hover:text-brand/75 disabled:cursor-not-allowed disabled:text-muted-foreground/60"
                                 >
-                                    {copied ? <Check className="size-4" weight="bold" /> : <Copy className="size-4" />}
-                                    {copied ? "Copied" : "Copy"}
+                                    {copyBlocked
+                                        ? <BracketsAngle className="size-4" />
+                                        : copied
+                                            ? <Check className="size-4" weight="bold" />
+                                            : <Copy className="size-4" />}
+                                    {copyBlocked ? "Add facts to copy" : copied ? "Copied" : "Copy"}
                                 </button>
                             </div>
                         </div>
@@ -302,7 +308,6 @@ export function ReportStream({
     report,
     className,
     isSample = false,
-    onNewReport,
     freeUsesRemaining = 1,
     onUpgrade,
     hasJobDescription = false,
@@ -335,9 +340,20 @@ export function ReportStream({
         <div className={cn("mx-auto max-w-[58rem] pb-16", className)}>
             {comparisonBaseline && <ReadComparison previous={comparisonBaseline} current={report} />}
             <section id="section-first-impression" className="scroll-mt-36 pb-10 pt-2 sm:pb-14 sm:pt-8">
-                <div className="flex items-center justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4">
+                <div className="flex items-start justify-between gap-4 border-b border-[hsl(var(--paper-line))] pb-4">
                     <p className="text-[11px] font-semibold uppercase riyp-track-017 text-brand">The read</p>
-                    <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
+                    {typeof report.score === "number" ? (
+                        <div className="max-w-[14rem] text-right">
+                            <p className="riyp-tabular-label text-[11px] font-semibold uppercase riyp-track-015 text-foreground">
+                                Clarity summary: {report.score}/100
+                            </p>
+                            <p className="mt-1 text-[11px] leading-4 text-muted-foreground">
+                                Not a prediction of interviews or offers.
+                            </p>
+                        </div>
+                    ) : (
+                        <p className="riyp-tabular-label text-[11px] uppercase riyp-track-015 text-muted-foreground">Opening read</p>
+                    )}
                 </div>
 
                 <div className="pt-6 sm:pt-6">
@@ -372,14 +388,6 @@ export function ReportStream({
                         <p className="text-sm leading-6 text-muted-foreground">
                             <span className="font-semibold text-foreground">What we saw on the page:</span> “{primaryEvidence}”
                         </p>
-                    </div>
-                )}
-
-                {isSample && onNewReport && (
-                    <div className="mt-8 flex justify-start sm:ml-[3.75rem]">
-                        <Button data-testid="sample-start-report" variant="brand" size="lg" onClick={onNewReport}>
-                            See what yours says <ArrowRight className="ml-2 size-4" weight="bold" />
-                        </Button>
                     </div>
                 )}
 
@@ -474,16 +482,16 @@ export function ReportStream({
 
             <details id="section-score" className="group scroll-mt-36 border-y border-[hsl(var(--paper-line))]">
                 <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden">
-                    <div className="flex items-baseline gap-3">
-                        <span className="text-sm font-semibold text-foreground">How we summarized this review</span>
-                        {typeof report.score === "number" && <span className="text-xs text-muted-foreground">{report.score}/100 · {getScoreLabel(report.score)}</span>}
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
+                        <span className="text-sm font-semibold text-foreground">How the clarity summary breaks down</span>
+                        {typeof report.score === "number" && <span className="text-xs text-muted-foreground">{report.score}/100</span>}
                     </div>
                     <CaretDown className="size-4 shrink-0 text-brand transition-transform group-open:rotate-180" />
                 </summary>
                 <div className="grid gap-6 border-t border-[hsl(var(--paper-line))] py-6 sm:grid-cols-[10rem_1fr]">
                     <div>
                         <p className="font-display text-5xl riyp-weight-520 leading-none text-foreground">{report.score ?? "—"}</p>
-                        <p className="mt-2 text-xs text-muted-foreground">A document review, not hiring odds.</p>
+                        <p className="mt-2 text-xs text-muted-foreground">Not a prediction of interviews or offers.</p>
                     </div>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
                         {Object.entries(report.subscores || {}).map(([label, score]) => (

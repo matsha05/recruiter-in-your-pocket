@@ -79,8 +79,12 @@ test.describe("research system", () => {
     });
   }
 
-  test("legacy research URLs preserve their canonical destination", async ({ page }) => {
+  test("legacy research URLs return permanent redirects to their canonical destination", async ({ page, request }) => {
     for (const [from, to] of redirects) {
+      const redirect = await request.get(from, { maxRedirects: 0 });
+      expect(redirect.status(), from).toBe(308);
+      expect(new URL(redirect.headers()["location"], "http://riyp.test").pathname, from).toBe(to);
+
       await page.goto(from, { waitUntil: "domcontentloaded" });
       await expect(page).toHaveURL(new RegExp(`${to.replaceAll("/", "\\/")}/?$`));
       await expect(page.locator("[data-visual-anchor='research-article']")).toBeVisible();

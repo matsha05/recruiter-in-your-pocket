@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 export default function AutomationFilterPointsRedirect() {
-    redirect("/research/automation-and-bias");
+    permanentRedirect("/research/automation-and-bias");
 }
