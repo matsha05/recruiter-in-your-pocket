@@ -13,6 +13,7 @@ jobs:
       # Browser suites deliberately rebuild the app, so keep the same static-generation
       # environment available to every web step rather than only the first build.
       SENTRY_AUTH_TOKEN: ""
+      SESSION_SECRET: "ci-web-session-secret"
       NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
       NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
