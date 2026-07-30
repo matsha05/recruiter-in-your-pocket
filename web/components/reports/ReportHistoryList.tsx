@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { EmptyReportIcon } from "@/components/icons";
 import { ScoreBadge } from "@/components/shared/ScoreBadge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export type ReportHistoryItem = {
   id: string;
@@ -153,7 +155,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                 {isRenaming ? (
                   <div className="mt-3 flex max-w-xl flex-col gap-2 sm:flex-row">
                     <label htmlFor={`report-name-${report.id}`} className="sr-only">Report name</label>
-                    <input
+                    <Input
                       id={`report-name-${report.id}`}
                       value={draftName}
                       maxLength={100}
@@ -167,23 +169,26 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                       placeholder="Name this version"
                     />
                     <div className="flex gap-2">
-                      <button
+                      <Button
                         type="button"
                         onClick={() => void saveRename(report)}
                         disabled={savingId === report.id}
+                        variant="brand"
                         className="inline-flex min-h-11 items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-semibold text-background disabled:opacity-50"
                       >
                         {savingId === report.id ? <Loader2 className="mr-2 size-4 animate-spin" aria-hidden="true" /> : null}
                         Save
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         type="button"
                         onClick={cancelRename}
+                        variant="outline"
+                        size="icon"
                         className="inline-flex size-11 items-center justify-center rounded-md border border-foreground/25 bg-background text-muted-foreground hover:text-foreground"
                         aria-label="Cancel rename"
                       >
                         <X className="size-4" aria-hidden="true" />
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 ) : (
@@ -192,7 +197,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                     {report.resumePreview ? (
                       <p className="mt-1 line-clamp-2 max-w-2xl text-sm leading-6 text-muted-foreground">{report.resumePreview}</p>
                     ) : (
-                      <p className="mt-1 text-sm text-muted-foreground">Open the recruiter read and its saved fixes.</p>
+                      <p className="mt-1 text-sm text-muted-foreground">Open the saved report and its recommended fixes.</p>
                     )}
                   </Link>
                 )}
