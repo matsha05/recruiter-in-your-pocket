@@ -5,6 +5,10 @@ import { freeCookieOptions } from "../lib/backend/freeCookie";
 import { getScoreLabel } from "../lib/score-utils";
 import { validateResumeFeedbackRequest } from "../lib/backend/validation";
 import { isResumeIdeasApiEnabled } from "../lib/launch/serverFlags";
+import {
+  REQUIRED_PUBLIC_TRUST_FILES,
+  resolvePublicTrustSurfaceStatus,
+} from "../lib/launch/program";
 
 assert.equal(
   freeCookieOptions().maxAge,
@@ -16,6 +20,53 @@ assert.equal(getScoreLabel(85), "Clear and specific");
 assert.equal(getScoreLabel(84), "Mostly clear");
 assert.equal(getScoreLabel(70), "Mostly clear");
 assert.equal(getScoreLabel(69), "Needs more context");
+
+assert.equal(
+  resolvePublicTrustSurfaceStatus({
+    verified: false,
+    inspectionAvailable: false,
+    hostedRuntime: true,
+  }),
+  "disabled",
+  "a hosted serverless function must defer to release-bound CI when source and global route manifests are omitted",
+);
+assert.equal(
+  resolvePublicTrustSurfaceStatus({
+    verified: false,
+    inspectionAvailable: true,
+    hostedRuntime: true,
+  }),
+  "missing",
+  "an inspected hosted artifact must fail when a required public trust route is absent",
+);
+assert.equal(
+  resolvePublicTrustSurfaceStatus({
+    verified: false,
+    inspectionAvailable: false,
+    hostedRuntime: false,
+  }),
+  "missing",
+  "local and hermetic checks must fail closed when trust surfaces cannot be inspected",
+);
+assert.equal(
+  resolvePublicTrustSurfaceStatus({
+    verified: true,
+    inspectionAvailable: true,
+    hostedRuntime: true,
+  }),
+  "ok",
+);
+
+const repoRoot = fs.existsSync(path.join(process.cwd(), "web"))
+  ? process.cwd()
+  : path.resolve(process.cwd(), "..");
+for (const relativePath of REQUIRED_PUBLIC_TRUST_FILES) {
+  assert.equal(
+    fs.existsSync(path.join(repoRoot, relativePath)),
+    true,
+    `required public trust surface must exist: ${relativePath}`,
+  );
+}
 
 const validResumeRequest = validateResumeFeedbackRequest({
   text: "A".repeat(100),

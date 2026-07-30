@@ -28,9 +28,9 @@ export type RehearsalStep = {
 };
 
 export const LAUNCH_OWNERS: LaunchOwner[] = [
-  { surface: "Launch command", owner: "Matt", backup: "Pending verified support destination", channel: "docs/launch-readiness/87-operational-ownership.md" },
-  { surface: "Auth and identity", owner: "Matt", backup: "Pending verified support destination", channel: "docs/launch-readiness/87-operational-ownership.md" },
-  { surface: "Billing and unlocks", owner: "Matt", backup: "Stripe dashboard plus pending secondary alert", channel: "docs/launch-readiness/87-operational-ownership.md" },
+  { surface: "Launch command", owner: "Matt", backup: "GitHub Issues backup alert", channel: "docs/launch-readiness/87-operational-ownership.md" },
+  { surface: "Auth and identity", owner: "Matt", backup: "GitHub Issues backup alert", channel: "docs/launch-readiness/87-operational-ownership.md" },
+  { surface: "Billing and unlocks", owner: "Matt", backup: "Stripe dashboard plus GitHub Issues backup alert", channel: "docs/launch-readiness/87-operational-ownership.md" },
   { surface: "Held-back surfaces", owner: "Matt", backup: "Launch flags + status page", channel: "docs/launch-readiness/80-go-no-go-program.md" },
   { surface: "AI quality and prompt changes", owner: "Matt", backup: "PromptOps shipping gate", channel: "docs/promptops/shipping-gate.md" },
   { surface: "Trust and security disclosures", owner: "Matt", backup: "Security mailbox", channel: "security@recruiterinyourpocket.com" },
@@ -242,6 +242,16 @@ export const REQUIRED_PUBLIC_TRUST_FILES = [
   "web/app/robots.ts",
   "web/app/sitemap.ts",
 ] as const;
+
+export function resolvePublicTrustSurfaceStatus(options: {
+  verified: boolean;
+  inspectionAvailable: boolean;
+  hostedRuntime: boolean;
+}): "ok" | "missing" | "disabled" {
+  if (options.verified) return "ok";
+  if (options.hostedRuntime && !options.inspectionAvailable) return "disabled";
+  return "missing";
+}
 
 export const LAUNCH_GATE_DEFINITIONS = [
   {
