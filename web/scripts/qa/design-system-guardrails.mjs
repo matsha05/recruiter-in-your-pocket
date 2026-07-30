@@ -54,6 +54,9 @@ const HEX_ALLOWLIST = new Set([
   // Email clients require inline literal colors. The auth-email contract pins
   // these literals to the canonical chalk/ink/citron/cyan palette.
   "lib/auth/otpEmail.ts",
+  // The forwarded support notice must remain legible and visually distinct in
+  // email clients that cannot consume the runtime CSS token sheet.
+  "lib/support/inboundEmail.ts",
 ]);
 
 const INLINE_STYLE_EXCLUSIONS = new Set([

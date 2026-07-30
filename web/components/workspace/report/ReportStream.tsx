@@ -20,6 +20,7 @@ import {
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
 import { ReportData } from "./ReportTypes";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@/lib/analytics";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
@@ -330,7 +331,7 @@ function FixCanvas({
                                     {placeholderKeys.map((key) => (
                                         <label key={key} className="grid gap-1.5 text-xs font-semibold text-foreground/75">
                                             <span>{placeholderLabel(key)}</span>
-                                            <input
+                                            <Input
                                                 type="text"
                                                 value={factValues[key] || ""}
                                                 onChange={(event) => handleFactChange(key, event.target.value)}
