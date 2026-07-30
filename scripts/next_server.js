@@ -23,23 +23,16 @@ function withLaunchTestDefaults(env) {
     RIYP_ALLOW_TEST_ANONYMOUS_ACCESS_FALLBACK: "true",
     SKIP_DB_READY_CHECK: env.SKIP_DB_READY_CHECK || "1",
     // Contract tests must remain hermetic even when the parent launch shell
-    // carries real or placeholder hosted Redis credentials.
+    // carries real or placeholder hosted credentials. Explicit empty values
+    // also prevent an untracked web/.env.local from supplying live secrets.
     UPSTASH_REDIS_REST_URL: "",
     UPSTASH_REDIS_REST_TOKEN: "",
     KV_REST_API_URL: "",
     KV_REST_API_TOKEN: "",
+    SUPABASE_SECRET_KEY: "",
+    SUPABASE_SERVICE_ROLE_KEY: "",
+    STRIPE_WEBHOOK_SECRET: "",
   };
-
-  // Vercel env pulls can represent sensitive values as empty strings. An empty
-  // inherited variable overrides Next's local env loading, so remove only the
-  // empty runtime secrets and let the test fixture environment provide them.
-  for (const key of [
-    "SUPABASE_SECRET_KEY",
-    "SUPABASE_SERVICE_ROLE_KEY",
-    "STRIPE_WEBHOOK_SECRET",
-  ]) {
-    if (!testEnv[key]) delete testEnv[key];
-  }
 
   return testEnv;
 }
@@ -143,4 +136,4 @@ async function startNextServer({ ensureBuild = true } = {}) {
   return { baseUrl, port, stop };
 }
 
-module.exports = { startNextServer };
+module.exports = { startNextServer, withLaunchTestDefaults };

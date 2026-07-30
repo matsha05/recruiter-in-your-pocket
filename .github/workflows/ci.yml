@@ -118,6 +118,10 @@ jobs:
           SESSION_SECRET: "test-session-secret"
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          # Synthetic server credential: the launch gate checks that the
+          # server-only Supabase path is configured, while hermetic endpoint
+          # tests strip this value before starting their isolated app server.
+          SUPABASE_SECRET_KEY: "sb_secret_ci_dummy"
           NEXT_PUBLIC_MIXPANEL_TOKEN: "test-token"
           NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
           NEXT_PUBLIC_ENABLE_ERROR_REPLAY: "false"
