@@ -159,3 +159,25 @@ Current verdict: `NO-GO` for broad promotion. The code and visual product were r
 - Pass remote CI on the exact commit and bind the resulting preview/deployment evidence before any broad promotion.
 
 Current verdict: `NO-GO` for broad promotion until the remaining blockers above are proven on the release-bound preview.
+
+## July 30 Launch-Hardening Operational Record
+
+- Production release: `79a00fe33c194b0f28e751f8adf62bbda89b6800`; production deployment `dpl_99jC2dsnBogaFGPPMg88RUBgr5xn` was `READY`, and the local launch-hardening candidate had the same Git tree.
+- CI: the exact production release passed the launch program, extension, and web workflows.
+- Support: the public support address completed a real external receive, forward, authenticated operator reply, and external reply-receipt rehearsal. The forwarding destination is `mattrshaw2011@gmail.com`.
+- Search Console: `https://www.recruiterinyourpocket.com/sitemap.xml` was accepted with status `Success` and 30 discovered pages. Live URL tests passed for the homepage, pricing, and sample report, and each was submitted to Google's priority crawl queue. Visible search-result replacement remains controlled by Google's asynchronous recrawl.
+- Live Stripe preflight: the live account, one-time $29 product and price, canonical webhook endpoint, subscribed fulfillment events, payouts, and Stripe Tax configuration passed. No live charge was created for this rehearsal.
+- Test purchase: a fresh Stripe test-mode product and one-time $29 price completed hosted Checkout with automatic tax, produced one paid invoice, and unlocked exactly one `30d` pass with five reports and a 30-day expiry.
+- Idempotency: the real `checkout.session.completed` event was replayed three times. Every replay returned HTTP 200; the event remained `completed` with one processing attempt and the database retained exactly one pass.
+- Buyer recovery: passwordless app authentication succeeded. The receipt API returned one paid $29 invoice with hosted receipt and PDF links, the Stripe customer portal loaded, and deleting only the disposable pass followed by `POST /api/billing/restore` returned `restored: 1`, `active_before: 0`, and `active_after: 1`.
+- Refund safety: a full $29 test refund succeeded. The webhook created a `refund` entitlement block, set the pass to zero uses with a refund revocation, confirmation returned HTTP 409 with `status: reversed`, and restore returned zero active passes.
+- No resurrection: a newly signed replay of the original completed checkout was recorded as `rejected` with `entitlement_blocked:refund`; no active pass reappeared.
+- Containment: with `RIYP_DISABLE_NEW_PURCHASES=true`, Checkout returned HTTP 503 while receipts, restore, and the Stripe customer portal stayed available.
+- Deletion and cleanup: the authenticated product deletion route removed the disposable auth identity, pass, and cached receipt, returned `Clear-Site-Data`, and left only the identity-free account-deletion tombstone. The Stripe test customer was deleted and the temporary test price and product were deactivated.
+- Environment audit: `launch-env-report.cjs` now records both the narrow purchase kill switch and the secondary-alert evidence flag instead of omitting them.
+
+### Remaining blocker
+
+- Assign a genuinely distinct secondary operational-alert destination, trigger one scrubbed test alert to both paths, record both receipts, and only then set `RIYP_SECONDARY_ALERT_VERIFIED=true` in production.
+
+Current verdict: billing, support, Search Console submission, and destructive-account lifecycle evidence are complete. Broad-promotion readiness remains `NO-GO` only because no distinct secondary alert destination has yet been authorized and rehearsed.

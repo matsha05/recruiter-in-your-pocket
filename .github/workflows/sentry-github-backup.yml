@@ -1,0 +1,39 @@
+name: Sentry GitHub backup alert
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+    inputs:
+      lookback_minutes:
+        description: Minutes of recent production errors to inspect
+        required: false
+        default: "120"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: sentry-github-backup-alert
+  cancel-in-progress: false
+
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Deliver scrubbed backup alerts
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RIYP_SENTRY_READ_TOKEN: ${{ secrets.RIYP_SENTRY_READ_TOKEN }}
+          RIYP_ALERT_LOOKBACK_MINUTES: ${{ inputs.lookback_minutes || '120' }}
+        run: node scripts/sentry-github-backup.cjs
