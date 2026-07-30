@@ -1,10 +1,10 @@
-# First-read score contract
+# Clarity summary contract
 
 Last updated: 2026-07-11
 
 Status: Canonical product contract
 
-The first-read score summarizes how clearly one resume communicates on a quick recruiter-style review. It is a document score, not a person score. It does not estimate interview probability, offer probability, ATS ranking, career potential, or job performance.
+The clarity summary scores how clearly one resume communicates on a quick recruiter-style review. It is a document score out of 100, not a person score. It does not estimate interview probability, offer probability, ATS ranking, career potential, or job performance.
 
 The written finding comes first in the report because it tells the user what the reviewer understood, what remains unclear, and what to change. The score stays visible as a compact summary and comparison aid.
 
@@ -37,7 +37,8 @@ The runtime never displays 100. Scores near a boundary should use the lower scor
 
 ## Display contract
 
-- User-facing name: `First-read score`
+- User-facing name: `Clarity summary`
+- Display the value as `[score]/100` and place `Not a prediction of interviews or offers.` beside it.
 - Lead with the written takeaway, but keep the number and band visible in the first report viewport.
 - Derive the public band from the numeric score. Do not display a free-form model label.
 - Show the four diagnostic dimensions near the score.
@@ -59,7 +60,7 @@ The runtime never displays 100. Scores near a boundary should use the lower scor
 
 ## Current and future fields
 
-- `score`: current first-read score displayed in the UI.
+- `score`: current clarity summary displayed in the UI.
 - `content_score`: compatibility field; currently mirrors the content-focused score.
 - `subscores`: Story, Impact, Clarity, and Readability diagnostics.
 - `layout_score`: reserved for a separately validated visual-layout model. It is not part of the public overall score today.

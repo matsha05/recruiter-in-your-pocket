@@ -81,6 +81,11 @@ assert.ok(
   "unchanged resumes must skip the embedding provider",
 );
 assert.match(embeddingService, /signal: AbortSignal\.timeout\(10_000\)/);
+assert.ok(
+  embeddingService.indexOf("await assertGenerationCapacity()")
+    < embeddingService.indexOf('fetch("https://api.openai.com/v1/embeddings"'),
+  "embedding calls must reserve from the shared paid-AI ceiling before contacting OpenAI",
+);
 assert.match(parseResumeRoute, /MAX_FILE_SIZE = 4 \* 1024 \* 1024/);
 assert.match(parseResumeRoute, /MAX_EXTRACTED_TEXT_LENGTH = 30_000/);
 assert.match(parseResumeRoute, /EXTRACTED_TEXT_TOO_LARGE/);

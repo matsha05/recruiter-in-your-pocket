@@ -39,10 +39,10 @@ const reviewPath = [
 
 export function FirstReadModelDiagram() {
     return (
-        <DiagramFigure className="max-w-[62rem]" label="Worked example showing a first-read score, four diagnostic scores, and the evidence behind them">
+        <DiagramFigure className="max-w-[62rem]" label="Worked example showing a clarity summary, four diagnostic scores, and the evidence behind them">
             <div className="overflow-hidden border-y border-line bg-paper">
                 <div className="grid lg:grid-cols-[18rem_minmax(0,1fr)]">
-                    <section className="flex flex-col justify-between border-b border-line bg-surface-sky p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="Worked first-read score">
+                    <section className="flex flex-col justify-between border-b border-line bg-surface-sky p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="Worked clarity summary">
                         <div>
                             <p className="riyp-type-0625 font-bold uppercase riyp-track-016 text-brand">Worked example</p>
                             <p className="mt-6 font-display text-[clamp(5rem,10vw,8rem)] riyp-weight-520 leading-[0.78] tracking-[-0.07em] text-foreground">85</p>

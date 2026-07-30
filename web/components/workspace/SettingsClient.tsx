@@ -221,8 +221,17 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 throw new Error(data.message || "Failed to delete account");
             }
 
+            // The server clears the SSR cookie and returns Clear-Site-Data.
+            // Remove the browser client's in-memory session too before leaving
+            // the private app shell.
+            const supabase = createSupabaseBrowserClient();
+            const { error: signOutError } = await supabase.auth.signOut({ scope: "local" });
+            if (signOutError) {
+                console.warn("Browser session cleanup reported an error after account deletion");
+            }
+            queryClient.clear();
             toast.success("Account deleted");
-            window.location.href = "/";
+            window.location.replace("/");
         } catch (err: any) {
             toast.error(err.message || "Failed to delete account");
         } finally {

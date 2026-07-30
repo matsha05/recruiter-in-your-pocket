@@ -79,9 +79,9 @@ async function runTests() {
     await next.stop();
     process.exit(0);
   } else {
-    console.log("\n⚠️  Some tests had warnings (see above)");
+    console.log("\n❌ Readiness checks failed");
     await next.stop();
-    process.exit(0);
+    process.exit(1);
   }
 }
 
@@ -96,4 +96,3 @@ runTests().catch((err) => {
   console.error("❌ Test failed:", err);
   process.exit(1);
 });
-

@@ -9,6 +9,7 @@ import {
 import {
   buildAuthDeletionPendingResponse,
   buildIncompleteAccountDeletionResponse,
+  finalizeAccountAuthDeletion,
 } from "../lib/backend/accountDeletion";
 
 const now = new Date("2026-07-19T18:00:00.000Z");
@@ -108,6 +109,49 @@ class FakeAdmin {
 }
 
 async function run() {
+  const successfulAuthOperations: string[] = [];
+  const successfulAuthDeletion = await finalizeAccountAuthDeletion({
+    deleteUser: async () => {
+      successfulAuthOperations.push("delete_user");
+      return { error: null };
+    },
+    signOut: async () => {
+      successfulAuthOperations.push("sign_out");
+      return { error: null };
+    },
+  });
+  assert.deepEqual(
+    successfulAuthOperations,
+    ["delete_user", "sign_out"],
+    "the current session is cleared only after the auth identity is removed"
+  );
+  assert.equal(successfulAuthDeletion.deleted, true);
+  assert.equal(successfulAuthDeletion.sessionSignOutError, null);
+
+  const completedDeleteWithSessionCleanupFailure = await finalizeAccountAuthDeletion({
+    deleteUser: async () => ({ error: null }),
+    signOut: async () => {
+      throw new Error("auth provider unavailable");
+    },
+  });
+  assert.equal(completedDeleteWithSessionCleanupFailure.deleted, true);
+  assert.match(
+    completedDeleteWithSessionCleanupFailure.sessionSignOutError?.message || "",
+    /provider unavailable/,
+    "a cleanup failure cannot turn a deleted identity into an impossible retry"
+  );
+
+  let signOutCallsAfterFailedDelete = 0;
+  const failedAuthDeletion = await finalizeAccountAuthDeletion({
+    deleteUser: async () => ({ error: { message: "temporary auth provider failure" } }),
+    signOut: async () => {
+      signOutCallsAfterFailedDelete += 1;
+      return { error: null };
+    },
+  });
+  assert.equal(failedAuthDeletion.deleted, false);
+  assert.equal(signOutCallsAfterFailedDelete, 0, "auth deletion retries retain the current session");
+
   const rows: FakeRow[] = [
     { id: "expired", user_id: "user-1", ...expiredJob, file_url: "https://private.example/export" },
     { id: "current", user_id: "user-1", ...currentJob },
@@ -160,6 +204,10 @@ async function run() {
     path.resolve(process.cwd(), "app/api/account/delete/route.ts"),
     "utf8"
   );
+  const settingsSource = fs.readFileSync(
+    path.resolve(process.cwd(), "components/workspace/SettingsClient.tsx"),
+    "utf8"
+  );
   const inngestSource = fs.readFileSync(
     path.resolve(process.cwd(), "lib/inngest/functions.ts"),
     "utf8"
@@ -172,6 +220,18 @@ async function run() {
   assert.match(inngestSource, /id: "expire-account-export-results"/);
   assert.match(inngestSource, /\{ cron: "17 \* \* \* \*" \}/);
   assert.match(deleteRouteSource, /buildAuthDeletionPendingResponse\(deletions, canceledSubscriptions\)/);
+  assert.match(deleteRouteSource, /createSupabaseServerAction\(\)/);
+  assert.match(deleteRouteSource, /supabase\.auth\.signOut\(\{ scope: "global" \}\)/);
+  assert.match(deleteRouteSource, /response\.headers\.set\("Clear-Site-Data", '\"cookies\", \"storage\"'\)/);
+  assert.ok(
+    deleteRouteSource.indexOf("finalizeAccountAuthDeletion") <
+      deleteRouteSource.indexOf('response.headers.set("Clear-Site-Data"'),
+    "browser cookies and storage are cleared only on the completed-deletion path"
+  );
+  assert.match(settingsSource, /supabase\.auth\.signOut\(\{ scope: "local" \}\)/);
+  assert.match(settingsSource, /queryClient\.clear\(\)/);
+  assert.match(settingsSource, /window\.location\.replace\("\/"\)/);
+  assert.doesNotMatch(settingsSource, /window\.location\.href = "\/"/);
   assert.match(
     deleteRouteSource,
     /select\("tier, checkout_session_id, stripe_payment_intent_id, stripe_subscription_id"\)/

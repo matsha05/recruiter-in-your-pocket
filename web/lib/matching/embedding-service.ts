@@ -5,6 +5,9 @@
  * Falls back gracefully if API key not available.
  */
 
+import "server-only";
+import { assertGenerationCapacity } from "@/lib/operations/generationBudget";
+
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 export interface EmbeddingResult {
@@ -19,6 +22,10 @@ export async function createEmbedding(text: string): Promise<EmbeddingResult | n
     }
 
     try {
+        // Embeddings are paid OpenAI work too. Share the same atomic daily
+        // ceiling and emergency pause as report generation so alternate routes
+        // cannot create an unbounded cost path.
+        await assertGenerationCapacity();
         const response = await fetch("https://api.openai.com/v1/embeddings", {
             method: "POST",
             headers: {

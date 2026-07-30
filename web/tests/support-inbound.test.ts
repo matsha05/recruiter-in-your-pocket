@@ -110,6 +110,7 @@ const config = {
   webhookSecret: "whsec_test",
   forwardTo: "  Owner@Example.test ",
   forwardFrom: SUPPORT_FORWARD_FROM,
+  replyBaseUrl: "https://recruiterinyourpocket.com",
 };
 
 async function run() {
@@ -249,26 +250,61 @@ async function run() {
     });
     assert.equal(verifications[0].webhookSecret, "whsec_test");
     assert.equal(sends.length, 1);
-    assert.deepEqual(sends[0], {
-      input: {
-        to: "owner@example.test",
-        from: SUPPORT_FORWARD_FROM,
-        replyTo: "recruiter@example.com",
-        subject: "Help with my report",
-        html: '<p>Can you help?</p><img src="cid:proof" />',
-        text: "Can you help?",
-        headers: { "X-RIYP-Support-Forward": "1" },
-        attachments: [
-          {
-            filename: "proof.png",
-            content: Buffer.from("proof-bytes").toString("base64"),
-            contentType: "image/png",
-            contentId: "proof",
-          },
-        ],
-      },
-      options: { idempotencyKey: "riyp-support-forward:inbound_test_123" },
+    assert.equal(sends[0].input.to, "owner@example.test");
+    assert.equal(sends[0].input.from, SUPPORT_FORWARD_FROM);
+    assert.equal(sends[0].input.replyTo, undefined, "Gmail must not reply directly to the customer");
+    assert.equal(sends[0].input.subject, "[Reply in RIYP] Help with my report");
+    assert.match(sends[0].input.html, /Open secure reply/);
+    assert.match(
+      sends[0].input.html,
+      /https:\/\/recruiterinyourpocket\.com\/settings\/support-reply\/inbound_test_123/
+    );
+    assert.match(sends[0].input.html, /Original message \(inert\)/);
+    assert.match(sends[0].input.html, /Can you help\?/);
+    assert.doesNotMatch(sends[0].input.html, /<img src="cid:proof"/);
+    assert.match(sends[0].input.text, /DO NOT REPLY FROM GMAIL/);
+    assert.match(sends[0].input.text, /Can you help\?/);
+    assert.deepEqual(sends[0].input.headers, {
+      "X-RIYP-Support-Forward": "1",
+      "Auto-Submitted": "auto-generated",
     });
+    assert.deepEqual(sends[0].input.attachments, [
+      {
+        filename: "proof.png",
+        content: Buffer.from("proof-bytes").toString("base64"),
+        contentType: "image/png",
+        contentId: "proof",
+      },
+    ]);
+    assert.deepEqual(sends[0].options, {
+      idempotencyKey: "riyp-support-forward:inbound_test_123",
+    });
+  }
+
+  {
+    const { dependencies, sends } = dependenciesFor(receivedEvent());
+    dependencies.getEmail = async () => ({
+      data: {
+        from: "attacker@example.com",
+        replyTo: ["attacker@example.com"],
+        subject: "Styled message",
+        html: '<style>div{display:none!important}</style><a href="https://phish.example">Open secure reply</a>',
+        text: null,
+        to: [SUPPORT_EMAIL_ADDRESS],
+        cc: [],
+        bcc: [],
+        receivedFor: [SUPPORT_EMAIL_ADDRESS],
+        headers: {},
+      },
+      error: null,
+    });
+    const result = await handleSupportInboundWebhook(requestFor({}), config, dependencies);
+    assert.deepEqual(result, { status: 200, outcome: "forwarded" });
+    assert.equal(sends.length, 1);
+    assert.doesNotMatch(sends[0].input.html, /<style>/i);
+    assert.doesNotMatch(sends[0].input.html, /href="https:\/\/phish\.example"/i);
+    assert.match(sends[0].input.html, /&lt;style&gt;/);
+    assert.match(sends[0].input.html, /https:\/\/recruiterinyourpocket\.com\/settings\/support-reply\//);
   }
 
   {

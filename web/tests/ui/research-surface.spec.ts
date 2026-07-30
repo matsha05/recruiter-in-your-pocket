@@ -91,6 +91,12 @@ test.describe("research system", () => {
     }
   });
 
+  test("the retired extension result permanently resolves to the active product", async ({ request }) => {
+    const response = await request.get("/extension", { maxRedirects: 0 });
+    expect(response.status()).toBe(308);
+    expect(new URL(response.headers()["location"], "http://riyp.test").pathname).toBe("/workspace");
+  });
+
   test("hub and every canonical article have no serious accessibility violations", async ({ page }) => {
     test.setTimeout(180_000);
 

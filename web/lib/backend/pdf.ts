@@ -328,6 +328,13 @@ export function renderReportHtml(report: ReportForPdf) {
       font-optical-sizing: auto;
     }
 
+    .score-value span {
+      color: var(--muted);
+      font-size: 14pt;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
     .score-name {
       font-size: 7pt;
       text-transform: uppercase;
@@ -747,14 +754,14 @@ export function renderReportHtml(report: ReportForPdf) {
         ${showSummary ? `<p class="hero-summary">${escapeHtml(report.summary)}</p>` : ""}
       </div>
       <div class="score-card">
-        <div class="score-name">First-read score</div>
-        <div class="score-value">${Math.round(report.score || 0)}</div>
+        <div class="score-name">Clarity summary</div>
+        <div class="score-value">${Math.round(report.score || 0)}<span>/100</span></div>
         <div class="score-band">${escapeHtml(report.score_label || "Needs more context")}</div>
-        <div class="score-scale">out of 99</div>
+        <div class="score-scale">Not a prediction of interviews or offers.</div>
       </div>
     </div>
     <div class="score-note">
-      <strong>What this means:</strong> a quick summary of this document's clarity. It is not an ATS ranking or a prediction about interviews.
+      <strong>What this means:</strong> a quick summary of this document's clarity. It is not an ATS ranking or a prediction of interviews or offers.
     </div>
   </section>
 

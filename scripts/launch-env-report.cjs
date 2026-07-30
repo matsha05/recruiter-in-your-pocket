@@ -19,7 +19,8 @@ function safeValue(key) {
     key.includes("SECRET") ||
     key.includes("KEY") ||
     key.includes("TOKEN") ||
-    key === "RIYP_SUPPORT_FORWARD_TO"
+    key === "RIYP_SUPPORT_FORWARD_TO" ||
+    key === "RIYP_SUPPORT_OPERATOR_EMAILS"
   ) return "(set)";
   return value;
 }
@@ -55,6 +56,7 @@ const envRows = [
   "RESEND_WEBHOOK_SECRET",
   "RIYP_SUPPORT_FORWARD_TO",
   "RIYP_SUPPORT_FORWARD_FROM",
+  "RIYP_SUPPORT_OPERATOR_EMAILS",
   "STRIPE_SECRET_KEY",
   "STRIPE_WEBHOOK_SECRET",
   "STRIPE_PRICE_ID_30D",

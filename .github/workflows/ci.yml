@@ -9,6 +9,18 @@ on:
 jobs:
   web:
     runs-on: ubuntu-latest
+    env:
+      # Browser suites rebuild the app, so every web step needs the same
+      # static-generation environment instead of only the first build.
+      SENTRY_AUTH_TOKEN: ""
+      SESSION_SECRET: "ci-web-session-secret"
+      STRIPE_SECRET_KEY: "sk_test_ci_dummy"
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
+      NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "false"
+      NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false"
+      NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false"
     defaults:
       run:
         working-directory: web
@@ -44,15 +56,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          # Skip Sentry source map upload in CI (no auth token in env)
-          SENTRY_AUTH_TOKEN: ""
-          # Supabase env vars needed for static generation
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
-          NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false"
-          NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false"
 
       - name: Security tests
         run: npm run test:security
@@ -65,6 +68,9 @@ jobs:
 
       - name: Red-team journeys
         run: npm run test:redteam-journeys
+
+      - name: Feedback acceptance UI
+        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts --workers=1
 
       - name: Accessibility baseline
         run: npm run test:accessibility

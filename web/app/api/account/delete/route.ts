@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
+import { createSupabaseServerAction } from "@/lib/supabase/serverClient";
 import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
 import { logInfo, logError, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
@@ -8,6 +8,7 @@ import { createStripeClient } from "@/lib/billing/stripeClient";
 import {
     buildAuthDeletionPendingResponse,
     buildIncompleteAccountDeletionResponse,
+    finalizeAccountAuthDeletion,
     type AccountDeletionRecord,
 } from "@/lib/backend/accountDeletion";
 
@@ -88,7 +89,7 @@ export async function DELETE(request: Request) {
 
     try {
         // Get authenticated user
-        const supabase = await createSupabaseServerClient();
+        const supabase = await createSupabaseServerAction();
         const { data: { user }, error: authError } = await supabase.auth.getUser();
 
         if (authError || !user) {
@@ -365,9 +366,13 @@ export async function DELETE(request: Request) {
         }
         deletions.push({ table: "cases", count: casesCount });
 
-        // 11. Delete the user from auth (this is the final step)
-        // Note: This requires admin privileges
-        const { error: authDeleteError } = await admin.auth.admin.deleteUser(userId);
+        // 11. Delete the auth identity, then clear the authenticated server
+        // session. Sign-out is deliberately deferred until auth deletion
+        // succeeds so a transient auth deletion failure remains retryable.
+        const { authDeleteError, sessionSignOutError } = await finalizeAccountAuthDeletion({
+            deleteUser: () => admin.auth.admin.deleteUser(userId),
+            signOut: () => supabase.auth.signOut({ scope: "global" }),
+        });
 
         if (authDeleteError) {
             logError({
@@ -384,6 +389,20 @@ export async function DELETE(request: Request) {
             return NextResponse.json(pending.body, { status: pending.status });
         }
 
+        if (sessionSignOutError) {
+            // The auth identity is already gone. The response below also asks
+            // the browser to clear cookies and local storage, so a provider
+            // sign-out error must not turn completed deletion into a retry that
+            // can no longer authenticate.
+            logWarn({
+                msg: "account.deletion.session_clear_failed",
+                request_id,
+                user_id: userId,
+                outcome: "provider_error",
+                err: { name: "AuthError", message: sessionSignOutError.message },
+            });
+        }
+
         logInfo({
             msg: "account.deletion.completed",
             request_id,
@@ -392,12 +411,15 @@ export async function DELETE(request: Request) {
             outcome: "success"
         });
 
-        return NextResponse.json({
+        const response = NextResponse.json({
             ok: true,
             message: "Your account and all associated data have been deleted.",
             deletions,
             canceled_subscriptions: canceledSubscriptions,
         });
+        response.headers.set("Cache-Control", "no-store");
+        response.headers.set("Clear-Site-Data", '"cookies", "storage"');
+        return response;
 
     } catch (err: any) {
         logError({

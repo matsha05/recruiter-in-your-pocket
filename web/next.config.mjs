@@ -2,6 +2,9 @@ import { withSentryConfig } from "@sentry/nextjs";
 import { fileURLToPath } from "url";
 
 const isDevelopment = process.env.NODE_ENV === "development";
+const extensionSyncEnabled = /^(1|true|yes|on)$/i.test(
+  String(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC || "")
+);
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
@@ -51,6 +54,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      ...(!extensionSyncEnabled ? [{
+        source: "/extension",
+        destination: "/workspace",
+        permanent: true,
+      }] : []),
       {
         source: "/guides/:path*",
         destination: "/resources/:path*",

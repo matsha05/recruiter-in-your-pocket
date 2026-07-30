@@ -411,6 +411,14 @@
   line-height: 1.55;
 }
 
+.lift-differentiation {
+  max-width: 39rem;
+  color: var(--lift-ink);
+  font-size: 0.84rem;
+  font-weight: 680;
+  line-height: 1.5;
+}
+
 .lift-ai-disclosure a {
   color: var(--lift-ink);
   font-weight: 650;
@@ -1072,6 +1080,11 @@
   color: hsl(var(--surface-raised) / 0.86);
   font-size: 0.95rem;
   line-height: 1.65;
+}
+
+.lift-founder-profile p strong {
+  color: hsl(var(--surface-raised));
+  font-weight: 720;
 }
 
 .lift-support-career {

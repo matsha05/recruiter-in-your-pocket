@@ -82,6 +82,33 @@ function workingDraftFor(original?: string) {
     return `${clean}; [verified detail].`;
 }
 
+function placeholderKeysFor(value: string) {
+    return Array.from(new Set(Array.from(value.matchAll(/\[([^\]]+)\]/g), (match) => match[1].trim())));
+}
+
+function placeholderLabel(value: string) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function confirmedFactAppearsIn(value: string, fact: string) {
+    const normalizedFact = fact.trim().replace(/\s+/g, " ");
+    if (!normalizedFact) return false;
+    const escapedFact = normalizedFact.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(?:^|[^\\p{L}\\p{N}])${escapedFact}(?:$|[^\\p{L}\\p{N}])`, "iu")
+        .test(value.replace(/\s+/g, " "));
+}
+
+const ONBOARDING_NO_NUMBER_DRAFT =
+    "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires.";
+
+function qualitativeFallbackFor(value: string) {
+    const keys = placeholderKeysFor(value);
+    const isOnboardingTemplate = /\bonboarding\b/i.test(value)
+        && ["program length", "number of hires", "teams", "verified outcome"]
+            .every((key) => keys.includes(key));
+    return isOnboardingTemplate ? ONBOARDING_NO_NUMBER_DRAFT : null;
+}
+
 function MarkedTakeaway({ text }: { text: string }) {
     const match = text.match(/\bbigger\b/i);
     if (!match || match.index === undefined) return <>{text}</>;
@@ -112,27 +139,59 @@ function FixCanvas({
     const [editing, setEditing] = useState(false);
     const [copied, setCopied] = useState(false);
     const [answer, setAnswer] = useState("");
+    const [factValues, setFactValues] = useState<Record<string, string>>({});
     const [answerApplied, setAnswerApplied] = useState(false);
+    const [usingQualitativeFallback, setUsingQualitativeFallback] = useState(false);
     const [dismissed, setDismissed] = useState(false);
     const action = fix.fix || fix.text || "Make this part of the resume more specific";
-    const requiresCandidateFacts = /\[[^\]]+\]/.test(suggestedLine);
+    const placeholderKeys = useMemo(() => placeholderKeysFor(suggestedLine), [suggestedLine]);
+    const qualitativeFallback = useMemo(() => qualitativeFallbackFor(suggestedLine), [suggestedLine]);
+    const requiresCandidateFacts = placeholderKeys.length > 0;
+    const allRequiredFactsProvided = requiresCandidateFacts
+        && placeholderKeys.every((key) => factValues[key]?.trim());
+    const hasAnyCandidateFact = answer.trim().length > 0
+        || placeholderKeys.some((key) => factValues[key]?.trim());
     const hasUnresolvedFactPlaceholders = /\[[^\]]+\]/.test(draft);
-    const copyBlocked = hasUnresolvedFactPlaceholders || (requiresCandidateFacts && !answerApplied);
-    const traceProgress = answerApplied
+    const allAppliedFactsPresent = usingQualitativeFallback || (requiresCandidateFacts
+        ? answerApplied
+            && placeholderKeys.every((key) => confirmedFactAppearsIn(draft, factValues[key] || ""))
+        : !answerApplied || confirmedFactAppearsIn(draft, answer));
+    const allowedNumberTokens = new Set(
+        `${original || ""} ${answerApplied ? answer : ""} ${answerApplied ? placeholderKeys.map((key) => factValues[key] || "").join(" ") : ""}`
+            .match(/\d[\d,.]*(?:%|[kmb])?/gi) || [],
+    );
+    const draftNumberTokens = draft.match(/\d[\d,.]*(?:%|[kmb])?/gi) || [];
+    const hasUnsupportedNumber = draftNumberTokens.some((token) => !allowedNumberTokens.has(token));
+    const copyBlocked = hasUnresolvedFactPlaceholders
+        || (requiresCandidateFacts && !answerApplied && !usingQualitativeFallback)
+        || !allAppliedFactsPresent
+        || hasUnsupportedNumber;
+    const traceProgress = answerApplied || usingQualitativeFallback
         ? draft.trim() !== suggestedLine.trim() ? 100 : 82
-        : answer.trim() ? 68 : 50;
+        : hasAnyCandidateFact ? 68 : 50;
     let copyGuidance = "A working draft based on the facts already in your resume.";
-    if (hasUnresolvedFactPlaceholders && answerApplied) {
-        copyGuidance = "Your supporting facts are saved. Replace every bracket with the matching fact before copying.";
+    if (hasUnsupportedNumber) {
+        copyGuidance = "A number in this draft is not in the facts you confirmed. Remove it or update the matching fact before copying.";
+    } else if (hasUnresolvedFactPlaceholders && !answerApplied) {
+        copyGuidance = "We don’t invent accomplishments. Add every supporting fact below or use the factual no-number draft.";
     } else if (hasUnresolvedFactPlaceholders) {
-        copyGuidance = "We don’t invent accomplishments. Add the supporting facts, keep them, then replace every bracket before copying.";
-    } else if (requiresCandidateFacts && !answerApplied) {
+        copyGuidance = "Your supporting facts are saved. Replace every bracket with the matching fact before copying.";
+    } else if (!allAppliedFactsPresent) {
+        copyGuidance = "Keep every confirmed fact in the draft before copying.";
+    } else if (requiresCandidateFacts && !answerApplied && !usingQualitativeFallback) {
         copyGuidance = "Confirm the supporting facts below before copying this quantified rewrite.";
+    } else if (usingQualitativeFallback) {
+        copyGuidance = "A factual no-number alternative, ready to adapt without inventing scale or results.";
     } else if (answerApplied) {
         copyGuidance = "Your verified fact is preserved. Edit the sentence until it sounds like you.";
     }
 
-    useEffect(() => setDraft(suggestedLine), [suggestedLine]);
+    useEffect(() => {
+        setDraft(suggestedLine);
+        setFactValues({});
+        setAnswerApplied(false);
+        setUsingQualitativeFallback(false);
+    }, [suggestedLine]);
 
     const handleCopy = async () => {
         if (copyBlocked) return;
@@ -142,10 +201,40 @@ function FixCanvas({
     };
 
     const handleUseAnswer = () => {
+        if (requiresCandidateFacts) {
+            if (!allRequiredFactsProvided) return;
+            const groundedDraft = suggestedLine.replace(/\[([^\]]+)\]/g, (match, rawKey: string) => {
+                const value = factValues[rawKey.trim()]?.trim();
+                return value || match;
+            });
+            setDraft(groundedDraft);
+            setAnswerApplied(true);
+            setUsingQualitativeFallback(false);
+            setEditing(true);
+            return;
+        }
+
         const cleanAnswer = answer.trim().replace(/\s+/g, " ");
         if (!cleanAnswer) return;
         setAnswerApplied(true);
+        setUsingQualitativeFallback(false);
         setEditing(true);
+    };
+
+    const handleUseQualitativeFallback = () => {
+        if (!qualitativeFallback) return;
+        setFactValues({});
+        setAnswerApplied(false);
+        setUsingQualitativeFallback(true);
+        setDraft(qualitativeFallback);
+        setEditing(true);
+    };
+
+    const handleFactChange = (key: string, value: string) => {
+        setFactValues((current) => ({ ...current, [key]: value }));
+        setAnswerApplied(false);
+        setUsingQualitativeFallback(false);
+        setDraft(suggestedLine);
     };
 
     if (locked) {
@@ -236,16 +325,47 @@ function FixCanvas({
                             <p className="mt-3 text-[0.95rem] font-medium leading-6 text-foreground">
                                 {question?.question || "What specific detail would make this claim easier to believe?"}
                             </p>
-                            <textarea
-                                value={answer}
-                                onChange={(event) => setAnswer(event.target.value)}
-                                className="mt-4 min-h-28 w-full resize-y border border-foreground/15 bg-paper/80 px-3 py-3 text-sm leading-6 text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
-                                placeholder="Write the facts as you know them. Rough is fine."
-                                aria-label={`Answer the factual question for fix ${index + 1}`}
-                            />
-                            <Button type="button" variant="outline" size="sm" className="mt-3 min-h-11 border-brand/30 bg-paper px-4" onClick={handleUseAnswer} disabled={!answer.trim()}>
-                                Keep this fact
-                            </Button>
+                            {requiresCandidateFacts ? (
+                                <div className="mt-4 grid gap-3">
+                                    {placeholderKeys.map((key) => (
+                                        <label key={key} className="grid gap-1.5 text-xs font-semibold text-foreground/75">
+                                            <span>{placeholderLabel(key)}</span>
+                                            <input
+                                                type="text"
+                                                value={factValues[key] || ""}
+                                                onChange={(event) => handleFactChange(key, event.target.value)}
+                                                className="min-h-11 w-full border border-foreground/15 bg-paper/80 px-3 py-2 text-sm font-normal text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
+                                                placeholder={`Add the ${key} from your actual work`}
+                                                aria-label={`Fact for ${key} in fix ${index + 1}`}
+                                            />
+                                        </label>
+                                    ))}
+                                    <Button type="button" variant="outline" size="sm" className="mt-1 min-h-11 justify-self-start border-brand/30 bg-paper px-4" onClick={handleUseAnswer} disabled={!allRequiredFactsProvided}>
+                                        Keep these facts
+                                    </Button>
+                                    {qualitativeFallback ? (
+                                        <Button type="button" variant="ghost" size="sm" className="min-h-11 justify-self-start px-0 text-left text-brand hover:bg-transparent hover:text-brand/80" onClick={handleUseQualitativeFallback}>
+                                            Use a factual no-number draft
+                                        </Button>
+                                    ) : null}
+                                </div>
+                            ) : (
+                                <>
+                                    <textarea
+                                        value={answer}
+                                        onChange={(event) => {
+                                            setAnswer(event.target.value);
+                                            setAnswerApplied(false);
+                                        }}
+                                        className="mt-4 min-h-28 w-full resize-y border border-foreground/15 bg-paper/80 px-3 py-3 text-sm leading-6 text-foreground placeholder:text-muted-foreground focus-visible:border-brand/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/15"
+                                        placeholder="Write the facts as you know them. Rough is fine."
+                                        aria-label={`Answer the factual question for fix ${index + 1}`}
+                                    />
+                                    <Button type="button" variant="outline" size="sm" className="mt-3 min-h-11 border-brand/30 bg-paper px-4" onClick={handleUseAnswer} disabled={!answer.trim()}>
+                                        Keep this fact
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </div>
 
@@ -281,8 +401,19 @@ function FixCanvas({
                         </div>
                         {answerApplied ? (
                             <div className="mt-5 border-l-2 border-brand/45 bg-paper/70 px-4 py-3">
-                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">Fact to preserve</p>
-                                <p className="mt-2 text-sm font-medium leading-6 text-foreground">{answer.trim()}</p>
+                                <p className="text-[11px] font-semibold uppercase riyp-track-015 text-brand">{requiresCandidateFacts ? "Facts to preserve" : "Fact to preserve"}</p>
+                                {requiresCandidateFacts ? (
+                                    <dl className="mt-2 grid gap-2">
+                                        {placeholderKeys.map((key) => (
+                                            <div key={key} className="grid gap-0.5 sm:grid-cols-[9rem_1fr] sm:gap-3">
+                                                <dt className="text-xs font-semibold text-muted-foreground">{placeholderLabel(key)}</dt>
+                                                <dd className="text-sm font-medium leading-6 text-foreground">{factValues[key]?.trim()}</dd>
+                                            </div>
+                                        ))}
+                                    </dl>
+                                ) : (
+                                    <p className="mt-2 text-sm font-medium leading-6 text-foreground">{answer.trim()}</p>
+                                )}
                             </div>
                         ) : null}
                         {editing ? (

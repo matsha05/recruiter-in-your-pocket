@@ -3,13 +3,13 @@ import { LandingEditorsDesk } from "@/components/landing/LandingEditorsDesk";
 
 export const metadata: Metadata = {
   title: "AI Résumé Feedback Shaped by a Recruiter",
-  description: "Get a free recruiter-style first read of your résumé: the exact lines that raise questions, what lands, and what to clarify before you apply.",
+  description: "Get a free recruiter-style first read of your résumé: the exact lines that raise questions and the three most important changes to make before you apply.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "You Did the Work. Let's Make Sure They See It.",
-    description: "Free AI-powered résumé feedback shaped by Matt Shaw's 14 years of recruiting experience.",
+    description: "Free AI-powered résumé feedback informed by Matt Shaw's 14 years of recruiting experience.",
     url: "https://www.recruiterinyourpocket.com/",
     siteName: "Recruiter in Your Pocket",
     images: ["/opengraph-image?v=20260729"],
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "You Did the Work. Let's Make Sure They See It.",
-    description: "Free AI-powered résumé feedback shaped by 14 years of recruiting experience.",
+    description: "Free AI-powered résumé feedback informed by 14 years of recruiting experience.",
     images: ["/opengraph-image?v=20260729"],
   },
 };
@@ -48,7 +48,7 @@ const structuredData = {
           "@type": "Offer",
           price: "29",
           priceCurrency: "USD",
-          description: "Five additional recruiter-style résumé reports with no recurring subscription.",
+          description: "Five additional careful recruiter-style résumé reports over 30 days with no recurring subscription.",
         },
       ],
     },

@@ -79,11 +79,11 @@ test.describe("launch red-team journeys", () => {
     // The approved workspace reference deliberately keeps its empty state focused
     // on starting a real review. Public sample CTAs deep-link into this mode.
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.route("**/sample-report.json", async (route) => {
-      await new Promise((resolve) => setTimeout(resolve, 750));
-      await route.continue();
-    });
-    await page.goto("/workspace?sample=1");
+    await page.goto("/sample-report");
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      "https://www.recruiterinyourpocket.com/sample-report",
+    );
     await expect(page.locator("[data-visual-anchor='workspace-resume-empty']")).toHaveCount(0);
     await expect(page.getByText("Example report", { exact: true })).toBeVisible({ timeout: 15_000 });
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
@@ -113,17 +113,57 @@ test.describe("launch red-team journeys", () => {
 
     const firstFix = page.locator("#section-fix-1");
     await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await expect(firstFix).toContainText("We don’t invent accomplishments.");
     await firstFix.getByRole("button", { name: "Edit" }).click();
     await firstFix.getByLabel("Edit suggested line 1").fill(
       "Redesigned onboarding using the program length, audience, teams, and outcome I verified.",
     );
     await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
 
-    await firstFix.getByLabel("Answer the factual question for fix 1").fill(
-      "Thirty-day program; 18 weekly hires; Sales, Support, and Operations; 28% shorter ramp time.",
+    const firstDraft = firstFix.getByLabel("Edit suggested line 1");
+    await firstFix.getByRole("button", { name: "Use a factual no-number draft" }).click();
+    await expect(firstDraft).toHaveValue(
+      "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires.",
     );
-    await firstFix.getByRole("button", { name: "Keep this fact" }).click();
     await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await firstDraft.fill(
+      "Improved cross-team onboarding by clarifying expectations, responsibilities, and coordination for new hires, improving results 45%.",
+    );
+    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+
+    const keepFacts = firstFix.getByRole("button", { name: "Keep these facts" });
+    await firstFix.getByLabel("Fact for program length in fix 1").fill("30-day program");
+    await expect(keepFacts).toBeDisabled();
+    await firstFix.getByLabel("Fact for number of hires in fix 1").fill("18 weekly hires");
+    await firstFix.getByLabel("Fact for teams in fix 1").fill("Sales, Support, and Operations");
+    await firstFix.getByLabel("Fact for verified outcome in fix 1").fill("28% shorter ramp time");
+    await expect(keepFacts).toBeEnabled();
+    await keepFacts.click();
+    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await expect(firstDraft).toHaveValue(
+      "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
+    );
+    await firstDraft.fill(
+      "Redesigned 30-day program onboarding for 18 weekly hires across Salesforce, Support, and Operations, improving 28% shorter ramp time.",
+    );
+    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    await firstDraft.fill(
+      "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 28% shorter ramp time.",
+    );
+    await expect(firstFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await firstDraft.fill(
+      "Redesigned 30-day program onboarding for 18 weekly hires across Sales, Support, and Operations, improving 45% shorter ramp time.",
+    );
+    await expect(firstFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+
+    const unquantifiedFix = page.locator("#section-fix-3");
+    const unquantifiedDraft = unquantifiedFix.getByLabel("Edit suggested line 3");
+    await unquantifiedFix.getByRole("button", { name: "Edit" }).click();
+    await expect(unquantifiedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+    await unquantifiedDraft.fill(
+      "Program Manager who turns complex, cross-functional launches into clear decisions, accountable owners, and 45% calmer execution.",
+    );
+    await expect(unquantifiedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
 
     await sampleCta.click();
     await expect(page).toHaveURL(/\/workspace$/);
@@ -136,11 +176,37 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
     await expect(page.getByRole("button", { name: /Share report/i })).toHaveCount(0);
 
-    const verifiedFact = "Six product, operations, and support partners used the launch cadence";
-    await page.getByLabel("Answer the factual question for fix 1").fill(verifiedFact);
-    await page.getByRole("button", { name: "Keep this fact" }).first().click();
-    await expect(page.getByText("Fact to preserve").first()).toBeVisible();
-    await expect(page.getByText(verifiedFact, { exact: true }).first()).toBeVisible();
+    const firstGeneratedFix = page.locator("#section-fix-1");
+    const generatedFactInputs = firstGeneratedFix.locator('input[aria-label^="Fact for "]');
+    const generatedFactCount = await generatedFactInputs.count();
+    if (generatedFactCount > 0) {
+      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+      for (let index = 0; index < generatedFactCount; index += 1) {
+        await generatedFactInputs.nth(index).fill(`Candidate supplied fact ${index + 1}`);
+      }
+      await firstGeneratedFix.getByRole("button", { name: "Keep these facts" }).click();
+      await expect(firstGeneratedFix.getByText("Facts to preserve")).toBeVisible();
+      const generatedDraft = firstGeneratedFix.getByLabel("Edit suggested line 1");
+      for (let index = 0; index < generatedFactCount; index += 1) {
+        await expect(generatedDraft).toHaveValue(new RegExp(`Candidate supplied fact ${index + 1}`));
+      }
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+      await generatedFactInputs.first().fill("Changed but not confirmed");
+      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    } else {
+      const verifiedFact = "Six product, operations, and support partners used the launch cadence";
+      await firstGeneratedFix.getByLabel("Answer the factual question for fix 1").fill(verifiedFact);
+      await firstGeneratedFix.getByRole("button", { name: "Keep this fact" }).click();
+      const factToPreserve = firstGeneratedFix.getByText("Fact to preserve").locator("..");
+      await expect(factToPreserve).toContainText(verifiedFact);
+      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+      const generatedDraft = firstGeneratedFix.getByLabel("Edit suggested line 1");
+      const currentDraft = await generatedDraft.inputValue();
+      await generatedDraft.fill(`${currentDraft} ${verifiedFact}.`);
+      await expect(firstGeneratedFix.getByRole("button", { name: "Copy suggested line" })).toBeEnabled();
+      await generatedDraft.fill(currentDraft);
+      await expect(firstGeneratedFix.getByRole("button", { name: "Add verified facts before copying" })).toBeDisabled();
+    }
   });
 
   test("5. guest save prompt forces verified sign-in instead of silent account capture", async ({ page }) => {

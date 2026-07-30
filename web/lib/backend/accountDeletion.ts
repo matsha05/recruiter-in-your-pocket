@@ -3,6 +3,40 @@ export type AccountDeletionRecord = {
   count: number | null;
 };
 
+type AuthOperationError = { message: string };
+
+type AuthOperationResult = {
+  error: AuthOperationError | null;
+};
+
+export async function finalizeAccountAuthDeletion(input: {
+  deleteUser: () => Promise<AuthOperationResult>;
+  signOut: () => Promise<AuthOperationResult>;
+}) {
+  const { error: authDeleteError } = await input.deleteUser();
+  if (authDeleteError) {
+    return {
+      deleted: false as const,
+      authDeleteError,
+      sessionSignOutError: null,
+    };
+  }
+
+  let sessionSignOutError: AuthOperationError | null;
+  try {
+    ({ error: sessionSignOutError } = await input.signOut());
+  } catch (error) {
+    sessionSignOutError = {
+      message: error instanceof Error ? error.message : "Session cleanup failed",
+    };
+  }
+  return {
+    deleted: true as const,
+    authDeleteError: null,
+    sessionSignOutError,
+  };
+}
+
 export function buildAuthDeletionPendingResponse(
   deletions: AccountDeletionRecord[],
   canceledSubscriptions: number
